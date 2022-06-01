@@ -1,0 +1,46 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.Localization;
+
+namespace opswordsII.Items.ammo
+{
+	public class EndlesChlorophyte : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Endless Chlorophyte Pouch");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Kompletne Etui z Chlorofitem");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de Chlorophyte Sans Fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Clorofita Eterna");
+		}
+
+		public override void SetDefaults()
+		{
+			Item.damage = 11;
+			Item.DamageType = DamageClass.Ranged;
+			Item.width = 8;
+			Item.height = 8;
+			Item.maxStack = 1;
+			Item.consumable = false;             //You need to set the item consumable so that the ammo would automatically consumed
+			Item.knockBack = 3.5f;
+			Item.value = 10;
+			Item.rare = 7;
+			Item.shoot = ProjectileID.ChlorophyteBullet;//The projectile shoot when your weapon using this ammo
+			Item.shootSpeed = 16f;                  //The speed of the projectile
+			Item.ammo = AmmoID.Bullet;              //The ammo class this ammo belongs to.
+		
+	
+		}
+
+        public override void AddRecipes()
+		{
+			CreateRecipe()
+		    .AddIngredient(ItemID.ChlorophyteBullet,3996)
+			.AddTile(TileID.CrystalBall)
+			.Register();
+		}
+	}
+}
