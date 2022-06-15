@@ -1,0 +1,99 @@
+using Microsoft.Xna.Framework;
+using opswordsII.Items.DificultChanger;
+using opswordsII.World;
+using opswordsII;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+
+namespace opswordsII.VanillaChanges
+{
+    public class GlobalItem1 : GlobalItem
+    {
+        public CustomRarity customRarity;
+
+        public bool LegendaryDrop;
+        public bool ReaperItem;
+        public bool BossSummon;
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            TooltipLine val = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.Mod == "Terraria");
+            if (val != null)
+            {
+                ApplyRarityColor(item, val);
+            }
+            if (LegendaryDrop)
+            {
+                LegendaryToolTip(item, tooltips);
+            }
+            if (ReaperItem)
+            {
+                ReaperToolTip(item, tooltips);
+            }
+            if(BossSummon)
+            {
+                BossSummonToolTip(item, tooltips);
+            }
+           
+        }
+
+        public override bool InstancePerEntity => true;
+       // public override bool CloneNewInstances => true;
+
+        private void BossSummonToolTip(Item item, IList<TooltipLine> tooltips)
+        {
+         
+            
+
+
+            Color? color = new Color(10, Main.DiscoG, 10);
+            Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
+            string text = (color.HasValue ? "Not Consumable" : "");
+            TooltipLine item2 = new TooltipLine(Mod, "BossSumon", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            if (Reaper.ReaperMode)
+            tooltips.Add(item2);
+
+        }
+        private void ApplyRarityColor(Item item, TooltipLine nameLine)
+        {
+                Color? rarityColor = Utils1.GetRarityColor(customRarity);
+                if (!item.expert && rarityColor.HasValue)
+                {
+                    nameLine.OverrideColor = rarityColor.Value;
+                }
+                if (item.type == ModContent.ItemType<Ftoggler>())
+                {
+                    nameLine.OverrideColor = Ftoggler.GetRarityColor();
+                }
+        }
+        private void LegendaryToolTip(Item item, IList<TooltipLine> tooltips)
+        {
+            Color? color = new Color(255, Main.DiscoG, 53);
+            Color valueOrDefault = color.GetValueOrDefault(Utils1.LegendaryRarityColor);
+            string text = (color.HasValue ? "[Legendary Drop]" : "");
+            TooltipLine item2 = new TooltipLine(Mod, "LegendaryDrop", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            tooltips.Add(item2);
+        }
+        private void ReaperToolTip(Item item, IList<TooltipLine> tooltips)
+        {
+            Color? color = new Color(10, Main.DiscoG, 10);
+            Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
+            string text = (color.HasValue ? "[Reaper Item]" : "");
+            TooltipLine item2 = new TooltipLine(Mod, "ReaperItem", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            tooltips.Add(item2);
+        }
+
+    }
+}

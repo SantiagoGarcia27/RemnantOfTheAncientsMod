@@ -1,0 +1,17 @@
+               
+		
+	        -----------------------------------------
+                Opswords is a mod created for complement               
+                Terraria vanilla, although it can use in
+                addition to other mods to improve the experience.
+              -----------------------------------------
+                          
+                    Opswords currently adds:
+                  
+                     -1 NPCs         -39 ammos
+		     -86 New Items   -21 Enemies
+                     -94 Weapons     -2 New Bosses
+                     -21 Accesories  -3 Armor Sets               
+                     -Add recipe for Vanilla items
+		     -New dificulty F Mode
+                  
