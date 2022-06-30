@@ -17,7 +17,7 @@ namespace opswordsII.VanillaChanges
         }
         public static double ExpertDamageScale(double i, string tipo)
         {
-            if (Reaper.ReaperMode)
+            if (world1.ReaperMode)
             {
                 if (Main.expertMode) i = DamageScale(i, 2, "a");
                 else if (Main.masterMode) DamageScale(i, 2.5, "a");
@@ -43,7 +43,7 @@ namespace opswordsII.VanillaChanges
        
         public static double ExpertLifeScale(double i, string tipo)
         {
-            if (Reaper.ReaperMode)
+            if (world1.ReaperMode)
             {
                 if (Main.expertMode) i = LifeScale(i, 2, "a");
                 else i = LifeScale(i, 1.5, "a");

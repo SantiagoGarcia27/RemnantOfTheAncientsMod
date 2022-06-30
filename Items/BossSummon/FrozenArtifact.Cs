@@ -33,6 +33,8 @@ namespace opswordsII.Items.BossSummon
             Item.useTime = 30;
             Item.useStyle = 4;
             Item.consumable = true;
+           /* Mod CalamityMod = ModLoader.GetMod("CalamityMod");
+            if (CalamityMod != null) Item.consumable = false;*/
         }
         public override bool CanUseItem(Player player)
         {        
@@ -43,8 +45,8 @@ namespace opswordsII.Items.BossSummon
         
 
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>());   //boss spawn
-            //SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
-
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
+           
             return true;
         }
         public override void AddRecipes()

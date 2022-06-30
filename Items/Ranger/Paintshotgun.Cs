@@ -46,21 +46,16 @@ namespace opswordsII.Items.Ranger
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			const int NumProjectiles = 8; // The humber of projectiles that this gun will shoot.
+			const int NumProjectiles = 8;
 
 			for (int i = 0; i < NumProjectiles; i++)
 			{
-				// Rotate the velocity randomly by 30 degrees at max.
 				Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(15));
-
-				// Decrease velocity randomly for nicer visuals.
 				newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-
-				// Create a projectile.
 				Projectile.NewProjectileDirect(source, position, newVelocity, ProjectileID.PainterPaintball, damage, knockback, player.whoAmI);
 			}
 
-			return false; // Return false because we don't want tModLoader to shoot projectile
+			return false;
 		}
 		public override void AddRecipes()
 		{

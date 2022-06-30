@@ -24,7 +24,7 @@ namespace opswordsII.Items.Magic
 			Item.damage = 69;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; //Channel so that you can held the weapon [Important]
+			Item.channel = true; 
 			Item.mana = 9;
 			Item.rare = 8;
 			Item.width = 28;

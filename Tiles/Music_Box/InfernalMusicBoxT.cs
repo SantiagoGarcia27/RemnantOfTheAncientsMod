@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -7,9 +8,10 @@ using static Terraria.ModLoader.ModContent;
 
 namespace opswordsII.Tiles.Music_Box
 {
-    internal class DesertMusicBoxT : ModTile
+	internal class InfernalMusicBoxT : ModTile
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileObsidianKill[Type] = true;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
@@ -23,14 +25,14 @@ namespace opswordsII.Tiles.Music_Box
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ItemType<Items.Bloques.MusicBox.DesertMusicBox>());
+			Item.NewItem(new EntitySource_TileBreak(i, j),i * 16, j * 16, 16, 48, ItemType<Items.Bloques.MusicBox.InfernalMusicBox>());
 		}
 
 		public override void MouseOver(int i, int j) {
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ItemType<Items.Bloques.MusicBox.DesertMusicBox>();
+			player.cursorItemIconID = ItemType<Items.Bloques.MusicBox.InfernalMusicBox>();
 		}
 	}
 }

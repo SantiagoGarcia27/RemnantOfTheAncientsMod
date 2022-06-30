@@ -28,14 +28,14 @@ namespace opswordsII.Items.Magic
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true; //Channel so that you can held the weapon [Important]
 			Item.mana = 2;
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 10;
 			Item.useStyle = 5;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 10;
-			Item.shoot = 336;
+			Item.shoot = ProjectileID.PineNeedleFriendly;
 			Item.value = 500000;
 			Item.autoReuse = true;
 		}
@@ -48,11 +48,11 @@ namespace opswordsII.Items.Magic
 			for (int i = 0; i < numberProjectiles; i++)
 			{
 				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
-				Projectile.NewProjectile(source, position, perturbedSpeed, 336, 40, knockback, player.whoAmI);
-				Projectile.NewProjectile(source, position, perturbedSpeed, 206, 30, knockback, player.whoAmI);
+				Projectile.NewProjectile(source, position, perturbedSpeed * 20, ProjectileID.PineNeedleFriendly, Item.damage + 10, knockback, player.whoAmI);
+				Projectile.NewProjectile(source, position, perturbedSpeed, ProjectileID.Leaf, Item.damage -2, knockback, player.whoAmI);
 			}
 
-			return false; // return false to stop vanilla from calling Projectile.NewProjectile.
+			return false; 
 		}
 
 

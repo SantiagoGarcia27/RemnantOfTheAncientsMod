@@ -22,23 +22,22 @@ namespace opswordsII.Items.Ranger
 		{
             Item.damage = 59;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 60; //Tamaño de Ancho
-            Item.height = 40; //Tamaño de Alto
-            Item.useTime = 6; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+            Item.width = 60; 
+            Item.height = 40; 
+            Item.useTime = 6; 
             Item.useAnimation = 6;
-            Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+            Item.useStyle = 5; 
             Item.noMelee = true;
             Item.knockBack = 1;
             Item.value = Item.sellPrice(silver:400);
             Item.rare = 7;
    		    Item.UseSound = SoundID.Item45 ;
             Item.autoReuse = true;
-			Item.shoot = ProjectileID.Flare; //dejar en 10 para que dispare balas normales
+			Item.shoot = ProjectileID.Flare; 
             Item.shootSpeed = 1f;
             Item.useAmmo = AmmoID.Flare;
 			
 		}
-
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			Vector2 perturbedSpeed = new Vector2(velocity.X,velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));

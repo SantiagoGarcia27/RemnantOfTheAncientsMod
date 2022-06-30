@@ -28,44 +28,41 @@ public class CurcedShotGun : ModItem
 		{
             Item.damage = 30;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 80; //Tamaño de Ancho
-            Item.height = 40; //Tamaño de Alto
-            Item.useTime = 46; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+            Item.width = 80; 
+            Item.height = 40; 
+            Item.useTime = 46; 
             Item.useAnimation = 46;
-            Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+            Item.useStyle = 5; 
             Item.noMelee = true;
             Item.knockBack = 5;
-            Item.value = 100000; //Precio
+            Item.value = 100000;
             Item.rare = 4;
    		    Item.UseSound = SoundID.Item36;
             Item.autoReuse = true;
-            Item.shoot = 9; //dejar en 10 para que dispare balas normales
+            Item.shoot = 9; 
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
 			
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
+			if (type == ProjectileID.Bullet) type = ProjectileID.CursedBullet;
+			
 			const int NumProjectiles = 8; // The humber of projectiles that this gun will shoot.
 
 			for (int i = 0; i < NumProjectiles; i++)
 			{
-				// Rotate the velocity randomly by 30 degrees at max.
 				Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(15));
-
-				// Decrease velocity randomly for nicer visuals.
 				newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-
-				// Create a projectile.
 				Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
 			}
 
 			return false;
 		}
-		 /*  public override bool CanConsumeAmmo(Player player)
+		public override bool CanConsumeAmmo(Item ammo, Player player)
 		{
-			return Main.rand.NextFloat() >= .05f;
-		}*/
+			return Main.rand.NextFloat() >= 0.05f;
+		}
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-5, 0);

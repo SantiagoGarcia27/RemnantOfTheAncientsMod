@@ -59,7 +59,7 @@ namespace opswordsII.VanillaChanges
 		}
 		public override void UpdateInventory(Item item, Player player)
         {
-            if (Reaper.ReaperMode)
+            if (world1.ReaperMode)
             {
 				FchangesItem.ReaperSize(item);
 				FchangesItem.ReaperConsumable(item);

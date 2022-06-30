@@ -19,16 +19,16 @@ namespace opswordsII.Items.Ranger
 		{
         Item.damage = 30;
         Item.DamageType = DamageClass.Ranged;
-        Item.width =2; //Tamaño de Ancho
-        Item.height = 2; //Tamaño de Alto
-        Item.useTime = 25; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
-        Item.useAnimation = 25;//30
-        Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+        Item.width =2; 
+        Item.height = 2; 
+        Item.useTime = 25; 
+        Item.useAnimation = 25;
+        Item.useStyle = ItemUseStyleID.Shoot;
         Item.noMelee = true;
 		Item.scale = 0.68f;
         Item.knockBack = 5;
-        Item.value = 20000; //Precio
-        Item.rare = 1;
+        Item.value = 20000;
+        Item.rare = ItemRarityID.Blue;
 		Item.UseSound = SoundID.Item38;
         Item.autoReuse = false;
         Item.shoot = 10;

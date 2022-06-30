@@ -1,6 +1,6 @@
 author = Sangar & TTIM
 version = 1.4
-displayName = Opswords II Beta 1 [1.4] 
+displayName = Opswords II Beta 2 [1.4] 
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 hideCode = false
 hideResources = false

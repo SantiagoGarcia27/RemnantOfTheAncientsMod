@@ -27,18 +27,18 @@ public class Ichor_asault_rifle : ModItem
 		{
             Item.damage = 20;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 80; //Tamaño de Ancho
-            Item.height = 40; //Tamaño de Alto
-            Item.useTime = 10; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+            Item.width = 80; 
+            Item.height = 40;
+            Item.useTime = 10;
             Item.useAnimation = 10;
-            Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+            Item.useStyle = ItemUseStyleID.Shoot; 
             Item.noMelee = true;
             Item.knockBack = 5;
-            Item.value = 100000; //Precio
+            Item.value = 100000; 
             Item.rare = 4;
    		    Item.UseSound = SoundID.Item36;
 			Item.autoReuse = true;
-            Item.shoot = 279; //dejar en 10 para que dispare balas normales
+            Item.shoot = ProjectileID.IchorBullet; 
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
             	}

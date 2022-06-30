@@ -18,7 +18,7 @@ namespace opswordsII.Buffs
 		public override void Update(Player player, ref int buffIndex) {
 			player.GetDamage(DamageClass.Generic) += 0.50f;
 			player.statLifeMax2 = 1;
-			if (Reaper.ReaperMode == true) {
+			if (world1.ReaperMode == true) {
 				player.buffTime[buffIndex] = 1;
 			}
 			else {

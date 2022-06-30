@@ -48,12 +48,12 @@ namespace opswordsII.Items.Ranger
 			return true;
 		}
 
-       /* public override bool CanConsumeAmmo(Player player)
-		{
-			// Because of how the game works, player.itemAnimation will be 11, 7, and finally 3. (UseAmination - 1, then - useTime until less than 0.) 
-			// We can get the Clockwork Assault Riffle Effect by not consuming ammo when itemAnimation is lower than the first shot.
-			return !(player.itemAnimation < Item.useAnimation - 2);
-		}*/
+		public override bool CanConsumeAmmo(Item ammo,Player player)
+		 {
+			 // Because of how the game works, player.itemAnimation will be 11, 7, and finally 3. (UseAmination - 1, then - useTime until less than 0.) 
+			 // We can get the Clockwork Assault Riffle Effect by not consuming ammo when itemAnimation is lower than the first shot.
+			 return !(player.itemAnimation < Item.useAnimation - 2);
+		 }
 
 
 		public override void AddRecipes()

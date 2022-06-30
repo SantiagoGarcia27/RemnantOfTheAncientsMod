@@ -51,8 +51,8 @@ namespace opswordsII.NPCs.frozen_assaulter
             NPC.noTileCollide = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
-            NPC.buffImmune[24] = true; 
-           // Music = MusicLoader.GetMusicSlot(Mod,"Beta/Mod Sources/opswordsII/Sounds/Music/Frozen_Assaulter");
+            NPC.buffImmune[24] = true;
+            Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Frozen_Assaulter_p1");
             NPC.netAlways = true;
             
 
@@ -72,7 +72,7 @@ namespace opswordsII.NPCs.frozen_assaulter
 
             NPC.ai[1]++;
             phaseChanger();
-            if (!Reaper.ReaperMode)
+            if (!world1.ReaperMode)
             {
                 if (NPC.ai[1] >= 5) shootIa((int)NpcChanges1.ExpertDamageScale(50, "MyBoss"), "Frozenp", P, 20f);
                 if (NPC.ai[1] >= 115)
@@ -122,7 +122,7 @@ namespace opswordsII.NPCs.frozen_assaulter
                 if (fase3)
                 {
 
-                   // music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/Frozen Theme p2 ");
+                    Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Frozen_Assaulter_p2");
                     NPC.dontTakeDamage = true;
 
                     if (NPC.ai[3] > 388) NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
@@ -132,7 +132,7 @@ namespace opswordsII.NPCs.frozen_assaulter
                     {
                         if (!healAnimation)
                         {
-                            if (!Reaper.ReaperMode)
+                            if (!world1.ReaperMode)
                             {
                                 for (int i = NPC.lifeMax / 4; i <= NPC.lifeMax / 2; i++)
                                 {
@@ -212,7 +212,6 @@ namespace opswordsII.NPCs.frozen_assaulter
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             if (!Main.expertMode || Main.masterMode){
                 int choice = Main.rand.Next(3);
-                int item = 0;
                 switch (choice) {    
                     case 0:
                         Item.NewItem(NPC.GetSource_Loot(),(int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<FrostShark>(), 1);

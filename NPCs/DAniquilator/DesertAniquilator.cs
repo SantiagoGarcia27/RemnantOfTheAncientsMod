@@ -45,17 +45,8 @@ namespace opswordsII.NPCs.DAniquilator
             NPC.HitSound = SoundID.NPCHit1;
 			NPC.DeathSound = SoundID.NPCDeath1;
             NPC.buffImmune[24] = true;
-            //Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Desert_Aniquilator");
+            Music = MusicLoader.GetMusicSlot(Mod,"Sounds/Music/Desert_Aniquilator");
             NPC.netAlways = true;
-
-
-           /* Mod Calami
-            * tyMod
-            * = ModLoader.GetMod("CalamityMod");
-    		if (CalamityMod != null)
-
-            NPC.damage = 40;
-            NPC.lifeMax = 4500;*/
         }
 
         public override void AI()
@@ -97,7 +88,7 @@ namespace opswordsII.NPCs.DAniquilator
 
                 if (Main.expertMode || Main.masterMode)
                 {
-                    if (!Reaper.ReaperMode)
+                    if (!world1.ReaperMode)
                     {
                         if (NPC.ai[2] % 300 == 300)
                         {
@@ -140,7 +131,7 @@ namespace opswordsII.NPCs.DAniquilator
                 if (fase2) if (NPC.ai[3] % 900 == 700) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
                 if (Main.expertMode || Main.masterMode)
                 {
-                    if (Reaper.ReaperMode)
+                    if (world1.ReaperMode)
                     {
                         if (NPC.ai[2] % 300 == 200)
                         {

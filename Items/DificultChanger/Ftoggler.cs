@@ -78,9 +78,9 @@ namespace opswordsII.Items.DificultChanger
 		{
 			if (!Utils1.IsAnyBossAlive())
 			{
-				if (Reaper.ReaperMode == false)
+				if (world1.ReaperMode == false)
 				{
-					Reaper.ReaperMode = true;
+					world1.ReaperMode = true;
 					Item.buffTime = 1;
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Welcome to hell, now you're a reaper.", gray);
@@ -88,7 +88,7 @@ namespace opswordsII.Items.DificultChanger
 				}
 				else
 				{
-					Reaper.ReaperMode = false;
+					world1.ReaperMode = false;
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Well your soul is free... for now.", gray);
 				}

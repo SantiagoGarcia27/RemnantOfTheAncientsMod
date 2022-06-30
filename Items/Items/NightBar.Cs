@@ -10,9 +10,9 @@ namespace opswordsII.Items.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Night Bar");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Sztabka nocna");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Lingot de nuit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lingote de la noche");
+            		DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Sztabka nocna");
+            		DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Lingot de nuit");
+            		DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lingote de la noche");
 		}
 
 			public override void SetDefaults()
@@ -33,9 +33,9 @@ namespace opswordsII.Items.Items
 
 		public override void AddRecipes()
 		{
-			 CreateRecipe()
+			 CreateRecipe(4)
 			.AddIngredient(ItemID.HellstoneBar,1)
-            .AddRecipeGroup("CorruptBar",1)
+            		.AddRecipeGroup("CorruptBar",1)
 			.AddIngredient(null,"JungleBar",1)
 			.AddIngredient(null,"BoneBar",1)
 			.AddTile(TileID.DemonAltar)

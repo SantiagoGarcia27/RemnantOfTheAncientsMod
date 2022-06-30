@@ -34,6 +34,8 @@ namespace opswordsII.Items.BossSummon
             Item.useTime = 30;
             Item.useStyle = 4;
             Item.consumable = true;
+           /* Mod CalamityMod = ModLoader.GetMod("CalamityMod");
+            if (CalamityMod != null) Item.consumable = false;*/
         }
         public override bool CanUseItem(Player player)
         {        
@@ -44,14 +46,17 @@ namespace opswordsII.Items.BossSummon
         
 
             NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<InfernalTyrantHead>());   //boss spawn
-           // SoundEngine.PlaySound  (SoundType.Sound[0,0]);
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
 
             return true;
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemID.SandBlock, 1)
+            .AddIngredient(ItemID.AshBlock, 5)
+            .AddIngredient(ItemID.SoulBottleNight, 5)
+            .AddRecipeGroup("GoldBar")
+            .AddTile(TileID.Hellforge)
             .Register();
         }
     }

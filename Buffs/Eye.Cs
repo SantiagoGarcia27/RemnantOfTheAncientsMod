@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
 
 namespace opswordsII.Buffs
 {
@@ -22,18 +23,22 @@ namespace opswordsII.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.dash = 1;
-           player.jumpBoost = true;
+            //player.dash = 1;
+            //player.dashType = 1;
+            player.jumpBoost = true;
 			player.noFallDmg = true;
+			player.GetModPlayer<DashPlayer>().DashEquipped = true;
 
-            player.buffImmune[BuffType<Buffs.Bee>()] = true;
-            player.buffImmune[BuffType<Buffs.AoD>()] = true;
-            player.buffImmune[BuffType<Buffs.Infernal>()] = true;
-            player.buffImmune[BuffType<Buffs.MasterD>()] = true;
-            player.buffImmune[BuffType<Buffs.Putrid>()] = true;
-            player.buffImmune[BuffType<Buffs.Skeleton>()] = true;
-            player.buffImmune[BuffType<Buffs.Slim>()] = true;
+			player.buffImmune[BuffType<Bee>()] = true;
+            player.buffImmune[BuffType<AoD>()] = true;
+            player.buffImmune[BuffType<Infernal>()] = true;
+            player.buffImmune[BuffType<MasterD>()] = true;
+            player.buffImmune[BuffType<Putrid>()] = true;
+            player.buffImmune[BuffType<Skeleton>()] = true;
+            player.buffImmune[BuffType<Slim>()] = true;
         }
-    }
-}
+		
+		}
+	}
+
   

@@ -18,7 +18,7 @@ namespace opswordsII.VanillaChanges
 
 		public static void ReaperSize(Item item)
 		{
-			if (Reaper.ReaperMode)
+			if (world1.ReaperMode)
 			{
 				if (item.CountsAsClass(DamageClass.Melee))
 				{
@@ -52,9 +52,20 @@ namespace opswordsII.VanillaChanges
             }
             else
             {*/
-				if (item.type == 560 || item.type == 43 || item.type == 70 || item.type == 1331 || item.type == 1133 || item.type == 544 || item.type == 556 || item.type == 557 || item.type == 3601 || item.type == ModContent.ItemType<DesertChest>() || item.type == ModContent.ItemType<FrozenArtifact>() || item.type == ModContent.ItemType<InfernalCalis>())
+				if (item.type == ItemID.SlimeCrown || 
+					item.type == ItemID.SuspiciousLookingEye ||
+					item.type == ItemID.WormFood || 
+					item.type == ItemID.BloodySpine || 
+					item.type == ItemID.Abeemination || 
+					item.type == ItemID.MechanicalEye || 
+					item.type == ItemID.MechanicalWorm || 
+					item.type == ItemID.MechanicalSkull || 
+					item.type == ItemID.CelestialSigil || 
+					item.type == ModContent.ItemType<DesertChest>() || 
+					item.type == ModContent.ItemType<FrozenArtifact>() || 
+					item.type == ModContent.ItemType<InfernalCalis>())
 				{
-                    if (Reaper.ReaperMode)
+                    if (world1.ReaperMode)
                     {
 						item.consumable = false;
 						item.GetGlobalItem<GlobalItem1>().BossSummon = true;
@@ -62,7 +73,6 @@ namespace opswordsII.VanillaChanges
                     else
                     {
 						item.consumable = true;
-
 						item.GetGlobalItem<GlobalItem1>().BossSummon = false;
 					}
 				} 
@@ -73,7 +83,7 @@ namespace opswordsII.VanillaChanges
 		public static void ReaperWingsNerf(Player player)
 		{
 			int OgWingTime;
-			if (Reaper.ReaperMode)
+			if (world1.ReaperMode)
 			{
 				if (player.wingTimeMax >= 4)
 				{

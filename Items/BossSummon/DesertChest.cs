@@ -28,11 +28,13 @@ namespace opswordsII.Items.BossSummon
             Item.height = 20;
             Item.maxStack = 999;
             Item.value = 0;
-            Item.rare = 2;
+            Item.rare = ItemRarityID.Green;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.useStyle = 4;
+            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = true;
+            /*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
+            if (CalamityMod != null) Item.consumable = false;*/
         }
         public override bool CanUseItem(Player player)
         {        

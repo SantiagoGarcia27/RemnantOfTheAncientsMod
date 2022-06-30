@@ -48,7 +48,7 @@ namespace opswordsII.Projectiles
             if (player.dead || !player.active) {
 				//player.ClearBuff(BuffType<DesertMinionBuff>());
 			}
-			if (player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && Reaper.ReaperMode && !player.dead) {
+			if (player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && world1.ReaperMode && !player.dead) {
 				Projectile.timeLeft = 2;
 			}
 			#endregion
@@ -89,7 +89,7 @@ namespace opswordsII.Projectiles
             if (player.dead || !player.active) {
 				//player.ClearBuff(BuffType<DesertMinionBuff>());
 			}
-			if (player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && Reaper.ReaperMode && !player.dead) {
+			if (player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && world1.ReaperMode && !player.dead) {
                 Projectile.timeLeft = 2;
 			}
 			#endregion

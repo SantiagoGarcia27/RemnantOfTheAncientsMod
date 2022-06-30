@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.DataStructures;
 
 namespace opswordsII.Items.Ranger
 {
@@ -19,20 +20,20 @@ namespace opswordsII.Items.Ranger
 		}
 		public override void SetDefaults()
 		{
-            Item.damage = 11;
+            Item.damage = 13;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 80; //Tamaño de Ancho
-            Item.height = 40; //Tamaño de Alto
-            Item.useTime = 4; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+            Item.width = 80; 
+            Item.height = 40; 
+            Item.useTime = 4; 
             Item.useAnimation = 4;
-            Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+            Item.useStyle = 5; 
             Item.noMelee = true;
             Item.knockBack = 1;
-            Item.value = 100000; //Precio
+            Item.value = 100000;
             Item.rare = 6;
    		    Item.UseSound = SoundID.Item10;
             Item.autoReuse = true;
-            Item.shoot = 10; //dejar en 10 para que dispare balas normales
+            Item.shoot = 10; 
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
 			Item.expert = true;
@@ -42,7 +43,13 @@ namespace opswordsII.Items.Ranger
 		{
 			return new Vector2(-20, 0);
 		}
-
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		{
+			Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(3));
+			velocity.X = perturbedSpeed.X;
+			velocity.Y = perturbedSpeed.Y;
+			return true;
+		}
 		public override void AddRecipes()
 		{
 			CreateRecipe()

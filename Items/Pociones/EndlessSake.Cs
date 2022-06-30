@@ -8,7 +8,7 @@ namespace opswordsII.Items.Pociones
 {
 	public class EndlessSake : ModItem
 	{
-        public override string Texture => "Terraria/Images/Item_" + ItemID.Sake;
+        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Sake");

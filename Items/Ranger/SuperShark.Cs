@@ -54,18 +54,17 @@ namespace opswordsII.Items.Ranger
             Item.useAmmo = AmmoID.Bullet;
 			
 		}
-         /*  public override bool CanConsumeAmmo(Player player)
+        public override bool CanConsumeAmmo(Item ammo,Player player)
 		{
 			return Main.rand.NextFloat() >= .40f;
 		}
-			public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			Vector2 perturbedSpeed = new Vector2(speedX, speedY).RotatedByRandom(MathHelper.ToRadians(5));
-			speedX = perturbedSpeed.X;
-			speedY = perturbedSpeed.Y;
-			return true;
-		}*/
-		  public override Vector2? HoldoutOffset()
+			Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(5));
+			velocity.X = perturbedSpeed.X;
+			velocity.Y = perturbedSpeed.Y;
+		}
+		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-20, 0);
 		}

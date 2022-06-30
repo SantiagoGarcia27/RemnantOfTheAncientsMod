@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.Audio;
 
 namespace opswordsII.Items.BossSummon
 {
@@ -29,11 +30,8 @@ namespace opswordsII.Items.BossSummon
             Item.useTime = 30;
             Item.useStyle = 4;
             Item.consumable = true;
-
-           /* Mod CalamityMod
-            * = ModLoader.GetMod("CalamityMod");
-            if (CalamityMod != null)
-                Item.consumable = false;*/
+           /* Mod CalamityMod = ModLoader.GetMod("CalamityMod");
+            if (CalamityMod != null) Item.consumable = false;*/
         }
         public override bool CanUseItem(Player player)
         {        
@@ -41,10 +39,9 @@ namespace opswordsII.Items.BossSummon
         }
         public override bool? UseItem(Player player)
         {
-        
 
-            /*NPC.SpawnOnPlayer(player.whoAmI, NPCID.OldMan);   //boss spawn
-            Main.PlaySound(15, (int)player.position.X, (int)player.position.Y, 0);*/
+            NPC.SpawnOnPlayer(player.whoAmI, NPCID.OldMan);   //boss spawn
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
 
             return true;
         }

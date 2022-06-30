@@ -14,9 +14,10 @@ using Microsoft.Xna.Framework;
 using opswordsII.VanillaChanges;
 using opswordsII.Projectiles;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.Audio;
+
 using opswordsII.World;
 using opswordsII.Common.Systems;
+using Terraria.Audio;
 
 namespace opswordsII.NPCs.ITyrant
 {
@@ -37,10 +38,7 @@ namespace opswordsII.NPCs.ITyrant
 			NPC.scale = 2.50f;
 			NPC.npcSlots = 20f;
             NPC.lavaImmune = true;
-			if (!Main.dedServ)
-			{
-				//Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Infernal_Tyrant");
-			}
+			Music = MusicLoader.GetMusicSlot(Mod,"Sounds/Music/Infernal_Tyrant");
 		}
 
 		public override void Init() {
@@ -149,7 +147,9 @@ namespace opswordsII.NPCs.ITyrant
 		public float speed;
 		public float turnSpeed;
         public bool CanTp = false;
-		public override void AI() {
+
+        [Obsolete]
+        public override void AI() {
             float distance = NPC.Distance(Main.player[NPC.target].Center);
 
             if (NPC.localAI[1] == 0f) {
@@ -344,7 +344,7 @@ namespace opswordsII.NPCs.ITyrant
 							num195 = 20f;
 						}
 						NPC.soundDelay = (int)num195;
-						SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
+						SoundEngine.PlaySound(SoundID.AbigailCry, NPC.Center);
 					}
 					num193 = (float)Math.Sqrt(num191 * num191 + num192 * num192);
 					float num196 = Math.Abs(num191);
@@ -475,7 +475,7 @@ namespace opswordsII.NPCs.ITyrant
                         int damage = (int)NpcChanges1.ExpertDamageScale(30,"MyBoss");
                         Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * i-1), NPC.position.Y + (NPC.height * i+2));
                         int type = ProjectileType<InfernalBall>();
-						SoundEngine.PlaySound(SoundID.Item, NPC.Center); 
+						SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center); 
 						float rotation = (float) Math.Atan2(vector8.Y-(Main.player[NPC.target].position.Y+(Main.player[NPC.target].height * 0.5f)), vector8.X-(Main.player[NPC.target].position.X+(Main.player[NPC.target].width * 0.5f)));
                         int num55 = Projectile.NewProjectile(NPC.GetSource_FromAI(),vector8.X, vector8.Y,(float)((Math.Cos(rotation) * Speed)*-1),(float)((Math.Sin(rotation) * Speed)*-1), type, damage, 0f, 0);
                   		 }
@@ -528,7 +528,7 @@ namespace opswordsII.NPCs.ITyrant
                 vector8 = new Vector2(NPC.position.X + (NPC.width / cordx), NPC.position.Y + (NPC.height / cordy));
             }
             int type = ProjectileType<InfernalBallF>();
-			SoundEngine.PlaySound(SoundID.Item, NPC.Center);
+			SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
             int num55 = Projectile.NewProjectile(NPC.GetSource_FromAI(),vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
         } 
@@ -539,7 +539,7 @@ namespace opswordsII.NPCs.ITyrant
             {
                 Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * cordx), NPC.position.Y + (NPC.height * cordy));
                 int type = ProjectileType<InfernalSpikeF>();
-				SoundEngine.PlaySound(SoundID.Item, NPC.Center);
+				SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
                 float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
                 int num55 = Projectile.NewProjectile(NPC.GetSource_FromAI(),vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
             }
@@ -547,7 +547,7 @@ namespace opswordsII.NPCs.ITyrant
             {
                 Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * cordx), NPC.position.Y + (NPC.height * cordy));
                 int type = ProjectileType<InfernalSpike>();
-				SoundEngine.PlaySound(SoundID.Item, NPC.Center);
+				SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
                 float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
                 int num55 = Projectile.NewProjectile(NPC.GetSource_FromAI(),vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
             }
@@ -575,7 +575,7 @@ namespace opswordsII.NPCs.ITyrant
 				turnSpeed = 1.1f;
 				NPC.defense = TyrantArmor(999);
 			}
-			if (NPC.life < NPC.lifeMax / 15 && Reaper.ReaperMode)
+			if (NPC.life < NPC.lifeMax / 15 && world1.ReaperMode)
 			{
 				turnSpeed = 1.5f;
 				NPC.defense = TyrantArmor(999);
@@ -600,7 +600,7 @@ namespace opswordsII.NPCs.ITyrant
             if (Main.expertMode || Main.masterMode)
             {
 				if (NPC.life > NPC.life / 10) i = i / 3;
-                else if (NPC.life > NPC.life / 15 && Reaper.ReaperMode) i = 0;
+                else if (NPC.life > NPC.life / 15 && world1.ReaperMode) i = 0;
             }
             else
             {

@@ -41,7 +41,7 @@ namespace opswordsII.VanillaChanges
         }
 
         public override bool InstancePerEntity => true;
-       // public override bool CloneNewInstances => true;
+        protected override bool CloneNewInstances => true;
 
         private void BossSummonToolTip(Item item, IList<TooltipLine> tooltips)
         {
@@ -56,7 +56,7 @@ namespace opswordsII.VanillaChanges
             {
                 OverrideColor = valueOrDefault
             };
-            if (Reaper.ReaperMode)
+            if (world1.ReaperMode)
             tooltips.Add(item2);
 
         }

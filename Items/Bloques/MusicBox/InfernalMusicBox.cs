@@ -1,17 +1,17 @@
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
-using Terraria.GameContent.Creative;
 using opswordsII.Tiles.Music_Box;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Bloques.MusicBox
 {
-	public class Frozenp2MusicBox : ModItem
+	public class InfernalMusicBox : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Frozenp2MusicBox");
+			DisplayName.SetDefault("InfernalMusicBox");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Frozen_Assaulter_p2"), ItemType<Frozenp2MusicBox>(), TileType<Frozenp2MusicBoxT>());
+			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Infernal_Tyrant"), ItemType<InfernalMusicBox>(), TileType<InfernalMusicBoxT>());
 		}
 
 		public override void SetDefaults() {
@@ -21,7 +21,7 @@ namespace opswordsII.Items.Bloques.MusicBox
 			Item.useTime = 10;
 			Item.autoReuse = true;
 			Item.consumable = true;
-			Item.createTile = TileType<Frozenp2MusicBoxT>();
+			Item.createTile = TileType<InfernalMusicBoxT>();
 			Item.width = 24;
 			Item.height = 24;
 			Item.rare = ItemRarityID.LightRed;
