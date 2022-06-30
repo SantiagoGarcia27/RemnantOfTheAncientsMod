@@ -1,0 +1,79 @@
+ using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.Localization;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
+using opswordsII.VanillaChanges;
+using opswordsII;
+using Terraria.ModLoader.IO;
+
+namespace opswordsII.Items.Fmode
+{
+	public class RetinazorEnergyCell : ModItem
+	{
+		private static readonly Color rarityColorOne = new Color(46, 45, 45);
+
+		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Retinazor Energy Cell");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cellule énergétique Retinazor");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía Retinazor");
+			Tooltip.SetDefault("Removes restriction on wings of Reaper Mode");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Supprime la restriction sur les ailes du mode Reaper");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Elimina la restricción en las alas del modo Segador.");
+
+			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			//ItemID.Sets.ItemIconPulse[Item.type] = true;
+			ItemID.Sets.ItemNoGravity[Item.type] = true;
+		}
+
+		public override void SetDefaults()
+		{
+			Item.width = 26; //Tamaño inGame 
+			Item.height = 26;
+			Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
+			Item.value = 0; //Precio
+			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
+			Item.useAnimation = 20;
+			Item.useTime = 20;
+			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.maxStack = 1;
+			Item.UseSound = SoundID.Item60;
+			Item.consumable = true;
+		}
+		internal static Color GetRarityColor()
+		{
+			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
+		}
+		public override bool CanUseItem(Player player)
+		{
+
+			return !player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade;
+		}
+		public override bool? UseItem(Player player)
+		{
+			player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade = true;
+			return true;
+		}
+	}
+	public class RetinazorReaperSoulPlayer : ModPlayer
+	{
+		public bool RetinazorReaperUpgrade = false;
+		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+		{
+			ModPacket packet = Mod.GetPacket();
+			packet.Write(RetinazorReaperUpgrade);
+		}
+		public override void SaveData(TagCompound tag)
+		{
+			tag["RetinazorReaperUpgrade"] = RetinazorReaperUpgrade;
+		}
+		public override void LoadData(TagCompound tag)
+		{
+			RetinazorReaperUpgrade = tag.Get<bool>("RetinazorReaperUpgrade");
+		}
+	}
+}
