@@ -28,7 +28,7 @@ namespace opswordsII.Items.ammo
 			Item.knockBack = 3.5f;
 			Item.value = 10;
 			Item.rare = 7;
-			Item.shoot = ProjectileID.Nail;//The projectile shoot when your weapon using this ammo
+			Item.shoot = ProjectileID.NailFriendly;//The projectile shoot when your weapon using this ammo
 			Item.shootSpeed = 16f;                  //The speed of the projectile
 			Item.ammo = AmmoID.NailFriendly;              //The ammo class this ammo belongs to.
 		
