@@ -12,7 +12,7 @@ namespace opswordsII.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("P90  Manito kkkkkkkkkk");
+			DisplayName.SetDefault("P90");
 			Tooltip.SetDefault("Fast and effective");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Szybki i skuteczny");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Rapide et efficace");
