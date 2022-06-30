@@ -18,7 +18,7 @@ namespace opswordsII.Items.Magic
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Judgment");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			
 		}
 
 		public override void SetDefaults() {
