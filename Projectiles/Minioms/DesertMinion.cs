@@ -32,12 +32,11 @@ namespace opswordsII.Projectiles.Minioms
 			Projectile.CloneDefaults(ProjectileID.BabySlime);
 		}
 
-		// Here you can decide if your minion breaks things like grass or pots
+		
 		public override bool? CanCutTiles() {
 			return false;
 		}
 
-		// This is mandatory if your minion deals contact damage (further related stuff in AI() in the Movement region)
 		public override bool MinionContactDamage() {
 			return true;
 		}

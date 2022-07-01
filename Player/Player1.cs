@@ -281,18 +281,10 @@ namespace opswordsII
 			float OgPlayerSpeed = Player.moveSpeed;
 			if (world1.ReaperMode)
 			{
-				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade)
-				{
-					Player.moveSpeed = OgPlayerSpeed + 1.30f;//0.15
-				}
-				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade)
-				{
-					Player.statLifeMax2 += 10;
-				}
-				if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade)
-				{
-					Player.lifeRegen += 5;
-				}
+				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) Player.moveSpeed = OgPlayerSpeed + 1.30f;
+				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade) Player.statLifeMax2 += 10;
+				if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade) Player.lifeRegen += 5;
+				
 				if (Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade)
 				{
 					//Player.honeyCombItem = true;
@@ -353,7 +345,9 @@ namespace opswordsII
 		{
 			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[proj] < 1 && Player.whoAmI == Main.myPlayer)
 			{
-				Main.projectile[Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center.X, Player.Center.Y, 0f, -1f, proj, damage, knockback, Main.myPlayer, 0f, 0f)].netUpdate = true;
+				Vector2 velocity = Player.velocity * 1.5f;
+				var projectile = Projectile.NewProjectileDirect(Player.GetSource_FromAI(), Player.Center, velocity, proj, damage, knockback, Main.myPlayer);
+				projectile.originalDamage = damage;
 			}
 		}
 		public override void PreUpdateBuffs()
