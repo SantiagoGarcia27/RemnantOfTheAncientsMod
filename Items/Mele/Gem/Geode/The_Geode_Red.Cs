@@ -17,10 +17,9 @@ namespace opswordsII.Items.Mele.Gem.Geode
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
 
-			Tooltip.SetDefault("Inflict fire on enemies");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zadawaj ogień wrogom");
-           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger des tirs aux ennemis");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos");
+			Tooltip.SetDefault("Inflict fire and Hell fire on enemies");
+           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflige le feu et le feu de l'enfer aux ennemis");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego y fuego infernal a los enemigos");
 		}
 		public override void SetDefaults()
 		{
@@ -30,20 +29,20 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.height = 40;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
+			Item.autoReuse = true;
 
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			// Add Onfire buff to the NPC for 1 second
-			// 60 frames = 1 second
 			target.AddBuff(BuffID.OnFire, 400);
+			target.AddBuff(ModContent.BuffType<Buffs.Hell_Fire>(), 400);
+	
 		}	
 		public override void AddRecipes()
 		{

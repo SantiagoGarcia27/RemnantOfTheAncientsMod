@@ -29,19 +29,18 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.height = 40;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = 3;
+			Item.scale = 1.20f;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
+			Item.autoReuse = true;
 
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			// Add Onfire buff to the NPC for 1 second
-			// 60 frames = 1 second
 			target.AddBuff(BuffID.Slow, 400);
 		}	
 		public override void AddRecipes()

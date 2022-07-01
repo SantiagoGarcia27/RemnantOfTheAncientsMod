@@ -10,17 +10,13 @@ namespace opswordsII.Items.Mele.Gem.Geode
 	{
 		public override void SetStaticDefaults()
 		{
-			
 	        DisplayName.SetDefault("The Geode");
-
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "The Geode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-
-			Tooltip.SetDefault("Inflict poisoned on enemies");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zadawaj truciznę wrogom");
-           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger du poison aux ennemis");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije veneno a los enemigos");
+			Tooltip.SetDefault("Inflict poisoned on enemies and heal you with hits");
+           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infligez du poison aux ennemis et vous soignez avec des coups");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije veneno a los enemigos y te curas cuando atacas");
 		}
 		public override void SetDefaults()
 		{
@@ -28,21 +24,20 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
-			Item.useTime = 18;
-			Item.useAnimation = 18;
-			Item.useStyle = 1;
+			Item.useTime = 20;
+			Item.useAnimation = 20;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
+			Item.autoReuse = true;
 
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			// Add Onfire buff to the NPC for 1 second
-			// 60 frames = 1 second
+			player.statLife += 2;
 			target.AddBuff(BuffID.Poisoned, 400);
 		}	
 		public override void AddRecipes()
