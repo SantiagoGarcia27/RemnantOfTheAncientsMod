@@ -5,7 +5,7 @@ using Terraria.Localization;
 
 namespace opswordsII.Items.Debugg
 {
-	public class HardmodeToggler : ModItem
+	public class ExpertToggler : ModItem
 	{
 		/*public override bool Autoload(ref string name)
 		{
@@ -13,7 +13,7 @@ namespace opswordsII.Items.Debugg
 		}*/
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("HardmodeToggler3000");
+			DisplayName.SetDefault("ExpertToggler");
 		}
 
 			public override void SetDefaults()
@@ -29,18 +29,18 @@ namespace opswordsII.Items.Debugg
         }
         public override bool? UseItem(Player player)
 		{
-			if (Main.netMode != NetmodeID.MultiplayerClient)
+			if (Main.netMode != 1)
 			{
-				if (Main.hardMode == true)
+				if (Main.expertMode == true)
 				{
-					Main.hardMode = false;
-					Main.NewText("Hard mode desactivado");
+					Main.GameMode = 1;
+					Main.NewText("Expert mode desactivado");
 				}
                 else
                 {
-                    Main.hardMode = true;
-					Main.NewText("Hard mode activado");
-                }	
+				
+					Main.NewText("Expert mode activado");
+				}	
                 Netcode.SyncWorld();
 			}
 			return true;

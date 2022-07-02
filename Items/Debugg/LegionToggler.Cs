@@ -5,15 +5,15 @@ using Terraria.Localization;
 
 namespace opswordsII.Items.Debugg
 {
-	public class HardmodeToggler : ModItem
+	public class LegionToggler : ModItem
 	{
 		/*public override bool Autoload(ref string name)
 		{
 		return ModLoader.GetMod("OpswordsIIDebugMod") != null;
 		}*/
-		public override void SetStaticDefaults()
+		/*public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("HardmodeToggler3000");
+			DisplayName.SetDefault("LegionToggler3000");
 		}
 
 			public override void SetDefaults()
@@ -27,24 +27,25 @@ namespace opswordsII.Items.Debugg
 			Item.UseSound = SoundID.Item60;
 
         }
-        public override bool? UseItem(Player player)
+        public override bool UseItem(Player player)
 		{
-			if (Main.netMode != NetmodeID.MultiplayerClient)
+			if (Main.netMode != 1)
 			{
-				if (Main.hardMode == true)
+				if (world1.OneInMiddleMillion == true)
 				{
-					Main.hardMode = false;
-					Main.NewText("Hard mode desactivado");
+					Main.NewText("Legion desactivado");
+					world1.OneInMiddleMillion = false;
 				}
-                else
-                {
-                    Main.hardMode = true;
-					Main.NewText("Hard mode activado");
-                }	
+				else
+				{
+					Main.NewText("Legion activado");
+					world1.OneInMiddleMillion = true;
+				}
+				
                 Netcode.SyncWorld();
 			}
 			return true;
-		}
+		}*/
 
 	}
 }

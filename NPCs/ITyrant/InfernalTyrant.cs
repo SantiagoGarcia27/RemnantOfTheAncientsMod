@@ -625,22 +625,17 @@ namespace opswordsII.NPCs.ITyrant
         {
 			DownedBossSystem.downedTyrant = true;
             potionType = ItemID.GreaterHealingPotion;      
-             //boss drops
             }
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			int choice = Main.rand.Next(3);
-			if(choice == 0) npcLoot.Add(ItemDropRule.Common(ItemType<Spike_saber>(), 1));
-			if(choice == 1) npcLoot.Add(ItemDropRule.Common(ItemType<Tyrant_repeater>(), 1));
-			if(choice == 2) npcLoot.Add(ItemDropRule.Common(ItemType<Tyran_Blast>(), 1));
-			npcLoot.Add(ItemDropRule.BossBag(ItemType<infernalBag>()));
+			if (!Main.expertMode || !Main.masterMode)
+			{
+				int choice = Main.rand.Next(3);
+				if (choice == 0) npcLoot.Add(ItemDropRule.Common(ItemType<Spike_saber>(), 1));
+				if (choice == 1) npcLoot.Add(ItemDropRule.Common(ItemType<Tyrant_repeater>(), 1));
+				if (choice == 2) npcLoot.Add(ItemDropRule.Common(ItemType<Tyran_Blast>(), 1));
+			}
+			else npcLoot.Add(ItemDropRule.BossBag(ItemType<infernalBag>()));
 		}	
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            //NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * bossLifeScale);  //boss life scale in expertmode
-            //NPC.damage = (int)(NPC.damage * 0.6f);  //boss damage increase in expermode
-        
-        
-        }
 	}
 }

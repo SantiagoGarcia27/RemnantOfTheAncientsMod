@@ -46,7 +46,7 @@ namespace opswordsII
 
         private static void HardmodeItems(Mod mod)
         {
-            mod.CreateRecipe(ItemID.RodofDiscord)
+            Recipe.Create(ItemID.RodofDiscord)
                .AddIngredient(ItemID.HallowedBar, 15)
                .AddIngredient(ItemID.PixieDust, 80)
                .AddIngredient(ItemID.SoulofLight, 30)
@@ -57,7 +57,7 @@ namespace opswordsII
 
         private static void BossSummon(Mod mod)
         {
-            mod.CreateRecipe(ItemID.TruffleWorm)
+            Recipe.Create(ItemID.TruffleWorm)
                .AddIngredient(ItemID.Worm, 1)
                .AddIngredient(ItemID.GlowingMushroom, 15)
                .AddTile(TileID.Autohammer)
@@ -66,7 +66,7 @@ namespace opswordsII
 
         private static void LivingFlames(Mod mod)
         {
-            mod.CreateRecipe(ItemID.LivingFireBlock)
+            Recipe.Create(ItemID.LivingFireBlock)
                .AddIngredient(ItemID.Torch, 1)
                .AddTile(TileID.LivingLoom)
                .Register();
@@ -74,17 +74,17 @@ namespace opswordsII
         #region Armor
         private static void NecroArmor(Mod mod)
 		{
-			mod.CreateRecipe(ItemID.NecroHelmet)
+			Recipe.Create(ItemID.NecroHelmet)
 				.AddIngredient(ModContent.ItemType<BoneBar>(), 18)
 				.AddTile(TileID.WorkBenches)
 				.Register();
 
-			mod.CreateRecipe(ItemID.NecroBreastplate)
+			Recipe.Create(ItemID.NecroBreastplate)
 			   .AddIngredient(ModContent.ItemType<BoneBar>(), 29)
 			   .AddTile(TileID.WorkBenches)
 			   .Register();
 
-			mod.CreateRecipe(ItemID.NecroGreaves)
+			Recipe.Create(ItemID.NecroGreaves)
 			   .AddIngredient(ModContent.ItemType<BoneBar>(), 23)
 			   .AddTile(TileID.WorkBenches)
 			   .Register();
@@ -93,17 +93,17 @@ namespace opswordsII
 		private static void JungleArmor(Mod mod)
 		{
 
-			mod.CreateRecipe(ItemID.JungleHat)
+			Recipe.Create(ItemID.JungleHat)
 			   .AddIngredient(ModContent.ItemType<JungleBar>(), 3)
 			   .AddTile(TileID.Anvils)
 			   .Register();
 
-			mod.CreateRecipe(ItemID.JungleShirt)
+			Recipe.Create(ItemID.JungleShirt)
 			   .AddIngredient(ModContent.ItemType<JungleBar>(), 6)
 			   .AddTile(TileID.Anvils)
 			   .Register();
 
-			mod.CreateRecipe(ItemID.JunglePants)
+			Recipe.Create(ItemID.JunglePants)
 				.AddIngredient(ModContent.ItemType<JungleBar>(), 3)
 				.AddTile(TileID.Anvils)
 				.Register();
@@ -112,7 +112,7 @@ namespace opswordsII
         #endregion
         private static void Potoions(Mod mod)
 		{
-			mod.CreateRecipe(ModContent.ItemType<EndlessCI>())
+			Recipe.Create(ModContent.ItemType<EndlessCI>())
 				.AddIngredient(ModContent.ItemType<EndlessMR>(), 1)
 				.AddIngredient(ModContent.ItemType<EndlessRa>(), 1)
 				.AddIngredient(ModContent.ItemType<EndlessSu>(), 1)
@@ -129,7 +129,7 @@ namespace opswordsII
 				.Register();
 
 
-			mod.CreateRecipe(ModContent.ItemType<EndlessMInf>())
+			Recipe.Create(ModContent.ItemType<EndlessMInf>())
 				.AddIngredient(ModContent.ItemType<EndlessSp>(), 1)
 				.AddIngredient(ModContent.ItemType<EndlessSh>(), 1)
 				.AddIngredient(ModContent.ItemType<EndlessNig>(), 1)
@@ -141,7 +141,7 @@ namespace opswordsII
 		private static void Mirrors(Mod mod)
 		{
 			{
-				mod.CreateRecipe(ItemID.MagicMirror)
+				Recipe.Create(ItemID.MagicMirror)
 				   .AddRecipeGroup("IronBar", 5)
 				   .AddIngredient(ItemID.Glass, 3)
 				   .AddIngredient(ItemID.FallenStar, 3)
@@ -150,13 +150,13 @@ namespace opswordsII
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.MagicMirror)
+				Recipe.Create(ItemID.MagicMirror)
 				   .AddIngredient(ItemID.IceMirror, 1)
 				   .AddTile(TileID.Anvils)
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.IceMirror)
+				Recipe.Create(ItemID.IceMirror)
 				   .AddIngredient(ItemID.MagicMirror, 1)
 				   .AddTile(TileID.Anvils)
 				   .Register();
@@ -165,7 +165,7 @@ namespace opswordsII
 		private static void Ores(Mod mod)
 		{
 			{
-				mod.CreateRecipe(ModContent.ItemType<TuxoniteBar>())
+				Recipe.Create(ModContent.ItemType<TuxoniteBar>())
 				   .AddIngredient(ModContent.ItemType<TuxoniteOre>(), 4)
 				   .AddTile(TileID.Furnaces)
 				   .Register();
@@ -192,7 +192,7 @@ namespace opswordsII
 
         private static void HardmodeRangerWeapon(Mod mod)
         {
-            mod.CreateRecipe(ItemID.Flamethrower)
+            Recipe.Create(ItemID.Flamethrower)
             .AddRecipeGroup("IronBar", 10)
             .AddIngredient(ItemID.IllegalGunParts)
             .AddIngredient(ItemID.SoulofNight, 30)
@@ -203,21 +203,21 @@ namespace opswordsII
         private static void PreHardmodeMeleeWeapons(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.WoodenBoomerang)
+                Recipe.Create(ItemID.WoodenBoomerang)
                    .AddRecipeGroup("IronBar", 2)
                    .AddIngredient(ItemID.Wood, 10)
                    .AddTile(TileID.WorkBenches)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.Spear)
+                Recipe.Create(ItemID.Spear)
                    .AddRecipeGroup("IronBar", 2)
                    .AddRecipeGroup("GoldBar", 1)
                    .AddTile(TileID.Anvils)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.EnchantedSword)
+                Recipe.Create(ItemID.EnchantedSword)
                    .AddRecipeGroup("EspH", 1)
                    .AddIngredient(ItemID.FallenStar, 10)
                    .AddIngredient(ItemID.SoulofLight, 10)
@@ -232,13 +232,13 @@ namespace opswordsII
         private static void NightEdgeCraft(Mod mod)
         {
 			{
-				mod.CreateRecipe(ItemID.NightsEdge)
+				Recipe.Create(ItemID.NightsEdge)
 				   .AddIngredient(ModContent.ItemType<NightBar>(), 10)
 				   .AddTile(TileID.DemonAltar)
 				   .Register();
 			}
             {
-                mod.CreateRecipe(ItemID.NightsEdge)
+                Recipe.Create(ItemID.NightsEdge)
                 .AddIngredient(ModContent.ItemType<BurningJungle>())
                 .AddIngredient(ItemID.Muramasa)
                 .AddRecipeGroup("anyCorruptSwords")
@@ -246,7 +246,7 @@ namespace opswordsII
                 .Register();
             }
 			{
-				mod.CreateRecipe(ItemID.NightsEdge)
+				Recipe.Create(ItemID.NightsEdge)
 				.AddRecipeGroup("anyCorruptSwords")
 				.AddIngredient(ItemID.Muramasa)
 				.AddIngredient(ItemID.BladeofGrass)
@@ -262,7 +262,7 @@ namespace opswordsII
 		}
 		private static void PreHardmodeMagicWeapons(Mod mod)
 		{
-				mod.CreateRecipe(ItemID.WandofSparking)
+				Recipe.Create(ItemID.WandofSparking)
 				   .AddIngredient(ItemID.Wood, 30)
 				   .AddIngredient(ItemID.Torch, 20)
 				   .AddTile(TileID.WorkBenches)
@@ -275,13 +275,13 @@ namespace opswordsII
 		private static void PreHardmodeThrowerWeapons(Mod mod)
 		{
 
-			mod.CreateRecipe(ItemID.Shuriken, 50)
+			Recipe.Create(ItemID.Shuriken, 50)
 			   .AddRecipeGroup("IronBar")
 			   .AddTile(TileID.Anvils)
 			   .Register();
 
 
-			mod.CreateRecipe(ItemID.ThrowingKnife, 50)
+			Recipe.Create(ItemID.ThrowingKnife, 50)
 			   .AddRecipeGroup("IronBar")
 			   .AddTile(TileID.Anvils)
 			   .Register();
@@ -305,12 +305,12 @@ namespace opswordsII
 
         private static void CorruptExpertAccesories(Mod mod)
         {
-            mod.CreateRecipe(ItemID.BrainOfConfusion)
+            Recipe.Create(ItemID.BrainOfConfusion)
             .AddIngredient(ItemID.WormScarf, 1)
             .AddTile(TileID.WorkBenches)
             .Register();
 
-            mod.CreateRecipe(ItemID.WormScarf)
+            Recipe.Create(ItemID.WormScarf)
             .AddIngredient(ItemID.BrainOfConfusion, 1)
             .AddTile(TileID.WorkBenches)
             .Register();
@@ -319,13 +319,13 @@ namespace opswordsII
         private static void SwapCorruptMushroom(Mod mod)
 		{
 			{
-				mod.CreateRecipe(ItemID.ViciousMushroom)
+				Recipe.Create(ItemID.ViciousMushroom)
 				.AddIngredient(ItemID.VileMushroom)
 				.AddTile(TileID.AlchemyTable)
 				.Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.VileMushroom)
+				Recipe.Create(ItemID.VileMushroom)
 				.AddIngredient(ItemID.ViciousMushroom)
 				.AddTile(TileID.AlchemyTable)
 				.Register();
@@ -335,13 +335,13 @@ namespace opswordsII
         private static void SwapDolls(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.ClothierVoodooDoll)
+                Recipe.Create(ItemID.ClothierVoodooDoll)
                    .AddIngredient(ItemID.GuideVoodooDoll, 1)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.GuideVoodooDoll)
+                Recipe.Create(ItemID.GuideVoodooDoll)
                    .AddIngredient(ItemID.ClothierVoodooDoll, 1)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -351,13 +351,13 @@ namespace opswordsII
         private static void SwapCorruptBars(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.CrimtaneBar)
+                Recipe.Create(ItemID.CrimtaneBar)
                    .AddIngredient(ItemID.DemoniteBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.DemoniteBar)
+                Recipe.Create(ItemID.DemoniteBar)
                    .AddIngredient(ItemID.CrimtaneBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -367,49 +367,49 @@ namespace opswordsII
         private static void SwapPreBossBars(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.PlatinumBar)
+                Recipe.Create(ItemID.PlatinumBar)
                    .AddIngredient(ItemID.GoldBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.GoldBar)
+                Recipe.Create(ItemID.GoldBar)
                    .AddIngredient(ItemID.PlatinumBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.TungstenBar)
+                Recipe.Create(ItemID.TungstenBar)
                    .AddIngredient(ItemID.SilverBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.SilverBar)
+                Recipe.Create(ItemID.SilverBar)
                    .AddIngredient(ItemID.TungstenBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.LeadBar)
+                Recipe.Create(ItemID.LeadBar)
                    .AddIngredient(ItemID.IronBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.IronBar)
+                Recipe.Create(ItemID.IronBar)
                    .AddIngredient(ItemID.LeadBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.CopperBar)
+                Recipe.Create(ItemID.CopperBar)
                    .AddIngredient(ItemID.TinBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.TinBar)
+                Recipe.Create(ItemID.TinBar)
                    .AddIngredient(ItemID.CopperBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -419,13 +419,13 @@ namespace opswordsII
         private static void SwapCorruptDebuffMaterial(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.CursedFlame)
+                Recipe.Create(ItemID.CursedFlame)
                    .AddIngredient(ItemID.Ichor)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.Ichor)
+                Recipe.Create(ItemID.Ichor)
                    .AddIngredient(ItemID.CursedFlame)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -435,37 +435,37 @@ namespace opswordsII
         private static void SwapHardmodeBars(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.AdamantiteBar)
+                Recipe.Create(ItemID.AdamantiteBar)
                    .AddIngredient(ItemID.TitaniumBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.TitaniumBar)
+                Recipe.Create(ItemID.TitaniumBar)
                    .AddIngredient(ItemID.AdamantiteBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.PalladiumBar)
+                Recipe.Create(ItemID.PalladiumBar)
                    .AddIngredient(ItemID.CobaltBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.CobaltBar)
+                Recipe.Create(ItemID.CobaltBar)
                    .AddIngredient(ItemID.PalladiumBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.OrichalcumBar)
+                Recipe.Create(ItemID.OrichalcumBar)
                    .AddIngredient(ItemID.MythrilBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.MythrilBar)
+                Recipe.Create(ItemID.MythrilBar)
                    .AddIngredient(ItemID.OrichalcumBar)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -475,13 +475,13 @@ namespace opswordsII
         private static void SwapSouls(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.SoulofNight)
+                Recipe.Create(ItemID.SoulofNight)
                    .AddIngredient(ItemID.SoulofLight)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.SoulofLight)
+                Recipe.Create(ItemID.SoulofLight)
                    .AddIngredient(ItemID.SoulofNight)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -491,13 +491,13 @@ namespace opswordsII
         private static void SwapCorruptionLightPet(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.CrimsonHeart)
+                Recipe.Create(ItemID.CrimsonHeart)
                    .AddIngredient(ItemID.ShadowOrb)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.ShadowOrb)
+                Recipe.Create(ItemID.ShadowOrb)
                    .AddIngredient(ItemID.CrimsonHeart)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -510,18 +510,18 @@ namespace opswordsII
             UncraftJungle(mod);
             UncraftBone(mod);
             {
-                mod.CreateRecipe(ModContent.ItemType<JungleBar>(), 6)
+                Recipe.Create(ModContent.ItemType<JungleBar>(), 6)
                    .AddIngredient(ItemID.BladeofGrass, 1)
                    .AddTile(TileID.Anvils)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.PlatinumCoin, 100)
+                Recipe.Create(ItemID.PlatinumCoin, 100)
                    .AddIngredient(ModContent.ItemType<Terracoin>(), 1)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.EnchantedSword, 1)
+                Recipe.Create(ItemID.EnchantedSword, 1)
                     .AddIngredient(ModContent.ItemType<Enchanted_saber>(), 1)
                     .AddTile(TileID.Anvils)
                     .Register();
@@ -531,19 +531,19 @@ namespace opswordsII
         private static void UncraftBone(Mod mod)
         {
             {
-                mod.CreateRecipe(ModContent.ItemType<BoneBar>(), 23)
+                Recipe.Create(ModContent.ItemType<BoneBar>(), 23)
                  .AddIngredient(ItemID.NecroGreaves, 1)
                  .AddTile(TileID.Anvils)
                  .Register();
             }
             {
-                mod.CreateRecipe(ModContent.ItemType<BoneBar>(), 18)
+                Recipe.Create(ModContent.ItemType<BoneBar>(), 18)
                    .AddIngredient(ItemID.NecroHelmet, 1)
                    .AddTile(TileID.Anvils)
                    .Register();
             }
             {
-                mod.CreateRecipe(ModContent.ItemType<BoneBar>(), 29)
+                Recipe.Create(ModContent.ItemType<BoneBar>(), 29)
                    .AddIngredient(ItemID.NecroBreastplate, 1)
                    .AddTile(TileID.Anvils)
                    .Register();
@@ -553,19 +553,19 @@ namespace opswordsII
         private static void UncraftJungle(Mod mod)
         {
             {
-                mod.CreateRecipe(ModContent.ItemType<JungleBar>(), 3)
+                Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
                    .AddIngredient(ItemID.JungleHat, 1)
                    .AddTile(TileID.Anvils)
                    .Register();
             }
             {
-                mod.CreateRecipe(ModContent.ItemType<JungleBar>(), 6)
+                Recipe.Create(ModContent.ItemType<JungleBar>(), 6)
                    .AddIngredient(ItemID.JungleShirt, 1)
                    .AddTile(TileID.Anvils)
                    .Register();
             }
             {
-                mod.CreateRecipe(ModContent.ItemType<JungleBar>(), 3)
+                Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
                    .AddIngredient(ItemID.JunglePants, 1)
                    .AddTile(TileID.Anvils)
                    .Register();
@@ -575,19 +575,19 @@ namespace opswordsII
         private static void UncraftMolten(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.HellstoneBar, 10)
+                Recipe.Create(ItemID.HellstoneBar, 10)
                    .AddIngredient(ItemID.MoltenHelmet, 1)
                    .AddTile(TileID.Hellforge)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.HellstoneBar, 20)
+                Recipe.Create(ItemID.HellstoneBar, 20)
                    .AddIngredient(ItemID.MoltenBreastplate, 1)
                    .AddTile(TileID.Hellforge)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.HellstoneBar, 15)
+                Recipe.Create(ItemID.HellstoneBar, 15)
                    .AddIngredient(ItemID.MoltenGreaves, 1)
                    .AddTile(TileID.Hellforge)
                    .Register();
@@ -596,7 +596,7 @@ namespace opswordsII
 #endregion
         private static void FishingRods(Mod mod)
 		{
-			mod.CreateRecipe(ItemID.HotlineFishingHook)
+			Recipe.Create(ItemID.HotlineFishingHook)
 			   .AddIngredient(ItemID.ReinforcedFishingPole)
 			   .AddIngredient(ItemID.HellstoneBrick, 30)
 			   .AddIngredient(ItemID.Obsidian, 30)
@@ -608,31 +608,31 @@ namespace opswordsII
 		private static void Emblemas(Mod mod)
 		{
 			{
-				mod.CreateRecipe(ItemID.SummonerEmblem)
+				Recipe.Create(ItemID.SummonerEmblem)
 				   .AddRecipeGroup("Emblemas")
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.SorcererEmblem)
+				Recipe.Create(ItemID.SorcererEmblem)
 				   .AddRecipeGroup("Emblemas")
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.WarriorEmblem)
+				Recipe.Create(ItemID.WarriorEmblem)
 				   .AddRecipeGroup("Emblemas")
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.RangerEmblem)
+				Recipe.Create(ItemID.RangerEmblem)
 				   .AddRecipeGroup("Emblemas")
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ModContent.ItemType<TrowerEmblem>())
+				Recipe.Create(ModContent.ItemType<TrowerEmblem>())
 				   .AddRecipeGroup("Emblemas")
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
@@ -640,7 +640,7 @@ namespace opswordsII
 		}
 		private static void CraftinStationsCraft(Mod mod)
         {
-			mod.CreateRecipe(ItemID.BoneWelder)
+			Recipe.Create(ItemID.BoneWelder)
 				.AddIngredient(ItemID.Bone, 20)
 				.AddRecipeGroup("IronBar", 4)
 				.AddTile(TileID.Anvils)
@@ -663,7 +663,7 @@ namespace opswordsII
 
         private static void SkyAccesories(Mod mod)
         {
-            mod.CreateRecipe(ItemID.ShinyRedBalloon)
+            Recipe.Create(ItemID.ShinyRedBalloon)
             .AddRecipeGroup("String", 1)
             .AddIngredient(ItemID.Cloud, 10)
             .AddTile(TileID.SkyMill)
@@ -672,7 +672,7 @@ namespace opswordsII
 
         private static void TravelingMerchantAccesories(Mod mod)
         {
-            mod.CreateRecipe(ItemID.CelestialMagnet)
+            Recipe.Create(ItemID.CelestialMagnet)
                .AddIngredient(ItemID.LuckyHorseshoe, 1)
                .AddIngredient(ItemID.ManaCrystal, 5)
                .AddRecipeGroup("GoldBar", 5)
@@ -682,7 +682,7 @@ namespace opswordsII
 
         private static void DungeonAccesories(Mod mod)
         {
-            mod.CreateRecipe(ItemID.CobaltShield)
+            Recipe.Create(ItemID.CobaltShield)
                .AddIngredient(ItemID.CobaltBar, 5)
                .AddTile(TileID.MythrilAnvil)
                .Register();
@@ -692,25 +692,25 @@ namespace opswordsII
         {
             DobleJumpBottles(mod);
             Boots(mod);
-            mod.CreateRecipe(ItemID.PocketMirror)
+            Recipe.Create(ItemID.PocketMirror)
                .AddIngredient(ItemID.GoldBar, 5)
                .AddIngredient(ItemID.Glass, 3)
                .AddTile(TileID.Anvils)
                .Register();
 
-            mod.CreateRecipe(ItemID.DPSMeter)
+            Recipe.Create(ItemID.DPSMeter)
                .AddRecipeGroup("IronBar", 3)
                .AddIngredient(ItemID.Wire, 20)
                .AddTile(TileID.TinkerersWorkbench)
                .Register();
 
-            mod.CreateRecipe(ItemID.LuckyHorseshoe)
+            Recipe.Create(ItemID.LuckyHorseshoe)
                .AddRecipeGroup("GoldBar", 10)
                .AddTile(TileID.SkyMill)
                .Register();
 
 
-            mod.CreateRecipe(ItemID.LifeformAnalyzer)
+            Recipe.Create(ItemID.LifeformAnalyzer)
                 .AddRecipeGroup("IronBar", 3)
                 .AddIngredient(ItemID.Wire, 20)
                 .AddIngredient(ItemID.Gel, 2)
@@ -719,7 +719,7 @@ namespace opswordsII
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
 
-            mod.CreateRecipe(ItemID.MetalDetector)
+            Recipe.Create(ItemID.MetalDetector)
                 .AddRecipeGroup("IronBar", 3)
                 .AddRecipeGroup("GoldBar", 3)
                 .AddIngredient(ItemID.Wire, 20)
@@ -730,13 +730,13 @@ namespace opswordsII
 
         private static void OceanAccesories(Mod mod)
         {
-            mod.CreateRecipe(ItemID.SharkToothNecklace)
+            Recipe.Create(ItemID.SharkToothNecklace)
                .AddIngredient(ModContent.ItemType<SharkTooth>(), 3)
                .AddIngredient(ItemID.Chain, 1)
                .AddTile(TileID.WorkBenches)
                .Register();
 
-			mod.CreateRecipe(ItemID.DivingHelmet)
+			Recipe.Create(ItemID.DivingHelmet)
 				.AddRecipeGroup("IronBar", 10)
 				.AddIngredient(ItemID.Glass, 3)
 				.AddIngredient(ItemID.SharkFin, 3)
@@ -747,7 +747,7 @@ namespace opswordsII
 
         private static void DesertAccesories(Mod mod)
         {
-            mod.CreateRecipe(ItemID.FlyingCarpet)
+            Recipe.Create(ItemID.FlyingCarpet)
                .AddIngredient(ItemID.AncientCloth, 5)
                .AddTile(TileID.Loom)
                .Register();
@@ -755,17 +755,17 @@ namespace opswordsII
 
         private static void SurfaceAccesories(Mod mod)
 		{
-			mod.CreateRecipe(ItemID.Shackle)
+			Recipe.Create(ItemID.Shackle)
 			   .AddIngredient(ItemID.IronBar, 1)
 			   .AddTile(TileID.Anvils)
 			   .Register();
 
-			mod.CreateRecipe(ItemID.Aglet)
+			Recipe.Create(ItemID.Aglet)
 			   .AddRecipeGroup("IronBar", 2)
 			   .AddTile(TileID.Anvils)
 			   .Register();
 
-            mod.CreateRecipe(ItemID.Radar)
+            Recipe.Create(ItemID.Radar)
                 .AddRecipeGroup("IronBar", 3)
                 .AddIngredient(ItemID.Wire, 20)
                 .AddTile(TileID.TinkerersWorkbench)
@@ -774,26 +774,26 @@ namespace opswordsII
 
 		private static void JungleAccesories(Mod mod)
 		{
-			mod.CreateRecipe(ItemID.FeralClaws)
+			Recipe.Create(ItemID.FeralClaws)
 			   .AddIngredient(ItemID.JungleSpores, 5)
 			   .AddIngredient(ItemID.Stinger, 5)
 			   .AddTile(TileID.Anvils)
 			   .Register();
 
-			mod.CreateRecipe(ItemID.Bezoar)
+			Recipe.Create(ItemID.Bezoar)
 			  .AddIngredient(ItemID.JungleSpores, 5)
 			  .AddIngredient(ItemID.Stinger, 5)
 			  .AddTile(TileID.Anvils)
 			  .Register();
 
-			mod.CreateRecipe(ItemID.AnkletoftheWind)
+			Recipe.Create(ItemID.AnkletoftheWind)
 			   .AddIngredient(ItemID.JungleSpores, 10)
 			   .AddIngredient(ItemID.Vine, 3)
 			   .AddIngredient(ItemID.PinkGel, 1)
 			   .AddTile(TileID.Anvils)
 			   .Register();
 
-			mod.CreateRecipe(ItemID.NaturesGift)
+			Recipe.Create(ItemID.NaturesGift)
 			   .AddIngredient(ItemID.JungleRose, 1)
 			   .AddIngredient(ItemID.ManaCrystal, 1)
 			   .AddTile(TileID.Anvils)
@@ -804,13 +804,13 @@ namespace opswordsII
         private static void CorruptAccesories(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.BandofStarpower)
+                Recipe.Create(ItemID.BandofStarpower)
                    .AddIngredient(ItemID.PanicNecklace, 1)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.PanicNecklace)
+                Recipe.Create(ItemID.PanicNecklace)
                    .AddIngredient(ItemID.BandofStarpower, 1)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
@@ -820,20 +820,20 @@ namespace opswordsII
         private static void UnderworldAccesories(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.MagmaStone)
+                Recipe.Create(ItemID.MagmaStone)
                    .AddIngredient(ItemID.StoneBlock, 100)
                    .AddIngredient(ItemID.LavaBucket, 1)
                    .AddTile(TileID.Hellforge)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.ObsidianRose)
+                Recipe.Create(ItemID.ObsidianRose)
                    .AddIngredient(ItemID.Obsidian, 10)
                    .AddTile(TileID.Hellforge)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.LavaCharm)
+                Recipe.Create(ItemID.LavaCharm)
                    .AddIngredient(ItemID.IronBar, 10)
                    .AddIngredient(ItemID.LavaBucket, 3)
                    .AddTile(TileID.Hellforge)
@@ -844,7 +844,7 @@ namespace opswordsII
         private static void Boots(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.HermesBoots)
+                Recipe.Create(ItemID.HermesBoots)
                    .AddIngredient(ModContent.ItemType<Boot>(), 1)
                    .AddIngredient(ItemID.SwiftnessPotion, 2)
                    .AddIngredient(ItemID.Feather, 2)
@@ -852,21 +852,21 @@ namespace opswordsII
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.FlurryBoots)
+                Recipe.Create(ItemID.FlurryBoots)
                    .AddIngredient(ItemID.HermesBoots, 1)
                    .AddIngredient(ItemID.SnowBlock, 10)
                    .AddTile(TileID.Loom)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.FlurryBoots)
+                Recipe.Create(ItemID.FlurryBoots)
                    .AddIngredient(ItemID.HermesBoots, 1)
                    .AddIngredient(ItemID.BottledWater, 1)
                    .AddTile(TileID.Loom)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.IceSkates)
+                Recipe.Create(ItemID.IceSkates)
                    .AddIngredient(ModContent.ItemType<Boot>(), 1)
                    .AddIngredient(ItemID.IronBar, 2)
                    .AddTile(TileID.Anvils)
@@ -877,7 +877,7 @@ namespace opswordsII
         private static void DobleJumpBottles(Mod mod)
         {
             {
-                mod.CreateRecipe(ItemID.CloudinaBottle)
+                Recipe.Create(ItemID.CloudinaBottle)
                    .AddIngredient(ItemID.Cloud, 15)
                    .AddIngredient(ItemID.RainCloud, 5)
                    .AddIngredient(ItemID.Bottle, 1)
@@ -885,21 +885,21 @@ namespace opswordsII
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.SandstorminaBottle)
+                Recipe.Create(ItemID.SandstorminaBottle)
                    .AddIngredient(ItemID.CloudinaBottle, 1)
                    .AddIngredient(ItemID.SandBlock, 30)
                    .AddTile(TileID.Anvils)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.BlizzardinaBottle)
+                Recipe.Create(ItemID.BlizzardinaBottle)
                    .AddIngredient(ItemID.CloudinaBottle, 1)
                    .AddIngredient(ItemID.SnowBlock, 30)
                    .AddTile(TileID.Anvils)
                    .Register();
             }
             {
-                mod.CreateRecipe(ItemID.TsunamiInABottle)
+                Recipe.Create(ItemID.TsunamiInABottle)
                    .AddIngredient(ItemID.CloudinaBottle, 1)
                    .AddIngredient(ItemID.BottledWater, 2)
                    .AddTile(TileID.Anvils)
@@ -911,7 +911,7 @@ namespace opswordsII
 		{
 			for (int i = 288; i <= 305; i++)
 			{
-				mod.CreateRecipe(i, 2)
+				Recipe.Create(i, 2)
 				   .AddRecipeGroup("anyStrangePlants")
 				   .AddIngredient(ItemID.BottledWater)
 				   .AddTile(TileID.AlchemyTable)
@@ -920,7 +920,7 @@ namespace opswordsII
 			}
 			for (int i = 2322; i <= 2329; i++)
 			{
-				mod.CreateRecipe(i, 2)
+				Recipe.Create(i, 2)
 				   .AddRecipeGroup("anyStrangePlants")
 				   .AddIngredient(ItemID.BottledWater)
 				   .AddTile(TileID.AlchemyTable)
@@ -928,7 +928,7 @@ namespace opswordsII
 			}
 			for (int i = 2344; i <= 2350; i++)
 			{
-				mod.CreateRecipe(i, 2)
+				Recipe.Create(i, 2)
 				   .AddRecipeGroup("anyStrangePlants")
 				   .AddIngredient(ItemID.BottledWater)
 				   .AddTile(TileID.AlchemyTable)
@@ -936,21 +936,21 @@ namespace opswordsII
 			}
 			{
 
-				mod.CreateRecipe(ItemID.FishingPotion, 2)
+				Recipe.Create(ItemID.FishingPotion, 2)
 				   .AddRecipeGroup("anyStrangePlants")
 				   .AddIngredient(ItemID.BottledWater)
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.SonarPotion, 2)
+				Recipe.Create(ItemID.SonarPotion, 2)
 				   .AddRecipeGroup("anyStrangePlants")
 				   .AddIngredient(ItemID.BottledWater)
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
 			}
 			{
-				mod.CreateRecipe(ItemID.CratePotion, 2)
+				Recipe.Create(ItemID.CratePotion, 2)
 				   .AddRecipeGroup("anyStrangePlants")
 				   .AddIngredient(ItemID.BottledWater)
 				   .AddTile(TileID.AlchemyTable)

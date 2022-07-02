@@ -223,18 +223,17 @@ namespace opswordsII.NPCs.DAniquilator
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot) 
         {
-            int choice = Main.rand.Next(4);
-            if(choice == 0) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Ranger.Bows.desertbow>(), 1));
-            if(choice == 1) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Mele.DesertEdge>(), 1));
-            if(choice == 2) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Summon.DesertStaff>(), 1));
-            if(choice == 3) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Magic.DesertTome>(), 1));
-            npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
+            if (!Main.expertMode || !Main.masterMode)
+            {
+                int choice = Main.rand.Next(4);
+                if (choice == 0) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Ranger.Bows.desertbow>(), 1));
+                if (choice == 1) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Mele.DesertEdge>(), 1));
+                if (choice == 2) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Summon.DesertStaff>(), 1));
+                if (choice == 3) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Magic.DesertTome>(), 1));
+            }
+            else npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
 		}	
-        /*public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
-        {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * bossLifeScale);  //boss life scale in expertmode
-            NPC.damage = (int)(NPC.damage * 0.6f);  //boss damage increase in expermode
-        }*/
+        
    
     }
 }
