@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -15,6 +16,7 @@ namespace opswordsII.Items.Tools
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Hache Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Hacha de tusonita");
 			Tooltip.SetDefault("");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 			/* DisplayName.AddTranslation(GameCulture.Russian, "Туксонитовый топор");
 			DisplayName.AddTranslation(GameCulture.Chinese, "毒x斧");*/

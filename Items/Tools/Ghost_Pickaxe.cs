@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -16,6 +17,7 @@ namespace opswordsII.Items.Tools
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche fantôme");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico fantasmal");
 			Tooltip.SetDefault("");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 			/* DisplayName.AddTranslation(GameCulture.Russian, "Призрачная кирка");
 			  DisplayName.AddTranslation(GameCulture.Chinese, "鬼镐");*/

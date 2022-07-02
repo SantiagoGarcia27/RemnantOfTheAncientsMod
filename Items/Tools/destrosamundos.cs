@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -15,7 +16,8 @@ namespace opswordsII.Items.Tools
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "World Crusher");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Concasseur du monde");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trituradora de mundos");
-            
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
 		}
 
 		public override void SetDefaults()

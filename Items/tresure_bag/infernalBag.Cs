@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 using opswordsII.NPCs.ITyrant;
 using opswordsII.Items.Mele.saber;
@@ -17,6 +18,7 @@ namespace opswordsII.Items.tresure_bag
 		{
 			DisplayName.SetDefault("Treasure Bag");
 			Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 		}
 
 	public override void SetDefaults() {

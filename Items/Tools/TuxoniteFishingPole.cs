@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using opswordsII.Projectiles.Bobbers;
+using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,6 +17,7 @@ namespace opswordsII.Items.Tools
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Canne à pêche en tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caña de pescar de tusonita");
 			Tooltip.SetDefault("");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 			/* DisplayName.AddTranslation(GameCulture.Russian, "Туксонитовый топор");
 			DisplayName.AddTranslation(GameCulture.Chinese, "毒x斧");*/
