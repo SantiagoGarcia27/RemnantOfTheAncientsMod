@@ -3,18 +3,22 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Armor.Masks
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class DesertAMask : ModItem
 	{
-		public override void SetStaticDefaults() {
-			base.SetStaticDefaults();
+		public override void SetStaticDefaults()
+		{
+			SetStaticDefaults();
 			DisplayName.SetDefault("Desert Annihilator Mask");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Pustynnego Anikwilatora");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'aniquilateur Du Désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Aniquilador Del Desierto");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Pustynnego Anikwilatora");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'aniquilateur Du Désert");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Aniquilador Del Desierto");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {
@@ -24,7 +28,8 @@ namespace opswordsII.Items.Armor.Masks
 			Item.vanity = true;
 		}
 
-		public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
+		public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor)
+		{
 			color = drawPlayer.GetImmuneAlphaPure(Color.White, shadow);
 		}
 	}

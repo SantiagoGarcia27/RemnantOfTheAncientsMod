@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Armor
 {
@@ -10,10 +12,10 @@ namespace opswordsII.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-
 			DisplayName.SetDefault("Tuxonite Helmet");
-	     DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
-		  DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -21,7 +23,7 @@ namespace opswordsII.Items.Armor
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 3600;
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.defense = 6;
 		}
 		
@@ -39,9 +41,8 @@ namespace opswordsII.Items.Armor
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"TuxoniteBar",25)
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 25)
 			.AddTile(TileID.Anvils)
-			
 			.Register();
 		}
 	}

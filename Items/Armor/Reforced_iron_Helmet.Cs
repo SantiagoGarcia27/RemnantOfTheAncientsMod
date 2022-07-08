@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Armor
 {
@@ -15,7 +17,8 @@ namespace opswordsII.Items.Armor
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de hierro reforzado");
 			Tooltip.SetDefault("Increases melee damage by 5%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les d�g�ts de m�l�e de 5%");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 5% de da�o cuerpo a cuerpo");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 5% de da�o cuerpo a cuerpo");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -23,7 +26,7 @@ namespace opswordsII.Items.Armor
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 10000;
-			Item.rare = 1;
+			Item.rare = ItemRarityID.Blue;
 			Item.defense = 5;
 		}
 		public override void UpdateEquip(Player player)
@@ -39,11 +42,7 @@ namespace opswordsII.Items.Armor
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus ="+2 defense, + 2% damage, + 15% movement speed";
-			player.GetDamage(DamageClass.Melee) *= 1.2f;
-		//	player.thrownDamage *= 1.2f;
-			player.GetDamage(DamageClass.Ranged) *= 1.2f;
-			player.GetDamage(DamageClass.Magic) *= 1.2f;
-			player.GetDamage(DamageClass.Summon) *= 1.2f;
+			player.GetDamage(DamageClass.Generic) *= 1.2f;
 			player.statDefense += 2;
 		    player.moveSpeed += 0.15f;
 		}
@@ -51,7 +50,7 @@ namespace opswordsII.Items.Armor
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"Reinforced_ironBar", 4)//17
+			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), 4)//17
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

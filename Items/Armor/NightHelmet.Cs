@@ -1,13 +1,12 @@
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using System.Collections.Generic;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Armor
 {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 	public class NightHelmet : ModItem
 	{
 		public override void SetStaticDefaults()
@@ -15,16 +14,17 @@ namespace opswordsII.Items.Armor
 
 			DisplayName.SetDefault("Night Headgear");
 			Tooltip.SetDefault(""
-			+"\nIncreases magic damage by 13%");
+			+ "\nIncreases magic damage by 13%");
 
-	     DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tocado de la Noche");
-		  DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-		 +"\nAumenta un 13% de da�o magico");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tocado de la Noche");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+		   + "\nAumenta un 13% de daño magico");
 
-		  DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Couvre-chef de Nuit");
-		   Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-		 +"\nAugmente les d�g�ts magiques de 13%");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Couvre-chef de Nuit");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
+		  + "\nAugmente les dégâts magiques de 13%");
 
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -32,7 +32,7 @@ namespace opswordsII.Items.Armor
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 50000;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.defense = 7;
 		}
 		public override void UpdateEquip(Player player)

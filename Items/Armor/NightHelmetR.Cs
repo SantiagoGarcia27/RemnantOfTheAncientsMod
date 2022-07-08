@@ -1,13 +1,12 @@
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using System.Collections.Generic;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Armor
 {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 	public class NightHelmetR : ModItem
 	{
 		public override void SetStaticDefaults()
@@ -15,16 +14,17 @@ namespace opswordsII.Items.Armor
 
 			DisplayName.SetDefault("Night Mask");
 			Tooltip.SetDefault(""
-			+"\nRanged damage increased by 13%");
+			+ "\nRanged damage increased by 13%");
 
-	     DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "M�scara de la Noche");
-		  DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-		 +"\nAumenta un 13% el da�o a distancia");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de la Noche");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+		   + "\nAumenta un 13% el daño a distancia");
 
-		  DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque de Nuit");
-		   Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-		 +"\nD�g�ts � distance augment�s de 13%");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque de Nuit");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
+		  + "\nDégâts à distance augmentés de 13%");
 
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -32,7 +32,7 @@ namespace opswordsII.Items.Armor
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 50000;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.defense = 6;
 		}
 		public override void UpdateEquip(Player player)

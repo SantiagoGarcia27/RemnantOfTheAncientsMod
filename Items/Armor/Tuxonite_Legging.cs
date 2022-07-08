@@ -14,6 +14,7 @@ namespace opswordsII.Items.Armor
 			DisplayName.SetDefault("Tuxonite Greaves");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Grebas de tusonita");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves Tuxonite");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -21,7 +22,7 @@ namespace opswordsII.Items.Armor
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 3000;
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.defense = 5;
 		}
 

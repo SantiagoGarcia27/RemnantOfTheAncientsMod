@@ -1,34 +1,35 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using opswordsII;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Armor
 {
-	[AutoloadEquip(EquipType.Body)]
+    [AutoloadEquip(EquipType.Body)]
 	public class Tuxonite_chesplate: ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			base.SetStaticDefaults();
+			SetStaticDefaults();
 			DisplayName.SetDefault("Tuxonite Chainmail");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cotte de mailles Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cota de malla de tusonita");
-			Tooltip.SetDefault("");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 3000;
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.defense = 7;
 		}
-	     public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"TuxoniteBar",35)
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 35)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}
