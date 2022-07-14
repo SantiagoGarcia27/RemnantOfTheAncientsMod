@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Armor.Masks
 {
@@ -10,14 +11,15 @@ namespace opswordsII.Items.Armor.Masks
 	public class DesertAMask : ModItem
 	{
 		public override void SetStaticDefaults() {
-			base.SetStaticDefaults();
 			DisplayName.SetDefault("Desert Annihilator Mask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Pustynnego Anikwilatora");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'aniquilateur Du Désert");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Aniquilador Del Desierto");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			Item.width = 18;
 			Item.height = 18;
 			Item.rare = ItemRarityID.Blue;

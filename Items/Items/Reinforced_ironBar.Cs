@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Items
 {
@@ -13,9 +14,10 @@ namespace opswordsII.Items.Items
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wzmocniony pręt żelazny");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Barre de fer renforcé");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lingote de hierro reforzado");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 		}
 
-			public override void SetDefaults()
+		public override void SetDefaults()
 		{
 			Item.width = 26;
 			Item.height = 22;
@@ -24,21 +26,19 @@ namespace opswordsII.Items.Items
 			Item.autoReuse = true;
 			Item.useAnimation = 15;
 			Item.useTime = 10;
-			Item.useStyle = 1;
-			Item.consumable = true; //Cantidad maxima en un espacio de inventario
-			Item.value = 100; //Precio
-			Item.rare = 3;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.consumable = true; 
+			Item.value = 100; 
+			Item.rare = ItemRarityID.Orange;
 			Item.createTile = TileType<Tiles.Reinforced_ironBarB>();
-			
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"Reinforced_iron_ore",3)
+			.AddIngredient(ItemType<Reinforced_iron_ore>(),3)
 			.AddTile(TileID.Furnaces)
 			.Register();
-		    
         }
 	}
 }

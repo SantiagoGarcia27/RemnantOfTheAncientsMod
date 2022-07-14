@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Items
 {
@@ -12,19 +13,16 @@ namespace opswordsII.Items.Items
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Ząb rekina");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Dent de requin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Diente de tiburon");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 		}
 
-			public override void SetDefaults()
+		public override void SetDefaults()
 		{
-			Item.width = 26; //Tamaño inGame 
+			Item.width = 26;
 			Item.height = 26;
-			Item.maxStack = 99; //Cantidad maxima en un espacio de inventario
-			Item.value = 500; //Precio
-			Item.rare = 1;
+			Item.maxStack = 99;
+			Item.value = 500;
+			Item.rare = ItemRarityID.Blue;
 		}
-
-		public override void AddRecipes()
-		{
-        }
 	}
 }

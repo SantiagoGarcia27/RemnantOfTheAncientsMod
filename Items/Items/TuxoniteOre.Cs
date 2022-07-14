@@ -1,10 +1,11 @@
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
 
 namespace opswordsII.Items.Items
 {
-	public class TuxoniteOre : ModItem
+    public class TuxoniteOre : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -12,22 +13,16 @@ namespace opswordsII.Items.Items
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Ruda Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Minerai de tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mena de Tusonita");
-            
-
-
-			/*
-			 DisplayName.AddTranslation(GameCulture.Russian, "Фрагмент брони");
-			 DisplayName.AddTranslation(GameCulture.Chinese, "护甲碎片");*/
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 		}
 
-			public override void SetDefaults()
+		public override void SetDefaults()
 		{
-			Item.width = 26; //Tamaño inGame 
+			Item.width = 26; 
 			Item.height = 26;
-			Item.maxStack = 99; //Cantidad maxima en un espacio de inventario
-			Item.value = 100; //Precio
-			Item.rare = 0;
-
-        }
+			Item.maxStack = 99; 
+			Item.value = 100;
+			Item.rare = ItemRarityID.White;
+		}
 	}
 }

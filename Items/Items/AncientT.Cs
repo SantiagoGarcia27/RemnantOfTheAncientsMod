@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Items
 {
@@ -13,9 +14,10 @@ namespace opswordsII.Items.Items
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Starożytna tablica");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tablette ancienne");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tableta antigua");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
-			public override void SetDefaults()
+		public override void SetDefaults()
 		{
 			Item.width = 26;
 			Item.height = 22;
@@ -24,12 +26,11 @@ namespace opswordsII.Items.Items
 			Item.autoReuse = true;
 			Item.useAnimation = 15;
 			Item.useTime = 10;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.consumable = true; //Cantidad maxima en un espacio de inventario
 			Item.value = 100; //Precio
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.createTile = TileType<Tiles.AncientTp>();
-			
 		}
 
 		public override void AddRecipes()

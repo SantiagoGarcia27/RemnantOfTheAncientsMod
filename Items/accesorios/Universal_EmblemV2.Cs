@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.accesorios
 {
@@ -21,8 +22,9 @@ namespace opswordsII.Items.accesorios
 			Tooltip.SetDefault("Increases all damage by 25% ");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększa wszystkie obrażenia o 25%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de 25%");
-             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un 25%");
-            
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un 25%");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 
             /*
@@ -33,16 +35,16 @@ namespace opswordsII.Items.accesorios
               */
 
 
-          /*  Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-    		if (CalamityMod != null)
+            /*  Mod CalamityMod = ModLoader.GetMod("CalamityMod");
+              if (CalamityMod != null)
 
-            Tooltip.SetDefault("Increase all damage by 20% ");
-            Tooltip.AddTranslation(GameCulture.Russian, "Увеличивают весь урон на 20%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększa wszystkie obrażenia o 20%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de 20%");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un 20%");
-            Tooltip.AddTranslation(GameCulture.Chinese, "所有伤害提高20％"); */
-		}
+              Tooltip.SetDefault("Increase all damage by 20% ");
+              Tooltip.AddTranslation(GameCulture.Russian, "Увеличивают весь урон на 20%");
+              Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększa wszystkie obrażenia o 20%");
+              Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de 20%");
+              DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un 20%");
+              Tooltip.AddTranslation(GameCulture.Chinese, "所有伤害提高20％"); */
+        }
 
         public override void SetDefaults()
         {

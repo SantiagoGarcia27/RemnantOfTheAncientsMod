@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.accesorios
 {
@@ -15,12 +13,15 @@ namespace opswordsII.Items.accesorios
 			DisplayName.SetDefault("Universal Emblem");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Uniwersalny Emblemat");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Universel");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal");   
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal");  
+            
 			Tooltip.SetDefault("Increases all damage by 15%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększa wszystkie obrażenia o 15%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de 15%");
-             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un 15%");
-          
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un 15%");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+           
             /* 
              DisplayName.AddTranslation(GameCulture.Russian, "Универсальная эмблема");
              DisplayName.AddTranslation(GameCulture.Chinese, "通用徽");
@@ -30,7 +31,7 @@ namespace opswordsII.Items.accesorios
 
 
 
-		}
+        }
 
         public override void SetDefaults()
         {

@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Armor
 {
@@ -14,6 +15,7 @@ namespace opswordsII.Items.Armor
 			DisplayName.SetDefault("Tuxonite Greaves");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Grebas de tusonita");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves Tuxonite");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -21,14 +23,14 @@ namespace opswordsII.Items.Armor
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 3000;
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.defense = 5;
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"TuxoniteBar",30)
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 30)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

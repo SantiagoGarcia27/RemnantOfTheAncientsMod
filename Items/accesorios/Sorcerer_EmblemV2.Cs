@@ -1,35 +1,30 @@
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using System.Collections.Generic;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.accesorios
 {
     public class Sorcerer_EmblemV2 : ModItem
     {
-     public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Sorcerer Emblem V2");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Sorcerer Emblem V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Godło Czarnoksiężnika V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du sorcier V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Hechicero V2");
-			Tooltip.SetDefault("Increases magic damage by 25%");
+
+            Tooltip.SetDefault("Increases magic damage by 25%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększ obrażenia magiczne o 25%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 25%");
-             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 25%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 25%");
 
-            /*
-            DisplayName.AddTranslation(GameCulture.Chinese, "巫师徽记 V2");
-            DisplayName.AddTranslation(GameCulture.Russian, "Эмблема Волшебника V2"); 
-            Tooltip.AddTranslation(GameCulture.Russian, "Увеличение магического урона на 25%");
-            Tooltip.AddTranslation(GameCulture.Chinese, "魔法伤害提高25％");*/
-		}
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
 
         public override void SetDefaults()
         {
-
             Item.width = 10;
             Item.height = 14;
             Item.value = 350000;
@@ -52,7 +47,6 @@ namespace opswordsII.Items.accesorios
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Magic) *= 0.25f;
-
         }
     }
 }

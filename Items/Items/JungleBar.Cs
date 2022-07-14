@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Items
 {
@@ -13,20 +14,21 @@ namespace opswordsII.Items.Items
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Jungle Bar");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bar de la jungle");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lingote de la jungla");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 		}
 
-			public override void SetDefaults()
+		public override void SetDefaults()
 		{
-			Item.width = 26; //Tamaño inGame 
+			Item.width = 26;
 			Item.height = 26;
-			Item.maxStack = 99; //Cantidad maxima en un espacio de inventario
-			Item.value = 100; //Precio
-			Item.rare = 3;
+			Item.maxStack = 99;
+			Item.value = 100;
+			Item.rare = ItemRarityID.Orange;
 			Item.useTurn = true;
 			Item.autoReuse = true;
 			Item.useAnimation = 15;
 			Item.useTime = 10;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.consumable = true;
 			Item.createTile = TileType<Tiles.JungleBarB>();
 		}
@@ -34,11 +36,11 @@ namespace opswordsII.Items.Items
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.JungleSpores,2)
-            .AddIngredient(ItemID.Stinger, 2)
+			.AddIngredient(ItemID.JungleSpores, 2)
+			.AddIngredient(ItemID.Stinger, 2)
 			.AddTile(TileID.Anvils)
 			.Register();
-		    
-        }
+		}    
+        
 	}
 }

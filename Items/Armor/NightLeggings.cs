@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Armor
 {
@@ -10,19 +12,19 @@ namespace opswordsII.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-
 			DisplayName.SetDefault("Night Greaves");
 			Tooltip.SetDefault(""
-			+"\n5% increased movement speed");
+			+ "\n5% increased movement speed");
 
-	     DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Perneras De La Noche");
-		  DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-		 +"\nAumenta un 5% la velocidad de movimiento");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Perneras De La Noche");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+		   + "\nAumenta un 5% la velocidad de movimiento");
 
-		  DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves de Nuit");
-		   Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-		 +"\n5% D'augmentation de la Vitesse de Déplacement");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves de Nuit");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
+		  + "\n5% D'augmentation de la Vitesse de Déplacement");
 
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -30,7 +32,7 @@ namespace opswordsII.Items.Armor
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 40000;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.defense = 9;
 		}
 
@@ -39,10 +41,10 @@ namespace opswordsII.Items.Armor
 			player.moveSpeed += 1.05f;
 		}
 
-	public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"NightBar",13)
+			.AddIngredient(ModContent.ItemType<NightBar>(), 13)
 			.AddTile(TileID.DemonAltar)
 			.Register();
 		}

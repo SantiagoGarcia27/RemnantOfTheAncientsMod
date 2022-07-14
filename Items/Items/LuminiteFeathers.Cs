@@ -14,24 +14,22 @@ namespace opswordsII.Items.Items
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Plumas de Luminita");
 		}
 
-			public override void SetDefaults()
+		public override void SetDefaults()
 		{
-			Item.width = 26; //Tamaño inGame 
+			Item.width = 26;
 			Item.height = 26;
-			Item.maxStack = 99; //Cantidad maxima en un espacio de inventario
-			Item.value = 10000; //Precio
-			Item.rare = 9;
+			Item.maxStack = 99; 
+			Item.value = 10000; 
+			Item.rare = ItemRarityID.Cyan;
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.Feather,5)
-            .AddIngredient(ItemID.LunarOre, 1)
+			.AddIngredient(ItemID.Feather, 5)
+			.AddIngredient(ItemID.LunarOre, 1)
 			.AddTile(TileID.LunarCraftingStation)
-            
 			.Register();
-		    
-        }
+		}
 	}
 }

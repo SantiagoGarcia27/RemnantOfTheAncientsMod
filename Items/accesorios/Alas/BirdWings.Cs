@@ -28,10 +28,9 @@ namespace opswordsII.Items.accesorios.Alas
 			Item.width = 22;
 			Item.height = 20;
 			Item.value = 25000;
-			Item.rare = 2;
+			Item.rare = ItemRarityID.Green;
 			Item.accessory = true;
 		}
-		//these wings use the same values as the solar wings
 		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
 			ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
 		{

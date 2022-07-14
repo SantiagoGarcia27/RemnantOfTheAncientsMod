@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using opswordsII.VanillaChanges;
 using opswordsII;
 using opswordsII.World;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.DificultChanger
 {
@@ -42,6 +43,8 @@ namespace opswordsII.Items.DificultChanger
 			+ "\nreduce el tiempo de vuelo a la mitad "
 			+ "\nel daño y la vida maxima de los jefes se ven duplicados"
 			+ "\nArticulos legendarios son más comunes ");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		internal static Color GetRarityColor()

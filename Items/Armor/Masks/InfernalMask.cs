@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Armor.Masks
 {
@@ -15,9 +16,11 @@ namespace opswordsII.Items.Armor.Masks
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Piekielny Tyran");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'Tyran infernal");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Tirano infernal");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			Item.width = 18;
 			Item.height = 18;
 			Item.rare = ItemRarityID.Blue;

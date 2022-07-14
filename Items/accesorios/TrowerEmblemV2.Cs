@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.accesorios
 {
@@ -16,18 +15,19 @@ namespace opswordsII.Items.accesorios
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du Lanceur V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador V2");
 			Tooltip.SetDefault("Increases throwing damage by 25% ");
+
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększa obrażenia od rzucania o 25%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de lancer de 25%");
-             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño lanzable en un 25%  ");
-            
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño lanzable en un 25%  ");
 
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             /*
             DisplayName.AddTranslation(GameCulture.Russian, "Эмблема метателя V2");
             DisplayName.AddTranslation(GameCulture.Chinese, "投掷者徽记 V2");
             Tooltip.AddTranslation(GameCulture.Russian, "Увеличение урона от метания на 25%");
             Tooltip.AddTranslation(GameCulture.Chinese, "投掷伤害提高25％");
              */
-		}
+        }
 
         public override void SetDefaults()
         {
