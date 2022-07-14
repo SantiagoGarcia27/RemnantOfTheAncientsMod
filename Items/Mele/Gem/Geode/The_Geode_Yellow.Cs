@@ -23,23 +23,25 @@ namespace opswordsII.Items.Mele.Gem.Geode
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 24;
+			Item.damage = 25;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
-			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useStyle = 1;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = ItemRarityID.Orange;
+			Item.rare = 3;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+			Item.autoReuse = false;
 
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
+			// Add Onfire buff to the NPC for 1 second
+			// 60 frames = 1 second
 			target.AddBuff(BuffID.Ichor,120);
 		}	
 		public override void AddRecipes()

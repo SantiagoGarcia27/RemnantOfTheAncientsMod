@@ -30,9 +30,9 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.useStyle = 1;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = ItemRarityID.Orange;
+			Item.rare = 3;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+			Item.autoReuse = false;
 
 		}
 

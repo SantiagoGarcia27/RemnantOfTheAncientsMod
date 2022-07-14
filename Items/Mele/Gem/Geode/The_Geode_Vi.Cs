@@ -12,12 +12,15 @@ namespace opswordsII.Items.Mele.Gem.Geode
 		{
 			
 	        DisplayName.SetDefault("The Geode");
+
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "The Geode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
 
-			Tooltip.SetDefault("Inflict Confused and Venom on enemies");
-           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflige de la confusion et du poison aux ennemis");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflige confusión y ponzoña a los enemigos");
+			Tooltip.SetDefault("Inflict Confused on enemies");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Nakładaj Confused na wrogów");
+           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflict Confused sur les ennemis");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije confución a los enemigos");
 		}
 		public override void SetDefaults()
 		{
@@ -27,19 +30,20 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.height = 40;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
-			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useStyle = 1;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = ItemRarityID.Orange;
+			Item.rare = 3;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+			Item.autoReuse = false;
 
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(BuffID.Confused, 400);
-			target.AddBuff(BuffID.Venom, 400);
+			// Add Onfire buff to the NPC for 1 second
+			// 60 frames = 1 second
+			target.AddBuff(BuffID.Slow, 400);
 		}	
 		public override void AddRecipes()
 		{
