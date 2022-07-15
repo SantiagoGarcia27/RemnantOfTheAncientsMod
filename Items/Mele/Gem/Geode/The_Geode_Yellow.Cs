@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.Gem.Geode
 {
@@ -10,16 +11,16 @@ namespace opswordsII.Items.Mele.Gem.Geode
 	{
 		public override void SetStaticDefaults()
 		{
-			
 	        DisplayName.SetDefault("The Geode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "The Geode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-
 			Tooltip.SetDefault("Inflict Ichor on enemies");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Nałóż Ichor na wrogów");
-           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infligez Ichor aux ennemis");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije Icor a los enemigos");
+
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infligez Ichor aux ennemis");
+
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije Icor a los enemigos");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -40,15 +41,13 @@ namespace opswordsII.Items.Mele.Gem.Geode
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			// Add Onfire buff to the NPC for 1 second
-			// 60 frames = 1 second
 			target.AddBuff(BuffID.Ichor,120);
 		}	
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"The_Geode",1)
-            .AddIngredient(ItemID.LargeTopaz,1)
+			.AddIngredient(ModContent.ItemType<The_Geode>())
+			.AddIngredient(ItemID.LargeTopaz,1)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

@@ -2,14 +2,11 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Localization;
 
 namespace opswordsII.Items.Magic
 {
-	public class BombTome: ModItem
+    public class BombTome: ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -25,17 +22,17 @@ namespace opswordsII.Items.Magic
 			Item.damage = 50;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; //Channel so that you can held the weapon [Important]
+			Item.channel = true; 
 			Item.mana = 20;
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 9;
 			Item.UseSound = SoundID.Item1;
-			Item.useStyle = 5;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 9;
-			Item.shoot = 30;
+			Item.shoot = ProjectileID.Grenade;
 			Item.value = 100000;
 			Item.autoReuse = true;
 		}

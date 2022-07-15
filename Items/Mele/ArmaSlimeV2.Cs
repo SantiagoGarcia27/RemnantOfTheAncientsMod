@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele
 {
@@ -14,7 +15,7 @@ namespace opswordsII.Items.Mele
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "SlimeGun V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "SlimeGun V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arma Slime V2");
-
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             /*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(30, 10));//5,4 //30 9 */
         }
         public override void SetDefaults()
@@ -23,18 +24,18 @@ namespace opswordsII.Items.Mele
             Item.DamageType = DamageClass.Ranged;
             Item.DamageType = DamageClass.Melee;
             Item.channel = true;
-            Item.width = 80; //Tamaño de Ancho
-            Item.height = 40; //Tamaño de Alto
-            Item.useTime = 20; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+            Item.width = 80; 
+            Item.height = 40; 
+            Item.useTime = 20; 
             Item.useAnimation = 20;
-            Item.useStyle = ItemUseStyleID.HoldUp; //Dejar en 5 para que el personaje use el arma de forma normal
+            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.noMelee = true;
             Item.knockBack = 1;
-            Item.value = 45000; //Precio
-            Item.rare = 3;
+            Item.value = 45000; 
+            Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item10;
             Item.autoReuse = true;
-            Item.shoot = 595; //dejar en 10 para que dispare balas normales
+            Item.shoot = ProjectileID.Arkhalis; 
             Item.shootSpeed = 100f;
             Item.noUseGraphic = false;
         }

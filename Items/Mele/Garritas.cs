@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele
 {
@@ -10,9 +11,9 @@ namespace opswordsII.Items.Mele
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Solar Claws");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "solar claws");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "griffes solaires");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Garras Solares");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -23,10 +24,10 @@ namespace opswordsII.Items.Mele
 			Item.height = 10;
 			Item.useTime = 10;
 			Item.useAnimation = 10;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 60;
 			Item.value = Item.sellPrice(gold: 10);
-			Item.rare = 11;
+			Item.rare = ItemRarityID.Purple;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 
@@ -37,8 +38,6 @@ namespace opswordsII.Items.Mele
 		}
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			// Add Onfire buff to the NPC for 1 second
-			// 60 frames = 1 second
 			target.AddBuff(BuffID.Daybreak, 240);
 		}	
 		

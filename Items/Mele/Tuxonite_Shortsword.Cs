@@ -1,21 +1,20 @@
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.ModContent;
-
+using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Mele
 {
-	public class Tuxonite_Shortsword : ModItem
+    public class Tuxonite_Shortsword : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tuxonite Shortsword");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada corta de Tusonita");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -25,25 +24,18 @@ namespace opswordsII.Items.Mele
 			Item.height = 80;
 			Item.useTime = 10;
 			Item.useAnimation = 10;
-			Item.useStyle = 3;
+			Item.useStyle = ItemUseStyleID.Thrust;
 			Item.knockBack = 8;
 			Item.value = 1000;
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
 		}
-
-		/*public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-		{
-			// Add Onfire buff to the NPC for 1 second
-			// 60 frames = 1 second
-			 target.AddBuff(BuffType<Buffs.Hell_Fire>(), 300);
-		}	*/
-	public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"TuxoniteBar",7)
-			.AddTile(TileID.Anvils)	
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 7)
+			.AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

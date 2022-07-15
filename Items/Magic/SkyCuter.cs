@@ -17,17 +17,19 @@ namespace opswordsII.Items.Magic
 {
 	public class SkyCuter : ModItem
 	{
-		public override void SetStaticDefaults() {
-		Item.staff[Item.type] = true;
+		public override void SetStaticDefaults()
+		{
+			Item.staff[Item.type] = true;
 
-		DisplayName.SetDefault("SkyCutter");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przecinak nieba");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coupe du ciel");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cortador estelar");
+			DisplayName.SetDefault("SkyCutter");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przecinak nieba");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coupe du ciel");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cortador estelar");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			Item.damage = 40;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
@@ -42,7 +44,7 @@ namespace opswordsII.Items.Magic
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 20;
 			Item.autoReuse = true;
-			Item.shoot = ModContent.ProjectileType<SkyCutterS>(); //Laser
+			Item.shoot = ProjectileType<SkyCutterS>(); //Laser
 			Item.value = Item.sellPrice(gold: 3);
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -79,7 +81,8 @@ namespace opswordsII.Items.Magic
 			return false;
 		}
 
-		public override void AddRecipes() {
+		public override void AddRecipes()
+		{
 			CreateRecipe()
 			.AddIngredient(ItemID.SkyFracture, 1)
 			.AddIngredient(ItemID.SpectreStaff, 1)

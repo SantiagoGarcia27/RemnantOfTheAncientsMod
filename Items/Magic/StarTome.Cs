@@ -10,10 +10,10 @@ namespace opswordsII.Items.Magic
 	{
 		public override void SetStaticDefaults()
 		{
-              DisplayName.SetDefault("Star Tome");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Star Tome");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome étoile");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo de estrellas");
+			DisplayName.SetDefault("Star Tome");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Star Tome");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome étoile");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo de estrellas");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -22,16 +22,16 @@ namespace opswordsII.Items.Magic
 			Item.damage = 10;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; //Channel so that you can held the weapon [Important]
+			Item.channel = true; 
 			Item.mana = 2;
-			Item.rare = 2;
+			Item.rare = ItemRarityID.Green;
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 19;
-			Item.useStyle = 5;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 19;
-			Item.shoot = 12;
+			Item.shoot = ProjectileID.FallingStar;
 			Item.value = 50000;
 			Item.autoReuse = true;
 		}

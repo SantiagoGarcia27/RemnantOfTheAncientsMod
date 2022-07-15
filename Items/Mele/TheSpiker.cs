@@ -1,26 +1,22 @@
-using System;
-using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.Localization;
 using opswordsII.Projectiles;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele
 {
-	public class TheSpiker : ModItem
+    public class TheSpiker : ModItem
 	{
 		
 		public override void SetStaticDefaults()
 		{
 			
-				DisplayName.SetDefault("The Spiker");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "The spiker");
+			DisplayName.SetDefault("The Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -30,7 +26,7 @@ namespace opswordsII.Items.Mele
 			Item.height = 10;
 			Item.useTime = 15;
 			Item.useAnimation = 15;
-			Item.useStyle = 3;
+			Item.useStyle = ItemUseStyleID.Thrust;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(gold: 30);
 			Item.rare = 12;
@@ -38,13 +34,11 @@ namespace opswordsII.Items.Mele
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			Item.shoot = ModContent.ProjectileType<InfernalSpikeF_f>();
-
-			
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
-		 {	
-				target.defense = target.defense/2;
-		 }
+		{	
+			target.defense = target.defense/2;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.Gem
 {
@@ -11,6 +12,7 @@ namespace opswordsII.Items.Mele.Gem
 			DisplayName.SetDefault("Ruby Sword");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée rubis");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de rubí");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -26,8 +28,6 @@ namespace opswordsII.Items.Mele.Gem
 			Item.rare = 1;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
-
-	
 		}
 
 		public override void AddRecipes()

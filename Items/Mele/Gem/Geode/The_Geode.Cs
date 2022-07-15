@@ -1,6 +1,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Mele.Gem.Geode
 {
@@ -8,11 +10,12 @@ namespace opswordsII.Items.Mele.Gem.Geode
 	{
 		public override void SetStaticDefaults()
 		{
-			
 	        DisplayName.SetDefault("The Geode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "The Geode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -22,10 +25,10 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.height = 40;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
 
@@ -34,13 +37,13 @@ namespace opswordsII.Items.Mele.Gem.Geode
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"Amethyst_Sword",1)
-            .AddIngredient(null,"Topaz_Sword",1)
-			.AddIngredient(null,"Sapphire_Sword",1)
-			.AddIngredient(null,"Ruby_Sword",1)
-			.AddIngredient(null,"Emerald_Sword",1)
-			.AddIngredient(null,"Diamond_Sword",1)
-			.AddIngredient(null,"BoneBar",2)
+			.AddIngredient(ModContent.ItemType<Amethyst_Sword>())
+            .AddIngredient(ModContent.ItemType<Topaz_Sword>())
+			.AddIngredient(ModContent.ItemType<Sapphire_Sword>())
+			.AddIngredient(ModContent.ItemType<Ruby_Sword>())
+			.AddIngredient(ModContent.ItemType<Emerald_Sword>())
+			.AddIngredient(ModContent.ItemType<Diamond_Sword>())
+			.AddIngredient(ModContent.ItemType<BoneBar>(),2)
 			.AddIngredient(ItemID.StoneBlock,10)
 			.AddTile(TileID.Anvils)
 			.Register();

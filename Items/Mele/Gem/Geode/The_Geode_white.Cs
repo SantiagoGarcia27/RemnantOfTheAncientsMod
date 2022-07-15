@@ -1,23 +1,20 @@
 using Terraria.ID;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.Gem.Geode
 {
-	public class The_Geode_white : ModItem
+    public class The_Geode_white : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			
 	        DisplayName.SetDefault("The Geode");
-
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "The Geode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
 
-			
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -27,10 +24,10 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.height = 40;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
 
@@ -39,8 +36,8 @@ namespace opswordsII.Items.Mele.Gem.Geode
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"The_Geode",1)
-            .AddIngredient(ItemID.LargeDiamond,1)
+			.AddIngredient(ModContent.ItemType<The_Geode>())
+			.AddIngredient(ItemID.LargeDiamond,1)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

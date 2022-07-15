@@ -1,22 +1,17 @@
-using System;
-using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.Localization;
 using opswordsII.Projectiles;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele
 {
-	public class ultrablade : ModItem
+    public class ultrablade : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
             DisplayName.SetDefault("UltraBlade");
-		    Tooltip.SetDefault("");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 	    public override void SetDefaults()
 		{ 
@@ -29,9 +24,9 @@ namespace opswordsII.Items.Mele
         Item.useStyle = 1;
         Item.knockBack =1;
         Item.autoReuse = true;
-        Item.UseSound = SoundID.Item100; //46 
+        Item.UseSound = SoundID.Item100;  
 		Item.value = Item.sellPrice(gold: 11);
-		Item.rare = 10;
+		Item.rare = ItemRarityID.Red;
 		Item.scale = 1.20f;
 	    Item.shoot = ModContent.ProjectileType<UltraBladeS>(); 
         Item.shootSpeed = 10f;

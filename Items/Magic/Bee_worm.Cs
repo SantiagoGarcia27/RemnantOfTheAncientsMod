@@ -24,9 +24,9 @@ namespace opswordsII.Items.Magic
 			Item.damage = 69;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; 
+			Item.channel = true;
 			Item.mana = 9;
-			Item.rare = 8;
+			Item.rare = ItemRarityID.Yellow;
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 9;
@@ -34,18 +34,13 @@ namespace opswordsII.Items.Magic
 			Item.useStyle = 5;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 9;
-			Item.shoot = 181;
+			Item.shoot = ProjectileID.Bee;
 			Item.value = 550000;
 			Item.autoReuse = true;
-		
-
-			
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			if (Main.rand.NextFloat() <= (float)1 / 2) Projectile.NewProjectile(source, position, velocity, ProjectileID.Wasp, 100, 1, player.whoAmI);
-
-
 			return true;
 		}
 		public override void AddRecipes()

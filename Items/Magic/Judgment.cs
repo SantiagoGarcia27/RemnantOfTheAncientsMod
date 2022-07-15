@@ -1,33 +1,28 @@
-﻿using System;
-using System.IO;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using opswordsII;
 using opswordsII.Projectiles.Lazer;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Magic
 {
-	public class Judgment : ModItem
+    public class Judgment : ModItem
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Judgment");
-			
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {
 			Item.damage = 14;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; //Channel so that you can hold the weapon [Important]
+			Item.channel = true;
 			Item.autoReuse = true;
 			Item.mana = 5;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 20;
@@ -42,14 +37,10 @@ namespace opswordsII.Items.Magic
 		{
 			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
 			float ceilingLimit = target.Y;
-		/*	if (ceilingLimit > player.Center.Y - 200f)
-			{
-				ceilingLimit = player.Center.Y - 200f;
-			}*/
 			for (int i = 0; i < 1; i++)
 			{
-				position = player.Center + new Vector2((-Main.rand.Next(0, 0) * player.direction), -600f);//401
-				position.Y -= (100 * i);//100
+				position = player.Center + new Vector2((-Main.rand.Next(0, 0) * player.direction), -600f);
+				position.Y -= (100 * i);
 				Vector2 heading = target - position;
 				if (heading.Y < 0f)
 				{
@@ -67,6 +58,5 @@ namespace opswordsII.Items.Magic
 			}
 			return false;
 		}
-
 	}
 }

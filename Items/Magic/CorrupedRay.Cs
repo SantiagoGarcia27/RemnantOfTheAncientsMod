@@ -23,9 +23,9 @@ namespace opswordsII.Items.Magic
 			Item.damage = 24;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; //Channel so that you can held the weapon [Important]
+			Item.channel = true;
 			Item.mana = 9;
-			Item.rare = 1;
+			Item.rare = ItemRarityID.Blue;
 			Item.width = 46;
 			Item.height = 54;
 			Item.useTime = 23;
@@ -33,7 +33,7 @@ namespace opswordsII.Items.Magic
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 49;
-			Item.shoot = 121;
+			Item.shoot = ProjectileID.AmethystBolt;
 			Item.value = Item.sellPrice(silver: 30);
 			Item.autoReuse = true;
 		}

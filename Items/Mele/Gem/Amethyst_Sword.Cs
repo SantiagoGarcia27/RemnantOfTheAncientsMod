@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.Gem
 {
@@ -12,6 +13,7 @@ namespace opswordsII.Items.Mele.Gem
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Ametystowy miecz");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée d'améthyste");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Amatista");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -27,8 +29,6 @@ namespace opswordsII.Items.Mele.Gem
 			Item.rare = 1;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
-
-			
 		}
 
 		public override void AddRecipes()
