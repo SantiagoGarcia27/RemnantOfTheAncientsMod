@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using opswordsII.Projectiles;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
@@ -17,6 +18,7 @@ namespace opswordsII.Items.Ranger
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Frozen Shark");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Requin congelé");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiburón Congelado");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -26,14 +28,14 @@ namespace opswordsII.Items.Ranger
             Item.height = 40;
             Item.useTime = 9; 
             Item.useAnimation = 9;
-            Item.useStyle = 5; 
+            Item.useStyle = ItemUseStyleID.Shoot; 
             Item.noMelee = true;
             Item.knockBack = 1;
             Item.value = 1000; 
-            Item.rare = 5;
+            Item.rare = ItemRarityID.Pink;
    		    Item.UseSound = SoundID.Item31;
             Item.autoReuse = true;
-            Item.shoot = 5; 
+            Item.shoot = ProjectileID.JestersArrow; 
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Bullet;
 

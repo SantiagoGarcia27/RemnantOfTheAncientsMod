@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
@@ -16,29 +17,30 @@ namespace opswordsII.Items.Ranger
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maluj strzelbę");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusil à peinture");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Escopeta de pintura");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-        Item.damage = 30;
-        Item.DamageType = DamageClass.Ranged;
-        Item.width =8; //Tamaño de Ancho
-        Item.height = 2; //Tamaño de Alto
-        Item.useTime = 36; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
-        Item.useAnimation = 36;
-        Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
-        Item.noMelee = true;
-        Item.knockBack = 5;
-        Item.value = 100000; //Precio
-        Item.rare = 4;
-		Item.UseSound = SoundID.Item36;
-        Item.autoReuse = false;
-        Item.shoot = 587;
-        Item.shootSpeed = 8f;
+			Item.damage = 30;
+			Item.DamageType = DamageClass.Ranged;
+			Item.width = 8; //Tamaño de Ancho
+			Item.height = 2; //Tamaño de Alto
+			Item.useTime = 36; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+			Item.useAnimation = 36;
+			Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+			Item.noMelee = true;
+			Item.knockBack = 5;
+			Item.value = 100000; //Precio
+			Item.rare = ItemRarityID.LightRed;
+			Item.UseSound = SoundID.Item36;
+			Item.autoReuse = false;
+			Item.shoot = ProjectileID.PainterPaintball;
+			Item.shootSpeed = 8f;
 
 
-		/*Mod OmniSwing = ModLoader.GetMod("OmniSwing");
-    		if (OmniSwing != null)
-			Item.damage = 21;*/
+			/*Mod OmniSwing = ModLoader.GetMod("OmniSwing");
+				if (OmniSwing != null)
+				Item.damage = 21;*/
 		}
         public override Vector2? HoldoutOffset()
 		{

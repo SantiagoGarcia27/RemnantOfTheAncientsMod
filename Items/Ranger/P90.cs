@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
@@ -14,9 +15,9 @@ namespace opswordsII.Items.Ranger
 		{
 			DisplayName.SetDefault("P90");
 			Tooltip.SetDefault("Fast and effective");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Szybki i skuteczny");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Rapide et efficace");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rapida y efectiva");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -26,20 +27,20 @@ namespace opswordsII.Items.Ranger
             Item.height = 40; 
             Item.useTime = 4; 
             Item.useAnimation = 4;
-            Item.useStyle = 5; 
+            Item.useStyle = ItemUseStyleID.Shoot; 
             Item.noMelee = true;
             Item.knockBack = 1;
             Item.value = 100000;
-            Item.rare = 6;
+            Item.rare = ItemRarityID.LightPurple;
    		    Item.UseSound = SoundID.Item10;
             Item.autoReuse = true;
-            Item.shoot = 10; 
+            Item.shoot = ProjectileID.PurificationPowder; 
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
 			Item.expert = true;
 		}
 
-		 public override Vector2? HoldoutOffset()
+		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-20, 0);
 		}

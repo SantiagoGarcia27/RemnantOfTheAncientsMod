@@ -5,49 +5,51 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
-public class CurcedShotGun : ModItem
+	public class CurcedShotGun : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cursed Shotgun");
-		    DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Escopeta Maldita");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Cholerna strzelba");  
 			Tooltip.SetDefault(""
 			+ "\n5% chance of not spending ammo ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), ""
-			+ "\n5% szans na nie wydawanie amunicji ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			+ "\n5% de chances de ne pas dépenser de munitions ");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Escopeta Maldita");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
 			+ "\nProbabilidad del 5% de no gastar munición ");
+
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
+			+ "\n5% de chances de ne pas dépenser de munitions ");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-            Item.damage = 30;
-            Item.DamageType = DamageClass.Ranged;
-            Item.width = 80; 
-            Item.height = 40; 
-            Item.useTime = 46; 
-            Item.useAnimation = 46;
-            Item.useStyle = 5; 
-            Item.noMelee = true;
-            Item.knockBack = 5;
-            Item.value = 100000;
-            Item.rare = 4;
-   		    Item.UseSound = SoundID.Item36;
-            Item.autoReuse = true;
-            Item.shoot = 9; 
-            Item.shootSpeed = 100f;
-            Item.useAmmo = AmmoID.Bullet;
-			
+			Item.damage = 30;
+			Item.DamageType = DamageClass.Ranged;
+			Item.width = 80;
+			Item.height = 40;
+			Item.useTime = 46;
+			Item.useAnimation = 46;
+			Item.useStyle = ItemUseStyleID.Shoot;
+			Item.noMelee = true;
+			Item.knockBack = 5;
+			Item.value = 100000;
+			Item.rare = ItemRarityID.LightRed;
+			Item.UseSound = SoundID.Item36;
+			Item.autoReuse = true;
+			Item.shoot = ProjectileID.Starfury;
+			Item.shootSpeed = 100f;
+			Item.useAmmo = AmmoID.Bullet;
+
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			if (type == ProjectileID.Bullet) type = ProjectileID.CursedBullet;
-			
+
 			const int NumProjectiles = 8; // The humber of projectiles that this gun will shoot.
 
 			for (int i = 0; i < NumProjectiles; i++)
@@ -70,11 +72,11 @@ public class CurcedShotGun : ModItem
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.CursedFlame,40)
-			.AddIngredient(ItemID.Shotgun,1)
+			.AddIngredient(ItemID.CursedFlame, 40)
+			.AddIngredient(ItemID.Shotgun, 1)
 			.AddTile(TileID.MythrilAnvil)
-			
-			.Register();		
-	   }
+
+			.Register();
+		}
 	}
 }

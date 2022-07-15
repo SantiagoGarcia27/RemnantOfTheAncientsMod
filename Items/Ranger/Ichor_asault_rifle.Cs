@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
@@ -21,7 +22,9 @@ public class Ichor_asault_rifle : ModItem
 			+ "\nTransforma las balas de mosqueton en balas de ichor");
 
            	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), ""
-			+ "\nPrzekształć kule muszkietowe w kule posokowe"); 
+			+ "\nPrzekształć kule muszkietowe w kule posokowe");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -35,7 +38,7 @@ public class Ichor_asault_rifle : ModItem
             Item.noMelee = true;
             Item.knockBack = 5;
             Item.value = 100000; 
-            Item.rare = 4;
+            Item.rare = ItemRarityID.LightRed;
    		    Item.UseSound = SoundID.Item36;
 			Item.autoReuse = true;
             Item.shoot = ProjectileID.IchorBullet; 
@@ -44,11 +47,7 @@ public class Ichor_asault_rifle : ModItem
             	}
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			
-			if (type == ProjectileID.Bullet)
-			{
-				type = ProjectileID.IchorBullet;
-			}
+			if (type == ProjectileID.Bullet) type = ProjectileID.IchorBullet;
 			
 		}
         public override Vector2? HoldoutOffset()

@@ -1,28 +1,33 @@
-using opswordsII.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
+using Microsoft.Xna.Framework;
 
 namespace opswordsII.Items.pets
 {
-	public class Yt : ModItem
+    public class Yt : ModItem
 	{
-		public override void SetStaticDefaults() 
-		{	
-		 DisplayName.SetDefault("Yt"); 
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Yt");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			Item.CloneDefaults(ItemID.ZephyrFish);
 			Item.shoot = ProjectileType<Projectiles.Pets.YtPet>();
 			Item.buffType = BuffType<Buffs.YtBuff>();
 		}
-		/*public override void UseStyle(Player player) {
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0) {
-				player.AddBuff(Item.buffType, 3600, true);}
-		}*/
-					public override void AddRecipes()
+		public override void UseStyle(Player player, Rectangle heldItemFrame)
+		{
+			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+			{
+				player.AddBuff(Item.buffType, 3600);
+			}
+		}
+		public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.AdamantiteBar, 2)

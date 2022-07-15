@@ -2,9 +2,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Ranger.Bows
 {
@@ -16,7 +15,7 @@ namespace opswordsII.Items.Ranger.Bows
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Łuk nocny");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Arc de nuit");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arco de la Noche");
-
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
@@ -27,29 +26,28 @@ namespace opswordsII.Items.Ranger.Bows
             Item.maxStack = 1;
             Item.useTime = 4;
             Item.useAnimation = 12;
-            Item.useStyle = 5;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2;
             Item.value = 12000;
-            Item.rare = 3;
+            Item.rare = ItemRarityID.Orange;
             Item.reuseDelay = 14;
             Item.UseSound = SoundID.Item5;
             Item.noMelee = true;
-            Item.shoot = 1;
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.useAmmo = AmmoID.Arrow;
             Item.shootSpeed = 10f;
             Item.autoReuse = false;
         }
-    
-        /* public override bool CanConsumeAmmo(Player player)
-        
+
+        public override bool CanConsumeAmmo(Item ammo, Player player)
         {
             return !(player.itemAnimation < Item.useAnimation - 2);
-        } */
+        }
 
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"NightBar",10)
+			.AddIngredient(ModContent.ItemType<NightBar>(),10)
 			.AddTile(TileID.DemonAltar)
 			.Register();
 		}

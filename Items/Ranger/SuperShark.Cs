@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
@@ -24,32 +25,26 @@ namespace opswordsII.Items.Ranger
 			+ "\n40% de chances de ne pas dépenser de munitions ");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
 			+ "\nProbabilidad del 40% de no gastar munición ");
-           
-		   
-		   
-		   
-		   /* Tooltip.AddTranslation(GameCulture.Chinese, ""
-			+ "\n40％的机会不花弹药");
-			Tooltip.AddTranslation(GameCulture.Russian, ""
-			+ "\n40% шанс не тратить боеприпасы");*/
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
             Item.damage = 70;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 80; //Tamaño de Ancho
-            Item.height = 40; //Tamaño de Alto
-            Item.useTime = 9; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+            Item.width = 80; 
+            Item.height = 40; 
+            Item.useTime = 9; 
             Item.useAnimation = 10;
-            Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+            Item.useStyle = ItemUseStyleID.Shoot; 
             Item.noMelee = true;
             Item.knockBack = 1;
-            Item.value = 100000; //Precio
-            Item.rare = 10;
+            Item.value = 100000; 
+            Item.rare = ItemRarityID.Red;
    		    Item.UseSound = SoundID.Item31;
             Item.autoReuse = true;
-            Item.shoot = 5; //dejar en 10 para que dispare balas normales
+            Item.shoot = ProjectileID.JestersArrow;
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
 			

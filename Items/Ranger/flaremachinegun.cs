@@ -5,6 +5,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
@@ -16,7 +17,7 @@ namespace opswordsII.Items.Ranger
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Karabin maszynowy pochodni");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusée mitrailleuse");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ametralladora de bengala");
-			Tooltip.SetDefault("");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -26,11 +27,11 @@ namespace opswordsII.Items.Ranger
             Item.height = 40; 
             Item.useTime = 6; 
             Item.useAnimation = 6;
-            Item.useStyle = 5; 
+            Item.useStyle = ItemUseStyleID.Shoot; 
             Item.noMelee = true;
             Item.knockBack = 1;
             Item.value = Item.sellPrice(silver:400);
-            Item.rare = 7;
+            Item.rare = ItemRarityID.Lime;
    		    Item.UseSound = SoundID.Item45 ;
             Item.autoReuse = true;
 			Item.shoot = ProjectileID.Flare; 
@@ -49,7 +50,6 @@ namespace opswordsII.Items.Ranger
 		{
 			return new Vector2(-10, 0);
 		}
-
 		public override void AddRecipes()
 		{
 			CreateRecipe()

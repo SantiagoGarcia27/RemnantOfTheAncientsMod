@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using opswordsII.Projectiles;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
@@ -28,6 +29,7 @@ namespace opswordsII.Items.Ranger
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "la hermana mayor de las 4"
 			+ "\nProbabilidad del 70% de no gastar munición ");
 
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{

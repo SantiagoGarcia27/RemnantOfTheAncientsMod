@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using opswordsII.Mounts;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mount
 {
@@ -9,15 +10,16 @@ namespace opswordsII.Items.Mount
 	{
 		public override void SetStaticDefaults()
 		{
-			
-            DisplayName.SetDefault("Magic Sword");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "magiczny miecz");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "épée magique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada Magica");
+			DisplayName.SetDefault("Magic Sword");
 			Tooltip.SetDefault("Summons a traveling sword.");
-           Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przyzywa wędrujący miecz");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque une épée voyageuse");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca una espada de viaje.");
+
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "épée magique");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque une épée voyageuse");
+
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada Magica");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca una espada de viaje.");
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -26,9 +28,9 @@ namespace opswordsII.Items.Mount
 			Item.height = 30;
 			Item.useTime = 20;
 			Item.useAnimation = 20;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.value = 30000;
-			Item.rare = 4;
+			Item.rare = ItemRarityID.LightRed;
 			Item.UseSound = SoundID.Item79;
 			Item.noMelee = true;
 			Item.mountType = ModContent.MountType<Sword>();
