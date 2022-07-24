@@ -4,22 +4,23 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using opswordsII.NPCs.frozen_assaulter;
 using Terraria.Audio;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.BossSummon
 {
     public class FrozenArtifact : ModItem
     {
-       public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Frozen Artifact");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Frozen Artefact");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Artefact gelé");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Artefacto congelado");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Frozen Artifact");
             Tooltip.SetDefault("Summons the Frozen Assaulter");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przywołaj Frozen Assaulter");
+
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Artefact gelé");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquer l'assaillant gelé");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al asaltante congelado");
-          
+
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Artefacto congelado");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al asaltante congelado");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         
         public override void SetDefaults()
@@ -28,13 +29,12 @@ namespace opswordsII.Items.BossSummon
             Item.height = 20;
             Item.maxStack = 999;
             Item.value = 0;
-            Item.rare = 2;
+            Item.rare = ItemRarityID.Green;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.useStyle = 4;
+            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = true;
-           /* Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-            if (CalamityMod != null) Item.consumable = false;*/
+            if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.consumable = false;
         }
         public override bool CanUseItem(Player player)
         {        
@@ -44,7 +44,7 @@ namespace opswordsII.Items.BossSummon
         {
         
 
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>());   //boss spawn
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>()); 
             SoundEngine.PlaySound(SoundID.Roar, player.position);
            
             return true;

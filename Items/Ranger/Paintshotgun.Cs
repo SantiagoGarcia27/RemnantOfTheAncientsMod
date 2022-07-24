@@ -14,7 +14,6 @@ namespace opswordsII.Items.Ranger
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Paint Shotgun");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maluj strzelbę");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusil à peinture");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Escopeta de pintura");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -23,24 +22,19 @@ namespace opswordsII.Items.Ranger
 		{
 			Item.damage = 30;
 			Item.DamageType = DamageClass.Ranged;
-			Item.width = 8; //Tamaño de Ancho
-			Item.height = 2; //Tamaño de Alto
-			Item.useTime = 36; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
+			Item.width = 8; 
+			Item.height = 2;
+			Item.useTime = 36; 
 			Item.useAnimation = 36;
-			Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
+			Item.useStyle = ItemUseStyleID.Shoot; 
 			Item.noMelee = true;
 			Item.knockBack = 5;
-			Item.value = 100000; //Precio
+			Item.value = 100000; 
 			Item.rare = ItemRarityID.LightRed;
 			Item.UseSound = SoundID.Item36;
 			Item.autoReuse = false;
 			Item.shoot = ProjectileID.PainterPaintball;
 			Item.shootSpeed = 8f;
-
-
-			/*Mod OmniSwing = ModLoader.GetMod("OmniSwing");
-				if (OmniSwing != null)
-				Item.damage = 21;*/
 		}
         public override Vector2? HoldoutOffset()
 		{

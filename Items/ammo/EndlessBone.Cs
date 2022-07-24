@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.ammo
 {
@@ -12,6 +13,7 @@ namespace opswordsII.Items.ammo
 			DisplayName.SetDefault("Endless Bone Arrow Quiver");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Carquois de flèche en os sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Carcaj de flechas de hueso eterno");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -24,7 +26,7 @@ namespace opswordsII.Items.ammo
 			Item.consumable = false;             
 			Item.knockBack = 3.5f;
 			Item.value = 10;
-			Item.rare = 2;
+			Item.rare = ItemRarityID.Green;
 			Item.shoot = ProjectileID.BoneArrow;   
 			Item.shootSpeed = 26f;                
 			Item.ammo = AmmoID.Arrow;            

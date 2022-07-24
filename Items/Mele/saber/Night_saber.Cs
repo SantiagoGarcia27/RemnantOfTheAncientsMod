@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.saber
 {
@@ -14,6 +15,7 @@ namespace opswordsII.Items.Mele.saber
 			DisplayName.SetDefault("Night Saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre de la Nuit");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de la Noche");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -23,40 +25,46 @@ namespace opswordsII.Items.Mele.saber
 			Item.height = 80;
 			Item.useTime = 20;
 			Item.useAnimation = 20;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Item.sellPrice(gold: 1);
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 		}
-		public override void MeleeEffects(Player player, Rectangle hitbox) {
-			if (Main.rand.NextBool(3)) {//3
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height,14); //corrupcion
+		public override void MeleeEffects(Player player, Rectangle hitbox)
+		{
+			if (Main.rand.NextBool(3))
+			{
+				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Demonite);
 			}
-			if (Main.rand.NextBool(3)) {
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height,27);//llama demoniaca
+			if (Main.rand.NextBool(3))
+			{
+				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Shadowflame);
 			}
-			if (Main.rand.NextBool(7)) {
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height,29);//muramasa
+			if (Main.rand.NextBool(7))
+			{
+				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.WaterCandle);
 			}
-			if (Main.rand.NextBool(2)) {
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height,98);//Nigth
-				}
-			if (Main.rand.NextBool(3)) {
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height,104);//Nigth Suave
+			if (Main.rand.NextBool(2))
+			{
+				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Water_Corruption);
+			}
+			if (Main.rand.NextBool(3))
+			{
+				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Water_Cavern);
 			}
 		}
-	public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-           .AddRecipeGroup("CorruptSaber",1)
-			.AddIngredient(null,"Grass_saber",1)
-			.AddIngredient(ItemID.Muramasa,1)
-			.AddIngredient(null,"Fire_saber",1)
+		   .AddRecipeGroup("CorruptSaber")
+			.AddIngredient(ItemType<Grass_saber>())
+			.AddIngredient(ItemID.Muramasa, 1)
+			.AddIngredient(ItemType<Fire_saber>())
 			.AddTile(TileID.DemonAltar)
 			.Register();
-		    
+
 		}
 	}
 }

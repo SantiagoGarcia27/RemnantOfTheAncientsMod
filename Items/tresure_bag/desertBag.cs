@@ -42,36 +42,19 @@ namespace opswordsII.Items.tresure_bag
 
 		public override void OpenBossBag(Player player)
 		{
-
+			player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<Desert_Core>());
 			int choice = Main.rand.Next(5);
-			if (choice == 0)
-			{
-				player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<desertbow>());
-			}
-			else if (choice == 1)
-			{
-				player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertEdge>());
-			}
-			else if (choice == 2)
-			{
-				player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertTome>());
-			}
-			else if (choice == 3)
-			{
-				player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertStaff>());
-			}
-			else if (choice == 4)
-			{
-				player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertStaff>());
-			}
-			else if (choice != 5)
-			{
-				player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<Desert_Core>());
-				if (Main.rand.NextFloat() <= (float)1 / 10)
-					player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertTrophy>());
-				if (Main.rand.NextFloat() <= (float)1 / 5)
-					player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DScroll>());
-			}
+			if (choice == 0) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<desertbow>());
+			else if (choice == 1) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertEdge>());
+			else if (choice == 2) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertTome>());
+			else if (choice == 3) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertStaff>());
+			else if (choice == 4) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertStaff>());
+
+
+			int e = Main.rand.Next(10);
+			if (e == 1) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertTrophy>());
+			if (e == 2 || e == 3)  player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DScroll>());
+
 		}
 
 		public override int BossBagNPC => NPCType<DesertAniquilator>();

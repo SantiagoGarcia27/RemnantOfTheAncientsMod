@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.accesorios.Alas
 {
@@ -13,11 +14,9 @@ namespace opswordsII.Items.accesorios.Alas
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Luminite Wings");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Skrzydła luminitu");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ailes de luminite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alas de Luminita");
 			Tooltip.SetDefault("Allows flight and fall slowly");	
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pozwala latać i opadać powoli");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Permet de voler et de tomber lentement");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permite volar y caer lentamente ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -29,7 +28,7 @@ namespace opswordsII.Items.accesorios.Alas
 			Item.width = 22;
 			Item.height = 20;
 			Item.value = 100000;
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
 			Item.accessory = true;
 			
 		}
@@ -42,18 +41,11 @@ namespace opswordsII.Items.accesorios.Alas
 			maxAscentMultiplier = 3f;
 			constantAscend = 0.135f;
 		}
-
-		/*public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
-		{
-			speed = 10f;
-			acceleration *= 3.0f;
-		}*/
-
 		public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.LunarBar, 10)
-			.AddIngredient(null,"LuminiteFeathers",10)
+			.AddIngredient(ModContent.ItemType<LuminiteFeathers>(),10)
 			.AddTile(TileID.LunarCraftingStation)
 			.Register();
 		}

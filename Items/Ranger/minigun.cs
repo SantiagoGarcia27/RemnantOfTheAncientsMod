@@ -37,9 +37,7 @@ namespace opswordsII.Items.Ranger
 			Item.shootSpeed = 20f;
 			Item.useAmmo = AmmoID.Bullet;
 
-			/*Mod OmniSwing = ModLoader.TryGetMod("OmniSwing");
-				if (OmniSwing != null)
-				Item.damage = 28;*/
+			if (ModLoader.TryGetMod("OmniSwing", out Mod mod)) Item.damage = 28;
 		}
 		public override Vector2? HoldoutOffset()
 		{

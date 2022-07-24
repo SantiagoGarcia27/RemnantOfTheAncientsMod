@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using opswordsII.Projectiles;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.ammo
 {
@@ -11,9 +12,9 @@ namespace opswordsII.Items.ammo
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Wrath Slime Bullet"); 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pocisk Szlamu Gniewu");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Balle Visqueuse de Colère");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bala de Slime Furioso");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
 		}
 
 		public override void SetDefaults()
@@ -23,24 +24,14 @@ namespace opswordsII.Items.ammo
 			Item.width = 8;
 			Item.height = 8;
 			Item.maxStack = 9999;
-			Item.consumable = true;             //You need to set the item consumable so that the ammo would automatically consumed
+			Item.consumable = true;           
 			Item.knockBack = 3.5f;
 			Item.value = 10;
 			Item.rare = 2;
-			Item.shoot = ModContent.ProjectileType<bullettestp>();   //The projectile shoot when your weapon using this ammo
-			Item.shootSpeed = 16f;                  //The speed of the projectile
-			Item.ammo = AmmoID.Bullet;              //The ammo class this ammo belongs to.
+			Item.shoot = ModContent.ProjectileType<bullettestp>();  
+			Item.shootSpeed = 16f; 
+			Item.ammo = AmmoID.Bullet;
 		}
-
-		// Give each bullet consumed a 20% chance of granting the Wrath buff for 5 seconds
-		/*public override void OnConsumeAmmo(Player player)
-		{
-			if (Main.rand.NextBool(5))
-			{
-				player.AddBuff(BuffID.Wrath, 300);
-			}
-		}*/
-
         public override void AddRecipes()
 		{
 			CreateRecipe()

@@ -14,15 +14,13 @@ namespace opswordsII.Items.Ranger
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cursed Shotgun");
-			Tooltip.SetDefault(""
-			+ "\n5% chance of not spending ammo ");
+			Tooltip.SetDefault("5% chance of not spending ammo");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Escopeta Maldita");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-			+ "\nProbabilidad del 5% de no gastar munición ");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Probabilidad del 5% de no gastar munición ");
 
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			+ "\n5% de chances de ne pas dépenser de munitions ");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusil de chasse maudit");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "5% de chances de ne pas dépenser de munitions ");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -50,7 +48,7 @@ namespace opswordsII.Items.Ranger
 		{
 			if (type == ProjectileID.Bullet) type = ProjectileID.CursedBullet;
 
-			const int NumProjectiles = 8; // The humber of projectiles that this gun will shoot.
+			const int NumProjectiles = 8;
 
 			for (int i = 0; i < NumProjectiles; i++)
 			{

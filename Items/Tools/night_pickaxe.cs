@@ -1,25 +1,20 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Tools
 {
-	public class night_pickaxe : ModItem
+    public class night_pickaxe : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Night Pickaxe"); 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Nocny kilof");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche de nuit");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico de la noche");
-			Tooltip.SetDefault("");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-			/*DisplayName.AddTranslation(GameCulture.Russian, "Ночная кирка");
-			 DisplayName.AddTranslation(GameCulture.Chinese, "夜镐");*/
 		}
 
 		public override void SetDefaults()
@@ -28,21 +23,21 @@ namespace opswordsII.Items.Tools
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 80;
 			Item.height = 80;
-			Item.useTime = 10; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
-			Item.useAnimation = 20;  //Animacion normal de Pico
-			Item.pick = 130; //Potencia de Pico. 
-			Item.useStyle = 1; //Dejar en 1 para que el personaje use el arma de forma normal
-			Item.knockBack = 6; //Retroceso al golpear
-			Item.value = 100000; //Precio
-			Item.rare = 0;
+			Item.useTime = 10; 
+			Item.useAnimation = 20;
+			Item.pick = 130;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.knockBack = 6;
+			Item.value = 100000;
+			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1; 
-			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
+			Item.autoReuse = true;
 		}
 
-		public override void AddRecipes() //Crafteo del objeto
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"NightBar",16)
+			.AddIngredient(ModContent.ItemType<NightBar>(),16)
 			.AddTile(TileID.DemonAltar)
 			.Register();
 		

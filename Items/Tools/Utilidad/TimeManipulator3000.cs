@@ -12,11 +12,9 @@ namespace opswordsII.Items.Tools.Utilidad
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Time Manipulator 3000");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Manipulator czasu 3000");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Manipulateur de temps 3000");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Manipulador temporal 3000");
 			Tooltip.SetDefault("Summons the moon and de sun");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish),"Przywołuje księżyc i słońce");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Invoque la lune et le soleil");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Convoca a la luna y al sol");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -26,11 +24,11 @@ namespace opswordsII.Items.Tools.Utilidad
 		{
 			Item.width = 20;
 			Item.height = 20;
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.useAnimation = 20;
 			Item.useTime = 20;
 			Item.maxStack = 1;
-			Item.useStyle = 4;
+			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = false;
 		}
@@ -50,20 +48,18 @@ namespace opswordsII.Items.Tools.Utilidad
 			}
 			return true;
 		}
-		public override void AddRecipes() //Crafteo del objeto
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"MoonManipulator",1)
-			.AddIngredient(null,"SunManipulator",1)
+			.AddIngredient(ItemType<MoonManipulator>())
+			.AddIngredient(ItemType<SunManipulator>())
 			.AddIngredient(ItemID.SoulofMight, 2)
 			.AddIngredient(ItemID.SoulofSight, 2)
 			.AddIngredient(ItemID.SoulofFright, 2)
 			.AddIngredient(ItemID.HallowedBar, 4)
 			.AddIngredient(ItemID.Wire, 30)
 			.AddTile(TileID.MythrilAnvil)
-			
 			.Register();
-		
 		}
 	}
 }

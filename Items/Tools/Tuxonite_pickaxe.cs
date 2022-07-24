@@ -4,6 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Tools
 {
@@ -12,15 +13,9 @@ namespace opswordsII.Items.Tools
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tuxonite Pickaxe");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Kilof Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico de tusonita");
-			Tooltip.SetDefault("");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-			/*
-			 DisplayName.AddTranslation(GameCulture.Russian, "Туксонитовая кирка");
-			 DisplayName.AddTranslation(GameCulture.Chinese, "尾矿镐");*/
 		}
 
 		public override void SetDefaults()
@@ -29,21 +24,21 @@ namespace opswordsII.Items.Tools
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
-			Item.useTime = 13; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
-			Item.useAnimation = 19;  //Animacion normal de Pico
-			Item.pick = 59; //Potencia de Pico. 
-			Item.useStyle = 1; //Dejar en 1 para que el personaje use el arma de forma normal
-			Item.knockBack = 2; //Retroceso al golpear
-			Item.value = 1600; //Precio
-			Item.rare = 0;
+			Item.useTime = 13; 
+			Item.useAnimation = 19;  
+			Item.pick = 59;
+			Item.useStyle = ItemUseStyleID.Swing; 
+			Item.knockBack = 2; 
+			Item.value = 1600;
+			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1; 
-			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
+			Item.autoReuse = true; 
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"TuxoniteBar",12)
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(),12)
 			.AddIngredient(ItemID.Wood,4)
 			.AddTile(TileID.Anvils)
 			.Register();

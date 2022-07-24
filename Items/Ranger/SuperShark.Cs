@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Ranger
 {
@@ -13,19 +14,11 @@ namespace opswordsII.Items.Ranger
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Supershark");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "superrekin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "superrequin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Supertiburón");
-			
-			Tooltip.SetDefault(""
-			+ "\n40% chance of not spending ammo ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), ""
-			+ "\n40% szans na nie wydawanie amunicji ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			+ "\n40% de chances de ne pas dépenser de munitions ");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-			+ "\nProbabilidad del 40% de no gastar munición ");
-
+			Tooltip.SetDefault("40% chance of not spending ammo");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"40% de chances de ne pas dépenser de munitions ");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Probabilidad del 40% de no gastar munición ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -68,7 +61,7 @@ namespace opswordsII.Items.Ranger
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.Megashark, 1)
-			.AddIngredient(null,"CelestialAmalgamate",5)
+			.AddIngredient(ModContent.ItemType<CelestialAmalgamate>(),5)
 			.AddTile(TileID.LunarCraftingStation)
 			.Register();
 		}

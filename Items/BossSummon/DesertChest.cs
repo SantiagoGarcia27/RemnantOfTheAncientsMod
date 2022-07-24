@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using opswordsII.NPCs.DAniquilator;
 using Terraria.Audio;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.BossSummon
 {
@@ -12,14 +13,14 @@ namespace opswordsII.Items.BossSummon
        public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Desert Chest");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pustynna skrzynia");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coffre du désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cofre del desierto");
             Tooltip.SetDefault("Summons the Desert Annihilator");
-           Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wezwij Pustynnego Aniquilatora");
+
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coffre du désert");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquer l'aniquilateur du désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al aniquilador del desierto");
-           
+
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cofre del desierto");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al aniquilador del desierto");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         
         public override void SetDefaults()
@@ -33,8 +34,7 @@ namespace opswordsII.Items.BossSummon
             Item.useTime = 30;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = true;
-            /*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-            if (CalamityMod != null) Item.consumable = false;*/
+            if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.consumable = false;
         }
         public override bool CanUseItem(Player player)
         {        
@@ -42,11 +42,8 @@ namespace opswordsII.Items.BossSummon
         }
         public override bool? UseItem(Player player)
         {
-        
-
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>());   //boss spawn
-            //SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
-
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>()); 
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;
         }
         public override void AddRecipes()

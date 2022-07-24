@@ -1,21 +1,18 @@
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 using Terraria.ID;
-using opswordsII.Projectiles;
-using opswordsII.Items.ammo;
 
 namespace opswordsII.Items.Debugg
 {
     public class NpcKiller : ModItem
     {
-        /*public override bool Autoload(ref string name)
+        public override bool IsLoadingEnabled(Mod mod)
         {
-            return ModLoader.GetMod("OpswordsIIDebugMod") != null;
-        }*/
+            return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+        }
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("NpcKiller");
-            Tooltip.SetDefault("");
         }
         public override void SetDefaults()
         {
@@ -30,10 +27,10 @@ namespace opswordsII.Items.Debugg
             Item.scale = 0.68f;
             Item.knockBack = 5;
             Item.value = 20000; 
-            Item.rare = 1;
+            Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item38;
             Item.autoReuse = false;
-            Item.shoot = 10;
+            Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 30f;
            // Item.useAmmo = AmmoID.Bullet;
         }

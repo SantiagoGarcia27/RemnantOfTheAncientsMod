@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -8,22 +7,14 @@ using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
-public class Ichor_asault_rifle : ModItem
+    public class Ichor_asault_rifle : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ichor Assault Rifle");
-		    DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rifle de asalto Ichor");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Karabin szturmowy Ichor");  
-			Tooltip.SetDefault(""
-			+ "\nTransform musket bullets into ichor bullets");
-			
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),""
-			+ "\nTransforma las balas de mosqueton en balas de ichor");
-
-           	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), ""
-			+ "\nPrzekształć kule muszkietowe w kule posokowe");
-
+		    DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rifle de asalto Ichor"); 
+			Tooltip.SetDefault("Transform musket bullets into ichor bullets");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Transforma las balas de mosqueton en balas de ichor");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -48,7 +39,6 @@ public class Ichor_asault_rifle : ModItem
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
 			if (type == ProjectileID.Bullet) type = ProjectileID.IchorBullet;
-			
 		}
         public override Vector2? HoldoutOffset()
 		{

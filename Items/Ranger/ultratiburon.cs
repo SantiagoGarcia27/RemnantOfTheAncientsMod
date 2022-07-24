@@ -7,6 +7,7 @@ using Terraria.Localization;
 using opswordsII.Projectiles;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Ranger
 {
@@ -15,18 +16,13 @@ namespace opswordsII.Items.Ranger
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ultrashark");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Ultrarekin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ultrarequin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ultratiburón");
-			
-			
 			Tooltip.SetDefault("the older sister of the 4"
 			+ "\n70% chance of not spending ammo ");
-           Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "starsza siostra 4"
-			+ "\n70% szans na nie wydawanie amunicji ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "la sœur aînée de 4"
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "la sœur aînée de 4"
 			+ "\n70% de chances de ne pas dépenser de munitions ");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "la hermana mayor de las 4"
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "la hermana mayor de las 4"
 			+ "\nProbabilidad del 70% de no gastar munición ");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -43,10 +39,10 @@ namespace opswordsII.Items.Ranger
             Item.noMelee = true;
             Item.knockBack = 1;
             Item.value = Item.sellPrice(0, 20, 2, 0);
-            Item.rare = 10;
+            Item.rare = ItemRarityID.Red;
    		    Item.UseSound = SoundID.Item12;
             Item.autoReuse = true;
-            Item.shoot = 10; 
+            Item.shoot = ProjectileID.PurificationPowder; 
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
 			
@@ -68,11 +64,11 @@ namespace opswordsII.Items.Ranger
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"SuperShark",1)
+			.AddIngredient(ModContent.ItemType<SuperShark>())
 			.AddIngredient(ItemID.VortexBeater, 1)
 			.AddIngredient(ItemID.Uzi, 1)
 			.AddIngredient(ItemID.SDMG, 1)
-			.AddIngredient(null,"CelestialAmalgamate", 20)
+			.AddIngredient(ModContent.ItemType<CelestialAmalgamate>(), 20)
 			.AddTile(TileID.LunarCraftingStation)
 			.Register();
 		}

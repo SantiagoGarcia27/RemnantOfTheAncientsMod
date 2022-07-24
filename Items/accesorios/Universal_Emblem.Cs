@@ -8,38 +8,23 @@ namespace opswordsII.Items.accesorios
 {
     public class Universal_Emblem : ModItem
     {
-     public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Universal Emblem");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Uniwersalny Emblemat");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Universal Emblem");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Universel");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal");  
-            
-			Tooltip.SetDefault("Increases all damage by 15%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększa wszystkie obrażenia o 15%");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal");
+            Tooltip.SetDefault("Increases all damage by 15%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de 15%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un 15%");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-           
-            /* 
-             DisplayName.AddTranslation(GameCulture.Russian, "Универсальная эмблема");
-             DisplayName.AddTranslation(GameCulture.Chinese, "通用徽");
-             Tooltip.AddTranslation(GameCulture.Russian, "Увеличивают весь урон на 15%");
-             Tooltip.AddTranslation(GameCulture.Chinese, "所有伤害提高15％");
-             */
-
-
-
         }
 
         public override void SetDefaults()
         {
-
             Item.width = 10;
             Item.height = 14;
             Item.value = 370000;
-            Item.rare = 4;
+            Item.rare = ItemRarityID.LightRed;
             Item.accessory = true;
         }
 
@@ -47,16 +32,16 @@ namespace opswordsII.Items.accesorios
         {
             player.GetDamage(DamageClass.Generic) *= 1.15f;
         }
-    public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemID.RangerEmblem, 1)  
-            .AddIngredient(ItemID.SorcererEmblem, 1)
-            .AddIngredient(ItemID.SummonerEmblem, 1)
-            .AddIngredient(ItemID.WarriorEmblem, 1)
-            .AddIngredient(null,"TrowerEmblem", 1)
+            .AddIngredient(ItemID.RangerEmblem)
+            .AddIngredient(ItemID.SorcererEmblem)
+            .AddIngredient(ItemID.SummonerEmblem)
+            .AddIngredient(ItemID.WarriorEmblem)
+            .AddIngredient(ModContent.ItemType < TrowerEmblem>())
             .AddIngredient(ItemID.HallowedBar, 10)
-            .AddTile(TileID.MythrilAnvil)   //at work bench
+            .AddTile(TileID.MythrilAnvil)
             .Register();
         }
     }

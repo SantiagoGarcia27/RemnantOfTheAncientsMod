@@ -9,10 +9,10 @@ namespace opswordsII.Items.Debugg
 {
 	public class SoulReset : ModItem
 	{
-		/*public override bool Autoload(ref string name)
+		public override bool IsLoadingEnabled(Mod mod)
 		{
-		return ModLoader.GetMod("OpswordsIIDebugMod") != null;
-		}*/
+			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+		}
 		public override void SetStaticDefaults()
 		{
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
@@ -22,7 +22,7 @@ namespace opswordsII.Items.Debugg
 			DisplayName.SetDefault("SoulReset");
 		}
 
-			public override void SetDefaults()
+		public override void SetDefaults()
 		{
 			Item.width = 20;
 			Item.height = 20;
@@ -32,7 +32,7 @@ namespace opswordsII.Items.Debugg
 			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.UseSound = SoundID.Item60;
 
-        }
+		}
         public override bool? UseItem(Player player)
 		{
 			if (Main.netMode != NetmodeID.MultiplayerClient)

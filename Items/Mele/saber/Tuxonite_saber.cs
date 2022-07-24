@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-
+using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Mele.saber
 {
@@ -23,18 +23,18 @@ namespace opswordsII.Items.Mele.saber
 			Item.height = 80;
 			Item.useTime = 20;
 			Item.useAnimation = 20;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Item.sellPrice(silver: 27);
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 		}
-	public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(null,"TuxoniteBar",7)
-			.AddTile(TileID.Anvils)	
+			.AddIngredient(ItemType<TuxoniteBar>(), 7)
+			.AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

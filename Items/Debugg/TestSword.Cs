@@ -10,10 +10,10 @@ namespace opswordsII.Items.Debugg
 {
 	public class TestSword : ModItem
 	{
-		/*public override bool Autoload(ref string name)
+		public override bool IsLoadingEnabled(Mod mod)
 		{
-		return ModLoader.GetMod("OpswordsIIDebugMod") != null;
-		}*/
+			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+		}
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("TestSword");

@@ -1,56 +1,54 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger.star
 {
-	public class StarCannonV2 : ModItem
+    public class StarCannonV2 : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Star Cannon Mk2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Canon étoile Mk2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cañon de estrellas MK2");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-            Item.damage = 105;
-            Item.DamageType = DamageClass.Ranged;
-            Item.width = 80; //Tamaño de Ancho
-            Item.height = 40; //Tamaño de Alto
-            Item.useTime = 9; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
-            Item.useAnimation = 9;
-            Item.useStyle = 5; //Dejar en 5 para que el personaje use el arma de forma normal
-            Item.noMelee = true;
-            Item.knockBack = 1;
-            Item.value = 100000; //Precio
-            Item.rare = 6;
-   		    Item.UseSound = SoundID.Item10;
-            Item.autoReuse = true;
-           Item.shoot = 728; //dejar en 10 para que dispare balas normales
-            Item.shootSpeed = 10f;
-            Item.useAmmo = AmmoID.FallenStar;
+			Item.damage = 105;
+			Item.DamageType = DamageClass.Ranged;
+			Item.width = 80;
+			Item.height = 40;
+			Item.useTime = 9;
+			Item.useAnimation = 9;
+			Item.useStyle = ItemUseStyleID.Shoot;
+			Item.noMelee = true;
+			Item.knockBack = 1;
+			Item.value = 100000;
+			Item.rare = ItemRarityID.LightPurple;
+			Item.UseSound = SoundID.Item10;
+			Item.autoReuse = true;
+			Item.shoot = ProjectileID.SuperStar;
+			Item.shootSpeed = 10f;
+			Item.useAmmo = AmmoID.FallenStar;
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			if (Main.rand.NextFloat() <= (float)1 / 1) Projectile.NewProjectile(source, position, velocity, ProjectileID.Starfury, 300, 1, player.whoAmI);
-
-
 			return true;
-		}   
-		  public override Vector2? HoldoutOffset()
+		}
+		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-20, 0);
 		}
-        /*   public override bool CanConsumeAmmo(Player player)
+		public override bool CanConsumeAmmo(Item ammo, Player player)
 		{
 			return Main.rand.NextFloat() >= .30f;
-		
-		}	*/
+		}
 		public override void AddRecipes()
 		{
 			CreateRecipe()
