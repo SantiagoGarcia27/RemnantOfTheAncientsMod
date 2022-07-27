@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using opswordsII.Buffs;
+using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
@@ -22,6 +23,7 @@ namespace opswordsII.Items.Summon.Buf
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino infernal");
 			 DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Obtienes + 10% de daño y un poder infernal te cubre");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()

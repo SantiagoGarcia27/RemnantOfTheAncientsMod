@@ -7,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using opswordsII.Buffs;
 using opswordsII.Projectiles.Minioms;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Summon
 {
@@ -23,6 +24,7 @@ namespace opswordsII.Items.Summon
 
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {

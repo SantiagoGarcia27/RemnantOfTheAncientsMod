@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 
 namespace opswordsII.Items.Pociones
@@ -14,6 +15,7 @@ namespace opswordsII.Items.Pociones
             DisplayName.SetDefault("Endless Sake");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sake eterno");
             Tooltip.SetDefault("");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

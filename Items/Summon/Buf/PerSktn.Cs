@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using opswordsII.Buffs;
+using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
@@ -31,6 +32,7 @@ namespace opswordsII.Items.Summon.Buf
 			 DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"tienes una súper sentido"
 			+"\n Otorga inmunidad a la mayoría de las desventajas."
 			+"\n Incrementa el daño lanzable en 20% y posees un 50% de no gastar municion");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()

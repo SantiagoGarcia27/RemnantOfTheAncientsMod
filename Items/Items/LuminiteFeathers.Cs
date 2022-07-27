@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Items
 {
@@ -12,6 +13,7 @@ namespace opswordsII.Items.Items
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pióra luminescencyjn");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Plumes de luminite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Plumas de Luminita");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 		}
 
 		public override void SetDefaults()

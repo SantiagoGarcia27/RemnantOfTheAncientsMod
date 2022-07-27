@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 using opswordsII.Tiles;
 
 namespace opswordsII.Items.Banners
@@ -11,6 +12,7 @@ namespace opswordsII.Items.Banners
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Armored Slime Banner");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Opancerzony Szlamowy Sztandar");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bannière de Slime blindée");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estandarte Slime Blindado");

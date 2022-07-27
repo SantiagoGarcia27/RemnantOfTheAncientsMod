@@ -1,6 +1,7 @@
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
 namespace opswordsII.Items.Bloques
@@ -12,6 +13,7 @@ namespace opswordsII.Items.Bloques
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Frozen Assaulter Trophy");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'assaillant gelé");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo de asaltante congelado");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 		}
 

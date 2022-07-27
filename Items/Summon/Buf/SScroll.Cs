@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using opswordsII.Buffs;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 
 namespace opswordsII.Items.Summon.Buf
@@ -19,6 +20,7 @@ namespace opswordsII.Items.Summon.Buf
 			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"augmente la vitesse de déplacement de 50% et les dégâts des sbires de 5%");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino real");
 			 DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"aumenta la velocidad de movimiento en un 50% y el daño de los súbditos en un 5%");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()

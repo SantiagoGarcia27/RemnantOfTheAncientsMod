@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using opswordsII.Buffs;
+using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
@@ -19,6 +20,7 @@ namespace opswordsII.Items.Summon.Buf
 			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"tu es invulnérable pendant 4s");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino psíquico");
 			 DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"eres invulnerable durante 4s");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()

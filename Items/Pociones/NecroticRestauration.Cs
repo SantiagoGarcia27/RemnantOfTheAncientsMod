@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
@@ -19,7 +20,8 @@ namespace opswordsII.Items.Pociones
 	    	Tooltip.SetDefault("Teleports you to your last death");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous téléporte à votre dernière mort");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te teletransporta a tu última muerte ");
-	    } 
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
+        } 
 
     	public override void SetDefaults()
 	    {

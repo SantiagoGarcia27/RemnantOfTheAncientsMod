@@ -20,7 +20,7 @@ namespace opswordsII.Items.Items
 		{
 			Item.width = 26;
 			Item.height = 26;
-			Item.maxStack = 99;
+			Item.maxStack = 100;
 			Item.value = 500;
 			Item.rare = ItemRarityID.Blue;
 		}

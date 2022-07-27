@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using opswordsII.Items.Items;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Pociones
 {
@@ -14,6 +15,7 @@ namespace opswordsII.Items.Pociones
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Mikstura ultra uzdrawiająca");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de guérison ultra");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ultra poción curativa");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
 		}
 
 		public override void SetDefaults()
