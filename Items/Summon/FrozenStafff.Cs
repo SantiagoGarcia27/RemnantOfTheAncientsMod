@@ -7,22 +7,22 @@ using static Terraria.ModLoader.ModContent;
 using opswordsII.Buffs;
 using opswordsII.Projectiles.Minioms;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Summon
 {
     public class FrozenStafff : ModItem
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults() 
+		{
 			DisplayName.SetDefault("Frozen Staff");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo congelado");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Mrożony personel"); 
 			Tooltip.SetDefault("Summons a Baby Frozen Asaulter to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un asaltante bebé congelado para que luche por ti");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przywołuje Baby Frozen Assaulter, aby walczył dla ciebie"); 
 
-
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo congelado");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un asaltante bebé congelado para que luche por ti");
+			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; 
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {
@@ -35,19 +35,13 @@ namespace opswordsII.Items.Summon
 			Item.useAnimation = 36;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.value = Item.buyPrice(0, 2, 0, 0);
-			Item.rare = 4;
+			Item.rare = ItemRarityID.LightRed;
 			Item.UseSound = SoundID.Item44;
-
-			// These below are needed for a minion weapon
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Summon;
 			Item.buffType = BuffType<FrozenMinionBuff>();
-			// No buffTime because otherwise the item tooltip would say something like "1 minute duration"
 			Item.shoot = ProjectileType<FrozenMinion>();
-
-			/*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-    		if (CalamityMod != null)
-			Item.damage = 11;*/
+			if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.damage = 11;
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
@@ -56,11 +50,9 @@ namespace opswordsII.Items.Summon
 			projectile.originalDamage = Item.damage;
 			return false;
 		}
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			// This is needed so the buff that keeps your minion alive and allows you to despawn it properly applies
+		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) 
+		{
 			player.AddBuff(Item.buffType, 2);
-
-			// Here you can change where the minion is spawned. Most vanilla minions spawn at the cursor position.
 			position = Main.MouseWorld;
 		}
 	}

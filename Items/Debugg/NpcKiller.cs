@@ -22,7 +22,7 @@ namespace opswordsII.Items.Debugg
             Item.height = 2; 
             Item.useTime = 25; 
             Item.useAnimation = 25;
-            Item.useStyle = 5; 
+            Item.useStyle = ItemUseStyleID.Shoot; 
             Item.noMelee = true;
             Item.scale = 0.68f;
             Item.knockBack = 5;
