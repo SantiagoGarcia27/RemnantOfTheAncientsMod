@@ -12,6 +12,7 @@ namespace opswordsII.Items.Bloques.MusicBox
 			DisplayName.SetDefault("DesertMusicBox");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Desert_Aniquilator"), ItemType<DesertMusicBox>(), TileType<DesertMusicBoxT>());
+			
 		}
 
 		public override void SetDefaults() {

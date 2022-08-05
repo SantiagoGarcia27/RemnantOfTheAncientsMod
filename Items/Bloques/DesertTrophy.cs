@@ -1,6 +1,7 @@
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
 namespace opswordsII.Items.Bloques
@@ -12,7 +13,8 @@ namespace opswordsII.Items.Bloques
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Aniquilator Trophy");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'aniquilateur du désert");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo Aniquilador del desierto");
-        
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
 		}
 
 		public override void SetDefaults() {

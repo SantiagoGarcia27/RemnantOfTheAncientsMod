@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
@@ -82,7 +83,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Fire Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de fuego eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -116,7 +117,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Cursed Flames Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de las llamas malditas eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -150,7 +151,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Venom Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de ponzoña eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -184,7 +185,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Party Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco fiestero eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -218,7 +219,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Poison Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de veneno eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -252,7 +253,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Nanites Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de nanitos eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()

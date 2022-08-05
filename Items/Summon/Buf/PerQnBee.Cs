@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
 using opswordsII.Buffs;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
@@ -30,8 +31,9 @@ namespace opswordsII.Items.Summon.Buf
 			 DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"obtienes el efecto miel, tu defensa aumenta en 5 "
 			+"\n Libera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas"
 			+"\n aumenta la penetración de armadura en 15");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-           
+
 
 
 

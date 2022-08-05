@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
@@ -48,7 +49,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Heartreach Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de alcanzacorazón eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -83,7 +84,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Inferno Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción del infierno eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -117,7 +118,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Ironskin Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de piel de hierro eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
         public override void SetDefaults()
         {
@@ -150,7 +151,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Ammo Reservation Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de munición eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -184,7 +185,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Archery Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de arquero eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -221,7 +222,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Builder Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción constructora eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -255,7 +256,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Calming Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción tranquilizadora eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -289,7 +290,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Crate Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caja eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -324,7 +325,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Dangersense Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de sentido del peligro eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -359,7 +360,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Fishing Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de pesca eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -395,7 +396,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Regeneration Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de regeneración eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -430,7 +431,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Sonar Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de sonar eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -465,7 +466,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Spelunker Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de espeleógo eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -500,7 +501,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Summoning Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de invocación eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -535,7 +536,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Swiftness Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de rapidez eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -570,7 +571,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Thorns Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de espinas eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -604,7 +605,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Battle Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de batalla eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -638,7 +639,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Endurance Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de resistencia eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -674,7 +675,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Featherfall Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caída de pluma eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -708,7 +709,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Gills Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de agallas eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -742,7 +743,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Hunter Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de cazador eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -776,7 +777,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Invisibility Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de invisibilidad eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -811,7 +812,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Lifeforce Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de fuerza vital eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -846,7 +847,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Mining Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de minería eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -881,7 +882,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Magic Power Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de poder mágico eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -916,7 +917,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Magic Regeneration Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción reg. de maná eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -950,7 +951,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Night Owl Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de noctámbulo eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -984,7 +985,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Obsidian Skin Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de piel de obsidiana eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -1018,7 +1019,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Rage Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de furia eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -1052,7 +1053,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Shine Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de brillo eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -1086,7 +1087,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Titan Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de titán eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -1120,7 +1121,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Warmth Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción del calor eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()
@@ -1154,7 +1155,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Wrath Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de ira eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()

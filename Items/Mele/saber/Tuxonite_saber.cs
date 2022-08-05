@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 using opswordsII.Items.Items;
 using Terraria.GameContent.Creative;
