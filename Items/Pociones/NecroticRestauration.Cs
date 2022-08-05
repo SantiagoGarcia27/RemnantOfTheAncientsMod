@@ -3,14 +3,12 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Pociones
 {
     public class NecroticRestauration : ModItem
     {
-    	private Player player = Main.player[Main.myPlayer];
-
         public override void SetStaticDefaults()
 	    {
 	    	DisplayName.SetDefault("Necrotic Restauration Potion");
@@ -19,12 +17,13 @@ namespace opswordsII.Items.Pociones
 	    	Tooltip.SetDefault("Teleports you to your last death");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous téléporte à votre dernière mort");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te teletransporta a tu última muerte ");
-	    } 
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        } 
 
     	public override void SetDefaults()
 	    {
-	    	Item.CloneDefaults(ItemID.IronskinPotion);
-	    	Item.width = 26;
+            Item.CloneDefaults(ItemID.IronskinPotion);
+            Item.width = 26;
 	    	Item.height = 32;
 	    	Item.consumable = true;
 	    	Item.useAnimation = 15;
@@ -36,14 +35,11 @@ namespace opswordsII.Items.Pociones
 	    	Item.buffTime = -1;
 	    }
 
-    	public override bool CanUseItem(Player player)
-    	{
-    		return player.showLastDeath;
-    	}
+        public override bool CanUseItem(Player player) => player.showLastDeath;
 
-    	public override bool? UseItem(Player player)
+        public override bool? UseItem(Player player)
     	{
-    		Vector2 newPos = new Vector2(player.lastDeathPostion.X - 16f, player.lastDeathPostion.Y - 24f);
+    		Vector2 newPos = new(player.lastDeathPostion.X - 16f, player.lastDeathPostion.Y - 24f);
     		player.Teleport(newPos);
     		return base.ConsumeItem(player);
     	}

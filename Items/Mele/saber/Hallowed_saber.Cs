@@ -2,18 +2,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
-
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.saber
 {
-	public class Hallowed_saber : ModItem
+    public class Hallowed_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sabebur");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabrebur");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sablebur");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -23,17 +23,17 @@ namespace opswordsII.Items.Mele.saber
 			Item.height = 80;
 			Item.useTime = 20;
 			Item.useAnimation = 20;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Item.sellPrice(gold: 5);
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 		}
-	public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.HallowedBar,12)
+			.AddIngredient(ItemID.HallowedBar, 12)
 			.AddTile(TileID.MythrilAnvil)
 			.Register();
 		}

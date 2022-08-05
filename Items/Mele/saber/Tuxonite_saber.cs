@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using opswordsII.Items.Items;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.saber
 {
@@ -14,6 +15,7 @@ namespace opswordsII.Items.Mele.saber
 			DisplayName.SetDefault("Tuxonite Saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de Tusonita");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{

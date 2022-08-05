@@ -2,17 +2,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.saber
 {
-	public class iron_saber : ModItem
+    public class iron_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Iron Saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre de Fer");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de Hierro");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -22,10 +23,10 @@ namespace opswordsII.Items.Mele.saber
 			Item.height = 80;
 			Item.useTime = 20;
 			Item.useAnimation = 20;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Item.sellPrice(silver: 4);
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 		}
@@ -35,7 +36,6 @@ namespace opswordsII.Items.Mele.saber
 			CreateRecipe()
 			.AddIngredient(ItemID.IronBar,10)
 			.AddTile(TileID.Anvils)
-			
 			.Register();
 		}
 	}

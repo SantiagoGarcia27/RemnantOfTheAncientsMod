@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using opswordsII.Projectiles;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.saber
 {
@@ -14,6 +15,7 @@ namespace opswordsII.Items.Mele.saber
 			DisplayName.SetDefault("Spike saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre à pointes");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de púas");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -23,14 +25,14 @@ namespace opswordsII.Items.Mele.saber
 			Item.height = 80;
 			Item.useTime = 20;
 			Item.useAnimation = 20;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Item.sellPrice(gold: 18);
-			Item.rare = 7;
+			Item.rare = ItemRarityID.Lime;
 			Item.scale = 1.60f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			Item.shoot = ModContent.ProjectileType<InfernalSpike_f>();
+			Item.shoot = ProjectileType<InfernalSpike_f>();
 		}
 	
 	}

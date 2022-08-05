@@ -36,7 +36,7 @@ namespace opswordsII.Items.Tools.Utilidad
 		
 		public override bool? UseItem(Player player)
 		{
-			if (Main.netMode != 1)
+			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				Main.time = 0.0;
 				Main.dayTime = !Main.dayTime;

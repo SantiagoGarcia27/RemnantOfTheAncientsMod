@@ -1,4 +1,3 @@
-using opswordsII.Dusts;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +8,7 @@ using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele
 {
-	public class Permafrost : ModItem
+    public class Permafrost : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,7 +21,7 @@ namespace opswordsII.Items.Mele
 		public override void SetDefaults()
 		{
 			Item.damage = 45;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.width = 130;
 			Item.height = 160;
 			Item.useTime = 40;
@@ -33,7 +32,6 @@ namespace opswordsII.Items.Mele
 			Item.rare = ItemRarityID.Pink;
 			Item.value = Item.sellPrice(silver: 10);
 			Item.DamageType = DamageClass.Melee;
-			Item.noUseGraphic = false;
 			Item.autoReuse = true;
 			Item.UseSound = SoundID.Item1;
 			Item.shoot = ProjectileType<FrostBeamF>();

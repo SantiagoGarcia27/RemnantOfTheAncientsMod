@@ -2,11 +2,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele.saber
 {
-	public class Enchanted_saber : ModItem
+    public class Enchanted_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -15,7 +15,8 @@ namespace opswordsII.Items.Mele.saber
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable Encantado");
 			Tooltip.SetDefault("Shoot an enchanted sword beam");
            	Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tirez sur un rayon d'épée enchanté");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Dispara un rayo de espada encantada");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Dispara un rayo de espada encantada");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -25,12 +26,12 @@ namespace opswordsII.Items.Mele.saber
 			Item.height = 40;
 			Item.useTime = 15;
 			Item.useAnimation = 25;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Item.sellPrice(silver: 50);
-			Item.rare = 2;
-			Item.shoot = 173;
-			 Item.shootSpeed = 10f;
+			Item.rare = ItemRarityID.Green;
+			Item.shoot = ProjectileID.EnchantedBeam;
+			Item.shootSpeed = 10f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 		}

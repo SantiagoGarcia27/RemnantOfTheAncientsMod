@@ -9,13 +9,12 @@ namespace opswordsII.Items.Mele
 {
     public class TheSpiker : ModItem
 	{
-		
 		public override void SetStaticDefaults()
 		{
-			
 			DisplayName.SetDefault("The Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
+			Tooltip.SetDefault("Example description.");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -36,9 +35,6 @@ namespace opswordsII.Items.Mele
 			Item.shoot = ModContent.ProjectileType<InfernalSpikeF_f>();
 		}
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
-		{	
-			target.defense = target.defense/2;
-		}
-	}
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) => target.defense = target.defense / 2;
+    }
 }

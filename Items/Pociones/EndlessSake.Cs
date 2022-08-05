@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Pociones
 {
@@ -13,7 +14,7 @@ namespace opswordsII.Items.Pociones
         {
             DisplayName.SetDefault("Endless Sake");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sake eterno");
-            Tooltip.SetDefault("");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -29,8 +30,8 @@ namespace opswordsII.Items.Pociones
             Item.consumable = false;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Tipsy; //Specify an existing buff to be applied when used.
-            Item.buffTime = 15400; //The amount of time the buff declared in Item.buffType will last in ticks. 5400 / 60 is 90, so this buff will last 90 seconds.
+            Item.buffType = BuffID.Tipsy; 
+            Item.buffTime = 15400; 
         }
        public override void AddRecipes()
 		{

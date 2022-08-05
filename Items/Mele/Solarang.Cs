@@ -1,8 +1,4 @@
-using System;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -11,7 +7,7 @@ using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Mele
 {
-	public class Solarang: ModItem
+    public class Solarang: ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -26,7 +22,7 @@ namespace opswordsII.Items.Mele
 			Item.CloneDefaults(ItemID.Flamarang);
 			Item.damage = 160;
 			Item.useTime = 10;
-			Item.useAnimation = 10;        //this is the item damage
+			Item.useAnimation = 10;       
 			Item.shoot = ModContent.ProjectileType<SolarangP>();
 		}
 		public override void AddRecipes()
