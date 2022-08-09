@@ -14,21 +14,20 @@ namespace opswordsII.Items.Mele
 			DisplayName.SetDefault("The Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
-			Tooltip.SetDefault("Example description.");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
 			Item.damage = 90;
 			Item.DamageType = DamageClass.Melee;
-			Item.width = 10;
-			Item.height = 10;
+			Item.width = 40;
+			Item.height = 80;
 			Item.useTime = 15;
 			Item.useAnimation = 15;
 			Item.useStyle = ItemUseStyleID.Thrust;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(gold: 30);
-			Item.rare = 12;
+			Item.rare = -12;
 			Item.scale = 2.0f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

@@ -23,11 +23,11 @@ namespace opswordsII.Items.Tools.Utilidad
 		{
 			Item.width = 20;
 			Item.height = 20;
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.useAnimation = 20;
 			Item.useTime = 20;
 			Item.maxStack = 1;
-			Item.useStyle = 4;
+			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = false;
 		}
@@ -36,7 +36,7 @@ namespace opswordsII.Items.Tools.Utilidad
 		public override bool? UseItem(Player player)
 		{
 			Player p = new Player();
-			if (Main.netMode != 1)
+			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				Main.NewText("Health:" + p.statLife +
 				"\n Defense:" + p.statDefense +

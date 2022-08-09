@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace opswordsII
 {
@@ -10,7 +11,7 @@ namespace opswordsII
 	{
 		public static void HandleTeleport(int teleportType = 0, bool forceHandle = false, int whoAmI = 0)
 		{
-			if (forceHandle || Main.netMode == 0)
+			if (forceHandle || Main.netMode == NetmodeID.SinglePlayer)
 			{
 				TeleportPlayer(teleportType, forceHandle, whoAmI);
 			}
@@ -340,10 +341,10 @@ namespace opswordsII
 			player.immune = immune;
 			player.immuneTime = immuneTime;
 			LeaveDust(player);
-			if (Main.netMode == 2 && syncData)
+			if (Main.netMode == NetmodeID.Server && syncData)
 			{
 				RemoteClient.CheckSection(player.whoAmI, player.position, 1);
-				NetMessage.SendData(65, -1, -1, (NetworkText)null, 0, (float)player.whoAmI, pos.X, pos.Y, 3, 0, 0);
+				NetMessage.SendData(MessageID.Teleport, -1, -1, (NetworkText)null, 0, (float)player.whoAmI, pos.X, pos.Y, 3, 0, 0);
 			}
 		}
 
@@ -351,7 +352,7 @@ namespace opswordsII
 		{
 			for (int i = 0; i < 70; i++)
 			{
-				Dust obj = Main.dust[Dust.NewDust(player.position, player.width, player.height, 15, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 150, Color.Cyan, 1.2f)];
+				Dust obj = Main.dust[Dust.NewDust(player.position, player.width, player.height, DustID.MagicMirror, player.velocity.X * 0.2f, player.velocity.Y * 0.2f, 150, Color.Cyan, 1.2f)];
 				obj.velocity *= 0.5f;
 			}
 			Main.TeleportEffect(player.getRect(), 1, 0, 1f);
