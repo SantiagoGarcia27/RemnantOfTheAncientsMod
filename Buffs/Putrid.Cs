@@ -23,10 +23,7 @@ namespace opswordsII.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
            player.endurance += 0.10f;
-            player.GetCritChance(DamageClass.Melee) += 5;
-            player.GetCritChance(DamageClass.Ranged) += 5;
-			player.GetCritChance(DamageClass.Magic) += 5;
-			//player.thrownCrit += 5;
+            player.GetCritChance(DamageClass.Generic) += 5;
             player.GetDamage(DamageClass.Summon) += 0.30f;
 
             player.buffImmune[BuffType<Bee>()] = true;
