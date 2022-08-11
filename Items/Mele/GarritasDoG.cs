@@ -6,25 +6,27 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using opswordsII.Projectiles;
 using Terraria.Localization;
 
 namespace opswordsII.Items.Mele
 {
 	public class GarritasDoG : ModItem
 	{
-		public override bool Autoload(ref string name)
+		
+		public override bool HasMod("CalamityMod")
 		{
-		return ModLoader.TryGetMod("CalamityMod") != null;
+		return ModLoader.TryGetMod("CalamityMod", out Mod result) != false;
 		}
 		public override void SetStaticDefaults()
 		{
 			
-				DisplayName.SetDefault("God Slayer Claws");
+			DisplayName.SetDefault("God Slayer Claws");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pazury Zabójcy Bogów");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Griffes de tueur de dieu");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Garras del asesinas de dioses");
 		}
-		public override void SetStaticDefaults()
+		public override void SetDefaults()
 		{
 			Item.damage = 900;
 			Item.DamageType = DamageClass.Melee;
@@ -41,23 +43,25 @@ namespace opswordsII.Items.Mele
 			Item.autoReuse = true;
 			Item.shoot = ModContent.ProjectileType<GodClaws>();
 
-			
-		}
 
-		public override void AddRecipes()
+		}
+	
+	public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(null, "Garritas", 1)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod").ItemType<CosmiliteBar>(), 15)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod").ItemType("EndothermicEnergy"), 10)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod").ItemType("NightmareFuel"), 10)
-			.AddTile(ModLoader.TryGetMod("CalamityMod").TileType<DraedonsForge>())
+			
+			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out Mod result).ItemType, "CosmiliteBar", 15)
+			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out Mod result).ItemType("EndothermicEnergy"), 10)
+			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out Mod result).ItemType("NightmareFuel"), 10)
+			.AddTile(ModLoader.TryGetMod("CalamityMod", out Mod result).TileType<DraedonsForge>())
 			.Register();
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
 		 {	
-				  target.AddBuff(ModLoader.TryGetMod("CalamityMod").BuffType("GodSlayerInferno"), 300);
+				  target.AddBuff(ModLoader.TryGetMod("CalamityMod", out Mod result).BuffType("GodSlayerInferno"), 300);
 		 }
 	}
-}*/
+}
+*/

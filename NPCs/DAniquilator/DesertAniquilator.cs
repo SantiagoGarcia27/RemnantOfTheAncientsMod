@@ -2,13 +2,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using opswordsII.Buffs;
-using opswordsII.Items.tresure_bag;
 using opswordsII.Items.Items;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
 using opswordsII.Projectiles;
 using System;
+using opswordsII.Items.Bloques;
+using opswordsII.Items.Mele;
+using opswordsII.Items.Magic;
+using opswordsII.Items.Summon;
+using opswordsII.Items.tresure_bag;
+using opswordsII.Items.Ranger.Bows;
+using opswordsII.Items.Bloques.Relics;
+using opswordsII.Items.Armor.Masks;
 using opswordsII.Common.Systems;
 using Terraria.Localization;
 using opswordsII.World;
@@ -215,24 +222,27 @@ namespace opswordsII.NPCs.DAniquilator
         public override void BossLoot(ref string name, ref int potionType)
         {
             DownedBossSystem.downedDesert = true;
-            potionType = ItemID.LesserHealingPotion;  
+            potionType = ItemID.HealingPotion;  
             Item.NewItem(NPC.GetSource_Loot(),(int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.SandBlock, 60);
             Item.NewItem(NPC.GetSource_Loot(),(int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<Sand_escense>(), 10);
             
              //boss drops
         }
-        public override void ModifyNPCLoot(NPCLoot npcLoot) 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (!Main.expertMode || !Main.masterMode)
-            {
-                int choice = Main.rand.Next(4);
-                if (choice == 0) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Ranger.Bows.desertbow>(), 1));
-                if (choice == 1) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Mele.DesertEdge>(), 1));
-                if (choice == 2) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Summon.DesertStaff>(), 1));
-                if (choice == 3) npcLoot.Add(ItemDropRule.Common(ItemType<Items.Magic.DesertTome>(), 1));
-            }
-            else npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
-		}	
+
+            LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertAMask>(),7,999999999));
+
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<desertbow>(), 4,999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertEdge>(), 4, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertStaff>(), 4, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertTome>(), 4, 999999999));
+
+            npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Desert_Relic>()));
+            npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));
+        }	
         
    
     }

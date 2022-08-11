@@ -23,8 +23,8 @@ namespace opswordsII.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            //player.dash = 1;
-            //player.dashType = 1;
+            player.dash = 1;
+            player.dashType = 1;
             player.jumpBoost = true;
 			player.noFallDmg = true;
 			player.GetModPlayer<DashPlayer>().DashEquipped = true;

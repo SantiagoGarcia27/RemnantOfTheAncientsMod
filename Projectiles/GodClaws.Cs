@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -69,7 +69,7 @@ namespace opswordsII.Projectiles
 						float diffX = Math.Abs((float)x - Projectile.position.X / 16f);
 						float diffY = Math.Abs((float)y - Projectile.position.Y / 16f);
 						double distance = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
-						if (distance < (double)explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].wall == 0)
+						if (distance < (double)explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].WallType == 0)
 						{
 							canKillWalls = true;
 							break;
@@ -80,10 +80,10 @@ namespace opswordsII.Projectiles
 			}
 
 		}
-
+		/*
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			/*  Mod CalamityMod = ModLoader.GetMod("CalamityMod");
+			  Mod CalamityMod = ModLoader.GetMod("CalamityMod");
 			 if (CalamityMod != null)
 
 			 target.immune[Projectile.owner] = 0;
@@ -96,6 +96,6 @@ namespace opswordsII.Projectiles
 			 target.AddBuff(BuffID.CursedInferno, 1080);
 			 target.AddBuff(BuffID.Ichor, 1080);
 		  }
-		}
+		}*/
 	}
-}*/
+}
