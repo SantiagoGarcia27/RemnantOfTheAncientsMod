@@ -8,6 +8,9 @@ using opswordsII.Items.tresure_bag;
 using opswordsII.Items.Mele.saber;
 using opswordsII.Items.Magic;
 using opswordsII.Items.Ranger.Rep;
+using opswordsII.Items.Armor.Masks;
+using opswordsII.Items.Bloques.Relics;
+using opswordsII.Items.Bloques;
 using opswordsII.Items.Summon;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
@@ -628,14 +631,14 @@ namespace opswordsII.NPCs.ITyrant
             }
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			if (!Main.expertMode || !Main.masterMode)
-			{
-				int choice = Main.rand.Next(3);
-				if (choice == 0) npcLoot.Add(ItemDropRule.Common(ItemType<Spike_saber>(), 1));
-				if (choice == 1) npcLoot.Add(ItemDropRule.Common(ItemType<Tyrant_repeater>(), 1));
-				if (choice == 2) npcLoot.Add(ItemDropRule.Common(ItemType<Tyran_Blast>(), 1));
-			}
-			else npcLoot.Add(ItemDropRule.BossBag(ItemType<infernalBag>()));
+			npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Spike_saber>(), 3,999999999));
+			npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Tyrant_repeater>(), 3,999999999));
+			npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Tyran_Blast>(), 3,999999999));
+			npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<InfernalMask>(), 7,999999999));
+			npcLoot.Add(ItemDropRule.Common(ItemType<InfernalTrophy>(), 10));
+			
+			npcLoot.Add(ItemDropRule.BossBag(ItemType<infernalBag>()));
+			npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Tyrant_Relic>()));
 		}	
 	}
 }

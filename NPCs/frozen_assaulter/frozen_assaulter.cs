@@ -8,6 +8,9 @@ using opswordsII.Items.Mele;
 using opswordsII.Items.Ranger;
 using opswordsII.Items.Magic;
 using opswordsII.Items.Summon;
+using opswordsII.Items.Bloques;
+using opswordsII.Items.Bloques.Relics;
+using opswordsII.Items.Armor.Masks;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using opswordsII.Projectiles;
@@ -206,20 +209,20 @@ namespace opswordsII.NPCs.frozen_assaulter
         public override void BossLoot(ref string name, ref int potionType)
         {
             DownedBossSystem.downedFrozen = true;
-            potionType = ItemID.LesserHealingPotion;
+            potionType = ItemID.GreaterHealingPotion;
             Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.IceBlock, 50);
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            if (!Main.expertMode || !Main.masterMode)
-            {
-                int choice = Main.rand.Next(4);
-                if (choice == 0) Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<FrostShark>(), 1);
-                if (choice == 1) Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<Permafrost>(), 1);
-                if (choice == 2) Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<FrozenStafff>(), 1);
-                if (choice == 3) Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<frozen_staff>(), 1);
-            }
-            else npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<frostBag>()));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrostShark>(), 4, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Permafrost>(), 4, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenStafff>(), 4, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<frozen_staff>(), 4, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenMask>(), 7, 999999999));
+
+            npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
+            npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Frozen_Relic>()));
         }
 
         private const int Frame_static = 0;
