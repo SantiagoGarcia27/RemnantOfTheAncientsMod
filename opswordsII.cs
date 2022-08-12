@@ -6,41 +6,26 @@ namespace opswordsII
 {
     class opswordsII : Mod
     {
-        internal bool CalamityLoaded;
-        internal bool ThoriumLoaded;
-
+        public static Mod CalamityMod;
         public opswordsII()
         {
            
         }
-        /*public override void AddRecipes()
-		{
-           Recipe.AddRecipes();
-    
-            if (CalamityLoaded)
-			{
-				CalamityRecipes();
-			}
-
-			RecipeHelper.ExampleRecipeEditing(this);
-        }*/
 
         public override void AddRecipes()
         {
             RecipeMaker.AddRecipes(this);
         }
-        public override void AddRecipeGroups()
-        {
 
-        }
         public override void Load()
         {
+            if (ModLoader.HasMod("CalamityMod")) CalamityMod = ModLoader.GetMod("CalamityMod");
+            else CalamityMod = null;
         }
         public override void Unload()
         {
-
         }
-            public static Color GetLightColor(Vector2 position)
+        public static Color GetLightColor(Vector2 position)
         {
             return Lighting.GetColor((int)(position.X / 16f), (int)(position.Y / 16f));
         }

@@ -1,7 +1,4 @@
-using System;
-using System.IO;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,7 +11,7 @@ using opswordsII.Items.Items;
 
 namespace opswordsII.Items.Ranger
 {
-	public class ultratiburonDOG : ModItem
+    public class ultratiburonDOG : ModItem
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
@@ -67,21 +64,23 @@ namespace opswordsII.Items.Ranger
 			if (Main.rand.NextFloat () <= (float) 1 / 100) Projectile.NewProjectile(source, position, velocity, ProjectileType<MisilUltra>(), 10955, 1, player.whoAmI);
 			return true;
 		}
-		/*public override void AddRecipes()
+		public override void AddRecipes()
 		{
+			if (opswordsII.CalamityMod != null)
+			{
+				Recipe recipe = CreateRecipe()
 
-			CreateRecipe()
-			.AddIngredient(null, "ultratiburon", 1)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out Mod mod).ItemType("CosmiliteBar"), 15)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out mod).ItemType("Phantoplasm"), 5)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out  mod).ItemType("EndothermicEnergy"), 10)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out  mod).ItemType("NightmareFuel"), 10)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out  mod).ItemType("GalacticaSingularity"), 15)
-			.AddIngredient(ItemType<CelestialAmalgamate>(), 3)
-			.AddTile(ModLoader.TryGetMod("CalamityMod", out mod).TileType<DraedonsForge>())
-			.Register();
-			
-		}*/
+				.AddIngredient(ItemType<ultratiburon>());
+				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
+				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("Phantoplasm"), 5);
+				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
+				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
+				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
+				recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
+                recipe.AddTile(TileID.LunarCraftingStation);
+				recipe.Register();
+			}
+		}
 			
 	}
 }

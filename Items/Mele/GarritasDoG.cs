@@ -1,7 +1,3 @@
-/*using System;
-using System.IO;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,12 +7,12 @@ using Terraria.Localization;
 
 namespace opswordsII.Items.Mele
 {
-	public class GarritasDoG : ModItem
+    public class GarritasDoG : ModItem
 	{
-		
-		public override bool HasMod("CalamityMod")
+
+		public override bool IsLoadingEnabled(Mod mod)
 		{
-		return ModLoader.TryGetMod("CalamityMod", out Mod result) != false;
+			return ModLoader.TryGetMod("CalamityMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{
@@ -34,34 +30,35 @@ namespace opswordsII.Items.Mele
 			Item.height = 10;
 			Item.useTime = 8;
 			Item.useAnimation = 8;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(gold: 100);
-			Item.rare = 12;
+			Item.rare = ItemRarityID.Red;
 			Item.scale = 2.0f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			Item.shoot = ModContent.ProjectileType<GodClaws>();
+			Item.shoot = ProjectileType<GodClaws>();
 
 
 		}
-	
-	public override void AddRecipes()
+
+		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(null, "Garritas", 1)
-			
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out Mod result).ItemType, "CosmiliteBar", 15)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out Mod result).ItemType("EndothermicEnergy"), 10)
-			.AddIngredient(ModLoader.TryGetMod("CalamityMod", out Mod result).ItemType("NightmareFuel"), 10)
-			.AddTile(ModLoader.TryGetMod("CalamityMod", out Mod result).TileType<DraedonsForge>())
-			.Register();
+			if (opswordsII.CalamityMod != null)
+			{
+				Recipe recipe = CreateRecipe()
+				.AddIngredient(ItemType<Garritas>())
+				.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
+				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
+				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
+				recipe.AddTile(TileID.LunarCraftingStation);
+				recipe.Register();
+			}
 		}
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) 
-		 {	
-				  target.AddBuff(ModLoader.TryGetMod("CalamityMod", out Mod result).BuffType("GodSlayerInferno"), 300);
-		 }
+		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+		{
+			if (opswordsII.CalamityMod.TryFind("GodSlayerInferno", out ModBuff buff)) target.AddBuff(buff.Type, 300);	
+		}
 	}
 }
-*/
