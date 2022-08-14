@@ -6,276 +6,107 @@ using Terraria.Localization;
 
 namespace opswordsII.Items.Pociones
 {
-    public class EndlessGoldF : ModItem
+    public class EndlessGoldF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofGold;
+        public override int TextureID => ItemID.FlaskofGold;
+        public override int ItemId => ItemID.FlaskofGold;
+        public override int BuffId => BuffID.WeaponImbueGold;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Gold Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de oro eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbueGold;
-            Item.buffTime = 75400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofGold, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
-    public class EndlessIchorF : ModItem
+    public class EndlessIchorF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofIchor;
+        public override int TextureID => ItemID.FlaskofIchor;
+        public override int ItemId => ItemID.FlaskofIchor;
+        public override int BuffId => BuffID.WeaponImbueIchor;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Ichor Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de icor eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbueIchor;
-            Item.buffTime = 75400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofIchor, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
-    public class EndlessFireF : ModItem
+    public class EndlessFireF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofFire;
+        public override int TextureID => ItemID.FlaskofFire;
+        public override int ItemId => ItemID.FlaskofFire;
+        public override int BuffId => BuffID.WeaponImbueFire;
+
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Fire Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de fuego eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbueFire;
-            Item.buffTime = 75400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofFire, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
-    public class EndlessCurcedF : ModItem
+    public class EndlessCurcedF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofCursedFlames;
+        public override int TextureID => ItemID.FlaskofCursedFlames;
+        public override int ItemId => ItemID.FlaskofCursedFlames;
+        public override int BuffId => BuffID.WeaponImbueCursedFlames;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Cursed Flames Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de las llamas malditas eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbueCursedFlames;
-            Item.buffTime = 75400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofCursedFlames, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
-    public class EndlessPonF : ModItem
+    public class EndlessPonF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofVenom;
+        public override int TextureID => ItemID.FlaskofVenom;
+        public override int ItemId => ItemID.FlaskofVenom;
+        public override int BuffId => BuffID.WeaponImbueVenom;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Venom Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de ponzoña eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbueVenom;
-            Item.buffTime = 75400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofVenom, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
-    public class EndlessPartyF : ModItem
+    public class EndlessPartyF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofParty;
+        public override int TextureID => ItemID.FlaskofParty;
+        public override int ItemId => ItemID.FlaskofParty;
+        public override int BuffId => BuffID.WeaponImbueConfetti;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Party Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco fiestero eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbueConfetti; 
-            Item.buffTime = 75400; 
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofParty, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
-    public class EndlessVenomF : ModItem
+    public class EndlessVenomF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofPoison;
+        public override int TextureID => ItemID.FlaskofPoison;
+        public override int ItemId => ItemID.FlaskofPoison;
+        public override int BuffId => BuffID.WeaponImbuePoison;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Poison Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de veneno eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbuePoison;
-            Item.buffTime = 75400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofPoison, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
-    public class EndlessNaniteF : ModItem
+    public class EndlessNaniteF : BasePotions
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.FlaskofNanites;
+        public override int TextureID => ItemID.FlaskofNanites;
+        public override int ItemId => ItemID.FlaskofNanites;
+        public override int BuffId => BuffID.WeaponImbueNanites;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Nanites Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de nanitos eterno");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            base.SetStaticDefaults();
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.WeaponImbueNanites;
-            Item.buffTime = 75400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FlaskofNanites, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
+
     }
 }

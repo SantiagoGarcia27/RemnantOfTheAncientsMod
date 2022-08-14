@@ -6,38 +6,17 @@ using Terraria.Localization;
 
 namespace opswordsII.Items.Pociones
 {
-    public class EndlessGrav : ModItem
+    public class EndlessGrav : BasePotions
     {
+        public override int TextureID => ItemID.GravitationPotion;
+        public override int ItemId => ItemID.GravitationPotion;
+        public override int BuffId => BuffID.Gravitation;
         public override string Texture => "Terraria/Images/Item_" + ItemID.GravitationPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Gravitation Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de gravedad eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Gravitation;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.GravitationPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            base.SetStaticDefaults();
         }
     }
     public class EndlessHea : ModItem

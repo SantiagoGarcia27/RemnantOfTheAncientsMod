@@ -38,8 +38,6 @@ namespace opswordsII.Items.Mele
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			Item.shoot = ProjectileType<GodClaws>();
-
-
 		}
 
 		public override void AddRecipes()
