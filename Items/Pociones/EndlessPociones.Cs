@@ -19,9 +19,12 @@ namespace opswordsII.Items.Pociones
             base.SetStaticDefaults();
         }
     }
-    public class EndlessHea : ModItem
-    {
+    public class EndlessHea : BasePotions
+    { 
         public override string Texture => "Terraria/Images/Item_" + ItemID.HeartreachPotion;
+        public override int ItemId => ItemID.HeartreachPotion;
+        public override int BuffId => BuffID.Heartreach;
+        public override int TextureID => ItemID.HeartreachPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Heartreach Potion");
@@ -29,135 +32,55 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Heartreach;
-            Item.buffTime = 15400;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.HeartreachPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessInf : ModItem
+    public class EndlessInf : BasePotions
     {
+
         public override string Texture => "Terraria/Images/Item_" + ItemID.InfernoPotion;
+        public override int ItemId => ItemID.InfernoPotion;
+        public override int BuffId => BuffID.Inferno;
+        public override int TextureID => ItemID.InfernoPotion;
+        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Inferno Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción del infierno eterna");
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Inferno;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.InfernoPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessIron : ModItem
+    public class EndlessIron : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.IronskinPotion;
+        public override int TextureID => ItemID.IronskinPotion;
+        public override int ItemId => ItemID.IronskinPotion;
+        public override int BuffId => BuffID.Ironskin;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Ironskin Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de piel de hierro eterna");
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Ironskin;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.IronskinPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
+
     }
-    public class EndlessAmmo : ModItem
+    public class EndlessAmmo : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.AmmoReservationPotion;
+        public override int TextureID => ItemID.AmmoReservationPotion;
+        public override int BuffId => BuffID.AmmoReservation;
+        public override int ItemId => ItemID.AmmoReservationPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Ammo Reservation Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de munición eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.AmmoReservation;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.AmmoReservationPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }
-    public class EndlessArch : ModItem
+    public class EndlessArch : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ArcheryPotion;
+        public override int TextureID => ItemID.ArcheryPotion;
+        public override int BuffId => BuffID.Archery;
+        public override int ItemId => ItemID.ArcheryPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Archery Potion");
@@ -165,36 +88,16 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Archery;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.ArcheryPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
 
 
-    public class EndlessBuil : ModItem
+    public class EndlessBuil : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.BuilderPotion;
+        public  override int TextureID => ItemID.BuilderPotion;
+        public override int ItemId => ItemID.BuilderPotion;
+        public override int BuffId => BuffID.Builder;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Builder Potion");
@@ -202,33 +105,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Builder;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.BuilderPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessCalm : ModItem
+    public class EndlessCalm : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.CalmingPotion;
+        public override int TextureID => ItemID.CalmingPotion;
+        public override int ItemId => ItemID.CalmingPotion;
+        public override int BuffId => BuffID.Calm;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Calming Potion");
@@ -236,33 +119,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Calm;
-            Item.buffTime = 16400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.CalmingPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessCra : ModItem
+    public class EndlessCra : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.CratePotion;
+        public override int TextureID => ItemID.CratePotion;
+        public override int BuffId => BuffID.Crate;
+        public override int ItemId => ItemID.CratePotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Crate Potion");
@@ -270,69 +133,28 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Crate;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.CratePotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessDang : ModItem
+    public class EndlessDang : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.TrapsightPotion;
+        public override int BuffId => BuffID.Dangersense;
+        public override int ItemId => ItemID.TrapsightPotion;
+        public override int TextureID => ItemID.TrapsightPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Dangersense Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de sentido del peligro eterna");
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Dangersense;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.TrapsightPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessFish : ModItem
+    public class EndlessFish : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.FishingPotion;
+        public override int BuffId => BuffID.Fishing;
+        public override int ItemId => ItemID.FishingPotion;
+        public override int TextureID => ItemID.FishingPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Fishing Potion");
@@ -340,35 +162,15 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Fishing;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FishingPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
 
-    public class EndlessRe : ModItem
+    public class EndlessRe : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.RegenerationPotion;
+        public override int BuffId => BuffID.Regeneration;
+        public override int ItemId => ItemID.RegenerationPotion;
+        public override int TextureID => ItemID.RegenerationPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Regeneration Potion");
@@ -376,34 +178,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Regeneration;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.RegenerationPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessSo : ModItem
+    public class EndlessSo : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.SonarPotion;
+        public override int BuffId => BuffID.Sonar;
+        public override int ItemId => ItemID.SonarPotion;
+        public override int TextureID => ItemID.SonarPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Sonar Potion");
@@ -411,34 +193,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Sonar;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.SonarPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessSp : ModItem
+    public class EndlessSp : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.SpelunkerPotion;
+        public override int BuffId => BuffID.Spelunker;
+        public override int ItemId => ItemID.SpelunkerPotion;
+        public override int TextureID => ItemID.SpelunkerPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Spelunker Potion");
@@ -446,34 +208,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Spelunker;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.SpelunkerPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessSu : ModItem
+    public class EndlessSu : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.SummoningPotion;
+        public override int BuffId => BuffID.Summoning;
+        public override int ItemId => ItemID.SummoningPotion;
+        public override int TextureID => ItemID.SummoningPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Summoning Potion");
@@ -481,34 +223,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Summoning;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.SummoningPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessSwif : ModItem
+    public class EndlessSwif : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.SwiftnessPotion;
+        public override int BuffId => BuffID.Swiftness;
+        public override int ItemId => ItemID.SwiftnessPotion;
+        public override int TextureID => ItemID.SwiftnessPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Swiftness Potion");
@@ -516,34 +238,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Swiftness;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.SwiftnessPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessTh : ModItem
+    public class EndlessTh : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ThornsPotion;
+        public override int BuffId => BuffID.Thorns;
+        public override int ItemId => ItemID.ThornsPotion;
+        public override int TextureID => ItemID.ThornsPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Thorns Potion");
@@ -551,33 +253,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Thorns;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.ThornsPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessBat : ModItem
+    public class EndlessBat : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.BattlePotion;
+        public override int BuffId => BuffID.Battle;
+        public override int ItemId => ItemID.BattlePotion;
+        public override int TextureID => ItemID.BattlePotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Battle Potion");
@@ -585,33 +267,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Battle;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.BattlePotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessEndu : ModItem
+    public class EndlessEndu : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.EndurancePotion;
+        public override int BuffId => BuffID.Endurance;
+        public override int ItemId => ItemID.EndurancePotion;
+        public override int TextureID => ItemID.EndurancePotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Endurance Potion");
@@ -619,35 +281,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Endurance;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.EndurancePotion, 30)
-            .AddTile(TileID.Bottles)
-
-            .Register();
-        }
     }
 
-    public class EndlessFall : ModItem
+    public class EndlessFall : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.FeatherfallPotion;
+        public override int BuffId => BuffID.Featherfall;
+        public override int ItemId => ItemID.FeatherfallPotion;
+        public override int TextureID => ItemID.FeatherfallPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Featherfall Potion");
@@ -655,33 +296,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Featherfall;
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.FeatherfallPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessGills : ModItem
+    public class EndlessGills : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.GillsPotion;
+        public override int BuffId => BuffID.Gills;
+        public override int ItemId => ItemID.GillsPotion;
+        public override int TextureID => ItemID.GillsPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Gills Potion");
@@ -689,33 +310,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Gills;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.GillsPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessHunt : ModItem
+    public class EndlessHunt : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.HunterPotion;
+        public override int BuffId => BuffID.Hunter;
+        public override int ItemId => ItemID.HunterPotion;
+        public override int TextureID => ItemID.HunterPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Hunter Potion");
@@ -723,33 +324,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Hunter;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.HunterPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessInv : ModItem
+    public class EndlessInv : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.InvisibilityPotion;
+        public override int BuffId => BuffID.Invisibility;
+        public override int ItemId => ItemID.InvisibilityPotion;
+        public override int TextureID => ItemID.InvisibilityPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Invisibility Potion");
@@ -757,34 +338,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Invisibility;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.InvisibilityPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessLF : ModItem
+    public class EndlessLF : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.LifeforcePotion;
+        public override int BuffId => BuffID.Lifeforce;
+        public override int ItemId => ItemID.LifeforcePotion;
+        public override int TextureID => ItemID.LifeforcePotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Lifeforce Potion");
@@ -792,34 +353,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Lifeforce;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.LifeforcePotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessMi : ModItem
+    public class EndlessMi : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.MiningPotion;
+        public override int BuffId => BuffID.Mining;
+        public override int ItemId => ItemID.MiningPotion;
+        public override int TextureID => ItemID.MiningPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Mining Potion");
@@ -827,34 +368,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Mining;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.MiningPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessMP : ModItem
+    public class EndlessMP : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.MagicPowerPotion;
+        public override int BuffId => BuffID.MagicPower;
+        public override int ItemId => ItemID.MagicPowerPotion;
+        public override int TextureID => ItemID.MagicPowerPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Magic Power Potion");
@@ -862,34 +383,14 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.MagicPower;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.MagicPowerPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 
-    public class EndlessMR : ModItem
+    public class EndlessMR : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ManaRegenerationPotion;
+        public override int BuffId => BuffID.ManaRegeneration;
+        public override int ItemId => ItemID.ManaRegenerationPotion;
+        public override int TextureID => ItemID.ManaRegenerationPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Magic Regeneration Potion");
@@ -897,33 +398,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.ManaRegeneration;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.ManaRegenerationPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessNig : ModItem
+    public class EndlessNig : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.NightOwlPotion;
+        public override int BuffId => BuffID.NightOwl;
+        public override int ItemId => ItemID.NightOwlPotion;
+        public override int TextureID => ItemID.NightOwlPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Night Owl Potion");
@@ -931,33 +412,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.NightOwl;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.NightOwlPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessOb : ModItem
+    public class EndlessOb : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ObsidianSkinPotion;
+        public override int BuffId => BuffID.ObsidianSkin;
+        public override int ItemId => ItemID.ObsidianSkinPotion;
+        public override int TextureID => ItemID.ObsidianSkinPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Obsidian Skin Potion");
@@ -965,33 +426,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.ObsidianSkin;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.ObsidianSkinPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessRa : ModItem
+    public class EndlessRa : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.RagePotion;
+        public override int BuffId => BuffID.Rage;
+        public override int ItemId => ItemID.RagePotion;
+        public override int TextureID => ItemID.RagePotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Rage Potion");
@@ -999,33 +440,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Rage;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.RagePotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessSh : ModItem
+    public class EndlessSh : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ShinePotion;
+        public override int BuffId => BuffID.Shine;
+        public override int ItemId => ItemID.ShinePotion;
+        public override int TextureID => ItemID.ShinePotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Shine Potion");
@@ -1033,33 +454,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Shine;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.ShinePotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessTi : ModItem
+    public class EndlessTi : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.TitanPotion;
+        public override int BuffId => BuffID.Titan;
+        public override int ItemId => ItemID.TitanPotion;
+        public override int TextureID => ItemID.TitanPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Titan Potion");
@@ -1067,33 +468,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Titan;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.TitanPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessWa : ModItem
+    public class EndlessWa : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.WarmthPotion;
+        public override int BuffId => BuffID.Warmth;
+        public override int ItemId => ItemID.WarmthPotion;
+        public override int TextureID => ItemID.WarmthPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Warmth Potion");
@@ -1101,33 +482,13 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Warmth;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.WarmthPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
-    public class EndlessWr : ModItem
+    public class EndlessWr : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.WrathPotion;
+        public override int BuffId => BuffID.Wrath;
+        public override int ItemId => ItemID.WrathPotion;
+        public override int TextureID => ItemID.WrathPotion;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Wrath Potion");
@@ -1135,28 +496,5 @@ namespace opswordsII.Items.Pociones
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Wrath;
-            Item.buffTime = 15400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.WrathPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
     }
 }

@@ -32,6 +32,7 @@ namespace opswordsII.Items.Tools
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1; 
 			Item.autoReuse = true;
+			Item.useTurn = true;
 		}
 
 		public override void AddRecipes()

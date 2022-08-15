@@ -1,13 +1,13 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
 using opswordsII.NPCs.DAniquilator;
-using opswordsII.Items.Armor;
+using opswordsII.Items.Armor.Masks;
 using opswordsII.Items.Mele;
-using opswordsII.Items.Ranger;
 using opswordsII.Items.Magic;
-using opswordsII.Items.Bloques;
+using opswordsII.Items.Bloques.MusicBox;
 using opswordsII.Items.Summon;
 using opswordsII.Items.Summon.Buf;
 using opswordsII.Items.Core;
@@ -39,22 +39,17 @@ namespace opswordsII.Items.tresure_bag
 		{
 			return true;
 		}
-
-		public override void OpenBossBag(Player player)
-		{
-			player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<Desert_Core>());
-			int choice = Main.rand.Next(5);
-			if (choice == 0) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<desertbow>());
-			else if (choice == 1) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertEdge>());
-			else if (choice == 2) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertTome>());
-			else if (choice == 3) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertStaff>());
-			else if (choice == 4) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertStaff>());
-
-
-			int e = Main.rand.Next(10);
-			if (e == 1) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertTrophy>());
-			if (e == 2 || e == 3)  player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DScroll>());
-
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertAMask>(),7));
+			itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>()));
+			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>()));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<desertbow>(),4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertEdge>(),4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertTome>(),4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertStaff>(),4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DScroll>(),5));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertMusicBox>(),10));
 		}
 
 		public override int BossBagNPC => NPCType<DesertAniquilator>();

@@ -38,6 +38,7 @@ namespace opswordsII.Items.Tools
 			Item.rare = 0;
 			Item.UseSound = SoundID.Item1; 
 			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
+			Item.useTurn = true;
 		}
 
 		public override void MeleeEffects(Player player, Rectangle hitbox)

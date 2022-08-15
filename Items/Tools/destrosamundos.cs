@@ -35,6 +35,7 @@ namespace opswordsII.Items.Tools
 			Item.rare = 10;
 			Item.UseSound = SoundID.Item1; 
 			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
+			Item.useTurn = true;
 		}
 
 

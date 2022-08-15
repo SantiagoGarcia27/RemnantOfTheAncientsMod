@@ -34,6 +34,7 @@ namespace opswordsII.Items.Tools
 			Item.UseSound = SoundID.Item1; 
 			Item.scale = 1.28f;
 			Item.autoReuse = true; 
+			Item.useTurn = true;
 		}
 
 		public override void AddRecipes()
