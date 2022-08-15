@@ -38,14 +38,14 @@ namespace opswordsII.NPCs.frozen_assaulter
         }
         public override void SetDefaults()
         {
-            NPC.aiStyle = 5;  //15 is the king AI
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500, "MyBoss");   //boss life
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(90, "MyBoss");  //boss damage
-            NPC.defense = 15;    //boss defense
+            NPC.aiStyle = 5;  
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500, "MyBoss");   
+            NPC.damage = (int)NpcChanges1.ExpertDamageScale(90, "MyBoss"); 
+            NPC.defense = 15;    
             NPC.knockBackResist = 0f;
             NPC.width = 100;
-            NPC.height = 100;  //this boss will behavior like the DemonEye
-            Main.npcFrameCount[NPC.type] = 8;   //this boss will behavior like the DemonEye
+            NPC.height = 100; 
+            Main.npcFrameCount[NPC.type] = 8; 
             NPC.value = Item.buyPrice(0, 5, 75, 45);
             NPC.npcSlots = 10f;
             NPC.boss = true;
@@ -57,14 +57,9 @@ namespace opswordsII.NPCs.frozen_assaulter
             NPC.buffImmune[24] = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Frozen_Assaulter_p1");
             NPC.netAlways = true;
-
-
-            /*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-    		if (CalamityMod != null)
-            NPC.lifeMax = 19500;*/
         }
 
-        public override void AI() //this is where you program your AI
+        public override void AI()
         {
             Player P = Main.player[NPC.target];
             float distance = NPC.Distance(Main.player[NPC.target].Center);
@@ -165,33 +160,27 @@ namespace opswordsII.NPCs.frozen_assaulter
         {
             if (tipo == "Frozenp")
             {
-                float Speed = speed;  //projectile speed //20f normal 
-                int damage = dammage;  //projectile damage
+                float Speed = speed;  
+                int damage = dammage; 
                 Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-                int type = ModContent.ProjectileType<Frozenp>();  //put your projectile
+                int type = ModContent.ProjectileType<Frozenp>();  
                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                 int num54 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, 10, 0f, 0);
             }
             else if (tipo == "Lazer")
             {
-                float Speed = speed;  //projectile speed //20f normal 
+                float Speed = speed;  
                 Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-                int damage = dammage;  //projectile damage
-                int type = ProjectileID.FrostBeam;  //put your projectile
+                int damage = dammage; 
+                int type = ProjectileID.FrostBeam; 
                 float rotation = (float)Math.Atan2(vector8.Y - (P.position.Y + (P.height * 0.5f)), vector8.X - (P.position.X + (P.width * 0.5f)));
                 int num54 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, 10, 0f, 0);
             }
         }
         public void phaseChanger()
         {
-            if (NPC.life > NPC.lifeMax / 2)
-            {
-                currentPhase = 1;
-            }
-            else if (NPC.life < NPC.lifeMax / 2 && !fase3)
-            {
-                currentPhase = 2;
-            }
+            if (NPC.life > NPC.lifeMax / 2) currentPhase = 1;
+            else if (NPC.life < NPC.lifeMax / 2 && !fase3) currentPhase = 2;
             else if (NPC.life < NPC.lifeMax / 4)
             {
                 if (!healAnimation)
@@ -199,10 +188,7 @@ namespace opswordsII.NPCs.frozen_assaulter
                     currentPhase = 3;
                     fase3 = true;
                 }
-                else
-                {
-                    currentPhase = 4;
-                }
+                else currentPhase = 4; 
             }
 
         }
@@ -239,57 +225,54 @@ namespace opswordsII.NPCs.frozen_assaulter
 
             if (NPC.life > NPC.lifeMax / 4)
             {
-                if (NPC.frameCounter < 3)
+                switch (NPC.frameCounter)
                 {
-                    NPC.frame.Y = Frame_static * frameHeight;
-                    NPC.frameCounter++;
+                    case < 3:
+                        ChoiseFrame(Frame_static, frameHeight);
+                        break;
+                    case < 6:
+                        ChoiseFrame(Frame_1, frameHeight);
+
+                        break;
+                    case < 9:
+                        ChoiseFrame(Frame_2, frameHeight);
+                        break;
+                    case < 12:
+                        ChoiseFrame(Frame_3, frameHeight);
+                        break;
+                    default:
+                        NPC.frameCounter = 0;
+                        break;
                 }
-                else if (NPC.frameCounter < 6)
-                {
-                    NPC.frame.Y = Frame_1 * frameHeight;
-                    NPC.frameCounter++;
-                }
-                else if (NPC.frameCounter < 9)
-                {
-                    NPC.frame.Y = Frame_2 * frameHeight;
-                    NPC.frameCounter++;
-                }
-                else if (NPC.frameCounter < 12)
-                {
-                    NPC.frame.Y = Frame_3 * frameHeight;
-                    NPC.frameCounter++;
-                }
-                else NPC.frameCounter = 0;
             }
 
-            if (NPC.life < NPC.lifeMax / 4)
+            else if (NPC.life < NPC.lifeMax / 4)
             {
-                if (NPC.frameCounter < 3)
+                switch (NPC.frameCounter)
                 {
-                    NPC.frame.Y = Frame_Breack_0 * frameHeight;
-                    NPC.frameCounter++;
-                }
-                else if (NPC.frameCounter < 5)
-                {
-                    NPC.frame.Y = Frame_Breack_1 * frameHeight;
-                    NPC.frameCounter++;
-                }
-                else if (NPC.frameCounter < 7)
-                {
-                    NPC.frame.Y = Frame_Breack_2 * frameHeight;
-                    NPC.frameCounter++;
-                }
-                else if (NPC.frameCounter < 9)
-                {
-                    NPC.frame.Y = Frame_Breack_3 * frameHeight;
-                    NPC.frameCounter++;
-                }
-                else
-                {
-                    NPC.frameCounter = 0;
+                    case < 3:
+                        ChoiseFrame(Frame_Breack_0, frameHeight);
+                        break;
+                    case < 5:
+                        ChoiseFrame(Frame_Breack_1, frameHeight);
+                        break;
+                    case < 7:
+                        ChoiseFrame(Frame_Breack_2, frameHeight);
+                        break;
+                    case < 9:
+                        ChoiseFrame(Frame_Breack_3, frameHeight);
+                        break;
+                    default:
+                        NPC.frameCounter = 0;
+                        break;
                 }
             }
         }
+        public void ChoiseFrame(int frame, int frameHeight)
+        {
+            NPC.frame.Y = frame * frameHeight;
+            NPC.frameCounter++;
+        } 
     }
 }
 	

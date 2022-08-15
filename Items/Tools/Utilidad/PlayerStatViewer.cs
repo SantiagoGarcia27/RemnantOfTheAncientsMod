@@ -1,21 +1,19 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Text;
+using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Tools.Utilidad
 {
-	public class PlayerStatViewer : ModItem
+    public class PlayerStatViewer : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("stats checker");
 			Tooltip.SetDefault("Shows most of the player's stats while in your inventory");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -33,67 +31,45 @@ namespace opswordsII.Items.Tools.Utilidad
 				return;
 			}
 			Player1 modPlayer = val.OpswordsII();
-			Item heldItem = null;
-			if (val.selectedItem >= 0 && val.selectedItem < 58)
-			{
-				heldItem = val.ActiveItem();
-			}
+			
+			
 			foreach (TooltipLine item in list)
 			{
 				if (item.Mod == "Terraria" && item.Name == "Tooltip0")
 				{
-					item.Text = CreateStatMeterTooltip(val, modPlayer, heldItem);
+					item.Text = CreateStatMeterTooltip(val, modPlayer);
 				}
 			}
 			list.RemoveAll((TooltipLine l) => l.Mod == "Terraria" && (l.Name == "Favorite" || l.Name == "FavoriteDesc"));
 		}
-		private string CreateStatMeterTooltip(Player player, Player1 modPlayer, Item heldItem)
+		private string CreateStatMeterTooltip(Player player, Player1 modPlayer)
 		{
 			int value = player.statDefense;
-			int DamageReductionStat = (int)player.endurance;
-			int meleeSpeedStat = (int)player.GetAttackSpeed(DamageClass.Melee);
+			float DamageReductionStat = player.endurance * 100f;
+			float meleeSpeedStat = player.GetAttackSpeed(DamageClass.Melee);
 			int minionSlotStat = player.maxMinions;
-			int lifeRegenStat = player.lifeRegen;
+			int turretSlotStat = player.maxTurrets;
+			int lifeRegenStat = player.lifeRegenCount;
+			int lifeRegenBonusStat = player.lifeRegen;
 			int manaRegenStat = player.manaRegen;
-			int armorPenetrationStat = (int)player.GetArmorPenetration(DamageClass.Generic);
-			string value4 = player.wingTimeMax.ToString("n2");
-			int moveSpeedStat = (int)player.moveSpeed;
+			float armorPenetrationStat = player.GetArmorPenetration(DamageClass.Generic);
+			string wingTime = player.wingTime.ToString("n2");
+			float moveSpeedStat = player.moveSpeed;
+			float pickspeed = player.pickSpeed;
 
-			StringBuilder stringBuilder = new StringBuilder("Displays almost all player stats\nOffensive stats displayed vary with held item\n\n", 1024);
-
-			if (heldItem != null)
-			{
-				if (!heldItem.noMelee)
-				{
-					stringBuilder.Append("%\nMelee Speed Boost: ")
-						.Append(meleeSpeedStat)
-						.Append("%\n\n");
-				}
-				else if (heldItem.CountsAsClass(DamageClass.Ranged))
-				{
-					stringBuilder.Append("% | Ranged Crit Chance: ")
-						.Append("%\n\n");
-				}
-				else if (heldItem.CountsAsClass(DamageClass.Magic))
-				{
-					stringBuilder.Append("% | Magic Crit Chance: ")
-						.Append("% | Mana Regen: ")
-						.Append(manaRegenStat)
-						.Append("\n\n");
-				}
-				else if (heldItem.CountsAsClass(DamageClass.Summon))
-				{
-					stringBuilder.Append("% | Minion Slots: ")
-						.Append(minionSlotStat)
-						.Append("\n\n");
-				}
-			}
-			stringBuilder.Append("Defense: ").Append(value);
-			stringBuilder.Append(" | DR: ").Append(DamageReductionStat).Append("%");
-			stringBuilder.Append(" | Life Regen: ").Append(lifeRegenStat).Append("\n");
-			stringBuilder.Append("Armor Penetration: ").Append(armorPenetrationStat);
-			stringBuilder.Append(" | Wing Flight Time: ").Append(value4).Append(" seconds\n");
-			stringBuilder.Append(" | Movement Speed Boost: ").Append(moveSpeedStat).Append("%\n\n");
+			StringBuilder stringBuilder = new StringBuilder("Displays almost all player stats", 1024);
+			stringBuilder.Append("\nMelee Speed Boost: ").Append((meleeSpeedStat-1f)*100f).Append("%\n");
+			stringBuilder.Append("Mana Regen: ").Append(manaRegenStat).Append("\n");
+			stringBuilder.Append("Minion Slots: ").Append(minionSlotStat).Append("\n");
+			stringBuilder.Append("Turret Slots: ").Append(turretSlotStat).Append("\n");
+			stringBuilder.Append("Defense: ").Append(value).Append("\n"); 
+			stringBuilder.Append("DR: ").Append(DamageReductionStat).Append("%\n");
+			stringBuilder.Append("Life Regen: ").Append(lifeRegenStat).Append("\n");
+			stringBuilder.Append("Life Regen Bonus: ").Append(lifeRegenBonusStat).Append("\n");
+			stringBuilder.Append("Armor Penetration: ").Append(armorPenetrationStat).Append("\n");
+			stringBuilder.Append("Wing Flight Time: ").Append(wingTime).Append(" seconds\n");
+			stringBuilder.Append("Movement Speed Boost: ").Append(moveSpeedStat*100f).Append("%\n");
+			stringBuilder.Append("Pick Speed Boost: ").Append(100f - (pickspeed *100f)).Append("%\n");
 			return stringBuilder.ToString();
 		}
 	}
