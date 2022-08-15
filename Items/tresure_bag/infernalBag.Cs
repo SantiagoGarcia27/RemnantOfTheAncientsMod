@@ -45,7 +45,6 @@ namespace opswordsII.Items.tresure_bag
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyrant_repeater>(), 3));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Spike_saber>(), 3));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyran_Blast>(), 3));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<InfernalMusicBox>(), 10));
 		}
 
 			public override int BossBagNPC => NPCType<InfernalTyrantHead>();

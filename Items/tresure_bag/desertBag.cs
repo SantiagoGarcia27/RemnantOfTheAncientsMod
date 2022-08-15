@@ -49,7 +49,6 @@ namespace opswordsII.Items.tresure_bag
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertTome>(),4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertStaff>(),4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DScroll>(),5));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertMusicBox>(),10));
 		}
 
 		public override int BossBagNPC => NPCType<DesertAniquilator>();

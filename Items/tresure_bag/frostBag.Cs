@@ -47,8 +47,6 @@ namespace opswordsII.Items.tresure_bag
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Permafrost>(), 4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<frozen_staff>(), 4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrozenStafff>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrozenMusicBox>(), 10));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Frozenp2MusicBox>(), 10));
 
 
 		}
