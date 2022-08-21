@@ -14,9 +14,6 @@ namespace opswordsII.Items.Summon.Buf
 		{
             DisplayName.SetDefault("Infernal Scroll");
 			 Tooltip.SetDefault("You gain 10% of damage and an infernal power covers you");
-			 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Piekielny Zwój");
-			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish),"Zyskujesz + 10% obrażeń i zakrywa cię piekielna moc");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin infernal");
 			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Vous gagnez + 10% de dégâts et un pouvoir infernal vous couvre");
@@ -32,7 +29,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.DamageType = DamageClass.Summon;
 			Item.noMelee = true;
 			Item.mana = 200;
-			Item.rare = 2;
+			Item.rare = ItemRarityID.Green;
 			Item.width = 46;
 			Item.height = 54;
 			Item.useTime = 99;
@@ -41,7 +38,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Buffs.Infernal>(); //Specify an existing buff to be applied when used.
+			Item.buffType = BuffType<Infernal>(); 
             Item.buffTime = 18060;
 			Item.expert = true;
 		

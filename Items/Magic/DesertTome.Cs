@@ -28,7 +28,7 @@ namespace opswordsII.Items.Magic
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 30;
-			Item.useStyle = 5;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 30;
 			Item.UseSound = SoundID.Item84;

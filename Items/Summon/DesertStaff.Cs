@@ -19,7 +19,7 @@ namespace opswordsII.Items.Summon
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Staff"); 
 
 			Tooltip.SetDefault("Summons a Baby Desert Aniquilator to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un bebé aniquilador del desierto para que luche por ti");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un bebé aniquilador del desierto para que luche por ti");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przywołuje Baby Desert Aniquilator, aby walczył dla ciebie"); 
 
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; 

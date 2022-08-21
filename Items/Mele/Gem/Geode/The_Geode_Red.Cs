@@ -18,7 +18,7 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger des tirs aux ennemis");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -30,10 +30,10 @@ namespace opswordsII.Items.Mele.Gem.Geode
 			Item.height = 40;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 5;
 			Item.value = 1200;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
 

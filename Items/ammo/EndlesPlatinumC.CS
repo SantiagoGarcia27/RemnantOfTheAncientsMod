@@ -12,7 +12,7 @@ namespace opswordsII.Items.ammo
 		{
 			DisplayName.SetDefault("Endless Platinum Coin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce de platine sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "monedas de platino infinitas");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Monedas de platino infinitas");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

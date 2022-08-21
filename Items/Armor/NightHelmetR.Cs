@@ -17,7 +17,7 @@ namespace opswordsII.Items.Armor
 			+ "\nRanged damage increased by 13%");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mascara de la Noche");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
 		   + "\nAumenta un 13% el daño a distancia");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque de Nuit");

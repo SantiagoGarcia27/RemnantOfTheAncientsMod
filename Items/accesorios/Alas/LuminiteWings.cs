@@ -18,7 +18,7 @@ namespace opswordsII.Items.accesorios.Alas
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alas de Luminita");
 			Tooltip.SetDefault("Allows flight and fall slowly");	
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Permet de voler et de tomber lentement");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permite volar y caer lentamente ");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permite volar y caer lentamente ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(199, 10f, 3f);
 		}

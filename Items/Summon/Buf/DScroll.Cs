@@ -14,12 +14,10 @@ namespace opswordsII.Items.Summon.Buf
 		{
             DisplayName.SetDefault("Desert Scroll");
 			 Tooltip.SetDefault("Increases movement speed and max minion by 2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Scroll");
-			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish),"zwiększa prędkość ruchu i zwiększa maksymalną liczbę stronników o 2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin du désert");
 			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"augmente la vitesse de déplacement et augmente votre serviteur maximum de 2 pendant");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino desertico");
-			 DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"aumenta la velocidad de movimiento y aumenta tu minion máximo en 2 ");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"aumenta la velocidad de movimiento y aumenta tu minion máximo en 2 ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -29,7 +27,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.DamageType = DamageClass.Summon;
 			Item.noMelee = true;
 			Item.mana = 50;
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.width = 46;
 			Item.height = 54;
 			Item.useTime = 299;
@@ -38,7 +36,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.useAnimation = 199;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Buffs.MasterD>(); //Specify an existing buff to be applied when used.
+			Item.buffType = BuffType<MasterD>(); 
             Item.buffTime = 8000;
 			Item.expert = true;
 		

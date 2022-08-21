@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -8,13 +7,13 @@ using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
-	public class minigun: ModItem
+    public class minigun: ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("mini/gun");
 			Tooltip.SetDefault("A small pistol");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "una pistola pequeña");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una pistola pequeña");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

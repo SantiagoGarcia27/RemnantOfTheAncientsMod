@@ -11,15 +11,12 @@ namespace opswordsII.Items.accesorios
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magic Stick");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Magiczny Kij");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton Magique");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Palo Mágico");
 
             Tooltip.SetDefault("Increase magic damage by 5%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększ obrażenia magiczne o 5%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 5%");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 5%");
-
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 5%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -34,7 +31,6 @@ namespace opswordsII.Items.accesorios
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Magic) *= 1.05f;
-
         }
     }
 }

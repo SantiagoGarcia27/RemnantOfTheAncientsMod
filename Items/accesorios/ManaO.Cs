@@ -22,19 +22,13 @@ namespace opswordsII.Items.accesorios
             + "\n increases pickup range for mana stars"
              + "\n you are immune to Mana Sickness");
 
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększa regenerację many w zamian za obrażenia magiczne o 5%"
-             + "\n 10% zmniejsza zużycie many"
-             + "\n W razie potrzeby automatycznie używaj mikstur many"
-             + "\n zwiększyć zasięg zbierania gwiazdek many"
-              + "\n jesteś odporny na chorobę many");
-
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la régénération de mana en échange de dégâts magiques de 5%"
              + "\n 10% de réduction de l'utilisation du mana"
              + "\n Utilisez automatiquement les potions de mana si nécessaire"
              + "\n augmenter la portée de ramassage des étoiles de mana"
               + "\n vous êtes immunisé contre la maladie du mana");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la regeneración de maná a cambio de daño mágico en un 5%."
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la regeneración de maná a cambio de daño mágico en un 5%."
              + "\n 10% reduce el uso de maná"
              + "\n Usa pociones de maná automáticamente cuando sea necesario"
              + "\n aumentar el rango de recolección de estrellas de maná"

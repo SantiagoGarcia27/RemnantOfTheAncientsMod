@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using System.Text;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 
 namespace opswordsII.Items.Tools.Utilidad
 {
@@ -11,8 +12,10 @@ namespace opswordsII.Items.Tools.Utilidad
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("stats checker");
-			Tooltip.SetDefault("Shows most of the player's stats while in your inventory");
+			DisplayName.SetDefault("Player stat meter");
+			Tooltip.SetDefault("Shows most of the player's stats");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Compteur de statistiques du joueur");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Medidor de estadísticas del jugador");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

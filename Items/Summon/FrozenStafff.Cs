@@ -18,7 +18,7 @@ namespace opswordsII.Items.Summon
 			DisplayName.SetDefault("Frozen Staff");
 			Tooltip.SetDefault("Summons a Baby Frozen Asaulter to fight for you");
 
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo congelado");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo congelado");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un asaltante bebé congelado para que luche por ti");
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; 
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;

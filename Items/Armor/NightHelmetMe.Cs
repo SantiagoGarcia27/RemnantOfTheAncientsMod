@@ -17,7 +17,7 @@ namespace opswordsII.Items.Armor
 			+ "\nIncrease melee damage by 13%");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de la Noche");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
 		   + "\nAumenta un 13% el daño cuerpo a cuerpo");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque de Nuit");

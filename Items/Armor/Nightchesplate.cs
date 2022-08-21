@@ -20,7 +20,7 @@ namespace opswordsII.Items.Armor
 
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Coraza de la Noche");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
 		   + "\nAumenta el Maná maxima en 20 "
 		   + "\nAumenta la vida maxima en 50 puntos"
 		   + "\nEres immune a los efectos de brillo, fuego y armadura rota");

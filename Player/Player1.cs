@@ -21,8 +21,7 @@ namespace opswordsII
 
 	public class Player1 : ModPlayer
 	{
-		//private readonly Mod calamity = ModLoader.GetMod("CalamityMod");
-		//private readonly Mod thorium = ModLoader.GetMod("ThoriumMod");
+		
 		#region Minions
 		public bool FrozenMinion;
 		public bool DesertMinion;
@@ -83,7 +82,7 @@ namespace opswordsII
 		{
 			if (Burn_Sand || Hell_Fire || hBurn)
 			{
-				// These lines zero out any positive lifeRegen. This is expected for all bad life regeneration effects.
+				
 				if (Player.lifeRegen > 0)
 				{
 					Player.lifeRegen = 0;
@@ -97,7 +96,7 @@ namespace opswordsII
 		{
 			FWeapons = true;
 			FchangesItem.ReaperWingsNerf(Player);
-			Main.NewText("");
+			//Main.NewText("");
 		}
 		public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
 		{
@@ -316,8 +315,13 @@ namespace opswordsII
 				}
 				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
 				{
-					Player.sporeSac = true;
-					//Player.SporeSac();
+					
+					if (Player.whoAmI == Main.myPlayer)
+					{
+						Player.sporeSac = true;
+						//Player.SporeSac(item);
+					}
+
 					Player.statLifeMax2 += 10;
 				}
 				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade)

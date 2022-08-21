@@ -13,13 +13,11 @@ namespace opswordsII.Items.Summon.Buf
 		public override void SetStaticDefaults()
 		{
             DisplayName.SetDefault("Optic Scroll");
-			 Tooltip.SetDefault("Increases your jump, cancels fall damage and gain the ability to dash");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przewijanie optyczne");
-			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish),"zwiększ skok, anuluj obrażenia od upadku i zdobądź doskok");
+			 Tooltip.SetDefault("Increases your jump, cancels fall damage and gain the ability to dash");   
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Défilement optique");
 			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"augmentez votre saut, annulez les dégâts de chute et gagnez un tiret");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino óptico");
-			 DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"aumenta tu salto, anula daño por caída y ganas un dash");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"aumenta tu salto, anula daño por caída y ganas un dash");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -29,7 +27,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.DamageType = DamageClass.Summon;
 			Item.noMelee = true;
 			Item.mana = 200;
-			Item.rare = 2;
+			Item.rare = ItemRarityID.Green;
 			Item.width = 46;
 			Item.height = 54;
 			Item.useTime = 99;
@@ -38,7 +36,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Buffs.Eye>(); //Specify an existing buff to be applied when used.
+			Item.buffType = BuffType<Eye>(); 
             Item.buffTime = 6060;
 			Item.expert = true;
 		

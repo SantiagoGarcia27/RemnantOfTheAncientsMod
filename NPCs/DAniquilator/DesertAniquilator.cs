@@ -20,6 +20,7 @@ using opswordsII.Common.Systems;
 using Terraria.Localization;
 using opswordsII.World;
 using opswordsII.VanillaChanges;
+using Terraria.Audio;
 
 namespace opswordsII.NPCs.DAniquilator
 {
@@ -36,13 +37,13 @@ namespace opswordsII.NPCs.DAniquilator
         public override void SetDefaults()
         {
             NPC.aiStyle = 15;  //15 is the king AI
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(3500,"MyBoss");   //boss life
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(30, "MyBoss");  //boss damage
-            NPC.defense = 10;    //boss defense
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(3500,"MyBoss");  
+            NPC.damage = (int)NpcChanges1.ExpertDamageScale(30, "MyBoss");  
+            NPC.defense = 10;    
             NPC.knockBackResist = 0f;
             NPC.width = 100;
             NPC.height = 100;
-            AnimationType = NPCID.BlueSlime;   //this boss will behavior like the DemonEye
+            AnimationType = NPCID.BlueSlime;   
             NPC.value = Item.buyPrice(0, 2, 75, 45);
             NPC.npcSlots = 30f;
             NPC.boss = true;  
@@ -62,36 +63,40 @@ namespace opswordsII.NPCs.DAniquilator
 
             float distance = NPC.Distance(Main.player[NPC.target].Center);
 
-            NPC.ai[0] = 10;//1 = bunny hop //10 = fr0zen 2 
-
+            NPC.ai[0] = 10;
             NPC.ai[1]++;
             Player player = Main.player[NPC.target];
-
-
+           
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) NPC.TargetClosest(true);
             NPC.netUpdate = true;
 
-            
+
             if (NPC.ai[1] > 800) NPC.ai[1] = 0;
             NPC.ai[2]++;
+
+            if (distance >= 100 * 16) NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
+            if (distance >= 300 * 16) NPC.Center = player.Center;
+            
+
 
             bool fase2 = NPC.life == NPC.lifeMax / 2;
             bool fase3 = NPC.life == NPC.lifeMax / 3;
 
             if (player.ZoneDesert)
             {
-                    if (NPC.ai[2] % 356 == 15) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                    if (NPC.ai[2] % 600 == 100) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                    if (NPC.ai[2] % 300 == 100)
-                    {
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                    }
-                    if (fase2)
-                    {
-                        if (NPC.ai[3] % 900 == 900) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
-                        DesertTp(distance, player);
-                    }
+                #region Normal
+                if (NPC.ai[2] % 356 == 15) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                if (NPC.ai[2] % 600 == 100) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
+                if (NPC.ai[2] % 300 == 100)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+                }
+                if (fase2)
+                {
+                    if (NPC.ai[3] % 900 == 900) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+                    DesertTp(distance, player);
+                }
 
                 if (Main.expertMode || Main.masterMode)
                 {
@@ -125,9 +130,11 @@ namespace opswordsII.NPCs.DAniquilator
                         }
                     }
                 }
+                #endregion 
             }
             else
             {
+                #region rage
                 if (NPC.ai[2] % 356 == 15) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
                 if (NPC.ai[2] % 600 == 200) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
                 if (NPC.ai[2] % 300 == 200)
@@ -194,8 +201,8 @@ namespace opswordsII.NPCs.DAniquilator
                             }
                         }
                     }
-
                 }
+                #endregion
             }
         }
         public void DesertTp(float distance, Player player)
@@ -210,7 +217,7 @@ namespace opswordsII.NPCs.DAniquilator
             int damage = (int)NpcChanges1.ExpertDamageScale(i, "MyBoss"); ;
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             int type = ModContent.ProjectileType<DesertTyphoonE>();
-            //SoundEngine.PlaySound(2, (int) NPC.position.X, (int) NPC.position.Y, 17);
+            SoundEngine.PlaySound(SoundID.Item10,NPC.position);
             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * yA)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * xA)));
             int num54 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)(Math.Cos(rotation) * Speed * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
         }
@@ -225,8 +232,6 @@ namespace opswordsII.NPCs.DAniquilator
             potionType = ItemID.HealingPotion;  
             Item.NewItem(NPC.GetSource_Loot(),(int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.SandBlock, 60);
             Item.NewItem(NPC.GetSource_Loot(),(int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<Sand_escense>(), 10);
-            
-             //boss drops
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {

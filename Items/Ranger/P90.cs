@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -9,14 +8,14 @@ using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Ranger
 {
-	public class P90 : ModItem
+    public class P90 : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("P90");
 			Tooltip.SetDefault("Fast and effective");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Rapide et efficace");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rapida y efectiva");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rapida y efectiva");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

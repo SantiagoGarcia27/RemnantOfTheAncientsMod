@@ -14,8 +14,6 @@ namespace opswordsII.Items.Summon.Buf
 		{
             DisplayName.SetDefault("Putrid Scroll");
 			 Tooltip.SetDefault("Reduces damage taken by 10% and increases critical damage by 5%");   
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Putrid Scroll");
-			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish),"Zmniejsza otrzymywane obrażenia o 10% i zwiększa obrażenia krytyczne o 5%");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin putride");
 			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Réduit les dégâts subis de 10% et augmente de 5% les dégâts critiques");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino pútrido");
@@ -29,7 +27,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.DamageType = DamageClass.Summon;
 			Item.noMelee = true;
 			Item.mana = 100;
-			Item.rare = 2;
+			Item.rare = ItemRarityID.Green;
 			Item.width = 46;
 			Item.height = 54;
 			Item.useTime = 99;
@@ -38,7 +36,7 @@ namespace opswordsII.Items.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Buffs.Putrid>(); //Specify an existing buff to be applied when used.
+			Item.buffType = BuffType<Putrid>(); 
             Item.buffTime = 4060;
 			Item.expert = true;
 		

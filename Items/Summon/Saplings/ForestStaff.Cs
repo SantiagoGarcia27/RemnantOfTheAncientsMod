@@ -11,50 +11,27 @@ using Terraria.GameContent.Creative;
 
 namespace opswordsII.Items.Summon.Saplings
 {
-    public class ForestStaff : ModItem
+    public class ForestStaff : ModelSummonerStaff
 	{
-		public override void SetStaticDefaults() {
+		public override int ItemId => ItemID.Wood;
+		public override int BuffId => BuffType<SaplingMinionBuff>();
+		public override int MinionId => ProjectileType<SaplingMinion>();
+		public override int Damage => 5;
+		public override int UseTime => 36;
+		public override int Useanimation => 36;
+		public override int Mana => 5;
+		public override int Price => Item.buyPrice(0, 0, 10, 0);
+
+
+		public override void SetStaticDefaults()
+		{
 			DisplayName.SetDefault("Forest Staff");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Laska lasu"); 
 			Tooltip.SetDefault("Summons a Sapling to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño para que luche por ti.");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przywołuje drzewko, które będzie dla ciebie walczyć"); 
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; 
-			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño para que luche por ti.");
 		}
 
-		public override void SetDefaults() {
-			Item.damage = 5;
-			Item.knockBack = 3f;
-			Item.mana = 5;
-			Item.width = 32;
-			Item.height = 32;
-			Item.useTime = 36;
-			Item.useAnimation = 36;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.value = Item.buyPrice(0, 0, 10, 0);
-			Item.rare = ItemRarityID.Blue;
-			Item.UseSound = SoundID.Item44;
-			Item.noMelee = true;
-			Item.DamageType = DamageClass.Summon;
-			Item.buffType = BuffType<SaplingMinionBuff>();
-			Item.shoot = ProjectileType<SaplingMinion>();
-		}
-
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			player.AddBuff(Item.buffType, 2);
-			position = Main.MouseWorld;
-			
-		}
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
-			player.AddBuff(Item.buffType, 2);
-			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
-			projectile.originalDamage = Item.damage;
-			return false;
-		}
+	
 		public override void AddRecipes()
 		{
 			CreateRecipe()
@@ -64,204 +41,77 @@ namespace opswordsII.Items.Summon.Saplings
 			.Register();
 		}
 	}
-	public class ForestStaff_S : ModItem
+	public class ForestStaff_S : ModelSummonerStaff
 	{
+		public override int ItemId => ItemID.SilverBar;
+		public override int BuffId => BuffType<SilverAcornBuff>();
+		public override int MinionId => ProjectileType<SaplingSilverMinion>();
+		public override int Damage => 7;
+		public override int UseTime => 36;
+		public override int Useanimation => 36;
+		public override int Mana => 5;
+		public override int Price => Item.buyPrice(0, 0, 10, 0);
+
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Silver Forest Staff");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del Bosque Plateado");
 			Tooltip.SetDefault("Summons a Silver Sapling to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño plateado para que luche por ti.");
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
-			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
-		public override void SetDefaults() {
-			Item.damage = 7;
-			Item.knockBack = 3f;
-			Item.mana = 5;
-			Item.width = 32;
-			Item.height = 32;
-			Item.useTime = 36;
-			Item.useAnimation = 36;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.value = Item.buyPrice(0, 0, 10, 0);
-			Item.rare = ItemRarityID.Blue;
-			Item.UseSound = SoundID.Item44;
-			Item.noMelee = true;
-			Item.DamageType = DamageClass.Summon;
-			Item.buffType = BuffType<SilverAcornBuff>();
-			Item.shoot = ProjectileType<SaplingSilverMinion>();
-		}
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
-			player.AddBuff(Item.buffType, 2);
-			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
-			projectile.originalDamage = Item.damage;
-			return false;
-		}
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			player.AddBuff(Item.buffType, 2);
-			position = Main.MouseWorld;
-			
-		}
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ItemType<ForestStaff>())
-			.AddIngredient(ItemID.SilverBar, 8)
-			.AddTile(TileID.Anvils)
-			.Register();
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño plateado para que luche por ti.");
 		}
 	}
 
-	public class ForestStaff_T : ModItem
+	public class ForestStaff_T : ModelSummonerStaff
 	{
+		public override int ItemId => ItemID.TungstenBar;
+		public override int BuffId => BuffType<TungstenAcornBuff>();
+		public override int MinionId => ProjectileType<SaplingTungstenMinion>();
+		public override int Damage => 8;
+		public override int UseTime => 36;
+		public override int Useanimation => 36;
+		public override int Mana => 5;
+		public override int Price => Item.buyPrice(0, 0, 10, 0);
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Tungsten Forest Staff");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque de tungsteno");
 			Tooltip.SetDefault("Summons a tungsten Sapling to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño de tungsteno para que luche por ti");
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
-			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
-		public override void SetDefaults() {
-			Item.damage = 8;
-			Item.knockBack = 3f;
-			Item.mana = 5;
-			Item.width = 32;
-			Item.height = 32;
-			Item.useTime = 36;
-			Item.useAnimation = 36;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.value = Item.buyPrice(0, 0, 10, 0);
-			Item.rare = ItemRarityID.Blue;
-			Item.UseSound = SoundID.Item44;
-			Item.noMelee = true;
-			Item.DamageType = DamageClass.Summon;
-			Item.buffType = BuffType<TungstenAcornBuff>();
-			Item.shoot = ProjectileType<SaplingTungstenMinion>();
-		}
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
-			player.AddBuff(Item.buffType, 2);
-			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
-			projectile.originalDamage = Item.damage;
-			return false;
-		}
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			player.AddBuff(Item.buffType, 2);
-			position = Main.MouseWorld;
-		}
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ItemType<ForestStaff>())
-			.AddIngredient(ItemID.TungstenBar, 8)
-			.AddTile(TileID.Anvils)
-			.Register();
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño de tungsteno para que luche por ti");
 		}
 	}
 
-	public class ForestStaff_G : ModItem
+	public class ForestStaff_G : ModelSummonerStaff
 	{
-		public override void SetStaticDefaults() {
+		public override int ItemId => ItemID.GoldBar;
+		public override int BuffId => BuffType<GoldenAcornBuff>();
+		public override int MinionId => ProjectileType<SaplingGoldMinion>();
+		public override int Damage => 9;
+		public override int UseTime => 36;
+		public override int Useanimation => 36;
+		public override int Mana => 5;
+		public override int Price => Item.buyPrice(0, 0, 10, 0);
+		public override void SetStaticDefaults()
+		{
 			DisplayName.SetDefault("Golden Forest Staff");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque Dorado");
 			Tooltip.SetDefault("Summons a Golden Sapling to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño dorado para que luche por ti.");
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
-			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
-		public override void SetDefaults() {
-			Item.damage = 9;
-			Item.knockBack = 3f;
-			Item.mana = 5;
-			Item.width = 32;
-			Item.height = 32;
-			Item.useTime = 36;
-			Item.useAnimation = 36;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.value = Item.buyPrice(0, 0, 10, 0);
-			Item.rare = ItemRarityID.Blue;
-			Item.UseSound = SoundID.Item44;
-			Item.noMelee = true;
-			Item.DamageType = DamageClass.Summon;
-			Item.buffType = BuffType<GoldenAcornBuff>();
-			Item.shoot = ProjectileType<SaplingGoldMinion>();
-		}
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
-			player.AddBuff(Item.buffType, 2);
-			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
-			projectile.originalDamage = Item.damage;
-			return false;
-		}
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-			player.AddBuff(Item.buffType, 2);
-			position = Main.MouseWorld;
-		}
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ItemType<ForestStaff>())
-			.AddIngredient(ItemID.GoldBar, 8)
-			.AddTile(TileID.Anvils)
-			.Register();
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño dorado para que luche por ti.");
 		}
 	}
-	public class ForestStaff_P : ModItem
+	public class ForestStaff_P : ModelSummonerStaff
 	{
-		public override void SetStaticDefaults() {
+		public override int ItemId => ItemID.PlatinumBar;
+		public override int BuffId => BuffType<PlatinumAcornBuff>();
+		public override int MinionId => ProjectileType<SaplingPlatinumMinion>();
+		public override int Damage => 10;
+		public override int UseTime => 36;
+		public override int Useanimation => 36;
+		public override int Mana => 5;
+		public override int Price => Item.buyPrice(0, 0, 10, 0);
+		public override void SetStaticDefaults()
+		{
 			DisplayName.SetDefault("Platinum Forest Staff");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque Platinado");
 			Tooltip.SetDefault("Summons a Platinum Sapling to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño platinado para que luche por ti.");
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; 
-			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
-		public override void SetDefaults() {
-			Item.damage = 10;
-			Item.knockBack = 3f;
-			Item.mana = 5;
-			Item.width = 32;
-			Item.height = 32;
-			Item.useTime = 36;
-			Item.useAnimation = 36;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.value = Item.buyPrice(0, 0, 10, 0);
-			Item.rare = ItemRarityID.Blue;
-			Item.UseSound = SoundID.Item44;
-			Item.noMelee = true;
-			Item.DamageType = DamageClass.Summon;
-			Item.buffType = BuffType<PlatinumAcornBuff>();
-			Item.shoot = ProjectileType<SaplingPlatinumMinion>();
-		}
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
-			player.AddBuff(Item.buffType, 2);
-			var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
-			projectile.originalDamage = Item.damage;
-			return false;
-		}
-		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) 
-		{
-			player.AddBuff(Item.buffType, 2);
-			position = Main.MouseWorld;
-		}
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ItemType<ForestStaff>())
-			.AddIngredient(ItemID.PlatinumBar, 8)
-			.AddTile(TileID.Anvils)
-			.Register();
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño platinado para que luche por ti.");
 		}
 	}
 }

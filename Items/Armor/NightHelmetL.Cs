@@ -17,7 +17,7 @@ namespace opswordsII.Items.Armor
 			+ "\nIncreases Throwing damage by 13%.");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Capucha de la Noche");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
 		   + "\nAumenta el daño de lanzamiento en un 13%.");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Gr�ves de Nuit");

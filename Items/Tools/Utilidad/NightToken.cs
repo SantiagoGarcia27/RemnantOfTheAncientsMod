@@ -18,7 +18,7 @@ namespace opswordsII.Items.Tools.Utilidad
 			Tooltip.SetDefault("Summons the moon");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish),"Przywołuje księżyc ");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Invoque la lune ");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Convoca a la luna ");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Convoca a la luna ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
 		}
 
@@ -26,11 +26,11 @@ namespace opswordsII.Items.Tools.Utilidad
 		{
 			Item.width = 20;
 			Item.height = 20;
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.useAnimation = 20;
 			Item.useTime = 20;
 			Item.maxStack = 99;
-			Item.useStyle = 4;
+			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;
 		}
@@ -38,7 +38,7 @@ namespace opswordsII.Items.Tools.Utilidad
 		
 		public override bool? UseItem(Player player)
 		{
-			if (Main.netMode != 1)
+			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				Main.dayTime = false;
 				Netcode.SyncWorld();
