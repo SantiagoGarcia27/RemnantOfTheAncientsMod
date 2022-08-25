@@ -51,7 +51,7 @@ namespace opswordsII.Items.BossSummon
         {
             CreateRecipe()
             .AddIngredient(ItemID.AshBlock, 5)
-            .AddIngredient(ItemID.SoulBottleNight, 5)
+            .AddIngredient(ItemID.SoulofNight, 5)
             .AddRecipeGroup("GoldBar")
             .AddTile(TileID.Hellforge)
             .Register();

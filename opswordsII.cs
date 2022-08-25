@@ -1,17 +1,20 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using opswordsII.NPCs.DAniquilator;
 
 namespace opswordsII
 {
     class opswordsII : Mod
     {
         public static Mod CalamityMod;
+        public static Mod BossChecklist;
         public opswordsII()
         {
            
         }
 
+        [System.Obsolete]
         public override void AddRecipes()
         {
             RecipeMaker.AddRecipes(this);
@@ -21,9 +24,12 @@ namespace opswordsII
         {
             if (ModLoader.HasMod("CalamityMod")) CalamityMod = ModLoader.GetMod("CalamityMod");
             else CalamityMod = null;
+            if (ModLoader.HasMod("BossChecklist")) BossChecklist = ModLoader.GetMod("BossChecklist");
+            else BossChecklist = null;
         }
         public override void Unload()
         {
+            BossChecklist = null;
         }
         public static Color GetLightColor(Vector2 position)
         {
@@ -31,47 +37,7 @@ namespace opswordsII
         }
         public override void PostSetupContent()
         {
-            /*    Mod bossChecklist = ModLoader.GetMod("BossChecklist");
-               if (bossChecklist != null){
-                   bossChecklist.Call(
-                       "AddBoss",
-                       5.2f,
-                       ModContent.NPCType<DesertAniquilator>(),
-                       this, // Mod
-                       "Desert Aniquilator",
-                       (Func<bool>)(() => world1.downedDesert),
-                       ModContent.ItemType<Items.BossSummon.DesertChest>(),
-                       new List<int> { ModContent.ItemType<Items.Armor.Masks.DesertAMask>()},
-                       new List<int> { ModContent.ItemType<Items.Ranger.desertbow>(), ModContent.ItemType<Items.Mele.DesertEdge>(), ModContent.ItemType<Items.Summon.DesertStaff>(), ModContent.ItemType<Items.Magic.DesertTome>()  },
-                       "$Use a [i:DesertChest in the desert]"
-                       );
-
-                       bossChecklist.Call(
-                       "AddBoss",
-                       6.1f,
-                       ModContent.NPCType<frozen_assaulter>(),
-                       this, // Mod
-                       "Frozen Assaulter",
-                       (Func<bool>)(() => world1.downedFrozen),
-                       ModContent.ItemType<Items.BossSummon.FrozenArtifact>(),
-                       new List<int> { ModContent.ItemType<Items.Armor.Masks.FrozenMask>()},
-                       new List<int> { ModContent.ItemType<Items.Ranger.FrostShark>(), ModContent.ItemType<Items.Mele.Permafrost>(), ModContent.ItemType<Items.Summon.FrozenStafff>(), ModContent.ItemType<Items.Magic.frozen_staff>() },
-                       "$Use a FrozenArtifact in the snow at the nigth"
-                       );
-
-                       bossChecklist.Call(
-                       "AddBoss",
-                       10.1f,
-                       ModContent.NPCType<InfernalTyrantHead>(),
-                       this, // Mod
-                       "Infernal Tyrant",
-                       (Func<bool>)(() => world1.downedTyrant),
-                       ModContent.ItemType<Items.BossSummon.InfernalCalis>(),
-                       new List<int> { ModContent.ItemType<Items.Armor.Masks.FrozenMask>()},
-                       new List<int> { ModContent.ItemType<Items.Ranger.FrostShark>(), ModContent.ItemType<Items.Mele.Permafrost>(), ModContent.ItemType<Items.Summon.FrozenStafff>(), ModContent.ItemType<Items.Magic.frozen_staff>() },
-                       "$Use a Infernal Calis in the Underworld"
-                       );       
-               }*/
+            WeakReference.Setup();
         }
 
 
