@@ -3,10 +3,10 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Ranger.Bows
+namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
 {
     public class desertbow : ModItem
     {

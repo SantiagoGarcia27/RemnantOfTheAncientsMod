@@ -4,16 +4,16 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Armor.Masks;
-using opswordsII.NPCs.ITyrant;
-using opswordsII.Items.Mele.saber;
-using opswordsII.Items.Ranger.Rep;
-using opswordsII.Items.Bloques.MusicBox;
-using opswordsII.Items.Magic;
-using opswordsII.Items.Core;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.NPCs.ITyrant;
+using RemnantOfTheAncientsMod.Items.Mele.saber;
+using RemnantOfTheAncientsMod.Items.Ranger.Rep;
+using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Core;
 
 
-namespace opswordsII.Items.tresure_bag
+namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
     public class infernalBag : ModItem
 	{

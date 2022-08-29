@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
     public class Mining_infusion : ModBuff
     {

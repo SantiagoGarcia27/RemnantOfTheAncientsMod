@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Bloques.Relics
+namespace RemnantOfTheAncientsMod.Items.Bloques.Relics
 {
     internal class Frozen_Relic : ModItem
     {

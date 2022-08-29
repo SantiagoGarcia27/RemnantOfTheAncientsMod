@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Armor
+namespace RemnantOfTheAncientsMod.Items.Armor
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class Reforced_iron_Helmet : ModItem

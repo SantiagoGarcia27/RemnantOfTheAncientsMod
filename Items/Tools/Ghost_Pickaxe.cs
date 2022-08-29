@@ -4,9 +4,9 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Dusts;
+using RemnantOfTheAncientsMod.Dusts;
 
-namespace opswordsII.Items.Tools
+namespace RemnantOfTheAncientsMod.Items.Tools
 {
 	public class Ghost_Pickaxe : ModItem
 	{

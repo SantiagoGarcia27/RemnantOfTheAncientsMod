@@ -1,11 +1,11 @@
-using opswordsII.Items.BossSummon;
-using opswordsII.Items.Fmode;
-using opswordsII.World;
+using RemnantOfTheAncientsMod.Items.BossSummon;
+using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace opswordsII.VanillaChanges
+namespace RemnantOfTheAncientsMod.VanillaChanges
 {
 	public class FchangesItem : GlobalItem
 	{

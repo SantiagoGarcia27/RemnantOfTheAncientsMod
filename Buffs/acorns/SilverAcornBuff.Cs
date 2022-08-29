@@ -5,12 +5,12 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
-using opswordsII.Dusts;
-using opswordsII.Items.Summon.Saplings;
+using RemnantOfTheAncientsMod.Dusts;
+using RemnantOfTheAncientsMod.Items.Summon.Saplings;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Projectiles.Minioms.Saplings;
+using RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings;
 
-namespace opswordsII.Buffs.acorns
+namespace RemnantOfTheAncientsMod.Buffs.acorns
 {
         public class SilverAcornBuff  : ModBuff
 	    {

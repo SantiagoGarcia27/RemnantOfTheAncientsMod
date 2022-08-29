@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace opswordsII.Dusts
+namespace RemnantOfTheAncientsMod.Dusts
 {
 	public class Sparkle : ModDust
 	{

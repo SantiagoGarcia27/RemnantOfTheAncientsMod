@@ -3,12 +3,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Terraria.Localization;
-using opswordsII;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.VanillaChanges;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 
-namespace opswordsII.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.Fmode
 {
     public class SkeletonSoul : ModItem
 	{

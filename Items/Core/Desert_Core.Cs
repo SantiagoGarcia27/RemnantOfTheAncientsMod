@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Core
+namespace RemnantOfTheAncientsMod.Items.Core
 {
     [AutoloadEquip(EquipType.Balloon)]
     public class Desert_Core: ModItem

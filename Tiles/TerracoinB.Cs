@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 
-namespace opswordsII.Tiles
+namespace RemnantOfTheAncientsMod.Tiles
 {
 	public class TerracoinB : ModTile
 	{

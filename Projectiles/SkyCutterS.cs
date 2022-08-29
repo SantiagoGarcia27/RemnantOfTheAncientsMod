@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace opswordsII.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles
 {
     public class SkyCutterS : ModProjectile
     {

@@ -3,13 +3,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Debugg
+namespace RemnantOfTheAncientsMod.Items.Debugg
 {
 	public class LegionToggler : ModItem
 	{
 		/*public override bool Autoload(ref string name)
 		{
-		return ModLoader.GetMod("OpswordsIIDebugMod") != null;
+		return ModLoader.GetMod("RemnantOfTheAncientsModDebugMod") != null;
 		}*/
 		/*public override void SetStaticDefaults()
 		{

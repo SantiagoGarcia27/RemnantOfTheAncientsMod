@@ -2,13 +2,13 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
-using opswordsII.Items.Tools;
+using RemnantOfTheAncientsMod.Items.Tools;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader.Utilities;
 
-namespace opswordsII.NPCs
+namespace RemnantOfTheAncientsMod.NPCs
 {
 	// This NPC inherits from the Hover abstract class included in ExampleMod, which is a more customizable copy of the vanilla Hovering AI.
 	// It implements the `CustomBehavior` and `ShouldMove` virtual methods being overridden here, as well as the `acceleration` and `accelerationY` field being set in the class constructor.

@@ -1,9 +1,9 @@
 using Terraria;
 using Terraria.ModLoader;
-using opswordsII.Projectiles.Minioms;
+using RemnantOfTheAncientsMod.Projectiles.Minioms;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
     public class FrozenMinionBuff : ModBuff
 	    {

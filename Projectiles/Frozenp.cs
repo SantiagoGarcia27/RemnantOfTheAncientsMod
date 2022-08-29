@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace opswordsII.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles
 {
     public class Frozenp : BaseFrozenP
     {
@@ -30,7 +30,7 @@ namespace opswordsII.Projectiles
     }
     public abstract class BaseFrozenP : ModProjectile
     {
-        public override string Texture => "opswordsII/Projectiles/Frozenp";
+        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Frozenp";
         public abstract bool Friendly { get; }
         public abstract bool hostile { get; }
         public override void SetDefaults()
@@ -47,7 +47,7 @@ namespace opswordsII.Projectiles
             Projectile.tileCollide = true;
             AIType = ProjectileID.IceSpike;
             Projectile.DamageType = DamageClass.Magic;
-            if (opswordsII.CalamityMod != null) Projectile.tileCollide = false;
+            if (RemnantOfTheAncientsMod.CalamityMod != null) Projectile.tileCollide = false;
         }
         public override void AI()
         {

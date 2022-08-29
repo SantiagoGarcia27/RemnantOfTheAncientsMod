@@ -9,11 +9,11 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using opswordsII;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.Projectiles;
 
 
-namespace opswordsII.Items.Magic
+namespace RemnantOfTheAncientsMod.Items.Magic
 {
 	public class SkyCuter : ModItem
 	{

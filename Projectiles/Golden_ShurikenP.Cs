@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Lanzables;
+using RemnantOfTheAncientsMod.Items.Lanzables;
 
-namespace opswordsII.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles
 {
 
     public class Golden_ShurikenP : ModProjectile

@@ -1,25 +1,22 @@
-using opswordsII.Buffs;
-using opswordsII.Dusts;
-using opswordsII.Projectiles;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod.Buffs;
+using RemnantOfTheAncientsMod.Dusts;
+using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.VanillaChanges;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.ModLoader.IO;
 using System.Collections.Generic;
-using System.IO;
-using opswordsII.Items.DificultChanger;
-using opswordsII.World;
-using opswordsII.Items.Fmode;
-using opswordsII.Items.accesorios;
+using RemnantOfTheAncientsMod.Items.DificultChanger;
+using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Items.Fmode;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
 
-	public class Player1 : ModPlayer
+    public class Player1 : ModPlayer
 	{
 		
 		#region Minions
@@ -83,12 +80,8 @@ namespace opswordsII
 			if (Burn_Sand || Hell_Fire || hBurn)
 			{
 				
-				if (Player.lifeRegen > 0)
-				{
-					Player.lifeRegen = 0;
-				}
-				Player.lifeRegenTime = 0;
-				// lifeRegen is measured in 1/2 life per second. Therefore, this effect causes 8 life lost per second.
+				if (Player.lifeRegen > 0) Player.lifeRegen = 0;
+				Player.lifeRegenTime = 0;	
 				Player.lifeRegen -= 16;
 			}
 		}
@@ -96,19 +89,11 @@ namespace opswordsII
 		{
 			FWeapons = true;
 			FchangesItem.ReaperWingsNerf(Player);
-			//Main.NewText("");
 		}
 		public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
 		{
-			if (mediumCoreDeath)
-			{
-				return new[] {
-					new Item(ItemType<Ftoggler>())
-				};
-			}
-			return new[] {
-				new Item(ItemType<Ftoggler>()),
-			};
+			if (mediumCoreDeath) return new[] { new Item(ItemType<Ftoggler>()) };
+			return new[] { new Item(ItemType<Ftoggler>()), };
 		}
 		public override void UpdateEquips()
 		{
@@ -126,38 +111,32 @@ namespace opswordsII
 
 		public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
 		{
-			if (Burn_Sand)
+			if (Burn_Sand && Main.rand.NextBool(4) && drawInfo.shadow == 0f)
 			{
-				if (Main.rand.NextBool(4) && drawInfo.shadow == 0f)
-				{
-					int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<QuemaduraA>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
-					Main.dust[dust].noGravity = true;
-					Main.dust[dust].velocity *= 1.8f;
-					Main.dust[dust].velocity.Y -= 0.5f;
-					drawInfo.DustCache.Add(dust);
-				}
+				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<QuemaduraA>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
+				Main.dust[dust].noGravity = true;
+				Main.dust[dust].velocity *= 1.8f;
+				Main.dust[dust].velocity.Y -= 0.5f;
+				drawInfo.DustCache.Add(dust);
 			}
-			if (Hell_Fire)
+			if (Hell_Fire && Main.rand.NextBool(4) && drawInfo.shadow == 0f)
 			{
-				if (Main.rand.NextBool(4) && drawInfo.shadow == 0f)
-				{
-					int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<Hell_Fire_P>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
-					Main.dust[dust].noGravity = true;
-					Main.dust[dust].velocity *= 1.8f;
-					Main.dust[dust].velocity.Y -= 0.5f;
-					drawInfo.DustCache.Add(dust);
-				}
+
+				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<Hell_Fire_P>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
+				Main.dust[dust].noGravity = true;
+				Main.dust[dust].velocity *= 1.8f;
+				Main.dust[dust].velocity.Y -= 0.5f;
+				drawInfo.DustCache.Add(dust);
+
 			}
-			if (hBurn)
+			if (hBurn && Main.rand.NextBool(4) && drawInfo.shadow == 0f)
 			{
-				if (Main.rand.NextBool(4) && drawInfo.shadow == 0f)
-				{
-					int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<HollyBurn_P>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
-					Main.dust[dust].noGravity = true;
-					Main.dust[dust].velocity *= 1.8f;
-					Main.dust[dust].velocity.Y -= 0.5f;
-					drawInfo.DustCache.Add(dust);
-				}
+
+				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<HollyBurn_P>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
+				Main.dust[dust].noGravity = true;
+				Main.dust[dust].velocity *= 1.8f;
+				Main.dust[dust].velocity.Y -= 0.5f;
+				drawInfo.DustCache.Add(dust);
 			}
 		}
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -165,29 +144,16 @@ namespace opswordsII
 			FchangesItem.ReaperSize(item);
 			if (!item.noMelee && !item.noUseGraphic)
 			{
-				if (hasInfernal_core)
-				{
-					target.AddBuff(BuffType<Hell_Fire>(), 300);
-					//Main.NewText("true", Color.Orange);; //if the condition is true, then apply the ethereal flames debuff to the targeted NPC for 5 seconds.
-				}
-				if (SandWeapons && !item.noMelee && !item.noUseGraphic)
-				{
-					target.AddBuff(BuffType<Burning_Sand>(), 300);
-				}
+				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300); 
+				if (SandWeapons && !item.noMelee && !item.noUseGraphic) target.AddBuff(BuffType<Burning_Sand>(), 300);
 			}
 		}
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) //This is the same as the one in OnHitNPC, but for melee projectiles.
 		{
 			if (proj.CountsAsClass(DamageClass.Melee))
 			{
-				if (hasInfernal_core)
-				{
-					target.AddBuff(BuffType<Hell_Fire>(), 300);
-				}
-				if (SandWeapons)
-				{
-					target.AddBuff(BuffType<Burning_Sand>(), 300);
-				}
+				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
+				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
 			}
 		}
 		public void AnkInmunity()
@@ -221,14 +187,9 @@ namespace opswordsII
 			Player.statManaMax2 += m2;
 			Player.GetArmorPenetration(DamageClass.Generic) += p;
 			Player.pStone = true;
-
 			if (Player.whoAmI == Main.myPlayer) Player.starCloakItem = item;
-			
 			if (Player.whoAmI == Main.myPlayer) Player.honeyCombItem = item;
-			
 			Player.longInvince = true;
-
-
 			Player.longInvince = true;
 			Player.arcticDivingGear = true;
 			Player.panic = true;
@@ -246,6 +207,8 @@ namespace opswordsII
 			Player.buffImmune[BuffID.WeaponImbuePoison] = true;
 			Player.buffImmune[BuffID.WeaponImbueVenom] = true;
 		}
+
+		
 
 		public void FrostInmune()
 		{
@@ -306,7 +269,7 @@ namespace opswordsII
 				}
 				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
 				{
-					AddMinion(ProjectileType<CloroCrystalClone>(), 140, 0f);
+					//AddMinion(ProjectileType<CloroCrystalClone>(), 140, 0f);
 					Player.statLifeMax2 += 10;
 				}
 				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade)
@@ -337,39 +300,11 @@ namespace opswordsII
 		}
 		public override void PreUpdateBuffs()
 		{
-			if (world1.ReaperMode)
-			{
-				Player.AddBuff(BuffType<ReaperBuff>(), 1);
-			}
+			if (world1.ReaperMode) Player.AddBuff(BuffType<ReaperBuff>(), 1);
 		}
 
-		public void KillMinion(int proj)
-		{
-			Main.projectile[proj].Kill();
-		}
-
-
-
-
-		/*public override void LoadLegacy(BinaryReader reader)
-		{
-			int loadVersion = reader.ReadInt32();
-		}*/
-
-
-		/*public static void CalamityConvert(){
-			Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-			if (CalamityMod != null){
-			ModPlayer CalamityPlayer = Player.GetModPlayer(CalamityMod, "CalamityPlayer");
-			Type CalamityPlayerType = CalamityPlayer.GetType();
-			FieldInfo rogueStealthMax = CalamityPlayerType.GetField("rogueStealthMax", BindingFlags.Instance | BindingFlags.Public);
-			FieldInfo wearingRogueArmor = CalamityPlayerType.GetField("wearingRogueArmor", BindingFlags.Instance | BindingFlags.Public);
-			int oldResource = (int)rogueStealthMax.GetValue(CalamityPlayer);
-			int oldResource2 = (int)wearingRogueArmor.GetValue(CalamityPlayer);
-			}
-		}*/
-
-	}
+        public void KillMinion(int proj) => Main.projectile[proj].Kill();
+    }
 	public class DashPlayer : ModPlayer
 	{
 		public const int DashDown = 0;
@@ -386,35 +321,18 @@ namespace opswordsII
 
 		public override void ResetEffects()
 		{
-
 			DashEquipped = false;
-			if (Player.controlDown && Player.releaseDown && Player.doubleTapCardinalTimer[DashDown] < 15)
-			{
-				DashDir = DashDown;
-			}
-			else if (Player.controlUp && Player.releaseUp && Player.doubleTapCardinalTimer[DashUp] < 15)
-			{
-				DashDir = DashUp;
-			}
-			else if (Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[DashRight] < 15)
-			{
-				DashDir = DashRight;
-			}
-			else if (Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[DashLeft] < 15)
-			{
-				DashDir = DashLeft;
-			}
-			else
-			{
-				DashDir = -1;
-			}
+			if (Player.controlDown && Player.releaseDown && Player.doubleTapCardinalTimer[DashDown] < 15) DashDir = DashDown;	
+			else if (Player.controlUp && Player.releaseUp && Player.doubleTapCardinalTimer[DashUp] < 15) DashDir = DashUp;	
+			else if (Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[DashRight] < 15) DashDir = DashRight;
+			else if (Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[DashLeft] < 15) DashDir = DashLeft;
+			else DashDir = -1;	
 		}
 		public override void PreUpdateMovement()
 		{
 			if (CanUseDash() && DashDir != -1 && DashDelay == 0)
 			{
 				Vector2 newVelocity = Player.velocity;
-
 				switch (DashDir)
 				{
 					case DashUp when Player.velocity.Y > -DashVelocity:
@@ -438,15 +356,11 @@ namespace opswordsII
 				DashTimer = DashDuration;
 				Player.velocity = newVelocity;
 			}
-
-			if (DashDelay > 0)
-				DashDelay--;
-
+			if (DashDelay > 0)  DashDelay--;
 			if (DashTimer > 0)
 			{
 				Player.eocDash = DashTimer;
 				Player.armorEffectDrawShadowEOCShield = true;
-
 				DashTimer--;
 			}
 		}

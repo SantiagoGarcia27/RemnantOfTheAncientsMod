@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.accesorios
+namespace RemnantOfTheAncientsMod.Items.accesorios
 {
 	public class IronBand : ModItem
 	{

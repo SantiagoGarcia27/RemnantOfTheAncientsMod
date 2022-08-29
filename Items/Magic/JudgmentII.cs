@@ -3,11 +3,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
-using opswordsII.Projectiles.Lazer;
+using RemnantOfTheAncientsMod.Projectiles.Lazer;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Magic
+namespace RemnantOfTheAncientsMod.Items.Magic
 {
     public class JudgmentII : ModItem
 	{

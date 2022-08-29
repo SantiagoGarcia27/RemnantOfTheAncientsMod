@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
 	public class TeleportClass : GlobalItem
 	{

@@ -5,7 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Items.Tools.Utilidad
+namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 {
 	public class TimeManipulator3000 : ModItem
 	{

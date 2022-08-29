@@ -2,14 +2,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Items.Items;
-using opswordsII.Items.Pociones;
-using opswordsII.Items.Mele.saber;
+using RemnantOfTheAncientsMod.Items.Items;
+using RemnantOfTheAncientsMod.Items.Pociones;
+using RemnantOfTheAncientsMod.Items.Mele.saber;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.accesorios;
-using opswordsII.Items.Mele;
+using RemnantOfTheAncientsMod.Items.accesorios;
+using RemnantOfTheAncientsMod.Items.Mele;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
 	internal class RecipeMaker : ModSystem
 	{
@@ -17,7 +17,7 @@ namespace opswordsII
 		/*private static ModRecipe GetNewRecipe()
 {
 
-    return new CreateRecipe(ModContent.GetInstance<opswordsII>());
+    return new CreateRecipe(ModContent.GetInstance<RemnantOfTheAncientsMod>());
 }*/
 
 		public static void AddRecipes(Mod mod)

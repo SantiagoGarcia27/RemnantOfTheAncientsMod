@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Items.Ranger.Rep
+namespace RemnantOfTheAncientsMod.Items.Ranger.Rep
 {
 public class Silver_Repeater : ModItem
 	{

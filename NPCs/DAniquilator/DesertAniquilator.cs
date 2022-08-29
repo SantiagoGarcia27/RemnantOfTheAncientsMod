@@ -1,28 +1,28 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using opswordsII.Buffs;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Buffs;
+using RemnantOfTheAncientsMod.Items.Items;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using System;
-using opswordsII.Items.Bloques;
-using opswordsII.Items.Mele;
-using opswordsII.Items.Magic;
-using opswordsII.Items.Summon;
-using opswordsII.Items.tresure_bag;
-using opswordsII.Items.Ranger.Bows;
-using opswordsII.Items.Bloques.Relics;
-using opswordsII.Items.Armor.Masks;
-using opswordsII.Common.Systems;
+using RemnantOfTheAncientsMod.Items.Bloques;
+using RemnantOfTheAncientsMod.Items.Mele;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Summon;
+using RemnantOfTheAncientsMod.Items.tresure_bag;
+using RemnantOfTheAncientsMod.Items.Ranger.Bows;
+using RemnantOfTheAncientsMod.Items.Bloques.Relics;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Common.Systems;
 using Terraria.Localization;
-using opswordsII.World;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.VanillaChanges;
 using Terraria.Audio;
 
-namespace opswordsII.NPCs.DAniquilator
+namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 {
     [AutoloadBossHead]
     public class DesertAniquilator : ModNPC

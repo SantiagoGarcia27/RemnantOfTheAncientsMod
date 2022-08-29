@@ -3,18 +3,18 @@ using Terraria.ID;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using opswordsII.NPCs.frozen_assaulter;
-using opswordsII.Items.Armor.Masks;
-using opswordsII.Items.Mele;
-using opswordsII.Items.Ranger;
-using opswordsII.Items.Magic;
-using opswordsII.Items.Summon;
-using opswordsII.Items.Bloques.MusicBox;
-using opswordsII.Items.Core;
+using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Items.Mele;
+using RemnantOfTheAncientsMod.Items.Ranger;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Summon;
+using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
+using RemnantOfTheAncientsMod.Items.Core;
 
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Items.tresure_bag
+namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
 	public class frostBag : ModItem
 	{

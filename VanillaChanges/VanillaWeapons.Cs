@@ -1,10 +1,10 @@
-using opswordsII.World;
-using opswordsII;
+using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace opswordsII.VanillaChanges
+namespace RemnantOfTheAncientsMod.VanillaChanges
 {
     public class VanillaWeapons : GlobalItem
 	{

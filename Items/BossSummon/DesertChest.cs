@@ -2,11 +2,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.NPCs.DAniquilator;
+using RemnantOfTheAncientsMod.NPCs.DAniquilator;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.BossSummon
+namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
     public class DesertChest : ModItem
     {

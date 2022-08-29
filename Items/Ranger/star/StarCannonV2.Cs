@@ -6,7 +6,7 @@ using Terraria.Localization;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Ranger.star
+namespace RemnantOfTheAncientsMod.Items.Ranger.star
 {
     public class StarCannonV2 : ModItem
 	{

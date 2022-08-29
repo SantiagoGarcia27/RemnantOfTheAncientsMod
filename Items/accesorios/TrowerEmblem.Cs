@@ -4,7 +4,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 
-namespace opswordsII.Items.accesorios
+namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     public class TrowerEmblem : ModItem
     {

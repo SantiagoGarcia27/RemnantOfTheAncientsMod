@@ -4,10 +4,10 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.saber
+namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
 	public class Tuxonite_saber : ModItem
 	{

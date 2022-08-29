@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Events;
 using System.Reflection;
 
-namespace opswordsII.Items.Tools.Utilidad
+namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 {
 	public class SandstormToken : ModItem
 	{

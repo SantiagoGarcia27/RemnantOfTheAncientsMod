@@ -2,11 +2,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.ammo
+namespace RemnantOfTheAncientsMod.Items.ammo
 {
 	public class DesertArrow : ModItem
 	{

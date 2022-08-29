@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Tools.Utilidad
+namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 {
     public class SunManipulator : ModItem
 	{

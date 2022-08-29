@@ -3,18 +3,18 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
-using opswordsII.NPCs.DAniquilator;
-using opswordsII.Items.Armor.Masks;
-using opswordsII.Items.Mele;
-using opswordsII.Items.Magic;
-using opswordsII.Items.Bloques.MusicBox;
-using opswordsII.Items.Summon;
-using opswordsII.Items.Summon.Buf;
-using opswordsII.Items.Core;
+using RemnantOfTheAncientsMod.NPCs.DAniquilator;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Items.Mele;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
+using RemnantOfTheAncientsMod.Items.Summon;
+using RemnantOfTheAncientsMod.Items.Summon.Buf;
+using RemnantOfTheAncientsMod.Items.Core;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Ranger.Bows;
+using RemnantOfTheAncientsMod.Items.Ranger.Bows;
 
-namespace opswordsII.Items.tresure_bag
+namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
 	public class desertBag : ModItem
 	{

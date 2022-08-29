@@ -1,4 +1,4 @@
-using opswordsII.Items.Bloques;
+using RemnantOfTheAncientsMod.Items.Bloques;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 
-namespace opswordsII.Tiles
+namespace RemnantOfTheAncientsMod.Tiles
 {
 	public class BossTrophy : ModTile
 	{

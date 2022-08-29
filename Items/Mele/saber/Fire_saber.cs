@@ -6,7 +6,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.saber
+namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
     public class Fire_saber : ModItem
 	{

@@ -4,12 +4,12 @@ using Terraria.ID;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Buffs;
-using opswordsII.Projectiles.Minioms;
+using RemnantOfTheAncientsMod.Buffs;
+using RemnantOfTheAncientsMod.Projectiles.Minioms;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Summon
+namespace RemnantOfTheAncientsMod.Items.Summon
 {
     public class FrozenStafff : ModItem
 	{

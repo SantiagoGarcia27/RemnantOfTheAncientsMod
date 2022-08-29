@@ -2,7 +2,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace opswordsII.NPCs
+namespace RemnantOfTheAncientsMod.NPCs
 {
 	//ported from my tAPI mod because I'm lazy
 	public abstract class Hover : ModNPC

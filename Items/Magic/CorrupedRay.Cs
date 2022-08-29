@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Magic
+namespace RemnantOfTheAncientsMod.Items.Magic
 {
 	public class CorrupedRay : ModItem
 	{

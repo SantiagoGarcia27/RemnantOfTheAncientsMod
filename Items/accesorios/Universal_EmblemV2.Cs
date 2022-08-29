@@ -5,7 +5,7 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.accesorios
+namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     public class Universal_EmblemV2 : ModItem
     { 

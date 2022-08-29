@@ -1,11 +1,11 @@
 using Terraria;
 using Terraria.ModLoader;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod.VanillaChanges;
 using Microsoft.Xna.Framework;
-using opswordsII;
+using RemnantOfTheAncientsMod;
 using Terraria.DataStructures;
 
-namespace opswordsII.Items.accesorios
+namespace RemnantOfTheAncientsMod.Items.accesorios
 {
 
     public class The_Legion : ModItem

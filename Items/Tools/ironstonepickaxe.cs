@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Tools
+namespace RemnantOfTheAncientsMod.Items.Tools
 {
 	public class ironstonepickaxe : ModItem
 	{

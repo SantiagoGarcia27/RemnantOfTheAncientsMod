@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 
-namespace opswordsII.NPCs
+namespace RemnantOfTheAncientsMod.NPCs
 {
 	public class AntlionD : ModNPC
 	{

@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Buffs;
+using RemnantOfTheAncientsMod.Buffs;
 
-namespace opswordsII.Items.Summon.Buf
+namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
     public class PerSktn : ModItem
 	{

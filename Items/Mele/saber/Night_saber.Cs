@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.saber
+namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
 	public class Night_saber : ModItem
 	{

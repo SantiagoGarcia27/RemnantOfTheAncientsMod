@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.saber
+namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
     public class Lead_saber : ModItem
 	{

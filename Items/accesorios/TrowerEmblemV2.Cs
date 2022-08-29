@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.accesorios
+namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     public class TrowerEmblemV2 : ModItem
     {

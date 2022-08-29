@@ -5,11 +5,11 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.DataStructures;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Ranger
+namespace RemnantOfTheAncientsMod.Items.Ranger
 {
     public class ultratiburonDOG : ModItem
 	{
@@ -66,16 +66,16 @@ namespace opswordsII.Items.Ranger
 		}
 		public override void AddRecipes()
 		{
-			if (opswordsII.CalamityMod != null)
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
 			{
 				Recipe recipe = CreateRecipe()
 
 				.AddIngredient(ItemType<ultratiburon>());
-				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
-				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("Phantoplasm"), 5);
-				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
-				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("Phantoplasm"), 5);
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
 				recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
                 recipe.AddTile(TileID.LunarCraftingStation);
 				recipe.Register();

@@ -1,11 +1,11 @@
 using Terraria;
-using opswordsII.Dusts;
+using RemnantOfTheAncientsMod.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader;
 
-namespace opswordsII.NPCs
+namespace RemnantOfTheAncientsMod.NPCs
 {
     public class GlobalNPC1 : GlobalNPC
 	{

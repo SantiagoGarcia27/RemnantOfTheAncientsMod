@@ -5,13 +5,13 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.Chat;
 
-namespace opswordsII.Items.Debugg
+namespace RemnantOfTheAncientsMod.Items.Debugg
 {
 	public class HardmodeToggler : ModItem
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
-			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+			return ModLoader.TryGetMod("RemnantOfTheAncientsModDebugMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{

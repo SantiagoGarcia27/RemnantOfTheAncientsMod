@@ -6,7 +6,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
-namespace opswordsII.Items.Magic
+namespace RemnantOfTheAncientsMod.Items.Magic
 {
     public class RazorpineV2: ModItem
 	{

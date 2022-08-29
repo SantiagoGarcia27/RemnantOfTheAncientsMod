@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.ammo
+namespace RemnantOfTheAncientsMod.Items.ammo
 {
 	public class EndlesExplosive : ModItem
 	{

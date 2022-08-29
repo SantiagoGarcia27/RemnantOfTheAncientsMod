@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace opswordsII.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles
 {
 	//ported from my tAPI mod because I don't want to make artwork
 	public class SlimeV2 : ModProjectile

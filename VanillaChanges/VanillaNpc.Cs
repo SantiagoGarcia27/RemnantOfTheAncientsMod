@@ -1,9 +1,9 @@
-using opswordsII.World;
+using RemnantOfTheAncientsMod.World;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace opswordsII.VanillaChanges
+namespace RemnantOfTheAncientsMod.VanillaChanges
 {
     public class NpcChanges1 : GlobalNPC
     {

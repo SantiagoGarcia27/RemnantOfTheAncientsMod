@@ -3,10 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.saber
+namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
     public class Reinforced_Iron_saber : ModItem
 	{

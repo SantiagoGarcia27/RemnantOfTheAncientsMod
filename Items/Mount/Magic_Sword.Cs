@@ -1,10 +1,10 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Mounts;
+using RemnantOfTheAncientsMod.Mounts;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mount
+namespace RemnantOfTheAncientsMod.Items.Mount
 {
 	public class Magic_Sword : ModItem
 	{

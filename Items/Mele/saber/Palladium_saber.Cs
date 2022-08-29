@@ -6,7 +6,7 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.saber
+namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
 	public class Palladium_saber : ModItem
 	{

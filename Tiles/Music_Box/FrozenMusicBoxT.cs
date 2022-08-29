@@ -5,9 +5,9 @@ using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Bloques.MusicBox;
+using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 
-namespace opswordsII.Tiles.Music_Box
+namespace RemnantOfTheAncientsMod.Tiles.Music_Box
 {
 	internal class FrozenMusicBoxT : ModTile
 	{

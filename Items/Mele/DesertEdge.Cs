@@ -3,10 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele
+namespace RemnantOfTheAncientsMod.Items.Mele
 {
     public class DesertEdge : ModItem
 	{

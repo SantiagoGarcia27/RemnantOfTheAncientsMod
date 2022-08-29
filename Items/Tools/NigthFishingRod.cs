@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework;
-using opswordsII.Projectiles.Bobbers;
+using RemnantOfTheAncientsMod.Projectiles.Bobbers;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Tools
+namespace RemnantOfTheAncientsMod.Items.Tools
 {
 	public class NigthFishingRod : ModItem
 	{

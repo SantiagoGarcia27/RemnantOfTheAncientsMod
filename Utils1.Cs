@@ -2,12 +2,12 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using opswordsII;
+using RemnantOfTheAncientsMod;
 using System.Text;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
 	public static class Utils1
 	{
@@ -88,7 +88,7 @@ namespace opswordsII
 			return new Rectangle(0, item.height * frame, item.width, item.height);
 
 		}
-		public static Player1 OpswordsII(this Player player)
+		public static Player1 RemnantOfTheAncientsMod(this Player player)
 		{
 			return player.GetModPlayer<Player1>();
 		}

@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Items
+namespace RemnantOfTheAncientsMod.Items.Items
 {
     public class CelestialAmalgamate : ModItem
 	{

@@ -3,12 +3,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.DataStructures;
-using opswordsII.VanillaChanges;
-using opswordsII;
+using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 
-namespace opswordsII.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.Fmode
 {
     public class SkeletronPrimeEnergyCell : ModItem
 	{

@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
 
 
-namespace opswordsII.Tiles
+namespace RemnantOfTheAncientsMod.Tiles
 {
 	public class TuxoniteBarB : ModTile
 	{

@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Buffs;
+using RemnantOfTheAncientsMod.Buffs;
 
-namespace opswordsII.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {
 	public class DesertMinion : ModProjectile
 	{

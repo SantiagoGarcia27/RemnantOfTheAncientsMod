@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
     public class Netcode
     {

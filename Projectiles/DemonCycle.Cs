@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using opswordsII.Dusts;
+using RemnantOfTheAncientsMod.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent;
 using Terraria.Audio;
 
-namespace opswordsII.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles
 {
 	public class DemonCycle: ModProjectile
 	{

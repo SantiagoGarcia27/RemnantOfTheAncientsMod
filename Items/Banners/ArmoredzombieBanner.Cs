@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.ID;
-using opswordsII.Tiles;
+using RemnantOfTheAncientsMod.Tiles;
 
-namespace opswordsII.Items.Banners
+namespace RemnantOfTheAncientsMod.Items.Banners
 {
 	public class ArmoredzombieBanner : ModItem
 	{

@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Summon.Buf;
+using RemnantOfTheAncientsMod.Items.Summon.Buf;
 
-namespace opswordsII.Drops
+namespace RemnantOfTheAncientsMod.Drops
 {
     public class BossBags : GlobalItem
     {

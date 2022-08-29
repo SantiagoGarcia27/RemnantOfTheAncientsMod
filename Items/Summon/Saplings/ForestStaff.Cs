@@ -4,12 +4,12 @@ using Terraria.ID;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Buffs.acorns;
-using opswordsII.Projectiles.Minioms.Saplings;
+using RemnantOfTheAncientsMod.Buffs.acorns;
+using RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Summon.Saplings
+namespace RemnantOfTheAncientsMod.Items.Summon.Saplings
 {
     public class ForestStaff : ModelSummonerStaff
 	{

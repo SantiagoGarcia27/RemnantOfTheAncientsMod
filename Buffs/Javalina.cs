@@ -1,8 +1,8 @@
-﻿using opswordsII.NPCs;
+﻿using RemnantOfTheAncientsMod.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
 	public class Javalina : ModBuff
 	{

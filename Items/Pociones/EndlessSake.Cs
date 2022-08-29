@@ -6,7 +6,7 @@ using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Pociones
+namespace RemnantOfTheAncientsMod.Items.Pociones
 {
 	public class EndlessSake : ModItem
 	{

@@ -5,13 +5,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Enums;
 using Terraria.ModLoader;
-using opswordsII.Dusts;
-using opswordsII.Buffs;
+using RemnantOfTheAncientsMod.Dusts;
+using RemnantOfTheAncientsMod.Buffs;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace opswordsII.Projectiles.Lazer
+namespace RemnantOfTheAncientsMod.Projectiles.Lazer
 {
 
     public class HollyLaser : ModProjectile

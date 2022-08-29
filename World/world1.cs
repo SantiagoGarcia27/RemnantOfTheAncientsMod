@@ -3,11 +3,11 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using System.Collections.Generic;
-using opswordsII;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 
-namespace opswordsII.World
+namespace RemnantOfTheAncientsMod.World
 {
 	public class world1 : ModSystem
 	{

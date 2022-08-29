@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace opswordsII.NPCs
+namespace RemnantOfTheAncientsMod.NPCs
 {
     public class IGolem : ModNPC
 	{

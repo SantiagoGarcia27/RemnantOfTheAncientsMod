@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
-using opswordsII.Items.DificultChanger;
-using opswordsII.World;
-using opswordsII;
+using RemnantOfTheAncientsMod.Items.DificultChanger;
+using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace opswordsII.VanillaChanges
+namespace RemnantOfTheAncientsMod.VanillaChanges
 {
     public class GlobalItem1 : GlobalItem
     {

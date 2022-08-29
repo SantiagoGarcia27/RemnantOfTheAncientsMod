@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Items.Tools.Utilidad
+namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 {
 	public class NightToken : ModItem
 	{

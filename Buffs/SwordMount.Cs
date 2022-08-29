@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
 	public class SwordMount : ModBuff
 	{

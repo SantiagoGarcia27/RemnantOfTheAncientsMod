@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace opswordsII.Dusts
+namespace RemnantOfTheAncientsMod.Dusts
 {
 	public class QuemaduraA : ModDust
 	{

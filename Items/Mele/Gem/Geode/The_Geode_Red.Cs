@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.Gem.Geode
+namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 {
     public class The_Geode_Red : ModItem
 	{

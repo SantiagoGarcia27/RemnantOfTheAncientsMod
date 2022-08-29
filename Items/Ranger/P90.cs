@@ -6,7 +6,7 @@ using Terraria.Localization;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Ranger
+namespace RemnantOfTheAncientsMod.Items.Ranger
 {
     public class P90 : ModItem
 	{

@@ -1,9 +1,9 @@
-using opswordsII;
+using RemnantOfTheAncientsMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace opswordsII.Projectiles.Pets
+namespace RemnantOfTheAncientsMod.Projectiles.Pets
 {
 	public class TwitchPet : ModProjectile
 	{

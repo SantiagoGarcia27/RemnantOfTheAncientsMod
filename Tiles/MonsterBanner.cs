@@ -1,13 +1,13 @@
 /*using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using opswordsII.Items.Banners;
-using opswordsII.NPCs;
+using RemnantOfTheAncientsMod.Items.Banners;
+using RemnantOfTheAncientsMod.NPCs;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace opswordsII.Tiles
+namespace RemnantOfTheAncientsMod.Tiles
 {
 	public class MonsterBanner : ModTile
 	{

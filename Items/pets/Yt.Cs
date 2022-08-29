@@ -5,7 +5,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
-namespace opswordsII.Items.pets
+namespace RemnantOfTheAncientsMod.Items.pets
 {
     public class Yt : ModItem
 	{

@@ -1,6 +1,6 @@
 using Terraria.ModLoader;
 
-namespace opswordsII.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {
 	public abstract class Minion : ModProjectile
 	{

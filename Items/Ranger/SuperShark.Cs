@@ -5,9 +5,9 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Ranger
+namespace RemnantOfTheAncientsMod.Items.Ranger
 {
 	public class SuperShark : ModItem
 	{

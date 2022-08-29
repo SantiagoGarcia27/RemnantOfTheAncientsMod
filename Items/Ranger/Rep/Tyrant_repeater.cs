@@ -7,7 +7,7 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 
-namespace opswordsII.Items.Ranger.Rep
+namespace RemnantOfTheAncientsMod.Items.Ranger.Rep
 {
 public class Tyrant_repeater : ModItem
 	{

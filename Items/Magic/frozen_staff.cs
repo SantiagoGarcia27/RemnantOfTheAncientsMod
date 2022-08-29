@@ -3,9 +3,9 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 
-namespace opswordsII.Items.Magic
+namespace RemnantOfTheAncientsMod.Items.Magic
 {
 	public class frozen_staff : ModItem
 	{

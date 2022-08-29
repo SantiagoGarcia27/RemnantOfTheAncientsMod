@@ -6,7 +6,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 
-namespace opswordsII.Items.Magic
+namespace RemnantOfTheAncientsMod.Items.Magic
 {
     public class Bee_worm : ModItem
 	{

@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.BossSummon
+namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
     public class ElderSpeaker : ModItem
     {

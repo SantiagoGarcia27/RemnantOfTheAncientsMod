@@ -1,6 +1,6 @@
 using Terraria.ModLoader;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
     public class AccesorieDamageClass : GlobalItem
 	{

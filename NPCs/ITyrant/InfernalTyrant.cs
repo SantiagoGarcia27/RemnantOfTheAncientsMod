@@ -4,25 +4,25 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Items.tresure_bag;
-using opswordsII.Items.Mele.saber;
-using opswordsII.Items.Magic;
-using opswordsII.Items.Ranger.Rep;
-using opswordsII.Items.Armor.Masks;
-using opswordsII.Items.Bloques.Relics;
-using opswordsII.Items.Bloques;
-using opswordsII.Items.Summon;
+using RemnantOfTheAncientsMod.Items.tresure_bag;
+using RemnantOfTheAncientsMod.Items.Mele.saber;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Ranger.Rep;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Items.Bloques.Relics;
+using RemnantOfTheAncientsMod.Items.Bloques;
+using RemnantOfTheAncientsMod.Items.Summon;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
-using opswordsII.VanillaChanges;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.ItemDropRules;
 
-using opswordsII.World;
-using opswordsII.Common.Systems;
+using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.Systems;
 using Terraria.Audio;
 
-namespace opswordsII.NPCs.ITyrant
+namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 {
     [AutoloadBossHead]
 	internal class InfernalTyrantHead : Worm1

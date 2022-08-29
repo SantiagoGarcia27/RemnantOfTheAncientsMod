@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Tools.Utilidad
+namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 {
     public class MoonManipulator : ModItem
 	{

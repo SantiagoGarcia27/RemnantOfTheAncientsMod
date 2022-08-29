@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace opswordsII.World
+namespace RemnantOfTheAncientsMod.World
 {
     public class Reaper : ModSystem
     {

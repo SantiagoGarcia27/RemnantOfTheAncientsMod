@@ -10,7 +10,7 @@ using System;
 using ReLogic.Content;
 using Terraria.Localization;
 
-namespace opswordsII.Tiles.Master_Relic
+namespace RemnantOfTheAncientsMod.Tiles.Master_Relic
 {
     internal class Frozen_Relic_t : ModTile
     {
@@ -20,9 +20,9 @@ namespace opswordsII.Tiles.Master_Relic
         public const int VerticalFrames = 1;
 
         public Asset<Texture2D> RelicTexture;
-        public virtual string RelicTextureName => "opswordsII/Tiles/Master_Relic/Frozen_Relic_t";
+        public virtual string RelicTextureName => "RemnantOfTheAncientsMod/Tiles/Master_Relic/Frozen_Relic_t";
 
-        public override string Texture => "opswordsII/Tiles/Master_Relic/RelicPedestal";
+        public override string Texture => "RemnantOfTheAncientsMod/Tiles/Master_Relic/RelicPedestal";
 
         public override void Load()
         {

@@ -4,12 +4,12 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Ranger
+namespace RemnantOfTheAncientsMod.Items.Ranger
 {
 	public class ultratiburon : ModItem
 	{

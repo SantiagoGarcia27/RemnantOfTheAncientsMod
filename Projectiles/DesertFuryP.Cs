@@ -1,5 +1,5 @@
-using opswordsII.Dusts;
-using opswordsII.Items.Lanzables;
+using RemnantOfTheAncientsMod.Dusts;
+using RemnantOfTheAncientsMod.Items.Lanzables;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
 
-namespace opswordsII.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles
 {
     public class DesertFuryP : ModProjectile
     {
@@ -51,8 +51,8 @@ namespace opswordsII.Projectiles
 			// Declaring a constant in-line is fine as it will be optimized by the compiler
 			// It is however recommended to define it outside method scope if used elswhere as well
 			// They are useful to make numbers that don't change more descriptive
-			opswordsII opswordsII = ModContent.GetInstance<opswordsII>();
-			int NUM_DUSTS = opswordsII.ParticlleMetter(20);
+			RemnantOfTheAncientsMod RemnantOfTheAncientsMod = ModContent.GetInstance<RemnantOfTheAncientsMod>();
+			int NUM_DUSTS = RemnantOfTheAncientsMod.ParticlleMetter(20);
 			for (int i = 0; i < NUM_DUSTS; i++) {
 				// Create a new dust
 				Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);

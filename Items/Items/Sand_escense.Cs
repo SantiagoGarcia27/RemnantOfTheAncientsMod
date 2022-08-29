@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Items
+namespace RemnantOfTheAncientsMod.Items.Items
 {
 	public class Sand_escense : ModItem
 	{

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
     public class Slim : ModBuff
     {

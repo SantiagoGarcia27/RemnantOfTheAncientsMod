@@ -5,12 +5,12 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ID;
-using opswordsII.Dusts;
-using opswordsII.Projectiles.Minioms;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod.Dusts;
+using RemnantOfTheAncientsMod.Projectiles.Minioms;
+using RemnantOfTheAncientsMod.VanillaChanges;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
 	public class Sand_Weapons : ModBuff
 	{

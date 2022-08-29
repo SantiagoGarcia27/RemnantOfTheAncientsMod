@@ -3,24 +3,24 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Items.tresure_bag;
-using opswordsII.Items.Mele;
-using opswordsII.Items.Ranger;
-using opswordsII.Items.Magic;
-using opswordsII.Items.Summon;
-using opswordsII.Items.Bloques;
-using opswordsII.Items.Bloques.Relics;
-using opswordsII.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Items.tresure_bag;
+using RemnantOfTheAncientsMod.Items.Mele;
+using RemnantOfTheAncientsMod.Items.Ranger;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Summon;
+using RemnantOfTheAncientsMod.Items.Bloques;
+using RemnantOfTheAncientsMod.Items.Bloques.Relics;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.ItemDropRules;
-using opswordsII.Common.Systems;
+using RemnantOfTheAncientsMod.Common.Systems;
 using Terraria.Audio;
-using opswordsII.VanillaChanges;
-using opswordsII.World;
+using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod.World;
 
-namespace opswordsII.NPCs.frozen_assaulter
+namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 {
     [AutoloadBossHead]
     public class frozen_assaulter : ModNPC

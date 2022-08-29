@@ -1,15 +1,15 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using opswordsII.NPCs.DAniquilator;
+using RemnantOfTheAncientsMod.NPCs.DAniquilator;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
-    class opswordsII : Mod
+    class RemnantOfTheAncientsMod : Mod
     {
         public static Mod CalamityMod;
         public static Mod BossChecklist;
-        public opswordsII()
+        public RemnantOfTheAncientsMod()
         {
            
         }

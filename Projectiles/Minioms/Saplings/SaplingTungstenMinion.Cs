@@ -2,9 +2,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Buffs.acorns;
+using RemnantOfTheAncientsMod.Buffs.acorns;
 
-namespace opswordsII.Projectiles.Minioms.Saplings
+namespace RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings
 {
 	public class SaplingTungstenMinion : HoverShooter
 	{

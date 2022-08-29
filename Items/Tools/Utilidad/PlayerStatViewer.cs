@@ -6,7 +6,7 @@ using System.Text;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Tools.Utilidad
+namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 {
     public class PlayerStatViewer : ModItem
 	{
@@ -33,7 +33,7 @@ namespace opswordsII.Items.Tools.Utilidad
 			{
 				return;
 			}
-			Player1 modPlayer = val.OpswordsII();
+			Player1 modPlayer = val.RemnantOfTheAncientsMod();
 			
 			
 			foreach (TooltipLine item in list)

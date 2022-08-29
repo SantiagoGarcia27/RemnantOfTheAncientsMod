@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Bloques
+namespace RemnantOfTheAncientsMod.Items.Bloques
 {
 	public class DesertTrophy : ModItem
 	{

@@ -4,7 +4,7 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Items
+namespace RemnantOfTheAncientsMod.Items.Items
 {
 	public class BoneBar : ModItem
 	{

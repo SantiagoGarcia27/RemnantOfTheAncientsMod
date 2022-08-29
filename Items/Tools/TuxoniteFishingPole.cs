@@ -1,12 +1,12 @@
-using opswordsII.Projectiles.Bobbers;
+using RemnantOfTheAncientsMod.Projectiles.Bobbers;
 using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Tools
+namespace RemnantOfTheAncientsMod.Items.Tools
 {
     public class TuxoniteFishingPole : ModItem
 	{

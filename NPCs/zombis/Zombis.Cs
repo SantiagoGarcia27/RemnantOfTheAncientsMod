@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.Utilities;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.NPCs.zombis
+namespace RemnantOfTheAncientsMod.NPCs.zombis
 {
     public class Fastzombie : ModNPC
 	{

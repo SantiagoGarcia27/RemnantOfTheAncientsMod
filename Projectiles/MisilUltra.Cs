@@ -6,7 +6,7 @@ using Terraria.GameContent.Achievements;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace opswordsII.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles
 {
     // to investigate: Projectile.Damage, (8843)
     internal class MisilUltra : ModProjectile

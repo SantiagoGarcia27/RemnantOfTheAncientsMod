@@ -1,4 +1,4 @@
-using opswordsII.Items.Tools;
+using RemnantOfTheAncientsMod.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using System.IO;
 
-namespace opswordsII.Projectiles.Bobbers
+namespace RemnantOfTheAncientsMod.Projectiles.Bobbers
 {
 	public class TuxoniteBobber : ModProjectile
 	{

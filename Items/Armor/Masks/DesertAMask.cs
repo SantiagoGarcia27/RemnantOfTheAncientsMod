@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Armor.Masks
+namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class DesertAMask : ModItem

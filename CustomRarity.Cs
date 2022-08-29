@@ -1,4 +1,4 @@
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
 	public enum CustomRarity
 	{

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Pociones
+namespace RemnantOfTheAncientsMod.Items.Pociones
 {
     public class EndlessGoldF : BasePotions
     {

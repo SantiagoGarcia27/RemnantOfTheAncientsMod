@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.Gem
+namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 {
 	public class Diamond_Sword : ModItem
 	{

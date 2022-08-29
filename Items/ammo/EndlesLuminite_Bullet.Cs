@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.ammo
+namespace RemnantOfTheAncientsMod.Items.ammo
 {
     public class EndlesLuminite_Bullet : ModItem
 	{

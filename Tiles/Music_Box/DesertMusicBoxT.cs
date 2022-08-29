@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Tiles.Music_Box
+namespace RemnantOfTheAncientsMod.Tiles.Music_Box
 {
     internal class DesertMusicBoxT : ModTile
 	{

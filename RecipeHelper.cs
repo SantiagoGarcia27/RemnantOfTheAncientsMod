@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
 	// In this class we separate recipe related code from our main class
 	public static class RecipeHelper

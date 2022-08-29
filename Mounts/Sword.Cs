@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework;
-using opswordsII.Buffs;
-using opswordsII.Dusts;
+using RemnantOfTheAncientsMod.Buffs;
+using RemnantOfTheAncientsMod.Dusts;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.Mount;
 
-namespace opswordsII.Mounts
+namespace RemnantOfTheAncientsMod.Mounts
 {
     public class Sword : ModMount
 	{

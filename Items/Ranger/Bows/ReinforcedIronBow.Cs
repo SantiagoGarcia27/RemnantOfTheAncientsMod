@@ -3,10 +3,10 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Ranger.Bows
+namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
 {
     public class ReinforcedIronBow : ModItem
 	{

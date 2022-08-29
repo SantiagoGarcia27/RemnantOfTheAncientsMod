@@ -3,24 +3,24 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Mele;
-using opswordsII.Items.Ranger;
-using opswordsII.Items.Magic;
-using opswordsII.NPCs.ITyrant;
-using opswordsII.Items.BossSummon;
-using opswordsII.Items.tresure_bag;
-using opswordsII.Items.Armor.Masks;
-using opswordsII.Items.Bloques.MusicBox;
-using opswordsII.Items.Ranger.Rep;
-using opswordsII.Items.Mele.saber;
-using opswordsII.Items.Summon;
-using opswordsII.Items.Core;
-using opswordsII.NPCs.DAniquilator;
-using opswordsII.Items.Bloques;
-using opswordsII.NPCs.frozen_assaulter;
-using opswordsII.Common.Systems;
+using RemnantOfTheAncientsMod.Items.Mele;
+using RemnantOfTheAncientsMod.Items.Ranger;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.NPCs.ITyrant;
+using RemnantOfTheAncientsMod.Items.BossSummon;
+using RemnantOfTheAncientsMod.Items.tresure_bag;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
+using RemnantOfTheAncientsMod.Items.Ranger.Rep;
+using RemnantOfTheAncientsMod.Items.Mele.saber;
+using RemnantOfTheAncientsMod.Items.Summon;
+using RemnantOfTheAncientsMod.Items.Core;
+using RemnantOfTheAncientsMod.NPCs.DAniquilator;
+using RemnantOfTheAncientsMod.Items.Bloques;
+using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
+using RemnantOfTheAncientsMod.Common.Systems;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
 	internal class WeakReference
 	{
@@ -73,12 +73,12 @@ namespace opswordsII
 		}
 		private static void BossChecklistSupport()
 		{
-			opswordsII instance = GetInstance<opswordsII>();
-			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist)) AddOpsBosses(opswordsII.BossChecklist, (Mod)(object)instance);
+			RemnantOfTheAncientsMod instance = GetInstance<RemnantOfTheAncientsMod>();
+			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist)) AddOpsBosses(RemnantOfTheAncientsMod.BossChecklist, (Mod)(object)instance);
 
 		}
 
-		private static void AddOpsBosses(Mod bossChecklist, Mod OpswordsII)
+		private static void AddOpsBosses(Mod bossChecklist, Mod RemnantOfTheAncientsMod)
 		{
             #region desert
             float value = 6.8f;
@@ -98,7 +98,7 @@ namespace opswordsII
 				};
 			string instructions = $"Use a [i:{num}] in the desert";
 			string despawn = Utils1.ColorMessage("The guardian of the desert has returned to rest.", new Color(100, 149, 237));
-			AddBoss(bossChecklist, OpswordsII, "Desert Annihilator", value, npcType, () => DownedBossSystem.downedDesert, num, loot, collection, instructions, despawn);
+			AddBoss(bossChecklist, RemnantOfTheAncientsMod, "Desert Annihilator", value, npcType, () => DownedBossSystem.downedDesert, num, loot, collection, instructions, despawn);
             #endregion
             #region frozen
             float value2 = 7.2f;
@@ -124,7 +124,7 @@ namespace opswordsII
 			};
 			string instructions2 = $"Use a [i:{num2}] in the snow at the night";
 			string despawn2 = Utils1.ColorMessage("The desert guardian has teleport.", new Color(100, 149, 237));
-			AddBoss(bossChecklist, OpswordsII,"Frozen Assaulter", value2, npcType2, () => DownedBossSystem.downedFrozen, num2, loot2, collection2, instructions2, despawn2);
+			AddBoss(bossChecklist, RemnantOfTheAncientsMod,"Frozen Assaulter", value2, npcType2, () => DownedBossSystem.downedFrozen, num2, loot2, collection2, instructions2, despawn2);
             #endregion
             #region tyrant
             float value3 = 12.9f;
@@ -154,8 +154,8 @@ namespace opswordsII
 			};
 			string instructions3 = $"Use a [i:{num3}] in the Underworld";
 			string despawn3 = Utils1.ColorMessage("The scourge of the desert delved back into the sand.", new Color(238, 232, 170));
-			string bossLogTex = "opswordsII/NPCs/ITyrant/InfernalTyrant_BossChecklist";
-			AddBossWorm(bossChecklist, OpswordsII, "Infernal Tyrant", value3, npcTypes3, () => DownedBossSystem.downedTyrant, num3, loot3, collection3, instructions3, despawn3, bossLogTex);
+			string bossLogTex = "RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrant_BossChecklist";
+			AddBossWorm(bossChecklist, RemnantOfTheAncientsMod, "Infernal Tyrant", value3, npcTypes3, () => DownedBossSystem.downedTyrant, num3, loot3, collection3, instructions3, despawn3, bossLogTex);
             #endregion
         }
 

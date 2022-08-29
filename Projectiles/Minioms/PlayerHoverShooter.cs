@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
-namespace opswordsII.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {
 	public abstract class PlayerHoverShooter : Minion
 	{

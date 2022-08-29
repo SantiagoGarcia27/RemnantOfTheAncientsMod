@@ -8,13 +8,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace opswordsII.Items.Debugg
+namespace RemnantOfTheAncientsMod.Items.Debugg
 {
     public class ExpertToggler : ModItem
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
-			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+			return ModLoader.TryGetMod("RemnantOfTheAncientsModDebugMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{

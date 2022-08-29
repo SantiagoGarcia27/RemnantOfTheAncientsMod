@@ -2,18 +2,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using opswordsII.Buffs;
+using RemnantOfTheAncientsMod.Buffs;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Items.Pociones
+namespace RemnantOfTheAncientsMod.Items.Pociones
 {
     public class EndlessCI : BasePotions
     {
         public override int TextureID => ItemType<Combat_Infusion>();
         public override int ItemId => ItemType<Combat_Infusion>();
         public override int BuffId => BuffType<Combat_infusion>();
-        public override string Texture => "opswordsII/Items/Pociones/Combat_Infusion";
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Combat Potions Kit");
@@ -72,7 +72,7 @@ namespace opswordsII.Items.Pociones
         public override int TextureID => ItemType<Mining_Infusion>();
         public override int ItemId => ItemType<Mining_Infusion>();
         public override int BuffId => BuffType<Combat_infusion>();
-        public override string Texture => "opswordsII/Items/Pociones/Mining_Infusion";
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Mining_Infusion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Mining Potions Kit");
@@ -83,7 +83,7 @@ namespace opswordsII.Items.Pociones
     }
     public class Mining_Infusion : ModItem
     {
-        public override string Texture => "opswordsII/Items/Pociones/Combat_Infusion";
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mining Potions Kit");

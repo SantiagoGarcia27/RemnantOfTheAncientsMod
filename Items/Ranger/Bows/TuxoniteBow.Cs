@@ -3,9 +3,9 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Ranger.Bows
+namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
 {
     public class TuxoniteBow: ModItem
 	{

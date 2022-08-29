@@ -3,7 +3,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 
-namespace opswordsII.Items.Items
+namespace RemnantOfTheAncientsMod.Items.Items
 {
     public class TuxoniteOre : ModItem
 	{

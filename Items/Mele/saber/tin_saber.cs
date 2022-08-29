@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele.saber
+namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
     public class tin_saber : ModItem
 	{

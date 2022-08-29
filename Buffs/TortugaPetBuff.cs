@@ -3,10 +3,10 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Projectiles.Pets;
+using RemnantOfTheAncientsMod.Projectiles.Pets;
 using Microsoft.Xna.Framework;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
 	public class TortugaPetBuff : ModBuff
 	{

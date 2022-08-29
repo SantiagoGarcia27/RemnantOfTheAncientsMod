@@ -4,10 +4,10 @@ using Terraria.ID;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
-using opswordsII.Projectiles.Pets;
+using RemnantOfTheAncientsMod.Projectiles.Pets;
 using Terraria.DataStructures;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
 	public class YoutubeMoradoBuff : ModBuff
 	{

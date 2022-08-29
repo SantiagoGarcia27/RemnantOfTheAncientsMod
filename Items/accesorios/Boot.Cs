@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.accesorios
+namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     [AutoloadEquip(EquipType.Shoes)]
     public class Boot : ModItem

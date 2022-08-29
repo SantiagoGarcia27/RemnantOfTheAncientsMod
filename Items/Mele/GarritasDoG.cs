@@ -2,10 +2,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.Localization;
 
-namespace opswordsII.Items.Mele
+namespace RemnantOfTheAncientsMod.Items.Mele
 {
     public class GarritasDoG : ModItem
 	{
@@ -42,13 +42,13 @@ namespace opswordsII.Items.Mele
 
 		public override void AddRecipes()
 		{
-			if (opswordsII.CalamityMod != null)
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
 			{
 				Recipe recipe = CreateRecipe()
 				.AddIngredient(ItemType<Garritas>())
-				.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
-				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
-				recipe.AddIngredient(opswordsII.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
+				.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
 				recipe.AddTile(TileID.LunarCraftingStation);
 				recipe.Register();
 			}
@@ -56,7 +56,7 @@ namespace opswordsII.Items.Mele
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			if (opswordsII.CalamityMod.TryFind("GodSlayerInferno", out ModBuff buff)) target.AddBuff(buff.Type, 300);	
+			if (RemnantOfTheAncientsMod.CalamityMod.TryFind("GodSlayerInferno", out ModBuff buff)) target.AddBuff(buff.Type, 300);	
 		}
 	}
 }

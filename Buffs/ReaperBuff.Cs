@@ -1,8 +1,8 @@
-using opswordsII.World;
+using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace opswordsII.Buffs
+namespace RemnantOfTheAncientsMod.Buffs
 {
     public class ReaperBuff : ModBuff
 	    {

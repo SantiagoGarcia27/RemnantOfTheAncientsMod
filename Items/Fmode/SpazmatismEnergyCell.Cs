@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using opswordsII;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.VanillaChanges;
 using Terraria.ModLoader.IO;
 
-namespace opswordsII.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.Fmode
 {
 	public class SpazmatismEnergyCell : ModItem
 	{

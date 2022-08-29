@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Ranger.Rep
+namespace RemnantOfTheAncientsMod.Items.Ranger.Rep
 {
     public class Tuxonite_repeter : ModItem
     {

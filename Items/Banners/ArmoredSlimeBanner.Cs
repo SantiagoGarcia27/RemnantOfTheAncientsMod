@@ -3,9 +3,9 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
-using opswordsII.Tiles;
+using RemnantOfTheAncientsMod.Tiles;
 
-namespace opswordsII.Items.Banners
+namespace RemnantOfTheAncientsMod.Items.Banners
 {
 	public class ArmoredSlimeBanner : ModItem
 	{

@@ -3,12 +3,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
-using opswordsII.VanillaChanges;
-using opswordsII;
-using opswordsII.World;
+using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.World;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.DificultChanger
+namespace RemnantOfTheAncientsMod.Items.DificultChanger
 {
     public class Ftoggler : ModItem
 	{

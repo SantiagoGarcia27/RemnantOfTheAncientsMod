@@ -1,6 +1,6 @@
 author = Sangar & TTIM
-version = 1.4
-displayName = Opswords II Beta 4 Pre release[1.4] 
+version = 1.4.1
+displayName = Remnant Of The Ancients Mod Pre release[1.4] 
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 hideCode = false
 hideResources = false

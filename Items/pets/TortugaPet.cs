@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.pets
+namespace RemnantOfTheAncientsMod.Items.pets
 {
     public class TortugaPet : ModItem
 	{

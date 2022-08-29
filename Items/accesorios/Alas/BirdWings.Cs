@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 
-namespace opswordsII.Items.accesorios.Alas
+namespace RemnantOfTheAncientsMod.Items.accesorios.Alas
 {
 	[AutoloadEquip(EquipType.Wings)]
 	public class BirdWings : ModItem

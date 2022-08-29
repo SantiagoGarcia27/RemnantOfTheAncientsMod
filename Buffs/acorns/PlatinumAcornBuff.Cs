@@ -1,9 +1,9 @@
-using opswordsII.Projectiles.Minioms.Saplings;
+using RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Buffs.acorns
+namespace RemnantOfTheAncientsMod.Buffs.acorns
 {
     public class PlatinumAcornBuff : ModBuff
 	    {

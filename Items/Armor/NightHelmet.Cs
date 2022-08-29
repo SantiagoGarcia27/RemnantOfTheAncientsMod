@@ -5,9 +5,9 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using System.Collections.Generic;
 using Terraria.GameContent.Creative;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.Armor
+namespace RemnantOfTheAncientsMod.Items.Armor
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class NightHelmet : ModItem

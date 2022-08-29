@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Ranger
+namespace RemnantOfTheAncientsMod.Items.Ranger
 {
     public class minigun: ModItem
 	{

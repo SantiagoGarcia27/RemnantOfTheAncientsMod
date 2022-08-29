@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Mele
+namespace RemnantOfTheAncientsMod.Items.Mele
 {
 	public class BurningJungle : ModItem
 	{

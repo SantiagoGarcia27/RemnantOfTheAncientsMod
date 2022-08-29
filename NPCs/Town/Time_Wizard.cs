@@ -5,11 +5,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using opswordsII;
-using opswordsII.Projectiles;
-using opswordsII.Items.Tools.Utilidad;
-using opswordsII.Dusts;
-using opswordsII.Items.Magic;
+using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.Items.Tools.Utilidad;
+using RemnantOfTheAncientsMod.Dusts;
+using RemnantOfTheAncientsMod.Items.Magic;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Events;
 using Terraria.GameContent;
@@ -18,7 +18,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
 
-namespace OpswordsII.NPCs.Town
+namespace RemnantOfTheAncientsMod.NPCs.Town
 {
 
 	[AutoloadHead]
@@ -312,14 +312,14 @@ namespace OpswordsII.NPCs.Town
 		public Asset<Texture2D> GetTextureNPCShouldUse(NPC npc)
 		{
 			if (npc.IsABestiaryIconDummy && !npc.ForcePartyHatOn)
-				return Request<Texture2D>("opswordsII/NPCs/Town/Time_Wizard");
+				return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard");
 
 			if (npc.altTexture == 1)
-				return Request<Texture2D>("opswordsII/NPCs/Town/Time_Wizard_Party");
+				return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard_Party");
 
-			return Request<Texture2D>("opswordsII/NPCs/Town/Time_Wizard");
+			return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard");
 		}
 
-		public int GetHeadTextureIndex(NPC npc) => GetModHeadSlot("opswordsII/NPCs/Town/Time_Wizard_Head");
+		public int GetHeadTextureIndex(NPC npc) => GetModHeadSlot("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard_Head");
 	}
 }

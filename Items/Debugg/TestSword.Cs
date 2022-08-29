@@ -2,17 +2,17 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using opswordsII.VanillaChanges;
+using RemnantOfTheAncientsMod.VanillaChanges;
 using static Terraria.ModLoader.ModContent;
-using opswordsII;
+using RemnantOfTheAncientsMod;
 
-namespace opswordsII.Items.Debugg
+namespace RemnantOfTheAncientsMod.Items.Debugg
 {
 	public class TestSword : ModItem
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
-			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+			return ModLoader.TryGetMod("RemnantOfTheAncientsModDebugMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{

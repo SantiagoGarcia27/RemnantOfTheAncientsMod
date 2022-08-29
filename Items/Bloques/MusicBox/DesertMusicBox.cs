@@ -2,9 +2,9 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
-using opswordsII.Tiles.Music_Box;
+using RemnantOfTheAncientsMod.Tiles.Music_Box;
 
-namespace opswordsII.Items.Bloques.MusicBox
+namespace RemnantOfTheAncientsMod.Items.Bloques.MusicBox
 {
 	public class DesertMusicBox : ModItem
 	{

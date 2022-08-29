@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 
-namespace opswordsII.Items.Magic
+namespace RemnantOfTheAncientsMod.Items.Magic
 {
     public class StarStormTome : ModItem
 	{

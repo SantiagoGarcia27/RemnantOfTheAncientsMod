@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "opswordsII", "opswordsII.csproj", "{46D218E7-AE8A-4BC5-9F7B-93D2633825E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemnantOfTheAncientsMod", "RemnantOfTheAncientsMod.csproj", "{46D218E7-AE8A-4BC5-9F7B-93D2633825E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

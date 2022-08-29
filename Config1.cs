@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace opswordsII
+namespace RemnantOfTheAncientsMod
 {
     public class ConfigClient1 : ModConfig
 	{

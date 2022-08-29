@@ -4,9 +4,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
-using opswordsII.Items.Items;
+using RemnantOfTheAncientsMod.Items.Items;
 
-namespace opswordsII.Items.accesorios.Alas
+namespace RemnantOfTheAncientsMod.Items.accesorios.Alas
 {
 	[AutoloadEquip(EquipType.Wings)]
 	public class LuminiteWings : ModItem

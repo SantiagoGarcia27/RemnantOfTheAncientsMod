@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Ranger
+namespace RemnantOfTheAncientsMod.Items.Ranger
 {
 	public class flaremachinegun : ModItem
 	{

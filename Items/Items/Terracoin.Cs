@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace opswordsII.Items.Items
+namespace RemnantOfTheAncientsMod.Items.Items
 {
 	public class Terracoin : ModItem
 	{

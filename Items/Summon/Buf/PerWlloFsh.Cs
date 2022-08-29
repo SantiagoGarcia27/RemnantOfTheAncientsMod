@@ -1,12 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using opswordsII.Buffs;
+using RemnantOfTheAncientsMod.Buffs;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
-namespace opswordsII.Items.Summon.Buf
+namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
 	public class PerWlloFsh : ModItem
 	{
