@@ -182,7 +182,7 @@ namespace opswordsII
 			{
 				if (hasInfernal_core)
 				{
-					target.AddBuff(BuffType<Hell_Fire>(), 300); //if the condition is true, then apply the ethereal flames debuff to the targeted NPC for 5 seconds.
+					target.AddBuff(BuffType<Hell_Fire>(), 300);
 				}
 				if (SandWeapons)
 				{
@@ -214,15 +214,21 @@ namespace opswordsII
 			Player.buffImmune[BuffType<Eye>()] = true;
 			Player.buffImmune[BuffType<Slim>()] = true;
 		}
-		public void ExoticA(int l, int m, int m2, int p)
+		public void ExoticA(int l, int m, int m2, int p, Item item)
 		{
 			Player.lifeRegen += l;
 			Player.manaRegenBonus = m;
 			Player.statManaMax2 += m2;
-			//Player.GetTotalArmorPenetration<> += p;
+			Player.GetArmorPenetration(DamageClass.Generic) += p;
 			Player.pStone = true;
-			//Player.starCloakItem = Item; 
-			//Player.honeyCombItem = true;
+
+			if (Player.whoAmI == Main.myPlayer) Player.starCloakItem = item;
+			
+			if (Player.whoAmI == Main.myPlayer) Player.honeyCombItem = item;
+			
+			Player.longInvince = true;
+
+
 			Player.longInvince = true;
 			Player.arcticDivingGear = true;
 			Player.panic = true;
@@ -288,26 +294,11 @@ namespace opswordsII
 				{
 					//Player.honeyCombItem = true;
 				}
-				if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade)
-				{
-					Player.statDefense += 5;
-				}
-				if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade)
-				{
-					Player.GetDamage(DamageClass.Generic) *= 1.10f;
-				}
-				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade)
-				{
-					FrostInmune();
-				}
-				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade)
-				{
-					Player.pickSpeed -= 0.35f;
-				}
-				if (Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade)
-				{
-					FirenInmune();
-				}
+				if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade) Player.statDefense += 5;
+				if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade) Player.GetDamage(DamageClass.Generic) *= 1.10f;
+				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) FrostInmune();	
+				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade) Player.pickSpeed -= 0.35f;
+				if (Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade) FirenInmune();
 				if (Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade)
 				{
 					Player.findTreasure = true;
@@ -315,13 +306,7 @@ namespace opswordsII
 				}
 				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
 				{
-					
-					if (Player.whoAmI == Main.myPlayer)
-					{
-						Player.sporeSac = true;
-						//Player.SporeSac(item);
-					}
-
+					AddMinion(ProjectileType<CloroCrystalClone>(), 140, 0f);
 					Player.statLifeMax2 += 10;
 				}
 				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade)
@@ -330,19 +315,15 @@ namespace opswordsII
 					Player.lavaImmune = true;
 					Player.GetDamage(DamageClass.Generic) *= 1.10f;
 				}
-				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade)
-				{
-					Player.statDefense += 10;
-				}
+				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade) Player.statDefense += 10;
+				
 				if (world1.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade)
 				{
 					AddMinion(ProjectileType<TempestClone>(), 140, 10f);
 					Player.aggro -= 400;
 				}
-				if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade)
-				{
-					AddMinion(ProjectileType<IceMistF>(), 680, 10f);
-				}
+				if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade) AddMinion(ProjectileType<IceMistF>(), 680, 10f);
+				
 			}
 		}
 		public void AddMinion(int proj, int damage, float knockback)
