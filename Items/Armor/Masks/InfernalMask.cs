@@ -10,8 +10,8 @@ namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 	[AutoloadEquip(EquipType.Head)]
 	public class InfernalMask : ModItem
 	{
-		public override void SetStaticDefaults() {
-			base.SetStaticDefaults();
+		public override void SetStaticDefaults() 
+		{
 			DisplayName.SetDefault("Infernal Tyrant Mask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Piekielny Tyran");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'Tyran infernal");

@@ -10,8 +10,8 @@ namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 	[AutoloadEquip(EquipType.Head)]
 	public class FrozenMask : ModItem
 	{
-		public override void SetStaticDefaults() {
-			base.SetStaticDefaults();
+		public override void SetStaticDefaults() 
+		{
 			DisplayName.SetDefault("Frozen Assaulter Mask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Zamarzniętego Assaultera");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'assaillant Felé");
@@ -25,6 +25,7 @@ namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 			Item.height = 18;
 			Item.rare = ItemRarityID.Blue;
 			Item.vanity = true;
+
 		}
 
 		public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {

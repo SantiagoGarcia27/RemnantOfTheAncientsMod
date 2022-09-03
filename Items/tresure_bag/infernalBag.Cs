@@ -15,7 +15,7 @@ using RemnantOfTheAncientsMod.Items.Core;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
-    public class infernalBag : ModItem
+	public class infernalBag : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -23,8 +23,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 			Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 		}
-
-	public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			Item.maxStack = 999;
 			Item.consumable = true;
 			Item.width = 24;
@@ -32,25 +32,17 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 			Item.rare = ItemRarityID.Purple;
 			Item.expert = true;
 		}
-
-		public override bool CanRightClick()
+        public override bool CanRightClick() => true;
+        public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-			return true;
-		}
-		public override void ModifyItemLoot(ItemLoot itemLoot)
-		{
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<InfernalMask>(), 7));
 			itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>()));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyrant_repeater>(), 3));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Spike_saber>(), 3));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyran_Blast>(), 3));
 		}
-
-			public override int BossBagNPC => NPCType<InfernalTyrantHead>();
-         
-
-		}	
+		public override int BossBagNPC => NPCType<InfernalTyrantHead>();
 	}
+}
 
 

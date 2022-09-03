@@ -39,20 +39,17 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		{
 			return true;
 		}
-        public override void ModifyItemLoot(ItemLoot itemLoot)
-        {
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertAMask>(),7));
+		public override void ModifyItemLoot(ItemLoot itemLoot)
+		{
 			itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>()));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>()));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<desertbow>(),4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertEdge>(),4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertTome>(),4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertStaff>(),4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DScroll>(),5));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<desertbow>(), 4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertEdge>(), 4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertTome>(), 4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertStaff>(), 4));
+			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DScroll>(), 5));
 		}
-
 		public override int BossBagNPC => NPCType<DesertAniquilator>();
-
 	}
 }
 

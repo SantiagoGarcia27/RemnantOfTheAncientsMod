@@ -25,7 +25,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 		}
 
-	public override void SetDefaults() {
+		public override void SetDefaults()
+		{
 			Item.maxStack = 999;
 			Item.consumable = true;
 			Item.width = 24;
@@ -38,22 +39,17 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		{
 			return true;
 		}
-        public override void ModifyItemLoot(ItemLoot itemLoot)
-        {
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrozenMask>(), 7));
+		public override void ModifyItemLoot(ItemLoot itemLoot)
+		{
 			itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>()));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrostShark>(), 4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Permafrost>(), 4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<frozen_staff>(), 4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrozenStafff>(), 4));
-
-
 		}
-			public override int BossBagNPC => NPCType<frozen_assaulter>();
-         
-
-		}	
+		public override int BossBagNPC => NPCType<frozen_assaulter>();
 	}
+}
 
 

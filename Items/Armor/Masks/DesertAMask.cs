@@ -10,7 +10,8 @@ namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 	[AutoloadEquip(EquipType.Head)]
 	public class DesertAMask : ModItem
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults() 
+		{
 			DisplayName.SetDefault("Desert Annihilator Mask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Pustynnego Anikwilatora");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'aniquilateur Du Désert");

@@ -7,10 +7,10 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.NPCs
 {
-    public class GlobalNPC1 : GlobalNPC
+	public class GlobalNPC1 : GlobalNPC
 	{
 		public override bool InstancePerEntity => true;
-		
+
 		public bool Burn_Sand;
 		public bool Hell_Fire;
 		public bool Javalina;
@@ -30,22 +30,22 @@ namespace RemnantOfTheAncientsMod.NPCs
 
 		public override void UpdateLifeRegen(NPC NPC, ref int damage) {
 
-		/*if (Javalina) {
-				if (NPC.lifeRegen > 0) {
-					NPC.lifeRegen = 0;
-				}
-				int JavalinaCount = 0;
-				for (int i = 0; i < 1000; i++) {
-					Projectile p = Main.projectile[i];
-					if (p.active && p.type == ProjectileType<Projectiles.LanzaLunarP>() && p.ai[0] == 1f && p.ai[1] == NPC.whoAmI) {
-						JavalinaCount++;
+			/*if (Javalina) {
+					if (NPC.lifeRegen > 0) {
+						NPC.lifeRegen = 0;
 					}
-				}
-				NPC.lifeRegen -= JavalinaCount * 2 * 3;
-				if (damage < JavalinaCount * 3) {
-					damage = JavalinaCount * 3;
-				}
-			}*/
+					int JavalinaCount = 0;
+					for (int i = 0; i < 1000; i++) {
+						Projectile p = Main.projectile[i];
+						if (p.active && p.type == ProjectileType<Projectiles.LanzaLunarP>() && p.ai[0] == 1f && p.ai[1] == NPC.whoAmI) {
+							JavalinaCount++;
+						}
+					}
+					NPC.lifeRegen -= JavalinaCount * 2 * 3;
+					if (damage < JavalinaCount * 3) {
+						damage = JavalinaCount * 3;
+					}
+				}*/
 			if (Burn_Sand) {
 				if (NPC.lifeRegen > 0) {
 					NPC.lifeRegen = 0;
@@ -107,9 +107,9 @@ namespace RemnantOfTheAncientsMod.NPCs
 			}
 		}
 
-	
 
-	
+
+
 		// Make any NPC with a chat complain to the player if they have the stinky debuff.
 		public override void GetChat(NPC NPC, ref string chat) {
 			if (Main.LocalPlayer.HasBuff(BuffID.Stinky)) {
@@ -133,15 +133,9 @@ namespace RemnantOfTheAncientsMod.NPCs
 
 		}
 
-		/*public override void ModifyNPCLoot(NPCLoot NPCLoot)
+		public override void ModifyNPCLoot(NPC npc,NPCLoot NPCLoot)
 		{
-			if (NPC.lifeMax > 1 && NPC.value > 0f) {
-				NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType< Items.accesorios.The_Legion>(),500000));	//500000	
-			}
-			if (NPC.lifeMax > 100000 && NPC.value > 0f) {
-				 if (Main.rand.NextFloat () <= (float) 1 / 100000) Item.NewItem(NPC.getRect(), ModContent.ItemType<The_Legion>();
-			}
-	}*/
+		}
 	}
 }
 
