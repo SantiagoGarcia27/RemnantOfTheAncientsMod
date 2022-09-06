@@ -34,7 +34,22 @@ namespace RemnantOfTheAncientsMod.Items.Tools
 			Item.autoReuse = true;
 			Item.useTurn = true;
 		}
+        public override bool AltFunctionUse(Player player) => true;
 
+        public override bool CanUseItem(Player player)
+		{
+			if (player.altFunctionUse == 2)
+			{
+				Item.pick = 0;
+				Item.hammer = 60;
+			}
+			else
+			{
+				Item.hammer = 0;
+				Item.pick = 130;
+			}
+			return base.CanUseItem(player);
+		}
 		public override void AddRecipes()
 		{
 			CreateRecipe()

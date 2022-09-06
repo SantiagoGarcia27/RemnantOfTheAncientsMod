@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Projectiles;
 
 namespace RemnantOfTheAncientsMod.Items.Magic
 {
@@ -49,7 +50,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			{
 				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; 
 				Projectile.NewProjectile(source, position, perturbedSpeed * 20, ProjectileID.PineNeedleFriendly, Item.damage + 10, knockback, player.whoAmI);
-				Projectile.NewProjectile(source, position, perturbedSpeed, ProjectileID.Leaf, Item.damage -2, knockback, player.whoAmI);
+				Projectile.NewProjectile(source, position, perturbedSpeed * 20, ModContent.ProjectileType<LeafFriendlyClone>(), Item.damage, knockback, player.whoAmI);
 			}
 
 			return false; 

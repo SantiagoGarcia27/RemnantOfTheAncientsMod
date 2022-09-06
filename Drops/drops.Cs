@@ -16,9 +16,8 @@ using RemnantOfTheAncientsMod.Items.Fmode;
 using RemnantOfTheAncientsMod.Items.accesorios;
 using RemnantOfTheAncientsMod.Items.pets;
 using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Mele;
 
-//&& Main.expertMode for expert mode only
-//&& Main.rand.Next(x) == y for x out of y + 1 chance for item to drop
 
 namespace opswordsII.Drops
 {
@@ -46,16 +45,15 @@ namespace opswordsII.Drops
         public void LegendaryLoot(NPC npc)
         {
             if (npc.type == NPCID.MoonLordCore) new CommonDrop(ModContent.ItemType<LaserMachineGun>(), 100, 1, 1, dificultyDrop(1));
-
+            if (npc.type == ModContent.NPCType<InfernalTyrantHead>()) new CommonDrop(ModContent.ItemType<TheSpiker>(), 200, 1, 1, dificultyDrop(1));
+            if (npc.type == NPCID.Golem) new CommonDrop(ModContent.ItemType<Legendary_Great_Sword>(), 800, 1, 1, dificultyDrop(1));
         }
         public void BossLoot(NPC npc)
         {
             if (npc.type == ModContent.NPCType<DesertAniquilator>()) BossTrpoyMask(ModContent.ItemType<DesertTrophy>(), ModContent.ItemType<DesertAMask>());
-
             if (npc.type == ModContent.NPCType<frozen_assaulter>()) BossTrpoyMask(ModContent.ItemType<FrostTrophy>(), ModContent.ItemType<FrozenMask>());
-
             if (npc.type == ModContent.NPCType<InfernalTyrantHead>()) BossTrpoyMask(ModContent.ItemType<InfernalTrophy>(), ModContent.ItemType<InfernalMask>());
-
+            if (npc.type == NPCID.WallofFlesh) new CommonDrop(ModContent.ItemType<TrowerEmblem>(), 3, 1, 1, dificultyDrop(1));
         }
         public void PajarosLoot(NPC npc)
         {

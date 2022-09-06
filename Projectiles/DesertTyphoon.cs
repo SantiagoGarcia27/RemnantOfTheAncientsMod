@@ -100,10 +100,15 @@ namespace RemnantOfTheAncientsMod.Projectiles
 					Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
 					AdjustMagnitude(ref Projectile.velocity);
 				}
-				if (Projectile.alpha <= 100)
+				RemnantOfTheAncientsMod r = GetInstance<RemnantOfTheAncientsMod>();
+				int NUM_DUSTS = r.ParticlleMetter(20);
+				for (int i = 0; i < NUM_DUSTS; i++)
 				{
-					int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustType<QuemaduraA>());
-					Main.dust[dust].velocity /= 0.5f;
+					if (Projectile.alpha <= 100)
+					{
+						int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustType<QuemaduraA>());
+						Main.dust[dust].velocity /= 0.5f;
+					}
 				}
 			}
 		}
@@ -146,21 +151,14 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			
 			Projectile.penetrate--;
 			if (Projectile.penetrate <= 0)
-			{
-				Projectile.Kill();
-			}
+			Projectile.Kill();
 			else
 			{
 				Collision.HitTiles(Projectile.position + Projectile.velocity, Projectile.velocity, Projectile.width, Projectile.height);
 				SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-				if (Projectile.velocity.X != oldVelocity.X)
-				{
-					Projectile.velocity.X = -oldVelocity.X;
-				}
-				if (Projectile.velocity.Y != oldVelocity.Y)
-				{
-					Projectile.velocity.Y = -oldVelocity.Y;
-				}
+				if (Projectile.velocity.X != oldVelocity.X) Projectile.velocity.X = -oldVelocity.X;
+				if (Projectile.velocity.Y != oldVelocity.Y) Projectile.velocity.Y = -oldVelocity.Y;
+				
 			}
 			return false;
 		}
@@ -182,15 +180,11 @@ namespace RemnantOfTheAncientsMod.Projectiles
 		}
 		public override void AI()
 		{
-
-			Projectile.rotation += (float)Projectile.direction * 0.8f;
+			Projectile.rotation += Projectile.direction * 0.8f;
 			if (Projectile.alpha > 70)
 			{
 				Projectile.alpha -= 15;
-				if (Projectile.alpha < 70)
-				{
-					Projectile.alpha = 70;
-				}
+				if (Projectile.alpha < 70) Projectile.alpha = 70;
 			}
 			if (Projectile.localAI[0] == 0f)
 			{
@@ -221,26 +215,27 @@ namespace RemnantOfTheAncientsMod.Projectiles
 				}
 				if (Projectile.alpha <= 100)
 				{
-					int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustType<QuemaduraA>());
-					Main.dust[dust].velocity /= 0.5f;
+					RemnantOfTheAncientsMod r = GetInstance<RemnantOfTheAncientsMod>();
+					int NUM_DUSTS = r.ParticlleMetter(20);
+					for (int i = 0; i < NUM_DUSTS; i++)
+					{
+						int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustType<QuemaduraA>());
+						Main.dust[dust].velocity /= 0.5f;
+					}
 				}
 			}
 		}
 		private void AdjustMagnitude(ref Vector2 vector)
 		{
 			float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
-			if (magnitude > 106f)
-			{
-				vector *= 26f / magnitude;
-			}
+			if (magnitude > 106f) vector *= 26f / magnitude;
+			
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			if (Main.rand.NextBool())
-			{
-				target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300);
-			}
+			target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300);
 		}
 	}
 }
