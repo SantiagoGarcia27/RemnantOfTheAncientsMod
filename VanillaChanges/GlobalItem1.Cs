@@ -18,6 +18,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool LegendaryDrop;
         public bool ReaperItem;
         public bool BossSummon;
+        public bool ReaperAccesories;
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine val = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.Mod == "Terraria");
@@ -72,6 +73,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
                     nameLine.OverrideColor = Ftoggler.GetRarityColor();
                 }
         }
+        
         private void LegendaryToolTip(Item item, IList<TooltipLine> tooltips)
         {
             Color? color = new Color(255, Main.DiscoG, 53);

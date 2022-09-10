@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Items.Armor
 
 		public override void UpdateEquip(Player player)
 		{
-			player.buffImmune[BuffID.Shine] = true;
+			
 			player.buffImmune[BuffID.Burning] = true;
 			player.buffImmune[BuffID.BrokenArmor] = true;
 			player.statManaMax2 += 20;
