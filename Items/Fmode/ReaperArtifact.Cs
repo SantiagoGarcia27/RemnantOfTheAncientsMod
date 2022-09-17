@@ -1,4 +1,4 @@
-using Terraria;
+/*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -40,5 +40,5 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Item.UseSound = SoundID.Item60;
 		}
 	}
-}
+}*/
 

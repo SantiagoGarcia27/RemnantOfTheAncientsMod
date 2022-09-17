@@ -15,7 +15,8 @@ namespace RemnantOfTheAncientsMod
 
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
-			if (ModContent.ItemType<ReaperChalice>() > 0) {
+			if (checkItem.type == ModContent.ItemType<ReaperChalice>())
+			{
 				inUse=true;
 				return true;
 			}
