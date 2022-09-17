@@ -4,45 +4,43 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Dusts;
+using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
-    public class DemonCycle : ModProjectile
-	{
-		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.DemonScythe;
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("DemonScytheP");
-			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
-			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
-		}
 
+	public abstract class DesertTyphoonModel : ModProjectile
+	{
+		public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Textures/DesertTyphoon";
+		public abstract bool Friendly { get; }
+		public abstract int PenetrateKill { get; }
+		public override void SetStaticDefaults()
+		{ 
+			Main.projFrames[Projectile.type] = 3; 
+		}
 		public override void SetDefaults()
 		{
-			Projectile.width = 8;
-			Projectile.height = 8;
-			Projectile.aiStyle = 1;
-			Projectile.friendly = true;
-			Projectile.hostile = false;
-			Projectile.DamageType = DamageClass.Ranged;
-			Projectile.penetrate = 1;
-			Projectile.timeLeft = 800;
-			Projectile.alpha = 0;
-			Projectile.light = 0.5f;
-			Projectile.ignoreWater = true;
+			Projectile.width = 36;
+			Projectile.height = 36;
+			Projectile.friendly = Friendly;
+			Projectile.DamageType = DamageClass.Magic;
 			Projectile.tileCollide = true;
+			Projectile.penetrate = 5;
+			Projectile.timeLeft = 200;
+			Projectile.light = 0.75f;
 			Projectile.extraUpdates = 1;
+			Main.projFrames[Projectile.type] = 3;
+			Projectile.ignoreWater = true;
+			Projectile.aiStyle = ProjectileID.Typhoon;
 			Projectile.CloneDefaults(ProjectileID.DemonScythe);
-			AIType = ProjectileID.DemonScythe;
-
 		}
-
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			Projectile.penetrate--;
-			if (Projectile.penetrate <= 0) Projectile.Kill();
+			if (Projectile.penetrate <= PenetrateKill) Projectile.Kill();
 			else
 			{
 				Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
@@ -69,7 +67,8 @@ namespace RemnantOfTheAncientsMod.Projectiles
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			if (Main.rand.NextBool()) target.AddBuff(BuffID.ShadowFlame, 500);
+			if (Main.rand.NextBool()) target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300);
+
 		}
 	}
-}	
+}

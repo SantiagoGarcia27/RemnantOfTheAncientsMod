@@ -44,42 +44,39 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		}
 
 		public static void ReaperConsumable(Item item)
-        {
-			/*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-			if (CalamityMod != null)
-            {
+		{
 
-            }
-            else
-            {*/
-				if (item.type == ItemID.SlimeCrown || 
+			if (RemnantOfTheAncientsMod.CalamityMod != null) ;
+			else
+			{
+				if (item.type == ItemID.SlimeCrown ||
 					item.type == ItemID.SuspiciousLookingEye ||
-					item.type == ItemID.WormFood || 
-					item.type == ItemID.BloodySpine || 
-					item.type == ItemID.Abeemination || 
-					item.type == ItemID.MechanicalEye || 
-					item.type == ItemID.MechanicalWorm || 
-					item.type == ItemID.MechanicalSkull || 
-					item.type == ItemID.CelestialSigil || 
-					item.type == ModContent.ItemType<DesertChest>() || 
-					item.type == ModContent.ItemType<FrozenArtifact>() || 
+					item.type == ItemID.WormFood ||
+					item.type == ItemID.BloodySpine ||
+					item.type == ItemID.Abeemination ||
+					item.type == ItemID.MechanicalEye ||
+					item.type == ItemID.MechanicalWorm ||
+					item.type == ItemID.MechanicalSkull ||
+					item.type == ItemID.CelestialSigil ||
+					item.type == ModContent.ItemType<DesertChest>() ||
+					item.type == ModContent.ItemType<FrozenArtifact>() ||
 					item.type == ModContent.ItemType<InfernalCalis>())
 				{
-                    if (world1.ReaperMode)
-                    {
+					if (world1.ReaperMode)
+					{
 						item.consumable = false;
 						item.GetGlobalItem<GlobalItem1>().BossSummon = true;
 					}
-                    else
-                    {
+					else
+					{
 						item.consumable = true;
 						item.GetGlobalItem<GlobalItem1>().BossSummon = false;
 					}
-				} 
+				}
 
-            }
+			}
 
-		//}
+		}
 		public static void ReaperWingsNerf(Player player)
 		{
 			int OgWingTime;

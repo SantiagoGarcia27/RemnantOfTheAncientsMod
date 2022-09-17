@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -14,8 +15,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			DisplayName.SetDefault("The Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-			
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;	
 		}
 		public static int counter = 0;
 		public static int counter2 = 0;
@@ -30,13 +30,13 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.knockBack = 1;
 			Item.useStyle = ItemUseStyleID.Thrust;
 			Item.value = Item.sellPrice(gold: 30);
-			Item.rare = -12;
 			Item.scale = 2.0f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
+			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Legendary;
+			Item.GetGlobalItem<GlobalItem1>().LegendaryDrop = true;
 		}
 		public override bool AltFunctionUse(Player player) => true;
-
 		public override bool CanUseItem(Player player)
 		{
 			if (player.altFunctionUse != 2)

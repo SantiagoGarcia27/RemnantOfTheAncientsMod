@@ -31,8 +31,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios.Alas
 			Item.rare = ItemRarityID.Green;
 			Item.accessory = true;
 		}
-		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
-			ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
+		public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
 		{
 			ascentWhenFalling = 0.35f;
 			ascentWhenRising = 0.05f;

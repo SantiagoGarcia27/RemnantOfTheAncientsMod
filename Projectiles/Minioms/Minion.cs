@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {
-	public abstract class Minion : ModProjectile
+    public abstract class Minion : ModProjectile
 	{
 		public override void AI() {
 			CheckActive();
@@ -12,5 +12,13 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 		public abstract void CheckActive();
 
 		public abstract void Behavior();
+
+		public virtual void SelectFrame()
+		{
+		}
+
+		public virtual void CreateDust()
+		{
+		}
 	}
 }

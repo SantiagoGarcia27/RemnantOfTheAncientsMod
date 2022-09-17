@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Items.Fmode;
+using System;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -85,10 +86,10 @@ namespace RemnantOfTheAncientsMod
 				Player.lifeRegen -= 16;
 			}
 		}
-		public override void OnEnterWorld(Player Player)
+		public override void OnEnterWorld(Player player)
 		{
 			FWeapons = true;
-			FchangesItem.ReaperWingsNerf(Player);
+			FchangesItem.ReaperWingsNerf(player);
 		}
 		public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
 		{

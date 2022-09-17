@@ -21,6 +21,7 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using Terraria.Audio;
+using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 
 namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 {
@@ -216,7 +217,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             float Speed = 12f;
             int damage = (int)NpcChanges1.ExpertDamageScale(i, "MyBoss"); ;
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-            int type = ModContent.ProjectileType<DesertTyphoonE>();
+            int type = ProjectileType<DesertTyphoon>();
             SoundEngine.PlaySound(SoundID.Item10,NPC.position);
             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * yA)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * xA)));
             int num54 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)(Math.Cos(rotation) * Speed * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);

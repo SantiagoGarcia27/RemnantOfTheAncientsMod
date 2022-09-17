@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 30;
 			Item.UseSound = SoundID.Item84;
-			Item.shoot = ModContent.ProjectileType<Projectiles.DesertTyphoon>(); 
+			Item.shoot = ModContent.ProjectileType<Projectiles.DesertTyphoonFriendly>(); 
 			Item.value = Item.sellPrice(silver: 325);
 			Item.autoReuse = true;
 		}

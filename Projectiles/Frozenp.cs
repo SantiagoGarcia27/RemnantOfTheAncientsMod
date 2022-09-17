@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
     }
     public abstract class BaseFrozenP : ModProjectile
     {
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Frozenp";
+        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Textures/Frozenp";
         public abstract bool Friendly { get; }
         public abstract bool hostile { get; }
         public override void SetDefaults()

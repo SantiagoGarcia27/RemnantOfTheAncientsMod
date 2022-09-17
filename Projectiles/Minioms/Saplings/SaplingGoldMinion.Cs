@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings
 			Projectile.DamageType = DamageClass.Summon;
 			Projectile.minionSlots = 1f;
 			Projectile.penetrate = -1;
-			inertia = 100f;//20
+			inertia = 100f;
 			Projectile.scale = 1f;
 			shoot = ProjectileType<Stick_f_P>();
 			shootSpeed = 9f;

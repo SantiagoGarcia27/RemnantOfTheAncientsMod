@@ -16,15 +16,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 		protected float shootSpeed;
 		protected int shoot;
 
-		public virtual void CreateDust()
-		{
-		}
-
-		public virtual void SelectFrame()
-		{
-		}
-
-		public override void Behavior()
+        public override void Behavior()
 		{
 			Player player = Main.player[Projectile.owner];
 			float spacing = (float)Projectile.width * spacingMult;
@@ -33,22 +25,10 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 				Projectile otherProj = Main.projectile[k];
 				if (k != Projectile.whoAmI && otherProj.active && otherProj.owner == Projectile.owner && otherProj.type == Projectile.type && Math.Abs(Projectile.position.X - otherProj.position.X) + Math.Abs(Projectile.position.Y - otherProj.position.Y) < spacing)
 				{
-					if (Projectile.position.X < Main.projectile[k].position.X)
-					{
-						Projectile.velocity.X -= idleAccel;
-					}
-					else
-					{
-						Projectile.velocity.X += idleAccel;
-					}
-					if (Projectile.position.Y < Main.projectile[k].position.Y)
-					{
-						Projectile.velocity.Y -= idleAccel;
-					}
-					else
-					{
-						Projectile.velocity.Y += idleAccel;
-					}
+					if (Projectile.position.X < Main.projectile[k].position.X) Projectile.velocity.X -= idleAccel;
+					else Projectile.velocity.X += idleAccel;
+					if (Projectile.position.Y < Main.projectile[k].position.Y) Projectile.velocity.Y -= idleAccel;
+					else Projectile.velocity.Y += idleAccel;	
 				}
 			}
 			Vector2 targetPos = Projectile.position;
@@ -82,16 +62,13 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 					}
 				}
 			}
-
 			if (Vector2.Distance(player.Center, Projectile.Center) > (target ? 1000f : 500f))
 			{
 				Projectile.ai[0] = 1f;
 				Projectile.netUpdate = true;
 			}
-			if (Projectile.ai[0] == 1f)
-			{
-				Projectile.tileCollide = false;
-			}
+			if (Projectile.ai[0] == 1f)Projectile.tileCollide = false;
+			
 			if (target && Projectile.ai[0] == 0f)
 			{
 				Vector2 direction = targetPos - Projectile.Center;
@@ -100,22 +77,14 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 					direction.Normalize();
 					Projectile.velocity = (Projectile.velocity * inertia + direction * chaseAccel) / (inertia + 1);
 				}
-				else
-				{
-					Projectile.velocity *= (float)Math.Pow(0.97, 40.0 / inertia);
-				}
+				else Projectile.velocity *= (float)Math.Pow(0.97, 40.0 / inertia);
 			}
 			else
 			{
 				if (!Collision.CanHitLine(Projectile.Center, 1, 1, player.Center, 1, 1))
-				{
-					Projectile.ai[0] = 1f;
-				}
+				Projectile.ai[0] = 1f;
 				float speed = 6f;
-				if (Projectile.ai[0] == 1f)
-				{
-					speed = 15f;
-				}
+				if (Projectile.ai[0] == 1f) speed = 15f;
 				Vector2 center = Projectile.Center;
 				Vector2 direction = player.Center - center;
 				Projectile.ai[1] = 3600f;
@@ -123,27 +92,18 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 				int num = 1;
 				for (int k = 0; k < Projectile.whoAmI; k++)
 				{
-					if (Main.projectile[k].active && Main.projectile[k].owner == Projectile.owner && Main.projectile[k].type == Projectile.type)
-					{
-						num++;
-					}
+					if (Main.projectile[k].active && Main.projectile[k].owner == Projectile.owner && Main.projectile[k].type == Projectile.type) num++;
 				}
-				direction.X -= (float)((10 + num * 40) * player.direction);
+				direction.X -= (10 + num * 40) * player.direction;
 				direction.Y -= 70f;
 				float distanceTo = direction.Length();
-				if (distanceTo > 200f && speed < 9f)
-				{
-					speed = 9f;
-				}
+				if (distanceTo > 200f && speed < 9f) speed = 9f;
 				if (distanceTo < 100f && Projectile.ai[0] == 1f && !Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
 				{
 					Projectile.ai[0] = 0f;
 					Projectile.netUpdate = true;
 				}
-				if (distanceTo > 2000f)
-				{
-					Projectile.Center = player.Center;
-				}
+				if (distanceTo > 2000f) Projectile.Center = player.Center;
 				if (distanceTo > 48f)
 				{
 					direction.Normalize();
@@ -160,21 +120,12 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 			Projectile.rotation = Projectile.velocity.X * 0.05f;
 			SelectFrame();
 			CreateDust();
-			if (Projectile.velocity.X > 0f)
-			{
-				Projectile.spriteDirection = Projectile.direction = -1;
-			}
-			else if (Projectile.velocity.X < 0f)
-			{
-				Projectile.spriteDirection = Projectile.direction = 1;
-			}
+			if (Projectile.velocity.X > 0f) Projectile.spriteDirection = Projectile.direction = -1;	
+			else if (Projectile.velocity.X < 0f) Projectile.spriteDirection = Projectile.direction = 1;
 			if (Projectile.ai[1] > 0f)
 			{
 				Projectile.ai[1] += 1f;
-				if (Main.rand.NextBool(3))
-				{
-					Projectile.ai[1] += 1f;
-				}
+				if (Main.rand.NextBool(3)) Projectile.ai[1] += 1f;	
 			}
 			if (Projectile.ai[1] > shootCool)
 			{
@@ -185,24 +136,15 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 			{
 				if (target)
 				{
-					if ((targetPos - Projectile.Center).X > 0f)
-					{
-						Projectile.spriteDirection = Projectile.direction = -1;
-					}
-					else if ((targetPos - Projectile.Center).X < 0f)
-					{
-						Projectile.spriteDirection = Projectile.direction = 1;
-					}
+					if ((targetPos - Projectile.Center).X > 0f) Projectile.spriteDirection = Projectile.direction = -1;
+					else if ((targetPos - Projectile.Center).X < 0f) Projectile.spriteDirection = Projectile.direction = 1;	
 					if (Projectile.ai[1] == 0f)
 					{
 						Projectile.ai[1] = 1f;
 						if (Main.myPlayer == Projectile.owner)
 						{
 							Vector2 shootVel = targetPos - Projectile.Center;
-							if (shootVel == Vector2.Zero)
-							{
-								shootVel = new Vector2(0f, 1f);
-							}
+							if (shootVel == Vector2.Zero) shootVel = new Vector2(0f, 1f);	
 							shootVel.Normalize();
 							shootVel *= shootSpeed;
 							int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, shootVel.X, shootVel.Y, shoot, Projectile.damage, Projectile.knockBack, Main.myPlayer, 0f, 0f);
@@ -214,7 +156,6 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 				}
 			}
 		}
-
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough,ref Vector2 a)
 		{
 			fallThrough = true;

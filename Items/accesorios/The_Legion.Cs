@@ -23,10 +23,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(9, 8));
         }
-        internal static Color GetRarityColor()
-        {
-            return Utils1.ColorSwap(ColorOne, ColorTwo, 3f);
-        }
+        internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);
         public override void SetDefaults()
         {
            Item.width = 10;
@@ -38,7 +35,6 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-
             if (player.name == "S-Pladison" || player.name == "NKSHV" || player.name == "perrogalan" || player.name == "Banmei" || player.name == "Scratch Lunin" || player.name == "DinoZers" || player.name == "scorpion17907")
             {
                 player.GetDamage(DamageClass.Summon) *= 2f;
