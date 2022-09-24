@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
+using RemnantOfTheAncientsMod.Items.Fmode;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
@@ -23,6 +25,8 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             if (LegendaryDrop) LegendaryToolTip(item, tooltips);
             if (ReaperItem) ReaperToolTip(item, tooltips); 
             if(BossSummon) BossSummonToolTip(item, tooltips);
+         //   if (ReaperAccesories) ReaperArtifactToolTip(item, tooltips);
+
         }
 
         public override bool InstancePerEntity => true;
@@ -40,6 +44,30 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             if (world1.ReaperMode)
             tooltips.Add(item2);
         }
+   /*     private void ReaperArtifactToolTip(Item item, IList<TooltipLine> tooltips)
+        {
+            Player p = new Player();
+            Color? color = new Color(10, Main.DiscoG, 10);
+            Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
+            string text;
+
+            if (world1.ReaperMode)
+            {
+                if (p.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade)
+                {
+                   
+                    text = p.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade ? "30% increased movement speed" : "";
+                }
+
+                else text = "Error";
+            }
+            else text = "Error";
+            TooltipLine item2 = new TooltipLine(Mod, "BossSumon", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            if (world1.ReaperMode) tooltips.Add(item2);
+        }*/
         private void ApplyRarityColor(Item item, TooltipLine nameLine)
         {
             Color? rarityColor = Utils1.GetRarityColor(customRarity);

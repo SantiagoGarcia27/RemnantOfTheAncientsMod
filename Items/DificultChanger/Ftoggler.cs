@@ -86,7 +86,9 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 					Item.buffTime = 1;
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Welcome to hell, now you're a reaper.", gray);
+					player.GetModPlayer<Player1>().ReaperStarter();
 					Player1.ReaperFirstTime = true;
+					
 				}
 				else
 				{

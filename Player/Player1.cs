@@ -12,14 +12,13 @@ using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Items.Fmode;
-using System;
 
 namespace RemnantOfTheAncientsMod
 {
 
-    public class Player1 : ModPlayer
+	public class Player1 : ModPlayer
 	{
-		
+
 		#region Minions
 		public bool FrozenMinion;
 		public bool DesertMinion;
@@ -80,9 +79,9 @@ namespace RemnantOfTheAncientsMod
 		{
 			if (Burn_Sand || Hell_Fire || hBurn)
 			{
-				
+
 				if (Player.lifeRegen > 0) Player.lifeRegen = 0;
-				Player.lifeRegenTime = 0;	
+				Player.lifeRegenTime = 0;
 				Player.lifeRegen -= 16;
 			}
 		}
@@ -99,14 +98,15 @@ namespace RemnantOfTheAncientsMod
 		public override void UpdateEquips()
 		{
 			if (Player.wingTimeMax > 4) FchangesItem.ReaperWingsNerf(Player);
-			ReaperSoulsBoost();
+			if(RemnantOfTheAncientsMod.DebuggMode) Debugg();
 		}
-		public void ReaperStarter(IList<Item> items)
+		public void ReaperStarter()
 		{
-			if (ReaperFirstTime)
+			if (!ReaperFirstTime)
 			{
 				Player.QuickSpawnItem(Player.GetSource_DropAsItem(), ItemID.ReaperHood);
 				Player.QuickSpawnItem(Player.GetSource_DropAsItem(), ItemID.ReaperRobe);
+				Player.QuickSpawnItem(Player.GetSource_DropAsItem(), ItemType<ReaperChalice>());
 			}
 		}
 
@@ -132,7 +132,6 @@ namespace RemnantOfTheAncientsMod
 			}
 			if (hBurn && Main.rand.NextBool(4) && drawInfo.shadow == 0f)
 			{
-
 				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<HollyBurn_P>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
 				Main.dust[dust].noGravity = true;
 				Main.dust[dust].velocity *= 1.8f;
@@ -145,7 +144,7 @@ namespace RemnantOfTheAncientsMod
 			FchangesItem.ReaperSize(item);
 			if (!item.noMelee && !item.noUseGraphic)
 			{
-				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300); 
+				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
 				if (SandWeapons && !item.noMelee && !item.noUseGraphic) target.AddBuff(BuffType<Burning_Sand>(), 300);
 			}
 		}
@@ -208,9 +207,6 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.WeaponImbuePoison] = true;
 			Player.buffImmune[BuffID.WeaponImbueVenom] = true;
 		}
-
-		
-
 		public void FrostInmune()
 		{
 			Player.buffImmune[BuffID.Frozen] = true;
@@ -231,18 +227,11 @@ namespace RemnantOfTheAncientsMod
 			if (world1.ReaperMode)
 			{
 				if (Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade && !Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade)
-				{
-					Player.respawnTimer = (int)((double)Player.respawnTimer * 0.7);
-				}
+					Player.respawnTimer = (int)(Player.respawnTimer * 0.7);
 				else if (Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade && Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade)
-				{
-					Player.respawnTimer = (int)((double)Player.respawnTimer * 0.3);
-				}
+					Player.respawnTimer = (int)(Player.respawnTimer * 0.3);
 			}
-			else
-			{
-				Player.respawnTimer = (int)((double)Player.respawnTimer * 1);
-			}
+			else Player.respawnTimer = (int)((double)Player.respawnTimer * 1);
 		}
 
 		public void ReaperSoulsBoost()
@@ -253,25 +242,20 @@ namespace RemnantOfTheAncientsMod
 				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) Player.moveSpeed = OgPlayerSpeed + 1.30f;
 				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade) Player.statLifeMax2 += 10;
 				if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade) Player.lifeRegen += 5;
-				
 				if (Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade)
 				{
-					//Player.honeyCombItem = true;
+					Player.honey = true;
+					Player.beeDamage(20);
 				}
 				if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade) Player.statDefense += 5;
 				if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade) Player.GetDamage(DamageClass.Generic) *= 1.10f;
-				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) FrostInmune();	
+				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) FrostInmune();
 				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade) Player.pickSpeed -= 0.35f;
 				if (Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade) FirenInmune();
 				if (Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade)
 				{
 					Player.findTreasure = true;
 					Player.jumpSpeedBoost += 10f;
-				}
-				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
-				{
-					//AddMinion(ProjectileType<CloroCrystalClone>(), 140, 0f);
-					Player.statLifeMax2 += 10;
 				}
 				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade)
 				{
@@ -280,14 +264,23 @@ namespace RemnantOfTheAncientsMod
 					Player.GetDamage(DamageClass.Generic) *= 1.10f;
 				}
 				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade) Player.statDefense += 10;
-				
+
 				if (world1.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade)
 				{
 					AddMinion(ProjectileType<TempestClone>(), 140, 10f);
 					Player.aggro -= 400;
 				}
 				if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade) AddMinion(ProjectileType<IceMistF>(), 680, 10f);
-				
+
+			}
+		}
+		public void ReaperSoulsBoost(Item item)
+		{
+			if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
+			{
+				Player.sporeSac = true;
+				Player.SporeSac(item);
+				Player.statLifeMax2 += 10;
 			}
 		}
 		public void AddMinion(int proj, int damage, float knockback)
@@ -304,74 +297,13 @@ namespace RemnantOfTheAncientsMod
 			if (world1.ReaperMode) Player.AddBuff(BuffType<ReaperBuff>(), 1);
 		}
 
-        public void KillMinion(int proj) => Main.projectile[proj].Kill();
-    }
-	public class DashPlayer : ModPlayer
-	{
-		public const int DashDown = 0;
-		public const int DashUp = 1;
-		public const int DashRight = 2;
-		public const int DashLeft = 3;
-		public const int DashCooldown = 50;
-		public const int DashDuration = 35;
-		public const float DashVelocity = 10f;
-		public int DashDir = -1;
-		public bool DashEquipped;
-		public int DashDelay = 0;
-		public int DashTimer = 0;
+		public void KillMinion(int proj) => Main.projectile[proj].Kill();
 
-		public override void ResetEffects()
+		public void Debugg()
 		{
-			DashEquipped = false;
-			if (Player.controlDown && Player.releaseDown && Player.doubleTapCardinalTimer[DashDown] < 15) DashDir = DashDown;	
-			else if (Player.controlUp && Player.releaseUp && Player.doubleTapCardinalTimer[DashUp] < 15) DashDir = DashUp;	
-			else if (Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[DashRight] < 15) DashDir = DashRight;
-			else if (Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[DashLeft] < 15) DashDir = DashLeft;
-			else DashDir = -1;	
-		}
-		public override void PreUpdateMovement()
-		{
-			if (CanUseDash() && DashDir != -1 && DashDelay == 0)
-			{
-				Vector2 newVelocity = Player.velocity;
-				switch (DashDir)
-				{
-					case DashUp when Player.velocity.Y > -DashVelocity:
-					case DashDown when Player.velocity.Y < DashVelocity:
-						{
-							float dashDirection = DashDir == DashDown ? 1 : -1.3f;
-							newVelocity.Y = dashDirection * DashVelocity;
-							break;
-						}
-					case DashLeft when Player.velocity.X > -DashVelocity:
-					case DashRight when Player.velocity.X < DashVelocity:
-						{
-							float dashDirection = DashDir == DashRight ? 1 : -1;
-							newVelocity.X = dashDirection * DashVelocity;
-							break;
-						}
-					default:
-						return;
-				}
-				DashDelay = DashCooldown;
-				DashTimer = DashDuration;
-				Player.velocity = newVelocity;
-			}
-			if (DashDelay > 0)  DashDelay--;
-			if (DashTimer > 0)
-			{
-				Player.eocDash = DashTimer;
-				Player.armorEffectDrawShadowEOCShield = true;
-				DashTimer--;
-			}
-		}
-
-		private bool CanUseDash()
-		{
-			return DashEquipped
-				&& Player.dashType == 1
-				&& !Player.setSolar
-				&& !Player.mount.Active;
+			bool rft = GetInstance<ConfigClient1>().ReaperFirsTimeConf;
+			if (rft) ReaperFirstTime = true;
+			else ReaperFirstTime = false;
 		}
 	}
 }

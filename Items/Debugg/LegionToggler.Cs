@@ -1,4 +1,4 @@
-using Terraria;
+/*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
                 Netcode.SyncWorld();
 			}
 			return true;
-		}*/
+		}
 
 	}
-}
+}*/

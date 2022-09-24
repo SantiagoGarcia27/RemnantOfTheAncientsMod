@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
-			return ModLoader.TryGetMod("RemnantOfTheAncientsModDebugMod", out mod);
+			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{

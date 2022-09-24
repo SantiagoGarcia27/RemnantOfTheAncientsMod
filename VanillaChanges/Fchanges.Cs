@@ -15,15 +15,13 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		public static float originalsize = 0;
 		public static float newsize = 0;
 
-
 		public static void ReaperSize(Item item)
 		{
 			if (world1.ReaperMode)
 			{
 				if (item.CountsAsClass(DamageClass.Melee))
 				{
-					if (Player1.FWeapons)
-						originalsize = item.scale;
+					if (Player1.FWeapons) originalsize = item.scale;
 					if (item.active)
 					{
 						newsize = originalsize + 1.50f;
@@ -84,16 +82,9 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 			{
 				if (player.wingTimeMax >= 4)
 				{
-
 					OgWingTime = player.wingTimeMax;
-					if (!player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade)
-					{
-						player.wingTimeMax = OgWingTime / 2;
-					}
-					else
-					{
-						player.wingTimeMax = OgWingTime;
-					}
+					if (!player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade) player.wingTimeMax = OgWingTime / 2;
+					else player.wingTimeMax = OgWingTime;
 				}
 			}
 		}
@@ -102,16 +93,13 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 	{
 		public override void SetDefaults(NPC npc)
 		{
-			if (npc.boss)
-			{
-				ModifyBossStats(npc, ref npc.damage, npc.lifeMax);
-			}
+			if (npc.boss) ModifyBossStats(npc, ref npc.damage, npc.lifeMax);
 		}
 		public static void ModifyBossStats(NPC npc, ref int damage, int lifeMax)
 		{
-				npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax,"n");
-				npc.damage = (int)NpcChanges1.ExpertDamageScale(damage,"n");
+			npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax, "n");
+			npc.damage = (int)NpcChanges1.ExpertDamageScale(damage, "n");
 		}
-			
+
 	}
 }

@@ -1,18 +1,16 @@
 ﻿using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod.Items.Fmode;
-using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod
 {
-	internal class ReaperAccessory : ModAccessorySlot
-
+    internal class ReaperAccessory : ModAccessorySlot
 	{
+		
 		public bool inUse=false;
 		public override string FunctionalBackgroundTexture => "RemnantOfTheAncientsMod/Player/ReaperAccessory";
-
+		
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
 			if (checkItem.type == ModContent.ItemType<ReaperChalice>())
@@ -22,8 +20,6 @@ namespace RemnantOfTheAncientsMod
 			}
 			return false;
 		}
-		
-
 		public override void OnMouseHover(AccessorySlotType context)
 		{
 			switch (context)
@@ -37,5 +33,11 @@ namespace RemnantOfTheAncientsMod
 					break;
 			}
 		}
-	}
+     /*   public override bool IsEnabled()
+        {
+			if (Reaper.ReaperMode) return true;
+			else return false;
+        }*/
+        
+    }
 }

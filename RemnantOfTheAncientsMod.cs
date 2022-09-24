@@ -9,6 +9,7 @@ namespace RemnantOfTheAncientsMod
     {
         public static Mod CalamityMod;
         public static Mod BossChecklist;
+        public static bool DebuggMode;
         public RemnantOfTheAncientsMod()
         {
            
@@ -52,7 +53,7 @@ namespace RemnantOfTheAncientsMod
             else if (LagLevel == 3) n = 0;
             return n;
         }
+         
     }
-  
 }
 

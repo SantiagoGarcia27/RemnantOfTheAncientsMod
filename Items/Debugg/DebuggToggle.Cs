@@ -1,27 +1,18 @@
 using Microsoft.Xna.Framework;
-using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Items.Debugg
 {
-    public class ExpertToggler : ModItem
+    public class DebuggToggle : ModItem
 	{
-		public override bool IsLoadingEnabled(Mod mod)
-		{
-			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
-		}
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("ExpertToggler");
-		}
+        public override void SetStaticDefaults() => DisplayName.SetDefault("DebuggToggle");
 
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
 			Item.width = 20;
 			Item.height = 20;
@@ -33,11 +24,9 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 		}
         public override bool? UseItem(Player player)
         {
-            FieldInfo currentGameModeInfoField = typeof(Main).Assembly.GetType("Terraria.Main").GetField("_currentGameModeInfo", BindingFlags.Static | BindingFlags.NonPublic);
-            GameModeData currentGameModeInfo = (GameModeData)currentGameModeInfoField.GetValue(null);
-            currentGameModeInfo = currentGameModeInfo == GameModeData.ExpertMode ? GameModeData.NormalMode : GameModeData.ExpertMode;
-            currentGameModeInfoField.SetValue(null, currentGameModeInfo);
-            string text = Main.expertMode ? "Expert mode activado!" : "Expert mode desactivado";
+            bool n = RemnantOfTheAncientsMod.DebuggMode ? true : false;
+            string text = RemnantOfTheAncientsMod.DebuggMode ? "Debugg activado!" : "Debugg desactivado";
+            RemnantOfTheAncientsMod.DebuggMode = n;
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
