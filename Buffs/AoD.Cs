@@ -1,5 +1,4 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
@@ -23,15 +22,8 @@ namespace RemnantOfTheAncientsMod.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.shadowDodge = true;
+            player.GetModPlayer<Player1>().ScrollInmunity(BuffType<AoD>());
            
-           
-            player.buffImmune[BuffType<Bee>()] = true;
-            player.buffImmune[BuffType<Eye>()] = true;
-            player.buffImmune[BuffType<Infernal>()] = true;
-            player.buffImmune[BuffType<MasterD>()] = true;
-            player.buffImmune[BuffType<Putrid>()] = true;
-            player.buffImmune[BuffType<Skeleton>()] = true;
-            player.buffImmune[BuffType<Slim>()] = true;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
 			Item.buffType = BuffType<MasterD>(); 
-            Item.buffTime = 8000;
+            Item.buffTime = 9999999;
 			Item.expert = true;
 		
 		}

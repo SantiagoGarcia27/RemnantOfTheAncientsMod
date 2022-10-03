@@ -156,6 +156,17 @@ namespace RemnantOfTheAncientsMod
 				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
 			}
 		}
+		public void UndeadInmunity()
+        {
+			Player.buffImmune[BuffID.Blackout] = true;
+			Player.buffImmune[BuffID.Horrified] = true;
+			Player.buffImmune[BuffID.Suffocation] = true;
+			Player.buffImmune[BuffID.ChaosState] = true;
+			Player.buffImmune[BuffID.TheTongue] = true;
+			Player.buffImmune[BuffID.CursedInferno] = true;
+			Player.buffImmune[BuffID.Ichor] = true;
+			AnkInmunity(); 
+		}
 		public void AnkInmunity()
 		{
 			Player.buffImmune[BuffID.Bleeding] = true;
@@ -170,15 +181,19 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.Weak] = true;
 			Player.buffImmune[BuffID.Chilled] = true;
 		}
-		public void ScrollInmunity()
+		public void ScrollInmunity(int buff)
 		{
-			Player.buffImmune[BuffType<Bee>()] = true;
-			Player.buffImmune[BuffType<AoD>()] = true;
-			Player.buffImmune[BuffType<Infernal>()] = true;
-			Player.buffImmune[BuffType<MasterD>()] = true;
-			Player.buffImmune[BuffType<Putrid>()] = true;
-			Player.buffImmune[BuffType<Eye>()] = true;
+			int b = BuffType<Slim>();
 			Player.buffImmune[BuffType<Slim>()] = true;
+			Player.buffImmune[BuffType<Eye>()] = true;
+			Player.buffImmune[BuffType<AoD>()] = true;
+			Player.buffImmune[BuffType<Putrid>()] = true;
+			Player.buffImmune[BuffType<Bee>()] = true;
+			Player.buffImmune[BuffType<Skeleton>()] = true;
+			Player.buffImmune[BuffType<MasterD>()] = true;
+			Player.buffImmune[BuffType<Infernal>()] = true;
+
+			Player.buffImmune[buff] = false;
 		}
 		public void ExoticA(int l, int m, int m2, int p, Item item)
 		{
@@ -187,8 +202,11 @@ namespace RemnantOfTheAncientsMod
 			Player.statManaMax2 += m2;
 			Player.GetArmorPenetration(DamageClass.Generic) += p;
 			Player.pStone = true;
-			if (Player.whoAmI == Main.myPlayer) Player.starCloakItem = item;
-			if (Player.whoAmI == Main.myPlayer) Player.honeyCombItem = item;
+			if (Player.whoAmI == Main.myPlayer)
+			{
+				Player.starCloakItem = item;
+				Player.honeyCombItem = item;
+			}
 			Player.longInvince = true;
 			Player.longInvince = true;
 			Player.arcticDivingGear = true;

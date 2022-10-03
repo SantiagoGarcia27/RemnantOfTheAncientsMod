@@ -11,13 +11,13 @@ namespace RemnantOfTheAncientsMod.Buffs
     {
         public override void SetStaticDefaults()
         {
-              DisplayName.SetDefault("Dash master");
-              Description.SetDefault("");
+            DisplayName.SetDefault("Dash master");
+            Description.SetDefault("");
 
-             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître de la fente");
-              DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Maestro de las embestidas");
-             
-            Main.buffNoTimeDisplay[Type] = false;
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître de la fente");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Maestro de las embestidas");
+
+            Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing
         }
 
@@ -26,19 +26,12 @@ namespace RemnantOfTheAncientsMod.Buffs
             player.dash = 1;
             player.dashType = 1;
             player.jumpBoost = true;
-			player.noFallDmg = true;
-			player.GetModPlayer<DashPlayer>().DashEquipped = true;
-
-			player.buffImmune[BuffType<Bee>()] = true;
-            player.buffImmune[BuffType<AoD>()] = true;
-            player.buffImmune[BuffType<Infernal>()] = true;
-            player.buffImmune[BuffType<MasterD>()] = true;
-            player.buffImmune[BuffType<Putrid>()] = true;
-            player.buffImmune[BuffType<Skeleton>()] = true;
-            player.buffImmune[BuffType<Slim>()] = true;
+            player.noFallDmg = true;
+            player.GetModPlayer<DashPlayer>().DashEquipped = true;
+            player.GetModPlayer<Player1>().ScrollInmunity(BuffType<Eye>());
         }
-		
-		}
-	}
+
+    }
+}
 
   

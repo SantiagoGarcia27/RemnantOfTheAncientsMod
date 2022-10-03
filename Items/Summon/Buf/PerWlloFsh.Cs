@@ -38,8 +38,8 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Infernal>(); 
-            Item.buffTime = 18060;
+			Item.buffType = BuffType<Infernal>();
+			Item.buffTime = 9999999;
 			Item.expert = true;
 		
 		}

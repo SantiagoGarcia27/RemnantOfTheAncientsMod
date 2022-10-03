@@ -12,20 +12,20 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 	{
 		public override void SetStaticDefaults()
 		{
-            DisplayName.SetDefault("Queen Scroll");
-			 Tooltip.SetDefault("You gain the honey effect, your defense increases by 5"	
-			 +"\n Releases bees when damaged and increases the strength of friendly bees"	
-			 +"\n Increases armor penetration by 15”");
+			DisplayName.SetDefault("Queen Scroll");
+			Tooltip.SetDefault("You gain the honey effect, your defense increases by 5"
+			+ "\n Releases bees when damaged and increases the strength of friendly bees"
+			+ "\n Increases armor penetration by 15”");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin de la reine");
-			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"vous gagnez l'effet miel, votre défense augmente de 5 "
-			+"\n Libère les abeilles lorsqu'elles sont endommagées et augmente la force des abeilles amicales"
-			+"\n augmente la pénétration de l'armure de 15");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin de la reine");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "vous gagnez l'effet miel, votre défense augmente de 5 "
+		   + "\n Libère les abeilles lorsqu'elles sont endommagées et augmente la force des abeilles amicales"
+		   + "\n augmente la pénétration de l'armure de 15");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de la reina");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"obtienes el efecto miel, tu defensa aumenta en 5 "
-			+"\n Libera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas"
-			+"\n aumenta la penetración de armadura en 15");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de la reina");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "obtienes el efecto miel, tu defensa aumenta en 5 "
+			+ "\n Libera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas"
+			+ "\n aumenta la penetración de armadura en 15");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -44,8 +44,8 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Bee>(); 
-            Item.buffTime = 8060;
+			Item.buffType = BuffType<Bee>();
+			Item.buffTime = 9999999;
 			Item.expert = true;
 		}
 	}
