@@ -40,7 +40,19 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				}
 			}
 		}
-
+		public static void ReaperSetDefaut(Item item)
+        {
+			bool n;
+			if (Reaper.ReaperMode)
+			{
+				n = true;
+			}
+            else
+            {
+				n = false;
+            }
+			if (item.type == ModContent.ItemType<ReaperChalice>()) item.accessory = n;
+		}
 		public static void ReaperConsumable(Item item)
 		{
 

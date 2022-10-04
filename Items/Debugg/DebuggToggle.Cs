@@ -24,9 +24,8 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 		}
         public override bool? UseItem(Player player)
         {
-            bool n = RemnantOfTheAncientsMod.DebuggMode ? true : false;
-            string text = RemnantOfTheAncientsMod.DebuggMode ? "Debugg activado!" : "Debugg desactivado";
-            RemnantOfTheAncientsMod.DebuggMode = n;
+            RemnantOfTheAncientsMod.DebuggMode = RemnantOfTheAncientsMod.DebuggMode ? false : true;
+            string text = RemnantOfTheAncientsMod.DebuggMode ? "Debugg desactivado": "Debugg activado!";  
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {

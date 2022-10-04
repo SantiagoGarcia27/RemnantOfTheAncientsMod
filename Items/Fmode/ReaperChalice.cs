@@ -5,6 +5,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.Fmode
 {
@@ -35,9 +36,9 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
         {
             Item.height = 34;
             Item.width = 30;
-            Item.accessory = false;
+            Item.accessory = true;
             Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
-            Item.GetGlobalItem<GlobalItem1>().ReaperAccesories=true;
+            Item.GetGlobalItem<GlobalItem1>().ReaperAccesories= true;
         }
         public override void AddRecipes() => CreateRecipe().AddTile(TileID.DemonAltar).Register();
         internal static Color GetRarityColor() => Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
@@ -48,5 +49,6 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
             else if (x == 2) color = new Color(191, 187, 187);
             return color;
         }
+       
     }
 }

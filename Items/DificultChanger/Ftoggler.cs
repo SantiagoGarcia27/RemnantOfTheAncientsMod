@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.World;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Items.Fmode;
 
 namespace RemnantOfTheAncientsMod.Items.DificultChanger
 {
@@ -53,14 +54,8 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 		public static Color GetReaperColor(int x)
         {
 			Color color =  new Color(100, 100,100);
-			switch (x) {
-				case 1:
-					color = new Color(46, 45, 45);
-					break;
-				case 2:
-					color = new Color(191, 187, 187);
-					break;
-			}
+			if(x == 1) color = new Color(46, 45, 45);
+			else if(x == 2) color = new Color(191, 187, 187);
 			return color;
         }
 		public override void SetDefaults()
@@ -87,8 +82,8 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Welcome to hell, now you're a reaper.", gray);
 					player.GetModPlayer<Player1>().ReaperStarter();
-					Player1.ReaperFirstTime = true;
-					
+				//	FchangesItem.ReaperSetDefaut(ModContent.ItemType<ReaperChalice>());
+					Player1.ReaperFirstTime = true;	
 				}
 				else
 				{
