@@ -10,6 +10,7 @@ using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Items.Fmode
 {
+	//este es un comentario de prueba no es necesario para nada y un XD
 	public class BeeSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
