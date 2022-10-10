@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Items.Items
 			Item.maxStack = 100;
 			Item.value = 100;
 			Item.rare = ItemRarityID.Green;
-			Item.scale = 12.50f;
+			Item.scale = 1f;
 		}
 	}
 }
