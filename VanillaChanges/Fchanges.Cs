@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 
 		public static void ReaperSize(Item item)
 		{
-			if (world1.ReaperMode)
+			if (Reaper.ReaperMode)
 			{
 				if (item.CountsAsClass(DamageClass.Melee))
 				{
@@ -42,16 +42,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		}
 		public static void ReaperSetDefaut(Item item)
         {
-			bool n;
-			if (Reaper.ReaperMode)
-			{
-				n = true;
-			}
-            else
-            {
-				n = false;
-            }
-			if (item.type == ModContent.ItemType<ReaperChalice>()) item.accessory = n;
+			if (item.type == ModContent.ItemType<ReaperChalice>()) item.accessory = Reaper.ReaperMode ? true : false;
 		}
 		public static void ReaperConsumable(Item item)
 		{
@@ -72,16 +63,9 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 					item.type == ModContent.ItemType<FrozenArtifact>() ||
 					item.type == ModContent.ItemType<InfernalCalis>())
 				{
-					if (world1.ReaperMode)
-					{
-						item.consumable = false;
-						item.GetGlobalItem<GlobalItem1>().BossSummon = true;
-					}
-					else
-					{
-						item.consumable = true;
-						item.GetGlobalItem<GlobalItem1>().BossSummon = false;
-					}
+					item.consumable = Reaper.ReaperMode ? false : true;
+					if (Reaper.ReaperMode) item.GetGlobalItem<GlobalItem1>().BossSummon = true;
+					else item.GetGlobalItem<GlobalItem1>().BossSummon = false;
 				}
 
 			}
@@ -90,7 +74,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		public static void ReaperWingsNerf(Player player)
 		{
 			int OgWingTime;
-			if (world1.ReaperMode)
+			if (Reaper.ReaperMode)
 			{
 				if (player.wingTimeMax >= 4)
 				{

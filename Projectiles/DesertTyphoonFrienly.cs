@@ -15,6 +15,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 	public class DesertTyphoonFriendly : DesertTyphoonModel
 	{
 		public override bool Friendly => true;
+		public override bool Hostile => false;
 		public override int PenetrateKill => 30;
 
 		public override void AI()

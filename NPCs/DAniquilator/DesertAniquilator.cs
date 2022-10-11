@@ -101,7 +101,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 
                 if (Main.expertMode || Main.masterMode)
                 {
-                    if (!world1.ReaperMode)
+                    if (!Reaper.ReaperMode)
                     {
                         if (NPC.ai[2] % 300 == 300)
                         {
@@ -146,7 +146,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
                 if (fase2) if (NPC.ai[3] % 900 == 700) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
                 if (Main.expertMode || Main.masterMode)
                 {
-                    if (world1.ReaperMode)
+                    if (Reaper.ReaperMode)
                     {
                         if (NPC.ai[2] % 300 == 200)
                         {

@@ -934,7 +934,15 @@ namespace RemnantOfTheAncientsMod
 				   .AddTile(TileID.AlchemyTable)
 				   .Register();
 			}
-			{
+            for (int i = 4477; i <= 4479; i++)
+            {
+                Recipe.Create(i, 2)
+                   .AddRecipeGroup("anyStrangePlants")
+                   .AddIngredient(ItemID.BottledWater)
+                   .AddTile(TileID.AlchemyTable)
+                   .Register();
+            }
+            {
 
 				Recipe.Create(ItemID.FishingPotion, 2)
 				   .AddRecipeGroup("anyStrangePlants")

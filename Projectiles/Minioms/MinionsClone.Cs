@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         }
         public override void AI()           
         { 
-            if (Main.player[Projectile.owner].GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && world1.ReaperMode && !Main.player[Projectile.owner].dead) Projectile.timeLeft = 2;
+            if (Main.player[Projectile.owner].GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && Reaper.ReaperMode && !Main.player[Projectile.owner].dead) Projectile.timeLeft = 2;
         }
 
         public override bool MinionContactDamage() => true;
@@ -63,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         }
         public override void AI()         
         {                                                  
-            if (Main.player[Projectile.owner].GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && world1.ReaperMode && !Main.player[Projectile.owner].dead) Projectile.timeLeft = 2;
+            if (Main.player[Projectile.owner].GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && Reaper.ReaperMode && !Main.player[Projectile.owner].dead) Projectile.timeLeft = 2;
         }
         public override bool MinionContactDamage() => true;
         public override void Kill(int timeLeft)

@@ -1,11 +1,9 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
-using RemnantOfTheAncientsMod.Items.Fmode;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
@@ -41,8 +39,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             {
                 OverrideColor = valueOrDefault
             };
-            if (world1.ReaperMode)
-            tooltips.Add(item2);
+            if (Reaper.ReaperMode) tooltips.Add(item2);
         }
    /*     private void ReaperArtifactToolTip(Item item, IList<TooltipLine> tooltips)
         {

@@ -5,6 +5,8 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.NPCs.ITyrant;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.World;
+using System;
 
 namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
@@ -42,7 +44,11 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         }
         public override bool? UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<InfernalTyrantHead>());
+            if (world1.TimeDilocated)
+            {
+                int choice = new Random(2).Next(2);
+            }
+            else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<InfernalTyrantHead>());
             SoundEngine.PlaySound(SoundID.Roar, player.position);
 
             return true;

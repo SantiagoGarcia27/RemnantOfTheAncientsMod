@@ -16,16 +16,22 @@ namespace RemnantOfTheAncientsMod.Projectiles
 	{
 		public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Textures/DesertTyphoon";
 		public abstract bool Friendly { get; }
+
+		public abstract bool Hostile { get; }
 		public abstract int PenetrateKill { get; }
+		
 		public override void SetStaticDefaults()
 		{ 
 			Main.projFrames[Projectile.type] = 3; 
 		}
 		public override void SetDefaults()
 		{
+			Projectile.CloneDefaults(ProjectileID.DemonScythe);
+			Projectile.aiStyle = ProjectileID.Typhoon;
 			Projectile.width = 36;
 			Projectile.height = 36;
 			Projectile.friendly = Friendly;
+			Projectile.hostile = Hostile;
 			Projectile.DamageType = DamageClass.Magic;
 			Projectile.tileCollide = true;
 			Projectile.penetrate = 5;
@@ -34,8 +40,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			Projectile.extraUpdates = 1;
 			Main.projFrames[Projectile.type] = 3;
 			Projectile.ignoreWater = true;
-			Projectile.aiStyle = ProjectileID.Typhoon;
-			Projectile.CloneDefaults(ProjectileID.DemonScythe);
+				
 		}
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{

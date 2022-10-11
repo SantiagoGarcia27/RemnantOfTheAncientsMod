@@ -13,12 +13,13 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
     public class DesertTyphoon : DesertTyphoonModel
 	{
 		public override bool Friendly => false;
+		public override bool Hostile => true;
 		public override int PenetrateKill => 0;
-		
-		
+
+
 		public override void AI()
 		{
-			Projectile.rotation += Projectile.direction * 0.8f;
+		/*	Projectile.rotation += Projectile.direction * 0.8f;
 			if (Projectile.alpha > 70)
 			{
 				Projectile.alpha -= 15;
@@ -61,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
 						Main.dust[dust].velocity /= 0.5f;
 					}
 				}
-			}
+			}*/
 		}
 		private void AdjustMagnitude(ref Vector2 vector)
 		{

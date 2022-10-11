@@ -242,7 +242,7 @@ namespace RemnantOfTheAncientsMod
 
 		public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
 		{
-			if (world1.ReaperMode)
+			if (Reaper.ReaperMode)
 			{
 				if (Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade && !Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade)
 					Player.respawnTimer = (int)(Player.respawnTimer * 0.7);
@@ -255,7 +255,7 @@ namespace RemnantOfTheAncientsMod
 		public void ReaperSoulsBoost()
 		{
 			float OgPlayerSpeed = Player.moveSpeed;
-			if (world1.ReaperMode)
+			if (Reaper.ReaperMode)
 			{
 				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) Player.moveSpeed = OgPlayerSpeed + 1.30f;
 				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade) Player.statLifeMax2 += 10;
@@ -283,7 +283,7 @@ namespace RemnantOfTheAncientsMod
 				}
 				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade) Player.statDefense += 10;
 
-				if (world1.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade)
+				if (Reaper.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade)
 				{
 					AddMinion(ProjectileType<TempestClone>(), 140, 10f);
 					Player.aggro -= 400;
@@ -294,11 +294,14 @@ namespace RemnantOfTheAncientsMod
 		}
 		public void ReaperSoulsBoost(Item item)
 		{
-			if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
+			if (Reaper.ReaperMode)
 			{
-				Player.sporeSac = true;
-				Player.SporeSac(item);
-				Player.statLifeMax2 += 10;
+				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
+				{
+					Player.sporeSac = true;
+					Player.SporeSac(item);
+					Player.statLifeMax2 += 10;
+				}
 			}
 		}
 		public void AddMinion(int proj, int damage, float knockback)
@@ -312,7 +315,7 @@ namespace RemnantOfTheAncientsMod
 		}
 		public override void PreUpdateBuffs()
 		{
-			if (world1.ReaperMode) Player.AddBuff(BuffType<ReaperBuff>(), 1);
+			if (Reaper.ReaperMode) Player.AddBuff(BuffType<ReaperBuff>(), 1);
 		}
 
 		public void KillMinion(int proj) => Main.projectile[proj].Kill();

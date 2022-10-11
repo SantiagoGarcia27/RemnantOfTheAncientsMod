@@ -11,42 +11,44 @@ namespace RemnantOfTheAncientsMod.World
 {
 	public class world1 : ModSystem
 	{
-		public static bool ReaperMode;
+		//public static bool ReaperMode;
 		public static bool OneInMiddleMillion;
 		public static bool SpawnTimeWithard;
+		public static bool TimeDilocated;
 		public bool SandWeapons;
 
 		public override void OnWorldLoad()
 		{
 			SpawnTimeWithard = false;
-			ReaperMode = false;
+			//ReaperMode = false;
+			TimeDilocated = false;
 		}
 		public override void OnWorldUnload()
 		{
 			SpawnTimeWithard = false;
-			ReaperMode = false;
+			//ReaperMode = false;
+			TimeDilocated = false;
 		}
 		public override void SaveWorldData(TagCompound tag)
 		{
 
-			if (ReaperMode)
-			{
-				tag["ReaperMode"] = true;
-			}
+			//if (ReaperMode)tag["ReaperMode"] = true;
+			if(TimeDilocated)tag["TimeDilocated"] = true;
 
 		}
 
 		public override void LoadWorldData(TagCompound tag)
 		{
-			ReaperMode = tag.ContainsKey("ReaperMode");
+			//ReaperMode = tag.ContainsKey("ReaperMode");
+			TimeDilocated = tag.ContainsKey("TimeDilocated");
 		}
 
 		public override void NetSend(BinaryWriter writer)
 		{
 			// Order of operations is important and has to match that of NetReceive
 			var flags = new BitsByte();
-			flags[0] = ReaperMode;
-
+			//flags[0] = ReaperMode;
+			flags[1] = TimeDilocated;
 
 			writer.Write(flags);
 		}
@@ -54,8 +56,8 @@ namespace RemnantOfTheAncientsMod.World
 		{
 			// Order of operations is important and has to match that of NetSend
 			BitsByte flags = reader.ReadByte();
-			ReaperMode = flags[0];
-
+			//ReaperMode = flags[0];
+			TimeDilocated = flags[1];
 		}
 	}
 }

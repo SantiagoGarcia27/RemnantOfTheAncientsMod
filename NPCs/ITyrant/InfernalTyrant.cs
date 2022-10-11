@@ -493,30 +493,21 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             }
         }
         public void SummonIa(int Npc) => NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, Npc);
-        public void LifeSpeed()
-        {
+		public void LifeSpeed()
+		{
+			NPC.defense = TyrantArmor(999);
 			if (NPC.life < NPC.lifeMax / 2)
 			{
-				speed = speed = 40;//9.5f
+				speed = 40;//9.5f
 				turnSpeed = 0.15f;
-				NPC.defense = TyrantArmor(999);
 			}
 			if (NPC.life < NPC.lifeMax / 4)
 			{
-				speed = speed = 60;//9.5f
+				speed = 60;//9.5f
 				turnSpeed = 0.55f;
-				NPC.defense = TyrantArmor(999);
 			}
-			if (NPC.life < NPC.lifeMax / 10)
-			{
-				turnSpeed = 1.1f;
-				NPC.defense = TyrantArmor(999);
-			}
-			if (NPC.life < NPC.lifeMax / 15 && world1.ReaperMode)
-			{
-				turnSpeed = 1.5f;
-				NPC.defense = TyrantArmor(999);
-			}
+			if (NPC.life < NPC.lifeMax / 10) turnSpeed = 1.1f;
+			if (NPC.life < NPC.lifeMax / 15 && Reaper.ReaperMode) turnSpeed = 1.5f;
 		}
 
 		public virtual void Init() {
@@ -534,7 +525,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 			if (Main.expertMode || Main.masterMode)
 			{
 				if (NPC.life > NPC.life / 10) i = i / 3;
-				else if (NPC.life > NPC.life / 15 && world1.ReaperMode) i = 0;
+				else if (NPC.life > NPC.life / 15 && Reaper.ReaperMode) i = 0;
 			}
 			else if (NPC.life > NPC.life / 4) i = i / 2;
 			int a = 0;

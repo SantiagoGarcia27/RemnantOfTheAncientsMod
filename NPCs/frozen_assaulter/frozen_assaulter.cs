@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 
             NPC.ai[1]++;
             phaseChanger();
-            if (!world1.ReaperMode)
+            if (!Reaper.ReaperMode)
             {
                 if (NPC.ai[1] >= 5) shootIa((int)NpcChanges1.ExpertDamageScale(50, "MyBoss"), "Frozenp", P, 20f);
                 if (NPC.ai[1] >= 115)
@@ -130,7 +130,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                     {
                         if (!healAnimation)
                         {
-                            if (!world1.ReaperMode)
+                            if (!Reaper.ReaperMode)
                             {
                                 for (int i = NPC.lifeMax / 4; i <= NPC.lifeMax / 2; i++)
                                 {

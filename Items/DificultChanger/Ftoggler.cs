@@ -75,19 +75,17 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 		{
 			if (!Utils1.IsAnyBossAlive())
 			{
-				if (world1.ReaperMode == false)
+				Reaper.ReaperMode = !Reaper.ReaperMode ? true : false;
+				if (Reaper.ReaperMode == false)
 				{
-					world1.ReaperMode = true;
 					Item.buffTime = 1;
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Welcome to hell, now you're a reaper.", gray);
 					player.GetModPlayer<Player1>().ReaperStarter();
-				//	FchangesItem.ReaperSetDefaut(ModContent.ItemType<ReaperChalice>());
 					Player1.ReaperFirstTime = true;	
 				}
 				else
 				{
-					world1.ReaperMode = false;
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Well your soul is free... for now.", gray);
 				}

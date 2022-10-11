@@ -82,175 +82,112 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         }
         public void ShootIa(Player player)
         {
-            if (player.ZoneDesert || player.ZoneUndergroundDesert)
+            if (player.ZoneDesert || player.ZoneUndergroundDesert) 
             {
-                if (Main.expertMode)
+                if (!Main.expertMode)
                 {
                     if (!Reaper.ReaperMode)
                     {
-                        if (Currentphase == 1)
-                        {
-                            CounterProjectiles(800);
-                            if (ShootCounter == 100) RainCactusIa(90, 0.5f, 0.5f);
+                        CounterProjectiles(800);
+                        if (Currentphase == 2 || Currentphase == 3)
+                        { 
+                            if (ShootCounter % 400 == 0)  TyphonIa(30, 0.5f, 0.5f);
+                            if (ShootCounter % 100 == 0)  RainCactusIa(90, 0.5f, 0.5f);
                         }
-                        else if (Currentphase == 2 || Currentphase == 3)
-                        {
-                            CounterProjectiles(800);
-                            if (ShootCounter == 400) TyphonIa(30, 0.5f, 0.5f);
-                            if (ShootCounter == 100) RainCactusIa(90, 0.5f, 0.5f);
-                        }
+                        else if (ShootCounter % 100 == 0)  RainCactusIa(90, 0.5f, 0.5f); 
                     }
                     else
                     {
                         CounterProjectiles(700);
-                        if (ShootCounter >= 350)
+                        if (ShootCounter % 600 == 0)
                         {
-                            TyphonIa(30, 0.5f, 0.5f);
-                            TyphonIa(30, 0.5f, -0.5f);
-                            TyphonIa(30, -0.5f, -0.5f);
-                            TyphonIa(30, -0.5f, 0.5f);
+                            for (float n = -0.5f; n <= 0.5f; n += 0.5f)
+                            {
+                                TyphonIa(30, n, n);
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                if (Main.expertMode)
+                else
                 {
-                    if (!Reaper.ReaperMode && Currentphase == 2)
+                    if (!Reaper.ReaperMode && Currentphase == 2) CounterProjectiles(500);
+                    else CounterProjectiles(400);
+
+                    if (!Reaper.ReaperMode)
                     {
-                        CounterProjectiles(500);
-                        if (ShootCounter == 200) TyphonIa(30, 0.5f, 0.5f);
+                        if (Currentphase == 2 && ShootCounter % 200 == 0) { TyphonIa(30, 0.5f, 0.5f); Main.NewText(Reaper.ReaperMode); };
+                        if (Currentphase == 3 && ShootCounter % 200 == 0) { TyphonIa(30, 0.5f, 0.5f); Main.NewText("z"); }
                     }
                     else
                     {
-                        CounterProjectiles(400);
-                        if (ShootCounter >= 150)
-                        {
-                            TyphonIa(30, 0.5f, 0.5f);
-                            TyphonIa(30, 0.5f, -0.5f);
-                            TyphonIa(30, -0.5f, -0.5f);
-                            TyphonIa(30, -0.5f, 0.5f);
-                        }
+                        if (Currentphase == 2 && ShootCounter % 150 == 0)for (float n = -1.5f; n <= 20.5f;n += 5.5f) TyphonIa(30, 5, n);
+                        else if (Currentphase == 3 && ShootCounter % 150 == 0) for (float n = -1.5f; n <= 40.5f; n += 2.5f) TyphonIa(30, 5, n);
                     }
-                }
+                }  
+            }
+            else
+            {
+                CounterProjectiles(200);
+                if (ShootCounter % 200 == 0) for (float n = -1.5f; n <= 30.5f; n += 1.5f) TyphonIa(30, 5, n); 
             }
         }
         public void SummoningIa(Player player, float distance)
         {
-
+            int n; //DSlime
+            int n2; //TombCrawler
+            int n3; //FlyingAntlion
+            int n4; //WalkingAntlion
+            int n5; //DuneSplicerHead
+            int n6; //DesertScorpionWalk
+           
             if (player.ZoneDesert || player.ZoneUndergroundDesert)
             {
-                #region normal
                 if (!Main.expertMode)
                 {
-                    CounterSummon(800);
-                    switch (EnemyCounter)
-                    {
-                        case 150:
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                            break;
-                        case 200:
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                            break;
-                        case 300:
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                            break;
-                        case 350:
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                            break;
-                    }
-                    if (Currentphase == 2 && EnemyCounter == 799) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+                    if (!Reaper.ReaperMode) CounterSummon(800);
+                    else CounterSummon(600);
+                    n = !Reaper.ReaperMode ? 150 : 100;
+                    n2 = !Reaper.ReaperMode ? 200 : 150;
+                    n3 = !Reaper.ReaperMode ? 300 : 250;
+                    n4 = !Reaper.ReaperMode ? 350 : 300;
+                    n5 = !Reaper.ReaperMode ? 799 : 599;
+                    n6 = !Reaper.ReaperMode ? 500 : 99999;
                 }
-                #endregion
                 else
                 {
-                    #region Expert
-                    if (!Reaper.ReaperMode)
-                    {
-                        CounterSummon(600);
-                        switch (EnemyCounter)
-                        {
-                            case 100:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                                break;
-                            case 150:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                                break;
-                            case 250:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                                break;
-                            case 3500:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                                break;
-                            case 500:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
-                                break;
-                        }
-                        if (Currentphase == 2 && EnemyCounter == 599) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
-                    }
-                    else
-                    {
-                        #region reaper
-                        CounterSummon(400);
-                        switch (EnemyCounter)
-                        {
-                            case 50:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                                break;
-                            case 100:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                                break;
-                            case 250:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                                break;
-                            case 300:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                                break;
-                            case 400:
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
-                                break;
-                        }
-                        if (Currentphase == 2 && EnemyCounter == 399) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
-                    }
-                    #endregion
+                    if (!Reaper.ReaperMode) CounterSummon(600);
+                    else CounterSummon(500);
+                    n = !Reaper.ReaperMode ? 100 : 60;
+                    n2 = !Reaper.ReaperMode ? 150 : 120;
+                    n3 = !Reaper.ReaperMode ? 250 : 180;
+                    n4 = !Reaper.ReaperMode ? 350 : 350;
+                    n5 = !Reaper.ReaperMode ? 599 : 400;
+                    n6 = !Reaper.ReaperMode ? 600 : 499;
                 }
             }
-            #endregion
             else
             {
                 CounterSummon(200);
-
-                switch (EnemyCounter)
-                {
-                    case 50:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 30:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                        break;
-                    case 90:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        break;
-                    case 100:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                        break;
-                    case 120:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
-                        break;
-                }
-                if (Currentphase == 2 && EnemyCounter == 99) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+                n = 10;
+                n2 = 30;
+                n3 = 50;
+                n4 = 100;
+                n5 = 200;
+                n6 = 180;
             }
+          
+            if (EnemyCounter % n == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+            if (EnemyCounter % n2 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
+            if (EnemyCounter % n3 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
+            if (EnemyCounter % n4 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+            if (Currentphase == 2 && EnemyCounter % n5 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+            if (EnemyCounter % n6 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
         }
         public void DesertTp(float distance, Player player)
         {
             if (distance >= 100 * 16) NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
-            if (distance >= 300 * 16) NPC.Center = player.Center;
-            if (Currentphase == 2)
-            {
-                if (NPC.ai[1] > 380 && distance >= 100 * 16) NPC.Center = player.Center;
-                if (NPC.ai[1] > 799 && distance >= 5 * 16 && distance >= 1 * 16) NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
-            }
+            if (Currentphase == 2 && NPC.ai[1] > 799 && distance >= 5 * 16 && distance >= 1 * 16) 
+                NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
         }
         public void CounterProjectiles(int maxcount)
         {
@@ -270,7 +207,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             int damage = (int)NpcChanges1.ExpertDamageScale(Damage, "MyBoss"); ;
             Vector2 vector8 = new Vector2(player.position.X + (NPC.width), ((NPC.position.Y + (NPC.width)) * 2f) + (NPC.height * 2));
             SoundEngine.PlaySound(SoundID.Item10, NPC.position);
-            float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * yPosition)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * xPostition)));
+            float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * (yPosition*16))), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * (xPostition *16))));
             int num54 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)(Math.Cos(rotation) * Speed * -1), (float)((Math.Sin(rotation) * Speed) * -1), ProjectileID.RollingCactus, damage, 0f, 0);
         }
         public void TyphonIa(int i, float xA, float yA)

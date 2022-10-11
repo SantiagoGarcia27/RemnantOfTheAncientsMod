@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         }
     }
     public class EndlessHea : BasePotions
-    { 
+    {
         public override string Texture => "Terraria/Images/Item_" + ItemID.HeartreachPotion;
         public override int ItemId => ItemID.HeartreachPotion;
         public override int BuffId => BuffID.Heartreach;
@@ -29,23 +29,18 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Heartreach Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de alcanzacorazón eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessInf : BasePotions
     {
-
         public override string Texture => "Terraria/Images/Item_" + ItemID.InfernoPotion;
         public override int ItemId => ItemID.InfernoPotion;
         public override int BuffId => BuffID.Inferno;
         public override int TextureID => ItemID.InfernoPotion;
-        
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Inferno Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción del infierno eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }
     public class EndlessIron : BasePotions
@@ -58,9 +53,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Ironskin Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de piel de hierro eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessAmmo : BasePotions
     {
@@ -72,7 +65,6 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Ammo Reservation Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de munición eterna");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }
     public class EndlessArch : BasePotions
@@ -85,26 +77,19 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Archery Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de arquero eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
-
-
-
     public class EndlessBuil : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.BuilderPotion;
-        public  override int TextureID => ItemID.BuilderPotion;
+        public override int TextureID => ItemID.BuilderPotion;
         public override int ItemId => ItemID.BuilderPotion;
         public override int BuffId => BuffID.Builder;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Builder Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción constructora eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessCalm : BasePotions
     {
@@ -116,9 +101,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Calming Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción tranquilizadora eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessCra : BasePotions
     {
@@ -130,11 +113,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Crate Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caja eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
         }
-
     }
-
     public class EndlessDang : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.TrapsightPotion;
@@ -145,10 +126,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Dangersense Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de sentido del peligro eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
         }
     }
-
     public class EndlessFish : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.FishingPotion;
@@ -159,12 +139,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Fishing Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de pesca eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
-
-
     public class EndlessRe : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.RegenerationPotion;
@@ -175,9 +151,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Regeneration Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de regeneración eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessSo : BasePotions
@@ -190,9 +164,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Sonar Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de sonar eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessSp : BasePotions
@@ -205,9 +177,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Spelunker Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de espeleógo eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessSu : BasePotions
@@ -220,9 +190,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Summoning Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de invocación eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
 
+        }
     }
 
     public class EndlessSwif : BasePotions
@@ -235,11 +204,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Swiftness Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de rapidez eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
         }
-
     }
-
     public class EndlessTh : BasePotions
     {
         public override string Texture => "Terraria/Images/Item_" + ItemID.ThornsPotion;
@@ -250,9 +217,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Thorns Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de espinas eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
 
+        }
     }
     public class EndlessBat : BasePotions
     {
@@ -264,9 +230,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Battle Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de batalla eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessEndu : BasePotions
     {
@@ -278,9 +242,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Endurance Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de resistencia eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessFall : BasePotions
@@ -293,9 +255,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Featherfall Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caída de pluma eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessGills : BasePotions
     {
@@ -307,9 +267,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Gills Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de agallas eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessHunt : BasePotions
     {
@@ -321,9 +279,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Hunter Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de cazador eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessInv : BasePotions
     {
@@ -335,9 +291,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Invisibility Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de invisibilidad eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessLF : BasePotions
@@ -350,9 +304,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Lifeforce Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de fuerza vital eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessMi : BasePotions
@@ -365,9 +317,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Mining Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de minería eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessMP : BasePotions
@@ -380,9 +330,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Magic Power Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de poder mágico eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
 
     public class EndlessMR : BasePotions
@@ -395,9 +343,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Magic Regeneration Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción reg. de maná eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessNig : BasePotions
     {
@@ -409,9 +355,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Night Owl Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de noctámbulo eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessOb : BasePotions
     {
@@ -423,9 +367,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Obsidian Skin Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de piel de obsidiana eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessRa : BasePotions
     {
@@ -437,9 +379,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Rage Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de furia eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessSh : BasePotions
     {
@@ -451,9 +391,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Shine Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de brillo eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessTi : BasePotions
     {
@@ -465,9 +403,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Titan Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de titán eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessWa : BasePotions
     {
@@ -479,9 +415,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Warmth Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción del calor eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
     }
     public class EndlessWr : BasePotions
     {
@@ -493,8 +427,57 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Wrath Potion");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de ira eterna");
-             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+    }
+    public class EndlessLLuck : BasePotions
+    {
+        public override string Texture => "Terraria/Images/Item_" + ItemID.LuckPotionLesser;
+        public override int BuffId => BuffID.Lucky;
+        public override int ItemId => ItemID.LuckPotionLesser;
+        public override int TextureID => ItemID.LuckPotionLesser;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Lesser Luck Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de suerte menor eterna");
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemID.LuckPotionLesser);
+            Item.consumable = false;
+        }
+    }
+    public class EndlessMLuck : BasePotions
+    {
+        public override string Texture => "Terraria/Images/Item_" + ItemID.LuckPotion;
+        public override int BuffId => BuffID.Lucky;
+        public override int ItemId => ItemID.LuckPotion;
+        public override int TextureID => ItemID.LuckPotion;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Luck Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de suerte eterna");
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemID.LuckPotion);
+            Item.consumable = false;
+        }
+    }
+    public class EndlessGLuck : BasePotions
+    {
+        public override string Texture => "Terraria/Images/Item_" + ItemID.LuckPotionGreater;
+        public override int BuffId => BuffID.Lucky;
+        public override int ItemId => ItemID.LuckPotionGreater;
+        public override int TextureID => ItemID.LuckPotionGreater;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Greater Luck Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de suerte grande eterna");
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemID.LuckPotionGreater);
+            Item.consumable = false;
+        }
     }
 }

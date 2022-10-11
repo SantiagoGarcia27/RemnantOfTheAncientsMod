@@ -5,6 +5,8 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.NPCs.DAniquilator;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.World;
+using System;
 
 namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
@@ -42,7 +44,14 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         }
         public override bool? UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>()); 
+            int choice = new Random().Next(0, 2);
+            if (world1.TimeDilocated)
+            {
+                if (choice == 1) NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DuneMonarch>());
+                else if (choice == 2) NPC.SpawnOnPlayer(player.whoAmI, NPCID.KingSlime);
+                else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>());
+            }
+            else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>()); 
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;
         }
