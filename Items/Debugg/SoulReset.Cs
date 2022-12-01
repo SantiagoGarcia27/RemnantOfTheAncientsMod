@@ -59,6 +59,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade = n;
 			player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade = n;
 			player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade = n;
+			player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade = n;
 			player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade = n;
 			player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade = n;
 			player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade = n;
@@ -72,6 +73,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade = n;
 			player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade = n;
 			player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade = n;
+
 		}
 
 	}

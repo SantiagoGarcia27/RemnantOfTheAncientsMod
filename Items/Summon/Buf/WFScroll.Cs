@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.Buffs;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {

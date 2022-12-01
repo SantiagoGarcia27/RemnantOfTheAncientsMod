@@ -3,7 +3,6 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {

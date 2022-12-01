@@ -26,8 +26,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			+ "\nConfère l'immunité à la lave et aux blocs de feu");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa todo el daño en un 10%"
 			+ "\nOtorga inmunidad a los bloques de lava y fuego.");
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

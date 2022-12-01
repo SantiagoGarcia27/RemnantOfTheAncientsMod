@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300);
+			target.AddBuff(BuffType<Buffs.Debuff.Burning_Sand>(), 300);
 		}
 	}
 }

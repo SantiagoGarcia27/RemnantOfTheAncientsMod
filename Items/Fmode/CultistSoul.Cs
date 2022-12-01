@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Une brume glaciale vous protégera");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una niebla de hielo te protegerá");
 
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

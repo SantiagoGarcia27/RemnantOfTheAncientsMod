@@ -23,8 +23,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.SetDefault("Increases defense by 10");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la défense de 10");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la defensa en 10");
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

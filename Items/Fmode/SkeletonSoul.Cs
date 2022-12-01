@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la défense de 5");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la defensa en 5");
 
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

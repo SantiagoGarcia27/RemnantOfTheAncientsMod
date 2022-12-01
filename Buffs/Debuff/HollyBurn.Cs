@@ -1,19 +1,17 @@
 using RemnantOfTheAncientsMod.NPCs;
-using RemnantOfTheAncientsMod;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.ID;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Debuff
 {
 	// Ethereal Flames is an example of a buff that causes constant loss of life.
 	// See ExamplePlayer.UpdateBadLifeRegen and ExampleGlobalNPC.UpdateLifeRegen for more information.
-	public class Hell_Fire : ModBuff
+	public class HollyBurn : ModBuff
 	{
-		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Hell Fire");
-			Description.SetDefault("...");
+		public override void SetStaticDefaults() { 
+			DisplayName.SetDefault("Holly Burn");
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;
@@ -21,11 +19,11 @@ namespace RemnantOfTheAncientsMod.Buffs
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
-			player.GetModPlayer<Player1>().Hell_Fire = true;
+			player.GetModPlayer<Player1>().hBurn = true;
 		}
 
-		public override void Update(NPC NPC, ref int buffIndex) {
-			NPC.GetGlobalNPC<GlobalNPC1>().Hell_Fire = true;
+		public override void Update(NPC npc, ref int buffIndex) {
+			npc.GetGlobalNPC<GlobalNPC1>().hBurn = true;
 		}
 
 	}

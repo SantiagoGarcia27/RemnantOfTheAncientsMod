@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.ID;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Debuff
 {
 	// Ethereal Flames is an example of a buff that causes constant loss of life.
 	// See ExamplePlayer.UpdateBadLifeRegen and ExampleGlobalNPC.UpdateLifeRegen for more information.

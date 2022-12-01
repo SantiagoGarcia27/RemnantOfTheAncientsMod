@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -44,7 +46,7 @@ namespace RemnantOfTheAncientsMod
 		public bool anyBossIsAlive;
 		public static bool FWeapons;
 		public static bool ReaperFirstTime;
-
+		private static List<NPC> _hallucinationCandidates = new List<NPC>();
 
 		public override void ResetEffects()
 		{
@@ -244,10 +246,8 @@ namespace RemnantOfTheAncientsMod
 		{
 			if (Reaper.ReaperMode)
 			{
-				if (Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade && !Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade)
-					Player.respawnTimer = (int)(Player.respawnTimer * 0.7);
-				else if (Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade && Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade)
-					Player.respawnTimer = (int)(Player.respawnTimer * 0.3);
+				if (Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade && !Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade) Player.respawnTimer = (int)(Player.respawnTimer * 0.7);
+				else if (Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade && Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade) Player.respawnTimer = (int)(Player.respawnTimer * 0.3);
 			}
 			else Player.respawnTimer = (int)((double)Player.respawnTimer * 1);
 		}
@@ -302,6 +302,8 @@ namespace RemnantOfTheAncientsMod
 					Player.SporeSac(item);
 					Player.statLifeMax2 += 10;
 				}
+				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade)
+SpawnHallucination(item);
 			}
 		}
 		public void AddMinion(int proj, int damage, float knockback)
@@ -319,6 +321,30 @@ namespace RemnantOfTheAncientsMod
 		}
 
 		public void KillMinion(int proj) => Main.projectile[proj].Kill();
+
+		private void SpawnHallucination(Item item)
+		{
+			if (Player.whoAmI != Main.myPlayer) return;
+			
+			Player.insanityShadowCooldown = Utils.Clamp(Player.insanityShadowCooldown - 1, 0, 100);
+
+			if (Player.insanityShadowCooldown > 0) return;
+
+			Player.insanityShadowCooldown = Main.rand.Next(20, 101);
+			float num = 500f;
+			int damage = 18;
+			_hallucinationCandidates.Clear();
+			for (int i = 0; i < 200; i++)
+			{
+				NPC nPC = Main.npc[i];
+				if (nPC.CanBeChasedBy(this) && !(Player.Distance(nPC.Center) > num) && Collision.CanHitLine(Player.position, Player.width, Player.height, nPC.position, nPC.width, nPC.height)) _hallucinationCandidates.Add(nPC);
+			}
+			if (_hallucinationCandidates.Count != 0)
+			{
+				Projectile.RandomizeInsanityShadowFor(Main.rand.NextFromCollection(_hallucinationCandidates), isHostile: false, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
+				Projectile.NewProjectile(new EntitySource_ItemUse(Player, item), spawnposition, spawnvelocity, ProjectileID.InsanityShadowFriendly, damage, 0f, Player.whoAmI, ai, ai2);
+			}
+		}
 
 		public void Debugg()
 		{

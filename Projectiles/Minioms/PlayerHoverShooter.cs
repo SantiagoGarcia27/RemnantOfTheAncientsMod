@@ -16,14 +16,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 		protected float shootSpeed;
 		protected int shoot;
 
-		public virtual void CreateDust()
-		{
-		}
-
-		public virtual void SelectFrame()
-		{
-		}
-
+	
 		public override void Behavior()
 		{
 			Player player = Main.player[Projectile.owner];

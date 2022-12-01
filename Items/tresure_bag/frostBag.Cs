@@ -4,19 +4,17 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
-using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Items.Mele;
 using RemnantOfTheAncientsMod.Items.Ranger;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Summon;
-using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 using RemnantOfTheAncientsMod.Items.Core;
 
 using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
-	public class frostBag : ModItem
+    public class frostBag : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

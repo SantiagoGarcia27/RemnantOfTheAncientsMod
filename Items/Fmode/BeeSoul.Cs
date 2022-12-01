@@ -25,8 +25,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous relâchez les abeilles quand elles vous font du mal");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Liberas abejas cuando te dañan");
 
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

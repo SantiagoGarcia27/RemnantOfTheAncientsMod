@@ -3,12 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
-	public class Palladium_saber : ModItem
+    public class Palladium_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

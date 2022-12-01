@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
@@ -54,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             
        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) 
        {
-		    if (Main.rand.NextBool()) target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300);
+		    if (Main.rand.NextBool()) target.AddBuff(BuffType<Burning_Sand>(), 300);
        }
     }
 }

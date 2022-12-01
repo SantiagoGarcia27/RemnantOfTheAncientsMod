@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Debuff
 {
 	public class Javalina : ModBuff
 	{

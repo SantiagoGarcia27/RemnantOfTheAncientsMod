@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
@@ -91,8 +92,8 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			TargetWhoAmI = target.whoAmI; // Set the target whoAmI
 			Projectile.velocity = (target.Center - Projectile.Center) * 0.75f; 
 			Projectile.netUpdate = true; // netUpdate this javelin
-			target.AddBuff(BuffType<Buffs.Javalina>(), 900);
-            target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300); 
+			target.AddBuff(BuffType<Javalina>(), 900);
+            target.AddBuff(BuffType<Burning_Sand>(), 300); 
 			Projectile.damage = 0; // Makes sure the sticking javelins do not deal damage anymore
 
 			// It is recommended to split your code into separate methods to keep code clean and clear

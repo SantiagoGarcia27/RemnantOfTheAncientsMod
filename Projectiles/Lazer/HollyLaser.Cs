@@ -10,6 +10,7 @@ using RemnantOfTheAncientsMod.Buffs;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
 using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Lazer
 {

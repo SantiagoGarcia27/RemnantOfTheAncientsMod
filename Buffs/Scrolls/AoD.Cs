@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
     public class AoD : ModBuff
     {

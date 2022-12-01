@@ -1,14 +1,14 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Buffs;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
-	public class DScroll : ModItem
+    public class DScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

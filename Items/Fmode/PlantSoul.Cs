@@ -2,10 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.VanillaChanges;
-using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Items.Fmode
@@ -26,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			+ "\nInvoque des spores au fil du temps qui endommageront les ennemis");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta permanentemente la vida máxima en 10"
 			+ "\nInvoca esporas a lo largo del tiempo que dañarán a los enemigos.");
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

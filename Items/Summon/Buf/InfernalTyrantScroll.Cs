@@ -5,10 +5,11 @@ using RemnantOfTheAncientsMod.Buffs;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
-	public class SScroll : ModItem
+	public class InfernalTyrantScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

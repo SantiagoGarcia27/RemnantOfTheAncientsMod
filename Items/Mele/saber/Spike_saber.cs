@@ -5,11 +5,10 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Projectiles;
-using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
-	public class Spike_saber : ModItem
+    public class Spike_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

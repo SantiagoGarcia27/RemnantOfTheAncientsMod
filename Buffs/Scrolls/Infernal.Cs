@@ -3,8 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
     public class Infernal : ModBuff
     {

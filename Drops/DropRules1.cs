@@ -4,20 +4,28 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace RemnantOfTheAncientsMod.Drops
 {
-    internal class DropRules1
+    public class DropRules1 : ItemDropRule
     {
 
 
-    }
-    public class SlimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
-    {
-        public SlimeReaperSoulRule() { }
-        public bool CanDrop(DropAttemptInfo info)
+
+        /* public class SlimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
+         {
+             public SlimeReaperSoulRule() { }
+             public bool CanDrop(DropAttemptInfo info)
+             {
+                 if(!Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) return true;
+                 return false;
+             }
+             public bool CanShowItemDropInUI() => true;
+             public string GetConditionDescription() => null;
+         }*/
+
+        public class SlimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            if(!Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) return true;
-            return false;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade;
+            public bool CanShowItemDropInUI() => true;
+            public string GetConditionDescription() => null;
         }
-        public bool CanShowItemDropInUI() => true;
-        public string GetConditionDescription() => null;
     }
 }

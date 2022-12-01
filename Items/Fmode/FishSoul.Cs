@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Un Sharknado vous protégera ");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un Tornado de tiburones te protegerá");
 
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

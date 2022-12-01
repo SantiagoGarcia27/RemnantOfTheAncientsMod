@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Buffs;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {
@@ -56,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 		}
 			   public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
 			if (Main.rand.NextBool()) {
-				target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300);
+				target.AddBuff(BuffType<Burning_Sand>(), 300);
 			
 		  }
 		}

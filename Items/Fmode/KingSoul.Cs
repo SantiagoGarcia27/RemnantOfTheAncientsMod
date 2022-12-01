@@ -23,8 +23,8 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.SetDefault("30% increased movement speed");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "30% d'augmentation de la vitesse de déplacement");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Velocidad de movimiento en 30%");
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}

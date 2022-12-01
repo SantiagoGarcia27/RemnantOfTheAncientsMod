@@ -5,6 +5,7 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.Items.Fmode;
 
 namespace RemnantOfTheAncientsMod.Items.Debugg
 {
@@ -34,21 +35,8 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			Item.autoReuse = false;
 		}
         public override void UpdateAccessory(Player player, bool hideVisual) {
-			Player1 p = player.GetModPlayer<Player1>();
-			//world1 w = world.GetModWorld<world1>();
-			//world1.Fmode = false;
+			Main.NewText(Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade);
 
-            if (Utils1.IsAnyBossAlive()) {
-                Item.damage = 272727;
-                Item.rare = 12;
-				Main.NewText("Boss");
-            }
-           /* else {
-                Item.rare = ItemRarityID.Orange; 
-				Item.damage = 1;
-				Main.NewText("No Boss");
-            }*/
-
-    }
+		}
 }
 }

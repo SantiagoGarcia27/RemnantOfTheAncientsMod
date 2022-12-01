@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -42,9 +41,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			target.AddBuff(BuffID.Poisoned, 80);
 		}	
 		public override void MeleeEffects(Player player, Rectangle hitbox) {
-			if (Main.rand.NextBool(1)) {
-                Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Grass);
-			}
+			if (Main.rand.NextBool(1))  Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Grass);
 		}
 
 		public override void AddRecipes()

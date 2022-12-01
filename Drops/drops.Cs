@@ -17,7 +17,7 @@ using RemnantOfTheAncientsMod.Items.accesorios;
 using RemnantOfTheAncientsMod.Items.pets;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Mele;
-
+using RemnantOfTheAncientsMod.Drops;
 
 namespace opswordsII.Drops
 {
@@ -137,14 +137,11 @@ namespace opswordsII.Drops
         {
             
             if (npc.boss)
-            { 
-                if (npc.type == NPCID.KingSlime && !Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<KingSoul>(), 1));
+            {
 
-                if (npc.type == NPCID.EyeofCthulhu && !Main.LocalPlayer.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade) ItemDropRule.Common(ModContent.ItemType<EyeSoul>(), 1, 1, 1);
 
-                if ((npc.type == NPCID.BrainofCthulhu || (npc.type >= NPCID.EaterofWorldsHead && npc.type <= NPCID.EaterofWorldsTail)) && !Main.LocalPlayer.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade) ItemDropRule.Common(ModContent.ItemType<CorruptSoul>(), 1, 1, 1);
 
-                if (npc.type == NPCID.QueenBee && !Main.LocalPlayer.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade) ItemDropRule.Common(ModContent.ItemType<BeeSoul>(), 1, 1, 1);
+              
 
                 if (npc.type == NPCID.Skeleton && !Main.LocalPlayer.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade) ItemDropRule.Common(ModContent.ItemType<SkeletonSoul>(), 1, 1, 1);
 

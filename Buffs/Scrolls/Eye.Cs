@@ -5,7 +5,7 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
     public class Eye : ModBuff
     {

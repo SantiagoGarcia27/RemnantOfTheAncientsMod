@@ -8,37 +8,38 @@ using RemnantOfTheAncientsMod.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
 using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
 
-    public class Curecedball : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Curecedball"); //projectile name
-            
-        }
-            public override void SetDefaults()   
-        {    
-            Projectile.width = 36;       //projectile width
-            Projectile.height = 36;  //projectile height
-            Projectile.friendly = true;      //make that the projectile will not damage you
-           Projectile.DamageType = DamageClass.Melee;          // 
-            Projectile.tileCollide = true;   //make that the projectile will be destroed if it hits the terrain
-            Projectile.penetrate = 1;      //how many NPC will penetrate
-            Projectile.timeLeft = 200;   //how many time this projectile has before disepire
-            Projectile.light = 0.75f;    // projectile light
-            Projectile.extraUpdates = 1;
+	public class Curecedball : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Curecedball"); //projectile name
+
+		}
+		public override void SetDefaults()
+		{
+			Projectile.width = 36;       //projectile width
+			Projectile.height = 36;  //projectile height
+			Projectile.friendly = true;      //make that the projectile will not damage you
+			Projectile.DamageType = DamageClass.Melee;          // 
+			Projectile.tileCollide = true;   //make that the projectile will be destroed if it hits the terrain
+			Projectile.penetrate = 1;      //how many NPC will penetrate
+			Projectile.timeLeft = 200;   //how many time this projectile has before disepire
+			Projectile.light = 0.75f;    // projectile light
+			Projectile.extraUpdates = 1;
 			Main.projFrames[Projectile.type] = 3;
-            Projectile.ignoreWater = true; 
-            Projectile.aiStyle = ProjectileID.BallofFire;
+			Projectile.ignoreWater = true;
+			Projectile.aiStyle = ProjectileID.BallofFire;
 			Projectile.CloneDefaults(ProjectileID.BallofFire);
 
-        }
+		}
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-		Projectile.penetrate--;
+			Projectile.penetrate--;
 			if (Projectile.penetrate <= 1)
 			{
 				Projectile.Kill();
@@ -82,12 +83,14 @@ namespace RemnantOfTheAncientsMod.Projectiles
 		}
 		public override void AI()
 		{
+		}
+
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			if (Main.rand.NextBool())
+			{
+				target.AddBuff(BuffType<Burning_Sand>(), 300);
 			}
-		
-                   public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
-			if (Main.rand.NextBool()) {
-				target.AddBuff(BuffType<Buffs.Burning_Sand>(), 300);
-			}
-        }
-    }
-  }
+		}
+	}
+}
