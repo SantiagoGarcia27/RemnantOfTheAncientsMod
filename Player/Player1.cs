@@ -303,7 +303,7 @@ namespace RemnantOfTheAncientsMod
 					Player.statLifeMax2 += 10;
 				}
 				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade)
-SpawnHallucination(item);
+				SpawnHallucination(item);
 			}
 		}
 		public void AddMinion(int proj, int damage, float knockback)
@@ -332,7 +332,8 @@ SpawnHallucination(item);
 
 			Player.insanityShadowCooldown = Main.rand.Next(20, 101);
 			float num = 500f;
-			int damage = 18;
+			int damage = 10;
+			if(Player.getDPS() >= 1) damage = Player.getDPS()/3; //18;
 			_hallucinationCandidates.Clear();
 			for (int i = 0; i < 200; i++)
 			{

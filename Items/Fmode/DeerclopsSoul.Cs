@@ -48,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
         public override bool CanUseItem(Player player) => !player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade;
         public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade = true;
+			player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade = true;
 			return true;
 		}
         internal static Color GetRarityColor() => Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);

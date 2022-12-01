@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
            player.GetModPlayer<Player1>().ReaperSoulsBoost(Item);
-            player.GetModPlayer<Player1>().ReaperSoulsBoost();
+           player.GetModPlayer<Player1>().ReaperSoulsBoost();
         }
         public override void SetDefaults()
         {
