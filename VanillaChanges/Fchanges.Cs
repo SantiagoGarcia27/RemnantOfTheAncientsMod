@@ -79,8 +79,8 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				if (player.wingTimeMax >= 4)
 				{
 					OgWingTime = player.wingTimeMax;
-					if (!player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade) player.wingTimeMax = OgWingTime / 2;
-					else player.wingTimeMax = OgWingTime;
+					if (!player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade || !player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade) player.wingTimeMax = OgWingTime / 2;
+					else player.wingTimeMax = OgWingTime;				
 				}
 			}
 		}

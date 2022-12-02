@@ -2,15 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.VanillaChanges;
-using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Items.Fmode
 {
-	public class QueenSoul : ModItem
+    public class QueenSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
@@ -20,12 +18,9 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			DisplayName.SetDefault("Queen Slime Soul");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du tyran infernal");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de la reina slime");
-			Tooltip.SetDefault("Increased all damage by 10%"
-			+ "\nGrants immunity lava and fire blocks");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentation de tous les dégâts de 10 %"
-			+ "\nConfère l'immunité à la lave et aux blocs de feu");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa todo el daño en un 10%"
-			+ "\nOtorga inmunidad a los bloques de lava y fuego.");
+			Tooltip.SetDefault("Permanently increases maximum life by 15");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente de manière permanente la vie maximale de 15");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta permanentemente la vida máxima en 15");
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;

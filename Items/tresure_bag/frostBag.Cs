@@ -11,6 +11,7 @@ using RemnantOfTheAncientsMod.Items.Summon;
 using RemnantOfTheAncientsMod.Items.Core;
 
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Items.Fmode;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
@@ -45,6 +46,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Permafrost>(), 4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<frozen_staff>(), 4));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrozenStafff>(), 4));
+
+			
 		}
 		public override int BossBagNPC => NPCType<frozen_assaulter>();
 	}

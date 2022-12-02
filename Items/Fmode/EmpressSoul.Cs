@@ -2,15 +2,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.VanillaChanges;
-using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Items.Fmode
 {
-	public class EmpressSoul : ModItem
+    public class EmpressSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
@@ -20,9 +18,9 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			DisplayName.SetDefault("Empress of Light Soul");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de Impératrice de Lumière");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de la Emperatriz de la luz");
-			Tooltip.SetDefault("Increases defense by 10");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la défense de 10");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la defensa en 10");
+			Tooltip.SetDefault("Grants infinite wing and rocket boot flight");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Accorde un vol infini d'ailes et de fusées");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga vuelo infinito");
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;

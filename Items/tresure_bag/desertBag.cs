@@ -13,6 +13,7 @@ using RemnantOfTheAncientsMod.Items.Summon.Buf;
 using RemnantOfTheAncientsMod.Items.Core;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Items.Ranger.Bows;
+using RemnantOfTheAncientsMod.Items.Fmode;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {

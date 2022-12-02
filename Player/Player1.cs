@@ -268,6 +268,7 @@ namespace RemnantOfTheAncientsMod
 				if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade) Player.statDefense += 5;
 				if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade) Player.GetDamage(DamageClass.Generic) *= 1.10f;
 				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) FrostInmune();
+				if (Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade) Player.statLifeMax2 += 15;
 				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade) Player.pickSpeed -= 0.35f;
 				if (Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade) FirenInmune();
 				if (Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade)
@@ -275,6 +276,8 @@ namespace RemnantOfTheAncientsMod
 					Player.findTreasure = true;
 					Player.jumpSpeedBoost += 10f;
 				}
+				if (Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade) Player.empressBrooch = true;
+				
 				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade)
 				{
 					Player.fireWalk = true;
@@ -282,7 +285,7 @@ namespace RemnantOfTheAncientsMod
 					Player.GetDamage(DamageClass.Generic) *= 1.10f;
 				}
 				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade) Player.statDefense += 10;
-
+				
 				if (Reaper.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade)
 				{
 					AddMinion(ProjectileType<TempestClone>(), 140, 10f);
@@ -319,7 +322,6 @@ namespace RemnantOfTheAncientsMod
 		{
 			if (Reaper.ReaperMode) Player.AddBuff(BuffType<ReaperBuff>(), 1);
 		}
-
 		public void KillMinion(int proj) => Main.projectile[proj].Kill();
 
 		private void SpawnHallucination(Item item)

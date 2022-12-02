@@ -11,7 +11,7 @@ using RemnantOfTheAncientsMod.Items.Ranger.Rep;
 using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Core;
-
+using RemnantOfTheAncientsMod.Items.Fmode;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
@@ -40,6 +40,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyrant_repeater>(), 3));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Spike_saber>(), 3));
 			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyran_Blast>(), 3));
+
+		
 		}
 		public override int BossBagNPC => NPCType<InfernalTyrantHead>();
 	}
