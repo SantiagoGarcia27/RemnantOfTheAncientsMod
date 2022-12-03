@@ -23,22 +23,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.SetDefault("Increases mining speed by 35%");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de minage de 35%");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de minería en un 35%.");
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-			//ItemID.Sets.ItemIconPulse[Item.type] = true;
+			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.width = 26; //Tamaño inGame 
-			Item.height = 26;
+			Item.height = 20;
 			Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
 			Item.value = 0; //Precio
 			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
-			Item.useAnimation = 20;
 			Item.useTime = 20;
-			Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.useAnimation = 20;
+            Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.maxStack = 1;
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;

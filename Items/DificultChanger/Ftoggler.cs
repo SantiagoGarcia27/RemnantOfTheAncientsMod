@@ -63,8 +63,8 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
         }
 		public override void SetDefaults()
 		{
-			Item.width = 20;
-			Item.height = 20;
+			Item.width = 26;
+			Item.height = 44;
 			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
 			Item.useAnimation = 20;
 			Item.useTime = 20;
