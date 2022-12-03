@@ -29,21 +29,24 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 			+ "\nthe short range melee weapons size are increased by 150%"	
 			+ "\nreduce flight time in half."
 			+ "\ndamage and max health of bosses are doubled"
-			+ "\nLegendary drops are more common");
+			+ "\nLegendary drops are more common"
+			+ "\nTreasure bags have unique items");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Active the Reaper mode"
 			+ "\nvos PV max naturels sont définis sur 1"
 			+ "\naugmentez tous les dégâts de 50%"
 			+ "\nla taille des armes de mêlée à courte portée est augmentée de 150 % " 
 			+ "\nréduisez le temps de vol de moitié "
 			+ "\nles dégâts et la santé max des boss sont doublés"
-			+ "\nDrops légendaires sont plus fréquents");
+			+ "\nDrops légendaires sont plus fréquents"
+			+ "\nLes sacs à trésors contiennent des objets uniques");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Activa el modo Reaper"
 			+ "\ntu vida máxima se establece en 1"
 			+ "\naumenta todo el daño en un 50%"
 			+ "\nel tamaño de las armas cuerpo a cuerpo de corto alcanze aumenta en un 150%"
 			+ "\nreduce el tiempo de vuelo a la mitad "
 			+ "\nel daño y la vida maxima de los jefes se ven duplicados"
-			+ "\nArticulos legendarios son más comunes ");
+			+ "\nArticulos legendarios son más comunes "
+			+ "\nLas bolsas de tesoro tienen objetos únicos");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -20,9 +20,9 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			DisplayName.SetDefault("Skeletron Prime Energy Cell");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cellule énergétique Skeletron Prime");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía Skeletron Prime");
-			Tooltip.SetDefault("Increase jump height drastically");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmenter considérablement la hauteur de saut");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la altura del salto drásticamente");
+			Tooltip.SetDefault("Increase jump height drastically \nAllows to see the minerals");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmenter considérablement la hauteur de saut \nPermet de voir les minerais");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la altura del salto drásticamente \nPermite ver los minerales");
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 			//ItemID.Sets.ItemIconPulse[Item.type] = true;
