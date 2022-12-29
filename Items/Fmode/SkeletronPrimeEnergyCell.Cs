@@ -23,16 +23,15 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.SetDefault("Increase jump height drastically \nAllows to see the minerals");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmenter considérablement la hauteur de saut \nPermet de voir les minerais");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la altura del salto drásticamente \nPermite ver los minerales");
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-			//ItemID.Sets.ItemIconPulse[Item.type] = true;
+			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.width = 26; //Tamaño inGame 
-			Item.height = 26;
+			Item.height = 20;
 			Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
 			Item.value = 0; //Precio
 			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;

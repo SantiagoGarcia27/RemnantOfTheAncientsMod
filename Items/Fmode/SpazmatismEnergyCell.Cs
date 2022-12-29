@@ -23,16 +23,15 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Tooltip.SetDefault("Grants immunity to all fire debuffs");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Accorde l'immunité à tous les affaiblissements de feu");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a todas las desventajas de fuego.");
-			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-			//ItemID.Sets.ItemIconPulse[Item.type] = true;
+			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.width = 26; //Tamaño inGame 
-			Item.height = 26;
+			Item.height = 20;
 			Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
 			Item.value = 0; //Precio
 			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
