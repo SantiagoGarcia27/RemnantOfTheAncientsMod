@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			Item.autoReuse = false;
 		}
         public override void UpdateAccessory(Player player, bool hideVisual) {
-			Main.NewText(Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade);
+			Main.NewText(Player1.ChaliceOn);
 
 		}
 }

@@ -63,11 +63,13 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade = n;
 			player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade = n;
 			player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade = n;
+			player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade = n;
 			player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade = n;
 			player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade = n;
 			player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade = n;
 			player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade = n;
 			player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade = n;
+			player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade = n;
 			player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade = n;
 			player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade = n;
 			player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade = n;

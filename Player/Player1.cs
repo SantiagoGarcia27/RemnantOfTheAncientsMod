@@ -44,6 +44,7 @@ namespace RemnantOfTheAncientsMod
 		public bool YtPet;
 		public bool ModPlayer = true;
 		public bool anyBossIsAlive;
+		public static bool ChaliceOn;
 		public static bool FWeapons;
 		public static bool ReaperFirstTime;
 		private static List<NPC> _hallucinationCandidates = new List<NPC>();
@@ -68,6 +69,7 @@ namespace RemnantOfTheAncientsMod
 			TyrantMinion = false;
 			hasInfernal_core = false;
 			SandWeapons = false;
+			ChaliceOn = false;
 		}
 
 
@@ -255,7 +257,7 @@ namespace RemnantOfTheAncientsMod
 		public void ReaperSoulsBoost()
 		{
 			float OgPlayerSpeed = Player.moveSpeed;
-			if (Reaper.ReaperMode)
+			if (Reaper.ReaperMode && ChaliceOn)
 			{
 				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) Player.moveSpeed = OgPlayerSpeed + 1.30f;
 				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade) Player.statLifeMax2 += 10;
@@ -297,7 +299,7 @@ namespace RemnantOfTheAncientsMod
 		}
 		public void ReaperSoulsBoost(Item item)
 		{
-			if (Reaper.ReaperMode)
+			if (Reaper.ReaperMode && ChaliceOn)
 			{
 				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
 				{
@@ -305,8 +307,7 @@ namespace RemnantOfTheAncientsMod
 					Player.SporeSac(item);
 					Player.statLifeMax2 += 10;
 				}
-				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade)
-				SpawnHallucination(item);
+				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade) SpawnHallucination(item);
 			}
 		}
 		public void AddMinion(int proj, int damage, float knockback)
@@ -335,7 +336,7 @@ namespace RemnantOfTheAncientsMod
 			Player.insanityShadowCooldown = Main.rand.Next(20, 101);
 			float num = 500f;
 			int damage = 10;
-			if(Player.getDPS() >= 1) damage = Player.getDPS()/3; //18;
+			if(Player.getDPS() >= 1) damage = Player.getDPS()/4; //18;
 			_hallucinationCandidates.Clear();
 			for (int i = 0; i < 200; i++)
 			{
@@ -348,8 +349,8 @@ namespace RemnantOfTheAncientsMod
 				Projectile.NewProjectile(new EntitySource_ItemUse(Player, item), spawnposition, spawnvelocity, ProjectileID.InsanityShadowFriendly, damage, 0f, Player.whoAmI, ai, ai2);
 			}
 		}
-
-		public void Debugg()
+		
+        public void Debugg()
 		{
 			bool rft = GetInstance<ConfigClient1>().ReaperFirsTimeConf;
 			if (rft) ReaperFirstTime = true;

@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "moissonneuse");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Segador");
             Tooltip.SetDefault("Active the Reaper mode"
-			+ "\n you natural max hp set in 1"
+			+ "\nyou natural max hp set in 1"
             + "\nincrease all damage by 50%"	
 			+ "\nthe short range melee weapons size are increased by 150%"	
 			+ "\nreduce flight time in half."

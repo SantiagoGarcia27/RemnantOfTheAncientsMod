@@ -31,6 +31,7 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
         {
            player.GetModPlayer<Player1>().ReaperSoulsBoost(Item);
            player.GetModPlayer<Player1>().ReaperSoulsBoost();
+           Player1.ChaliceOn = true;
         }
         public override void SetDefaults()
         {
