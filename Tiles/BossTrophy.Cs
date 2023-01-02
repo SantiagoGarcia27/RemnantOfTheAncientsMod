@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 
 namespace RemnantOfTheAncientsMod.Tiles
 {

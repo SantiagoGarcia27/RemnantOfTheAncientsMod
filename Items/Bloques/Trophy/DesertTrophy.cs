@@ -3,8 +3,9 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Tiles;
 
-namespace RemnantOfTheAncientsMod.Items.Bloques
+namespace RemnantOfTheAncientsMod.Items.Bloques.Trophy
 {
 	public class DesertTrophy : ModItem
 	{
@@ -29,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Items.Bloques
 			Item.consumable = true;
 			Item.value = 50000;
 			Item.rare = ItemRarityID.Blue;
-			Item.createTile = TileType<Tiles.BossTrophy>();
+			Item.createTile = TileType<BossTrophy>();
 			Item.placeStyle = 0;
 		}
 	}

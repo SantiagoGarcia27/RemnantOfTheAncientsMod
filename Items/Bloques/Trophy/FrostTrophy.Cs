@@ -4,16 +4,17 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
-namespace RemnantOfTheAncientsMod.Items.Bloques
+namespace RemnantOfTheAncientsMod.Items.Bloques.Trophy
 {
-	public class InfernalTrophy : ModItem
+	public class FrostTrophy : ModItem
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Infernal Tyrant Trophy");	
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Piekielny Tyran Trophy");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'Tyran infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo de Tirano infernal");
+			DisplayName.SetDefault("Frozen Assaulter Trophy");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Frozen Assaulter Trophy");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'assaillant gelé");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo de asaltante congelado");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
 		}
 
 		public override void SetDefaults() {
@@ -29,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Items.Bloques
 			Item.value = 50000;
 			Item.rare = ItemRarityID.Blue;
 			Item.createTile = TileType<Tiles.BossTrophy>();
-			Item.placeStyle = 2;
+			Item.placeStyle = 1;
 		}
 	}
 }

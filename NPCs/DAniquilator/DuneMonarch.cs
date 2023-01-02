@@ -23,6 +23,7 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 
 namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 {
