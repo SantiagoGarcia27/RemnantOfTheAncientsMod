@@ -19,7 +19,6 @@ using RemnantOfTheAncientsMod.Common.Systems;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 
 namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 {

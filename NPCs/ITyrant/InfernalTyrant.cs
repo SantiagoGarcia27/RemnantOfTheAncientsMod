@@ -21,7 +21,6 @@ using Terraria.GameContent.ItemDropRules;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.Systems;
 using Terraria.Audio;
-using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 
 namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 {

@@ -172,7 +172,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Lazer
 				dust.velocity.Y = -Math.Abs(dust.velocity.Y);
 				unit = dustPos - Main.player[Projectile.owner].Center;
 				unit.Normalize();
-				dust = Main.dust[Dust.NewDust(Main.player[Projectile.owner].Center + 55 * unit, 8, 8, DustID.Smoke, 0.0f, 0.0f, 100, new Color(), 1.5f)];
+				dust = Main.dust[Dust.NewDust(Main.player[Projectile.owner].Center + 55 * unit, 8, 8, 31, 0.0f, 0.0f, 100, new Color(), 1.5f)];
 				dust.velocity = dust.velocity * 0.5f;
 				dust.velocity.Y = -Math.Abs(dust.velocity.Y);
 			}

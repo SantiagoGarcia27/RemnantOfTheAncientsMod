@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 			Item.height = 26;
 			Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
 			Item.value = 500; //Precio
-			Item.rare = ItemRarityID.Blue;
+			Item.rare = 1;
 			Item.accessory = true;
 			Item.defense = 1;
 		}
