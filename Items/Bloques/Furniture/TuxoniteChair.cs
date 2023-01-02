@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 	public class TuxoniteChair : ModItem
 	{
 		public override void SetStaticDefaults() {
-			Tooltip.SetDefault("Tuxonite chair.");
+		//	Tooltip.SetDefault("Tuxonite chair.");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
