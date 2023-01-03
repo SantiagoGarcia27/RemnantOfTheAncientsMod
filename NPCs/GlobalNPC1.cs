@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader;
+using RemnantOfTheAncientsMod.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.NPCs
 {
@@ -15,13 +16,17 @@ namespace RemnantOfTheAncientsMod.NPCs
 		public bool Hell_Fire;
 		public bool Javalina;
 		public bool hBurn;
+		public bool Marble_Erosion;
+		public bool Can_Marble;
 
-		public override void ResetEffects(NPC NPC) {
+
+        public override void ResetEffects(NPC NPC) {
 			Burn_Sand = false;
 			Javalina = false;
 			Hell_Fire = false;
 			hBurn = false;
-		}
+			Marble_Erosion = false;
+        }
 
 		public override void SetDefaults(NPC NPC) {
 			// We want our ExampleJavelin buff to follow the same immunities as BoneJavelin
@@ -77,8 +82,21 @@ namespace RemnantOfTheAncientsMod.NPCs
 				}
 			}
 		}
+        public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            if (Marble_Erosion)
+            {
+                npc.defense = npc.defDefense - 2;
+                Can_Marble = true;
+            }
+            else
+            {
+                npc.defense = npc.defDefense;
+            }
+            return base.StrikeNPC(npc, ref damage, defense, ref knockback, hitDirection, ref crit);
+        }
 
-		public override void DrawEffects(NPC NPC, ref Color drawColor) {
+        public override void DrawEffects(NPC NPC, ref Color drawColor) {
 			if (Burn_Sand) {
 				if (Main.rand.Next(4) < 3) {
 					int dust = Dust.NewDust(NPC.position - new Vector2(2f, 2f), NPC.width + 4, NPC.height + 4, DustType<QuemaduraA>(), NPC.velocity.X * 0.4f, NPC.velocity.Y * 0.4f, 100, default(Color), 3.5f);
