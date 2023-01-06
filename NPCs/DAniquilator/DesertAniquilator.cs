@@ -240,7 +240,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             NPC.velocity.X -= 3.09f;
             NPC.velocity.Y -= 3f;
 
-            NPC.EncourageDespawn(10);
+            NPC.EncourageDespawn(7);
             return;
         }
         public override void OnHitPlayer(Player player, int damage, bool crit) {

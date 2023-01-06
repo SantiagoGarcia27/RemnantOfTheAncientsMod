@@ -62,10 +62,18 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 
         public override void AI()
         {
-            Player P = Main.player[NPC.target];
+            Player player = Main.player[NPC.target];
             float distance = NPC.Distance(Main.player[NPC.target].Center);
 
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) NPC.TargetClosest(true);
+            if (player.dead)
+            {
+                NPC.EncourageDespawn(7);
+                return;
+            }
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            {
+                NPC.TargetClosest(true);
+            }
             NPC.netUpdate = true;
             NPC.ai[0]++;
 
@@ -73,10 +81,10 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             phaseChanger();
             if (!Reaper.ReaperMode)
             {
-                if (NPC.ai[1] >= 5) shootIa((int)NpcChanges1.ExpertDamageScale(50, true), "Frozenp", P, 20f);
+                if (NPC.ai[1] >= 5) shootIa((int)NpcChanges1.ExpertDamageScale(50, true), "Frozenp", player, 20f);
                 if (NPC.ai[1] >= 115)
                 {
-                    shootIa((int)NpcChanges1.ExpertDamageScale(30, true), "Lazer", P, 20f);
+                    shootIa((int)NpcChanges1.ExpertDamageScale(30, true), "Lazer", player, 20f);
                     NPC.ai[1] = 0;
                 }
                 NPC.ai[2]++;
@@ -84,8 +92,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             }
             else
             {
-                if (NPC.ai[1] >= 20) shootIa((int)NpcChanges1.ExpertDamageScale(180, true), "Frozenp", P, 40f);
-                if (NPC.ai[1] >= 115) shootIa((int)NpcChanges1.ExpertDamageScale(230, true), "Lazer", P, 30f);
+                if (NPC.ai[1] >= 20) shootIa((int)NpcChanges1.ExpertDamageScale(180, true), "Frozenp", player, 40f);
+                if (NPC.ai[1] >= 115) shootIa((int)NpcChanges1.ExpertDamageScale(230, true), "Lazer", player, 30f);
                 NPC.ai[2]++;
             }
 
