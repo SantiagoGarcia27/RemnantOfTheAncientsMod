@@ -1,12 +1,10 @@
-using Terraria;
+/*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Buffs;
 using RemnantOfTheAncientsMod.Items.Items;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
-using RemnantOfTheAncientsMod.Projectiles;
 using System;
 using RemnantOfTheAncientsMod.Items.Bloques;
 using RemnantOfTheAncientsMod.Items.Mele;
@@ -245,4 +243,4 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));
         }
     }
-}
+}*/

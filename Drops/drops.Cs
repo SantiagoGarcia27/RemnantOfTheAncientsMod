@@ -18,6 +18,7 @@ using RemnantOfTheAncientsMod.Items.pets;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Mele;
 using RemnantOfTheAncientsMod.Drops;
+using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 
 namespace opswordsII.Drops
 {

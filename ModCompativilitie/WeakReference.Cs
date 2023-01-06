@@ -19,6 +19,7 @@ using RemnantOfTheAncientsMod.NPCs.DAniquilator;
 using RemnantOfTheAncientsMod.Items.Bloques;
 using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
 using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 
 namespace RemnantOfTheAncientsMod
 {

@@ -42,6 +42,12 @@ namespace RemnantOfTheAncientsMod.Items.Tools
 
 		public override void AddRecipes() //Crafteo del objeto
 		{
-		}
+            CreateRecipe()
+            .AddIngredient(ItemID.StoneBlock, 30)
+			.AddIngredient(ItemID.IronBar, 5)
+			.AddIngredient(ItemID.Wood,15)
+            .AddTile(TileID.Anvils)
+            .Register();
+        }
 	}
 }

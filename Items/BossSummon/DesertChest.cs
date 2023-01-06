@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
             int choice = new Random().Next(0, 2);
             if (world1.TimeDilocated)
             {
-                if (choice == 1) NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DuneMonarch>());
+                if (choice == 1) NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator/*DuneMonarch*/>());
                 else if (choice == 2) NPC.SpawnOnPlayer(player.whoAmI, NPCID.KingSlime);
                 else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>());
             }
