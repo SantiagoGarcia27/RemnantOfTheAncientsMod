@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
+using Terraria.Localization;
 using RemnantOfTheAncientsMod.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
@@ -9,8 +10,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Tuxonite Table");
-
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tableau en tuxonite");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mesa de tusonita");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {

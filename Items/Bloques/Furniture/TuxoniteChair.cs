@@ -1,6 +1,7 @@
 using RemnantOfTheAncientsMod.Items.Items;
 using RemnantOfTheAncientsMod.Tiles;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,9 +10,11 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 	public class TuxoniteChair : ModItem
 	{
 		public override void SetStaticDefaults() {
-		//	Tooltip.SetDefault("Tuxonite chair.");
+            DisplayName.SetDefault("Tuxonite Chair");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chaise en tuxonite");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Silla de tusonita");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {
