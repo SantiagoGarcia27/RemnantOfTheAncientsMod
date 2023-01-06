@@ -47,8 +47,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		public static void ReaperConsumable(Item item)
 		{
 
-			if (RemnantOfTheAncientsMod.CalamityMod != null) ;
-			else
+			if (RemnantOfTheAncientsMod.CalamityMod == null)
 			{
 				if (item.type == ItemID.SlimeCrown ||
 					item.type == ItemID.SuspiciousLookingEye ||
@@ -93,8 +92,8 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		}
 		public static void ModifyBossStats(NPC npc, ref int damage, int lifeMax)
 		{
-			npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax, "n");
-			npc.damage = (int)NpcChanges1.ExpertDamageScale(damage, "n");
+			npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax, true);
+			npc.damage = (int)NpcChanges1.ExpertDamageScale(damage, true);
 		}
 
 	}

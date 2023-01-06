@@ -40,8 +40,8 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         public override void SetDefaults()
         {
             NPC.aiStyle = 15;  //15 is the king AI
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(3500,"MyBoss");  
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(30, "MyBoss");  
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(3500,true);  
+            NPC.damage = (int)NpcChanges1.ExpertDamageScale(30, true);  
             NPC.defense = 10;    
             NPC.knockBackResist = 0f;
             NPC.width = 100;
@@ -217,7 +217,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         public void TyphonIa(int i, float xA, float yA)
         {
             float Speed = 12f;
-            int damage = (int)NpcChanges1.ExpertDamageScale(i, "MyBoss"); ;
+            int damage = (int)NpcChanges1.ExpertDamageScale(i, true); ;
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             int type = ProjectileType<DesertTyphoon>();
             SoundEngine.PlaySound(SoundID.Item10,NPC.position);

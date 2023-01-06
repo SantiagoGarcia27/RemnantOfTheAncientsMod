@@ -36,8 +36,8 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 			NPC.width = 50;//105
 			NPC.height = 40;//103
 			NPC.boss = true;
-			NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(30000, "MyBoss"); 
-			NPC.damage = (int)NpcChanges1.ExpertDamageScale(300, "MyBoss");
+			NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(30000, true); 
+			NPC.damage = (int)NpcChanges1.ExpertDamageScale(300, true);
 			NPC.defense = TyrantArmor(999);//
 			NPC.scale = 2.50f;
 			NPC.npcSlots = 20f;
@@ -426,7 +426,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 					for (int i = -2; i <= 3; i++)
 					{
 						float Speed = 12f;
-						int damage = (int)NpcChanges1.ExpertDamageScale(30, "MyBoss");
+						int damage = (int)NpcChanges1.ExpertDamageScale(30, true);
 						Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * i - 1), NPC.position.Y + (NPC.height * i + 2));
 						int type = ProjectileType<InfernalBall>();
 						SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
@@ -434,10 +434,10 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 						int num55 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
 					}
 				}
-				if (NPC.ai[2] % 250 == 100) FireBallStrongIa(12f, (int)NpcChanges1.ExpertDamageScale(70,"MyBoss"),"*",4,3);  
-				if (NPC.ai[2] % 250 == 100) FireBallStrongIa(12f, (int)NpcChanges1.ExpertDamageScale(70, "MyBoss"),"/",4,3);
-				if (NPC.ai[2] % 200 == 100) SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(40, "MyBoss"), "Weak",-3,-3);
-				if (NPC.ai[2] % 300 == 100) SpikeIa(0f,(int)NpcChanges1.ExpertDamageScale(90, "MyBoss"),"Strong",3,-3);
+				if (NPC.ai[2] % 250 == 100) FireBallStrongIa(12f, (int)NpcChanges1.ExpertDamageScale(70,true),"*",4,3);  
+				if (NPC.ai[2] % 250 == 100) FireBallStrongIa(12f, (int)NpcChanges1.ExpertDamageScale(70, true),"/",4,3);
+				if (NPC.ai[2] % 200 == 100) SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(40, true), "Weak",-3,-3);
+				if (NPC.ai[2] % 300 == 100) SpikeIa(0f,(int)NpcChanges1.ExpertDamageScale(90, true),"Strong",3,-3);
 				if (NPC.ai[2] % 900 == 300) SummonIa(NPCID.Demon);
 				if (NPC.ai[2] % 1900 == 200) SummonIa(NPCID.RedDevil);
 

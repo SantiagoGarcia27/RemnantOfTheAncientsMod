@@ -40,8 +40,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         public override void SetDefaults()
         {
             NPC.aiStyle = 5;  
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500, "MyBoss");   
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(90, "MyBoss"); 
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500, true);   
+            NPC.damage = (int)NpcChanges1.ExpertDamageScale(90, true); 
             NPC.defense = 15;    
             NPC.knockBackResist = 0f;
             NPC.width = 100;
@@ -73,10 +73,10 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             phaseChanger();
             if (!Reaper.ReaperMode)
             {
-                if (NPC.ai[1] >= 5) shootIa((int)NpcChanges1.ExpertDamageScale(50, "MyBoss"), "Frozenp", P, 20f);
+                if (NPC.ai[1] >= 5) shootIa((int)NpcChanges1.ExpertDamageScale(50, true), "Frozenp", P, 20f);
                 if (NPC.ai[1] >= 115)
                 {
-                    shootIa((int)NpcChanges1.ExpertDamageScale(30, "MyBoss"), "Lazer", P, 20f);
+                    shootIa((int)NpcChanges1.ExpertDamageScale(30, true), "Lazer", P, 20f);
                     NPC.ai[1] = 0;
                 }
                 NPC.ai[2]++;
@@ -84,8 +84,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             }
             else
             {
-                if (NPC.ai[1] >= 20) shootIa((int)NpcChanges1.ExpertDamageScale(180, "MyBoss"), "Frozenp", P, 40f);
-                if (NPC.ai[1] >= 115) shootIa((int)NpcChanges1.ExpertDamageScale(230, "MyBoss"), "Lazer", P, 30f);
+                if (NPC.ai[1] >= 20) shootIa((int)NpcChanges1.ExpertDamageScale(180, true), "Frozenp", P, 40f);
+                if (NPC.ai[1] >= 115) shootIa((int)NpcChanges1.ExpertDamageScale(230, true), "Lazer", P, 30f);
                 NPC.ai[2]++;
             }
 
