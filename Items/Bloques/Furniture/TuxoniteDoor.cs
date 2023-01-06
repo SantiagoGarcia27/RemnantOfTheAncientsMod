@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
+using Terraria.Localization;
 using RemnantOfTheAncientsMod.Items.Items;
 using RemnantOfTheAncientsMod.Tiles;
 
@@ -9,7 +10,10 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 	public class TuxoniteDoor : ModItem
 	{
 		public override void SetStaticDefaults() {
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            DisplayName.SetDefault("Tuxonite Door");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Porte en tuxonite");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Puerta de tusonita");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults() {
