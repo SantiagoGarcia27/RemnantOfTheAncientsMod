@@ -63,22 +63,32 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         public override void AI()
         {
             Reaper reaper = new Reaper();
+            Player player = Main.player[NPC.target];
 
             float distance = NPC.Distance(Main.player[NPC.target].Center);
 
             NPC.ai[0] = 10;
             NPC.ai[1]++;
-            Player player = Main.player[NPC.target];
-           
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) NPC.TargetClosest(true);
-            NPC.netUpdate = true;
 
+
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            {
+                NPC.TargetClosest(true);
+                NPC.netUpdate = true;
+            }
+            if (player.dead)
+            {
+                DespawnBoss();
+            }
 
             if (NPC.ai[1] > 800) NPC.ai[1] = 0;
             NPC.ai[2]++;
 
-            if (distance >= 100 * 16) NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
-            if (distance >= 300 * 16) NPC.Center = player.Center;
+            if (!player.dead)
+            {
+                if (distance >= 100 * 16) NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
+                if (distance >= 300 * 16) NPC.Center = player.Center;
+            }
             
 
 
@@ -223,6 +233,15 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             SoundEngine.PlaySound(SoundID.Item10,NPC.position);
             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * yA)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * xA)));
             int num54 = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)(Math.Cos(rotation) * Speed * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
+        }
+
+        public void DespawnBoss()
+        {
+            NPC.velocity.X -= 3.09f;
+            NPC.velocity.Y -= 3f;
+
+            NPC.EncourageDespawn(10);
+            return;
         }
         public override void OnHitPlayer(Player player, int damage, bool crit) {
 			if (Main.rand.NextBool(3)) {
