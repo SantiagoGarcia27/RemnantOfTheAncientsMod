@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			Item.autoReuse = false;
 		}
         public override void UpdateAccessory(Player player, bool hideVisual) {
-			Main.NewText(Player1.ChaliceOn);
+			Main.NewText(player.GetModPlayer<Player1>().ChaliceOn);
 
 		}
 }

@@ -76,6 +76,9 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade = n;
 			player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade = n;
 
+
+
+			//Main.NewText(player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade);
 		}
 
 	}

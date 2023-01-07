@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod
 		public bool YtPet;
 		public bool ModPlayer = true;
 		public bool anyBossIsAlive;
-		public static bool ChaliceOn;
+		public bool ChaliceOn;
 		public static bool FWeapons;
 		public static bool ReaperFirstTime;
 		private static List<NPC> _hallucinationCandidates = new List<NPC>();

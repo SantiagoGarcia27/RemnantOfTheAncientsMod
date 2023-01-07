@@ -34,8 +34,9 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.minionSlots = 0f;
         }
         public override void AI()           
-        { 
+        {
             if (Main.player[Projectile.owner].GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && Reaper.ReaperMode && !Main.player[Projectile.owner].dead) Projectile.timeLeft = 2;
+            else Projectile.Kill();
         }
 
         public override bool MinionContactDamage() => true;
@@ -62,8 +63,9 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.minionSlots = 0f;
         }
         public override void AI()         
-        {                                                  
+        {
             if (Main.player[Projectile.owner].GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && Reaper.ReaperMode && !Main.player[Projectile.owner].dead) Projectile.timeLeft = 2;
+            else Projectile.Kill();
         }
         public override bool MinionContactDamage() => true;
         public override void Kill(int timeLeft)
