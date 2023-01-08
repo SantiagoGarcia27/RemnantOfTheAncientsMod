@@ -1,4 +1,4 @@
-using Terraria;
+/*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             Item.height = 14;
             Item.value = 350000;
             Item.rare = ItemRarityID.LightRed;
-            Item.defense = 5;
+           // Item.defense = 5;
             Item.accessory = true;
         }
         public override void AddRecipes() 
@@ -40,4 +40,4 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             world1.TimeDilocated = true;
         }
     }
-}
+}*/

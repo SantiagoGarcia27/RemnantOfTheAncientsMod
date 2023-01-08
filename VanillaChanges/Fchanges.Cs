@@ -14,8 +14,10 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		//public static bool Fscale = false;
 		public static float originalsize = 0;
 		public static float newsize = 0;
+        public static float originalsizep = 0;
+        public static float newsizep = 0;
 
-		public static void ReaperSize(Item item)
+        public static void ReaperSize(Item item)
 		{
 			if (Reaper.ReaperMode)
 			{
@@ -40,7 +42,32 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				}
 			}
 		}
-		public static void ReaperSetDefaut(Item item)
+        public static void ReaperSize(Projectile projectile)
+        {
+            if (Reaper.ReaperMode)
+            {
+                if (projectile.CountsAsClass(DamageClass.Melee))
+                {
+                    if (Player1.FWeapons) originalsizep = projectile.scale;
+                    if (projectile.active)
+                    {
+                        newsizep = originalsizep + 1.50f;
+                        projectile.scale = newsize;
+                        Player1.FWeapons = false;
+                        projectile.active = false;
+                    }
+                }
+            }
+           /* else
+            {
+                if (projectile.CountsAsClass(DamageClass.Melee) && !projectile.active)
+                {
+                    projectile.scale = originalsizep;
+                    projectile.active = true;
+                }
+            }*/
+        }
+        public static void ReaperSetDefaut(Item item)
         {
 			if (item.type == ModContent.ItemType<ReaperChalice>()) item.accessory = Reaper.ReaperMode ? true : false;
 		}

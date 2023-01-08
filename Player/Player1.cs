@@ -154,7 +154,8 @@ namespace RemnantOfTheAncientsMod
 		}
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) //This is the same as the one in OnHitNPC, but for melee projectiles.
 		{
-			if (proj.CountsAsClass(DamageClass.Melee))
+          //  FchangesItem.ReaperSize(p);
+            if (proj.CountsAsClass(DamageClass.Melee))
 			{
 				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
 				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);

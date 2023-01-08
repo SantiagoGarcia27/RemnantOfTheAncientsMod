@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
@@ -93,7 +94,6 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
                 OverrideColor = valueOrDefault
             };
             tooltips.Add(item2);
-        }
-
+        } 
     }
 }

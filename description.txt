@@ -13,5 +13,5 @@
                      -94 Weapons     -2 New Bosses
                      -21 Accesories  -3 Armor Sets               
                      -Add recipe for Vanilla items
-		     -New dificulty F Mode
+		     -New dificulty Reaper Mode
                   
