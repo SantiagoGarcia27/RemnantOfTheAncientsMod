@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             if (!Reaper.ReaperMode)
             {
                 if (NPC.ai[1] >= 5) shootIa((int)NpcChanges1.ExpertDamageScale(50, true), "Frozenp", player, 20f);
-                if (NPC.ai[1] >= 115)
+                if (NPC.ai[1] == 115)
                 {
                     shootIa((int)NpcChanges1.ExpertDamageScale(30, true), "Lazer", player, 20f);
                     NPC.ai[1] = 0;
@@ -93,7 +93,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             else
             {
                 if (NPC.ai[1] >= 20) shootIa((int)NpcChanges1.ExpertDamageScale(180, true), "Frozenp", player, 40f);
-                if (NPC.ai[1] >= 115) shootIa((int)NpcChanges1.ExpertDamageScale(230, true), "Lazer", player, 30f);
+                if (NPC.ai[1] == 115) shootIa((int)NpcChanges1.ExpertDamageScale(230, true), "Lazer", player, 30f);
                 NPC.ai[2]++;
             }
 
