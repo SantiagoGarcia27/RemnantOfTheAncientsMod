@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
+using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
@@ -15,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
             Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infernal");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Infernal");
-
+            Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false;
         }

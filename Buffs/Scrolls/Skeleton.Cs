@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 { 
@@ -14,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
               Description.SetDefault("");
              DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Mort-vivant");
               DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Muertos viviente");
-             
+            Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing
         }
@@ -26,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
              player.findTreasure = true;
              player.nightVision = true;
              player.detectCreature = true;
-
+            Main.persistentBuff[Type] = true;
             player.ammoCost75 = true;
             player.GetDamage(DamageClass.Throwing) *= 1.20f;
 
