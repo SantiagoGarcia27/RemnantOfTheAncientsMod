@@ -59,7 +59,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         }
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 3;
+            Main.projFrames[Projectile.type] = 4;
         }
         public override void SetDefaults()
         {
@@ -76,7 +76,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             AIType = ProjectileID.TerraBeam;
-            Main.projFrames[Projectile.type] = 3;
+            Main.projFrames[Projectile.type] = 4;
         }
         public override void AI()
         {
