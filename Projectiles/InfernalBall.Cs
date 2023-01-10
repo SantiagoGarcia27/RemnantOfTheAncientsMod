@@ -64,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override void SetDefaults()
         {
             Projectile.width = 46;
-            Projectile.height = 46;
+            Projectile.height = 34;
             Projectile.friendly = Friendly;
             Projectile.hostile = Hostile;
             Projectile.DamageType = DamageClass.Magic;
@@ -79,7 +79,13 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Main.projFrames[Projectile.type] = 4;
         }
         public override void AI()
+
         {
+            if (++Projectile.frame >= Main.projFrames[Projectile.type]) 
+            {
+                Projectile.frame = 0; 
+            }
+                
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
         }
