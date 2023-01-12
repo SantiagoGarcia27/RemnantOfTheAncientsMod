@@ -23,8 +23,8 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.autoReuse = true;
 			Item.mana = 5;
 			Item.rare = ItemRarityID.Orange;
-			Item.width = 28;
-			Item.height = 30;
+			Item.width = 30;
+			Item.height = 34;
 			Item.useTime = 20;
 			Item.UseSound = SoundID.Item13;
 			Item.useStyle = ItemUseStyleID.HoldUp;

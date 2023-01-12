@@ -28,8 +28,8 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.channel = true;
 			Item.mana = 5;
 			Item.rare = ItemRarityID.LightRed;
-			Item.width = 28;
-			Item.height = 30;
+			Item.width = 30;
+			Item.height = 32;
 			Item.useTime = 19;
 			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.shootSpeed = 14f;
