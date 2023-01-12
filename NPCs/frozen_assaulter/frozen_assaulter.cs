@@ -8,7 +8,6 @@ using RemnantOfTheAncientsMod.Items.Mele;
 using RemnantOfTheAncientsMod.Items.Ranger;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Summon;
-using RemnantOfTheAncientsMod.Items.Bloques;
 using RemnantOfTheAncientsMod.Items.Bloques.Relics;
 using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using static Terraria.ModLoader.ModContent;
@@ -16,7 +15,6 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.ItemDropRules;
 using RemnantOfTheAncientsMod.Common.Systems;
-using Terraria.Audio;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
@@ -32,6 +30,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         int currentPhase = 1;
         float i = 0;
         int idelay = 5;
+        int TpDelay = 20;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Frozen Assaulter");
@@ -239,12 +238,20 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         }
         public void frozenTp()
         {
+
             Vector2 position = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
-            Vector2 p = new Vector2(2,2);
-           Dust a = Dust.QuickDust(position, Color.Blue);
-           // Dust.QuickBox(position, position - p);
-            Dust.CloneDust(a);
-            NPC.position = position;
+            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), position, new Vector2(0, 0), ProjectileType<BossMark>(), 0, 0f, 0);
+            new BossMark().texture = "RemnantOfTheAncientsMod/Items/Core/Frost_core";
+
+            if (TpDelay == 0)
+            {
+                NPC.position = position;
+                TpDelay = 20;
+            }
+            else
+            {
+                TpDelay--;
+            }
         }
         public void phaseChanger()
         {

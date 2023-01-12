@@ -10,7 +10,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
     public class InfernalBall : BaseInfernalBall
     {
         public override bool Friendly => false;
-        public override bool Hostile => true;
         public override bool Strong => false;
         public override float Scale => 1.5f;
         public override void SetStaticDefaults() => base.SetDefaults();
@@ -19,7 +18,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
     public class InfernalBallF : BaseInfernalBall
     {
         public override bool Friendly => false;
-        public override bool Hostile => true;
         public override bool Strong => true;
         public override float Scale => 1.0f;
         public override void SetStaticDefaults() => base.SetDefaults();
@@ -28,7 +26,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
     public class InfernalBall_f : BaseInfernalBall
     {
         public override bool Friendly => true;
-        public override bool Hostile => false;
         public override bool Strong => false;
         public override float Scale => 1.5f;
         public override void SetStaticDefaults() => base.SetDefaults();
@@ -37,7 +34,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
     public class InfernalBallF_f : BaseInfernalBall
     {
         public override bool Friendly => true;
-        public override bool Hostile => false;
         public override bool Strong => true;
         public override float Scale => 1.0f;
         public override void SetStaticDefaults() => base.SetDefaults();
@@ -47,7 +43,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
     {
 
         public abstract bool Friendly { get; }
-        public abstract bool Hostile { get; }
         public abstract float Scale { get; }
         public abstract bool Strong { get; }
 
@@ -66,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.width = 46;
             Projectile.height = 34;
             Projectile.friendly = Friendly;
-            Projectile.hostile = Hostile;
+            Projectile.hostile = !Friendly;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = false;
             Projectile.penetrate = 1;
