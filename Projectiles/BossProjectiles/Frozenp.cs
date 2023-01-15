@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
 {
     public class Frozenp : BaseFrozenP
     {
@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.height = 36;
             Projectile.penetrate = 2;
             Projectile.timeLeft = 20000;
-            Projectile.light = 0.15f;
+            Projectile.light = 1.15f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             Projectile.friendly = Friendly;
@@ -51,8 +51,10 @@ namespace RemnantOfTheAncientsMod.Projectiles
         }
         public override void AI()
         {
+          
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+            Lighting.AddLight(Projectile.velocity, TorchID.Ice);
         }
         public override void Kill(int timeLeft)
         {

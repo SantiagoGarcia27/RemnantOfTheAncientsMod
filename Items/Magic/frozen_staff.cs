@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 
 namespace RemnantOfTheAncientsMod.Items.Magic
 {

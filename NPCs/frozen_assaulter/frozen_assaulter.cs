@@ -19,6 +19,7 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 using System.IO;
+using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 
 namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 {

@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflige le feu aux ennemis");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Gran espada legendaria");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego,ichor,ponsoña,fuego infernal y vaneno a los enemigos");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego,ichor,ponsoña,fuego infernal y veneno a los enemigos");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

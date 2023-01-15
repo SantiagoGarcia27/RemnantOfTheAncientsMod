@@ -6,6 +6,7 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 
 namespace RemnantOfTheAncientsMod.Items.Ranger
 {
