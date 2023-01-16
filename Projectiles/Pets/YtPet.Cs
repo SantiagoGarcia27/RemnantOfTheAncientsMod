@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,33 +7,36 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
 {
 	public class YtPet : ModProjectile
 	{
-		public override void SetStaticDefaults() {
-			// DisplayName.SetDefault("Paper Airplane"); // Automatic from .lang files
-			Main.projFrames[Projectile.type] = 5;
-			Main.projPet[Projectile.type] = true;
-		}
+		public override void SetStaticDefaults()
+		{
+            Main.projFrames[Projectile.type] = 5;
+            Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            ProjectileID.Sets.LightPet[Projectile.type] = true;
+        }
 
-		public override void SetDefaults() {
+		public override void SetDefaults() 
+		{
 			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
 			AIType = ProjectileID.ZephyrFish;
 			Projectile.light = 1.25f;
 		}
 
-		public override bool PreAI() {
+		public override bool PreAI() 
+		{
 			Player player = Main.player[Projectile.owner];
-			player.zephyrfish = false; // Relic from AIType
+			player.zephyrfish = false;
 			return true;
 		}
 
-		public override void AI() {
+		public override void AI() 
+		{
 			Player player = Main.player[Projectile.owner];
-			Player1 modPlayer = player.GetModPlayer<Player1>();
-			if (player.dead) {
-				modPlayer.YtPet = false;
-			}
-			if (modPlayer.YtPet) {
-				Projectile.timeLeft = 2;
-			}
+
+            if (!player.dead && player.HasBuff(ModContent.BuffType<YtBuff>()))
+            {
+                Projectile.timeLeft = 2;
+            }
 		}
 	}
 }

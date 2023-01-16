@@ -45,14 +45,33 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         public override bool? UseItem(Player player)
         {
             int choice = new Random().Next(0, 2);
-            if (world1.TimeDilocated)
-            {
-                if (choice == 1) NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator/*DuneMonarch*/>());
-                else if (choice == 2) NPC.SpawnOnPlayer(player.whoAmI, NPCID.KingSlime);
-                else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>());
-            }
-            else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>()); 
             SoundEngine.PlaySound(SoundID.Roar, player.position);
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                int num;
+                if (world1.TimeDilocated)
+                {
+                    if (choice == 1)
+                    {
+                        num = NPC.NewNPC(Terraria.Entity.GetSource_None(), (int)(player.position.X + Main.rand.Next(-250, 251)), (int)(player.position.Y + 1500f), ModContent.NPCType<DesertAniquilator>(), 1, 0f, 0f, 0f, 0f, 255);
+                    }
+                    else if (choice == 2)
+                    {
+                        num = NPC.NewNPC(Terraria.Entity.GetSource_None(), (int)(player.position.X + Main.rand.Next(-250, 251)), (int)(player.position.Y + 1500f), ModContent.NPCType<DesertAniquilator>(), 1, 0f, 0f, 0f, 0f, 255);
+                    }
+                    else
+                    {
+                        num = NPC.NewNPC(Terraria.Entity.GetSource_None(), (int)(player.position.X + Main.rand.Next(-250, 251)), (int)(player.position.Y + 1500f), ModContent.NPCType<DesertAniquilator>(), 1, 0f, 0f, 0f, 0f, 255);
+                    }
+                    Main.npc[num].timeLeft *= 20;
+                }
+                else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>());
+              
+            }
+            else
+            {
+                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<DesertAniquilator>(), 0f, 0f, 0, 0, 0);
+            }
             return true;
         }
         public override void AddRecipes()

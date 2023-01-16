@@ -14,9 +14,10 @@ namespace RemnantOfTheAncientsMod.Items.pets
 			DisplayName.SetDefault("Follow");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		public override void SetDefaults() {
-			Item.CloneDefaults(ItemID.ZephyrFish);
-			Item.shoot = ProjectileType<Projectiles.Pets.TwitchPet>();
+		public override void SetDefaults() 
+		{
+			Item.CloneDefaults(ItemID.WispinaBottle);
+            Item.shoot = ProjectileType<Projectiles.Pets.TwitchPet>();
 			Item.buffType = BuffType<Buffs.YoutubeMoradoBuff>();
 		}
 		public override void UseStyle(Player player, Rectangle heldItemFrame)

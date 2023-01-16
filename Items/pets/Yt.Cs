@@ -16,8 +16,8 @@ namespace RemnantOfTheAncientsMod.Items.pets
 		}
 		public override void SetDefaults()
 		{
-			Item.CloneDefaults(ItemID.ZephyrFish);
-			Item.shoot = ProjectileType<Projectiles.Pets.YtPet>();
+            Item.CloneDefaults(ItemID.WispinaBottle);
+            Item.shoot = ProjectileType<Projectiles.Pets.YtPet>();
 			Item.buffType = BuffType<Buffs.YtBuff>();
 		}
 		public override void UseStyle(Player player, Rectangle heldItemFrame)
