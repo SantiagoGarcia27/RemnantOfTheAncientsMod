@@ -78,20 +78,27 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 		{
 			if (!Utils1.IsAnyBossAlive())
 			{
-				Reaper.ReaperMode = !Reaper.ReaperMode ? true : false;
+				/*Reaper.ReaperMode = !Reaper.ReaperMode ? true : false;   --> no entendi para que esta esto*/
 				if (Reaper.ReaperMode == false)
 				{
+					Reaper.ReaperMode = true;
 					Item.buffTime = 1;
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Welcome to hell, now you're a reaper.", gray);
-					player.GetModPlayer<Player1>().ReaperStarter();
-					Player1.ReaperFirstTime = true;	
+
+					// si el jugador no tiene el chalice en el slot le dara el pack de items
+					if (player.GetModPlayer<Player1>().ChaliceOn != true)
+					{ 
+						player.GetModPlayer<Player1>().ReaperStarter();
+						Player1.ReaperFirstTime = true;	
+					}
 				}
 				else
 				{
+					Reaper.ReaperMode = false;
 					Color gray = Color.DarkSlateGray;
 					Main.NewText("Well your soul is free... for now.", gray);
-				}
+                }
 			}
 				return true;
 		}

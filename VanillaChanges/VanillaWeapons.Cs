@@ -59,11 +59,15 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		}
 		public override void UpdateInventory(Item item, Player player)
         {
-            if (Reaper.ReaperMode)
-            {
-				FchangesItem.ReaperSize(item);
+			if (Reaper.ReaperMode)
+			{
+				item.GetGlobalItem<FchangesItem>().ReaperSize(item);
 				FchangesItem.ReaperConsumable(item);
 				FchangesItem.ReaperSetDefaut(item);
+			}
+			else
+			{
+                item.GetGlobalItem<FchangesItem>().ReaperSize(item);
             }
         }
 

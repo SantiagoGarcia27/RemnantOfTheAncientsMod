@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public float originalsizep = 0;
         public float newsizep = 0;
 
-        public static void ReaperSize(Item item)
+        public void ReaperSize(Item item)
 		{
 			if (Reaper.ReaperMode)
 			{
@@ -29,18 +29,21 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 						item.GetGlobalItem<FchangesItem>().newsize = /*item.GetGlobalItem<FchangesItem>().*/originalsize + 1.50f;
 						item.scale = item.GetGlobalItem<FchangesItem>().newsize;
 						Player1.FWeapons = false;
-						item.active = false;
+						//
 					}
 				}
 			}
 			else
 			{
-				if (item.CountsAsClass(DamageClass.Melee) && !item.active)
-				{
+				if (item.CountsAsClass(DamageClass.Melee) && item.active)
+				{	
+					item.active = false;
 					item.scale = /*item.GetGlobalItem<FchangesItem>().*/originalsize;
 					item.active = true;
 				}
 			}
+
+		
 		}
         public void ReaperSize(Projectile projectile)
         {
