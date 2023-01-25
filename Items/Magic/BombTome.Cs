@@ -6,24 +6,24 @@ using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Items.Magic
 {
-    public class BombTome: ModItem
+	public class BombTome : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bomb Tome");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Tom Bomb");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome de bombe");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo Explosivo");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Tom Bomb");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome de bombe");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo Explosivo");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.damage = 50;
+			Item.damage = 60;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; 
-			Item.mana = 20;
+			Item.channel = true;
+			Item.mana = 15;
 			Item.rare = ItemRarityID.Pink;
 			Item.width = 30;
 			Item.height = 32;
@@ -32,9 +32,9 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 9;
-			Item.shoot = ProjectileID.Grenade;
-			Item.value = 100000;
-			Item.autoReuse = true;
+            Item.value = 100000;
+            Item.autoReuse = true;
+            Item.shoot = ProjectileID.Grenade;       
 		}
 		public override void AddRecipes()
 		{

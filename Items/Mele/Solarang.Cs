@@ -22,7 +22,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.CloneDefaults(ItemID.Flamarang);
 			Item.damage = 160;
 			Item.useTime = 10;
-			Item.useAnimation = 10;       
+			Item.useAnimation = 10;
+			Item.autoReuse = true;
 			Item.shoot = ModContent.ProjectileType<SolarangP>();
 		}
 		public override void AddRecipes()

@@ -11,12 +11,14 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
     {
         public override bool Friendly => false;
         public override bool hostile => true;
+        public override int DefenseIgnore => 0;
         public override void SetStaticDefaults() => base.SetDefaults();
     }
     public class frozen_p_f : BaseFrozenP
     {
         public override bool Friendly => true;
         public override bool hostile => false;
+        public override int DefenseIgnore => 0;
         public override void SetStaticDefaults() => base.SetDefaults();
 
 
@@ -25,6 +27,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
     {
         public override bool Friendly => true;
         public override bool hostile => false;
+        public override int DefenseIgnore => 6;
         public override void SetStaticDefaults() => base.SetDefaults();
 
     }
@@ -33,6 +36,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
         public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Textures/Frozenp";
         public abstract bool Friendly { get; }
         public abstract bool hostile { get; }
+        public abstract int DefenseIgnore { get; }
         public override void SetDefaults()
         {
             Projectile.width = 36;
@@ -47,6 +51,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
             Projectile.tileCollide = true;
             AIType = ProjectileID.IceSpike;
             Projectile.DamageType = DamageClass.Magic;
+            Projectile.ArmorPenetration += DefenseIgnore;
             if (RemnantOfTheAncientsMod.CalamityMod != null) Projectile.tileCollide = false;
         }
         public override void AI()

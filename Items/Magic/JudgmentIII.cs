@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 		}
 
 		public override void SetDefaults() {
-			Item.damage = 110;
+			Item.damage = 132;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true;
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 20;
 			Item.shoot = ProjectileType<HollyLaser>(); //Laser
-			Item.value = Item.sellPrice(silver: 3);
+			Item.value = Item.sellPrice(gold: 5);
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{

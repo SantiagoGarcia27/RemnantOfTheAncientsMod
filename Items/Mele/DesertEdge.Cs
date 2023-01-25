@@ -5,6 +5,10 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
+using Terraria.ModLoader.Config;
+using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -19,12 +23,12 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 20;
+			Item.damage = 25;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 60;
 			Item.height = 60;
-			Item.useTime = 38;
-			Item.useAnimation = 38;
+			Item.useTime = 30;
+			Item.useAnimation = 30;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.autoReuse = true;
@@ -35,8 +39,22 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.shootSpeed = 10f;
 			Item.noUseGraphic = false;
 		}
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float numberProjectiles = 2;
+            float rotation = MathHelper.ToRadians(10);
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+            position += Vector2.Normalize(velocity) * 1f;
+
+            for (int i = 0; i < numberProjectiles; i++)
+            {
+                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+                Projectile.NewProjectile(source, position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), damage/2, knockback, player.whoAmI);
+            }
+            Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
+            return false;
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffType<Buffs.Debuff.Burning_Sand>(), 300);
 		}

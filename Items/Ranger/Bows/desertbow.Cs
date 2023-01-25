@@ -5,6 +5,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
 {
@@ -43,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.useAmmo = AmmoID.Arrow;
             Item.shootSpeed = 10f;
-            Item.autoReuse = false;
+            Item.autoReuse = true;
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
@@ -51,6 +53,22 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
             {
                 type = ModContent.ProjectileType<DesertArrowP>();
             }
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float numberProjectiles = 2;
+            float rotation = MathHelper.ToRadians(5);
+
+            position += Vector2.Normalize(velocity) * 1f;
+
+            for (int i = 0; i < numberProjectiles; i++)
+            {
+                Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+                int p = Projectile.NewProjectile(source, position, perturbedSpeed * 10, ModContent.ProjectileType<DesertArrowP>(), damage, knockback, player.whoAmI);
+                Main.projectile[p].stepSpeed = 10f;
+            }
+            //Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
+            return true;
         }
     }
 }

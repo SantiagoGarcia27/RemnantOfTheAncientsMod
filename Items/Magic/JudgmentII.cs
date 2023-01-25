@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 		}
 
 		public override void SetDefaults() {
-			Item.damage = 50;
+			Item.damage = 60;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true; //Channel so that you can hold the weapon [Important]
@@ -32,12 +32,12 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 20;
-			Item.shoot = ModContent.ProjectileType<HollyLaser>(); //Laser
-			Item.value = Item.sellPrice(silver: 3);
+			Item.shoot = ProjectileType<HollyLaser>(); //Laser
+			Item.value = Item.sellPrice(silver: 50);
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX,Main.mouseY);
 			float ceilingLimit = target.Y;
 			if (ceilingLimit > player.Center.Y - 200f)
 			{

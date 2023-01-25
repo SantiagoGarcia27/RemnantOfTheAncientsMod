@@ -120,9 +120,9 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 {
                     attackCounter--; // tick down the attack counter.
                 }
-
+                
                 Player target = Main.player[NPC.target];
-
+                DespawnSafeCheck(target);
                 switch (attackCounter)
                 {
                     case 200:
@@ -161,6 +161,13 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead) NPC.TargetClosest(true);
         }
+        public void DespawnSafeCheck(Player player)
+        {
+            if (NPC.target >= 245f)
+            {
+                NPC.rotation = player.direction;
+            }
+        }
         public void TyrantTp()
         {
             Player player = Main.player[NPC.target];
@@ -172,7 +179,6 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                     CanTp = false;
             }
             else if (Vector2.Distance(player.Center, NPC.Center) <= 10 * 16) CanTp = true;
-
         }
         public void FireBallIa(float Speed, int damage, int type, string signo1, int cordx, int cordy, Player player, float grades)
         {
@@ -207,17 +213,17 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             NPC.defense = TyranStats.TyrantArmor(999, GetModNPC(NPCType <InfernalTyrantHead>()).NPC);
             if (NPC.life < NPC.lifeMax / 2)
             {
-                worm.MoveSpeed = 40f;//9.5f
+                worm.MoveSpeed = 50f;//9.5f
                 worm.Acceleration = 0.15f;
             }
             else if (NPC.life < NPC.lifeMax / 4)
             {
-                worm.MoveSpeed = 60f;//9.5f
+                worm.MoveSpeed = 70f;//9.5f
                 worm.Acceleration = 0.55f;
             }
             else if (NPC.life < NPC.lifeMax / 10) worm.Acceleration = 1.1f;
             else if (NPC.life < NPC.lifeMax / 15 && Reaper.ReaperMode) worm.Acceleration = 1.5f;
-            else worm.MoveSpeed = 20f;
+            else worm.MoveSpeed = 30f;
         }
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) => head ? null : false;
@@ -312,12 +318,24 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         {
             if (Main.expertMode || Main.masterMode)
             {
-                if (npc.life > npc.life / 10) i = i / 3;
-                else if (npc.life > npc.life / 15 && Reaper.ReaperMode) i = 0;
+                if (npc.life > npc.life / 10)
+                {
+                    i = i / 3;
+                }
+                else if (npc.life > npc.life / 15 && Reaper.ReaperMode)
+                {
+                    i = 0;
+                }
             }
-            else if (npc.life > npc.life / 4) i = i / 2;
+            else if (npc.life > npc.life / 4)
+            {
+                i = i / 2;
+            }
             int a = 0;
-            if (RemnantOfTheAncientsMod.CalamityMod != null) a = i * 2;
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                a = i * 2;
+            }
             else a = i;
             return a;
         }

@@ -13,7 +13,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Diamentowy miecz");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "épée de diamant");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Diamante");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			Tooltip.SetDefault("Wrong game");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Juego equivocado");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{

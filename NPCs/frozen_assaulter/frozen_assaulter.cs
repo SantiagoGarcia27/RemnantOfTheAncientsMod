@@ -92,7 +92,6 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             {
                 attackCounter--; // tick down the attack counter.
                 phaseChanger();
-
             }
             if (!Reaper.ReaperMode)
             {
@@ -313,7 +312,6 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                         break;
                     case < 6:
                         ChoiseFrame(Frame_1, frameHeight);
-
                         break;
                     case < 9:
                         ChoiseFrame(Frame_2, frameHeight);

@@ -16,12 +16,12 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 		}
 
 		public override void SetDefaults() {
-			Item.damage = 14;
+			Item.damage = 17;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true;
 			Item.autoReuse = true;
-			Item.mana = 5;
+			Item.mana = 1;
 			Item.rare = ItemRarityID.Orange;
 			Item.width = 30;
 			Item.height = 34;

@@ -19,27 +19,27 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 
 		public override void SetDefaults()
 		{
-			Item.damage = 10;
-			Item.noMelee = true;
-			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; 
-			Item.mana = 2;
-			Item.rare = ItemRarityID.Green;
+			Item.damage = 20;		
+			Item.mana = 2;           
 			Item.width = 28;
 			Item.height = 32;
-			Item.useTime = 19;
-			Item.useStyle = ItemUseStyleID.Shoot;
-			Item.shootSpeed = 14f;
+			Item.useTime = 19;	
 			Item.useAnimation = 19;
 			Item.shoot = ProjectileID.FallingStar;
-			Item.value = 50000;
+            Item.shootSpeed = 14f;
+            Item.DamageType = DamageClass.Magic;
+            Item.rare = ItemRarityID.Green;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.value = 50000;
 			Item.autoReuse = true;
-		}
+            Item.noMelee = true;
+            Item.channel = true;
+        }
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.FallenStar, 30)
+			.AddIngredient(ItemID.FallenStar, 60)
 			.AddIngredient(ItemID.Book, 1)
 			.AddTile(TileID.Bookcases)		
 			.Register();

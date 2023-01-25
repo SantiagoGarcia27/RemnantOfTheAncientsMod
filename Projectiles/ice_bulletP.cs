@@ -12,27 +12,27 @@ namespace RemnantOfTheAncientsMod.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("ice_bulletP");     //The English name of the projectile
-			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;    //The length of old position to be recorded
-			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;        //The recording mode
+			DisplayName.SetDefault("ice_bulletP");    
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;   
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
 
 		public override void SetDefaults()
 		{
-			Projectile.width = 18;               //The width of projectile hitbox
-			Projectile.height = 2;              //The height of projectile hitbox
-			Projectile.aiStyle = 1;             //The ai style of the projectile, please reference the source code of Terraria
-			Projectile.friendly = true;         //Can the projectile deal damage to enemies?
-			Projectile.hostile = false;         //Can the projectile deal damage to the player?
-			Projectile.DamageType = DamageClass.Ranged;            //Is the projectile shoot by a ranged weapon?
-			Projectile.penetrate = 1;           //How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
-			Projectile.timeLeft = 800;          //The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
-			Projectile.alpha = 255;             //The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in)
-			Projectile.light = 1.5f;            //How much light emit around the projectile
-			Projectile.ignoreWater = true;          //Does the projectile's speed be influenced by water?
-			Projectile.tileCollide = true;          //Can the projectile collide with tiles?
-			Projectile.extraUpdates = 1;            //Set to above 0 if you want the projectile to update multiple time in a frame
-			AIType = ProjectileID.Bullet;           //Act exactly like default Bullet
+			Projectile.width = 18;              
+			Projectile.height = 2;             
+			Projectile.aiStyle = 1;           
+			Projectile.friendly = true;       
+			Projectile.hostile = false;       
+			Projectile.DamageType = DamageClass.Ranged;        
+			Projectile.penetrate = 1;         
+			Projectile.timeLeft = 800; 
+			Projectile.alpha = 255;
+			Projectile.light = 1.5f;
+			Projectile.ignoreWater = true; 
+			Projectile.tileCollide = true;  
+			Projectile.extraUpdates = 1;  
+			AIType = ProjectileID.Bullet; 
 		}
 
   		public override void AI()           //this make that the projectile will face the corect way
