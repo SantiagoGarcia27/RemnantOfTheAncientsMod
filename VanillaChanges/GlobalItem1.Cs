@@ -16,6 +16,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool LegendaryDrop;
         public bool ReaperItem;
         public bool BossSummon;
+        public bool SizedByReaper;
         public bool ReaperAccesories;
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {

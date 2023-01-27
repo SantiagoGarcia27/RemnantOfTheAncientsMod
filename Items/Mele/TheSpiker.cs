@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		public static int counter2 = 0;
 		public override void SetDefaults()
 		{
-			Item.damage = 90;
+			Item.damage = 180;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
@@ -41,46 +41,33 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		{
 			if (player.altFunctionUse != 2)
 			{
-				if (counter <= 3)
-				{
-					Item.damage = 90;
-					Item.useStyle = ItemUseStyleID.Thrust;
-					Item.shoot = ModContent.ProjectileType<InfernalSpike_f>();
-					Item.shootSpeed = 0f;
-					counter++;
-				}
-				else
-				{
-					Item.damage = 190;
-					Item.useStyle = ItemUseStyleID.Thrust;
-					Item.shoot = ModContent.ProjectileType<InfernalSpikeF_f>();
-					Item.shootSpeed = 0f;
-					counter = 0;
-				}
+                Item.useStyle = ItemUseStyleID.Thrust;
+                if (counter <= 3) ModifyWeapon(false, ModContent.ProjectileType<InfernalSpike_f>(), 0f);
+				else ModifyWeapon(true, ModContent.ProjectileType<InfernalSpikeF_f>(), 0f);                  
 			}
 			else
 			{
-				if (counter2 <= 3)
-				{
-					counter++;
-					Item.damage = 70;
-					Item.useStyle = ItemUseStyleID.Swing;
-					Item.shoot = ModContent.ProjectileType<InfernalBall_f>();
-					Item.shootSpeed = 20f;
-					Item.autoReuse = true;
-				}
-				else
-				{
-					Item.damage = 100;
-					Item.useStyle = ItemUseStyleID.Swing;
-					Item.shoot = ModContent.ProjectileType<InfernalBallF_f>();
-					Item.shootSpeed = 20f;
-					Item.autoReuse = true;
-					counter = 0;
-				}
-			}
-			
+                Item.useStyle = ItemUseStyleID.Swing;
+                if (counter <= 3) ModifyWeapon(false, ModContent.ProjectileType<InfernalBall_f>(), 20f);
+				else ModifyWeapon(false, ModContent.ProjectileType<InfernalBallF_f>(), 20f);
+			}			
 			return base.CanUseItem(player);
+		}
+		public void ModifyWeapon(bool strong, int proj, float speed)
+		{
+			if(strong)
+			{
+                Item.damage = Item.damage * 2;
+                Item.shoot = ModContent.ProjectileType<InfernalBallF_f>();
+                counter = 0;
+            }
+			else
+			{
+                counter++;
+                Item.damage = Item.damage;    
+                Item.shoot = ModContent.ProjectileType<InfernalBall_f>();
+            }
+
 		}
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) => target.defense = target.defense / 2;
     }

@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 		}
 
 		public override void SetDefaults() {
-			Item.damage = 60;
+			Item.damage = 80;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true; //Channel so that you can hold the weapon [Important]

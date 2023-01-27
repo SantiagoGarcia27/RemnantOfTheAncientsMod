@@ -145,7 +145,7 @@ namespace RemnantOfTheAncientsMod
 		}
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
-			item.GetGlobalItem<FchangesItem>().ReaperSize(item);
+			//item.GetGlobalItem<FchangesItem>().ReaperSize(item);
 			if (!item.noMelee && !item.noUseGraphic)
 			{
 				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
