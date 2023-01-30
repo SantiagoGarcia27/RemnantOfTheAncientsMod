@@ -17,10 +17,11 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
     {
         public override bool Friendly => false;
         public override bool Hostile => true;
-        public override int PenetrateKill => 0;
+        public override int PenetrateKill => 10;
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
+            Projectile.rotation += (float)Projectile.direction * 0.8f;
             Projectile.penetrate--;
             if (Projectile.penetrate <= PenetrateKill) Projectile.Kill();
             else
@@ -31,6 +32,26 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
                 if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon) Projectile.velocity.Y = -oldVelocity.Y;
             }
             return false;
+        }
+        public override void AI()
+        {
+            Projectile.rotation += (float)Projectile.direction * 0.8f;
+
+            if (Projectile.alpha > 70)
+            {
+                Projectile.alpha -= 15;
+                if (Projectile.alpha < 70) Projectile.alpha = 70;
+            }
+            if (Projectile.localAI[0] == 0f)
+            {
+                AdjustMagnitude(ref Projectile.velocity);
+                Projectile.localAI[0] = 10f;
+            }
+        }
+        private void AdjustMagnitude(ref Vector2 vector)
+        {
+            float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+            if (magnitude > 106f) vector *= 26f / magnitude;
         }
     }
 

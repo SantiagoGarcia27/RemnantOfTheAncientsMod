@@ -36,7 +36,13 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.shoot = ProjectileID.AmethystBolt;
 			Item.value = Item.sellPrice(silver: 30);
 			Item.autoReuse = true;
-		}
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 26;
+                Item.useTime = 15;
+            }
+        }
 
 		public override void AddRecipes()
 		{

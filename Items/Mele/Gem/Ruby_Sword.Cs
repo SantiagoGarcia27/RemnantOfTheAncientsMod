@@ -2,6 +2,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using Terraria;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 {
@@ -28,9 +30,18 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 			Item.rare = 1;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
-		}
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.autoReuse = true;
+                Item.scale = 2f;
+            }
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + 5 * 16, target.position.Y), (player.position - target.position) * 0.25f, ProjectileID.RubyBolt, damage, Main.myPlayer, player.whoAmI);
+        }
 
-		public override void AddRecipes()
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.GoldBar,8)

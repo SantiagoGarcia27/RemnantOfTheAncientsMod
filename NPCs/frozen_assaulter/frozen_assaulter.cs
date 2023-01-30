@@ -186,12 +186,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * x)), vector8.X - (player.position.X + (player.width * y)));
             Vector2 direction;
-           
-            
-                direction.X = (float)((Math.Cos(rotation) * Speed) * -1);
-                direction.Y = (float)((Math.Sin(rotation) * Speed) * -1);
-            
-
+            direction.X = (float)((Math.Cos(rotation) * Speed) * -1);
+            direction.Y = (float)((Math.Sin(rotation) * Speed) * -1);
             Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, 0);
         }
         public void shootIa(int dammage, int type, Player player, float Speed, float grades)
@@ -199,7 +195,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             Vector2 direction = /*(player.Center - NPC.Center).SafeNormalize(Vector2.UnitX)*/ Vector2.UnitX * Speed;
             direction = direction.RotatedBy(grades);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, Main.myPlayer);
         }
         public void FrozenPhase3()
         {

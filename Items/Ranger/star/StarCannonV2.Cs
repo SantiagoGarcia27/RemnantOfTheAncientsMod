@@ -35,10 +35,16 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.star
 			Item.shoot = ProjectileID.SuperStar;
 			Item.shootSpeed = 10f;
 			Item.useAmmo = AmmoID.FallenStar;
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+				Item.damage = 70;
+				Item.useTime = 17;
+				Item.useAnimation = 17;
+			}
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (Main.rand.NextFloat() <= (float)1 / 1) Projectile.NewProjectile(source, position, velocity, ProjectileID.Starfury, 300, 1, player.whoAmI);
+			if (Main.rand.NextFloat() <= (float)1 / 1) Projectile.NewProjectile(source, position, velocity, ProjectileID.Starfury, damage*2, 1, player.whoAmI);
 			return true;
 		}
 		public override Vector2? HoldoutOffset()
@@ -52,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.star
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.StarCannon, 1)
+			.AddIngredient(ItemID.SuperStarCannon)
 			.AddIngredient(ItemID.HallowedBar, 10)
 			.AddIngredient(ItemID.SoulofMight, 5)
 			.AddIngredient(ItemID.SoulofFright, 5)

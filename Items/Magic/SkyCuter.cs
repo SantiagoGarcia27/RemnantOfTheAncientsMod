@@ -46,7 +46,12 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.autoReuse = true;
 			Item.shoot = ProjectileType<SkyCutterS>(); //Laser
 			Item.value = Item.sellPrice(gold: 3);
-		}
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 90;
+            }
+        }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);

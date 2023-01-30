@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.damage = 25;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
-			Item.channel = true; 
+			Item.channel = true;
 			Item.mana = 9;
 			Item.rare = ItemRarityID.Blue;
 			Item.width = 46;
@@ -36,6 +36,12 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.shoot = ProjectileID.RubyBolt;
 			Item.value = Item.sellPrice(silver: 30);
 			Item.autoReuse = true;
+
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+				Item.damage = 30;
+				Item.useTime = 23;
+			}
 		}
 
 		public override void AddRecipes()

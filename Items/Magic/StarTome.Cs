@@ -34,6 +34,10 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.autoReuse = true;
             Item.noMelee = true;
             Item.channel = true;
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 26;
+            }
         }
 
 		public override void AddRecipes()

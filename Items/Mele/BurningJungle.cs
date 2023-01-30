@@ -37,6 +37,12 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.UseSound = SoundID.Item45;
 			Item.autoReuse = true;
 			Item.value = 1000;
+
+			if(RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+                Item.damage = 50;
+                Item.scale = 1.70f;
+            }
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)

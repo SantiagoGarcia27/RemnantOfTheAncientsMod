@@ -4,14 +4,13 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.NPCs.ITyrant;
 using RemnantOfTheAncientsMod.Items.Mele.saber;
 using RemnantOfTheAncientsMod.Items.Ranger.Rep;
-using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Core;
 using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
@@ -37,14 +36,18 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		{
 			itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>()));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyrant_repeater>(), 3));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Spike_saber>(), 3));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Tyran_Blast>(), 3));
-
-		
-		}
+            // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<Tyrant_repeater>(), ItemType<Spike_saber>(), ItemType<Tyran_Blast>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalSoul>()));
+        }
 		public override int BossBagNPC => NPCType<InfernalTyrantHead>();
 	}
+    public class InfernalReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade && Reaper.ReaperMode;
+        public bool CanShowItemDropInUI() => true;
+        public string GetConditionDescription() => null;
+    }
 }
 
 

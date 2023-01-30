@@ -32,10 +32,17 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 9;
-            Item.value = 100000;
-            Item.autoReuse = true;
-            Item.shoot = ProjectileID.Grenade;       
+			Item.value = 100000;
+			Item.autoReuse = true;
+			Item.shoot = ProjectileID.Grenade;
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+				Item.damage = 70;
+				Item.useTime = 12;
+				Item.useAnimation = 12;
+			}
 		}
+	
 		public override void AddRecipes()
 		{
 			CreateRecipe()

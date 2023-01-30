@@ -51,13 +51,26 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-            .AddIngredient(ItemID.SoulofLight, 5)
-            .AddIngredient(ItemID.SoulofNight, 5)
-            .AddIngredient(ItemID.IceBlock, 30)
-            .AddIngredient(ItemID.SnowBlock, 30)
-            .AddTile(TileID.MythrilAnvil)
-            .Register();
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.SoulofLight, 5)
+                .AddIngredient(ItemID.SoulofNight, 5)
+                .AddIngredient(ItemID.IceBlock, 30)
+                .AddIngredient(ItemID.SnowBlock, 30)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.SoulofLight, 5)
+                .AddIngredient(ItemID.SoulofNight, 5)
+                .AddIngredient(ItemID.IceBlock, 30)
+                .AddIngredient(ItemID.SnowBlock, 30)
+                .AddTile(TileID.Anvils)
+                .Register();
+            }
         }
     }
 }

@@ -51,19 +51,19 @@ namespace RemnantOfTheAncientsMod.Drops
                 if (Main.rand.NextFloat() <= (float)1 / 2) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.DeerclopsBossBag), ItemType<PerSktn>(), Main.rand.Next(1, 1));
                 if (!Main.LocalPlayer.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.DeerclopsBossBag), ItemType<DeerclopsSoul>());
             } 
-            if (context == "bossBag" && arg == ItemType<desertBag>())
+         /*   if (context == "bossBag" && arg == ItemType<desertBag>())
             {
                 if (!Main.LocalPlayer.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<desertBag>()), ItemType<DesertSoul>());
-            }
+            }*/
             if (context == "bossBag" && arg == ItemID.WallOfFleshBossBag)
             {
                 if (Main.rand.NextFloat() <= (float)1 / 5) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.WallOfFleshBossBag), ItemType<PerWlloFsh>(), Main.rand.Next(1, 1));
                 if (!Main.LocalPlayer.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.WallOfFleshBossBag), ItemType<InfernalSoul>());
             }
-            if (context == "bossBag" && arg == ItemType<frostBag>())
+            /*if (context == "bossBag" && arg == ItemType<frostBag>())
             {
                 if (!Main.LocalPlayer.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<frostBag>()), ItemType<FrozenSoul>());
-            }
+            }*/
             if (context == "bossBag" && arg == ItemID.QueenSlimeBossBag)
             {
                 //if (Main.rand.NextFloat() <= (float)1 / 2) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.QueenSlimeBossBag), ItemType<PerSktn>(), Main.rand.Next(1, 1));
@@ -90,10 +90,10 @@ namespace RemnantOfTheAncientsMod.Drops
                 // if (Main.rand.NextFloat() <= (float)1 / 5) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.DestroyerBossBag), ItemType<PerWlloFsh>(), Main.rand.Next(1, 1));
                 if (!Main.LocalPlayer.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.PlanteraBossBag), ItemType<PlantSoul>());
             }
-            if (context == "bossBag" && arg == ItemType<infernalBag>())
+          /*  if (context == "bossBag" && arg == ItemType<infernalBag>())
             {
                 if (!Main.LocalPlayer.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade) player.QuickSpawnItem(player.GetSource_OpenItem(ItemType<infernalBag>()), ItemType<InfernalSoul>());
-            }
+            }*/
             if (context == "bossBag" && arg == ItemID.FairyQueenBossBag)
             {
                 // if (Main.rand.NextFloat() <= (float)1 / 5) player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.DestroyerBossBag), ItemType<PerWlloFsh>(), Main.rand.Next(1, 1));

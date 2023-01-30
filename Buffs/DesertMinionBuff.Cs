@@ -13,6 +13,7 @@ namespace RemnantOfTheAncientsMod.Buffs
 			Description.SetDefault("The Baby Desert will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
+
 		}
 
 		public override void Update(Player player, ref int buffIndex)

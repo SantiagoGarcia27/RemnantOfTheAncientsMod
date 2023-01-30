@@ -12,10 +12,11 @@ using RemnantOfTheAncientsMod.Items.Core;
 
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
-    public class frostBag : ModItem
+	public class frostBag : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -40,17 +41,24 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		}
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-			itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>()));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrostShark>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<Permafrost>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<frozen_staff>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<FrozenStafff>(), 4));
 
-			
-		}
+            itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>(), 1, 1, 1));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>())); ;
+           // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<FrostShark>(), ItemType<Permafrost>(), ItemType<frozen_staff>(), ItemType<FrozenStafff>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new FrozenReaperSoul(), ItemType<FrozenSoul>()));
+
+
+        }
 		public override int BossBagNPC => NPCType<frozen_assaulter>();
 	}
+    public class FrozenReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade && Reaper.ReaperMode;
+        public bool CanShowItemDropInUI() => true;
+        public string GetConditionDescription() => null;
+    }
 }
 
 

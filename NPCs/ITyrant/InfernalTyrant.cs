@@ -48,10 +48,8 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
         }
-        public static float speed;
-        public static float turnSpeed;
+   
         public bool head;
-        public bool tail;
         public bool CanTp = false;
         public override void SetDefaults()
         {

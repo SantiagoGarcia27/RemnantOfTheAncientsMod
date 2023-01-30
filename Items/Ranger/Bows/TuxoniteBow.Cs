@@ -35,6 +35,10 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
             Item.useAmmo = AmmoID.Arrow;
             Item.shootSpeed = 10f;
             Item.autoReuse = false;
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 16;
+            }
         }
 		public override void AddRecipes()
 		{

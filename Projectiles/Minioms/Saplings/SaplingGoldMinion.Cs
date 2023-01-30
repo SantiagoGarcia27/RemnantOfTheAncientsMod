@@ -39,7 +39,13 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings
 			shoot = ProjectileType<Stick_f_P>();
 			shootSpeed = 9f;
 			shootCool = 100f;
-		}
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                shootCool = 70f;
+				Projectile.tileCollide = false;
+            }
+        }
 		public override void CheckActive()
 		{
 			Player player = Main.player[Projectile.owner];

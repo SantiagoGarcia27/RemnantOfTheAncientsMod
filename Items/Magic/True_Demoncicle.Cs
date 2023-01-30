@@ -40,7 +40,12 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.value = Item.sellPrice(gold: 5);
 			Item.autoReuse = true;
 			Item.reuseDelay = 14;
-		}
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 80;
+            }
+        }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			float numberProjectiles = 6 + Main.rand.Next(3); 

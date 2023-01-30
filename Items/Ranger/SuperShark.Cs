@@ -40,8 +40,14 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
             Item.shoot = ProjectileID.JestersArrow;
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
-			
-		}
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+                Item.useTime = 5;
+                Item.useAnimation = 5;
+            }
+
+        }
         public override bool CanConsumeAmmo(Item ammo,Player player)
 		{
 			return Main.rand.NextFloat() >= .40f;

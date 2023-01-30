@@ -35,12 +35,22 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 			Item.shoot = ProjectileID.PurificationPowder;
 			Item.shootSpeed = 2f;
 			Item.useAmmo = AmmoID.Bullet;
-		}
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 60;
+            }
+        }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (Main.rand.NextFloat() <= (float)1 / 1) Projectile.NewProjectile(source, position, velocity, ProjectileID.EatersBite, damage*2, 1, player.whoAmI);
+			
+			if (Main.rand.NextFloat() <= (float)1 / 1) Projectile.NewProjectile(source, position, velocity, ProjectileID.EatersBite, Damegscale(damage), 1, player.whoAmI);
 
 			return true;
+		}
+		public int Damegscale(int damage)
+		{
+			if (RemnantOfTheAncientsMod.CalamityMod != null) return damage * 2;
+			else return damage;
 		}
 		public override Vector2? HoldoutOffset()
 		{

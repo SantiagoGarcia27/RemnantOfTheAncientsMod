@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Items.Summon.Saplings;
+using RemnantOfTheAncientsMod;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -42,7 +42,11 @@ public abstract class ModelSummonerStaff : ModItem
 		Item.DamageType = DamageClass.Summon;
 		Item.buffType = BuffId;
 		Item.shoot = MinionId;
-	}
+		if (ModLoader.TryGetMod("CalamityMod", out Mod mod))
+		{
+			Item.damage = Damage + 3;
+		}
+    }
 	public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 	{
 		player.AddBuff(Item.buffType, 2);
@@ -58,7 +62,7 @@ public abstract class ModelSummonerStaff : ModItem
 	public override void AddRecipes()
 	{
 		CreateRecipe()
-		.AddIngredient(ModContent.ItemType<ForestStaff>())
+		.AddIngredient(ModContent.ItemType<RemnantOfTheAncientsMod.Items.Summon.Saplings.ForestStaff>())
 		.AddIngredient(ItemId, 8)
 		.AddTile(TileID.Anvils)
 		.Register();

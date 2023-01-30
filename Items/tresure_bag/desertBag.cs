@@ -4,16 +4,15 @@ using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.NPCs.DAniquilator;
-using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Items.Mele;
 using RemnantOfTheAncientsMod.Items.Magic;
-using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 using RemnantOfTheAncientsMod.Items.Summon;
 using RemnantOfTheAncientsMod.Items.Summon.Buf;
 using RemnantOfTheAncientsMod.Items.Core;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Items.Ranger.Bows;
 using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
@@ -42,15 +41,20 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		}
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-			itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>()));
-			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>()));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<desertbow>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertEdge>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertTome>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DesertStaff>(), 4));
-			itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemType<DScroll>(), 5));
-		}
+			itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
+			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>())); ;
+			itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<desertbow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
+			itemLoot.Add(ItemDropRule.ByCondition(new DesertReaperSoul(), ItemType<DesertSoul>()));
+        }
 		public override int BossBagNPC => NPCType<DesertAniquilator>();
 	}
+    public class DesertReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+		public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade && Reaper.ReaperMode;
+        public bool CanShowItemDropInUI() => true;
+        public string GetConditionDescription() => null;
+    }
 }
+
 

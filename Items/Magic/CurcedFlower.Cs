@@ -34,7 +34,12 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.shoot = ProjectileID.CursedFlameFriendly;
 			Item.shootSpeed = 10f;
 			Item.noUseGraphic = false;
-		}
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 80;
+            }
+        }
 		public override void AddRecipes()
 		{
 			CreateRecipe()

@@ -37,6 +37,12 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
             Item.useAmmo = AmmoID.Arrow;
             Item.shootSpeed = 10f;
             Item.autoReuse = false;
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.useTime = 6;
+                Item.autoReuse = true;
+            }
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player)

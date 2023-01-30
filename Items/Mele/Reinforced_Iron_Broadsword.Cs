@@ -31,7 +31,15 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
-		}
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.autoReuse = true;
+                Item.scale = 1.5f;
+                Item.useTime = 28;
+                Item.useAnimation = 28;
+                Item.damage = 41;
+            }
+        }
 	public override void AddRecipes()
 		{
 			CreateRecipe()

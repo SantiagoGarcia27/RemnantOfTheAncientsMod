@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		}
 		public override void SetDefaults()
 		{
-            Item.damage = 530;
+            Item.damage = 155;
             Item.DamageType = DamageClass.Ranged;
             Item.width = 80; 
             Item.height = 40; 

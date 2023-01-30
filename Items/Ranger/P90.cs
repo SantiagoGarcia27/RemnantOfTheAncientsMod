@@ -37,7 +37,11 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
 			Item.expert = true;
-		}
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 14;
+            }
+        }
 
 		public override Vector2? HoldoutOffset()
 		{

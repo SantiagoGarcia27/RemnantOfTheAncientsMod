@@ -36,8 +36,12 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 			Item.shootSpeed = 20f;
 			Item.useAmmo = AmmoID.Bullet;
 
-			if (ModLoader.TryGetMod("OmniSwing", out Mod mod)) Item.damage = 28;
-		}
+			//if (ModLoader.TryGetMod("OmniSwing", out Mod mod)) Item.damage = 28;
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+				Item.autoReuse = true;
+            }
+        }
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-10, 0);

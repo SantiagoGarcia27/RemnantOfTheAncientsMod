@@ -36,7 +36,11 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.autoReuse = true;
 			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Legendary;
 			Item.GetGlobalItem<GlobalItem1>().LegendaryDrop = true;
-		}
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 150;
+            }
+        }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			float numberProjectiles = 5 + Main.rand.Next(4);

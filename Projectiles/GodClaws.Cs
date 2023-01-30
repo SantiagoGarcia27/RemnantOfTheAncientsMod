@@ -61,18 +61,17 @@ namespace RemnantOfTheAncientsMod.Projectiles
 				{
 					maxTileY = Main.maxTilesY;
 				}
-				bool canKillWalls = false;
-				for (int x = minTileX; x <= maxTileX; x++)
+
+                for (int x = minTileX; x <= maxTileX; x++)
 				{
 					for (int y = minTileY; y <= maxTileY; y++)
 					{
 						float diffX = Math.Abs((float)x - Projectile.position.X / 16f);
 						float diffY = Math.Abs((float)y - Projectile.position.Y / 16f);
 						double distance = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
-						if (distance < (double)explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].WallType == 0)
+						if (distance < explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].WallType == 0)
 						{
-							canKillWalls = true;
-							break;
+                            break;
 						}
 
 					}
@@ -80,22 +79,21 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			}
 
 		}
-		/*
+
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			  Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-			 if (CalamityMod != null)
+			target.immune[Projectile.owner] = 0;
 
-			 target.immune[Projectile.owner] = 0;
-
-			  target.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("GodSlayerInferno"), 400);
-			  target.AddBuff(ModLoader.GetMod("CalamityMod").BuffType("Marked"), 400);
-			  target.AddBuff(BuffID.OnFire, 1080);
-			 target.AddBuff(BuffID.BrokenArmor, 1080);
-			 target.AddBuff(BuffID.Slow, 1080);
-			 target.AddBuff(BuffID.CursedInferno, 1080);
-			 target.AddBuff(BuffID.Ichor, 1080);
-		  }
-		}*/
+			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod))
+			{
+				if (CalamityMod.TryFind("GodSlayerInferno", out ModProjectile GodSlayerInferno)) target.AddBuff(GodSlayerInferno.Type, 400);
+				if (CalamityMod.TryFind("GodSlayerInferno", out ModProjectile Marked)) target.AddBuff(Marked.Type, 400);
+			}
+            target.AddBuff(BuffID.OnFire, 1080);
+            target.AddBuff(BuffID.BrokenArmor, 1080);
+            target.AddBuff(BuffID.Slow, 1080);
+            target.AddBuff(BuffID.CursedInferno, 1080);
+            target.AddBuff(BuffID.Ichor, 1080);
+        }
 	}
 }
