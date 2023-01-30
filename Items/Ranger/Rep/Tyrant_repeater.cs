@@ -22,8 +22,8 @@ public class Tyrant_repeater : ModItem
     {
     Item.damage = 42;
     Item.DamageType = DamageClass.Ranged;
-    Item.width = 12;
-    Item.height = 38;
+    Item.width = 76;
+    Item.height = 26;
     Item.maxStack = 1;
     Item.useTime = 15;
     Item.useAnimation = 30;

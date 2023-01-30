@@ -25,8 +25,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		{
 			Item.damage = 45;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.width = 130;
-			Item.height = 160;
+			Item.width = 72;
+			Item.height = 72;
 			Item.useTime = 40;
 			Item.useAnimation = 25;
 			Item.shootSpeed = 3.7f;
