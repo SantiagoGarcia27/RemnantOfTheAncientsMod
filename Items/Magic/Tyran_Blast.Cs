@@ -29,8 +29,8 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.channel = true;
 			Item.mana = 9;
 			Item.rare = ItemRarityID.Lime;
-			Item.width = 46;
-			Item.height = 54;
+			Item.width = 72;
+			Item.height = 74;
 			Item.useTime = 15;
 			Item.UseSound = SoundID.Item34;
 			Item.useStyle = ItemUseStyleID.Shoot;
