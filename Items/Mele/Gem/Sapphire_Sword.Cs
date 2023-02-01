@@ -4,6 +4,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Projectiles;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 {
@@ -39,7 +40,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + 5 * 16, target.position.Y), (player.position - target.position) * 0.25f, ProjectileID.SapphireBolt, damage, Main.myPlayer, player.whoAmI);
+           // Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + 5 * 16, target.position.Y), (player.position - target.position) * 0.25f, ProjectileID.SapphireBolt, damage, Main.myPlayer, player.whoAmI);
+            Vector2 perturbedSpeed = (player.position - target.position).RotatedBy(MathHelper.Lerp(-0, 0, 1)) * .2f;
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
         }
 
         public override void AddRecipes()

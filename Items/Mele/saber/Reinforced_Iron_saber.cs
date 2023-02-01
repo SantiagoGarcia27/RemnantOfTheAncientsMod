@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 19;
+			Item.damage = Item.damage = new Item(ModContent.ItemType<Reinforced_Iron_Broadsword>()).damage - 3; ;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;

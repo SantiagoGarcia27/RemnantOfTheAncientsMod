@@ -17,8 +17,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 46;
-			Item.DamageType = DamageClass.Melee;
+            Item.damage = new Item(ItemID.AdamantiteSword).damage - 3;
+            Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
 			Item.useTime = 20;

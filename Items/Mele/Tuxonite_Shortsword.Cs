@@ -18,8 +18,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 14;
-			Item.DamageType = DamageClass.Melee;
+            Item.damage = new Item(ItemID.PlatinumShortsword).damage + 3;
+            Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
 			Item.useTime = 10;

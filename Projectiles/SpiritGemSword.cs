@@ -52,13 +52,14 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.DamageType = DamageClass.Melee;          // 
             Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
             Projectile.penetrate = 1;      //how many NPC will penetrate
-            Projectile.timeLeft = 20000;   //how many time this projectile has before disepire
+            Projectile.timeLeft = 300;   //how many time this projectile has before disepire
             Projectile.light = 1.75f;    // projectile light
             Projectile.extraUpdates = 1;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.ignoreWater = true;
             Projectile.scale = 0.7f;
             AIType = ProjectileID.InfluxWaver;
+
 
         }
 

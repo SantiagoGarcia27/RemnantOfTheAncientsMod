@@ -19,8 +19,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 21;
-			Item.DamageType = DamageClass.Melee;
+            Item.damage = new Item(ItemID.PlatinumBroadsword).damage + 10;
+            Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
 			Item.useTime = 30;
@@ -36,8 +36,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
                 Item.autoReuse = true;
                 Item.scale = 1.5f;
                 Item.useTime = 28;
-                Item.useAnimation = 28;
-                Item.damage = 41;
+                Item.useAnimation = 28;   
             }
         }
 	public override void AddRecipes()

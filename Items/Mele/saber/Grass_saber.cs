@@ -22,8 +22,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 
 		public override void SetDefaults()
 		{
-			Item.damage = 24;
-			Item.DamageType = DamageClass.Melee;
+            Item.damage = new Item(ItemID.BladeofGrass).damage - 3;
+            Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
 			Item.useTime = 25;

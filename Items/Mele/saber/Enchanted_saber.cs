@@ -34,6 +34,10 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.shootSpeed = 10f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
+			if(RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+                Item.damage = 16;
+            }
 		}
 
 		public override void AddRecipes()

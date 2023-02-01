@@ -19,8 +19,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 11;
-			Item.DamageType = DamageClass.Melee;
+            Item.damage = new Item(ModContent.ItemType<Tuxonite_Sword>()).damage - 3;
+            Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
 			Item.useTime = 20;

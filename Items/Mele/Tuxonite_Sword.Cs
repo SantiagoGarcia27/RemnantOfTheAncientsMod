@@ -19,8 +19,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 16;
-			Item.DamageType = DamageClass.Melee;
+            Item.damage = new Item(ItemID.WoodenSword).damage + 3;
+            Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
 			Item.useTime = 20;
@@ -35,7 +35,6 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             {
                 Item.autoReuse = true;
                 Item.scale = 1.5f;
-                Item.damage = 35;
             }
         }
 	public override void AddRecipes()

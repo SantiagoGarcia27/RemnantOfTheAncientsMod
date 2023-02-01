@@ -40,6 +40,11 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.value = Item.sellPrice(gold: 35);
 			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Legendary;
 			Item.GetGlobalItem<GlobalItem1>().LegendaryDrop = true;
+
+			if(RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+                Item.damage = 400;
+            }
 		}
         public override void PostReforge()
         {

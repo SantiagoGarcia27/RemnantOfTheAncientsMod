@@ -11,6 +11,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
 {
     public class PermafrostRain : ModProjectile
     {
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Mele/Permafrost";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("SkyCutterS"); //projectile name
@@ -31,6 +32,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             Projectile.scale = 0.7f;
             AIType = ProjectileID.InfluxWaver;
 
+           
         }
         public override void AI()           //this make that the projectile will face the corect way
         {                                                           // |

@@ -19,9 +19,12 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public static int counter = 0;
 		public static int counter2 = 0;
+
+		private int oldDamage;
 		public override void SetDefaults()
 		{
 			Item.damage = 180;
+			oldDamage = Item.damage;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
@@ -57,15 +60,17 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		{
 			if(strong)
 			{
-                Item.damage = Item.damage * 2;
-                Item.shoot = ModContent.ProjectileType<InfernalBallF_f>();
+                Item.damage = oldDamage * 2;
+                Item.shoot = proj;
+				Item.shootSpeed = speed;
                 counter = 0;
             }
 			else
 			{
                 counter++;
-                Item.damage = Item.damage;    
-                Item.shoot = ModContent.ProjectileType<InfernalBall_f>();
+                Item.damage = oldDamage;    
+                Item.shoot = proj;
+                Item.shootSpeed = speed;
             }
 
 		}

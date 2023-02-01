@@ -17,8 +17,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 13;
-			Item.DamageType = DamageClass.Melee;
+            Item.damage = new Item(ItemID.LightsBane).damage - 3;
+            Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
 			Item.useTime = 20;

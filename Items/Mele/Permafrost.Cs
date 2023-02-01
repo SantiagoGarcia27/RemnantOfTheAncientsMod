@@ -39,8 +39,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.UseSound = SoundID.Item1;
 			Item.shoot = ProjectileType<FrostBeamF>();
 			Item.shootSpeed = 7f;
-		}
-		public override bool AltFunctionUse(Player player) => true;
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Item.damage = 145;
+            }
+
+        }
+        public override bool AltFunctionUse(Player player) => true;
 		public override bool CanUseItem(Player player)
 		{
             if (player.altFunctionUse != 2)

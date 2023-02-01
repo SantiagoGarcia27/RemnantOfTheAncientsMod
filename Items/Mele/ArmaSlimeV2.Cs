@@ -21,14 +21,13 @@ namespace RemnantOfTheAncientsMod.Items.Mele
         public override void SetDefaults()
         {
             Item.damage = 30;
-            Item.DamageType = DamageClass.Ranged;
             Item.DamageType = DamageClass.Melee;
             Item.channel = true;
             Item.width = 80; 
             Item.height = 40; 
             Item.useTime = 20; 
             Item.useAnimation = 20;
-            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 1;
             Item.value = 45000; 
@@ -52,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
         {
             CreateRecipe()
             .AddIngredient(ItemID.SlimeGun, 1)
-            .AddIngredient(ItemID.Arkhalis, 1)
+            .AddIngredient(ItemID.Terragrim, 1)
             .AddIngredient(ItemID.Gel, 10)
             .AddTile(TileID.Solidifier)
             .Register();
