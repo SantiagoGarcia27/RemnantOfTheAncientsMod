@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod
 		+ "\n(deactivate this if it generates incompatibility with some other mod)")]
 		public bool VanillaWeaponsChangesConf { get; set; }
 
-		[Label("ReaperFirsTime")]
+		/*[Label("ReaperFirsTime")]
 		[DefaultValue(true)]
 		[Tooltip("")]
 		public bool ReaperFirsTimeConf { get; set; }
@@ -35,6 +35,6 @@ namespace RemnantOfTheAncientsMod
 		[DrawTicks]
 		[DefaultValue(0f)]
 		[Tooltip("Reduces graphical aspects of the mod in order to improve game performance.")]
-		public float GameModeDebugg { get; set; }
+		public float GameModeDebugg { get; set; }*/
 	}
 }

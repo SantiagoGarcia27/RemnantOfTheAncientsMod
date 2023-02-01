@@ -129,22 +129,6 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije Icor a los enemigos");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override void SetDefaults()
-        {
-            Item.damage = 25;
-            Item.DamageType = DamageClass.Melee;
-            Item.width = 88;
-            Item.height = 88;
-            Item.useTime = 18;
-            Item.useAnimation = 18;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 5;
-            Item.value = 1200;
-            Item.rare = ItemRarityID.Orange;
-            Item.UseSound = SoundID.Item1;
-            Item.autoReuse = false;
-
-        }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
