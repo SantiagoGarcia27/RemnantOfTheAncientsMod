@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 		{
 			Item.damage = 23;
 			Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 40;
+			Item.width = 50;
+			Item.height = 50;
 			Item.useTime = 18;
 			Item.useAnimation = 18;
 			Item.useStyle = ItemUseStyleID.Swing;
