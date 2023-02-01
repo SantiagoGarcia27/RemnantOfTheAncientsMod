@@ -129,32 +129,30 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije Icor a los enemigos");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override void SetDefaults()
+        {
+            Item.damage = 25;
+            Item.DamageType = DamageClass.Melee;
+            Item.width = 88;
+            Item.height = 88;
+            Item.useTime = 18;
+            Item.useAnimation = 18;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 5;
+            Item.value = 1200;
+            Item.rare = ItemRarityID.Orange;
+            Item.UseSound = SoundID.Item1;
+            Item.autoReuse = false;
+
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
+        }
     }
-
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-		public override void SetDefaults()
-		{
-			Item.damage = 25;
-			Item.DamageType = DamageClass.Melee;
-			Item.width = 88;
-			Item.height = 88;
-			Item.useTime = 18;
-			Item.useAnimation = 18;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 5;
-			Item.value = 1200;
-			Item.rare = ItemRarityID.Orange;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
-
-		}
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-		{
-			Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
-			Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
-			perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7 ) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
     public class The_Geode_White : BaseGeode
     {
         public override int damage => 30;
@@ -181,8 +179,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         {
             Item.damage = damage;
             Item.DamageType = DamageClass.Melee;
-            Item.width = 40;
-            Item.height = 40;
+            Item.width = 88;
+            Item.height = 88;
             Item.useTime = attakSpeed;
             Item.useAnimation = attakSpeed;
             Item.useStyle = ItemUseStyleID.Swing;
