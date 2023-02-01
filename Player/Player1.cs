@@ -351,12 +351,12 @@ namespace RemnantOfTheAncientsMod
 			}
 		}
 		
-        public void Debugg()
+       /* public void Debugg()
 		{
 			bool rft = GetInstance<ConfigClient1>().ReaperFirsTimeConf;
 			if (rft) ReaperFirstTime = true;
 			else ReaperFirstTime = false;
-		}
+		}*/
 	}
 }
 
