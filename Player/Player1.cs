@@ -102,7 +102,7 @@ namespace RemnantOfTheAncientsMod
 		public override void UpdateEquips()
 		{
 			if (Player.wingTimeMax > 4) FchangesItem.ReaperWingsNerf(Player);
-			if(RemnantOfTheAncientsMod.DebuggMode) Debugg();
+			//if(RemnantOfTheAncientsMod.DebuggMode) Debugg();
 		}
 		public void ReaperStarter()
 		{
