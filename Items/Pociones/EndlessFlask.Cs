@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Buffs;
 
 namespace RemnantOfTheAncientsMod.Items.Pociones
 {
@@ -95,6 +96,18 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             base.SetStaticDefaults();
         }
     }
+    public class Endless_Sand_Flask : BaseModPotions
+    {
+        public override int ItemId => ModContent.ItemType<Sand_Flask>();
+        public override int BuffId => ModContent.BuffType<Sand_Weapons>();
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Sand_Flask";
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Sand Flask");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente eterno");
+            base.SetStaticDefaults();
+        }
+    }
     public class EndlessNaniteF : BasePotions
     {
         public override int TextureID => ItemID.FlaskofNanites;
@@ -106,7 +119,6 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de nanitos eterno");
             base.SetStaticDefaults();
         }
-
-
     }
+
 }
