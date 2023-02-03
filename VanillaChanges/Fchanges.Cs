@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Items.BossSummon;
 using RemnantOfTheAncientsMod.Items.Fmode;
 using RemnantOfTheAncientsMod.World;
@@ -24,27 +25,29 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				originalsize = item.scale;
 			}
 
-				if (Reaper.ReaperMode && item.CountsAsClass(DamageClass.Melee) && item.GetGlobalItem<GlobalItem1>().SizedByReaper && item.active)
+			if (Reaper.ReaperMode && item.CountsAsClass(DamageClass.Melee) && item.GetGlobalItem<GlobalItem1>().SizedByReaper && item.active)
+			{
+				if (item.scale <= originalsize)
 				{
-					if (item.scale <= originalsize)
-					{
-						if (originalsize <= 0f) originalsize = 1f;
-						item.GetGlobalItem<FchangesItem>().newsize = originalsize * 2.50f;
-						item.scale = item.GetGlobalItem<FchangesItem>().newsize;
-						//Player1.FWeapons = false;
-						item.GetGlobalItem<GlobalItem1>().SizedByReaper = false;
-					}
-				}
+					if (originalsize <= 0f) originalsize = 1f;
+					item.GetGlobalItem<FchangesItem>().newsize = originalsize * 2.50f;
+					item.scale = item.GetGlobalItem<FchangesItem>().newsize;
+					//Player1.FWeapons = false;
+					item.GetGlobalItem<GlobalItem1>().SizedByReaper = false;
+                    
+                }
+			}
 			else
 			{
-				if (item.CountsAsClass(DamageClass.Melee) && item.active)
+				if (!Reaper.ReaperMode && item.CountsAsClass(DamageClass.Melee) && item.active)
 				{
 					//item.active = false;
 					if (originalsize <= 0f) originalsize = 1f;
 					item.scale = originalsize;
 					item.active = true;
 					item.GetGlobalItem<GlobalItem1>().SizedByReaper = true;
-				}
+                    
+                }
 			}
 
 		

@@ -64,7 +64,8 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				FchangesItem.ReaperConsumable(item);
 				FchangesItem.ReaperSetDefaut(item);
 			}
-                item.GetGlobalItem<FchangesItem>().ReaperSize(item);           
+
+            item.GetGlobalItem<FchangesItem>().ReaperSize(item);           
         }
 
 
