@@ -5,11 +5,10 @@ using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Buffs;
 
-namespace opswordsII.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {
     public class StardustMinion : ModProjectile
     {
-        public override string Texture => "Terraria/Projectile_" + ProjectileID.StardustDragon1;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("StardustMinion");

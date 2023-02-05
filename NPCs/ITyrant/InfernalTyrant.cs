@@ -1,37 +1,39 @@
+
+
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Items.Bloques.Relics;
+using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
+using RemnantOfTheAncientsMod.Items.Magic;
+using RemnantOfTheAncientsMod.Items.Mele.saber;
+using RemnantOfTheAncientsMod.Items.Ranger.Rep;
+using RemnantOfTheAncientsMod.Items.tresure_bag;
+using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod.World;
 using System;
 using System.IO;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Items.tresure_bag;
-using RemnantOfTheAncientsMod.Items.Mele.saber;
-using RemnantOfTheAncientsMod.Items.Magic;
-using RemnantOfTheAncientsMod.Items.Ranger.Rep;
-using RemnantOfTheAncientsMod.Items.Armor.Masks;
-using RemnantOfTheAncientsMod.Items.Bloques.Relics;
-using RemnantOfTheAncientsMod.Items.Bloques;
-using RemnantOfTheAncientsMod.Items.Summon;
-using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.VanillaChanges;
-using RemnantOfTheAncientsMod.Projectiles;
-using Terraria.GameContent.ItemDropRules;
-
-using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Common.Systems;
 using Terraria.Audio;
-using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 {
     [AutoloadBossHead]
     internal class InfernalTyrantHead : WormHead
     {
-        public override int BodyType => NPCType<InfernalTyrantBody>();
+        public override int BodyType => ModContent.NPCType<InfernalTyrantBody>();
 
-        public override int TailType => NPCType<InfernalTyrantTail>();
+        public override int TailType => ModContent.NPCType<InfernalTyrantTail>();
 
         public override void SetStaticDefaults()
         {
@@ -56,12 +58,12 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             // Head is 10 defence, body 20, tail 30.
             NPC.CloneDefaults(NPCID.DiggerHead);
             NPC.aiStyle = -1;
-            NPC.width = 50;//105
+            NPC.width = 40;//105
             NPC.height = 40;//103
             NPC.boss = true;
             NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(30000, true);
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(300, true);
-            NPC.defense = TyranStats.TyrantArmor(999, GetModNPC(NPCType<InfernalTyrantHead>()).NPC);
+            NPC.damage = (int)NpcChanges1.ExpertDamageScale(300);
+            NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
             NPC.scale = 2.50f;
             NPC.npcSlots = 20f;
             NPC.lavaImmune = true;
@@ -124,21 +126,21 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 switch (attackCounter)
                 {
                     case 200:
-                        SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(40, true), false, -3, -3);
+                        SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(40), false, -3, -3);
                         break;
                     case 250:
-                        FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70, true), ProjectileType<InfernalBallF>(), "*", 4, 3, target, 0f);
-                        FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70, true), ProjectileType<InfernalBallF>(), "/", 4, 3, target, 0f);
+                        FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ModContent.ProjectileType<InfernalBallF>(), "*", 4, 3, target, 0f);
+                        FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ModContent.ProjectileType<InfernalBallF>(), "/", 4, 3, target, 0f);
                         break;
                     case 300:
                         SummonIa(NPCID.Demon);
                         break;
                     case 400:
-                        SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(90, true), true, 3, -3);
+                        SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(90), true, 3, -3);
                         break;
                     case 600:
                         for (int i = -2; i <= 3; i++)
-                            FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(30, true), ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
+                            FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(30), ModContent.ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
                         break;
                     case 700:
                         SummonIa(NPCID.RedDevil);
@@ -154,6 +156,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 TyrantTp();
                 LifeSpeed(this);
             }
+
         }
         public void FindTarget()
         {
@@ -197,7 +200,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 
         public void SpikeIa(float Speed, int damage, bool isStrong, int cordx, int cordy)
         {
-            int type = isStrong? ProjectileType<InfernalSpikeF>(): ProjectileType<InfernalSpike>(); 
+            int type = isStrong? ModContent.ProjectileType<InfernalSpikeF>(): ModContent.ProjectileType<InfernalSpike>(); 
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width * cordx), NPC.position.Y + (NPC.height * cordy));
             SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
@@ -208,7 +211,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         public void SummonIa(int Npc) => NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, Npc);
         public void LifeSpeed(Worm worm)
         { 
-            NPC.defense = TyranStats.TyrantArmor(999, GetModNPC(NPCType <InfernalTyrantHead>()).NPC);
+            NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
             if (NPC.life < NPC.lifeMax / 2)
             {
                 worm.MoveSpeed = 50f;//9.5f
@@ -230,15 +233,31 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             DownedBossSystem.downedTyrant = true;
             potionType = ItemID.GreaterHealingPotion;
         }
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            SpriteEffects effects = SpriteEffects.None;
+            if (NPC.spriteDirection == 1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
+            Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+            Vector2 position = vector - Main.screenPosition;
+            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrantHead_Gow");
+            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
+            Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
+            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+        }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Spike_saber>(), 3, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Tyrant_repeater>(), 3, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Tyran_Blast>(), 3, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<InfernalMask>(), 7, 999999999));
-            npcLoot.Add(ItemDropRule.Common(ItemType<InfernalTrophy>(), 10));
-            npcLoot.Add(ItemDropRule.BossBag(ItemType<infernalBag>()));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Tyrant_Relic>()));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Spike_saber>(), 3, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Tyrant_repeater>(), 3, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Tyran_Blast>(), 3, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<InfernalMask>(), 7, 999999999));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<infernalBag>()));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
         }
 
     }
@@ -263,14 +282,29 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 
             NPC.CloneDefaults(NPCID.DiggerBody);
             NPC.lifeMax = 3000;
-            NPC.defense = TyranStats.TyrantArmor(999,GetModNPC(NPCType<InfernalTyrantBody>()).NPC);//999
+            NPC.defense = TyranStats.TyrantArmor(999,ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantBody>()).NPC);//999
             NPC.aiStyle = -1;
             NPC.width = 30;//105
             NPC.height = 33;//103
             NPC.scale = 2.50f;
             NPC.boss = true;
         }
-
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            SpriteEffects effects = SpriteEffects.None;
+            if (NPC.spriteDirection == 1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
+            Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+            Vector2 position = vector - Main.screenPosition;
+            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrantBody_Glow");
+            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
+            Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
+            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+        }
         public override void Init()
         {
             InfernalTyrantHead.CommonWormInit(this);
@@ -303,7 +337,22 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             NPC.scale = 2.50f;
             NPC.boss = true;
         }
-
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            SpriteEffects effects = SpriteEffects.None;
+            if (NPC.spriteDirection == 1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
+            Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+            Vector2 position = vector - Main.screenPosition;
+            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrantTail_glow");
+            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
+            Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
+            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+        }
         public override void Init()
         {
             InfernalTyrantHead.CommonWormInit(this);

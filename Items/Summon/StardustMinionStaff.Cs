@@ -4,9 +4,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Projectiles.Minioms;
 using RemnantOfTheAncientsMod.Buffs;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Projectiles.Minioms;
 
 namespace RemnantOfTheAncientsMod.Items.Summon
 {

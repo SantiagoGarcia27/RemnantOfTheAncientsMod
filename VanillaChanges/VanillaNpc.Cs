@@ -15,41 +15,23 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
                 damage *= 2;
             }*/
         }
-        public static double ExpertDamageScale(double i, bool IsBoss)
+        public static double ExpertDamageScale(double i)
         {
             if (Reaper.ReaperMode)
             {
-                if (IsBoss)
+                if (Main.masterMode)
                 {
-                    if (Main.expertMode)
-                    {
-                        i = DamageScale(i, 2, true);
-                    }
-                    else if (Main.masterMode)
-                    {
-                        i = DamageScale(i, 3, true);
-                    }
-                    else
-                    {
-                        i = DamageScale(i, 1, true);
-                    }
+                    i = DamageScale(i, 1.7, true);
                 }
+                else if (Main.expertMode)
+                {
+                    i = DamageScale(i, 1.5, true);
+                }  
                 else
                 {
-                    if (Main.expertMode)
-                    {
-                        i = DamageScale(i, 2, false);
-                    }
-                    else if (Main.masterMode)
-                    {
-                        i = DamageScale(i, 2.5, true);
-                    }
-                    else
-                    {
-                        i = DamageScale(i, 1, true);
-                    }
+                    i = DamageScale(i, 1, true);
                 }
-            } 
+            }
             return i;
         }
        
@@ -102,15 +84,8 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 
         public static double DamageScale(double i, double multiplier, bool IsBoss)
         {
-            if (IsBoss)
-            {
-                i *= multiplier;
-            }
-            else
-            {
-                i *= multiplier;
-            }
-            return i;
+            double a = i* multiplier;
+            return a;
         }
 
         public static int DefenseCalculator(int defensa, string npc) => defensa + 6;

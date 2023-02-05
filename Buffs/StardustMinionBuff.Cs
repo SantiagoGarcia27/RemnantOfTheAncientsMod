@@ -1,7 +1,8 @@
+using RemnantOfTheAncientsMod.Projectiles.Minioms;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using opswordsII.Projectiles.Minioms;
+
 
 namespace RemnantOfTheAncientsMod.Buffs
 {

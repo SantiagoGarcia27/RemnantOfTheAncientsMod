@@ -153,6 +153,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
         }
         public override void AI()
         {
+            Projectile.light = 0.9f;
             RemnantOfTheAncientsMod r = ModContent.GetInstance<RemnantOfTheAncientsMod>();
             int NUM_DUSTS = r.ParticlleMetter(5);
             for (int i = 0; i < NUM_DUSTS; i++)

@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         {
             NPC.aiStyle = 5;  
             NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500, true);   
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(90, true); 
+            NPC.damage = (int)NpcChanges1.ExpertDamageScale(90); 
             NPC.defense = 15;    
             NPC.knockBackResist = 0f;
             NPC.width = 100;
@@ -98,7 +98,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                 switch (attackCounter)
                 {
                     case 115:
-                        shootIa((int)NpcChanges1.ExpertDamageScale(30, true), ProjectileID.FrostBeam, target, 20f, 0.5, 0.5);
+                        shootIa((int)NpcChanges1.ExpertDamageScale(50), ProjectileID.FrostBeam, target, 20f, 0.5, 0.5);
                         break;
                     case 300:
                         NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
@@ -110,8 +110,19 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                         }
                         break;
                     case >= 0:
-                        shootIa((int)NpcChanges1.ExpertDamageScale(50, true), ProjectileType<Frozenp>(), target, 20f, 0.5, 0.5);
+                        shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 20f, 0.5, 0.5);
                         break;
+                }
+                if (Main.expertMode)
+                {
+                    if (currentPhase == 3)
+                    {
+                        FrozenPhase3();
+                    }
+                    if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
+                    {
+                        frozenTp();
+                    }
                 }
             }
             else
@@ -119,7 +130,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                 switch (attackCounter)
                 {
                     case 115:
-                        shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                        shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                         break;
                     case 150:
                         NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
@@ -134,18 +145,13 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 
                         if (i <= 360)
                         {
-                            //shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 0f + i);
-                            //shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 90f + i);
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 90f + i);
-                            //shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 180f + i);
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 180f + i);
-                            //shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 270f + i);
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 270f + i);
-                            //shootIa((int)NpcChanges1.ExpertDamageScale(10, true), ProjectileType<Frozenp>(), target, 70f, 360f + i);
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 70f, 90f + i);
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 70f, 180f + i);    
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 70f, 270f + i);
 
                             if (idelay == 0)
                             {
-                                i += 0.06f;
+                                i += 0.009f;//0.06
                                 idelay = 1;
                             }
                             else
@@ -160,19 +166,20 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                         }
                         break;
                 }
+                if (Main.expertMode)
+                {
+                    if (currentPhase == 3)
+                    {
+                        FrozenPhase3();
+                    }
+                    if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
+                    {
+                        frozenTp();
+                    }
+                }
             }
 
-            if (Main.expertMode)
-            {
-                if (currentPhase == 3)
-                {
-                    FrozenPhase3();
-                }
-                if(currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
-                {
-                    frozenTp();
-                }
-            }
+            
 
             if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
             {
@@ -188,14 +195,16 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             Vector2 direction;
             direction.X = (float)((Math.Cos(rotation) * Speed) * -1);
             direction.Y = (float)((Math.Sin(rotation) * Speed) * -1);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, 0);
+            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, 0);
+            Main.projectile[i].timeLeft = 200;
         }
         public void shootIa(int dammage, int type, Player player, float Speed, float grades)
         {
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-            Vector2 direction = /*(player.Center - NPC.Center).SafeNormalize(Vector2.UnitX)*/ Vector2.UnitX * Speed;
+            Vector2 direction = Vector2.UnitX * Speed;
             direction = direction.RotatedBy(grades);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, Main.myPlayer);
+            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, Main.myPlayer);
+            Main.projectile[i].timeLeft = 200;
         }
         public void FrozenPhase3()
         {
