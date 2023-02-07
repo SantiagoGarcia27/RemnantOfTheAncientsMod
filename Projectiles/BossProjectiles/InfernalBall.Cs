@@ -13,7 +13,26 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override bool Strong => false;
         public override float Scale => 1.5f;
         public override void SetStaticDefaults() => base.SetDefaults();
-        public override void AI() => base.AI();
+        public override void AI()
+        {
+            AnimateTexture();
+          /*  if (++Projectile.frame >= Main.projFrames[Projectile.type])
+            {
+                Projectile.frame = 0;
+            }*/
+
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+        }
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= 4)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
     }
     public class InfernalBallF : BaseInfernalBall
     {
@@ -21,7 +40,27 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override bool Strong => true;
         public override float Scale => 1.0f;
         public override void SetStaticDefaults() => base.SetDefaults();
-        public override void AI() => base.AI();
+        public override void AI()
+        {
+            AnimateTexture();
+           /* if (++Projectile.frame >= Main.projFrames[Projectile.type])
+            {
+                Projectile.frame = 0;
+            }*/
+
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+        }
+
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= 4)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
     }
     public class InfernalBall_f : BaseInfernalBall
     {
@@ -29,7 +68,27 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override bool Strong => false;
         public override float Scale => 1.5f;
         public override void SetStaticDefaults() => base.SetDefaults();
-        public override void AI() => base.AI();
+        public override void AI()
+        {
+            AnimateTexture();
+           /* if (++Projectile.frame >= Main.projFrames[Projectile.type])
+            {
+                Projectile.frame = 0;
+            }*/
+
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+        }
+
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= 4)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
     }
     public class InfernalBallF_f : BaseInfernalBall
     {
@@ -37,7 +96,27 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override bool Strong => true;
         public override float Scale => 1.0f;
         public override void SetStaticDefaults() => base.SetDefaults();
-        public override void AI() => base.AI();
+        public override void AI()
+        {
+            AnimateTexture();
+           /* if (++Projectile.frame >= Main.projFrames[Projectile.type])
+            {
+                Projectile.frame = 0;
+            }*/
+
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+        }
+
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= 4)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
     }
     public abstract class BaseInfernalBall : ModProjectile
     {
@@ -73,16 +152,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
             AIType = ProjectileID.TerraBeam;
             Main.projFrames[Projectile.type] = 4;
         }
-        public override void AI()
-
-        {
-            if (++Projectile.frame >= Main.projFrames[Projectile.type]) 
-            {
-                Projectile.frame = 0; 
-            }
-                
-            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
-        }
+        
     }
 }

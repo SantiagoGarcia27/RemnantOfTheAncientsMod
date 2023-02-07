@@ -3,6 +3,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Tiles.Music_Box;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 namespace RemnantOfTheAncientsMod.Items.Bloques.MusicBox
 {
@@ -28,6 +29,7 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.MusicBox
 			Item.rare = ItemRarityID.LightRed;
 			Item.value = 100000;
 			Item.accessory = true;
-		}
+            Item.GetGlobalItem<GlobalItem1>().MusicBox = true;
+        }
 	}
 }

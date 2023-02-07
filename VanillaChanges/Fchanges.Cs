@@ -100,9 +100,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 					if (Reaper.ReaperMode) item.GetGlobalItem<GlobalItem1>().BossSummon = true;
 					else item.GetGlobalItem<GlobalItem1>().BossSummon = false;
 				}
-
 			}
-
 		}
 		public static void ReaperWingsNerf(Player player)
 		{

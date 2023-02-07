@@ -18,6 +18,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool BossSummon;
         public bool SizedByReaper;
         public bool ReaperAccesories;
+        public bool MusicBox;
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine val = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.Mod == "Terraria");
@@ -25,7 +26,8 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             if (LegendaryDrop) LegendaryToolTip(item, tooltips);
             if (ReaperItem) ReaperToolTip(item, tooltips); 
             if(BossSummon) BossSummonToolTip(item, tooltips);
-         //   if (ReaperAccesories) ReaperArtifactToolTip(item, tooltips);
+            if(MusicBox) MusicBoxToolTip(item, tooltips);
+            //   if (ReaperAccesories) ReaperArtifactToolTip(item, tooltips);
 
         }
 
@@ -95,6 +97,18 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
                 OverrideColor = valueOrDefault
             };
             tooltips.Add(item2);
-        } 
+        }
+        private void MusicBoxToolTip(Item item, IList<TooltipLine> tooltips)
+        {
+            int a = Main.DiscoG;
+            Color? color = new Color(a, a, a);
+            Color valueOrDefault = color.GetValueOrDefault(Utils1.LegendaryRarityColor);
+            string text = (color.HasValue ? "By Wandering" : "");
+            TooltipLine item2 = new TooltipLine(Mod, "By Wandering", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            tooltips.Add(item2);
+        }
     }
 }
