@@ -41,10 +41,8 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
             }
         }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
-			
+		{			
 			if (Main.rand.NextFloat() <= (float)1 / 1) Projectile.NewProjectile(source, position, velocity, ProjectileID.EatersBite, Damegscale(damage), 1, player.whoAmI);
-
 			return true;
 		}
 		public int Damegscale(int damage)

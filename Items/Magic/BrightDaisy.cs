@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Items.Magic
 {
@@ -13,6 +15,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
             DisplayName.SetDefault("Bright Daisy");
             Tooltip.SetDefault("A daisy with the power of luminous skies");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Item.staff[Item.type] = true;
         }
 
         // no encontré el sonido de estrellas para el uso del arma
@@ -28,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<BrightPetalA>();
+            Item.shoot = ModContent.ProjectileType<BrightPetal>();
             Item.shootSpeed = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item75;
@@ -37,14 +40,21 @@ namespace RemnantOfTheAncientsMod.Items.Magic
             Item.noMelee = true;
 
         }
-
-        // falta agregar la variacion de las barras de platino 
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (Main.rand.NextFloat() <= (float)1 / 10) Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BrightPetal_Fire>(), damage, 1, player.whoAmI);
+            return true;
+        }
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
+        }
         public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.Daybloom, 5)
-            .AddIngredient(ItemID.Star, 5)
-            .AddIngredient(ItemID.GoldBar, 2)
+            .AddIngredient(ItemID.FallenStar, 5)
+            .AddRecipeGroup("GoldBar", 2)
             .AddTile(TileID.WorkBenches)
             .Register();
         }

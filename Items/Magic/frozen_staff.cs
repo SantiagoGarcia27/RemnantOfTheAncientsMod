@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			Item.useAnimation = 5;
 			Item.shoot = ModContent.ProjectileType<frozen_p_f>(); 
 			Item.UseSound = SoundID.Item39;  
-			Item.value = Item.sellPrice(silver: 300);
+			Item.value = Item.sellPrice(gold: 3);
 			Item.autoReuse = true;
 		}
 	}
