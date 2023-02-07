@@ -20,6 +20,8 @@ using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 using System.IO;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
 
 namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 {
@@ -350,6 +352,23 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                         NPC.frameCounter = 0;
                         break;
                 }
+            }
+        }
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (NPC.dontTakeDamage)
+            {
+                SpriteEffects effects = SpriteEffects.None;
+                if (NPC.spriteDirection == 1)
+                {
+                    effects = SpriteEffects.FlipHorizontally;
+                }
+                Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+                Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0,-45));
+                var a = Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/frozen_assaulter/frozen_assaulter_Shield");    
+                position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+                position += vectorFrame + new Vector2(0f, 4f + NPC.gfxOffY);
+                Main.spriteBatch.Draw((Texture2D)a, position, null, drawColor, NPC.rotation, vectorFrame, 1f, effects, 0f);
             }
         }
         public void ChoiseFrame(int frame, int frameHeight)

@@ -58,8 +58,8 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             // Head is 10 defence, body 20, tail 30.
             NPC.CloneDefaults(NPCID.DiggerHead);
             NPC.aiStyle = -1;
-            NPC.width = 40;//105
-            NPC.height = 40;//103
+            NPC.width = 30;//105
+            NPC.height = 30;//103
             NPC.boss = true;
             NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(30000, true);
             NPC.damage = (int)NpcChanges1.ExpertDamageScale(300);
@@ -285,7 +285,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             NPC.defense = TyranStats.TyrantArmor(999,ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantBody>()).NPC);//999
             NPC.aiStyle = -1;
             NPC.width = 30;//105
-            NPC.height = 33;//103
+            NPC.height = 30;//103
             NPC.scale = 2.50f;
             NPC.boss = true;
         }
@@ -330,8 +330,8 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         {
             NPC.CloneDefaults(NPCID.DiggerTail);
             NPC.lifeMax = 3000;
-            NPC.width = 40;//105
-            NPC.height = 43;//103
+            NPC.width = 30;//105
+            NPC.height = 40;//103
             NPC.defense = 25;
             NPC.aiStyle = -1;
             NPC.scale = 2.50f;
@@ -344,14 +344,13 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             {
                 effects = SpriteEffects.FlipHorizontally;
             }
-            Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
-            Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
-            Vector2 position = vector - Main.screenPosition;
+            Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+            Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - Main.screenPosition;
             var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrantTail_glow");
             position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
-            position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
+            position += vectorFrame * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
             Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
-            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vectorFrame, NPC.scale, effects, 0f);
         }
         public override void Init()
         {
