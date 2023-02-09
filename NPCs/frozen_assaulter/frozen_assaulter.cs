@@ -153,7 +153,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 
                             if (idelay == 0)
                             {
-                                i += 0.009f;//0.06
+                                i += 0.0135f;//0.06
                                 idelay = 1;
                             }
                             else
