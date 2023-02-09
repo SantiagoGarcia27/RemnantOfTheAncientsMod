@@ -24,13 +24,11 @@ namespace RemnantOfTheAncientsMod.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-          	player.GetDamage(DamageClass.Generic) += 0.10f;
-            player.GetCritChance(DamageClass.Melee) += 10;
-            player.GetCritChance(DamageClass.Magic) += 10;
-            player.GetCritChance(DamageClass.Summon) += 10;
-            player.GetCritChance(DamageClass.Ranged) += 10;
-            player.GetCritChance(DamageClass.Throwing) += 10;
-            player.GetDamage(DamageClass.Magic) += 0.20f;
+            ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
+            ref StatModifier MagicDamage = ref (player.GetDamage<MagicDamageClass>());
+            GenericDamage += 0.10f;
+            MagicDamage += 0.20f;
+            player.GetCritChance(DamageClass.Generic) += 10f;
             player.moveSpeed += 0.25f;
 			player.lifeRegen +=4;
             player.manaRegen +=4;
@@ -38,10 +36,12 @@ namespace RemnantOfTheAncientsMod.Buffs
             player.inferno = true;
             player.archery = true;
 			player.statManaMax2 += 40;
-            player.statLifeMax2 += 100;
+            player.statLifeMax2 += (player.statLifeMax *20)/100;
 			player.endurance += 0.10f;
-            player.statDefense += 5; 
-			player.buffImmune[2] = true;
+            player.statDefense += 8; 
+			
+            
+            player.buffImmune[2] = true;
 			player.buffImmune[5] = true;
             player.buffImmune[16] = true;
 			player.buffImmune[113] = true;
