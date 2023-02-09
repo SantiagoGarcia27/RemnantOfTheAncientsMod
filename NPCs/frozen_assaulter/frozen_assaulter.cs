@@ -129,9 +129,15 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             }
             else
             {
+                CheckDistance(distance);
                 switch (attackCounter)
                 {
+                    case 400:
+                        for (int i = 0; i >= 5; i++)
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                        break;
                     case 115:
+                        for (int i = 0; i >= 5; i++)
                         shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                         break;
                     case 150:
@@ -147,9 +153,9 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
 
                         if (i <= 360)
                         {
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 70f, 90f + i);
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 70f, 180f + i);    
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 70f, 270f + i);
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 90f + i);//70
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 180f + i);    
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 270f + i);
 
                             if (idelay == 0)
                             {
@@ -178,6 +184,10 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                     {
                         frozenTp();
                     }
+                    if(attackCounter < 600 && attackCounter > 500 && currentPhase != 3)
+                    {
+                        shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                    }
                 }
             }
 
@@ -189,6 +199,14 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                 NPC.netUpdate = true;
             }
             //  }
+        }
+        public void CheckDistance(float distance)
+        {
+
+            if(distance <= 60)
+            {
+                NPC.directionY = -NPC.oldDirectionY - 310;
+            }
         }
         public void shootIa(int dammage, int type, Player player, float Speed, double x, double y)
         {
