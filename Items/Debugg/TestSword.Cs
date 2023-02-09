@@ -6,6 +6,7 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.Debugg
 {
@@ -35,7 +36,8 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 			Item.autoReuse = false;
 		}
         public override void UpdateAccessory(Player player, bool hideVisual) {
-			Main.NewText(player.GetModPlayer<Player1>().ChaliceOn);
+			
+			Main.NewText(Reaper.ReaperMode);
 
 		}
 }
