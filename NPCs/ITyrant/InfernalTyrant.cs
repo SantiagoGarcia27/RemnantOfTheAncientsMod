@@ -114,13 +114,15 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 
         public override void AI()
         {
+
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
+
                 if (attackCounter > 0)
                 {
                     attackCounter--; // tick down the attack counter.
                 }
-                
+
                 Player target = Main.player[NPC.target];
                 DespawnSafeCheck(target);
                 switch (attackCounter)
@@ -146,17 +148,27 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                         SummonIa(NPCID.RedDevil);
                         break;
                 }
-          
+
                 // If the attack counter is 0, this NPC is less than 12.5 tiles away from its target, and has a path to the target unobstructed by blocks, summon a projectile.
                 if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
                 {
                     attackCounter = 700;
                     NPC.netUpdate = true;
                 }
-                TyrantTp();
+                if (Vector2.Distance(target.Center, NPC.Center) > 200 * 16 && !Main.player[NPC.target].dead)
+                {
+                    if (CanTp)
+                    {
+                        TyrantTp(target);
+                    }
+                    else if (Vector2.Distance(target.Center, NPC.Center) <= 10 * 16)
+                    {
+                        CanTp = true;
+
+                    }
+                }
                 LifeSpeed(this);
             }
-
         }
         public void FindTarget()
         {
@@ -164,22 +176,24 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         }
         public void DespawnSafeCheck(Player player)
         {
-            if (NPC.target >= 245f)
+            Vector2 distance = player.Center - NPC.Center;
+            if (distance.Y >= 300 && distance.Y <= 30) 
+           // if (Vector2.Distance(player.Center, NPC.Center) > 5 * 16)//245  //45
             {
-                NPC.rotation = player.direction;
+                NPC.SimpleFlyMovement(player.position * 0.25f, MoveSpeed * 0.5f);
+               // NPC.velocity = player.position;
             }
         }
-        public void TyrantTp()
+        public void TyrantTp(Player player)
         {
-            Player player = Main.player[NPC.target];
-            if (CanTp)
+            if (!Main.player[NPC.target].dead)
             {
                 if (Vector2.Distance(player.Center, NPC.Center) > 500 * 16 && !Main.player[NPC.target].dead)
+                {
                     NPC.Center = player.Center + new Vector2(350, 350);
-                if (Main.player[NPC.target].dead)
-                    CanTp = false;
+                }
             }
-            else if (Vector2.Distance(player.Center, NPC.Center) <= 10 * 16) CanTp = true;
+            else CanTp = false;
         }
         public void FireBallIa(float Speed, int damage, int type, string signo1, int cordx, int cordy, Player player, float grades)
         {

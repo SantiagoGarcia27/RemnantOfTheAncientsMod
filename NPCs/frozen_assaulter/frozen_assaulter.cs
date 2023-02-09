@@ -216,11 +216,11 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             switch (invincibilityTimer)
             {
                 case 0:
-                    invincibilityTimer = 1304;
-                    NPC.dontTakeDamage = true;
+                    NPC.defDefense = 9999;
+                    invincibilityTimer = 1304;   
                     break;
                 case 4:
-                    NPC.dontTakeDamage = false;
+                    NPC.defDefense = 15;
                     invincibilityTimer--;
                     break;
                 case 3:
@@ -276,7 +276,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                 {
                     currentPhase = 3;
                 }
-                else currentPhase = 4;
+                else  currentPhase = 4;
             }
         }
         public override void BossLoot(ref string name, ref int potionType)
@@ -356,7 +356,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (NPC.dontTakeDamage)
+            if (NPC.defDefense == 9999)
             {
                 SpriteEffects effects = SpriteEffects.None;
                 if (NPC.spriteDirection == 1)
@@ -364,11 +364,12 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                     effects = SpriteEffects.FlipHorizontally;
                 }
                 Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
-                Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0,-45));
-                var a = Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/frozen_assaulter/frozen_assaulter_Shield");    
+                Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0, -45));
+                var a = Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/frozen_assaulter/frozen_assaulter_Shield");
                 position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
                 position += vectorFrame + new Vector2(0f, 4f + NPC.gfxOffY);
-                Main.spriteBatch.Draw((Texture2D)a, position, null, drawColor, NPC.rotation, vectorFrame, 1f, effects, 0f);
+                Color color = new Color(147, 219, 252,150);
+                Main.spriteBatch.Draw((Texture2D)a, position, null, color, NPC.rotation, vectorFrame, 1f, effects, 0f);    
             }
         }
         public void ChoiseFrame(int frame, int frameHeight)
