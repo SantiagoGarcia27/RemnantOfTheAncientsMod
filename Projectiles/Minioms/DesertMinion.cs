@@ -80,7 +80,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Player1 Modplayer = player.RemnantOfTheAncientsMod();
+            RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();
             if (dust == 0f)
             {
                 //Projectile.spawnedPlayerMinionDamageValue = val.MinionDamage();

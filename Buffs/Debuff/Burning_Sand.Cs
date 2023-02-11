@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
-			player.GetModPlayer<Player1>().Burn_Sand = true;
+			player.GetModPlayer<RemnantPlayer>().Burn_Sand = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex) {

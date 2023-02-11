@@ -9,7 +9,7 @@ using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
-	public class PerQnBee : ModItem
+	public class QueenBeeScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

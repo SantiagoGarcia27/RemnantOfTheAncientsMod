@@ -29,9 +29,9 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<Player1>().ChaliceOn = true;
-            player.GetModPlayer<Player1>().ReaperSoulsBoost(Item);
-            player.GetModPlayer<Player1>().ReaperSoulsBoost();
+            player.GetModPlayer<RemnantPlayer>().ChaliceOn = true;
+            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost(Item);
+            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost();
         }
         public override void SetDefaults()
         {
@@ -49,6 +49,11 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
             if(x == 1) color = new Color(46, 45, 45);
             else if (x == 2) color = new Color(191, 187, 187);
             return color;
+        }
+
+        public static float ReaperSizeMeleeWeapons()
+        {
+            return 2.5f;
         }
        
     }

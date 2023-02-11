@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings
 		public override void CheckActive()
 		{
 			Player player = Main.player[Projectile.owner];
-			Player1 modPlayer = player.GetModPlayer<Player1>();
+			RemnantPlayer modPlayer = player.GetModPlayer<RemnantPlayer>();
 			if (player.dead || !player.active) player.ClearBuff(BuffType<SilverAcornBuff>());
 			if (player.HasBuff(BuffType<SilverAcornBuff>())) Projectile.timeLeft = 2;
 		}

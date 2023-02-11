@@ -31,8 +31,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
             player.ammoCost75 = true;
             player.GetDamage(DamageClass.Throwing) *= 1.20f;
 
-            player.GetModPlayer<Player1>().UndeadInmunity();
-            player.GetModPlayer<Player1>().ScrollInmunity(BuffType<Skeleton>());
+            player.GetModPlayer<RemnantPlayer>().UndeadInmunity();
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(BuffType<Skeleton>());
         }
     }
 }

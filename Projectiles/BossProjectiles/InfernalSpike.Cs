@@ -10,7 +10,25 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override bool Friendly => false;
         public override bool Strong => false;
         public override float Scale => 2f;
-        public override void SetStaticDefaults() => base.SetDefaults();
+        private int Frames = 6;
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = Frames;
+        }
+        public override void AI()
+        {
+            AnimateTexture();
+        }
+        public override void SetDefaults() => base.SetDefaults();
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= Frames)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
     }
 
     public class InfernalSpikeF : BaseInfernalSpike
@@ -18,16 +36,54 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override bool Friendly => false;
         public override bool Strong => true;
         public override float Scale => 2f;
-        public override void SetStaticDefaults() => base.SetDefaults();
+        private int Frames = 8;
+
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = Frames;
+        }
+
+        public override void SetDefaults() => base.SetDefaults();
+        public override void AI()
+        {
+            AnimateTexture();
+        }
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= Frames)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
     }
 
     public class InfernalSpike_f : BaseInfernalSpike
     {
+        private int Frames = 6;
         public override bool Friendly => true;
         public override bool Strong => false;
         public override float Scale => 1.5f;
-        public override void SetStaticDefaults() => base.SetDefaults();
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = Frames;
+        }
+        public override void SetDefaults() => base.SetDefaults();
 
+        public override void AI()
+        {
+            AnimateTexture();
+        }
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= Frames)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
     }
 
     public class InfernalSpikeF_f : BaseInfernalSpike
@@ -35,8 +91,26 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override bool Friendly => true;
         public override bool Strong => true;
         public override float Scale => 1.5f;
-        public override void SetStaticDefaults() => base.SetDefaults();
+        private int Frames = 8;
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Projectile.type] = Frames;
+        }
+        public override void SetDefaults() => base.SetDefaults();
+        public override void AI()
+        {
+            AnimateTexture();
+        }
 
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= Frames)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+        }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.defense = target.defense / 2;

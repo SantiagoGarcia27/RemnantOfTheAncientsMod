@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Player1 modPlayer = player.GetModPlayer<Player1>();
+            RemnantPlayer modPlayer = player.GetModPlayer<RemnantPlayer>();
             if (player.dead || !player.active)
             {
                 player.ClearBuff(BuffType<StardustMinionBuff>());

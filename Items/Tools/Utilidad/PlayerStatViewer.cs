@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 			{
 				return;
 			}
-			Player1 modPlayer = val.RemnantOfTheAncientsMod();
+			RemnantPlayer modPlayer = val.RemnantOfTheAncientsMod();
 			
 			
 			foreach (TooltipLine item in list)
@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 			}
 			list.RemoveAll((TooltipLine l) => l.Mod == "Terraria" && (l.Name == "Favorite" || l.Name == "FavoriteDesc"));
 		}
-		private string CreateStatMeterTooltip(Player player, Player1 modPlayer)
+		private string CreateStatMeterTooltip(Player player, RemnantPlayer modPlayer)
 		{
 			int value = player.statDefense;
 			float DamageReductionStat = player.endurance * 100f;

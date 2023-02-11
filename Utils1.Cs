@@ -88,9 +88,9 @@ namespace RemnantOfTheAncientsMod
 			return new Rectangle(0, item.height * frame, item.width, item.height);
 
 		}
-		public static Player1 RemnantOfTheAncientsMod(this Player player)
+		public static RemnantPlayer RemnantOfTheAncientsMod(this Player player)
 		{
-			return player.GetModPlayer<Player1>();
+			return player.GetModPlayer<RemnantPlayer>();
 		}
 		public static Item ActiveItem(this Player player)
 		{

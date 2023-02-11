@@ -50,7 +50,7 @@ namespace RemnantOfTheAncientsMod.Items.Summon
 			/*var projectile = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, Main.myPlayer);
 			projectile.originalDamage = Item.damage;
 			return false;*/
-			Player1 Modplayer = player.RemnantOfTheAncientsMod();
+			RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();
 			Modplayer.DesertMinion = true;
 			if (player.altFunctionUse != 2)
 			{

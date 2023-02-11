@@ -22,9 +22,9 @@ namespace RemnantOfTheAncientsMod.Buffs
 		}
 		
 		public override void Update(Player player, ref int buffIndex) {
-			Player1 player1 = player.GetModPlayer<Player1>();
+			RemnantPlayer player1 = player.GetModPlayer<RemnantPlayer>();
 			player1.SandWeapons = true;
-			player.GetModPlayer<Player1>().VanillaFlaskInmune();
+			player.GetModPlayer<RemnantPlayer>().VanillaFlaskInmune();
 		}
 	}
 }

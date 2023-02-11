@@ -9,7 +9,7 @@ using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
-	public class PerEoW : ModItem
+	public class EaterOfWorldsScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

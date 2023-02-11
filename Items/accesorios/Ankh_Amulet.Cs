@@ -58,8 +58,8 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<Player1>().ExoticA(2,23,20,5,Item);
-            player.GetModPlayer<Player1>().AnkInmunity();
+            player.GetModPlayer<RemnantPlayer>().ExoticA(2,23,20,5,Item);
+            player.GetModPlayer<RemnantPlayer>().AnkInmunity();
         }
     }
 }

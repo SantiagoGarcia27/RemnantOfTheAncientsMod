@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			Player1 Modplayer = player.RemnantOfTheAncientsMod();
+			RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();
 			if (player.ownedProjectileCounts[ProjectileType<DesertMinion>()] > 0)
 			{
 				Modplayer.DesertMinion = true;

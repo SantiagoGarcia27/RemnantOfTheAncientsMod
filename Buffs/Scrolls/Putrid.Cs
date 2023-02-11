@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
             player.endurance += 0.10f;
             player.GetCritChance(DamageClass.Generic) += 5;
             player.GetDamage(DamageClass.Summon) += 0.30f;
-            player.GetModPlayer<Player1>().ScrollInmunity(BuffType<Putrid>());
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(BuffType<Putrid>());
         }
     }
 }

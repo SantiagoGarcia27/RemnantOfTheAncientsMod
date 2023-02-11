@@ -9,7 +9,7 @@ using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
-    public class PerSktn : ModItem
+    public class SkeletronScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

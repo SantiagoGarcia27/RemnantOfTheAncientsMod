@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al asaltante congelado");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
-        
+
         public override void SetDefaults()
         {
             Item.width = 20;
@@ -37,40 +37,25 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
             if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.consumable = false;
         }
         public override bool CanUseItem(Player player)
-        {        
+        {
             return player.ZoneSnow && !NPC.AnyNPCs(ModContent.NPCType<frozen_assaulter>()) && !Main.dayTime;
         }
         public override bool? UseItem(Player player)
         {
-        
-
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>()); 
+            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>());
             SoundEngine.PlaySound(SoundID.Roar, player.position);
-           
+
             return true;
         }
         public override void AddRecipes()
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
-            {
-                CreateRecipe()
-                .AddIngredient(ItemID.SoulofLight, 5)
-                .AddIngredient(ItemID.SoulofNight, 5)
-                .AddIngredient(ItemID.IceBlock, 30)
-                .AddIngredient(ItemID.SnowBlock, 30)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
-            }
-            else
-            {
-                CreateRecipe()
-                .AddIngredient(ItemID.SoulofLight, 5)
-                .AddIngredient(ItemID.SoulofNight, 5)
-                .AddIngredient(ItemID.IceBlock, 30)
-                .AddIngredient(ItemID.SnowBlock, 30)
-                .AddTile(TileID.Anvils)
-                .Register();
-            }
+            CreateRecipe()
+            .AddIngredient(ItemID.SoulofLight, 5)
+            .AddIngredient(ItemID.SoulofNight, 5)
+            .AddIngredient(ItemID.IceBlock, 30)
+            .AddIngredient(ItemID.SnowBlock, 30)
+            .AddTile(TileID.Anvils)
+            .Register();
         }
     }
 }

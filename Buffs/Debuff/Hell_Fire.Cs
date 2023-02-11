@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 		}
 
 		public override void Update(Player player, ref int buffIndex) {
-			player.GetModPlayer<Player1>().Hell_Fire = true;
+			player.GetModPlayer<RemnantPlayer>().Hell_Fire = true;
 		}
 
 		public override void Update(NPC NPC, ref int buffIndex) {

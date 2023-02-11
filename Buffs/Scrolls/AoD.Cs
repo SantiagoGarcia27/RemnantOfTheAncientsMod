@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         public override void Update(Player player, ref int buffIndex)
         {
             player.shadowDodge = true;
-            player.GetModPlayer<Player1>().ScrollInmunity(BuffType<AoD>());
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(BuffType<AoD>());
            
         }
     }

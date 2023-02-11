@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
 {
@@ -13,60 +14,67 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		public override bool InstancePerEntity => true; //InstancePerEntity
 
 		//public static bool Fscale = false;
-		public static float originalsize;
+		public static float originalsize = 1;
 		public float newsize = 0;
 		public float originalsizep = 0;
 		public float newsizep = 0;
 
-		public void ReaperSize(Item item)
-		{
-			if (item.GetGlobalItem<GlobalItem1>().SizedByReaper)
-			{
-				originalsize = item.scale;
-			}
 
-			if (Reaper.ReaperMode && item.CountsAsClass(DamageClass.Melee) && item.GetGlobalItem<GlobalItem1>().SizedByReaper && item.active)
-			{
-				if (item.scale <= originalsize)
-				{
-					if (originalsize <= 0f) originalsize = 1f;
-					item.GetGlobalItem<FchangesItem>().newsize = originalsize * 2.50f;
-					item.scale = item.GetGlobalItem<FchangesItem>().newsize;
-					//Player1.FWeapons = false;
-					item.GetGlobalItem<GlobalItem1>().SizedByReaper = false;
-                    
-                }
-			}
-			else
-			{
-				if (!Reaper.ReaperMode && item.CountsAsClass(DamageClass.Melee) && item.active)
-				{
-					//item.active = false;
-					if (originalsize <= 0f) originalsize = 1f;
-					item.scale = originalsize;
-					item.active = true;
-					item.GetGlobalItem<GlobalItem1>().SizedByReaper = true;
-                    
-                }
-			}
 
-		
-		}
+        public override void ModifyItemScale(Item item, Player player, ref float scale)
+        {
+            RemnantPlayer modPlayer = player.GetModPlayer<RemnantPlayer>();
+
+            if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && !item.noMelee)
+            {
+                scale *= ReaperChalice.ReaperSizeMeleeWeapons();
+            }
+        }
+
+
+        //         if (item.GetGlobalItem<GlobalItem1>().SizedByReaper)
+        //{
+        //	originalsize = item.scale;
+        //}
+        //Player player = new Player();
+        //if (Reaper.ReaperMode && item.CountsAsClass(DamageClass.Melee) && item.GetGlobalItem<GlobalItem1>().SizedByReaper && item.active)
+        //{
+
+
+        //             if (item.scale <= originalsize)
+        //	{
+        //                 originalsize = item.scale;
+        //                 //if (originalsize <= 0f) originalsize = 1f;
+        //                 item.GetGlobalItem<FchangesItem>().newsize = originalsize * 2.50f;
+        //		item.scale = item.GetGlobalItem<FchangesItem>().newsize;
+        //		//Player1.FWeapons = false;
+        //		item.GetGlobalItem<GlobalItem1>().SizedByReaper = false;
+        //		UpdateInventory(item, player);
+        //             }
+        //}
+        //else
+        //{
+        //	if (!Reaper.ReaperMode && item.CountsAsClass(DamageClass.Melee) && item.active)
+        //	{
+        //                 //item.active = false;
+        //                 if (originalsize <= 0f) originalsize = 1f;
+        //		item.active = true;
+        //		item.GetGlobalItem<GlobalItem1>().SizedByReaper = true;
+        //                 UpdateInventory(item, player);
+        //             }
+        //}
+        //	}
         public void ReaperSize(Projectile projectile)
         {
             if (Reaper.ReaperMode)
             {
                 if (projectile.CountsAsClass(DamageClass.Melee))
                 {
-					if (Player1.FWeapons)
-					{
-						originalsizep = projectile.scale;
-					}
                     if (projectile.active)
                     {
-                        newsizep = originalsizep + 1.50f;
+                        newsizep = projectile.scale + 1.50f;
                         projectile.scale = newsize;
-                        Player1.FWeapons = false;
+                        RemnantPlayer.FWeapons = false;
                         projectile.active = false;
                     }
                 }

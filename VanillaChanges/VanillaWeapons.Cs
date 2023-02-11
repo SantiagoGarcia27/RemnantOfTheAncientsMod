@@ -34,10 +34,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				}
 				if (item.type == ItemID.NightsEdge)
                 {
-					/*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-					if (CalamityMod != null) item.damage = 105;*/
-                    item.damage = 45;
-					
+                    if (!ModLoader.TryGetMod("CalamityMod", out Mod mod)) item.damage = 45;					
                 }
                 if (item.type == ItemID.DD2BallistraTowerT1Popper) item.damage = 45;
                 if (item.type == ItemID.DD2BallistraTowerT2Popper) item.damage = 85;
@@ -65,7 +62,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				FchangesItem.ReaperSetDefaut(item);
 			}
 
-            item.GetGlobalItem<FchangesItem>().ReaperSize(item);           
+           // item.GetGlobalItem<FchangesItem>().ReaperSize(item);           
         }
 
 

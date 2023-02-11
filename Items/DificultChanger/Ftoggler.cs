@@ -87,10 +87,10 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 					Main.NewText("Welcome to hell, now you're a reaper.", gray);
 
 					// si el jugador no tiene el chalice en el slot le dara el pack de items
-					if (player.GetModPlayer<Player1>().ChaliceOn != true)
+					if (player.GetModPlayer<RemnantPlayer>().ChaliceOn != true)
 					{ 
-						player.GetModPlayer<Player1>().ReaperStarter();
-						Player1.ReaperFirstTime = true;	
+						player.GetModPlayer<RemnantPlayer>().ReaperStarter();
+						RemnantPlayer.ReaperFirstTime = true;	
 					}
 				}
 				else

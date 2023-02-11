@@ -55,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 		public void efects(Player player, bool n)
         {
 			player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade = n;
-			player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade = n;
+			player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade = n;
 			player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade = n;
 			player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade = n;
 			player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade = n;

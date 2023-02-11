@@ -8,16 +8,16 @@ using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
-    public class DScroll : ModItem
+    public class DesertAniquilatorScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-            DisplayName.SetDefault("Desert Scroll");
-			 Tooltip.SetDefault("Increases movement speed and max minion by 2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin du désert");
-			 Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"augmente la vitesse de déplacement et augmente votre serviteur maximum de 2 pendant");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino desertico");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"aumenta la velocidad de movimiento y aumenta tu minion máximo en 2 ");
+			DisplayName.SetDefault("Desert Scroll");
+			Tooltip.SetDefault("Increases movement speed and max minion by 2");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin du désert");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "augmente la vitesse de déplacement et augmente votre serviteur maximum de 2 pendant");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino desertico");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta la velocidad de movimiento y aumenta tu minion máximo en 2 ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

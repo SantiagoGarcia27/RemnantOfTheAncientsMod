@@ -23,7 +23,9 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 			DisplayName.SetDefault("Treasure Bag");
 			Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
-		}
+            ItemID.Sets.PreHardmodeLikeBossBag[Type] = true;
+            ItemID.Sets.BossBag[Type] = true;
+        }
 
 		public override void SetDefaults()
 		{
@@ -43,11 +45,11 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		{
 			itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>())); ;
-			itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
+			itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<desertbow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
 			itemLoot.Add(ItemDropRule.ByCondition(new DesertReaperSoul(), ItemType<DesertSoul>()));
         }
-		public override int BossBagNPC => NPCType<DesertAniquilator>();
+		//public override int BossBagNPC => NPCType<DesertAniquilator>();
 	}
     public class DesertReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
     {

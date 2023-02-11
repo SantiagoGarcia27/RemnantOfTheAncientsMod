@@ -9,16 +9,18 @@ using RemnantOfTheAncientsMod.Buffs.Scrolls;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 {
-	public class PerEoC : ModItem
+	public class WallOfFleshScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Optic Scroll");
-			Tooltip.SetDefault("Increases your jump, cancels fall damage and gain the ability to dash");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Défilement optique");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "augmentez votre saut, annulez les dégâts de chute et gagnez un tiret");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino óptico");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta tu salto, anula daño por caída y ganas un dash");
+            DisplayName.SetDefault("Infernal Scroll");
+			Tooltip.SetDefault("You gain 10% of damage and an infernal power covers you");
+
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin infernal");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Vous gagnez + 10% de dégâts et un pouvoir infernal vous couvre");
+
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino infernal");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Obtienes + 10% de daño y un poder infernal te cubre");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -37,8 +39,8 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Eye>(); 
-            Item.buffTime = 9999999;
+			Item.buffType = BuffType<Infernal>();
+			Item.buffTime = 9999999;
 			Item.expert = true;
 		
 		}

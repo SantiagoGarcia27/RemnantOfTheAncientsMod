@@ -18,7 +18,7 @@ using RemnantOfTheAncientsMod.Buffs.Scrolls;
 namespace RemnantOfTheAncientsMod
 {
 
-	public class Player1 : ModPlayer
+	public class RemnantPlayer : ModPlayer
 	{
 
 		#region Minions
@@ -261,7 +261,7 @@ namespace RemnantOfTheAncientsMod
 			if (Reaper.ReaperMode && ChaliceOn)
 			{
 				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) Player.moveSpeed = OgPlayerSpeed + 1.30f;
-				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade) Player.statLifeMax2 += 10;
+				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade) Player.statLifeMax2 += 10;
 				if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade) Player.lifeRegen += 5;
 				if (Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade)
 				{

@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Items.Core
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Melee) += 0.10f;
-            Player1 player1 = player.GetModPlayer<Player1>();
+            RemnantPlayer player1 = player.GetModPlayer<RemnantPlayer>();
             player1.hasInfernal_core = true;
             player.moveSpeed += 1.50f;
             player.buffImmune[BuffID.OnFire] = true;

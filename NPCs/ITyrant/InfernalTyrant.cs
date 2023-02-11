@@ -140,6 +140,9 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                     case 400:
                         SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(90), true, 3, -3);
                         break;
+                    case 430:
+                        SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(40), false, 3, -3);
+                        break;
                     case 600:
                         for (int i = -2; i <= 3; i++)
                             FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(30), ModContent.ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
@@ -220,7 +223,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
             int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
 
-            Main.projectile[projectile].timeLeft = 300;
+            Main.projectile[projectile].timeLeft = 1500;
         }
         public void SummonIa(int Npc) => NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, Npc);
         public void LifeSpeed(Worm worm)

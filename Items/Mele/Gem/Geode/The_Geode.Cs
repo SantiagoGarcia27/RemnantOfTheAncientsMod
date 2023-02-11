@@ -14,7 +14,6 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int damage => 25;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
-        public override int Debuff => 0;
         public override int GemId => 0;
 
         public override void SetStaticDefaults()
@@ -26,13 +25,27 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+        }
     }
     public class The_Geode_Blue : BaseGeode
     {
         public override int damage => 26;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
-        public override int Debuff => BuffID.Slow;
         public override int GemId => ItemID.LargeSapphire;
 
         public override void SetStaticDefaults()
@@ -48,13 +61,28 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.AddBuff(BuffID.Slow, 900);
+            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+        }
     }
     public class The_Geode_Green : BaseGeode
     {
         public override int damage => 25;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
-        public override int Debuff => BuffID.Poisoned;
         public override int GemId => ItemID.LargeEmerald;
         public override void SetStaticDefaults()
         {
@@ -69,13 +97,28 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.AddBuff(BuffID.Poisoned, 900);
+            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+        }
     }
     public class The_Geode_Red : BaseGeode
     {
         public override int damage => 25;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
-        public override int Debuff => BuffID.OnFire;
         public override int GemId => ItemID.LargeRuby;
         public override void SetStaticDefaults()
         {
@@ -89,13 +132,28 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire, 900);
+            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+        }
     }
     public class The_Geode_Vi : BaseGeode
     {
         public override int damage => 25;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
-        public override int Debuff => BuffID.Confused;
         public override int GemId => ItemID.LargeAmethyst;
         public override void SetStaticDefaults()
         {
@@ -109,13 +167,28 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije confución a los enemigos");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            target.AddBuff(BuffID.Confused, 900);
+            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+        }
     }
     public class The_Geode_Yellow : BaseGeode
     {
         public override int damage => 25;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
-        public override int Debuff => BuffID.Ichor;
         public override int GemId => ItemID.LargeTopaz;
         public override void SetStaticDefaults()
         {
@@ -131,10 +204,19 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
+            target.AddBuff(BuffID.Ichor, 900);
             Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
             perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
         }
     }
     public class The_Geode_White : BaseGeode
@@ -142,7 +224,6 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int damage => 30;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
-        public override int Debuff => 0;
         public override int GemId => ItemID.LargeDiamond;
         public override void SetStaticDefaults()
         {
@@ -151,13 +232,27 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
+            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
+        }
     }
     public abstract class BaseGeode : ModItem
     {
         public abstract int damage { get; }
         public abstract int attakSpeed { get; }
         public abstract int knockBack { get; }
-        public abstract int Debuff { get; }
         public abstract int GemId { get; }
         public override void SetDefaults()
         {
@@ -174,23 +269,6 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            target.AddBuff(Debuff, 400);
-            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 5, Main.myPlayer, player.whoAmI);
-        }
-
         public Vector2 getPerturbatedSpeed(Player player, NPC target, float rotation, string signo)
         {
             if (signo == "-")
