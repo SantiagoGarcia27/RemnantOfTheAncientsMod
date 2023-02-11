@@ -11,7 +11,7 @@ using RemnantOfTheAncientsMod.Items.Summon;
 using RemnantOfTheAncientsMod.Items.Core;
 
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag

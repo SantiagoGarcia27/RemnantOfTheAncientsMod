@@ -5,7 +5,7 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.Debugg

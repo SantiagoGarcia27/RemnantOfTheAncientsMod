@@ -8,7 +8,7 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
 	public class FleshSoul : ModItem
 	{

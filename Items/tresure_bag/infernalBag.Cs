@@ -9,7 +9,7 @@ using RemnantOfTheAncientsMod.Items.Mele.saber;
 using RemnantOfTheAncientsMod.Items.Ranger.Rep;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Core;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag

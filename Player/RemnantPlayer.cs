@@ -11,9 +11,10 @@ using static Terraria.ModLoader.ModContent;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
 using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Buffs.Scrolls;
+using RemnantOfTheAncientsMod.Items.accesorios;
 
 namespace RemnantOfTheAncientsMod
 {

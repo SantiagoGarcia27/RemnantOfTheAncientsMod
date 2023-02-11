@@ -1,28 +1,28 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod;
-using RemnantOfTheAncientsMod.VanillaChanges;
+using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-    public class SkeletonSoul : ModItem
+	public class FrozenSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Skeleton Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme Squelette");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma esqueleto");
-			Tooltip.SetDefault("Increases defense by 5");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la défense de 5");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la defensa en 5");
+			DisplayName.SetDefault("Frozen Assaulter Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme d'assaillant gelée");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Asaltante Congelado");
+			Tooltip.SetDefault("Grants immunity to Frozen, Chilled and Frostburn");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Accorde l'immunité à Frozen, Chilled et Frostburn");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a Congelado, Helado y Quemadura de hielo");
 
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
@@ -48,11 +48,11 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade;
+			return !player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade = true;
+			player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -60,21 +60,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class SkeletonReaperSoulPlayer : ModPlayer
+	public class FrozenReaperSoulPlayer : ModPlayer
 	{
-		public bool SkeletonReaperUpgrade = false;
+		public bool FrozenReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(SkeletonReaperUpgrade);
+			packet.Write(FrozenReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["SkeletonReaperUpgrade"] = SkeletonReaperUpgrade;
+			tag["FrozenReaperUpgrade"] = FrozenReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			SkeletonReaperUpgrade = tag.Get<bool>("SkeletonReaperUpgrade");
+			FrozenReaperUpgrade = tag.Get<bool>("FrozenReaperUpgrade");
 		}
 	}
 }

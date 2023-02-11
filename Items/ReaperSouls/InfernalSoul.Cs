@@ -8,22 +8,24 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class CultistSoul : ModItem
+	public class InfernalSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cultist Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de sectateur");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Sectario");
-			Tooltip.SetDefault("A Ice Mist will protect you");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Une brume glaciale vous protégera");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una niebla de hielo te protegerá");
-
+			DisplayName.SetDefault("Infernal Tyrant Soul");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du tyran infernal");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de tirano infernal");
+			Tooltip.SetDefault("Increased all damage by 10%"
+			+ "\nGrants immunity lava and fire blocks");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentation de tous les dégâts de 10 %"
+			+ "\nConfère l'immunité à la lave et aux blocs de feu");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa todo el daño en un 10%"
+			+ "\nOtorga inmunidad a los bloques de lava y fuego.");
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
@@ -44,14 +46,15 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;
 		}
+
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade;
+			return !player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade = true;
+			player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade= true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -59,21 +62,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class CultistReaperSoulPlayer : ModPlayer
+	public class InfernalReaperSoulPlayer : ModPlayer
 	{
-		public bool CultistReaperUpgrade = false;
+		public bool InfernalReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(CultistReaperUpgrade);
+			packet.Write(InfernalReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["CultistReaperUpgrade"] = CultistReaperUpgrade;
+			tag["InfernalReaperUpgrade"] = InfernalReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			CultistReaperUpgrade = tag.Get<bool>("CultistReaperUpgrade");
+			InfernalReaperUpgrade = tag.Get<bool>("InfernalReaperUpgrade");
 		}
 	}
 }

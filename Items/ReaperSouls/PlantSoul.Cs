@@ -2,30 +2,28 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.VanillaChanges;
-using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class InfernalSoul : ModItem
+	public class PlantSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Infernal Tyrant Soul");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du tyran infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de tirano infernal");
-			Tooltip.SetDefault("Increased all damage by 10%"
-			+ "\nGrants immunity lava and fire blocks");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentation de tous les dégâts de 10 %"
-			+ "\nConfère l'immunité à la lave et aux blocs de feu");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa todo el daño en un 10%"
-			+ "\nOtorga inmunidad a los bloques de lava y fuego.");
+			DisplayName.SetDefault("Plantera Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Plantera Âme");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de Plantera");
+			Tooltip.SetDefault("Permanently increases maximum life by 10"
+			+ "\nSummons spores over time that will damage enemies");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente de manière permanente la vie maximale de 10"
+			+ "\nInvoque des spores au fil du temps qui endommageront les ennemis");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta permanentemente la vida máxima en 10"
+			+ "\nInvoca esporas a lo largo del tiempo que dañarán a los enemigos.");
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
@@ -46,15 +44,15 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;
 		}
-
+		
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade;
+			return !player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade= true;
+			player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -62,21 +60,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class InfernalReaperSoulPlayer : ModPlayer
+	public class PlantReaperSoulPlayer : ModPlayer
 	{
-		public bool InfernalReaperUpgrade = false;
+		public bool PlantReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(InfernalReaperUpgrade);
+			packet.Write(PlantReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["InfernalReaperUpgrade"] = InfernalReaperUpgrade;
+			tag["PlantReaperUpgrade"] = PlantReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			InfernalReaperUpgrade = tag.Get<bool>("InfernalReaperUpgrade");
+			PlantReaperUpgrade = tag.Get<bool>("PlantReaperUpgrade");
 		}
 	}
 }

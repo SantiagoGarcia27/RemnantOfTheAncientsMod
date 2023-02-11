@@ -1,11 +1,10 @@
-using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Items.accesorios;
 using RemnantOfTheAncientsMod.Items.BossSummon;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
 {

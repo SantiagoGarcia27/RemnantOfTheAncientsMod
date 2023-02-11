@@ -7,7 +7,7 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.World;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 
 namespace RemnantOfTheAncientsMod.Items.DificultChanger
 {

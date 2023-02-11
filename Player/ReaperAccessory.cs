@@ -1,17 +1,17 @@
-﻿using Terraria;
+﻿using RemnantOfTheAncientsMod.Items.accesorios;
+using Terraria;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Items.Fmode;
-using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod
 {
-    internal class ReaperAccessory : ModAccessorySlot
+	internal class ReaperAccessory : ModAccessorySlot
 	{
 		
 		public bool inUse=false;
 		public override string FunctionalBackgroundTexture => "RemnantOfTheAncientsMod/Player/ReaperAccessory";
-		
-		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
+        public override string FunctionalTexture => "RemnantOfTheAncientsMod/Items/accesorios/ReaperChalice";
+
+        public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
 		{
 			if (checkItem.type == ModContent.ItemType<ReaperChalice>())
 			{

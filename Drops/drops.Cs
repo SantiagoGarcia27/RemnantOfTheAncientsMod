@@ -12,7 +12,7 @@ using RemnantOfTheAncientsMod.Items.Bloques;
 using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Items.accesorios.Alas;
 using RemnantOfTheAncientsMod.Items.Items;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.Items.accesorios;
 using RemnantOfTheAncientsMod.Items.pets;
 using RemnantOfTheAncientsMod.Items.Magic;

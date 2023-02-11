@@ -8,24 +8,22 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	//este es un comentario de prueba no es necesario para nada y un XD
-	public class BeeSoul : ModItem
+	public class EyeSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Queen Bee Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de la reine des abeilles");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de la Reina Abeja");
-			Tooltip.SetDefault("Releases bees when damaged");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous relâchez les abeilles quand elles vous font du mal");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Liberas abejas cuando te dañan");
-
-			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			DisplayName.SetDefault("Eye Soul");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "il Âme");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de ocular");
+			Tooltip.SetDefault("Permanently increases maximum life by 10");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente de manière permanente la vie maximale de 10");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta permanentemente la vida máxima en 10");
+		/*	Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
@@ -47,12 +45,11 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 		}
 		public override bool CanUseItem(Player player)
 		{
-
-			return !player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade;
+			return !player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade = true;
+			player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -60,22 +57,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class BeeReaperSoulPlayer : ModPlayer
+	public class EyeReaperSoulPlayer : ModPlayer
 	{
-		public bool BeeReaperUpgrade = false;
+		public bool EyeReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(BeeReaperUpgrade);
+			packet.Write(EyeReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["BeeReaperUpgrade"] = BeeReaperUpgrade;
+			tag["EyeReaperUpgrade"] = EyeReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			BeeReaperUpgrade = tag.Get<bool>("BeeReaperUpgrade"); 
+			EyeReaperUpgrade = tag.Get<bool>("EyeeReaperUpgrade");
 		}
 	}
 }
-

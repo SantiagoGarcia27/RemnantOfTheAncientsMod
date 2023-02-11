@@ -1,4 +1,4 @@
-﻿using RemnantOfTheAncientsMod.Items.Fmode;
+﻿using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;

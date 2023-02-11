@@ -2,28 +2,28 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class PlantSoul : ModItem
+	public class CultistSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Plantera Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Plantera Âme");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de Plantera");
-			Tooltip.SetDefault("Permanently increases maximum life by 10"
-			+ "\nSummons spores over time that will damage enemies");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente de manière permanente la vie maximale de 10"
-			+ "\nInvoque des spores au fil du temps qui endommageront les ennemis");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta permanentemente la vida máxima en 10"
-			+ "\nInvoca esporas a lo largo del tiempo que dañarán a los enemigos.");
+			DisplayName.SetDefault("Cultist Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de sectateur");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Sectario");
+			Tooltip.SetDefault("A Ice Mist will protect you");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Une brume glaciale vous protégera");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una niebla de hielo te protegerá");
+
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
@@ -44,15 +44,14 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;
 		}
-		
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade;
+			return !player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade = true;
+			player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -60,21 +59,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class PlantReaperSoulPlayer : ModPlayer
+	public class CultistReaperSoulPlayer : ModPlayer
 	{
-		public bool PlantReaperUpgrade = false;
+		public bool CultistReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(PlantReaperUpgrade);
+			packet.Write(CultistReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["PlantReaperUpgrade"] = PlantReaperUpgrade;
+			tag["CultistReaperUpgrade"] = CultistReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			PlantReaperUpgrade = tag.Get<bool>("PlantReaperUpgrade");
+			CultistReaperUpgrade = tag.Get<bool>("CultistReaperUpgrade");
 		}
 	}
 }

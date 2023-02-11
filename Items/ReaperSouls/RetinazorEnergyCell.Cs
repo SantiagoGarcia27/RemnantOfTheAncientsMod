@@ -1,28 +1,28 @@
-using Terraria;
+ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class SpazmatismEnergyCell : ModItem
+	public class RetinazorEnergyCell : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Spazmatism Energy Cell");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cellule énergétique du spazmatisme");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía del espazmatisador");
-			Tooltip.SetDefault("Grants immunity to all fire debuffs");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Accorde l'immunité à tous les affaiblissements de feu");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a todas las desventajas de fuego.");
+			DisplayName.SetDefault("Retinazor Energy Cell");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cellule énergétique Retinazor");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía Retinazor");
+			Tooltip.SetDefault("Removes restriction on wings of Reaper Mode");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Supprime la restriction sur les ailes du mode Reaper");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Elimina la restricción en las alas del modo Segador.");
 			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
@@ -49,29 +49,29 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade;
+			return !player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade = true;
+			player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade = true;
 			return true;
 		}
 	}
-	public class SpazmatismReaperSoulPlayer : ModPlayer
+	public class RetinazorReaperSoulPlayer : ModPlayer
 	{
-		public bool SpazmatismReaperUpgrade = false;
+		public bool RetinazorReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(SpazmatismReaperUpgrade);
+			packet.Write(RetinazorReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["SpazmatismReaperUpgrade"] = SpazmatismReaperUpgrade;
+			tag["RetinazorReaperUpgrade"] = RetinazorReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			SpazmatismReaperUpgrade = tag.Get<bool>("SpazmatismReaperUpgrade");
+			RetinazorReaperUpgrade = tag.Get<bool>("RetinazorReaperUpgrade");
 		}
 	}
 }

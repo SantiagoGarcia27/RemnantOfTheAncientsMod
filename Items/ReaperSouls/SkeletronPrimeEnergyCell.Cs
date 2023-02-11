@@ -8,7 +8,7 @@ using RemnantOfTheAncientsMod;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
     public class SkeletronPrimeEnergyCell : ModItem
 	{

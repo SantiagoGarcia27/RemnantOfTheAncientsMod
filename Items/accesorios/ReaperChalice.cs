@@ -5,9 +5,8 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.World;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     internal class ReaperChalice : ModItem
     {

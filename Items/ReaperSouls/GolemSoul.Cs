@@ -8,22 +8,21 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class FishSoul : ModItem
+	public class GolemSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Duke Fishron Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du duc Fishron");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Duque Fishron");
-			Tooltip.SetDefault("A Sharknado will protect you");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Un Sharknado vous protégera ");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un Tornado de tiburones te protegerá");
-
+			DisplayName.SetDefault("Golem Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de golem");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Golem");
+			Tooltip.SetDefault("Increases defense by 10");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la défense de 10");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la defensa en 10");
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
@@ -48,11 +47,11 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade;
+			return !player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade = true;
+			player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -60,21 +59,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class DukeReaperSoulPlayer : ModPlayer
+	public class GolemReaperSoulPlayer : ModPlayer
 	{
-		public bool DukeReaperUpgrade = false;
+		public bool GolemReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(DukeReaperUpgrade);
+			packet.Write(GolemReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["DukeReaperUpgrade"] = DukeReaperUpgrade;
+			tag["GolemReaperUpgrade"] = GolemReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			DukeReaperUpgrade = tag.Get<bool>("DukeReaperUpgrade");
+			GolemReaperUpgrade = tag.Get<bool>("GolemReaperUpgrade");
 		}
 	}
 }

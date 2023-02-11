@@ -8,22 +8,23 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class EyeSoul : ModItem
+	public class FishSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Eye Soul");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "il Âme");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de ocular");
-			Tooltip.SetDefault("Permanently increases maximum life by 10");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente de manière permanente la vie maximale de 10");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta permanentemente la vida máxima en 10");
-		/*	Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
+			DisplayName.SetDefault("Duke Fishron Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du duc Fishron");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Duque Fishron");
+			Tooltip.SetDefault("A Sharknado will protect you");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Un Sharknado vous protégera ");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un Tornado de tiburones te protegerá");
+
+			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
@@ -43,13 +44,15 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;
 		}
+
 		public override bool CanUseItem(Player player)
 		{
-			return !player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade;
+
+			return !player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade = true;
+			player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -57,21 +60,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class EyeReaperSoulPlayer : ModPlayer
+	public class DukeReaperSoulPlayer : ModPlayer
 	{
-		public bool EyeReaperUpgrade = false;
+		public bool DukeReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(EyeReaperUpgrade);
+			packet.Write(DukeReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["EyeReaperUpgrade"] = EyeReaperUpgrade;
+			tag["DukeReaperUpgrade"] = DukeReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			EyeReaperUpgrade = tag.Get<bool>("EyeeReaperUpgrade");
+			DukeReaperUpgrade = tag.Get<bool>("DukeReaperUpgrade");
 		}
 	}
 }

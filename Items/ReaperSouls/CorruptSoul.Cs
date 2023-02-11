@@ -8,21 +8,21 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class MoonSoul : ModItem
+	public class CorruptSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Moon Lord Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du Seigneur de la Lune ");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Señor Lunar ");
-			Tooltip.SetDefault("Reduces respawn time");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Réduit le temps de réapparition");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reduce el tiempo de reaparición");
+			DisplayName.SetDefault("Corrupt Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme Âme corrompue");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma Corrupta");
+			Tooltip.SetDefault("increases life regen");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "augmente la régénération de vie");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta la regeneración de vida");
 
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
@@ -44,15 +44,14 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;
 		}
-		
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade;
+			return !player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade = true;
+			player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -60,22 +59,21 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class MoonReaperSoulPlayer : ModPlayer
+	public class CorruptReaperSoulPlayer : ModPlayer
 	{
-		public bool MoonReaperUpgrade = false;
+		public bool CorruptReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(MoonReaperUpgrade);
+			packet.Write(CorruptReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["MoonReaperUpgrade"] = MoonReaperUpgrade;
+			tag["CorruptReaperUpgrade"] = CorruptReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			MoonReaperUpgrade = tag.Get<bool>("MoonReaperUpgrade");
+			CorruptReaperUpgrade = tag.Get<bool>("CorruptReaperUpgrade");
 		}
 	}
 }
-

@@ -8,21 +8,22 @@ using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Items.Fmode
+namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 {
-	public class CorruptSoul : ModItem
+	//este es un comentario de prueba no es necesario para nada y un XD
+	public class BeeSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Corrupt Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme Âme corrompue");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma Corrupta");
-			Tooltip.SetDefault("increases life regen");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "augmente la régénération de vie");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta la regeneración de vida");
+			DisplayName.SetDefault("Queen Bee Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de la reine des abeilles");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de la Reina Abeja");
+			Tooltip.SetDefault("Releases bees when damaged");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous relâchez les abeilles quand elles vous font du mal");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Liberas abejas cuando te dañan");
 
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
@@ -47,11 +48,11 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade;
+			return !player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade = true;
+			player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -59,21 +60,22 @@ namespace RemnantOfTheAncientsMod.Items.Fmode
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class CorruptReaperSoulPlayer : ModPlayer
+	public class BeeReaperSoulPlayer : ModPlayer
 	{
-		public bool CorruptReaperUpgrade = false;
+		public bool BeeReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			ModPacket packet = Mod.GetPacket();
-			packet.Write(CorruptReaperUpgrade);
+			packet.Write(BeeReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["CorruptReaperUpgrade"] = CorruptReaperUpgrade;
+			tag["BeeReaperUpgrade"] = BeeReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			CorruptReaperUpgrade = tag.Get<bool>("CorruptReaperUpgrade");
+			BeeReaperUpgrade = tag.Get<bool>("BeeReaperUpgrade"); 
 		}
 	}
 }
+

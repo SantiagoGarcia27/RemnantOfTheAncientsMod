@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Items.Summon.Buf;
-using RemnantOfTheAncientsMod.Items.Fmode;
+using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using Terraria.GameContent.ItemDropRules;
 using static RemnantOfTheAncientsMod.Drops.RemnantDropRules;
 
