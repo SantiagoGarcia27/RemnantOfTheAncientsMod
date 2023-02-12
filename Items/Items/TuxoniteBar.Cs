@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Items.Items
 			 .AddRecipeGroup("GoldBar", 1)
 			.AddIngredient(ItemID.Gel, 3)
 			.AddIngredient(ItemID.GlowingMushroom, 2)
-			.AddTile(TileID.Solidifier)
+			.AddTile(TileID.Furnaces)
 			.Register();
 		}
 	}

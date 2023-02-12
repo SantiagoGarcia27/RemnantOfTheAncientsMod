@@ -35,11 +35,10 @@ namespace RemnantOfTheAncientsMod.Projectiles
         }
         public override void AI()           //this make that the projectile will face the corect way
         {                                                           // |
-           /* Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);*/
+           Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(190f);
 
-            /* Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-                 if (CalamityMod != null){*/
+            
 
             for (int i = 0; i < 200; i++)
             {

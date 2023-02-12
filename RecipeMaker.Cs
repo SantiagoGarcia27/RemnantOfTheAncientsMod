@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod.Items.Mele.saber;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Items.accesorios;
 using RemnantOfTheAncientsMod.Items.Mele;
+using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -22,30 +23,30 @@ namespace RemnantOfTheAncientsMod
         }
 
 
-        public static void AddRecipes(Mod mod)
+        public static void AddRecipes()
         {
-            Uncrafting(mod);
-            Swaped(mod);
-            Emblemas(mod);
-            Accesories(mod);
-            Potoions(mod);
-            Ores(mod);
+            Uncrafting();
+            Swaped();
+            Emblemas();
+            Accesories();
+            Potoions();
+            Ores();
 
-            VanillaPotionCrafting(mod);
-            Mirrors(mod);
-            CraftinStationsCraft(mod);
-            Weapons(mod);
+            VanillaPotionCrafting();
+            Mirrors();
+            CraftinStationsCraft();
+            Weapons();
 
-            FishingRods(mod);
-            LivingFlames(mod);
-            BossSummon(mod);
-            HardmodeItems(mod);
-
+            FishingRods();
+            LivingFlames();
+            BossSummon();
+            HardmodeItems();
+            UncraftPotions();
 
 
         }
 
-        private static void HardmodeItems(Mod mod)
+        private static void HardmodeItems()
         {
             Recipe.Create(ItemID.RodofDiscord)
                .AddIngredient(ItemID.HallowedBar, 15)
@@ -56,7 +57,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
         }
 
-        private static void BossSummon(Mod mod)
+        private static void BossSummon()
         {
             Recipe.Create(ItemID.TruffleWorm)
                .AddIngredient(ItemID.Worm, 1)
@@ -65,14 +66,14 @@ namespace RemnantOfTheAncientsMod
                .Register();
         }
 
-        private static void LivingFlames(Mod mod)
+        private static void LivingFlames()
         {
             Recipe.Create(ItemID.LivingFireBlock)
                .AddIngredient(ItemID.Torch, 1)
                .AddTile(TileID.LivingLoom)
                .Register();
         }
-        private static void Potoions(Mod mod)
+        private static void Potoions()
         {
             Recipe.Create(ModContent.ItemType<EndlessCI>())
                 .AddIngredient(ModContent.ItemType<EndlessMR>(), 1)
@@ -99,60 +100,59 @@ namespace RemnantOfTheAncientsMod
                 .AddTile(TileID.Bottles)
                 .Register();
         }
-
-        private static void Mirrors(Mod mod)
+        private static void UncraftPotions()
         {
-            {
-                Recipe.Create(ItemID.MagicMirror)
-                   .AddRecipeGroup("IronBar", 5)
-                   .AddIngredient(ItemID.Glass, 3)
-                   .AddIngredient(ItemID.FallenStar, 3)
-                   .AddIngredient(ItemID.RecallPotion, 5)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.MagicMirror)
-                   .AddIngredient(ItemID.IceMirror, 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.IceMirror)
-                   .AddIngredient(ItemID.MagicMirror, 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
+         
+          
         }
-        private static void Ores(Mod mod)
+        private static void Mirrors()
         {
-            {
-                Recipe.Create(ModContent.ItemType<TuxoniteBar>())
-                   .AddIngredient(ModContent.ItemType<TuxoniteOre>(), 4)
-                   .AddTile(TileID.Furnaces)
-                   .Register();
-            }
+            Recipe.Create(ItemID.MagicMirror)
+               .AddRecipeGroup("IronBar", 5)
+               .AddIngredient(ItemID.Glass, 3)
+               .AddIngredient(ItemID.FallenStar, 3)
+               .AddIngredient(ItemID.RecallPotion, 5)
+               .AddTile(TileID.Anvils)
+               .Register();
+
+            Recipe.Create(ItemID.MagicMirror)
+               .AddIngredient(ItemID.IceMirror, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
+
+            Recipe.Create(ItemID.IceMirror)
+               .AddIngredient(ItemID.MagicMirror, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
+        }
+        private static void Ores()
+        {
+            Recipe.Create(ModContent.ItemType<TuxoniteBar>())
+               .AddIngredient(ModContent.ItemType<TuxoniteOre>(), 4)
+               .AddTile(TileID.Furnaces)
+               .Register();
+
         }
         #region Weapons
-        private static void Weapons(Mod mod)
+        private static void Weapons()
         {
-            PreHardmodeWeapons(mod);
-            HardmodeWeapons(mod);
+            PreHardmodeWeapons();
+            HardmodeWeapons();
         }
-        private static void PreHardmodeWeapons(Mod mod)
+        private static void PreHardmodeWeapons()
         {
-            PreHardmodeMagicWeapons(mod);
-            PreHardmodeMeleeWeapons(mod);
-            PreHardmodeRangerWeapons(mod);
-            PreHardmodeSummonerWeapons(mod);
-            PreHardmodeThrowerWeapons(mod);
+            PreHardmodeMagicWeapons();
+            PreHardmodeMeleeWeapons();
+            PreHardmodeRangerWeapons();
+            PreHardmodeSummonerWeapons();
+            PreHardmodeThrowerWeapons();
         }
-        private static void HardmodeWeapons(Mod mod)
+        private static void HardmodeWeapons()
         {
-            HardmodeRangerWeapon(mod);
+            HardmodeRangerWeapon();
         }
 
-        private static void HardmodeRangerWeapon(Mod mod)
+        private static void HardmodeRangerWeapon()
         {
             Recipe.Create(ItemID.Flamethrower)
             .AddRecipeGroup("IronBar", 10)
@@ -162,36 +162,16 @@ namespace RemnantOfTheAncientsMod
             .Register();
         }
 
-        private static void PreHardmodeMeleeWeapons(Mod mod)
+        private static void PreHardmodeMeleeWeapons()
         {
-            {
-                Recipe.Create(ItemID.WoodenBoomerang)
-                   .AddRecipeGroup("IronBar", 2)
-                   .AddIngredient(ItemID.Wood, 10)
-                   .AddTile(TileID.WorkBenches)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.Spear)
-                   .AddRecipeGroup("IronBar", 2)
-                   .AddRecipeGroup("GoldBar", 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.EnchantedSword)
-                   .AddRecipeGroup("EspH", 1)
-                   .AddIngredient(ItemID.FallenStar, 10)
-                   .AddIngredient(ItemID.SoulofLight, 10)
-                   .AddIngredient(ItemID.LightShard, 1)
-                   .AddTile(TileID.MythrilAnvil)
-                   .Register();
-            }
-            NightEdgeCraft(mod);
+            Recipe.Create(ItemID.WoodenBoomerang).AddRecipeGroup("IronBar", 2).AddIngredient(ItemID.Wood, 10).AddTile(TileID.WorkBenches).Register();
+            Recipe.Create(ItemID.Spear).AddRecipeGroup("IronBar", 2).AddRecipeGroup("GoldBar", 1).AddTile(TileID.Anvils).Register();
+            Recipe.Create(ItemID.EnchantedSword).AddRecipeGroup("EspH", 1).AddIngredient(ItemID.FallenStar, 10).AddIngredient(ItemID.SoulofLight, 10).AddIngredient(ItemID.LightShard, 1).AddTile(TileID.MythrilAnvil).Register();
 
+            NightEdgeCraft();
         }
 
-        private static void NightEdgeCraft(Mod mod)
+        private static void NightEdgeCraft()
         {
 
             Recipe.Create(ItemID.NightsEdge)
@@ -213,14 +193,14 @@ namespace RemnantOfTheAncientsMod
             .AddIngredient(ItemID.FieryGreatsword)
             .AddTile(TileID.DemonAltar)
             .Register();
-
         }
+        
 
-        private static void PreHardmodeRangerWeapons(Mod mod)
+        private static void PreHardmodeRangerWeapons()
         {
 
         }
-        private static void PreHardmodeMagicWeapons(Mod mod)
+        private static void PreHardmodeMagicWeapons()
         {
             Recipe.Create(ItemID.WandofSparking)
                .AddIngredient(ItemID.Wood, 30)
@@ -228,11 +208,11 @@ namespace RemnantOfTheAncientsMod
                .AddTile(TileID.WorkBenches)
                .Register();
         }
-        private static void PreHardmodeSummonerWeapons(Mod mod)
+        private static void PreHardmodeSummonerWeapons()
         {
 
         }
-        private static void PreHardmodeThrowerWeapons(Mod mod)
+        private static void PreHardmodeThrowerWeapons()
         {
 
             Recipe.Create(ItemID.Shuriken, 50)
@@ -249,21 +229,21 @@ namespace RemnantOfTheAncientsMod
         }
         #endregion
         #region Swap
-        private static void Swaped(Mod mod)
+        private static void Swaped()
         {
-            SwapCorruptionLightPet(mod);
-            SwapSouls(mod);
-            SwapCorruptDebuffMaterial(mod);
-            SwapHardmodeBars(mod);
-            SwapPreBossBars(mod);
-            SwapCorruptBars(mod);
-            SwapCorruptMushroom(mod);
-            SwapDolls(mod);
-            CorruptExpertAccesories(mod);
+            SwapCorruptionLightPet();
+            SwapSouls();
+            SwapCorruptDebuffMaterial();
+            SwapHardmodeBars();
+            SwapPreBossBars();
+            SwapCorruptBars();
+            SwapCorruptMushroom();
+            SwapDolls();
+            CorruptExpertAccesories();
 
         }
 
-        private static void CorruptExpertAccesories(Mod mod)
+        private static void CorruptExpertAccesories()
         {
             Recipe.Create(ItemID.BrainOfConfusion)
             .AddIngredient(ItemID.WormScarf, 1)
@@ -276,25 +256,25 @@ namespace RemnantOfTheAncientsMod
             .Register();
         }
 
-        private static void SwapCorruptMushroom(Mod mod)
+        private static void SwapCorruptMushroom()
         {
             Recipe.Create(ItemID.ViciousMushroom).AddIngredient(ItemID.VileMushroom).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.VileMushroom).AddIngredient(ItemID.ViciousMushroom).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void SwapDolls(Mod mod)
+        private static void SwapDolls()
         {
             Recipe.Create(ItemID.ClothierVoodooDoll).AddIngredient(ItemID.GuideVoodooDoll, 1).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.GuideVoodooDoll).AddIngredient(ItemID.ClothierVoodooDoll, 1).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void SwapCorruptBars(Mod mod)
+        private static void SwapCorruptBars()
         {
             Recipe.Create(ItemID.CrimtaneBar).AddIngredient(ItemID.DemoniteBar).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.DemoniteBar).AddIngredient(ItemID.CrimtaneBar).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void SwapPreBossBars(Mod mod)
+        private static void SwapPreBossBars()
         {
             Recipe.Create(ItemID.PlatinumBar).AddIngredient(ItemID.GoldBar).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.GoldBar).AddIngredient(ItemID.PlatinumBar).AddTile(TileID.AlchemyTable).Register();
@@ -306,13 +286,13 @@ namespace RemnantOfTheAncientsMod
             Recipe.Create(ItemID.TinBar).AddIngredient(ItemID.CopperBar).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void SwapCorruptDebuffMaterial(Mod mod)
+        private static void SwapCorruptDebuffMaterial()
         {
             Recipe.Create(ItemID.CursedFlame).AddIngredient(ItemID.Ichor).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.Ichor).AddIngredient(ItemID.CursedFlame).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void SwapHardmodeBars(Mod mod)
+        private static void SwapHardmodeBars()
         {
             Recipe.Create(ItemID.AdamantiteBar).AddIngredient(ItemID.TitaniumBar).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.TitaniumBar).AddIngredient(ItemID.AdamantiteBar).AddTile(TileID.AlchemyTable).Register();
@@ -322,30 +302,30 @@ namespace RemnantOfTheAncientsMod
             Recipe.Create(ItemID.MythrilBar).AddIngredient(ItemID.OrichalcumBar).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void SwapSouls(Mod mod)
+        private static void SwapSouls()
         {
             Recipe.Create(ItemID.SoulofNight).AddIngredient(ItemID.SoulofLight).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.SoulofLight).AddIngredient(ItemID.SoulofNight).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void SwapCorruptionLightPet(Mod mod)
+        private static void SwapCorruptionLightPet()
         {
             Recipe.Create(ItemID.CrimsonHeart).AddIngredient(ItemID.ShadowOrb).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.ShadowOrb).AddIngredient(ItemID.CrimsonHeart).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void Uncrafting(Mod mod)
+        private static void Uncrafting()
         {
-            UncraftMolten(mod);
-            UncraftJungle(mod);
-            UncraftBone(mod);
+            UncraftMolten();
+            UncraftJungle();
+            UncraftBone();
 
             Recipe.Create(ModContent.ItemType<JungleBar>(), 6).AddIngredient(ItemID.BladeofGrass, 1).AddTile(TileID.Anvils).Register();
             Recipe.Create(ItemID.PlatinumCoin, 100).AddIngredient(ModContent.ItemType<Terracoin>(), 1).Register();
             Recipe.Create(ItemID.EnchantedSword, 1).AddIngredient(ModContent.ItemType<Enchanted_saber>(), 1).AddTile(TileID.Anvils).Register();
         }
 
-        private static void UncraftBone(Mod mod)
+        private static void UncraftBone()
         {
             {
                 Recipe.Create(ModContent.ItemType<BoneBar>(), 23)
@@ -367,7 +347,7 @@ namespace RemnantOfTheAncientsMod
             }
         }
 
-        private static void UncraftJungle(Mod mod)
+        private static void UncraftJungle()
         {
             {
                 Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
@@ -389,7 +369,7 @@ namespace RemnantOfTheAncientsMod
             }
         }
 
-        private static void UncraftMolten(Mod mod)
+        private static void UncraftMolten()
         {
             {
                 Recipe.Create(ItemID.HellstoneBar, 10)
@@ -411,7 +391,7 @@ namespace RemnantOfTheAncientsMod
             }
         }
         #endregion
-        private static void FishingRods(Mod mod)
+        private static void FishingRods()
         {
             Recipe.Create(ItemID.HotlineFishingHook)
                .AddIngredient(ItemID.ReinforcedFishingPole)
@@ -422,7 +402,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
 
         }
-        private static void Emblemas(Mod mod)
+        private static void Emblemas()
         {
             {
                 Recipe.Create(ItemID.SummonerEmblem)
@@ -455,7 +435,7 @@ namespace RemnantOfTheAncientsMod
                    .Register();
             }
         }
-        private static void CraftinStationsCraft(Mod mod)
+        private static void CraftinStationsCraft()
         {
             Recipe.Create(ItemID.BoneWelder)
                 .AddIngredient(ItemID.Bone, 20)
@@ -464,21 +444,21 @@ namespace RemnantOfTheAncientsMod
                 .Register();
         }
         #region Accesorios
-        private static void Accesories(Mod mod)
+        private static void Accesories()
         {
-            SurfaceAccesories(mod);
-            JungleAccesories(mod);
-            CavernAccesories(mod);
-            DesertAccesories(mod);
-            DungeonAccesories(mod);
-            OceanAccesories(mod);
-            UnderworldAccesories(mod);
-            CorruptAccesories(mod);
-            TravelingMerchantAccesories(mod);
-            SkyAccesories(mod);
+            SurfaceAccesories();
+            JungleAccesories();
+            CavernAccesories();
+            DesertAccesories();
+            DungeonAccesories();
+            OceanAccesories();
+            UnderworldAccesories();
+            CorruptAccesories();
+            TravelingMerchantAccesories();
+            SkyAccesories();
         }
 
-        private static void SkyAccesories(Mod mod)
+        private static void SkyAccesories()
         {
             Recipe.Create(ItemID.ShinyRedBalloon)
             .AddRecipeGroup("String", 1)
@@ -487,7 +467,7 @@ namespace RemnantOfTheAncientsMod
             .Register();
         }
 
-        private static void TravelingMerchantAccesories(Mod mod)
+        private static void TravelingMerchantAccesories()
         {
             Recipe.Create(ItemID.CelestialMagnet)
                .AddIngredient(ItemID.LuckyHorseshoe, 1)
@@ -497,7 +477,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
         }
 
-        private static void DungeonAccesories(Mod mod)
+        private static void DungeonAccesories()
         {
             Recipe.Create(ItemID.CobaltShield)
                .AddIngredient(ItemID.CobaltBar, 5)
@@ -505,10 +485,10 @@ namespace RemnantOfTheAncientsMod
                .Register();
         }
 
-        private static void CavernAccesories(Mod mod)
+        private static void CavernAccesories()
         {
-            DobleJumpBottles(mod);
-            Boots(mod);
+            DobleJumpBottles();
+            Boots();
             Recipe.Create(ItemID.PocketMirror)
                .AddIngredient(ItemID.GoldBar, 5)
                .AddIngredient(ItemID.Glass, 3)
@@ -545,7 +525,7 @@ namespace RemnantOfTheAncientsMod
 
         }
 
-        private static void OceanAccesories(Mod mod)
+        private static void OceanAccesories()
         {
             Recipe.Create(ItemID.SharkToothNecklace)
                .AddIngredient(ModContent.ItemType<SharkTooth>(), 3)
@@ -562,7 +542,7 @@ namespace RemnantOfTheAncientsMod
 
         }
 
-        private static void DesertAccesories(Mod mod)
+        private static void DesertAccesories()
         {
             Recipe.Create(ItemID.FlyingCarpet)
                .AddIngredient(ItemID.AncientCloth, 5)
@@ -570,7 +550,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
         }
 
-        private static void SurfaceAccesories(Mod mod)
+        private static void SurfaceAccesories()
         {
             Recipe.Create(ItemID.Shackle)
                .AddIngredient(ItemID.IronBar, 1)
@@ -589,7 +569,7 @@ namespace RemnantOfTheAncientsMod
                 .Register();
         }
 
-        private static void JungleAccesories(Mod mod)
+        private static void JungleAccesories()
         {
             Recipe.Create(ItemID.FeralClaws)
                .AddIngredient(ItemID.JungleSpores, 5)
@@ -618,13 +598,13 @@ namespace RemnantOfTheAncientsMod
 
         }
 
-        private static void CorruptAccesories(Mod mod)
+        private static void CorruptAccesories()
         {
             Recipe.Create(ItemID.BandofStarpower).AddIngredient(ItemID.PanicNecklace, 1).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.PanicNecklace).AddIngredient(ItemID.BandofStarpower, 1).AddTile(TileID.AlchemyTable).Register();
         }
 
-        private static void UnderworldAccesories(Mod mod)
+        private static void UnderworldAccesories()
         {
             {
                 Recipe.Create(ItemID.MagmaStone)
@@ -648,7 +628,7 @@ namespace RemnantOfTheAncientsMod
             }
         }
 
-        private static void Boots(Mod mod)
+        private static void Boots()
         {
             {
                 Recipe.Create(ItemID.HermesBoots)
@@ -681,7 +661,7 @@ namespace RemnantOfTheAncientsMod
             }
         }
 
-        private static void DobleJumpBottles(Mod mod)
+        private static void DobleJumpBottles()
         {
             {
                 Recipe.Create(ItemID.CloudinaBottle)
@@ -714,11 +694,11 @@ namespace RemnantOfTheAncientsMod
             }
         }
 
-        private static void VanillaPotionCrafting(Mod mod)
+        private static void VanillaPotionCrafting()
         {
             for (int i = 288; i <= 305; i++)
             {
-                Recipe.Create(i, 2)
+                Recipe.Create(2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -727,7 +707,7 @@ namespace RemnantOfTheAncientsMod
             }
             for (int i = 2322; i <= 2329; i++)
             {
-                Recipe.Create(i, 2)
+                Recipe.Create(2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -735,7 +715,7 @@ namespace RemnantOfTheAncientsMod
             }
             for (int i = 2344; i <= 2350; i++)
             {
-                Recipe.Create(i, 2)
+                Recipe.Create(2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -743,7 +723,7 @@ namespace RemnantOfTheAncientsMod
             }
             for (int i = 4477; i <= 4479; i++)
             {
-                Recipe.Create(i, 2)
+                Recipe.Create(2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)

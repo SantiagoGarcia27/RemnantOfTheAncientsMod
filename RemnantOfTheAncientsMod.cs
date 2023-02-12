@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.NPCs.DAniquilator;
+using System.Collections.Generic;
+using RemnantOfTheAncientsMod.Items.Pociones;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -10,15 +12,16 @@ namespace RemnantOfTheAncientsMod
         public static Mod CalamityMod;
         public static Mod BossChecklist;
         public static bool DebuggMode;
+      
         public RemnantOfTheAncientsMod()
         {
            
         }
 
-        [System.Obsolete]
+        
         public override void AddRecipes()
         {
-            RecipeMaker.AddRecipes(this);
+            RecipeMaker.AddRecipes();
         }
 
         public override void Load()

@@ -57,8 +57,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (Main.rand.NextFloat () <= (float) 1 / 10)
-				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<MisilUltra>(), damage*2, 1, player.whoAmI);
+			if (Main.rand.NextFloat () <= (float) 1 / 10) Projectile.NewProjectile(source, position, velocity/4, ModContent.ProjectileType<MisilUltra>(), damage*2, 1, player.whoAmI);
 			return true;
 		}
 		public override void AddRecipes()

@@ -8,7 +8,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
 {
 
     public abstract class BasePotions : ModItem
-    {
+    {      
         public abstract int TextureID { get; }
         public abstract int ItemId { get; }
         public abstract int BuffId { get; }
