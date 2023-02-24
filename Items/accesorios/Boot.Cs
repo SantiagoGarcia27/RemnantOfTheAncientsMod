@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         {
             Item.width = 10;
             Item.height = 14;
-            Item.value = 50000;
+            Item.value = Item.buyPrice(0, 0, 5, 72);
             Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
             Item.defense = 3;

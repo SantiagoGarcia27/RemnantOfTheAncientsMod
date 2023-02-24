@@ -17,7 +17,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-            Item.damage = new Item(ItemID.WoodenSword).damage - 3;
+			Item Base = new Item(ItemID.WoodenSword);
+            Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
@@ -25,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.useAnimation = 18;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
-			Item.value = Item.sellPrice(copper: 20);
+			Item.value = Base.value;
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

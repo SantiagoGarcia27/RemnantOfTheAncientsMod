@@ -1,7 +1,10 @@
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
+
+
+using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Items.accesorios
 {
@@ -22,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 			Item.width = 26; //Tamaño inGame 
 			Item.height = 26;
 			Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
-			Item.value = 500; //Precio
+			Item.value = Item.buyPrice(0, 0, 2, 72);  //Precio
 			Item.rare = 1;
 			Item.accessory = true;
 			Item.defense = 1;

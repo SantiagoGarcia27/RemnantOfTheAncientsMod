@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -61,6 +62,11 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.tileCollide = true;
             Projectile.light = light;
             Projectile.timeLeft = 120;
+        }
+        public override void AI()           //this make that the projectile will face the corect way
+        {                                                           // |
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {

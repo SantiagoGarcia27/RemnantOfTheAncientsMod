@@ -1,6 +1,6 @@
 author = Sangar & TTIM
 version = 2.0
-displayName = Remnant Of The Ancients Mod Beta 12
+displayName = Remnant Of The Ancients Mod Beta 14
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 hideCode = false
 hideResources = false

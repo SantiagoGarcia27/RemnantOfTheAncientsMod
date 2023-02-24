@@ -17,8 +17,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-
-            Item.damage = new Item(ItemID.TinBroadsword).damage - 3;
+            Item Base = new Item(ItemID.TinBroadsword);
+            Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
-			Item.value = 1000;
+			Item.value = Base.value;
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

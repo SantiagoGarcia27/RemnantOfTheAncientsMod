@@ -19,7 +19,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-            Item.damage = new Item(ModContent.ItemType<Tuxonite_Sword>()).damage - 3;
+            Item Base = new Item(ItemType<Tuxonite_Sword>());
+            Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
@@ -27,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
-			Item.value = Item.sellPrice(silver: 27);
+			Item.value = Base.value;
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

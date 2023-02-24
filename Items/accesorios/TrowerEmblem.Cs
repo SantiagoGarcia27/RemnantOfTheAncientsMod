@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         {
             Item.width = 10;
             Item.height = 14;
-            Item.value = 100000;
+            Item.value = new Item(ItemID.WarriorEmblem).value;
             Item.rare = ItemRarityID.LightRed;
             Item.accessory = true;
         }

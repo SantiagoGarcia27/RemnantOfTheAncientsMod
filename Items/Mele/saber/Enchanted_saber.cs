@@ -20,7 +20,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 10;
+            Item Base = new Item(ItemID.EnchantedSword);
+            Item.damage = 10;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
@@ -28,8 +29,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.useAnimation = 25;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
-			Item.value = Item.sellPrice(silver: 50);
-			Item.rare = ItemRarityID.Green;
+			Item.value = Base.value;
+			Item.rare = Base.rare;
 			Item.shoot = ProjectileID.EnchantedBeam;
 			Item.shootSpeed = 10f;
 			Item.UseSound = SoundID.Item1;

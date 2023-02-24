@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios.Alas
 		{
 			Item.width = 22;
 			Item.height = 20;
-			Item.value = 25000;
+			Item.value = Item.buyPrice(0,0,7,0);
 			Item.rare = ItemRarityID.Green;
 			Item.accessory = true;
 		}

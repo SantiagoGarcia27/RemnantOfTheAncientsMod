@@ -22,7 +22,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 
 		public override void SetDefaults()
 		{
-            Item.damage = new Item(ItemID.BladeofGrass).damage - 3;
+            Item Base = new Item(ItemID.BladeofGrass);
+            Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
@@ -30,8 +31,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.useAnimation = 25;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
-			Item.value = Item.sellPrice(silver: 54);
-			Item.rare = ItemRarityID.Orange;
+			Item.value = Base.value;
+			Item.rare = Base.rare;
 			Item.scale = 1.28f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

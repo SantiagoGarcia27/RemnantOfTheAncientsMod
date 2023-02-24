@@ -86,17 +86,17 @@ namespace RemnantOfTheAncientsMod
 			int npcType = NPCType<DesertAniquilator>();
 			int num = ItemType<DesertChest>();
 			List<int> loot = new List<int>
-				{
-					ItemType < desertBag >(),
-					ItemType < DesertEdge >(),
-					ItemType < DesertTome >()
-				};
+			{ 
+				ItemType <desertBag>(),
+				ItemType <DesertEdge>(),
+				ItemType <DesertTome>()
+			};
 			List<int> collection = new List<int>
-				{
-					ItemType<DesertTrophy>(),
-					ItemType<DesertAMask>(),
-					ItemType<DesertMusicBox>()
-				};
+			{
+				ItemType<DesertTrophy>(),
+				ItemType<DesertAMask>(),
+				ItemType<DesertMusicBox>()
+			};
 			string instructions = $"Use a [i:{num}] in the desert";
 			string despawn = Utils1.ColorMessage("The guardian of the desert has returned to rest.", new Color(100, 149, 237));
 			AddBoss(bossChecklist, RemnantOfTheAncientsMod, "Desert Annihilator", value, npcType, () => DownedBossSystem.downedDesert, num, loot, collection, instructions, despawn);

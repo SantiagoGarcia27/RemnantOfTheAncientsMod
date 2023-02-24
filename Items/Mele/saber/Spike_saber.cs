@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
-			Item.value = Item.sellPrice(gold: 18);
+			Item.value = Item.sellPrice(gold: 6);
 			Item.rare = ItemRarityID.Lime;
 			Item.scale = 1.60f;
 			Item.UseSound = SoundID.Item1;

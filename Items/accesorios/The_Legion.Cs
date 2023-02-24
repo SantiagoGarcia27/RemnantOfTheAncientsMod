@@ -28,8 +28,8 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         {
            Item.width = 10;
            Item.height = 14;
-           Item.value = 750000;
-           Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Legendary;
+            Item.value = Item.buyPrice(0, 18, 0, 0);
+            Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Legendary;
            Item.accessory = true;
            Item.GetGlobalItem<GlobalItem1>().LegendaryDrop = true;
         }
