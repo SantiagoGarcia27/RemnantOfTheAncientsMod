@@ -5,25 +5,14 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Buffs;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Buffs.Buffs.Kits;
 
 namespace RemnantOfTheAncientsMod.Items.Pociones
 {
-    public class EndlessCI : BasePotions
-    {
-        public override int TextureID => ItemType<Combat_Infusion>();
-        public override int ItemId => ItemType<Combat_Infusion>();
-        public override int BuffId => BuffType<Combat_infusion>();
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Endless Combat Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate Eterno");
-            base.SetStaticDefaults();
-        }
-    }
+    #region comun
     public class Combat_Infusion : ModItem
     {
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Combat Potions Kit");
@@ -31,22 +20,12 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 999;
-            Item.consumable = true;
-            Item.rare = ItemRarityID.Orange;
+            Item.CloneDefaults(ItemID.BuilderPotion);
             Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffType<Combat_infusion>(); 
-            Item.buffTime = 25400; 
+            Item.buffType = BuffType<Combat_infusion>();
+            Item.buffTime = 25400;
         }
         public override void AddRecipes()
         {
@@ -67,23 +46,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             .Register();
         }
     }
-    public class EndlessMInf : BasePotions
-    {
-        public override int TextureID => ItemType<Mining_Infusion>();
-        public override int ItemId => ItemType<Mining_Infusion>();
-        public override int BuffId => BuffType<Combat_infusion>();
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Mining_Infusion";
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Endless Mining Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria Eterno");
-            base.SetStaticDefaults();
-        }
-    }
     public class Mining_Infusion : ModItem
     {
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Mining_Infusion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mining Potions Kit");
@@ -91,19 +56,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 999;
-            Item.consumable = true;
-            Item.rare = ItemRarityID.Orange;
+            Item.CloneDefaults(ItemID.BuilderPotion);
             Item.value = Item.buyPrice(gold: 1);
             Item.buffType = BuffType<Mining_infusion>();
             Item.buffTime = 25400;
@@ -119,4 +74,100 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             .Register();
         }
     }
+    public class Builder_Potion_Kit : ModItem
+    {
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Builder_Infusion";
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Builder Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemID.BuilderPotion);
+            Item.value = Item.buyPrice(gold: 1);
+            Item.buffType = BuffType<Builder_infusion>();
+            Item.buffTime = 25400;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.BuilderPotion, 1)
+            .AddIngredient(ItemID.CalmingPotion, 1)
+            .AddIngredient(ItemID.ObsidianSkinPotion, 1)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
+    }
+    #endregion
+    #region Endless
+    public class EndlessMInf : ModItem
+    {  
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Mining_Infusion";
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Mining Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières sans fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria Eterno");         
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemType<Mining_Infusion>());
+            Item.consumable= false;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemType<Mining_Infusion>(),30)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
+    }
+    public class EndlessCI : ModItem
+    {
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Combat Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate Eterno");
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemType<Combat_Infusion>());
+            Item.consumable = false;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemType<Combat_Infusion>(), 30)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
+    }
+    public class EndlessBuilderInfusion : ModItem
+    {
+        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Builder_Infusion";
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Builder Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de construcción Eterno");
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemType<Builder_Potion_Kit>());
+            Item.consumable = false;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemType<Builder_Potion_Kit>(), 30)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
+    }
+    #endregion
 }

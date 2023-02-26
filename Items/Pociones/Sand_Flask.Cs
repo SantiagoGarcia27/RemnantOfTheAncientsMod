@@ -1,4 +1,5 @@
 using RemnantOfTheAncientsMod.Buffs;
+using RemnantOfTheAncientsMod.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Items.Items;
 using Terraria;
 using Terraria.ID;

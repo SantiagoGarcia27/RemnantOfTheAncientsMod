@@ -1,9 +1,9 @@
+using RemnantOfTheAncientsMod.Projectiles.Minioms;
 using Terraria;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Projectiles.Minioms;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Minions
 {
 	public class DesertMinionBuff : ModBuff
 	{

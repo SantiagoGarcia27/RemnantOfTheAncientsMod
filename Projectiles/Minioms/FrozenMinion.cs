@@ -1,17 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Buffs;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
-using System;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.CodeAnalysis;
-using System.IO;
-using RemnantOfTheAncientsMod.NPCs;
-using RemnantOfTheAncientsMod.VanillaChanges;
-using RemnantOfTheAncientsMod.World;
-using static Humanizer.In;
+using RemnantOfTheAncientsMod.Buffs.Minions;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {

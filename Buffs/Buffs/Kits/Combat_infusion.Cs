@@ -1,10 +1,8 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Buffs.Kits
 {
     public class Combat_infusion : ModBuff
     {
@@ -12,11 +10,10 @@ namespace RemnantOfTheAncientsMod.Buffs
         {
             DisplayName.SetDefault("Combat infusion");
             Description.SetDefault("Definitive offensive buff");
-             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infusion de combat");
-              Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Buff d'attaque définitif");
-              DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Infusión de combate");
-               Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mejora ofensiva definitiva");
-               
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infusion de combat");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Buff d'attaque définitif");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Infusión de combate");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mejora ofensiva definitiva");
 
             Main.buffNoTimeDisplay[Type] = false;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

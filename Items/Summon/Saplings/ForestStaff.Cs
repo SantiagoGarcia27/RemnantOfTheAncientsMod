@@ -1,17 +1,13 @@
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
-using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Buffs.acorns;
 using RemnantOfTheAncientsMod.Projectiles.Minioms.Saplings;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Buffs.Minions.acorns;
 
 namespace RemnantOfTheAncientsMod.Items.Summon.Saplings
 {
-    public class ForestStaff : ModelSummonerStaff
+	public class ForestStaff : ModelSummonerStaff
 	{
 		public override int ItemId => ItemID.Wood;
 		public override int BuffId => BuffType<SaplingMinionBuff>();

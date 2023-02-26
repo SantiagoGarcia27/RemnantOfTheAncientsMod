@@ -4,14 +4,14 @@ using Terraria.ID;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Buffs;
 using RemnantOfTheAncientsMod.Projectiles.Minioms;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Buffs.Minions;
 
 namespace RemnantOfTheAncientsMod.Items.Summon
 {
-    public class DesertStaff : ModItem
+	public class DesertStaff : ModItem
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Desert Staff");

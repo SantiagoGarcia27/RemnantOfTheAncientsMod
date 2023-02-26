@@ -2,8 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod;
-using RemnantOfTheAncientsMod.Buffs;
+using RemnantOfTheAncientsMod.Buffs.Minions;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {

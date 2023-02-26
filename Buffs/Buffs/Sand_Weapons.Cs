@@ -1,16 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.Localization;
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.ID;
-using RemnantOfTheAncientsMod.Dusts;
-using RemnantOfTheAncientsMod.Projectiles.Minioms;
-using RemnantOfTheAncientsMod.VanillaChanges;
-using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Buffs
+namespace RemnantOfTheAncientsMod.Buffs.Buffs
 {
 	public class Sand_Weapons : ModBuff
 	{

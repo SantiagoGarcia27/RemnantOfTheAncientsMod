@@ -198,6 +198,7 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffType<Skeleton>()] = true;
 			Player.buffImmune[BuffType<MasterD>()] = true;
 			Player.buffImmune[BuffType<Infernal>()] = true;
+			Player.buffImmune[BuffType<QueenSlimeScrollBuff>()] = true;
 
 			Player.buffImmune[buff] = false;
 		}
