@@ -15,6 +15,7 @@ using RemnantOfTheAncientsMod.Items.ReaperSouls;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Buffs.Scrolls;
 using RemnantOfTheAncientsMod.Items.accesorios;
+using RemnantOfTheAncientsMod.Buffs.Buffs;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -411,6 +412,119 @@ namespace RemnantOfTheAncientsMod
             player.buffImmune[15] = true;
             player.buffImmune[109] = true;
 
+        }
+		public static void RangerInfusion(Player player)
+		{
+            player.arrowDamage.Flat *= 0.2f;
+			player.archery = true;
+            player.ammoPotion = true;
+
+            player.buffImmune[16] = true;
+            player.buffImmune[112] = true;
+        }
+
+		public static void GravityControlPotion(Player player)
+		{
+			player.gravControl = true;
+			player.slowFall = true;
+
+			player.buffImmune[8] = true;
+			player.buffImmune[18] =	true;
+		}
+
+		public static void FishingInfusion(Player player)
+		{
+			player.calmed= true;
+			player.fishingSkill += 15;
+			player.sonarPotion= true;
+			player.cratePotion= true;
+			player.invis = true;
+			player.luck += 0.4f;
+
+            player.buffImmune[10] = true;
+            player.buffImmune[106] = true;
+            player.buffImmune[121] = true;
+			player.buffImmune[122] = true;
+            player.buffImmune[123] = true;
+            player.buffImmune[257] = true;
+        }
+
+		public static void MageInfusion(Player player) 
+		{
+            ref StatModifier MagicDamage = ref (player.GetDamage<MagicDamageClass>());
+            MagicDamage += 0.20f;
+            player.manaRegen += 4;
+
+            player.buffImmune[6] = true;
+            player.buffImmune[7] = true;
+        }
+
+		public static void TankInfusion(Player player)
+		{
+            player.statLifeMax2 += (player.statLifeMax * 20) / 100;
+            player.endurance += 0.10f;
+            player.thorns += 0.33f;
+            player.lifeMagnet = true;
+            player.resistCold = true;
+
+            player.buffImmune[113] = true;
+            player.buffImmune[114] = true;
+            player.buffImmune[124] = true;
+            player.buffImmune[14] = true;
+            player.buffImmune[105] = true;
+        }
+
+		public static void SummonInfusion(Player player)
+		{
+			player.maxMinions++;
+			player.maxTurrets++;
+			player.inferno = true;
+
+            player.buffImmune[110] = true;
+            player.buffImmune[116] = true;
+			player.buffImmune[BuffType<CentryBuff>()] = true;
+        }
+		public static void SuperSenseBuff(Player player) 
+		{
+			player.detectCreature = true;
+			player.findTreasure = true;
+
+            player.buffImmune[111] = true;
+            player.buffImmune[17] = true;
+        }
+
+		public static void ExplorationInfusion(Player player)
+		{
+			player.lavaImmune = true;
+			GravityControlPotion(player);
+			SuperSenseBuff(player);
+			MiningInfusion(player);
+            player.buffImmune[1] = true;
+		}
+
+		public static void PoseidonInfusion(Player player)
+		{
+			FishingInfusion(player);
+			FishPotion(player);
+		}
+		public static void CombatInfusion(Player player)
+		{
+			MeleeInfusion(player);
+			RangerInfusion(player);
+			MageInfusion(player);
+			SummonInfusion(player);
+			TankInfusion(player);
+			AdvancedInfusion(player);
+		}
+		public static void DefinitiveInfusion(Player player)
+		{
+			CombatInfusion(player);
+			ExplorationInfusion(player);
+			PoseidonInfusion(player);
+			player.tileSpeed += 0.25f;
+			player.wallSpeed += 0.25f;
+			player.blockRange++;
+			player.buffImmune[107] = true;
         }
        /* public void Debugg()
 		{
