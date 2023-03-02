@@ -39,6 +39,7 @@ namespace RemnantOfTheAncientsMod
 		public bool Hell_Fire;
 		public bool hasInfernal_core;
 		public bool SandWeapons;
+		public bool MeleeKit;
 		public int healHurt;
 		public bool TortugaPet;
 		public bool TwitchPet;
@@ -49,6 +50,7 @@ namespace RemnantOfTheAncientsMod
 		public static bool FWeapons;
 		public static bool ReaperFirstTime;
 		private static List<NPC> _hallucinationCandidates = new List<NPC>();
+
 
 		public override void ResetEffects()
 		{
@@ -71,7 +73,9 @@ namespace RemnantOfTheAncientsMod
 			hasInfernal_core = false;
 			SandWeapons = false;
 			ChaliceOn = false;
-		}
+			MeleeKit = false;
+
+        }
 
 
 		public override void UpdateDead()
@@ -79,7 +83,9 @@ namespace RemnantOfTheAncientsMod
 			Burn_Sand = false;
 			Hell_Fire = false;
 			hBurn = false;
-		}
+			MeleeKit = false;
+
+        }
 		public override void UpdateBadLifeRegen()
 		{
 			if (Burn_Sand || Hell_Fire || hBurn)
@@ -150,8 +156,10 @@ namespace RemnantOfTheAncientsMod
 			if (!item.noMelee && !item.noUseGraphic)
 			{
 				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
-				if (SandWeapons && !item.noMelee && !item.noUseGraphic) target.AddBuff(BuffType<Burning_Sand>(), 300);
-			}
+				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
+				if (MeleeKit) target.AddBuff(BuffID.Ichor, 300);
+
+            }
 		}
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) //This is the same as the one in OnHitNPC, but for melee projectiles.
 		{
@@ -353,13 +361,64 @@ namespace RemnantOfTheAncientsMod
 			}
 		}
 		
+		public static void BasicInfusion(Player player)
+		{
+            player.moveSpeed += 0.25f;
+            player.lifeRegen += 4;
+            player.statDefense += 8;
+            player.buffImmune[2] = true;
+            player.buffImmune[3] = true;
+            player.buffImmune[5] = true;
+        }
+		public static void AdvancedInfusion(Player player)
+		{
+			BasicInfusion(player);
+            ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
+            GenericDamage += 0.10f;
+            player.GetCritChance(DamageClass.Generic) += 10f;
+            player.buffImmune[115] = true;
+            player.buffImmune[117] = true;
+        }
+		public static void MeleeInfusion(Player player)
+		{
+            new RemnantPlayer().MeleeKit = true;
+            if (player.inventory[player.selectedItem].CountsAsClass(DamageClass.Melee)) player.statDefense -= 4;
+            player.GetCritChance(DamageClass.Melee) += 2f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.1f;
+            player.kbBuff = true;
+			
+            player.buffImmune[25] = true;
+            player.buffImmune[108] = true;
+        }
+		public static void MiningInfusion(Player player)
+		{
+            player.findTreasure = true;
+            player.nightVision = true;
+            player.pickSpeed -= 0.25f;
+            Lighting.AddLight((int)((double)player.position.X + player.width / 2) / 16, (int)(player.position.Y + (double)(player.height / 2)) / 16, 1f, 1f, 2f);//16,3f,3f,3f
+            player.buffImmune[11] = true;
+            player.buffImmune[12] = true;
+            player.buffImmune[104] = true;
+            player.buffImmune[9] = true;
+        }
+		public static void FishPotion(Player player)
+		{
+			player.waterWalk = true;
+            player.ignoreWater = true;
+            player.accFlipper = true;
+			player.gills = true;
+            player.buffImmune[4] = true;
+            player.buffImmune[15] = true;
+            player.buffImmune[109] = true;
+
+        }
        /* public void Debugg()
 		{
 			bool rft = GetInstance<ConfigClient1>().ReaperFirsTimeConf;
 			if (rft) ReaperFirstTime = true;
 			else ReaperFirstTime = false;
 		}*/
-	}
+    }
 }
 
 		
