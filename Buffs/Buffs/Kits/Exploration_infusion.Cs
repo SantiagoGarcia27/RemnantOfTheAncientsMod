@@ -4,11 +4,11 @@ using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Buffs.Buffs.Kits
 {
-    public class Builder_infusion : ModBuff
+    public class Exploration_infusion : ModBuff
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Builder infusion");
+            DisplayName.SetDefault("Exploration infusion");
             Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infusion de combat");
             Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "");
@@ -21,14 +21,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs.Kits
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.calmed = true;
-            player.tileSpeed += 0.25f;
-            player.wallSpeed += 0.25f;
-            player.blockRange += 1;
-
-            player.buffImmune[1] = true;
-            player.buffImmune[106] = true;
-            player.buffImmune[107] = true;
+            RemnantPlayer.ExplorationInfusion(player);
         }
     }
 }
