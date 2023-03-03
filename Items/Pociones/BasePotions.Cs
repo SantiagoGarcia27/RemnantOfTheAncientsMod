@@ -6,7 +6,6 @@ using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Items.Pociones
 {
-
     public abstract class BasePotions : ModItem
     {      
         public abstract int TextureID { get; }

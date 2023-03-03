@@ -75,7 +75,7 @@ namespace RemnantOfTheAncientsMod
         }
         private static void Potoions()
         {
-            Recipe.Create(ModContent.ItemType<EndlessCI>())
+            Recipe.Create(ModContent.ItemType<Endless_Combat_Potion_Kit>())
                 .AddIngredient(ModContent.ItemType<EndlessMR>(), 1)
                 .AddIngredient(ModContent.ItemType<EndlessRa>(), 1)
                 .AddIngredient(ModContent.ItemType<EndlessSu>(), 1)
@@ -92,7 +92,7 @@ namespace RemnantOfTheAncientsMod
                 .Register();
 
 
-            Recipe.Create(ModContent.ItemType<EndlessMInf>())
+            Recipe.Create(ModContent.ItemType<Endless_Mining_Potion_Kit>())
                 .AddIngredient(ModContent.ItemType<EndlessSp>(), 1)
                 .AddIngredient(ModContent.ItemType<EndlessSh>(), 1)
                 .AddIngredient(ModContent.ItemType<EndlessNig>(), 1)

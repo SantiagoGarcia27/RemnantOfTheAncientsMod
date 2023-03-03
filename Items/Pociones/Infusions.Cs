@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Buffs;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Buffs.Buffs.Kits;
@@ -10,9 +9,8 @@ using RemnantOfTheAncientsMod.Buffs.Buffs.Kits;
 namespace RemnantOfTheAncientsMod.Items.Pociones
 {
     #region comun
-    public class Combat_Infusion : ModItem
+    public class Combat_Potion_Kit : ModItem
     {
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Combat Potions Kit");
@@ -46,9 +44,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             .Register();
         }
     }
-    public class Mining_Infusion : ModItem
+    public class Mining_Potion_Kit: ModItem
     {
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Mining_Infusion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mining Potions Kit");
@@ -58,10 +55,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         }
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.BuilderPotion);
-            Item.value = Item.buyPrice(gold: 1);
+            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
             Item.buffType = BuffType<Mining_infusion>();
-            Item.buffTime = 25400;
         }
         public override void AddRecipes()
         {
@@ -74,100 +69,148 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             .Register();
         }
     }
-    public class Builder_Potion_Kit : ModItem
+    public class Summon_Potion_Kit : ModItem
     {
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Builder_Infusion";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Builder Potions Kit");
+            DisplayName.SetDefault("Summoner Potions Kit");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.BuilderPotion);
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffType<Builder_infusion>();
-            Item.buffTime = 25400;
+            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+            Item.buffType = BuffType<Summon_Infusion>(); 
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemID.BuilderPotion, 1)
-            .AddIngredient(ItemID.CalmingPotion, 1)
-            .AddIngredient(ItemID.ObsidianSkinPotion, 1)
+            .AddIngredient(ItemID.SummoningPotion, 1)
+            .AddIngredient(ItemID.InfernoPotion, 1)
+            .AddIngredient(ItemType<Commander_Potion>(), 1)
             .AddTile(TileID.Bottles)
             .Register();
         }
     }
-    #endregion
-    #region Endless
-    public class EndlessMInf : ModItem
-    {  
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Mining_Infusion";
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Endless Mining Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria Eterno");         
-        }
-        public override void SetDefaults()
-        {
-            Item.CloneDefaults(ItemType<Mining_Infusion>());
-            Item.consumable= false;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemType<Mining_Infusion>(),30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-    }
-    public class EndlessCI : ModItem
-    {
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Combat_Infusion";
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Endless Combat Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate Eterno");
-        }
-        public override void SetDefaults()
-        {
-            Item.CloneDefaults(ItemType<Combat_Infusion>());
-            Item.consumable = false;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemType<Combat_Infusion>(), 30)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-    }
-    public class EndlessBuilderInfusion : ModItem
+    public class Melee_Potion_Kit : ModItem
     {
         public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Builder_Infusion";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Builder Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de construcción Eterno");
+            DisplayName.SetDefault("Melee Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemType<Builder_Potion_Kit>());
-            Item.consumable = false;
+            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+            Item.buffType = BuffType<Melee_Infusion>(); 
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemType<Builder_Potion_Kit>(), 30)
+            .AddIngredient(ItemID.FlaskofIchor, 1)
+            .AddIngredient(ItemID.Sake, 1)
+            .AddIngredient(ItemID.TitanPotion, 1)
             .AddTile(TileID.Bottles)
             .Register();
         }
+    }
+    public class Mage_Potion_Kit : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Magic Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+            Item.buffType = BuffType<Mage_Infusion>();
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.FlaskofIchor, 1)
+            .AddIngredient(ItemID.Sake, 1)
+            .AddIngredient(ItemID.TitanPotion, 1)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
+    }
+    public class Tank_Potion_Kit : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Tank Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+            Item.buffType = BuffType<Tank_Infusion>();
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.EndurancePotion, 1)
+            .AddIngredient(ItemID.LifeforcePotion, 1)
+            .AddIngredient(ItemID.HeartreachPotion, 1)
+            .AddIngredient(ItemID.WarmthPotion, 1)
+            .AddIngredient(ItemID.ThornsPotion, 1)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
+    }
+    public class Ranger_Potion_Kit : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Range Potions Kit");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+            Item.buffType = BuffType<Ranger_Infusion>();
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.AmmoReservationPotion, 1)
+            .AddIngredient(ItemID.ArcheryPotion, 1)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
+    }
+
+    #endregion
+
+
+
+    #region Endless
+    public class Endless_Mining_Potion_Kit : Endless
+    {
+        public override Item ItemBase => new Item(ItemType<Mining_Potion_Kit>());
+        public override ModTranslation ItemName => GetInstance<Mining_Potion_Kit>().DisplayName;
+    }
+    public class Endless_Combat_Potion_Kit : Endless
+    {
+        public override Item ItemBase => new(ItemType<Combat_Potion_Kit>());
+        public override ModTranslation ItemName => GetInstance<Combat_Potion_Kit>().DisplayName;
+    }
+    public class Endless_Melee_Potion_Kit : Endless
+    {
+        public override Item ItemBase => new(ItemType<Melee_Potion_Kit>());
+        public override ModTranslation ItemName => GetInstance<Melee_Potion_Kit>().DisplayName;
     }
     #endregion
 }
