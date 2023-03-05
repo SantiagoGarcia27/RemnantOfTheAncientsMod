@@ -40,5 +40,6 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override Item ItemBase => new Item(ItemType<Fish_Potion>());
         public override ModTranslation ItemName => GetInstance<Fish_Potion>().DisplayName;
+        public override ModTranslation ItemDescription => GetInstance<Fish_Potion>().Tooltip;
     }
 }

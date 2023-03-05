@@ -11,6 +11,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public abstract Item ItemBase { get; }
         public abstract ModTranslation ItemName { get; }
+        public abstract ModTranslation ItemDescription { get; }
         public override string Texture => GetTextureFromItem(ItemBase);
 
         public override void SetStaticDefaults()
@@ -18,6 +19,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.SetDefault($"Endless {ItemName.GetDefault()}");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), $"{ItemName.GetTranslation(4)} sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), $"{ItemName.GetTranslation(5)} Eterno");
+            Tooltip.SetDefault(ItemDescription.GetDefault());
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ItemDescription.GetTranslation(4));
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ItemDescription.GetTranslation(5));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

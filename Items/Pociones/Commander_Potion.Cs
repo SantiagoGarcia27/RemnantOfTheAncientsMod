@@ -16,6 +16,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.SetDefault("Comander Potions");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            Tooltip.SetDefault("Increases your max number of centries by 1");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
         }
         public override void SetDefaults()
@@ -27,12 +28,17 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         }
         public override void AddRecipes()
         {
-            /* CreateRecipe()
-             .AddIngredient(ItemID.SummoningPotion, 1)
-             .AddIngredient(ItemID.InfernoPotion, 1)
-             .AddIngredient(ItemType<centr>(), 1)
+             CreateRecipe(2)
+             .AddIngredient(ItemID.DefenderMedal, 1)
+             .AddIngredient(ItemID.BottledWater, 1)
              .AddTile(TileID.Bottles)
-             .Register();*/
+             .Register();
         }
+    }
+    public class Endless_Commander_Porion : Endless
+    {
+        public override Item ItemBase => new(ItemType<Commander_Potion>());
+        public override ModTranslation ItemName => GetInstance<Commander_Potion>().DisplayName;
+        public override ModTranslation ItemDescription => GetInstance<Commander_Potion>().Tooltip;
     }
 }
