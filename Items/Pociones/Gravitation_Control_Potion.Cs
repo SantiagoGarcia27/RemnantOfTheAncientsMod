@@ -16,7 +16,6 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.SetDefault("Gravity Control Potions");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de contrôle de la gravité");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de control gravitacional");
-            Tooltip.SetDefault("Increases your max number of centries by 1");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
         }
         public override void SetDefaults()
