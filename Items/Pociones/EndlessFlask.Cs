@@ -1,124 +1,86 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Buffs;
-using RemnantOfTheAncientsMod.Buffs.Buffs;
 
 namespace RemnantOfTheAncientsMod.Items.Pociones
 {
-    public class EndlessGoldF : BasePotions
+    public class EndlessGoldFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofGold;
-        public override int ItemId => ItemID.FlaskofGold;
-        public override int BuffId => BuffID.WeaponImbueGold;
-
+        public override Item ItemBase => new(ItemID.FlaskofGold);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Gold Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de oro eterno");
-            base.SetStaticDefaults();
         }
     }
-    public class EndlessIchorF : BasePotions
+    public class EndlessIchorFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofIchor;
-        public override int ItemId => ItemID.FlaskofIchor;
-        public override int BuffId => BuffID.WeaponImbueIchor;
-
+        public override Item ItemBase => new(ItemID.FlaskofIchor);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Ichor Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de icor eterno");
-            base.SetStaticDefaults();
         }
     }
-    public class EndlessFireF : BasePotions
+    public class EndlessFireFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofFire;
-        public override int ItemId => ItemID.FlaskofFire;
-        public override int BuffId => BuffID.WeaponImbueFire;
-
-
+        public override Item ItemBase => new(ItemID.FlaskofFire);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Fire Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de fuego eterno");
-            base.SetStaticDefaults();
         }
     }
-    public class EndlessCurcedF : BasePotions
+    public class EndlessCurcedFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofCursedFlames;
-        public override int ItemId => ItemID.FlaskofCursedFlames;
-        public override int BuffId => BuffID.WeaponImbueCursedFlames;
-
+        public override Item ItemBase => new(BuffID.WeaponImbueCursedFlames);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Cursed Flames Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de las llamas malditas eterno");
-            base.SetStaticDefaults();
         }
     }
-    public class EndlessPonF : BasePotions
+    public class EndlessVenomFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofVenom;
-        public override int ItemId => ItemID.FlaskofVenom;
-        public override int BuffId => BuffID.WeaponImbueVenom;
+        public override Item ItemBase => new(BuffID.WeaponImbueVenom);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Venom Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de ponzoña eterno");
-            base.SetStaticDefaults();
         }
     }
-    public class EndlessPartyF : BasePotions
+    public class EndlessPartyFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofParty;
-        public override int ItemId => ItemID.FlaskofParty;
-        public override int BuffId => BuffID.WeaponImbueConfetti;
+        public override Item ItemBase => new(BuffID.WeaponImbueConfetti);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Party Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco fiestero eterno");
-            base.SetStaticDefaults();
         }
     }
-    public class EndlessVenomF : BasePotions
+    public class EndlessPoisonFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofPoison;
-        public override int ItemId => ItemID.FlaskofPoison;
-        public override int BuffId => BuffID.WeaponImbuePoison;
+        public override Item ItemBase => new(BuffID.WeaponImbuePoison);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Poison Flask");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de veneno eterno");
-            base.SetStaticDefaults();
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de veneno eterno");  
         }
     }
-    public class Endless_Sand_Flask : BaseModPotions
+    public class Endless_Sand_Flask : Endless
     {
-        public override int ItemId => ModContent.ItemType<Sand_Flask>();
-        public override int BuffId => ModContent.BuffType<Sand_Weapons>();
-        public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/Sand_Flask";
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Endless Sand Flask");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente eterno");
-            base.SetStaticDefaults();
-        }
+        public override Item ItemBase => new(ModContent.ItemType<Sand_Flask>());
+        public override ModTranslation ItemName => ModContent.GetInstance<Sand_Flask>().DisplayName;
+        public override ModTranslation ItemDescription => ModContent.GetInstance<Sand_Flask>().Tooltip;
     }
-    public class EndlessNaniteF : BasePotions
+    public class EndlessNaniteFlask : BasePotions
     {
-        public override int TextureID => ItemID.FlaskofNanites;
-        public override int ItemId => ItemID.FlaskofNanites;
-        public override int BuffId => BuffID.WeaponImbueNanites;
+        public override Item ItemBase => new(BuffID.WeaponImbueNanites);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Nanites Flask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de nanitos eterno");
-            base.SetStaticDefaults();
         }
     }
 

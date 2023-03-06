@@ -389,7 +389,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override ModTranslation ItemName => GetInstance<Mage_Potion_Kit>().DisplayName;
         public override ModTranslation ItemDescription => GetInstance<Mage_Potion_Kit>().Tooltip;
     }
-    public class Tank_Magic_Potion_Kit : Endless
+    public class Endless_Tank_Potion_Kit : Endless
     {
         public override Item ItemBase => new(ItemType<Tank_Potion_Kit>());
         public override ModTranslation ItemName => GetInstance<Tank_Potion_Kit>().DisplayName;

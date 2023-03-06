@@ -76,27 +76,22 @@ namespace RemnantOfTheAncientsMod
         private static void Potoions()
         {
             Recipe.Create(ModContent.ItemType<Endless_Combat_Potion_Kit>())
-                .AddIngredient(ModContent.ItemType<EndlessMR>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessRa>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessSu>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessSwif>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessWr>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessEndu>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessIron>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessLF>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessMP>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessRe>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessInf>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessArch>(), 1)
-                .AddTile(TileID.Bottles)
-                .Register();
+            .AddIngredient(ModContent.ItemType<Endless_Melee_Potion_Kit>())
+            .AddIngredient(ModContent.ItemType<Endless_Tank_Potion_Kit>())
+            .AddIngredient(ModContent.ItemType<Endless_Ranger_Potion_Kit>())
+            .AddIngredient(ModContent.ItemType<Endless_Summon_Potion_Kit>())
+            .AddIngredient(ModContent.ItemType<Endless_Magic_Potion_Kit>())
+            .AddIngredient(ModContent.ItemType<Endless_Advanced_Potion_Kit>())
+            .AddIngredient(ModContent.ItemType<Endless_Melee_Potion_Kit>())
+            .AddTile(TileID.Bottles)
+            .Register();
 
 
             Recipe.Create(ModContent.ItemType<Endless_Mining_Potion_Kit>())
-                .AddIngredient(ModContent.ItemType<EndlessSp>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessSh>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessNig>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessMi>(), 1)
+                .AddIngredient(ModContent.ItemType<EndlessSpelunker>(), 1)
+                .AddIngredient(ModContent.ItemType<EndlessShine>(), 1)
+                .AddIngredient(ModContent.ItemType<EndlessNightOwl>(), 1)
+                .AddIngredient(ModContent.ItemType<EndlessMining>(), 1)
                 .AddTile(TileID.Bottles)
                 .Register();
         }

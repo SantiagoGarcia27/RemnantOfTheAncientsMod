@@ -48,7 +48,8 @@ namespace RemnantOfTheAncientsMod
 		public bool ModPlayer = true;
 		public bool anyBossIsAlive;
 		public bool ChaliceOn;
-		public static bool FWeapons;
+		public bool MoneyCollector;
+        public static bool FWeapons;
 		public static bool ReaperFirstTime;
 		private static List<NPC> _hallucinationCandidates = new List<NPC>();
 
@@ -75,7 +76,7 @@ namespace RemnantOfTheAncientsMod
 			SandWeapons = false;
 			ChaliceOn = false;
 			MeleeKit = false;
-
+			MoneyCollector = false;
         }
 
 
@@ -85,7 +86,7 @@ namespace RemnantOfTheAncientsMod
 			Hell_Fire = false;
 			hBurn = false;
 			MeleeKit = false;
-
+			MoneyCollector = false;
         }
 		public override void UpdateBadLifeRegen()
 		{
@@ -97,7 +98,15 @@ namespace RemnantOfTheAncientsMod
 				Player.lifeRegen -= 16;
 			}
 		}
-		public override void OnEnterWorld(Player player)
+		public override void PostUpdate()
+		{
+            if (MoneyCollector)
+            {
+                MoneyColectorBuff.UpdateCoins(Player);
+            }
+        }
+
+        public override void OnEnterWorld(Player player)
 		{
 			FWeapons = true;
 			FchangesItem.ReaperWingsNerf(player);
