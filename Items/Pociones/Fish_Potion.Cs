@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Fish Potions");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de poisson");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de pez");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
         }

@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Super Sense Potions");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de super sens");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de super sentido");
             Tooltip.SetDefault("Show the locations of enemies and danger sources");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;

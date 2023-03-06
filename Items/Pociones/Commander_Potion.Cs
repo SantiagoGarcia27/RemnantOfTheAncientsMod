@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Comander Potions");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de comandante");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
             Tooltip.SetDefault("Increases your max number of centries by 1");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
