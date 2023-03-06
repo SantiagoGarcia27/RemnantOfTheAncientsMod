@@ -5,7 +5,6 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Buffs.Buffs;
-using RemnantOfTheAncientsMod.Items.Pociones;
 
 
 namespace RemnantOfTheAncientsMod.Items.Pociones

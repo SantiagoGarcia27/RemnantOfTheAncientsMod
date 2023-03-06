@@ -322,6 +322,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             Item.CloneDefaults(ItemID.BuilderPotion);
             Item.value = Item.buyPrice(gold: 1);
+            Item.rare = 8;
             Item.buffType = BuffType<Ultimate_Infusion>();
             Item.buffTime = 25400;
         }
