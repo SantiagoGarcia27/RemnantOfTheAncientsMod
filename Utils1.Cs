@@ -1,11 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using RemnantOfTheAncientsMod;
 using System.Text;
-using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod
 {

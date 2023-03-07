@@ -12,12 +12,11 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         {
             DisplayName.SetDefault("Magic Wand");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Daguette magique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Vara M√°gica");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Vara M·gica");
 
             Tooltip.SetDefault("Increases magic damage by 12%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les d√©g√¢ts magiques de 12%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el da√±o magico en un 12%");
-
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dÈg‚ts magiques de 12%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daÒo magico en un 12%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

@@ -21,19 +21,19 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             + "\nArctic Diving Gear and Star Veil"
             + "\nGrants immunity to most debuffs");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente le maximum de mana de 20,"
-            + "\ntaux de r√©g√©n√©ration de mana"
-            + "\net p√©n√©tration d'armure de 5."
-            + "\nfournir une immunit√© √† la lave et aux blocs de feu"
-            + "\nvous avez pour effet Collier ch√©rie, Charme des mythes,"
-            + "\n√âquipement de plong√©e arctique et voile √©toil√©"
-            + "\nAccorde l'immunit√© √† la plupart des debuffs");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el man√° m√°ximo en 20,"
-            + "\nla regeneraci√≥n de man√°"
-            + "\ny penetraci√≥n de armadura en 5."
+            + "\ntaux de rÈgÈnÈration de mana"
+            + "\net pÈnÈtration d'armure de 5."
+            + "\nfournir une immunitÈ ‡ la lave et aux blocs de feu"
+            + "\nvous avez pour effet Collier chÈrie, Charme des mythes,"
+            + "\n…quipement de plongÈe arctique et voile ÈtoilÈ"
+            + "\nAccorde l'immunitÈ ‡ la plupart des debuffs");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el man· m·ximo en 20,"
+            + "\nla regeneraciÛn de man·"
+            + "\ny penetraciÛn de armadura en 5."
             + "\nproporciona inmunidad a la lava y los bloques de fuego"
-            + "\notorga el efecto de Collar de cari√±o, talism√°n de mitos"
-            + "\nEquipo de buceo √°rtico y Velo de estrella"
-            + "\nOtorga inmunidad a la mayor√≠a de estados alterados.");
+            + "\notorga el efecto de Collar de cariÒo, talism·n de mitos"
+            + "\nEquipo de buceo ·rtico y Velo de estrella"
+            + "\nOtorga inmunidad a la mayorÌa de estados alterados.");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

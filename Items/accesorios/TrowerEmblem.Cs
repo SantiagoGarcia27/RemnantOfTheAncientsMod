@@ -11,11 +11,11 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Thrower Emblem");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Embl√®me du Lanceur");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "EmblËme du Lanceur");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador");
             Tooltip.SetDefault("Increases throwing damage by 15% ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les d√©g√¢ts de lancer de 15%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el da√±o lanzable en un 15%  ");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dÈg‚ts de lancer de 15%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daÒo lanzable en un 15%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

@@ -8,19 +8,18 @@ using Terraria.GameContent.Creative;
 namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     public class Universal_EmblemV2 : ModItem
-    { 
-        int multilier = 25;
+    {
+        int multilier;
 
         public override void SetStaticDefaults()
         {
-            if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) multilier = 20;
-            AccesorieDamageClass a = new AccesorieDamageClass();
+            multilier =(ModLoader.TryGetMod("CalamityMod", out Mod mod))? 20:25;
             DisplayName.SetDefault("Universal Emblem V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Embl√®me Universel V2");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "EmblËme Universel V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal V2");
-            Tooltip.SetDefault("Increases all damage by "+ multilier + "%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les d√©g√¢ts de " + multilier + "%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el da√±o en un"+ multilier + "%");
+            Tooltip.SetDefault("Increases all damage by " + multilier + "%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dÈg‚ts de " + multilier + "%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daÒo en un" + multilier + "%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -34,11 +33,8 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-           // AccesorieDamageClass a = new AccesorieDamageClass();
-            if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) player.GetDamage(DamageClass.Generic) *= 1.20f;
-            else player.GetDamage(DamageClass.Generic) *= 1.25f;
-            //a.accesorieDamageCalculator(multilier);
+        {     
+            player.GetDamage(DamageClass.Generic) *= (ModLoader.TryGetMod("CalamityMod", out Mod mod)) ? 1.20f : 1.25f;
         }
         public override void AddRecipes() 
         {
@@ -51,9 +47,6 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             .AddIngredient(ItemID.LunarBar, 10)
             .AddTile(TileID.LunarCraftingStation)
             .Register();
-        }
-
-
-        
+        }  
     }
 }

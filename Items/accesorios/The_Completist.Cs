@@ -14,7 +14,6 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             DisplayName.SetDefault("The Completist");
             Tooltip.SetDefault("A grand prize for those who made it to the top of the mod"
             + "\n Thanks to Johy315 (Quizo hacer trampa y no le salio)");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

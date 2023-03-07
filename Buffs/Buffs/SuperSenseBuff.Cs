@@ -8,6 +8,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Super Sense");
+			Description.SetDefault("");
 			Main.buffNoSave[Type] = false;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.persistentBuff[Type] = true;

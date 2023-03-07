@@ -6,34 +6,37 @@ using RemnantOfTheAncientsMod.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Buffs.Buffs
 {
-	public class MoneyColectorBuff : ModBuff
-	{
-		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Money Collector");
-			Main.buffNoSave[Type] = false;
-			Main.buffNoTimeDisplay[Type] = false;
-			Main.persistentBuff[Type] = true;
-		}
-		
-		public override void Update(Player player, ref int buffIndex) 
-		{
+    public class MoneyColectorBuff : ModBuff
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Money Collector");
+            Description.SetDefault("");
+            Main.buffNoSave[Type] = false;
+            Main.buffNoTimeDisplay[Type] = false;
+            Main.persistentBuff[Type] = true;
+        }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
             player.GetModPlayer<RemnantPlayer>().MoneyCollector = true;
         }
 
         internal static void UpdateCoins(Player player)
         {
-             
+
             long copper = 0L;
             long silver = 0L;
             long gold = 0L;
             long platinum = 0L;
+            long terra = 0L;
             int slots = 0;
             int num = 0;
             bool flag = false;
             bool flag2 = false;
             bool flag3 = false;
             int num2 = 0;
-            int num3 = CalculateSlots(player, ref copper, ref silver, ref gold, ref platinum, ref slots);
+            int num3 = CalculateSlots(player, ref copper, ref silver, ref gold, ref platinum, ref terra, ref slots);
             if (num3 == -1)
             {
                 return;
@@ -119,7 +122,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
             }
         }
 
-        private static int CalculateSlots(Player player, ref long copper, ref long silver, ref long gold, ref long platinum, ref int slots)
+        private static int CalculateSlots(Player player, ref long copper, ref long silver, ref long gold, ref long platinum, ref long terra, ref int slots)
         {
             int num = 0;
             for (int i = 50; i < 54; i++)
@@ -140,7 +143,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
                         copper += (long)(item2.stack * Math.Pow(100.0, item2.type - 71));
                     }
                 }
-                ValueCalc(ref copper, ref silver, ref gold, ref platinum);
+                ValueCalc(ref copper, ref silver, ref gold, ref platinum, ref terra);
                 if (platinum > 0)
                 {
                     num = (int)((platinum % 999 == 0L) ? (platinum / 999) : (platinum / 999 + 1));
@@ -151,16 +154,16 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
             return -1;
         }
 
-        private static void ValueCalc(ref long copper, ref long silver, ref long gold, ref long platinum)
+        private static void ValueCalc(ref long copper, ref long silver, ref long gold, ref long platinum, ref long terra)
         {
-                platinum = copper / 1000000;
-                copper -= platinum * 1000000;
-                gold = copper / 10000;
-                copper -= gold * 10000;
-                silver = copper / 100;
-                copper -= silver * 100;
+            platinum = copper / 1000000;
+            copper -= platinum * 1000000;
+            gold = copper / 10000;
+            copper -= gold * 10000;
+            silver = copper / 100;
+            copper -= silver * 100;
+            terra = copper / 100000000;
+            copper -= platinum * 100000000;
         }
-
-
     }
 }

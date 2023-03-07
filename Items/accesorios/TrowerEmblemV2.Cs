@@ -1,9 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Items.Items;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Items.accesorios
 {
@@ -12,11 +12,11 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Thrower Emblem V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Embl√®me du Lanceur V2");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "EmblËme du Lanceur V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador V2");
             Tooltip.SetDefault("Increases throwing damage by 25% ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les d√©g√¢ts de lancer de 25%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el da√±o lanzable en un 25%  ");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dÈg‚ts de lancer de 25%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daÒo lanzable en un 25%  ");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

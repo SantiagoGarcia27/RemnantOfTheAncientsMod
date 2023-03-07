@@ -1,5 +1,3 @@
-
-
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -12,12 +10,11 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Iron Band");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Iron Band");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bande de Fer");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Banda de Hierro");
-
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            DisplayName.SetDefault("Iron Band");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Iron Band");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bande de Fer");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Banda de Hierro");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()

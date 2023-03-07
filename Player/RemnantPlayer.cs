@@ -534,6 +534,7 @@ namespace RemnantOfTheAncientsMod
 			player.wallSpeed += 0.25f;
 			player.blockRange++;
 			player.buffImmune[107] = true;
+            player.GetModPlayer<RemnantPlayer>().MoneyCollector = true;
         }
        /* public void Debugg()
 		{

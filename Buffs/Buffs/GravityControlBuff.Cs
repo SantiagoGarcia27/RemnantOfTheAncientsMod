@@ -7,7 +7,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Gravity control");
-			Main.buffNoSave[Type] = false;
+            Description.SetDefault("");
+            Main.buffNoSave[Type] = false;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.persistentBuff[Type] = true;
 		}

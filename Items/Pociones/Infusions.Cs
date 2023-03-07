@@ -330,7 +330,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             CreateRecipe()
             .AddIngredient(ItemType<Combat_Potion_Kit>())
             .AddIngredient(ItemType<Poseidon_Potion_Kit>())
-            .AddIngredient(ItemType<Exploration_Potion_Kit>())         
+            .AddIngredient(ItemType<Exploration_Potion_Kit>())
+            .AddIngredient(ItemType<Money_Collector_Potion>())
             .AddIngredient(ItemID.BuilderPotion)
             .AddTile(TileID.Bottles)
             .Register();

@@ -26,15 +26,16 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 	{
 		public override void SetStaticDefaults()
 		{
-			Main.npcFrameCount[NPC.type] = 23;
-			NPCID.Sets.ExtraFramesCount[NPC.type] = 4;
-			NPCID.Sets.AttackFrameCount[NPC.type] = 3;
+
+            Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Wizard];
+			NPCID.Sets.ExtraFramesCount[NPC.type] = NPCID.Sets.ExtraFramesCount[NPCID.Wizard];
+			NPCID.Sets.AttackFrameCount[NPC.type] = NPCID.Sets.AttackFrameCount[NPCID.Wizard];
 			NPCID.Sets.DangerDetectRange[NPC.type] = 700;
-			NPCID.Sets.AttackType[NPC.type] = 0;
+			NPCID.Sets.AttackType[NPC.type] = NPCID.Sets.AttackType[NPCID.Wizard];
 			NPCID.Sets.AttackTime[NPC.type] = 90;
 			NPCID.Sets.AttackAverageChance[NPC.type] = 30;
 			NPCID.Sets.HatOffsetY[NPC.type] = 4;
-
+			//23 frames
 
 			NPC.Happiness
 				.SetBiomeAffection<HallowBiome>(AffectionLevel.Love)

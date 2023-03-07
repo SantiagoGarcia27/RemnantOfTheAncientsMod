@@ -14,8 +14,8 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         {
             DisplayName.SetDefault("Exotic Amulet");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Amulette Exotique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Amuleto Ex√≥tico");
-            
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Amuleto ExÛtico");
+
             Tooltip.SetDefault("Increases maximum mana by 20,"
             + "\nmana regeneration rate"
             + "\nand armor penetration by 5."
@@ -23,18 +23,17 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             + "\nyou have the effect of Sweetheart Necklace, Charm of Myths,"
             + "\nArctic Diving Gear and Star Veil");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente le maximum de mana de 20,"
-            + "\ntaux de r√©g√©n√©ration de mana"
-            + "\net p√©n√©tration d'armure de 5."
-            + "\nfournir une immunit√© √† la lave et aux blocs de feu"
-            + "\nvous avez pour effet Collier ch√©rie, Charme des mythes,"
-            + "\n√âquipement de plong√©e arctique et voile √©toil√©");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el man√° m√°ximo en 20,"
-            + "\nla regeneraci√≥n de man√°"
-            + "\ny penetraci√≥n de armadura en 5."
+            + "\ntaux de rÈgÈnÈration de mana"
+            + "\net pÈnÈtration d'armure de 5."
+            + "\nfournir une immunitÈ ‡ la lave et aux blocs de feu"
+            + "\nvous avez pour effet Collier chÈrie, Charme des mythes,"
+            + "\n…quipement de plongÈe arctique et voile ÈtoilÈ");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el man· m·ximo en 20,"
+            + "\nla regeneraciÛn de man·"
+            + "\ny penetraciÛn de armadura en 5."
             + "\nproporciona inmunidad a la lava y los bloques de fuego"
-            + "\notorga el efecto de Collar de cari√±o, talism√°n de mitos"
-            + "\nEquipo de buceo √°rtico y Velo de estrella");
-
+            + "\notorga el efecto de Collar de cariÒo, talism·n de mitos"
+            + "\nEquipo de buceo ·rtico y Velo de estrella");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

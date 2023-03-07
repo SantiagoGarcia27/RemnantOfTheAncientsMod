@@ -11,12 +11,13 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magic Stick");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "B√¢ton Magique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Palo M√°gico");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "B‚ton Magique");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Palo M·gico");
 
             Tooltip.SetDefault("Increase magic damage by 5%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les d√©g√¢ts magiques de 5%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el da√±o magico en un 5%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dÈg‚ts magiques de 5%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daÒo magico en un 5%");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

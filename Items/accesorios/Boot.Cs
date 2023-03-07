@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -14,10 +14,8 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Boot");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Bagażnik");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Botte");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bota");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -29,6 +27,10 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
             Item.defense = 3;
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.maxFallSpeed *= 2f;   
         }
         public override void AddRecipes() 
         {

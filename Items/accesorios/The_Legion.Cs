@@ -20,7 +20,6 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             + "\nMany thanks to:"
             + "\n S-Pladison   -NKSHV  -perrogalan"
             + "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
-
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(9, 8));
         }
         internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);

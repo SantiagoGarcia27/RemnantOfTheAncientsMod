@@ -42,5 +42,6 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Commander_Potion>());
         public override ModTranslation ItemName => GetInstance<Commander_Potion>().DisplayName;
         public override ModTranslation ItemDescription => GetInstance<Commander_Potion>().Tooltip;
+
     }
 }

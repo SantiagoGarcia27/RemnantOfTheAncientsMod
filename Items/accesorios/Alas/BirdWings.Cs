@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
@@ -12,14 +12,14 @@ namespace RemnantOfTheAncientsMod.Items.accesorios.Alas
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Bird Wings");
+            DisplayName.SetDefault("Bird Wings");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ailes D'oiseau");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alas de Ave");
-			Tooltip.SetDefault("Allows flight and fall slowly");
+            Tooltip.SetDefault("Allows flight and fall slowly");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pozwala latać i opadać powoli");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Permet de voler et de tomber lentement");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permite volar y caer lentamente ");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(39, 5f, 0.2f);
 		}
 

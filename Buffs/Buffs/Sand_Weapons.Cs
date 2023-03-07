@@ -7,7 +7,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("[c/48E16F:Wepon Imbue: Burning Sand]");
-			Main.buffNoSave[Type] = false;
+            Description.SetDefault("");
+            Main.buffNoSave[Type] = false;
 			Main.buffNoTimeDisplay[Type] = false;
 			Main.persistentBuff[Type] = true;
 		}

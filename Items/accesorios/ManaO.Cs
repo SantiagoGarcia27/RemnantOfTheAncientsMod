@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             DisplayName.SetDefault("Mana Overcharger");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Mana Overcharger");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Surcharge de mana");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sobrecargador de Man√°");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sobrecargador de Man·");
 
             Tooltip.SetDefault("Increases mana regeneration in exchange for magic damage by 5%"
             + "\n 10% reduce mana usage"
@@ -22,18 +22,17 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             + "\n increases pickup range for mana stars"
              + "\n you are immune to Mana Sickness");
 
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la r√©g√©n√©ration de mana en √©change de d√©g√¢ts magiques de 5%"
-             + "\n 10% de r√©duction de l'utilisation du mana"
-             + "\n Utilisez automatiquement les potions de mana si n√©cessaire"
-             + "\n augmenter la port√©e de ramassage des √©toiles de mana"
-              + "\n vous √™tes immunis√© contre la maladie du mana");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la rÈgÈnÈration de mana en Èchange de dÈg‚ts magiques de 5%"
+             + "\n 10% de rÈduction de l'utilisation du mana"
+             + "\n Utilisez automatiquement les potions de mana si nÈcessaire"
+             + "\n augmenter la portÈe de ramassage des Ètoiles de mana"
+              + "\n vous Ítes immunisÈ contre la maladie du mana");
 
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la regeneraci√≥n de man√° a cambio de da√±o m√°gico en un 5%."
-             + "\n 10% reduce el uso de man√°"
-             + "\n Usa pociones de man√° autom√°ticamente cuando sea necesario"
-             + "\n aumentar el rango de recolecci√≥n de estrellas de man√°"
-              + "\n eres inmune a la locura de man√°");
-
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la regeneraciÛn de man· a cambio de daÒo m·gico en un 5%."
+             + "\n 10% reduce el uso de man·"
+             + "\n Usa pociones de man· autom·ticamente cuando sea necesario"
+             + "\n aumentar el rango de recolecciÛn de estrellas de man·"
+              + "\n eres inmune a la locura de man·");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
