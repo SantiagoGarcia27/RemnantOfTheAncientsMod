@@ -24,25 +24,26 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 40;
+            Item Base = new Item(ItemID.FieryGreatsword);
+            Item.damage = Base.damage + 6;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 130;
 			Item.height = 160;
 			Item.useTime = 30;
 			Item.useAnimation = 30;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 20;
-			Item.rare = ItemRarityID.Orange;
-			Item.scale = 1.50f;
+			Item.knockBack = Base.knockBack;
+			Item.rare = Base.rare;
+			Item.scale = Base.scale + 0.50f;
 			Item.UseSound = SoundID.Item45;
 			Item.autoReuse = true;
-			Item.value = 1000;
+			Item.value = Base.value;
 
-			if(RemnantOfTheAncientsMod.CalamityMod != null)
+			/*if(RemnantOfTheAncientsMod.CalamityMod != null)
 			{
                 Item.damage = 50;
                 Item.scale = 1.70f;
-            }
+            }*/
 		}
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
@@ -61,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.MagmaStone, 1)
+			.AddIngredient(ItemID.FieryGreatsword, 1)
 			.AddIngredient(ItemID.BladeofGrass, 1)
 			.AddTile(TileID.Hellforge)
 			.Register();

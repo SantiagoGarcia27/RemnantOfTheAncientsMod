@@ -48,7 +48,7 @@ namespace RemnantOfTheAncientsMod.NPCs
 		// Allows hitting the NPC with melee type weapons, even if it's friendly.
 		public override bool? CanBeHitByItem(Player player, Item item)
 		{
-			return true;
+			return false;
 		}
 
 		// Same as the above but with projectiles.
@@ -63,14 +63,14 @@ namespace RemnantOfTheAncientsMod.NPCs
 			{
 				for (int i = 0; i < damage / NPC.lifeMax * 100; i++)
 				{
-					Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 192, hitDirection, -1f, 100, new Color(100, 100, 100, 100), 1f);
+					Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Ghost, hitDirection, -1f, 100, new Color(100, 100, 100, 100), 1f);
 					dust.noGravity = true;
 				}
 				return;
 			}
 			for (int i = 0; i < 50; i++)
 			{
-				Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 192, 2 * hitDirection, -2f, 100, new Color(100, 100, 100, 100), 1f);
+				Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Ghost, 2 * hitDirection, -2f, 100, new Color(100, 100, 100, 100), 1f);
 				dust.noGravity = true;
 			}
 		}
@@ -79,14 +79,12 @@ namespace RemnantOfTheAncientsMod.NPCs
 		public override bool CanChat()
 		{
 			return true;
-		}
+		}   
 
-		public override string GetChat()
+        public override string GetChat()
 		{
-
-
 			// NPC.SpawnedFromStatue value is kept when the NPC is transformed.
-			switch (Main.rand.Next(NPC.SpawnedFromStatue ? 5 : 3))
+			switch (Main.rand.Next(3))
 			{
 				case 0:
 					return "Hello, could you bring an iron pickaxe?";
@@ -104,7 +102,6 @@ namespace RemnantOfTheAncientsMod.NPCs
 		{
 			if (firstButton)
 			{
-
 				shop = true;
 			}
 			else
@@ -165,34 +162,34 @@ namespace RemnantOfTheAncientsMod.NPCs
 		{
 
 			shop.item[nextSlot].SetDefaults(ItemType<ironstonepickaxe>());
-			shop.item[nextSlot].shopCustomPrice = 20000;
-			nextSlot++;
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 3, 0, 0);
+            nextSlot++;
 
 			shop.item[nextSlot].SetDefaults(ItemID.Torch);
-			shop.item[nextSlot].shopCustomPrice = 25;
-			nextSlot++;
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 0, 30);
+            nextSlot++;
 
 			shop.item[nextSlot].SetDefaults(ItemID.IronBar);
-			shop.item[nextSlot].shopCustomPrice = 1000;
-			nextSlot++;
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 5, 0);
+            nextSlot++;
 
 			shop.item[nextSlot].SetDefaults(ItemID.Wood);
-			shop.item[nextSlot].shopCustomPrice = 25;
-			nextSlot++;
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 0, 20);
+            nextSlot++;
 
 			shop.item[nextSlot].SetDefaults(ItemID.DirtBlock);
-			shop.item[nextSlot].shopCustomPrice = 1;
-			nextSlot++;
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 0, 2);
+            nextSlot++;
 
 			shop.item[nextSlot].SetDefaults(ItemID.StoneBlock);
-			shop.item[nextSlot].shopCustomPrice = 1;
-			nextSlot++;
+            shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 0, 5);
+            nextSlot++;
 
 			if (Main.hardMode)
 			{
 				shop.item[nextSlot].SetDefaults(ItemID.PinkGel);
-				shop.item[nextSlot].shopCustomPrice = 300;
-				nextSlot++;
+                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 0, 50, 0);
+                nextSlot++;
 			}
 		}
 

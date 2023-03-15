@@ -35,7 +35,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
        public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.Sake, 30)
+                .AddRecipeGroup("anyBeer")
+            .AddIngredient(ItemID.Sake, 30)
 			.AddTile(TileID.Bottles)
 			.Register();
         }

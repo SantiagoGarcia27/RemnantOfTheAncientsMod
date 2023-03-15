@@ -866,6 +866,13 @@ namespace RemnantOfTheAncientsMod
             });
             RecipeGroup.RegisterGroup("anyDungeonBrick", group);
 
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Ale", new int[]
+            {
+                ItemID.Ale,
+                ItemID.Sake
+            });
+            RecipeGroup.RegisterGroup("anyBeer", group);
+
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "PumpkinPie", new int[]
             {
                 ItemID.PumpkinPie,
