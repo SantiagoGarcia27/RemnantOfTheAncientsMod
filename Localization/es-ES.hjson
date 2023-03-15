@@ -1,0 +1,1263 @@
+
+Mods: {
+	RemnantOfTheAncientsMod: {
+		Buffs: {
+			/* CentryBuff.DisplayName: Comander Potion */
+			/* FishBuff.DisplayName: Fish */
+			/* GravityControlBuff.DisplayName: Gravity control */
+			/* Advanced_Infusion.DisplayName: Advanced infusion */
+			/* Basic_Infusion.DisplayName: Basic infusion */
+
+			Combat_infusion: {
+				DisplayName: Infusión de combate
+				Description: Mejora ofensiva definitiva
+			}
+
+			Exploration_infusion.DisplayName: Infusión de combate
+			/* Fishing_Infusion.DisplayName: Fishing infusion */
+			/* Mage_Infusion.DisplayName: Mage infusion */
+			/* Melee_Infusion.DisplayName: Melee infusion */
+			/* Mining_infusion.DisplayName: Mining infusion */
+			/* Poseidon_Infusion.DisplayName: Poseidon infusion */
+			/* Ranger_Infusion.DisplayName: Ranger infusion */
+			/* Summon_Infusion.DisplayName: Summon infusion */
+			/* Tank_Infusion.DisplayName: Tank infusion */
+			/* Ultimate_Infusion.DisplayName: Ultimate infusion */
+			/* MoneyColectorBuff.DisplayName: Money Collector */
+			/* Sand_Weapons.DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]" */
+			/* SuperSenseBuff.DisplayName: Super Sense */
+			/* Burning_Sand.DisplayName: Burning Sand */
+
+			Hell_Fire: {
+				/* DisplayName: Hell Fire */
+				/* Description: ... */
+			}
+
+			HollyBurn: {
+				/* DisplayName: Holly Burn */
+				/* Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn */
+			}
+
+			Javalina: {
+				/* DisplayName: Javalina */
+				/* Description: Losing life */
+			}
+
+			Marble_erosion: {
+				/* DisplayName: Marble rosion */
+				/* Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion */
+			}
+
+			GoldenAcornBuff: {
+				/* DisplayName: Animated Golden Sapling */
+				/* Description: The Animated Golden Sapling will fight for you */
+			}
+
+			PlatinumAcornBuff: {
+				/* DisplayName: Animated Platinum Sapling */
+				/* Description: The Animated Platinum Sapling will fight for you */
+			}
+
+			SaplingMinionBuff: {
+				/* DisplayName: Animated Sapling */
+				/* Description: The Animated Sapling will fight for you */
+			}
+
+			SilverAcornBuff: {
+				/* DisplayName: Animated Silver Sapling */
+				/* Description: The Animated Silver Sapling will fight for you */
+			}
+
+			TungstenAcornBuff: {
+				/* DisplayName: Animated Tungsten Sapling */
+				/* Description: The Animated Tungsten Sapling will fight for you */
+			}
+
+			DesertMinionBuff: {
+				/* DisplayName: Baby Desert Aniquilator */
+				/* Description: The Baby Desert will fight for you */
+			}
+
+			FrozenMinionBuff: {
+				/* DisplayName: Baby Frozen Assaulter */
+				/* Description: The Baby Frozen will fight for you */
+			}
+
+			StardustMinionBuff: {
+				/* DisplayName: StardustMinionBuff */
+				/* Description: The Stard dust will fight for you */
+			}
+
+			/* ReaperBuff.DisplayName: Reaper mode */
+			AoD.DisplayName: Aprendiz del esquiva
+			Bee.DisplayName: abeja reina
+			Eye.DisplayName: Maestro de las embestidas
+			/* Infernal.DisplayName: Infernal */
+			MasterD.DisplayName: Maestro del desierto
+			Putrid.DisplayName: Podrido
+			QueenSlimeScrollBuff.DisplayName: Bendición de la reina
+			Skeleton.DisplayName: Muertos viviente
+			Slim.DisplayName: Bendición del rey
+
+			SwordMount: {
+				/* DisplayName: Espada de transporte */
+				/* Description: La forma de viajar mas eficaz */
+			}
+
+			TortugaPetBuff: {
+				/* DisplayName: The Turtle */
+				/* Description: ._. */
+			}
+
+			YoutubeMoradoBuff: {
+				/* DisplayName: Twitch */
+				/* Description:
+					'''
+					Thanks to -febo1apolo -eltonyhelou -Jormanas_gt
+					 -LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094
+					 -RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
+					 -Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606
+					 -gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo
+					 -Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
+					 -Rockerheadd -mateoamii -JuanitoLive -DDS0210 -charlestwi -zakzar01 -Wuchang234
+					 -WHYonex -zun32 -bickelo -sakarok4 -Mr_D2D2 -Brunix_117 -kire -LixFTO -tuamigojoker1234
+					 -Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
+					 -JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors
+					 -LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu
+					 for testing my mod 
+					''' */
+			}
+
+			YtBuff: {
+				/* DisplayName: Yt */
+				/* Description: ... */
+			}
+		}
+
+		Items: {
+			BirdWings: {
+				DisplayName: Alas de Ave
+				Tooltip: "Permite volar y caer lentamente "
+			}
+
+			LuminiteWings: {
+				DisplayName: Alas de Luminita
+				Tooltip: "Permite volar y caer lentamente "
+			}
+
+			Ankh_Amulet: {
+				DisplayName: Amuleto de cruz ansata
+				Tooltip:
+					'''
+					Aumenta el man� m�ximo en 20,
+					la regeneraci�n de man�
+					y penetraci�n de armadura en 5.
+					proporciona inmunidad a la lava y los bloques de fuego
+					otorga el efecto de Collar de cari�o, talism�n de mitos
+					Equipo de buceo �rtico y Velo de estrella
+					Otorga inmunidad a la mayor�a de estados alterados.
+					'''
+			}
+
+			Boot.DisplayName: Bota
+
+			Exotic_Amulet: {
+				DisplayName: Amuleto Ex�tico
+				Tooltip:
+					'''
+					Aumenta el man� m�ximo en 20,
+					la regeneraci�n de man�
+					y penetraci�n de armadura en 5.
+					proporciona inmunidad a la lava y los bloques de fuego
+					otorga el efecto de Collar de cari�o, talism�n de mitos
+					Equipo de buceo �rtico y Velo de estrella
+					'''
+			}
+
+			IronBand.DisplayName: Banda de Hierro
+
+			magic_stick: {
+				DisplayName: Palo M�gico
+				Tooltip: Aumenta el da�o magico en un 5%
+			}
+
+			magic_wand: {
+				DisplayName: Vara M�gica
+				Tooltip: Aumenta el da�o magico en un 12%
+			}
+
+			ManaO: {
+				DisplayName: Sobrecargador de Man�
+				Tooltip:
+					'''
+					Aumenta la regeneraci�n de man� a cambio de da�o m�gico en un 5%.
+					 10% reduce el uso de man�
+					 Usa pociones de man� autom�ticamente cuando sea necesario
+					 aumentar el rango de recolecci�n de estrellas de man�
+					 eres inmune a la locura de man�
+					'''
+			}
+
+			Ranger_EmblemV2: {
+				DisplayName: Emblema de Guardian V2
+				Tooltip: "Aumenta el daño a distancia en un 25% "
+			}
+
+			ReaperChalice: {
+				DisplayName: Cáliz de almas
+				Tooltip:
+					'''
+					Puedes almacenar las almas de los jefes derrotados en este caliz para obtener su poder.
+					(Solo funciona en cegador
+					'''
+			}
+
+			Sorcerer_EmblemV2: {
+				DisplayName: Emblema de Hechicero V2
+				Tooltip: Aumenta el daño magico en un 25%
+			}
+
+			Summoner_EmblemV2: {
+				DisplayName: Emblema de Invocador V2
+				Tooltip: "Aumenta el daño de las imvocaciones en un 25 "
+			}
+
+			The_Completist: {
+				/* DisplayName: The Completist */
+				/* Tooltip:
+					'''
+					A grand prize for those who made it to the top of the mod
+					 Thanks to Johy315 (Quizo hacer trampa y no le salio)
+					''' */
+			}
+
+			The_Legion: {
+				/* DisplayName: The Legion */
+				/* Tooltip:
+					'''
+					Increases the summon damage by 25% 
+					+5 minions
+					Many thanks to:
+					 S-Pladison   -NKSHV  -perrogalan
+					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
+					''' */
+			}
+
+			TrowerEmblem: {
+				DisplayName: Emblema de Lanzador
+				Tooltip: Aumenta el da�o lanzable en un 15%
+			}
+
+			TrowerEmblemV2: {
+				DisplayName: Emblema de Lanzador V2
+				Tooltip: "Aumenta el da�o lanzable en un 25%  "
+			}
+
+			Universal_Emblem: {
+				DisplayName: Emblema Universal
+				Tooltip: Aumenta todo el da�o en un15%
+			}
+
+			Universal_EmblemV2: {
+				DisplayName: Emblema Universal V2
+				Tooltip: Aumenta todo el da�o en un25%
+			}
+
+			Warrior_EmblemV2: {
+				DisplayName: Emblema de Guerrero V2
+				Tooltip: "Aumenta el daño cuerpo a cuerpo en un 25% "
+			}
+
+			bullettest.DisplayName: Bala de Slime Furioso
+			DesertArrow.DisplayName: Flecha Desertica
+			Endles_High_Velocity_Bullet.DisplayName: Saco Infinito de Balas de Alta Velocidad
+			EndlesBullettest.DisplayName: Saco Infinito de Bala de Slime Furioso
+			EndlesChlorophyte.DisplayName: Bolsa de Clorofita Eterna
+			EndlesCoper.DisplayName: Moneda de Cobre Eterna
+			EndlesCrystal.DisplayName: Bolsa de Balas de cristal eterna
+			EndlesCursed.DisplayName: Bolsa de Balas de malditas eterna
+			EndlesExplosive.DisplayName: Bolsa de balas explosivas Eterna
+			EndlesFlare.DisplayName: Bengala Eterna
+			EndlesGold.DisplayName: Bolsa de Balas de oro eterna
+			EndlesGoldC.DisplayName: Monedas de oro infinitas
+			EndlesIchor.DisplayName: Bolsa de Balas de Ichor eterna
+			EndlesLuminite_Bullet.DisplayName: Bolsa de Balas de Luminita eterna
+			EndlesMeteorite.DisplayName: Bolsa de Balas de meteorito eterna
+			EndlesNail.DisplayName: Clavo Infinito
+			EndlesNano_Bullet.DisplayName: Bolsa de Nanobalas eterna
+			EndlesParty_Bullet.DisplayName: Bolsa de Balas fiesteras eterna
+			EndlesPlatinumC.DisplayName: Monedas de platino infinitas
+			Endless_Tomb_bullet.DisplayName: Bala de tumba eterna
+			EndlessBone.DisplayName: Carcaj de flechas de hueso eterno
+			EndlessChlorophyte.DisplayName: Carcaj de clorofita eterno
+			EndlessCurced.DisplayName: Carcaj maldito eterno
+			EndlessDesert.DisplayName: Carcaj Desertico eterno
+			EndlessFire.DisplayName: "Saco Infinito de Bala llameante "
+			EndlessFlaming.DisplayName: Carcaj flamiante eterno
+			EndlessFrostburn.DisplayName: Carcaj flamiante helado eterno
+			EndlessHell.DisplayName: Carcaj infernal eterno
+			EndlessHoly.DisplayName: Carcaj Sagrado eterno
+			EndlessIce.DisplayName: Bolsa congelada eterna
+			EndlessIchor.DisplayName: Carcaj de icor eterno
+			EndlesSilver.DisplayName: Bolsa de Balas de Plata eterna
+			EndlesSilverC.DisplayName: Moneda de plata infinita
+			EndlessJest.DisplayName: Carcaj del bufón eterno
+			EndlessLuminite.DisplayName: Carcaj de luminita eterno
+			EndlesStar.DisplayName: Estrella Eterna
+			EndlessUnholy.DisplayName: Carcaj infame eterno
+			EndlessVenom.DisplayName: Carcaj Venenoso eterno
+			EndlesVenom_Bullet.DisplayName: Bolsa de Balas Envenenadas eterna
+			FireBullet.DisplayName: Bala llameante
+			ice_bullet.DisplayName: Bala Helada
+			Tomb_bullet.DisplayName: Bala de tumba
+			DesertAMask.DisplayName: Máscara de Aniquilador Del Desierto
+			FrozenMask.DisplayName: Máscara de Asaltante Congelado
+			InfernalMask.DisplayName: Máscara de Tirano infernal
+
+			Nightchesplate: {
+				DisplayName: Coraza de la Noche
+				Tooltip:
+					'''
+
+					Aumenta el Maná maxima en 20 
+					Aumenta la vida maxima en 50 puntos
+					Eres immune a los efectos de brillo, fuego y armadura rota
+					'''
+			}
+
+			NightHelmet: {
+				DisplayName: Tocado de la Noche
+				Tooltip:
+					'''
+
+					Aumenta un 13% de daño magico
+					'''
+			}
+
+			NightHelmetL: {
+				DisplayName: Capucha de la Noche
+				Tooltip:
+					'''
+
+					Aumenta el daño de lanzamiento en un 13%.
+					'''
+			}
+
+			NightHelmetMe: {
+				DisplayName: Casco de la Noche
+				Tooltip:
+					'''
+
+					Aumenta un 13% el daño cuerpo a cuerpo
+					'''
+			}
+
+			NightHelmetR: {
+				DisplayName: Mascara de la Noche
+				Tooltip:
+					'''
+
+					Aumenta un 13% el daño a distancia
+					'''
+			}
+
+			NightHelmetS: {
+				DisplayName: Mascara de la noche
+				Tooltip:
+					'''
+
+					Daño de invocacion aumentado en un 13%
+					'''
+			}
+
+			NightLeggings: {
+				DisplayName: Perneras De La Noche
+				Tooltip:
+					'''
+
+					Aumenta un 5% la velocidad de movimiento
+					'''
+			}
+
+			R_I_L: {
+				DisplayName: Perneras de hierro reforzado
+				Tooltip:
+					'''
+
+					Disminulle la velocidad maxima en 3/4
+					'''
+			}
+
+			Reforced_iron_chesplate.DisplayName: Corasa de hierro reforzada
+
+			Reforced_iron_Helmet: {
+				DisplayName: Casco de hierro reforzado
+				Tooltip: Aumenta un 5% de daño cuerpo a cuerpo
+			}
+
+			Tuxonite_chesplate.DisplayName: Cota de malla de tusonita
+			Tuxonite_Legging.DisplayName: Grebas de tusonita
+			TuxoniteHelmet.DisplayName: Casco de tusonita
+			ArmoredSlimeBanner.DisplayName: Estandarte Slime Blindado
+			ArmoredzombieBanner.DisplayName: Estandarte Zombies Blindado
+			TuxoniteChair.DisplayName: Silla de tusonita
+			TuxoniteDoor.DisplayName: Puerta de tusonita
+			TuxoniteTable.DisplayName: Mesa de tusonita
+			/* DesertMusicBox.DisplayName: DesertMusicBox */
+			/* FrozenMusicBox.DisplayName: FrozenMusicBox */
+			/* Frozenp2MusicBox.DisplayName: Frozenp2MusicBox */
+			InfernalMusicBox.DisplayName: Caja de m�sica (Tirano infernal)
+			Desert_Relic.DisplayName: Reliquia del Aniquilador del Desierto
+			Frozen_Relic.DisplayName: Reliquia del Asaltante Congelado
+			Tyrant_Relic.DisplayName: Reliquia del Tirano infernal
+			DesertTrophy.DisplayName: Trofeo Aniquilador del desierto
+			FrostTrophy.DisplayName: Trofeo de asaltante congelado
+			InfernalTrophy.DisplayName: Trofeo de Tirano infernal
+
+			DesertChest: {
+				DisplayName: Cofre del desierto
+				Tooltip: Invoca al aniquilador del desierto
+			}
+
+			ElderSpeaker: {
+				DisplayName: Altavoz Anciano
+				Tooltip: Invoca al Esqueletrón
+			}
+
+			FrozenArtifact: {
+				DisplayName: Artefacto congelado
+				Tooltip: Invoca al asaltante congelado
+			}
+
+			InfernalCalis: {
+				DisplayName: Cáliz infernal
+				Tooltip: Invoca al Tirano Infernal
+			}
+
+			Desert_Core: {
+				DisplayName: Núcleo del aniquilador del desierto
+				Tooltip:
+					'''
+					Incrementa tu número máximo de minions en 2
+					 Aumenta todo el daño en un 8% y la regeneración de vida en el desierto. 
+					 En las tormentas de arena tu vida aumenta en 50 puntos
+					'''
+			}
+
+			Frost_core: {
+				DisplayName: Núcleo de asaltante congelado
+				Tooltip:
+					'''
+					Aumenta el daño magico en un 25%
+					 La velocidad de movimiento aumenta y eres inmune a la desventaja de Congelado y Helado cuando estás en la nieve.
+					'''
+			}
+
+			Infernal_core: {
+				DisplayName: Núcleo de Tirano infernal
+				Tooltip:
+					'''
+					Aumenta el daño cuerpo a cuerpo en un 10%
+					 Inflige fuego del infierno al atacar
+					 La velocidad de movimiento aumenta y te vuelves inmune a los bloques de fuego y las desventajas de en llamas
+					'''
+			}
+
+			/* DebuggToggle.DisplayName: DebuggToggle */
+
+			Ftoggler: {
+				DisplayName: Segador
+				Tooltip:
+					'''
+					Activa el modo Reaper
+					tu vida máxima se establece en 1
+					aumenta todo el daño en un 50%
+					el tamaño de las armas cuerpo a cuerpo de corto alcanze aumenta en un 150%
+					reduce el tiempo de vuelo a la mitad 
+					el daño y la vida maxima de los jefes se ven duplicados
+					Articulos legendarios son más comunes 
+					Las bolsas de tesoro tienen objetos únicos
+					'''
+			}
+
+			AncientT.DisplayName: Tableta antigua
+			BoneBar.DisplayName: Lingote de hueso
+			CelestialAmalgamate.DisplayName: Amalgama Celestial
+			JungleBar.DisplayName: Lingote de la jungla
+			LuminiteFeathers.DisplayName: Plumas de Luminita
+			Neutrum_Fragment.DisplayName: Fragmento de neutrum
+			NightBar.DisplayName: Lingote de la noche
+			Reinforced_iron_ore.DisplayName: Mineral de hierro reforzado
+			Reinforced_ironBar.DisplayName: Lingote de hierro reforzado
+			Sand_escense.DisplayName: Esencia de arena
+			SharkTooth.DisplayName: Diente de tiburon
+			Terracoin.DisplayName: Moneda terra
+			TuxoniteBar.DisplayName: Lingote de Tusonita
+			TuxoniteOre.DisplayName: Mena de Tusonita
+
+			DesertFury: {
+				DisplayName: Furia desertica
+				Tooltip: El poder de la tierra se consentra en este arma
+			}
+
+			Golden_Shuriken.DisplayName: Shuriken dorado
+			Bee_worm.DisplayName: Gusano de abejas
+			Bloodtray.DisplayName: Rayo de sangre
+			BombTome.DisplayName: Tomo Explosivo
+
+			BrightDaisy: {
+				DisplayName: Margarita Brillante
+				Tooltip: Una margarita con el poder del cielo luminoso
+			}
+
+			CorrupedRay.DisplayName: Rayo de sombra
+			CurcedFlower.DisplayName: Flor de llama maldita
+			DesertTome.DisplayName: Tomo del Desierto
+			frozen_staff.DisplayName: Báculo de Escarcha
+			/* Judgment.DisplayName: Judgment */
+			/* JudgmentII.DisplayName: Judgment II */
+			/* JudgmentIII.DisplayName: Judgment III */
+
+			LaserMachineGun: {
+				/* DisplayName: L.M.G */
+				/* Tooltip: Legendary Drop */
+			}
+
+			RazorpineV2.DisplayName: Furia de pino
+			SkyCuter.DisplayName: Cortador estelar
+			StarStormTome.DisplayName: Tomo de estrellas
+			StarTome.DisplayName: Tomo de estrellas
+			True_Demoncicle.DisplayName: Verdadera Guadaña Demoníaca
+			Tyran_Blast.DisplayName: Rafaga tirana
+			ArmaSlimeV2.DisplayName: Arma Slime V2
+
+			BurningJungle: {
+				DisplayName: Jungla Ardiente
+				Tooltip: Inflije veneno y fuego a los enemigos
+			}
+
+			DesertEdge.DisplayName: Filo del desierto
+			Garritas.DisplayName: Garras Solares
+			Amethyst_Sword.DisplayName: Espada de Amatista
+
+			Diamond_Sword: {
+				DisplayName: Espada de Diamante
+				Tooltip: Juego equivocado
+			}
+
+			Emerald_Sword.DisplayName: Espada de esmeralda
+			The_Geode.DisplayName: La geoda
+
+			The_Geode_Blue: {
+				DisplayName: La geoda
+				Tooltip: Inflije lentitud a los enemigos
+			}
+
+			The_Geode_Green: {
+				DisplayName: La geoda
+				Tooltip: Inflije veneno a los enemigos
+			}
+
+			The_Geode_Red: {
+				DisplayName: La geoda
+				Tooltip: Inflije fuego a los enemigos
+			}
+
+			The_Geode_Vi: {
+				DisplayName: La geoda
+				Tooltip: Inflije confución a los enemigos
+			}
+
+			The_Geode_White.DisplayName: La geoda
+
+			The_Geode_Yellow: {
+				DisplayName: La geoda
+				Tooltip: Inflije Icor a los enemigos
+			}
+
+			Ruby_Sword.DisplayName: Espada de rubí
+			Sapphire_Sword.DisplayName: Espada de zafiro
+			Topaz_Sword.DisplayName: Espada de Topacio
+
+			Granite_Broadsword: {
+				DisplayName: Espada de granito
+				Tooltip: Duplica sus estadisticas al estar en el bioma de granito
+			}
+
+			Legendary_Great_Sword: {
+				DisplayName: Gran espada legendaria
+				Tooltip: Inflije fuego,ichor,ponsoña,fuego infernal y veneno a los enemigos
+			}
+
+			Marble_Broadsword: {
+				DisplayName: Espada de marmol
+				Tooltip: Reduce la defensa del enemigo en 2
+			}
+
+			/* Permafrost.DisplayName: Permafrost */
+			Reinforced_Iron_Broadsword.DisplayName: Espada de Hierro Reforzado
+			Adamantite_saber.DisplayName: Sable de Adamantita
+			Cobalt_saber.DisplayName: Sable de Cobalto
+			Copper_saber.DisplayName: Sable de Cobre
+			Corrupted_saber.DisplayName: Sable de la Luz
+			Crimson_saber.DisplayName: Sable de Sangre
+
+			Enchanted_saber: {
+				DisplayName: Sable Encantado
+				Tooltip: Dispara un rayo de espada encantada
+			}
+
+			Fire_saber: {
+				DisplayName: Sable Ardiente
+				Tooltip: Inflije fuego a los enemigos
+			}
+
+			gold_saber.DisplayName: Sable de Oro
+
+			Grass_saber: {
+				DisplayName: Sable de Hierba
+				Tooltip: Inflije veneno a los enemigos
+			}
+
+			Hallowed_saber.DisplayName: Sablebur
+			iron_saber.DisplayName: Sable de Hierro
+			Lead_saber.DisplayName: Sable de Plomo
+			Mythril_saber.DisplayName: Sable de Mithril
+			Night_saber.DisplayName: Sable de la Noche
+			Orichalcum_saber.DisplayName: Sable de Oricalco
+			Palladium_saber.DisplayName: Sable de Paladio
+			platinum_saber.DisplayName: Sable de Platino
+			Reinforced_Iron_saber.DisplayName: Sable de Hierro Reforzado
+			silver_saber.DisplayName: Sable de Plata
+			Spike_saber.DisplayName: Sable de púas
+			tin_saber.DisplayName: Sable de Estaño
+			Titanium_saber.DisplayName: Sable de Titanio
+			tungsteno_saber.DisplayName: Sable de Tungsteno
+			Tuxonite_saber.DisplayName: Sable de Tusonita
+			wooden_saber.DisplayName: Sable de Madera
+			Solarang.DisplayName: Bumerán solar
+			TheSpiker.DisplayName: La punzante
+			Tuxonite_Shortsword.DisplayName: Espada corta de Tusonita
+			Tuxonite_Sword.DisplayName: Espada de Tusonita
+			/* ultrablade.DisplayName: UltraBlade */
+
+			Magic_Sword: {
+				DisplayName: Espada Magica
+				Tooltip: Invoca una espada de viaje.
+			}
+
+			TortugaPet.DisplayName: Lechuga mágica
+			/* Twitch.DisplayName: Follow */
+			/* Yt.DisplayName: Yt */
+			Advanced_Potion_Kit.DisplayName: Kit de pociones avanzado
+			Basic_Potion_Kit.DisplayName: Kit de pociones basico
+			Combat_Potion_Kit.DisplayName: Kit de pociones de combate
+
+			Commander_Potion: {
+				DisplayName: Poci�n de comandante
+				Tooltip: Aumenta el numero maximo de torretas en 1
+			}
+
+			Endless_Advanced_Potion_Kit.DisplayName: Kit de pociones avanzado Eterno
+			Endless_Basic_Potion_Kit.DisplayName: Kit de pociones basico Eterno
+			Endless_Combat_Potion_Kit.DisplayName: Kit de pociones de combate Eterno
+
+			Endless_Commander_Porion: {
+				DisplayName: Poci�n de comandante Eterno
+				Tooltip: Aumenta el numero maximo de torretas en 1
+			}
+
+			Endless_Exploration_Potion_Kit.DisplayName: Kit de pociones de exploración Eterno
+			Endless_Fish_Potion.DisplayName: Pocion de pez Eterno
+			Endless_Fisher_Potion_Kit.DisplayName: Kit de pociones de pescador Eterno
+			Endless_Gravitation_Control_Potion.DisplayName: Pocion de control gravitacional Eterno
+			Endless_Magic_Potion_Kit.DisplayName: Kit de pociones de mago Eterno
+			Endless_Melee_Potion_Kit.DisplayName: Kit de pociones de guerrero Eterno
+			Endless_Mining_Potion_Kit.DisplayName: Kit de pociones de mineria Eterno
+
+			Endless_Money_Collector_Potion: {
+				DisplayName: Pocion de recolectora de dinero Eterno
+				Tooltip: Muestra la ubicaci�n de los enemigos y las fuentes de peligro
+			}
+
+			Endless_Poseidon_Potion_Kit.DisplayName: Kit Poseídón Eterno
+			Endless_Ranger_Potion_Kit.DisplayName: Kit de pociones de tirador Eterno
+
+			Endless_Sand_Flask: {
+				DisplayName: Frasco de Arena Ardiente Eterno
+				Tooltip: Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo
+			}
+
+			Endless_Summon_Potion_Kit.DisplayName: Kit de pociones de invocador Eterno
+
+			Endless_Supe_Sense_Potion: {
+				DisplayName: Pocion de super sentido Eterno
+				Tooltip: Muestra la ubicaci�n de los enemigos y las fuentes de peligro
+			}
+
+			Endless_Tank_Potion_Kit.DisplayName: Kit de pociones de paladin Eterno
+			Endless_Ultimate_Potion_Kit.DisplayName: Kit de pociones de definitivo Eterno
+			EndlessAmmoReservation.DisplayName: Poción de munición eterna
+			EndlessArchery.DisplayName: Poción de arquero eterna
+			EndlessBattle.DisplayName: Poción de batalla eterna
+			EndlessBuilder.DisplayName: Poción constructora eterna
+			EndlessCalming.DisplayName: Poción tranquilizadora eterna
+			EndlessCrate.DisplayName: Poción de caja eterna
+			EndlessCurcedFlask.DisplayName: Frasco de las llamas malditas eterno
+			EndlessDangersense.DisplayName: Poción de sentido del peligro eterna
+			EndlessEndurance.DisplayName: Poción de resistencia eterna
+			EndlessFeather.DisplayName: Poción de caída de pluma eterna
+			EndlessFireFlask.DisplayName: Frasco de fuego eterno
+			EndlessFishing.DisplayName: Poción de pesca eterna
+			EndlessGills.DisplayName: Poción de agallas eterna
+			EndlessGoldFlask.DisplayName: Frasco de oro eterno
+			EndlessGravitation.DisplayName: Poción de gravedad eterna
+			EndlessGreaterLuck.DisplayName: Poción de suerte grande eterna
+			EndlessHeaRtreach.DisplayName: Poción de alcanzacorazón eterna
+			EndlessHunter.DisplayName: Poción de cazador eterna
+			EndlessIchorFlask.DisplayName: Frasco de icor eterno
+			EndlessInferno.DisplayName: Poción del infierno eterna
+			EndlessInvisibility.DisplayName: Poción de invisibilidad eterna
+			EndlessIronSkin.DisplayName: Poción de piel de hierro eterna
+			EndlessLeasserLuck.DisplayName: Poción de suerte menor eterna
+			EndlessLifeForce.DisplayName: Poción de fuerza vital eterna
+			EndlessLuck.DisplayName: Poción de suerte eterna
+			EndlessManaPower.DisplayName: Poción de poder mágico eterna
+			EndlessManaRegeneration.DisplayName: Poción reg. de maná eterna
+			EndlessMining.DisplayName: Poción de minería eterna
+			EndlessNaniteFlask.DisplayName: Frasco de nanitos eterno
+
+			EndlessNecroticRestauration: {
+				DisplayName: Poción de restauración necrótica eterna
+				Tooltip: "Te teletransporta a tu última muerte "
+			}
+
+			EndlessNightOwl.DisplayName: Poción de noctámbulo eterna
+			EndlessObsidian.DisplayName: Poción de piel de obsidiana eterna
+			EndlessPartyFlask.DisplayName: Frasco fiestero eterno
+			EndlessPoisonFlask.DisplayName: Frasco de veneno eterno
+			EndlessRage.DisplayName: Poción de furia eterna
+			EndlessRegeneration.DisplayName: Poción de regeneración eterna
+			EndlessSake.DisplayName: Sake eterno
+			EndlessShine.DisplayName: Poción de brillo eterna
+			EndlessSonar.DisplayName: Poción de sonar eterna
+			EndlessSpelunker.DisplayName: Poción de espeleógo eterna
+			EndlessSummoning.DisplayName: Poción de invocación eterna
+			EndlessSwiftness.DisplayName: Poción de rapidez eterna
+			EndlessThorns.DisplayName: Poción de espinas eterna
+			EndlessTitan.DisplayName: Poción de titán eterna
+			EndlessVenomFlask.DisplayName: Frasco de ponzoña eterno
+			EndlessWarmth.DisplayName: Poción del calor eterna
+			EndlessWrath.DisplayName: Poción de ira eterna
+			Exploration_Potion_Kit.DisplayName: Kit de pociones de exploración
+			Fish_Potion.DisplayName: Pocion de pez
+			Fisher_Potion_Kit.DisplayName: Kit de pociones de pescador
+			Gravitation_Control_Potion.DisplayName: Pocion de control gravitacional
+			Mage_Potion_Kit.DisplayName: Kit de pociones de mago
+			Melee_Potion_Kit.DisplayName: Kit de pociones de guerrero
+			Mining_Potion_Kit.DisplayName: Kit de pociones de mineria
+
+			Money_Collector_Potion: {
+				DisplayName: Pocion de recolectora de dinero
+				Tooltip: Muestra la ubicaci�n de los enemigos y las fuentes de peligro
+			}
+
+			NecroticRestauration.DisplayName: Poción de restauración necrótica
+			Poseidon_Potion_Kit.DisplayName: Kit Poseídón
+			Ranger_Potion_Kit.DisplayName: Kit de pociones de tirador
+
+			Sand_Flask: {
+				DisplayName: Frasco de Arena Ardiente
+				Tooltip: Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo
+			}
+
+			Summon_Potion_Kit.DisplayName: Kit de pociones de invocador
+
+			Supe_Sense_Potion: {
+				DisplayName: Pocion de super sentido
+				Tooltip: Muestra la ubicaci�n de los enemigos y las fuentes de peligro
+			}
+
+			Tank_Potion_Kit.DisplayName: Kit de pociones de paladin
+			Ultimate_Potion_Kit.DisplayName: Kit de pociones de definitivo
+			UltraHealtingPotion.DisplayName: Ultra poción curativa
+
+			desertbow: {
+				DisplayName: Arco Desertico
+				Tooltip:
+					'''
+
+					Transforma flechas normales en flechas del deserticas
+					'''
+			}
+
+			Nigthbow.DisplayName: Arco de la Noche
+			ReinforcedIronBow.DisplayName: Arco de Hierro Reforzado
+			TuxoniteBow.DisplayName: Arco de Tusonita
+			CorrupterRifle.DisplayName: Mosquete corruptor
+
+			CurcedShotGun: {
+				DisplayName: Escopeta Maldita
+				Tooltip: "Probabilidad del 5% de no gastar munición "
+			}
+
+			flaremachinegun.DisplayName: Ametralladora de bengala
+			FrostShark.DisplayName: Tiburón Congelado
+
+			Ichor_asault_rifle: {
+				DisplayName: Rifle de asalto Ichor
+				Tooltip: Transforma las balas de mosqueton en balas de ichor
+			}
+
+			minigun: {
+				/* DisplayName: mini/gun */
+				Tooltip: Una pistola pequeña
+			}
+
+			P90: {
+				/* DisplayName: P90 */
+				Tooltip: Rapida y efectiva
+			}
+
+			Paintshotgun.DisplayName: Escopeta de pintura
+			copper_repeter.DisplayName: Repetidor de cobre
+			gold_repeter.DisplayName: Repetidor de Oro
+			iron_repeter.DisplayName: Repetidor de hierro
+			lead_repeter.DisplayName: Repetidor de plomo
+			platinum_repeter.DisplayName: Repetidor de platino
+			Silver_Repeater.DisplayName: Repetidor de plata
+			tin_repeter.DisplayName: Repetidor de estaño
+			tungsten_repeter.DisplayName: Repetidor de tungsteno
+			Tuxonite_repeter.DisplayName: Repetidor de tusonita
+			Tyrant_repeater.DisplayName: Repetidor del Tirano
+			wooden_repeter.DisplayName: Repetidor de madera
+			StarCannonV2.DisplayName: Cañon de estrellas MK2
+			StarCannonV3.DisplayName: Cañon de estrellas MK3
+
+			SuperShark: {
+				DisplayName: Supertiburón
+				Tooltip: "Probabilidad del 40% de no gastar munición "
+			}
+
+			ultratiburon: {
+				DisplayName: Ultratiburón
+				Tooltip:
+					'''
+					la hermana mayor de las 4
+					Probabilidad del 70% de no gastar munición 
+					'''
+			}
+
+			VampireGun: {
+				DisplayName: Pistola Vampírica
+				Tooltip: una pistola curativa
+			}
+
+			BeeSoul: {
+				DisplayName: Alma de la Reina Abeja
+				Tooltip: Liberas abejas cuando te dañan
+			}
+
+			CorruptSoul: {
+				DisplayName: Alma Corrupta
+				Tooltip: aumenta la regeneración de vida
+			}
+
+			CultistSoul: {
+				DisplayName: Alma del Sectario
+				Tooltip: Una niebla de hielo te protegerá
+			}
+
+			DeerclopsSoul: {
+				DisplayName: Alma del Ciervíclope
+				Tooltip: Te da la habilidad de invocar manos sombrías para atacar a tus enemigos con 1/4 de tu dps
+			}
+
+			DesertSoul: {
+				DisplayName: "Alma del Aniquilador del desierto "
+				Tooltip: Reduce el tiempo de reaparición.
+			}
+
+			DestroyerEnergyCell: {
+				DisplayName: Célula de energía del destructor
+				Tooltip: Aumenta la velocidad de minería en un 35%.
+			}
+
+			EmpressSoul: {
+				DisplayName: Alma de la Emperatriz de la luz
+				Tooltip: Otorga vuelo infinito
+			}
+
+			EyeSoul: {
+				DisplayName: Alma de ocular
+				Tooltip: Aumenta permanentemente la vida máxima en 10
+			}
+
+			FishSoul: {
+				DisplayName: Alma del Duque Fishron
+				Tooltip: Un Tornado de tiburones te protegerá
+			}
+
+			FleshSoul: {
+				DisplayName: Alma del Muro Carnoso
+				Tooltip: Incrementa todo el daño en un 10%
+			}
+
+			FrozenSoul: {
+				DisplayName: Alma del Asaltante Congelado
+				Tooltip: Otorga inmunidad a Congelado, Helado y Quemadura de hielo
+			}
+
+			GolemSoul: {
+				DisplayName: Alma del Golem
+				Tooltip: Aumenta la defensa en 10
+			}
+
+			InfernalSoul: {
+				DisplayName: Alma de tirano infernal
+				Tooltip:
+					'''
+					Incrementa todo el daño en un 10%
+					Otorga inmunidad a los bloques de lava y fuego.
+					'''
+			}
+
+			KingSoul: {
+				DisplayName: Rey Slime Soul
+				Tooltip: Velocidad de movimiento en 30%
+			}
+
+			MoonSoul: {
+				DisplayName: "Alma del Señor Lunar "
+				Tooltip: Reduce el tiempo de reaparición
+			}
+
+			PlantSoul: {
+				DisplayName: Alma de Plantera
+				Tooltip:
+					'''
+					Aumenta permanentemente la vida máxima en 10
+					Invoca esporas a lo largo del tiempo que dañarán a los enemigos.
+					'''
+			}
+
+			QueenSoul: {
+				DisplayName: Alma de la reina slime
+				Tooltip: Aumenta permanentemente la vida máxima en 15
+			}
+
+			RetinazorEnergyCell: {
+				DisplayName: Célula de energía Retinazor
+				Tooltip: Elimina la restricción en las alas del modo Segador.
+			}
+
+			SkeletonSoul: {
+				DisplayName: Alma esqueleto
+				Tooltip: Aumenta la defensa en 5
+			}
+
+			SkeletronPrimeEnergyCell: {
+				DisplayName: Célula de energía Skeletron Prime
+				Tooltip:
+					'''
+					Aumenta la altura del salto drásticamente 
+					Permite ver los minerales
+					'''
+			}
+
+			SpazmatismEnergyCell: {
+				DisplayName: Célula de energía del espazmatisador
+				Tooltip: Otorga inmunidad a todas las desventajas de fuego.
+			}
+
+			BrainOfCthulhuScroll: {
+				DisplayName: Pergamino psíquico
+				Tooltip: eres invulnerable durante 4s
+			}
+
+			DeerclopsScroll: {
+				DisplayName: Pergamino óptico
+				Tooltip: aumenta tu salto, anula daño por caída y ganas un dash
+			}
+
+			DesertAniquilatorScroll: {
+				DisplayName: Pergamino desertico
+				Tooltip: "aumenta la velocidad de movimiento y aumenta tu minion máximo en 2 "
+			}
+
+			EaterOfWorldsScroll: {
+				DisplayName: Reduce el daño recibido en un 10% y aumenta un 5% el daño crítico
+				/* Tooltip: Reduces damage taken by 10% and increases critical damage by 5% */
+			}
+
+			EmpressOfLightScroll: {
+				DisplayName: Pergamino real
+				Tooltip: aumenta la velocidad de movimiento en un 50% y el daño de los súbditos en un 5%
+			}
+
+			EyeOfCthulhuScroll: {
+				DisplayName: Pergamino óptico
+				Tooltip: aumenta tu salto, anula daño por caída y ganas un dash
+			}
+
+			FrozenAssaulterScroll: {
+				DisplayName: Pergamino real
+				Tooltip: aumenta la velocidad de movimiento en un 50% y el daño de los súbditos en un 5%
+			}
+
+			InfernalTyrantScroll: {
+				DisplayName: Pergamino real
+				Tooltip: aumenta la velocidad de movimiento en un 50% y el daño de los súbditos en un 5%
+			}
+
+			KingSlimeScroll: {
+				DisplayName: Pergamino real
+				Tooltip: aumenta la velocidad de movimiento en un 50% y el daño de los súbditos en un 5%
+			}
+
+			QueenBeeScroll: {
+				DisplayName: Pergamino de la colmena
+				Tooltip:
+					'''
+					obtienes el efecto miel, tu defensa aumenta en 5 
+					 Libera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas
+					 aumenta la penetración de armadura en 15
+					'''
+			}
+
+			QueenSlimeScroll: {
+				DisplayName: Pergamino de la reina
+				Tooltip: Aumenta la vida maxima un 50%
+			}
+
+			SkeletronScroll: {
+				DisplayName: Pergamino de muertos vivientes
+				Tooltip:
+					'''
+					tienes una súper sentido
+					 Otorga inmunidad a la mayoría de las desventajas.
+					 Incrementa el daño lanzable en 20% y posees un 50% de no gastar municion
+					'''
+			}
+
+			WallOfFleshScroll: {
+				DisplayName: Pergamino infernal
+				Tooltip: Obtienes + 10% de daño y un poder infernal te cubre
+			}
+
+			DesertStaff: {
+				DisplayName: Bastón del desierto
+				Tooltip: Invoca a un bebé aniquilador del desierto para que luche por ti
+			}
+
+			FrozenStafff: {
+				/* DisplayName: Frozen Staff */
+				Tooltip: Invoca a un asaltante bebé congelado para que luche por ti
+			}
+
+			ForestStaff: {
+				DisplayName: Bastón del bosque
+				Tooltip: Invoca un retoño para que luche por ti.
+			}
+
+			ForestStaff_G: {
+				DisplayName: Bastón del bosque Dorado
+				Tooltip: Invoca un retoño dorado para que luche por ti.
+			}
+
+			ForestStaff_P: {
+				DisplayName: Bastón del bosque Platinado
+				Tooltip: Invoca un retoño platinado para que luche por ti.
+			}
+
+			ForestStaff_S: {
+				DisplayName: Bastón del Bosque Plateado
+				Tooltip: Invoca un retoño plateado para que luche por ti.
+			}
+
+			ForestStaff_T: {
+				DisplayName: Bastón del bosque de tungsteno
+				Tooltip: Invoca un retoño de tungsteno para que luche por ti
+			}
+
+			StardustMinionStaff: {
+				/* DisplayName: Stardust Staff */
+				Tooltip: Invoca un poder de Polvo estelar para luchar por ti
+			}
+
+			destrosamundos.DisplayName: Trituradora de mundos
+			Ghost_Pickaxe.DisplayName: Pico fantasmal
+			Granite_axe.DisplayName: Hacha de granito
+			Granite_Pickaxe.DisplayName: Pico de granito
+			ironstonepickaxe.DisplayName: Pico de hierro petrificado
+			Marble_axe.DisplayName: Hacha de marmol
+			Marble_Pickaxe.DisplayName: Pico de m�rmol
+			night_pickaxe.DisplayName: Pico de la noche
+			NigthFishingRod.DisplayName: Caña de pescar nocturna
+			Tuxonite_axe.DisplayName: Hacha de tusonita
+			Tuxonite_hammer.DisplayName: Martillo de tusonita
+			Tuxonite_pickaxe.DisplayName: Pico de tusonita
+			TuxoniteFishingPole.DisplayName: Caña de pescar de tusonita
+
+			DayToken: {
+				DisplayName: Ficha solar
+				Tooltip: Convoca al sol
+			}
+
+			MoonManipulator: {
+				DisplayName: Manipulador lunar
+				Tooltip: "Convoca a la luna "
+			}
+
+			NightToken: {
+				DisplayName: Ficha lunar
+				Tooltip: "Convoca a la luna "
+			}
+
+			PlayerStatViewer: {
+				DisplayName: Medidor de estadísticas del jugador
+				/* Tooltip: Shows most of the player's stats */
+			}
+
+			RainToken: {
+				DisplayName: Ficha de lluvia
+				Tooltip: "Convoca a la lluvia "
+			}
+
+			SandstormToken: {
+				DisplayName: Ficha lunar
+				Tooltip: "Convoca a la luna "
+			}
+
+			SunManipulator: {
+				DisplayName: Manipulador solar
+				Tooltip: Convoca al sol
+			}
+
+			TimeManipulator3000: {
+				DisplayName: Manipulador temporal 3000
+				Tooltip: Convoca a la luna y al sol
+			}
+
+			desertBag: {
+				/* DisplayName: Treasure Bag */
+				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+			}
+
+			frostBag: {
+				/* DisplayName: Treasure Bag */
+				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+			}
+
+			infernalBag: {
+				/* DisplayName: Treasure Bag */
+				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+			}
+		}
+
+		NPCs: {
+			/* AntlionD.DisplayName: Antlion */
+			ArmoredSlime.DisplayName: Slime blindado
+			DesertAniquilator.DisplayName: Aniquilador del desierto
+			/* DesertScorpionD.DisplayName: Sand Poacher */
+			/* DSlime.DisplayName: Servant of Desert Annihilator */
+			/* FlyingAntlionD.DisplayName: Antlion Swarmer */
+			frozen_assaulter.DisplayName: Asaltante Congelado
+			/* IGolem.DisplayName: Ice Golem */
+			InfernalTyrantBody.DisplayName: Tirano infernal
+			InfernalTyrantHead.DisplayName: Tirano infernal
+			InfernalTyrantTail.DisplayName: Tirano infernal
+			MinerSoul.DisplayName: Alma minera
+			/* Time_Wizard.DisplayName: Time_ Wizard */
+			/* VultureD.DisplayName: Vulture */
+			/* WalkingAntlionD.DisplayName: Antlion Charger */
+			Armoredzombie.DisplayName: Zombi blindado
+			Copperzombie.DisplayName: Zombi blindado
+			Crimsonzombi.DisplayName: Zombi blindado
+			Fastzombie.DisplayName: zombie débil
+			Goldzombie.DisplayName: Zombi blindado
+			Ironzombie.DisplayName: Zombi blindado
+			Leadzombie.DisplayName: Zombi blindado
+			Platinumzombie.DisplayName: Zombi blindado
+			Shadowzombie.DisplayName: Zombi blindado
+			Silverzombie.DisplayName: Zombi blindado
+			Tinzombie.DisplayName: Zombi blindado
+			Tungstenzombie.DisplayName: Zombi blindado
+			Tuxonitezombie.DisplayName: Zombi blindado
+		}
+
+		Projectiles: {
+			/* AmathystSpiritGemSword.DisplayName: Amathyst Spirit Gem Sword */
+			/* NigthBobber.DisplayName: Nigth Bobber */
+			/* TuxoniteBobber.DisplayName: Tuxonite Bobber */
+			/* BossMark.DisplayName: Boss Mark */
+			/* DesertTyphoon.DisplayName: Desert Typhoon */
+			/* DesertTyphoonFriendly.DisplayName: Desert Typhoon Friendly */
+			/* frozen_p_f.DisplayName: frozen_p_f */
+			/* Frozenp.DisplayName: Frozenp */
+			/* Frozenp_M.DisplayName: Frozenp_ M */
+			/* BrightPetal.DisplayName: Bright Petal */
+			/* BrightPetal_Fire.DisplayName: Bright Petal */
+			/* bullettestp.DisplayName: Bala de slime furioso */
+			/* Curecedball.DisplayName: Curecedball */
+			/* DemonCycle.DisplayName: DemonScytheP */
+			/* DesertArrowP.DisplayName: Desert Arrow */
+			/* DesertFuryP.DisplayName: DesertFuryP */
+			/* DesertS.DisplayName: DesertS */
+			/* DiamondSpiritGemSword.DisplayName: Diamond Spirit Gem Sword */
+			/* EmeraldSpiritGemSword.DisplayName: Emerald Spirit Gem Sword */
+			/* Fibullet.DisplayName: Fire bullet */
+			/* FrostBeamF.DisplayName: FrostBeamF */
+			/* GodClaws.DisplayName: GodClaws */
+			/* Golden_ShurikenP.DisplayName: Golden_ShurikenP */
+			/* ice_bulletP.DisplayName: ice_bulletP */
+			/* IceMistF.DisplayName: IceMistF */
+			/* InfernalBall.DisplayName: Infernal Ball */
+			/* InfernalBall_f.DisplayName: Infernal Ball_f */
+			/* InfernalBallF.DisplayName: Infernal Ball F */
+			/* InfernalBallF_f.DisplayName: Infernal Ball F_f */
+			/* InfernalSpike.DisplayName: Infernal Spike */
+			/* InfernalSpike_f.DisplayName: Infernal Spike_f */
+			/* InfernalSpikeF.DisplayName: Infernal Spike F */
+			/* InfernalSpikeF_f.DisplayName: Infernal Spike F_f */
+			/* HollyLaser.DisplayName: Holly Laser */
+			/* LeafFriendlyClone.DisplayName: LeafFriendlyClone */
+			/* LittleShark.DisplayName: LittleShark */
+			/* PermafrostRain.DisplayName: SkyCutterS */
+			/* DesertMinion.DisplayName: Baby Desert Aniquilator Minion */
+			/* FrozenMinion.DisplayName: Baby Frozen Assaulter Minion */
+			/* SaplingGoldMinion.DisplayName: Animated Golden Sapling Minion */
+			/* SaplingMinion.DisplayName: Animated Sapling Minion */
+			/* SaplingPlatinumMinion.DisplayName: Animated Platinum Sapling Minion */
+			/* SaplingSilverMinion.DisplayName: Animated Silver Sapling Minion */
+			/* SaplingTungstenMinion.DisplayName: Animated Tungsten Sapling Minion */
+			/* StardustMinion.DisplayName: StardustMinion */
+			/* TortugaPet.DisplayName: Tortuga Pet */
+			/* TwitchPet.DisplayName: Twitch Pet */
+			/* YtPet.DisplayName: Yt Pet */
+			/* RubySpiritGemSword.DisplayName: Ruby Spirit Gem Sword */
+			/* SaphireSpiritGemSword.DisplayName: Saphire Spirit Gem Sword */
+			/* SkyCutterS.DisplayName: SkyCutterS */
+			/* SlimeV2.DisplayName: Slime V2 */
+			/* SolarangP.DisplayName: SolarangP */
+			/* Stick_f_P.DisplayName: Stick_f_P */
+			/* TempestClone.DisplayName: IceMistF */
+			/* Tomb_BulletP.DisplayName: Tomb_BulletP */
+			/* TopazSpiritGemSword.DisplayName: Topaz Spirit Gem Sword */
+			/* UltraBladeS.DisplayName: UltraBladeS */
+		}
+
+		Tiles: {
+			/* AncientTp.MapEntry: Table */
+			/* BossTrophy.MapEntry: Trophy */
+			/* Completist.MapEntry: Table */
+			/* DesertMusicBoxT.MapEntry: Music Box */
+			/* FrozenMusicBoxT.MapEntry: Music Box */
+			/* Frozenp2MusicBoxT.MapEntry: Music Box */
+			/* InfernalMusicBoxT.MapEntry: Music Box */
+			/* TuxoniteDoorClosed.MapEntry: Example Door */
+			/* TuxoniteDoorOpen.MapEntry: Example Door */
+			/* TuxoniteTable.MapEntry: Table */
+		}
+	}
+}

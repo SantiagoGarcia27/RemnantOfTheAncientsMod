@@ -36,7 +36,6 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 			NPCID.Sets.AttackAverageChance[NPC.type] = 30;
 			NPCID.Sets.HatOffsetY[NPC.type] = 4;
 			//23 frames
-
 			NPC.Happiness
 				.SetBiomeAffection<HallowBiome>(AffectionLevel.Love)
 				.SetBiomeAffection<DungeonBiome>(AffectionLevel.Love)
@@ -117,7 +116,7 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				"Harry"
 			};
 		}
-
+		
 		public override string GetChat()
 		{
 			int Wizard = NPC.FindFirstNPC(NPCID.Wizard);

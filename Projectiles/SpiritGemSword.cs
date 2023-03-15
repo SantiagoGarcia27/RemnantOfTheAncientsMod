@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -59,14 +58,53 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.ignoreWater = true;
             Projectile.scale = 0.7f;
             AIType = ProjectileID.InfluxWaver;
-
-
         }
 
         public override void AI()
         {
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
+            Projectile.rotation += Projectile.direction * 0.8f;
+
+            if (Projectile.alpha > 70)
+            {
+                Projectile.alpha -= 15;
+                if (Projectile.alpha < 70) Projectile.alpha = 70;
+            }
+            if (Projectile.localAI[0] == 0f)
+            {
+                AdjustMagnitude(ref Projectile.velocity);
+                Projectile.localAI[0] = 10f;
+            }
+            Vector2 move = Vector2.Zero;
+            float distance = 235f;
+            bool target = false;
+            for (int k = 0; k < 200; k++)
+            {
+                if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
+                {
+                    Vector2 newMove = Main.npc[k].Center - Projectile.Center;
+                    float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
+                    if (distanceTo < distance)
+                    {
+                        move = newMove;
+                        distance = distanceTo;
+                        target = true;
+                    }
+                }
+                if (target)
+                {
+                    AdjustMagnitude(ref move);
+                    Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
+                    AdjustMagnitude(ref Projectile.velocity);
+                }
+
+            }
+        }
+        private void AdjustMagnitude(ref Vector2 vector)
+        {
+            float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+            if (magnitude > 106f) vector *= 26f / magnitude;
         }
 
         public override void Kill(int timeLeft)
