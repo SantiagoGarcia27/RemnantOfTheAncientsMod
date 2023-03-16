@@ -78,44 +78,52 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
         public override bool Friendly => true;
         public override bool Hostile => false;
         public override int PenetrateKill => 30;
-        public override void SetStaticDefaults() => Main.projFrames[Projectile.type] = 4;
+        public override void SetStaticDefaults()
+        {
+
+            Main.projFrames[Projectile.type] = 4;
+        }
         public override void AI()
         {
             AnimateTexture();
             GenerateParticle();
-            if (Projectile.alpha > 70)
-            {
-                Projectile.alpha -= 15;
-                if (Projectile.alpha < 70) Projectile.alpha = 70;
-            }
-            if (Projectile.localAI[0] == 0f)
-            {
-                AdjustMagnitude(ref Projectile.velocity);
-                Projectile.localAI[0] = 10f;
-            }
-            Vector2 move = Vector2.Zero;
-            float distance = 400f;
-            bool target = false;
-            for (int k = 0; k < 200; k++)
-            {
-                if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
-                {
-                    Vector2 newMove = Main.npc[k].Center - Projectile.Center;
-                    float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                    if (distanceTo < distance)
-                    {
-                        move = newMove;
-                        distance = distanceTo;
-                        target = true;
-                    }
-                }
-                if (target)
-                {
-                    AdjustMagnitude(ref move);
-                    Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
-                    AdjustMagnitude(ref Projectile.velocity);
-                }
-            }
+            Vector2 lastVelocity = Projectile.velocity;
+             if (Projectile.alpha > 70)
+             {
+                 Projectile.alpha -= 15;
+                 if (Projectile.alpha < 70) Projectile.alpha = 70;
+             }
+             if (Projectile.localAI[0] == 0f)
+             {
+                 AdjustMagnitude(ref Projectile.velocity);
+                 Projectile.localAI[0] = 10f;
+             }
+             Vector2 move = Vector2.Zero;
+             float distance = 400f;
+             bool target = false;
+             for (int k = 0; k < 200; k++)
+             {
+                 if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
+                 {
+                     Vector2 newMove = Main.npc[k].Center - Projectile.Center;
+                     float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
+                     if (distanceTo < distance)
+                     {
+                         move = newMove;
+                         distance = distanceTo;
+                         target = true;
+                     }
+                 }
+                 if (target)
+                 {
+                     AdjustMagnitude(ref move);
+                     Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
+                     AdjustMagnitude(ref Projectile.velocity);
+                 }
+             }
+
+           /* Projectile.aiStyle = ProjAIStyleID.Typhoon;
+            AIType = 409;*/
         }
         public void AnimateTexture()
         {

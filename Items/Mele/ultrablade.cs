@@ -1,12 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
-    public class ultrablade : ModItem
+	public class ultrablade : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

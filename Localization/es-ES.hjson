@@ -2,11 +2,11 @@
 Mods: {
 	RemnantOfTheAncientsMod: {
 		Buffs: {
-			/* CentryBuff.DisplayName: Comander Potion */
-			/* FishBuff.DisplayName: Fish */
-			/* GravityControlBuff.DisplayName: Gravity control */
-			/* Advanced_Infusion.DisplayName: Advanced infusion */
-			/* Basic_Infusion.DisplayName: Basic infusion */
+			 CentryBuff.DisplayName: Comander Potion 
+			 FishBuff.DisplayName: Fish 
+			 GravityControlBuff.DisplayName: Gravity control 
+			 Advanced_Infusion.DisplayName: Advanced infusion 
+			 Basic_Infusion.DisplayName: Basic infusion 
 
 			Combat_infusion: {
 				DisplayName: Infusión de combate
@@ -14,85 +14,85 @@ Mods: {
 			}
 
 			Exploration_infusion.DisplayName: Infusión de combate
-			/* Fishing_Infusion.DisplayName: Fishing infusion */
-			/* Mage_Infusion.DisplayName: Mage infusion */
-			/* Melee_Infusion.DisplayName: Melee infusion */
-			/* Mining_infusion.DisplayName: Mining infusion */
-			/* Poseidon_Infusion.DisplayName: Poseidon infusion */
-			/* Ranger_Infusion.DisplayName: Ranger infusion */
-			/* Summon_Infusion.DisplayName: Summon infusion */
-			/* Tank_Infusion.DisplayName: Tank infusion */
-			/* Ultimate_Infusion.DisplayName: Ultimate infusion */
-			/* MoneyColectorBuff.DisplayName: Money Collector */
-			/* Sand_Weapons.DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]" */
-			/* SuperSenseBuff.DisplayName: Super Sense */
-			/* Burning_Sand.DisplayName: Burning Sand */
+			 Fishing_Infusion.DisplayName: Fishing infusion 
+			 Mage_Infusion.DisplayName: Mage infusion 
+			 Melee_Infusion.DisplayName: Melee infusion 
+			 Mining_infusion.DisplayName: Mining infusion 
+			 Poseidon_Infusion.DisplayName: Poseidon infusion 
+			 Ranger_Infusion.DisplayName: Ranger infusion 
+			 Summon_Infusion.DisplayName: Summon infusion 
+			 Tank_Infusion.DisplayName: Tank infusion 
+			 Ultimate_Infusion.DisplayName: Ultimate infusion 
+			 MoneyColectorBuff.DisplayName: Money Collector 
+			 Sand_Weapons.DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]" 
+			 SuperSenseBuff.DisplayName: Super Sense 
+			 Burning_Sand.DisplayName: Burning Sand 
 
 			Hell_Fire: {
-				/* DisplayName: Hell Fire */
-				/* Description: ... */
+				 DisplayName: Hell Fire 
+				 Description: ... 
 			}
 
 			HollyBurn: {
-				/* DisplayName: Holly Burn */
-				/* Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn */
+				 DisplayName: Holly Burn 
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn 
 			}
 
 			Javalina: {
-				/* DisplayName: Javalina */
-				/* Description: Losing life */
+				 DisplayName: Javalina 
+				 Description: Losing life 
 			}
 
 			Marble_erosion: {
-				/* DisplayName: Marble rosion */
-				/* Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion */
+				 DisplayName: Marble rosion 
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion 
 			}
 
 			GoldenAcornBuff: {
-				/* DisplayName: Animated Golden Sapling */
-				/* Description: The Animated Golden Sapling will fight for you */
+				 DisplayName: Animated Golden Sapling 
+				 Description: The Animated Golden Sapling will fight for you 
 			}
 
 			PlatinumAcornBuff: {
-				/* DisplayName: Animated Platinum Sapling */
-				/* Description: The Animated Platinum Sapling will fight for you */
+				 DisplayName: Animated Platinum Sapling 
+				 Description: The Animated Platinum Sapling will fight for you 
 			}
 
 			SaplingMinionBuff: {
-				/* DisplayName: Animated Sapling */
-				/* Description: The Animated Sapling will fight for you */
+				 DisplayName: Animated Sapling 
+				 Description: The Animated Sapling will fight for you 
 			}
 
 			SilverAcornBuff: {
-				/* DisplayName: Animated Silver Sapling */
-				/* Description: The Animated Silver Sapling will fight for you */
+				 DisplayName: Animated Silver Sapling 
+				 Description: The Animated Silver Sapling will fight for you 
 			}
 
 			TungstenAcornBuff: {
-				/* DisplayName: Animated Tungsten Sapling */
-				/* Description: The Animated Tungsten Sapling will fight for you */
+				 DisplayName: Animated Tungsten Sapling 
+				 Description: The Animated Tungsten Sapling will fight for you 
 			}
 
 			DesertMinionBuff: {
-				/* DisplayName: Baby Desert Aniquilator */
-				/* Description: The Baby Desert will fight for you */
+				 DisplayName: Baby Desert Aniquilator 
+				 Description: The Baby Desert will fight for you 
 			}
 
 			FrozenMinionBuff: {
-				/* DisplayName: Baby Frozen Assaulter */
-				/* Description: The Baby Frozen will fight for you */
+				 DisplayName: Baby Frozen Assaulter 
+				 Description: The Baby Frozen will fight for you 
 			}
 
 			StardustMinionBuff: {
-				/* DisplayName: StardustMinionBuff */
-				/* Description: The Stard dust will fight for you */
+				 DisplayName: StardustMinionBuff 
+				 Description: The Stard dust will fight for you 
 			}
 
-			/* ReaperBuff.DisplayName: Reaper mode */
+			 ReaperBuff.DisplayName: Reaper mode 
 			AoD.DisplayName: Aprendiz del esquiva
 			Bee.DisplayName: abeja reina
 			Eye.DisplayName: Maestro de las embestidas
-			/* Infernal.DisplayName: Infernal */
+			 Infernal.DisplayName: Infernal 
 			MasterD.DisplayName: Maestro del desierto
 			Putrid.DisplayName: Podrido
 			QueenSlimeScrollBuff.DisplayName: Bendición de la reina
@@ -100,18 +100,18 @@ Mods: {
 			Slim.DisplayName: Bendición del rey
 
 			SwordMount: {
-				/* DisplayName: Espada de transporte */
-				/* Description: La forma de viajar mas eficaz */
+				 DisplayName: Espada de transporte 
+				 Description: La forma de viajar mas eficaz 
 			}
 
 			TortugaPetBuff: {
-				/* DisplayName: The Turtle */
-				/* Description: ._. */
+				 DisplayName: The Turtle 
+				 Description: ._. 
 			}
 
 			YoutubeMoradoBuff: {
-				/* DisplayName: Twitch */
-				/* Description:
+				 DisplayName: Twitch 
+				 Description:
 					'''
 					Thanks to -febo1apolo -eltonyhelou -Jormanas_gt
 					 -LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094
@@ -125,12 +125,12 @@ Mods: {
 					 -JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors
 					 -LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu
 					 for testing my mod 
-					''' */
+					''' 
 			}
 
 			YtBuff: {
-				/* DisplayName: Yt */
-				/* Description: ... */
+				 DisplayName: Yt 
+				 Description: ... 
 			}
 		}
 
@@ -223,24 +223,24 @@ Mods: {
 			}
 
 			The_Completist: {
-				/* DisplayName: The Completist */
-				/* Tooltip:
+				 DisplayName: The Completist 
+				 Tooltip:
 					'''
 					A grand prize for those who made it to the top of the mod
 					 Thanks to Johy315 (Quizo hacer trampa y no le salio)
-					''' */
+					''' 
 			}
 
 			The_Legion: {
-				/* DisplayName: The Legion */
-				/* Tooltip:
+				 DisplayName: The Legion 
+				 Tooltip:
 					'''
 					Increases the summon damage by 25% 
 					+5 minions
 					Many thanks to:
 					 S-Pladison   -NKSHV  -perrogalan
 					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
-					''' */
+					''' 
 			}
 
 			TrowerEmblem: {
@@ -403,9 +403,9 @@ Mods: {
 			TuxoniteChair.DisplayName: Silla de tusonita
 			TuxoniteDoor.DisplayName: Puerta de tusonita
 			TuxoniteTable.DisplayName: Mesa de tusonita
-			/* DesertMusicBox.DisplayName: DesertMusicBox */
-			/* FrozenMusicBox.DisplayName: FrozenMusicBox */
-			/* Frozenp2MusicBox.DisplayName: Frozenp2MusicBox */
+			 DesertMusicBox.DisplayName: DesertMusicBox 
+			 FrozenMusicBox.DisplayName: FrozenMusicBox 
+			 Frozenp2MusicBox.DisplayName: Frozenp2MusicBox 
 			InfernalMusicBox.DisplayName: Caja de m�sica (Tirano infernal)
 			Desert_Relic.DisplayName: Reliquia del Aniquilador del Desierto
 			Frozen_Relic.DisplayName: Reliquia del Asaltante Congelado
@@ -463,7 +463,7 @@ Mods: {
 					'''
 			}
 
-			/* DebuggToggle.DisplayName: DebuggToggle */
+			 DebuggToggle.DisplayName: DebuggToggle 
 
 			Ftoggler: {
 				DisplayName: Segador
@@ -514,13 +514,13 @@ Mods: {
 			CurcedFlower.DisplayName: Flor de llama maldita
 			DesertTome.DisplayName: Tomo del Desierto
 			frozen_staff.DisplayName: Báculo de Escarcha
-			/* Judgment.DisplayName: Judgment */
-			/* JudgmentII.DisplayName: Judgment II */
-			/* JudgmentIII.DisplayName: Judgment III */
+			 Judgment.DisplayName: Judgment 
+			 JudgmentII.DisplayName: Judgment II 
+			 JudgmentIII.DisplayName: Judgment III 
 
 			LaserMachineGun: {
-				/* DisplayName: L.M.G */
-				/* Tooltip: Legendary Drop */
+				 DisplayName: L.M.G 
+				 Tooltip: Legendary Drop 
 			}
 
 			RazorpineV2.DisplayName: Furia de pino
@@ -594,7 +594,7 @@ Mods: {
 				Tooltip: Reduce la defensa del enemigo en 2
 			}
 
-			/* Permafrost.DisplayName: Permafrost */
+			 Permafrost.DisplayName: Permafrost 
 			Reinforced_Iron_Broadsword.DisplayName: Espada de Hierro Reforzado
 			Adamantite_saber.DisplayName: Sable de Adamantita
 			Cobalt_saber.DisplayName: Sable de Cobalto
@@ -639,7 +639,7 @@ Mods: {
 			TheSpiker.DisplayName: La punzante
 			Tuxonite_Shortsword.DisplayName: Espada corta de Tusonita
 			Tuxonite_Sword.DisplayName: Espada de Tusonita
-			/* ultrablade.DisplayName: UltraBlade */
+			 ultrablade.DisplayName: UltraBlade 
 
 			Magic_Sword: {
 				DisplayName: Espada Magica
@@ -647,8 +647,8 @@ Mods: {
 			}
 
 			TortugaPet.DisplayName: Lechuga mágica
-			/* Twitch.DisplayName: Follow */
-			/* Yt.DisplayName: Yt */
+			 Twitch.DisplayName: Follow 
+			 Yt.DisplayName: Yt 
 			Advanced_Potion_Kit.DisplayName: Kit de pociones avanzado
 			Basic_Potion_Kit.DisplayName: Kit de pociones basico
 			Combat_Potion_Kit.DisplayName: Kit de pociones de combate
@@ -810,12 +810,12 @@ Mods: {
 			}
 
 			minigun: {
-				/* DisplayName: mini/gun */
+				 DisplayName: mini/gun 
 				Tooltip: Una pistola pequeña
 			}
 
 			P90: {
-				/* DisplayName: P90 */
+				 DisplayName: P90 
 				Tooltip: Rapida y efectiva
 			}
 
@@ -987,7 +987,7 @@ Mods: {
 
 			EaterOfWorldsScroll: {
 				DisplayName: Reduce el daño recibido en un 10% y aumenta un 5% el daño crítico
-				/* Tooltip: Reduces damage taken by 10% and increases critical damage by 5% */
+				 Tooltip: Reduces damage taken by 10% and increases critical damage by 5% 
 			}
 
 			EmpressOfLightScroll: {
@@ -1051,7 +1051,7 @@ Mods: {
 			}
 
 			FrozenStafff: {
-				/* DisplayName: Frozen Staff */
+				 DisplayName: Frozen Staff 
 				Tooltip: Invoca a un asaltante bebé congelado para que luche por ti
 			}
 
@@ -1081,7 +1081,7 @@ Mods: {
 			}
 
 			StardustMinionStaff: {
-				/* DisplayName: Stardust Staff */
+				 DisplayName: Stardust Staff 
 				Tooltip: Invoca un poder de Polvo estelar para luchar por ti
 			}
 
@@ -1116,7 +1116,7 @@ Mods: {
 
 			PlayerStatViewer: {
 				DisplayName: Medidor de estadísticas del jugador
-				/* Tooltip: Shows most of the player's stats */
+				 Tooltip: Shows most of the player's stats 
 			}
 
 			RainToken: {
@@ -1125,8 +1125,8 @@ Mods: {
 			}
 
 			SandstormToken: {
-				DisplayName: Ficha lunar
-				Tooltip: "Convoca a la luna "
+				DisplayName: Ficha tormentosa
+				Tooltip: "Convoca la tormenta"
 			}
 
 			SunManipulator: {
@@ -1140,37 +1140,37 @@ Mods: {
 			}
 
 			desertBag: {
-				/* DisplayName: Treasure Bag */
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				 DisplayName: Treasure Bag 
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}" 
 			}
 
 			frostBag: {
-				/* DisplayName: Treasure Bag */
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				 DisplayName: Treasure Bag 
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}" 
 			}
 
 			infernalBag: {
-				/* DisplayName: Treasure Bag */
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				 DisplayName: Treasure Bag 
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}" 
 			}
 		}
 
 		NPCs: {
-			/* AntlionD.DisplayName: Antlion */
+			 AntlionD.DisplayName: Antlion 
 			ArmoredSlime.DisplayName: Slime blindado
 			DesertAniquilator.DisplayName: Aniquilador del desierto
-			/* DesertScorpionD.DisplayName: Sand Poacher */
-			/* DSlime.DisplayName: Servant of Desert Annihilator */
-			/* FlyingAntlionD.DisplayName: Antlion Swarmer */
+			 DesertScorpionD.DisplayName: Sand Poacher 
+			 DSlime.DisplayName: Servant of Desert Annihilator 
+			 FlyingAntlionD.DisplayName: Antlion Swarmer 
 			frozen_assaulter.DisplayName: Asaltante Congelado
-			/* IGolem.DisplayName: Ice Golem */
+			 IGolem.DisplayName: Ice Golem 
 			InfernalTyrantBody.DisplayName: Tirano infernal
 			InfernalTyrantHead.DisplayName: Tirano infernal
 			InfernalTyrantTail.DisplayName: Tirano infernal
 			MinerSoul.DisplayName: Alma minera
-			/* Time_Wizard.DisplayName: Time_ Wizard */
-			/* VultureD.DisplayName: Vulture */
-			/* WalkingAntlionD.DisplayName: Antlion Charger */
+			 Time_Wizard.DisplayName: Time_ Wizard 
+			 VultureD.DisplayName: Vulture 
+			 WalkingAntlionD.DisplayName: Antlion Charger 
 			Armoredzombie.DisplayName: Zombi blindado
 			Copperzombie.DisplayName: Zombi blindado
 			Crimsonzombi.DisplayName: Zombi blindado
@@ -1187,77 +1187,77 @@ Mods: {
 		}
 
 		Projectiles: {
-			/* AmathystSpiritGemSword.DisplayName: Amathyst Spirit Gem Sword */
-			/* NigthBobber.DisplayName: Nigth Bobber */
-			/* TuxoniteBobber.DisplayName: Tuxonite Bobber */
-			/* BossMark.DisplayName: Boss Mark */
-			/* DesertTyphoon.DisplayName: Desert Typhoon */
-			/* DesertTyphoonFriendly.DisplayName: Desert Typhoon Friendly */
-			/* frozen_p_f.DisplayName: frozen_p_f */
-			/* Frozenp.DisplayName: Frozenp */
-			/* Frozenp_M.DisplayName: Frozenp_ M */
-			/* BrightPetal.DisplayName: Bright Petal */
-			/* BrightPetal_Fire.DisplayName: Bright Petal */
-			/* bullettestp.DisplayName: Bala de slime furioso */
-			/* Curecedball.DisplayName: Curecedball */
-			/* DemonCycle.DisplayName: DemonScytheP */
-			/* DesertArrowP.DisplayName: Desert Arrow */
-			/* DesertFuryP.DisplayName: DesertFuryP */
-			/* DesertS.DisplayName: DesertS */
-			/* DiamondSpiritGemSword.DisplayName: Diamond Spirit Gem Sword */
-			/* EmeraldSpiritGemSword.DisplayName: Emerald Spirit Gem Sword */
-			/* Fibullet.DisplayName: Fire bullet */
-			/* FrostBeamF.DisplayName: FrostBeamF */
-			/* GodClaws.DisplayName: GodClaws */
-			/* Golden_ShurikenP.DisplayName: Golden_ShurikenP */
-			/* ice_bulletP.DisplayName: ice_bulletP */
-			/* IceMistF.DisplayName: IceMistF */
-			/* InfernalBall.DisplayName: Infernal Ball */
-			/* InfernalBall_f.DisplayName: Infernal Ball_f */
-			/* InfernalBallF.DisplayName: Infernal Ball F */
-			/* InfernalBallF_f.DisplayName: Infernal Ball F_f */
-			/* InfernalSpike.DisplayName: Infernal Spike */
-			/* InfernalSpike_f.DisplayName: Infernal Spike_f */
-			/* InfernalSpikeF.DisplayName: Infernal Spike F */
-			/* InfernalSpikeF_f.DisplayName: Infernal Spike F_f */
-			/* HollyLaser.DisplayName: Holly Laser */
-			/* LeafFriendlyClone.DisplayName: LeafFriendlyClone */
-			/* LittleShark.DisplayName: LittleShark */
-			/* PermafrostRain.DisplayName: SkyCutterS */
-			/* DesertMinion.DisplayName: Baby Desert Aniquilator Minion */
-			/* FrozenMinion.DisplayName: Baby Frozen Assaulter Minion */
-			/* SaplingGoldMinion.DisplayName: Animated Golden Sapling Minion */
-			/* SaplingMinion.DisplayName: Animated Sapling Minion */
-			/* SaplingPlatinumMinion.DisplayName: Animated Platinum Sapling Minion */
-			/* SaplingSilverMinion.DisplayName: Animated Silver Sapling Minion */
-			/* SaplingTungstenMinion.DisplayName: Animated Tungsten Sapling Minion */
-			/* StardustMinion.DisplayName: StardustMinion */
-			/* TortugaPet.DisplayName: Tortuga Pet */
-			/* TwitchPet.DisplayName: Twitch Pet */
-			/* YtPet.DisplayName: Yt Pet */
-			/* RubySpiritGemSword.DisplayName: Ruby Spirit Gem Sword */
-			/* SaphireSpiritGemSword.DisplayName: Saphire Spirit Gem Sword */
-			/* SkyCutterS.DisplayName: SkyCutterS */
-			/* SlimeV2.DisplayName: Slime V2 */
-			/* SolarangP.DisplayName: SolarangP */
-			/* Stick_f_P.DisplayName: Stick_f_P */
-			/* TempestClone.DisplayName: IceMistF */
-			/* Tomb_BulletP.DisplayName: Tomb_BulletP */
-			/* TopazSpiritGemSword.DisplayName: Topaz Spirit Gem Sword */
-			/* UltraBladeS.DisplayName: UltraBladeS */
+			 AmathystSpiritGemSword.DisplayName: Amathyst Spirit Gem Sword 
+			 NigthBobber.DisplayName: Nigth Bobber 
+			 TuxoniteBobber.DisplayName: Tuxonite Bobber 
+			 BossMark.DisplayName: Boss Mark 
+			 DesertTyphoon.DisplayName: Desert Typhoon 
+			 DesertTyphoonFriendly.DisplayName: Desert Typhoon Friendly 
+			 frozen_p_f.DisplayName: frozen_p_f 
+			 Frozenp.DisplayName: Frozenp 
+			 Frozenp_M.DisplayName: Frozenp_ M 
+			 BrightPetal.DisplayName: Bright Petal 
+			 BrightPetal_Fire.DisplayName: Bright Petal 
+			 bullettestp.DisplayName: Bala de slime furioso 
+			 Curecedball.DisplayName: Curecedball 
+			 DemonCycle.DisplayName: DemonScytheP 
+			 DesertArrowP.DisplayName: Desert Arrow 
+			 DesertFuryP.DisplayName: DesertFuryP 
+			 DesertS.DisplayName: DesertS 
+			 DiamondSpiritGemSword.DisplayName: Diamond Spirit Gem Sword 
+			 EmeraldSpiritGemSword.DisplayName: Emerald Spirit Gem Sword 
+			 Fibullet.DisplayName: Fire bullet 
+			 FrostBeamF.DisplayName: FrostBeamF 
+			 GodClaws.DisplayName: GodClaws 
+			 Golden_ShurikenP.DisplayName: Golden_ShurikenP 
+			 ice_bulletP.DisplayName: ice_bulletP 
+			 IceMistF.DisplayName: IceMistF 
+			 InfernalBall.DisplayName: Infernal Ball 
+			 InfernalBall_f.DisplayName: Infernal Ball_f 
+			 InfernalBallF.DisplayName: Infernal Ball F 
+			 InfernalBallF_f.DisplayName: Infernal Ball F_f 
+			 InfernalSpike.DisplayName: Infernal Spike 
+			 InfernalSpike_f.DisplayName: Infernal Spike_f 
+			 InfernalSpikeF.DisplayName: Infernal Spike F 
+			 InfernalSpikeF_f.DisplayName: Infernal Spike F_f 
+			 HollyLaser.DisplayName: Holly Laser 
+			 LeafFriendlyClone.DisplayName: LeafFriendlyClone 
+			 LittleShark.DisplayName: LittleShark 
+			 PermafrostRain.DisplayName: SkyCutterS 
+			 DesertMinion.DisplayName: Baby Desert Aniquilator Minion 
+			 FrozenMinion.DisplayName: Baby Frozen Assaulter Minion 
+			 SaplingGoldMinion.DisplayName: Animated Golden Sapling Minion 
+			 SaplingMinion.DisplayName: Animated Sapling Minion 
+			 SaplingPlatinumMinion.DisplayName: Animated Platinum Sapling Minion 
+			 SaplingSilverMinion.DisplayName: Animated Silver Sapling Minion 
+			 SaplingTungstenMinion.DisplayName: Animated Tungsten Sapling Minion 
+			 StardustMinion.DisplayName: StardustMinion 
+			 TortugaPet.DisplayName: Tortuga Pet 
+			 TwitchPet.DisplayName: Twitch Pet 
+			 YtPet.DisplayName: Yt Pet 
+			 RubySpiritGemSword.DisplayName: Ruby Spirit Gem Sword 
+			 SaphireSpiritGemSword.DisplayName: Saphire Spirit Gem Sword 
+			 SkyCutterS.DisplayName: SkyCutterS 
+			 SlimeV2.DisplayName: Slime V2 
+			 SolarangP.DisplayName: SolarangP 
+			 Stick_f_P.DisplayName: Stick_f_P 
+			 TempestClone.DisplayName: IceMistF 
+			 Tomb_BulletP.DisplayName: Tomb_BulletP 
+			 TopazSpiritGemSword.DisplayName: Topaz Spirit Gem Sword 
+			 UltraBladeS.DisplayName: UltraBladeS 
 		}
 
 		Tiles: {
-			/* AncientTp.MapEntry: Table */
-			/* BossTrophy.MapEntry: Trophy */
-			/* Completist.MapEntry: Table */
-			/* DesertMusicBoxT.MapEntry: Music Box */
-			/* FrozenMusicBoxT.MapEntry: Music Box */
-			/* Frozenp2MusicBoxT.MapEntry: Music Box */
-			/* InfernalMusicBoxT.MapEntry: Music Box */
-			/* TuxoniteDoorClosed.MapEntry: Example Door */
-			/* TuxoniteDoorOpen.MapEntry: Example Door */
-			/* TuxoniteTable.MapEntry: Table */
+			 AncientTp.MapEntry: Table 
+			 BossTrophy.MapEntry: Trophy 
+			 Completist.MapEntry: Table 
+			 DesertMusicBoxT.MapEntry: Music Box 
+			 FrozenMusicBoxT.MapEntry: Music Box 
+			 Frozenp2MusicBoxT.MapEntry: Music Box 
+			 InfernalMusicBoxT.MapEntry: Music Box 
+			 TuxoniteDoorClosed.MapEntry: Example Door 
+			 TuxoniteDoorOpen.MapEntry: Example Door 
+			 TuxoniteTable.MapEntry: Table 
 		}
 	}
 }

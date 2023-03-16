@@ -8,7 +8,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
 {
     public class EndlessGravitation : BasePotions
     {
-        public override Item ItemBase => new(BuffID.Gravitation);
+        public override Item ItemBase => new(ItemID.GravitationPotion);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Gravitation Potion");

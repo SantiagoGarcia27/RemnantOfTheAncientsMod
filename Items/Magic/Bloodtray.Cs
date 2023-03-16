@@ -3,6 +3,10 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Projectiles;
+using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Projectiles.Mage;
 
 namespace RemnantOfTheAncientsMod.Items.Magic
 {
@@ -43,8 +47,26 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 				Item.useTime = 23;
 			}
 		}
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float numberProjectiles = 2;
+            float rotation = MathHelper.ToRadians(5);
 
-		public override void AddRecipes()
+            position += Vector2.Normalize(velocity) * 1f;
+			if (Main.rand.NextFloat() <= (float)1 / 10)
+			{
+				for (int i = 0; i < numberProjectiles; i++)
+				{
+					Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+					int p = Projectile.NewProjectile(source, position, perturbedSpeed * 10, ModContent.ProjectileType<CustomBolt>(), damage, knockback, player.whoAmI);
+					Main.projectile[p].stepSpeed = 10f;
+					Main.projectile[p].GetAlpha(Color.Red);
+				}
+			}
+            //Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
+            return true;
+        }
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.CrimtaneBar, 10)

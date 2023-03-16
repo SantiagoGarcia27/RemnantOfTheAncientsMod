@@ -1,15 +1,14 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Dusts;
 
-namespace RemnantOfTheAncientsMod.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles.Melee
 {
     public class DesertS : ModProjectile
     {
@@ -31,27 +30,37 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.ignoreWater = true;
             AIType = ProjectileID.TerraBeam;  
         }
-        public override void AI()           
-        {                                                       
-            Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;  
+        public override void AI()
+        {
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
+
+            if (Projectile.scale < 1)
+            {
+                Projectile.scale += 0.05f;
+            }
+            GenerateParticle();
+        }
+        public void GenerateParticle()
+        {
+            if (GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(4) != 0)
+            {
+                int dust5 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustType<QuemaduraA>());
+                Main.dust[dust5].velocity = Projectile.velocity;
+            }
         }
         public override void Kill(int timeLeft) 
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-            Vector2 usePos = Projectile.position;
-			Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(45f)).ToRotationVector2(); 
-			usePos += rotVector * 16f;
-			const int NUM_DUSTS = 20;
-			for (int i = 0; i < NUM_DUSTS; i++) {
-				Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);
-				dust.position = (dust.position + Projectile.Center) / 2f;
-				dust.velocity += rotVector * 2f;
-				dust.velocity *= 0.5f;
-				dust.noGravity = true;
-				usePos -= rotVector * 8f;
+
+            const int NUM_DUSTS = 20;
+            for (int i = 0; i < GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); i++)
+            {
+                int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GemTopaz, 0f, 0f, 100, default(Color), 3f);
+                Main.dust[p1].velocity = Projectile.velocity * 0f;
+                Main.dust[p1].noGravity = true;
             }
-       }
+        }
             
        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) 
        {

@@ -3,16 +3,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader.Config;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
-    public class DesertEdge : ModItem
+	public class DesertEdge : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

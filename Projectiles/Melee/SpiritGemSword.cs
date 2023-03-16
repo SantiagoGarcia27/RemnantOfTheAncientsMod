@@ -6,43 +6,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace RemnantOfTheAncientsMod.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles.Melee
 {
-    public class AmathystSpiritGemSword : SpiritGemSwordModel
+    public class SpiritGemSword : ModProjectile
     {
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/SpiritGemSword";
-        public override Color color => Color.Violet;
-    }
-    public class TopazSpiritGemSword : SpiritGemSwordModel
-    {
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/SpiritGemSword";
-        public override Color color => Color.Yellow;
-    }
-    public class SaphireSpiritGemSword : SpiritGemSwordModel
-    {
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/SpiritGemSword";
-        public override Color color => Color.Blue;
-    }
-    public class EmeraldSpiritGemSword : SpiritGemSwordModel
-    {
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/SpiritGemSword";
-        public override Color color => Color.Green;
-    }
-    public class RubySpiritGemSword : SpiritGemSwordModel
-    {
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/SpiritGemSword";
-        public override Color color => Color.Red;
-    }
-    public class DiamondSpiritGemSword : SpiritGemSwordModel
-    {
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/SpiritGemSword";
-        public override Color color => Color.White;
-    }
-
-    public abstract class SpiritGemSwordModel : ModProjectile
-    {
-        public abstract Color color { get; }
-        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/SpiritGemSword";
         public override void SetDefaults()
         {
             Projectile.width = 36;       //projectile width
@@ -128,7 +95,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
                 usePos -= rotVector * 8f;
             }
         }
-        public override Color? GetAlpha(Color lightColor) => color;
-
+        public override Color? GetAlpha(Color lightColor) => Color.White;
     }
 }

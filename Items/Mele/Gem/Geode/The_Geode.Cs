@@ -6,6 +6,8 @@ using RemnantOfTheAncientsMod.Items.Items;
 using Terraria;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 {
@@ -161,26 +163,20 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Vector2 perturbedSpeed = getPerturbatedSpeed(player, target, 0, "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<DiamondSpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y + 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SaphireSpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "-");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 7) * 16), target.position.Y - 10 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<EmeraldSpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, 0, "+");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + ((target.direction * 6) * 16), target.position.Y + 1 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<RubySpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * target.direction), "+");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -4) * 16), target.position.Y + 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
-            perturbedSpeed = getPerturbatedSpeed(player, target, MathHelper.ToRadians(50 * -target.direction), "+");
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * -7) * 16), target.position.Y - 6 * 16), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<AmathystSpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
+            SpawnSpiritSword(player, target, Color.White);
+            SpawnSpiritSword(player, target, Color.Red);
+            SpawnSpiritSword(player, target, Color.Blue);
+            SpawnSpiritSword(player, target, Color.Green);
+            SpawnSpiritSword(player, target, Color.Gold);
+            SpawnSpiritSword(player, target, Color.Purple);
         }
-        public Vector2 getPerturbatedSpeed(Player player, NPC target, float rotation, string signo)
+        public void SpawnSpiritSword(Player player,NPC target ,Color color)
         {
-            if (signo == "-")
-            {
-                return (player.position - target.position).RotatedBy(MathHelper.Lerp(-rotation, rotation, 1)) * .2f;
-            }
-            else return (target.position - player.position).RotatedBy(MathHelper.Lerp(-rotation, rotation, 1)) * .2f;
+            Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
+            Vector2 Velocity = Position.DirectionTo(target.position) * 0.1f;
+            var j = Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
+            j.GetAlpha(color);
+
         }
         public override void AddRecipes()
         {

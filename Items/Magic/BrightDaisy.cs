@@ -6,6 +6,7 @@ using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Projectiles.Mage;
 
 namespace RemnantOfTheAncientsMod.Items.Magic
 {

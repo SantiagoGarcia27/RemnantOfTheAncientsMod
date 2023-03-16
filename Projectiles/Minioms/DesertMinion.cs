@@ -7,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Dusts;
 using RemnantOfTheAncientsMod.Buffs.Minions;
+using static Humanizer.In;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {
@@ -18,12 +19,13 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 		{
 			DisplayName.SetDefault("Baby Desert Aniquilator Minion");
 			Main.projFrames[Projectile.type] = 6;
-			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+		
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-			//ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
-			//AIType = ProjectileID.BabySlime;
-		}
+            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+            //ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
+            //AIType = ProjectileID.BabySlime;
+        }
 
 		public sealed override void SetDefaults()
 		{
@@ -78,19 +80,20 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
             return true;
         }
         public override void AI()
-        {
+        {         
             Player player = Main.player[Projectile.owner];
             RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();
+            if (!CheckActive(player)) return;
             if (dust == 0f)
             {
                 //Projectile.spawnedPlayerMinionDamageValue = val.MinionDamage();
-               // Projectile.spawnedPlayerMinionProjectileDamageValue = Projectile.damage;
+                // Projectile.spawnedPlayerMinionProjectileDamageValue = Projectile.damage;
                 int num = 16;
                 for (int i = 0; i < num; i++)
                 {
                     Vector2 vector = Utils.RotatedBy(Vector2.Normalize(Projectile.velocity) * new Vector2(Projectile.width / 2f, Projectile.height) * 0.75f, (double)((i - (num / 2 - 1)) * ((float)Math.PI * 2f) / num), default) + Projectile.Center;
                     Vector2 vector2 = vector - Projectile.Center;
-                    int dust = Dust.NewDust(vector + vector2, 0, 0, DustType<QuemaduraA>() , vector2.X * 1f, vector2.Y * 1f, 100, default, 1.1f);
+                    int dust = Dust.NewDust(vector + vector2, 0, 0, DustType<QuemaduraA>(), vector2.X * 1f, vector2.Y * 1f, 100, default, 1.1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].noLight = true;
                     Main.dust[dust].velocity = vector2;
@@ -102,35 +105,23 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
                  int damage = (int)((float)Projectile.Calamity().spawnedPlayerMinionProjectileDamageValue / Projectile.Calamity().spawnedPlayerMinionDamageValue * val.MinionDamage());
                  Projectile.damage = damage;
              }*/
-            player.AddBuff(BuffType<DesertMinionBuff>(), 3600, true);
-            bool Minionlive = Projectile.type == ProjectileType<DesertMinion>();
-            
-            if (!Modplayer.DesertMinion)
-            {
-                Projectile.active = false;
-            }
-            else if (Minionlive)
-            {
-                //if (player.dead || !player.active)
-                //{
-                //    player.ClearBuff(BuffType<DesertMinionBuff>());
-                //}
-                //if (player.HasBuff(BuffType<DesertMinionBuff>()))
-                //{
-                //    Projectile.timeLeft = 2;
-                //}
-
-                if (player.dead)
-                {
-                    Modplayer.DesertMinion = false;
-                }
-                if (Modplayer.DesertMinion)
-                {
-                    Projectile.timeLeft = 2;
-                }
-            }
+            //   player.AddBuff(BuffType<DesertMinionBuff>(), 3600, true);  
         }
 
+        private bool CheckActive(Player owner)
+        {
+            if (owner.dead || !owner.active)
+            {
+                owner.ClearBuff(BuffType<DesertMinionBuff>());
+                return false;
+            }
+            if (owner.HasBuff(BuffType<DesertMinionBuff>()))
+            {
+                Projectile.timeLeft = 2;
+            }
+
+            return true;
+        }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             return false;

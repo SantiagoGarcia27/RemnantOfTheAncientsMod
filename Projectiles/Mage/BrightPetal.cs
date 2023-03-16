@@ -5,11 +5,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles.Mage
 {
     internal class BrightPetal : BasePetal
     {
-        public override string texture => "RemnantOfTheAncientsMod/Projectiles/BrightPetal";
+        public override string texture => "RemnantOfTheAncientsMod/Projectiles/Mage/BrightPetal";
         public override float light => 1f;
         public override int buffId => 0;
         public override Color color => Color.LightGoldenrodYellow;
@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
     }
     internal class BrightPetal_Fire : BasePetal
     {
-        public override string texture => "RemnantOfTheAncientsMod/Projectiles/BrightPetalB";
+        public override string texture => "RemnantOfTheAncientsMod/Projectiles/Mage/BrightPetalB";
         public override float light => 1.5f;
         public override int buffId => BuffID.OnFire;
 

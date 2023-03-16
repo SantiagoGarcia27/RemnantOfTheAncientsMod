@@ -7,6 +7,7 @@ using Mono.Cecil;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 {
@@ -44,7 +45,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 		{
             //Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + 5 * 16, target.position.Y), (player.position - target.position) * 0.25f, ProjectileID.TopazBolt, damage, Main.myPlayer, player.whoAmI);
             Vector2 perturbedSpeed = (player.position - target.position).RotatedBy(MathHelper.Lerp(-0, 0, 1)) * .2f;
-            Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<TopazSpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
+            var p = Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType<SpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
+            Main.projectile[p].GetAlpha(Color.Yellow);
         }
 
         public override void AddRecipes()

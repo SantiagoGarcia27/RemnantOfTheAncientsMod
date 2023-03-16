@@ -15,12 +15,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override void SetStaticDefaults() => base.SetDefaults();
         public override void AI()
         {
-            AnimateTexture();
-          /*  if (++Projectile.frame >= Main.projFrames[Projectile.type])
-            {
-                Projectile.frame = 0;
-            }*/
-
+            AnimateTexture();  
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
         }
@@ -43,11 +38,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override void AI()
         {
             AnimateTexture();
-           /* if (++Projectile.frame >= Main.projFrames[Projectile.type])
-            {
-                Projectile.frame = 0;
-            }*/
-
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
         }
@@ -71,13 +61,19 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override void AI()
         {
             AnimateTexture();
-           /* if (++Projectile.frame >= Main.projFrames[Projectile.type])
-            {
-                Projectile.frame = 0;
-            }*/
-
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+
+            Lighting.AddLight(Projectile.position, 1, 0, 0);
+            if(Projectile.scale < 1)
+            {
+                Projectile.scale += 0.05f;
+            }
+            if(Projectile.timeLeft < 570)
+            {
+                int dust5 = Dust.NewDust(Projectile.position, Projectile.width + 20, Projectile.height, DustID.Torch);
+                Main.dust[dust5].velocity = Projectile.velocity;
+            }
         }
 
         public void AnimateTexture()
@@ -99,13 +95,22 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override void AI()
         {
             AnimateTexture();
-           /* if (++Projectile.frame >= Main.projFrames[Projectile.type])
-            {
-                Projectile.frame = 0;
-            }*/
-
+           
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+
+
+            Lighting.AddLight(Projectile.position, 1,0,0);
+            if (Projectile.scale < 1)
+            {
+                Projectile.scale += 0.05f;
+            }
+            if (Projectile.timeLeft < 570)
+            {
+                int dust5 = Dust.NewDust(Projectile.position, Projectile.width + 20, Projectile.height, DustID.BlueTorch);
+                Main.dust[dust5].velocity = Projectile.velocity;
+                Main.dust[dust5].alpha -= 60; 
+            }
         }
 
         public void AnimateTexture()
@@ -152,6 +157,17 @@ namespace RemnantOfTheAncientsMod.Projectiles
             AIType = ProjectileID.TerraBeam;
             Main.projFrames[Projectile.type] = 4;
         }
-        
+        public override void Kill(int timeLeft)
+        {
+            short dust = Strong ? DustID.IceTorch : DustID.Torch;
+            const int NUM_DUSTS = 20;
+            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); i++)
+            {
+
+                int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, dust, 0f, 0f, 100, default(Color), 3f);
+                Main.dust[p1].velocity = Projectile.velocity * 0f;
+                Main.dust[p1].noGravity = true;
+            }
+        }
     }
 }

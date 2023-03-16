@@ -12,13 +12,13 @@ namespace RemnantOfTheAncientsMod
         public static Mod CalamityMod;
         public static Mod BossChecklist;
         public static bool DebuggMode;
-      
+
         public RemnantOfTheAncientsMod()
         {
-           
+
         }
 
-        
+
         public override void AddRecipes()
         {
             RecipeMaker.AddRecipes();
@@ -48,15 +48,20 @@ namespace RemnantOfTheAncientsMod
         public int ParticlleMetter(int i)
         {
             float LagLevel = ModContent.GetInstance<ConfigClient1>().LagReducer;
-            int n = 0;
-
-            if (LagLevel == 0) n = i;
-            else if (LagLevel == 1) n = i / 2;
-            else if (LagLevel == 2) n = i / 4;
-            else if (LagLevel == 3) n = 0;
-            return n;
+            switch (LagLevel)
+            {
+                case 0:
+                    return i;
+                case 1:
+                    return i / 2;
+                case 2:
+                    return i / 4;
+                case 3:
+                    return 0;
+                default:
+                    return i;
+            }
         }
-         
     }
 }
 
