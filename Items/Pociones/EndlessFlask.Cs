@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     }
     public class EndlessCurcedFlask : BasePotions
     {
-        public override Item ItemBase => new(BuffID.WeaponImbueCursedFlames);
+        public override Item ItemBase => new(ItemID.FlaskofCursedFlames);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Cursed Flames Flask");
@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     }
     public class EndlessVenomFlask : BasePotions
     {
-        public override Item ItemBase => new(BuffID.WeaponImbueVenom);
+        public override Item ItemBase => new(ItemID.FlaskofVenom);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Venom Flask");
@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     }
     public class EndlessPartyFlask : BasePotions
     {
-        public override Item ItemBase => new(BuffID.WeaponImbueConfetti);
+        public override Item ItemBase => new(ItemID.FlaskofParty);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Party Flask");
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     }
     public class EndlessPoisonFlask : BasePotions
     {
-        public override Item ItemBase => new(BuffID.WeaponImbuePoison);
+        public override Item ItemBase => new(ItemID.FlaskofPoison);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Poison Flask");
@@ -76,7 +76,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     }
     public class EndlessNaniteFlask : BasePotions
     {
-        public override Item ItemBase => new(BuffID.WeaponImbueNanites);
+        public override Item ItemBase => new(ItemID.FlaskofNanites);
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Nanites Flask");

@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Base.value;
-			Item.rare = Base.value;
+			Item.rare = Base.rare;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 		}

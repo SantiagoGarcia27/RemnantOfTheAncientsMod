@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Buffs
 		{
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.lightPet[Type] = true;
-			Main.vanityPet[Type] = true;
+			//Main.vanityPet[Type] = true;
 			DisplayName.SetDefault("Twitch");
 			Description.SetDefault("Thanks to -febo1apolo -eltonyhelou -Jormanas_gt"
 			+ "\n -LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094"
@@ -30,10 +30,9 @@ namespace RemnantOfTheAncientsMod.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.buffTime[buffIndex] = 18000;
-			int projType = ModContent.ProjectileType<TwitchPet>();
-			if (player.whoAmI == Main.myPlayer && player.ownedProjectileCounts[projType] <= 0)
+			if (player.whoAmI == Main.myPlayer && player.ownedProjectileCounts[ProjectileType<TwitchPet>()] <= 0)
 			{
-				Projectile.NewProjectile(player.GetSource_Buff(buffIndex),player.position.X + (float)(player.width / 2), player.position.Y + (float)(player.height / 2), 0f, 0f, ProjectileType<TwitchPet>(), 0, 0f, player.whoAmI, 0f, 0f);
+				Projectile.NewProjectile(player.GetSource_Buff(buffIndex),player.position.X + player.width / 2, player.position.Y + player.height / 2, 0f, 0f, ProjectileType<TwitchPet>(), 0, 0f, player.whoAmI, 0f, 0f);
 			}
 		}
 	}

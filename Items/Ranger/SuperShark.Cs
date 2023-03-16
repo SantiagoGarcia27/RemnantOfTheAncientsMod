@@ -54,10 +54,8 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		}
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(5));
-			velocity.X = perturbedSpeed.X;
-			velocity.Y = perturbedSpeed.Y;
-		}
+            velocity = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(5));
+        }
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-20, 0);

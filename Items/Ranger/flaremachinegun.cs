@@ -40,10 +40,8 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			Vector2 perturbedSpeed = new Vector2(velocity.X,velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));
-			velocity.X = perturbedSpeed.X;
-			velocity.Y = perturbedSpeed.Y;
-			return true;
+            velocity = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));
+            return true;
 		}
 		public override Vector2? HoldoutOffset()
 		{

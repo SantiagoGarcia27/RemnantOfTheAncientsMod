@@ -61,10 +61,21 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 					int p = Projectile.NewProjectile(source, position, perturbedSpeed * 10, ModContent.ProjectileType<CrimsomBolt>(), damage, knockback, player.whoAmI);
 					Main.projectile[p].stepSpeed = 10f;
 					Main.projectile[p].GetAlpha(Color.Red);
-					 
-					
 				}
-			}
+                const int NUM_DUSTS = 150;
+                for (int j = 0; j < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); j++)
+                {
+                    Vector2 Position = Main.rand.NextVector2CircularEdge(player.width + 100, player.height + 100) + player.position;
+                    Vector2 Velocity = Position.DirectionTo(position) * 1f;
+
+                    var a = Dust.NewDustPerfect(Position, DustID.CrimsonTorch, Velocity, 100, Color.Red, 3f);
+                    a.noGravity = true;
+                    var m = Dust.NewDustPerfect(Main.rand.NextVector2FromRectangle(new Rectangle(0,-150,0, player.height + 230)) + player.position, DustID.CrimsonTorch, Velocity, 100, Color.Red, 3f);
+                    m.noGravity = true;
+                    var k = Dust.NewDustPerfect(Main.rand.NextVector2FromRectangle(new Rectangle(-110, 0, player.width + 200, 0)) + player.position, DustID.CrimsonTorch, Velocity, 100, Color.Red, 3f);
+                    k.noGravity = true;
+                }
+            }
             //Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
             return true;
         }

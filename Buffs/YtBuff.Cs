@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Buffs
 			// Description.SetDefault("\"Let this pet be an example to you!\"");
 			Main.buffNoTimeDisplay[Type] = true;
             Main.lightPet[Type] = true;
-            Main.vanityPet[Type] = true;
+           // Main.vanityPet[Type] = true;
 			 DisplayName.SetDefault("Yt");
 			 Description.SetDefault("...");
 		}

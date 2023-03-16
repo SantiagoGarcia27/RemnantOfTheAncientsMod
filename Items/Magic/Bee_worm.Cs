@@ -43,7 +43,11 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 			if (Main.rand.NextFloat() <= (float)1 / 2) Projectile.NewProjectile(source, position, velocity, ProjectileID.Wasp, 100, 1, player.whoAmI);
 			return true;
 		}
-		public override void AddRecipes()
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            velocity = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));
+        }
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.BeeGun, 2)

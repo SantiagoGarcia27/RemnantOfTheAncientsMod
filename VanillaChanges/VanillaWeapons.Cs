@@ -8,11 +8,13 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 {
     public class VanillaWeapons : GlobalItem
 	{
-		public override void SetDefaults(Item item)
+      
+        public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigClient1>().VanillaWeaponsChangesConf;
 
-			if (WeaponConf) {
+			if (WeaponConf) 
+			{
 				if (item.type == ItemID.DaedalusStormbow)
 				{
 					item.damage = 35;

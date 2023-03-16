@@ -11,21 +11,21 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
 		public override void SetStaticDefaults() 
 		{	
 			Main.projFrames[Projectile.type] = 5;
-            Main.projPet[Projectile.type] = true;
+           // Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
             ProjectileID.Sets.LightPet[Projectile.type] = true;
         }
 
 		public override void SetDefaults() {
-			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-			AIType = ProjectileID.ZephyrFish;
+			Projectile.CloneDefaults(ProjectileID.SuspiciousTentacle);
+			AIType = ProjectileID.SuspiciousTentacle;
 			Projectile.light = 1.25f;
 			Projectile.scale = 1.25f;
 		}
 
 		public override bool PreAI() {
 			Player player = Main.player[Projectile.owner];
-			player.zephyrfish = false; 
+			player.suspiciouslookingTentacle = false; 
 			return true;
 		}
 
@@ -36,6 +36,8 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
             {
                 Projectile.timeLeft = 2;
             }
+            Projectile.alpha = 100;
+			Projectile.stepSpeed= 100; 
         }
 	}
 }

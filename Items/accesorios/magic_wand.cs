@@ -14,9 +14,12 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Daguette magique");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Vara Mágica");
 
-            Tooltip.SetDefault("Increases magic damage by 12%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 12%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 12%");
+            Tooltip.SetDefault("15% Increased magic damage"
+                + "\nIncreases critical strike chance by 10");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 15%"
+                + "\nAugmente les chances de coup critique de 10");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 15%"
+                + "\nAumenta la provabilidad de critico en 10");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -29,8 +32,9 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetDamage(DamageClass.Magic) *= 1.12f;
+        { 
+            player.GetDamage(DamageClass.Magic) *= 1.15f;
+            player.GetCritChance(DamageClass.Magic) += 10;
         }
         public override void AddRecipes()  
         {

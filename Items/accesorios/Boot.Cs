@@ -16,6 +16,9 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             DisplayName.SetDefault("Boot");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Botte");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bota");
+            Tooltip.SetDefault("Increases fall acceleration");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente l'accélération de la chute");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de caída");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

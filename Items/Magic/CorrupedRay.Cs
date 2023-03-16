@@ -6,6 +6,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles.Mage;
 using Terraria.DataStructures;
+using System;
 
 namespace RemnantOfTheAncientsMod.Items.Magic
 {
@@ -48,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float numberProjectiles = 2;
+            float numberProjectiles = 3;
             float rotation = MathHelper.ToRadians(5);
 
             position += Vector2.Normalize(velocity) * 1f;
@@ -60,6 +61,19 @@ namespace RemnantOfTheAncientsMod.Items.Magic
                     int p = Projectile.NewProjectile(source, position, perturbedSpeed * 10, ModContent.ProjectileType<CorruptBolt>(), damage, knockback, player.whoAmI);
                     Main.projectile[p].stepSpeed = 7f;
                     Main.projectile[p].GetAlpha(Color.Violet);
+                }
+                const int NUM_DUSTS = 150;
+                for (int j = 0; j < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); j++)
+                {
+                    Vector2 Position = Main.rand.NextVector2CircularEdge(player.width + 100, player.height + 100) + player.position;
+                    Vector2 Velocity = Position.DirectionTo(position) * 1f;
+
+                    var a = Dust.NewDustPerfect(Position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
+                    a.noGravity = true;
+                    var m = Dust.NewDustPerfect(Main.rand.NextVector2Square(player.width + 200, player.height + 200) + player.position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
+                    m.noGravity = true;
+                    var o = Dust.NewDustPerfect(Main.rand.NextVector2Square(player.width - 200, player.height - 200) + player.position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
+                    o.noGravity = true;
                 }
             }
             //Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);

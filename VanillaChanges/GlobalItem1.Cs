@@ -19,6 +19,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool SizedByReaper;
         public bool ReaperAccesories;
         public bool MusicBox;
+        
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine val = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.Mod == "Terraria");

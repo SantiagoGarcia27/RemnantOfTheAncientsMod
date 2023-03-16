@@ -57,7 +57,10 @@ namespace RemnantOfTheAncientsMod.Projectiles.Mage
             if (Projectile.scale < 1)
             {
                 Projectile.scale += 0.05f;
-            }   
+            }
+
+
+           
         }
         public void GenerateParticle(Color color)
         {
