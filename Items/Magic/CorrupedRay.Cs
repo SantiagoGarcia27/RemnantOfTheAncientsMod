@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                    int p = Projectile.NewProjectile(source, position, perturbedSpeed * 10, ModContent.ProjectileType<CustomBolt>(), damage, knockback, player.whoAmI);
+                    int p = Projectile.NewProjectile(source, position, perturbedSpeed * 10, ModContent.ProjectileType<CorruptBolt>(), damage, knockback, player.whoAmI);
                     Main.projectile[p].stepSpeed = 7f;
                     Main.projectile[p].GetAlpha(Color.Violet);
                 }

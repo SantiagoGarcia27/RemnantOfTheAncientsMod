@@ -7,12 +7,24 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Mage
 {
-    public class CustomBolt : ModProjectile
+    internal class CrimsomBolt : BaseBolt
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("CustomBolt");
-        }
+        public override Color color => Color.Red;
+        public override int ProjId => ProjectileID.RubyBolt;
+        public override int DustId => DustID.GemRuby;
+    }
+    internal class CorruptBolt : BaseBolt
+    {
+        public override Color color => Color.Violet;
+        public override int ProjId => ProjectileID.AmethystBolt;
+        public override int DustId => DustID.GemAmethyst;
+    }
+    public abstract class BaseBolt : ModProjectile
+    {
+        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Mage/CustomBolt";
+        public abstract int ProjId { get; }
+        public abstract int DustId { get; }
+        public abstract Color color { get; }
         public override void SetDefaults()
         {
             Projectile.height = 8;
@@ -24,13 +36,13 @@ namespace RemnantOfTheAncientsMod.Projectiles.Mage
             Projectile.light = 1f;
             Projectile.timeLeft = 120;
             Projectile.penetrate = -1;
-            AIType = ProjectileID.RubyBolt;
+            AIType = ProjId;
         }
         public override void AI()
         {
             float maxDetectRadius = 400f; // The maximum radius at which a projectile can detect a target
             float projSpeed = 5f; // The speed at which the projectile moves towards the target
-            GenerateParticle();
+            GenerateParticle(color);
             // Trying to find NPC closest to the projectile
             NPC closestNPC = FindClosestNPC(maxDetectRadius);
             if (closestNPC == null)
@@ -45,21 +57,19 @@ namespace RemnantOfTheAncientsMod.Projectiles.Mage
             if (Projectile.scale < 1)
             {
                 Projectile.scale += 0.05f;
-            }
-           
-            
+            }   
         }
-        public void GenerateParticle()
+        public void GenerateParticle(Color color)
         {
             if (ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(4) != 0)
             {
-                int dust5 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GemRuby, 0f, 0f, 100, Color.Red, 3f);
+                int dust5 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustId, 0f, 0f, 100, color, 3f);
                 Main.dust[dust5].velocity = Projectile.velocity;
 
                 const int NUM_DUSTS = 1;//50
                 for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); i++)
                 {
-                    int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GemRuby, 0f, 0f, 100, Color.Red, 3f);
+                    int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustId, 0f, 0f, 100, color, 3f);
                     Main.dust[p1].velocity = Projectile.velocity;
                     Main.dust[p1].noGravity = true;
                 }
@@ -88,6 +98,6 @@ namespace RemnantOfTheAncientsMod.Projectiles.Mage
             return closestNPC;
         }
 
-        public override Color? GetAlpha(Color lightColor) => Color.Red;
+        public override Color? GetAlpha(Color lightColor) => color;
     }
 }
