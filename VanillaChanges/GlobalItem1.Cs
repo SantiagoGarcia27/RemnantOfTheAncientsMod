@@ -1,10 +1,12 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
+using RemnantOfTheAncientsMod.Items.Items;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.UI;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
@@ -19,7 +21,6 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool SizedByReaper;
         public bool ReaperAccesories;
         public bool MusicBox;
-        
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine val = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.Mod == "Terraria");
@@ -111,5 +112,6 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             };
             tooltips.Add(item2);
         }
+       
     }
 }

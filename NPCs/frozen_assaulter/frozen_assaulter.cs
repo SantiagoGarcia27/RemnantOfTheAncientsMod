@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         public override void SetDefaults()
         {
             NPC.aiStyle = 5;  
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500, true);   
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500);   
             NPC.damage = (int)NpcChanges1.ExpertDamageScale(90); 
             NPC.defense = 15;    
             NPC.knockBackResist = 0f;

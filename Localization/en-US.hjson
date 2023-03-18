@@ -12,6 +12,9 @@ Mods: {
 				DisplayName: Combat infusion
 				Description: Definitive offensive buff
 			}
+			Currencies: {
+			RemnantCurrency: example items
+			}
 
 			Exploration_infusion.DisplayName: Exploration infusion
 			Fishing_Infusion.DisplayName: Fishing infusion
@@ -159,7 +162,10 @@ Mods: {
 					'''
 			}
 
-			Boot.DisplayName: Boot
+			Boot:{
+				DisplayName: Boot
+				Tooltip:Increases fall acceleration
+			}
 
 			Exotic_Amulet: {
 				DisplayName: Exotic Amulet
@@ -439,8 +445,8 @@ Mods: {
 				Tooltip:
 					'''
 					Increases your max number of minions by 2
-					 Increases all damage by 8% and life regeneration while in desert
-					 Your max life increases by 50 points while in sandstorms
+					Increases all damage by 8% and life regeneration while in desert
+					Your max life increases by 50 points while in sandstorms
 					'''
 			}
 
@@ -449,7 +455,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases magic damage by 10%
-					 Movement speed increases and you become immune to frozen and chilled debuffs while in snow
+					Movement speed increases and you become immune to frozen and chilled debuffs while in snow
 					'''
 			}
 
@@ -458,8 +464,8 @@ Mods: {
 				Tooltip:
 					'''
 					Increases melee damage by 10%
-					 Inflict Hellfire on attack
-					 Movement speed increases and you become immune to fire blocks and On Fire debuffs
+					Inflict Hellfire on attack
+					Movement speed increases and you become immune to fire blocks and On Fire debuffs
 					'''
 			}
 
@@ -992,7 +998,7 @@ Mods: {
 
 			EmpressOfLightScroll: {
 				DisplayName: Royal Scroll
-				Tooltip: increases movement speed and damage by 50% but decrease life and defense by 50%
+				Tooltip: Increases movement speed and damage by 50% but decrease life and defense by 50%
 			}
 
 			EyeOfCthulhuScroll: {
@@ -1002,17 +1008,17 @@ Mods: {
 
 			FrozenAssaulterScroll: {
 				DisplayName: Royal Scroll
-				Tooltip: increases movement speed by 50% and minion damage by 5%
+				Tooltip: Increases movement speed by 50% and minion damage by 5%
 			}
 
 			InfernalTyrantScroll: {
 				DisplayName: Royal Scroll
-				Tooltip: increases movement speed by 50% and minion damage by 5%
+				Tooltip: Increases movement speed by 50% and minion damage by 5%
 			}
 
 			KingSlimeScroll: {
 				DisplayName: Royal Scroll
-				Tooltip: increases movement speed by 50% and minion damage by 5%
+				Tooltip: Increases movement speed by 50% and minion damage by 5%
 			}
 
 			QueenBeeScroll: {
@@ -1020,8 +1026,8 @@ Mods: {
 				Tooltip:
 					'''
 					You gain the honey effect, your defense increases by 5
-					 Releases bees when damaged and increases the strength of friendly bees
-					 Increases armor penetration by 15”
+					Releases bees when damaged and increases the strength of friendly bees
+					Increases armor penetration by 15”
 					'''
 			}
 
@@ -1035,8 +1041,8 @@ Mods: {
 				Tooltip:
 					'''
 					You have a super sense
-					 Grants immunity to most debuffs
-					 Increases throwing damage by 20% and 50% chance to not consume ammo
+					Grants immunity to most debuffs
+					Increases throwing damage by 20% and 50% chance to not consume ammo
 					'''
 			}
 

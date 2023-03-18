@@ -2,6 +2,7 @@ using RemnantOfTheAncientsMod.World;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
 {
@@ -17,78 +18,35 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         }
         public static double ExpertDamageScale(double i)
         {
+            double scale = 1.0;
             if (Reaper.ReaperMode)
             {
-                if (Main.masterMode)
+                switch (Main.expertMode, Main.masterMode)
                 {
-                    i = DamageScale(i, 1.7, true);
-                }
-                else if (Main.expertMode)
-                {
-                    i = DamageScale(i, 1.5, true);
-                }  
-                else
-                {
-                    i = DamageScale(i, 1, true);
+                    case (true, true):
+                        scale = 1.7;
+                        break;
+                    case (true, false):
+                        scale = 1.5;
+                        break;
                 }
             }
-            return i;
+            return i * scale;
         }
-       
-        public static double ExpertLifeScale(double i, bool IsBoss)
+        public static double ExpertLifeScale(double i)
         {
+            double scale;
             if (Reaper.ReaperMode)
             {
-                if (Main.masterMode)
-                {
-                    LifeScale(i, 4, IsBoss);
-                }
-                else if (Main.expertMode)
-                {
-                    LifeScale(i, 3, IsBoss);
-                }
-                else
-                {
-                    LifeScale(i, 2, IsBoss);
-                }
+                scale = Main.masterMode ? 4 : Main.expertMode ? 3 : 2;
             }
             else
             {
-                if (Main.masterMode)
-                {
-                    LifeScale(i, 2, IsBoss);
-                }
-                else if (Main.expertMode)
-                {
-                    LifeScale(i, 1.5, IsBoss);
-                }
-                else
-                {
-                    LifeScale(i, 1, IsBoss);
-                }
+                scale = Main.masterMode ? 2 : Main.expertMode ? 1.5 : 1;
             }
-            return i;
+            return i *= scale;
         }
-        public static double LifeScale(double i, double multiplier, bool IsBoss)
-        {
-            if (IsBoss)
-            {
-                i *= multiplier;
-            }
-            else
-            {
-                i *= multiplier;
-            }
-            return i;
-        }
-
-        public static double DamageScale(double i, double multiplier, bool IsBoss)
-        {
-            double a = i* multiplier;
-            return a;
-        }
-
-        public static int DefenseCalculator(int defensa, string npc) => defensa + 6;
+        public static int DefenseCalculator(int defensa) => defensa + 6;
         public static int DamageCalculator(double damagebonus) => (int)(28 * damagebonus);
 
     }

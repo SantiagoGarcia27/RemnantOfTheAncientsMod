@@ -1,7 +1,5 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.ModLoader;
 using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Items.Pociones

@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         }
         public void GenerateParticle()
         {
-            if (GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(4) != 0)
+            if (GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(4) != 0)
             {
                 int dust5 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustType<QuemaduraA>());
                 Main.dust[dust5].velocity = Projectile.velocity;
@@ -52,9 +52,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         public override void Kill(int timeLeft) 
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-
-            const int NUM_DUSTS = 20;
-            for (int i = 0; i < GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); i++)
+            for (int i = 0; i < GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(20); i++)
             {
                 int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GemTopaz, 0f, 0f, 100, default(Color), 3f);
                 Main.dust[p1].velocity = Projectile.velocity * 0f;

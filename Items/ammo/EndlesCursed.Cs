@@ -15,27 +15,27 @@ namespace RemnantOfTheAncientsMod.Items.ammo
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de malditas eterna");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-
-		public override void SetDefaults()
+        Item Base = new Item(ItemID.CursedBullet);
+        public override void SetDefaults()
 		{
-			Item.damage = 19;
+			Item.damage = Base.damage;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 8;
 			Item.height = 8;
 			Item.maxStack = 1;
 			Item.consumable = false;
-			Item.knockBack = 3.5f;
-			Item.value = 10;
-			Item.rare = ItemRarityID.LightRed;
-			Item.shoot = ProjectileID.CursedBullet;
-			Item.shootSpeed = 16f;
-			Item.ammo = AmmoID.Bullet;
+			Item.knockBack = Base.knockBack;
+			Item.value = Base.value + Item.buyPrice(0,1,0,0);
+			Item.rare = Base.rare;
+			Item.shoot = Base.shoot;
+			Item.shootSpeed = Base.shootSpeed;
+			Item.ammo = Base.ammo;
 		}
 
         public override void AddRecipes()
 		{
 			CreateRecipe()
-		    .AddIngredient(ItemID.CursedBullet,3996)
+		    .AddIngredient(Base.type,3996)
 			.AddTile(TileID.CrystalBall)
 			.Register();
 		}

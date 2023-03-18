@@ -63,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
                     Main.projectile[p].GetAlpha(Color.Violet);
                 }
                 const int NUM_DUSTS = 150;
-                for (int j = 0; j < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); j++)
+                for (int j = 0; j < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); j++)
                 {
                     Vector2 Position = Main.rand.NextVector2CircularEdge(player.width + 100, player.height + 100) + player.position;
                     Vector2 Velocity = Position.DirectionTo(position) * 1f;

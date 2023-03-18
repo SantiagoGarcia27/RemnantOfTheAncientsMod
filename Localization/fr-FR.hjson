@@ -159,7 +159,10 @@ Mods: {
 					'''
 			}
 
-			Boot.DisplayName: Botte
+			Boot:{
+				DisplayName: Botte
+				Tooltip:Augmente l'accélération de la chute
+			}
 
 			Exotic_Amulet: {
 				DisplayName: Amulette Exotique
@@ -1115,7 +1118,7 @@ Mods: {
 
 			PlayerStatViewer: {
 				DisplayName: Compteur de statistiques du joueur
-				/* Tooltip: Shows most of the player's stats */
+			    Tooltip: Shows most of the player's stats 
 			}
 
 			RainToken: {
@@ -1124,8 +1127,8 @@ Mods: {
 			}
 
 			SandstormToken: {
-				DisplayName: Jeton de nuit
-				Tooltip: "Invoque la lune "
+				DisplayName: Jeton de tempête de sable
+				Tooltip: "Invoque la tempête de sable"
 			}
 
 			SunManipulator: {
@@ -1139,18 +1142,18 @@ Mods: {
 			}
 
 			desertBag: {
-				/* DisplayName: Treasure Bag */
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				 DisplayName: Treasure Bag 
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}" 
 			}
 
 			frostBag: {
-				/* DisplayName: Treasure Bag */
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				 DisplayName: Treasure Bag 
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}" 
 			}
 
 			infernalBag: {
-				/* DisplayName: Treasure Bag */
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				 DisplayName: Treasure Bag 
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}" 
 			}
 		}
 

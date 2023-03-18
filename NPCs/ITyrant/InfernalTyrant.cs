@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             NPC.width = 30;//105
             NPC.height = 30;//103
             NPC.boss = true;
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(30000, true);
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(30000);
             NPC.damage = (int)NpcChanges1.ExpertDamageScale(300);
             NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
             NPC.scale = 2.50f;

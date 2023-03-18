@@ -41,13 +41,12 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         public override void SetDefaults()
         {
             NPC.aiStyle = 15;  //15 is the king AI
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(3500,true);  
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(3500);  
             NPC.damage = (int)NpcChanges1.ExpertDamageScale(30);  
             NPC.defense = 10;    
             NPC.knockBackResist = 0f;
             NPC.width = 100;
             NPC.height = 100;
-            AnimationType = NPCID.BlueSlime;   
             NPC.value = Item.buyPrice(0, 2, 75, 45);
             NPC.npcSlots = 30f;
             NPC.boss = true;  
@@ -59,6 +58,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             NPC.buffImmune[24] = true;
             Music = MusicLoader.GetMusicSlot(Mod,"Sounds/Music/Desert_Aniquilator");
             NPC.netAlways = true;
+            AnimationType = NPCID.BlueSlime;
         }
 
         private int attackCounter;
@@ -78,85 +78,151 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         }
         public override void AI()
         {
-            Reaper reaper = new Reaper();
+            //Player player = Main.player[NPC.target];
+
+            //float distance = NPC.Distance(Main.player[NPC.target].Center);
+
+            //NPC.ai[0] = 10;
+            //NPC.ai[1]++;
+            //if (NPC.ai[1] > 800) NPC.ai[1] = 0;
+            //NPC.ai[2]++;
+
+
+            //if (distance >= 100 * 16 && !player.dead) DesertTp();
+
+            //Player target = Main.player[NPC.target];
+
+            //if (target.dead)
+            //{
+            //    NPC.EncourageDespawn(7);
+            //    DespawnBoss();
+            //    return;
+            //}
+            //if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            //{
+            //    NPC.TargetClosest(true);
+            //}
+            //setCurrentPhase(NPC);
+            //if (player.ZoneDesert)
+            //{
+            //     NormalIA(target);
+            //}
+            //else
+            //{
+            //    RageIA(target);
+            //}
+
+
             Player player = Main.player[NPC.target];
 
-            float distance = NPC.Distance(Main.player[NPC.target].Center);
-
             NPC.ai[0] = 10;
-            NPC.ai[1]++;
-            if (NPC.ai[1] > 800) NPC.ai[1] = 0;
+            NPC.ai[1] = (NPC.ai[1] + 1) % 800;
             NPC.ai[2]++;
 
-
-                if (distance >= 100 * 16 && !player.dead) DesertTp();
-            
-            
-
-
-            bool fase2 = NPC.life == NPC.lifeMax / 2;
-            bool fase3 = NPC.life == NPC.lifeMax / 3;
-
-
-            Player target = Main.player[NPC.target];
-
-            if (target.dead)
+            if (NPC.Distance(player.Center) >= 100 * 16 && !player.dead)
             {
-                NPC.EncourageDespawn(7);
-                DespawnBoss();
-                return;
+                DesertTp();
             }
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+
+            if (player.dead || NPC.target < 0 || NPC.target == 255 || !player.active)
             {
                 NPC.TargetClosest(true);
             }
+
             setCurrentPhase(NPC);
+
             if (player.ZoneDesert)
             {
-                 NormalIA(target);
+                NormalIA(player);
             }
             else
             {
-                RageIA(target);
+                RageIA(player);
+            }
+
+            if (player.dead)
+            {
+                NPC.EncourageDespawn(7);
+                DespawnBoss();
             }
         }
 
         private void NormalIA(Player target)
         {
 
-            if (attackCounter >= 0) 
+            if (attackCounter >= 0)
             {
                 setAttackCounter(1000);
             }
-                        
+
             if (!Reaper.ReaperMode)
             {
-                switch (summonCounter)
+                //switch (summonCounter)
+                //{
+                //    case 600:
+                //        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                //        break;
+                //    case 400:
+                //        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                //        break;
+                //    case 200:
+                //        if(Main.expertMode) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
+                //        break;
+                //    case 100:
+                //        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
+                //        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+                //        break;
+                //    case 10:
+                //        if (currentPhase >= 2) 
+                //            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+                //            break;
+                //}
+                //if (Main.expertMode)
+                //{                  
+                //    switch (attackCounter)
+                //    {
+                //        case 600:
+                //            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(),target,12f, 0.5f, 0.5f);
+                //            break;
+                //        case 590:
+                //            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
+                //            break;
+                //        case 580:
+                //            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
+                //            break;
+                //        case 530:
+                //            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, 0.5f);
+                //            break;
+                //        case 500:
+                //            DesertTp();
+                //            break;
+                //    }
+                //}        
+                if (summonCounter == 600 || summonCounter == 400)
                 {
-                    case 600:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 400:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 200:
-                        if(Main.expertMode) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                        break;
-                    case 100:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                        break;
-                    case 10:
-                        if (currentPhase >= 2) 
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
-                            break;
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
                 }
+                else if (summonCounter == 200 && Main.expertMode)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
+                }
+                else if (summonCounter == 100)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+                }
+                else if (summonCounter == 10 && currentPhase >= 2)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+                }
+
                 if (Main.expertMode)
-                {                  
+                {
+
                     switch (attackCounter)
                     {
                         case 600:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(),target,12f, 0.5f, 0.5f);
+                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, 0.5f);
                             break;
                         case 590:
                             ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
@@ -171,26 +237,44 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
                             DesertTp();
                             break;
                     }
-                }        
+                }
             }
             else
             {
-                switch (summonCounter)
+                //switch (summonCounter)
+                //{
+                //case 500:
+                //    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                //    break;
+                //case 400:
+                //    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                //    break;
+                //case 200:
+                //    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
+                //    break;
+                //case 100:
+                //    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
+                //    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+                //    break;
+
+                if (summonCounter == 500 || summonCounter == 400)
                 {
-                    case 500:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 400:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 200:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                        break;
-                    case 100:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                        break;
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
                 }
+                else if (summonCounter == 200)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
+                }
+                else if (summonCounter == 100)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+                }
+                else if (summonCounter == 10 && currentPhase >= 2)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+                }
+                // }
                 if (Main.expertMode)
                 {
                     switch (attackCounter)

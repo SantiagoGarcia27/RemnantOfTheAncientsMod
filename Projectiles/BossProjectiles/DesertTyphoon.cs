@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
         }
         public void GenerateParticle()
         {
-            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(5); i++)
+            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(5); i++)
             {
                 if (Projectile.alpha <= 100)
                 {
@@ -136,7 +136,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
         }
         public void GenerateParticle()
         {
-            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(5); i++)
+            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(5); i++)
             {
                 if (Projectile.alpha <= 100)
                 {

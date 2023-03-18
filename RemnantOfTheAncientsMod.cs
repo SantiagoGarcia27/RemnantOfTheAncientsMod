@@ -1,9 +1,8 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.NPCs.DAniquilator;
-using System.Collections.Generic;
-using RemnantOfTheAncientsMod.Items.Pociones;
+using RemnantOfTheAncientsMod.Items.Items;
+using System;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -12,7 +11,7 @@ namespace RemnantOfTheAncientsMod
         public static Mod CalamityMod;
         public static Mod BossChecklist;
         public static bool DebuggMode;
-
+        public static int CustomCurrencyId;
         public RemnantOfTheAncientsMod()
         {
 
@@ -30,6 +29,16 @@ namespace RemnantOfTheAncientsMod
             else CalamityMod = null;
             if (ModLoader.HasMod("BossChecklist")) BossChecklist = ModLoader.GetMod("BossChecklist");
             else BossChecklist = null;
+           // CustomCurrencyId = CustomCurrencyManager.RegisterCurrency(new Currencies.RemnantCurrency(ModContent.ItemType<Terracoin>(), 999L, "Mods.RemnantOfTheAncientsMod.Currencies.ExampleCustomCurrency"));
+
+
+         
+            
+            if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
+            {
+                ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
+     
+            }
         }
         public override void Unload()
         {
@@ -45,23 +54,16 @@ namespace RemnantOfTheAncientsMod
         }
 
 
-        public int ParticlleMetter(int i)
+        public int ParticleMeter(int i)
         {
-            float LagLevel = ModContent.GetInstance<ConfigClient1>().LagReducer;
-            switch (LagLevel)
+            float lagLevel = ModContent.GetInstance<ConfigClient1>().LagReducer;
+
+            if (lagLevel == 3f)
             {
-                case 0:
-                    return i;
-                case 1:
-                    return i / 2;
-                case 2:
-                    return i / 4;
-                case 3:
-                    return 0;
-                default:
-                    return i;
+                return 0;
             }
+
+            return (int)(i / Math.Pow(2, (int)lagLevel));
         }
     }
 }
-

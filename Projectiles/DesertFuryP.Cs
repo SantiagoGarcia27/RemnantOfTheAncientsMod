@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			// It is however recommended to define it outside method scope if used elswhere as well
 			// They are useful to make numbers that don't change more descriptive
 			RemnantOfTheAncientsMod RemnantOfTheAncientsMod = ModContent.GetInstance<RemnantOfTheAncientsMod>();
-			int NUM_DUSTS = RemnantOfTheAncientsMod.ParticlleMetter(20);
+			int NUM_DUSTS = RemnantOfTheAncientsMod.ParticleMeter(20);
 			for (int i = 0; i < NUM_DUSTS; i++) {
 				// Create a new dust
 				Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);

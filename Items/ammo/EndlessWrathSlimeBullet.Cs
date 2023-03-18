@@ -2,21 +2,22 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-    public class EndlessBone : ModItem
+    public class EndlessWrathSlimeBullet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Endless Bone Arrow Quiver");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Carquois de flèche en os sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Carcaj de flechas de hueso eterno");
+			DisplayName.SetDefault("Endless Angry Slime Pouch");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de Slime en Colère Sans Fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Saco Infinito de Bala de Slime Furioso");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
-        Item Base = new Item(ItemID.BoneArrow);
+        Item Base = new Item(ModContent.ItemType<WrathSlimeBullet>());
         public override void SetDefaults()
         {
             Item.damage = Base.damage;

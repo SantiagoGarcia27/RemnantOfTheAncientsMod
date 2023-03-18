@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             usePos += rotVector * 16f;
 
             RemnantOfTheAncientsMod r = ModContent.GetInstance<RemnantOfTheAncientsMod>();
-            int NUM_DUSTS = r.ParticlleMetter(20);
+            int NUM_DUSTS = r.ParticleMeter(20);
 
             for (int i = 0; i < NUM_DUSTS; i++)
             {
@@ -113,9 +113,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             usePos += rotVector * 16f;
 
             RemnantOfTheAncientsMod r = ModContent.GetInstance<RemnantOfTheAncientsMod>();
-            int NUM_DUSTS = r.ParticlleMetter(20);
-
-            for (int i = 0; i < NUM_DUSTS; i++)
+            for (int i = 0; i < r.ParticleMeter(20); i++)
             {
                 Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, DustID.Tin);
                 dust.position = (dust.position + Projectile.Center) / 2f;

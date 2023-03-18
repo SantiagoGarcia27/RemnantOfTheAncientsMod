@@ -16,28 +16,29 @@ namespace RemnantOfTheAncientsMod.Items.ammo
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
-		public override void SetDefaults()
-		{
-			Item.damage = 25;
-			Item.DamageType = DamageClass.Ranged;
-			Item.width = 8;
-			Item.height = 8;
-			Item.maxStack = 1;
-			Item.consumable = false;
-			Item.knockBack = 3.5f;
-			Item.value = 10;
-			Item.rare = ItemRarityID.Lime;
-			Item.shoot = ProjectileID.CopperCoin;
-			Item.shootSpeed = 16f;
-			Item.ammo = AmmoID.Coin;
-		}
+        Item Base = new Item(ItemID.CopperCoin);
+        public override void SetDefaults()
+        {
+            Item.damage = Base.damage;
+            Item.DamageType = DamageClass.Ranged;
+            Item.width = 8;
+            Item.height = 8;
+            Item.maxStack = 1;
+            Item.consumable = false;
+            Item.knockBack = Base.knockBack;
+            Item.value = Base.value + Item.buyPrice(0, 1, 0, 0);
+            Item.rare = Base.rare;
+            Item.shoot = Base.shoot;
+            Item.shootSpeed = Base.shootSpeed;
+            Item.ammo = Base.ammo;
+        }
 
         public override void AddRecipes()
-		{
-			CreateRecipe()
-		    .AddIngredient(ItemID.CopperCoin,3996)
-			.AddTile(TileID.CrystalBall)
-			.Register();
-		}
-	}
+        {
+            CreateRecipe()
+            .AddIngredient(Base.type, 3996)
+            .AddTile(TileID.CrystalBall)
+            .Register();
+        }
+    }
 }

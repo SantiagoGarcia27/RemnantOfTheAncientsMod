@@ -69,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             }
             if (Projectile.timeLeft < 20000)
             {
-                if (ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(4) != 0)
+                if (ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(4) != 0)
                 {
                     int dust5 = Dust.NewDust(Projectile.position, 1 , Projectile.height, DustID.IceRod);
                     Main.dust[dust5].velocity = Projectile.velocity;
@@ -83,7 +83,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
             const int NUM_DUSTS = 20;
-            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); i++)
+            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); i++)
             {
                 int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0f, 0f, 100, default(Color), 1f);
                 Main.dust[p1].velocity = Projectile.velocity;

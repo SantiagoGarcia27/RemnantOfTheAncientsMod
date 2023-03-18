@@ -131,7 +131,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		}
 		public static void ModifyBossStats(NPC npc, ref int damage, int lifeMax)
 		{
-			npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax, true);
+			npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax);
 			npc.damage = (int)NpcChanges1.ExpertDamageScale(damage);
 		}
 

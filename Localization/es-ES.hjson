@@ -149,40 +149,43 @@ Mods: {
 				DisplayName: Amuleto de cruz ansata
 				Tooltip:
 					'''
-					Aumenta el man� m�ximo en 20,
-					la regeneraci�n de man�
-					y penetraci�n de armadura en 5.
-					proporciona inmunidad a la lava y los bloques de fuego
-					otorga el efecto de Collar de cari�o, talism�n de mitos
-					Equipo de buceo �rtico y Velo de estrella
-					Otorga inmunidad a la mayor�a de estados alterados.
+					Aumenta el maná máximo en 20,
+					la regeneración de maná
+					y penetración de armadura en 5.
+					Proporciona inmunidad a la lava y los bloques de fuego.
+					Además otorga el efecto de Collar de cariño, talismán de mitos,
+					equipo de buceo ártico y Velo de estrella.
+					Otorga inmunidad a la mayoría de estados alterados.
 					'''
 			}
 
-			Boot.DisplayName: Bota
+			Boot:{
+				DisplayName: Bota
+				Tooltip:Increases fall acceleration
+			}
 
 			Exotic_Amulet: {
 				DisplayName: Amuleto Ex�tico
 				Tooltip:
 					'''
-					Aumenta el man� m�ximo en 20,
-					la regeneraci�n de man�
+					Aumenta el maná máximo en 20,
+					la regeneración de maná
 					y penetraci�n de armadura en 5.
 					proporciona inmunidad a la lava y los bloques de fuego
-					otorga el efecto de Collar de cari�o, talism�n de mitos
-					Equipo de buceo �rtico y Velo de estrella
+					otorga el efecto de Collar de cariño, talismán de mitos
+					Equipo de buceo ártico y Velo de estrella
 					'''
 			}
 
 			IronBand.DisplayName: Banda de Hierro
 
 			magic_stick: {
-				DisplayName: Palo M�gico
-				Tooltip: Aumenta el da�o magico en un 5%
+				DisplayName: Palo Mágico
+				Tooltip: Aumenta el daño magico en un 5%
 			}
 
 			magic_wand: {
-				DisplayName: Vara M�gica
+				DisplayName: Vara Mágica
 				Tooltip: Aumenta el da�o magico en un 12%
 			}
 
@@ -1019,9 +1022,9 @@ Mods: {
 				DisplayName: Pergamino de la colmena
 				Tooltip:
 					'''
-					obtienes el efecto miel, tu defensa aumenta en 5 
-					 Libera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas
-					 aumenta la penetración de armadura en 15
+					Obtienes el efecto miel, tu defensa aumenta en 5 .
+					Libera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas.
+					aumenta la penetración de armadura en 15.
 					'''
 			}
 
@@ -1035,8 +1038,8 @@ Mods: {
 				Tooltip:
 					'''
 					tienes una súper sentido
-					 Otorga inmunidad a la mayoría de las desventajas.
-					 Incrementa el daño lanzable en 20% y posees un 50% de no gastar municion
+					Otorga inmunidad a la mayoría de las desventajas.
+					Incrementa el daño lanzable en 20% y posees un 50% de no gastar municion
 					'''
 			}
 
@@ -1156,21 +1159,21 @@ Mods: {
 		}
 
 		NPCs: {
-			 AntlionD.DisplayName: Antlion 
+			AntlionD.DisplayName: Antlion 
 			ArmoredSlime.DisplayName: Slime blindado
 			DesertAniquilator.DisplayName: Aniquilador del desierto
-			 DesertScorpionD.DisplayName: Sand Poacher 
-			 DSlime.DisplayName: Servant of Desert Annihilator 
-			 FlyingAntlionD.DisplayName: Antlion Swarmer 
+			DesertScorpionD.DisplayName: Sand Poacher 
+			DSlime.DisplayName: Servant of Desert Annihilator 
+			FlyingAntlionD.DisplayName: Antlion Swarmer 
 			frozen_assaulter.DisplayName: Asaltante Congelado
-			 IGolem.DisplayName: Ice Golem 
+			IGolem.DisplayName: Ice Golem 
 			InfernalTyrantBody.DisplayName: Tirano infernal
 			InfernalTyrantHead.DisplayName: Tirano infernal
 			InfernalTyrantTail.DisplayName: Tirano infernal
 			MinerSoul.DisplayName: Alma minera
-			 Time_Wizard.DisplayName: Time_ Wizard 
-			 VultureD.DisplayName: Vulture 
-			 WalkingAntlionD.DisplayName: Antlion Charger 
+			Time_Wizard.DisplayName: Mago del tiempo 
+			VultureD.DisplayName: Vulture 
+			WalkingAntlionD.DisplayName: Antlion Charger 
 			Armoredzombie.DisplayName: Zombi blindado
 			Copperzombie.DisplayName: Zombi blindado
 			Crimsonzombi.DisplayName: Zombi blindado

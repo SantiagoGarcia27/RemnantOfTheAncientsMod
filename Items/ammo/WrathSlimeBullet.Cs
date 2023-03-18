@@ -7,7 +7,7 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-	public class bullettest : ModItem
+	public class WrathSlimeBullet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

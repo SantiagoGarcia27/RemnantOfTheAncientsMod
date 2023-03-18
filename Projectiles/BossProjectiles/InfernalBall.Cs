@@ -161,7 +161,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         {
             short dust = Strong ? DustID.IceTorch : DustID.Torch;
             const int NUM_DUSTS = 20;
-            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticlleMetter(NUM_DUSTS); i++)
+            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); i++)
             {
 
                 int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, dust, 0f, 0f, 100, default(Color), 3f);
