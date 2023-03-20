@@ -23,7 +23,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         {
             player.GetDamage(DamageClass.Summon) += 0.05f;
             player.moveSpeed += 0.50f;
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(BuffType<Slim>());
+            int Buff = BuffType<Slim>();
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
         }
     }
 }

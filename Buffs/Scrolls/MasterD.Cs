@@ -22,9 +22,11 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.maxMinions += 2;
-            player.moveSpeed += 0.05f;
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(BuffType<MasterD>());
+            player.maxMinions += 1;
+            player.GetDamage(DamageClass.Summon) += 0.05f;
+            player.moveSpeed += 0.50f;
+            int Buff = BuffType<MasterD>();
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
         }
     }
 }

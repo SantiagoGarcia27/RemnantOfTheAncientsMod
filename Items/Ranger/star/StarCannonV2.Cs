@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Projectiles;
 
 namespace RemnantOfTheAncientsMod.Items.Ranger.star
 {
@@ -32,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.star
 			Item.rare = ItemRarityID.LightPurple;
 			Item.UseSound = SoundID.Item10;
 			Item.autoReuse = true;
-			Item.shoot = ProjectileID.SuperStar;
+			Item.shoot = ModContent.ProjectileType<CloneFallingStar>();
 			Item.shootSpeed = 10f;
 			Item.useAmmo = AmmoID.FallenStar;
 			if (RemnantOfTheAncientsMod.CalamityMod != null)
@@ -44,7 +45,11 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.star
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (Main.rand.NextFloat() <= (float)1 / 1) Projectile.NewProjectile(source, position, velocity, ProjectileID.Starfury, damage*2, 1, player.whoAmI);
+			if (Main.rand.NextFloat() <= (float)1 / 5) 
+			{
+				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<CloneStarFury>(), damage * 2, 1, player.whoAmI);
+				return false;
+			}
 			return true;
 		}
 		public override Vector2? HoldoutOffset()

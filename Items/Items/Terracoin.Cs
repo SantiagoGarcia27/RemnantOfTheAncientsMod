@@ -22,30 +22,16 @@ namespace RemnantOfTheAncientsMod.Items.Items
 		Item Base = new Item(ItemID.PlatinumCoin);
 		public override void SetDefaults()
 		{
+			Item.CloneDefaults(ItemID.PlatinumCoin);
 			Item.damage = 400;
-            Item.width = 26;
-			Item.height = 22;
-			Item.useTurn = true;
-			Item.autoReuse = true;
-			Item.useAnimation = 15;
-			Item.useTime = 10;
-			Item.useStyle = ItemUseStyleID.Swing;
-            Item.DamageType = DamageClass.Ranged;
-            Item.consumable = true;
-			Item.maxStack = Base.maxStack;
 			Item.value = Item.sellPrice(platinum: 100);
 			Item.createTile = TileType<Tiles.TerracoinB>();
             Item.shoot = ProjectileType<TerracoinP>();     
-			Item.noMelee = true;
-			Item.notAmmo = true;
-			Item.shootSpeed = Base.shootSpeed;
-            Item.ammo = AmmoID.Coin;
-			
         }
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(Base.type, 100)
+			.AddIngredient(ItemID.PlatinumCoin, 100)
 			.Register();
 		}
 	}

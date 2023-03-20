@@ -65,7 +65,7 @@ namespace RemnantOfTheAncientsMod.Drops
                     itemLoot.Add(ItemDropRule.ByCondition(new PlanteraReaperSoulRule(), ItemType<PlantSoul>()));
                     break;
                 case ItemID.FairyQueenBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemType<EmpressOfLightScroll>(), 5));
+                    //itemLoot.Add(ItemDropRule.Common(ItemType<EmpressOfLightScroll>(), 5));
                     itemLoot.Add(ItemDropRule.ByCondition(new EmpressOfLightReaperSoulRule(), ItemType<EmpressSoul>()));
                     break;
                 case ItemID.GolemBossBag:

@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 			Item.useAnimation = 499;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<AoD>();
+			Item.buffType = BuffType<BrainOfChutuluScrollBuff>();
 			Item.buffTime = 250;
 			Item.expert = true;
 		}

@@ -18,33 +18,11 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         }
         public static double ExpertDamageScale(double i)
         {
-            double scale = 1.0;
-            if (Reaper.ReaperMode)
-            {
-                switch (Main.expertMode, Main.masterMode)
-                {
-                    case (true, true):
-                        scale = 1.7;
-                        break;
-                    case (true, false):
-                        scale = 1.5;
-                        break;
-                }
-            }
-            return i * scale;
+            return Reaper.ReaperMode ? i * 2 : i;
         }
         public static double ExpertLifeScale(double i)
-        {
-            double scale;
-            if (Reaper.ReaperMode)
-            {
-                scale = Main.masterMode ? 4 : Main.expertMode ? 3 : 2;
-            }
-            else
-            {
-                scale = Main.masterMode ? 2 : Main.expertMode ? 1.5 : 1;
-            }
-            return i *= scale;
+        { 
+            return Reaper.ReaperMode? i*2 : i;
         }
         public static int DefenseCalculator(int defensa) => defensa + 6;
         public static int DamageCalculator(double damagebonus) => (int)(28 * damagebonus);

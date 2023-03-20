@@ -1,14 +1,11 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Buffs;
 using RemnantOfTheAncientsMod.Items.Items;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
-using RemnantOfTheAncientsMod.Projectiles;
 using System;
-using RemnantOfTheAncientsMod.Items.Bloques;
 using RemnantOfTheAncientsMod.Items.Mele;
 using RemnantOfTheAncientsMod.Items.Magic;
 using RemnantOfTheAncientsMod.Items.Summon;
@@ -20,7 +17,6 @@ using RemnantOfTheAncientsMod.Common.Systems;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.VanillaChanges;
-using Terraria.Audio;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
@@ -403,21 +399,22 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         }
         public void setAttackCounter(int i)
         {
+            int masterAttackCounterScale = AttackCounterScale(i - 400);
+            int expertAttackCounterScale = AttackCounterScale(i - 300);
+            int normalAttackCounterScale = AttackCounterScale(i - 200);
+
             if (summonCounter > 0) summonCounter--;
             if (attackCounter > 0) attackCounter--;
+
             if (summonCounter <= 0)
             {
-                if (Main.masterMode) summonCounter = AttackCounterScale(i-300);
-                else if (Main.expertMode) summonCounter = AttackCounterScale(i-100);
-                else summonCounter = AttackCounterScale(i);
+                summonCounter = Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
                 NPC.netUpdate = true;
             }
+
             if (attackCounter <= 0)
             {
-
-                if (Main.masterMode) attackCounter = AttackCounterScale(i-400);
-                else if (Main.expertMode) attackCounter = AttackCounterScale(i-300);
-                else attackCounter = AttackCounterScale(i-200);
+                attackCounter = Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
                 NPC.netUpdate = true;
             }
         }
@@ -429,11 +426,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             else currentPhase = 1;
         }
 
-        public int AttackCounterScale(int Num)
-        {
-            if (Reaper.ReaperMode) return Num - 100;
-            else return Num;    
-        }
+        public int AttackCounterScale(int Num) => Reaper.ReaperMode ? Num - 100 : Num;
         public void DesertTp()
         {
             tpDirection = new Random().Next(1, 3);
@@ -467,14 +460,12 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)(Math.Cos(rotation) * Speed * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
         }*/
 
-        public void ShootIa(int dammage, int type, Player player, float Speed, double x, double y)
+        public void ShootIa(int damage, int type, Player player, float Speed, double x, double y)
         {
-            Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-            float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * x)), vector8.X - (player.position.X + (player.width * y)));
-            Vector2 direction;
-            direction.X = (float)(Math.Cos(rotation) * Speed * -1);
-            direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, Main.myPlayer);
+            Vector2 center = NPC.Center;
+            float rotation = (float)Math.Atan2(center.Y - (player.position.Y + (player.height * x)), center.X - (player.position.X + (player.width * y)));
+            Vector2 direction = new Vector2((float)Math.Cos(rotation), (float)Math.Sin(rotation));
+            int projectileIndex = Projectile.NewProjectile(NPC.GetSource_FromAI(),center, direction * Speed, type, damage, 0f, Main.myPlayer, 0f, NPC.whoAmI);
         }
 
         public void DespawnBoss()
@@ -485,10 +476,9 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             NPC.EncourageDespawn(7);
             return;
         }
-        public override void OnHitPlayer(Player player, int damage, bool crit) {
-			if (Main.rand.NextBool(3)) {
-				player.AddBuff(BuffType<Burning_Sand>(), 100, true);
-			}
+        public override void OnHitPlayer(Player player, int damage, bool crit) 
+        {
+			if (Main.rand.NextBool(3)) player.AddBuff(BuffType<Burning_Sand>(), 100, true);	
 		}
         public override void BossLoot(ref string name, ref int potionType)
         {

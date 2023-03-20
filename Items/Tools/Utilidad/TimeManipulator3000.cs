@@ -36,18 +36,18 @@ namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 		
 		public override bool? UseItem(Player player)
 		{
-			if (Main.netMode != NetmodeID.MultiplayerClient)
-			{
-				Main.time = 0.0;
-				Main.dayTime = !Main.dayTime;
-				if (Main.dayTime && ++Main.moonPhase >= 8)
-				{
-					Main.moonPhase = 0;
-				}
-				Netcode.SyncWorld();
-			}
+            if (Main.netMode != 1)
+            {
+                Main.time = 0.0;
+                Main.dayTime = !Main.dayTime;
+                if (Main.dayTime && ++Main.moonPhase >= 8)
+                {
+                    Main.moonPhase = 0;
+                }
+                Netcode.SyncWorld();
+            }
 			return true;
-		}
+        }
 		public override void AddRecipes()
 		{
 			CreateRecipe()

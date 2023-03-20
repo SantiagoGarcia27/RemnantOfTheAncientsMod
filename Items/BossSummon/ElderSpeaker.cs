@@ -4,14 +4,15 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
 
 namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
     public class ElderSpeaker : ModItem
     {
-       public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Elder Speaker");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Elder Speaker");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Orateur aîné");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Altavoz Anciano");
             Tooltip.SetDefault("Summons Skeletron");
@@ -39,12 +40,15 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         }
         public override bool? UseItem(Player player)
         {
-            if (!Main.dayTime)
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
+            if (Main.netMode != 1)
             {
                 NPC.SpawnOnPlayer(player.whoAmI, NPCID.SkeletronHead);
-                SoundEngine.PlaySound(SoundID.Roar, player.position);
             }
-
+            else
+            {
+                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, NPCID.SkeletronHead, 0f, 0f, 0, 0, 0);
+            }
             return true;
         }
         public override void AddRecipes()

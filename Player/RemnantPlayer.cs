@@ -52,6 +52,7 @@ namespace RemnantOfTheAncientsMod
         public static bool FWeapons;
 		public static bool ReaperFirstTime;
 		private static List<NPC> _hallucinationCandidates = new List<NPC>();
+		public List<int> ScrollsBuff = new List<int>();
 
 
 		public override void ResetEffects()
@@ -110,7 +111,8 @@ namespace RemnantOfTheAncientsMod
 		{
 			FWeapons = true;
 			FchangesItem.ReaperWingsNerf(player);
-		}
+			AddScrollBuff();
+        }
 		public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
 		{
 			if (mediumCoreDeath) return new[] { new Item(ItemType<Ftoggler>()) };
@@ -205,19 +207,24 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.Weak] = true;
 			Player.buffImmune[BuffID.Chilled] = true;
 		}
+		public void AddScrollBuff()
+		{
+            ScrollsBuff.Add(BuffType<Slim>());
+            ScrollsBuff.Add(BuffType<Eye>());
+            ScrollsBuff.Add(BuffType<BrainOfChutuluScrollBuff>());
+            ScrollsBuff.Add(BuffType<Putrid>());
+            ScrollsBuff.Add(BuffType<Skeleton>());
+            ScrollsBuff.Add(BuffType<Bee>());
+            ScrollsBuff.Add(BuffType<MasterD>());
+            ScrollsBuff.Add(BuffType<Infernal>());
+            ScrollsBuff.Add(BuffType<QueenSlimeScrollBuff>());
+        }
 		public void ScrollInmunity(int buff)
 		{
-			int b = BuffType<Slim>();
-			Player.buffImmune[BuffType<Slim>()] = true;
-			Player.buffImmune[BuffType<Eye>()] = true;
-			Player.buffImmune[BuffType<AoD>()] = true;
-			Player.buffImmune[BuffType<Putrid>()] = true;
-			Player.buffImmune[BuffType<Bee>()] = true;
-			Player.buffImmune[BuffType<Skeleton>()] = true;
-			Player.buffImmune[BuffType<MasterD>()] = true;
-			Player.buffImmune[BuffType<Infernal>()] = true;
-			Player.buffImmune[BuffType<QueenSlimeScrollBuff>()] = true;
-
+			for (int i = 0; i < ScrollsBuff.Count; i++)
+			{
+				Player.buffImmune[ScrollsBuff[i]] = true;
+			}
 			Player.buffImmune[buff] = false;
 		}
 		public void ExoticA(int l, int m, int m2, int p, Item item)

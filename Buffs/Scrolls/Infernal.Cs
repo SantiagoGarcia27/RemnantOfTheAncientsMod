@@ -26,13 +26,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
             player.inferno = true;
             player.lifeForce = true;
             player.GetDamage(DamageClass.Generic) *= 1.10f;
-            player.buffImmune[BuffType<Bee>()] = true;
-            player.buffImmune[BuffType<AoD>()] = true;
-            player.buffImmune[BuffType<Eye>()] = true;
-            player.buffImmune[BuffType<MasterD>()] = true;
-            player.buffImmune[BuffType<Putrid>()] = true;
-            player.buffImmune[BuffType<Skeleton>()] = true;
-            player.buffImmune[BuffType<Slim>()] = true;
+            int Buff = BuffType<Infernal>();
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
         }
     }
 }

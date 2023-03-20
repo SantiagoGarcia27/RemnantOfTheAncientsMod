@@ -6,7 +6,7 @@ using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
-    public class AoD : ModBuff
+    public class BrainOfChutuluScrollBuff : ModBuff
     {
         public override void SetStaticDefaults()
         {
@@ -23,7 +23,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         public override void Update(Player player, ref int buffIndex)
         {
             player.shadowDodge = true;
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(BuffType<AoD>());
+            int Buff = BuffType<BrainOfChutuluScrollBuff>();
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
            
         }
     }

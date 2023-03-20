@@ -7,7 +7,6 @@ using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Dusts;
 using RemnantOfTheAncientsMod.Buffs.Minions;
-using static Humanizer.In;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 {

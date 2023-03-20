@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Items.ammo
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(Base.type, 3996)
+            .AddIngredient(ItemID.ChlorophyteArrow, 3996)
             .AddTile(TileID.CrystalBall)
             .Register();
         }

@@ -44,13 +44,15 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         }
         public override bool? UseItem(Player player)
         {
-            if (world1.TimeDilocated)
-            {
-                int choice = new Random(2).Next(2);
-            }
-            else NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<InfernalTyrantHead>());
             SoundEngine.PlaySound(SoundID.Roar, player.position);
-
+            if (Main.netMode != 1)
+            {
+                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<InfernalTyrantHead>());
+            }
+            else
+            {
+                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<InfernalTyrantHead>(), 0f, 0f, 0, 0, 0);
+            }
             return true;
         }
         public override void AddRecipes()

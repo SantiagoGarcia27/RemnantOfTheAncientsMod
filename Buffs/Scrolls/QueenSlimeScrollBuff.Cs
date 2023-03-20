@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
@@ -21,10 +20,12 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statLifeMax2 += (player.statLifeMax * 50) / 100;
-            player.GetDamage(DamageClass.Summon) += 0.10f;
+            player.statLifeMax2 += (player.statLifeMax * 20) / 100;
+            player.GetDamage(DamageClass.Summon) += 0.05f;
             player.moveSpeed += 0.50f;
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(BuffType<QueenSlimeScrollBuff>());
+            player.maxMinions++;
+            int Buff = BuffType<QueenSlimeScrollBuff>();
+            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
         }
     }
 }

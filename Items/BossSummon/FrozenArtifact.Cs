@@ -5,6 +5,7 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.NPCs.ITyrant;
 
 namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
@@ -40,13 +41,21 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         {
             return player.ZoneSnow && !NPC.AnyNPCs(ModContent.NPCType<frozen_assaulter>()) && !Main.dayTime;
         }
+
         public override bool? UseItem(Player player)
         {
-            NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>());
             SoundEngine.PlaySound(SoundID.Roar, player.position);
-
+            if (Main.netMode != 1)
+            {
+                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>());
+            }
+            else
+            {
+                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<frozen_assaulter>(), 0f, 0f, 0, 0, 0);
+            }
             return true;
         }
+    
         public override void AddRecipes()
         {
             CreateRecipe()

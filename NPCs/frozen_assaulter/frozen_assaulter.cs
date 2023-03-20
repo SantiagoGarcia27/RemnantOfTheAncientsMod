@@ -77,153 +77,140 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         public override void AI()
         {
 
-            // if (Main.netMode != NetmodeID.MultiplayerClient){
-            Player target = Main.player[NPC.target];
-            float distance = NPC.Distance(Main.player[NPC.target].Center);
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Player target = Main.player[NPC.target];
+                float distance = NPC.Distance(Main.player[NPC.target].Center);
 
-            if (target.dead)
-            {
-                NPC.EncourageDespawn(7);
-                return;
-            }
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
-            {
-                NPC.TargetClosest(true);
-            }
-            if (attackCounter > 0)
-            {
-                attackCounter--; // tick down the attack counter.
-                phaseChanger();
-            }
-            if (!Reaper.ReaperMode)
-            {
-                switch (attackCounter)
+                if (target.dead)
                 {
-                    case 115:
-                        shootIa((int)NpcChanges1.ExpertDamageScale(50), ProjectileID.FrostBeam, target, 20f, 0.5, 0.5);
-                        break;
-                    case 300:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
-                        break;
-                    case 850:
-                        if (currentPhase >= 2 && (Main.expertMode || Main.masterMode))
+                    NPC.EncourageDespawn(7);
+                    return;
+                }
+                if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+                {
+                    NPC.TargetClosest(true);
+                }
+                if (attackCounter > 0)
+                {
+                    attackCounter--; // tick down the attack counter.
+                    phaseChanger();
+                }
+                if (!Reaper.ReaperMode)
+                {
+                    switch (attackCounter)
+                    {
+                        case 115:
+                            shootIa((int)NpcChanges1.ExpertDamageScale(50), ProjectileID.FrostBeam, target, 20f, 0.5, 0.5);
+                            break;
+                        case 300:
+                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
+                            break;
+                        case 850:
+                            if (currentPhase >= 2 && (Main.expertMode || Main.masterMode))
+                            {
+                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<IGolem>());
+                            }
+                            break;
+                        case >= 0:
+                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 20f, 0.5, 0.5);
+                            break;
+                    }
+                    if (Main.expertMode)
+                    {
+                        if (currentPhase == 3)
                         {
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<IGolem>());
+                            FrozenPhase3();
                         }
-                        break;
-                    case >= 0:
-                        shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 20f, 0.5, 0.5);
-                        break;
-                }
-                if (Main.expertMode)
-                {
-                    if (currentPhase == 3)
-                    {
-                        FrozenPhase3();
-                    }
-                    if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
-                    {
-                        frozenTp();
+                        if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
+                        {
+                            frozenTp();
+                        }
                     }
                 }
-            }
-            else
-            {
-                CheckDistance(distance);
-                switch (attackCounter)
+                else
                 {
-                    case 400:
-                        for (int i = 0; i >= 5; i++)
+                    CheckDistance(distance);
+
+                    switch (attackCounter)
+                    {
+                        case 400:
+                        case 115:
+                            for (int i = 0; i < 6; i++)
+                            {
+                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                            }
+                            break;
+                        case 150:
+                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
+                            break;
+                        case 600:
+                            if (currentPhase >= 2 && (Main.expertMode || Main.masterMode))
+                            {
+                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<IGolem>());
+                            }
+                            break;
+                        case >= 0:
+                            int l = 0;
+                            for (int j = 0; j < 3; j++)
+                            {
+                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 90f + l);//70
+                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 180f + l);
+                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 270f + l);
+                            }
+                            l += 2;
+                            l %= 360;
+                            break;
+                    }
+
+
+                    if (Main.expertMode)
+                    {
+                        if (currentPhase == 3)
+                        {
+                            FrozenPhase3();
+                        }
+                        if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
+                        {
+                            frozenTp();
+                        }
+                        if (attackCounter < 600 && attackCounter > 500 && currentPhase != 3)
+                        {
                             shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
-                        break;
-                    case 115:
-                        for (int i = 0; i >= 5; i++)
-                        shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
-                        break;
-                    case 150:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
-                        break;
-                    case 600:
-                        if (currentPhase >= 2 && (Main.expertMode || Main.masterMode))
-                        {
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<IGolem>());
                         }
-                        break;
-                    case >= 0:
-
-                        if (i <= 360)
-                        {
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 90f + i);//70
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 180f + i);    
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 270f + i);
-
-                            if (idelay == 0)
-                            {
-                                i += 0.0135f;//0.06
-                                idelay = 1;
-                            }
-                            else
-                            {
-                                idelay--;
-                            }
-                           // Main.NewText(i);
-                        }
-                        else
-                        {
-                            i = 0;
-                        }
-                        break;
+                    }
                 }
-                if (Main.expertMode)
+
+
+
+                if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
                 {
-                    if (currentPhase == 3)
-                    {
-                        FrozenPhase3();
-                    }
-                    if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
-                    {
-                        frozenTp();
-                    }
-                    if(attackCounter < 600 && attackCounter > 500 && currentPhase != 3)
-                    {
-                        shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
-                    }
+                    attackCounter = 900;
+                    NPC.netUpdate = true;
                 }
             }
-
-            
-
-            if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
-            {
-                attackCounter = 900;
-                NPC.netUpdate = true;
-            }
-            //  }
         }
         public void CheckDistance(float distance)
         {
-
             if(distance <= 60)
             {
                 NPC.directionY = -NPC.oldDirectionY - 310;
             }
         }
-        public void shootIa(int dammage, int type, Player player, float Speed, double x, double y)
+        public void shootIa(int damage, int type, Player player, float speed, double x, double y)
         {
-            Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-            float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * x)), vector8.X - (player.position.X + (player.width * y)));
-            Vector2 direction;
-            direction.X = (float)((Math.Cos(rotation) * Speed) * -1);
-            direction.Y = (float)((Math.Sin(rotation) * Speed) * -1);
-            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, 0);
+            Vector2 npcCenter = NPC.Center;
+            float rotation = (float)Math.Atan2(npcCenter.Y - (player.position.Y + (player.height * x)), npcCenter.X - (player.position.X + (player.width * y)));
+            Vector2 direction = new Vector2(speed, 0).RotatedBy(rotation);
+            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), npcCenter, direction, type, damage, 0f, 0);
             Main.projectile[i].timeLeft = 200;
         }
-        public void shootIa(int dammage, int type, Player player, float Speed, float grades)
+
+        public void shootIa(int damage, int type, Player player, float speed, float degrees)
         {
-            Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-            Vector2 direction = Vector2.UnitX * Speed;
-            direction = direction.RotatedBy(grades);
-            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, Main.myPlayer);
+            Vector2 npcCenter = NPC.Center;
+            Vector2 direction = new Vector2(speed, 0).RotatedBy(MathHelper.ToRadians(degrees));
+            int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), npcCenter, direction, type, damage, 0f, Main.myPlayer);
             Main.projectile[i].timeLeft = 200;
         }
         public void FrozenPhase3()
@@ -241,7 +228,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                     NPC.defDefense = 15;
                     invincibilityTimer--;
                     break;
-                case 3:
+                case 3 :
                     if (!healAnimation)
                     {
                         if (Reaper.ReaperMode)
@@ -260,6 +247,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                     invincibilityTimer--;
                         break;
             }
+
+
         }
         public void frozenTp()
         {
@@ -280,22 +269,10 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         }
         public void phaseChanger()
         {
-            if (NPC.life > NPC.lifeMax / 2)
-            {
-                currentPhase = 1;
-            }
-            else if (NPC.life < NPC.lifeMax / 2 && NPC.life > NPC.lifeMax / 4)
-            {
-                currentPhase = 2;
-            }
-            else if (NPC.life < NPC.lifeMax / 4)
-            {
-                if (!healAnimation)
-                {
-                    currentPhase = 3;
-                }
-                else  currentPhase = 4;
-            }
+            currentPhase = !healAnimation && NPC.life < NPC.lifeMax / 4 ? 3 :
+                NPC.life > NPC.lifeMax / 2 ? 1 :
+                NPC.life > NPC.lifeMax / 4 ? 2 :
+                4;
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
