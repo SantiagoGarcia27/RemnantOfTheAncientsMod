@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics.Metrics;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
@@ -22,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.light = 1.0f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
-            AIType = ProjectileID.Bullet;
+            AIType = ProjectileID.PlatinumCoin;
         }
         public override void AI()
         {

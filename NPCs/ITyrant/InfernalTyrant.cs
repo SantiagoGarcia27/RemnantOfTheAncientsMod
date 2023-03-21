@@ -224,7 +224,8 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         }
         public void DespawnSafeCheck(Player player, Worm worm)
         {
-            if (!NPC.WithinRange(player.Center, 170 * 16f))
+           
+            if (!NPC.WithinRange(player.Center, 170 * 16f) || NPC.position.Y == Main.miniMapY - (10f * 16f))
             {
                 Vector2 directionToPlayer = Vector2.Normalize(player.Center - NPC.Center);
                 NPC.velocity = directionToPlayer * worm.MoveSpeed/4;

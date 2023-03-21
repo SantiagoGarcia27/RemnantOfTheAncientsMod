@@ -9,6 +9,7 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Items.accesorios;
 using RemnantOfTheAncientsMod.Items.Mele;
 using System.Collections.Generic;
+using RemnantOfTheAncientsMod.Items.Ranger;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -31,19 +32,15 @@ namespace RemnantOfTheAncientsMod
             Accesories();
             Potoions();
             Ores();
-
             VanillaPotionCrafting();
             Mirrors();
             CraftinStationsCraft();
             Weapons();
-
             FishingRods();
             LivingFlames();
             BossSummon();
             HardmodeItems();
             UncraftPotions();
-
-
         }
 
         private static void HardmodeItems()
@@ -97,8 +94,8 @@ namespace RemnantOfTheAncientsMod
         }
         private static void UncraftPotions()
         {
-         
-          
+
+
         }
         private static void Mirrors()
         {
@@ -127,6 +124,10 @@ namespace RemnantOfTheAncientsMod
                .AddTile(TileID.Furnaces)
                .Register();
 
+            Recipe.Create(ModContent.ItemType<Reinforced_ironBar>())
+               .AddRecipeGroup("IronBar", 2)
+               .AddTile(TileID.Furnaces)
+               .Register();
         }
         #region Weapons
         private static void Weapons()
@@ -189,7 +190,7 @@ namespace RemnantOfTheAncientsMod
             .AddTile(TileID.DemonAltar)
             .Register();
         }
-        
+
 
         private static void PreHardmodeRangerWeapons()
         {
@@ -693,7 +694,7 @@ namespace RemnantOfTheAncientsMod
         {
             for (int i = 288; i <= 305; i++)
             {
-                Recipe.Create(2)
+                Recipe.Create(i, 2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -702,7 +703,7 @@ namespace RemnantOfTheAncientsMod
             }
             for (int i = 2322; i <= 2329; i++)
             {
-                Recipe.Create(2)
+                Recipe.Create(i, 2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -710,7 +711,7 @@ namespace RemnantOfTheAncientsMod
             }
             for (int i = 2344; i <= 2350; i++)
             {
-                Recipe.Create(2)
+                Recipe.Create(i, 2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -718,7 +719,7 @@ namespace RemnantOfTheAncientsMod
             }
             for (int i = 4477; i <= 4479; i++)
             {
-                Recipe.Create(2)
+                Recipe.Create(i, 2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -739,13 +740,41 @@ namespace RemnantOfTheAncientsMod
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
-            {
-                Recipe.Create(ItemID.CratePotion, 2)
-                   .AddRecipeGroup("anyStrangePlants")
-                   .AddIngredient(ItemID.BottledWater)
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
-            }
+            Recipe.Create(ItemID.CratePotion, 2)
+               .AddRecipeGroup("anyStrangePlants")
+               .AddIngredient(ItemID.BottledWater)
+               .AddTile(TileID.AlchemyTable)
+               .Register();
+
+            Recipe.Create(ModContent.ItemType<Commander_Potion>(), 2)
+              .AddRecipeGroup("anyStrangePlants")
+              .AddIngredient(ItemID.BottledWater)
+              .AddTile(TileID.AlchemyTable)
+              .Register();
+
+            Recipe.Create(ModContent.ItemType<Money_Collector_Potion>(), 2)
+              .AddRecipeGroup("anyStrangePlants")
+              .AddIngredient(ItemID.BottledWater)
+              .AddTile(TileID.AlchemyTable)
+              .Register();
+
+            Recipe.Create(ModContent.ItemType<Fish_Potion>(), 1)
+              .AddRecipeGroup("anyStrangePlants")
+              .AddIngredient(ItemID.BottledWater)
+              .AddTile(TileID.AlchemyTable)
+              .Register();
+
+            Recipe.Create(ModContent.ItemType<Gravitation_Control_Potion>(), 1)
+              .AddRecipeGroup("anyStrangePlants")
+              .AddIngredient(ItemID.BottledWater)
+              .AddTile(TileID.AlchemyTable)
+              .Register();
+
+            Recipe.Create(ModContent.ItemType<NecroticRestauration>(), 10)
+              .AddRecipeGroup("anyStrangePlants")
+              .AddIngredient(ItemID.BottledWater)
+              .AddTile(TileID.AlchemyTable)
+              .Register();
         }
         #endregion
 
@@ -898,7 +927,7 @@ namespace RemnantOfTheAncientsMod
             {
                 Recipe recipe = Main.recipe[i];
 
-               
+
                 if (recipe.TryGetResult(ItemID.JungleHat, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
@@ -933,6 +962,25 @@ namespace RemnantOfTheAncientsMod
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
                     recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 23);
+                }
+
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    if (recipe.TryGetResult(ModContent.ItemType<CurcedShotGun>(), out _))
+                    {
+                        recipe.RemoveTile(TileID.MythrilAnvil);
+                        recipe.AddTile(TileID.Anvils);
+                    }
+                    if (recipe.TryGetResult(ModContent.ItemType<Paintshotgun>(), out _))
+                    {
+                        recipe.RemoveTile(TileID.MythrilAnvil);
+                        recipe.AddTile(TileID.Anvils);
+                    }
+                    if (recipe.TryGetResult(ModContent.ItemType<Ichor_asault_rifle>(), out _))
+                    {
+                        recipe.RemoveTile(TileID.MythrilAnvil);
+                        recipe.AddTile(TileID.Anvils);
+                    }
                 }
             }
         }

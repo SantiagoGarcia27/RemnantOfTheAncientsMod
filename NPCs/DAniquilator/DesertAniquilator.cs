@@ -449,25 +449,26 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             if (NPC.ai[1] > 799 && distance >= 5 * 16 && distance >= 1 * 16)
                 NPC.Center = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));*/
         }
-       /* public void TyphonIa(int i, float xA, float yA)
+        /* public void TyphonIa(int i, float xA, float yA)
+         {
+             float Speed = 12f;
+             int damage = (int)NpcChanges1.ExpertDamageScale(i, true); ;
+             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+             int type = ProjectileType<DesertTyphoon>();
+             SoundEngine.PlaySound(SoundID.Item10,NPC.position);
+             float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * yA)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * xA)));
+             Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)(Math.Cos(rotation) * Speed * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
+         }*/
+
+        public void ShootIa(int dammage, int type, Player player, float Speed, double x, double y)
         {
-            float Speed = 12f;
-            int damage = (int)NpcChanges1.ExpertDamageScale(i, true); ;
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-            int type = ProjectileType<DesertTyphoon>();
-            SoundEngine.PlaySound(SoundID.Item10,NPC.position);
-            float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * yA)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * xA)));
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8.X, vector8.Y, (float)(Math.Cos(rotation) * Speed * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
-        }*/
-
-        public void ShootIa(int damage, int type, Player player, float Speed, double x, double y)
-        {
-            Vector2 center = NPC.Center;
-            float rotation = (float)Math.Atan2(center.Y - (player.position.Y + (player.height * x)), center.X - (player.position.X + (player.width * y)));
-            Vector2 direction = new Vector2((float)Math.Cos(rotation), (float)Math.Sin(rotation));
-            int projectileIndex = Projectile.NewProjectile(NPC.GetSource_FromAI(),center, direction * Speed, type, damage, 0f, Main.myPlayer, 0f, NPC.whoAmI);
+            float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * x)), vector8.X - (player.position.X + (player.width * y)));
+            Vector2 direction;
+            direction.X = (float)(Math.Cos(rotation) * Speed * -1);
+            direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, Main.myPlayer);
         }
-
         public void DespawnBoss()
         {
             NPC.velocity.X -= 3.09f;
