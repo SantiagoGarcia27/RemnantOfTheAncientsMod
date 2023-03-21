@@ -1157,7 +1157,25 @@ Mods: {
 				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}" 
 			}
 		}
-
+		TownNPCMood: 
+		{
+			Time_Wizard: {
+				Content: Me siento bastante a gusto ahora mismo.
+				NoHome: Me gustaría mucho una casa, todos estos pintorescos los monstruos me dan miedo.
+				LoveSpace: ¡Me encanta que haya tanto espacio para practicar la magia!
+				FarFromHome: ¿Podrías llevarme a mi casa?
+				DislikeCrowded: ¡Hay demasiada gente! me resulta difícil concentrarme en mis estudios.
+				HateCrowded: ¡No puedo probar mis hechizos con tanta gente alrededor!
+				LikeBiome: "{BiomeName} es agradable para vivir"
+				LoveBiome: "Me encanta {BiomeName}."
+				DislikeBiome: "Hace demasiado frío en {BiomeName}, ¡Me estoy congelando!"
+				HateBiome: "Es un poco difícil ver el cielo mientras te atacan monstruos en {BiomeName}."
+				LikeNPC: "¡Puedo respetar a {NPCName} como compañero guía y educador!"
+				LoveNPC: "¿Crees que {NPCName} se fija en mí?"
+				DislikeNPC: "Honestamente no me gusta {NPCName}."
+				HateNPC: "¡Odio los ruidos causados por {NPCName} y sus expliciones! Yo sólo quiero paz y tranquilidad."
+			}
+		}
 		NPCs: {
 			AntlionD.DisplayName: Antlion 
 			ArmoredSlime.DisplayName: Slime blindado
