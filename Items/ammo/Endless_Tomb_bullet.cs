@@ -7,7 +7,8 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-	public class Endless_Tomb_bullet : ModItem
+    [CloneByReference]
+    public class Endless_Tomb_bullet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

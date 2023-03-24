@@ -5,6 +5,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.Utilities;
 using RemnantOfTheAncientsMod.Items.Items;
+using System;
 
 namespace RemnantOfTheAncientsMod.NPCs.zombis
 {
@@ -26,8 +27,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			NPC.damage = 15;
 			NPC.defense = 5;
 			NPC.lifeMax = 10;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
+			NPC.damage = 20;
 			NPC.value = 60f;
 			NPC.knockBackResist = 1.2f;
 			NPC.aiStyle = 3;
@@ -63,15 +63,13 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		public override void SetDefaults()
 		{
 			NPC.CloneDefaults(NPCID.Zombie);
-			NPC.width = 18;
+            NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 12;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.defense += 6;
+			NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.value += 60f;
+			NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -104,14 +102,12 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		{
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
-			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 13;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.height = 40;	
+			NPC.value += 60f;
+			NPC.defense += 7;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -144,14 +140,12 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		{
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
-			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 17;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.height = 40;			
+			NPC.defense += 11;
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -184,14 +178,12 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		{
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
-			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 15;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.height = 40;		
+			NPC.defense += 9;
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -227,13 +219,11 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 19;
-			NPC.defense = 22;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.defense += 13;
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -267,14 +257,12 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		{
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
-			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 21;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.height = 40;	
+			NPC.defense += 15;		
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -310,14 +298,12 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		{
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
-			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 22;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.height = 40;		
+			NPC.defense += 16;
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -354,13 +340,11 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 26;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.defense += 20;		
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -393,21 +377,21 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 
 		public override void SetDefaults()
 		{
-			NPC.CloneDefaults(NPCID.Zombie);
+			NPC.CloneDefaults(NPCID.Zombie); 
 			NPC.width = 18;
 			NPC.height = 40;
 			NPC.damage = 15;
-			NPC.defense = 56;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = (int)Math.Round(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * 1.02); 
+            NPC.defense += 23;	
+			NPC.value += 60f;
+			NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
 			Banner = Item.NPCtoBanner(NPCID.Zombie);
 			BannerItem = Item.BannerToItem(Banner);
+			//NPC.stepSpeed *= 0.25f;
 
 		}
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -415,8 +399,16 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<Reinforced_iron_ore>());
 		}
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.0008f : 0.01f;
+		public override void AI()
+		{
+            NPC.TargetClosest(true);
+            Vector2 targetPosition = Main.player[NPC.target].position;
+            NPC.velocity.X *= targetPosition.X < NPC.position.X ? -0.25f : 0.25f;
 
-		public override void HitEffect(int hitDirection, double damage)
+			Main.NewText(NPC.lifeMax);
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -442,14 +434,12 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		{
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
-			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 28;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.height = 40;	
+			NPC.defense += 22;	
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -484,13 +474,11 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 28;
-			NPC.defense = 23;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.defense += 19;		
+			NPC.value += 60f;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Zombie].damage;
+            NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
@@ -512,7 +500,8 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
             //{
             //	NPC.velocity.X += 0.25f;
             //}
-            NPC.TargetClosest(true);
+         
+			NPC.TargetClosest(true);
             Vector2 targetPosition = Main.player[NPC.target].position;
             NPC.velocity.X += targetPosition.X < NPC.position.X ? -0.25f : 0.25f;
         }
@@ -543,30 +532,40 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			NPC.CloneDefaults(NPCID.Zombie);
 			NPC.width = 18;
 			NPC.height = 40;
-			NPC.damage = 29;
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.damage = (int)Math.Round(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * 1.06);
 			NPC.defense += 19;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath2;
-			NPC.value = 60f;
-			NPC.knockBackResist = 0.2f;
+			NPC.value += 60f;
+			NPC.knockBackResist += 0.2f;
 			NPC.aiStyle = 3;
 			AIType = NPCID.Zombie;
 			AnimationType = NPCID.Zombie;
 			Banner = Item.NPCtoBanner(NPCID.Zombie);
 			BannerItem = Item.BannerToItem(Banner);
-		}
-		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.02f : 0;
-        public override void AI()
-        {
-            NPC.ai[2]++;
-
-            if (NPC.life <= 80 && NPC.ai[2] % 2 == 0)
-            {
-                NPC.life++;
-            }
-            NPC.ai[2] %= 3;
+            NPC.lifeRegen = 100;
+            NPC.lifeRegenCount = 2000;
         }
+		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.02f : 0;
+        int RegenCounter = 0;
+		public override void AI()
+		{
+
+			if (NPC.life < NPC.lifeMax)
+			{
+				if (RegenCounter == 190)
+				{
+					NPC.life++;
+				}
+				if (RegenCounter >= 200)
+				{
+					RegenCounter = 0;
+				}
+				else
+				{
+					RegenCounter++;
+				}
+			}
+		}
 
         public override void HitEffect(int hitDirection, double damage)
 		{

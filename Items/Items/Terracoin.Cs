@@ -7,6 +7,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Projectiles;
 using System;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Items.Items
 {
@@ -40,7 +41,11 @@ namespace RemnantOfTheAncientsMod.Items.Items
             Item.createTile = TileType<Tiles.TerracoinB>(); ;
             Item.noMelee = true;
         }
-		public override void AddRecipes()
+        public override bool CanShoot(Player player)
+        {
+            return false;
+        }
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.PlatinumCoin, 100)

@@ -6,7 +6,8 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-	public class Endles_High_Velocity_Bullet : ModItem
+    [CloneByReference]
+    public class Endles_High_Velocity_Bullet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

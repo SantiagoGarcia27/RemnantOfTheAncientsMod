@@ -1,9 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,21 +23,34 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			Projectile.aiStyle = 1;
 			Projectile.friendly = true; 
 			Projectile.hostile = false; 
-			Projectile.DamageType = DamageClass.Ranged;        //Is the projectile shoot by a ranged weapon?
-			Projectile.penetrate = 500;           //How many monsters the projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
-			Projectile.timeLeft = 800;          //The live time for the projectile (60 = 1 second, so 600 is 10 seconds)
-			Projectile.alpha = 255;             //The transparency of the projectile, 255 for completely transparent. (aiStyle 1 quickly fades the projectile in)
-			Projectile.light = 1.5f;            //How much light emit around the projectile
-			Projectile.ignoreWater = true;          //Does the projectile's speed be influenced by water?
-			Projectile.tileCollide = true;          //Can the projectile collide with tiles?
-			Projectile.extraUpdates = 1;            //Set to above 0 if you want the projectile to update multiple time in a frame
-			AIType = ProjectileID.Bullet;           //Act exactly like default Bullet
+			Projectile.DamageType = DamageClass.Ranged;      
+			Projectile.penetrate = 500;        
+			Projectile.timeLeft = 800;
+			Projectile.alpha = 255;        
+			Projectile.light = 1.5f;    
+			Projectile.ignoreWater = true;          
+			Projectile.tileCollide = true;   
+			Projectile.extraUpdates = 1;         
+			AIType = ProjectileID.Bullet; 
 		}
 		public override void AI()         
         {                                        
-           Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;  
+           Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;  
            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
 		}
-	}
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Projectile.penetrate--;
+            if (Projectile.penetrate <= 100) Projectile.Kill();
+            else
+            {
+                Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+                SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+                if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon) Projectile.velocity.X = -oldVelocity.X;
+                if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon) Projectile.velocity.Y = -oldVelocity.Y;
+            }
+            return false;
+        }
+    }
 }
 	

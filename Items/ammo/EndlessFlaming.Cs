@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
+    [CloneByReference]
     public class EndlessFlaming : ModItem
 	{
 		public override void SetStaticDefaults()

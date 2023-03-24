@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.World;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Items.ReaperSouls;
+using Terraria.Chat;
 
 namespace RemnantOfTheAncientsMod.Items.DificultChanger
 {
@@ -73,39 +74,85 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = false;
 		}
+        //      public override bool? UseItem(Player player)
+        //{
+        //	if (Main.netMode != 1)
+        //	{
+        //		if (!Utils1.IsAnyBossAlive())
+        //		{
+        //			/*Reaper.ReaperMode = !Reaper.ReaperMode ? true : false;   --> no entendi para que esta esto*/
+        //			if (Reaper.ReaperMode == false)
+        //			{
+        //				//Reaper.CanReaper = true;
+        //				Reaper.ReaperMode = true;
+        //				Item.buffTime = 1;
+        //				Color gray = Color.DarkSlateGray;
+        //				Main.NewText("Welcome to hell, now you're a reaper.", gray);
 
-		public override bool? UseItem(Player player)
-		{
-			if (!Utils1.IsAnyBossAlive())
-			{
-				/*Reaper.ReaperMode = !Reaper.ReaperMode ? true : false;   --> no entendi para que esta esto*/
-				if (Reaper.ReaperMode == false)
-				{
-					Reaper.ReaperMode = true;
-					Item.buffTime = 1;
-					Color gray = Color.DarkSlateGray;
-					Main.NewText("Welcome to hell, now you're a reaper.", gray);
+        //				if (player.GetModPlayer<RemnantPlayer>().ChaliceOn != true)
+        //				{
+        //					player.GetModPlayer<RemnantPlayer>().ReaperStarter();
+        //					RemnantPlayer.ReaperFirstTime = true;
+        //				}
+        //			}
+        //			else
+        //			{
+        //                     // Reaper.CanReaper = false;
+        //                      Reaper.ReaperMode = false;
 
-					// si el jugador no tiene el chalice en el slot le dara el pack de items
-					if (player.GetModPlayer<RemnantPlayer>().ChaliceOn != true)
-					{ 
-						player.GetModPlayer<RemnantPlayer>().ReaperStarter();
-						RemnantPlayer.ReaperFirstTime = true;	
-					}
-				}
-				else
-				{
-					Reaper.ReaperMode = false;
-					Color gray = Color.DarkSlateGray;
-					Main.NewText("Well your soul is free... for now.", gray);
+        //				Color gray = Color.DarkSlateGray;
+        //				Main.NewText("Well your soul is free... for now.", gray);
+        //			}
+        //		}
+        //		if (Main.netMode == NetmodeID.Server)
+        //		{
+        //			NetMessage.SendData(MessageID.WorldData);
+        //		}
+        //	}
+        //	return true;
+        //}
+        public override bool? UseItem(Player player)
+        {
+            //if (Main.netMode != 1)
+            //{
+            bool isReaperMode = Reaper.ReaperMode;
+
+            if (!Utils1.IsAnyBossAlive())
+            {
+                if (!isReaperMode)
+                {
+                    Reaper.ReaperMode = true;
+                    Item.buffTime = 1;
+                    Color gray = Color.DarkSlateGray;
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Welcome to hell, now you're a reaper."), gray);
+                    var modPlayer = player.GetModPlayer<RemnantPlayer>();
+                    if (modPlayer.ChaliceOn != true)
+                    {
+                        modPlayer.ReaperStarter();
+                        RemnantPlayer.ReaperFirstTime = true;
+                    }
                 }
-			}
-				return true;
-		}
+                else
+                {
+                    Reaper.ReaperMode = false;
+                    Color gray = Color.DarkSlateGray;
 
-		
-		
-		public override void AddRecipes()
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Well your soul is free... for now."), gray);
+                }
+
+                //  if (Main.netMode == NetmodeID.Server)
+                //  {
+                //      NetMessage.SendData(MessageID.WorldData);
+                //  }
+                // }
+            }
+
+            return true;
+        }
+
+
+
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddTile(TileID.DemonAltar)

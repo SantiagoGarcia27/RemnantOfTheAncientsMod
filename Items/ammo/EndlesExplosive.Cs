@@ -7,7 +7,8 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-	public class EndlesExplosive : ModItem
+    [CloneByReference]
+    public class EndlesExplosive : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

@@ -38,6 +38,10 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
                 {
                     if (!ModLoader.TryGetMod("CalamityMod", out Mod mod)) item.damage = 45;					
                 }
+				if(item.type == ItemID.Minishark)
+				{
+					item.knockBack = 0.1f;
+				}
                 if (item.type == ItemID.DD2BallistraTowerT1Popper) item.damage = 45;
                 if (item.type == ItemID.DD2BallistraTowerT2Popper) item.damage = 85;
                 if (item.type == ItemID.DD2BallistraTowerT3Popper) item.damage = 200;

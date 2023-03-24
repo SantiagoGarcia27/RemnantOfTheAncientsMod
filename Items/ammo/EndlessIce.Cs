@@ -7,7 +7,8 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-	public class EndlessIce : ModItem
+    [CloneByReference]
+    public class EndlessIce : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

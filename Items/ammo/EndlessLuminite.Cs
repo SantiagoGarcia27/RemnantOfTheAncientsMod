@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,7 +6,8 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-	public class EndlessLuminite : ModItem
+	[CloneByReference]
+    public class EndlessLuminite : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

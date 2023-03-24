@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Projectiles;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
+    [CloneByReference]
     public class EndlessDesert : ModItem
     {
         public override void SetStaticDefaults()

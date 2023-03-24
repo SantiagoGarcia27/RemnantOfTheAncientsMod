@@ -7,6 +7,7 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
+    [CloneByReference]
     public class EndlessWrathSlimeBullet : ModItem
 	{
 		public override void SetStaticDefaults()

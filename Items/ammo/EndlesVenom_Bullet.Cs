@@ -8,7 +8,8 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Items.ammo
 {
-	public class EndlesVenom_Bullet : ModItem
+    [CloneByReference]
+    public class EndlesVenom_Bullet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
