@@ -6,6 +6,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Items.Ranger
 {
@@ -65,5 +66,15 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		{
 			return Main.rand.NextFloat() >= .50f;	
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.TacticalShotgun)
+            .AddIngredient(ItemID.BrokenHeroSword, 1)
+            .AddIngredient(ItemID.Celeb2, 1)
+            .AddIngredient(ModContent.ItemType<CelestialAmalgamate>(), 5)
+            .AddTile(TileID.LunarCraftingStation)
+            .Register();
+        }
+    }
 }
