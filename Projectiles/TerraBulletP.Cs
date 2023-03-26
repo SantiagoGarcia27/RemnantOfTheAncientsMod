@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.width = 13;
             Projectile.height = 2;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = DamageClass.Ranged;
             Projectile.tileCollide = true;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 2000;
@@ -67,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.width = 13;
             Projectile.height = 2;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = DamageClass.Ranged;
             Projectile.tileCollide = true;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 2000;

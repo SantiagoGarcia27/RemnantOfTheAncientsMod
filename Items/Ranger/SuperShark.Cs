@@ -65,7 +65,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.Megashark, 1)
-			.AddIngredient(ModContent.ItemType<CelestialAmalgamate>(),5)
+			.AddIngredient(ItemID.FragmentVortex,10)
 			.AddTile(TileID.LunarCraftingStation)
 			.Register();
 		}

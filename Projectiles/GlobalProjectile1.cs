@@ -1,9 +1,4 @@
 ﻿using RemnantOfTheAncientsMod.World;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -16,11 +11,12 @@ namespace RemnantOfTheAncientsMod.Projectiles
         {
             if (Reaper.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly)
             {
-                projectile.width *= 2;
-                projectile.height *= 2;
+                projectile.width *= (int)1.5f;
+                projectile.height *= (int)1.5f;
                 projectile.scale *= 2.5f;
             }
 
         }
+
     }
 }

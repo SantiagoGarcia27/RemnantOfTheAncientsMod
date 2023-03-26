@@ -38,22 +38,16 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             Item.width = 30;
             Item.accessory = true;
             Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
-            Item.GetGlobalItem<GlobalItem1>().ReaperAccesories= true;
+            Item.GetGlobalItem<GlobalItem1>().ReaperAccesories = true;
         }
         public override void AddRecipes() => CreateRecipe().AddTile(TileID.DemonAltar).Register();
         internal static Color GetRarityColor() => Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
         public static Color GetReaperColor(int x)
         {
             Color color = new Color(100, 100, 100);
-            if(x == 1) color = new Color(46, 45, 45);
+            if (x == 1) color = new Color(46, 45, 45);
             else if (x == 2) color = new Color(191, 187, 187);
             return color;
         }
-
-        public static float ReaperSizeMeleeWeapons()
-        {
-            return 2.5f;
-        }
-       
     }
 }

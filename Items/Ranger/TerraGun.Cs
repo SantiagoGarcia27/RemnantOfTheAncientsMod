@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 			Tooltip.SetDefault("A weapon fit for a legend"
 				+ "\n50% chance of not spending ammo"
 				+"\nMusquet bullets turn into terra bullet");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "TTim le preguntó por colores y le dijo el arcoiris"
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un arma digna para el guia de una generación"
 					+ "\nProbabilidad del 50% de no gastar munición " +
 					"+\nTransforma las balas de mosquete en ballas terra");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

@@ -24,18 +24,17 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
             Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
+			Item.useTime = Base.useTime - 3;
+			Item.useAnimation = Base.useAnimation;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = Base.value;
 			Item.rare = Base.rare;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-		}
+		} 
 
-
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+        public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.NextBool(3))
 			{

@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod
 	{
 		internal static readonly Color ReaperRarityColor = new Color(48, 48, 48); // 
 		internal static readonly Color LegendaryRarityColor = new Color(0, 255, 200);
-       
+		
 
         internal static bool IsABoss()
 		{

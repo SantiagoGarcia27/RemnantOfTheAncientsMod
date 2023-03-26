@@ -1,8 +1,9 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,6 +16,8 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("SkyCutterS"); //projectile name
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5; // The length of old position to be recorded
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
         }
         public override void SetDefaults()
         {
@@ -32,18 +35,12 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             Projectile.scale = 0.7f;
             AIType = ProjectileID.InfluxWaver;
 
-           
+
         }
         public override void AI()           //this make that the projectile will face the corect way
         {                                                           // |
             Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
-
-
-
-
-            /* Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-                 if (CalamityMod != null){*/
 
             for (int i = 0; i < 200; i++)
             {
@@ -88,18 +85,9 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             // Declaring a constant in-line is fine as it will be optimized by the compiler
             // It is however recommended to define it outside method scope if used elswhere as well
             // They are useful to make numbers that don't change more descriptive
-            const int NUM_DUSTS = 20;
-
-            // Spawn some dusts upon javelin death
-            for (int i = 0; i < NUM_DUSTS; i++)
+            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(10); i++)
             {
-                // Create a new dust
-                Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);
-                dust.position = (dust.position + Projectile.Center) / 2f;
-                dust.velocity += rotVector * 2f;
-                dust.velocity *= 0.5f;
-                dust.noGravity = true;
-                usePos -= rotVector * 8f;
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Glass);
             }
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -110,5 +98,22 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
 
             Projectile.Kill();
         }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Main.instance.LoadProjectile(Projectile.type);
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+
+            // Redraw the projectile with the color not influenced by light
+            Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+            }
+
+            return true;
+        }
     }
 }
+

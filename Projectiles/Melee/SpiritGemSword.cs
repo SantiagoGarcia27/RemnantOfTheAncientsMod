@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,77 +25,93 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             Projectile.DamageType = DamageClass.Magic;
             Projectile.ignoreWater = true;
             Projectile.scale = 0.7f;
+            Projectile.timeLeft = 1000;
             AIType = ProjectileID.InfluxWaver;
         }
 
         public override void AI()
         {
+            //Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+            //Projectile.rotation = Projectile.velocity.ToRotation(); //+ MathHelper.ToRadians(0f);
+            //Projectile.rotation += Projectile.direction * 0.8f;
+
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
-            Projectile.rotation += Projectile.direction * 0.8f;
 
-            if (Projectile.alpha > 70)
-            {
-                Projectile.alpha -= 15;
-                if (Projectile.alpha < 70) Projectile.alpha = 70;
-            }
-            if (Projectile.localAI[0] == 0f)
-            {
-                AdjustMagnitude(ref Projectile.velocity);
-                Projectile.localAI[0] = 10f;
-            }
-            Vector2 move = Vector2.Zero;
-            float distance = 235f;
-            bool target = false;
-            for (int k = 0; k < 200; k++)
-            {
-                if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
-                {
-                    Vector2 newMove = Main.npc[k].Center - Projectile.Center;
-                    float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                    if (distanceTo < distance)
-                    {
-                        move = newMove;
-                        distance = distanceTo;
-                        target = true;
-                    }
-                }
-                if (target)
-                {
-                    AdjustMagnitude(ref move);
-                    Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
-                    AdjustMagnitude(ref Projectile.velocity);
-                }
+            /* if (Projectile.alpha > 70)
+             {
+                 Projectile.alpha -= 15;
+                 if (Projectile.alpha < 70) Projectile.alpha = 70;
+             }
+             if (Projectile.localAI[0] == 0f)
+             {
+                 AdjustMagnitude(ref Projectile.velocity);
+                 Projectile.localAI[0] = 10f;
+             }
+             Vector2 move = Vector2.Zero;
+             float distance = 235f;
+             bool target = false;
+             for (int k = 0; k < 200; k++)
+             {
+                 if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
+                 {
+                     Vector2 newMove = Main.npc[k].Center - Projectile.Center;
+                     float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
+                     if (distanceTo < distance)
+                     {
+                         move = newMove;
+                         distance = distanceTo;
+                         target = true;
+                     }
+                 }
+                 if (target)
+                 {
+                     AdjustMagnitude(ref move);
+                     Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
+                     AdjustMagnitude(ref Projectile.velocity);
+                 }
+             }*/
 
-            }
+
         }
-        private void AdjustMagnitude(ref Vector2 vector)
+        public override void OnSpawn(IEntitySource source)
         {
-            float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
-            if (magnitude > 106f) vector *= 26f / magnitude;
         }
-
         public override void Kill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-            Vector2 usePos = Projectile.position; // Position to use for dusts
+        }
+        private static readonly Color GeodeColorOne = GetRGeodeColor(1);
 
-            Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(45f)).ToRotationVector2();
-            usePos += rotVector * 16f;
-
-            const int NUM_DUSTS = 20;
-
-            for (int i = 0; i < NUM_DUSTS; i++)
+        private static readonly Color GeodeColorTwo = GetRGeodeColor(2);
+        public override Color? GetAlpha(Color lightColor)
+        {
+            switch (Projectile.ai[1])
             {
-                // Create a new dust
-                Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);
-                dust.position = (dust.position + Projectile.Center) / 2f;
-                dust.velocity += rotVector * 2f;
-                dust.velocity *= 0.5f;
-                dust.noGravity = true;
-                usePos -= rotVector * 8f;
+                case 0:
+                    return Color.Yellow;  
+                case 1:
+                    return Color.Violet;
+                case 2:
+                    return Color.Blue;
+                case 3:
+                    return Color.Green;
+                case 4:
+                    return Color.Red;
+                case 5:
+                    return Color.White;
+                case 6:
+                    return new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B);                 
+                default: 
+                  return Color.Black;
+                    
             }
         }
-        public override Color? GetAlpha(Color lightColor) => Color.White;
+        public static Color GetRGeodeColor(int x)
+        {
+            Color color = new Color(0, 0, 0);
+            if (x == 1) color = new Color(255, 255, 255);
+            else if (x == 2) color = new Color(0, 0, 0);
+            return color;
+        }
     }
 }

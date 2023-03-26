@@ -1,6 +1,6 @@
-author = Sangar & TTIM
+bauthor = Sangar & TTIM
 version = 2.0
-displayName = Remnant Of The Ancients Mod Pre release 3
+displayName = Remnant Of The Ancients Mod Pre release 4
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 hideCode = false
 hideResources = false

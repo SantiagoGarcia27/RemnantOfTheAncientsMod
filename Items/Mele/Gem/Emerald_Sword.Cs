@@ -40,10 +40,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 		}
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
 		{
-			//Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + 5 * 16, target.position.Y), (player.position - target.position) * 0.25f, ProjectileID.EmeraldBolt, damage, Main.myPlayer, player.whoAmI);
-			Vector2 perturbedSpeed = (player.position - target.position).RotatedBy(MathHelper.Lerp(-0, 0, 1)) * .2f;
-			var p = Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X - ((target.direction * 6) * 16), target.position.Y), (perturbedSpeed) * 0.25f, ModContent.ProjectileType <SpiritGemSword>(), damage, Main.myPlayer, player.whoAmI);
-            Main.projectile[p].GetAlpha(Color.DarkGreen);
+            Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
+            Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
+            Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI, 0, 3);
         }
 	
 

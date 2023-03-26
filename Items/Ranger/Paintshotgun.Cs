@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 			Item.value = 100000; 
 			Item.rare = ItemRarityID.LightRed;
 			Item.UseSound = SoundID.Item36;
-			Item.autoReuse = false;
+			Item.autoReuse = true;
 			Item.shoot = ProjectileID.PainterPaintball;
 			Item.shootSpeed = 8f;
 		}
@@ -47,9 +47,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 			for (int i = 0; i < NumProjectiles; i++)
 			{
 				Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(15));
-				newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-				Projectile.NewProjectileDirect(source, position, newVelocity, ProjectileID.PainterPaintball, damage, knockback, player.whoAmI);
-			}
+				newVelocity *= 1.5f - Main.rand.NextFloat(0.3f);
+				Projectile.NewProjectileDirect(source, position, newVelocity, Item.shoot, damage, knockback, Main.myPlayer, 0f, (float)Main.rand.Next(12) / 6f);
+        }
 
 			return false;
 		}
@@ -58,9 +58,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 			CreateRecipe()
 			.AddIngredient(ItemID.PainterPaintballGun, 1)
 			.AddIngredient(ItemID.Shotgun, 1)
-			.AddIngredient(ItemID.SoulofLight, 15)
+			.AddIngredient(ItemID.SoulofLight, 5)
 			.AddIngredient(ItemID.RedPaint, 50)
-			.AddTile(TileID.MythrilAnvil)
+			.AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

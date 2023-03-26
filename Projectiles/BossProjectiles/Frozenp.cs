@@ -68,15 +68,10 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
             Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
             usePos += rotVector * 16f;
 
-            const int NUM_DUSTS = 10;
-            for (int i = 0; i < NUM_DUSTS; i++)
+            
+            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(5); i++)
             {
-                Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, DustID.Tin);
-                dust.position = (dust.position + Projectile.Center) / 2f;
-                dust.velocity += rotVector * 2f;
-                dust.velocity *= 0.5f;
-                dust.noGravity = true;
-                usePos -= rotVector * 8f;
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0f, 0f, 100, default(Color), 1.5f);
             }
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
 using static Terraria.ModLoader.PlayerDrawLayer;
+using System;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 {
@@ -163,21 +164,27 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            SpawnSpiritSword(player, target, Color.White);
-            SpawnSpiritSword(player, target, Color.Red);
-            SpawnSpiritSword(player, target, Color.Blue);
-            SpawnSpiritSword(player, target, Color.Green);
-            SpawnSpiritSword(player, target, Color.Gold);
-            SpawnSpiritSword(player, target, Color.Purple);
-        }
-        public void SpawnSpiritSword(Player player,NPC target ,Color color)
-        {
-            Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
-            Vector2 Velocity = Position.DirectionTo(target.position) * 0.1f;
-            var j = Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI);
-            j.GetAlpha(color);
 
+            int numProjectiles = 6;
+            float spacing = MathHelper.TwoPi / numProjectiles;
+            float radius = 10 * 16f;
+
+            for (int i = 0; i < numProjectiles; i++)
+            {
+                Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
+                Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
+
+              int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage/3, knockBack, Main.myPlayer, 0, 6);
+                float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
+                Main.projectile[proj].rotation = angle;
+            }
         }
+        //public void SpawnSpiritSword(Player player,NPC target)
+        //{
+        //    Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
+        //    Vector2 Velocity = Position.DirectionTo(target.position) * 0.1f;
+        //    var j = Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damage / 2, Main.myPlayer, player.whoAmI,0,6);
+        //}
         public override void AddRecipes()
         {
             if (GemId != 0)

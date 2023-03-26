@@ -115,11 +115,9 @@ namespace RemnantOfTheAncientsMod.Items.DificultChanger
         {
             //if (Main.netMode != 1)
             //{
-            bool isReaperMode = Reaper.ReaperMode;
-
             if (!Utils1.IsAnyBossAlive())
             {
-                if (!isReaperMode)
+                if (!Reaper.ReaperMode)
                 {
                     Reaper.ReaperMode = true;
                     Item.buffTime = 1;

@@ -5,6 +5,10 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.VanillaChanges;
+using Mono.Cecil;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -19,6 +23,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public static int counter = 0;
 		public static int counter2 = 0;
+		public bool spike;
+		public bool strong;
 
 		private int oldDamage;
 		public override void SetDefaults()
@@ -42,18 +48,40 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		public override bool AltFunctionUse(Player player) => true;
 		public override bool CanUseItem(Player player)
 		{
-			if (player.altFunctionUse != 2)
+            if (player.altFunctionUse != 2)
 			{
+				spike = true;
                 Item.useStyle = ItemUseStyleID.Thrust;
-                if (counter <= 3) ModifyWeapon(false, ModContent.ProjectileType<InfernalSpike_f>(), 0f);
-				else ModifyWeapon(true, ModContent.ProjectileType<InfernalSpikeF_f>(), 0f);                  
+                if (counter < 3)
+				{
+                    Item.shoot = ModContent.ProjectileType<InfernalSpike_f>();
+                    counter++;
+                    strong = false;
+                }
+				else
+				{
+                    Item.shoot = ModContent.ProjectileType<InfernalSpikeF_f>();
+                    counter = 0;
+                    strong = true;
+                }
 			}
 			else
-			{
+			{	
+                spike = false;
                 Item.useStyle = ItemUseStyleID.Swing;
-                if (counter <= 3) ModifyWeapon(false, ModContent.ProjectileType<InfernalBall_f>(), 20f);
-				else ModifyWeapon(false, ModContent.ProjectileType<InfernalBallF_f>(), 20f);
-			}			
+                if (counter2 < 3)
+                {
+                    Item.shoot = ModContent.ProjectileType<InfernalBall_f>();
+                    counter2++;
+					strong = false;
+                }
+                else
+                {
+                    Item.shoot = ModContent.ProjectileType<InfernalBallF_f>();
+                    counter2 = 0;
+                    strong = true;
+                }
+            }
 			return base.CanUseItem(player);
 		}
 		public void ModifyWeapon(bool strong, int proj, float speed)
@@ -74,6 +102,22 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             }
 
 		}
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) => target.defense = target.defense / 2;
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		{
+			int FinalDamage = strong? damage * 2: damage;
+			if (spike)
+			{
+				Projectile.NewProjectile(source, position, velocity * 0, Item.shoot, FinalDamage, 1, player.whoAmI);
+			}
+			else
+			{
+				Item.shootSpeed = 8f;
+                Projectile.NewProjectile(source, position, velocity, Item.shoot, FinalDamage, 1, player.whoAmI);
+				
+            }
+            return false;
+		}
+
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) => target.defense = target.defense / 2;
     }
 }
