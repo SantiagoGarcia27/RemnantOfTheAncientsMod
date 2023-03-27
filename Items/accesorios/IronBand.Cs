@@ -10,11 +10,13 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 	{
 		public override void SetStaticDefaults()
 		{
-            DisplayName.SetDefault("Iron Band");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Iron Band");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bande de Fer");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Banda de Hierro");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			DisplayName.SetDefault("Iron Band");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bande de Fer");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Banda de Hierro");
+			Tooltip.SetDefault("2% Increased damage reduction");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Réduction des dégâts augmentée de 2%");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la reducción de daño en un 2%");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -27,8 +29,12 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 			Item.accessory = true;
 			Item.defense = 1;
 		}
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.endurance += 0.02f;
+        }
 
-		public override void AddRecipes()
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddRecipeGroup("IronBar", 2)

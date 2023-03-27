@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Projectiles;
 
 namespace RemnantOfTheAncientsMod.Items.Ranger
 {
@@ -31,9 +32,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
             Item.knockBack = 1;
             Item.value = Item.sellPrice(silver:400);
             Item.rare = ItemRarityID.Lime;
-   		    Item.UseSound = SoundID.Item45 ;
+   		    Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
-			Item.shoot = ProjectileID.Flare; 
+			Item.shoot = ModContent.ProjectileType<SuperFlare>(); 
             Item.shootSpeed = 1f;
             Item.useAmmo = AmmoID.Flare;
 			

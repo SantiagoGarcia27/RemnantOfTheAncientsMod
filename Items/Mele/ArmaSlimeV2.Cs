@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -34,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item10;
             Item.autoReuse = true;
-            Item.shoot = ProjectileID.Arkhalis; 
+            Item.shoot = ProjectileID.Terragrim; 
             Item.shootSpeed = 100f;
             Item.noUseGraphic = false;
         }
@@ -47,6 +48,20 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             target.AddBuff(BuffID.BrokenArmor, 1080);
             target.AddBuff(BuffID.Slow, 1080);
         }
+        //public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        //{
+        //    for (int i = 0; i < 390; i++)//30
+        //    {
+        //        float theta = Main.rand.NextFloat(MathHelper.TwoPi);
+        //        float x = 3f * Main.rand.NextFloat();
+        //        Vector2 vel = new Vector2(x, 0f).RotatedBy(theta);
+
+        //        int dust = Dust.NewDust(position + (new Vector2(32,0)* player.direction), 10,10, DustID.AncientLight);
+        //        Main.dust[dust].velocity = vel;
+        //        Main.dust[dust].noGravity = true;
+        //    }
+        //    return true;
+        //}
         public override void AddRecipes()
         {
             CreateRecipe()

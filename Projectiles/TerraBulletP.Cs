@@ -57,7 +57,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
     public class TerraBlockP : ModProjectile
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.DirtBlock;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Terra Block");
