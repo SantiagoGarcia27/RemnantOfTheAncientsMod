@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
         public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
 			itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
-            itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(),15));
+            itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(),7));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>())); 
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<Tyrant_repeater>(), ItemType<Spike_saber>(), ItemType<Tyran_Blast>()));
             itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalSoul>()));

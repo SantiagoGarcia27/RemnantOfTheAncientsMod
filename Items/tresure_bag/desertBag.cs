@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		}
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-            itemLoot.Add(ItemDropRule.Common(ItemType<DesertMusicBox>(), 15));
+            itemLoot.Add(ItemDropRule.Common(ItemType<DesertMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>())); ;
 			itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));

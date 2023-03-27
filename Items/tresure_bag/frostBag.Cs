@@ -46,8 +46,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
-            itemLoot.Add(ItemDropRule.Common(ItemType<FrozenMusicBox>(), 15));
-            itemLoot.Add(ItemDropRule.Common(ItemType<Frozenp2MusicBox>(), 15));
+            itemLoot.Add(ItemDropRule.Common(ItemType<FrozenMusicBox>(), 7));
+            itemLoot.Add(ItemDropRule.Common(ItemType<Frozenp2MusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>(), 1, 1, 1));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>())); ;
            // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
