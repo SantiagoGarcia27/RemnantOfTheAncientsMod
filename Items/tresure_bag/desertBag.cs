@@ -16,6 +16,7 @@ using RemnantOfTheAncientsMod.World;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
@@ -46,7 +47,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 		}
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-			itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
+            itemLoot.Add(ItemDropRule.Common(ItemType<DesertMusicBox>(), 15));
+            itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
 			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>())); ;
 			itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<desertbow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));

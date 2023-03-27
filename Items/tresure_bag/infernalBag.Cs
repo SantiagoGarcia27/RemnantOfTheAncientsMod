@@ -14,6 +14,7 @@ using RemnantOfTheAncientsMod.World;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
@@ -38,8 +39,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
         public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
 			itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
-			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>()));
-            // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
+            itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(),15));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>())); 
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<Tyrant_repeater>(), ItemType<Spike_saber>(), ItemType<Tyran_Blast>()));
             itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalSoul>()));
         }
