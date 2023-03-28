@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -38,27 +39,31 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.UseSound = SoundID.Item45;
 			Item.autoReuse = true;
 			Item.value = Base.value;
+			//Item.shoot = ModContent.ProjectileType<GrassSwordLeaft>();
+			//Item.shootSpeed= 20f;
 
-			/*if(RemnantOfTheAncientsMod.CalamityMod != null)
+            /*if(RemnantOfTheAncientsMod.CalamityMod != null)
 			{
                 Item.damage = 50;
                 Item.scale = 1.70f;
             }*/
-		}
+        }
 
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffID.OnFire, 40);
 			target.AddBuff(BuffID.Poisoned, 40);
-		}
+            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.DaybreakExplosion, damage / 10, 0);
+            }
+        }
 		public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
-			if (Main.rand.NextBool(1))
-			{
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, ItemUseStyleID.Swing);
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, ItemUseStyleID.Swing);
-			}
-		}
+            if (Main.rand.NextBool(6 - new RemnantOfTheAncientsMod().ParticleMeter(5)) && new RemnantOfTheAncientsMod().ParticleMeter(5) != 0) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
+            if (Main.rand.NextBool(6 - new RemnantOfTheAncientsMod().ParticleMeter(5)) && new RemnantOfTheAncientsMod().ParticleMeter(5) != 0) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.GrassBlades);
+
+        }
 		public override void AddRecipes()
 		{
 			CreateRecipe()

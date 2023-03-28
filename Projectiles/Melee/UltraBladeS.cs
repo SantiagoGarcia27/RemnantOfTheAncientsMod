@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
                 {
                     NPC target = Main.npc[i];
                     //If the NPC is hostile
-                    if (!target.friendly)
+                    if (!target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
                     {
                         //Get the shoot trajectory from the projectile and target
                         float shootToX = target.position.X + target.width * 0.5f - Projectile.Center.X;

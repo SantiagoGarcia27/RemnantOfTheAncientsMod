@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod.Drops
     {
         public class SlimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => true;
             public string GetConditionDescription() => null;
         }

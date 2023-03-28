@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -31,14 +32,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 
-			/*Mod CalamityMod = ModLoader.TryGetMod("CalamityMod");
-    		if (CalamityMod != null)
-			Item.damage = 800;
-			Item.scale = 1.28f;*/
 		}
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffID.Daybreak, 240);
+			if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+			{
+				Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, damage / 10, 0);
+			}
 		}	
 		
 
