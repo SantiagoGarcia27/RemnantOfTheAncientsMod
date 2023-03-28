@@ -220,12 +220,31 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         }
         public void FindTarget()
         {
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead) NPC.TargetClosest(true);
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead)
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    if (AllPlayersDead())
+                    {
+                        NPC.TargetClosest(true);
+                        NPC.velocity *= 0.1f;
+                    }
+                }
+                else
+                {
+                    if (AllPlayersDead())
+                    {
+                        NPC.TargetClosest(true);
+                        NPC.velocity *= 0.1f;
+                        
+                    }
+                }
+            }
         }
         public void DespawnSafeCheck(Player player, Worm worm)
         {
            
-            if (!NPC.WithinRange(player.Center, 170 * 16f) || NPC.position.Y == Main.miniMapY - (10f * 16f))
+            if ((!NPC.WithinRange(player.Center, 170 * 16f) || NPC.position.Y == Main.miniMapY - (10f * 16f))&& !player.dead)
             {
                 Vector2 directionToPlayer = Vector2.Normalize(player.Center - NPC.Center);
                 NPC.velocity = directionToPlayer * worm.MoveSpeed/4;
@@ -264,36 +283,43 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             int maxLife = NPC.lifeMax;
             NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
 
-
-            if (GetLifePorcenage() < 5f && Reaper.ReaperMode)
+            if (!AllPlayersDead())
             {
-                if (Main.netMode != 1)
+                if (GetLifePorcenage() < 5f && Reaper.ReaperMode)
                 {
-                    worm.Acceleration = 1.5f;
+                    if (Main.netMode != 1)
+                    {
+                        worm.Acceleration = 1.5f;
+                    }
+                    else
+                    {
+                        worm.Acceleration = 1.2f;
+                    }
+
+                }
+                else if (GetLifePorcenage() < 10f)
+                {
+                    worm.Acceleration = 1.1f;
                 }
                 else
                 {
-                    worm.Acceleration = 1.2f;
-                }
+                    worm.Acceleration = 0.15f;
 
-            }
-            else if (GetLifePorcenage() < 10f)
-            {
-                worm.Acceleration = 1.1f;
+                    if (GetLifePorcenage() < 25f)
+                    {
+                        moveSpeed = Main.netMode != 1 ? 70f : 60f;
+                    }
+                    else if (GetLifePorcenage() < 50f)
+                    {
+                        moveSpeed = Main.netMode != 1 ? 50f : 40f;
+                    }
+                    worm.MoveSpeed = moveSpeed;
+                }
             }
             else
             {
-                worm.Acceleration = 0.15f;
-               
-                if (GetLifePorcenage() < 25f)
-                {
-                    moveSpeed = Main.netMode != 1 ? 70f : 60f;
-                }
-                else if (GetLifePorcenage() < 50f)
-                {
-                    moveSpeed = Main.netMode != 1 ? 50f : 40f;
-                }
-                worm.MoveSpeed = moveSpeed;
+                worm.MoveSpeed = 10f;
+                worm.Acceleration = 1f;
             }
         }
         public float GetLifePorcenage()
@@ -301,6 +327,21 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             float i = (int)Math.Round((double)(100 * NPC.life) / NPC.lifeMax);//(NPC.lifeMax / NPC.life) * 100;
             return i;
         }
+        public bool AllPlayersDead()
+        {
+            bool allPlayersDead = true;
+
+            foreach (Player player in Main.player)
+            {
+                if (!player.dead)
+                {
+                    allPlayersDead = false;
+                    break;
+                }
+            }
+            return allPlayersDead;
+        }
+    
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) => head ? null : false;
         public override void BossLoot(ref string name, ref int potionType)
         {
