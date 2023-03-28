@@ -23,7 +23,7 @@ Mods: {
 			 Summon_Infusion.DisplayName: Summon infusion 
 			 Tank_Infusion.DisplayName: Tank infusion 
 			 Ultimate_Infusion.DisplayName: Ultimate infusion 
-			 MoneyColectorBuff.DisplayName: Money Collector 
+			 MoneyColectorBuff.DisplayName: Recolector de dinero
 			 Sand_Weapons.DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]" 
 			 SuperSenseBuff.DisplayName: Super Sense 
 			 Burning_Sand.DisplayName: Burning Sand 
@@ -88,11 +88,11 @@ Mods: {
 				 Description: The Stard dust will fight for you 
 			}
 
-			 ReaperBuff.DisplayName: Reaper mode 
+			ReaperBuff.DisplayName: Reaper mode 
 			AoD.DisplayName: Aprendiz del esquiva
 			Bee.DisplayName: abeja reina
 			Eye.DisplayName: Maestro de las embestidas
-			 Infernal.DisplayName: Infernal 
+			Infernal.DisplayName: Infernal 
 			MasterD.DisplayName: Maestro del desierto
 			Putrid.DisplayName: Podrido
 			QueenSlimeScrollBuff.DisplayName: Bendición de la reina
@@ -472,7 +472,7 @@ Mods: {
 				DisplayName: Segador
 				Tooltip:
 					'''
-					Activa el modo Reaper
+					Activa el modo Segador
 					tu vida máxima se establece en 1
 					aumenta todo el daño en un 50%
 					el tamaño de las armas cuerpo a cuerpo de corto alcanze aumenta en un 150%
@@ -528,7 +528,7 @@ Mods: {
 
 			RazorpineV2.DisplayName: Furia de pino
 			SkyCuter.DisplayName: Cortador estelar
-			StarStormTome.DisplayName: Tomo de estrellas
+			StarStormTome.DisplayName: Tomo de lluvia de estrellas
 			StarTome.DisplayName: Tomo de estrellas
 			True_Demoncicle.DisplayName: Verdadera Guadaña Demoníaca
 			Tyran_Blast.DisplayName: Rafaga tirana
@@ -650,14 +650,14 @@ Mods: {
 			}
 
 			TortugaPet.DisplayName: Lechuga mágica
-			 Twitch.DisplayName: Follow 
-			 Yt.DisplayName: Yt 
+			Twitch.DisplayName: Follow 
+			Yt.DisplayName: Yt 
 			Advanced_Potion_Kit.DisplayName: Kit de pociones avanzado
 			Basic_Potion_Kit.DisplayName: Kit de pociones basico
 			Combat_Potion_Kit.DisplayName: Kit de pociones de combate
 
 			Commander_Potion: {
-				DisplayName: Poci�n de comandante
+				DisplayName: Poción de comandante
 				Tooltip: Aumenta el numero maximo de torretas en 1
 			}
 
@@ -666,7 +666,7 @@ Mods: {
 			Endless_Combat_Potion_Kit.DisplayName: Kit de pociones de combate Eterno
 
 			Endless_Commander_Porion: {
-				DisplayName: Poci�n de comandante Eterno
+				DisplayName: Poción de comandante Eterno
 				Tooltip: Aumenta el numero maximo de torretas en 1
 			}
 
@@ -679,8 +679,8 @@ Mods: {
 			Endless_Mining_Potion_Kit.DisplayName: Kit de pociones de mineria Eterno
 
 			Endless_Money_Collector_Potion: {
-				DisplayName: Pocion de recolectora de dinero Eterno
-				Tooltip: Muestra la ubicaci�n de los enemigos y las fuentes de peligro
+				DisplayName: Pocion de recolectora de dinero Eterna
+				Tooltip: Envia el dinero a la hucha de forma automática.
 			}
 
 			Endless_Poseidon_Potion_Kit.DisplayName: Kit Poseídón Eterno
@@ -989,8 +989,8 @@ Mods: {
 			}
 
 			EaterOfWorldsScroll: {
-				DisplayName: Reduce el daño recibido en un 10% y aumenta un 5% el daño crítico
-				 Tooltip: Reduces damage taken by 10% and increases critical damage by 5% 
+				DisplayName: Pergamino pútrido
+				 Tooltip: Reduce el daño recibido en un 10% y aumenta un 5% el daño crítico
 			}
 
 			EmpressOfLightScroll: {

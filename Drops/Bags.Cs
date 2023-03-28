@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Drops
                 case ItemID.KingSlimeBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemType<KingSlimeScroll>(), 5));
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
-                    itemLoot.Add(ItemDropRule.ByCondition(new SlimeReaperSoulRule(), ItemType<DesertSoul>()));
+                    itemLoot.Add(ItemDropRule.ByCondition(new SlimeReaperSoulRule(), ItemType<KingSoul>()));
                     break;
                 case ItemID.EyeOfCthulhuBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemType<EyeOfCthulhuScroll>(), 5));

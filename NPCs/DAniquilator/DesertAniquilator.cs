@@ -22,6 +22,7 @@ using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
 using System.IO;
 using Terraria.DataStructures;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 {
@@ -139,14 +140,14 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 
             setCurrentPhase(NPC);
 
-            if (player.ZoneDesert)
-            {
+            //if (player.ZoneDesert)
+            //{
                 AttackIA(player);
-            }
-            else
-            {
-                RageIA(player);
-            }
+            //}
+            //else
+            //{
+            //    RageIA(player);
+            //}
 
             if (player.dead)
             {
@@ -312,6 +313,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         }*/
         private void AttackIA(Player target)
         {
+            bool IsRage = !target.ZoneDesert; 
             if (attackCounter >= 0)
             {
                 setAttackCounter(1000,target);
@@ -323,10 +325,31 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
                 {
                     case 600:
                     case 400:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                        if (!IsRage)
+                        {
+                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                        }
+                        else
+                        {
+                            for (int i = 0; i >= 4; i++) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                        }
                         break;
                     case 200:
-                        if(Main.expertMode) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface - (3* 16), NPCID.TombCrawlerHead);
+                        if (Main.expertMode)
+                        {
+                            if (!IsRage)
+                            {
+                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.TombCrawlerHead);
+                            }
+                            else
+                            {
+                                for (int i = 0; i >= 4; i++)
+                                {
+                                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.TombCrawlerHead);
+                                }
+                            }
+                        }
+                
                         break;
                     case 100:
                         NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
@@ -335,7 +358,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
                     case 10:
                         if(currentPhase >= 2)
                         {
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
+                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.DuneSplicerHead);
                             if (Main.expertMode)
                             {
                                 NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
@@ -358,7 +381,38 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
                             ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
                             break;
                         case 530:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, 0.5f);
+                            if (IsRage)
+                            {
+                                if (!Reaper.ReaperMode)
+                                {
+                                    for (int i = 0; i <= 7; i++)
+                                    {
+                                        ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f + i, -0.5f + (i), 0.5f);
+                                    }
+                                }
+                                else
+                                {
+                                    for (float i = 0f; i <= 6; i += 0.5f)
+                                    {
+                                        ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f + i, 3.5f - i);
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                if (!Reaper.ReaperMode)
+                                {
+                                    ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, 0.5f);
+                                }
+                                else
+                                {
+                                    for(float i = 0f; i <= 4; i += 0.5f) 
+                                    {
+                                        ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f + i, 3.5f - i);
+                                    }
+                                }
+                            }
                             break;
                         case 500:
                             DesertTp();
@@ -420,108 +474,6 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             }
         }
 
-
-
-
-        private void RageIA(Player target)
-        {
-            if (Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
-            {
-                setAttackCounter(1000,target);
-            }
-            if (!Reaper.ReaperMode)
-            {
-                switch (summonCounter)
-                {
-                    case 600:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 400:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 200:
-                        if (Main.expertMode) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                        break;
-                    case 100:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                        break;
-                    case 10:
-                        if (currentPhase >= 2)
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
-                        break;
-                }
-                if (Main.expertMode)
-                {
-                    switch (attackCounter)
-                    {
-                        case 600:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, 0.5f);
-                            break;
-                        case 590:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
-                            break;
-                        case 580:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
-                            break;
-                        case 530:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, 0.5f);
-                            break;
-                        case 500:
-                            DesertTp();
-                            attackCounter++;
-                            break;
-                        default:
-                            break;
-
-                    }
-                }
-            }
-            else
-            {
-                switch (summonCounter)
-                {
-                    case 500:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 400:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 200:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
-                        break;
-                    case 100:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                        break;
-                }
-                if (Main.expertMode)
-                {
-                    switch (attackCounter)
-                    {
-                        case 500:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, 0.5f);
-                            break;
-                        case 490:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
-                            break;
-                        case 480:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
-                            break;  
-                        case 430:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, 0.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, 3.5f, 3.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, 3.5f, -3.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f, -3.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(40), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f, 3.5f);
-                            break;
-                        case 481:
-                            DesertTp();
-                            break;
-                    }
-                }
-            }
-        }
         public void setAttackCounter(int i, Player player)
         {
             int masterAttackCounterScale = AttackCounterScale(i - 400, player);
@@ -556,14 +508,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 
         public int AttackCounterScale(int Num, Player player) 
         {
-            if(!Reaper.ReaperMode)
-            {
-                return player.ZoneDesert ? Num : Num - 100;
-            }
-            else
-            {
-                return player.ZoneDesert ? Num - 100 : Num - 200;
-            }
+            return (!Reaper.ReaperMode) ? Num : Num - 100;
         }
         public void DesertTp()
         {
