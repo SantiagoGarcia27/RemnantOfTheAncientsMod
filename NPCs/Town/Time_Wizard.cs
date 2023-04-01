@@ -17,6 +17,7 @@ using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
+using Terraria.Utilities;
 
 namespace RemnantOfTheAncientsMod.NPCs.Town
 {
@@ -27,7 +28,7 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 		public override void SetStaticDefaults()
 		{
 
-            Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Wizard];
+			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Wizard];
 			NPCID.Sets.ExtraFramesCount[NPC.type] = NPCID.Sets.ExtraFramesCount[NPCID.Wizard];
 			NPCID.Sets.AttackFrameCount[NPC.type] = NPCID.Sets.AttackFrameCount[NPCID.Wizard];
 			NPCID.Sets.DangerDetectRange[NPC.type] = 700;
@@ -51,6 +52,11 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				.SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
 				.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate)
 				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
+
+			DisplayName.SetDefault("Time Wizard");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Magicien du temps");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Mago del tiempo");
+
 		}
 
 		public override void SetDefaults()
@@ -72,8 +78,8 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("A ancient wizard that study the secrets of the time manipulation"),
+			BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+			new FlavorTextBestiaryInfoElement("A ancient wizard that study the secrets of the time manipulation"),
 			});
 		}
 		public override void HitEffect(int hitDirection, double damage)
@@ -116,42 +122,31 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				"Harry"
 			};
 		}
-		
 		public override string GetChat()
 		{
+			WeightedRandom<string> chat = new WeightedRandom<string>();
 			int Wizard = NPC.FindFirstNPC(NPCID.Wizard);
 			int Clothier = NPC.FindFirstNPC(NPCID.Clothier);
-			int Tinker = NPC.FindFirstNPC(NPCID.GoblinTinkerer);
-			if (Wizard >= 0 && Main.rand.NextBool(4))
+
+			if (Wizard >= 0 && Main.rand.NextBool(4)) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.WizardDialogue", Main.npc[Wizard].GivenName));
+
+			if (Main.dayTime)
 			{
-				return Main.npc[Wizard].GivenName + " He is a great friend of mine, I remember when we studied at the school of witchcraft.";
+				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue1", 4));
+				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue2", Main.LocalPlayer.name));
+			}
+			else
+			{
+				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue1", 4));
+				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue2", Main.LocalPlayer.name));
 			}
 
-			int opcion = Main.rand.Next(4);
+			if (NPC.downedBoss3 && Clothier >= 0) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.ClotierDialogue", Main.npc[Clothier].GivenName));
+			if (!NPC.downedQueenBee) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NoBeeDefeatedDialogue1", 4));
+			if (FindItemInventoriPlayer(ItemType<Judgment>())) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.JudmnetDialogue1"));
+			chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.GenericDialog1"));
 
-			if (opcion == 0)
-			{
-				if (Main.dayTime) return "It's a beautiful day today, it would be a shame if someone changed it.";
-				else return "It's a beautiful nigth today, it would be a shame if someone changed it.";
-			}
-			if (opcion == 1)
-			{
-				if (NPC.downedBoss3) return "Oh? You're approaching me? Instead of running away, you're coming right to me?"
-								 + "\nEven Though your clothier, " + Main.npc[Clothier].GivenName + ", told you the secret of The World, *dead " + Main.npc[Clothier].GivenName + " pics*"
-								 + "\nlike an exam student scrambling to finish the problems on an exam until the last moments before the chime?";
-				else return "Nice cloak";
-			}
-			if (opcion == 2)
-			{
-				if (Main.dayTime) return "Oh hi player, hope you have a nice day.";
-				else return "Oh hi player, hope you have a nice night.";
-			}
-			if (opcion == 3)
-			{
-				if (FindItemInventoriPlayer(ItemType<Judgment>())) return "A judgment can be more powerful than you think.";
-				else return "Since the bees bother me, could you remove them?";
-			}
-			return "Error en la realidad, algo salió mal, si ves este mensaje avisale a la tortuga ;)";
+			return chat;
 		}
 		public bool FindItemInventoriPlayer(int ItemChoise)
 		{
@@ -193,34 +188,34 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
 			shop.item[nextSlot].SetDefaults(ItemType<DayToken>());
-			shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0); 
+			shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
 			nextSlot++;
 			shop.item[nextSlot].SetDefaults(ItemType<NightToken>());
-			shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0); 
+			shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
 			nextSlot++;
 			if (Main.raining)
 			{
 				shop.item[nextSlot].SetDefaults(ItemType<RainToken>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0); 
+				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
 				nextSlot++;
 			}
 			if (Sandstorm.Happening)
 			{
 				shop.item[nextSlot].SetDefaults(ItemType<SandstormToken>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0); 
+				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
 				nextSlot++;
 			}
 
 			if (NPC.downedQueenBee)
 			{
 				shop.item[nextSlot].SetDefaults(ItemType<Judgment>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 2, 0, 0); 
+				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 2, 0, 0);
 				nextSlot++;
 			}
-			if(NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0)
-            {
+			if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0)
+			{
 				shop.item[nextSlot].SetDefaults(ItemType<PlayerStatViewer>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 40, 0, 0); 
+				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 40, 0, 0);
 				nextSlot++;
 			}
 

@@ -15,21 +15,21 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
-			return ModLoader.TryGetMod("CalamityMod", out mod);
+return ModLoader.TryGetMod("CalamityMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Punisher of Gods");
+DisplayName.SetDefault("Punisher of Gods");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Punisher of Gods");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Castigadora de Dioses");
-			
-			Tooltip.SetDefault(""
-			+ "\n90% chance of not spending ammo ");
+
+Tooltip.SetDefault(""
++ "\n90% chance of not spending ammo ");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			+ "\n90% de chances de ne pas dépenser de munitions ");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-			+ "\nProbabilidad del 90% de no gastar munición ");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
++ "\n90% de chances de ne pas dépenser de munitions ");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
++ "\nProbabilidad del 90% de no gastar munición ");
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -49,38 +49,38 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
             Item.shoot = ProjectileID.PurificationPowder; 
             Item.shootSpeed = 100f;
             Item.useAmmo = AmmoID.Bullet;
-			
+
 		}
 		public override bool CanConsumeAmmo(Item ammo, Player player)
 		{
-			return Main.rand.NextFloat() >= .90f;
+return Main.rand.NextFloat() >= .90f;
 		}
 		public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-30, 0);
+return new Vector2(-30, 0);
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (Main.rand.NextFloat () <= (float) 1 / 100) Projectile.NewProjectile(source, position, velocity, ProjectileType<MisilUltra>(), 10955, 1, player.whoAmI);
-			return true;
+if (Main.rand.NextFloat () <= (float) 1 / 100) Projectile.NewProjectile(source, position, velocity, ProjectileType<MisilUltra>(), 10955, 1, player.whoAmI);
+return true;
 		}
 		public override void AddRecipes()
 		{
-			if (RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-				Recipe recipe = CreateRecipe()
+if (RemnantOfTheAncientsMod.CalamityMod != null)
+{
+	Recipe recipe = CreateRecipe()
 
-				.AddIngredient(ItemType<ultratiburon>());
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("Phantoplasm"), 5);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
-				recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
+	.AddIngredient(ItemType<ultratiburon>());
+	recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
+	recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("Phantoplasm"), 5);
+	recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
+	recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
+	recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
+	recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
                 recipe.AddTile(TileID.LunarCraftingStation);
-				recipe.Register();
-			}
+	recipe.Register();
+}
 		}
-			
+
 	}
 }

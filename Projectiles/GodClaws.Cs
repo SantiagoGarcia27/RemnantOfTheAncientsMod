@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 					maxTileY = Main.maxTilesY;
 				}
 
-                for (int x = minTileX; x <= maxTileX; x++)
+				for (int x = minTileX; x <= maxTileX; x++)
 				{
 					for (int y = minTileY; y <= maxTileY; y++)
 					{
@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 						double distance = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
 						if (distance < explosionRadius && Main.tile[x, y] != null && Main.tile[x, y].WallType == 0)
 						{
-                            break;
+							break;
 						}
 
 					}
@@ -89,11 +89,11 @@ namespace RemnantOfTheAncientsMod.Projectiles
 				if (CalamityMod.TryFind("GodSlayerInferno", out ModProjectile GodSlayerInferno)) target.AddBuff(GodSlayerInferno.Type, 400);
 				if (CalamityMod.TryFind("GodSlayerInferno", out ModProjectile Marked)) target.AddBuff(Marked.Type, 400);
 			}
-            target.AddBuff(BuffID.OnFire, 1080);
-            target.AddBuff(BuffID.BrokenArmor, 1080);
-            target.AddBuff(BuffID.Slow, 1080);
-            target.AddBuff(BuffID.CursedInferno, 1080);
-            target.AddBuff(BuffID.Ichor, 1080);
-        }
+			target.AddBuff(BuffID.OnFire, 1080);
+			target.AddBuff(BuffID.BrokenArmor, 1080);
+			target.AddBuff(BuffID.Slow, 1080);
+			target.AddBuff(BuffID.CursedInferno, 1080);
+			target.AddBuff(BuffID.Ichor, 1080);
+		}
 	}
 }

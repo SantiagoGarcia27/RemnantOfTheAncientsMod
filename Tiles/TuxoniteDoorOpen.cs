@@ -12,7 +12,8 @@ namespace RemnantOfTheAncientsMod.Tiles
 {
 	public class TuxoniteDoorOpen : ModTile
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			// Properties
 			Main.tileFrameImportant[Type] = true;
 			Main.tileSolid[Type] = false;
@@ -75,19 +76,23 @@ namespace RemnantOfTheAncientsMod.Tiles
 			TileObjectData.addTile(Type);
 		}
 
-		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
+		{
 			return true;
 		}
 
-		public override void NumDust(int i, int j, bool fail, ref int num) {
+		public override void NumDust(int i, int j, bool fail, ref int num)
+		{
 			num = 1;
 		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+		public override void KillMultiTile(int i, int j, int frameX, int frameY)
+		{
 			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<TuxoniteDoor>());
 		}
 
-		public override void MouseOver(int i, int j) {
+		public override void MouseOver(int i, int j)
+		{
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;

@@ -19,26 +19,26 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
 		public override void SetDefaults()
 		{
-			Projectile.width = 10; 
+			Projectile.width = 10;
 			Projectile.height = 2;
-			Projectile.aiStyle = 1; 
+			Projectile.aiStyle = 1;
 			Projectile.friendly = true;
-			Projectile.hostile = false; 
+			Projectile.hostile = false;
 			Projectile.DamageType = DamageClass.Ranged;
 			Projectile.penetrate = 1;
-			Projectile.timeLeft = 800; 
-			Projectile.alpha = 255; 
-			Projectile.light = 1.5f;  
-			Projectile.ignoreWater = true;    
-			Projectile.tileCollide = true; 
-			Projectile.extraUpdates = 1;      
-			AIType = ProjectileID.Bullet;  
+			Projectile.timeLeft = 800;
+			Projectile.alpha = 255;
+			Projectile.light = 1.5f;
+			Projectile.ignoreWater = true;
+			Projectile.tileCollide = true;
+			Projectile.extraUpdates = 1;
+			AIType = ProjectileID.Bullet;
 		}
 
-  		public override void AI()          
-        {                                                           // |
-            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;  
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
+		public override void AI()
+		{                                                           // |
+			Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
 		}
 		public override bool PreDraw(ref Color lightColor)
 		{

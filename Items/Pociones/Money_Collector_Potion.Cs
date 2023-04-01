@@ -16,10 +16,10 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.SetDefault("Money Collector Potions");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de super sens");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de recolectora de dinero");
-            Tooltip.SetDefault("Show the locations of enemies and danger sources");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Muestra la ubicación de los enemigos y las fuentes de peligro");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
+            Tooltip.SetDefault("Transport the money from your inventory to the piggy bank");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Transportez l'argent de votre inventaire à la tirelire");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Transporta el dinero de tu inventario a la hucha");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
         {
@@ -41,7 +41,14 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     public class Endless_Money_Collector_Potion : Endless
     {
         public override Item ItemBase => new(ItemType<Money_Collector_Potion>());
-        public override ModTranslation ItemName => GetInstance<Money_Collector_Potion>().DisplayName;
-        public override ModTranslation ItemDescription => GetInstance<Money_Collector_Potion>().Tooltip;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Money Collector Potions");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de super sens sans fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de recolectora de dinero eterna");
+            Tooltip.SetDefault("Transport the money from your inventory to the piggy bank");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Transportez l'argent de votre inventaire à la tirelire");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Transporta el dinero de tu inventario a la hucha");
+        }
     }
 }

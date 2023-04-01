@@ -1,0 +1,131 @@
+CentryBuff.DisplayName: Comander Potion 
+FishBuff.DisplayName: Fish 
+GravityControlBuff.DisplayName: Gravity control 
+Advanced_Infusion.DisplayName: Advanced infusion 
+Basic_Infusion.DisplayName: Basic infusion 
+
+Combat_infusion: {
+	DisplayName: Infusión de combate
+	Description: Mejora ofensiva definitiva
+}
+
+Exploration_infusion.DisplayName: Infusión de combate
+Fishing_Infusion.DisplayName: Fishing infusion 
+Mage_Infusion.DisplayName: Mage infusion 
+Melee_Infusion.DisplayName: Melee infusion 
+Mining_infusion.DisplayName: Mining infusion 
+Poseidon_Infusion.DisplayName: Poseidon infusion 
+Ranger_Infusion.DisplayName: Ranger infusion 
+Summon_Infusion.DisplayName: Summon infusion 
+Tank_Infusion.DisplayName: Tank infusion 
+Ultimate_Infusion.DisplayName: Ultimate infusion 
+MoneyColectorBuff.DisplayName: Recolector de dinero
+Sand_Weapons.DisplayName: Burning Sand
+SuperSenseBuff.DisplayName: Super Sense 
+Burning_Sand.DisplayName: Burning Sand 
+
+Hell_Fire: {
+	DisplayName: Hell Fire 
+	 Description: ... 
+}
+
+HollyBurn: {
+	DisplayName: Holly Burn 
+	 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn 
+}
+
+Javalina: {
+	DisplayName: Javalina 
+	 Description: Losing life 
+}
+
+Marble_erosion: {
+	DisplayName: Marble rosion 
+	 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion 
+}
+
+GoldenAcornBuff: {
+	DisplayName: Animated Golden Sapling 
+	 Description: The Animated Golden Sapling will fight for you 
+}
+
+PlatinumAcornBuff: {
+	DisplayName: Animated Platinum Sapling 
+	 Description: The Animated Platinum Sapling will fight for you 
+}
+
+SaplingMinionBuff: {
+	DisplayName: Animated Sapling 
+	 Description: The Animated Sapling will fight for you 
+}
+
+SilverAcornBuff: {
+	DisplayName: Animated Silver Sapling 
+	 Description: The Animated Silver Sapling will fight for you 
+}
+
+TungstenAcornBuff: {
+	DisplayName: Animated Tungsten Sapling 
+	 Description: The Animated Tungsten Sapling will fight for you 
+}
+
+DesertMinionBuff: {
+	DisplayName: Baby Desert Aniquilator 
+	 Description: The Baby Desert will fight for you 
+}
+
+FrozenMinionBuff: {
+	DisplayName: Baby Frozen Assaulter 
+	 Description: The Baby Frozen will fight for you 
+}
+
+StardustMinionBuff: {
+	DisplayName: StardustMinionBuff 
+	 Description: The Stard dust will fight for you 
+}
+
+ReaperBuff.DisplayName: Reaper mode 
+AoD.DisplayName: Aprendiz del esquiva
+Bee.DisplayName: abeja reina
+Eye.DisplayName: Maestro de las embestidas
+Infernal.DisplayName: Infernal 
+MasterD.DisplayName: Maestro del desierto
+Putrid.DisplayName: Podrido
+QueenSlimeScrollBuff.DisplayName: Bendición de la reina
+Skeleton.DisplayName: Muertos viviente
+Slim.DisplayName: Bendición del rey
+
+SwordMount: {
+	DisplayName: Espada de transporte 
+	 Description: La forma de viajar mas eficaz 
+}
+
+TortugaPetBuff: {
+	DisplayName: The Turtle 
+	 Description: ._. 
+}
+
+YoutubeMoradoBuff: {
+	DisplayName: Twitch 
+	 Description: 
+		'''
+		Thanks to -febo1apolo -eltonyhelou -Jormanas_gt
+		 -LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094
+		 -RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
+		 -Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606
+		 -gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo
+		 -Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
+		 -Rockerheadd -mateoamii -JuanitoLive -DDS0210 -charlestwi -zakzar01 -Wuchang234
+		 -WHYonex -zun32 -bickelo -sakarok4 -Mr_D2D2 -Brunix_117 -kire -LixFTO -tuamigojoker1234
+		 -Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
+		 -JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors
+		 -LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu
+		 for testing my mod 
+		''' 
+}
+
+YtBuff: 
+{
+	DisplayName: Yt 
+	 Description: a 
+}

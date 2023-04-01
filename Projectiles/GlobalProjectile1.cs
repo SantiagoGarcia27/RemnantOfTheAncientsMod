@@ -15,8 +15,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
                 projectile.height *= (int)1.5f;
                 projectile.scale *= 2.5f;
             }
-
         }
-
     }
 }

@@ -52,10 +52,10 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
 
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<NightBar>(),10)
-			.AddTile(TileID.DemonAltar)
-			.Register();
+CreateRecipe()
+.AddIngredient(ModContent.ItemType<NightBar>(),10)
+.AddTile(TileID.DemonAltar)
+.Register();
 		}
 	}
 }

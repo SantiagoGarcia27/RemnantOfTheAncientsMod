@@ -12,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Items.ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Endless Angry Slime Pouch");
+DisplayName.SetDefault("Endless Angry Slime Pouch");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de Slime en Colère Sans Fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Saco Infinito de Bala de Slime Furioso");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
         Item Base = new Item(ModContent.ItemType<WrathSlimeBullet>());

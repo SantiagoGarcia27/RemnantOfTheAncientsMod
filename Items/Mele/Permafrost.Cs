@@ -12,33 +12,33 @@ using RemnantOfTheAncientsMod.Projectiles.Melee;
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
     public class Permafrost : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Permafrost");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le pergélisol");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permafrost");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
+    {
+        public override void SetStaticDefaults()
+        {
+            //DisplayName.SetDefault("Permafrost");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le pergélisol");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permafrost");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
 
-		public override void SetDefaults()
-		{
-			Item.damage = 45;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.width = 72;
-			Item.height = 72;
-			Item.useTime = 40;
-			Item.useAnimation = 25;
-			Item.shootSpeed = 3.7f;
-			Item.knockBack = 6.5f;
-			Item.scale = 1f;
-			Item.rare = ItemRarityID.Pink;
-			Item.value = Item.sellPrice(silver: 10);
-			Item.DamageType = DamageClass.Melee;
-			Item.autoReuse = true;
-			Item.UseSound = SoundID.Item1;
-			Item.shoot = ProjectileType<FrostBeamF>();
-			Item.shootSpeed = 7f;
+        public override void SetDefaults()
+        {
+            Item.damage = 45;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.width = 72;
+            Item.height = 72;
+            Item.useTime = 40;
+            Item.useAnimation = 25;
+            Item.shootSpeed = 3.7f;
+            Item.knockBack = 6.5f;
+            Item.scale = 1f;
+            Item.rare = ItemRarityID.Pink;
+            Item.value = Item.sellPrice(silver: 10);
+            Item.DamageType = DamageClass.Melee;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
+            Item.shoot = ProjectileType<FrostBeamF>();
+            Item.shootSpeed = 7f;
 
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
@@ -47,8 +47,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 
         }
         public override bool AltFunctionUse(Player player) => true;
-		public override bool CanUseItem(Player player)
-		{
+        public override bool CanUseItem(Player player)
+        {
             if (player.altFunctionUse != 2)
             {
                 Item.shoot = ProjectileType<FrostBeamF>();

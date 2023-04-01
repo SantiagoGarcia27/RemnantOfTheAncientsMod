@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
     {
        public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Desert Chest");
+DisplayName.SetDefault("Desert Chest");
             Tooltip.SetDefault("Summons the Desert Annihilator");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coffre du désert");

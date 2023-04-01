@@ -14,35 +14,35 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("TerraGun1");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La Terra Arma");
-			Tooltip.SetDefault("A weapon fit for a legend"
-				+ "\n50% chance of not spending ammo"
-				+"\nMusquet bullets turn into terra bullet");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un arma digna para el guia de una generación"
-					+ "\nProbabilidad del 50% de no gastar munición " +
-					"+\nTransforma las balas de mosquete en ballas terra");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+DisplayName.SetDefault("TerraGun1");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La Terra Arma");
+Tooltip.SetDefault("A weapon fit for a legend"
+	+ "\n50% chance of not spending ammo"
+	+"\nMusquet bullets turn into terra bullet");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un arma digna para el guia de una generación"
+		+ "\nProbabilidad del 50% de no gastar munición " +
+		"+\nTransforma las balas de mosquete en ballas terra");
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 128;
-			Item.crit = 12;
-			Item.DamageType = DamageClass.Ranged;
-			Item.width = 86;
-			Item.height = 30;
-			Item.useTime = 33;
-			Item.useAnimation = 33;
-			Item.useStyle = ItemUseStyleID.Shoot;
-			Item.noMelee = true;
-			Item.knockBack = 1;
-			Item.value = Item.sellPrice(0,15,0,0);
-			Item.rare = 11;
-			Item.UseSound = SoundID.Item40;
-			Item.autoReuse = true;
-			Item.shoot = ProjectileID.Bullet;
-			Item.shootSpeed = 10f;
-			Item.useAmmo = AmmoID.Bullet;
+Item.damage = 128;
+Item.crit = 12;
+Item.DamageType = DamageClass.Ranged;
+Item.width = 86;
+Item.height = 30;
+Item.useTime = 33;
+Item.useAnimation = 33;
+Item.useStyle = ItemUseStyleID.Shoot;
+Item.noMelee = true;
+Item.knockBack = 1;
+Item.value = Item.sellPrice(0,15,0,0);
+Item.rare = 11;
+Item.UseSound = SoundID.Item40;
+Item.autoReuse = true;
+Item.shoot = ProjectileID.Bullet;
+Item.shootSpeed = 10f;
+Item.useAmmo = AmmoID.Bullet;
 		}
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
@@ -60,11 +60,11 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
         }
         public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
         public override bool CanConsumeAmmo(Item ammo,Player player)
 		{
-			return Main.rand.NextFloat() >= .50f;	
+return Main.rand.NextFloat() >= .50f;	
 		}
         public override void AddRecipes()
         {

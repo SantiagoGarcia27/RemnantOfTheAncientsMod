@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.SetDefault("Fish Potions");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de poisson");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de pez");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
         {
@@ -38,7 +38,11 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     public class Endless_Fish_Potion : Endless
     {
         public override Item ItemBase => new Item(ItemType<Fish_Potion>());
-        public override ModTranslation ItemName => GetInstance<Fish_Potion>().DisplayName;
-        public override ModTranslation ItemDescription => GetInstance<Fish_Potion>().Tooltip;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Fish Potions");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de poisson sans fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de pez eterna");
+        }
     }
 }

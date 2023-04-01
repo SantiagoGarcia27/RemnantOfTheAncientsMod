@@ -15,11 +15,11 @@ namespace RemnantOfTheAncientsMod.Items.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Terra Coin");
+DisplayName.SetDefault("Terra Coin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Moneta Terra");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce de monnaie Terra");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Moneda terra");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 		}
 		public override void SetDefaults()
 		{
@@ -47,9 +47,9 @@ namespace RemnantOfTheAncientsMod.Items.Items
         }
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.PlatinumCoin, 100)
-			.Register();
+CreateRecipe()
+.AddIngredient(ItemID.PlatinumCoin, 100)
+.Register();
 		}
 	}
 }

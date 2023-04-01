@@ -11,10 +11,10 @@ namespace RemnantOfTheAncientsMod.Items.ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Endless Luminite Pouch");
+DisplayName.SetDefault("Endless Luminite Pouch");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de luminite sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de Luminita eterna");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
         Item Base = new Item(ItemID.MoonlordBullet);

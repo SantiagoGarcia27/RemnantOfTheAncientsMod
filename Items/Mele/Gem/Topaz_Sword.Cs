@@ -18,27 +18,27 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 	        DisplayName.SetDefault("Topaz Sword");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée de topaze");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Topacio");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 12;
-			Item.DamageType = DamageClass.Melee;
-			Item.width = 50;
-			Item.height = 50;
-			Item.useTime = 18;
-			Item.useAnimation = 18;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 1;
-			Item.value = 1200;
-			Item.rare = ItemRarityID.Blue;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
-			if(RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-				Item.autoReuse = true;
-				Item.scale = 2f;
-			}
+Item.damage = 12;
+Item.DamageType = DamageClass.Melee;
+Item.width = 50;
+Item.height = 50;
+Item.useTime = 18;
+Item.useAnimation = 18;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 1;
+Item.value = 1200;
+Item.rare = ItemRarityID.Blue;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = false;
+if(RemnantOfTheAncientsMod.CalamityMod != null)
+{
+	Item.autoReuse = true;
+	Item.scale = 2f;
+}
 		}
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
@@ -50,11 +50,11 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.TinBar,8)
+CreateRecipe()
+.AddIngredient(ItemID.TinBar,8)
             .AddIngredient(ItemID.Topaz,10)
-			.AddTile(TileID.Anvils)
-			.Register();
+.AddTile(TileID.Anvils)
+.Register();
 		}
 	}
 }

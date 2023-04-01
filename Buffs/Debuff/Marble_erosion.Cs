@@ -10,7 +10,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 	// See ExamplePlayer.UpdateBadLifeRegen and ExampleGlobalNPC.UpdateLifeRegen for more information.
 	public class Marble_erosion : ModBuff
 	{
-		public override void SetStaticDefaults() { 
+		public override void SetStaticDefaults()
+		{
 			DisplayName.SetDefault("Marble rosion");
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
@@ -18,7 +19,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 			BuffID.Sets.LongerExpertDebuff[Type] = true;
 		}
 
-		public override void Update(NPC npc, ref int buffIndex) {
+		public override void Update(NPC npc, ref int buffIndex)
+		{
 			npc.GetGlobalNPC<GlobalNPC1>().Marble_Erosion = true;
 		}
 

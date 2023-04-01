@@ -24,28 +24,28 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Treasure Bag");
-			Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+DisplayName.SetDefault("Treasure Bag");
+Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.maxStack = 999;
-			Item.consumable = true;
-			Item.width = 24;
-			Item.height = 24;
-			Item.rare = ItemRarityID.Purple;
-			Item.expert = true;
+Item.maxStack = 999;
+Item.consumable = true;
+Item.width = 24;
+Item.height = 24;
+Item.rare = ItemRarityID.Purple;
+Item.expert = true;
 		}
 
 		public override bool CanRightClick()
 		{
-			return true;
+return true;
 		}
 		public override void ModifyItemLoot(ItemLoot itemLoot)
 		{
-			itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
+itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<FrozenMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Frozenp2MusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>(), 1, 1, 1));

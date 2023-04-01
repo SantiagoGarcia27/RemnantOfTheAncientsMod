@@ -11,33 +11,33 @@ using RemnantOfTheAncientsMod.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
-	public class DesertEdge : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
+    public class DesertEdge : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
             DisplayName.SetDefault("Desert Edge");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée des désert");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Filo del desierto");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-		public override void SetDefaults()
-		{
-			Item.damage = 25;
-			Item.DamageType = DamageClass.Melee;
-			Item.width = 60;
-			Item.height = 60;
-			Item.useTime = 30;
-			Item.useAnimation = 30;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 1;
-			Item.autoReuse = true;
-			Item.UseSound = SoundID.Item39;
-			Item.value = 100900;
-			Item.rare = ItemRarityID.Green;
-			Item.shoot = ProjectileType<DesertS>();
-			Item.shootSpeed = 10f;
-			Item.noUseGraphic = false;
-		}
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            Item.damage = 25;
+            Item.DamageType = DamageClass.Melee;
+            Item.width = 60;
+            Item.height = 60;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 1;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item39;
+            Item.value = 100900;
+            Item.rare = ItemRarityID.Green;
+            Item.shoot = ProjectileType<DesertS>();
+            Item.shootSpeed = 10f;
+            Item.noUseGraphic = false;
+        }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             float numberProjectiles = 2;
@@ -48,14 +48,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                Projectile.NewProjectile(source, position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), damage/2, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
             }
             Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
             return false;
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-		{
-			target.AddBuff(BuffType<Buffs.Debuff.Burning_Sand>(), 300);
-		}
-	}
+        {
+            target.AddBuff(BuffType<Buffs.Debuff.Burning_Sand>(), 300);
+        }
+    }
 }

@@ -6,16 +6,16 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
 	public class FishBuff : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Fish");
+DisplayName.SetDefault("Fish");
             Description.SetDefault("");
             Main.buffNoSave[Type] = false;
-			Main.buffNoTimeDisplay[Type] = false;
-			Main.persistentBuff[Type] = true;
+Main.buffNoTimeDisplay[Type] = false;
+Main.persistentBuff[Type] = true;
 		}
 		
 		public override void Update(Player player, ref int buffIndex) 
 		{
-			RemnantPlayer.FishPotion(player);
+RemnantPlayer.FishPotion(player);
 		}
 	}
 }

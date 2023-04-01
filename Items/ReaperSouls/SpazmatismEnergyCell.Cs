@@ -17,44 +17,44 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Spazmatism Energy Cell");
+DisplayName.SetDefault("Spazmatism Energy Cell");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cellule énergétique du spazmatisme");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía del espazmatisador");
-			Tooltip.SetDefault("Grants immunity to all fire debuffs");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Accorde l'immunité à tous les affaiblissements de feu");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a todas las desventajas de fuego.");
-			//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-			ItemID.Sets.ItemIconPulse[Item.type] = true;
-			ItemID.Sets.ItemNoGravity[Item.type] = true;
+Tooltip.SetDefault("Grants immunity to all fire debuffs");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Accorde l'immunité à tous les affaiblissements de feu");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a todas las desventajas de fuego.");
+//ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+ItemID.Sets.ItemIconPulse[Item.type] = true;
+ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.width = 26; //Tamaño inGame 
-			Item.height = 20;
-			Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
-			Item.value = 0; //Precio
-			Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
-			Item.useAnimation = 20;
-			Item.useTime = 20;
-			Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.maxStack = 1;
-			Item.UseSound = SoundID.Item60;
-			Item.consumable = true;
+Item.width = 26; //Tamaño inGame 
+Item.height = 20;
+Item.maxStack = 1; //Cantidad maxima en un espacio de inventario
+Item.value = 0; //Precio
+Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Reaper;
+Item.useAnimation = 20;
+Item.useTime = 20;
+Item.useStyle = ItemUseStyleID.HoldUp;
+Item.maxStack = 1;
+Item.UseSound = SoundID.Item60;
+Item.consumable = true;
 		}
 		internal static Color GetRarityColor()
 		{
-			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
+return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade;
+return !player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade;
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade = true;
-			return true;
+player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade = true;
+return true;
 		}
 	}
 	public class SpazmatismReaperSoulPlayer : ModPlayer
@@ -62,16 +62,16 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		public bool SpazmatismReaperUpgrade = false;
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(SpazmatismReaperUpgrade);
+ModPacket packet = Mod.GetPacket();
+packet.Write(SpazmatismReaperUpgrade);
 		}
 		public override void SaveData(TagCompound tag)
 		{
-			tag["SpazmatismReaperUpgrade"] = SpazmatismReaperUpgrade;
+tag["SpazmatismReaperUpgrade"] = SpazmatismReaperUpgrade;
 		}
 		public override void LoadData(TagCompound tag)
 		{
-			SpazmatismReaperUpgrade = tag.Get<bool>("SpazmatismReaperUpgrade");
+SpazmatismReaperUpgrade = tag.Get<bool>("SpazmatismReaperUpgrade");
 		}
 	}
 }

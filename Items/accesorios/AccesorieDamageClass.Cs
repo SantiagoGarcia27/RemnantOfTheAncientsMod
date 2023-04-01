@@ -6,8 +6,8 @@ namespace RemnantOfTheAncientsMod
 	{
 		public float accesorieDamageCalculator(int n)
         {
-			float a = 1+(n/100f);
-			return a;
+float a = 1+(n/100f);
+return a;
         }
 	}
 }

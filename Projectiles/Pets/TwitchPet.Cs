@@ -10,23 +10,23 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
 	{
 		public override void SetStaticDefaults() 
 		{	
-			Main.projFrames[Projectile.type] = 5;
+Main.projFrames[Projectile.type] = 5;
            // Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
             ProjectileID.Sets.LightPet[Projectile.type] = true;
         }
 
 		public override void SetDefaults() {
-			Projectile.CloneDefaults(ProjectileID.SuspiciousTentacle);
-			AIType = ProjectileID.SuspiciousTentacle;
-			Projectile.light = 1.25f;
-			Projectile.scale = 1.25f;
+Projectile.CloneDefaults(ProjectileID.SuspiciousTentacle);
+AIType = ProjectileID.SuspiciousTentacle;
+Projectile.light = 1.25f;
+Projectile.scale = 1.25f;
 		}
 
 		public override bool PreAI() {
-			Player player = Main.player[Projectile.owner];
-			player.suspiciouslookingTentacle = false; 
-			return true;
+Player player = Main.player[Projectile.owner];
+player.suspiciouslookingTentacle = false; 
+return true;
 		}
 
 		public override void AI() {
@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
                 Projectile.timeLeft = 2;
             }
             Projectile.alpha = 100;
-			Projectile.stepSpeed= 100; 
+Projectile.stepSpeed= 100; 
         }
 	}
 }

@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.World
 		{
 
 			//if (ReaperMode)tag["ReaperMode"] = true;
-			if(TimeDilocated)tag["TimeDilocated"] = true;
+			if (TimeDilocated) tag["TimeDilocated"] = true;
 
 		}
 
@@ -61,4 +61,4 @@ namespace RemnantOfTheAncientsMod.World
 		}
 	}
 }
-			
+

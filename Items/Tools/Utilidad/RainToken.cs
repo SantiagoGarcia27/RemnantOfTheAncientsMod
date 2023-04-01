@@ -12,52 +12,52 @@ namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Rain Token");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jeton de pluie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ficha de lluvia");
-			Tooltip.SetDefault("Summons the rain");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque la pluie");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Convoca a la lluvia ");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+DisplayName.SetDefault("Rain Token");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jeton de pluie");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ficha de lluvia");
+Tooltip.SetDefault("Summons the rain");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque la pluie");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Convoca a la lluvia ");
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.width = 20;
-			Item.height = 20;
-			Item.rare = 5;
-			Item.useAnimation = 20;
-			Item.useTime = 20;
-			Item.maxStack = 99;
-			Item.useStyle = 4;
-			Item.UseSound = SoundID.Item60;
-			Item.consumable = true;
+Item.width = 20;
+Item.height = 20;
+Item.rare = 5;
+Item.useAnimation = 20;
+Item.useTime = 20;
+Item.maxStack = 99;
+Item.useStyle = 4;
+Item.UseSound = SoundID.Item60;
+Item.consumable = true;
 		}
 
 
 		public override bool? UseItem(Player player)
 		{
-			if (Main.netMode != 1)
-			{
-				if (Main.raining)
-				{
-					RainOff();
-				}
-				else if (!Main.raining && !Main.slimeRain)
-				{
-					RainOn();
-				}
-			}
-			return true;
+if (Main.netMode != 1)
+{
+	if (Main.raining)
+	{
+		RainOff();
+	}
+	else if (!Main.raining && !Main.slimeRain)
+	{
+		RainOn();
+	}
+}
+return true;
 		}
 
 		private static void RainOff()
 		{
-			//MiscMethods.WriteText("Rain disabled.", new Color(0, 128, 255));
-			Main.raining = false;
-			Main.rainTime = 0;
-			Main.maxRaining = 0f;
-			NetMessage.SendData(7);
+//MiscMethods.WriteText("Rain disabled.", new Color(0, 128, 255));
+Main.raining = false;
+Main.rainTime = 0;
+Main.maxRaining = 0f;
+NetMessage.SendData(7);
 		}
 
 		private static void RainOn()

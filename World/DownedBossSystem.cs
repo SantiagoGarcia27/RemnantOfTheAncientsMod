@@ -19,13 +19,15 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 		public static bool downedTyrant = false;
 		// public static bool downedOtherBoss = false;
 
-		public override void OnWorldLoad() {
+		public override void OnWorldLoad()
+		{
 			downedDesert = false;
 			downedFrozen = false;
 			downedTyrant = false;
 		}
 
-		public override void OnWorldUnload() {
+		public override void OnWorldUnload()
+		{
 			downedDesert = false;
 			downedFrozen = false;
 			downedTyrant = false;
@@ -33,27 +35,33 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
 		// We save our data sets using TagCompounds.
 		// NOTE: The tag instance provided here is always empty by default.
-		public override void SaveWorldData(TagCompound tag) {
-			
-			if (downedDesert) {
+		public override void SaveWorldData(TagCompound tag)
+		{
+
+			if (downedDesert)
+			{
 				tag["downedDesert"] = true;
 			}
-			if (downedFrozen) {
+			if (downedFrozen)
+			{
 				tag["downedFrozen"] = true;
 			}
-			if (downedTyrant) {
+			if (downedTyrant)
+			{
 				tag["downedTyrant"] = true;
 			}
 		}
 
-		public override void LoadWorldData(TagCompound tag) {
+		public override void LoadWorldData(TagCompound tag)
+		{
 			downedDesert = tag.ContainsKey("downedDesert");
 			downedFrozen = tag.ContainsKey("downedFrozen");
 			downedTyrant = tag.ContainsKey("downedTyrant");
 			// downedOtherBoss = tag.ContainsKey("downedOtherBoss");
 		}
 
-		public override void NetSend(BinaryWriter writer) {
+		public override void NetSend(BinaryWriter writer)
+		{
 			// Order of operations is important and has to match that of NetReceive
 			var flags = new BitsByte();
 			flags[0] = downedDesert;
@@ -107,13 +115,14 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 			*/
 		}
 
-		public override void NetReceive(BinaryReader reader) {
+		public override void NetReceive(BinaryReader reader)
+		{
 			// Order of operations is important and has to match that of NetSend
 			BitsByte flags = reader.ReadByte();
 			downedDesert = flags[0];
 			downedFrozen = flags[1];
 			downedTyrant = flags[2];
-			
+
 
 			// As mentioned in NetSend, BitBytes can contain up to 8 values. If you have more, be sure to read the additional data:
 			// BitsByte flags2 = reader.ReadByte();

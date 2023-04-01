@@ -6,7 +6,7 @@ namespace RemnantOfTheAncientsMod
 {
 	public class ConfigClient1 : ModConfig
 	{
-		public override ConfigScope Mode => ConfigScope.ClientSide;
+		public override ConfigScope Mode => ConfigScope.ServerSide;
 
 		[Label("Lag Reducer Mode")]
 		[SliderColor(11, 181, 176, 29)]
@@ -23,7 +23,18 @@ namespace RemnantOfTheAncientsMod
 		+ "\n(deactivate this if it generates incompatibility with some other mod)")]
 		public bool VanillaWeaponsChangesConf { get; set; }
 
-		/*[Label("ReaperFirsTime")]
+
+        [Label("Ultimate potion feather fall effect")]
+        [DefaultValue(true)]
+        [Tooltip("Activate the feather fall effect of Ultimate potion kit")]
+        public bool UltimatePotionFeatherFall { get; set; }
+
+        [Label("Ultimate potion invisivility effect")]
+        [DefaultValue(true)]
+        [Tooltip("Activate the feather invisivility of Ultimate potion kit")]
+        public bool UltimatePotionInvis { get; set; }
+
+        /*[Label("ReaperFirsTime")]
 		[DefaultValue(true)]
 		[Tooltip("")]
 		public bool ReaperFirsTimeConf { get; set; }
@@ -36,5 +47,5 @@ namespace RemnantOfTheAncientsMod
 		[DefaultValue(0f)]
 		[Tooltip("Reduces graphical aspects of the mod in order to improve game performance.")]
 		public float GameModeDebugg { get; set; }*/
-	}
+    }
 }

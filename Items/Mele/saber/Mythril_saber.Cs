@@ -10,33 +10,33 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Mythril Saber");
+DisplayName.SetDefault("Mythril Saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre de Mythril");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de Mithril");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
             Item Base = new Item(ItemID.MythrilSword);
             Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 80;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = Base.rare;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+Item.width = 40;
+Item.height = 80;
+Item.useTime = 20;
+Item.useAnimation = 20;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 10;
+Item.value = Base.value;
+Item.rare = Base.rare;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = true;
 		}
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.MythrilBar, 10)
-			.AddTile(TileID.MythrilAnvil)
-			.Register();
+CreateRecipe()
+.AddIngredient(ItemID.MythrilBar, 10)
+.AddTile(TileID.MythrilAnvil)
+.Register();
 		}
 	}
 }

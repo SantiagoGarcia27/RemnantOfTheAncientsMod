@@ -44,7 +44,7 @@ public abstract class ModelSummonerStaff : ModItem
 		Item.shoot = MinionId;
 		if (ModLoader.TryGetMod("CalamityMod", out Mod mod))
 		{
-			Item.damage = Damage + 3;
+Item.damage = Damage + 3;
 		}
     }
 	public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

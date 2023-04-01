@@ -21,20 +21,20 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Saplings
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Forest Staff");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque");
-			Tooltip.SetDefault("Summons a Sapling to fight for you");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño para que luche por ti.");
+DisplayName.SetDefault("Forest Staff");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque");
+Tooltip.SetDefault("Summons a Sapling to fight for you");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño para que luche por ti.");
 		}
 
 	
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.Acorn, 5)
-			.AddIngredient(ItemID.Wood, 10)
-			.AddTile(TileID.WorkBenches)			
-			.Register();
+CreateRecipe()
+.AddIngredient(ItemID.Acorn, 5)
+.AddIngredient(ItemID.Wood, 10)
+.AddTile(TileID.WorkBenches)
+.Register();
 		}
 	}
 	public class ForestStaff_S : ModelSummonerStaff
@@ -49,10 +49,10 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Saplings
 		public override int Price => Item.buyPrice(0, 0, 10, 0);
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Silver Forest Staff");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del Bosque Plateado");
-			Tooltip.SetDefault("Summons a Silver Sapling to fight for you");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño plateado para que luche por ti.");
+DisplayName.SetDefault("Silver Forest Staff");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del Bosque Plateado");
+Tooltip.SetDefault("Summons a Silver Sapling to fight for you");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño plateado para que luche por ti.");
 		}
 	}
 
@@ -67,10 +67,10 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Saplings
 		public override int Mana => 5;
 		public override int Price => Item.buyPrice(0, 0, 10, 0);
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Tungsten Forest Staff");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque de tungsteno");
-			Tooltip.SetDefault("Summons a tungsten Sapling to fight for you");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño de tungsteno para que luche por ti");
+DisplayName.SetDefault("Tungsten Forest Staff");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque de tungsteno");
+Tooltip.SetDefault("Summons a tungsten Sapling to fight for you");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño de tungsteno para que luche por ti");
 		}
 	}
 
@@ -86,10 +86,10 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Saplings
 		public override int Price => Item.buyPrice(0, 0, 10, 0);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Golden Forest Staff");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque Dorado");
-			Tooltip.SetDefault("Summons a Golden Sapling to fight for you");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño dorado para que luche por ti.");
+DisplayName.SetDefault("Golden Forest Staff");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque Dorado");
+Tooltip.SetDefault("Summons a Golden Sapling to fight for you");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño dorado para que luche por ti.");
 		}
 	}
 	public class ForestStaff_P : ModelSummonerStaff
@@ -104,10 +104,10 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Saplings
 		public override int Price => Item.buyPrice(0, 0, 10, 0);
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Platinum Forest Staff");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque Platinado");
-			Tooltip.SetDefault("Summons a Platinum Sapling to fight for you");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño platinado para que luche por ti.");
+DisplayName.SetDefault("Platinum Forest Staff");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del bosque Platinado");
+Tooltip.SetDefault("Summons a Platinum Sapling to fight for you");
+Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un retoño platinado para que luche por ti.");
 		}
 	}
 }

@@ -18,11 +18,11 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 		}
 
 		public override void SetDefaults() {
-			//Item.DefaultToPlaceableTile(ModContent.TileType<TuxoniteChair>());
-			Item.value = 150;
-			Item.maxStack = 99;
-			Item.width = 12;
-			Item.height = 30;
+//Item.DefaultToPlaceableTile(ModContent.TileType<TuxoniteChair>());
+Item.value = 150;
+Item.maxStack = 99;
+Item.width = 12;
+Item.height = 30;
             Item.createTile = ModContent.TileType<Tiles.TuxoniteChair>();
             Item.placeStyle = 0;
             Item.useTurn = true;
@@ -35,10 +35,10 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 
 		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
 		public override void AddRecipes() {
-			CreateRecipe()
-				.AddIngredient<TuxoniteBar>()
-				.AddTile(TileID.Anvils)
-				.Register();
+CreateRecipe()
+	.AddIngredient<TuxoniteBar>()
+	.AddTile(TileID.Anvils)
+	.Register();
 		}
 	}
 }

@@ -13,28 +13,28 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Diamond Sword");	
+DisplayName.SetDefault("Diamond Sword");	
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Diamentowy miecz");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "épée de diamant");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Diamante");
-			Tooltip.SetDefault("Wrong game");
+Tooltip.SetDefault("Wrong game");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Juego equivocado");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 23;
-			Item.DamageType = DamageClass.Melee;
-			Item.width = 50;
-			Item.height = 50;
-			Item.useTime = 18;
-			Item.useAnimation = 18;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 1;
-			Item.value = 1900;
-			Item.rare = ItemRarityID.Blue;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
+Item.damage = 23;
+Item.DamageType = DamageClass.Melee;
+Item.width = 50;
+Item.height = 50;
+Item.useTime = 18;
+Item.useAnimation = 18;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 1;
+Item.value = 1900;
+Item.rare = ItemRarityID.Blue;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = false;
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 Item.autoReuse = true;
@@ -49,11 +49,11 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem
         }
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.PlatinumBar,8)
+CreateRecipe()
+.AddIngredient(ItemID.PlatinumBar,8)
             .AddIngredient(ItemID.Diamond,10)
-			.AddTile(TileID.Anvils)	
-			.Register();
+.AddTile(TileID.Anvils)	
+.Register();
 		}
 	}
 }

@@ -12,24 +12,24 @@ namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Frozen Assaulter Mask");
+DisplayName.SetDefault("Frozen Assaulter Mask");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Zamarzniętego Assaultera");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'assaillant Felé");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Asaltante Congelado");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.width = 18;
-			Item.height = 18;
-			Item.rare = ItemRarityID.Blue;
-			Item.vanity = true;
+Item.width = 18;
+Item.height = 18;
+Item.rare = ItemRarityID.Blue;
+Item.vanity = true;
 
 		}
 
 		public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
-			color = drawPlayer.GetImmuneAlphaPure(Color.White, shadow);
+color = drawPlayer.GetImmuneAlphaPure(Color.White, shadow);
 		}
 	}
 }

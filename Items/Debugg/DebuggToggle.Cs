@@ -14,13 +14,13 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 
         public override void SetDefaults()
 		{
-			Item.width = 20;
-			Item.height = 20;
-			Item.rare = ItemRarityID.Pink;
-			Item.useAnimation = 20;
-			Item.useTime = 20;
-			Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.UseSound = SoundID.Item60;
+Item.width = 20;
+Item.height = 20;
+Item.rare = ItemRarityID.Pink;
+Item.useAnimation = 20;
+Item.useTime = 20;
+Item.useStyle = ItemUseStyleID.HoldUp;
+Item.UseSound = SoundID.Item60;
 		}
         public override bool? UseItem(Player player)
         {

@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             /*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
     		if (CalamityMod != null)
 
-			player.GetDamage(DamageClass.Melee) += 0.20f; */
+player.GetDamage(DamageClass.Melee) += 0.20f; */
         }
     }
 }

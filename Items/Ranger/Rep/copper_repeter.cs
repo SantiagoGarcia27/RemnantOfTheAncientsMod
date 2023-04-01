@@ -12,7 +12,7 @@ public class copper_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Copper Repeater");
+DisplayName.SetDefault("Copper Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wzmacniacz miedziany");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur en cuivre");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de cobre");
@@ -39,15 +39,15 @@ public class copper_repeter : ModItem
     }
          public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
 
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.CopperBar,7)
-			.AddTile(TileID.Anvils)
-			.Register();		
+CreateRecipe()
+.AddIngredient(ItemID.CopperBar,7)
+.AddTile(TileID.Anvils)
+.Register();		
         }
     }
 }

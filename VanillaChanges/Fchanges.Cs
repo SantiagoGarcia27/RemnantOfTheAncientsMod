@@ -15,19 +15,19 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		//public static bool Fscale = false;
 		public static float originalsize = 1;
 		public float newsize = 0;
-		
 
 
 
-        public override void ModifyItemScale(Item item, Player player, ref float scale)
-        {
-            RemnantPlayer modPlayer = player.GetModPlayer<RemnantPlayer>();
 
-            if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && !item.noMelee && item.active)
-            {
-                scale *= 2.5f;
-            }
-        }
+		public override void ModifyItemScale(Item item, Player player, ref float scale)
+		{
+			RemnantPlayer modPlayer = player.GetModPlayer<RemnantPlayer>();
+
+			if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && !item.noMelee && item.active)
+			{
+				scale *= 2.5f;
+			}
+		}
 
 
 		//         if (item.GetGlobalItem<GlobalItem1>().SizedByReaper)
@@ -62,9 +62,9 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 		//             }
 		//}
 		//	}
-		
-        public static void ReaperSetDefaut(Item item)
-        {
+
+		public static void ReaperSetDefaut(Item item)
+		{
 			if (item.type == ModContent.ItemType<ReaperChalice>())
 			{
 				item.accessory = Reaper.ReaperMode ? true : false;
@@ -102,7 +102,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				{
 					OgWingTime = player.wingTimeMax;
 					if (!player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade || !player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade) player.wingTimeMax = OgWingTime / 2;
-					else player.wingTimeMax = OgWingTime;				
+					else player.wingTimeMax = OgWingTime;
 				}
 			}
 		}

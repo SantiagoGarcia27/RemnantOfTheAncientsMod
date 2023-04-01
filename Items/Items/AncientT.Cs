@@ -10,35 +10,35 @@ namespace RemnantOfTheAncientsMod.Items.Items
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ancient tablet");
+DisplayName.SetDefault("Ancient tablet");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Starożytna tablica");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tablette ancienne");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tableta antigua");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.width = 26;
-			Item.height = 22;
-			Item.maxStack = 99;
-			Item.useTurn = true;
-			Item.autoReuse = true;
-			Item.useAnimation = 15;
-			Item.useTime = 10;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.consumable = true; //Cantidad maxima en un espacio de inventario
-			Item.value = 100; //Precio
-			Item.rare = ItemRarityID.Orange;
-			Item.createTile = TileType<Tiles.AncientTp>();
+Item.width = 26;
+Item.height = 22;
+Item.maxStack = 99;
+Item.useTurn = true;
+Item.autoReuse = true;
+Item.useAnimation = 15;
+Item.useTime = 10;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.consumable = true; //Cantidad maxima en un espacio de inventario
+Item.value = 100; //Precio
+Item.rare = ItemRarityID.Orange;
+Item.createTile = TileType<Tiles.AncientTp>();
 		}
 
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.Sandstone,2)
-			.AddTile(TileID.Anvils)
-			.Register();
+CreateRecipe()
+.AddIngredient(ItemID.Sandstone,2)
+.AddTile(TileID.Anvils)
+.Register();
         }
 	}
 }

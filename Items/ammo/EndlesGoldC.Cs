@@ -11,10 +11,10 @@ namespace RemnantOfTheAncientsMod.Items.ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Endless Gold Coin");
+DisplayName.SetDefault("Endless Gold Coin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'or sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Monedas de oro infinitas");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
         Item Base = new Item(ItemID.GoldCoin);

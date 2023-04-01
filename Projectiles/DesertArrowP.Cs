@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-		Projectile.penetrate--;
+			Projectile.penetrate--;
 			if (Projectile.penetrate <= 30)
 			{
 				Projectile.Kill();
@@ -83,22 +83,24 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
 			return true;
 		}
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
-			if (Main.rand.NextBool()) {
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		{
+			if (Main.rand.NextBool())
+			{
 				target.AddBuff(BuffType<Burning_Sand>(), 500);
+			}
+
 		}
-				   
+		public override void AI()
+		{
+			Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;
+			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(-90f);
+
+			{
+
+			}
+
 		}
-		 public override void AI() 
-	    {
-	    Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f; 
-        Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(-90f);
-	   
-	    {
-		
-	 	}
-	
-	    }
 	}
 }
 	

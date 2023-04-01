@@ -9,23 +9,23 @@ namespace RemnantOfTheAncientsMod.Buffs.Minions.acorns
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Animated Platinum Sapling");
-			Description.SetDefault("The Animated Platinum Sapling will fight for you");
-			Main.buffNoSave[Type] = true;
-			Main.buffNoTimeDisplay[Type] = true;
+DisplayName.SetDefault("Animated Platinum Sapling");
+Description.SetDefault("The Animated Platinum Sapling will fight for you");
+Main.buffNoSave[Type] = true;
+Main.buffNoTimeDisplay[Type] = true;
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			if (player.ownedProjectileCounts[ProjectileType<SaplingPlatinumMinion>()] > 0)
-			{
-				player.buffTime[buffIndex] = 18000;
-			}
-			else
-			{
-				player.DelBuff(buffIndex);
-				buffIndex--;
-			}
+if (player.ownedProjectileCounts[ProjectileType<SaplingPlatinumMinion>()] > 0)
+{
+	player.buffTime[buffIndex] = 18000;
+}
+else
+{
+	player.DelBuff(buffIndex);
+	buffIndex--;
+}
 		}
 	}
 }

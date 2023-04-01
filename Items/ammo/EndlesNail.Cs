@@ -11,10 +11,10 @@ namespace RemnantOfTheAncientsMod.Items.ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Endless Nail");
+DisplayName.SetDefault("Endless Nail");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Clou sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Clavo Infinito");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
         Item Base = new Item(ItemID.Nail);

@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Tiles
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
 			TileObjectData.newTile.Height = 3;
 			TileObjectData.newTile.Width = 4;
-			TileObjectData.newTile.CoordinateHeights = new int[]{ 16, 16, 16 };
+			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16 };
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleWrapLimit = 111;
 			TileObjectData.addTile(Type);
@@ -27,9 +27,10 @@ namespace RemnantOfTheAncientsMod.Tiles
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Table");
 			AddMapEntry(new Color(190, 124, 43), name);//13,88,130
-        }
-        	public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+		}
+		public override void KillMultiTile(int i, int j, int frameX, int frameY)
+		{
 			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ItemType<Items.Items.AncientT>());
 		}
-    }
+	}
 }

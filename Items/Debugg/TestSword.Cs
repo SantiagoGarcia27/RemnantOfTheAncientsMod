@@ -14,30 +14,30 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
-			return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("TestSword");
+DisplayName.SetDefault("TestSword");
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 1;
-			Item.width = 40;
-			Item.height = 80;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 8;
-			Item.value = Item.sellPrice(silver: 27);
-			Item.rare = ItemRarityID.White;
+Item.damage = 1;
+Item.width = 40;
+Item.height = 80;
+Item.useTime = 20;
+Item.useAnimation = 20;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 8;
+Item.value = Item.sellPrice(silver: 27);
+Item.rare = ItemRarityID.White;
             Item.accessory = true;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = false;
 		}
         public override void UpdateAccessory(Player player, bool hideVisual) {
-			
-			Main.NewText(Reaper.ReaperMode);
+
+Main.NewText(Reaper.ReaperMode);
 
 		}
 }

@@ -16,11 +16,11 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Baby Desert Aniquilator Minion");
-			Main.projFrames[Projectile.type] = 6;
+DisplayName.SetDefault("Baby Desert Aniquilator Minion");
+Main.projFrames[Projectile.type] = 6;
 		
-			Main.projPet[Projectile.type] = true;
-			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+Main.projPet[Projectile.type] = true;
+ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             //ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
             //AIType = ProjectileID.BabySlime;
@@ -28,32 +28,32 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
 
 		public sealed override void SetDefaults()
 		{
-			Projectile.width = 26;
-			Projectile.height = 26;
-			Projectile.netImportant = true;
-			Projectile.friendly = true;
-			Projectile.minionSlots = 0.5f;
-			Projectile.alpha = 75;
-			Projectile.aiStyle = 26;
-			Projectile.timeLeft = 18000;
-			Projectile.penetrate = -1;
-			Projectile.timeLeft *= 5;
-			Projectile.minion = true;
-			AIType = 266;
-			Projectile.tileCollide = false;
-			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 7;//23
+Projectile.width = 26;
+Projectile.height = 26;
+Projectile.netImportant = true;
+Projectile.friendly = true;
+Projectile.minionSlots = 0.5f;
+Projectile.alpha = 75;
+Projectile.aiStyle = 26;
+Projectile.timeLeft = 18000;
+Projectile.penetrate = -1;
+Projectile.timeLeft *= 5;
+Projectile.minion = true;
+AIType = 266;
+Projectile.tileCollide = false;
+Projectile.usesLocalNPCImmunity = true;
+Projectile.localNPCHitCooldown = 7;//23
 		}
 
 
 		public override bool? CanCutTiles()
 		{
-			return false;
+return false;
 		}
 
 		public override bool MinionContactDamage()
 		{
-			return true;
+return true;
 		}
 
         /*	public override void AI()
@@ -127,10 +127,10 @@ namespace RemnantOfTheAncientsMod.Projectiles.Minioms
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			if (Main.rand.NextBool())
-			{
-				target.AddBuff(BuffType<Burning_Sand>(), 300);
-			}
+if (Main.rand.NextBool())
+{
+	target.AddBuff(BuffType<Burning_Sand>(), 300);
+}
 		}
 	}
 }

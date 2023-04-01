@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -27,55 +28,43 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             Projectile.scale = 0.7f;
             Projectile.timeLeft = 1000;
             AIType = ProjectileID.InfluxWaver;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 0;
+
         }
 
         public override void AI()
         {
-            //Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-            //Projectile.rotation = Projectile.velocity.ToRotation(); //+ MathHelper.ToRadians(0f);
-            //Projectile.rotation += Projectile.direction * 0.8f;
-
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
+        }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (Projectile.ai[0] == 1)
+            {
+                int numProjectiles = 6;
+                float spacing = MathHelper.TwoPi / numProjectiles;
+                float radius = 10 * 16f;
 
-            /* if (Projectile.alpha > 70)
-             {
-                 Projectile.alpha -= 15;
-                 if (Projectile.alpha < 70) Projectile.alpha = 70;
-             }
-             if (Projectile.localAI[0] == 0f)
-             {
-                 AdjustMagnitude(ref Projectile.velocity);
-                 Projectile.localAI[0] = 10f;
-             }
-             Vector2 move = Vector2.Zero;
-             float distance = 235f;
-             bool target = false;
-             for (int k = 0; k < 200; k++)
-             {
-                 if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
-                 {
-                     Vector2 newMove = Main.npc[k].Center - Projectile.Center;
-                     float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                     if (distanceTo < distance)
-                     {
-                         move = newMove;
-                         distance = distanceTo;
-                         target = true;
-                     }
-                 }
-                 if (target)
-                 {
-                     AdjustMagnitude(ref move);
-                     Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
-                     AdjustMagnitude(ref Projectile.velocity);
-                 }
-             }*/
+                for (int i = 0; i < numProjectiles; i++)
+                {
+                    Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
+                    Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
 
-
+                    int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockback, Main.myPlayer, 2, 2);
+                    float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
+                    Main.projectile[proj].rotation = angle;
+                }
+            }
         }
         public override void OnSpawn(IEntitySource source)
         {
+            if(Projectile.ai[0] == 2)
+            {
+                Projectile.scale *= Reaper.ReaperMode ? 2.5f: 1f;
+                Projectile.damage /= 4;
+                Projectile.ai[1] = 2;
+            }
         }
         public override void Kill(int timeLeft)
         {

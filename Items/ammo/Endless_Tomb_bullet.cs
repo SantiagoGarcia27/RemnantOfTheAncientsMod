@@ -12,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Items.ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Endless Grave Pouch"); 
+DisplayName.SetDefault("Endless Grave Pouch"); 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Balle tombale sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bala de tumba eterna");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
         Item Base = new Item(ModContent.ItemType<Tomb_bullet>());

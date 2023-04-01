@@ -12,33 +12,33 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tuxonite Saber");
+DisplayName.SetDefault("Tuxonite Saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de Tusonita");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
             Item Base = new Item(ItemType<Tuxonite_Sword>());
             Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 80;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = ItemRarityID.White;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+Item.width = 40;
+Item.height = 80;
+Item.useTime = 20;
+Item.useAnimation = 20;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 10;
+Item.value = Base.value;
+Item.rare = ItemRarityID.White;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = true;
 		}
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemType<TuxoniteBar>(), 7)
-			.AddTile(TileID.Anvils)
-			.Register();
+CreateRecipe()
+.AddIngredient(ItemType<TuxoniteBar>(), 7)
+.AddTile(TileID.Anvils)
+.Register();
 		}
 	}
 }

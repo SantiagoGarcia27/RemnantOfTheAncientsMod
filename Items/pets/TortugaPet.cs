@@ -12,23 +12,23 @@ namespace RemnantOfTheAncientsMod.Items.pets
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Magic Lettuce");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Laitue magique");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lechuga mágica");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+DisplayName.SetDefault("Magic Lettuce");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Laitue magique");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lechuga mágica");
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-			Item.CloneDefaults(ItemID.ZephyrFish);
-			Item.shoot = ProjectileType<Projectiles.Pets.TortugaPet>();
-			Item.buffType = BuffType<Buffs.TortugaPetBuff>();
+Item.CloneDefaults(ItemID.ZephyrFish);
+Item.shoot = ProjectileType<Projectiles.Pets.TortugaPet>();
+Item.buffType = BuffType<Buffs.TortugaPetBuff>();
 		}
 		public override void UseStyle(Player player, Rectangle heldItemFrame)
 		{
-			if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
-			{
-				player.AddBuff(Item.buffType, 3600);
-			}
+if (player.whoAmI == Main.myPlayer && player.itemTime == 0)
+{
+	player.AddBuff(Item.buffType, 3600);
+}
 		}
 	}
 }

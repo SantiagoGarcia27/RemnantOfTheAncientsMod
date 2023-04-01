@@ -9,9 +9,9 @@ namespace RemnantOfTheAncientsMod
 	{
 		internal static readonly Color ReaperRarityColor = new Color(48, 48, 48); // 
 		internal static readonly Color LegendaryRarityColor = new Color(0, 255, 200);
-		
 
-        internal static bool IsABoss()
+
+		internal static bool IsABoss()
 		{
 			throw new NotImplementedException();
 		}
@@ -63,9 +63,9 @@ namespace RemnantOfTheAncientsMod
 				foreach (string value in array)
 				{
 					stringBuilder.Append("[c/").Append(Utils.Hex3(color)).Append(':')
-						.Append(value)
-						.Append(']')
-						.Append('\n');
+			.Append(value)
+			.Append(']')
+			.Append('\n');
 				}
 			}
 			return stringBuilder.ToString();
@@ -90,7 +90,7 @@ namespace RemnantOfTheAncientsMod
 		}
 		public static Item ActiveItem(this Player player)
 		{
-			return Main.mouseItem;	
+			return Main.mouseItem;
 		}
 
 

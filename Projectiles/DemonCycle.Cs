@@ -9,7 +9,7 @@ using Terraria.Audio;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
-    public class DemonCycle : ModProjectile
+	public class DemonCycle : ModProjectile
 	{
 		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.DemonScythe;
 		public override void SetStaticDefaults()
@@ -72,4 +72,4 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			if (Main.rand.NextBool()) target.AddBuff(BuffID.ShadowFlame, 500);
 		}
 	}
-}	
+}

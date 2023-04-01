@@ -12,14 +12,14 @@ namespace RemnantOfTheAncientsMod.Projectiles
 		Main.projFrames[Projectile.type] = 9;
 		}
 		public override void SetDefaults() {
-			Projectile.width = 22;
-			Projectile.height = 22;
-			Projectile.aiStyle = 20;
-			Projectile.friendly = true;
-			Projectile.penetrate = -1;
-			Projectile.tileCollide = false;
-			Projectile.hide = true;
-			Projectile.ownerHitCheck = true; //so you can't hit enemies through walls
+Projectile.width = 22;
+Projectile.height = 22;
+Projectile.aiStyle = 20;
+Projectile.friendly = true;
+Projectile.penetrate = -1;
+Projectile.tileCollide = false;
+Projectile.hide = true;
+Projectile.ownerHitCheck = true; //so you can't hit enemies through walls
 		}
 
 		public override void AI() {

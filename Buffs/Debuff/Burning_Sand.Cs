@@ -20,11 +20,13 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 			BuffID.Sets.LongerExpertDebuff[Type] = true;
 		}
 
-		public override void Update(Player player, ref int buffIndex) {
+		public override void Update(Player player, ref int buffIndex)
+		{
 			player.GetModPlayer<RemnantPlayer>().Burn_Sand = true;
 		}
 
-		public override void Update(NPC npc, ref int buffIndex) {
+		public override void Update(NPC npc, ref int buffIndex)
+		{
 			npc.GetGlobalNPC<GlobalNPC1>().Burn_Sand = true;
 		}
 

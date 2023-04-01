@@ -5,10 +5,12 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Items.Items;
 using Terraria;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Projectiles;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
-using static Terraria.ModLoader.PlayerDrawLayer;
 using System;
+using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.World;
+using ReLogic.Peripherals.RGB;
+using RemnantOfTheAncientsMod.Mounts;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 {
@@ -19,19 +21,18 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int knockBack => 5;
         public override int GemId => 0;
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("The Geode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "The Geode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+        //public override void SetStaticDefaults()
+        //{
+        //    //DisplayName.SetDefault("The Geode");
+        //    //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+        //    //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }   
+        //   //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        //}      
     }
     public class The_Geode_Blue : BaseGeode
     {
-        public override int damage => 26;
+        public override int damage => 24;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
         public override int GemId => ItemID.LargeSapphire;
@@ -39,15 +40,37 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("Inflict Slow on enemies");
+            Tooltip.SetDefault("Inflict Slow on enemies" +
+               "\nShoot a sapphire sword that fragments on hit");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger Slow sur les ennemis");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflige Ralentissement aux ennemis" +
+              "\nTirez sur une épée de saphir qui se fragmente au coup");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije lentitud a los enemigos");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije lentitud a los enemigos" +
+                 "\nDispara una espada de safiro que se fragmenta al golpear");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.shoot = ModContent.ProjectileType<SpiritGemSword>();
+            Item.shootSpeed = 5f;
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            base.OnHitNPC(player, target, damage, knockBack, crit);   
+            target.AddBuff(BuffID.Slow, 240);
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            int proj = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ModContent.ProjectileType<SpiritGemSword>(), damage/4, knockBack, Main.myPlayer, 1, 2);
+            Main.projectile[proj].scale *= Reaper.ReaperMode? 4.75f : 2.25f;
+            Main.projectile[proj].DamageType = DamageClass.Melee;
+            Main.projectile[proj].tileCollide = true;
+            return false;
         }
     }
     public class The_Geode_Green : BaseGeode
@@ -59,15 +82,20 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("Inflict poisoned on enemies");
+            Tooltip.SetDefault("25% chance to heal player 1hp per hit");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger du poison aux ennemis");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "25 % de chances de soigner le joueur de 1 PV par coup");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije veneno a los enemigos");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiene un 25% de provavilidad de curarte 1 de vida");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+           //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            base.OnHitNPC(player, target, damage, knockBack, crit);
+            if (Main.rand.NextBool(4)) player.Heal(1);
         }
     }
     public class The_Geode_Red : BaseGeode
@@ -79,14 +107,26 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("Inflict fire on enemies");
+            Tooltip.SetDefault("Inflict fire on enemies" +
+                "\n Create explosions on hit");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger des tirs aux ennemis");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger des tirs aux ennemis" +
+                "\n Créer des explosions au coup");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos" +
+                  "\n Crea explociones al atacar");
+           //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            base.OnHitNPC(player,target,damage,knockBack,crit);
+            target.AddBuff(BuffID.OnFire, 240);
+            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_None(), target.position - new Vector2(0, 2*16) + new Vector2(1 *16, 0), new Vector2(0f, 0f), ProjectileID.DD2ExplosiveTrapT2Explosion, damage, 0);
+            }
         }
     }
     public class The_Geode_Vi : BaseGeode
@@ -105,7 +145,12 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije confución a los enemigos");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+           //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            base.OnHitNPC(player, target, damage, knockBack, crit);
+            target.AddBuff(BuffID.Confused, 240);
         }
     }
     public class The_Geode_Yellow : BaseGeode
@@ -124,7 +169,12 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije Icor a los enemigos");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+           //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            base.OnHitNPC(player, target, damage, knockBack, crit);
+            target.AddBuff(BuffID.Ichor, 240);
         }
     }
     public class The_Geode_White : BaseGeode
@@ -138,7 +188,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             DisplayName.SetDefault("The Geode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }
     public abstract class BaseGeode : ModItem
@@ -147,6 +197,15 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public abstract int attakSpeed { get; }
         public abstract int knockBack { get; }
         public abstract int GemId { get; }
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("The Geode");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
         public override void SetDefaults()
         {
             Item.damage = damage;

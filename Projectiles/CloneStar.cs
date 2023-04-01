@@ -4,16 +4,16 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
-	public class CloneStarWrath : ModProjectile
-	{
+    public class CloneStarWrath : ModProjectile
+    {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.StarWrath;
         public override void SetDefaults()
-		{
-			Projectile.CloneDefaults(ProjectileID.StarWrath);
-			AIType = ProjectileID.StarWrath;
-			Projectile.usesLocalNPCImmunity = true;
-		}
-	}
+        {
+            Projectile.CloneDefaults(ProjectileID.StarWrath);
+            AIType = ProjectileID.StarWrath;
+            Projectile.usesLocalNPCImmunity = true;
+        }
+    }
     public class CloneStarFury : ModProjectile
     {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.Starfury;

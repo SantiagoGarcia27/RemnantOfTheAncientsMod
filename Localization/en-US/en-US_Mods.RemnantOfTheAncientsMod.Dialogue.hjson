@@ -1,0 +1,18 @@
+Time_Wizard: 
+{
+	WizardDialogue: "{0}?, He is a great friend of mine, I remember when we studied at the school of witchcraft."
+	ClotierDialogue: 
+		'''
+		Oh? You're approaching me? Instead of running away, you're coming right to me?
+		Even Though your clothier, {0}, told you the secret of The World, *dead {0} pics*
+		like an exam student scrambling to finish the problems on an exam until the last moments before the chime?
+		'''
+	DayDialogue1: "It's a beautiful day today, it would be a shame if someone changed it"
+	DayDialogue2: "Oh hi {0}, hope you have a nice day."
+	NightDialogue1: "It's a beautiful nigth today, it would be a shame if someone changed it."
+	NightDialogue2: "Oh hi {0}, hope you have a nice night."
+	JudmnetDialogue1: "What an interesting weapon, did you try aiming at your feet?"
+	NoBeeDefeatedDialogue1: "Since the bees bother me, could you remove them?"	
+	GenericDialog1: "Nice cloak"
+	ErrorDialgog: "Error en la realidad, algo salió mal, si ves este mensaje avisale a la tortuga ;)"
+}

@@ -12,38 +12,38 @@ namespace RemnantOfTheAncientsMod.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tuxonite Helmet");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+DisplayName.SetDefault("Tuxonite Helmet");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
+DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.width = 18;
-			Item.height = 18;
-			Item.value = 3600;
-			Item.rare = ItemRarityID.White;
-			Item.defense = 6;
+Item.width = 18;
+Item.height = 18;
+Item.value = 3600;
+Item.rare = ItemRarityID.White;
+Item.defense = 6;
 		}
 		
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == ModContent.ItemType<Tuxonite_chesplate>() && legs.type == ModContent.ItemType<Tuxonite_Legging>();
+return body.type == ModContent.ItemType<Tuxonite_chesplate>() && legs.type == ModContent.ItemType<Tuxonite_Legging>();
 		}
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus ="+4 defense";
-			player.statDefense += 4;
+player.setBonus ="+4 defense";
+player.statDefense += 4;
 		}
 
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 25)
-			.AddTile(TileID.Anvils)
-			.Register();
+CreateRecipe()
+.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 25)
+.AddTile(TileID.Anvils)
+.Register();
 		}
 	}
 }

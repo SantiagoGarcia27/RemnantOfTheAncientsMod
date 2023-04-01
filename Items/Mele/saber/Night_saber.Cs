@@ -12,60 +12,60 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Night Saber");
+DisplayName.SetDefault("Night Saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre de la Nuit");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de la Noche");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
             Item Base = new Item(ItemID.NightsEdge);
             Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 80;
-			Item.useTime = Base.useTime - 3;
-			Item.useAnimation = Base.useAnimation;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = Base.rare;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+Item.width = 40;
+Item.height = 80;
+Item.useTime = Base.useTime - 3;
+Item.useAnimation = Base.useAnimation;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 10;
+Item.value = Base.value;
+Item.rare = Base.rare;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = true;
 		} 
 
         public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
-			if (Main.rand.NextBool(3))
-			{
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Demonite);
-			}
-			if (Main.rand.NextBool(3))
-			{
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Shadowflame);
-			}
-			if (Main.rand.NextBool(7))
-			{
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.WaterCandle);
-			}
-			if (Main.rand.NextBool(2))
-			{
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Water_Corruption);
-			}
-			if (Main.rand.NextBool(3))
-			{
-				Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Water_Cavern);
-			}
+if (Main.rand.NextBool(3))
+{
+	Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Demonite);
+}
+if (Main.rand.NextBool(3))
+{
+	Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Shadowflame);
+}
+if (Main.rand.NextBool(7))
+{
+	Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.WaterCandle);
+}
+if (Main.rand.NextBool(2))
+{
+	Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Water_Corruption);
+}
+if (Main.rand.NextBool(3))
+{
+	Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Water_Cavern);
+}
 		}
 		public override void AddRecipes()
 		{
-			CreateRecipe()
+CreateRecipe()
 		   .AddRecipeGroup("CorruptSaber")
-			.AddIngredient(ItemType<Grass_saber>())
-			.AddIngredient(ItemID.Muramasa, 1)
-			.AddIngredient(ItemType<Fire_saber>())
-			.AddTile(TileID.DemonAltar)
-			.Register();
+.AddIngredient(ItemType<Grass_saber>())
+.AddIngredient(ItemID.Muramasa, 1)
+.AddIngredient(ItemType<Fire_saber>())
+.AddTile(TileID.DemonAltar)
+.Register();
 
 		}
 	}

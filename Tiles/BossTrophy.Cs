@@ -12,7 +12,8 @@ namespace RemnantOfTheAncientsMod.Tiles
 {
 	public class BossTrophy : ModTile
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.FramesOnKillWall[Type] = true; // Necessary since Style3x3Wall uses AnchorWall
@@ -27,9 +28,11 @@ namespace RemnantOfTheAncientsMod.Tiles
 			AddMapEntry(new Color(120, 85, 60), name);
 		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+		public override void KillMultiTile(int i, int j, int frameX, int frameY)
+		{
 			int item = 0;
-			switch (frameX / 54) {
+			switch (frameX / 54)
+			{
 				case 0:
 					item = ItemType<FrostTrophy>();
 					break;
@@ -40,7 +43,8 @@ namespace RemnantOfTheAncientsMod.Tiles
 					item = ItemType<InfernalTrophy>();
 					break;
 			}
-			if (item > 0) {
+			if (item > 0)
+			{
 				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, item);
 			}
 		}

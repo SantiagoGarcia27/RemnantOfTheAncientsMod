@@ -2,6 +2,7 @@ using RemnantOfTheAncientsMod.Buffs;
 using RemnantOfTheAncientsMod.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Items.Items;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -13,9 +14,12 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sand Flask");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Flacon de sable");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente");
             Tooltip.SetDefault("Melee attacks set enemies burning sand");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Les attaques de mêlée font brûler le sable par les ennemis");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
 
         public override void SetDefaults()
@@ -42,6 +46,18 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             .AddTile(TileID.ImbuingStation)
             .Register();
         }
+    }
+    public class Endless_Sand_Flask : Endless
+    {
+        public override Item ItemBase => new(ModContent.ItemType<Sand_Flask>());
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Sand Flask");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente eterno");
+            Tooltip.SetDefault("Melee attacks set enemies burning sand");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo");
+        }
+
     }
 }
 

@@ -12,7 +12,7 @@ public class wooden_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Wooden Repeater");
+DisplayName.SetDefault("Wooden Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Drewniany repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur en bois");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de madera");
@@ -39,15 +39,15 @@ public class wooden_repeter : ModItem
     }
          public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
  
          public override void AddRecipes()
 		{
 		CreateRecipe()
-			.AddIngredient(ItemID.Wood,10)
-			.AddTile(TileID.WorkBenches)
-			.Register();
+.AddIngredient(ItemID.Wood,10)
+.AddTile(TileID.WorkBenches)
+.Register();
         }    
     }
 }

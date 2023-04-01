@@ -12,7 +12,7 @@ public class tin_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tin Repeater");
+DisplayName.SetDefault("Tin Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Tin Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répétiteur en étain");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de estaño");
@@ -39,15 +39,15 @@ public class tin_repeter : ModItem
     }
          public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
 
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.TinBar,7)
-			.AddTile(TileID.Anvils)
-			.Register();		
+CreateRecipe()
+.AddIngredient(ItemID.TinBar,7)
+.AddTile(TileID.Anvils)
+.Register();		
         }
     }
 }

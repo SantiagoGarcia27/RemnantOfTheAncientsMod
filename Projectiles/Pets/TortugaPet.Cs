@@ -9,21 +9,21 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
 	{
 		public override void SetStaticDefaults() 
 		{
-			Main.projFrames[Projectile.type] = 5;
-			Main.projPet[Projectile.type] = true;
+Main.projFrames[Projectile.type] = 5;
+Main.projPet[Projectile.type] = true;
 		}
 
 		public override void SetDefaults() 
 		{
-			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-			AIType = ProjectileID.ZephyrFish;
+Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+AIType = ProjectileID.ZephyrFish;
 		}
 
 		public override bool PreAI()
 		{
-			Player player = Main.player[Projectile.owner];
-			player.zephyrfish = false; // Relic from AIType
-			return true;
+Player player = Main.player[Projectile.owner];
+player.zephyrfish = false; // Relic from AIType
+return true;
 		}
 
 		public override void AI()

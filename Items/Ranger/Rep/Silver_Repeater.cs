@@ -12,7 +12,7 @@ public class Silver_Repeater : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Silver Repeater");
+DisplayName.SetDefault("Silver Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Srebrny Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur argenté");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de plata");
@@ -39,15 +39,15 @@ public class Silver_Repeater : ModItem
     }
          public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
 
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.SilverBar,7)
-			.AddTile(TileID.Anvils)
-			.Register();		
+CreateRecipe()
+.AddIngredient(ItemID.SilverBar,7)
+.AddTile(TileID.Anvils)
+.Register();		
         }
     }
 }

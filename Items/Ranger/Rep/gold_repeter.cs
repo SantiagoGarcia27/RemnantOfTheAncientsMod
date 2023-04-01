@@ -12,7 +12,7 @@ public class gold_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Gold Repeater");
+DisplayName.SetDefault("Gold Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Złoty Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur d'or");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de Oro");
@@ -39,15 +39,15 @@ public class gold_repeter : ModItem
     }
          public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
 
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.GoldBar,7)
-			.AddTile(TileID.Anvils)
-			.Register();		
+CreateRecipe()
+.AddIngredient(ItemID.GoldBar,7)
+.AddTile(TileID.Anvils)
+.Register();		
         }
     }
 }

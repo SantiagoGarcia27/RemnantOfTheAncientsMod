@@ -28,10 +28,10 @@ namespace RemnantOfTheAncientsMod.Projectiles
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) 
         {
-			if (Main.rand.NextBool())
+if (Main.rand.NextBool())
             {
-				target.AddBuff(BuffID.Daybreak, 300);
-			}
+	target.AddBuff(BuffID.Daybreak, 300);
+}
             if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
             {
                 Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, damage / 10, 0);

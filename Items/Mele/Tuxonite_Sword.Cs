@@ -12,25 +12,25 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tuxonite Broadsword");
+DisplayName.SetDefault("Tuxonite Broadsword");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée Tuxonite");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Tusonita");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
             Item.damage = new Item(ItemID.WoodenSword).damage + 3;
             Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 80;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 8;
-			Item.value = Item.sellPrice(silver: 27);
-			Item.rare = ItemRarityID.White;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
+Item.width = 40;
+Item.height = 80;
+Item.useTime = 20;
+Item.useAnimation = 20;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 8;
+Item.value = Item.sellPrice(silver: 27);
+Item.rare = ItemRarityID.White;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = false;
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 Item.autoReuse = true;
@@ -39,10 +39,10 @@ namespace RemnantOfTheAncientsMod.Items.Mele
         }
 	public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemType<TuxoniteBar>(),8)
-			.AddTile(TileID.Anvils)		
-			.Register();
+CreateRecipe()
+.AddIngredient(ItemType<TuxoniteBar>(),8)
+.AddTile(TileID.Anvils)		
+.Register();
 		}
 	}
 }

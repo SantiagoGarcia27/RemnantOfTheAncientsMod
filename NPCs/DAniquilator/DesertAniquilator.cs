@@ -551,7 +551,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         
         public override void OnHitPlayer(Player player, int damage, bool crit) 
         {
-			if (Main.rand.NextBool(3)) player.AddBuff(BuffType<Burning_Sand>(), 100, true);	
+        if (Main.rand.NextBool(3)) player.AddBuff(BuffType<Burning_Sand>(), 100, true);	
 		}
         public override void BossLoot(ref string name, ref int potionType)
         {

@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Items.Lanzables
 	        .AddRecipeGroup("GoldBar",1)
             .AddIngredient(ItemID.Shuriken,100)
 	        .AddTile(TileID.Anvils)
-			.Register();
+.Register();
 	    }
 	}
 }

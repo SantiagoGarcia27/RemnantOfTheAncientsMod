@@ -13,27 +13,27 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
 		public override void SetDefaults()
 		{
-			Projectile.width = 36; 
-			Projectile.height = 36; 
-			Projectile.friendly = true;
-			Projectile.tileCollide = false;
-			Projectile.penetrate = 0;
-			Projectile.timeLeft = 4;
-			Projectile.light = 1.75f;
-			Projectile.scale = Scale;
-			Projectile.extraUpdates = 1;
-			Projectile.ignoreWater = true;
+Projectile.width = 36; 
+Projectile.height = 36; 
+Projectile.friendly = true;
+Projectile.tileCollide = false;
+Projectile.penetrate = 0;
+Projectile.timeLeft = 4;
+Projectile.light = 1.75f;
+Projectile.scale = Scale;
+Projectile.extraUpdates = 1;
+Projectile.ignoreWater = true;
 		}
 		private string getTexture()
 		{
-			if(texture != "")
-			{
+if(texture != "")
+{
                 return "RemnantOfTheAncientsMod/Projectiles/Textures/PlaceHolder";
             }
-			else
-			{
-				return texture;
-			}
+else
+{
+	return texture;
+}
 		}
 		
 	}

@@ -17,27 +17,27 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
 
 		public override void SetDefaults() 
 		{
-			Projectile.CloneDefaults(ProjectileID.SuspiciousTentacle);
-			AIType = ProjectileID.SuspiciousTentacle;
-			Projectile.light = 1.25f;
+Projectile.CloneDefaults(ProjectileID.SuspiciousTentacle);
+AIType = ProjectileID.SuspiciousTentacle;
+Projectile.light = 1.25f;
 		}
 
 		public override bool PreAI() 
 		{
-			Player player = Main.player[Projectile.owner];
-			player.suspiciouslookingTentacle = false;
-			return true;
+Player player = Main.player[Projectile.owner];
+player.suspiciouslookingTentacle = false;
+return true;
 		}
 
 		public override void AI() 
 		{
-			Player player = Main.player[Projectile.owner];
+Player player = Main.player[Projectile.owner];
 
             if (!player.dead && player.HasBuff(ModContent.BuffType<YtBuff>()))
             {
                 Projectile.timeLeft = 2;
             }
-			Projectile.alpha = 100;
+Projectile.alpha = 100;
 		}
 	}
 }

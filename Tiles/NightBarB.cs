@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Tiles
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.MetalBar")); 
+			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.MetalBar"));
 		}
 
 		public override bool Drop(int i, int j)

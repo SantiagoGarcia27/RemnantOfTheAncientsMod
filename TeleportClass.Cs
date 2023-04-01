@@ -233,89 +233,89 @@ namespace RemnantOfTheAncientsMod
 
 		/*private static void HandleJungleTeleport(Player player, bool syncData = false)
 		{
-			Vector2 position = player.position;
-			Vector2 vector = position;
-			int num = Main.maxTilesY;
-			while ((double)num > Main.worldSurface - 150.0)
-			{
-				for (int i = 0; i < Main.maxTilesX; i++)
-				{
-					if (Main.tile[i, num] != null && Main.tile[i, num].type == 233)
-					{
-						vector = new Vector2(i * 16, (num - 2) * 16);
-						break;
-					}
-				}
-				num--;
-			}
-			if (vector != position)
-			{
-				RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
-			}
+Vector2 position = player.position;
+Vector2 vector = position;
+int num = Main.maxTilesY;
+while ((double)num > Main.worldSurface - 150.0)
+{
+	for (int i = 0; i < Main.maxTilesX; i++)
+	{
+		if (Main.tile[i, num] != null && Main.tile[i, num].type == 233)
+		{
+vector = new Vector2(i * 16, (num - 2) * 16);
+break;
+		}
+	}
+	num--;
+}
+if (vector != position)
+{
+	RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
+}
 		}*/
 
 		/*private static void HandleJungleTeleportLeft(Player player, bool syncData = false)
 		{
-			Vector2 position = player.position;
-			Vector2 vector = position;
-			for (int num = Main.maxTilesY; num > 0; num--)
-			{
-				for (int num2 = Main.maxTilesX; num2 > 0; num2--)
-				{
-					if (Main.tile[num2, num] != null && Main.tile[num2, num].type == 384)
-					{
-						vector = new Vector2(num2 * 16, (num - 2) * 16);
-						break;
-					}
-				}
-			}
-			if (vector != position)
-			{
-				RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
-			}
+Vector2 position = player.position;
+Vector2 vector = position;
+for (int num = Main.maxTilesY; num > 0; num--)
+{
+	for (int num2 = Main.maxTilesX; num2 > 0; num2--)
+	{
+		if (Main.tile[num2, num] != null && Main.tile[num2, num].type == 384)
+		{
+vector = new Vector2(num2 * 16, (num - 2) * 16);
+break;
+		}
+	}
+}
+if (vector != position)
+{
+	RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
+}
 		}*/
 
 		/*private static void HandleTempleTeleport(Player player, bool syncData = false)
 		{
-			Vector2 position = player.position;
-			Vector2 vector = position;
-			for (int i = 0; i < Main.tile.GetLength(0); i++)
-			{
-				for (int j = 0; j < Main.tile.GetLength(1); j++)
-				{
-					if (Main.tile[i, j] != null && Main.tile[i, j].TileType == 237)
-					{
-						vector = new Vector2((i + 2) * 16, j * 16);
-						break;
-					}
-				}
-			}
-			if (vector != position)
-			{
-				RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
-			}
+Vector2 position = player.position;
+Vector2 vector = position;
+for (int i = 0; i < Main.tile.GetLength(0); i++)
+{
+	for (int j = 0; j < Main.tile.GetLength(1); j++)
+	{
+		if (Main.tile[i, j] != null && Main.tile[i, j].TileType == 237)
+		{
+vector = new Vector2((i + 2) * 16, j * 16);
+break;
+		}
+	}
+}
+if (vector != position)
+{
+	RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
+}
 		}*/
 
 		/*private static void HandleBeaconTeleport(Player player, bool syncData = false)
 		{
-			Mod mod = ModLoader.GetMod("AlchemistNPC");
-			Vector2 position = player.position;
-			Vector2 vector = position;
-			for (int i = 0; i < Main.tile.GetLength(0); i++)
-			{
-				for (int j = 0; j < Main.tile.GetLength(1); j++)
-				{
-					if (Main.tile[i, j] != null && Main.tile[i, j].type == mod.TileType("Beacon"))
-					{
-						vector = new Vector2((i - 1) * 16, (j - 2) * 16);
-						break;
-					}
-				}
-			}
-			if (vector != position)
-			{
-				RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
-			}
+Mod mod = ModLoader.GetMod("AlchemistNPC");
+Vector2 position = player.position;
+Vector2 vector = position;
+for (int i = 0; i < Main.tile.GetLength(0); i++)
+{
+	for (int j = 0; j < Main.tile.GetLength(1); j++)
+	{
+		if (Main.tile[i, j] != null && Main.tile[i, j].type == mod.TileType("Beacon"))
+		{
+vector = new Vector2((i - 1) * 16, (j - 2) * 16);
+break;
+		}
+	}
+}
+if (vector != position)
+{
+	RunTeleport(player, new Vector2(vector.X, vector.Y), syncData);
+}
 		}*/
 
 		private static void RunTeleport(Player player, Vector2 pos, bool syncData = false, bool convertFromTiles = false)

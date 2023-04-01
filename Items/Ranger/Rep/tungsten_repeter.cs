@@ -12,7 +12,7 @@ public class tungsten_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tungsten Repeater");
+DisplayName.SetDefault("Tungsten Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Tungsten Repeater");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur de tungstène");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de tungsteno");
@@ -39,15 +39,15 @@ public class tungsten_repeter : ModItem
     }
          public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
 
         public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.TungstenBar,7)
-			.AddTile(TileID.Anvils)
-			.Register();		
+CreateRecipe()
+.AddIngredient(ItemID.TungstenBar,7)
+.AddTile(TileID.Anvils)
+.Register();		
         }
     }
 }

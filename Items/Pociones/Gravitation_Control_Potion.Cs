@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.SetDefault("Gravity Control Potions");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de contrôle de la gravité");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de control gravitacional");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
         {
@@ -37,7 +37,11 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     public class Endless_Gravitation_Control_Potion : Endless
     {
         public override Item ItemBase => new(ItemType<Gravitation_Control_Potion>());
-        public override ModTranslation ItemName => GetInstance<Gravitation_Control_Potion>().DisplayName;
-        public override ModTranslation ItemDescription => GetInstance<Gravitation_Control_Potion>().Tooltip;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Gravity Control Potions");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de contrôle de la gravité sans fin");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de control gravitacional eterna");
+        }
     }
 }

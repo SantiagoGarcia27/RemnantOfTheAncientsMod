@@ -10,33 +10,33 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Platinum Saber");
+DisplayName.SetDefault("Platinum Saber");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre de Platine");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de Platino");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
             Item Base = new Item(ItemID.PlatinumBroadsword);
             Item.damage = Base.damage - 3;
             Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 80;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = ItemRarityID.White;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+Item.width = 40;
+Item.height = 80;
+Item.useTime = 20;
+Item.useAnimation = 20;
+Item.useStyle = ItemUseStyleID.Swing;
+Item.knockBack = 10;
+Item.value = Base.value;
+Item.rare = ItemRarityID.White;
+Item.UseSound = SoundID.Item1;
+Item.autoReuse = true;
 		}
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ItemID.PlatinumBar, 10)
-			.AddTile(TileID.Anvils)
-			.Register();
+CreateRecipe()
+.AddIngredient(ItemID.PlatinumBar, 10)
+.AddTile(TileID.Anvils)
+.Register();
 		}
 	}
 }

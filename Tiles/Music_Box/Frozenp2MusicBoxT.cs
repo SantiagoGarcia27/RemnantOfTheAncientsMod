@@ -7,9 +7,10 @@ using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Tiles.Music_Box
 {
-    internal class Frozenp2MusicBoxT : ModTile
+	internal class Frozenp2MusicBoxT : ModTile
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileObsidianKill[Type] = true;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
@@ -22,11 +23,13 @@ namespace RemnantOfTheAncientsMod.Tiles.Music_Box
 			AddMapEntry(new Color(200, 200, 200), name);
 		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+		public override void KillMultiTile(int i, int j, int frameX, int frameY)
+		{
 			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ItemType<Items.Bloques.MusicBox.Frozenp2MusicBox>());
-		}                                    
+		}
 
-		public override void MouseOver(int i, int j) {
+		public override void MouseOver(int i, int j)
+		{
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;

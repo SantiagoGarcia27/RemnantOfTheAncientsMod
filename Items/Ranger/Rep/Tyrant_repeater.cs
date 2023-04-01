@@ -13,7 +13,7 @@ public class Tyrant_repeater : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Tyrant repeater"); 
+DisplayName.SetDefault("Tyrant repeater"); 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wzmacniacz tyrana");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répétiteur tyran");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor del Tirano");
@@ -40,12 +40,12 @@ public class Tyrant_repeater : ModItem
     }
          public override Vector2? HoldoutOffset()
 		{
-			return new Vector2(-10, 0);
+return new Vector2(-10, 0);
 		}
         /*public override bool CanConsumeAmmo(Player player)
 		{
-			
-			return !(player.itemAnimation < Item.useAnimation - 2);
+
+return !(player.itemAnimation < Item.useAnimation - 2);
 		}*/
         
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

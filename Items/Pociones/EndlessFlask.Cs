@@ -68,12 +68,6 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de veneno eterno");  
         }
     }
-    public class Endless_Sand_Flask : Endless
-    {
-        public override Item ItemBase => new(ModContent.ItemType<Sand_Flask>());
-        public override ModTranslation ItemName => ModContent.GetInstance<Sand_Flask>().DisplayName;
-        public override ModTranslation ItemDescription => ModContent.GetInstance<Sand_Flask>().Tooltip;
-    }
     public class EndlessNaniteFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofNanites);

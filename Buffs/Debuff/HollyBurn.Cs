@@ -10,7 +10,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 	// See ExamplePlayer.UpdateBadLifeRegen and ExampleGlobalNPC.UpdateLifeRegen for more information.
 	public class HollyBurn : ModBuff
 	{
-		public override void SetStaticDefaults() { 
+		public override void SetStaticDefaults()
+		{
 			DisplayName.SetDefault("Holly Burn");
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
@@ -18,11 +19,13 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 			BuffID.Sets.LongerExpertDebuff[Type] = true;
 		}
 
-		public override void Update(Player player, ref int buffIndex) {
+		public override void Update(Player player, ref int buffIndex)
+		{
 			player.GetModPlayer<RemnantPlayer>().hBurn = true;
 		}
 
-		public override void Update(NPC npc, ref int buffIndex) {
+		public override void Update(NPC npc, ref int buffIndex)
+		{
 			npc.GetGlobalNPC<GlobalNPC1>().hBurn = true;
 		}
 

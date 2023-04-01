@@ -11,7 +11,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 	// See ExamplePlayer.UpdateBadLifeRegen and ExampleGlobalNPC.UpdateLifeRegen for more information.
 	public class Hell_Fire : ModBuff
 	{
-		public override void SetStaticDefaults() {
+		public override void SetStaticDefaults()
+		{
 			DisplayName.SetDefault("Hell Fire");
 			Description.SetDefault("...");
 			Main.debuff[Type] = true;
@@ -20,11 +21,13 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 			BuffID.Sets.LongerExpertDebuff[Type] = true;
 		}
 
-		public override void Update(Player player, ref int buffIndex) {
+		public override void Update(Player player, ref int buffIndex)
+		{
 			player.GetModPlayer<RemnantPlayer>().Hell_Fire = true;
 		}
 
-		public override void Update(NPC NPC, ref int buffIndex) {
+		public override void Update(NPC NPC, ref int buffIndex)
+		{
 			NPC.GetGlobalNPC<GlobalNPC1>().Hell_Fire = true;
 		}
 
