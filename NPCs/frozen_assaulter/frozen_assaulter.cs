@@ -43,8 +43,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         }
         public override void SetDefaults()
         {
-            NPC.aiStyle = 5;  
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500);   
+            NPC.aiStyle = 5;
+            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500); //* (int)ModContent.GetInstance<ConfigClient1>().xdlevel; 
             NPC.damage = (int)NpcChanges1.ExpertDamageScale(90); 
             NPC.defense = 15;    
             NPC.knockBackResist = 0f;
@@ -250,8 +250,24 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                     invincibilityTimer--;
                         break;
             }
-
-
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("frozen_assaulterFragment1").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("frozen_assaulterFragment2").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("frozen_assaulterFragment3").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("frozen_assaulterFragment4").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("frozen_assaulterFragment5").Type, NPC.scale);
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                }
+            }
         }
         public void frozenTp()
         {
@@ -279,7 +295,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
-            DownedBossSystem.downedFrozen = true;
+            RemnantDownedBossSystem.downedFrozen = true;
             potionType = ItemID.GreaterHealingPotion;
             Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.IceBlock, 50);
         }

@@ -15,17 +15,20 @@ namespace RemnantOfTheAncientsMod.World
 		public static bool OneInMiddleMillion;
 		public static bool SpawnTimeWithard;
 		public static bool TimeDilocated;
+		public static int TimeWizardTimeAcelerationCouldown; 
 		public bool SandWeapons;
 
 		public override void OnWorldLoad()
 		{
-			SpawnTimeWithard = false;
+			TimeWizardTimeAcelerationCouldown = 0;
+            SpawnTimeWithard = false;
 			//ReaperMode = false;
 			TimeDilocated = false;
 		}
 		public override void OnWorldUnload()
 		{
-			SpawnTimeWithard = false;
+            TimeWizardTimeAcelerationCouldown = 0;
+            SpawnTimeWithard = false;
 			//ReaperMode = false;
 			TimeDilocated = false;
 		}
@@ -59,6 +62,24 @@ namespace RemnantOfTheAncientsMod.World
 			//ReaperMode = flags[0];
 			TimeDilocated = flags[1];
 		}
+		public static bool ExistTileInWorld(int TileId)
+		{
+
+			int worldWidth = Main.maxTilesX;
+			int worldHeight = Main.maxTilesY;
+
+			for (int x = 0; x < worldWidth; x++)
+			{
+				for (int y = 0; y < worldHeight; y++)
+				{
+					if (WorldGen.TileType(x, y) == TileId)
+					{
+						return true;
+					}
+				}	
+			}
+            return false;
+        }
 	}
 }
 

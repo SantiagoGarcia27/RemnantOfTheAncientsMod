@@ -1,9 +1,7 @@
-
-
-
+using CalamityMod;
+using CalamityMod.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Items.Bloques.Relics;
@@ -19,17 +17,32 @@ using System;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static RemnantOfTheAncientsMod.NPCs.WormHead;
-using static tModPorter.ProgressUpdate;
 
 namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 {
+    public class GenericVariables
+    {
+        public static int SpawnCounter = 0;
+        public static int TimeInmune = 200;
+        public static bool IsSpawned = false;
+    }
+    public static class BaseStats 
+    {
+       public static int LifeMax = SetMaxLife(30000);
+
+        private static int SetMaxLife(int life)
+        {
+            return (int)NpcChanges1.ExpertLifeScale(life);
+        }
+        
+    }
     [AutoloadBossHead]
     internal class InfernalTyrantHead : WormHead
     {
@@ -62,15 +75,36 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             NPC.width = 30;//105
             NPC.height = 30;//103
             NPC.boss = true;
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(30000);
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(300);
+            NPC.lifeMax = BaseStats.LifeMax;// * (int)ModContent.GetInstance<ConfigClient1>().xdlevel;
+            if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
+            NPC.damage = (int)NpcChanges1.ExpertDamageScale(200);
             NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
             NPC.scale = 2.50f;
             NPC.npcSlots = 20f;
             NPC.lavaImmune = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Infernal_Tyrant");
         }
-
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetDefautsCalamity()
+        {
+            NPC.Calamity().canBreakPlayerDefense = true;
+            NPC.Calamity().VulnerableToHeat = false;
+            NPC.Calamity().VulnerableToCold = false;
+            NPC.Calamity().VulnerableToSickness = true;
+            SetNpcDamageReductionCalamity(0.02f,0.22f,0.29f,0.3f);
+            CalamityLifeScale(BaseStats.LifeMax);
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void CalamityLifeScale(int life)
+        {
+            life = (int)NpcChanges1.ExpertLifeScale(life);
+            NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
+        {
+            NPC.DR_NERD(normal, revenge, death, bossrush);
+        }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
@@ -83,7 +117,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         public override void Init()
         {
             MinSegmentLength = 15;
-            MaxSegmentLength = 15;
+            MaxSegmentLength = RemnantOfTheAncientsMod.CalamityMod != null? MaxSegmentCount(MinSegmentLength, RemnantOfTheAncientsMod.CalamityMod) : MaxSegmentCount(MinSegmentLength);
             head = true;
             CommonWormInit(this);
         }
@@ -103,71 +137,27 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         {
             attackCounter = reader.ReadInt32();
         }
+        [JITWhenModsEnabled("CalamityMod")]
+        private int MaxSegmentCount(int MinSegmentLength, Mod calamity) 
+        {
+            int scale = 0;
+            if (CalamityWorld.death) scale = 20;
+            else if (CalamityWorld.revenge) scale = 10;
+            else if (Main.masterMode) scale = 5;
+            else if (Main.expertMode) scale = 2;
+            return MinSegmentLength + scale;
+        }
+        private int MaxSegmentCount(int MinSegmentLength)
+        {
+            int scale = 0;
+            if (Main.masterMode) scale = 5;
+            else if (Main.expertMode) scale = 2;
 
-        //public override void AI()
-        //{
-
-        //    if (Main.netMode != NetmodeID.MultiplayerClient)
-        //    {
-
-        //        if (attackCounter > 0)
-        //        {
-        //            attackCounter--;
-        //        }
-
-        //        Player target = Main.player[NPC.target];
-        //        DespawnSafeCheck(target);
-        //        switch (attackCounter)
-        //        {
-        //            case 200:
-        //                SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(40), false, -3, -3);
-        //                break;
-        //            case 250:
-        //                FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ModContent.ProjectileType<InfernalBallF>(), "*", 4, 3, target, 0f);
-        //                FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ModContent.ProjectileType<InfernalBallF>(), "/", 4, 3, target, 0f);
-        //                break;
-        //            case 300:
-        //                SummonIa(NPCID.Demon);
-        //                break;
-        //            case 400:
-        //                SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(90), true, 3, -3);
-        //                break;
-        //            case 430:
-        //                SpikeIa(0f, (int)NpcChanges1.ExpertDamageScale(40), false, 3, -3);
-        //                break;
-        //            case 600:
-        //                for (int i = -2; i <= 3; i++)
-        //                    FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(30), ModContent.ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
-        //                break;
-        //            case 700:
-        //                SummonIa(NPCID.RedDevil);
-        //                break;
-        //        }
-
-
-        //        if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
-        //        {
-        //            attackCounter = 700;
-        //            NPC.netUpdate = true;
-        //        }
-        //        if (Vector2.Distance(target.Center, NPC.Center) > 200 * 16 && !Main.player[NPC.target].dead)
-        //        {
-        //            if (CanTp)
-        //            {
-        //                TyrantTp(target);
-        //            }
-        //            else if (Vector2.Distance(target.Center, NPC.Center) <= 10 * 16)
-        //            {
-        //                CanTp = true;
-
-        //            }
-        //        }
-        //        LifeSpeed(this);
-        //    }
-        //}
-
+            return MinSegmentLength + scale;
+        }
         public override void AI()
         {
+            GenericVariables gv = new GenericVariables();
             if (attackCounter > 0)
             {
                 attackCounter--;
@@ -177,7 +167,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 DespawnSafeCheck(target, this);
-            }       
+            }
             DoAttacks(target);
 
             if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
@@ -186,9 +176,26 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 NPC.netUpdate = true;
             }
 
+            if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+            {
+                SetDefautsCalamity();
+                GenericVariables.IsSpawned = true;
+            }
+            else
+            {
+                if (!GenericVariables.IsSpawned)
+                {
+                    GenericVariables.SpawnCounter++;
+                    SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                }
+            }
             LifeSpeed(this);
         }
-
+        public override void OnSpawn(IEntitySource source)
+        {
+            GenericVariables.IsSpawned = false;
+            GenericVariables.SpawnCounter = 0;
+        }
         private void DoAttacks(Player target)
         {
             switch (attackCounter)
@@ -341,11 +348,26 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             }
             return allPlayersDead;
         }
-    
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantHeadGore1").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantHeadGore2").Type, NPC.scale);
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                }
+            }
+        }
+        
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) => head ? null : false;
         public override void BossLoot(ref string name, ref int potionType)
         {
-            DownedBossSystem.downedTyrant = true;
+            RemnantDownedBossSystem.downedTyrant = true;
             potionType = ItemID.GreaterHealingPotion;
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -396,13 +418,35 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         {
 
             NPC.CloneDefaults(NPCID.DiggerBody);
-            NPC.lifeMax = 3000;
+            NPC.lifeMax = BaseStats.LifeMax;
+            if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
             NPC.defense = TyranStats.TyrantArmor(999,ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantBody>()).NPC);//999
             NPC.aiStyle = -1;
             NPC.width = 30;//105
             NPC.height = 30;//103
             NPC.scale = 2.50f;
             NPC.boss = true;
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetDefautsCalamity()
+        {
+            NPC.Calamity().VulnerableToHeat = false;
+            NPC.Calamity().VulnerableToCold = false;
+            NPC.Calamity().VulnerableToSickness = true;
+            NPC.Calamity().canBreakPlayerDefense = true;
+            SetNpcDamageReductionCalamity(0.2f, 0.42f, 0.59f, 0.6f);
+            CalamityLifeScale(BaseStats.LifeMax);
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void CalamityLifeScale(int life)
+        {
+            life = (int)NpcChanges1.ExpertLifeScale(life);
+            NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
+        {
+            NPC.DR_NERD(normal, revenge, death, bossrush);
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -419,6 +463,35 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
             Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
             Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore1").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore2").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore3").Type, NPC.scale);
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                }
+            }
+        }
+        public override void AI()
+        {
+            GenericVariables gv = new GenericVariables();
+            if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+            {
+                SetDefautsCalamity();
+            }
+            else
+            {
+              //  GenericVariables.SpawnCounter++;
+                SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+            }
         }
         public override void Init()
         {
@@ -444,13 +517,63 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         public override void SetDefaults()
         {
             NPC.CloneDefaults(NPCID.DiggerTail);
-            NPC.lifeMax = 3000;
+            NPC.lifeMax = BaseStats.LifeMax;
+            if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
             NPC.width = 30;//105
             NPC.height = 40;//103
             NPC.defense = 25;
             NPC.aiStyle = -1;
             NPC.scale = 2.50f;
             NPC.boss = true;
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetDefautsCalamity()
+        {
+            NPC.Calamity().VulnerableToHeat = false;
+            NPC.Calamity().VulnerableToCold = false;
+            NPC.Calamity().VulnerableToSickness = true;
+            NPC.Calamity().canBreakPlayerDefense = true;
+            SetNpcDamageReductionCalamity(0.01f, 0.12f, 0.19f, 0.2f);
+            CalamityLifeScale(BaseStats.LifeMax);
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void CalamityLifeScale(int life)
+        {
+            life = (int)NpcChanges1.ExpertLifeScale(life);
+            NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
+        {
+            NPC.DR_NERD(normal, revenge, death, bossrush);
+        }
+        public override void AI()
+        {
+            GenericVariables gv = new GenericVariables();
+            if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+            {
+                SetDefautsCalamity();
+            }
+            else
+            {
+               // GenericVariables.SpawnCounter++;
+                SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+            }
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantTailGore1").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantTailGore2").Type, NPC.scale);
+                }
+                for (int j = 0; j < 10; j++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                }
+            }
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

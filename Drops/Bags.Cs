@@ -47,13 +47,13 @@ namespace RemnantOfTheAncientsMod.Drops
                     break;
                 case ItemID.DeerclopsBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxDeerclops, 7));
-                    itemLoot.Add(ItemDropRule.Common(ItemType<DeerclopsScroll>(), 5));
+                    //itemLoot.Add(ItemDropRule.Common(ItemType<DeerclopsScroll>(), 5));
                     itemLoot.Add(ItemDropRule.ByCondition(new DeerclopsReaperSoulRule(), ItemType<DeerclopsSoul>()));
                     break;
                 case ItemID.WallOfFleshBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemType<WallOfFleshScroll>(), 5));
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss2, 7));
-                    itemLoot.Add(ItemDropRule.ByCondition(new DeerclopsReaperSoulRule(), ItemType<DeerclopsSoul>()));
+                    itemLoot.Add(ItemDropRule.ByCondition(new WallOfFLeshReaperSoulRule(), ItemType<FleshSoul>()));
                     break;
                 case ItemID.QueenSlimeBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxQueenSlime, 7));

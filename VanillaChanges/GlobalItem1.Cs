@@ -1,12 +1,11 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Items.DificultChanger;
-using RemnantOfTheAncientsMod.Items.Items;
+using RemnantOfTheAncientsMod.Prefixe;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent.UI;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
@@ -21,14 +20,23 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool SizedByReaper;
         public bool ReaperAccesories;
         public bool MusicBox;
+
+        public static float HealthyReforgeValue { get; set; } = 5f;
+        public static float HealerReforgeValue { get; set; } = 10f;
+        public static float AtleticReforgeValue { get; set; } = 15f;
+        public static float GigantReforgeValue { get; set; } = 20f;
+        public static float TitanicReforgeValue { get; set; } = 40f;
+        public static int UnpenetrableReforgeValue { get; set; } = 8;
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine val = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.Mod == "Terraria");
             if (val != null) ApplyRarityColor(item, val);
             if (LegendaryDrop) LegendaryToolTip(item, tooltips);
-            if (ReaperItem) ReaperToolTip(item, tooltips); 
-            if(BossSummon) BossSummonToolTip(item, tooltips);
-            if(MusicBox) MusicBoxToolTip(item, tooltips);
+            if (ReaperItem) ReaperToolTip(item, tooltips);
+            if (BossSummon) BossSummonToolTip(item, tooltips);
+            if (MusicBox) MusicBoxToolTip(item, tooltips);
+            AplyReforgeTooltip(item, tooltips);
             //   if (ReaperAccesories) ReaperArtifactToolTip(item, tooltips);
 
         }
@@ -47,37 +55,37 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             };
             if (Reaper.ReaperMode) tooltips.Add(item2);
         }
-   /*     private void ReaperArtifactToolTip(Item item, IList<TooltipLine> tooltips)
-        {
-            Player p = new Player();
-            Color? color = new Color(10, Main.DiscoG, 10);
-            Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
-            string text;
+        /*     private void ReaperArtifactToolTip(Item item, IList<TooltipLine> tooltips)
+             {
+                 Player p = new Player();
+                 Color? color = new Color(10, Main.DiscoG, 10);
+                 Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
+                 string text;
 
-            if (world1.ReaperMode)
-            {
-                if (p.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade)
-                {
-                   
-                    text = p.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade ? "30% increased movement speed" : "";
-                }
+                 if (world1.ReaperMode)
+                 {
+                     if (p.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade)
+                     {
 
-                else text = "Error";
-            }
-            else text = "Error";
-            TooltipLine item2 = new TooltipLine(Mod, "BossSumon", text)
-            {
-                OverrideColor = valueOrDefault
-            };
-            if (world1.ReaperMode) tooltips.Add(item2);
-        }*/
+                         text = p.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade ? "30% increased movement speed" : "";
+                     }
+
+                     else text = "Error";
+                 }
+                 else text = "Error";
+                 TooltipLine item2 = new TooltipLine(Mod, "BossSumon", text)
+                 {
+                     OverrideColor = valueOrDefault
+                 };
+                 if (world1.ReaperMode) tooltips.Add(item2);
+             }*/
         private void ApplyRarityColor(Item item, TooltipLine nameLine)
         {
             Color? rarityColor = Utils1.GetRarityColor(customRarity);
-            if (!item.expert && rarityColor.HasValue)  nameLine.OverrideColor = rarityColor.Value;
-            if (item.type == ModContent.ItemType<Ftoggler>()) nameLine.OverrideColor = Ftoggler.GetRarityColor();  
+            if (!item.expert && rarityColor.HasValue) nameLine.OverrideColor = rarityColor.Value;
+            if (item.type == ModContent.ItemType<Ftoggler>()) nameLine.OverrideColor = Ftoggler.GetRarityColor();
         }
-        
+
         private void LegendaryToolTip(Item item, IList<TooltipLine> tooltips)
         {
             Color? color = new Color(255, Main.DiscoG, 53);
@@ -112,6 +120,64 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             };
             tooltips.Add(item2);
         }
-       
+        private void AplyReforgeTooltip(Item item, IList<TooltipLine> tooltips)
+        {
+            if (item.prefix == ModContent.PrefixType<Healthy>())
+            {
+                RegorgeToolTip(item, tooltips, (int)HealthyReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+            }
+            if (item.prefix == ModContent.PrefixType<Healer>())
+            {
+                RegorgeToolTip(item, tooltips, (int)HealerReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+            }
+            if (item.prefix == ModContent.PrefixType<Atletic>())
+            {
+                RegorgeToolTip(item, tooltips, (int)AtleticReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+            }
+            if (item.prefix == ModContent.PrefixType<Gigant>())
+            {
+                RegorgeToolTip(item, tooltips, (int)GigantReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+            }
+            if (item.prefix == ModContent.PrefixType<Titanic>())
+            {
+                RegorgeToolTip(item, tooltips, (int)TitanicReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");    
+            }
+            if (item.prefix == ModContent.PrefixType<Impenetrable>())
+            {
+                RegorgeToolTip(item, tooltips, UnpenetrableReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Defense");
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                    RegorgeToolTip(item, tooltips, (int)2, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.DamageReduction");
+            }
+            if (item.prefix == ModContent.PrefixType<Supersonic>())
+            {
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Speed");
+            }
+            if (item.prefix == ModContent.PrefixType<Acurate>())
+            {
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.CritChance");
+            }
+            if (item.prefix == ModContent.PrefixType<Uncontrolled>())
+            {
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.MeleeSpeed");
+            }
+            if (item.prefix == ModContent.PrefixType<Sharp>())
+            {
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Damage");
+            }
+            if (item.prefix == ModContent.PrefixType<Regenerative>())
+            {
+                RegorgeToolTip(item, tooltips, 2, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.LifeRegeneration");
+            }
+        }
+      
+        public void RegorgeToolTip(Item item, IList<TooltipLine> tooltips, int quantity, Color color, string textString)
+        {
+            string text = Language.GetTextValue(textString, quantity);
+            TooltipLine item2 = new TooltipLine(Mod, "Reforge", text)
+            {
+                OverrideColor = color
+            };
+            tooltips.Add(item2);
+        }
     }
 }

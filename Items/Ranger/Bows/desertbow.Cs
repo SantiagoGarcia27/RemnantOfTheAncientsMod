@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
 {
@@ -69,6 +70,14 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
             }
             //Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
             return true;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             .AddIngredient(ItemID.PlatinumBow, 1)
+             .AddIngredient(ModContent.ItemType<Sand_escense>(), 5)
+             .AddTile(TileID.Anvils)
+             .Register();
         }
     }
 }

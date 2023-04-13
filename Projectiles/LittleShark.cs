@@ -10,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 {
     public class LittleShark : ModProjectile
     {
-        public override string Texture => "Terraria/Images/NPC_" + NPCID.Shark;
+        //public override string Texture => "Terraria/Images/NPC_" + NPCID.Shark;
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("LittleShark"); //projectile name
@@ -18,18 +18,18 @@ namespace RemnantOfTheAncientsMod.Projectiles
         }
         public override void SetDefaults()
         {
-            Projectile.width = 36;       //projectile width
-            Projectile.height = 36;  //projectile height
+            Projectile.width = 30;       //projectile width
+            Projectile.height = 60;  //projectile height
             Projectile.friendly = true;      //make that the projectile will not damage you
             Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
             Projectile.penetrate = 1;      //how many NPC will penetrate
-            Projectile.timeLeft = 20000;   //how many time this projectile has before disepire
+            Projectile.timeLeft = 2000;   //how many time this projectile has before disepire
             Projectile.light = 1.75f;    // projectile light
             Projectile.extraUpdates = 1;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.ignoreWater = true;
             Projectile.scale = 0.3f;
-            AIType = ProjectileID.InfluxWaver;
+            //AIType = ProjectileID.InfluxWaver;
 
         }
         public override void AI()           //this make that the projectile will face the corect way
@@ -66,6 +66,28 @@ namespace RemnantOfTheAncientsMod.Projectiles
                     }
                 }
             }
+            generateDust();
+            AnimateTexture();
+
+        }
+        private void generateDust()
+        {
+            Vector2 position = Projectile.position + new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f));
+            Dust dust = Dust.NewDustDirect(position, Projectile.width, Projectile.height, DustID.Water);
+
+            // Configura los valores de la partícula
+            dust.noGravity = true;
+            dust.velocity = Vector2.Zero;
+            dust.scale = 1f;
+        }
+        public void AnimateTexture()
+        {
+            if (++Projectile.frameCounter >= 4)
+            {
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
         }
         //}
 
@@ -82,18 +104,10 @@ namespace RemnantOfTheAncientsMod.Projectiles
             // Declaring a constant in-line is fine as it will be optimized by the compiler
             // It is however recommended to define it outside method scope if used elswhere as well
             // They are useful to make numbers that don't change more descriptive
-            const int NUM_DUSTS = 20;
 
-            // Spawn some dusts upon javelin death
-            for (int i = 0; i < NUM_DUSTS; i++)
+            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(5); i++)
             {
-                // Create a new dust
-                Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);
-                dust.position = (dust.position + Projectile.Center) / 2f;
-                dust.velocity += rotVector * 2f;
-                dust.velocity *= 0.5f;
-                dust.noGravity = true;
-                usePos -= rotVector * 8f;
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0f, 0f, 100, default(Color), 1.5f);
             }
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

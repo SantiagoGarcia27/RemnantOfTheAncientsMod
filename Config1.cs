@@ -24,28 +24,33 @@ namespace RemnantOfTheAncientsMod
 		public bool VanillaWeaponsChangesConf { get; set; }
 
 
-        [Label("Ultimate potion feather fall effect")]
+        [Label("Feather fall effect on kits")]
         [DefaultValue(true)]
-        [Tooltip("Activate the feather fall effect of Ultimate potion kit")]
-        public bool UltimatePotionFeatherFall { get; set; }
+        [Tooltip("Activate the feather fall effect of potion kits")]
+        public bool KitsFeatherFall { get; set; }
 
-        [Label("Ultimate potion invisivility effect")]
+        [Label("Invisibility effect on kits")]
         [DefaultValue(true)]
-        [Tooltip("Activate the feather invisivility of Ultimate potion kit")]
-        public bool UltimatePotionInvis { get; set; }
+        [Tooltip("Activate the invisibility effect of potion kits")]
+        public bool KitsInvis { get; set; }
 
-        /*[Label("ReaperFirsTime")]
-		[DefaultValue(true)]
-		[Tooltip("")]
-		public bool ReaperFirsTimeConf { get; set; }
+        [Label("Gravitation control effect on kits")]
+        [DefaultValue(true)]
+        [Tooltip("Activate the gravitation control effect of potion kits")]
+        public bool KitsGrav { get; set; }
 
-		[Label("Game Mode")]
-		[SliderColor(11, 181, 176, 29)]
-		[Range(0f, 3f)]
-		[Increment(1f)]
-		[DrawTicks]
-		[DefaultValue(0f)]
-		[Tooltip("Reduces graphical aspects of the mod in order to improve game performance.")]
-		public float GameModeDebugg { get; set; }*/
+        [Label("Inferno effect on kits")]
+        [DefaultValue(true)]
+        [Tooltip("Activate the inferno effect of potion kits")]
+        public bool KitsInferno { get; set; }
+        //[Label("?")]
+        //[SliderColor(11, 181, 176, 29)]
+        //[Range(1f, 200f)]
+        //[Increment(1f)]
+        //[DrawTicks]
+        //[DefaultValue(200f)]
+        //[Tooltip("Feliz día de los inocentes")]
+        //public float xdlevel { get; set; }
+
     }
 }

@@ -1,0 +1,14 @@
+﻿/*{
+  "Time_Wizard": {
+    "WizardDialogue": "{0}?, El es un gran amigo mio, recuerdo cuando estábamos juntos en la escuela de hechizeria.",
+    "ClotierDialogue": "¿Oh? ¿Te acercas a mí?, En lugar de huir, ¿vienes directo a mí?,¿A pesar de que tu buhonero, {0}, te contó el secreto de The World, *fotos muertas de {0}* como un estudiante de examen luchando para terminar los problemas en un examen hasta los últimos momentos antes de que suene?",
+    "DayDialogue1": "Hace un hermoso día allá afuera, los pajaros cantan, las flores florecen, en dias como estos..., ¿sería una pena que se hiciera de noche no?",
+    "DayDialogue2": "Oh hola {0}, espero que tengas un buen dia.",
+    "NightDialogue1": "Es un hermoza noche, puedo ver las estrellas desde aquí.",
+    "NightDialogue2": "Oh hola {0}, espero que tengas una buena noche.",
+    "JudmnetDialogue1": "Que arma mas interesante, no lo crees. El tomo del juicio es poderoso, pero pocas personas saben utilizarlo, aún así los grandes magos siempre intentan disparar hacia abajo",
+    "NoBeeDefeatedDialogue1": "Estas abejas son molestas, ¿podrias encargarte porfavor?",
+    "GenericDialog1": "Que lindo reloj",
+    "ErrorDialgog": "Error en la realidad, algo salió mal, si ves este mensaje avisale a la tortuga ;)"
+  }
+}*/

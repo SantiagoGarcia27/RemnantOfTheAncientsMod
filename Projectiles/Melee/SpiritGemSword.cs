@@ -27,9 +27,10 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             Projectile.ignoreWater = true;
             Projectile.scale = 0.7f;
             Projectile.timeLeft = 1000;
-            AIType = ProjectileID.InfluxWaver;
+            //AIType = ProjectileID.InfluxWaver;
+            Projectile.aiStyle = -1;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 0;
+            Projectile.localNPCHitCooldown = -1;
 
         }
 
@@ -68,7 +69,18 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         }
         public override void Kill(int timeLeft)
         {
+       
+            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
+            const int NUM_DUSTS = 20;
+            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); i++)
+            {
+                int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.DungeonSpirit, 0f, 0f, 100, default(Color), 1f);
+                Main.dust[p1].velocity = Projectile.velocity;
+                Main.dust[p1].noGravity = true;
+            }
         }
+    
         private static readonly Color GeodeColorOne = GetRGeodeColor(1);
 
         private static readonly Color GeodeColorTwo = GetRGeodeColor(2);

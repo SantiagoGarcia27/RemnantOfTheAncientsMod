@@ -1,8 +1,11 @@
 using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using RemnantOfTheAncientsMod.Prefixe;
+using CalamityMod;
+using RemnantOfTheAncientsMod.Common.Systems;
+using CalamityMod.World;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
 {
@@ -70,14 +73,138 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 
 			// item.GetGlobalItem<FchangesItem>().ReaperSize(item);           
 		}
-
-
-		public override bool InstancePerEntity => true; //InstancePerEntity
-
-		/*public override void OnCraft(Item item, Recipe recipe)
+		// [JITWhenModsEnabled("CalamityMod")]
+		// public static bool IsThingyDowned() => RemnantOfTheAncientsMod.CalamityMod.CalamityWorld.downedYharon;
+		public override void UpdateAccessory(Item item, Player player, bool hideVisual)
 		{
-FchangesItem.ReaperSize(item);
-		}*/
+			if (item.prefix == ModContent.PrefixType<Healthy>())
+			{
+				PrefixUpdate(player, 5, 0, 1);
+				GlobalItem1.HealthyReforgeValue = Reaper.ReaperMode ? 1 : 5;
+			}
+			if (item.prefix == ModContent.PrefixType<Healer>())
+			{
+				PrefixUpdate(player, 10, 0, 2);
+				GlobalItem1.HealerReforgeValue = Reaper.ReaperMode ? 2 : 10;
+			}
+			if (item.prefix == ModContent.PrefixType<Atletic>())
+			{
+				PrefixUpdate(player, 15, 0, 3);
+				GlobalItem1.AtleticReforgeValue = Reaper.ReaperMode ? 3 : 15;
+			}
+			if (item.prefix == ModContent.PrefixType<Gigant>())
+			{
+				PrefixUpdate(player, 20, 0, 5);
+				GlobalItem1.GigantReforgeValue = Reaper.ReaperMode ? 5 : 20;
+			}
+			if (item.prefix == ModContent.PrefixType<Titanic>())
+			{
+				PrefixUpdate(player, 40, 0, 10);
+				GlobalItem1.TitanicReforgeValue = Reaper.ReaperMode ? 10 : 40;
+			}
+			if (item.prefix == ModContent.PrefixType<Impenetrable>())
+			{
+				int Basedefense = 8;
+				if (RemnantOfTheAncientsMod.CalamityMod != null)
+				{
+                    Basedefense = CalamityPrefixChanger(player);
+                    player.endurance += 0.02f;
+                }
+                GlobalItem1.UnpenetrableReforgeValue = Basedefense;
+                PrefixUpdate(player, Basedefense, 1);
+			}
+			if (item.prefix == ModContent.PrefixType<Supersonic>())
+			{
+				PrefixUpdate(player, 0.08f, 2);
+			}
+			if (item.prefix == ModContent.PrefixType<Acurate>())
+			{
+				PrefixUpdate(player, 6f, 3);
+			}
+			if (item.prefix == ModContent.PrefixType<Uncontrolled>())
+			{
+				PrefixUpdate(player, 8f, 4);
+			}
+			if (item.prefix == ModContent.PrefixType<Uncontrolled>())
+			{
+				PrefixUpdate(player, 6f, 5);
+			}
+			if (item.prefix == ModContent.PrefixType<Regenerative>())
+			{
+				PrefixUpdate(player, 2f, 6);
+			}
+		}
+		[JITWhenModsEnabled("CalamityMod")]
+		private int CalamityPrefixChanger(Player player)
+		{
+			if (DownedBossSystem.downedYharon)
+			{
+				return 20;
+			}
+			else if (DownedBossSystem.downedDoG)
+			{
+				return 19;
+			}
+			else if (DownedBossSystem.downedPolterghast)
+			{
+				return 18;
+			}
+			else if (DownedBossSystem.downedProvidence)
+			{
+				return 16;
+			}
+			else if (NPC.downedMoonlord)
+			{
+				return 14;
+			}
+			else if (NPC.downedGolemBoss)
+			{
+				return 12;
+			}
+			else if (Main.hardMode)
+			{
+				return 10;
+			}
+			return 8;
+		}
+        private static void PrefixUpdate(Player player, float value, int stat)
+        {
+			switch (stat)
+			{
+				case 0:
+                    player.statLifeMax2 += (int)value;
+                    break;
+				case 1:
+                    player.statDefense += (int)value;
+                    break;
+				case 2:
+                    player.moveSpeed += value;
+                    break; 
+				case 3:
+                    player.GetCritChance(DamageClass.Generic) += value;
+                    break;
+				case 4:
+                    ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
+                    GenericDamage += value;
+                    break;
+				case 5:
+                    player.GetAttackSpeed(DamageClass.Melee) += value;
+                    break;
+				case 6:
+					player.lifeRegen+= (int)value;
+					break;
+			} 
+        }
+		private void PrefixUpdate(Player player, float value, int stat, float reaperValue)
+		{
+            if (stat == 0)
+            {
+                player.statLifeMax2 +=  Reaper.ReaperMode? (int)reaperValue : (int)value;
+            }
+        }
+        public override bool InstancePerEntity => true;
+
+	
 
 	}
 }

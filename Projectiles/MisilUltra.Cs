@@ -67,6 +67,17 @@ namespace RemnantOfTheAncientsMod.Projectiles
                     }
                 }
             }
+            generateDust();
+        }
+        private void generateDust()
+        {
+            Vector2 position = Projectile.position + new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f));
+            Dust dust = Dust.NewDustDirect(position, Projectile.width, Projectile.height, DustID.Water);
+
+            // Configura los valores de la partícula
+            dust.noGravity = true;
+            dust.velocity = Vector2.Zero;
+            dust.scale = 1f;
         }
     }
 }

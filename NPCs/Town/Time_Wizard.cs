@@ -18,6 +18,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
 using Terraria.Utilities;
+using System.Linq;
+using RemnantOfTheAncientsMod.World;
+using Terraria.Audio;
 
 namespace RemnantOfTheAncientsMod.NPCs.Town
 {
@@ -52,10 +55,9 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				.SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
 				.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate)
 				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
-
 			DisplayName.SetDefault("Time Wizard");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Magicien du temps");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Mago del tiempo");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Magicien du temps");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mago del tiempo");
 
 		}
 
@@ -122,107 +124,139 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				"Harry"
 			};
 		}
-		public override string GetChat()
+		public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+		{
+			Player player = Main.LocalPlayer;
+			if (firstButton)
+			{
+				shop = true;
+			}
+			else 
+			{
+                Main.sundialCooldown = 0;
+                SoundEngine.PlaySound(SoundID.Item4, player.position);
+
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    NetMessage.SendData(MessageID.MiscDataSync, number: Main.myPlayer, number2: 3f);
+                }
+
+                Main.fastForwardTime = true;
+                NetMessage.SendData(MessageID.WorldData);
+				world1.TimeWizardTimeAcelerationCouldown = 108000;
+            }
+				
+		}
+        public override void AI()
+        {
+            if(world1.TimeWizardTimeAcelerationCouldown <= 108000 && world1.TimeWizardTimeAcelerationCouldown > 0)
+			{
+                world1.TimeWizardTimeAcelerationCouldown--;
+            }
+        }
+
+        public override string GetChat()
 		{
 			WeightedRandom<string> chat = new WeightedRandom<string>();
 			int Wizard = NPC.FindFirstNPC(NPCID.Wizard);
 			int Clothier = NPC.FindFirstNPC(NPCID.Clothier);
 
-			if (Wizard >= 0 && Main.rand.NextBool(4)) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.WizardDialogue", Main.npc[Wizard].GivenName));
+			if (Wizard >= 0 && Main.rand.NextBool(4)) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.WizardDialogue", Main.npc[Wizard].GivenName)));
 
 			if (Main.dayTime)
 			{
-				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue1", 4));
-				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue2", Main.LocalPlayer.name));
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue1")), 4);
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue2", Main.LocalPlayer.name)));
 			}
 			else
 			{
-				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue1", 4));
-				chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue2", Main.LocalPlayer.name));
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue1")), 4);
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue2", Main.LocalPlayer.name)));
 			}
 
-			if (NPC.downedBoss3 && Clothier >= 0) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.ClotierDialogue", Main.npc[Clothier].GivenName));
-			if (!NPC.downedQueenBee) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NoBeeDefeatedDialogue1", 4));
-			if (FindItemInventoriPlayer(ItemType<Judgment>())) chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.JudmnetDialogue1"));
-			chat.Add(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.GenericDialog1"));
+			if (NPC.downedBoss3 && Clothier >= 0) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.ClotierDialogue", Main.npc[Clothier].GivenName)));
+            if (!NPC.downedQueenBee) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NoBeeDefeatedDialogue1")), 4);
+			if (Main.LocalPlayer.HasItem(ItemType<Judgment>())) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.JudmnetDialogue1")));
+			chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.GenericDialog1")));
 
 			return chat;
 		}
-		public bool FindItemInventoriPlayer(int ItemChoise)
-		{
-			for (int k = 0; k < 255; k++)
-			{
-				Player player = Main.player[k];
-				if (!player.active)
-				{
-					continue;
-				}
-
-				foreach (Item item in player.inventory)
-				{
-					if (item.type == ItemChoise) return true;
-				}
-
-			}
-			return false;
-		}
-
 		public override void SetChatButtons(ref string button, ref string button2)
 		{
 			button = Language.GetTextValue("LegacyInterface.28");
+			if (world1.TimeWizardTimeAcelerationCouldown == 0)
+			{
+				button2 = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.UI.Buttoms.SkipDay");
+			}		
 		}
-
-		public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+		private string formater(String imput)
 		{
-			if (firstButton)
-			{
-
-				shop = true;
-			}
-			else
-			{
-
-			}
+			string a = imput.Replace("\u00BF", "¿").Replace("\u00A1", "¡").Replace("\u00E1", "á").Replace("\u00ED", "í");
+			return a;
 		}
+		//public bool FindItemInventoriPlayer(int ItemChoise)
+		//{
+		//	for (int k = 0; k < 255; k++)
+		//	{
+		//		Player player = Main.player[k];
+		//		if (!player.active)
+		//		{
+		//			continue;
+		//		}
 
+		//		foreach (Item item in player.inventory)
+		//		{
+		//			if (item.type == ItemChoise) return true;
+		//		}
+
+		//	}
+		//	return false;
+		//}
+
+
+		
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
-			shop.item[nextSlot].SetDefaults(ItemType<DayToken>());
-			shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(ItemType<NightToken>());
-			shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
-			nextSlot++;
-			if (Main.raining)
+            AddShopItem(shop, nextSlot, ItemType<DayToken>(), Item.buyPrice(0, 1, 0, 0));
+            nextSlot++;
+            AddShopItem(shop, nextSlot, ItemType<NightToken>(), Item.buyPrice(0, 1, 0, 0));
+            nextSlot++;
+
+            if (Main.raining)
 			{
-				shop.item[nextSlot].SetDefaults(ItemType<RainToken>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
-				nextSlot++;
-			}
+                AddShopItem(shop, nextSlot, ItemType<RainToken>(), Item.buyPrice(0, 1, 0, 0));
+                nextSlot++;
+            }
 			if (Sandstorm.Happening)
 			{
-				shop.item[nextSlot].SetDefaults(ItemType<SandstormToken>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 1, 0, 0);
-				nextSlot++;
-			}
-
+                AddShopItem(shop, nextSlot, ItemType<SandstormToken>(), Item.buyPrice(0, 1, 0, 0));
+                nextSlot++;
+            }
 			if (NPC.downedQueenBee)
 			{
-				shop.item[nextSlot].SetDefaults(ItemType<Judgment>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 2, 0, 0);
-				nextSlot++;
-			}
-			if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0)
+                AddShopItem(shop, nextSlot, ItemType<Judgment>(), Item.buyPrice(0, 2, 0, 0));
+                nextSlot++;
+            }
+            if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0)
+            {
+                AddShopItem(shop, nextSlot, ItemType<PlayerStatViewer>(), Item.buyPrice(0, 40, 0, 0));
+                nextSlot++;
+            }
+			if (Main.hardMode)
 			{
-				shop.item[nextSlot].SetDefaults(ItemType<PlayerStatViewer>());
-				shop.item[nextSlot].shopCustomPrice = Item.buyPrice(0, 40, 0, 0);
-				nextSlot++;
-			}
+                AddShopItem(shop, nextSlot, ItemID.Sundial, Item.buyPrice(0, 20, 0, 0));
+                nextSlot++;
+            }
+           
 
 		}
+        public void AddShopItem(Chest shop, int nextSlot, int item, int price)
+        {
+            shop.item[nextSlot].SetDefaults(item);
+            shop.item[nextSlot].shopCustomPrice = price;
+        }
 
-
-		public override bool CanGoToStatue(bool toKingStatue) => true;
+        public override bool CanGoToStatue(bool toKingStatue) => true;
 
 		public override void OnGoToStatue(bool toKingStatue)
 		{
@@ -256,7 +290,7 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 		}
 		public override ITownNPCProfile TownNPCProfile()
 		{
-			return new ExamplePersonProfile();
+			return new TimeWizardProfile();
 		}
 
 		public override void TownNPCAttackStrength(ref int damage, ref float knockback)
@@ -299,7 +333,7 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 			randomOffset = 2f;
 		}
 	}
-	public class ExamplePersonProfile : ITownNPCProfile
+	public class TimeWizardProfile : ITownNPCProfile
 	{
 		public int RollVariation() => 0;
 		public string GetNameForVariant(NPC npc) => npc.getNewNPCName();

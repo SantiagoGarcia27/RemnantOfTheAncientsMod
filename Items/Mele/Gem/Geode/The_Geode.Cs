@@ -82,20 +82,20 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("25% chance to heal player 1hp per hit");
+            Tooltip.SetDefault("50% chance to heal player 5hp per hit");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "25 % de chances de soigner le joueur de 1 PV par coup");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "50% de chances de soigner le joueur de 5 PV par coup");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiene un 25% de provavilidad de curarte 1 de vida");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiene un 50% de provavilidad de curarte 5 de vida");
 
            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             base.OnHitNPC(player, target, damage, knockBack, crit);
-            if (Main.rand.NextBool(4)) player.Heal(1);
+            if (Main.rand.NextBool(2)) player.Heal(5);
         }
     }
     public class The_Geode_Red : BaseGeode

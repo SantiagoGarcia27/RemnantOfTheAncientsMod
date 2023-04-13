@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 	//    NPC.SetEventFlagCleared(ref DownedBossSystem.downedMinionBoss, -1);
 
 	// Saving and loading these flags requires TagCompounds, a guide exists on the wiki: https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
-	public class DownedBossSystem : ModSystem
+	public class RemnantDownedBossSystem : ModSystem
 	{
 		public static bool downedDesert = false;
 		public static bool downedFrozen = false;

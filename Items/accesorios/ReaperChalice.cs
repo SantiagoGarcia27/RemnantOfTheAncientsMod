@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous pouvez stocker les âmes des boss vaincus dans ce calice pour gagner leur pouvoir."
             + "\n(ne fonctionne que dans Reaper)");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Puedes almacenar las almas de los jefes derrotados en este caliz para obtener su poder."
-            + "\n(Solo funciona en cegador");
+            + "\n(Solo funciona en cegador)");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

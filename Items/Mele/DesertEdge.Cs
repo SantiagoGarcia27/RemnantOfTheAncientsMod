@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -56,6 +57,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffType<Buffs.Debuff.Burning_Sand>(), 300);
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             .AddIngredient(ItemID.PlatinumBroadsword, 1)
+             .AddIngredient(ModContent.ItemType<Sand_escense>(), 5)
+             .AddTile(TileID.Anvils)
+             .Register();
         }
     }
 }
