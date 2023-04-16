@@ -66,7 +66,7 @@ namespace RemnantOfTheAncientsMod
 		private bool CanUseDash() => DashEquipped && Player.dashType == 1 && !Player.setSolar && !Player.mount.Active;
 
 
-		public static void JumpDash(Player player,int MoveX, int MoveY)
+		public static void JumpDash(Player player,float MoveX, float MoveY)
 		{
             player.velocity = new Vector2((MoveX * 16) * player.direction, -MoveY * 16);
         }
