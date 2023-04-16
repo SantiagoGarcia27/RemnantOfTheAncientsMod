@@ -4,14 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Projectiles
+namespace RemnantOfTheAncientsMod.Projectiles.Ranger
 {
     // to investigate: Projectile.Damage, (8843)
-    public class MisilUltra : ModProjectile
+    public class MisilDevourer : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault(""); // The English name of the projectile
+            DisplayName.SetDefault("Misil Devourer"); // The English name of the projectile
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5; // The length of old position to be recorded
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
         }
@@ -33,12 +33,12 @@ namespace RemnantOfTheAncientsMod.Projectiles
             AIType = ProjectileID.RocketIII;
         }
         public override void Kill(int timeLeft)
-        {
-            Vector2 launchVelocity = new Vector2(-4, 0); // Create a velocity moving the left.
-            for (int i = 0; i < 4; i++)
+        {     
+            Vector2 launchVelocity = new Vector2(-4, 0); // Create a velocity moving the left.            
+            for (int i = 0; i < Projectile.ai[1]; i++)
             {
                 launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
-                Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, launchVelocity, ModContent.ProjectileType<LittleShark>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleDevourer>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0, 1);
             }
         }
         public override void AI()           //this make that the projectile will face the corect way

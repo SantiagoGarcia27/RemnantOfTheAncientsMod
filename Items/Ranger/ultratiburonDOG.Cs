@@ -8,6 +8,8 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Items.Items;
+using RemnantOfTheAncientsMod.Projectiles.Ranger;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace RemnantOfTheAncientsMod.Items.Ranger
 {
@@ -61,9 +63,10 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		}
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (Main.rand.NextFloat() <= (float)1 / 10) Projectile.NewProjectile(source, position, velocity / 4, ModContent.ProjectileType<MisilUltra>(), damage * 2, 1, player.whoAmI);
+            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(source, position, velocity / 4, ProjectileType<MisilDevourer>(), damage * 2, 1, player.whoAmI,0,8);
             return true;
         }
+        [JITWhenModsEnabled("CalamityMod")]
         public override void AddRecipes()
 		{
 			if (RemnantOfTheAncientsMod.CalamityMod != null)
@@ -77,8 +80,8 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
 				recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
-				recipe.AddTile(TileID.LunarCraftingStation);
-				recipe.Register();
+                recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+                recipe.Register();
 			}
 		}
 

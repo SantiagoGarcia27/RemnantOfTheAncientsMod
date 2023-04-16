@@ -3,11 +3,9 @@ using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Buffs.Minions;
-using Terraria.ModLoader;
-using Terraria.Audio;
-using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Projectiles.Summon.Summon.Minioms;
 
-namespace RemnantOfTheAncientsMod.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
 {
     public class FrozenMinion : HoverShooter
     {

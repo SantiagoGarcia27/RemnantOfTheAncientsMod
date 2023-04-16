@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Projectiles.Minioms;
+using RemnantOfTheAncientsMod.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.Buffs.Minions;
 
 namespace RemnantOfTheAncientsMod.Items.Summon

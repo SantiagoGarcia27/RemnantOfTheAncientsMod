@@ -8,7 +8,7 @@ using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Dusts;
 using RemnantOfTheAncientsMod.Buffs.Minions;
 
-namespace RemnantOfTheAncientsMod.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
 {
     public class DesertMinion : ModProjectile
     {

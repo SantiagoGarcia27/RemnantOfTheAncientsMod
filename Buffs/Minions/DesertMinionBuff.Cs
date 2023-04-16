@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Projectiles.Minioms;
+using RemnantOfTheAncientsMod.Projectiles.Summon.Minioms;
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;

@@ -1,12 +1,13 @@
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
 {
-    public abstract class Minion : ModProjectile
+	public abstract class Minion : ModProjectile
 	{
-		public override void AI() {
-CheckActive();
-Behavior();
+		public override void AI()
+		{
+			CheckActive();
+			Behavior();
 		}
 
 		public abstract void CheckActive();

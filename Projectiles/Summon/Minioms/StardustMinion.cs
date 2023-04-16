@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Buffs.Minions;
 
-namespace RemnantOfTheAncientsMod.Projectiles.Minioms
+namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
 {
     public class StardustMinion : ModProjectile
     {
