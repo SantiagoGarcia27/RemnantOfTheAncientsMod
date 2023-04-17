@@ -6,37 +6,49 @@ using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
-    public class Hallowed_saber : ModItem
+	public class Hallowed_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Sabebur");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabrebur");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sablebur");
-CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			DisplayName.SetDefault("Sabebur");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabrebur");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sablebur");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-            Item Base = new Item(ItemID.Excalibur);
-            Item.damage = Base.damage - 3;
-            Item.DamageType = DamageClass.Melee;
-Item.width = 40;
-Item.height = 80;
-Item.useTime = 20;
-Item.useAnimation = 20;
-Item.useStyle = ItemUseStyleID.Swing;
-Item.knockBack = 10;
-Item.value = Base.value;
-Item.rare = Base.rare;
-Item.UseSound = SoundID.Item1;
-Item.autoReuse = true;
+			Item Base = new Item(ItemID.Excalibur);
+			Item.damage = Base.damage - 3;
+			Item.DamageType = DamageClass.Melee;
+			Item.width = 40;
+			Item.height = 80;
+			Item.useTime = 20;
+			Item.useAnimation = 20;
+			Item.useStyle = ItemUseStyleID.Swing;
+			Item.knockBack = 10;
+			Item.value = Base.value;
+			Item.rare = Base.rare;
+			Item.UseSound = SoundID.Item1;
+			Item.autoReuse = true;
 		}
-		public override void AddRecipes()
+        public override bool AltFunctionUse(Player player) => true;
+        public override bool CanUseItem(Player player)
+        {
+            if (player.altFunctionUse == 2)
+            {
+                if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
+                {
+                    DashPlayer.JumpDash(player, 1.5f, 0.75f);
+                }
+            }
+            return true;
+        }
+        public override void AddRecipes()
 		{
-CreateRecipe()
-.AddIngredient(ItemID.HallowedBar, 12)
-.AddTile(TileID.MythrilAnvil)
-.Register();
+			CreateRecipe()
+			.AddIngredient(ItemID.HallowedBar, 12)
+			.AddTile(TileID.MythrilAnvil)
+			.Register();
 		}
 	}
 }

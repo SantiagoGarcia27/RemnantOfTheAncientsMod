@@ -44,6 +44,33 @@ namespace opswordsII.Drops
             if (npc.type == NPCID.Shark) npcLoot.Add (ItemDropRule.Common(ModContent.ItemType<SharkTooth>(), 10/ dificultyDrop(1), 1, 5 ));
             if (npc.type == NPCID.Tim) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<magic_stick>(), 50/ dificultyDrop(5), 1, 1));
             if (npc.type == NPCID.DungeonGuardian) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TortugaPet>(), 10 / dificultyDrop(2), 1, 1));
+
+        }
+        public void PilarEnemiyLoot(NPC npc ,NPCLoot npcLoot)
+        {
+            if (npc.type == NPCID.SolarDrakomireRider) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.SolarSolenian) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.SolarDrakomire) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.SolarCrawltipedeHead) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.SolarCorite) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.LunarTowerSolar) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 10));
+            if (npc.type == NPCID.VortexHornet) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.VortexHornetQueen) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.VortexLarva) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.VortexRifleman) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.VortexSoldier) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.LunarTowerVortex) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.StardustCellBig) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.StardustJellyfishBig) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.StardustSoldier) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.StardustSpiderBig) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.StardustWormHead) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.LunarTowerStardust) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.NebulaBeast) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.NebulaBrain) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.NebulaHeadcrab) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.NebulaSoldier) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
+            if (npc.type == NPCID.LunarTowerNebula) npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
         }
         public void LegendaryLoot(NPC npc,NPCLoot npcLoot)
         {

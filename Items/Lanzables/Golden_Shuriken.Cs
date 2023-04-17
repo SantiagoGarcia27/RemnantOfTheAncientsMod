@@ -4,6 +4,9 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
+using CalamityMod;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Items.Lanzables
 {
@@ -14,12 +17,23 @@ namespace RemnantOfTheAncientsMod.Items.Lanzables
             DisplayName.SetDefault("Golden Shuriken");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Shuriken doré");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Shuriken dorado");
+
+            if(RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Tooltip.SetDefault("Stealth Strike double the enemy penetration");
+                Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El ataque con sigilo tiene el doble de penetración de enemigos");
+               Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Stealth Strike double la pénétration de l'ennemi");
+            }
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
         {
-            Item.damage = 30;
-            Item.DamageType = DamageClass.Throwing;
+            if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefaultsCalamity();
+            else 
+            { 
+                Item.DamageType = DamageClass.Throwing;
+                Item.damage = 30;
+            }
             Item.noMelee = true;
             Item.width = 20;
             Item.height = 20;
@@ -38,6 +52,23 @@ namespace RemnantOfTheAncientsMod.Items.Lanzables
             Item.maxStack = 999;
             Item.consumable = true;
             Item.noUseGraphic = true;
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetDefaultsCalamity()
+        {
+            Item.damage = 20;
+            Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (player.Calamity().StealthStrikeAvailable())
+            {
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(),position,velocity,type,damage,knockback);
+                Main.projectile[p].penetrate *= 2;
+                return true;
+            }
+            return true;      
         }
         public override void AddRecipes()
         {

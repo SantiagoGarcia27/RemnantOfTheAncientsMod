@@ -175,18 +175,20 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 attackCounter = 700;
                 NPC.netUpdate = true;
             }
-
-            if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
-                SetDefautsCalamity();
-                GenericVariables.IsSpawned = true;
-            }
-            else
-            {
-                if (!GenericVariables.IsSpawned)
+                if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
                 {
-                    GenericVariables.SpawnCounter++;
-                    SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                    SetDefautsCalamity();
+                    GenericVariables.IsSpawned = true;
+                }
+                else
+                {
+                    if (!GenericVariables.IsSpawned)
+                    {
+                        GenericVariables.SpawnCounter++;
+                        SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                    }
                 }
             }
             LifeSpeed(this);
@@ -483,14 +485,17 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         public override void AI()
         {
             GenericVariables gv = new GenericVariables();
-            if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
-                SetDefautsCalamity();
-            }
-            else
-            {
-              //  GenericVariables.SpawnCounter++;
-                SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+                {
+                    SetDefautsCalamity();
+                }
+                else
+                {
+                    //  GenericVariables.SpawnCounter++;
+                    if (RemnantOfTheAncientsMod.CalamityMod != null) SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                }
             }
         }
         public override void Init()
@@ -550,14 +555,17 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
         public override void AI()
         {
             GenericVariables gv = new GenericVariables();
-            if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
-                SetDefautsCalamity();
-            }
-            else
-            {
-               // GenericVariables.SpawnCounter++;
-                SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+                {
+                    SetDefautsCalamity();
+                }
+                else
+                {
+                    // GenericVariables.SpawnCounter++;
+                    SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                }
             }
         }
         public override void HitEffect(int hitDirection, double damage)

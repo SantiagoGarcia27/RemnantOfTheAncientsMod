@@ -6,12 +6,13 @@ using RemnantOfTheAncientsMod.Prefixe;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.Systems;
 using CalamityMod.World;
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Projectiles;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
 {
 	public class VanillaWeapons : GlobalItem
 	{
-
 		public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigClient1>().VanillaWeaponsChangesConf;
@@ -57,13 +58,54 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				if (item.type == ItemID.DD2LightningAuraT1Popper) item.damage = 10;//30
 				if (item.type == ItemID.DD2LightningAuraT2Popper) item.damage = 16;//50
 				if (item.type == ItemID.DD2LightningAuraT3Popper) item.damage = 50;//150
+			}	
+		}
+        public override bool AltFunctionUse(Item item, Player player)
+        {
+            bool WeaponConf = ModContent.GetInstance<ConfigClient1>().VanillaWeaponsChangesConf;
+			if (WeaponConf)
+			{
+				return true;
 			}
 			else
 			{
-
+				return base.AltFunctionUse(item, player);
 			}
-		}
-		public override void UpdateInventory(Item item, Player player)
+        }
+        public override bool? UseItem(Item item, Player player)
+        {
+            bool WeaponConf = ModContent.GetInstance<ConfigClient1>().VanillaWeaponsChangesConf;
+			if (WeaponConf)
+			{
+				if (item.type == ItemID.ChlorophyteSaber)
+				{
+					bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
+					int projectileCount = 32;
+					float projectileDistance = 10f;
+
+					if (player.altFunctionUse == 2)
+					{
+						if (PlayerTouchFlour)
+						{
+							DashPlayer.JumpDash(player, 1f, 0.75f);
+							for (int i = 0; i < projectileCount; i++)
+							{
+								float angle = MathHelper.ToRadians(360f / projectileCount * i);
+								Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
+								Vector2 position = player.Center + velocity;
+
+								var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, item.shoot, item.damage, 2f, Main.myPlayer);
+								Main.projectile[p].timeLeft = 100;
+							}
+						}
+					}
+					return false;
+				}
+				else return base.UseItem(item, player);        
+			}
+			else return base.UseItem(item, player);
+        }
+        public override void UpdateInventory(Item item, Player player)
 		{
 			if (Reaper.ReaperMode)
 			{

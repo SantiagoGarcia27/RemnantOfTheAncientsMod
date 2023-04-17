@@ -28,13 +28,8 @@ namespace RemnantOfTheAncientsMod.Projectiles
             if (Projectile.owner == Main.myPlayer)
             {
                 // Drop a javelin item, 1 in 18 chance (~5.5% chance)
-                int item =
-                Main.rand.NextBool(3)
-                    ? Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.getRect(), ItemType<Golden_Shuriken>())
-                    : 0;
-
-                // Sync the drop for multiplayer
-                // Note the usage of Terraria.ID.MessageID, please use this!
+                int item = Main.rand.NextBool(3)? Item.NewItem(Projectile.GetSource_DropAsItem(), Projectile.getRect(), ItemType<Golden_Shuriken>()): 0;
+                
                 if (Main.netMode == NetmodeID.MultiplayerClient && item >= 0)
                 {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);

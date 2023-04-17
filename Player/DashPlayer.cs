@@ -6,6 +6,7 @@ namespace RemnantOfTheAncientsMod
 {
 	public class DashPlayer : ModPlayer
 	{
+		public static bool IsDashing = false;
 		public const int DashDown = 0;
 		public const int DashUp = 1;
 		public const int DashRight = 2;

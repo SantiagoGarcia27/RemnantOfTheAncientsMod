@@ -16,6 +16,7 @@ using RemnantOfTheAncientsMod.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Buffs.Scrolls;
 using RemnantOfTheAncientsMod.Items.accesorios;
 using RemnantOfTheAncientsMod.Buffs.Buffs;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -376,8 +377,7 @@ namespace RemnantOfTheAncientsMod
 				Projectile.NewProjectile(new EntitySource_ItemUse(Player, item), spawnposition, spawnvelocity, ProjectileID.InsanityShadowFriendly, damage, 0f, Player.whoAmI, ai, ai2);
 			}
 		}
-
-		public static void BasicInfusion(Player player)
+        public static void BasicInfusion(Player player)
 		{
 			player.moveSpeed += 0.25f;
 			player.lifeRegen += 4;

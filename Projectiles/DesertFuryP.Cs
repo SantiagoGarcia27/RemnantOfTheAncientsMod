@@ -180,7 +180,9 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
 		private void NormalAI()
 		{
-			TargetWhoAmI++;
+            float maxDetectRadius = 400f;
+            float projSpeed = 20f;
+            TargetWhoAmI++;
 
 			// For a little while, the javelin will travel with the same speed, but after this, the javelin drops velocity very quickly.
 			if (TargetWhoAmI >= MAX_TICKS)
@@ -200,19 +202,62 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			// Spawn some random dusts as the javelin travels
 			if (Main.rand.NextBool(3))
 			{
-				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, 269, Projectile.velocity.X * .2f, Projectile.velocity.Y * .2f, 200, Scale: 1.2f);
+				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, DustID.Sandnado, Projectile.velocity.X * .2f, Projectile.velocity.Y * .2f, 200, Scale: 1.2f);
 				dust.velocity += Projectile.velocity * 0.3f;
 				dust.velocity *= 0.2f;
 			}
 			if (Main.rand.NextBool(4))
 			{
-				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, 269, 0, 0, 254, Scale: 0.3f);
+				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.height, Projectile.width, DustID.Sandnado, 0, 0, 254, Scale: 0.3f);
 				dust.velocity += Projectile.velocity * 0.5f;
 				dust.velocity *= 0.5f;
 			}
-		}
+            
+			
+		
 
-		private void StickyAI()
+            // Trying to find NPC closest to the projectile
+            NPC closestNPC = FindClosestNPC(maxDetectRadius);
+            if (closestNPC == null)  return;
+
+            Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+        }
+        public NPC FindClosestNPC(float maxDetectDistance)
+        {
+            NPC closestNPC = null;
+
+            // Using squared values in distance checks will let us skip square root calculations, drastically improving this method's speed.
+            float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
+
+            // Loop through all NPCs(max always 200)
+            for (int k = 0; k < Main.maxNPCs; k++)
+            {
+                NPC target = Main.npc[k];
+                // Check if NPC able to be targeted. It means that NPC is
+                // 1. active (alive)
+                // 2. chaseable (e.g. not a cultist archer)
+                // 3. max life bigger than 5 (e.g. not a critter)
+                // 4. can take damage (e.g. moonlord core after all it's parts are downed)
+                // 5. hostile (!friendly)
+                // 6. not immortal (e.g. not a target dummy)
+                if (target.CanBeChasedBy())
+                {
+                    // The DistanceSquared function returns a squared distance between 2 points, skipping relatively expensive square root calculations
+                    float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);
+
+                    // Check if it is within the radius
+                    if (sqrDistanceToTarget < sqrMaxDetectDistance)
+                    {
+                        sqrMaxDetectDistance = sqrDistanceToTarget;
+                        closestNPC = target;
+                    }
+                }
+            }
+
+            return closestNPC;
+        }
+        private void StickyAI()
 		{
 			// These 2 could probably be moved to the ModifyNPCHit hook, but in vanilla they are present in the AI
 			Projectile.ignoreWater = true; // Make sure the projectile ignores water

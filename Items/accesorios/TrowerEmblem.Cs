@@ -8,14 +8,17 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     public class TrowerEmblem : ModItem
     {
+        string TextUs = RemnantOfTheAncientsMod.CalamityMod != null ? "rogue" : "throwing";
+        string TextFr = RemnantOfTheAncientsMod.CalamityMod != null ? "voyou" : "lancer";
+        string TextEs = RemnantOfTheAncientsMod.CalamityMod != null ? "de picaro" : "lanzable";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Thrower Emblem");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du Lanceur");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador");
-            Tooltip.SetDefault("Increases throwing damage by 15% ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de lancer de 15%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño lanzable en un 15%");
+            Tooltip.SetDefault("Increases "+ TextUs + " damage by 15% ");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de "+ TextFr +" de 15%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño "+ TextEs + " en un 15%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
