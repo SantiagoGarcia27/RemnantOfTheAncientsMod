@@ -8,6 +8,9 @@ using RemnantOfTheAncientsMod.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System.Security.Cryptography.X509Certificates;
+using Mono.Cecil;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -35,9 +38,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.scale = 1.60f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			Item.shoot = ProjectileType<InfernalSpike_f>();
-			Item.shootSpeed = 1;
-		}
+			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+			{
+				if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<InfernalSpike_f>();
+			}
+			else Item.shoot = ProjectileType<InfernalSpike_f>();
+            Item.shootSpeed = 1;
+            Item.GetGlobalItem<GlobalItem1>().Saber = true;
+        }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(90));
@@ -68,12 +76,23 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
                         Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
                         Vector2 position = player.Center + velocity;
 
-                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, Item.shoot, Item.damage, 2f, Main.myPlayer);
+                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileType<InfernalSpike_f>(), Item.damage, 2f, Main.myPlayer);
                         Main.projectile[p].timeLeft = 100;
                     }
                 }
             }
-            return true;
+			else
+			{
+                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+				{
+                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+                    Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(90));
+                    velocity.X = perturbedSpeed.X;
+					velocity.Y = perturbedSpeed.Y;
+					Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ProjectileType<InfernalSpike_f>(), Item.damage, 1, player.whoAmI);
+				}
+			}
+			return true;
         }
 
     }

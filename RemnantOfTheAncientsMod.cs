@@ -12,9 +12,7 @@ namespace RemnantOfTheAncientsMod
         public static Mod CalamityMod;
         public static Mod BossChecklist;
         public static Mod ThoriumMod;
-        public static bool ThoriumModLoad;
-        public static bool CalamityModLoad;
-        public static bool BossChecklistLoad;
+        public static Mod TerrariaOverhaul;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static readonly int MaxRarity = GetMaxRarity();
@@ -29,6 +27,7 @@ namespace RemnantOfTheAncientsMod
             RecipeMaker.AddRecipes();
         }
 
+
         public override void Load()
         {
             //  ThoriumModLoad = ModLoader.GetMod("ThoriumMod") != null;
@@ -36,16 +35,17 @@ namespace RemnantOfTheAncientsMod
             //BossChecklistLoad = ModLoader.GetMod("BossChecklist") != null;
             ModLoader.TryGetMod("CalamityMod", out CalamityMod); //CalamityMod = ModLoader.GetMod("CalamityMod");
             ModLoader.TryGetMod("BossChecklist", out BossChecklist);
+            ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
             // else CalamityMod = null;
             // if (ModLoader.HasMod("ThoriumMod")) ThoriumMod = ModLoader.GetMod("ThoriumMod");
             // else ThoriumMod = null;
             //if (ModLoader.HasMod("BossChecklist")) BossChecklist = ModLoader.GetMod("BossChecklist");
             //else BossChecklist = null;
-           // CustomCurrencyId = CustomCurrencyManager.RegisterCurrency(new Currencies.RemnantCurrency(ModContent.ItemType<Terracoin>(), 999L, "Mods.RemnantOfTheAncientsMod.Currencies.ExampleCustomCurrency"));
+            // CustomCurrencyId = CustomCurrencyManager.RegisterCurrency(new Currencies.RemnantCurrency(ModContent.ItemType<Terracoin>(), 999L, "Mods.RemnantOfTheAncientsMod.Currencies.ExampleCustomCurrency"));
 
 
-         
-            
+
+
             if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
             {
                 ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
@@ -79,7 +79,7 @@ namespace RemnantOfTheAncientsMod
 
         public int ParticleMeter(int i)
         {
-            float lagLevel = ModContent.GetInstance<ConfigClient1>().LagReducer;
+            float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
 
             if (lagLevel == 3f)
             {

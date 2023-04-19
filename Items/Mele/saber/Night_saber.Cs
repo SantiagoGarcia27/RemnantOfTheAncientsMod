@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -33,7 +34,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.rare = Base.rare;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-		}
+            Item.GetGlobalItem<GlobalItem1>().Saber = true;
+        }
 
 		public override void MeleeEffects(Player player, Rectangle hitbox)
 		{

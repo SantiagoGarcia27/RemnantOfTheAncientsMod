@@ -88,8 +88,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 					item.type == ModContent.ItemType<InfernalCalis>())
 				{
 					item.consumable = Reaper.ReaperMode ? false : true;
-					if (Reaper.ReaperMode) item.GetGlobalItem<GlobalItem1>().BossSummon = true;
-					else item.GetGlobalItem<GlobalItem1>().BossSummon = false;
+					item.GetGlobalItem<GlobalItem1>().BossSummon = Reaper.ReaperMode? true : false;	
 				}
 			}
 		}

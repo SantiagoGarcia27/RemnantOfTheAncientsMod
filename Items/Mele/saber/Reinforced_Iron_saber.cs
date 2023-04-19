@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Items.Items;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -31,7 +32,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.rare = Base.rare;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-		}
+            Item.GetGlobalItem<GlobalItem1>().Saber = true;
+        }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
         {

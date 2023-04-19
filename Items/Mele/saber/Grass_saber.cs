@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -36,7 +37,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.scale = 1.28f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-		}
+            Item.GetGlobalItem<GlobalItem1>().Saber = true;
+        }
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffID.Poisoned, 80);

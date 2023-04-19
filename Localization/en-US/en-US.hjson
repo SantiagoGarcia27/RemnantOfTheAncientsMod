@@ -78,5 +78,10 @@ Mods:
 				DamageReduction: "+{0}% damage reduction"
 			}
 		}
+		Generic:
+		{
+			RightClickSaberHabilitie: Right click to use dash
+			RightClickSecondHabilitie: Right click to use the scondary hability
+		}
 	}
 }

@@ -8,11 +8,13 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 {
     public class TrowerEmblem : ModItem
     {
-        string TextUs = RemnantOfTheAncientsMod.CalamityMod != null ? "rogue" : "throwing";
-        string TextFr = RemnantOfTheAncientsMod.CalamityMod != null ? "voyou" : "lancer";
-        string TextEs = RemnantOfTheAncientsMod.CalamityMod != null ? "de picaro" : "lanzable";
+       
         public override void SetStaticDefaults()
         {
+            string TextUs = ModLoader.TryGetMod("CalamityMod", out _) ? "rogue" : "throwing";
+            string TextFr = ModLoader.TryGetMod("CalamityMod", out _) ? "voyou" : "lancer";
+            string TextEs = ModLoader.TryGetMod("CalamityMod", out _) ? "de picaro" : "lanzable";
+
             DisplayName.SetDefault("Thrower Emblem");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du Lanceur");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador");

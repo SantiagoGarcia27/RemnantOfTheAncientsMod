@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 
         public override void SetStaticDefaults()
         {
-            multilier =(ModLoader.TryGetMod("CalamityMod", out Mod mod))? 20:25;
+            multilier = (ModLoader.TryGetMod("CalamityMod", out Mod mod))? 20:25;
             DisplayName.SetDefault("Universal Emblem V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Universel V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal V2");

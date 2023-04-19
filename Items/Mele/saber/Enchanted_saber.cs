@@ -5,6 +5,10 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
+using Mono.Cecil;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using RemnantOfTheAncientsMod.VanillaChanges;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -33,18 +37,30 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.knockBack = 10;
 			Item.value = Base.value;
 			Item.rare = Base.rare;
-			Item.shoot = ProjectileID.EnchantedBeam;
+			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+			{
+				if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileID.EnchantedBeam;
+            }
+			else Item.shoot = ProjectileID.EnchantedBeam;
 			Item.shootSpeed = 10f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			if (RemnantOfTheAncientsMod.CalamityMod != null)
+            Item.GetGlobalItem<GlobalItem1>().Saber = true;
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
 			{
 				Item.damage = 16;
 			}
 		}
+        [JITWhenModsEnabled("TerrariaOverhaul")]
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (!ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Projectile.NewProjectile(source,position,velocity,ProjectileID.EnchantedBeam,damage,knockback);
+                return true;
+        }
         public override bool AltFunctionUse(Player player) => true;
 		public override bool CanUseItem(Player player)
 		{
+
 			if (player.altFunctionUse == 2)
 			{
 				if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
@@ -64,6 +80,26 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 							dust.noGravity = true;
 						}
 					}
+				}
+			}
+			else
+			{
+				int i = 0;
+				Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+
+				if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+				{
+					do
+					{
+						switch (i)
+						{
+							case 0:
+							case 10:
+								Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ProjectileID.EnchantedBeam, Item.damage, Item.knockBack);
+								break;
+						}
+						i++;
+					} while (i <= 11);
 				}
 			}
 			return true;

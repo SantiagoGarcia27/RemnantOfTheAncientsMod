@@ -43,7 +43,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.GetGlobalItem<GlobalItem1>().customRarity = CustomRarity.Legendary;
+            Item.GetGlobalItem<GlobalItem1>().SecondHabilitie = true;
             Item.GetGlobalItem<GlobalItem1>().LegendaryDrop = true;
+
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)

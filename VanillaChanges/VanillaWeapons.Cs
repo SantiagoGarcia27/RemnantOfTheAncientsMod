@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod.Common.Systems;
 using CalamityMod.World;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles;
+using RemnantOfTheAncientsMod.Items.Mele.saber;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
 {
@@ -15,7 +16,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 	{
 		public override void SetDefaults(Item item)
 		{
-			bool WeaponConf = ModContent.GetInstance<ConfigClient1>().VanillaWeaponsChangesConf;
+			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 
 			if (WeaponConf)
 			{
@@ -58,11 +59,17 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				if (item.type == ItemID.DD2LightningAuraT1Popper) item.damage = 10;//30
 				if (item.type == ItemID.DD2LightningAuraT2Popper) item.damage = 16;//50
 				if (item.type == ItemID.DD2LightningAuraT3Popper) item.damage = 50;//150
+				if(item.type == ItemID.ChlorophyteSaber)
+				{
+                    item.GetGlobalItem<GlobalItem1>().Saber = true;
+                }
 			}	
 		}
+
+		
         public override bool AltFunctionUse(Item item, Player player)
         {
-            bool WeaponConf = ModContent.GetInstance<ConfigClient1>().VanillaWeaponsChangesConf;
+            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 			if (WeaponConf)
 			{
 				return true;
@@ -74,7 +81,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         }
         public override bool? UseItem(Item item, Player player)
         {
-            bool WeaponConf = ModContent.GetInstance<ConfigClient1>().VanillaWeaponsChangesConf;
+            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 			if (WeaponConf)
 			{
 				if (item.type == ItemID.ChlorophyteSaber)

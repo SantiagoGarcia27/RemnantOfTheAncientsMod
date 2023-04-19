@@ -8,6 +8,8 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System.Linq;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
+using Mono.Cecil;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -41,7 +43,11 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.scale = 2.0f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			Item.shoot = ProjectileType<GodClaws>();
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+            {
+                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<GodClaws>();
+            }
+            else Item.shoot = ProjectileType<GodClaws>();
 			//Item.shootSpeed = 5f;
 		}
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -50,10 +56,16 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Main.projectile[p].direction = player.direction;
             return false;
         }
-        public override bool CanShoot(Player player)
-        {
-            return !Main.projectile.Any((Projectile n) => n.active && n.owner == player.whoAmI && n.type == ProjectileType<GodClaws>() && (n.ai[0] != 1f || n.ai[1] != 1f));
-        }
+		public override bool CanShoot(Player player)
+		{
+			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+			{
+                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position - new Vector2(((7 * 16) * -player.direction), ((1f * 16) * Item.scale)), velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, Main.myPlayer);
+				Main.projectile[p].direction = player.direction;
+			}
+			return !Main.projectile.Any((Projectile n) => n.active && n.owner == player.whoAmI && n.type == ProjectileType<GodClaws>() && (n.ai[0] != 1f || n.ai[1] != 1f));
+		}
 		[JITWhenModsEnabled("CalamityMod")]
         public override void AddRecipes()
 		{

@@ -20,6 +20,8 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool SizedByReaper;
         public bool ReaperAccesories;
         public bool MusicBox;
+        public bool Saber;
+        public bool SecondHabilitie;
 
         public static float HealthyReforgeValue { get; set; } = 5f;
         public static float HealerReforgeValue { get; set; } = 10f;
@@ -31,11 +33,13 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             TooltipLine val = tooltips.FirstOrDefault((TooltipLine x) => x.Name == "ItemName" && x.Mod == "Terraria");
-            if (val != null) ApplyRarityColor(item, val);
+            if (val != null) ApplyRarityColor(item, val); 
+            if (MusicBox) MusicBoxToolTip(item, tooltips);
+            if (SecondHabilitie) SecondHbilitieToolTip(item, tooltips);
+            if (Saber) SaberHbilitieToolTip(item,tooltips);
             if (LegendaryDrop) LegendaryToolTip(item, tooltips);
             if (ReaperItem) ReaperToolTip(item, tooltips);
             if (BossSummon) BossSummonToolTip(item, tooltips);
-            if (MusicBox) MusicBoxToolTip(item, tooltips);
             AplyReforgeTooltip(item, tooltips);
             //   if (ReaperAccesories) ReaperArtifactToolTip(item, tooltips);
 
@@ -54,6 +58,28 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
                 OverrideColor = valueOrDefault
             };
             if (Reaper.ReaperMode) tooltips.Add(item2);
+        }
+        private void SaberHbilitieToolTip(Item item, IList<TooltipLine> tooltips)
+        {
+            Color? color = Color.Red;
+            Color valueOrDefault = color.Value;
+            string text = (color.HasValue ? Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.RightClickSaberHabilitie") : "");
+            TooltipLine item2 = new TooltipLine(Mod, "Saber Habilitie", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            tooltips.Add(item2);
+        }
+        private void SecondHbilitieToolTip(Item item, IList<TooltipLine> tooltips)
+        {
+            Color? color = Color.Red;
+            Color valueOrDefault = color.Value;
+            string text = (color.HasValue ? Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.RightClickSecondHabilitie") : "");
+            TooltipLine item2 = new TooltipLine(Mod, "Second Habilitie", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            tooltips.Add(item2);
         }
         /*     private void ReaperArtifactToolTip(Item item, IList<TooltipLine> tooltips)
              {

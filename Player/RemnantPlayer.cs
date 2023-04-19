@@ -274,54 +274,79 @@ namespace RemnantOfTheAncientsMod
 
 		public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
 		{
-			if (Reaper.ReaperMode)
-			{
-				if (Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade && !Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade) Player.respawnTimer = (int)(Player.respawnTimer * 0.7);
-				else if (Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade && Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade) Player.respawnTimer = (int)(Player.respawnTimer * 0.3);
-			}
-			else Player.respawnTimer = (int)((double)Player.respawnTimer * 1);
+			Player.respawnTimer *= (int)RespawnCalculator();
 		}
+		private float RespawnCalculator()
+		{
+			bool DesertAnhilatorActivated = (GetInstance<ConfigClient>().ToggleDesertAnhilatorSoul && Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade) ? true : false;
 
+            bool MoonlordRespawnActivated = (GetInstance<ConfigClient>().ToggleMoonlordSoul && Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade) ? true : false;
+
+			if (Reaper.ReaperMode) 
+			{
+				if (DesertAnhilatorActivated && !MoonlordRespawnActivated) return 0.7f;
+				else if (!DesertAnhilatorActivated && MoonlordRespawnActivated) return 0.5f;
+				else if (DesertAnhilatorActivated && MoonlordRespawnActivated) return 0.3f;
+			}
+			return 1;
+		}
 		public void ReaperSoulsBoost()
 		{
 			float OgPlayerSpeed = Player.moveSpeed;
 			if (Reaper.ReaperMode && ChaliceOn)
 			{
-				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade) Player.moveSpeed = OgPlayerSpeed + 1.30f;
-				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade) Player.statLifeMax2 += 10;
-				if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade) Player.lifeRegen += 5;
-				if (Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade)
+				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade)
+				{
+					float speedForce = (GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul/100) + 1;
+                    Player.moveSpeed = OgPlayerSpeed + speedForce;
+				}
+				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade && GetInstance<ConfigClient>().ToggleEyeOfChutuluSoul)
+				{
+					Player.statLifeMax2 += 10;
+				}
+				if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade && GetInstance<ConfigClient>().ToggleCorruptSoul)
+				{
+					Player.lifeRegen += 5;
+				}
+				if (Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade && GetInstance<ConfigClient>().ToggleQueenBeeSoul)
 				{
 					Player.honey = true;
 					Player.beeDamage(20);
 				}
-				if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade) Player.statDefense += 5;
-				if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade) Player.GetDamage(DamageClass.Generic) *= 1.10f;
-				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) FrostInmune();
-				if (Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade) Player.statLifeMax2 += 15;
-				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade) Player.pickSpeed -= 0.35f;
+				if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade && GetInstance<ConfigClient>().ToggleSkeletronSoul) 
+				{ 
+					Player.statDefense += 5; 
+				}
+				if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade && GetInstance<ConfigClient>().ToggleWallOfFleshSoul)
+				{
+					Player.GetDamage(DamageClass.Generic) *= 1.10f;
+				}
+				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade && GetInstance<ConfigClient>().ToggleFrozenAssaulterSoul) FrostInmune();
+				if (Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade && GetInstance<ConfigClient>().ToggleQueenSlimeSoul) Player.statLifeMax2 += 15;
+				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade && GetInstance<ConfigClient>().ToggleDestroyerSoul) Player.pickSpeed -= 0.35f;
 				if (Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade) FirenInmune();
 				if (Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade)
 				{
-					Player.findTreasure = true;
-					Player.jumpSpeedBoost += 10f;
+                    float JumpForce = ModContent.GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
+                    Player.findTreasure = true;
+					Player.jumpSpeedBoost += JumpForce;
 				}
-				if (Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade) Player.empressBrooch = true;
+				if (Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade && GetInstance<ConfigClient>().ToggleEmpressOfLightSoul) Player.empressBrooch = true;
 
-				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade)
+				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade && GetInstance<ConfigClient>().ToggleInfernalTyrantSoul)
 				{
 					Player.fireWalk = true;
 					Player.lavaImmune = true;
 					Player.GetDamage(DamageClass.Generic) *= 1.10f;
 				}
-				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade) Player.statDefense += 10;
+				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade && GetInstance<ConfigClient>().ToggleGolemSoul) Player.statDefense += 10;
 
-				if (Reaper.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade)
+				if (Reaper.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && GetInstance<ConfigClient>().ToggleDukeFishronSoul)
 				{
 					AddMinion(ProjectileType<TempestClone>(), 140, 10f);
 					Player.aggro -= 400;
 				}
-				if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade) AddMinion(ProjectileType<IceMistF>(), 680, 10f);
+				if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && GetInstance<ConfigClient>().ToggleLunaticCultistSoul) AddMinion(ProjectileType<IceMistF>(), 680, 10f);
 
 			}
 		}
@@ -329,13 +354,13 @@ namespace RemnantOfTheAncientsMod
 		{
 			if (Reaper.ReaperMode && ChaliceOn)
 			{
-				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade)
-				{
+				if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade && GetInstance<ConfigClient>().TogglePlanteraSoul)
+                {
 					Player.sporeSac = true;
 					Player.SporeSac(item);
 					Player.statLifeMax2 += 10;
 				}
-				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade) SpawnHallucination(item);
+				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade && GetInstance<ConfigClient>().ToggleDearclopsSoul) SpawnHallucination(item);
 			}
 		}
 		public void AddMinion(int proj, int damage, float knockback)
@@ -440,8 +465,8 @@ namespace RemnantOfTheAncientsMod
 
 		public static void GravityControlPotion(Player player)
 		{
-           if(GetInstance<ConfigClient1>().KitsGrav) player.gravControl = true;
-           if(GetInstance<ConfigClient1>().KitsFeatherFall) player.slowFall = true;
+           if(GetInstance<ConfigClient>().KitsGrav) player.gravControl = true;
+           if(GetInstance<ConfigClient>().KitsFeatherFall) player.slowFall = true;
 
 			player.buffImmune[8] = true;
 			player.buffImmune[18] = true;
@@ -453,7 +478,7 @@ namespace RemnantOfTheAncientsMod
 			player.fishingSkill += 15;
 			player.sonarPotion = true;
 			player.cratePotion = true;
-            if (ModContent.GetInstance<ConfigClient1>().KitsInvis) player.invis = true;
+            if (ModContent.GetInstance<ConfigClient>().KitsInvis) player.invis = true;
 			player.luck += 0.4f;
 
 			player.buffImmune[10] = true;
@@ -493,7 +518,7 @@ namespace RemnantOfTheAncientsMod
 		{
 			player.maxMinions++;
 			player.maxTurrets++;
-            if (ModContent.GetInstance<ConfigClient1>().KitsInferno) player.inferno = true;
+            if (ModContent.GetInstance<ConfigClient>().KitsInferno) player.inferno = true;
 
 			player.buffImmune[110] = true;
 			player.buffImmune[116] = true;

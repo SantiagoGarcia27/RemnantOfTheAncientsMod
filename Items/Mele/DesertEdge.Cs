@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Items.Items;
+using RemnantOfTheAncientsMod.Projectiles;
+using Mono.Cecil;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -35,7 +38,11 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             Item.UseSound = SoundID.Item39;
             Item.value = 100900;
             Item.rare = ItemRarityID.Green;
-            Item.shoot = ProjectileType<DesertS>();
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+            {
+                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<DesertS>();
+            }
+            else Item.shoot = ProjectileType<DesertS>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = false;
         }
@@ -53,6 +60,26 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             }
             Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
             return false;
+        }
+        public override bool CanUseItem(Player player)
+        {
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+            {
+                float numberProjectiles = 2;
+                float rotation = MathHelper.ToRadians(10);
+                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+                Vector2 position = player.position;
+
+                player.position += Vector2.Normalize(velocity) * 1f;
+
+                for (int i = 0; i < numberProjectiles; i++)
+                {
+                    Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+                    Projectile.NewProjectile(Projectile.GetSource_None(), position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), Item.damage / 2, Item.knockBack, player.whoAmI);
+                }
+                Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileType<DesertS>(), Item.damage, 1, player.whoAmI);
+            }
+            return true;
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {

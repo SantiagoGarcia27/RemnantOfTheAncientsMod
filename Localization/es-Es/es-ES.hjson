@@ -87,5 +87,10 @@
 				SkipDay: Adelantar dia
 			}
 		}
+		Generic:
+		{
+			RightClickSaberHabilitie: Click derecho para utilizar la embestida
+			RightClickSecondHabilitie: Click derecho para utilizar la habilidad secundaria
+		}
 	}
 }
