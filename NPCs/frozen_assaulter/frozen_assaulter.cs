@@ -44,8 +44,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         public override void SetDefaults()
         {
             NPC.aiStyle = 5;
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(18500); //* (int)ModContent.GetInstance<ConfigClient1>().xdlevel; 
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(90); 
+            NPC.lifeMax = 18500;//(int)NpcChanges1.ExpertLifeScale(18500); //* (int)ModContent.GetInstance<ConfigClient1>().xdlevel; 
+            NPC.damage = 90;// (int)NpcChanges1.ExpertDamageScale(90); 
             NPC.defense = 15;    
             NPC.knockBackResist = 0f;
             NPC.width = 100;
@@ -101,7 +101,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                     switch (attackCounter)
                     {
                         case 115:
-                            shootIa((int)NpcChanges1.ExpertDamageScale(50), ProjectileID.FrostBeam, target, 20f, 0.5, 0.5);
+                            shootIa(50, ProjectileID.FrostBeam, target, 20f, 0.5, 0.5);
                             break;
                         case 300:
                             NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
@@ -113,7 +113,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                             }
                             break;
                         case >= 0:
-                            shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 20f, 0.5, 0.5);
+                            shootIa(10, ProjectileType<Frozenp>(), target, 20f, 0.5, 0.5);
                             break;
                     }
                     if (Main.expertMode)
@@ -138,7 +138,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                         case 115:
                             for (int i = 0; i < 6; i++)
                             {
-                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                                shootIa(10, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                             }
                             break;
                         case 150:
@@ -154,9 +154,9 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                             int l = 0;
                             for (int j = 0; j < 3; j++)
                             {
-                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 90f + l);//70
-                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 180f + l);
-                                shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileType<Frozenp>(), target, 10f, 270f + l);
+                                shootIa(10, ProjectileType<Frozenp>(), target, 10f, 90f + l);//70
+                                shootIa(10, ProjectileType<Frozenp>(), target, 10f, 180f + l);
+                                shootIa(10, ProjectileType<Frozenp>(), target, 10f, 270f + l);
                             }
                             l += 2;
                             l %= 360;

@@ -5,7 +5,7 @@ using Terraria.ModLoader.IO;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.VanillaChanges;
-
+using System.Linq;
 
 namespace RemnantOfTheAncientsMod.World
 {
@@ -15,20 +15,20 @@ namespace RemnantOfTheAncientsMod.World
 		public static bool OneInMiddleMillion;
 		public static bool SpawnTimeWithard;
 		public static bool TimeDilocated;
-		public static int TimeWizardTimeAcelerationCouldown; 
+		public static int TimeWizardTimeAcelerationCouldown;
 		public bool SandWeapons;
 
 		public override void OnWorldLoad()
 		{
 			TimeWizardTimeAcelerationCouldown = 0;
-            SpawnTimeWithard = false;
+			SpawnTimeWithard = false;
 			//ReaperMode = false;
 			TimeDilocated = false;
 		}
 		public override void OnWorldUnload()
 		{
-            TimeWizardTimeAcelerationCouldown = 0;
-            SpawnTimeWithard = false;
+			TimeWizardTimeAcelerationCouldown = 0;
+			SpawnTimeWithard = false;
 			//ReaperMode = false;
 			TimeDilocated = false;
 		}
@@ -76,10 +76,28 @@ namespace RemnantOfTheAncientsMod.World
 					{
 						return true;
 					}
-				}	
+				}
 			}
-            return false;
-        }
+			return false;
+		}
+
+		public static void KillTombstom()
+		{
+			int[] tombsID = new int[10]
+			{
+				201,202,203,204,205,527,528,529,530,531
+			};
+
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile projectile = Main.projectile[i];
+				for (int a = 0; a < 10; a++)
+				{
+					if (projectile.type == tombsID[a]) 
+						projectile.Kill();
+				}
+            }
+		}
 	}
 }
 

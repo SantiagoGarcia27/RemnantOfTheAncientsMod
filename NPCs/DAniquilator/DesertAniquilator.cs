@@ -38,8 +38,8 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
         public override void SetDefaults()
         {
             NPC.aiStyle = NPCID.BlueSlime;//
-            NPC.lifeMax = (int)NpcChanges1.ExpertLifeScale(3500);
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(30);
+            NPC.lifeMax = 3500;// (int)NpcChanges1.ExpertLifeScale(3500);
+            NPC.damage = 30;// (int)NpcChanges1.ExpertDamageScale(30);
             NPC.defense = 10;
             NPC.knockBackResist = 0f;
             NPC.width = 100;

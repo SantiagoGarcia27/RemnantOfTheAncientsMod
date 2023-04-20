@@ -9,35 +9,36 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
 	{
 		public override void SetStaticDefaults()
 		{
-            Main.projFrames[Projectile.type] = 5;
-            //Main.projPet[Projectile.type] = true;
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
-            ProjectileID.Sets.LightPet[Projectile.type] = true;
-        }
-
-		public override void SetDefaults() 
-		{
-Projectile.CloneDefaults(ProjectileID.SuspiciousTentacle);
-AIType = ProjectileID.SuspiciousTentacle;
-Projectile.light = 1.25f;
+			Main.projFrames[Projectile.type] = 4;
+			//Main.projPet[Projectile.type] = true;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+			ProjectileID.Sets.LightPet[Projectile.type] = true;
 		}
 
-		public override bool PreAI() 
+		public override void SetDefaults()
 		{
-Player player = Main.player[Projectile.owner];
-player.suspiciouslookingTentacle = false;
-return true;
+			Projectile.CloneDefaults(ProjectileID.SuspiciousTentacle);
+			AIType = ProjectileID.SuspiciousTentacle;
+			Projectile.scale = 1f;
+			Projectile.light = 1.25f;
 		}
 
-		public override void AI() 
+		public override bool PreAI()
 		{
-Player player = Main.player[Projectile.owner];
+			Player player = Main.player[Projectile.owner];
+			player.suspiciouslookingTentacle = false;
+			return true;
+		}
 
-            if (!player.dead && player.HasBuff(ModContent.BuffType<YtBuff>()))
-            {
-                Projectile.timeLeft = 2;
-            }
-Projectile.alpha = 100;
+		public override void AI()
+		{
+			Player player = Main.player[Projectile.owner];
+
+			if (!player.dead && player.HasBuff(ModContent.BuffType<YtBuff>()))
+			{
+				Projectile.timeLeft = 2;
+			}
+			Projectile.alpha = 100;
 		}
 	}
 }

@@ -89,6 +89,29 @@ namespace RemnantOfTheAncientsMod
 			hBurn = false;
 			MeleeKit = false;
 			MoneyCollector = false;
+
+			int selection = chanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
+			if (selection != 0) 
+			{
+				if (Main.rand.NextBool(selection))
+				{
+					world1.KillTombstom();
+				}
+			}
+		}
+		private int chanceTomb(float config)
+		{
+			switch (config)
+			{
+				case 0:
+					return 1;
+				case 1:
+					return 2;	
+				case 2:
+					return 0;		
+				default: 
+					return 0;
+			}
 		}
 		public override void UpdateBadLifeRegen()
 		{
@@ -133,7 +156,7 @@ namespace RemnantOfTheAncientsMod
 				Player.QuickSpawnItem(Player.GetSource_DropAsItem(), ItemType<ReaperChalice>());
 			}
 		}
-
+	
 		public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
 		{
 			if (Burn_Sand && Main.rand.NextBool(4) && drawInfo.shadow == 0f)

@@ -17,7 +17,11 @@ namespace RemnantOfTheAncientsMod
         [Increment(1f)]
         [DrawTicks]
         [DefaultValue(0f)]
-        [Tooltip("Reduces graphical aspects of the mod in order to improve game performance.")]
+        [Tooltip("Reduces graphical aspects of the mod in order to improve game performance." +
+        "\n 0 - Disable anti lagg" +
+        "\n 1 - 50% of mod effects" +
+        "\n 2 - 25% of mod effects" +
+        "\n 3 - Disable mod effects")]
 
         public float LagReducer { get; set; }
         #endregion
@@ -30,6 +34,18 @@ namespace RemnantOfTheAncientsMod
         [Tooltip("Activate the balance changes of vanilla items"
         + "\n(deactivate this if it generates incompatibility with some other mod)")]
         public bool VanillaWeaponsChangesConf { get; set; }
+
+        [Label("Drop tombs on death")]
+        [SliderColor(11, 181, 176, 29)]
+        [Range(0f, 2f)]
+        [Increment(1f)]
+        [DrawTicks]
+        [DefaultValue(2f)]
+        [Tooltip("Defines if the player drops graves upon death" +
+        "\n 0- Disable all of the tombs" +
+        "\n 1 - 50% Chance to drop tombs" +
+        "\n 2 - 100% Chance to drop tombs")]
+        public float DropTombstomOnDeadtConf { get; set; }
         #endregion
 
 

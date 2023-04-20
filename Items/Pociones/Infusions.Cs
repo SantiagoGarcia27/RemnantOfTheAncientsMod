@@ -477,7 +477,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Ultimate Potions Kit");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de definitivo");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -507,7 +507,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             DisplayName.SetDefault("Endless Ultimate Potions Kit");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de definitivo eterno");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo eterno");
         }
     }
     #endregion

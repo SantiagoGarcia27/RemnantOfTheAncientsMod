@@ -1,6 +1,6 @@
 bauthor = Sangar & TTIM
 version = 2.0
-displayName = RemnantsOfTheAncient Mod Pre release 8
+displayName = RemnantsOfTheAncient Mod Pre release 9
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 hideCode = false
 hideResources = false

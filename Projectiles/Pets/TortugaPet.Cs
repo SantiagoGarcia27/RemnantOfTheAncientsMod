@@ -7,33 +7,34 @@ namespace RemnantOfTheAncientsMod.Projectiles.Pets
 {
 	public class TortugaPet : ModProjectile
 	{
-		public override void SetStaticDefaults() 
+		public override void SetStaticDefaults()
 		{
-Main.projFrames[Projectile.type] = 5;
-Main.projPet[Projectile.type] = true;
+			Main.projFrames[Projectile.type] = 5;
+			Main.projPet[Projectile.type] = true;
 		}
 
-		public override void SetDefaults() 
+		public override void SetDefaults()
 		{
-Projectile.CloneDefaults(ProjectileID.ZephyrFish);
-AIType = ProjectileID.ZephyrFish;
+			Projectile.CloneDefaults(ProjectileID.ZephyrFish);
+			AIType = ProjectileID.ZephyrFish;
+			Projectile.scale = 0.5f;
 		}
 
 		public override bool PreAI()
 		{
-Player player = Main.player[Projectile.owner];
-player.zephyrfish = false; // Relic from AIType
-return true;
+			Player player = Main.player[Projectile.owner];
+			player.zephyrfish = false; // Relic from AIType
+			return true;
 		}
 
 		public override void AI()
 		{
-            Player player = Main.player[Projectile.owner];
+			Player player = Main.player[Projectile.owner];
 
-            if (!player.dead && player.HasBuff(ModContent.BuffType<TortugaPetBuff>()))
-            {
-                Projectile.timeLeft = 2;
-            }
-        }
+			if (!player.dead && player.HasBuff(ModContent.BuffType<TortugaPetBuff>()))
+			{
+				Projectile.timeLeft = 2;
+			}
+		}
 	}
 }
