@@ -12,9 +12,11 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Undead");
-            Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Mort-vivant");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Muertos viviente");
+            Description.SetDefault("Your senses are heightened");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tes sens sont exacerbés");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tus sentidos se agudizan");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

@@ -22,5 +22,5 @@
                     -Changes in vanilla items
                     -Death and Revenge Comptativilitie
                     -Rogue compativilities
-		            -New dificulty Reaper Mode (Not work on multiplayer)
+		            -New dificulty Reaper Mode
                   

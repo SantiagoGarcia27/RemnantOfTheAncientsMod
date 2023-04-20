@@ -11,10 +11,11 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dodge Apprentice");
-            Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Apprenti Dodge");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aprendiz del esquiva");
-
+            Description.SetDefault("You are untouchable");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens plus léger");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Eres intocable");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = false;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

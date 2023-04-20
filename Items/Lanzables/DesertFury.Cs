@@ -8,6 +8,7 @@ using CalamityMod;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using Terraria.DataStructures;
+using Mono.Cecil;
 
 namespace RemnantOfTheAncientsMod.Items.Lanzables
 {
@@ -63,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Items.Lanzables
             Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
         }
         [JITWhenModsEnabled("CalamityMod")]
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        private void StealStrike(Player player, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             if (player.Calamity().StealthStrikeAvailable())
             {
@@ -75,10 +76,14 @@ namespace RemnantOfTheAncientsMod.Items.Lanzables
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                    Projectile.NewProjectile(source, position, perturbedSpeed * 2, Item.shoot, damage / 2, knockback, player.whoAmI);
+                    Projectile.NewProjectile(Projectile.GetSource_None(), position, perturbedSpeed * 2, Item.shoot, damage / 2, knockback, player.whoAmI);
                 }
-                Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
+                Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, type, damage, 1, player.whoAmI);
             }
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (RemnantOfTheAncientsMod.CalamityMod != null) StealStrike(player, position, velocity, type, damage, knockback);
             return true;
         }
     }

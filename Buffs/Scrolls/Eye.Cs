@@ -1,10 +1,7 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
@@ -13,10 +10,11 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Dash master");
-            Description.SetDefault("");
-
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître de la fente");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Maestro de las embestidas");
+            Description.SetDefault("Your reflexes sharpen");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Your reflexes sharpen");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tus reflejos se agudizan");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

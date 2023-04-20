@@ -7,6 +7,7 @@ using Terraria.GameContent.Creative;
 using CalamityMod;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace RemnantOfTheAncientsMod.Items.Lanzables
 {
@@ -60,16 +61,20 @@ namespace RemnantOfTheAncientsMod.Items.Lanzables
             Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
         }
         [JITWhenModsEnabled("CalamityMod")]
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        private void StealStrike(Player player, Vector2 position,Vector2 velocity,int type,int damage,float knockback)
         {
             if (player.Calamity().StealthStrikeAvailable())
             {
-                var p = Projectile.NewProjectile(Projectile.GetSource_None(),position,velocity,type,damage,knockback);
-                Main.projectile[p].penetrate *= 2;
-                return true;
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, type, damage, knockback);
+                Main.projectile[p].penetrate *= 2; 
             }
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (RemnantOfTheAncientsMod.CalamityMod != null) StealStrike(player, position, velocity, type, damage, knockback);
             return true;      
         }
+        
         public override void AddRecipes()
         {
             CreateRecipe(100)

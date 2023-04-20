@@ -1,10 +1,7 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Buffs.Debuff;
-using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
@@ -13,9 +10,11 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Infernal");
-            Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infernal");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Infernal");
+            Description.SetDefault("The flames of hell cover you");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Les flammes de l'enfer te couvrent");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Las llamas del infierno te recubren");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false;

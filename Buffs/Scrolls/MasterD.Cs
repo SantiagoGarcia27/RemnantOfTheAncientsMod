@@ -1,9 +1,7 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
@@ -12,9 +10,11 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Master of the Desert");
-            Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître du désert");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Maestro del desierto");
+            Description.SetDefault("You feel with leadership");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous vous sentez avec le leadership");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes con liderazgo");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

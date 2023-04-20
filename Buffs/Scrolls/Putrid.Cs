@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using System;
 
 namespace RemnantOfTheAncientsMod.Buffs.Scrolls
 {
@@ -14,6 +13,9 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
             Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Putride");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Podrido");
+            Description.SetDefault("You're breaking down");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "You're breaking down");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te estás descomponiendo");
 
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
