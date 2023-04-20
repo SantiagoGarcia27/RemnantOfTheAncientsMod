@@ -8,7 +8,6 @@ using RemnantOfTheAncientsMod.Projectiles.Summon.Minioms;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Buffs.Minions;
-using RemnantOfTheAncientsMod.Projectiles.Summon.Summon.Minioms;
 
 namespace RemnantOfTheAncientsMod.Items.Summon
 {
@@ -17,11 +16,12 @@ namespace RemnantOfTheAncientsMod.Items.Summon
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Frozen Staff");
-			Tooltip.SetDefault("Summons a Baby Frozen Asaulter to fight for you");
-
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo congelado");
+			Tooltip.SetDefault("Summons a Baby Frozen Assaulter to fight for you");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo congelado");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un asaltante bebé congelado para que luche por ti");
-			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton gelé");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque un bébé assaillant gelé pour qu'il se batte à vos côtés");
+            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

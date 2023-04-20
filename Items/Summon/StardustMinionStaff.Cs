@@ -15,11 +15,11 @@ namespace RemnantOfTheAncientsMod.Items.Summon
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Stardust Staff");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón de polvo de estrellas");
-
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón de polvo de estrellas");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton de poussière d'étoiles");
             Tooltip.SetDefault("Summons a Stardust power to fight for you");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un poder de Polvo estelar para luchar por ti");
-
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton de poussière d'étoiles");
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
         }
