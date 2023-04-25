@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Gigant");
+            DisplayName.SetDefault("Giant");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Géant)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Gigante)");
         }

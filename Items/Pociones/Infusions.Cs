@@ -29,7 +29,6 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemType<Melee_Potion_Kit>())
             .AddIngredient(ItemType<Tank_Potion_Kit>())
             .AddIngredient(ItemType<Ranger_Potion_Kit>())
             .AddIngredient(ItemType<Summon_Potion_Kit>())
@@ -148,7 +147,7 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         {
             CreateRecipe()
             .AddIngredient(ItemID.FlaskofIchor, 1)
-            .AddIngredient(ItemID.Sake, 1)
+            .AddRecipeGroup("anyBeer", 1)
             .AddIngredient(ItemID.TitanPotion, 1)
             .AddTile(TileID.Bottles)
             .Register();
@@ -186,9 +185,8 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemID.FlaskofIchor, 1)
-            .AddIngredient(ItemID.Sake, 1)
-            .AddIngredient(ItemID.TitanPotion, 1)
+            .AddIngredient(ItemID.MagicPowerPotion, 1)
+            .AddIngredient(ItemID.ManaRegenerationPotion, 1)    
             .AddTile(TileID.Bottles)
             .Register();
         }

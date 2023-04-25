@@ -38,6 +38,6 @@ A more detailed breakdown of the content available in the mod:
 [*] 85+ new recipes for vanilla items
 [*] 18+ tweaks and improvements to vanilla items
 [*] 3 Language translation (English,Spanish and French)
-[*] Cross-mod support for the Calamity Mod
+[*] Cross-mod support for the Calamity Mod,BossChecklist,Terraria Overhaul and Census
 [*] Separated mod balanced for CalamityMod
 [/olist]

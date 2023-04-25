@@ -82,6 +82,10 @@ Mods:
 		{
 			RightClickSaberHabilitie: Right click to use dash
 			RightClickSecondHabilitie: Right click to use the scondary hability
+			MusicBoxCredit: "by {0}"
+			ReaperTooltip: "Reaper Item"
+			LegendaryTooltip: "Legendary Drop"
+			NotConsumableTooltip : "Not Consumable"
 		}
 	}
 }

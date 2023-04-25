@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal V2");
             Tooltip.SetDefault("Increases all damage by " + multilier + "%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de " + multilier + "%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un" + multilier + "%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un " + multilier + "%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             Item.width = 10;
             Item.height = 14;
             Item.value = Item.value = Item.buyPrice(0, 10, 0, 0);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Red;
             Item.accessory = true;
         }
 

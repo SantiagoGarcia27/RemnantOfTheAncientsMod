@@ -20,37 +20,38 @@ using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
-	public class frostBag : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-DisplayName.SetDefault("Treasure Bag");
-Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
-CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
-		}
+    public class frostBag : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Treasure Bag");
+            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            ItemID.Sets.BossBag[Type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+        }
 
-		public override void SetDefaults()
-		{
-Item.maxStack = 999;
-Item.consumable = true;
-Item.width = 24;
-Item.height = 24;
-Item.rare = ItemRarityID.Purple;
-Item.expert = true;
-		}
+        public override void SetDefaults()
+        {
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.width = 24;
+            Item.height = 24;
+            Item.rare = ItemRarityID.Purple;
+            Item.expert = true;
+        }
 
-		public override bool CanRightClick()
-		{
-return true;
-		}
-		public override void ModifyItemLoot(ItemLoot itemLoot)
-		{
-itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
+        public override bool CanRightClick()
+        {
+            return true;
+        }
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<FrozenMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Frozenp2MusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>(), 1, 1, 1));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>())); ;
-           // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
+            // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<FrostShark>(), ItemType<Permafrost>(), ItemType<frozen_staff>(), ItemType<FrozenStafff>()));
             itemLoot.Add(ItemDropRule.ByCondition(new FrozenReaperSoul(), ItemType<FrozenSoul>()));
 

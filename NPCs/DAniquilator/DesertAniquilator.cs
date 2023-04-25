@@ -329,7 +329,8 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
 
             if (porcentage == 100)
             {
-                if (Main.masterMode) return 1.35f;
+                if (Reaper.ReaperMode) return 1.5f;
+                else if (Main.masterMode) return 1.35f;
                 else if (Main.expertMode) return 1.3f;
                 else return 1.25f;
             }
@@ -350,7 +351,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             if (porcentage == 100)
             {
                 if (CalamityWorld.death) return 2.0f;
-                else if (CalamityWorld.revenge) return 1.5f;
+                else if (CalamityWorld.revenge || Reaper.ReaperMode) return 1.5f;
                 else if (Main.masterMode) return 1.35f;
                 else if (Main.expertMode) return 1.3f;
                 else return 1.25f;

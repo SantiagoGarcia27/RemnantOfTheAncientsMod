@@ -13,9 +13,11 @@ namespace RemnantOfTheAncientsMod
         public static Mod BossChecklist;
         public static Mod ThoriumMod;
         public static Mod TerrariaOverhaul;
+        public static Mod Census;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static readonly int MaxRarity = GetMaxRarity();
+        public static int MaxPlayers = 0;
         public RemnantOfTheAncientsMod()
         {
 
@@ -30,12 +32,13 @@ namespace RemnantOfTheAncientsMod
 
         public override void Load()
         {
-            //  ThoriumModLoad = ModLoader.GetMod("ThoriumMod") != null;
-            //CalamityModLoad = ModLoader.GetMod("CalamityMod") != null;
-            //BossChecklistLoad = ModLoader.GetMod("BossChecklist") != null;
-            ModLoader.TryGetMod("CalamityMod", out CalamityMod); //CalamityMod = ModLoader.GetMod("CalamityMod");
+
+            ModLoader.TryGetMod("CalamityMod", out CalamityMod);
+            ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
             ModLoader.TryGetMod("BossChecklist", out BossChecklist);
             ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
+            ModLoader.TryGetMod("Census", out Census);
+
             // else CalamityMod = null;
             // if (ModLoader.HasMod("ThoriumMod")) ThoriumMod = ModLoader.GetMod("ThoriumMod");
             // else ThoriumMod = null;
@@ -49,7 +52,7 @@ namespace RemnantOfTheAncientsMod
             if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
             {
                 ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
-     
+
             }
         }
 
@@ -58,7 +61,7 @@ namespace RemnantOfTheAncientsMod
             int max = 0;
             for (int i = 0; i < RarityLoader.RarityCount; i++)
             {
-               if(max < i) max = i;
+                if (max < i) max = i;
             }
             return max;
         }
@@ -87,6 +90,21 @@ namespace RemnantOfTheAncientsMod
             }
 
             return (int)(i / Math.Pow(2, (int)lagLevel));
+        }
+        public static int MaxPlayerOnline()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (MaxPlayers < 10)
+                {
+                    Player plr = Main.player[i];
+                    if (plr.active && !plr.dead)
+                    {
+                        MaxPlayers++;
+                    }
+                }   
+            }
+            return MaxPlayers;
         }
     }
 }

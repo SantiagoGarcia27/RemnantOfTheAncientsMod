@@ -7,8 +7,8 @@ using Terraria.GameContent.Creative;
 namespace RemnantOfTheAncientsMod.Items.Pociones
 {
     public class EndlessSake : ModItem
-	{
-        
+    {
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Endless Sake");
@@ -29,16 +29,15 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             Item.consumable = false;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Tipsy; 
-            Item.buffTime = 15400; 
+            Item.buffType = BuffID.Tipsy;
+            Item.buffTime = 15400;
         }
-       public override void AddRecipes()
-		{
-CreateRecipe()
-                .AddRecipeGroup("anyBeer")
-            .AddIngredient(ItemID.Sake, 30)
-.AddTile(TileID.Bottles)
-.Register();
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddRecipeGroup("anyBeer", 30)
+            .AddTile(TileID.Bottles)
+            .Register();
         }
     }
 }

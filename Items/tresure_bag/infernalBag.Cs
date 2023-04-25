@@ -18,33 +18,35 @@ using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
 
 namespace RemnantOfTheAncientsMod.Items.tresure_bag
 {
-	public class infernalBag : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-DisplayName.SetDefault("Treasure Bag");
-Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
-CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
-		}
-		public override void SetDefaults()
-		{
-Item.maxStack = 999;
-Item.consumable = true;
-Item.width = 24;
-Item.height = 24;
-Item.rare = ItemRarityID.Purple;
-Item.expert = true;
-		}
+    public class infernalBag : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Treasure Bag");
+            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            ItemID.Sets.BossBag[Type] = true;
+
+        }
+        public override void SetDefaults()
+        {
+            Item.maxStack = 999;
+            Item.consumable = true;
+            Item.width = 24;
+            Item.height = 24;
+            Item.rare = ItemRarityID.Purple;
+            Item.expert = true;
+        }
         public override bool CanRightClick() => true;
         public override void ModifyItemLoot(ItemLoot itemLoot)
-		{
-itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
-            itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(),7));
-            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>())); 
+        {
+            itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
+            itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>()));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<Tyrant_repeater>(), ItemType<Spike_saber>(), ItemType<Tyran_Blast>()));
             itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalSoul>()));
         }
-		//public override int BossBagNPC => NPCType<InfernalTyrantHead>();
+        //public override int BossBagNPC => NPCType<InfernalTyrantHead>();
 
         public override Color? GetAlpha(Color lightColor)
         {

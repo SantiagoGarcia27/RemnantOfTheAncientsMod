@@ -77,7 +77,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             NPC.boss = true;
             NPC.lifeMax = BaseStats.LifeMax;// * (int)ModContent.GetInstance<ConfigClient1>().xdlevel;
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
-            NPC.damage = (int)NpcChanges1.ExpertDamageScale(200);
+            NPC.damage = 200;
             NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
             NPC.scale = 2.50f;
             NPC.npcSlots = 20f;
@@ -363,6 +363,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
                 }
+                RemnantDownedBossSystem.downedTyrant = true;
             }
         }
         
@@ -474,12 +475,13 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 {
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore1").Type, NPC.scale);
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore2").Type, NPC.scale);
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore3").Type, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore3").Type, NPC.scale);                
                 }
                 for (int j = 0; j < 10; j++)
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
                 }
+                RemnantDownedBossSystem.downedTyrant = true;
             }
         }
         public override void AI()
@@ -581,6 +583,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
                 }
+                RemnantDownedBossSystem.downedTyrant = true;
             }
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Acurate");
+            DisplayName.SetDefault("Accurate");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Précis)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Certero)");
         }

@@ -13,12 +13,13 @@
                     -3 Armor Sets       -87 Potions
 		            -12 New Materials   -21 Enemies
                     -13 Tools           -1 Furniture set
-                    -119 Weapons        -3 New Bosses
+                    -120 Weapons        -3 New Bosses
                     -27 Accesories      -3 Pets
                     -1 Mount            
                     -New Acended Reforges
                     -New Scroll mechanic
                     -Add recipe for Vanilla items
+                    -Cross-mod support for the Calamity Mod,BossChecklist,Terraria Overhaul and Census
                     -Changes in vanilla items
                     -Death and Revenge Comptativilitie
                     -Rogue compativilities

@@ -9,15 +9,39 @@ using CalamityMod.World;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles;
 using RemnantOfTheAncientsMod.Items.Mele.saber;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RemnantOfTheAncientsMod.VanillaChanges
 {
 	public class VanillaWeapons : GlobalItem
 	{
-		public override void SetDefaults(Item item)
+        public int[] lanceId = new int[]
+            {
+                ItemID.Spear,
+                ItemID.Trident,
+                ItemID.DarkLance,
+                ItemID.TheRottedFork,
+                ItemID.ThunderSpear,
+                ItemID.Swordfish,
+                ItemID.CobaltNaginata,
+                ItemID.PalladiumPike,
+                ItemID.MythrilHalberd,
+                ItemID.OrichalcumHalberd,
+                ItemID.AdamantiteGlaive,
+                ItemID.TitaniumTrident,
+                ItemID.ChlorophytePartisan,
+                ItemID.MushroomSpear,
+                ItemID.ObsidianSwordfish,
+                ItemID.NorthPole,
+                ItemID.JoustingLance,
+                ItemID.HallowJoustingLance,
+                ItemID.ShadowJoustingLance
+            };
+
+        public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-
+			
 			if (WeaponConf)
 			{
 				if (item.type == ItemID.DaedalusStormbow)
@@ -59,11 +83,19 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				if (item.type == ItemID.DD2LightningAuraT1Popper) item.damage = 10;//30
 				if (item.type == ItemID.DD2LightningAuraT2Popper) item.damage = 16;//50
 				if (item.type == ItemID.DD2LightningAuraT3Popper) item.damage = 50;//150
-				if(item.type == ItemID.ChlorophyteSaber)
+
+				if (item.type == ItemID.ChlorophyteSaber)
 				{
-                    item.GetGlobalItem<GlobalItem1>().Saber = true;
-                }
-			}	
+					item.GetGlobalItem<GlobalItem1>().Saber = true;
+				}
+				for (int i = 0; i < 19; i++)
+				{
+					if (item.type == lanceId[i])
+					{
+						item.GetGlobalItem<GlobalItem1>().Lance = true;
+					}
+				}
+            }
 		}
 
 		
@@ -79,23 +111,24 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 				return base.AltFunctionUse(item, player);
 			}
         }
-        public override bool? UseItem(Item item, Player player)
-        {
-            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+		public override bool? UseItem(Item item, Player player)
+		{
+			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 			if (WeaponConf)
 			{
-				if (item.type == ItemID.ChlorophyteSaber)
+				if (player.altFunctionUse == 2)
 				{
-					bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
-					int projectileCount = 32;
-					float projectileDistance = 10f;
-
-					if (player.altFunctionUse == 2)
+					if (item.type == ItemID.ChlorophyteSaber)
 					{
+						bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
+						int projectileCount = 32;
+						float projectileDistance = 10f;
+
+
 						if (PlayerTouchFlour)
 						{
-							DashPlayer.JumpDash(player, 1f, 0.75f);
-							for (int i = 0; i < projectileCount; i++)
+                            WeaponDash(player, 1f, 0.75f);
+                            for (int i = 0; i < projectileCount; i++)
 							{
 								float angle = MathHelper.ToRadians(360f / projectileCount * i);
 								Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
@@ -105,12 +138,33 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 								Main.projectile[p].timeLeft = 100;
 							}
 						}
+						return false;
 					}
-					return false;
+					for (int i = 0; i < 19; i++)
+					{
+						if (item.type == lanceId[i])
+						{
+							WeaponDash(player, 1.5f, 0f);
+                        }
+					}
+                    
+					return true;
 				}
-				else return base.UseItem(item, player);        
+				else return base.UseItem(item, player);
 			}
 			else return base.UseItem(item, player);
+		}
+
+		public void WeaponDash(Player player,float StrengX, float StrengY)
+		{
+            bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
+            if (player.altFunctionUse == 2)
+			{
+				if (PlayerTouchFlour)
+				{
+					DashPlayer.JumpDash(player, StrengX, StrengY);
+				}
+			}
         }
         public override void UpdateInventory(Item item, Player player)
 		{
@@ -252,8 +306,5 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             }
         }
         public override bool InstancePerEntity => true;
-
-	
-
 	}
 }

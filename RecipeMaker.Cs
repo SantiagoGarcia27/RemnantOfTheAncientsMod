@@ -718,7 +718,7 @@ namespace RemnantOfTheAncientsMod
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
-            for (int i = 4477; i <= 4479; i++)
+            for (int i = 4477; i <= 4478; i++)
             {
                 Recipe.Create(i, 2)
                    .AddRecipeGroup("anyStrangePlants")
@@ -726,9 +726,14 @@ namespace RemnantOfTheAncientsMod
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
+            Recipe.Create(ItemID.FishingPotion, 2)
+                  .AddRecipeGroup("anyStrangePlants")
+                  .AddIngredient(ItemID.BottledWater)
+                  .AddTile(TileID.AlchemyTable)
+                  .Register();
             {
 
-                Recipe.Create(ItemID.FishingPotion, 2)
+                Recipe.Create(ItemID.LuckPotionGreater, 4)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)

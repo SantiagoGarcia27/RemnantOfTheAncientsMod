@@ -91,6 +91,10 @@
 		{
 			RightClickSaberHabilitie: Click derecho para utilizar la embestida
 			RightClickSecondHabilitie: Click derecho para utilizar la habilidad secundaria
+			MusicBoxCredit: "por {0}"
+			ReaperTooltip: "Objeto de segador"
+			LegendaryTooltip: "Objeto Legendario"
+			NotConsumableTooltip: "No consumible"
 		}
 	}
 }

@@ -21,6 +21,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public bool ReaperAccesories;
         public bool MusicBox;
         public bool Saber;
+        public bool Lance;
         public bool SecondHabilitie;
 
         public static float HealthyReforgeValue { get; set; } = 5f;
@@ -37,6 +38,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             if (MusicBox) MusicBoxToolTip(item, tooltips);
             if (SecondHabilitie) SecondHbilitieToolTip(item, tooltips);
             if (Saber) SaberHbilitieToolTip(item,tooltips);
+            if (Lance && ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf) SaberHbilitieToolTip(item, tooltips);
             if (LegendaryDrop) LegendaryToolTip(item, tooltips);
             if (ReaperItem) ReaperToolTip(item, tooltips);
             if (BossSummon) BossSummonToolTip(item, tooltips);
@@ -52,7 +54,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         {
             Color? color = new Color(10, Main.DiscoG, 10);
             Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
-            string text = (color.HasValue ? "Not Consumable" : "");
+            string text = (color.HasValue ? Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.NotConsumableTooltip") : "");
             TooltipLine item2 = new TooltipLine(Mod, "BossSumon", text)
             {
                 OverrideColor = valueOrDefault
@@ -116,7 +118,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         {
             Color? color = new Color(255, Main.DiscoG, 53);
             Color valueOrDefault = color.GetValueOrDefault(Utils1.LegendaryRarityColor);
-            string text = (color.HasValue ? "[Legendary Drop]" : "");
+            string text = (color.HasValue ? "[" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.LegendaryTooltip")+"]"  : "");
             TooltipLine item2 = new TooltipLine(Mod, "LegendaryDrop", text)
             {
                 OverrideColor = valueOrDefault
@@ -127,7 +129,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         {
             Color? color = new Color(10, Main.DiscoG, 10);
             Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
-            string text = (color.HasValue ? "[Reaper Item]" : "");
+            string text = (color.HasValue ? "["+Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.ReaperTooltip")+"]" : "");
             TooltipLine item2 = new TooltipLine(Mod, "ReaperItem", text)
             {
                 OverrideColor = valueOrDefault
@@ -139,7 +141,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
             int a = Main.DiscoG;
             Color? color = new Color(a, a, a);
             Color valueOrDefault = color.GetValueOrDefault(Utils1.LegendaryRarityColor);
-            string text = (color.HasValue ? "By Wandering" : "");
+            string text = (color.HasValue ? Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.MusicBoxCredit", "Wandering") : "");
             TooltipLine item2 = new TooltipLine(Mod, "By Wandering", text)
             {
                 OverrideColor = valueOrDefault

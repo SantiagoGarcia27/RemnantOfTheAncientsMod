@@ -20,89 +20,92 @@ using RemnantOfTheAncientsMod.Items.Bloques;
 using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using Terraria;
+using Mono.Cecil.Cil;
+using RemnantOfTheAncientsMod.NPCs.Town;
+using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod
 {
 	internal class WeakReference
 	{
-		private static void AddBoss(Mod bossChecklist, Mod hostMod, string name, float difficulty, int npcType, Func<bool> downed, object summon, List<int> loot, List<int> collection, string instructions, string despawn, string bossLogTex = null, string bossHeadTex = null)
+		private static void AddBoss(Mod bossChecklist, Mod hostMod, string name, float difficulty, List<int> npcType, Func<bool> downed, object summon, List<int> loot, List<int> collection, string instructions, string despawn, string bossTexture = null, string bossHead = null)
 		{
 			bossChecklist.Call(new object[13]
 			{
 				"AddBoss",
-				difficulty,
-				npcType,
-				hostMod,
+                hostMod,
 				name,
+                npcType,
+                difficulty,	
 				downed,
-				summon ?? null,
+				() => true,			
 				collection,
-				loot,
-				instructions,
-				despawn,
-				bossLogTex,
-				bossHeadTex
+                summon ?? null,
+                instructions,
+                despawn,
+                //loot,
+				bossTexture == null ? null :
+				(SpriteBatch sb, Rectangle rect, Color color) => {
+				Texture2D texture = ModContent.Request<Texture2D>(bossTexture).Value;
+				Vector2 centered = new Vector2(rect.X + (rect.Width / 2) - (texture.Width / 2), rect.Y + (rect.Height / 2) - (texture.Height / 2));
+				sb.Draw(texture, centered, color);
+				},
+				bossHead
 			});
 		}
-
-		private static void AddBossWorm(Mod bossChecklist, Mod hostMod, string name, float difficulty, List<int> npcTypes, Func<bool> downed, object summon, List<int> loot, List<int> collection, string instructions, string despawn, string bossLogTex = null, string bossHeadTex = null)
-		{
-			bossChecklist.Call(new object[13]
-			{
-				"AddBoss",
-				difficulty,
-				npcTypes,
-				hostMod,
-				name,
-				downed,
-				summon ?? null,
-				collection,
-				loot,
-				instructions,
-				despawn,
-				bossLogTex,
-				bossHeadTex
-			});
-		}
-
-		public static void Setup()
+        public static void Setup()
 		{
 			BossChecklistSupport();
 		}
 		private static void BossChecklistSupport()
 		{
-			RemnantOfTheAncientsMod instance = GetInstance<RemnantOfTheAncientsMod>();
-			if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist)) AddOpsBosses(RemnantOfTheAncientsMod.BossChecklist, (Mod)(object)instance);
+			if (RemnantOfTheAncientsMod.BossChecklist != null) AddBossesChecklist();
+			if (RemnantOfTheAncientsMod.Census != null) AddNpcChecklist();
+        }
 
-		}
 
-		private static void AddOpsBosses(Mod bossChecklist, Mod RemnantOfTheAncientsMod)
+		private static void AddNpcChecklist()
 		{
-			#region desert
-			float value = 6.8f;
-			int npcType = NPCType<DesertAniquilator>();
-			int num = ItemType<DesertChest>();
-			List<int> loot = new List<int>
+            int npcType = ModContent.NPCType<Time_Wizard>();
+
+            // The message makes use of chat tags to make the item appear directly, making it more fancy
+            string message = $"Have either an [i:{ItemID.GoldWatch}] or an [i:{ItemID.PlatinumWatch}] in your inventory after defeating the corrupt boss";
+
+            // Finally, call the desired method
+            RemnantOfTheAncientsMod.Census.Call("TownNPCCondition", npcType, message);
+        }
+
+
+        private static void AddBossesChecklist()
+		{
+            string DespawnMessage;
+			List<int> loot;
+			List<int> collection;
+
+            #region desert
+			loot = new List<int>
 			{
 				ItemType <desertBag>(),
 				ItemType <DesertEdge>(),
 				ItemType <DesertTome>()
 			};
-			List<int> collection = new List<int>
+			collection = new List<int>
 			{
 				ItemType<DesertTrophy>(),
 				ItemType<DesertAMask>(),
 				ItemType<DesertMusicBox>()
 			};
-			string instructions = $"Use a [i:{num}] in the desert";
-			string despawn = Utils1.ColorMessage("The guardian of the desert has returned to rest.", new Color(100, 149, 237));
-			AddBoss(bossChecklist, RemnantOfTheAncientsMod, "Desert Annihilator", value, npcType, () => RemnantDownedBossSystem.downedDesert, num, loot, collection, instructions, despawn);
-			#endregion
-			#region frozen
-			float value2 = 7.2f;
-			int npcType2 = NPCType<frozen_assaulter>();
-			int num2 = ItemType<FrozenArtifact>();
-			List<int> loot2 = new List<int>
+            DespawnMessage = Utils1.ColorMessage("The desert guardian has teleport.", new Color(100, 149, 237));
+            AddGenericBoss("Desert Annihilator", 6.8f, new List<int> { NPCType<DesertAniquilator>() }, () => RemnantDownedBossSystem.downedDesert, ItemType<DesertChest>(), loot, collection, "desert", DespawnMessage);
+            #endregion
+
+
+            #region frozen
+
+            loot = new List<int>
 			{
 				ItemType<frostBag>(),
 				ItemType<Permafrost>(),
@@ -113,48 +116,53 @@ namespace RemnantOfTheAncientsMod
 				593,
 				188,
 			};
-			List<int> collection2 = new List<int>
-			{	
+			collection = new List<int>
+			{
 				ItemType<FrostTrophy>(),
 				ItemType<FrozenMask>(),
 				ItemType<FrozenMusicBox>(),
 				ItemType<Frozenp2MusicBox>()
 			};
-			string instructions2 = $"Use a [i:{num2}] in the snow at the night";
-			string despawn2 = Utils1.ColorMessage("The desert guardian has teleport.", new Color(100, 149, 237));
-			AddBoss(bossChecklist, RemnantOfTheAncientsMod, "Frozen Assaulter", value2, npcType2, () => RemnantDownedBossSystem.downedFrozen, num2, loot2, collection2, instructions2, despawn2);
-			#endregion
-			#region tyrant
-			float value3 = 12.9f;
-			List<int> npcTypes3 = new List<int>
+            DespawnMessage = Utils1.ColorMessage("The frozen threat disappears on the horizon", new Color(238, 232, 170));
+            AddGenericBoss("Frozen Assaulter", 7.2f, new List<int> {NPCType<frozen_assaulter>()}, () => RemnantDownedBossSystem.downedFrozen, ItemType<FrozenArtifact>(), loot, collection, "snow at the night", DespawnMessage);
+            #endregion
+
+            #region tyrant
+            List<int> npcTypes = new List<int>
 			{
 				NPCType<InfernalTyrantHead>(),
 				NPCType<InfernalTyrantBody>(),
 				NPCType<InfernalTyrantTail>()
 			};
-
-			int num3 = ModContent.ItemType<InfernalCalis>();
-			List<int> loot3 = new List<int>
-			{
-				ItemType<infernalBag>(),
-				ItemType<Tyrant_repeater>(),
-				ItemType<Spike_saber>(),
-				ItemType<TheSpiker>(),
-				ItemType<Tyran_Blast>(),
-				ItemType<Infernal_core>(),
-				499,
-			};
-			List<int> collection3 = new List<int>
+			//loot = new List<int>
+			//{
+			//	ItemType<infernalBag>(),
+			//	ItemType<Tyrant_repeater>(),
+			//	ItemType<Spike_saber>(),
+			//	ItemType<TheSpiker>(),
+			//	ItemType<Tyran_Blast>(),
+			//	ItemType<Infernal_core>(),
+			//	499,
+			//};
+			collection = new List<int>
 			{
 				ItemType<InfernalTrophy>(),
 				ItemType<InfernalMask>(),
 				ItemType<InfernalMusicBox>()
 			};
-			string instructions3 = $"Use a [i:{num3}] in the Underworld";
-			string despawn3 = Utils1.ColorMessage("The scourge of the desert delved back into the sand.", new Color(238, 232, 170));
-			string bossLogTex = "RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrant_BossChecklist";
-			AddBossWorm(bossChecklist, RemnantOfTheAncientsMod, "Infernal Tyrant", value3, npcTypes3, () => RemnantDownedBossSystem.downedTyrant, num3, loot3, collection3, instructions3, despawn3, bossLogTex);
+            DespawnMessage = Utils1.ColorMessage("The tyrant retreats into the depths of the lava", new Color(238, 232, 170));
+			string path = "RemnantOfTheAncientsMod/NPCs/ITyrant/";
+
+			string bossImage = path + "InfernalTyrant_BossChecklist";
+			string bossHead = path + "InfernalTyrantHead_Head_Boss";
+
+			AddGenericBoss("Infernal Tyrant", 12.9f, npcTypes, () => RemnantDownedBossSystem.downedTyrant, ItemType<InfernalCalis>(), loot, collection, "Underworld", DespawnMessage, bossHead, bossImage);
 			#endregion
 		}
+		public static void AddGenericBoss(string BossName,float progrecion, List<int> npcType,Func<bool> Downed,int Spawner,List<int> Loot, List<int> Collection,string spawnBiome,string DespawnText,string BossHead = null,string BossImage = null)
+		{
+            string SpawnDescription = $"Use a [i:{Spawner}] in the {spawnBiome}";
+            AddBoss(RemnantOfTheAncientsMod.BossChecklist, GetInstance<RemnantOfTheAncientsMod>(), BossName, progrecion, npcType, Downed, Spawner, Loot, Collection, SpawnDescription, DespawnText,BossImage,BossHead);
+        }
 	}
 }

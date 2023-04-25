@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Drops
                 case ItemID.QueenBeeBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss5, 7));
                     itemLoot.Add(ItemDropRule.Common(ItemType<QueenBeeScroll>(), 5));
-                    itemLoot.Add(ItemDropRule.ByCondition(new QueenBeeReaperSoulRule(), ItemType<QueenSoul>()));
+                    itemLoot.Add(ItemDropRule.ByCondition(new QueenBeeReaperSoulRule(), ItemType<BeeSoul>()));
                     break;
                 case ItemID.SkeletronBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemType<SkeletronScroll>(), 5));
