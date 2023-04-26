@@ -7,8 +7,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs.Kits
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mining infusion");
-            Description.SetDefault("");
+            //DisplayName.SetDefault("Mining infusion");
+            //Description.SetDefault("");
 
             Main.buffNoTimeDisplay[Type] = false;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("SkyCutterS"); 
+            //DisplayName.SetDefault("SkyCutterS"); 
         }
         public override void SetDefaults()
         {

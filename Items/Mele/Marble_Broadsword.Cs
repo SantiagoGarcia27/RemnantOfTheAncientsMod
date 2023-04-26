@@ -12,12 +12,12 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Marble Broadsword");
-			Tooltip.SetDefault("Decrease enemy defense by 2.");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Epée large en marbe");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Diminue la défense ennemie de 2");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de marmol");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reduce la defensa del enemigo en 2");
+			////DisplayName.SetDefault("Marble Broadsword");
+			////Tooltip.SetDefault("Decrease enemy defense by 2.");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Epée large en marbe");
+			////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Diminue la défense ennemie de 2");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de marmol");
+			////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reduce la defensa del enemigo en 2");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		}
 		public override bool AltFunctionUse(Player player) => true;
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(ModContent.BuffType<Marble_erosion>(), 180);
 			//Main.NewText(target.defense, new Color(175, 75, 255));

@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Duke Fishron Soul");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du duc Fishron");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Duque Fishron");
-Tooltip.SetDefault("A Sharknado will protect you");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Un Sharknado vous protégera ");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un Tornado de tiburones te protegerá");
+//DisplayName.SetDefault("Duke Fishron Soul");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme du duc Fishron");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Duque Fishron");
+//Tooltip.SetDefault("A Sharknado will protect you");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Un Sharknado vous protégera ");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un Tornado de tiburones te protegerá");
 
 /*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/

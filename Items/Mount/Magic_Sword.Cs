@@ -10,14 +10,14 @@ namespace RemnantOfTheAncientsMod.Items.Mount
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Magic Sword");
-Tooltip.SetDefault("Summons a traveling sword.");
+//DisplayName.SetDefault("Magic Sword");
+//Tooltip.SetDefault("Summons a traveling sword.");
 
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "épée magique");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque une épée voyageuse");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "épée magique");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque une épée voyageuse");
 
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada Magica");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca una espada de viaje.");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada Magica");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca una espada de viaje.");
 
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

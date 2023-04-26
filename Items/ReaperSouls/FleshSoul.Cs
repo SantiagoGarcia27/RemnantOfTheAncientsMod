@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Wall of Flesh Soul");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Mur de chair âme");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Muro Carnoso");
-Tooltip.SetDefault("Increased all damage by 10%");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentation de tous les dégâts de 10 %");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa todo el daño en un 10%");
+//DisplayName.SetDefault("Wall of Flesh Soul");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Mur de chair âme");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Muro Carnoso");
+//Tooltip.SetDefault("Increased all damage by 10%");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentation de tous les dégâts de 10 %");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa todo el daño en un 10%");
 
 /*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/

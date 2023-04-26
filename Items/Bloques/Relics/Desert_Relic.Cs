@@ -22,9 +22,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Relics
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desert Annihilator relic");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Relique de l'annihilateur du désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reliquia del Aniquilador del Desierto");
+            //DisplayName.SetDefault("Desert Annihilator relic");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Relique de l'annihilateur du désert");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reliquia del Aniquilador del Desierto");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }

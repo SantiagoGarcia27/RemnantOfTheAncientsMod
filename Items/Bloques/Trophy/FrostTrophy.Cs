@@ -9,10 +9,10 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Trophy
 	public class FrostTrophy : ModItem
 	{
 		public override void SetStaticDefaults() {
-DisplayName.SetDefault("Frozen Assaulter Trophy");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Frozen Assaulter Trophy");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'assaillant gelé");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo de asaltante congelado");
+//DisplayName.SetDefault("Frozen Assaulter Trophy");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Frozen Assaulter Trophy");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'assaillant gelé");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo de asaltante congelado");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 		}

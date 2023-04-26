@@ -14,7 +14,6 @@ using RemnantOfTheAncientsMod.Items.Ranger.Bows;
 using RemnantOfTheAncientsMod.Items.Bloques.Relics;
 using RemnantOfTheAncientsMod.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Common.Systems;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.VanillaChanges;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
@@ -30,9 +29,9 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desert Annihilator");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aniquilador del desierto");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Aniquilateur du désert");
+            ////DisplayName.SetDefault("Desert Annihilator");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aniquilador del desierto");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Aniquilateur du désert");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
         public override void SetDefaults()
@@ -259,7 +258,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
                 }
             }
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -269,7 +268,7 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
                 }
                 for (int j = 0; j <new RemnantOfTheAncientsMod().ParticleMeter(1000); j++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sandstorm, hitDirection, -1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sandstorm, hit.HitDirection, -1f);
                 }
             }
         }
@@ -384,11 +383,11 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             return;
         }
         public override bool? CanFallThroughPlatforms() => true;
-            
-        public override void OnHitPlayer(Player player, int damage, bool crit) 
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-        if (Main.rand.NextBool(3)) player.AddBuff(BuffType<Burning_Sand>(), 100, true);	
-		}
+            if (Main.rand.NextBool(3)) target.AddBuff(BuffType<Burning_Sand>(), 100, true);
+        }
         public override void BossLoot(ref string name, ref int potionType)
         {
             RemnantDownedBossSystem.downedDesert = true;

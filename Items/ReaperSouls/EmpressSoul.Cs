@@ -15,12 +15,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Empress of Light Soul");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de Impératrice de Lumière");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de la Emperatriz de la luz");
-Tooltip.SetDefault("Grants infinite wing and rocket boot flight");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Accorde un vol infini d'ailes et de fusées");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga vuelo infinito");
+//DisplayName.SetDefault("Empress of Light Soul");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de Impératrice de Lumière");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de la Emperatriz de la luz");
+//Tooltip.SetDefault("Grants infinite wing and rocket boot flight");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Accorde un vol infini d'ailes et de fusées");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga vuelo infinito");
 /*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
 ItemID.Sets.ItemIconPulse[Item.type] = true;

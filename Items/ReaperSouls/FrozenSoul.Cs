@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Frozen Assaulter Soul");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme d'assaillant gelée");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Asaltante Congelado");
-Tooltip.SetDefault("Grants immunity to Frozen, Chilled and Frostburn");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Accorde l'immunité à Frozen, Chilled et Frostburn");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a Congelado, Helado y Quemadura de hielo");
+//DisplayName.SetDefault("Frozen Assaulter Soul");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme d'assaillant gelée");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Asaltante Congelado");
+//Tooltip.SetDefault("Grants immunity to Frozen, Chilled and Frostburn");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Accorde l'immunité à Frozen, Chilled et Frostburn");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a Congelado, Helado y Quemadura de hielo");
 
 /*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/

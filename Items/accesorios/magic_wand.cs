@@ -10,16 +10,16 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Magic Wand");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Daguette magique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Vara Mágica");
+            //DisplayName.SetDefault("Magic Wand");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Daguette magique");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Vara Mágica");
 
-            Tooltip.SetDefault("15% Increased magic damage"
-                + "\nIncreases critical strike chance by 10");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 15%"
-                + "\nAugmente les chances de coup critique de 10");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 15%"
-                + "\nAumenta la provabilidad de critico en 10");
+           // //Tooltip.SetDefault("15% Increased magic damage"
+              //  + "\nIncreases critical strike chance by 10");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 15%"
+             //   + "\nAugmente les chances de coup critique de 10");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 15%"
+              //  + "\nAumenta la provabilidad de critico en 10");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

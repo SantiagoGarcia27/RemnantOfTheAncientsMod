@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Prefixe
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sharp");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Pointu)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Afilado)");
+            //DisplayName.SetDefault("Sharp");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Pointu)");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Afilado)");
         }
 
 

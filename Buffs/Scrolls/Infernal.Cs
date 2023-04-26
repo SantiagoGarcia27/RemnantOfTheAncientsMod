@@ -9,12 +9,12 @@ namespace RemnantOfTheAncientsMod.Buffs.Scrolls
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Infernal");
-            Description.SetDefault("The flames of hell cover you");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Les flammes de l'enfer te couvrent");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Las llamas del infierno te recubren");
+            //DisplayName.SetDefault("Infernal");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infernal");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Infernal");
+            //Description.SetDefault("The flames of hell cover you");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Les flammes de l'enfer te couvrent");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Las llamas del infierno te recubren");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false;

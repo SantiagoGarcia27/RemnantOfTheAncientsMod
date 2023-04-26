@@ -13,12 +13,12 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sand Flask");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Flacon de sable");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente");
-            Tooltip.SetDefault("Melee attacks set enemies burning sand");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Les attaques de mêlée font brûler le sable par les ennemis");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo");
+            //DisplayName.SetDefault("Sand Flask");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Flacon de sable");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente");
+           // //Tooltip.SetDefault("Melee attacks set enemies burning sand");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Les attaques de mêlée font brûler le sable par les ennemis");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
 
@@ -52,10 +52,10 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ModContent.ItemType<Sand_Flask>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Sand Flask");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente eterno");
-            Tooltip.SetDefault("Melee attacks set enemies burning sand");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo");
+            //DisplayName.SetDefault("Endless Sand Flask");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente eterno");
+           // //Tooltip.SetDefault("Melee attacks set enemies burning sand");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo");
         }
 
     }

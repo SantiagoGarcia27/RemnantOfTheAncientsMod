@@ -18,9 +18,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Permafrost");
-            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le pergélisol");
-            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permafrost");
+            ////DisplayName.SetDefault("Permafrost");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le pergélisol");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permafrost");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

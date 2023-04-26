@@ -3,9 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Items.Items;
 using RemnantOfTheAncientsMod.Projectiles.Ranger;
@@ -21,16 +19,16 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 		}
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Punisher of Gods");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Punisher of Gods");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Castigadora de Dioses");
+			//DisplayName.SetDefault("Punisher of Gods");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Punisher of Gods");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Castigadora de Dioses");
 
-			Tooltip.SetDefault(""
-			+ "\n90% chance of not spending ammo ");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			+ "\n90% de chances de ne pas dépenser de munitions ");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-			+ "\nProbabilidad del 90% de no gastar munición ");
+			//Tooltip.SetDefault(""
+			//+ "\n90% chance of not spending ammo ");
+			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
+			//+ "\n90% de chances de ne pas dépenser de munitions ");
+			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+			//+ "\nProbabilidad del 90% de no gastar munición ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

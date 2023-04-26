@@ -11,10 +11,10 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Ichor Assault Rifle");
-		    DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rifle de asalto Ichor"); 
-Tooltip.SetDefault("Transform musket bullets into ichor bullets");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Transforma las balas de mosqueton en balas de ichor");
+//DisplayName.SetDefault("Ichor Assault Rifle");
+		    //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rifle de asalto Ichor"); 
+//Tooltip.SetDefault("Transform musket bullets into ichor bullets");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Transforma las balas de mosqueton en balas de ichor");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

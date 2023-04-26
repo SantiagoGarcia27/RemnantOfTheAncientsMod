@@ -10,10 +10,10 @@ namespace RemnantOfTheAncientsMod.Items.Items
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Night Bar");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Sztabka nocna");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Lingot de nuit");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lingote de la noche");
+//DisplayName.SetDefault("Night Bar");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Sztabka nocna");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Lingot de nuit");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lingote de la noche");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 		}
 

@@ -12,20 +12,20 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Whips
 	{
 		public override void SetStaticDefaults() 
         {
-            DisplayName.SetDefault("Twilight");
-            Tooltip.SetDefault("9 summon tag damage" +
-                "\nYour summons will focus struck enemies" +
-                "\nPerforms better against multiple targets than most whips");
+            //DisplayName.SetDefault("Twilight");
+           // //Tooltip.SetDefault("9 summon tag damage" +
+                //"\nYour summons will focus struck enemies" +
+                //"\nPerforms better against multiple targets than most whips");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Crépuscule");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "9 dégâts de balise d'invocation" +
-                "\nVos invocations concentreront les ennemis frappés" +
-                "\nFonctionne mieux contre plusieurs cibles que la plupart des fouets");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Crépuscule");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "9 dégâts de balise d'invocation" +
+                //"\nVos invocations concentreront les ennemis frappés" +
+                //"\nFonctionne mieux contre plusieurs cibles que la plupart des fouets");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Crepúsculo");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "9 daño de etiqueta de invocación" +
-                "\nTu convocatoria se centrará en los enemigos golpeados." +
-                "\nFunciona mejor contra múltiples objetivos que la mayoría de los látigos.");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Crepúsculo");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "9 daño de etiqueta de invocación" +
+                //"\nTu convocatoria se centrará en los enemigos golpeados." +
+                //"\nFunciona mejor contra múltiples objetivos que la mayoría de los látigos.");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

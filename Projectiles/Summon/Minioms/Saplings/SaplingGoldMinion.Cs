@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms.Saplings
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Animated Golden Sapling Minion");
+			//DisplayName.SetDefault("Animated Golden Sapling Minion");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;

@@ -11,9 +11,9 @@ namespace RemnantOfTheAncientsMod.Prefixe
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Regenerative");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Régénérateur)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Regenerativo)");
+            //DisplayName.SetDefault("Regenerative");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Régénérateur)");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Regenerativo)");
         }
 
         public override float RollChance(Item item)

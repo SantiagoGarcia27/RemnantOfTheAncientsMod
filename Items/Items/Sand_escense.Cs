@@ -9,10 +9,10 @@ namespace RemnantOfTheAncientsMod.Items.Items
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Sand Essence");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Escense piasku");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Escense de sable");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Esencia de arena");
+//DisplayName.SetDefault("Sand Essence");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Escense piasku");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Escense de sable");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Esencia de arena");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
 		}
 public override void SetDefaults()

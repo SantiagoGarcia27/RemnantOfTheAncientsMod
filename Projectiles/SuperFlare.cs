@@ -8,7 +8,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
     public class SuperFlare : ModProjectile
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Super Flare");
+        //public override void SetStaticDefaults() => //DisplayName.SetDefault("Super Flare");
         public override void SetDefaults()
         {
             Projectile.width = 16;
@@ -44,9 +44,6 @@ namespace RemnantOfTheAncientsMod.Projectiles
                 base.Kill(1);
                 return true;
             }
-        }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-        }
+        }    
     }
 }

@@ -11,11 +11,11 @@ namespace RemnantOfTheAncientsMod.Items.Banners
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Armored Slime Banner");
+//DisplayName.SetDefault("Armored Slime Banner");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Opancerzony Szlamowy Sztandar");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bannière de Slime blindée");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estandarte Slime Blindado");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Opancerzony Szlamowy Sztandar");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bannière de Slime blindée");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estandarte Slime Blindado");
 		}
 		// The tooltip for this item is automatically assigned from .lang files
 		public override void SetDefaults()

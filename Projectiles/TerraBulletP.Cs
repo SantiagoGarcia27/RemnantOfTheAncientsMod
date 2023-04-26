@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         private int trailDelay = 0;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Terra Bullet");
+           // //DisplayName.SetDefault("Terra Bullet");
         }
         public override void SetDefaults()
         {
@@ -44,13 +44,13 @@ namespace RemnantOfTheAncientsMod.Projectiles
                 Main.dust[i].noGravity = true;
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) 
         {
             for (int i = 0; i < 5; i++)
             {
                 Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
                 Vector2 Velocity = Position.DirectionTo(target.position) * 0.7f;
-                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<TerraBlockP>(), damage / 4, Main.myPlayer, Projectile.owner);
+                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<TerraBlockP>(), hit.Damage / 4, Main.myPlayer, Projectile.owner);
             }
         }
     }
@@ -59,7 +59,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Terra Block");
+           // //DisplayName.SetDefault("Terra Block");
         }
         public override void SetDefaults()
         {

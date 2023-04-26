@@ -11,9 +11,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Ultra Healing potion");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de guérison ultra");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ultra poción curativa");
+//DisplayName.SetDefault("Ultra Healing potion");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de guérison ultra");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ultra poción curativa");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

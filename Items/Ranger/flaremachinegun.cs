@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Flare Machine Gun");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusée mitrailleuse");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ametralladora de bengala");
+//DisplayName.SetDefault("Flare Machine Gun");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusée mitrailleuse");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ametralladora de bengala");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

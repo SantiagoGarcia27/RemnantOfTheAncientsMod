@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 		}
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("TestSword");
+			//DisplayName.SetDefault("TestSword");
 		}
 		public override void SetDefaults()
 		{

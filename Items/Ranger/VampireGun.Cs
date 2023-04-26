@@ -13,14 +13,14 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Vampire Gun");
-Tooltip.SetDefault("healing gun.");
+//DisplayName.SetDefault("Vampire Gun");
+//Tooltip.SetDefault("healing gun.");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vampire Gun");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "pistolet guérisseur");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vampire Gun");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "pistolet guérisseur");
 
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pistola Vampírica");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "una pistola curativa");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pistola Vampírica");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "una pistola curativa");
 
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

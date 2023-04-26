@@ -21,9 +21,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Relics
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frozen Assaulter relic");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Relique de l'Agresseur gelé");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reliquia del Asaltante Congelado");
+            //DisplayName.SetDefault("Frozen Assaulter relic");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Relique de l'Agresseur gelé");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reliquia del Asaltante Congelado");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }

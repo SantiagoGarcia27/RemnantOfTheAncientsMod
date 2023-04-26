@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Skeletron Prime Energy Cell");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cellule énergétique Skeletron Prime");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía Skeletron Prime");
-Tooltip.SetDefault("Increase jump height drastically \nAllows to see the minerals");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmenter considérablement la hauteur de saut \nPermet de voir les minerais");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la altura del salto drásticamente \nPermite ver los minerales");
+//DisplayName.SetDefault("Skeletron Prime Energy Cell");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cellule énergétique Skeletron Prime");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía Skeletron Prime");
+//Tooltip.SetDefault("Increase jump height drastically \nAllows to see the minerals");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmenter considérablement la hauteur de saut \nPermet de voir les minerais");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la altura del salto drásticamente \nPermite ver los minerales");
 //ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 ItemID.Sets.ItemIconPulse[Item.type] = true;
 ItemID.Sets.ItemNoGravity[Item.type] = true;

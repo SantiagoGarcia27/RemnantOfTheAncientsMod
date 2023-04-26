@@ -12,10 +12,10 @@ public class copper_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Copper Repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wzmacniacz miedziany");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur en cuivre");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de cobre");
+//DisplayName.SetDefault("Copper Repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wzmacniacz miedziany");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur en cuivre");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de cobre");
 		}
      public override void SetDefaults()
     {

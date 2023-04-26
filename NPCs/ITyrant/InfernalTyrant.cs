@@ -52,9 +52,9 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Infernal Tyrant");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tirano infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tyran infernal");
+            ////DisplayName.SetDefault("Infernal Tyrant");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tirano infernal");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tyran infernal");
 
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -350,7 +350,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             }
             return allPlayersDead;
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -361,7 +361,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 }
                 for (int j = 0; j < 10; j++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f);
                 }
                 RemnantDownedBossSystem.downedTyrant = true;
             }
@@ -406,9 +406,9 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Infernal Tyrant");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tirano infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tyran infernal");
+            ////DisplayName.SetDefault("Infernal Tyrant");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tirano infernal");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tyran infernal");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -467,7 +467,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
             Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
             Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -479,7 +479,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 }
                 for (int j = 0; j < 10; j++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f);
                 }
                 RemnantDownedBossSystem.downedTyrant = true;
             }
@@ -510,9 +510,9 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Infernal Tyrant");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tirano infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tyran infernal");
+            ////DisplayName.SetDefault("Infernal Tyrant");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tirano infernal");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tyran infernal");
 
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -570,7 +570,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 }
             }
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -581,7 +581,7 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 }
                 for (int j = 0; j < 10; j++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f);
                 }
                 RemnantDownedBossSystem.downedTyrant = true;
             }

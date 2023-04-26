@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Fire bullet");
+			////DisplayName.SetDefault("Fire bullet");
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			}
 			return true;
 		}
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (Main.rand.NextBool()) target.AddBuff(BuffID.OnFire, 300);
 		}

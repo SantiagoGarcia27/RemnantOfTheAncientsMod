@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Deerclops Soul");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme d'deerclops");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Ciervíclope");
-Tooltip.SetDefault("Gives you the ability to summon shadow hands to attack your enemies with 1/4 of your dps");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous donne la possibilité d'invoquer des mains d'ombre pour attaquer vos ennemis avec 1/4 de votre dps");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te da la habilidad de invocar manos sombrías para atacar a tus enemigos con 1/4 de tu dps");
+//DisplayName.SetDefault("Deerclops Soul");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme d'deerclops");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Ciervíclope");
+//Tooltip.SetDefault("Gives you the ability to summon shadow hands to attack your enemies with 1/4 of your dps");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous donne la possibilité d'invoquer des mains d'ombre pour attaquer vos ennemis avec 1/4 de votre dps");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te da la habilidad de invocar manos sombrías para atacar a tus enemigos con 1/4 de tu dps");
 
 /*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/

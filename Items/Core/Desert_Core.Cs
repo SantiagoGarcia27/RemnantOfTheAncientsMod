@@ -11,20 +11,20 @@ namespace RemnantOfTheAncientsMod.Items.Core
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desert Annihilator Core");
-            Tooltip.SetDefault("Increases your max number of minions by 2"
-            + "\n Increases all damage by 8% and life regeneration while in desert"
-            + "\n Your max life increases by 50 points while in sandstorms");
+            //DisplayName.SetDefault("Desert Annihilator Core");
+           // //Tooltip.SetDefault("Increases your max number of minions by 2"
+            ////+ "\n Increases all damage by 8% and life regeneration while in desert"
+            ////+ "\n Your max life increases by 50 points while in sandstorms");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Noyau d'aniquilateur du désert");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentez votre nombre maximum de serviteurs de 2"
-             + "\n Augmente tous les dégâts de 8% et la régénération de la vie dans le désert. "
-            + "\n Dans les tempêtes de sable, votre vie augmente de 50 points");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Noyau d'aniquilateur du désert");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentez votre nombre maximum de serviteurs de 2"
+             ////+ "\n Augmente tous les dégâts de 8% et la régénération de la vie dans le désert. "
+            ////+ "\n Dans les tempêtes de sable, votre vie augmente de 50 points");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Núcleo del aniquilador del desierto");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa tu número máximo de minions en 2"
-            + "\n Aumenta todo el daño en un 8% y la regeneración de vida en el desierto. "
-            + "\n En las tormentas de arena tu vida aumenta en 50 puntos");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Núcleo del aniquilador del desierto");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Incrementa tu número máximo de minions en 2"
+            ////+ "\n Aumenta todo el daño en un 8% y la regeneración de vida en el desierto. "
+            ////+ "\n En las tormentas de arena tu vida aumenta en 50 puntos");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Tuxonite Pickaxe");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche Tuxonite");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico de tusonita");
+//DisplayName.SetDefault("Tuxonite Pickaxe");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche Tuxonite");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico de tusonita");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

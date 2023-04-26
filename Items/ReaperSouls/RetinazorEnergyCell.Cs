@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Retinazor Energy Cell");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cellule énergétique Retinazor");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía Retinazor");
-Tooltip.SetDefault("Removes restriction on wings of Reaper Mode");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Supprime la restriction sur les ailes du mode Reaper");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Elimina la restricción en las alas del modo Segador.");
+//DisplayName.SetDefault("Retinazor Energy Cell");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cellule énergétique Retinazor");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía Retinazor");
+//Tooltip.SetDefault("Removes restriction on wings of Reaper Mode");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Supprime la restriction sur les ailes du mode Reaper");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Elimina la restricción en las alas del modo Segador.");
 //ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 ItemID.Sets.ItemIconPulse[Item.type] = true;
 ItemID.Sets.ItemNoGravity[Item.type] = true;

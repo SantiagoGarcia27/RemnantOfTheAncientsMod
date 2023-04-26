@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		public override void SetStaticDefaults()
 		{
 
-			DisplayName.SetDefault("weak zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "zombie débil");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie faible");
+			////DisplayName.SetDefault("weak zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "zombie débil");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie faible");
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		public override void ModifyNPCLoot(NPCLoot npcLoot) => Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ItemID.Gel);
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.001f : 0.03f;
 
-		public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -54,9 +54,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -77,8 +77,8 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			BannerItem = Item.BannerToItem(Banner);
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.02f : 0.01f;
-		public override void HitEffect(int hitDirection, double damage)
-		{
+        public override void HitEffect(NPC.HitInfo hit)
+        {
 			for (int i = 0; i < 10; i++)
 			{
 				Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, Main.rand.Next(139, 143));
@@ -92,9 +92,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -115,7 +115,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			BannerItem = Item.BannerToItem(Banner);
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.02f : 0.01f;
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -130,9 +130,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -153,7 +153,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			BannerItem = Item.BannerToItem(Banner);
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.02f : 0.01f;
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -168,9 +168,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -193,7 +193,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.001f : 0.03f;
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -208,9 +208,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -232,7 +232,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.002f : 0.03f;
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -247,9 +247,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -273,7 +273,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.002f : 0.03f;
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -288,9 +288,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -314,7 +314,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.001f : 0.02f;
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -329,9 +329,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -354,7 +354,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedBoss1 ? SpawnCondition.OverworldNightMonster.Chance * 0.001f : 0.02f;
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -369,9 +369,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -408,7 +408,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			//Main.NewText(NPC.lifeMax);
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -424,9 +424,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -448,7 +448,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo) => NPC.downedSlimeKing ? SpawnCondition.OverworldNightMonster.Chance * 0.02f : 0;
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -463,9 +463,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -506,7 +506,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			NPC.velocity.X += targetPosition.X < NPC.position.X ? -0.25f : 0.25f;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{
@@ -521,9 +521,9 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Zombie");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+			////DisplayName.SetDefault("Armored Zombie");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
 		}
 
@@ -567,7 +567,7 @@ namespace RemnantOfTheAncientsMod.NPCs.zombis
 			}
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
+		public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 10; i++)
 			{

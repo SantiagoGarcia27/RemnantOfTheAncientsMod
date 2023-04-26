@@ -12,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 	{
 		public override void SetStaticDefaults() 
 		{
-DisplayName.SetDefault("Infernal Tyrant Mask");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Piekielny Tyran");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'Tyran infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Tirano infernal");
+//DisplayName.SetDefault("Infernal Tyrant Mask");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Piekielny Tyran");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'Tyran infernal");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Tirano infernal");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

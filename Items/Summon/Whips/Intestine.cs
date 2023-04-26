@@ -12,20 +12,20 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Whips
 	{
 		public override void SetStaticDefaults() 
         {
-            DisplayName.SetDefault("Intestine");
-            Tooltip.SetDefault("5 summon tag damage" +
-                "\nYour summons will focus struck enemies" +
-                "\nHeal 1hp per hit");
+            //DisplayName.SetDefault("Intestine");
+           // //Tooltip.SetDefault("5 summon tag damage" +
+                //"\nYour summons will focus struck enemies" +
+                //"\nHeal 1hp per hit");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Intestine");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "5 dégâts de balise d'invocation" +
-                "\nVos invocations concentreront les ennemis frappés" +
-                "\nSoignez 1 PV par coup");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Intestine");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "5 dégâts de balise d'invocation" +
+                //"\nVos invocations concentreront les ennemis frappés" +
+                //"\nSoignez 1 PV par coup");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Intestino");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "5 daño de etiqueta de invocación" +
-                "\nTu convocatoria se centrará en los enemigos golpeados." +
-                "\nCura 1 punto de vida por golpe");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Intestino");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "5 daño de etiqueta de invocación" +
+                //"\nTu convocatoria se centrará en los enemigos golpeados." +
+                //"\nCura 1 punto de vida por golpe");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

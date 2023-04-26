@@ -12,8 +12,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Burning Sand");
-			Description.SetDefault("");
+			//DisplayName.SetDefault("Burning Sand");
+			//Description.SetDefault("");
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;

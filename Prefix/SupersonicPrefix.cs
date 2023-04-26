@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Prefixe
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Supersonic");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Supersonique)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Supersónico)");
+            //DisplayName.SetDefault("Supersonic");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Supersonique)");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Supersónico)");
         }
 
 

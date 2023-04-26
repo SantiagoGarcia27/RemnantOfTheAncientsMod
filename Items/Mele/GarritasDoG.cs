@@ -23,10 +23,10 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 		public override void SetStaticDefaults()
 		{
 
-			DisplayName.SetDefault("God Slayer Claws");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pazury Zabójcy Bogów");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Griffes de tueur de dieu");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Garras del asesinas de dioses");
+			////DisplayName.SetDefault("God Slayer Claws");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pazury Zabójcy Bogów");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Griffes de tueur de dieu");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Garras del asesinas de dioses");
 		}
 		public override void SetDefaults()
 		{
@@ -81,8 +81,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			}
 		}
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-		{
+		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
 			if (RemnantOfTheAncientsMod.CalamityMod.TryFind("GodSlayerInferno", out ModBuff buff)) target.AddBuff(buff.Type, 300);
 		}
 	}

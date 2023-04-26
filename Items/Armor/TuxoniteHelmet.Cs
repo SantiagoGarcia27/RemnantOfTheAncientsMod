@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Tuxonite Helmet");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
+//DisplayName.SetDefault("Tuxonite Helmet");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

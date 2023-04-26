@@ -14,12 +14,12 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         private static readonly Color ColorTwo = new Color(0, 0, 255);
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Legion");
-            Tooltip.SetDefault("Increases the summon damage by 25% "
-            + "\n+5 minions"
-            + "\nMany thanks to:"
-            + "\n S-Pladison   -NKSHV  -perrogalan"
-            + "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
+            //DisplayName.SetDefault("The Legion");
+           // //Tooltip.SetDefault("Increases the summon damage by 25% "
+            ////+ "\n+5 minions"
+           // + "\nMany thanks to:"
+            ////+ "\n S-Pladison   -NKSHV  -perrogalan"
+            ////+ "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(9, 8));
         }
         internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);

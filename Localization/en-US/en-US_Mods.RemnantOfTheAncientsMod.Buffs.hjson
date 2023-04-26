@@ -1,127 +1,127 @@
-CentryBuff.DisplayName:ComanderPotion
-FishBuff.DisplayName:Fish
-GravityControlBuff.DisplayName:Gravitycontrol
-Advanced_Infusion.DisplayName:Advancedinfusion
-Basic_Infusion.DisplayName:Basicinfusion
+CentryBuff.//DisplayName:ComanderPotion
+FishBuff.//DisplayName:Fish
+GravityControlBuff.//DisplayName:Gravitycontrol
+Advanced_Infusion.//DisplayName:Advancedinfusion
+Basic_Infusion.//DisplayName:Basicinfusion
 Combat_infusion:
 {
-		DisplayName:Combatinfusion
-	Description:Definitiveoffensivebuff
+		//DisplayName:Combatinfusion
+	//Description:Definitiveoffensivebuff
 }
-Exploration_infusion.DisplayName:Explorationinfusion
-Fishing_Infusion.DisplayName:Fishinginfusion
-Mage_Infusion.DisplayName:Mageinfusion
-Melee_Infusion.DisplayName:Meleeinfusion
-Mining_infusion.DisplayName:Mininginfusion
-Poseidon_Infusion.DisplayName:Poseidoninfusion
-Ranger_Infusion.DisplayName:Rangerinfusion
-Summon_Infusion.DisplayName:Summoninfusion
-Tank_Infusion.DisplayName:Tankinfusion
-Ultimate_Infusion.DisplayName:Ultimateinfusion
-MoneyColectorBuff.DisplayName:MoneyCollector
-Sand_Weapons.DisplayName:BurningSand
-SuperSenseBuff.DisplayName:SuperSense
-Burning_Sand.DisplayName:BurningSand
+Exploration_infusion.//DisplayName:Explorationinfusion
+Fishing_Infusion.//DisplayName:Fishinginfusion
+Mage_Infusion.//DisplayName:Mageinfusion
+Melee_Infusion.//DisplayName:Meleeinfusion
+Mining_infusion.//DisplayName:Mininginfusion
+Poseidon_Infusion.//DisplayName:Poseidoninfusion
+Ranger_Infusion.//DisplayName:Rangerinfusion
+Summon_Infusion.//DisplayName:Summoninfusion
+Tank_Infusion.//DisplayName:Tankinfusion
+Ultimate_Infusion.//DisplayName:Ultimateinfusion
+MoneyColectorBuff.//DisplayName:MoneyCollector
+Sand_Weapons.//DisplayName:BurningSand
+SuperSenseBuff.//DisplayName:SuperSense
+Burning_Sand.//DisplayName:BurningSand
 
 Hell_Fire:
 {
-		DisplayName:HellFire
-	Description:a
+		//DisplayName:HellFire
+	//Description:a
 }
 
 HollyBurn:
 {
-		DisplayName:HollyBurn
-	Description:Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn
+		//DisplayName:HollyBurn
+	//Description:Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn
 }
 
 Javalina:
 {
-		DisplayName:Javalina
-	Description:Losinglife
+		//DisplayName:Javalina
+	//Description:Losinglife
 }
 
 Marble_erosion:
 {
-		DisplayName:Marblerosion
-	Description:Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion
+		//DisplayName:Marblerosion
+	//Description:Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion
 }
 
 GoldenAcornBuff:
 {
-		DisplayName:AnimatedGoldenSapling
-	Description:TheAnimatedGoldenSaplingwillfightforyou
+		//DisplayName:AnimatedGoldenSapling
+	//Description:TheAnimatedGoldenSaplingwillfightforyou
 }
 
 PlatinumAcornBuff:
 {
-		DisplayName:AnimatedPlatinumSapling
-	Description:TheAnimatedPlatinumSaplingwillfightforyou
+		//DisplayName:AnimatedPlatinumSapling
+	//Description:TheAnimatedPlatinumSaplingwillfightforyou
 }
 
 SaplingMinionBuff:
 {
-		DisplayName:AnimatedSapling
-	Description:TheAnimatedSaplingwillfightforyou
+		//DisplayName:AnimatedSapling
+	//Description:TheAnimatedSaplingwillfightforyou
 }
 
 SilverAcornBuff:
 {
-		DisplayName:AnimatedSilverSapling
-	Description:TheAnimatedSilverSaplingwillfightforyou
+		//DisplayName:AnimatedSilverSapling
+	//Description:TheAnimatedSilverSaplingwillfightforyou
 }
 
 TungstenAcornBuff:
 {
-		DisplayName:AnimatedTungstenSapling
-	Description:TheAnimatedTungstenSaplingwillfightforyou
+		//DisplayName:AnimatedTungstenSapling
+	//Description:TheAnimatedTungstenSaplingwillfightforyou
 }
 
 DesertMinionBuff:
 {
-		DisplayName:BabyDesertAniquilator
-	Description:TheBabyDesertwillfightforyou
+		//DisplayName:BabyDesertAniquilator
+	//Description:TheBabyDesertwillfightforyou
 }
 
 FrozenMinionBuff:
 {
-		DisplayName:BabyFrozenAssaulter
-	Description:TheBabyFrozenwillfightforyou
+		//DisplayName:BabyFrozenAssaulter
+	//Description:TheBabyFrozenwillfightforyou
 }
 
 StardustMinionBuff:
 {
-		DisplayName:StardustMinionBuff
-	Description:TheStarddustwillfightforyou
+		//DisplayName:StardustMinionBuff
+	//Description:TheStarddustwillfightforyou
 }
 
-ReaperBuff.DisplayName:Reapermode
-AoD.DisplayName:DodgeApprentice
-Bee.DisplayName:QueenBee
-Eye.DisplayName:Dashmaster
-Infernal.DisplayName:Infernal
-MasterD.DisplayName:MasteroftheDesert
-Putrid.DisplayName:Putrid
-QueenSlimeScrollBuff.DisplayName:Queen'sblessing
-Skeleton.DisplayName:Undead
-Slim.DisplayName:King'sblessing
+ReaperBuff.//DisplayName:Reapermode
+AoD.//DisplayName:DodgeApprentice
+Bee.//DisplayName:QueenBee
+Eye.//DisplayName:Dashmaster
+Infernal.//DisplayName:Infernal
+MasterD.//DisplayName:MasteroftheDesert
+Putrid.//DisplayName:Putrid
+QueenSlimeScrollBuff.//DisplayName:Queen'sblessing
+Skeleton.//DisplayName:Undead
+Slim.//DisplayName:King'sblessing
 
 SwordMount:
 {
-		DisplayName:Espadadetransporte
-	Description:Laformadeviajarmaseficaz
+		//DisplayName:Espadadetransporte
+	//Description:Laformadeviajarmaseficaz
 }
 
 TortugaPetBuff:
 {
-		DisplayName:TheTurtle
-	Description:a
+		//DisplayName:TheTurtle
+	//Description:a
 }
 
 YoutubeMoradoBuff:
 {
-		DisplayName:Twitch
-	Description:
+		//DisplayName:Twitch
+	//Description:
 		'''
 		Thanksto-febo1apolo-eltonyhelou-Jormanas_gt
 		-LaGalletaOtaku-licenciado_carlos-Millogp-JMessiahs-starlord101094
@@ -140,6 +140,6 @@ YoutubeMoradoBuff:
 
 YtBuff:
 {
-		DisplayName:Yt
-	Description: Waiting
+		//DisplayName:Yt
+	//Description: Waiting
 }

@@ -11,12 +11,12 @@ namespace RemnantOfTheAncientsMod.Buffs.Minions
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Stardust");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Poussière d'étoiles");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Polvo de estrellas");
-            Description.SetDefault("The stardust will fight for you");
-            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La poussière d'étoiles se battra pour vous");
-            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El polvo de estrellas luchará por ti");
+			//DisplayName.SetDefault("Stardust");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Poussière d'étoiles");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Polvo de estrellas");
+            //Description.SetDefault("The stardust will fight for you");
+            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La poussière d'étoiles se battra pour vous");
+            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El polvo de estrellas luchará por ti");
             Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

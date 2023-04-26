@@ -12,10 +12,10 @@ public class wooden_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Wooden Repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Drewniany repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur en bois");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de madera");
+//DisplayName.SetDefault("Wooden Repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Drewniany repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur en bois");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de madera");
 		}
      public override void SetDefaults()
     {

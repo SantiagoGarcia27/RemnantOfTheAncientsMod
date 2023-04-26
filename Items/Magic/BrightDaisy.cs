@@ -14,12 +14,12 @@ namespace RemnantOfTheAncientsMod.Items.Magic
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bright Daisy");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Marguerite brillante");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Margarita Brillante");
-            Tooltip.SetDefault("A daisy with the power of luminous skies");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Une marguerite avec le pouvoir des cieux lumineux");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una margarita con el poder del cielo luminoso");
+            //DisplayName.SetDefault("Bright Daisy");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Marguerite brillante");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Margarita Brillante");
+           // //Tooltip.SetDefault("A daisy with the power of luminous skies");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Une marguerite avec le pouvoir des cieux lumineux");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una margarita con el poder del cielo luminoso");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             Item.staff[Item.type] = true;
         }

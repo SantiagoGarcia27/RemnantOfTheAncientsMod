@@ -16,15 +16,15 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ultrashark");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ultrarequin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ultratiburón");
-            Tooltip.SetDefault("the older sister of the 4"
-            + "\n70% chance of not spending ammo ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "la sœur aînée de 4"
-            + "\n70% de chances de ne pas dépenser de munitions ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "la hermana mayor de las 4"
-            + "\nProbabilidad del 70% de no gastar munición ");
+            //DisplayName.SetDefault("Ultrashark");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ultrarequin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ultratiburón");
+           // //Tooltip.SetDefault("the older sister of the 4"
+           // + "\n70% chance of not spending ammo ");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "la sœur aînée de 4"
+           // + "\n70% de chances de ne pas dépenser de munitions ");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "la hermana mayor de las 4"
+           // + "\nProbabilidad del 70% de no gastar munición ");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

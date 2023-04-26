@@ -12,14 +12,14 @@ namespace RemnantOfTheAncientsMod.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Reinforced Iron Helmet");
-Tooltip.SetDefault("Increases melee damage by 5%");
+//DisplayName.SetDefault("Reinforced Iron Helmet");
+//Tooltip.SetDefault("Increases melee damage by 5%");
 
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque en fer renforc�");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les d�g�ts de m�l�e de 5%");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque en fer renforc�");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les d�g�ts de m�l�e de 5%");
 
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de hierro reforzado");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 5% de daño cuerpo a cuerpo");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de hierro reforzado");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 5% de daño cuerpo a cuerpo");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Items.ReaperSouls
 		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Spazmatism Energy Cell");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cellule énergétique du spazmatisme");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía del espazmatisador");
-Tooltip.SetDefault("Grants immunity to all fire debuffs");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Accorde l'immunité à tous les affaiblissements de feu");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a todas las desventajas de fuego.");
+//DisplayName.SetDefault("Spazmatism Energy Cell");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cellule énergétique du spazmatisme");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Célula de energía del espazmatisador");
+//Tooltip.SetDefault("Grants immunity to all fire debuffs");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Accorde l'immunité à tous les affaiblissements de feu");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Otorga inmunidad a todas las desventajas de fuego.");
 //ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 ItemID.Sets.ItemIconPulse[Item.type] = true;
 ItemID.Sets.ItemNoGravity[Item.type] = true;

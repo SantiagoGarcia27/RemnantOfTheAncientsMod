@@ -11,11 +11,11 @@ namespace RemnantOfTheAncientsMod.Items.Banners
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Armored Zombie Banner");
+//DisplayName.SetDefault("Armored Zombie Banner");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Opancerzony sztandar zombie");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bannière de Zombie Blindé");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estandarte Zombies Blindado");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Opancerzony sztandar zombie");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bannière de Zombie Blindé");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estandarte Zombies Blindado");
 		}
 		// The tooltip for this item is automatically assigned from .lang files
 		public override void SetDefaults()

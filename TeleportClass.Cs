@@ -344,7 +344,7 @@ if (vector != position)
 			if (Main.netMode == NetmodeID.Server && syncData)
 			{
 				RemoteClient.CheckSection(player.whoAmI, player.position, 1);
-				NetMessage.SendData(MessageID.Teleport, -1, -1, (NetworkText)null, 0, (float)player.whoAmI, pos.X, pos.Y, 3, 0, 0);
+				NetMessage.SendData(MessageID.TeleportEntity, -1, -1, (NetworkText)null, 0, (float)player.whoAmI, pos.X, pos.Y, 3, 0, 0);
 			}
 		}
 

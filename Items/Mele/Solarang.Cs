@@ -11,9 +11,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Solarang");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "boomerang solaire");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bumerán solar");
+			//DisplayName.SetDefault("Solarang");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "boomerang solaire");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bumerán solar");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

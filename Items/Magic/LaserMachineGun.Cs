@@ -12,8 +12,8 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("L.M.G");
-            Tooltip.SetDefault("Legendary Drop");
+//DisplayName.SetDefault("L.M.G");
+           // //Tooltip.SetDefault("Legendary Drop");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -137,7 +137,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Lazer
 			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Projectile.velocity * Distance, 22, ref point);//player.Center
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffType<HollyBurn>(), 400);
 			target.immune[Projectile.owner] = 5;

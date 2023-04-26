@@ -9,23 +9,23 @@ using Terraria.ModLoader;
 namespace RemnantOfTheAncientsMod.Items.Debugg
 {
     public class DebuggToggle : ModItem
-	{
-        public override void SetStaticDefaults() => DisplayName.SetDefault("DebuggToggle");
+    {
+        // public override void SetStaticDefaults() => //DisplayName.SetDefault("DebuggToggle");
 
         public override void SetDefaults()
-		{
-Item.width = 20;
-Item.height = 20;
-Item.rare = ItemRarityID.Pink;
-Item.useAnimation = 20;
-Item.useTime = 20;
-Item.useStyle = ItemUseStyleID.HoldUp;
-Item.UseSound = SoundID.Item60;
-		}
+        {
+            Item.width = 20;
+            Item.height = 20;
+            Item.rare = ItemRarityID.Pink;
+            Item.useAnimation = 20;
+            Item.useTime = 20;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.UseSound = SoundID.Item60;
+        }
         public override bool? UseItem(Player player)
         {
             RemnantOfTheAncientsMod.DebuggMode = RemnantOfTheAncientsMod.DebuggMode ? false : true;
-            string text = RemnantOfTheAncientsMod.DebuggMode ? "Debugg desactivado": "Debugg activado!";  
+            string text = RemnantOfTheAncientsMod.DebuggMode ? "Debugg desactivado" : "Debugg activado!";
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
@@ -34,7 +34,7 @@ Item.UseSound = SoundID.Item60;
             else if (Main.netMode == NetmodeID.Server)
             {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), new Color(175, 75, 255));
-                NetMessage.SendData(MessageID.WorldData); 
+                NetMessage.SendData(MessageID.WorldData);
             }
 
             SoundEngine.PlaySound(SoundID.Item15, player.Center);

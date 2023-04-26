@@ -21,10 +21,10 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 		{
 			Item.staff[Item.type] = true;
 
-			DisplayName.SetDefault("SkyCutter");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przecinak nieba");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coupe du ciel");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cortador estelar");
+			//DisplayName.SetDefault("SkyCutter");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przecinak nieba");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coupe du ciel");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cortador estelar");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

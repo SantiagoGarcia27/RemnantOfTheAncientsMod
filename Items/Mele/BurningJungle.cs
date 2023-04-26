@@ -12,14 +12,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Burning Jungle");
-            Tooltip.SetDefault("Inflict poison and fire on enemies");
+            ////DisplayName.SetDefault("Burning Jungle");
+            ////Tooltip.SetDefault("Inflict poison and fire on enemies");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jungle brûlante");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger du poison et tirer sur les ennemis");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jungle brûlante");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger du poison et tirer sur les ennemis");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Jungla Ardiente");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije veneno y fuego a los enemigos");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Jungla Ardiente");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije veneno y fuego a los enemigos");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -49,13 +49,13 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             }*/
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 40);
             target.AddBuff(BuffID.Poisoned, 40);
             if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.DaybreakExplosion, damage / 10, 0);
+                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.DaybreakExplosion, Item.damage / 10, 0);
             }
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)

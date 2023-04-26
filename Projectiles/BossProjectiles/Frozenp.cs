@@ -74,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.BossProjectile
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0f, 0f, 100, default(Color), 1.5f);
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.immune[Projectile.owner] = 0;
         }

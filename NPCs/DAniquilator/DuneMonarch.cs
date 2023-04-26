@@ -29,9 +29,9 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dune Monarch");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aniquilador del desierto");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Monarca de las dunas");
+            //DisplayName.SetDefault("Dune Monarch");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aniquilador del desierto");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Monarca de las dunas");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
         }
         public override void SetDefaults()

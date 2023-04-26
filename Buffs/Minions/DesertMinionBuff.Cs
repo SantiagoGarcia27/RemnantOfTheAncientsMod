@@ -10,12 +10,12 @@ namespace RemnantOfTheAncientsMod.Buffs.Minions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Baby Desert Aniquilator");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Aniquilateur bébé désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pequeño aniquilador");
-            Description.SetDefault("The Baby Desert will fight for you");
-            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le bébé désert se battra pour vous");
-            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El pequeño aniquilador luchará por ti");
+            //DisplayName.SetDefault("Baby Desert Aniquilator");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Aniquilateur bébé désert");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pequeño aniquilador");
+            //Description.SetDefault("The Baby Desert will fight for you");
+            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le bébé désert se battra pour vous");
+            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El pequeño aniquilador luchará por ti");
 
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;

@@ -107,11 +107,11 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Whips
             return false; // still charging
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-            Projectile.damage = (int)(damage * 0.9f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
+            Projectile.damage = (int)(hit.Damage * 0.9f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
         }
 
         // This method draws a line between all points of the whip, in case there's empty space between the sprites.

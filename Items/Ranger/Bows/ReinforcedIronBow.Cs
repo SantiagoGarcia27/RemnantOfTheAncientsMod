@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Bows
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Reinforced Iron Bow");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Arc en fer renforcé");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arco de Hierro Reforzado");
+//DisplayName.SetDefault("Reinforced Iron Bow");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Arc en fer renforcé");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arco de Hierro Reforzado");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

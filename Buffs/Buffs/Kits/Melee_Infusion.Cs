@@ -7,8 +7,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs.Kits
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Melee infusion");
-            Description.SetDefault("");
+            //DisplayName.SetDefault("Melee infusion");
+            //Description.SetDefault("");
             
 
             Main.buffNoTimeDisplay[Type] = false;

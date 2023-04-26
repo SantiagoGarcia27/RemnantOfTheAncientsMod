@@ -13,12 +13,12 @@ namespace RemnantOfTheAncientsMod.Items.accesorios.Alas
 	{
 		public override void SetStaticDefaults()
 		{
-            DisplayName.SetDefault("Luminite Wings");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ailes de luminite");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alas de Luminita");
-            Tooltip.SetDefault("Allows flight and fall slowly");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Permet de voler et de tomber lentement");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permite volar y caer lentamente ");
+            //DisplayName.SetDefault("Luminite Wings");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ailes de luminite");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alas de Luminita");
+           // //Tooltip.SetDefault("Allows flight and fall slowly");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Permet de voler et de tomber lentement");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permite volar y caer lentamente ");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(250, 11f, 3f);
 		}

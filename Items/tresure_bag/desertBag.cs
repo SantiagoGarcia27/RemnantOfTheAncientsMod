@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Items.tresure_bag
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Treasure Bag");
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            //DisplayName.SetDefault("Treasure Bag");
+           // //Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
             ItemID.Sets.PreHardmodeLikeBossBag[Type] = true;
             ItemID.Sets.BossBag[Type] = true;

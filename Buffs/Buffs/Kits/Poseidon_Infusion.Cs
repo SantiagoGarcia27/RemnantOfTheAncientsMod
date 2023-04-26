@@ -7,8 +7,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs.Kits
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Poseidon infusion");
-            Description.SetDefault("");
+            //DisplayName.SetDefault("Poseidon infusion");
+            //Description.SetDefault("");
             
 
             Main.buffNoTimeDisplay[Type] = false;

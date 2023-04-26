@@ -9,8 +9,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Minions.acorns
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Animated Tungsten Sapling");
-			Description.SetDefault("The Animated Tungsten Sapling will fight for you");
+			//DisplayName.SetDefault("Animated Tungsten Sapling");
+			//Description.SetDefault("The Animated Tungsten Sapling will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

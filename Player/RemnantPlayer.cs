@@ -131,10 +131,10 @@ namespace RemnantOfTheAncientsMod
 			}
 		}
 
-		public override void OnEnterWorld(Player player)
+        public override void OnEnterWorld()
 		{
 			FWeapons = true;
-			FchangesItem.ReaperWingsNerf(player);
+			FchangesItem.ReaperWingsNerf(Player);
 			AddScrollBuff();
 		}
 		public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
@@ -186,9 +186,9 @@ namespace RemnantOfTheAncientsMod
 				drawInfo.DustCache.Add(dust);
 			}
 		}
-		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
-		{
-			//item.GetGlobalItem<FchangesItem>().ReaperSize(item);
+
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
+		{ 
 			if (!item.noMelee && !item.noUseGraphic)
 			{
 				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
@@ -196,7 +196,7 @@ namespace RemnantOfTheAncientsMod
 				if (MeleeKit) target.AddBuff(BuffID.Ichor, 300);
 			}
 		}
-		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) //This is the same as the one in OnHitNPC, but for melee projectiles.
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//  FchangesItem.ReaperSize(p);
 			if (proj.CountsAsClass(DamageClass.Melee))

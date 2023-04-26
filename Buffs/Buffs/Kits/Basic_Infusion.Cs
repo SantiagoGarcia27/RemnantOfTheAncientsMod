@@ -8,8 +8,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs.Kits
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Basic infusion");
-            Description.SetDefault("");
+            //DisplayName.SetDefault("Basic infusion");
+            //Description.SetDefault("");
             
 
             Main.buffNoTimeDisplay[Type] = false;

@@ -15,7 +15,7 @@ return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("HardmodeToggler3000");
+//DisplayName.SetDefault("HardmodeToggler3000");
 		}
 
 		public override void SetDefaults()

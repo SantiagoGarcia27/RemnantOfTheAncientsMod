@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Prefixe
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Uncontrolled");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Incontrôlé)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Descontrolado)");
+            //DisplayName.SetDefault("Uncontrolled");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Incontrôlé)");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Descontrolado)");
         }
 
 

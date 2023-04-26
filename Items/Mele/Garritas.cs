@@ -11,9 +11,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Solar Claws");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "griffes solaires");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Garras Solares");
+			////DisplayName.SetDefault("Solar Claws");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "griffes solaires");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Garras Solares");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -33,16 +33,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 			Item.autoReuse = true;
 
 		}
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
-		{
-			target.AddBuff(BuffID.Daybreak, 240);
-			if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
-			{
-				Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, damage / 10, 0);
-			}
-		}
-
-
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.Daybreak, 240);
+            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, hit.Damage / 10, 0);
+            }
+        } 
 		public override void AddRecipes()
 		{
 			CreateRecipe()

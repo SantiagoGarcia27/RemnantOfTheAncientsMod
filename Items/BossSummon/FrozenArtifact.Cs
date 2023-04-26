@@ -13,14 +13,14 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frozen Artifact");
-            Tooltip.SetDefault("Summons the Frozen Assaulter");
+            //DisplayName.SetDefault("Frozen Artifact");
+           // //Tooltip.SetDefault("Summons the Frozen Assaulter");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Artefact gelé");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquer l'assaillant gelé");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Artefact gelé");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquer l'assaillant gelé");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Artefacto congelado");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al asaltante congelado");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Artefacto congelado");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al asaltante congelado");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
             }
             else
             {
-                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<frozen_assaulter>(), 0f, 0f, 0, 0, 0);
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<frozen_assaulter>(), 0f, 0f, 0, 0, 0);
             }
             return true;
         }

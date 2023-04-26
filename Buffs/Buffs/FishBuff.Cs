@@ -6,8 +6,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
 	public class FishBuff : ModBuff
 	{
 		public override void SetStaticDefaults() {
-DisplayName.SetDefault("Fish");
-            Description.SetDefault("");
+//DisplayName.SetDefault("Fish");
+            //Description.SetDefault("");
             Main.buffNoSave[Type] = false;
 Main.buffNoTimeDisplay[Type] = false;
 Main.persistentBuff[Type] = true;

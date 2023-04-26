@@ -12,15 +12,15 @@ namespace RemnantOfTheAncientsMod.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ghost Pickaxe");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Duch Kilof");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche fantôme");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico fantasmal");
-			Tooltip.SetDefault("");
+			//DisplayName.SetDefault("Ghost Pickaxe");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Duch Kilof");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche fantôme");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico fantasmal");
+			//Tooltip.SetDefault("");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			/* DisplayName.AddTranslation(GameCulture.Russian, "Призрачная кирка");
-			  DisplayName.AddTranslation(GameCulture.Chinese, "鬼镐");*/
+			/* //DisplayName.AddTranslation(GameCulture.Russian, "Призрачная кирка");
+			  //DisplayName.AddTranslation(GameCulture.Chinese, "鬼镐");*/
 		}
 
 		public override void SetDefaults()

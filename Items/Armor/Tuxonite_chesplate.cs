@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Tuxonite Chainmail");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cotte de mailles Tuxonite");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cota de malla de tusonita");
+//DisplayName.SetDefault("Tuxonite Chainmail");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cotte de mailles Tuxonite");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cota de malla de tusonita");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

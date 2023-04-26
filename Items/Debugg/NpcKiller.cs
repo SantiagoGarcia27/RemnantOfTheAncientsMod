@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
         }
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("NpcKiller");
+            //DisplayName.SetDefault("NpcKiller");
         }
         public override void SetDefaults()
         {

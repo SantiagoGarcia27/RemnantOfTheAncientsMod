@@ -14,14 +14,14 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
     {
        public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Desert Chest");
-            Tooltip.SetDefault("Summons the Desert Annihilator");
+//DisplayName.SetDefault("Desert Chest");
+           // //Tooltip.SetDefault("Summons the Desert Annihilator");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coffre du désert");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquer l'aniquilateur du désert");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coffre du désert");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquer l'aniquilateur du désert");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cofre del desierto");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al aniquilador del desierto");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cofre del desierto");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al aniquilador del desierto");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
         
@@ -51,7 +51,7 @@ DisplayName.SetDefault("Desert Chest");
             }
             else
             {
-                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<DesertAniquilator>(), 0f, 0f, 0, 0, 0);
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<DesertAniquilator>(), 0f, 0f, 0, 0, 0);
             }
             return true;
         }

@@ -14,10 +14,10 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("True Demon Scythe");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Prawdziwa Kosa Demona");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Faux Démon Vrai");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Verdadera Guadaña Demoníaca");
+//DisplayName.SetDefault("True Demon Scythe");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Prawdziwa Kosa Demona");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Faux Démon Vrai");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Verdadera Guadaña Demoníaca");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

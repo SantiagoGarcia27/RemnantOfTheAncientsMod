@@ -55,9 +55,9 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				.SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
 				.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate)
 				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
-			DisplayName.SetDefault("Goblin master blacksmith");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître forgeron gobelin");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Duende maestro herrero");
+			//DisplayName.SetDefault("Goblin master blacksmith");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître forgeron gobelin");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Duende maestro herrero");
 
 		}
 

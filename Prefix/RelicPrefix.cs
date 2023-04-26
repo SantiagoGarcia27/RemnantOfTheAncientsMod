@@ -15,9 +15,9 @@ namespace RemnantOfTheAncientsMod.Prefixe
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Relic");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Relique)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Reliquia)");
+            //DisplayName.SetDefault("Relic");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Relique)");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Reliquia)");
         }
         // See documentation for vanilla weights and more information.
         // In case of multiple prefixes with similar functions this can be used with a switch/case to provide different chances for different prefixes

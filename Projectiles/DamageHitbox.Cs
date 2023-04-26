@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("");
+            ////DisplayName.SetDefault("");
         }
         public override void SetDefaults()
         {
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
                 Projectile.Center = player.Center;
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[0] == 1)
             {

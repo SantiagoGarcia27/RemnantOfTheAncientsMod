@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -11,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 
     public class Stick_f_P : ModProjectile
     {
-        public override void SetStaticDefaults() => DisplayName.SetDefault("Stick_f_P");
+       // public override void SetStaticDefaults() => //DisplayName.SetDefault("Stick_f_P");
         public override void SetDefaults()
         {
             Projectile.width = 16;     
@@ -49,9 +48,8 @@ namespace RemnantOfTheAncientsMod.Projectiles
                 usePos -= rotVector * 8f;
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-
             target.immune[Projectile.owner] = 0;
         }
     }
@@ -62,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.Leaf;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("LeafFriendlyClone");
+           // //DisplayName.SetDefault("LeafFriendlyClone");
             Main.projFrames[Projectile.type] = 5;
         }
         public override void SetDefaults()
@@ -123,7 +121,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
                 usePos -= rotVector * 8f;
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.immune[Projectile.owner] = 0;
         }

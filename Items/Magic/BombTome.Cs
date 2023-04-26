@@ -10,10 +10,10 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Bomb Tome");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Tom Bomb");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome de bombe");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo Explosivo");
+//DisplayName.SetDefault("Bomb Tome");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Tom Bomb");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome de bombe");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo Explosivo");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

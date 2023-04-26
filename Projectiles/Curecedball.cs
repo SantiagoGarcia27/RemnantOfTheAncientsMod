@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Dusts;
 using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -17,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Curecedball"); //projectile name
+		//	//DisplayName.SetDefault("Curecedball"); //projectile name
 
 		}
 		public override void SetDefaults()
@@ -85,7 +84,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 		{
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (Main.rand.NextBool())
 			{

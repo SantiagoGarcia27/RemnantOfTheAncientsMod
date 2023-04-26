@@ -14,21 +14,22 @@ namespace RemnantOfTheAncientsMod.Items.Armor
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Night Hood");
-			if (RemnantOfTheAncientsMod.CalamityMod != null) { Tooltip.SetDefault("Increases Rogue damage by 13%."); }
-			else { Tooltip.SetDefault("Increases Throwing damage by 13%."); }
-           
+			//DisplayName.SetDefault("Night Hood");
+			if (RemnantOfTheAncientsMod.CalamityMod != null) { }// //Tooltip.SetDefault("Increases Rogue damage by 13%."); }
+			else
+			{// //Tooltip.SetDefault("Increases Throwing damage by 13%."); }
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Capucha de la Noche");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-			+ "\nAumenta el daño de lanzamiento en un 13%.");
 
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Gráves de Nuit");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			+ "\nAugmente les d�g�ts de projection de 13%");
+				//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Capucha de la Noche");
+				////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
+				//+ "\nAumenta el daño de lanzamiento en un 13%.");
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
+				////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Gráves de Nuit");
+				////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
+				//+ "\nAugmente les d�g�ts de projection de 13%");
+			}
+				CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			}
 
 		public override void SetDefaults()
 		{

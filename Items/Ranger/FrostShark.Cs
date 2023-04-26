@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Frozen Shark");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Requin congelé");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiburón Congelado");
+			//DisplayName.SetDefault("Frozen Shark");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Requin congelé");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiburón Congelado");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

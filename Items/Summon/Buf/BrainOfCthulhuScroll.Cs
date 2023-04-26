@@ -13,12 +13,12 @@ namespace RemnantOfTheAncientsMod.Items.Summon.Buf
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Psychic Scroll");
-Tooltip.SetDefault("You become invunerable for 4s");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin psychique");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "tu es invulnérable pendant 4s");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino psíquico");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "eres invulnerable durante 4s");
+//DisplayName.SetDefault("Psychic Scroll");
+//Tooltip.SetDefault("You become invunerable for 4s");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin psychique");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "tu es invulnérable pendant 4s");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino psíquico");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "eres invulnerable durante 4s");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

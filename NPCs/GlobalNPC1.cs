@@ -5,6 +5,7 @@ using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Buffs.Debuff;
+using static Terraria.NPC;
 
 namespace RemnantOfTheAncientsMod.NPCs
 {
@@ -91,21 +92,21 @@ namespace RemnantOfTheAncientsMod.NPCs
 				}
 			}
 		}
-		public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
-		{
-			if (Marble_Erosion)
-			{
-				npc.defense = npc.defDefense - 2;
-				Can_Marble = true;
-			}
-			else
-			{
-				npc.defense = npc.defDefense;
-			}
-			return base.StrikeNPC(npc, ref damage, defense, ref knockback, hitDirection, ref crit);
-		}
-
-		public override void DrawEffects(NPC NPC, ref Color drawColor)
+		//public override int StrikeNPC(HitInfo hit)
+  //      {
+		//	if (Marble_Erosion)
+		//	{
+		//		npc.defense = npc.defDefense - 2;
+		//		Can_Marble = true;
+		//	}
+		//	else
+		//	{
+		//		npc.defense = npc.defDefense;
+		//	}
+		//	return base.StrikeNPC(npc, ref damage, defense, ref knockback, hitDirection, ref crit);
+		//}
+       
+        public override void DrawEffects(NPC NPC, ref Color drawColor)
 		{
 			if (Burn_Sand)
 			{

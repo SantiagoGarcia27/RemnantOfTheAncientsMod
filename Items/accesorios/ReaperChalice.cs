@@ -15,15 +15,15 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         private static readonly Color rarityColorTwo = GetReaperColor(2);
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Chalice of souls");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "moissonneuse");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cáliz de almas");
-            Tooltip.SetDefault("You can store the souls of defeated bosses in this chalice to gain their power."
-            + "\n(only works in reaper)");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous pouvez stocker les âmes des boss vaincus dans ce calice pour gagner leur pouvoir."
-            + "\n(ne fonctionne que dans Reaper)");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Puedes almacenar las almas de los jefes derrotados en este caliz para obtener su poder."
-            + "\n(Solo funciona en cegador)");
+            //DisplayName.SetDefault("Chalice of souls");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "moissonneuse");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cáliz de almas");
+           // //Tooltip.SetDefault("You can store the souls of defeated bosses in this chalice to gain their power."
+            ////+ "\n(only works in reaper)");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous pouvez stocker les âmes des boss vaincus dans ce calice pour gagner leur pouvoir."
+            ////+ "\n(ne fonctionne que dans Reaper)");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Puedes almacenar las almas de los jefes derrotados en este caliz para obtener su poder."
+            ////+ "\n(Solo funciona en cegador)");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

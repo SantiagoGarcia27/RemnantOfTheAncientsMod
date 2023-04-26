@@ -18,7 +18,7 @@ return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
 		}
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("ExpertToggler");
+//DisplayName.SetDefault("ExpertToggler");
 		}
 
 		public override void SetDefaults()

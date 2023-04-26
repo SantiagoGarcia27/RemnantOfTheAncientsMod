@@ -13,14 +13,14 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Cursed Shotgun");
-Tooltip.SetDefault("5% chance of not spending ammo");
+//DisplayName.SetDefault("Cursed Shotgun");
+//Tooltip.SetDefault("5% chance of not spending ammo");
 
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Escopeta Maldita");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Probabilidad del 5% de no gastar munición ");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Escopeta Maldita");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Probabilidad del 5% de no gastar munición ");
 
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusil de chasse maudit");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "5% de chances de ne pas dépenser de munitions ");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusil de chasse maudit");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "5% de chances de ne pas dépenser de munitions ");
 
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

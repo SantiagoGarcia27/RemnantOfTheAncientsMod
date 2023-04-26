@@ -18,8 +18,8 @@ namespace RemnantOfTheAncientsMod.Tiles
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.addTile(Type);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Table");
+            LocalizedText name = CreateMapEntryName();
+			//name.SetDefault("Table");
 			AddMapEntry(new Color(144, 148, 144), name);
 			//dustType = 11;
 			//disableSmartCursor = true;

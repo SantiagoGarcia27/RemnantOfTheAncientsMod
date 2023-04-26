@@ -12,15 +12,15 @@ namespace RemnantOfTheAncientsMod.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Night Fishing Rod");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Nocna wędka");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Canne à pêche de nuit");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caña de pescar nocturna");
-			Tooltip.SetDefault("");
+			//DisplayName.SetDefault("Night Fishing Rod");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Nocna wędka");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Canne à pêche de nuit");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caña de pescar nocturna");
+			//Tooltip.SetDefault("");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			/* DisplayName.AddTranslation(GameCulture.Russian, "Туксонитовый топор");
-			DisplayName.AddTranslation(GameCulture.Chinese, "毒x斧");*/
+			/* //DisplayName.AddTranslation(GameCulture.Russian, "Туксонитовый топор");
+			//DisplayName.AddTranslation(GameCulture.Chinese, "毒x斧");*/
 		}
 
 		public override void SetDefaults()

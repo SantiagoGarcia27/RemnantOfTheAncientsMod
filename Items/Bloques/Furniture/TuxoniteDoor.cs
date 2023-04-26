@@ -10,9 +10,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 	public class TuxoniteDoor : ModItem
 	{
 		public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Tuxonite Door");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Porte en tuxonite");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Puerta de tusonita");
+            //DisplayName.SetDefault("Tuxonite Door");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Porte en tuxonite");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Puerta de tusonita");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

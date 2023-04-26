@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Reinforced Iron Broadsword");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Epée large en fer renforcé");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Hierro Reforzado");
+			//DisplayName.SetDefault("Reinforced Iron Broadsword");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Epée large en fer renforcé");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Hierro Reforzado");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger.Rep
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tuxonite Repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur Tuxonite");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de tusonita");
+            //DisplayName.SetDefault("Tuxonite Repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur Tuxonite");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de tusonita");
         }
         public override void SetDefaults()
         {

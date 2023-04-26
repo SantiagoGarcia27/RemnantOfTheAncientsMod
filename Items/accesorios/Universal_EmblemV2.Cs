@@ -14,12 +14,12 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         public override void SetStaticDefaults()
         {
             multilier = (ModLoader.TryGetMod("CalamityMod", out Mod mod))? 20:25;
-            DisplayName.SetDefault("Universal Emblem V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Universel V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal V2");
-            Tooltip.SetDefault("Increases all damage by " + multilier + "%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de " + multilier + "%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un " + multilier + "%");
+            //DisplayName.SetDefault("Universal Emblem V2");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Universel V2");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal V2");
+           // //Tooltip.SetDefault("Increases all damage by " + multilier + "%");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les dégâts de " + multilier + "%");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el daño en un " + multilier + "%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

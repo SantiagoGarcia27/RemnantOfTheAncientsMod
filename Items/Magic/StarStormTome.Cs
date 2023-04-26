@@ -13,10 +13,10 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 	{
 		public override void SetStaticDefaults()
 		{
-            DisplayName.SetDefault("Star Storm Tome");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Star Tome");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome étoile");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo de estrellas");
+            //DisplayName.SetDefault("Star Storm Tome");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Star Tome");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome étoile");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo de estrellas");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

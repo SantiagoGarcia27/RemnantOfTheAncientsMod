@@ -11,28 +11,28 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mana Overcharger");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Mana Overcharger");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Surcharge de mana");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sobrecargador de Maná");
+            //DisplayName.SetDefault("Mana Overcharger");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Mana Overcharger");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Surcharge de mana");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sobrecargador de Maná");
 
-            Tooltip.SetDefault("Increases mana regeneration in exchange for magic damage by 5%"
-            + "\n10% reduce mana usage"
-            + "\nAutomatically use mana potions when needed"
-            + "\nincreases pickup range for mana stars"
-            + "\nyou are immune to Mana Sickness");
+           // //Tooltip.SetDefault("Increases mana regeneration in exchange for magic damage by 5%"
+            //+ "\n10% reduce mana usage"
+            //+ "\nAutomatically use mana potions when needed"
+            //+ "\nincreases pickup range for mana stars"
+            //+ "\nyou are immune to Mana Sickness");
 
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la régénération de mana en échange de dégâts magiques de 5%"
-             +  "\n10% de réduction de l'utilisation du mana"
-             +  "\nUtilisez automatiquement les potions de mana si nécessaire"
-             +  "\naugmenter la portée de ramassage des étoiles de mana"
-             +  "\nvous êtes immunisé contre la maladie du mana");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la régénération de mana en échange de dégâts magiques de 5%"
+             //+  "\n10% de réduction de l'utilisation du mana"
+             //+  "\nUtilisez automatiquement les potions de mana si nécessaire"
+             //+  "\naugmenter la portée de ramassage des étoiles de mana"
+             //+  "\nvous êtes immunisé contre la maladie du mana");
 
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la regeneración de maná a cambio de daño mágico en un 5%."
-             + "\n10% reduce el uso de maná"
-             + "\nUsa pociones de maná automáticamente cuando sea necesario"
-             + "\naumentar el rango de recolección de estrellas de maná"
-             + "\neres inmune a la locura de maná");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la regeneración de maná a cambio de daño mágico en un 5%."
+             //+ "\n10% reduce el uso de maná"
+             //+ "\nUsa pociones de maná automáticamente cuando sea necesario"
+             //+ "\naumentar el rango de recolección de estrellas de maná"
+             //+ "\neres inmune a la locura de maná");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

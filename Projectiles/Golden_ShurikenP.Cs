@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Golden_ShurikenP"); //projectile name
+            //DisplayName.SetDefault("Golden_ShurikenP"); //projectile name
         }
         public override void SetDefaults()
         {

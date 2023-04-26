@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tomb_BulletP");
+            //DisplayName.SetDefault("Tomb_BulletP");
         }
         public override void SetDefaults()
         {

@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Items.pets
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Follow");
+//DisplayName.SetDefault("Follow");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults() 

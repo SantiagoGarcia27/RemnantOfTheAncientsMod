@@ -11,9 +11,9 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("mini/gun");
-Tooltip.SetDefault("A small pistol");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una pistola pequeña");
+//DisplayName.SetDefault("mini/gun");
+//Tooltip.SetDefault("A small pistol");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una pistola pequeña");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

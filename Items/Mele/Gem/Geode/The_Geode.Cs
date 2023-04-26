@@ -23,9 +23,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
         //public override void SetStaticDefaults()
         //{
-        //    //DisplayName.SetDefault("The Geode");
-        //    //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-        //    //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+        //    ////DisplayName.SetDefault("The Geode");
+        //    ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+        //    ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
 
         //   //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         //}      
@@ -39,17 +39,17 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("Inflict Slow on enemies" +
-               "\nShoot a sapphire sword that fragments on hit");
+            ////DisplayName.SetDefault("The Geode");
+            ////Tooltip.SetDefault("Inflict Slow on enemies" +
+            //   "\nShoot a sapphire sword that fragments on hit");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflige Ralentissement aux ennemis" +
-              "\nTirez sur une épée de saphir qui se fragmente au coup");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflige Ralentissement aux ennemis" +
+            //  "\nTirez sur une épée de saphir qui se fragmente au coup");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije lentitud a los enemigos" +
-                 "\nDispara una espada de safiro que se fragmenta al golpear");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije lentitud a los enemigos" +
+            //     "\nDispara una espada de safiro que se fragmenta al golpear");
 
             //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -59,9 +59,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             Item.shoot = ModContent.ProjectileType<SpiritGemSword>();
             Item.shootSpeed = 5f;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(player, target, damage, knockBack, crit);   
             target.AddBuff(BuffID.Slow, 240);
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -81,20 +80,19 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int GemId => ItemID.LargeEmerald;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("50% chance to heal player 5hp per hit");
+            ////DisplayName.SetDefault("The Geode");
+            ////Tooltip.SetDefault("50% chance to heal player 5hp per hit");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "50% de chances de soigner le joueur de 5 PV par coup");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "50% de chances de soigner le joueur de 5 PV par coup");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiene un 50% de provavilidad de curarte 5 de vida");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiene un 50% de provavilidad de curarte 5 de vida");
 
            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
-        {
-            base.OnHitNPC(player, target, damage, knockBack, crit);
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {      
             if (Main.rand.NextBool(2)) player.Heal(5);
         }
     }
@@ -106,22 +104,21 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int GemId => ItemID.LargeRuby;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("Inflict fire on enemies" +
-                "\n Create explosions on hit");
+            ////DisplayName.SetDefault("The Geode");
+            ////Tooltip.SetDefault("Inflict fire on enemies" +
+            //    "\n Create explosions on hit");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger des tirs aux ennemis" +
-                "\n Créer des explosions au coup");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger des tirs aux ennemis" +
+            //    "\n Créer des explosions au coup");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos" +
-                  "\n Crea explociones al atacar");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego a los enemigos" +
+            //      "\n Crea explociones al atacar");
            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(player,target,damage,knockBack,crit);
             target.AddBuff(BuffID.OnFire, 240);
             if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
             {
@@ -137,19 +134,18 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int GemId => ItemID.LargeAmethyst;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("Inflict Confused on enemies");
+            ////DisplayName.SetDefault("The Geode");
+            ////Tooltip.SetDefault("Inflict Confused on enemies");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflict Confused sur les ennemis");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflict Confused sur les ennemis");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije confución a los enemigos");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije confución a los enemigos");
            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(player, target, damage, knockBack, crit);
             target.AddBuff(BuffID.Confused, 240);
         }
     }
@@ -161,19 +157,18 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int GemId => ItemID.LargeTopaz;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Geode");
-            Tooltip.SetDefault("Inflict Ichor on enemies");
+            ////DisplayName.SetDefault("The Geode");
+            ////Tooltip.SetDefault("Inflict Ichor on enemies");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infligez Ichor aux ennemis");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infligez Ichor aux ennemis");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije Icor a los enemigos");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            ////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije Icor a los enemigos");
            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(player, target, damage, knockBack, crit);
             target.AddBuff(BuffID.Ichor, 240);
         }
     }
@@ -185,9 +180,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override int GemId => ItemID.LargeDiamond;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Geode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            ////DisplayName.SetDefault("The Geode");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
             //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }
@@ -200,9 +195,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Geode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            ////DisplayName.SetDefault("The Geode");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -221,9 +216,8 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-
             int numProjectiles = 6;
             float spacing = MathHelper.TwoPi / numProjectiles;
             float radius = 10 * 16f;

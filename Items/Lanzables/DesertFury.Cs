@@ -20,14 +20,14 @@ namespace RemnantOfTheAncientsMod.Items.Lanzables
             string textEs = RemnantOfTheAncientsMod.CalamityMod != null ? "\nEl ataque con sigilo hace un diparo triple" : "";
             string textFr = RemnantOfTheAncientsMod.CalamityMod != null ? "\nStealth Strike tire deux autres copies de la lance" : "";
 
-            DisplayName.SetDefault("Desert Fury");
-            Tooltip.SetDefault("The power of the earth will indulge in this weapon." + textEn);
+            //DisplayName.SetDefault("Desert Fury");
+           // //Tooltip.SetDefault("The power of the earth will indulge in this weapon." + textEn);
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"fureur du désert");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La puissance de la terre se livrera à cette arme" + textFr);
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"fureur du désert");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La puissance de la terre se livrera à cette arme" + textFr);
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Furia desertica");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"El poder de la tierra se consentra en este arma" + textEs);
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Furia desertica");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"El poder de la tierra se consentra en este arma" + textEs);
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

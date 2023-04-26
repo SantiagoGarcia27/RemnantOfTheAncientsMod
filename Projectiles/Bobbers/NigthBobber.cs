@@ -24,7 +24,7 @@ new Color(139, 42, 156, 100) // A blue color
 		private Color FishingLineColor => PossibleLineColors[fishingLineColorIndex];
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Nigth Bobber");
+//DisplayName.SetDefault("Nigth Bobber");
 		}
 
 		public override void SetDefaults()

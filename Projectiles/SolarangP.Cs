@@ -15,8 +15,8 @@ namespace RemnantOfTheAncientsMod.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("SolarangP"); //projectile name
-          //  ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
+           // //DisplayName.SetDefault("SolarangP"); //projectile name
+                                                 //  ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
         }
         public override void SetDefaults()
         {
@@ -26,15 +26,15 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Projectile.tileCollide = false;
             Projectile.penetrate = 2;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) 
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-if (Main.rand.NextBool())
+            if (Main.rand.NextBool())
             {
-	target.AddBuff(BuffID.Daybreak, 300);
-}
+                target.AddBuff(BuffID.Daybreak, 300);
+            }
             if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, damage / 10, 0);
+                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, hit.Damage / 10, 0);
             }
         }
 

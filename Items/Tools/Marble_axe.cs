@@ -10,9 +10,9 @@ namespace RemnantOfTheAncientsMod.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Marble Axe");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Hache marbre");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Hacha de marmol");
+//DisplayName.SetDefault("Marble Axe");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Hache marbre");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Hacha de marmol");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

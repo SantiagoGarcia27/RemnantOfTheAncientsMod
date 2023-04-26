@@ -12,10 +12,10 @@ public class gold_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Gold Repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Złoty Repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur d'or");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de Oro");
+//DisplayName.SetDefault("Gold Repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Złoty Repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur d'or");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de Oro");
 		}
      public override void SetDefaults()
     {

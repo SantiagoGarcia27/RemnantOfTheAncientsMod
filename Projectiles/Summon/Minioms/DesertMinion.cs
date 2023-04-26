@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Baby Desert Aniquilator Minion");
+           // //DisplayName.SetDefault("Baby Desert Aniquilator Minion");
             Main.projFrames[Projectile.type] = 6;
 
             Main.projPet[Projectile.type] = true;
@@ -125,7 +125,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
         {
             return false;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Main.rand.NextBool())
             {

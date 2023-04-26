@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.Antlion;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Antlion");
+            //DisplayName.SetDefault("Antlion");
 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Antlion];
         }
@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.Vulture;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Vulture");
+            //DisplayName.SetDefault("Vulture");
 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Vulture];
         }
@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.WalkingAntlion;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Antlion Charger");
+            //DisplayName.SetDefault("Antlion Charger");
 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WalkingAntlion];
         }
@@ -79,7 +79,7 @@ namespace RemnantOfTheAncientsMod.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.DesertScorpionWalk;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sand Poacher");
+            //DisplayName.SetDefault("Sand Poacher");
 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DesertScorpionWalk];
         }
@@ -101,7 +101,7 @@ namespace RemnantOfTheAncientsMod.NPCs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Servant of Desert Annihilator");
+            //DisplayName.SetDefault("Servant of Desert Annihilator");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.SandSlime];
         }
         public override void SetDefaults()
@@ -119,7 +119,7 @@ namespace RemnantOfTheAncientsMod.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.FlyingAntlion;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Antlion Swarmer");
+            //DisplayName.SetDefault("Antlion Swarmer");
 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingAntlion];
         }

@@ -13,10 +13,10 @@ public class Tyrant_repeater : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Tyrant repeater"); 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wzmacniacz tyrana");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répétiteur tyran");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor del Tirano");
+//DisplayName.SetDefault("Tyrant repeater"); 
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wzmacniacz tyrana");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répétiteur tyran");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor del Tirano");
 		}
      public override void SetDefaults()
     {

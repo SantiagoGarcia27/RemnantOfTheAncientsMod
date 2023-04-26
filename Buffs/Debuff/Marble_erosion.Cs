@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Marble rosion");
+			//DisplayName.SetDefault("Marble rosion");
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;
@@ -22,6 +22,7 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 		public override void Update(NPC npc, ref int buffIndex)
 		{
 			npc.GetGlobalNPC<GlobalNPC1>().Marble_Erosion = true;
+			npc.defDefense -= 2;
 		}
 
 	}

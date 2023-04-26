@@ -8,8 +8,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Javalina");
-			Description.SetDefault("Losing life");
+			//DisplayName.SetDefault("Javalina");
+			//Description.SetDefault("Losing life");
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

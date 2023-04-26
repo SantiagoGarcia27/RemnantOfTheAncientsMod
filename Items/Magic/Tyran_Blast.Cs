@@ -13,10 +13,10 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 	{
 		public override void SetStaticDefaults()
 		{
-            DisplayName.SetDefault("Tyrant blast");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wybuch tyrana");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Explosion de tyran");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rafaga tirana");
+            //DisplayName.SetDefault("Tyrant blast");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Wybuch tyrana");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Explosion de tyran");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rafaga tirana");
 Item.staff[Item.type] = true;
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

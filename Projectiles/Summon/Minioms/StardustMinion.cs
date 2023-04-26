@@ -10,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("StardustMinion");
+          //  //DisplayName.SetDefault("StardustMinion");
             Main.projFrames[Projectile.type] = 6;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
                 Projectile.timeLeft = 2;
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.immune[Projectile.owner] = 2;
         }

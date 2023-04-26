@@ -14,14 +14,14 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Infernal Chalice");
-            Tooltip.SetDefault("Summons the Infernal Tyrant");
+            //DisplayName.SetDefault("Infernal Chalice");
+           // //Tooltip.SetDefault("Summons the Infernal Tyrant");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Calice infernal");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque le tyran infernal");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Calice infernal");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque le tyran infernal");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cáliz infernal");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Tirano Infernal");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cáliz infernal");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Tirano Infernal");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
             }
             else
             {
-                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<InfernalTyrantHead>(), 0f, 0f, 0, 0, 0);
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<InfernalTyrantHead>(), 0f, 0f, 0, 0, 0);
             }
             return true;
         }

@@ -12,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Items.Mele
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("SlimeGun V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "SlimeGun V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "SlimeGun V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arma Slime V2");
+            //DisplayName.SetDefault("SlimeGun V2");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "SlimeGun V2");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "SlimeGun V2");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arma Slime V2");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             /*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(30, 10));//5,4 //30 9 */
         }
@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
         {
             return new Vector2(-10, 0);
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.BrokenArmor, 1080);
             target.AddBuff(BuffID.Slow, 1080);

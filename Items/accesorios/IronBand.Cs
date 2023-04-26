@@ -10,12 +10,12 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Iron Band");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bande de Fer");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Banda de Hierro");
-			Tooltip.SetDefault("2% Increased damage reduction");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Réduction des dégâts augmentée de 2%");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la reducción de daño en un 2%");
+			//DisplayName.SetDefault("Iron Band");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bande de Fer");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Banda de Hierro");
+			//Tooltip.SetDefault("2% Increased damage reduction");
+			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Réduction des dégâts augmentée de 2%");
+			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la reducción de daño en un 2%");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

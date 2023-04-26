@@ -154,7 +154,7 @@ namespace RemnantOfTheAncientsMod
         //[Increment(1f)]
         //[DrawTicks]
         //[DefaultValue(200f)]
-        //[Tooltip("Feliz día de los inocentes")]
+        //[//Tooltip("Feliz día de los inocentes")]
         //public float xdlevel { get; set; }
 
     }

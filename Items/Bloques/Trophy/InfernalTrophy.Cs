@@ -9,10 +9,10 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Trophy
 	public class InfernalTrophy : ModItem
 	{
 		public override void SetStaticDefaults() {
-DisplayName.SetDefault("Infernal Tyrant Trophy");	
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Piekielny Tyran Trophy");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'Tyran infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo de Tirano infernal");
+//DisplayName.SetDefault("Infernal Tyrant Trophy");	
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Piekielny Tyran Trophy");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'Tyran infernal");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo de Tirano infernal");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

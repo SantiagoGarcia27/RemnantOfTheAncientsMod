@@ -12,10 +12,10 @@ public class iron_repeter : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Iron Repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Żelazny Repeater");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur de fer");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de hierro");
+//DisplayName.SetDefault("Iron Repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Żelazny Repeater");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Répéteur de fer");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Repetidor de hierro");
 		}
      public override void SetDefaults()
     {

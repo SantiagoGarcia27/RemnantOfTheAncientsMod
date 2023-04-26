@@ -7,6 +7,7 @@ using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Items.Bloques.Trophy;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Tiles
 {
@@ -21,10 +22,10 @@ namespace RemnantOfTheAncientsMod.Tiles
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.StyleWrapLimit = 36;
 			TileObjectData.addTile(Type);
-			//dustType = 7;
-			//disableSmartCursor = true;
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Trophy");
+            //dustType = 7;
+            //disableSmartCursor = true;
+            LocalizedText name = CreateMapEntryName();
+			//name.SetDefault("Trophy");
 			AddMapEntry(new Color(120, 85, 60), name);
 		}
 

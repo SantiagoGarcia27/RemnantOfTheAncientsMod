@@ -10,9 +10,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 	public class TuxoniteChair : ModItem
 	{
 		public override void SetStaticDefaults() {
-            DisplayName.SetDefault("Tuxonite Chair");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chaise en tuxonite");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Silla de tusonita");
+            //DisplayName.SetDefault("Tuxonite Chair");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chaise en tuxonite");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Silla de tusonita");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

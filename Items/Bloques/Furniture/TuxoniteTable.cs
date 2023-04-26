@@ -9,9 +9,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Furniture
 	public class TuxoniteTable : ModItem
 	{
 		public override void SetStaticDefaults() {
-DisplayName.SetDefault("Tuxonite Table");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tableau en tuxonite");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mesa de tusonita");
+//DisplayName.SetDefault("Tuxonite Table");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tableau en tuxonite");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mesa de tusonita");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -12,12 +12,12 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Elder Speaker");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Orateur aîné");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Altavoz Anciano");
-            Tooltip.SetDefault("Summons Skeletron");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque le Squelette");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Esqueletrón");
+            //DisplayName.SetDefault("Elder Speaker");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Orateur aîné");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Altavoz Anciano");
+           // //Tooltip.SetDefault("Summons Skeletron");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque le Squelette");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Esqueletrón");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
         
@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
             }
             else
             {
-                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, NPCID.SkeletronHead, 0f, 0f, 0, 0, 0);
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, NPCID.SkeletronHead, 0f, 0f, 0, 0, 0);
             }
             return true;
         }

@@ -15,12 +15,12 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
             string TextFr = ModLoader.TryGetMod("CalamityMod", out _) ? "voyou" : "lancer";
             string TextEs = ModLoader.TryGetMod("CalamityMod", out _) ? "de picaro" : "lanzable";
 
-            DisplayName.SetDefault("Thrower Emblem");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du Lanceur");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador");
-            Tooltip.SetDefault("Increases "+ TextUs + " damage by 15% ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de "+ TextFr +" de 15%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño "+ TextEs + " en un 15%");
+            //DisplayName.SetDefault("Thrower Emblem");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du Lanceur");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador");
+           // //Tooltip.SetDefault("Increases "+ TextUs + " damage by 15% ");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de "+ TextFr +" de 15%");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño "+ TextEs + " en un 15%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

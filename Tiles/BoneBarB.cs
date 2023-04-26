@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Tiles
 			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.MetalBar")); // localized text for Metal Bar
 		}
 
-		public override bool Drop(int i, int j)
+        public override bool CanDrop(int i, int j)
 		{
 			Tile t = Main.tile[i, j];
 			int style = t.TileFrameX / 18;
@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Tiles
 			{
 				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemType<Items.Items.BoneBar>());
 			}
-			return base.Drop(i, j);
+			return base.CanDrop(i, j);
 		}
 	}
 }

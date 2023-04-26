@@ -11,12 +11,12 @@ namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Sandstorm Token");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jeton de tempête de sable");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ficha arenosa");
-Tooltip.SetDefault("Summons the sandstorm");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque la tempête de sable");
-Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Convoca la tormenta de arena");
+//DisplayName.SetDefault("Sandstorm Token");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jeton de tempête de sable");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ficha arenosa");
+//Tooltip.SetDefault("Summons the sandstorm");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque la tempête de sable");
+//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Convoca la tormenta de arena");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
 		}
 

@@ -16,13 +16,13 @@ namespace RemnantOfTheAncientsMod.Items.Summon
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desert Staff");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del desierto");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Staff");
+            //DisplayName.SetDefault("Desert Staff");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bastón del desierto");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Staff");
 
-            Tooltip.SetDefault("Summons a Baby Desert Aniquilator to fight for you");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un bebé aniquilador del desierto para que luche por ti");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przywołuje Baby Desert Aniquilator, aby walczył dla ciebie");
+           // //Tooltip.SetDefault("Summons a Baby Desert Aniquilator to fight for you");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un bebé aniquilador del desierto para que luche por ti");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Przywołuje Baby Desert Aniquilator, aby walczył dla ciebie");
 
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;

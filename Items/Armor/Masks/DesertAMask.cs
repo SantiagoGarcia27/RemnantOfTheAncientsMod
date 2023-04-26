@@ -12,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Items.Armor.Masks
 	{
 		public override void SetStaticDefaults() 
 		{
-DisplayName.SetDefault("Desert Annihilator Mask");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Pustynnego Anikwilatora");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'aniquilateur Du Désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Aniquilador Del Desierto");
+//DisplayName.SetDefault("Desert Annihilator Mask");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Maska Pustynnego Anikwilatora");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque D'aniquilateur Du Désert");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Máscara de Aniquilador Del Desierto");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

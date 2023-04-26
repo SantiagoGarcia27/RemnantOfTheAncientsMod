@@ -19,7 +19,7 @@ Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 ItemID.Sets.ItemIconPulse[Item.type] = true;
 ItemID.Sets.ItemNoGravity[Item.type] = true;
-DisplayName.SetDefault("SoulReset");
+//DisplayName.SetDefault("SoulReset");
 		}
 
 		public override void SetDefaults()

@@ -10,12 +10,12 @@ namespace RemnantOfTheAncientsMod.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Reaper mode");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Mode faucheuse");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Modo segador");
-            Description.SetDefault("You feel hollow");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens creux");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes hueco");
+			//DisplayName.SetDefault("Reaper mode");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Mode faucheuse");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Modo segador");
+            //Description.SetDefault("You feel hollow");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens creux");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes hueco");
             Main.buffNoSave[Type] = false;
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.persistentBuff[Type] = true;

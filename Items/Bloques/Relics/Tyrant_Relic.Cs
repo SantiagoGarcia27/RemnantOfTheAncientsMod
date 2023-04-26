@@ -22,9 +22,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Relics
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Infernal Tyrant relic");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Relique de l'Tyran infernal");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reliquia del Tirano infernal");
+            //DisplayName.SetDefault("Infernal Tyrant relic");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Relique de l'Tyran infernal");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Reliquia del Tirano infernal");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
     }

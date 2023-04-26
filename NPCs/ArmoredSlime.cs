@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Armored Slime");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Slime blindado");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Slime blindé");
+			//DisplayName.SetDefault("Armored Slime");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Slime blindado");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Slime blindé");
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BlueSlime];
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
 			{ // Influences how the NPC looks in the Bestiary

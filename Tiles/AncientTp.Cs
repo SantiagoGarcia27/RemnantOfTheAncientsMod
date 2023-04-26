@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Tiles
 			TileObjectData.addTile(Type);
 			//dustType = -1;
 			//disableSmartCursor = true;
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Table");
+			LocalizedText name = CreateMapEntryName();
+			//name.SetDefault("Table");
 			AddMapEntry(new Color(190, 124, 43), name);//13,88,130
 		}
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)

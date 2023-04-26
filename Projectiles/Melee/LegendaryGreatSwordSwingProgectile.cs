@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Legendary Great Sword");
+			//DisplayName.SetDefault("Legendary Great Sword");
 		}
 
 		public override void SetDefaults()

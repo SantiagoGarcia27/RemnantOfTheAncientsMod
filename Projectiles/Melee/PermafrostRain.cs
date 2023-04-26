@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         public override string Texture => "RemnantOfTheAncientsMod/Items/Mele/Permafrost";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("SkyCutterS"); //projectile name
+            ////DisplayName.SetDefault("SkyCutterS"); //projectile name
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5; // The length of old position to be recorded
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
         }
@@ -90,7 +90,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Glass);
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             /*   Mod CalamityMod = ModLoader.GetMod("CalamityMod");
           if (CalamityMod != null){

@@ -10,7 +10,7 @@ namespace RemnantOfTheAncientsMod.NPCs
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ice Golem");
+            //DisplayName.SetDefault("Ice Golem");
 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.IceGolem];
         }

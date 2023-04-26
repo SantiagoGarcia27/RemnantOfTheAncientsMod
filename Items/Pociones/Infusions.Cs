@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Combat Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate");
+            //DisplayName.SetDefault("Combat Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -45,9 +45,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Combat_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Combat Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate eterno");
+            //DisplayName.SetDefault("Endless Combat Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate eterno");
         }
     }
     #endregion
@@ -57,9 +57,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mining Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            //DisplayName.SetDefault("Mining Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -84,9 +84,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Mining_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Mining Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria eterno");
+            //DisplayName.SetDefault("Endless Mining Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria eterno");
         }
     }
     #endregion
@@ -96,9 +96,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Summoner Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador");
+            //DisplayName.SetDefault("Summoner Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -121,9 +121,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Summon_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Summoner Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador eterno");
+            //DisplayName.SetDefault("Endless Summoner Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador eterno");
         }
     }
     #endregion
@@ -133,9 +133,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Melee Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero");
+            //DisplayName.SetDefault("Melee Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -158,9 +158,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Unlimited Melee Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero eterno");
+            //DisplayName.SetDefault("Unlimited Melee Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero eterno");
         }
         public override Item ItemBase => new(ItemType<Melee_Potion_Kit>());
 
@@ -172,9 +172,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Magic Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago");
+            //DisplayName.SetDefault("Magic Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -195,9 +195,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Magic Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago eterno");
+            //DisplayName.SetDefault("Endless Magic Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago eterno");
         }
         public override Item ItemBase => new(ItemType<Mage_Potion_Kit>());
 
@@ -209,9 +209,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Tank Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin");
+            //DisplayName.SetDefault("Tank Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -236,9 +236,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Tank_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Tank Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin eterno");
+            //DisplayName.SetDefault("Endless Tank Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin eterno");
         }
     }
     #endregion
@@ -248,9 +248,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ranger Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador");
+            //DisplayName.SetDefault("Ranger Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -273,9 +273,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Unlimited Ranger Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador eterno");
+            //DisplayName.SetDefault("Unlimited Ranger Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador eterno");
         }
     }
     #endregion
@@ -285,9 +285,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Basic Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico");
+            //DisplayName.SetDefault("Basic Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -310,9 +310,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Basic_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Basic Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico eterno");
+            //DisplayName.SetDefault("Endless Basic Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico eterno");
 
         }
         #endregion
@@ -322,9 +322,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fisher Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de pêche");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de pescador");
+            //DisplayName.SetDefault("Fisher Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de pêche");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de pescador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -350,9 +350,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Fisher_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Fisher Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de pêche sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de pescador eterno");
+            //DisplayName.SetDefault("Endless Fisher Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de pêche sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de pescador eterno");
         }
     }
     #endregion
@@ -362,9 +362,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Advanced Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado");
+            //DisplayName.SetDefault("Advanced Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -387,9 +387,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Advanced_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Advanced Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado eterno");
+            //DisplayName.SetDefault("Endless Advanced Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado eterno");
         }
     }
     #endregion
@@ -399,9 +399,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Exploration Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración");
+            //DisplayName.SetDefault("Exploration Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -425,9 +425,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Exploration_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Exploration Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration sasn fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración eterno");
+            //DisplayName.SetDefault("Endless Exploration Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration sasn fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración eterno");
         }
     }
     #endregion
@@ -437,9 +437,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Poseidon Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón");
+            //DisplayName.SetDefault("Poseidon Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -461,9 +461,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Poseidon_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Poseidon Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón eterno");
+            //DisplayName.SetDefault("Endless Poseidon Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón eterno");
         }
     }
     #endregion
@@ -473,9 +473,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ultimate Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo");
+            //DisplayName.SetDefault("Ultimate Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -503,9 +503,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Ultimate_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Ultimate Potions Kit");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo eterno");
+            //DisplayName.SetDefault("Endless Ultimate Potions Kit");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo eterno");
         }
     }
     #endregion

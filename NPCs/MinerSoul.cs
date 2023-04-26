@@ -16,7 +16,8 @@ namespace RemnantOfTheAncientsMod.NPCs
 	// It implements the `CustomBehavior` and `ShouldMove` virtual methods being overridden here, as well as the `acceleration` and `accelerationY` field being set in the class constructor.
 	public class MinerSoul : Hover
 	{
-		public MinerSoul()
+        public const string ShopName = "Shop";
+        public MinerSoul()
 		{
 			acceleration = 0.06f;
 			accelerationY = 0.025f;
@@ -24,9 +25,9 @@ namespace RemnantOfTheAncientsMod.NPCs
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Miner Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma minera");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de mineur");
+			////DisplayName.SetDefault("Miner Soul");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma minera");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de mineur");
 			Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Wraith];
 		}
 
@@ -58,20 +59,22 @@ namespace RemnantOfTheAncientsMod.NPCs
 			return projectile.friendly && projectile.owner < 255;
 		}
 
-		public override void HitEffect(int hitDirection, double damage)
-		{
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+      
+		
 			if (NPC.life > 0)
 			{
-				for (int i = 0; i < damage / NPC.lifeMax * 100; i++)
+				for (int i = 0; i < hit.Damage / NPC.lifeMax * 100; i++)
 				{
-					Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Ghost, hitDirection, -1f, 100, new Color(100, 100, 100, 100), 1f);
+					Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Ghost, hit.HitDirection, -1f, 100, new Color(100, 100, 100, 100), 1f);
 					dust.noGravity = true;
 				}
 				return;
 			}
 			for (int i = 0; i < 50; i++)
 			{
-				Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Ghost, 2 * hitDirection, -2f, 100, new Color(100, 100, 100, 100), 1f);
+				Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Ghost, 2 * hit.HitDirection, -2f, 100, new Color(100, 100, 100, 100), 1f);
 				dust.noGravity = true;
 			}
 		}
@@ -93,12 +96,12 @@ namespace RemnantOfTheAncientsMod.NPCs
             return chat;
 		}
 
-		public override void OnChatButtonClicked(bool firstButton, ref bool shop)
-		{
+        public override void OnChatButtonClicked(bool firstButton, ref string shop)
+        {
 			Player player = Main.LocalPlayer;
 			if (firstButton)
 			{
-				shop = true;
+                shop = ShopName;
 			}
 			else
 			{
@@ -149,74 +152,48 @@ namespace RemnantOfTheAncientsMod.NPCs
 			}
 
         }
-		public override void SetupShop(Chest shop, ref int nextSlot)
-		{
-            AddShopItem(shop, nextSlot, ItemType<ironstonepickaxe>(), Item.buyPrice(0, 3, 0, 0));
-            nextSlot++;
-            AddShopItem(shop, nextSlot, ItemID.Torch, Item.buyPrice(0, 0, 0, 30));
-            nextSlot++;
-            AddShopItem(shop, nextSlot, ItemID.Wood, Item.buyPrice(0, 0, 0, 20));
-            nextSlot++;
-            AddShopItem(shop, nextSlot, ItemID.DirtBlock, Item.buyPrice(0, 0, 0, 2));
-            nextSlot++;
-            AddShopItem(shop, nextSlot, ItemID.StoneBlock, Item.buyPrice(0, 0, 0, 5));
-            nextSlot++;
+        public override void AddShops()
+        {
+			var npcShop = new NPCShop(Type, ShopName);
+			
+            npcShop.Add(new Item(ItemType<ironstonepickaxe>()) { shopCustomPrice = Item.buyPrice(0, 3, 0, 0) });
+            npcShop.Add(new Item(ItemID.Torch) { shopCustomPrice = Item.buyPrice(0, 0, 30, 0) });
+            npcShop.Add(new Item(ItemID.Wood) { shopCustomPrice = Item.buyPrice(0, 0, 20, 0) });
+            npcShop.Add(new Item(ItemID.DirtBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 2) });
+            npcShop.Add(new Item(ItemID.StoneBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 5) });
 
-            if (WorldGen.SavedOreTiers.Copper == TileID.Tin) AddShopItem(shop, nextSlot, ItemID.CopperBar, Item.buyPrice(0, 0, 2, 0));
-            if (WorldGen.SavedOreTiers.Copper == TileID.Copper) AddShopItem(shop, nextSlot, ItemID.TinBar, Item.buyPrice(0, 0, 2, 0));
-            nextSlot++;
+            if (WorldGen.SavedOreTiers.Copper == TileID.Tin) npcShop.Add(new Item(ItemID.CopperBar) { shopCustomPrice = Item.buyPrice(0, 0, 2, 0) });
+            if (WorldGen.SavedOreTiers.Copper == TileID.Copper) npcShop.Add(new Item(ItemID.TinBar) { shopCustomPrice = Item.buyPrice(0, 0, 2, 0) });
 
-            if (WorldGen.SavedOreTiers.Iron == TileID.Lead)	AddShopItem(shop, nextSlot, ItemID.IronBar, Item.buyPrice(0, 0, 5, 0));
-			if (WorldGen.SavedOreTiers.Iron == TileID.Iron) AddShopItem(shop, nextSlot, ItemID.LeadBar, Item.buyPrice(0, 0, 5, 0));
-            nextSlot++;
+            if (WorldGen.SavedOreTiers.Iron == TileID.Lead) npcShop.Add(new Item(ItemID.IronBar) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) }); 
+            if (WorldGen.SavedOreTiers.Iron == TileID.Iron) npcShop.Add(new Item(ItemID.LeadBar) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) });
 
-            if (WorldGen.SavedOreTiers.Silver == TileID.Silver) AddShopItem(shop, nextSlot, ItemID.TungstenBar, Item.buyPrice(0, 0, 25, 0));
-            if (WorldGen.SavedOreTiers.Silver == TileID.Tungsten) AddShopItem(shop, nextSlot, ItemID.SilverBar, Item.buyPrice(0, 0, 25, 0));
-            nextSlot++;
+            if (WorldGen.SavedOreTiers.Silver == TileID.Silver) npcShop.Add(new Item(ItemID.TungstenBar) { shopCustomPrice = Item.buyPrice(0, 0, 25, 0) });
+            if (WorldGen.SavedOreTiers.Silver == TileID.Tungsten) npcShop.Add(new Item(ItemID.SilverBar) { shopCustomPrice = Item.buyPrice(0, 0, 25, 0) });
 
-            if (WorldGen.SavedOreTiers.Gold == TileID.Platinum) AddShopItem(shop, nextSlot, ItemID.GoldBar, Item.buyPrice(0, 0, 60, 0));	
-			if (WorldGen.SavedOreTiers.Gold == TileID.Gold) AddShopItem(shop, nextSlot, ItemID.PlatinumBar, Item.buyPrice(0, 0, 70, 0));	
-            nextSlot++;
+            if (WorldGen.SavedOreTiers.Gold == TileID.Platinum) npcShop.Add(new Item(ItemID.GoldBar) { shopCustomPrice = Item.buyPrice(0, 0, 60, 0) });
+            if (WorldGen.SavedOreTiers.Gold == TileID.Gold) npcShop.Add(new Item(ItemID.PlatinumBar) { shopCustomPrice = Item.buyPrice(0, 0, 70, 0) });
 
+            if (Main.hardMode)
+			{
+				npcShop.Add(new Item(ItemID.PinkGel) { shopCustomPrice = Item.buyPrice(0, 0, 50, 0) }); 
+				if (WorldGen.SavedOreTiers.Cobalt == TileID.Palladium) npcShop.Add(new Item(ItemID.CobaltOre) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
+                if (WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt) npcShop.Add(new Item(ItemID.PalladiumOre) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
+                if (WorldGen.SavedOreTiers.Mythril == TileID.Orichalcum) npcShop.Add(new Item(ItemID.MythrilOre) { shopCustomPrice = Item.buyPrice(0, 6, 0, 0) });
+                if (WorldGen.SavedOreTiers.Mythril == TileID.Mythril) npcShop.Add(new Item(ItemID.OrichalcumOre) { shopCustomPrice = Item.buyPrice(0, 6, 0, 0) });
+            }
 			if (NPC.downedSlimeKing)
 			{
-                AddShopItem(shop, nextSlot, ItemID.Amethyst, Item.buyPrice(0, 0, 5, 0));
-                nextSlot++;
-                AddShopItem(shop, nextSlot, ItemID.Topaz, Item.buyPrice(0, 0, 5, 0));
-                nextSlot++;
-                AddShopItem(shop, nextSlot, ItemID.Sapphire, Item.buyPrice(0, 0, 10, 0));
-                nextSlot++;
-                AddShopItem(shop, nextSlot, ItemID.Emerald, Item.buyPrice(0, 0, 10, 0));
-                nextSlot++;
-                AddShopItem(shop, nextSlot, ItemID.Ruby, Item.buyPrice(0, 0, 15, 0));
-                nextSlot++;
-                AddShopItem(shop, nextSlot, ItemID.Diamond, Item.buyPrice(0, 0, 20, 0));
-                nextSlot++;
-            }
-
-			if (Main.hardMode)
-			{
-				AddShopItem(shop, nextSlot, ItemID.PinkGel, Item.buyPrice(0, 0, 50, 0));
-				nextSlot++;
-
-                if (WorldGen.SavedOreTiers.Cobalt == TileID.Palladium) AddShopItem(shop, nextSlot, ItemID.CobaltOre, Item.buyPrice(0, 1, 0, 0));
-                if (WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt) AddShopItem(shop, nextSlot, ItemID.PalladiumOre, Item.buyPrice(0, 1, 0, 0));
-                nextSlot++;
-
-                if (WorldGen.SavedOreTiers.Mythril == TileID.Orichalcum) AddShopItem(shop, nextSlot, ItemID.MythrilOre, Item.buyPrice(0, 6, 0, 0));
-                if (WorldGen.SavedOreTiers.Mythril == TileID.Mythril) AddShopItem(shop, nextSlot, ItemID.OrichalcumOre, Item.buyPrice(0, 6, 0, 0));
-                nextSlot++;
-            }
-		}
-		public void AddShopItem(Chest shop,int nextSlot, int item, int price)
-		{
-            shop.item[nextSlot].SetDefaults(item);
-            shop.item[nextSlot].shopCustomPrice = price;
+				npcShop.Add(new Item(ItemID.Amethyst) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) });
+                npcShop.Add(new Item(ItemID.Topaz) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) });
+                npcShop.Add(new Item(ItemID.Emerald) { shopCustomPrice = Item.buyPrice(0, 0, 10, 0) });
+                npcShop.Add(new Item(ItemID.Sapphire) { shopCustomPrice = Item.buyPrice(0, 0, 10, 0) });
+                npcShop.Add(new Item(ItemID.Ruby) { shopCustomPrice = Item.buyPrice(0, 0, 15, 0) });
+                npcShop.Add(new Item(ItemID.Diamond) { shopCustomPrice = Item.buyPrice(0, 0, 20, 0) });
+            }  
+            npcShop.Register(); 
         }
-
-
-		// Only show health bar of the NPC when close to the player
-		public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
 		{
 			float distance = NPC.Distance(Main.player[NPC.target].Center);
 			if (distance <= 200)

@@ -13,12 +13,12 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Comander Potions");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de comandante");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de comandante");
-            Tooltip.SetDefault("Increases your max number of centries by 1");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el numero maximo de torretas en 1");
+            //DisplayName.SetDefault("Comander Potions");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de comandante");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de comandante");
+           // //Tooltip.SetDefault("Increases your max number of centries by 1");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el numero maximo de torretas en 1");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
         }
         public override void SetDefaults()
@@ -42,12 +42,12 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override Item ItemBase => new(ItemType<Commander_Potion>());
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Comander Potions");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de comandante sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de comandante eterna");
-            Tooltip.SetDefault("Augmente votre nombre maximum de centries de 1");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el numero maximo de torretas en 1");
+            //DisplayName.SetDefault("Endless Comander Potions");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de comandante sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de comandante eterna");
+           // //Tooltip.SetDefault("Augmente votre nombre maximum de centries de 1");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el numero maximo de torretas en 1");
         }
     }
 }

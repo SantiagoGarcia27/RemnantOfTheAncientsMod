@@ -21,6 +21,7 @@ using Terraria.Utilities;
 using System.Linq;
 using RemnantOfTheAncientsMod.World;
 using Terraria.Audio;
+using RemnantOfTheAncientsMod.Items.Tools;
 
 namespace RemnantOfTheAncientsMod.NPCs.Town
 {
@@ -28,7 +29,8 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 	[AutoloadHead]
 	public class Time_Wizard : ModNPC
 	{
-		public override void SetStaticDefaults()
+        public const string ShopName = "Shop";
+        public override void SetStaticDefaults()
 		{
 
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Wizard];
@@ -55,9 +57,9 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				.SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
 				.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate)
 				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
-			DisplayName.SetDefault("Time Wizard");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Magicien du temps");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mago del tiempo");
+			////DisplayName.SetDefault("Time Wizard");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Magicien du temps");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mago del tiempo");
 
 		}
 
@@ -84,7 +86,7 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 			new FlavorTextBestiaryInfoElement("A ancient wizard that study the secrets of the time manipulation"),
 			});
 		}
-		public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
 		{
 			int num = NPC.life > 0 ? 1 : 5;
 			for (int k = 0; k < num; k++)
@@ -93,7 +95,7 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 			}
 		}
 
-		public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        public override bool CanTownNPCSpawn(int numTownNPCs)  
 		{
 			for (int k = 0; k < 255; k++)
 			{
@@ -124,12 +126,12 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 				"Harry"
 			};
 		}
-		public override void OnChatButtonClicked(bool firstButton, ref bool shop)
-		{
+		public override void OnChatButtonClicked(bool firstButton, ref string shop)
+        {
 			Player player = Main.LocalPlayer;
 			if (firstButton)
 			{
-				shop = true;
+				shop = ShopName;
 			}
 			else 
 			{
@@ -140,8 +142,8 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
                 {
                     NetMessage.SendData(MessageID.MiscDataSync, number: Main.myPlayer, number2: 3f);
                 }
-
-                Main.fastForwardTime = true;
+				if (Main.dayTime) Main.fastForwardTimeToDusk = true;
+				else Main.fastForwardTimeToDawn= true;
                 NetMessage.SendData(MessageID.WorldData);
 				world1.TimeWizardTimeAcelerationCouldown = 108000;
             }
@@ -194,68 +196,39 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
 			string a = imput.Replace("\u00BF", "¿").Replace("\u00A1", "¡").Replace("\u00E1", "á").Replace("\u00ED", "í");
 			return a;
 		}
-		//public bool FindItemInventoriPlayer(int ItemChoise)
-		//{
-		//	for (int k = 0; k < 255; k++)
-		//	{
-		//		Player player = Main.player[k];
-		//		if (!player.active)
-		//		{
-		//			continue;
-		//		}
+        //public bool FindItemInventoriPlayer(int ItemChoise)
+        //{
+        //	for (int k = 0; k < 255; k++)
+        //	{
+        //		Player player = Main.player[k];
+        //		if (!player.active)
+        //		{
+        //			continue;
+        //		}
 
-		//		foreach (Item item in player.inventory)
-		//		{
-		//			if (item.type == ItemChoise) return true;
-		//		}
+        //		foreach (Item item in player.inventory)
+        //		{
+        //			if (item.type == ItemChoise) return true;
+        //		}
 
-		//	}
-		//	return false;
-		//}
+        //	}
+        //	return false;
+        //}
 
 
-		
-		public override void SetupShop(Chest shop, ref int nextSlot)
-		{
-            AddShopItem(shop, nextSlot, ItemType<DayToken>(), Item.buyPrice(0, 1, 0, 0));
-            nextSlot++;
-            AddShopItem(shop, nextSlot, ItemType<NightToken>(), Item.buyPrice(0, 1, 0, 0));
-            nextSlot++;
 
-            if (Main.raining)
-			{
-                AddShopItem(shop, nextSlot, ItemType<RainToken>(), Item.buyPrice(0, 1, 0, 0));
-                nextSlot++;
-            }
-			if (Sandstorm.Happening)
-			{
-                AddShopItem(shop, nextSlot, ItemType<SandstormToken>(), Item.buyPrice(0, 1, 0, 0));
-                nextSlot++;
-            }
-			if (NPC.downedQueenBee)
-			{
-                AddShopItem(shop, nextSlot, ItemType<Judgment>(), Item.buyPrice(0, 2, 0, 0));
-                nextSlot++;
-            }
-            if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0)
-            {
-                AddShopItem(shop, nextSlot, ItemType<PlayerStatViewer>(), Item.buyPrice(0, 40, 0, 0));
-                nextSlot++;
-            }
-			if (Main.hardMode)
-			{
-                AddShopItem(shop, nextSlot, ItemID.Sundial, Item.buyPrice(0, 20, 0, 0));
-                nextSlot++;
-            }
-           
-
-		}
-        public void AddShopItem(Chest shop, int nextSlot, int item, int price)
+        public override void AddShops()
         {
-            shop.item[nextSlot].SetDefaults(item);
-            shop.item[nextSlot].shopCustomPrice = price;
-        }
-
+            var npcShop = new NPCShop(Type, ShopName);
+            npcShop.Add(new Item(ItemType<DayToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
+            npcShop.Add(new Item(ItemType<NightToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
+          
+            if (Main.raining) npcShop.Add(new Item(ItemType<RainToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });        
+			if (Sandstorm.Happening) npcShop.Add(new Item(ItemType<SandstormToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
+			if (NPC.downedQueenBee) npcShop.Add(new Item(ItemType<Judgment>()) { shopCustomPrice = Item.buyPrice(0, 2, 0, 0) }); 
+            if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0) npcShop.Add(new Item(ItemType<PlayerStatViewer>()) { shopCustomPrice = Item.buyPrice(0, 40, 0, 0) });
+			if (Main.hardMode) npcShop.Add(new Item(ItemID.Sundial) { shopCustomPrice = Item.buyPrice(0, 20, 0, 0) });  
+		}
         public override bool CanGoToStatue(bool toKingStatue) => true;
 
 		public override void OnGoToStatue(bool toKingStatue)

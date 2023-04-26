@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
         private int attackCounter;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Baby Frozen Assaulter Minion");
+            //DisplayName.SetDefault("Baby Frozen Assaulter Minion");
 
             Main.projFrames[Projectile.type] = 6;
             Main.projPet[Projectile.type] = true;

@@ -10,8 +10,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Buffs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Money Collector");
-            Description.SetDefault("");
+            //DisplayName.SetDefault("Money Collector");
+            //Description.SetDefault("");
             Main.buffNoSave[Type] = false;
             Main.buffNoTimeDisplay[Type] = false;
             Main.persistentBuff[Type] = true;

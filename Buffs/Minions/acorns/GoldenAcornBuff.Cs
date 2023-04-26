@@ -9,8 +9,8 @@ namespace RemnantOfTheAncientsMod.Buffs.Minions.acorns
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Animated Golden Sapling");
-			Description.SetDefault("The Animated Golden Sapling will fight for you");
+			//DisplayName.SetDefault("Animated Golden Sapling");
+			//Description.SetDefault("The Animated Golden Sapling will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}

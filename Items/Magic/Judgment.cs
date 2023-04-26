@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Items.Magic
     public class Judgment : ModItem
 	{
 		public override void SetStaticDefaults() {
-DisplayName.SetDefault("Judgment");
+//DisplayName.SetDefault("Judgment");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

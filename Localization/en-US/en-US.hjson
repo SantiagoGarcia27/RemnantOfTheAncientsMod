@@ -6,7 +6,7 @@ Mods:
 		{
 			Time_Wizard: 
 			{
-				DisplayName: Time wizard
+				//DisplayName: Time wizard
 				Content: I feel pretty fine right now.
 				NoHome: I would very much like a house, all the colorful monsters scare me.
 				LoveSpace: I love how there is so much space here to practice magic!
@@ -66,7 +66,7 @@ Mods:
 		}
 		Prefix:
 		{
-			Description:
+			//Description:
 			{
 				Life: "+{0} life max"	
 				Defense: "+{0} defense"

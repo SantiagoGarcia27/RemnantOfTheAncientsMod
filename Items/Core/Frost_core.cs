@@ -12,17 +12,17 @@ namespace RemnantOfTheAncientsMod.Items.Core
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frozen Assaulter Core");
-            Tooltip.SetDefault("Increases magic damage by 10%"
-            + "\n Movement speed increases and you become immune to frozen and chilled debuffs while in snow");
+            //DisplayName.SetDefault("Frozen Assaulter Core");
+           // //Tooltip.SetDefault("Increases magic damage by 10%"
+            ////+ "\n Movement speed increases and you become immune to frozen and chilled debuffs while in snow");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Noyau d'assaillant gelé");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 10%"
-            + "\n La vitesse de déplacement est augmentée et vous êtes immunisé contre le debuff Frozen et Chilled lorsque vous êtes dans la neige");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Noyau d'assaillant gelé");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 10%"
+            ////+ "\n La vitesse de déplacement est augmentée et vous êtes immunisé contre le debuff Frozen et Chilled lorsque vous êtes dans la neige");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Núcleo de asaltante congelado");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 25%"
-            + "\n La velocidad de movimiento aumenta y eres inmune a la desventaja de Congelado y Helado cuando estás en la nieve.");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Núcleo de asaltante congelado");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 25%"
+            ////+ "\n La velocidad de movimiento aumenta y eres inmune a la desventaja de Congelado y Helado cuando estás en la nieve.");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

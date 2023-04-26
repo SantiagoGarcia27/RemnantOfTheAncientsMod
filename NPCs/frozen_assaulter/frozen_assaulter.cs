@@ -37,9 +37,9 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         int TpDelay = 20;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Frozen Assaulter");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Asaltante Congelado");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Agresseur gelé");
+            ////DisplayName.SetDefault("Frozen Assaulter");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Asaltante Congelado");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Agresseur gelé");
             Main.npcFrameCount[NPC.type] = 8;
         }
         public override void SetDefaults()
@@ -265,7 +265,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                         break;
             }
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -279,7 +279,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                 }
                 for (int j = 0; j < 10; j++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection, -1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f);
                 }
             }
             PhaseChanger();

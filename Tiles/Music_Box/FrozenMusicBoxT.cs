@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Items.Bloques.MusicBox;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Tiles.Music_Box
 {
@@ -20,8 +21,8 @@ namespace RemnantOfTheAncientsMod.Tiles.Music_Box
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.addTile(Type);
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Music Box");
+			LocalizedText name = CreateMapEntryName();
+			//name.SetDefault("Music Box");
 			AddMapEntry(new Color(200, 200, 200), name);
 		}
 

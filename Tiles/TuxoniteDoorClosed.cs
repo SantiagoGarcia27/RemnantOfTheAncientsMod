@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using RemnantOfTheAncientsMod.Tiles;
 using RemnantOfTheAncientsMod.Items.Bloques.Furniture;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Tiles
 {
@@ -31,12 +32,11 @@ namespace RemnantOfTheAncientsMod.Tiles
 
 			//DustType = ModContent.DustType<Sparkle>();
 			AdjTiles = new int[] { TileID.ClosedDoor };
-			OpenDoorID = ModContent.TileType<TuxoniteDoorOpen>();
+            TileID.Sets.OpenDoorID[Type] = ModContent.TileType<TuxoniteDoorOpen>();
 
-			// Names
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Example Door");
-			AddMapEntry(new Color(200, 200, 200), name);
+            // Names
+            LocalizedText name = CreateMapEntryName();
+            AddMapEntry(new Color(200, 200, 200), name);
 
 			// Placement
 			TileObjectData.newTile.Width = 1;

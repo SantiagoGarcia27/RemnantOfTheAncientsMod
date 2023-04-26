@@ -13,9 +13,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.MusicBox
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Music Box (Infernal Tyrant)");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Boîte à musique (Tyran infernal)");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caja de música (Tirano infernal)");
+			//DisplayName.SetDefault("Music Box (Infernal Tyrant)");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Boîte à musique (Tyran infernal)");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caja de música (Tirano infernal)");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Infernal_Tyrant"), ItemType<InfernalMusicBox>(), TileType<InfernalMusicBoxT>());
 		}

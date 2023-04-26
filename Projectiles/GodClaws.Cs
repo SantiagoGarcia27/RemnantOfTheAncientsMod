@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 		public int FrameCount = 0;
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("God Slayer Slash"); //projectile name
+			////DisplayName.SetDefault("God Slayer Slash"); //projectile name
 			Main.projFrames[Projectile.type] = 7;
 		}
 		public override void SetDefaults()
@@ -100,7 +100,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
 			}
 		}
       
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.immune[Projectile.owner] = 0;
 

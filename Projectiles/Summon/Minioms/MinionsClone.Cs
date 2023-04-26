@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.CultistBossIceMist;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("IceMistF");
+            //DisplayName.SetDefault("IceMistF");
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
             AIType = ProjectileID.DeadlySphere;
@@ -50,7 +50,7 @@ namespace RemnantOfTheAncientsMod.Projectiles
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.Tempest;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("IceMistF"); 
+            //DisplayName.SetDefault("IceMistF"); 
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
             AIType = ProjectileID.Tempest;

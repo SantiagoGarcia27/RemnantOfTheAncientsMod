@@ -152,49 +152,49 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         {
             if (item.prefix == ModContent.PrefixType<Healthy>())
             {
-                RegorgeToolTip(item, tooltips, (int)HealthyReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeToolTip(item, tooltips, (int)HealthyReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Healer>())
             {
-                RegorgeToolTip(item, tooltips, (int)HealerReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeToolTip(item, tooltips, (int)HealerReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Atletic>())
             {
-                RegorgeToolTip(item, tooltips, (int)AtleticReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeToolTip(item, tooltips, (int)AtleticReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Gigant>())
             {
-                RegorgeToolTip(item, tooltips, (int)GigantReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeToolTip(item, tooltips, (int)GigantReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Titanic>())
             {
-                RegorgeToolTip(item, tooltips, (int)TitanicReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");    
+                RegorgeToolTip(item, tooltips, (int)TitanicReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Life");    
             }
             if (item.prefix == ModContent.PrefixType<Impenetrable>())
             {
-                RegorgeToolTip(item, tooltips, UnpenetrableReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Defense");
+                RegorgeToolTip(item, tooltips, UnpenetrableReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Defense");
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
-                    RegorgeToolTip(item, tooltips, (int)2, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.DamageReduction");
+                    RegorgeToolTip(item, tooltips, (int)2, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.DamageReduction");
             }
             if (item.prefix == ModContent.PrefixType<Supersonic>())
             {
-                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Speed");
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Speed");
             }
             if (item.prefix == ModContent.PrefixType<Acurate>())
             {
-                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.CritChance");
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.CritChance");
             }
             if (item.prefix == ModContent.PrefixType<Uncontrolled>())
             {
-                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.MeleeSpeed");
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.MeleeSpeed");
             }
             if (item.prefix == ModContent.PrefixType<Sharp>())
             {
-                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Damage");
+                RegorgeToolTip(item, tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.Damage");
             }
             if (item.prefix == ModContent.PrefixType<Regenerative>())
             {
-                RegorgeToolTip(item, tooltips, 2, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.LifeRegeneration");
+                RegorgeToolTip(item, tooltips, 2, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.//Description.LifeRegeneration");
             }
         }
       

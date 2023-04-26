@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Mage
         public override Color color => Color.LightGoldenrodYellow;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bright Petal");
+          //  //DisplayName.SetDefault("Bright Petal");
         }
     }
     internal class BrightPetal_Fire : BasePetal
@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Mage
         public override Color color => Color.Orange;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bright Petal");
+           // //DisplayName.SetDefault("Bright Petal");
         }
         public override void SetDefaults()
         {
@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Mage
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (buffId != 0)
             {

@@ -9,10 +9,10 @@ namespace RemnantOfTheAncientsMod.Items.Magic
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Flower of Cursed Flame");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Kwiat przeklętego płomienia");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fleur de flamme maudite");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Flor de llama maldita");
+//DisplayName.SetDefault("Flower of Cursed Flame");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Kwiat przeklętego płomienia");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fleur de flamme maudite");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Flor de llama maldita");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

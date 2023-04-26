@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("DesertS");
+           // //DisplayName.SetDefault("DesertS");
         }
         public override void SetDefaults()   
         {    
@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             }
         }
             
-       public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) 
+       public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) 
        {
 		    if (Main.rand.NextBool()) target.AddBuff(BuffType<Burning_Sand>(), 300);
        }

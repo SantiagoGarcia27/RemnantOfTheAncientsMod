@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sharp Leaf");
+           // //DisplayName.SetDefault("Sharp Leaf");
             Main.projFrames[Projectile.type] = 7;
         }
         public override void SetDefaults()   
@@ -104,9 +104,5 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         //        Main.dust[p1].noGravity = true;
         //    }
         //}
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-        }
     }
 }

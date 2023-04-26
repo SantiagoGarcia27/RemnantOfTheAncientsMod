@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.VanillaChanges;
 
@@ -12,12 +11,12 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Grass Saber");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre d'herbe");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de Hierba");
-			Tooltip.SetDefault("Inflict poison on enemies");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger du poison aux ennemis");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije veneno a los enemigos");
+			////DisplayName.SetDefault("Grass Saber");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre d'herbe");
+			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de Hierba");
+			////Tooltip.SetDefault("Inflict poison on enemies");
+			////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Infliger du poison aux ennemis");
+			////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije veneno a los enemigos");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -39,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 			Item.autoReuse = true;
             Item.GetGlobalItem<GlobalItem1>().Saber = true;
         }
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.Poisoned, 80);
 		}
@@ -63,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.JungleSpores, 12)
-						.AddIngredient(ItemID.Stinger, 12)
+			.AddIngredient(ItemID.Stinger, 12)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

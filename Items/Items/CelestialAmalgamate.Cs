@@ -11,9 +11,9 @@ namespace RemnantOfTheAncientsMod.Items.Items
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Celestial Amalgam");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Amalgame céleste");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Amalgama Celestial");
+//DisplayName.SetDefault("Celestial Amalgam");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Amalgame céleste");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Amalgama Celestial");
 Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 9));
 ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;

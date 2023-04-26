@@ -1,23 +1,14 @@
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Dusts;
-using static Terraria.ModLoader.ModContent;
-using Terraria.Audio;
-using Terraria.GameContent;
-using RemnantOfTheAncientsMod.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Projectiles
 {
 
-	public class EnchantedShield : ModProjectile
+    public class EnchantedShield : ModProjectile
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Curecedball"); //projectile name
+			////DisplayName.SetDefault("Curecedball"); //projectile name
 
 		}
 		public override void SetDefaults()
@@ -40,9 +31,5 @@ namespace RemnantOfTheAncientsMod.Projectiles
             Player player = Main.player[Main.myPlayer];
             Projectile.Center = player.Center;
         }
-        
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-		{
-		}
 	}
 }

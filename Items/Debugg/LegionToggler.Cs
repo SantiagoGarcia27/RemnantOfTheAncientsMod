@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Items.Debugg
 		}*/
 		/*public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("LegionToggler3000");
+//DisplayName.SetDefault("LegionToggler3000");
 		}
 
 public override void SetDefaults()

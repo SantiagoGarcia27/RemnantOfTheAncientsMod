@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Ranger
         //public override string Texture => "Terraria/Images/NPC_" + NPCID.Shark;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("LittleShark"); //projectile name
+         //  //DisplayName.SetDefault("LittleShark"); //projectile name
             Main.projFrames[Projectile.type] = 4;
         }
         public override void SetDefaults()
@@ -117,7 +117,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Ranger
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Water, 0f, 0f, 100, default(Color), 1.5f);
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.Kill();
         }

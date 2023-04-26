@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override bool Endless => false;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Necrotic Restauration Potion");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de restauration nécrotique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de restauración necrótica");
+            //DisplayName.SetDefault("Necrotic Restauration Potion");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de restauration nécrotique");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de restauración necrótica");
         }
         public override void AddRecipes()
         {
@@ -35,12 +35,12 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public override string Texture => "RemnantOfTheAncientsMod/Items/Pociones/NecroticRestauration";
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Endless Necrotic Restauration Potion");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de restauration nécrotique sans fin");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de restauración necrótica eterna");
-            Tooltip.SetDefault("Teleports you to your last death");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous téléporte à votre dernière mort");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te teletransporta a tu última muerte ");
+            //DisplayName.SetDefault("Endless Necrotic Restauration Potion");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de restauration nécrotique sans fin");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de restauración necrótica eterna");
+           // //Tooltip.SetDefault("Teleports you to your last death");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous téléporte à votre dernière mort");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te teletransporta a tu última muerte ");
         }
         public override void AddRecipes()
         {
@@ -55,9 +55,9 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
         public abstract bool Endless { get; }
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Teleports you to your last death");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous téléporte à votre dernière mort");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te teletransporta a tu última muerte ");
+           // //Tooltip.SetDefault("Teleports you to your last death");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous téléporte à votre dernière mort");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te teletransporta a tu última muerte ");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = Endless ? 1 : 30;
         }
         public override void SetDefaults()

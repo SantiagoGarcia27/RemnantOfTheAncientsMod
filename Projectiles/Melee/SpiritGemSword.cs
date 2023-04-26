@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[0] == 1)
             {
@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
                     Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
                     Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
 
-                    int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockback, Main.myPlayer, 2, 2);
+                    int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), hit.Damage / 3, hit.Knockback, Main.myPlayer, 2, 2);
                     float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
                     Main.projectile[proj].rotation = angle;
                 }

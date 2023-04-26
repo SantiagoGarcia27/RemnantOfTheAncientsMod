@@ -66,7 +66,7 @@
 		}	
 		Prefix:
 		{
-			Description:
+			//Description:
 			{
 				Life: "+{0} vida máxima"	
 				Defense: "+{0} defensa"

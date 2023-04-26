@@ -11,9 +11,9 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Completist");
-            Tooltip.SetDefault("A grand prize for those who made it to the top of the mod"
-            + "\nThanks to Johy315 (Quizo hacer trampa y no le salio)");
+            //DisplayName.SetDefault("The Completist");
+           // //Tooltip.SetDefault("A grand prize for those who made it to the top of the mod"
+            //+ "\nThanks to Johy315 (Quizo hacer trampa y no le salio)");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -36,8 +36,8 @@ namespace RemnantOfTheAncientsMod.Items.accesorios
         {
             if (player.name == "Gordo con Tetas II" || player.name == "Johy315")
             {
-                Tooltip.SetDefault("Quizo hacer trampa y no le salio"
-                + "\n Aumenta el daño en un 1000000000000000%     Na mentira xd");
+               // //Tooltip.SetDefault("Quizo hacer trampa y no le salio"
+                ////+ "\n Aumenta el daño en un 1000000000000000%     Na mentira xd");
             }
         }
         public override void AddRecipes()

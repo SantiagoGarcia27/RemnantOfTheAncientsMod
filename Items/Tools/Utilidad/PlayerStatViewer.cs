@@ -12,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Items.Tools.Utilidad
 	{
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Player stat meter");
-Tooltip.SetDefault("Shows most of the player's stats");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Compteur de statistiques du joueur");
-DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Medidor de estadísticas del jugador");
+//DisplayName.SetDefault("Player stat meter");
+//Tooltip.SetDefault("Shows most of the player's stats");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Compteur de statistiques du joueur");
+//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Medidor de estadísticas del jugador");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

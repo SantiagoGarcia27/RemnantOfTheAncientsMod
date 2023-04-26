@@ -12,9 +12,9 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.MusicBox
 	{
 		public override void SetStaticDefaults()
 		{
-            DisplayName.SetDefault("Music Box (Desert Annihilator)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Boîte à musique (Aniquilateur du désert)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caja de música (Aniquilador del desierto)");
+            //DisplayName.SetDefault("Music Box (Desert Annihilator)");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Boîte à musique (Aniquilateur du désert)");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caja de música (Aniquilador del desierto)");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Desert_Aniquilator"), ItemType<DesertMusicBox>(), TileType<DesertMusicBoxT>());
 

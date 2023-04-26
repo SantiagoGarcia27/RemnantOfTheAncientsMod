@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
@@ -9,9 +8,6 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Items.Items;
-using RemnantOfTheAncientsMod.Projectiles;
-using Mono.Cecil;
-using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -19,9 +15,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desert Edge");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée des désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Filo del desierto");
+            ////DisplayName.SetDefault("Desert Edge");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée des désert");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Filo del desierto");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -81,7 +77,7 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             }
             return true;
         }
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffType<Buffs.Debuff.Burning_Sand>(), 300);
         }

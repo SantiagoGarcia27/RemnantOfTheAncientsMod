@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Ranger
         //public override string Texture => "Terraria/Images/NPC_" + NPCID.Shark;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Little Devourer"); //projectile name
+           // //DisplayName.SetDefault("Little Devourer"); //projectile name
             Main.projFrames[Projectile.type] = 4;
         }      
         public override void SetDefaults()
@@ -120,7 +120,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Ranger
             }
         }
         [JITWhenModsEnabled("CalamityMod")]
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<GodSlayerInferno>(),100);
             Projectile.Kill();

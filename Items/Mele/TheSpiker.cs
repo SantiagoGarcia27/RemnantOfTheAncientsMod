@@ -1,12 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Projectiles;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.VanillaChanges;
-using Mono.Cecil;
-using static Terraria.ModLoader.PlayerDrawLayer;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 
@@ -16,9 +13,9 @@ namespace RemnantOfTheAncientsMod.Items.Mele
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Spiker");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
+            ////DisplayName.SetDefault("The Spiker");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
+            ////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public static int counter = 0;
@@ -120,6 +117,6 @@ namespace RemnantOfTheAncientsMod.Items.Mele
             return false;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit) => target.defense = target.defense / 2;
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) => target.defense = target.defense / 2;
     }
 }

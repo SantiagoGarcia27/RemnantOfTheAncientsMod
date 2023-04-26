@@ -24,7 +24,7 @@ new Color(200, 200, 200, 100) // A blue color
 		private Color FishingLineColor => PossibleLineColors[fishingLineColorIndex];
 		public override void SetStaticDefaults()
 		{
-DisplayName.SetDefault("Tuxonite Bobber");
+//DisplayName.SetDefault("Tuxonite Bobber");
 		}
 		public override void SetDefaults()
 		{

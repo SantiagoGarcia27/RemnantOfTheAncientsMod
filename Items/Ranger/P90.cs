@@ -12,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Items.Ranger
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("P90");
-            Tooltip.SetDefault("Fast and effective");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Rapide et efficace");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rapida y efectiva");
+            //DisplayName.SetDefault("P90");
+           // //Tooltip.SetDefault("Fast and effective");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Rapide et efficace");
+           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rapida y efectiva");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

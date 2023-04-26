@@ -10,10 +10,10 @@ namespace RemnantOfTheAncientsMod.Items.Bloques.Trophy
 	public class DesertTrophy : ModItem
 	{
 		public override void SetStaticDefaults() {
-DisplayName.SetDefault("Desert Annihilator Trophy");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Aniquilator Trophy");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'aniquilateur du désert");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo Aniquilador del desierto");
+//DisplayName.SetDefault("Desert Annihilator Trophy");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Aniquilator Trophy");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Trophée d'aniquilateur du désert");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Trofeo Aniquilador del desierto");
 CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 		}

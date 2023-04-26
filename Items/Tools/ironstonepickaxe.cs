@@ -11,15 +11,15 @@ namespace RemnantOfTheAncientsMod.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ironstone Pickaxe");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Kilof Skamieniałego Żelaza");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche en fer pétrifié");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico de hierro petrificado");
-			Tooltip.SetDefault("");
+			//DisplayName.SetDefault("Ironstone Pickaxe");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Kilof Skamieniałego Żelaza");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche en fer pétrifié");
+			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico de hierro petrificado");
+			//Tooltip.SetDefault("");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			/* DisplayName.AddTranslation(GameCulture.Russian, "Окаменелая железная кирка");
-			 DisplayName.AddTranslation(GameCulture.Chinese, "硅化铁镐");*/
+			/* //DisplayName.AddTranslation(GameCulture.Russian, "Окаменелая железная кирка");
+			 //DisplayName.AddTranslation(GameCulture.Chinese, "硅化铁镐");*/
 		}
 
 		public override void SetDefaults()

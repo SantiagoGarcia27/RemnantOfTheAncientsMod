@@ -9,14 +9,14 @@ namespace RemnantOfTheAncientsMod.Buffs
 	{
 		public override void SetStaticDefaults()
 		{
-			// DisplayName and Description are automatically set from the .lang files, but below is how it is done normally.
-			// DisplayName.SetDefault("Paper Airplane");
-			// Description.SetDefault("\"Let this pet be an example to you!\"");
+			// //DisplayName and //Description are automatically set from the .lang files, but below is how it is done normally.
+			// //DisplayName.SetDefault("Paper Airplane");
+			// //Description.SetDefault("\"Let this pet be an example to you!\"");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.lightPet[Type] = true;
 			// Main.vanityPet[Type] = true;
-			DisplayName.SetDefault("Yt");
-			Description.SetDefault("...");
+			//DisplayName.SetDefault("Yt");
+			//Description.SetDefault("...");
 		}
 
 		public override void Update(Player player, ref int buffIndex)
