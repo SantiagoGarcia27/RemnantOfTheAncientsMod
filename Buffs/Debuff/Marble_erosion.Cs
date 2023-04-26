@@ -24,6 +24,10 @@ namespace RemnantOfTheAncientsMod.Buffs.Debuff
 			npc.GetGlobalNPC<GlobalNPC1>().Marble_Erosion = true;
 			npc.defDefense -= 2;
 		}
-
-	}
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.GetModPlayer<RemnantPlayer>().Marble_Erosion = true;
+			player.statDefense -= 2;
+        }
+    }
 }

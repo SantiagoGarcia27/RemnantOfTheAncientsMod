@@ -36,7 +36,8 @@ namespace RemnantOfTheAncientsMod
 		public bool StardustDragonV2Minion;
 		public bool TyrantMinion;
 		#endregion
-		public bool Burn_Sand;
+		public bool Marble_Erosion;
+        public bool Burn_Sand;
 		public bool hBurn;
 		public bool Hell_Fire;
 		public bool hasInfernal_core;
@@ -58,7 +59,8 @@ namespace RemnantOfTheAncientsMod
 
 		public override void ResetEffects()
 		{
-			Burn_Sand = false;
+            Marble_Erosion = false;
+            Burn_Sand = false;
 			hBurn = false;
 			Hell_Fire = false;
 			healHurt = 0;
@@ -84,7 +86,8 @@ namespace RemnantOfTheAncientsMod
 
 		public override void UpdateDead()
 		{
-			Burn_Sand = false;
+			Marble_Erosion = false;
+            Burn_Sand = false;
 			Hell_Fire = false;
 			hBurn = false;
 			MeleeKit = false;
@@ -470,7 +473,7 @@ namespace RemnantOfTheAncientsMod
 			player.waterWalk = true;
 			player.ignoreWater = true;
 			player.accFlipper = true;
-			player.gills = true;
+            if (ModContent.GetInstance<ConfigClient>().KitsGills) player.gills = true;
 			player.buffImmune[4] = true;
 			player.buffImmune[15] = true;
 			player.buffImmune[109] = true;
@@ -481,8 +484,7 @@ namespace RemnantOfTheAncientsMod
 			player.arrowDamage.Flat *= 0.2f;
 			player.archery = true;
 			player.ammoPotion = true;
-
-			player.buffImmune[16] = true;
+            player.buffImmune[16] = true;
 			player.buffImmune[112] = true;
 		}
 

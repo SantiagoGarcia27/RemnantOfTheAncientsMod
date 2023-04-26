@@ -41,10 +41,14 @@ namespace RemnantOfTheAncientsMod.Items.Mele
 
 		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			target.AddBuff(ModContent.BuffType<Marble_erosion>(), 180);
+			target.AddBuff(ModContent.BuffType<Marble_erosion>(), 600);
 			//Main.NewText(target.defense, new Color(175, 75, 255));
 		}
-		public override void AddRecipes()
+        public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo)
+        {
+            target.AddBuff(ModContent.BuffType<Marble_erosion>(), 600);
+        }
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.Marble, 20)

@@ -29,6 +29,11 @@ namespace RemnantOfTheAncientsMod
         [DefaultValue(true)]
         [Tooltip("Activate the inferno effect of potion kits")]
         public bool KitsInferno { get; set; }
+
+        [Label("Gills effect on kits")]
+        [DefaultValue(true)]
+        [Tooltip("Activate the gills effect of potion kits")]
+        public bool KitsGills { get; set; }
         #endregion
 
         #region ReaperSouls
