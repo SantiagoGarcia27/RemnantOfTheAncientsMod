@@ -1,6 +1,5 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Items.Items;
 using Terraria;
@@ -9,8 +8,6 @@ using RemnantOfTheAncientsMod.Projectiles.Melee;
 using System;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.World;
-using ReLogic.Peripherals.RGB;
-using RemnantOfTheAncientsMod.Mounts;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
 {
@@ -62,6 +59,19 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Slow, 240);
+            int numProjectiles = 6;
+            float spacing = MathHelper.TwoPi / numProjectiles;
+            float radius = 10 * 16f;
+
+            for (int i = 0; i < numProjectiles; i++)
+            {
+                Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
+                Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
+
+                int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockBack, Main.myPlayer, 0, 6);
+                float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
+                Main.projectile[proj].rotation = angle;
+            }
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
@@ -94,6 +104,19 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {      
             if (Main.rand.NextBool(2)) player.Heal(5);
+            int numProjectiles = 6;
+            float spacing = MathHelper.TwoPi / numProjectiles;
+            float radius = 10 * 16f;
+
+            for (int i = 0; i < numProjectiles; i++)
+            {
+                Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
+                Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
+
+                int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockBack, Main.myPlayer, 0, 6);
+                float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
+                Main.projectile[proj].rotation = angle;
+            }
         }
     }
     public class The_Geode_Red : BaseGeode
@@ -124,6 +147,19 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
             {
                 Projectile.NewProjectile(Projectile.GetSource_None(), target.position - new Vector2(0, 2*16) + new Vector2(1 *16, 0), new Vector2(0f, 0f), ProjectileID.DD2ExplosiveTrapT2Explosion, damage, 0);
             }
+            int numProjectiles = 6;
+            float spacing = MathHelper.TwoPi / numProjectiles;
+            float radius = 10 * 16f;
+
+            for (int i = 0; i < numProjectiles; i++)
+            {
+                Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
+                Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
+
+                int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockBack, Main.myPlayer, 0, 6);
+                float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
+                Main.projectile[proj].rotation = angle;
+            }
         }
     }
     public class The_Geode_Vi : BaseGeode
@@ -147,6 +183,19 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Confused, 240);
+            int numProjectiles = 6;
+            float spacing = MathHelper.TwoPi / numProjectiles;
+            float radius = 10 * 16f;
+
+            for (int i = 0; i < numProjectiles; i++)
+            {
+                Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
+                Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
+
+                int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockBack, Main.myPlayer, 0, 6);
+                float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
+                Main.projectile[proj].rotation = angle;
+            }
         }
     }
     public class The_Geode_Yellow : BaseGeode
@@ -170,6 +219,19 @@ namespace RemnantOfTheAncientsMod.Items.Mele.Gem.Geode
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Ichor, 240);
+            int numProjectiles = 6;
+            float spacing = MathHelper.TwoPi / numProjectiles;
+            float radius = 10 * 16f;
+
+            for (int i = 0; i < numProjectiles; i++)
+            {
+                Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
+                Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
+
+                int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockBack, Main.myPlayer, 0, 6);
+                float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
+                Main.projectile[proj].rotation = angle;
+            }
         }
     }
     public class The_Geode_White : BaseGeode

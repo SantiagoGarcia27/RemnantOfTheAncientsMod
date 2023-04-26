@@ -2,7 +2,7 @@ Mods: {
 	RemnantOfTheAncientsMod: {
 		TownNPCMood: {
 			Time_Wizard: {
-				// DisplayName: Time wizard
+				DisplayName: Time wizard
 				Content: Me siento bastante a gusto ahora mismo.
 				NoHome: Me gustaría mucho una casa, todos estos pintorescos los monstruos me dan miedo.
 				LoveSpace: ¡Me encanta que haya tanto espacio para practicar la magia!
@@ -92,20 +92,33 @@ Mods: {
 		}
 
 		Prefixes: {
-			// Acurate.DisplayName: Acurate
-			// Atletic.DisplayName: Atletic
-			// Berserk.DisplayName: Berserk
-			// Gigant.DisplayName: Gigant
-			// Healer.DisplayName: Healer
-			// Healthy.DisplayName: Healthy
-			// Impenetrable.DisplayName: Impenetrable
-			// Regenerative.DisplayName: Regenerative
-			// Relic.DisplayName: Relic
-			// Sharp.DisplayName: Sharp
-			// Supersonic.DisplayName: Supersonic
-			// Titanic.DisplayName: Titanic
-			// Uncontrolled.DisplayName: Uncontrolled
-			// Veteran.DisplayName: Veteran
+			Acurate.DisplayName: (Certero)
+			Atletic.DisplayName: (Atletico)
+			Berserk.DisplayName: (Berserk)
+			Gigant.DisplayName: (Gigante)
+			Healer.DisplayName: (Sanador)
+			Healthy.DisplayName: (Saludable)
+			Impenetrable.DisplayName: (Impenetrable)
+			Regenerative.DisplayName: (Regenerativo)
+			Relic.DisplayName: (Reliquia)
+			Sharp.DisplayName: (Afilado)
+			Supersonic.DisplayName: (Supersonico)
+			Titanic.DisplayName: (Titanico)
+			Uncontrolled.DisplayName: (Descontrolado)
+			Veteran.DisplayName: (Veterano)
+		}
+
+		Conditions: {
+			IsRaining: Cuando llueve
+			IsSandstorm: Cuando hay una tormenta de arena
+			IsDay: Cuando es de dia
+			IsNight: Cuando es de noche
+			IsHardmode: Cuando es el modo dificil
+			TinkererAlive: Cuando el duend chapuzero está vivo
+			KingSlimeDefeated: Cuando el Rey slime ah sido derrotado
+			CorruptBossDefeated: Cuando el jefe de la corrupción ah sido derrotado
+			QueenBeeDefeated: Cuando la Reina abeja ah sido derrotada
+			OpositeOreGeneration: Mineral contrario a el de la generación del mundo
 		}
 	}
 }

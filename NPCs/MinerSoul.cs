@@ -152,47 +152,36 @@ namespace RemnantOfTheAncientsMod.NPCs
 			}
 
         }
-        public override void AddShops()
-        {
+		public override void AddShops()
+		{
 			var npcShop = new NPCShop(Type, ShopName);
-			
-            npcShop.Add(new Item(ItemType<ironstonepickaxe>()) { shopCustomPrice = Item.buyPrice(0, 3, 0, 0) });
-            npcShop.Add(new Item(ItemID.Torch) { shopCustomPrice = Item.buyPrice(0, 0, 30, 0) });
-            npcShop.Add(new Item(ItemID.Wood) { shopCustomPrice = Item.buyPrice(0, 0, 20, 0) });
-            npcShop.Add(new Item(ItemID.DirtBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 2) });
-            npcShop.Add(new Item(ItemID.StoneBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 5) });
 
-            if (WorldGen.SavedOreTiers.Copper == TileID.Tin) npcShop.Add(new Item(ItemID.CopperBar) { shopCustomPrice = Item.buyPrice(0, 0, 2, 0) });
-            if (WorldGen.SavedOreTiers.Copper == TileID.Copper) npcShop.Add(new Item(ItemID.TinBar) { shopCustomPrice = Item.buyPrice(0, 0, 2, 0) });
-
-            if (WorldGen.SavedOreTiers.Iron == TileID.Lead) npcShop.Add(new Item(ItemID.IronBar) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) }); 
-            if (WorldGen.SavedOreTiers.Iron == TileID.Iron) npcShop.Add(new Item(ItemID.LeadBar) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) });
-
-            if (WorldGen.SavedOreTiers.Silver == TileID.Silver) npcShop.Add(new Item(ItemID.TungstenBar) { shopCustomPrice = Item.buyPrice(0, 0, 25, 0) });
-            if (WorldGen.SavedOreTiers.Silver == TileID.Tungsten) npcShop.Add(new Item(ItemID.SilverBar) { shopCustomPrice = Item.buyPrice(0, 0, 25, 0) });
-
-            if (WorldGen.SavedOreTiers.Gold == TileID.Platinum) npcShop.Add(new Item(ItemID.GoldBar) { shopCustomPrice = Item.buyPrice(0, 0, 60, 0) });
-            if (WorldGen.SavedOreTiers.Gold == TileID.Gold) npcShop.Add(new Item(ItemID.PlatinumBar) { shopCustomPrice = Item.buyPrice(0, 0, 70, 0) });
-
-            if (Main.hardMode)
-			{
-				npcShop.Add(new Item(ItemID.PinkGel) { shopCustomPrice = Item.buyPrice(0, 0, 50, 0) }); 
-				if (WorldGen.SavedOreTiers.Cobalt == TileID.Palladium) npcShop.Add(new Item(ItemID.CobaltOre) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
-                if (WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt) npcShop.Add(new Item(ItemID.PalladiumOre) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
-                if (WorldGen.SavedOreTiers.Mythril == TileID.Orichalcum) npcShop.Add(new Item(ItemID.MythrilOre) { shopCustomPrice = Item.buyPrice(0, 6, 0, 0) });
-                if (WorldGen.SavedOreTiers.Mythril == TileID.Mythril) npcShop.Add(new Item(ItemID.OrichalcumOre) { shopCustomPrice = Item.buyPrice(0, 6, 0, 0) });
-            }
-			if (NPC.downedSlimeKing)
-			{
-				npcShop.Add(new Item(ItemID.Amethyst) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) });
-                npcShop.Add(new Item(ItemID.Topaz) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) });
-                npcShop.Add(new Item(ItemID.Emerald) { shopCustomPrice = Item.buyPrice(0, 0, 10, 0) });
-                npcShop.Add(new Item(ItemID.Sapphire) { shopCustomPrice = Item.buyPrice(0, 0, 10, 0) });
-                npcShop.Add(new Item(ItemID.Ruby) { shopCustomPrice = Item.buyPrice(0, 0, 15, 0) });
-                npcShop.Add(new Item(ItemID.Diamond) { shopCustomPrice = Item.buyPrice(0, 0, 20, 0) });
-            }  
-            npcShop.Register(); 
-        }
+			npcShop.Add(new Item(ItemType<ironstonepickaxe>()) { shopCustomPrice = Item.buyPrice(0, 3, 0, 0) })
+			.Add(new Item(ItemID.Torch) { shopCustomPrice = Item.buyPrice(0, 0, 30, 0) })
+			.Add(new Item(ItemID.Wood) { shopCustomPrice = Item.buyPrice(0, 0, 20, 0) })
+			.Add(new Item(ItemID.DirtBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 2) })
+			.Add(new Item(ItemID.StoneBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 5) })
+			.Add(new Item(ItemID.CopperBar) { shopCustomPrice = Item.buyPrice(0, 0, 2, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Copper == TileID.Tin))
+			.Add(new Item(ItemID.TinBar) { shopCustomPrice = Item.buyPrice(0, 0, 2, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Copper == TileID.Copper))
+			.Add(new Item(ItemID.IronBar) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Iron == TileID.Lead))
+			.Add(new Item(ItemID.LeadBar) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Iron == TileID.Iron))
+			.Add(new Item(ItemID.TungstenBar) { shopCustomPrice = Item.buyPrice(0, 0, 25, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Silver == TileID.Silver))
+			.Add(new Item(ItemID.SilverBar) { shopCustomPrice = Item.buyPrice(0, 0, 25, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Silver == TileID.Tungsten))
+			.Add(new Item(ItemID.GoldBar) { shopCustomPrice = Item.buyPrice(0, 0, 60, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Gold == TileID.Platinum))
+			.Add(new Item(ItemID.PlatinumBar) { shopCustomPrice = Item.buyPrice(0, 0, 70, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Gold == TileID.Platinum))
+			.Add(new Item(ItemID.PinkGel) { shopCustomPrice = Item.buyPrice(0, 0, 50, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode", () => Main.hardMode))
+			.Add(new Item(ItemID.CobaltOre) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Cobalt == TileID.Palladium))
+			.Add(new Item(ItemID.PalladiumOre) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt))
+			.Add(new Item(ItemID.MythrilOre) { shopCustomPrice = Item.buyPrice(0, 6, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Mythril == TileID.Orichalcum))
+			.Add(new Item(ItemID.OrichalcumOre) { shopCustomPrice = Item.buyPrice(0, 6, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration", () => WorldGen.SavedOreTiers.Mythril == TileID.Mythril))
+			.Add(new Item(ItemID.Amethyst) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated", () => NPC.downedSlimeKing))
+			.Add(new Item(ItemID.Topaz) { shopCustomPrice = Item.buyPrice(0, 0, 5, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated", () => NPC.downedSlimeKing))
+			.Add(new Item(ItemID.Emerald) { shopCustomPrice = Item.buyPrice(0, 0, 10, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated", () => NPC.downedSlimeKing))
+			.Add(new Item(ItemID.Sapphire) { shopCustomPrice = Item.buyPrice(0, 0, 10, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated", () => NPC.downedSlimeKing))
+			.Add(new Item(ItemID.Ruby) { shopCustomPrice = Item.buyPrice(0, 0, 15, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated", () => NPC.downedSlimeKing))
+			.Add(new Item(ItemID.Diamond) { shopCustomPrice = Item.buyPrice(0, 0, 20, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated", () => NPC.downedSlimeKing))
+			.Register();
+		}
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
 		{
 			float distance = NPC.Distance(Main.player[NPC.target].Center);

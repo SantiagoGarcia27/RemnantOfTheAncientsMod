@@ -220,14 +220,14 @@ namespace RemnantOfTheAncientsMod.NPCs.Town
         public override void AddShops()
         {
             var npcShop = new NPCShop(Type, ShopName);
-            npcShop.Add(new Item(ItemType<DayToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
-            npcShop.Add(new Item(ItemType<NightToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
-          
-            if (Main.raining) npcShop.Add(new Item(ItemType<RainToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });        
-			if (Sandstorm.Happening) npcShop.Add(new Item(ItemType<SandstormToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) });
-			if (NPC.downedQueenBee) npcShop.Add(new Item(ItemType<Judgment>()) { shopCustomPrice = Item.buyPrice(0, 2, 0, 0) }); 
-            if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0) npcShop.Add(new Item(ItemType<PlayerStatViewer>()) { shopCustomPrice = Item.buyPrice(0, 40, 0, 0) });
-			if (Main.hardMode) npcShop.Add(new Item(ItemID.Sundial) { shopCustomPrice = Item.buyPrice(0, 20, 0, 0) });  
+            npcShop.Add(new Item(ItemType<DayToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) })
+			.Add(new Item(ItemType<NightToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) })
+			.Add(new Item(ItemType<RainToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.IsRaining", () => Main.raining))        
+			.Add(new Item(ItemType<SandstormToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm", () => Sandstorm.Happening))
+			.Add(new Item(ItemType<Judgment>()) { shopCustomPrice = Item.buyPrice(0, 2, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated", () => NPC.downedQueenBee))
+            .Add(new Item(ItemType<PlayerStatViewer>()) { shopCustomPrice = Item.buyPrice(0, 40, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive", () => NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0))
+			.Add(new Item(ItemID.Sundial) { shopCustomPrice = Item.buyPrice(0, 20, 0, 0) },new Condition("Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode", () => Main.hardMode))
+			.Register();
 		}
         public override bool CanGoToStatue(bool toKingStatue) => true;
 

@@ -97,5 +97,18 @@ Mods: {
 			Uncontrolled.DisplayName: Uncontrolled
 			Veteran.DisplayName: Veteran
 		}
+
+		Conditions: {
+			IsRaining: When is rains
+			IsSandstorm: When is sandstorm
+			IsDay: When is day
+			IsNight: When is night
+			IsHardmode: When is hardmode
+			TinkererAlive: When goblim tinkerer is alive
+			KingSlimeDefeated: When King Slime is defeated
+			CorruptBossDefeated: When Corrupt boss is defeated
+			QueenBeeDefeated: When Queen Bee is defeated
+			OpositeOreGeneration: Opposite mineral of the world generation
+		}
 	}
 }
