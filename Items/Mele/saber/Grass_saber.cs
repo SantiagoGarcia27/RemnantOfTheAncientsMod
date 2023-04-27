@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.VanillaChanges;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -22,41 +24,48 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 
 		public override void SetDefaults()
 		{
-			Item Base = new Item(ItemID.BladeofGrass);
-			Item.damage = Base.damage - 3;
-			Item.DamageType = DamageClass.Melee;
+            Item.CloneDefaults(ItemID.BladeofGrass);
+            Item.damage -= 3;
+			//Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
-			Item.useTime = 25;
-			Item.useAnimation = 25;
-			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTime -= 3;
+			Item.useAnimation -= 3;
+			//Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = Base.rare;
 			Item.scale = 1.28f;
-			Item.UseSound = SoundID.Item1;
+			//Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
+			//Item.shoot = ModContent.ProjectileType<GrassSwordLeaft>();
+   //       Item.shootSpeed = 20f;
+			////Item.shootsEveryUse = true;
             Item.GetGlobalItem<GlobalItem1>().Saber = true;
+
         }
-		public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+		//public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+		//{
+		//	target.AddBuff(BuffID.Poisoned, 80);
+		//}
+		//public override void MeleeEffects(Player player, Rectangle hitbox)
+		//{
+		//	if (Main.rand.NextBool(1)) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Grass);
+		//}
+		public override bool AltFunctionUse(Player player) => true;
+		public override bool CanUseItem(Player player)
 		{
-			target.AddBuff(BuffID.Poisoned, 80);
+			if (player.altFunctionUse == 2)
+			{
+				if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
+				{
+					DashPlayer.JumpDash(player, 0.6f, 1.25f);
+				}
+			}
+			return true;
 		}
-		public override void MeleeEffects(Player player, Rectangle hitbox)
-		{
-			if (Main.rand.NextBool(1)) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Grass);
-		}
-        public override bool AltFunctionUse(Player player) => true;
-        public override bool CanUseItem(Player player)
+		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.altFunctionUse == 2)
-            {
-                if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
-                {
-                    DashPlayer.JumpDash(player, 0.6f, 1.25f);
-                }
-            }
-            return true;
+            Projectile.NewProjectile(source, position + (new Vector2(3 * 16, 0) * player.direction), velocity, type, (int)(damage * 0.25f), knockback, Main.myPlayer, -0.07f * player.direction, 0, 0);
+            return false;
         }
         public override void AddRecipes()
 		{

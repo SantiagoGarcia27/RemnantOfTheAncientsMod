@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Items.Mele
 {
@@ -25,22 +26,18 @@ namespace RemnantOfTheAncientsMod.Items.Mele
         }
         public override void SetDefaults()
         {
-            Item Base = new Item(ItemID.FieryGreatsword);
-            Item.damage = Base.damage + 6;
+            Item.CloneDefaults(ItemID.FieryGreatsword); 
             Item.DamageType = DamageClass.Melee;
             Item.width = 130;
             Item.height = 160;
             Item.useTime = 30;
             Item.useAnimation = 30;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = Base.knockBack;
-            Item.rare = Base.rare;
-            Item.scale = Base.scale + 0.50f;
+            Item.useStyle = ItemUseStyleID.Swing;        
+            Item.scale += 0.50f;
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
-            Item.value = Base.value;
-            //Item.shoot = ModContent.ProjectileType<GrassSwordLeaft>();
-            //Item.shootSpeed= 20f;
+            Item.shoot = Item.shoot = ModContent.ProjectileType<MoltenGrassSwordLeaft>();
+            Item.shootSpeed= 20f;
 
             /*if(RemnantOfTheAncientsMod.CalamityMod != null)
 {
@@ -48,14 +45,18 @@ namespace RemnantOfTheAncientsMod.Items.Mele
                 Item.scale = 1.70f;
             }*/
         }
-
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Projectile.NewProjectile(source, position + (new Vector2(3*16,0)* player.direction), velocity, type, (int)(damage * 0.25f), knockback, Main.myPlayer, -0.07f * player.direction,0,0);
+            return false;
+        }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 40);
             target.AddBuff(BuffID.Poisoned, 40);
             if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.DaybreakExplosion, Item.damage / 10, 0);
+                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, (int)(Item.damage * 0.5f), 0);
             }
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
