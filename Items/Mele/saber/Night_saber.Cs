@@ -7,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Projectiles;
 using RemnantOfTheAncientsMod.VanillaChanges;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Items.Mele.saber
 {
@@ -21,23 +22,24 @@ namespace RemnantOfTheAncientsMod.Items.Mele.saber
 		}
 		public override void SetDefaults()
 		{
-			Item Base = new Item(ItemID.NightsEdge);
-			Item.damage = Base.damage - 3;
+            Item.CloneDefaults(ItemID.NightsEdge);
+            Item.damage -= 3;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
-			Item.useTime = Base.useTime - 3;
-			Item.useAnimation = Base.useAnimation;
-			Item.useStyle = ItemUseStyleID.Swing;
+			Item.useTime -= 3;
 			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = Base.rare;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
+			Item.autoReuse = true;			
             Item.GetGlobalItem<GlobalItem1>().Saber = true;
         }
-
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            var p = Projectile.NewProjectile(source, position , velocity, type, damage, knockback, 0, 0, 0);
+			Main.projectile[p].width = 10;
+            Main.projectile[p].height = 10;
+            return false;
+        }
+        public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.NextBool(3))
 			{
