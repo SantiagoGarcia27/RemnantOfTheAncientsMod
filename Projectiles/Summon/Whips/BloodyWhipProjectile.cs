@@ -111,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Whips
         {
             target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-            Main.player[Projectile.owner].Heal(1);
+            Main.player[Projectile.owner].Heal(2);
             Projectile.damage = (int)(damage * 0.5f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
         }
 

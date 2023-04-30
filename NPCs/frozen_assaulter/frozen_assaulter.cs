@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         int invincibilityTimer = 0;
         bool healAnimation = false;
         int currentPhase = 1;
-        int MaxPlayers = 5;
+        int MaxPlayers = RemnantOfTheAncientsMod.MaxPlayerOnline() / 2;
         int TpDelay = 20;
         public override void SetStaticDefaults()
         {
@@ -41,6 +41,8 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Asaltante Congelado");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Agresseur gelé");
             Main.npcFrameCount[NPC.type] = 8;
+            NPCID.Sets.MPAllowedEnemies[Type] = true;
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
         }
         public override void SetDefaults()
         {
@@ -51,7 +53,6 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             NPC.knockBackResist = 0f;
             NPC.width = 100;
             NPC.height = 100;
-            Main.npcFrameCount[NPC.type] = 8;
             NPC.value = Item.buyPrice(0, 5, 75, 45);
             NPC.npcSlots = 10f;
             NPC.boss = true;
@@ -62,7 +63,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.buffImmune[24] = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Frozen_Assaulter_p1");
-            NPC.netAlways = true;
+            NPC.netAlways = true;  
         }
         private int attackCounter;
 
@@ -78,33 +79,29 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         float delay = 2;
         public override void AI()
         {
-            
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            Player target = Main.player[NPC.target];
+            float distance = NPC.Distance(Main.player[NPC.target].Center);
+            PhaseChanger();
+            setAttackCounter(target);
+
+            if (target.dead)
             {
-                Player target = Main.player[NPC.target];
-                float distance = NPC.Distance(Main.player[NPC.target].Center);
-                PhaseChanger();
-                setAttackCounter(target);
+                NPC.EncourageDespawn(7);
+                return;
+            }
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            {
+                NPC.TargetClosest(true);
+            }
+            shootAi(target, Reaper.ReaperMode);
+            summonAi(Reaper.ReaperMode);
+            CheckDistance(distance);
 
-                if (target.dead)
+            if (Main.expertMode)
+            {
+                if (attackCounter < 600 && attackCounter > 500 && currentPhase != 3)
                 {
-                    NPC.EncourageDespawn(7);
-                    return;
-                }
-                if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
-                {
-                    NPC.TargetClosest(true);
-                }
-                shootAi(target, Reaper.ReaperMode);
-                summonAi(Reaper.ReaperMode);
-                CheckDistance(distance);
-
-                if (Main.expertMode)
-                {
-                    if (attackCounter < 600 && attackCounter > 500 && currentPhase != 3)
-                    {
-                        shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
-                    }
+                    shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                 }
             }
             if (Main.expertMode)
@@ -156,7 +153,7 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
                             if (currentPhase > 2) shootIa(10, ProjectileType<Frozenp>(), target, -20f, 0.5, 0.5);
                             for (int i = -1; i < MaxPlayers; i++)
                             {
-                                int a = i== -1? Main.myPlayer: i>1 ? i-1 : i;
+                                int a = i == -1? Main.myPlayer: i>1 ? i-1 : i;
                                 shootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f, 0.5, 0.5);
                             }
                         }
@@ -329,7 +326,6 @@ namespace RemnantOfTheAncientsMod.NPCs.frozen_assaulter
         }
         public override void OnSpawn(IEntitySource source)
         {
-             MaxPlayers = RemnantOfTheAncientsMod.MaxPlayerOnline()/2;
         }
 
         private const int Frame_static = 0;

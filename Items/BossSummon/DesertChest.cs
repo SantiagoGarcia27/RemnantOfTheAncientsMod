@@ -7,14 +7,15 @@ using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.World;
 using System;
+using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
 
 namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
     public class DesertChest : ModItem
     {
-       public override void SetStaticDefaults()
-		{
-DisplayName.SetDefault("Desert Chest");
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Desert Chest");
             Tooltip.SetDefault("Summons the Desert Annihilator");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coffre du désert");
@@ -24,7 +25,7 @@ DisplayName.SetDefault("Desert Chest");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al aniquilador del desierto");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
-        
+
         public override void SetDefaults()
         {
             Item.width = 20;
@@ -39,19 +40,25 @@ DisplayName.SetDefault("Desert Chest");
             if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.consumable = false;
         }
         public override bool CanUseItem(Player player)
-        {        
-            return player.ZoneDesert && !NPC.AnyNPCs(ModContent.NPCType<DesertAniquilator>());  
+        {
+            return player.ZoneDesert && !NPC.AnyNPCs(ModContent.NPCType<DesertAniquilator>());
         }
         public override bool? UseItem(Player player)
         {
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
-            if (Main.netMode != 1)
-            {  
-                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<DesertAniquilator>());     
-            }
-            else
+            if (player.whoAmI == Main.myPlayer)
             {
-                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<DesertAniquilator>(), 0f, 0f, 0, 0, 0);
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
+
+                int type = ModContent.NPCType<DesertAniquilator>();
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.SpawnOnPlayer(player.whoAmI, type);
+                }
+                else
+                {
+                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+                }
             }
             return true;
         }

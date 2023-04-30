@@ -41,21 +41,25 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         {
             return player.ZoneSnow && !NPC.AnyNPCs(ModContent.NPCType<frozen_assaulter>()) && !Main.dayTime;
         }
-
         public override bool? UseItem(Player player)
         {
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
-            if (Main.netMode != 1)
-            {
-                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<frozen_assaulter>());
-            }
-            else
-            {
-                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<frozen_assaulter>(), 0f, 0f, 0, 0, 0);
+            if (player.whoAmI == Main.myPlayer)
+            {   
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
+
+                int type = ModContent.NPCType<frozen_assaulter>();
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.SpawnOnPlayer(player.whoAmI, type);
+                }
+                else
+                {
+                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+                }
             }
             return true;
         }
-    
         public override void AddRecipes()
         {
             CreateRecipe()

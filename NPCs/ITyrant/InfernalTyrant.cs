@@ -64,6 +64,8 @@ namespace RemnantOfTheAncientsMod.NPCs.ITyrant
                 PortraitPositionYOverride = 12f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
+            NPCID.Sets.MPAllowedEnemies[Type] = true;
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
         }
    
         public bool head;

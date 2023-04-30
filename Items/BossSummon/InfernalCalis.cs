@@ -7,6 +7,7 @@ using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.World;
 using System;
+using RemnantOfTheAncientsMod.NPCs.frozen_assaulter;
 
 namespace RemnantOfTheAncientsMod.Items.BossSummon
 {
@@ -44,15 +45,22 @@ namespace RemnantOfTheAncientsMod.Items.BossSummon
         }
         public override bool? UseItem(Player player)
         {
-            SoundEngine.PlaySound(SoundID.Roar, player.position);
-            if (Main.netMode != 1)
+            if (player.whoAmI == Main.myPlayer)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<InfernalTyrantHead>());
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
+
+                int type = ModContent.NPCType<InfernalTyrantHead>();
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.SpawnOnPlayer(player.whoAmI, type);
+                }
+                else
+                {
+                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+                }
             }
-            else
-            {
-                NetMessage.SendData(MessageID.SpawnBoss, -1, -1, null, player.whoAmI, ModContent.NPCType<InfernalTyrantHead>(), 0f, 0f, 0, 0, 0);
-            }
+
             return true;
         }
         public override void AddRecipes()

@@ -34,6 +34,8 @@ namespace RemnantOfTheAncientsMod.NPCs.DAniquilator
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aniquilador del desierto");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Aniquilateur du désert");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
+            NPCID.Sets.MPAllowedEnemies[Type] = true;
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
         }
         public override void SetDefaults()
         {

@@ -222,15 +222,15 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
 			}
 			if (item.prefix == ModContent.PrefixType<Acurate>())
 			{
-				PrefixUpdate(player, 6f, 3);
+				PrefixUpdate(player, 8f, 3);
+			}
+			if (item.prefix == ModContent.PrefixType<Sharp>())
+			{
+				PrefixUpdate(player, 0.08f, 4);
 			}
 			if (item.prefix == ModContent.PrefixType<Uncontrolled>())
 			{
-				PrefixUpdate(player, 8f, 4);
-			}
-			if (item.prefix == ModContent.PrefixType<Uncontrolled>())
-			{
-				PrefixUpdate(player, 6f, 5);
+				PrefixUpdate(player, 0.08f, 5);
 			}
 			if (item.prefix == ModContent.PrefixType<Regenerative>())
 			{
