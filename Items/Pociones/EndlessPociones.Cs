@@ -200,6 +200,24 @@ namespace RemnantOfTheAncientsMod.Items.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de agallas eterna");
         }
     }
+    public class EndlessFlipper : BasePotions
+    {
+        public override Item ItemBase => new(ItemID.FlipperPotion);
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Flipper Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de fltación eterna");
+        }
+    }
+    public class EndlessWaterWalking : BasePotions
+    {
+        public override Item ItemBase => new(ItemID.WaterWalkingPotion);
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Water Walking Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caminar sobre el agua eterna");
+        }
+    }
     public class EndlessHunter : BasePotions
     {
         public override Item ItemBase => new(ItemID.HunterPotion);

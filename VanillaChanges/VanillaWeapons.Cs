@@ -102,7 +102,7 @@ namespace RemnantOfTheAncientsMod.VanillaChanges
         public override bool AltFunctionUse(Item item, Player player)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-			if (WeaponConf)
+			if (WeaponConf && item.damage > 0 && item.axe < 1 && item.pick < 1)
 			{
 				return true;
 			}

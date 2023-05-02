@@ -8,6 +8,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
 {
     public class StardustMinion : ModProjectile
     {
+        public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Summon/Minioms/StardustMinion";
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("StardustMinion");
@@ -19,13 +20,14 @@ namespace RemnantOfTheAncientsMod.Projectiles.Summon.Minioms
         public sealed override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.StardustDragon1);
-            Projectile.width = 10;
-            Projectile.height = 20;
-            Projectile.tileCollide = false;
-            Projectile.friendly = true;
-            Projectile.minion = true;
+            //Projectile.width = 10;
+            //Projectile.height = 20;
+            //Projectile.tileCollide = false;
+            //Projectile.friendly = true;
+            //Projectile.minion = true;
             Projectile.minionSlots = 1f;
             Projectile.penetrate = -1;
+            Projectile.alpha = 100;
             AIType = ProjectileID.StardustDragon1;
         }
         public override bool? CanCutTiles()
