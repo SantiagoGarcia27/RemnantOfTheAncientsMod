@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
 using Terraria.ID;
 
