@@ -340,14 +340,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 		public Asset<Texture2D> GetTextureNPCShouldUse(NPC npc)
 		{
 			if (npc.IsABestiaryIconDummy && !npc.ForcePartyHatOn)
-				return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard");
+				return Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Town/Time_Wizard");
 
 			if (npc.altTexture == 1)
-				return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard_Party");
+				return Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Town/Time_Wizard_Party");
 
-			return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard");
+			return Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Town/Time_Wizard");
 		}
 
-		public int GetHeadTextureIndex(NPC npc) => GetModHeadSlot("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard_Head");
+		public int GetHeadTextureIndex(NPC npc) => GetModHeadSlot("RemnantOfTheAncientsMod/Content/NPCs/Town/Time_Wizard_Head");
 	}
 }

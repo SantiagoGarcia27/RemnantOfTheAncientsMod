@@ -86,7 +86,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 		public override void DrawEffects(NPC NPC, ref Color drawColor)
 		{
-			int type = DustType<Ghost>(); 
+			int type = DustType<PlaceHolder>(); 
 			if (Burn_Sand)
 			{
 				type = DustType<QuemaduraA>();
