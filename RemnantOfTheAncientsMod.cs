@@ -93,6 +93,7 @@ namespace RemnantOfTheAncientsMod
         }
         public static int MaxPlayerOnline()
         {
+            MaxPlayers = 0;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (MaxPlayers < 10)
@@ -104,7 +105,7 @@ namespace RemnantOfTheAncientsMod
                     }
                 }   
             }
-            return MaxPlayers;
+            return MaxPlayers -1;
         }
     }
 }

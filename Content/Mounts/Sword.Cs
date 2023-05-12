@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ModLoader;
 using static Terraria.Mount;
 
-namespace RemnantOfTheAncientsMod.Mounts
+namespace RemnantOfTheAncientsMod.Content.Mounts
 {
 	public class Sword : ModMount
 	{

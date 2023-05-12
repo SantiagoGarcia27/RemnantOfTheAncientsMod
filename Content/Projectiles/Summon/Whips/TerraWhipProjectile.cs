@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 {
-	public class NightWhipProjectile : ModProjectile
+	public class TerraWhipProjectile : ModProjectile
 	{
 	
         public override void SetStaticDefaults()
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
             Projectile.WhipSettings.Segments = 10;
-            Projectile.WhipSettings.RangeMultiplier = 1.5f;
+            Projectile.WhipSettings.RangeMultiplier = 2.3f;//1.5
         }
 
         private float Timer
@@ -111,9 +111,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
-            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<Night_Bleasing_Buff>(), 60 * 5);
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-            Projectile.damage = (int)(damage * 0.9f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
+            Projectile.damage = (int)(damage * 0.8f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
+
+            Projectile.NewProjectile(Projectile.GetSource_None(), target.position + new Vector2(0,-10 * 16), new Vector2(0,10), ModContent.ProjectileType<TerraExplosion>(), damage / 4, 0, Main.myPlayer);
         }
 
         // This method draws a line between all points of the whip, in case there's empty space between the sprites.
@@ -130,7 +131,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
                 Vector2 diff = list[i + 1] - element;
 
                 float rotation = diff.ToRotation() - MathHelper.PiOver2;
-                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.Purple);
+                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.LightGoldenrodYellow);
                 Vector2 scale = new Vector2(1, (diff.Length() + 2) / frame.Height);
 
                 Main.EntitySpriteDraw(texture, pos - Main.screenPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0);
@@ -138,6 +139,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
                 pos += diff;
             }
         }
+
 
         public override bool PreDraw(ref Color lightColor)
         {
@@ -201,7 +203,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
                 Color color = Lighting.GetColor(element.ToTileCoordinates());
 
                 Main.EntitySpriteDraw(texture, pos - Main.screenPosition, frame, color, rotation, origin, scale, flip, 0);
-
                 pos += diff;
             }
             return false;

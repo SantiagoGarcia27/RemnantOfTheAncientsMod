@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 {
-	public class NightWhipProjectile : ModProjectile
+	public class TrueTwilightProjectile : ModProjectile
 	{
 	
         public override void SetStaticDefaults()
@@ -31,8 +31,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
-            Projectile.WhipSettings.Segments = 10;
-            Projectile.WhipSettings.RangeMultiplier = 1.5f;
+            Projectile.WhipSettings.Segments = 11;
+            Projectile.light = 0.5f;
+            Projectile.WhipSettings.RangeMultiplier = 1.3f;
         }
 
         private float Timer
@@ -110,8 +111,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
-            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<Night_Bleasing_Buff>(), 60 * 5);
+            RemnantPlayer.ApplyBuffToAllPlayers(ModContent.BuffType<True_Night_Bleasing_Buff>(), 0, 0, 5);
+            target.AddBuff(ModContent.BuffType<TrueTwiligtDebuff>(), 240);
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             Projectile.damage = (int)(damage * 0.9f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
         }

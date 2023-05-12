@@ -9,6 +9,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_Basic_Potion_Kit;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -314,7 +315,13 @@ namespace RemnantOfTheAncientsMod
         }
         private static void PreHardmodeSummonerWeapons()
         {
-
+            Recipe.Create(ModContent.ItemType<Twilight>())
+               .AddIngredient(ItemID.ThornWhip, 1)
+               .AddIngredient(ItemID.BoneWhip, 1)
+               .AddIngredient(ModContent.ItemType<FireStorm>())
+               .AddRecipeGroup("anyCorruptWhip")
+               .AddTile(TileID.DemonAltar)
+               .Register();
         }
         private static void PreHardmodeThrowerWeapons()
         {
@@ -1032,6 +1039,14 @@ namespace RemnantOfTheAncientsMod
                 ItemID.Bacon
             });
             RecipeGroup.RegisterGroup("anyFood", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Intestine", new int[]
+            {
+                ModContent.ItemType<Intestine>(),
+                 ModContent.ItemType<SoulHarvester>(),
+            });
+            RecipeGroup.RegisterGroup("anyCorruptWhip", group);
+
         }
 
         public override void PostAddRecipes()

@@ -1,4 +1,5 @@
-﻿using RemnantOfTheAncientsMod.Content.Items.Items;
+﻿using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -8,24 +9,21 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
 {
-    public class Intestine : ModItem
+    public class SoulHarvester : ModItem
 	{
 		public override void SetStaticDefaults() 
         {
-            DisplayName.SetDefault("Intestine");
-            Tooltip.SetDefault("5 summon tag damage" +
-                "\nYour summons will focus struck enemies" +
-                "\nHeal 1hp per hit");
+            DisplayName.SetDefault("Soul Harvester");
+            Tooltip.SetDefault("Your summons will focus struck enemies" +
+                "\nHas a chance to increase attack speed by 10%");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Intestine");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "5 dégâts de balise d'invocation" +
-                "\nVos invocations concentreront les ennemis frappés" +
-                "\nSoignez 1 PV par coup");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Moissonneur d'âmes");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vos invocations concentreront les ennemis frappés" +
+                "\nA une chance d'augmenter la vitesse d'attaque de 10%");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Intestino");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "5 daño de etiqueta de invocación" +
-                "\nTu invocaciones se centrará en los enemigos golpeados." +
-                "\nCura 1 punto de vida por golpe");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cosechador de almas");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tu invocaciones se centrará en los enemigos golpeados." +
+                "\nTiene la probabilidad de aumentar un 10% la velocidad de ataque");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -35,12 +33,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
             // Mouse over to see its parameters.
 
             Item.DamageType = DamageClass.SummonMeleeSpeed;
-            Item.damage = 16;
+            Item.damage = 15;
             Item.knockBack = 2;
             Item.rare = ItemRarityID.Orange;
-            Item.shoot = ModContent.ProjectileType<BloodyWhipProjectile>();
+            Item.shoot = ModContent.ProjectileType<SoulHarvesterProjectile>();
             Item.shootSpeed = 4;
-            Item.value = new Item(ItemID.BloodButcherer).value;
+            Item.value = new Item(ItemID.LightsBane).value;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 30;
             Item.useAnimation = 30;
@@ -48,7 +46,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
             Item.channel = false; // This is used for the charging functionality. Remove it if your whip shouldn't be chargeable.
             Item.noMelee = true;
             Item.noUseGraphic = true;
-            Item.autoReuse = false;
+            Item.autoReuse = true;
+        }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            player.AddBuff(ModContent.BuffType<CombatAdrenalineBuff>(), 180);
         }
         public override void AddRecipes()
         {

@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 {
-	public class NightWhipProjectile : ModProjectile
+	public class SoulHarvesterProjectile : ModProjectile
 	{
 	
         public override void SetStaticDefaults()
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
             Projectile.WhipSettings.Segments = 10;
-            Projectile.WhipSettings.RangeMultiplier = 1.5f;
+            Projectile.WhipSettings.RangeMultiplier = 1.2f;
         }
 
         private float Timer
@@ -110,8 +110,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
-            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<Night_Bleasing_Buff>(), 60 * 5);
+            if(Main.rand.NextBool(10) && !Main.player[Projectile.owner].HasBuff(ModContent.BuffType<CombatAdrenalineBuff>())) Main.player[Projectile.owner].AddBuff(ModContent.BuffType<CombatAdrenalineBuff>(), 180);
+            Projectile.WhipSettings.RangeMultiplier = Main.player[Projectile.owner].HasBuff(ModContent.BuffType<CombatAdrenalineBuff>()) ? 1.4f : 1.2f;
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             Projectile.damage = (int)(damage * 0.9f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
         }
@@ -130,7 +130,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
                 Vector2 diff = list[i + 1] - element;
 
                 float rotation = diff.ToRotation() - MathHelper.PiOver2;
-                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.Purple);
+                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.MediumPurple);
                 Vector2 scale = new Vector2(1, (diff.Length() + 2) / frame.Height);
 
                 Main.EntitySpriteDraw(texture, pos - Main.screenPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0);

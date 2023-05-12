@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -11,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 {
-	public class NightWhipProjectile : ModProjectile
+	public class TrueDurendalProjectile : ModProjectile
 	{
 	
         public override void SetStaticDefaults()
@@ -31,8 +32,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
-            Projectile.WhipSettings.Segments = 10;
-            Projectile.WhipSettings.RangeMultiplier = 1.5f;
+            Projectile.WhipSettings.Segments = 9;
+            Projectile.light = 0.5f;
+            Projectile.WhipSettings.RangeMultiplier = 1.7f;
         }
 
         private float Timer
@@ -58,10 +60,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.spriteDirection = Projectile.velocity.X >= 0f ? 1 : -1;
 
             // remove these 3 lines if you don't want the charging mechanic
-            if (!Charge(owner))
-            {
-                return; // timer doesn't update while charging, freezing the animation at the start.
-            }
+            //if (!Charge(owner))
+            //{
+            //    return; // timer doesn't update while charging, freezing the animation at the start.
+            //}
 
             Timer++;
 
@@ -110,10 +112,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
-            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<Night_Bleasing_Buff>(), 60 * 5);
-            Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-            Projectile.damage = (int)(damage * 0.9f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
+            target.AddBuff(ModContent.BuffType<TrueDurendalDebuff>(), 240);
+            if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<ExcaliburMinion>()] < 1) Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.position + new Vector2(0,-6*16), Vector2.One, ModContent.ProjectileType<ExcaliburMinion>(), damage, knockback, Main.myPlayer); ;
+            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<ExcaliburMinionBuff>(),240);
+            Main.player[Projectile.owner].AddBuff(BuffID.SwordWhipPlayerBuff, 60 * 3);
+            Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;          
+            Projectile.damage = (int)(damage * 0.9f); 
         }
 
         // This method draws a line between all points of the whip, in case there's empty space between the sprites.
@@ -130,7 +134,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
                 Vector2 diff = list[i + 1] - element;
 
                 float rotation = diff.ToRotation() - MathHelper.PiOver2;
-                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.Purple);
+                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.Red);
                 Vector2 scale = new Vector2(1, (diff.Length() + 2) / frame.Height);
 
                 Main.EntitySpriteDraw(texture, pos - Main.screenPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0);

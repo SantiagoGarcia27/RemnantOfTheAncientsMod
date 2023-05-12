@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using System.Collections.Generic;
 using Terraria;
@@ -11,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 {
-	public class NightWhipProjectile : ModProjectile
+	public class FireStormProjectile : ModProjectile
 	{
 	
         public override void SetStaticDefaults()
@@ -31,8 +30,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
-            Projectile.WhipSettings.Segments = 10;
-            Projectile.WhipSettings.RangeMultiplier = 1.5f;
+            Projectile.WhipSettings.Segments = 11;
+            Projectile.light = 0.5f;
+            Projectile.WhipSettings.RangeMultiplier = 1.3f;
         }
 
         private float Timer
@@ -111,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
-            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<Night_Bleasing_Buff>(), 60 * 5);
+            target.AddBuff(BuffID.OnFire, 180);
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             Projectile.damage = (int)(damage * 0.9f); // Multihit penalty. Decrease the damage the more enemies the whip hits.
         }

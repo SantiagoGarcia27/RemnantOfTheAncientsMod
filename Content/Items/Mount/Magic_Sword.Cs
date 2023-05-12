@@ -1,7 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Mounts;
+using RemnantOfTheAncientsMod.Content.Mounts;
 using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Mount

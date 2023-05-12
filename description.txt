@@ -1,28 +1,28 @@
-            ----------------------------------------
-            Remnant of the ancients is a mod
-            created for complement Terraria vanilla,
-            although it can use in 
-            addition to other mods to 
-            improve the experience.
-            -----------------------------------------
+        ----------------------------------------
+        Remnant of the ancients is a mod
+        created for complement Terraria vanilla,
+        although it can use in 
+	addition to other mods to 
+	improve the experience.
+	-----------------------------------------
                           
-            Remnant of the ancients currently adds:
+	Remnant of the ancients currently adds:
                   
-            Items:
-            -2 NPCs             -43 Ammos
-            -3 Armor Sets       -87 Potions
-		    -12 New Materials   -21 Enemies
-            -13 Tools           -1 Furniture set
-            -122 Weapons        -3 New Bosses
-            -27 Accesories      -3 Pets
-             -1 Mount            
-            -New Acended Reforges
-            -New Scroll mechanic
-            -Add recipe for Vanilla items
-            -Cross-mod support for the Calamity Mod,
-            BossChecklist,Terraria Overhaul and Census
-            -Changes in vanilla items
-            -Death and Revenge Comptativilitie
-            -Rogue compativilities
-            -New dificulty Reaper Mode
+	Items:
+	-2 NPCs             -43 Ammos
+	-3 Armor Sets       -87 Potions
+	-12 New Materials   -21 Enemies
+	-13 Tools           -1 Furniture set
+	-122 Weapons        -3 New Bosses
+	-27 Accesories      -3 Pets
+	-1 Mount            
+	-New Acended Reforges
+	-New Scroll mechanic
+	-Add recipe for Vanilla items
+	-Cross-mod support for the Calamity Mod,
+	BossChecklist,Terraria Overhaul and Census
+	-Changes in vanilla items
+	-Death and Revenge Comptativilitie
+	-Rogue compativilities
+  	-New dificulty Reaper Mode
                   

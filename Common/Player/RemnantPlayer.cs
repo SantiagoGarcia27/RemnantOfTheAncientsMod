@@ -145,6 +145,15 @@ namespace RemnantOfTheAncientsMod
 			if (Player.wingTimeMax > 4) ReaperGlobalItem.ReaperWingsNerf(Player);
 			//if(RemnantOfTheAncientsMod.DebuggMode) Debugg();
 		}
+		public static void ApplyBuffToAllPlayers(int BuffId, int Hours, int Minutes, int Seconds)
+		{
+			int BuffTime = (Seconds *60) + (Minutes * 60 * 60)+ (Hours * 60 *60 *60);
+			int MaxPlayer = RemnantOfTheAncientsMod.MaxPlayerOnline();
+            for (int CurrentPlayer = 0; CurrentPlayer <= MaxPlayer; CurrentPlayer++) 
+			{
+				Main.player[CurrentPlayer].AddBuff(BuffId, BuffTime);
+			}
+		}
 		public void ReaperStarter()
 		{
 			if (!ReaperFirstTime)

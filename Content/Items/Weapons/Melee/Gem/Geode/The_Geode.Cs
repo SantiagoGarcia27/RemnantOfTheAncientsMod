@@ -9,8 +9,6 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using System;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.World;
-using ReLogic.Peripherals.RGB;
-using RemnantOfTheAncientsMod.Mounts;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
 {

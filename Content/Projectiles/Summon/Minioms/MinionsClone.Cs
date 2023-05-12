@@ -73,5 +73,34 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 
         }
     }
+    public class ExcaliburMinion : ModProjectile
+    {
+        public override string Texture => "Terraria/Images/Item_" + ItemID.Excalibur;
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("IceMistF");
+            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+            Main.projPet[Projectile.type] = true;
+            AIType = ProjectileID.CoolWhipProj;
+        }
+        public override void SetDefaults()
+        {
+            AIType = ProjectileID.CoolWhipProj;
+            Projectile.CloneDefaults(ProjectileID.CoolWhipProj);
+            Main.projFrames[Projectile.type] = 1;
+            Projectile.minionSlots = 0f;
+            Projectile.timeLeft = 260;
+        }
+        public override void AI()
+        {
+            if (Main.player[Projectile.owner].dead) Projectile.Kill();
+            
+        }
+        public override bool MinionContactDamage() => true;
+        public override void Kill(int timeLeft)
+        {
+
+        }
+    }
 }
 
