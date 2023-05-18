@@ -2,6 +2,14 @@
 {
 	RemnantOfTheAncientsMod: 
 	{	
+		SetBonus:
+		{
+			Tuxonite: 
+				'''
+				Aleatoriamente entrarás en sigilo,
+				con lo que aumentará tu habilidad de ataque a distancia y se reducirá la posibilidad de que te ataque los enemigos.
+				'''
+		}
 		TownNPCMood:
 		{
 			Time_Wizard: 

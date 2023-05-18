@@ -13,16 +13,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Night Mask");
-			Tooltip.SetDefault(""
-			+ "\nRanged damage increased by 13%");
+			Tooltip.SetDefault("Ranged damage increased by 13%");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mascara de la Noche");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-					   + "\nAumenta un 13% el daño a distancia");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 13% el daño a distancia");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque de Nuit");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-					  + "\nDégâts � distance augmentéss de 13%");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Dégâts à distance augmentés de 13%");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

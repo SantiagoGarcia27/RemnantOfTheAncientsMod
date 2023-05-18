@@ -13,16 +13,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Night Helmet");
-			Tooltip.SetDefault(""
-			+ "\nIncrease melee damage by 13%");
+			Tooltip.SetDefault("Increase melee damage by 13%");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de la Noche");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-					   + "\nAumenta un 13% el daño cuerpo a cuerpo");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 13% el daño cuerpo a cuerpo");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque de Nuit");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-					  + "\nAugmente les dégâts de m�l�e de 13%");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de m�l�e de 13%");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

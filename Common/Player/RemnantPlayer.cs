@@ -33,6 +33,7 @@ namespace RemnantOfTheAncientsMod
 		public bool StardustMinion;
 		public bool StardustDragonV2Minion;
 		public bool TyrantMinion;
+		public bool SunflowerSentry;
 		#endregion
 		public bool Burn_Sand;
 		public bool hBurn;
@@ -52,9 +53,14 @@ namespace RemnantOfTheAncientsMod
 		public static bool ReaperFirstTime;
 		private static List<NPC> _hallucinationCandidates = new List<NPC>();
 		public List<int> ScrollsBuff = new List<int>();
+		public static int DummyMode = 0;
+		public bool CouwldownHolySaber;
+		public static bool tuxoniteStealth;
+        public static int tuxoniteStealthDuration = 0;
+        public static float tuxoniteStealthCounter = 0;
 
 
-		public override void ResetEffects()
+        public override void ResetEffects()
 		{
 			Burn_Sand = false;
 			hBurn = false;
@@ -77,7 +83,10 @@ namespace RemnantOfTheAncientsMod
 			ChaliceOn = false;
 			MeleeKit = false;
 			MoneyCollector = false;
-		}
+			SunflowerSentry= false;
+			tuxoniteStealth = false;
+			//tuxoniteStealthCounter = 1;
+        }
 
 
 		public override void UpdateDead()

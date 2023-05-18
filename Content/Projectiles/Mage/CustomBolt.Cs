@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
         public override void AI()
         {
             float maxDetectRadius = 400f; 
-            float projSpeed = 5f; 
+            float projSpeed = 7f; //5
             GenerateParticle(color);
             
             NPC closestNPC = FindClosestNPC(maxDetectRadius);
@@ -54,9 +54,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             {
                 Projectile.scale += 0.05f;
             }
-
-
-           
         }
         public void GenerateParticle(Color color)
         {

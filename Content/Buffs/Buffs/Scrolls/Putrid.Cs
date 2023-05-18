@@ -10,12 +10,11 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Putrid");
-            Description.SetDefault("");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Putride");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Podrido");
             Description.SetDefault("You're breaking down");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "You're breaking down");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te estás descomponiendo");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "You're breaking down");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te estás descomponiendo");
 
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;

@@ -37,6 +37,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
              .AddIngredient(ItemID.BottledWater, 1)
              .AddTile(TileID.Bottles)
              .Register();
+
+            CreateRecipe(2)
+             .AddIngredient(ItemID.HunterPotion, 1)
+             .AddIngredient(ItemID.TrapsightPotion, 1)
+             .AddTile(TileID.Bottles)
+             .Register();
         }
     }
     public class Endless_Supe_Sense_Potion : Endless
@@ -50,6 +56,30 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             Tooltip.SetDefault("Show the locations of enemies and danger sources");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Afficher les emplacements des ennemis et des sources de danger");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Muestra la ubicación de los enemigos y las fuentes de peligro");
+        }
+
+        public override void AddRecipes()
+        {
+            base.AddRecipes();
+            CreateRecipe()
+            .AddIngredient(ItemID.Lens, 30)
+            .AddIngredient(ItemID.SpiderFang, 15)
+            .AddIngredient(ItemID.Daybloom, 15)
+            .AddIngredient(ItemID.BottledWater, 15)
+            .AddTile(TileID.Bottles)
+            .Register();
+
+            CreateRecipe()
+            .AddIngredient(ItemID.HunterPotion, 15)
+            .AddIngredient(ItemID.TrapsightPotion, 15)
+            .AddTile(TileID.Bottles)
+            .Register();
+
+            CreateRecipe()
+            .AddIngredient(ItemType<EndlessHunter>(), 1)
+            .AddIngredient(ItemType<EndlessDangersense>(), 1)
+            .AddTile(TileID.Bottles)
+            .Register();
         }
     }
 }

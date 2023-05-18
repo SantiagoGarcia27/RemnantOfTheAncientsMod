@@ -13,16 +13,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Night Greaves");
-			Tooltip.SetDefault(""
-			+ "\n5% increased movement speed");
+			Tooltip.SetDefault("15% increased movement speed");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Perneras De La Noche");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-					   + "\nAumenta un 5% la velocidad de movimiento");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 15% la velocidad de movimiento");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves de Nuit");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-					  + "\n5% D'augmentation de la Vitesse de Déplacement");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "15% D'augmentation de la Vitesse de Déplacement");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -38,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed += 1.05f;
+			player.moveSpeed *= 1.15f;
 		}
 
 		public override void AddRecipes()

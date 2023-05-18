@@ -24,17 +24,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 		}
 		public override void SetDefaults()
 		{
-			Item Base = new Item(ItemID.EnchantedSword);
-			Item.damage = 10;
+			Item.CloneDefaults(ItemID.EnchantedSword);
+			Item.damage /= 2;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
 			Item.useTime = 15;
 			Item.useAnimation = 25;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = Base.rare;
+			Item.knockBack += 5;
+
 			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
 			{
 				if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileID.EnchantedBeam;
@@ -44,10 +43,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
              Item.GetGlobalItem<CustomTooltip>().Saber = true;
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-				Item.damage = 16;
-			}
+   //         if (RemnantOfTheAncientsMod.CalamityMod != null)
+			//{
+			//	Item.damage = 16;
+			//}
 		}
         [JITWhenModsEnabled("TerrariaOverhaul")]
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -65,8 +64,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 				{
 					if (player.controlUseTile && Main.mouseRight)
 					{
-						DashPlayer.JumpDash(player, 1.7f, 0.55f);
-						var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, new Vector2(0, 0), ModContent.ProjectileType<DamageHitbox>(), Item.damage * 2, 2, Main.myPlayer, 2, 1);
+                        DashPlayer.JumpDash(player, 0.9f, 0.65f);
+                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, new Vector2(0, 0), ModContent.ProjectileType<DamageHitbox>(), Item.damage * 2, 2, Main.myPlayer, 2, 1);
 						Main.projectile[p].width = Item.width * 2;
 						Main.projectile[p].height = Item.height * 2;
 						Main.projectile[p].scale = Item.scale;

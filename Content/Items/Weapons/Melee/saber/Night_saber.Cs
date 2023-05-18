@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.height = 80;
 			Item.useTime -= 3;
 			Item.useAnimation -= 3;
-			Item.knockBack = 10;
+			Item.knockBack += 5;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;

@@ -13,8 +13,8 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître du désert");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Maestro del desierto");
             Description.SetDefault("You feel with leadership");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous vous sentez avec le leadership");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes con liderazgo");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous vous sentez avec le leadership");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes con liderazgo");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

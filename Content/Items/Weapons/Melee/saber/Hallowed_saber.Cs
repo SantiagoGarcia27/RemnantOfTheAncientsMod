@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -39,6 +40,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
                 if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
                 {
                     DashPlayer.JumpDash(player, 1.5f, 0.75f);
+					if (!player.HasBuff<HolyCouldownDebuff>()) 
+					{
+						player.AddBuff(BuffID.ShadowDodge, Utils1.FormatTime(0, 0, 0, 1));
+						player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), Utils1.FormatTime(0, 0, 0, 5));
+                    }
                 }
             }
             return true;

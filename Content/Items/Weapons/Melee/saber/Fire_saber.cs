@@ -46,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 				{
 					if (player.controlUseTile && Main.mouseRight)
 					{
-						DashPlayer.JumpDash(player, 2f, 0.25f);
+						DashPlayer.JumpDash(player, 1.1f, 0.25f);
 						var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, new Vector2(0, 0), ModContent.ProjectileType<DamageHitbox>(), Item.damage * 2, 2, Main.myPlayer, 1, 1);
 						Main.projectile[p].width = Item.width * 2;
 						Main.projectile[p].height = Item.height * 2;

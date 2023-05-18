@@ -31,7 +31,6 @@ namespace RemnantOfTheAncientsMod
             Emblemas();
             Accesories();
             Potoions();
-            Ores();
             VanillaPotionCrafting();
             Mirrors();
             CraftinStationsCraft();
@@ -40,7 +39,6 @@ namespace RemnantOfTheAncientsMod
             LivingFlames();
             BossSummon();
             HardmodeItems();
-            UncraftPotions();
         }
 
         private static void HardmodeItems()
@@ -72,140 +70,13 @@ namespace RemnantOfTheAncientsMod
         }
         private static void Potoions()
         {
-            Recipe.Create(ModContent.ItemType<Endless_Combat_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Melee_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Tank_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Ranger_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Summon_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Magic_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Advanced_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Melee_Potion_Kit>())
-            .AddTile(TileID.Bottles)
-            .Register();
-
-
-            Recipe.Create(ModContent.ItemType<Endless_Mining_Potion_Kit>())
-                .AddIngredient(ModContent.ItemType<EndlessSpelunker>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessShine>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessNightOwl>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessMining>(), 1)
-                .AddTile(TileID.Bottles)
-                .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Melee_Potion_Kit>())
-                .AddIngredient(ModContent.ItemType<EndlessIchorFlask>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessSake>(), 1)
-                .AddIngredient(ModContent.ItemType<EndlessTitan>(), 1)
-                .AddTile(TileID.Bottles)
-                .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Fish_Potion>())
-               .AddIngredient(ModContent.ItemType<EndlessGills>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessWaterWalking>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessFlipper>(), 1)
-               .AddTile(TileID.Bottles)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Ranger_Potion_Kit>())
-               .AddIngredient(ModContent.ItemType<EndlessArchery>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessAmmoReservation>(), 1)
-               .AddTile(TileID.Bottles)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Gravitation_Control_Potion>())
-               .AddIngredient(ModContent.ItemType<EndlessGravitation>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessFeather>(), 1)
-               .AddTile(TileID.Bottles)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Fisher_Potion_Kit>())
-               .AddIngredient(ModContent.ItemType<EndlessCalming>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessFishing>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessSonar>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessCrate>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessInvisibility>(), 1)
-               .AddIngredient(ModContent.ItemType<EndlessGreaterLuck>(), 1)
-               .AddTile(TileID.Bottles)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Basic_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<EndlessRegeneration>(), 1)
-            .AddIngredient(ModContent.ItemType<EndlessSwiftness>(), 1)
-            .AddIngredient(ModContent.ItemType<EndlessIronSkin>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Magic_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<EndlessManaRegeneration>(), 1)
-            .AddIngredient(ModContent.ItemType<EndlessManaPower>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Tank_Potion_Kit>())
-           .AddIngredient(ModContent.ItemType<EndlessEndurance>(), 1)
-           .AddIngredient(ModContent.ItemType<EndlessLifeForce>(), 1)
-           .AddIngredient(ModContent.ItemType<EndlessWrath>(), 1)
-           .AddIngredient(ModContent.ItemType<EndlessThorns>(), 1)
-           .AddIngredient(ModContent.ItemType<EndlessHeaRtreach>(), 1)
-           .AddTile(TileID.Bottles)
-           .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Summon_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<EndlessSummoning>(), 1)
-            .AddIngredient(ModContent.ItemType<EndlessInferno>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-
             Recipe.Create(ModContent.ItemType<Endless_Supe_Sense_Potion>())
             .AddIngredient(ModContent.ItemType<EndlessHunter>(), 1)
             .AddIngredient(ModContent.ItemType<EndlessDangersense>(), 1)
             .AddTile(TileID.Bottles)
             .Register();
 
-            Recipe.Create(ModContent.ItemType<Endless_Advanced_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Basic_Potion_Kit>(), 1)
-            .AddIngredient(ModContent.ItemType<EndlessRage>(), 1)
-            .AddIngredient(ModContent.ItemType<EndlessWrath>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Exploration_Potion_Kit>())
-           .AddIngredient(ModContent.ItemType<Endless_Mining_Potion_Kit>(), 1)
-           .AddIngredient(ModContent.ItemType<EndlessObsidian>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Supe_Sense_Potion>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Gravitation_Control_Potion>(), 1)
-           .AddTile(TileID.Bottles)
-           .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Poseidon_Potion_Kit>())
-           .AddIngredient(ModContent.ItemType<Endless_Fisher_Potion_Kit>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Fish_Potion>(), 1)
-           .AddTile(TileID.Bottles)
-           .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Combat_Potion_Kit>())
-           .AddIngredient(ModContent.ItemType<Endless_Melee_Potion_Kit>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Ranger_Potion_Kit>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Summon_Potion_Kit>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Magic_Potion_Kit>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Tank_Potion_Kit>(), 1)
-           .AddIngredient(ModContent.ItemType<Endless_Advanced_Potion_Kit>(), 1)
-           .AddTile(TileID.Bottles)
-           .Register();
-
-            Recipe.Create(ModContent.ItemType<Endless_Ultimate_Potion_Kit>())
-            .AddIngredient(ModContent.ItemType<Endless_Combat_Potion_Kit>(), 1)
-            .AddIngredient(ModContent.ItemType<Endless_Poseidon_Potion_Kit>(), 1)
-            .AddIngredient(ModContent.ItemType<Endless_Exploration_Potion_Kit>(), 1)
-            .AddIngredient(ModContent.ItemType<EndlessBuilder>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-        private static void UncraftPotions()
-        {
-
-
-        }
+        }  
         private static void Mirrors()
         {
             Recipe.Create(ItemID.MagicMirror)
@@ -225,19 +96,7 @@ namespace RemnantOfTheAncientsMod
                .AddIngredient(ItemID.MagicMirror, 1)
                .AddTile(TileID.Anvils)
                .Register();
-        }
-        private static void Ores()
-        {
-            Recipe.Create(ModContent.ItemType<TuxoniteBar>())
-               .AddIngredient(ModContent.ItemType<TuxoniteOre>(), 4)
-               .AddTile(TileID.Furnaces)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<Reinforced_ironBar>())
-               .AddRecipeGroup("IronBar", 2)
-               .AddTile(TileID.Furnaces)
-               .Register();
-        }
+        } 
         #region Weapons
         private static void Weapons()
         {

@@ -48,5 +48,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el numero maximo de torretas en 1");
         }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.DefenderMedal, 30)
+            .AddIngredient(ItemID.BottledWater, 30)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
     }
 }

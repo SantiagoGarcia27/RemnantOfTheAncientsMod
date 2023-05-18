@@ -7,7 +7,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings
 {
-	public class SaplingGoldMinion : HoverShooter
+	public class SaplingGoldMinion : AccornAi
 	{
 		public override void SetStaticDefaults()
 		{

@@ -29,7 +29,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
             + "\nreduce flight time in half."
             + "\ndamage and max health of bosses are doubled"
             + "\nLegendary drops are more common"
-            + "\nTreasure bags have unique items");
+            + "\nTreasure bags have unique items" 
+            + "\nThe vanilla and mod bosses drop permanent reaper player upgrades");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Active the Reaper mode"
             + "\nvos PV max naturels sont définis sur 1"
             + "\naugmentez tous les dégâts de 50%"
@@ -37,7 +38,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
             + "\nréduisez le temps de vol de moitié "
             + "\nles dégâts et la santé max des boss sont doublés"
             + "\nDrops légendaires sont plus fréquents"
-            + "\nLes sacs à trésors contiennent des objets uniques");
+            + "\nLes sacs à trésors contiennent des objets uniques"
+            + "\nLes patrons de vanille et les patrons de mod abandonnent des améliorations de personnage permanentes pour la moissonneuse");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Activa el modo Reaper"
             + "\ntu vida máxima se establece en 1"
             + "\naumenta todo el daño en un 50%"
@@ -45,7 +47,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
             + "\nreduce el tiempo de vuelo a la mitad "
             + "\nel daño y la vida maxima de los jefes se ven duplicados"
             + "\nArticulos legendarios son más comunes "
-            + "\nLas bolsas de tesoro tienen objetos únicos");
+            + "\nLas bolsas de tesoro tienen objetos únicos"
+            + "\nLos jefes vanilla y los del mod sueltan mejoras permanentes de personaje para segador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

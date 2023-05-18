@@ -13,8 +13,8 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Apprenti Dodge");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aprendiz del esquiva");
             Description.SetDefault("You are untouchable");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens plus léger");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Eres intocable");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens plus léger");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Eres intocable");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = false;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

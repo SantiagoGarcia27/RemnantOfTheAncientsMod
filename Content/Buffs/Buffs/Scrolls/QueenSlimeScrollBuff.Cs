@@ -13,8 +13,8 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bénédiction de la reine");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bendición de la reina");
             Description.SetDefault("You feel blessed");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens béni");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes bendecido");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens béni");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes bendecido");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

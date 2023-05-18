@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("StardustMinion");
-            Main.projFrames[Projectile.type] = 6;
+            Main.projFrames[Projectile.type] = 1;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;   

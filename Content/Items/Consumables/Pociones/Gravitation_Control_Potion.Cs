@@ -43,5 +43,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de contrôle de la gravité sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de control gravitacional eterna");
         }
+        public override void AddRecipes()
+        {
+            base.AddRecipes();
+            CreateRecipe()
+            .AddIngredient(ItemID.GravitationPotion, 30)
+            .AddIngredient(ItemID.FeatherfallPotion, 30)
+            .AddTile(TileID.Bottles)
+            .Register();
+
+            CreateRecipe()
+            .AddIngredient(ItemType<EndlessGravitation>(), 1)
+            .AddIngredient(ItemType<EndlessFeather>(), 1)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
     }
 }

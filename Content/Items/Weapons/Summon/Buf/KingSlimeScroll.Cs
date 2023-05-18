@@ -13,11 +13,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Royal Scroll");
-			Tooltip.SetDefault("increases movement speed by 50% and minion damage by 5%");
+			Tooltip.SetDefault("Increases you movement speed by 50% and increases your minion damage by 5%");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin royal");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "augmente la vitesse de déplacement de 50% et les dégâts des sbires de 5%");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino real");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta la velocidad de movimiento en un 50% y el daño de los súbditos en un 5%");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta tu velocidad de movimiento en un 50% y aumenta el daño de los súbditos en un 5%");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

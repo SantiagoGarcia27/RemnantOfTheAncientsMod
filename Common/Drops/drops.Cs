@@ -17,6 +17,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
+using CalamityMod.Projectiles.Pets;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -112,13 +113,28 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                
             if (npc.type == ModContent.NPCType<Crimsonzombi>()) ZombieOreLoot(npcLoot, ItemID.CrimtaneOre, ItemID.CrimtaneBar);
 
-            if (npc.type == ModContent.NPCType<Armoredzombie>()) ZombieOreLoot(npcLoot, ModContent.ItemType<Reinforced_iron_ore>(), ModContent.ItemType<Reinforced_ironBar>());
-             
+            if (npc.type == ModContent.NPCType<ReinforcedIronZombie>()) ZombieOreLoot(npcLoot, ModContent.ItemType<Reinforced_iron_ore>(), ModContent.ItemType<Reinforced_ironBar>());
+            if (npc.type == ModContent.NPCType<MoltenZombie>()) ZombieOreLoot(npcLoot,ItemID.Hellstone,ItemID.HellstoneBar);
+            if (npc.type == ModContent.NPCType<NightZombie>())
+            {
+                npcLoot.Add(ItemDropRule.Common(ItemID.JungleSpores, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Obsidian, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Hellstone, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Bone, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Cobweb, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 1));
+                int corruptOre = WorldGen.crimson ? ItemID.DemoniteOre : ItemID.CrimtaneOre;
+                npcLoot.Add(ItemDropRule.Common(corruptOre, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NightBar>(), 50 / dificultyDrop(1), 1, 1));
+            }
             if (npc.type == ModContent.NPCType<ArmoredSlime>())
             {
                 ZombieOreLoot(npcLoot, ModContent.ItemType<Reinforced_iron_ore>(), ModContent.ItemType<Reinforced_ironBar>());
                 ItemDropRule.Common(ItemID.Gel, 1, 10, 15);
             }
+            if (npc.type == ModContent.NPCType<CobaltZombie>()) ZombieOreLoot(npcLoot, ItemID.CobaltOre, ItemID.CobaltBar);
+            if (npc.type == ModContent.NPCType<PaladiumZombie>()) ZombieOreLoot(npcLoot, ItemID.PalladiumOre, ItemID.PalladiumBar);
         }
         public override void OnKill(NPC npc)
         {

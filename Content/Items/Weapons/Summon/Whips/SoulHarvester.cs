@@ -55,8 +55,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.CrimtaneBar, 15)
-                .AddIngredient(ItemID.TissueSample, 15)
+                .AddIngredient(ItemID.DemoniteBar, 15)
+                .AddIngredient(ItemID.ShadowScale, 15)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

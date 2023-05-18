@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.rare = Base.rare;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-             Item.GetGlobalItem<CustomTooltip>().Saber = true;
+            Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             {
                 if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
                 {
-                    DashPlayer.JumpDash(player, 1f, 0.75f);
+                    DashPlayer.JumpDash(player, 0.56f, 0.56f);
                 }
             }
             return true;

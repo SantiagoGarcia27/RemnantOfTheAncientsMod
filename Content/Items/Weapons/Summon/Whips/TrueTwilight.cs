@@ -18,13 +18,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
                "\nPerforms better against multiple targets than most whips" +
                "\nStrike enemies to gain 7 of defense to all players");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Crépuscule");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Véritable crépuscule");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "13 dégâts de balise d'invocation" +
                  "\nVos invocations concentreront les ennemis frappés" +
                  "\nFonctionne mieux contre plusieurs cibles que la plupart des fouets" +
                  "\nFrappez les ennemis pour gagner 7 points de défense à tous les joueurs");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Crepúsculo");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Crepúsculo verdadero");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "13 daño de etiqueta de invocación" +
                 "\nTu invocaciones se centrará en los enemigos golpeados." +
                 "\nFunciona mejor contra múltiples objetivos que la mayoría de los látigos." +

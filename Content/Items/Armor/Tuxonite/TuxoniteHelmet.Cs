@@ -15,33 +15,56 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 			DisplayName.SetDefault("Tuxonite Helmet");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("3% increased ranged damage");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "3% d'augmentation des dégâts à distance");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 3% el daño a distancia");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 3600;
 			Item.rare = ItemRarityID.White;
-			Item.defense = 6;
+			Item.defense = 5;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
 			return body.type == ModContent.ItemType<Tuxonite_chesplate>() && legs.type == ModContent.ItemType<Tuxonite_Legging>();
 		}
-
-		public override void UpdateArmorSet(Player player)
+        public override void UpdateEquip(Player player)
+        {
+            player.GetDamage(DamageClass.Ranged) *= 1.03f;
+        }
+        public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+4 defense";
-			player.statDefense += 4;
+
+			player.setBonus = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Tuxonite");
+
+			if (RemnantPlayer.tuxoniteStealthCounter == 0)
+			{
+				player.shroomiteStealth = true;
+				if (RemnantPlayer.tuxoniteStealthDuration < Utils1.FormatTime(0, 0, 0, 10))
+				{
+					RemnantPlayer.tuxoniteStealthDuration++;
+				}
+				else
+				{
+					RemnantPlayer.tuxoniteStealthCounter = (int)Main.rand.NextFloat(Utils1.FormatTime(0, 0, 0, 30));
+					RemnantPlayer.tuxoniteStealthDuration = 0;
+				}
+			}
+			else
+			{
+				RemnantPlayer.tuxoniteStealthCounter--;
+			}
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 25)
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 20)//25
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

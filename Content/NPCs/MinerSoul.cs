@@ -43,7 +43,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return SpawnCondition.Cavern.Chance * 0.09f;//0.0009
+			if(RemnantOfTheAncientsMod.CalamityMod != null) return SpawnCondition.Cavern.Chance * 0.009f;
+            return SpawnCondition.Cavern.Chance * 0.09f;//0.0009
 		}
 
 		// Allows hitting the NPC with melee type weapons, even if it's friendly.

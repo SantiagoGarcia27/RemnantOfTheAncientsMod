@@ -2,6 +2,14 @@ Mods:
 {
 	RemnantOfTheAncientsMod: 
 	{
+		SetBonus:
+		{
+			Tuxonite: 
+				'''
+				Randomly puts you in stealth, 
+				increasing ranged ability and reducing chance for enemies to target you
+				'''
+		}
 		TownNPCMood:
 		{
 			Time_Wizard: 

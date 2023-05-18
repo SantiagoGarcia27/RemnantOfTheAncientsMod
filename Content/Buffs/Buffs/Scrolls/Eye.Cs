@@ -13,8 +13,8 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Maître de la fente");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Maestro de las embestidas");
             Description.SetDefault("Your reflexes sharpen");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Your reflexes sharpen");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tus reflejos se agudizan");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Your reflexes sharpen");
+            Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tus reflejos se agudizan");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

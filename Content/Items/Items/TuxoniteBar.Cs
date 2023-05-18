@@ -12,7 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tuxonite Bar");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Bar Tuxonite");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Barre de Tuxonite");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lingote de Tusonita");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
@@ -20,27 +19,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 
 		public override void SetDefaults()
 		{
-			Item.width = 26;
-			Item.height = 22;
-			Item.maxStack = 99;
-			Item.useTurn = true;
-			Item.autoReuse = true;
-			Item.useAnimation = 15;
-			Item.useTime = 10;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.consumable = true;
-			Item.value = 100;
-			Item.rare = ItemRarityID.White;
-			Item.createTile = TileType<TuxoniteBarB>();
+            Item.CloneDefaults(ItemID.PlatinumBar);
+            Item.createTile = TileType<TuxoniteBarB>();
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			 .AddRecipeGroup("GoldBar", 1)
+			.AddRecipeGroup("GoldBar", 1)
 			.AddIngredient(ItemID.Gel, 3)
 			.AddIngredient(ItemID.GlowingMushroom, 2)
-			.AddTile(TileID.Furnaces)
+			.AddTile(TileID.Solidifier)
+			.Register();
+
+			CreateRecipe()
+			.AddIngredient(ItemType<TuxoniteOre>(), 4)
+			.AddTile(TileID.Solidifier)
 			.Register();
 		}
 	}

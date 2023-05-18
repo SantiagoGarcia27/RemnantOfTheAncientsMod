@@ -40,6 +40,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 			.AddIngredient(ItemType<Reinforced_iron_ore>(), 3)
 			.AddTile(TileID.Furnaces)
 			.Register();
-		}
+
+            CreateRecipe()
+            .AddRecipeGroup("IronBar", 2)
+            .AddTile(TileID.Furnaces)
+            .Register();
+        }
 	}
 }

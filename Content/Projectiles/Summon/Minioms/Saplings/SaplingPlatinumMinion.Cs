@@ -7,8 +7,8 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings
 {
-	public class SaplingPlatinumMinion : HoverShooter
-	{
+	public class SaplingPlatinumMinion : AccornAi
+    {
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Animated Platinum Sapling Minion");

@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using System.Text;
+using static Humanizer.In;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -92,7 +93,17 @@ namespace RemnantOfTheAncientsMod
 		{
 			return Main.mouseItem;
 		}
-
-
-	}
+		public static float GetValueFromPorcentage(float number, float porcentage)
+		{
+			return (porcentage * number)/100;
+		}
+        public static float GetPorcentage(float intitialNumber, float total)
+        {
+            return (intitialNumber * 100) / total;
+        }
+		public static int FormatTime(int Day, int Hour, int Minute, int Second)
+		{
+			return (Second * 60) + (Minute * 60 * 60) + (Hour * 60 * 60 * 60) + (Day * 60 * 60 * 60 * 60);
+		}
+    }
 }

@@ -43,5 +43,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de poisson sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de pez eterna");
         }
+        public override void AddRecipes()
+        {
+            base.AddRecipes();
+            CreateRecipe()
+            .AddIngredient(ItemID.WaterWalkingPotion, 30)
+            .AddIngredient(ItemID.FlipperPotion, 30)
+            .AddIngredient(ItemID.GillsPotion, 30)
+            .AddTile(TileID.Bottles)
+            .Register();
+
+            CreateRecipe()
+            .AddIngredient(ItemType<EndlessGills>(), 1)
+            .AddIngredient(ItemType<EndlessWaterWalking>(), 1)
+            .AddIngredient(ItemType<EndlessFlipper>(), 1)
+            .AddTile(TileID.Bottles)
+            .Register();
+        }
     }
 }

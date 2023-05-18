@@ -17,12 +17,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
                 "\nYour summons will focus struck enemies" +
                 "\nStrike enemies to gain attack speed and summon a friendly Excalibur");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Intestine");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vrai Durendal");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "5 dégâts de balise d'invocation" +
                 "\nVos invocations concentreront les ennemis frappés" +
                 "\nFrappez les ennemis pour gagner en vitesse d'attaque et invoquer un Excalibur amical");
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Intestino");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Durendal verdadero");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "5 daño de etiqueta de invocación" +
                 "\nTu invocaciones se centrará en los enemigos golpeados." +
                 "\nAl golpear un enemigo ganas velocidad de ataque e invoca a una Excalibur que lucha por ti.");

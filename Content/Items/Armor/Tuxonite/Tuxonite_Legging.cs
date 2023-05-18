@@ -15,7 +15,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 			DisplayName.SetDefault("Tuxonite Greaves");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Grebas de tusonita");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves Tuxonite");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("5% increased ranged critical strike chance");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "+5% de chances de coup critique à distance");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Probabilidad de golpe crítico a distancia aumentada un 5%");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
@@ -24,13 +27,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 			Item.height = 18;
 			Item.value = 3000;
 			Item.rare = ItemRarityID.White;
-			Item.defense = 5;
+			Item.defense = 4;
 		}
-
-		public override void AddRecipes()
+        public override void UpdateEquip(Player player)
+        {
+            player.GetCritChance(DamageClass.Ranged) += 5f;
+        }
+        public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 30)
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 25)//30
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

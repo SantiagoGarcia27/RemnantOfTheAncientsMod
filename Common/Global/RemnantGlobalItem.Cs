@@ -137,7 +137,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
 					{
 						if (item.type == lanceId[i])
 						{
-							WeaponDash(player, 1.5f, 0f);
+							float n = 0.1f;
+							for(int j = 0;j < RemnantOfTheAncientsMod.MaxRarity; j++)
+							{
+								if(item.rare == j) WeaponDash(player, n * i + 1, 0f);
+                            }
                         }
 					}
                     

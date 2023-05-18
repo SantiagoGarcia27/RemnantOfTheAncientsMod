@@ -13,6 +13,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         {
             DisplayName.SetDefault("TerraExplosion"); //projectile name
         }
+        int counter = (int)(0.5*60);
         public override void SetDefaults()
         {
             Projectile.width = 10;       //projectile width
@@ -30,6 +31,22 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         }
         public override void AI()           //this make that the projectile will face the corect way
         {
+            if (counter == 0) 
+            {
+                float maxDetectRadius = 400f;
+                float projSpeed = 9f; //5
+
+                NPC closestNPC = FindClosestNPC(maxDetectRadius);
+                if (closestNPC == null) return;
+                Projectile.velocity = (closestNPC.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
+                Projectile.rotation = Projectile.velocity.ToRotation();
+            }
+            else
+            {
+                counter--;
+            }
+
+
             int ParticleCount = new RemnantOfTheAncientsMod().ParticleMeter(6);
             if (ParticleCount > 0)
             {
@@ -38,6 +55,25 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.TerraBlade);
                 }
             }
+        }
+        public NPC FindClosestNPC(float maxDetectDistance)
+        {
+            NPC closestNPC = null;
+            float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
+            for (int k = 0; k < Main.maxNPCs; k++)
+            {
+                NPC target = Main.npc[k];
+                if (target.CanBeChasedBy())
+                {
+                    float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);
+                    if (sqrDistanceToTarget < sqrMaxDetectDistance)
+                    {
+                        sqrMaxDetectDistance = sqrDistanceToTarget;
+                        closestNPC = target;
+                    }
+                }
+            }
+            return closestNPC;
         }
         public override void Kill(int timeLeft)
         {

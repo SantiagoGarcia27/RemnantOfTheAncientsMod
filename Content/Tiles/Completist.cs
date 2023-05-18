@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 			Main.tileFrameImportant[Type] = true;
 			Main.tileObsidianKill[Type] = true;
 
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.addTile(Type);
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Table");

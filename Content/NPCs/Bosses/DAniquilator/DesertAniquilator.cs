@@ -327,47 +327,64 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         private float LifeSize(NPC npc)
         {
-            float porcentage = (npc.life * 100) / NPC.lifeMax;
+            float porcentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
 
-            if (porcentage == 100)
-            {
-                if (Reaper.ReaperMode) return 1.5f;
-                else if (Main.masterMode) return 1.35f;
-                else if (Main.expertMode) return 1.3f;
-                else return 1.25f;
-            }
-            else if (porcentage < 100 && porcentage >= 85) return 1.2f;
-            else if (porcentage < 85 && porcentage >= 55) return 1.15f;
-            else if (porcentage < 55 && porcentage >= 40) return 1.1f;
-            else if (porcentage < 40 && porcentage >= 30) return 1.0f;
-            else if (porcentage < 30 && porcentage >= 20) return 0.8f;
-            else if (porcentage < 20 && porcentage >= 10) return 0.7f;
-            else if (porcentage < 10 && porcentage >= 5) return 0.6f;
-            else if (porcentage < 5) return 0.5f;
-            return 1f;
+
+            if (Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
+            else if (Main.masterMode) return applyLifeSize(porcentage, 1.35f);
+            else if (Main.expertMode) return applyLifeSize(porcentage, 1.3f);
+            else return applyLifeSize(porcentage, 1.25f);
+
+            //else if (porcentage < 100 && porcentage >= 85) return 1.2f;
+            //else if (porcentage < 85 && porcentage >= 55) return 1.15f;
+            //else if (porcentage < 55 && porcentage >= 40) return 1.1f;
+            //else if (porcentage < 40 && porcentage >= 30) return 1.0f;
+            //else if (porcentage < 30 && porcentage >= 20) return 0.8f;
+            //else if (porcentage < 20 && porcentage >= 10) return 0.7f;
+            //else if (porcentage < 10 && porcentage >= 5) return 0.6f;
+            //else if (porcentage < 5) return 0.5f;
+            //return 1f;
         }
         [JITWhenModsEnabled("CalamityMod")]
         private float LifeSize(NPC npc, Mod mod)
         {
-            float porcentage = (npc.life * 100) / NPC.lifeMax;           
-            if (porcentage == 100)
-            {
-                if (CalamityWorld.death) return 2.0f;
-                else if (CalamityWorld.revenge || Reaper.ReaperMode) return 1.5f;
-                else if (Main.masterMode) return 1.35f;
-                else if (Main.expertMode) return 1.3f;
-                else return 1.25f;
-            }
-            else if (porcentage < 100 && porcentage >= 85) return 1.2f;
-            else if (porcentage < 85 && porcentage >= 55) return 1.15f;
-            else if (porcentage < 55 && porcentage >= 40) return 1.1f;
-            else if (porcentage < 40 && porcentage >= 30) return 1.0f;
-            else if (porcentage < 30 && porcentage >= 20) return 0.8f;
-            else if (porcentage < 20 && porcentage >= 10) return 0.7f;
-            else if (porcentage < 10 && porcentage >= 5) return 0.6f;
-            else if (porcentage < 5) return 0.5f;
-            return 1f;
+            float porcentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
+            if (CalamityWorld.death) return applyLifeSize(porcentage, 2f);
+            else if (CalamityWorld.revenge || Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
+            else if (Main.masterMode) return applyLifeSize(porcentage, 1.35f);
+            else if (Main.expertMode) return applyLifeSize(porcentage, 1.3f);
+            else return applyLifeSize(porcentage, 1.25f);
         }
+
+        private float applyLifeSize(float porcentage, float MaxValue)
+        {
+           
+            for (int i = 100; i >= 0; i--)
+            {
+                if ((int)porcentage == i)
+                {
+                    float j = Utils1.GetValueFromPorcentage(MaxValue, i);
+                    if(j > Utils1.GetValueFromPorcentage(MaxValue, 30))
+                    {
+                        return j;
+                    }
+                }
+
+            }
+            return Utils1.GetValueFromPorcentage(MaxValue, 30);
+        }
+            //if(porcentage == 100) return Utils1.GetValueFromPorcentage(MaxValue,100);
+            //else if (porcentage == 99) return Utils1.GetValueFromPorcentage(MaxValue, 99);
+            //else if (porcentage < 85 && porcentage >= 55) return 1.15f;
+            //else if (porcentage < 55 && porcentage >= 40) return 1.1f;
+            //else if (porcentage < 40 && porcentage >= 30) return 1.0f;
+            //else if (porcentage < 30 && porcentage >= 20) return 0.8f;
+            //else if (porcentage < 20 && porcentage >= 10) return 0.7f;
+            //else if (porcentage < 10 && porcentage >= 5) return 0.6f;
+            //else if (porcentage < 5) return 0.5f;
+           // return 1f;
+        
+        
         public void ShootIa(int dammage, int type, Player player, float Speed, double x, double y)
         {
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
@@ -385,7 +402,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             NPC.EncourageDespawn(7);
             return;
         }
-        public override bool? CanFallThroughPlatforms() => true;
+        public override bool? CanFallThroughPlatforms() => false;
             
         public override void OnHitPlayer(Player player, int damage, bool crit) 
         {

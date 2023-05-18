@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             {
                 if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
                 {
-                    DashPlayer.JumpDash(player, 0.75f, 0.5f);
+                    DashPlayer.JumpDash(player, 0.5f, 0.4f);
                 }
             }
             return true;

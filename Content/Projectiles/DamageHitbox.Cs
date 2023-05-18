@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         }
         public override void AI()
         {
-            Player player = Main.player[Main.myPlayer];
+            Player player = Main.player[Projectile.owner];
             Dust dust = new Dust();
             switch (Projectile.ai[0])
             {

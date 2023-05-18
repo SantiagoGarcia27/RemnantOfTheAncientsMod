@@ -74,8 +74,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             {
                 Projectile.ai[1]++;
             }
-           // generateDust();
-            AnimateTexture();
+            // generateDust();
+            if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
+            {
+                AnimateTexture();
+            }
 
         }
         

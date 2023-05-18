@@ -1,4 +1,5 @@
 ﻿using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -33,11 +34,11 @@ namespace RemnantOfTheAncientsMod
 					break;
 			}
 		}
-		/*   public override bool IsEnabled()
-		   {
-   if (Reaper.ReaperMode) return true;
-   else return false;
-		   }*/
+		public override bool IsEnabled()
+		{
+			if (Reaper.ReaperMode) return true;
+			else return false;
+		}
 
 	}
 }

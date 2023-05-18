@@ -18,20 +18,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 		}
 		public override void SetDefaults()
 		{
-			Item Base = new Item(ItemID.BloodButcherer);
-			Item.damage = Base.damage - 3;
-			Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 40;
-			Item.useTime = 25;
-			Item.useAnimation = 25;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 10;
-			Item.value = Base.value;
-			Item.rare = Base.rare;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true;
-             Item.GetGlobalItem<CustomTooltip>().Saber = true;
+            Item.CloneDefaults(ItemID.BloodButcherer);
+            Item.damage -= 3;
+            Item.DamageType = DamageClass.Melee;
+            Item.width = 40;
+            Item.height = 40;
+            Item.useTime -= 3;
+            Item.useAnimation -= 3;
+            Item.knockBack = 10;
+            Item.scale = 1.28f;
+            Item.UseSound = SoundID.Item1;
+            Item.autoReuse = true;
+            Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
@@ -40,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             {
                 if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
                 {
-                    DashPlayer.JumpDash(player, 0.9f, 0.75f);
+                    DashPlayer.JumpDash(player, 0.8f, 0.75f);
                 }
             }
             return true;

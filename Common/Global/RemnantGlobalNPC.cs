@@ -16,7 +16,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		public bool hBurn;
 		public bool Marble_Erosion;
 		public bool Can_Marble;
-
+		public bool CanMakeCrit;
+		public int CritChance;
 
 		public override void ResetEffects(NPC NPC)
 		{
@@ -83,8 +84,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			}
 			return base.StrikeNPC(npc, ref damage, defense, ref knockback, hitDirection, ref crit);
 		}
+        public override void ModifyHitPlayer(NPC npc, Player target, ref int damage, ref bool crit)
+        {
+			if (CanMakeCrit)
+			{
+				if((int)Main.rand.NextFloat(100) <= CritChance) 
+				{
+					damage *= 2;
+				}
+			}
+        }
 
-		public override void DrawEffects(NPC NPC, ref Color drawColor)
+        public override void DrawEffects(NPC NPC, ref Color drawColor)
 		{
 			int type = DustType<PlaceHolder>(); 
 			if (Burn_Sand)
