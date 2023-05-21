@@ -14,6 +14,7 @@ namespace RemnantOfTheAncientsMod
         public static Mod ThoriumMod;
         public static Mod TerrariaOverhaul;
         public static Mod Census;
+        public static Mod RemnantOfTheAncients;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static readonly int MaxRarity = GetMaxRarity();
@@ -38,7 +39,7 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("BossChecklist", out BossChecklist);
             ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
             ModLoader.TryGetMod("Census", out Census);
-
+            ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncients);
             // else CalamityMod = null;
             // if (ModLoader.HasMod("ThoriumMod")) ThoriumMod = ModLoader.GetMod("ThoriumMod");
             // else ThoriumMod = null;

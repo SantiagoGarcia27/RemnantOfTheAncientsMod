@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 		{
 			Item.damage = 0;
 			Item.knockBack = 3f;
-			Item.mana = 10;
+			Item.mana = 30;
 			Item.width = 32;
 			Item.height = 32;
 			Item.useTime = 36;
@@ -43,12 +43,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 			Item.sentry = true;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.value = Item.buyPrice(0, 0, 10, 0);
-			Item.rare = 0;
+			Item.rare = ItemRarityID.Yellow;
 			Item.UseSound = SoundID.Item44;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Summon;
-			Item.buffType = BuffType<SunflowerMinionBuff>();
-			Item.shoot = ProjectileType<SunFlowerMinion>();
+			Item.buffType = BuffType<YggdrasilMinionBuff>();
+			Item.shoot = ProjectileType<YggdrasilMinion>();
 			//if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.damage = 11;
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -67,10 +67,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemID.GreaterHealingPotion,5)
-            .AddIngredient(ItemID.SoulofMight, 5)
-            .AddIngredient(ItemType<IluminatedSunflowerStaff>(), 1)
-            .AddTile(TileID.WorkBenches)
+            .AddIngredient(ItemID.Ectoplasm,15)
+            .AddIngredient(ItemID.LifeFruit, 5)
+            .AddIngredient(ItemType<SacredFlowerStaff>(), 1)
+            .AddTile(TileID.MythrilAnvil)
             .Register();
         }
     }

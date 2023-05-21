@@ -21,7 +21,7 @@ namespace  RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
 		}
 		public override void Update(Player player, ref int buffIndex)
 		{
-			if (player.ownedProjectileCounts[ProjectileType<SunFlowerMinion>()] > 0)
+			if (player.ownedProjectileCounts[ProjectileType<YggdrasilMinion>()] > 0)
 			{
 				player.buffTime[buffIndex] = 18000;
 			}

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
 
-namespace RemnantOfTheAncientsMod.Content.Tiles
+namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 {
 	public class TuxoniteDoorOpen : ModTile
 	{

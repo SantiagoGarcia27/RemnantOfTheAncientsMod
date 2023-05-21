@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using System.Text;
 using static Humanizer.In;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -95,15 +96,29 @@ namespace RemnantOfTheAncientsMod
 		}
 		public static float GetValueFromPorcentage(float number, float porcentage)
 		{
-			return (porcentage * number)/100;
+			return (porcentage * number) / 100;
 		}
-        public static float GetPorcentage(float intitialNumber, float total)
-        {
-            return (intitialNumber * 100) / total;
-        }
+		public static float GetPorcentage(float intitialNumber, float total)
+		{
+			return (intitialNumber * 100) / total;
+		}
 		public static int FormatTime(int Day, int Hour, int Minute, int Second)
 		{
 			return (Second * 60) + (Minute * 60 * 60) + (Hour * 60 * 60 * 60) + (Day * 60 * 60 * 60 * 60);
 		}
-    }
+
+		public static int GetItemFromMod(Mod mod, string item)
+		{
+			return mod.Find<ModItem>(item).Type;
+		}
+		public static bool NameHasWord(string word, string SeachedWord)
+		{
+			return word.Contains(SeachedWord) ? true : false;
+		}
+
+		public static int GetModPrefix(Mod mod, string name)
+		{
+			return mod.TryFind<ModPrefix>(name, out var ret)? ret.Type : 0;
+		}
+	}
 }

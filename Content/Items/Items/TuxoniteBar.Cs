@@ -4,6 +4,7 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Tiles;
+using RemnantOfTheAncientsMod.Content.Tiles.Tuxonite;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Items
 {

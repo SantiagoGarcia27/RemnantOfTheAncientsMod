@@ -15,6 +15,10 @@ using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using CalamityMod;
+using CalamityMod.Items.Tools;
+using Terraria.Chat;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -143,6 +147,18 @@ namespace RemnantOfTheAncientsMod
 			FWeapons = true;
 			ReaperGlobalItem.ReaperWingsNerf(player);
 			AddScrollBuff();
+			if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityMessage();
+
+
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void CalamityMessage()
+		{
+			if(ModContent.GetInstance<CalamityConfig>().RemoveReforgeRNG)
+			{
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Config.EntryTitle.RemoveReforgeRNG"))), Color.Red);
+            }
+
 		}
 		public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
 		{

@@ -65,7 +65,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         private int summonCounter;
         private int tpDirection;
         private int currentPhase;
-
+        int tpParticleTimer = Utils1.FormatTime(0,0,0,5);
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(attackCounter);
@@ -86,7 +86,20 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
             if (NPC.Distance(player.Center) >= 100 * 16 && !player.dead)
             {
+                GenerateTpParticles();
                 DesertTp();
+            }
+
+            Point NpcFloor = Utils.ToTileCoordinates(NPC.Center);
+            Point PlayerFloor = Utils.ToTileCoordinates(Main.player[NPC.target].Center);
+            // Main.player[NPC.target].position = Utils.ToTileCoordinates(NPC.Center).ToVector2();//test teleport
+            if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0)
+            {
+                if (Main.tile[PlayerFloor.X, PlayerFloor.Y + 1].LiquidAmount == 0)
+                {
+                    GenerateTpParticles();
+                    DesertTp();
+                }
             }
             NPC.scale = RemnantOfTheAncientsMod.CalamityMod != null ? LifeSize(NPC, RemnantOfTheAncientsMod.CalamityMod) : LifeSize(NPC);
             if (player.dead || NPC.target < 0 || NPC.target == 255 || !player.active)
@@ -203,8 +216,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                             }
                             break;
                         case 500:
+
+                            GenerateTpParticles();
                             DesertTp();
                             break;
+                    }
+                    if(attackCounter < 560 && attackCounter > 500)
+                    {
+                        GenerateTpParticles();
                     }
                 }
             }
@@ -255,6 +274,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                             ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f, 3.5f);
                             break;
                         case 400:
+                            GenerateTpParticles();
                             DesertTp();
                             break;
                     }
@@ -296,7 +316,38 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 NPC.netUpdate = true;
             }
         }
-        
+        int blockIncrement = 0;
+        public Vector2 GetSecurePosition(Vector2 pos)
+        {
+            Vector2 newPos;
+
+            if (!CoordHasTile(pos))
+            {
+                return pos;
+            }
+            else
+            {   
+                do
+                {
+                    blockIncrement++;
+                    newPos = new(pos.X, pos.Y - blockIncrement * 16);
+                } while (CoordHasTile(newPos));
+                blockIncrement = 0;
+                return newPos;
+            }
+        }
+        public bool CoordHasTile(Vector2 pos)
+        {
+            if (Collision.SolidCollision(pos, 6 * 16, 6 * 16))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         public void setCurrentPhase(NPC NPC)
         {
             if (NPC.life <= NPC.lifeMax / 4) currentPhase = 3;
@@ -309,21 +360,39 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public void DesertTp()
         {
+            
             tpDirection = new Random().Next(1, 3);
 
             switch (tpDirection)
             {
                 case 1:
-                    NPC.Center = Main.player[NPC.target].Center + new Vector2(30* 16,0);
+                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(30 * 16,0));
                     break;
                 case 2:
-                    NPC.Center = Main.player[NPC.target].Center + new Vector2(0, -20* 16);
+                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(0, -20 * 16));
                     break;
                 case 3:
-                    NPC.Center = Main.player[NPC.target].Center + new Vector2(-30 * 16, 0);
+                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(-30 * 16, 0));
                     break;
 
             }
+            tpParticleTimer = Utils1.FormatTime(0, 0, 0, 5);
+        }
+        public void GenerateTpParticles()
+        {
+            do
+            {
+                tpParticleTimer--;
+                for (int i = 0; i < 25; i++)
+                {
+
+                    Vector2 dustPosition = NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height));
+                    Dust dust = Dust.NewDustDirect(dustPosition, NPC.width, NPC.height, DustID.Sand,0,0,100,default,3f);
+                    dust.velocity = NPC.velocity * 0.2f; 
+                    dust.noGravity = true; 
+                }
+            } while (tpParticleTimer > 0);
+
         }
         private float LifeSize(NPC npc)
         {

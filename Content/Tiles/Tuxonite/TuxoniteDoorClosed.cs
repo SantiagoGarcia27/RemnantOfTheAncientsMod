@@ -6,10 +6,9 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using RemnantOfTheAncientsMod.Content.Tiles;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
 
-namespace RemnantOfTheAncientsMod.Content.Tiles
+namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 {
 	//TODO: Smart Cursor Outlines and tModLoader support
 	public class TuxoniteDoorClosed : ModTile

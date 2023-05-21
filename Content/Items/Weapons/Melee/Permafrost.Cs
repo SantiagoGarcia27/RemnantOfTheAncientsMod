@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.UseSound = SoundID.Item1;
             if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
             {
-                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<FrostBeamF>();
+                if (GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<FrostBeamF>();
             }
             else Item.shoot = ProjectileType<FrostBeamF>();
             Item.shootSpeed = 7f;
@@ -58,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             if (player.altFunctionUse != 2)
             {
 
-                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
                 {
                     Projectile.NewProjectile(source, position, velocity, ProjectileType<FrostBeamF>(), damage, knockback, player.whoAmI);
                 }
@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             }
             else
             {
-                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
                 {
                     shootSecondAttack(player, position, velocity, ProjectileType<PermafrostRain>(), damage, knockback);
                 }
@@ -130,7 +130,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 heading.Normalize();
                 heading *= velocity.Length();
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
-                Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, type, damage * 2, knockback, player.whoAmI, 0f, ceilingLimit);
+                Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, type, damage, knockback, player.whoAmI, 0f, ceilingLimit);
             }
         }
     }

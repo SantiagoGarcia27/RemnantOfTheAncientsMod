@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
             .AddIngredient(ItemID.GreaterHealingPotion,5)
             .AddIngredient(ItemID.SoulofMight, 5)
             .AddIngredient(ItemType<IluminatedSunflowerStaff>(), 1)
-            .AddTile(TileID.WorkBenches)
+            .AddTile(TileID.MythrilAnvil)
             .Register();
         }
     }

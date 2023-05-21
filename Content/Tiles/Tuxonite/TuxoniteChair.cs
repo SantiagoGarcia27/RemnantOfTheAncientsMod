@@ -10,7 +10,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace RemnantOfTheAncientsMod.Content.Tiles
+namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 {
 	public class TuxoniteChairTile : ModTile
 	{

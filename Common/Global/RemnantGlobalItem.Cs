@@ -5,13 +5,16 @@ using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Prefixe;
 using CalamityMod;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod.Common.Global
 {
 	public class RemnantGlobalItem : GlobalItem
 	{
-        public int[] lanceId = new int[]
-        {
+		public List<int> SpearsList = new List<int>();
+		public int[] lanceId = new int[]
+		{
 			ItemID.Spear,
 			ItemID.Trident,
 			ItemID.DarkLance,
@@ -31,12 +34,12 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			ItemID.JoustingLance,
 			ItemID.HallowJoustingLance,
 			ItemID.ShadowJoustingLance
-        };
+		};
 
-        public override void SetDefaults(Item item)
+		public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-			
+
 			if (WeaponConf)
 			{
 				if (item.type == ItemID.DaedalusStormbow)
@@ -79,22 +82,82 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				if (item.type == ItemID.DD2LightningAuraT2Popper) item.damage = 16;//50
 				if (item.type == ItemID.DD2LightningAuraT3Popper) item.damage = 50;//150
 
-				if (item.type == ItemID.ChlorophyteSaber)
+
+				AddToDashWeaponsLists(item);
+
+				if (SpearsList.Contains(item.type))
+				{
+					item.GetGlobalItem<CustomTooltip>().Lance = true;
+				}
+
+				if (Utils1.NameHasWord(item.Name, "Saber"))
 				{
 					item.GetGlobalItem<CustomTooltip>().Saber = true;
 				}
-				for (int i = 0; i < 19; i++)
+			}
+		}
+		public void AddToDashWeaponsLists(Item item)
+		{
+
+			AddVanilaSpear();
+			AddModedSpearGeneric(item);
+		}
+		public void AddVanilaSpear()
+		{
+			AddSecureToList(SpearsList, ItemID.Spear);
+			AddSecureToList(SpearsList, ItemID.Trident);
+			AddSecureToList(SpearsList, ItemID.DarkLance);
+			AddSecureToList(SpearsList, ItemID.TheRottedFork);
+			AddSecureToList(SpearsList, ItemID.ThunderSpear);
+			AddSecureToList(SpearsList, ItemID.Swordfish);
+			AddSecureToList(SpearsList, ItemID.CobaltNaginata);
+			AddSecureToList(SpearsList, ItemID.PalladiumPike);
+			AddSecureToList(SpearsList, ItemID.MythrilHalberd);
+			AddSecureToList(SpearsList, ItemID.OrichalcumHalberd);
+			AddSecureToList(SpearsList, ItemID.AdamantiteGlaive);
+			AddSecureToList(SpearsList, ItemID.TitaniumTrident);
+			AddSecureToList(SpearsList, ItemID.ChlorophytePartisan);
+			AddSecureToList(SpearsList, ItemID.MushroomSpear);
+			AddSecureToList(SpearsList, ItemID.ObsidianSwordfish);
+			AddSecureToList(SpearsList, ItemID.NorthPole);
+			AddSecureToList(SpearsList, ItemID.JoustingLance);
+			AddSecureToList(SpearsList, ItemID.HallowJoustingLance);
+			AddSecureToList(SpearsList, ItemID.ShadowJoustingLance);
+		}
+
+		public void AddModedSpearGeneric(Item item)
+		{
+			string[] LanceNames = new string[]
+			{
+				"Spear",
+				"Lance",
+				"Trient",
+				"Partisan",
+				"Halberd",
+				"Pike",
+				"Halberd",
+				"Naginata"
+			};
+
+			if (item.DamageType == DamageClass.Melee)
+			{
+				for (int i = 0; i < LanceNames.Length; i++)
 				{
-					if (item.type == lanceId[i])
+					if (Utils1.NameHasWord(item.Name, LanceNames[i]))
 					{
-						item.GetGlobalItem<CustomTooltip>().Lance = true;
+						AddSecureToList(SpearsList, item.type);
 					}
 				}
-            }
-		}	
-        public override bool AltFunctionUse(Item item, Player player)
-        {
-            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+			}
+		}
+
+		public void AddSecureToList(List<int> list, int Content)
+		{
+			if (!list.Contains(Content)) list.Add(Content);
+		}
+		public override bool AltFunctionUse(Item item, Player player)
+		{
+			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 			if (WeaponConf && item.damage > 0 && item.axe < 1 && item.pick < 1)
 			{
 				return true;
@@ -103,7 +166,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			{
 				return base.AltFunctionUse(item, player);
 			}
-        }
+		}
 		public override bool? UseItem(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -120,8 +183,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
 						if (PlayerTouchFlour)
 						{
-                            WeaponDash(player, 1f, 0.75f);
-                            for (int i = 0; i < projectileCount; i++)
+							WeaponDash(player, 1f, 0.75f);
+							for (int i = 0; i < projectileCount; i++)
 							{
 								float angle = MathHelper.ToRadians(360f / projectileCount * i);
 								Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
@@ -133,18 +196,34 @@ namespace RemnantOfTheAncientsMod.Common.Global
 						}
 						return false;
 					}
-					for (int i = 0; i < 19; i++)
+					else
 					{
-						if (item.type == lanceId[i])
+						if (Utils1.NameHasWord(item.Name, "Saber") && item.ModItem.Mod.Name != "RemnantOfTheAncientsMod")
 						{
-							float n = 0.1f;
-							for(int j = 0;j < RemnantOfTheAncientsMod.MaxRarity; j++)
+							float n = 0.5f;
+
+							for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
 							{
-								if(item.rare == j) WeaponDash(player, n * i + 1, 0f);
-                            }
-                        }
+								if (item.rare == j)
+									if (j > 10)
+									{
+										WeaponDash(player, (float)Math.Log(j - Math.Log(j)), 1.7f);
+									}
+									else
+									{
+										WeaponDash(player, (float)Math.Log(j), (float)Math.Log(j));
+									}
+							}
+						}
 					}
-                    
+					if (SpearsList.Contains(item.type))
+					{
+						float n = 0.1f;
+						for (int j = 0; j < RemnantOfTheAncientsMod.MaxRarity; j++)
+						{
+							if (item.rare == j) WeaponDash(player, n * j + 1, 0f);
+						}
+					}
 					return true;
 				}
 				else return base.UseItem(item, player);
@@ -152,26 +231,26 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			else return base.UseItem(item, player);
 		}
 
-		public void WeaponDash(Player player,float StrengX, float StrengY)
+		public void WeaponDash(Player player, float StrengX, float StrengY)
 		{
-            bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
-            if (player.altFunctionUse == 2)
+			bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
+			if (player.altFunctionUse == 2)
 			{
 				if (PlayerTouchFlour)
 				{
 					DashPlayer.JumpDash(player, StrengX, StrengY);
 				}
 			}
-        }
-        public override void UpdateInventory(Item item, Player player)
+		}
+		public override void UpdateInventory(Item item, Player player)
 		{
 			if (Reaper.ReaperMode)
 			{
 				ReaperGlobalItem.ReaperConsumable(item);
 				ReaperGlobalItem.ReaperSetDefaut(item);
-			}     
+			}
 		}
-		
+
 		public override void UpdateAccessory(Item item, Player player, bool hideVisual)
 		{
 			if (item.prefix == ModContent.PrefixType<Healthy>())
@@ -204,11 +283,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				int Basedefense = 8;
 				if (RemnantOfTheAncientsMod.CalamityMod != null)
 				{
-                    Basedefense = CalamityPrefixChanger(player);
-                    player.endurance += 0.02f;
-                }	
-                CustomTooltip.UnpenetrableReforgeValue = Basedefense;
-                PrefixUpdate(player, Basedefense, 1);
+					Basedefense = CalamityPrefixChanger(player);
+					player.endurance += 0.02f;
+				}
+				CustomTooltip.UnpenetrableReforgeValue = Basedefense;
+				PrefixUpdate(player, Basedefense, 1);
 			}
 			if (item.prefix == ModContent.PrefixType<Supersonic>())
 			{
@@ -264,41 +343,41 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			}
 			return 8;
 		}
-        private static void PrefixUpdate(Player player, float value, int stat)
-        {
+		private static void PrefixUpdate(Player player, float value, int stat)
+		{
 			switch (stat)
 			{
 				case 0:
-                    player.statLifeMax2 += (int)value;
-                    break;
-				case 1:
-                    player.statDefense += (int)value;
-                    break;
-				case 2:
-                    player.moveSpeed += value;
-                    break; 
-				case 3:
-                    player.GetCritChance(DamageClass.Generic) += value;
-                    break;
-				case 4:
-                    ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
-                    GenericDamage += value;
-                    break;
-				case 5:
-                    player.GetAttackSpeed(DamageClass.Melee) += value;
-                    break;
-				case 6:
-					player.lifeRegen+= (int)value;
+					player.statLifeMax2 += (int)value;
 					break;
-			} 
-        }
+				case 1:
+					player.statDefense += (int)value;
+					break;
+				case 2:
+					player.moveSpeed += value;
+					break;
+				case 3:
+					player.GetCritChance(DamageClass.Generic) += value;
+					break;
+				case 4:
+					ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
+					GenericDamage += value;
+					break;
+				case 5:
+					player.GetAttackSpeed(DamageClass.Melee) += value;
+					break;
+				case 6:
+					player.lifeRegen += (int)value;
+					break;
+			}
+		}
 		private void PrefixUpdate(Player player, float value, int stat, float reaperValue)
 		{
-            if (stat == 0)
-            {
-                player.statLifeMax2 +=  Reaper.ReaperMode? (int)reaperValue : (int)value;
-            }
-        }
-        public override bool InstancePerEntity => true;
+			if (stat == 0)
+			{
+				player.statLifeMax2 += Reaper.ReaperMode ? (int)reaperValue : (int)value;
+			}
+		}
+		public override bool InstancePerEntity => true;
 	}
 }

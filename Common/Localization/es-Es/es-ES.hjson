@@ -2,6 +2,14 @@
 {
 	RemnantOfTheAncientsMod: 
 	{	
+		ChatMessage:
+		{
+			CalamityReforgeConfig: 
+				'''
+				Advertencia, los reforged custom del mod están deshabilitados por una configuración del calamity.
+				Para solucionarlo por favor desactive la opción de "{0}" en la configuración del calamity
+				'''
+		}
 		SetBonus:
 		{
 			Tuxonite: 
