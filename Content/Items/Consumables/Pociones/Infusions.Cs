@@ -363,7 +363,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             CreateRecipe()
             .AddIngredient(ItemType<EndlessEndurance>(), 1)
             .AddIngredient(ItemType<EndlessLifeForce>(), 1)
-            .AddIngredient(ItemType<EndlessWrath>(), 1)
+            .AddIngredient(ItemType<EndlessWarmth>(), 1)
             .AddIngredient(ItemType<EndlessThorns>(), 1)
             .AddIngredient(ItemType<EndlessHeaRtreach>(), 1)
             .AddTile(TileID.Bottles)
@@ -761,6 +761,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             .AddIngredient(ItemType<Endless_Combat_Potion_Kit>(), 1)
             .AddIngredient(ItemType<Endless_Poseidon_Potion_Kit>(), 1)
             .AddIngredient(ItemType<Endless_Exploration_Potion_Kit>(), 1)
+               .AddIngredient(ItemType<Money_Collector_Potion>(), 1)
             .AddIngredient(ItemType<EndlessBuilder>(), 1)
             .AddTile(TileID.Bottles)
             .Register();

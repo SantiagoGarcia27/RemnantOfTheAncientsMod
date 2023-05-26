@@ -72,16 +72,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public bool CanTp = false;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.DiggerHead);
+            NPC.CloneDefaults(NPCID.DiggerHead);      
             NPC.aiStyle = -1;
-            NPC.width = 30;//105
-            NPC.height = 30;//103
+            //NPC.width = 30;//105
+            //NPC.height = 30;//103
+            NPC.Size = new(75, 75);
             NPC.boss = true;
             NPC.lifeMax = BaseStats.LifeMax;// * (int)ModContent.GetInstance<ConfigClient1>().xdlevel;
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
             NPC.damage = 200;
             NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
-            NPC.scale = 2.50f;
+           // NPC.scale = 2.50f;
             NPC.npcSlots = 20f;
             NPC.lavaImmune = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Infernal_Tyrant");
@@ -193,6 +194,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     }
                 }
             }
+            NPC.Size = TyranStats.AjusteSize(NPC);
             LifeSpeed(this);
         }
         public override void OnSpawn(IEntitySource source)
@@ -251,7 +253,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     }
                 }
             }
-        }
+        } 
         public void DespawnSafeCheck(Player player, Worm worm)
         {
            
@@ -298,7 +300,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 if (GetLifePorcenage() < 5f && Reaper.ReaperMode)
                 {
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         worm.Acceleration = 1.5f;
                     }
@@ -318,11 +320,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
                     if (GetLifePorcenage() < 25f)
                     {
-                        moveSpeed = Main.netMode != 1 ? 70f : 60f;
+                        moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 70f : 60f;
                     }
                     else if (GetLifePorcenage() < 50f)
                     {
-                        moveSpeed = Main.netMode != 1 ? 50f : 40f;
+                        moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 50f : 40f;
                     }
                     worm.MoveSpeed = moveSpeed;
                 }
@@ -377,19 +379,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            SpriteEffects effects = SpriteEffects.None;
-            if (NPC.spriteDirection == 1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
-            Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
-            Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
-            Vector2 position = vector - Main.screenPosition;
-            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/ITyrant/InfernalTyrantHead_Gow");
-            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
-            position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
-            Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
-            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+           // TyranStats.DrawGlow(NPC, "InfernalTyrantHead");
+            // SpriteEffects effects = SpriteEffects.None;
+            // if (NPC.spriteDirection == 1)
+            // {
+            //     effects = SpriteEffects.FlipHorizontally;
+            // } 
+            // Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / 2);
+            // Vector2 position = NPC.position - Main.screenPosition;
+            // var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrantHead_Glow");
+            //// position -= texture.Size() / 2f;
+            //// position += vector2 + new Vector2(0f, 4f + NPC.gfxOffY);
+            // Color color =Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
+            //// Main.spriteBatch.Draw((Texture2D)texture, position,null, color, NPC.rotation, vector2, NPC.scale, effects, 1f);
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
@@ -427,9 +429,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
             NPC.defense = TyranStats.TyrantArmor(999,ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantBody>()).NPC);//999
             NPC.aiStyle = -1;
-            NPC.width = 30;//105
-            NPC.height = 30;//103
-            NPC.scale = 2.50f;
+            NPC.Size = new(75, 75);
+            //NPC.width = 30;//105
+            //NPC.height = 30;//103
+            //NPC.scale = 2.50f;
             NPC.boss = true;
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -455,19 +458,20 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            SpriteEffects effects = SpriteEffects.None;
-            if (NPC.spriteDirection == 1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
-            Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
-            Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
-            Vector2 position = vector - Main.screenPosition;
-            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrantBody_Glow");
-            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
-            position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
-            Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
-            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+            TyranStats.DrawGlow(NPC, "InfernalTyrantBody");
+            //SpriteEffects effects = SpriteEffects.None;
+            //if (NPC.spriteDirection == 1)
+            //{
+            //    effects = SpriteEffects.FlipHorizontally;
+            //}
+            //Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
+            //Vector2 vector2 = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+            //Vector2 position = vector - Main.screenPosition;
+            //var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrantBody_Glow");
+            //position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            //position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
+            //Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
+            //Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
         }
         public override void HitEffect(int hitDirection, double damage)
         {
@@ -501,6 +505,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     if (RemnantOfTheAncientsMod.CalamityMod != null) SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
                 }
             }
+            NPC.Size = TyranStats.AjusteSize(NPC);
         }
         public override void Init()
         {
@@ -528,11 +533,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             NPC.CloneDefaults(NPCID.DiggerTail);
             NPC.lifeMax = BaseStats.LifeMax;
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
-            NPC.width = 30;//105
-            NPC.height = 40;//103
+            //NPC.width = 30;//105
+            //NPC.height = 40;//103
+            NPC.Size = new(75, 75);
             NPC.defense = 25;
             NPC.aiStyle = -1;
-            NPC.scale = 2.50f;
+            //NPC.scale = 2.50f;
             NPC.boss = true;
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -571,6 +577,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
                 }
             }
+            NPC.Size = TyranStats.AjusteSize(NPC);
         }
         public override void HitEffect(int hitDirection, double damage)
         {
@@ -590,18 +597,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            SpriteEffects effects = SpriteEffects.None;
-            if (NPC.spriteDirection == 1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
-            Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
-            Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - Main.screenPosition;
-            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/ITyrant/InfernalTyrantTail_glow");
-            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
-            position += vectorFrame * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
-            Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
-            Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vectorFrame, NPC.scale, effects, 0f);
+            TyranStats.DrawGlow(NPC, "InfernalTyrantTail");
+            //SpriteEffects effects = SpriteEffects.None;
+            //if (NPC.spriteDirection == 1)
+            //{
+            //    effects = SpriteEffects.FlipHorizontally;
+            //}
+            //Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+            //Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - Main.screenPosition;
+            //var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrantTail_glow");
+            //position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            //position += vectorFrame * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
+            //Color color = Utils.MultiplyRGBA(new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0), Color.LightYellow);
+            //Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vectorFrame, NPC.scale, effects, 0f);
         }
         public override void Init()
         {
@@ -632,6 +640,26 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             int a = RemnantOfTheAncientsMod.CalamityMod != null ? i * 2 : i;
 
             return a;
+        }
+        public static Vector2 AjusteSize(NPC npc)
+        {
+            return new Vector2(TextureAssets.Npc[npc.type].Value.Width * 0.5f, TextureAssets.Npc[npc.type].Value.Height * 0.5f);
+        }
+
+        public static void DrawGlow(NPC npc,string NpcName)
+        {
+            SpriteEffects effects = SpriteEffects.None;
+            if (npc.spriteDirection == 1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            Vector2 vectorFrame = new(TextureAssets.Npc[npc.type].Value.Width / 2, TextureAssets.Npc[npc.type].Value.Height / Main.npcFrameCount[npc.type] / 2);
+            Vector2 position = new Vector2(npc.Center.X, npc.Center.Y) - Main.screenPosition;
+            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/"+ NpcName + "_Glow");
+            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[npc.type]) / 2f;
+            position += vectorFrame * 1f + new Vector2(0f, 4f + npc.gfxOffY);
+            Color color = Utils.MultiplyRGBA(new Color(127 - npc.alpha, 127 - npc.alpha, 127 - npc.alpha, 0), Color.LightYellow);
+            Main.spriteBatch.Draw((Texture2D)a, position, npc.frame, color, npc.rotation, vectorFrame, npc.scale, effects, 0f);
         }
     }
 }
