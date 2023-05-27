@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -69,20 +70,21 @@ namespace RemnantOfTheAncientsMod.World
 
 		public static void KillTombstom()
 		{
-			int[] tombsID = new int[10]
+			List<int> tombsID = new List<int>
 			{
-				201,202,203,204,205,527,528,529,530,531
+				43,201,202,203,204,205,527,528,529,530,531
 			};
 
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                Projectile projectile = Main.projectile[i];
-				for (int a = 0; a < 10; a++)
+			for (int i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile projectile = Main.projectile[i];
+				if (tombsID.Contains(projectile.type))
 				{
-					if (projectile.type == tombsID[a]) 
-						projectile.Kill();
+                    projectile.timeLeft = 1;
+                    projectile.Kill();
+					
 				}
-            }
+			}
 		}
 	}
 }

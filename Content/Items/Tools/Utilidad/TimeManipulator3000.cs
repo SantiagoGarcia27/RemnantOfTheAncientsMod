@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		{
 			//if (Main.netMode != 1)
 			//{
-				Main.time = 0.0;
+				Main.time = 5000.0;
 				Main.dayTime = !Main.dayTime;
 				if (Main.dayTime && ++Main.moonPhase >= 8)
 				{

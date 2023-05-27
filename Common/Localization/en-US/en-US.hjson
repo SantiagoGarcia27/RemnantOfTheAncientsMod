@@ -17,6 +17,12 @@ Mods:
 				Randomly puts you in stealth, 
 				increasing ranged ability and reducing chance for enemies to target you
 				'''
+			Daylight: 
+				'''
+				During the day, doubles the health regeneration.
+				At night increases max mana by 20.
+				Bright Daisy no cost mana.
+				'''
 		}
 		TownNPCMood:
 		{
@@ -102,6 +108,21 @@ Mods:
 			ReaperTooltip: "Reaper Item"
 			LegendaryTooltip: "Legendary Drop"
 			NotConsumableTooltip : "Not Consumable"
+		}
+		CommonTooltip:
+		{
+			IncreasedMinion:"Increases your max number of minions by {0}"
+			IncreasedSentry:"Increases your max number of sentries by {0}"
+			IncreasedGenericDamage: "{0}% increased damage"
+			IncreasedClassDamage:"{0}% increased {1} damage"
+			IncreasedGenericCritChance:"{0}% increased critical strike chance"
+			IncreasedClassCritChance:"{0}% increased {1} critical strike chance"
+			IncreasedGenericCritAndDamage:"{0}% increased damage and critical strike chance"
+			IncreasedGenericCritAndDamage:"{0}% increased {1} damage and critical strike chance"
+			IncreasedMovementSpeed:"{0}% increased movement speed"
+			IncreasedManaMax:"Increases maximum mana by {0}"
+			IncreasedLifeMax:"Increases maximum life by {0}"
+			IncreasedLifeMaxPercent:"Increases maximum life by {0}%"
 		}
 	}
 }

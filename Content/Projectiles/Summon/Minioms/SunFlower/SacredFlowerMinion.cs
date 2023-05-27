@@ -1,22 +1,19 @@
-using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
 {
-    public class IlluminatedSunFlowerMinion : ModProjectile
-    {
-        //  public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Summon/Minioms/StardustMinion";
+    public class SacredFlowerMinion : ModProjectile
+    {       
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Illuminated SunFlower Minion");
+            DisplayName.SetDefault("Sacred Flowe Minion");
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
@@ -25,12 +22,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         }
         public sealed override void SetDefaults()
         {
-            //Projectile.CloneDefaults(ProjectileID.DD2LightningAuraT1);
-            //Projectile.width = 10;
-            //Projectile.height = 20;
-            //Projectile.tileCollide = false;
-            //Projectile.friendly = true;
-            //Projectile.minion = true;
             Projectile.width = 30;
             Projectile.height = 60;
             Projectile.sentry = true;
@@ -50,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         {
             return true;
         }
-        public int RangeMax = 25;
+        public int RangeMax = 30;
         public int HealTimmer = Utils1.FormatTime(0, 0, 0, 7);
         public override void AI()
         {
@@ -77,10 +68,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                     if (Projectile.Distance(Main.player[p].Center) <= RangeMax * 16)
                     {
                         Main.player[p].AddBuff(BuffID.Sunflower, Utils1.FormatTime(0, 0, 0, 2));
-                        Main.player[p].statDefense += 5;
+                        Main.player[p].statDefense += 10;
+                        Main.player[p].GetDamage(DamageClass.Generic) *= 1.05f;
                         if (HealTimmer == 1)
                         {
-                            Main.player[p].HealEffect(10);
+                            Main.player[p].HealEffect(20);
                             SpawnParticles();
                         }
                     }
@@ -91,10 +83,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 if (Projectile.Distance(player.Center) <= RangeMax *16)
                 {
                     player.AddBuff(BuffID.Sunflower, Utils1.FormatTime(0, 0, 0, 2));
-                    player.statDefense += 5;
+                    player.statDefense += 10;
+                    player.GetDamage(DamageClass.Generic) *= 1.05f;
                     if (HealTimmer == 1)
                     {
-                        player.HealEffect(10);
+                        player.HealEffect(20);
                         SpawnParticles();
                     }
                 }
@@ -124,23 +117,22 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         {
             if (player.dead || !player.active)
             {
-                player.ClearBuff(BuffType<IlluminatedSunflowerMinionBuff>());
+                player.ClearBuff(BuffType<SacredFlowerMinionBuff>());
             }
-            if (player.HasBuff(BuffType<IlluminatedSunflowerMinionBuff>()))
+            if (player.HasBuff(BuffType<SacredFlowerMinionBuff>()))
             {
-                Projectile.timeLeft = 2;
+                Projectile.timeLeft = Utils1.FormatTime(0, 0, 0, 30); 
             }
         }
         public float fade = 2.6f;
         public override bool PreDraw(ref Color lightColor)
         {
-           // Texture2D texture = ModContent.GetTexture(((ModProjectile)this).get_Texture() + "_Effect");
             var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect");
             Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
             if (Main.myPlayer == Projectile.owner)
             {
                 Color color = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
-                Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 3.2f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 3.8f, SpriteEffects.None, 0f);
             }
             return true;
         }

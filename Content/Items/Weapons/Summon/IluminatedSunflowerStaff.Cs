@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 {

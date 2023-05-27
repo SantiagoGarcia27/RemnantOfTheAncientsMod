@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 {
@@ -13,20 +14,23 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Daylight Hat");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
-            Tooltip.SetDefault("3% increased ranged damage");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "3% d'augmentation des dégâts à distance");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 3% el daño a distancia");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sombrero de luz diurna");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chapeau de la lumière du jour");
+            Tooltip.SetDefault("Increases maximum mana by 20" +
+				"\n3% increased magic and summon damage");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente le maximum de mana de 20" +
+                "\n3 % d'augmentation des dégâts magiques et d'invocation");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el maná máximo en 20" +
+                "\nAumenta el daño de magia e invocación en 3%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;
-			Item.value = 3600;
+			Item.value = Item.sellPrice(0,0,5,0);
 			Item.rare = ItemRarityID.White;
-			Item.defense = 5;
+			Item.defense = 3;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -35,13 +39,24 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		}
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) *= 1.03f;
+            player.GetDamage(DamageClass.MagicSummonHybrid) *= 1.03f;
+			player.statManaMax2 += 20;	
         }
         public override void UpdateArmorSet(Player player)
 		{
 
-			player.setBonus = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Tuxonite");
+			player.setBonus = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Daylight");
 
+			if (Main.dayTime)
+			{
+				player.lifeRegen = player.lifeRegen > 0 ? player.lifeRegen : 1;
+				player.lifeRegen *= 2;
+			}
+			else
+			{
+				player.statManaMax2 += 20;
+			}
+			RemnantPlayer.DaylightArmorSetBonus = true;
 			//if (RemnantPlayer.tuxoniteStealthCounter == 0)
 			//{
 			//	player.shroomiteStealth = true;
@@ -63,10 +78,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 20)//25
-			.AddTile(TileID.Anvils)
-			.Register();
-		}
+            CreateRecipe()
+             .AddIngredient(ItemID.Daybloom, 10)
+             .AddIngredient(ItemID.Star, 1)
+             .AddTile(TileID.Anvils)
+             .Register();
+        }
 	}
 }

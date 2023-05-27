@@ -4,6 +4,8 @@ using Terraria;
 using System.Text;
 using static Humanizer.In;
 using Terraria.ModLoader;
+using Terraria.Localization;
+using IL.Terraria.ID;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -106,8 +108,11 @@ namespace RemnantOfTheAncientsMod
 		{
 			return (Second * 60) + (Minute * 60 * 60) + (Hour * 60 * 60 * 60) + (Day * 60 * 60 * 60 * 60);
 		}
-
-		public static int GetItemFromMod(Mod mod, string item)
+        public static float FormatTime(float Day, float Hour, float Minute, float Second)
+        {
+            return (Second * 60) + (Minute * 60 * 60) + (Hour * 60 * 60 * 60) + (Day * 60 * 60 * 60 * 60);
+        }
+        public static int GetItemFromMod(Mod mod, string item)
 		{
 			return mod.Find<ModItem>(item).Type;
 		}
@@ -118,7 +123,92 @@ namespace RemnantOfTheAncientsMod
 
 		public static int GetModPrefix(Mod mod, string name)
 		{
-			return mod.TryFind<ModPrefix>(name, out var ret)? ret.Type : 0;
+			return mod.TryFind<ModPrefix>(name, out var ret) ? ret.Type : 0;
 		}
-	}
+
+		public static string IncreasedMinionTooltip(int amount)
+		{
+			return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMinion", amount);
+		}
+        public static string IncreasedCentryTooltip(int amount)
+        {
+            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedSentry", amount);
+        }
+        public static string IncreasedLifeMaxTooltip(int amount)
+        {
+            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedLifeMax", amount);
+        }
+        public static string IncreasedManaMaxTooltip(int amount)
+        {
+            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedManaMax", amount);
+        }
+        public static string IncreasedDamageByTooltip(int amount,DamageClass WeaponClass)
+        {
+			if (WeaponClass == DamageClass.Generic)
+			{
+				return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedGenericDamage", amount);
+			}
+			else
+			{
+                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount, WeaponClass.DisplayName);
+            }
+			//else if (WeaponClass == DamageClass.Melee)
+   //         {
+   //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount, WeaponClass.ClassName);
+   //         }
+   //         else if (WeaponClass == DamageClass.Ranged)
+   //         {
+   //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount);
+   //         }
+   //         else if (WeaponClass == DamageClass.Summon)
+   //         {
+   //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount);
+   //         }
+   //         else if (WeaponClass == DamageClass.Magic)
+   //         {
+   //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount);
+   //         } 
+			//else
+			//{
+   //             return $"{amount}% increased {WeaponClass} damage";
+   //         }
+        }
+        public static string IncreasedCritByTooltip(int amount, DamageClass WeaponClass)
+        {
+            if (WeaponClass == DamageClass.Generic)
+            {
+                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedGenericCritChance", amount);
+            }
+            else
+            {
+                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassCritChance", amount, WeaponClass.DisplayName);
+            }
+
+            //if (WeaponClass == DamageClass.Generic)
+            //{
+            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedMagicCritChance}", amount);
+            //}
+            //else if (WeaponClass == DamageClass.Melee)
+            //{
+            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedMeleeCritChance}", amount);
+            //}
+            //else if (WeaponClass == DamageClass.Ranged)
+            //{
+            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedRangedCritChance}", amount);
+            //}
+            //else if (WeaponClass == DamageClass.Summon)
+            //{
+            //    return Language.GetTextValue("{$CommonItemTooltip.PercentSummonTagCritChance}", amount);
+            //}
+            //else if (WeaponClass == DamageClass.Magic)
+            //{
+            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedMagicCritChance}", amount);
+            //}
+            //else
+            //{
+            //    return $"{amount}% increased magic {WeaponClass} strike chance";
+            //}
+        }
+
+    }
 }

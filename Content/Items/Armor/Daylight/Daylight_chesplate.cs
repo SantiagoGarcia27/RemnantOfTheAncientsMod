@@ -12,31 +12,41 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Daylight Chainmail");
+			DisplayName.SetDefault("Daylight Shirt");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cotte de mailles Tuxonite");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cota de malla de tusonita");
-            Tooltip.SetDefault("3% increased ranged damage");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "3% d'augmentation des dégâts à distance");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 3% el daño a distancia");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Camisa de luz diurna");
+            Tooltip.SetDefault(tooltip());
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), tooltip());
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;
-			Item.value = 3000;
-			Item.rare = ItemRarityID.White;
-			Item.defense = 5;
+			Item.value = Item.sellPrice(0, 0, 10, 0);
+            Item.rare = ItemRarityID.White;
+			Item.defense = 3;
 		}
+		public static string tooltip()
+		{
+			return Utils1.IncreasedCritByTooltip(3, DamageClass.Magic) +
+				"\n" + Utils1.IncreasedMinionTooltip(1) +
+				"\n" + Utils1.IncreasedManaMaxTooltip(5);
+        }
         public override void UpdateEquip(Player player)
         {
-			player.GetDamage(DamageClass.Ranged) *= 1.03f;
+			player.GetCritChance(DamageClass.Magic) += 3f;
+			player.maxMinions++;
+			player.statManaMax2 += 5;
         }
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 30)//35
-			.AddTile(TileID.Anvils)
+			.AddIngredient(ItemID.Daybloom,8)
+			.AddIngredient(ItemID.Vine, 1)
+            .AddRecipeGroup(RecipeGroupID.IronBar,2)
+            .AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

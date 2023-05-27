@@ -295,44 +295,51 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             int maxLife = NPC.lifeMax;
             NPC.defense = TyranStats.TyrantArmor(999, ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
-
-            if (!AllPlayersDead())
+            if (!Main.player[Main.myPlayer].HasBuff(BuffID.Stinky))
             {
-                if (GetLifePorcenage() < 5f && Reaper.ReaperMode)
+                if (!AllPlayersDead())
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    if (GetLifePorcenage() < 5f && Reaper.ReaperMode)
                     {
-                        worm.Acceleration = 1.5f;
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            worm.Acceleration = 1.5f;
+                        }
+                        else
+                        {
+                            worm.Acceleration = 1.2f;
+                        }
+
+                    }
+                    else if (GetLifePorcenage() < 10f)
+                    {
+                        worm.Acceleration = 1.1f;
                     }
                     else
                     {
-                        worm.Acceleration = 1.2f;
-                    }
+                        worm.Acceleration = 0.15f;
 
-                }
-                else if (GetLifePorcenage() < 10f)
-                {
-                    worm.Acceleration = 1.1f;
+                        if (GetLifePorcenage() < 25f)
+                        {
+                            moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 70f : 60f;
+                        }
+                        else if (GetLifePorcenage() < 50f)
+                        {
+                            moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 50f : 40f;
+                        }
+                        worm.MoveSpeed = moveSpeed;
+                    }
                 }
                 else
                 {
-                    worm.Acceleration = 0.15f;
-
-                    if (GetLifePorcenage() < 25f)
-                    {
-                        moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 70f : 60f;
-                    }
-                    else if (GetLifePorcenage() < 50f)
-                    {
-                        moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 50f : 40f;
-                    }
-                    worm.MoveSpeed = moveSpeed;
+                    worm.MoveSpeed = 10f;
+                    worm.Acceleration = 1f;
                 }
             }
             else
             {
-                worm.MoveSpeed = 10f;
-                worm.Acceleration = 1f;
+                worm.MoveSpeed = 1f;
+                worm.Acceleration = 0.1f;
             }
         }
         public float GetLifePorcenage()

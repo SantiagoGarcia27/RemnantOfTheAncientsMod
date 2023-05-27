@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.damage = 15;
             Item.knockBack = 1.2f;
             Item.crit = 6;
-            Item.mana = 5;
+            Item.mana = !RemnantPlayer.DaylightArmorSetBonus ? 5 : 0;
             Item.useTime = 15;
             Item.useAnimation = 15;
             Item.autoReuse = true;
@@ -52,6 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
+            Item.mana = !RemnantPlayer.DaylightArmorSetBonus ? 5 : 0;
             velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
         }
         public override void AddRecipes()

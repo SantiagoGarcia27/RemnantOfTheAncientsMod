@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod
 		public static bool tuxoniteStealth;
         public static int tuxoniteStealthDuration = 0;
         public static float tuxoniteStealthCounter = 0;
-
+		public static bool DaylightArmorSetBonus;
 
         public override void ResetEffects()
 		{
@@ -89,6 +89,7 @@ namespace RemnantOfTheAncientsMod
 			MoneyCollector = false;
 			SunflowerSentry= false;
 			tuxoniteStealth = false;
+			DaylightArmorSetBonus = false;
 			//tuxoniteStealthCounter = 1;
         }
 

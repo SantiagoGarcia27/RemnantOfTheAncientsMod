@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -6,11 +6,11 @@ using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
 {
-	public class YggdrasilMinionBuff : ModBuff
+	public class EvilEyeMinionBuff : ModBuff
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Yggdrasil");
+			DisplayName.SetDefault("Evil eye");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Yggdrasil");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Yggdrasil");
             Description.SetDefault("The Yggdrasil will protect you");
@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
 		}
 		public override void Update(Player player, ref int buffIndex)
 		{
-			if (player.ownedProjectileCounts[ProjectileType<YggdrasilMinion>()] > 0)
+			if (player.ownedProjectileCounts[ProjectileType<EvilEyeMinion>()] > 0)
 			{
 				player.buffTime[buffIndex] = 18000;
 			}

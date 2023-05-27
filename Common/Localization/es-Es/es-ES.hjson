@@ -17,6 +17,12 @@
 				Aleatoriamente entrarás en sigilo,
 				con lo que aumentará tu habilidad de ataque a distancia y se reducirá la posibilidad de que te ataque los enemigos.
 				'''
+			Daylight: 
+				'''
+				Durante el día, duplica la regeneración de salud.
+				Por la noche aumenta el maná máximo en 20.
+				La margarita brillante ya no gasta maná
+				'''
 		}
 		TownNPCMood:
 		{
@@ -111,6 +117,21 @@
 			ReaperTooltip: "Objeto de segador"
 			LegendaryTooltip: "Objeto Legendario"
 			NotConsumableTooltip: "No consumible"
+		}
+		CommonTooltip:
+		{
+			IncreasedMinion:"Aumenta en {0} el máximo de súbditos que puedes tener"
+			IncreasedSentry:"Aumenta en {0} el número máximo de centinelas"
+			IncreasedGenericDamage: "Aumenta un {0}% el daño"
+			IncreasedClassDamage:"Aumenta un {0}% el daño de {1}"
+			IncreasedGenericCritChance:"+{0}% probabilidad de golpe crítico"
+			IncreasedClassCritChance:"+{0}% probabilidad de golpe crítico {1}"
+			IncreasedGenericCritAndDamage:"+{0}% daño y probabilidad de golpe crítico"
+			IncreasedGenericCritAndDamage:"+{0}% daño y probabilidad de golpe crítico {1}"
+			IncreasedMovementSpeed:"Aumenta un {0}% la velocidad de movimiento"
+			IncreasedManaMax:"Aumenta el maná en {0}"
+			IncreasedLifeMax:"Aumenta la vida máxima en {0}"
+			IncreasedLifeMaxPercent:"Aumenta la vida máxima en {0}%"
 		}
 	}
 }

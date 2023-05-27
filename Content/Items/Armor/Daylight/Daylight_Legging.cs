@@ -12,12 +12,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Daylight Greaves");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Grebas de tusonita");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves Tuxonite");
-            Tooltip.SetDefault("5% increased ranged critical strike chance");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "+5% de chances de coup critique à distance");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Probabilidad de golpe crítico a distancia aumentada un 5%");
+			DisplayName.SetDefault("Daylight skirt");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pollera de hojas");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jupe lumière du jour");
+            Tooltip.SetDefault(tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -25,13 +23,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		{
 			Item.width = 18;
 			Item.height = 18;
-			Item.value = 3000;
-			Item.rare = ItemRarityID.White;
+			Item.value = Item.sellPrice(0, 0, 5, 0);
+            Item.rare = ItemRarityID.White;
 			Item.defense = 4;
 		}
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(4, DamageClass.Summon) +
+                "\n" + Utils1.IncreasedManaMaxTooltip(5);
+        }
         public override void UpdateEquip(Player player)
         {
-            player.GetCritChance(DamageClass.Ranged) += 5f;
+            player.GetDamage(DamageClass.Summon) *= 1.04f;
+            player.statManaMax2 += 5;
         }
         public override void AddRecipes()
 		{

@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;

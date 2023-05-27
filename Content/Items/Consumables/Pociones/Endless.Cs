@@ -29,6 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             Item.CloneDefaults(ItemBase.type);
             Item.rare += 1;
             Item.consumable = false;
+            Item.buffTime = Utils1.FormatTime(7, 0, 0, 0);
         }
         public string GetTextureFromItem(Item item)
         {
