@@ -24,6 +24,8 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
+using CalamityMod.Items.Materials;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -402,15 +404,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Spike_saber>(), 3, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Tyrant_repeater>(), 3, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<Tyran_Blast>(), 3, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<InfernalMask>(), 7, 999999999));
+            npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999, new[] 
+            { 
+                ModContent.ItemType<Spike_saber>(), 
+                ModContent.ItemType<Tyrant_repeater>(), 
+                ModContent.ItemType<Tyran_Blast>(), 
+                ModContent.ItemType<EvilEyeStaff>() 
+            }));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalMask>(), 10));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<infernalBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
-        }
 
+            if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        private static void CalamityDrop(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EssenceofChaos>(), 1, 5, Utils1.ReaperDropScaler(15)));
+        }
     }
 
     internal class InfernalTyrantBody : WormBody

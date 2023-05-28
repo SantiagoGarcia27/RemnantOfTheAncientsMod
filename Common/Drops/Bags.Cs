@@ -3,9 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.ItemDropRules;
-using static RemnantOfTheAncientsMod.Drops.RemnantDropRules;
+using static RemnantOfTheAncientsMod.Common.Drops.DropRules.RemnantConditionDropRules;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 
 namespace RemnantOfTheAncientsMod.Drops
 {

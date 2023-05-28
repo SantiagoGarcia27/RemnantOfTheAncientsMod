@@ -22,6 +22,10 @@ using System.IO;
 using CalamityMod.World;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -456,12 +460,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         
         public void ShootIa(int dammage, int type, Player player, float Speed, double x, double y)
         {
-            Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
-            float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * x)), vector8.X - (player.position.X + (player.width * y)));
+            Vector2 NpcPosition = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+            float rotation = (float)Math.Atan2(NpcPosition.Y - (player.position.Y + (player.height * x)), NpcPosition.X - (player.position.X + (player.width * y)));
             Vector2 direction;
             direction.X = (float)(Math.Cos(rotation) * Speed * -1);
             direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, dammage, 0f, Main.myPlayer);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
         }
         public void DespawnBoss()
         {
@@ -486,18 +490,24 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+            npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999, new[]
+            {
+                ItemType<desertbow>(),
+                ItemType<DesertEdge>(),
+                ItemType<DesertStaff>(),
+                ItemType<DesertTome>()
+            }));
+            npcLoot.Add(ItemDropRule.Common(ItemType<Sand_escense>(), 1,5,20));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SandBlock, 1,1,50));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.Amber, 6, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new IsHardModeRule(), ItemID.AncientBattleArmorMaterial, 5, 1,1, Utils1.ReaperDropScaler(1)));
 
-            LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertAMask>(),7,999999999));
-
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<desertbow>(), 4,999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertEdge>(), 4, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertStaff>(), 4, 999999999));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<DesertTome>(), 4, 999999999));
+            npcLoot.Add(ItemDropRule.Common(ItemType<DesertAMask>(), 7));
+            npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));
 
             npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Desert_Relic>()));
-            npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));
+           
         }	
     }
 }

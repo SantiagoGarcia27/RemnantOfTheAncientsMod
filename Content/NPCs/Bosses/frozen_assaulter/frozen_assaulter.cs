@@ -23,6 +23,7 @@ using Terraria.GameContent;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
+using CalamityMod.Items.Materials;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
 {
@@ -313,16 +314,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
+
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrostShark>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<Permafrost>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenStafff>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<frozen_staff>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenMask>(), 7, 999999999));
-
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.FrostCore, 5, 3));
             npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
             npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Frozen_Relic>()));
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
         }
+
+        [JITWhenModsEnabled("CalamityMod")]
+        private void CalamityDrop(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemType<EssenceofEleum>(), 1,2,Utils1.ReaperDropScaler(5)));
+        } 
         public override void OnSpawn(IEntitySource source)
         {
         }

@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Illuminated SunFlower Minion");
+            DisplayName.SetDefault("Evil Eye Minion");
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
@@ -45,35 +45,59 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             return false;
         }
         public int RangeMax = 8;
-        public int AttackTimmer = (int)Utils1.FormatTime(0f, 0f, 0f, 0.5f);
+        public static int AttackTimmer = (int)Utils1.FormatTime(0f, 0f, 0f, 0.5f);
+        public static int shootCounter = 0;
+        public NPC target;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
+            if (player.HasMinionAttackTargetNPC)
+            {
+                target = Main.npc[player.MinionAttackTargetNPC];
+            }
+
+
             CheckActive(player);
             GeneralBehavior(player, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition);
             SearchForTargets(player, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
-            Movement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);
+            Movement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);      
+            setCounters();
 
-
-
-            if (AttackTimmer == 0)
+            if (shootCounter == Utils1.FormatTime(0,0,0,5) -1 && target != null)
             {
-                AttackTimmer = (int)Utils1.FormatTime(0f, 0f, 0f, 0.5f);
-            }
-            else
-            {
-                AttackTimmer--;
+                Shoot();
             }
             if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
             {
                 AnimateTexture();
             }
-            AreaEffect(player);
-
-
+            AreaEffect();
         }
+        
+        private void setCounters()
+        {
+            shootCounter = CounterUpdate(shootCounter, Utils1.FormatTime(0, 0, 0, 5));
+            AttackTimmer = CounterUpdate(AttackTimmer, (int)Utils1.FormatTime(0f, 0f, 0f, 0.4f));
+        }
+        private void Shoot()
+        {
+            float rotation;
+            if (Projectile.OwnerMinionAttackTargetNPC != null)
+            {
+                rotation = (float)Math.Atan2(Projectile.Center.Y - (Projectile.OwnerMinionAttackTargetNPC.position.Y + Projectile.OwnerMinionAttackTargetNPC.height), Projectile.position.X - (Projectile.position.X + Projectile.width));
+            }
+            else
+            {
+                rotation = 0;
+            }
+            Vector2 direction;
+            direction.X = (float)(Math.Cos(rotation) * 4f * -1);
+            direction.Y = (float)(Math.Sin(rotation) * 4f * -1);
+            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,  direction, ProjectileID.InfernoFriendlyBolt, Projectile.damage, 0, Projectile.owner, 0, 0);
+        }
+
         public bool IsAttack = false;
-        private void AreaEffect(Player player)
+        private void AreaEffect()
         {
             for (int i = 0; i < Main.maxNPCs;i++)
             {
@@ -159,7 +183,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         private void SearchForTargets(Player owner, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter)
         {
             // Starting search distance
-            distanceFromTarget = 500f;
+            distanceFromTarget = 60 * 16f;
             targetCenter = Projectile.position;
             foundTarget = false;
 
@@ -207,7 +231,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                         // The number depends on various parameters seen in the movement code below. Test different ones out until it works alright
                         bool closeThroughWall = between < 100f;
 
-                        if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall))
+                        if (((!closest && inRange) /*|| !foundTarget*/) && (lineOfSight || closeThroughWall))
                         {
                             distanceFromTarget = between;
                             targetCenter = npc.Center;
@@ -278,7 +302,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             }
         }
 
-
+        public static int CounterUpdate(int counter,int maxValue)
+        {
+            if(counter == 0)
+            {
+                counter = maxValue;
+            }
+            else
+            {
+                counter--;
+            }
+            return counter;
+        }
 
         public void AnimateTexture()
         {

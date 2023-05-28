@@ -125,6 +125,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             Lighting.AddLight(NPC.position, 0.1f, 0.2f, 0.7f);
         }
+
+
 	}
 }
 

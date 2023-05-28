@@ -6,6 +6,8 @@ using static Humanizer.In;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using IL.Terraria.ID;
+using Terraria.Utilities;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -120,13 +122,38 @@ namespace RemnantOfTheAncientsMod
 		{
 			return word.Contains(SeachedWord) ? true : false;
 		}
-
-		public static int GetModPrefix(Mod mod, string name)
+        public static int ReaperDropScaler(int i)
+        {
+            int a = i;
+            if (Reaper.ReaperMode) a = i * 5;
+            return a;
+        }
+        public static int GetModPrefix(Mod mod, string name)
 		{
 			return mod.TryFind<ModPrefix>(name, out var ret) ? ret.Type : 0;
 		}
 
-		public static string IncreasedMinionTooltip(int amount)
+   //     public override struct DropAttemptInfo : 
+   //     {
+   //         public NPC npc;
+
+   //         public int item;
+
+   //         public Player player;
+
+   //         public UnifiedRandom rng;
+
+   //         public bool IsInSimulation;
+
+   //         public bool IsExpertMode;
+
+   //         public bool IsMasterMode;
+
+			//public bool IsReaperMode;
+   //     }
+
+
+        public static string IncreasedMinionTooltip(int amount)
 		{
 			return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMinion", amount);
 		}
