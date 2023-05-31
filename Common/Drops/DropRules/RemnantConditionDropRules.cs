@@ -49,9 +49,21 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         public bool CanShowItemDropInUI() => true;
         public string GetConditionDescription() => null;
     }
+    public class DesertAnhilatorReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade && Reaper.ReaperMode;
+        public bool CanShowItemDropInUI() => true;
+        public string GetConditionDescription() => null;
+    }
     public class WallOfFLeshReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade && Reaper.ReaperMode;
+        public bool CanShowItemDropInUI() => true;
+        public string GetConditionDescription() => null;
+    }
+    public class FrozenAssaulterReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade && Reaper.ReaperMode;
         public bool CanShowItemDropInUI() => true;
         public string GetConditionDescription() => null;
     }
@@ -94,6 +106,12 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
     public class EmpressOfLightReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade && Reaper.ReaperMode;
+        public bool CanShowItemDropInUI() => true;
+        public string GetConditionDescription() => null;
+    }
+    public class InfernalTyrantReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade && Reaper.ReaperMode;
         public bool CanShowItemDropInUI() => true;
         public string GetConditionDescription() => null;
     }

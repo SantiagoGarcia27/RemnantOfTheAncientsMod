@@ -1,4 +1,7 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,10 +31,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 			Item.accessory = true;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;
-		}
+			Item.shoot = ModContent.ProjectileType<InterceptionDrone>();
+			Item.shootSpeed = 5f;
+
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+			Projectile.NewProjectile(source,position,velocity,type,damage,knockback);
+            Projectile.NewProjectile(source, position + new Vector2(-70f,0f), velocity, ModContent.ProjectileType<InterceptionDrone>(), damage, knockback);
+            return true;
+        }
         public override bool? UseItem(Player player)
         {
-            Main.NewText(player.maxMinions);
+           // Main.NewText(player.maxMinions);
             return base.UseItem(player);
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

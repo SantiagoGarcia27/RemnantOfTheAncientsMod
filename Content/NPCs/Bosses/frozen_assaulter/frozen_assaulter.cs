@@ -331,7 +331,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
         [JITWhenModsEnabled("CalamityMod")]
         private void CalamityDrop(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemType<EssenceofEleum>(), 1,2,Utils1.ReaperDropScaler(5)));
+            npcLoot.Add(ItemDropRule.Common(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofEleum"), 1,2,Utils1.ReaperDropScaler(5)));
         } 
         public override void OnSpawn(IEntitySource source)
         {

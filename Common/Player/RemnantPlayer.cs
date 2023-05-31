@@ -19,6 +19,8 @@ using CalamityMod;
 using CalamityMod.Items.Tools;
 using Terraria.Chat;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using ThoriumMod.Empowerments;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -63,6 +65,9 @@ namespace RemnantOfTheAncientsMod
         public static int tuxoniteStealthDuration = 0;
         public static float tuxoniteStealthCounter = 0;
 		public static bool DaylightArmorSetBonus;
+		public bool HealingDrone;
+        public bool InterceptionDrone;
+
 
         public override void ResetEffects()
 		{
@@ -90,6 +95,8 @@ namespace RemnantOfTheAncientsMod
 			SunflowerSentry= false;
 			tuxoniteStealth = false;
 			DaylightArmorSetBonus = false;
+			HealingDrone = false;
+			InterceptionDrone = false;
 			//tuxoniteStealthCounter = 1;
         }
 
@@ -232,7 +239,7 @@ namespace RemnantOfTheAncientsMod
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit) //This is the same as the one in OnHitNPC, but for melee projectiles.
 		{
 			//  ReaperGlobalItem.ReaperSize(p);
-			if (proj.CountsAsClass(DamageClass.Melee))
+			if (proj.CountsAsClass(DamageClass.Melee) || proj.CountsAsClass(DamageClass.SummonMeleeSpeed)|| proj.CountsAsClass(DamageClass.Throwing))
 			{
 				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
 				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
@@ -327,8 +334,30 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.Burning] = true;
 			Player.buffImmune[BuffID.ShadowFlame] = true;
 		}
+		public void SpawnMinionItem(Player player)
+		{
+           if(InterceptionDrone) SpawnHelper(player.Center,Vector2.Zero,ProjectileType<InterceptionDrone>(), 1, 0,Main.myPlayer);
+           if (HealingDrone) SpawnHelper(player.Center,new Vector2(7f,2f), ProjectileType<InterceptionDrone>(), 1, 0,Main.myPlayer);
+		   
+        }
+		public void SpawnHelper(Vector2 center, Vector2 velocity, int type, int damage, int knockback, int owner, float Ai0, float Ai1)
+		{
+			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[type] < 1 && Player.whoAmI == Main.myPlayer)
+			{
+				var projectile = Projectile.NewProjectileDirect(Player.GetSource_FromAI(), center, velocity, type, damage, knockback, owner, (float)Ai0, (float)Ai1);
+				projectile.originalDamage = damage;
+			}
+		}
+		public void SpawnHelper(Vector2 center, Vector2 velocity, int type, int damage, int knockback, int owner)
+		{
+			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[type] < 1 && Player.whoAmI == Main.myPlayer)
+			{
+				var projectile = Projectile.NewProjectileDirect(Player.GetSource_FromAI(), center, velocity, type, damage, knockback, owner);
+				projectile.originalDamage = damage;
+			}
+        }
 
-		public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
 		{
 			Player.respawnTimer *= (int)RespawnCalculator();
 		}

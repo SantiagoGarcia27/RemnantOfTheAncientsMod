@@ -421,7 +421,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         private static void CalamityDrop(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EssenceofChaos>(), 1, 5, Utils1.ReaperDropScaler(15)));
+            npcLoot.Add(ItemDropRule.Common(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofChaos"), 1, 5, Utils1.ReaperDropScaler(15)));
         }
     }
 
