@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Prefixe;
-using CalamityMod;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -63,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 				if (item.type == ItemID.NightsEdge)
 				{
-					if (!ModLoader.TryGetMod("CalamityMod", out Mod mod)) item.damage = 45;
+					if (RemnantOfTheAncientsMod.CalamityMod == null) item.damage = 45;
 				}
 				if (item.type == ItemID.Minishark)
 				{
@@ -200,11 +199,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
 					{
 						if (Utils1.NameHasWord(item.Name, "Saber") && item.ModItem.Mod.Name != "RemnantOfTheAncientsMod")
 						{
-							float n = 0.5f;
-
 							for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
 							{
 								if (item.rare == j)
+								{
 									if (j > 10)
 									{
 										WeaponDash(player, (float)Math.Log(j - Math.Log(j)), 1.7f);
@@ -213,6 +211,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 									{
 										WeaponDash(player, (float)Math.Log(j), (float)Math.Log(j));
 									}
+								}
 							}
 						}
 					}
@@ -313,19 +312,19 @@ namespace RemnantOfTheAncientsMod.Common.Global
 		[JITWhenModsEnabled("CalamityMod")]
 		private int CalamityPrefixChanger(Player player)
 		{
-			if (DownedBossSystem.downedYharon)
+			if (CalamityMod.DownedBossSystem.downedYharon)
 			{
 				return 20;
 			}
-			else if (DownedBossSystem.downedDoG)
+			else if (CalamityMod.DownedBossSystem.downedDoG)
 			{
 				return 19;
 			}
-			else if (DownedBossSystem.downedPolterghast)
+			else if (CalamityMod.DownedBossSystem.downedPolterghast)
 			{
 				return 18;
 			}
-			else if (DownedBossSystem.downedProvidence)
+			else if (CalamityMod.DownedBossSystem.downedProvidence)
 			{
 				return 16;
 			}

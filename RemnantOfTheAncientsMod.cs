@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod
         public static Mod RemnantOfTheAncients;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
-        public static readonly int MaxRarity = GetMaxRarity();
+        public static int MaxRarity = GetMaxRarity();
         public static int MaxPlayers = 0;
         public RemnantOfTheAncientsMod()
         {
@@ -40,15 +40,6 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
             ModLoader.TryGetMod("Census", out Census);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncients);
-            // else CalamityMod = null;
-            // if (ModLoader.HasMod("ThoriumMod")) ThoriumMod = ModLoader.GetMod("ThoriumMod");
-            // else ThoriumMod = null;
-            //if (ModLoader.HasMod("BossChecklist")) BossChecklist = ModLoader.GetMod("BossChecklist");
-            //else BossChecklist = null;
-            // CustomCurrencyId = CustomCurrencyManager.RegisterCurrency(new Currencies.RemnantCurrency(ModContent.ItemType<Terracoin>(), 999L, "Mods.RemnantOfTheAncientsMod.Currencies.ExampleCustomCurrency"));
-
-
-
 
             if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
             {
@@ -57,7 +48,7 @@ namespace RemnantOfTheAncientsMod
             }
         }
 
-        private static int GetMaxRarity()
+        public static int GetMaxRarity()
         {
             int max = 0;
             for (int i = 0; i < RarityLoader.RarityCount; i++)

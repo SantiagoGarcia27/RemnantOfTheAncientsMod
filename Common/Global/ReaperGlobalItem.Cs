@@ -41,21 +41,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			if (RemnantOfTheAncientsMod.ThoriumMod != null) AddBossSummonThorium();
 
 			if (RemnantOfTheAncientsMod.CalamityMod == null)
-			{
-				//if (item.type == ItemID.SlimeCrown ||
-				//	item.type == ItemID.SuspiciousLookingEye ||
-				//	item.type == ItemID.WormFood ||
-				//	item.type == ItemID.BloodySpine ||
-				//	item.type == ItemID.Abeemination ||
-				//	item.type == ItemID.MechanicalEye ||
-				//	item.type == ItemID.MechanicalWorm ||
-				//	item.type == ItemID.MechanicalSkull ||
-				//	item.type == ItemID.CelestialSigil ||
-				//	item.type == ModContent.ItemType<DesertChest>() ||
-				//	item.type == ModContent.ItemType<FrozenArtifact>() ||
-				//	item.type == ModContent.ItemType<InfernalCalis>())
-				//{
-
+			{			
 				if (BossSummons.Contains(item.type))
 				{
 					item.consumable = !Reaper.ReaperMode;
@@ -86,18 +72,18 @@ namespace RemnantOfTheAncientsMod.Common.Global
             SafeAddContentToList(ModContent.ItemType<FrozenArtifact>());
             SafeAddContentToList(ModContent.ItemType<InfernalCalis>());
         }
-        [JITWhenModsEnabled("ThoriumMod")]
-        public static void AddBossSummonThorium()
-		{	
+		[JITWhenModsEnabled("ThoriumMod")]
+		public static void AddBossSummonThorium()
+		{
 			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StormFlare"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));	
-            SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
-            SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
-            SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
-            SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
-            SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
-            SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
-        }
+			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));
+			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
+			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
+			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
+			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
+			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
+			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
+		}
 		public static void SafeAddContentToList(int id)
 		{
             if (!BossSummons.Contains(id)) BossSummons.Add(id);

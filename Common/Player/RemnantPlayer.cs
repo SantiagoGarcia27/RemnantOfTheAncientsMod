@@ -16,11 +16,9 @@ using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using CalamityMod;
-using CalamityMod.Items.Tools;
 using Terraria.Chat;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using ThoriumMod.Empowerments;
 
 namespace RemnantOfTheAncientsMod
 {

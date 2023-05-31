@@ -1,10 +1,6 @@
-﻿using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
-using RemnantOfTheAncientsMod.World;
-using System.Collections.Generic;
+﻿using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using ThoriumMod.Items.EarlyMagic;
-using static RemnantOfTheAncientsMod.Utils1;
 
 namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 {

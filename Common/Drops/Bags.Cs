@@ -7,6 +7,7 @@ using static RemnantOfTheAncientsMod.Common.Drops.DropRules.RemnantConditionDrop
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 
 namespace RemnantOfTheAncientsMod.Drops
 {
@@ -72,8 +73,8 @@ namespace RemnantOfTheAncientsMod.Drops
                     break;
                 case ItemID.DestroyerBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss3, 7));
-                    itemLoot.Add(ItemDropRule.ByCondition(new DestroyerReaperSoulRule(), ItemType<DestroyerEnergyCell>()));
-                   // itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<DestroyerEnergyCell>()));
+                    //itemLoot.Add(ItemDropRule.ByCondition(new DestroyerReaperSoulRule(), ItemType<DestroyerEnergyCell>()));
+                    itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<MechanicalPersonalLifeSafeSystem>()));
                     break;
                 case ItemID.PlanteraBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxPlantera, 7));

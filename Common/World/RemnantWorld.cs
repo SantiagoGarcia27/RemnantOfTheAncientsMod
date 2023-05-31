@@ -20,7 +20,9 @@ namespace RemnantOfTheAncientsMod.World
 			TimeWizardTimeAcelerationCouldown = 0;
 			SpawnTimeWithard = false;
 			TimeDilocated = false;
-		}
+			RemnantOfTheAncientsMod.MaxRarity = RemnantOfTheAncientsMod.GetMaxRarity();
+
+        }
 		public override void OnWorldUnload()
 		{
 			TimeWizardTimeAcelerationCouldown = 0;

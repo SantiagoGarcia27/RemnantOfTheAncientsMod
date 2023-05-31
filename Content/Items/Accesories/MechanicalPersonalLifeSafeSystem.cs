@@ -4,7 +4,6 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Microsoft.Xna.Framework;
-using CalamityMod.Projectiles.Summon;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
