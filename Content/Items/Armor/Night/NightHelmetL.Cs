@@ -4,8 +4,8 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
-using CalamityMod.CalPlayer;
 using CalamityMod;
+using CalamityMod.CalPlayer;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 {
@@ -65,14 +65,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		[JITWhenModsEnabled("CalamityMod")]
 		public void ArmorSetCalamity(Player player)
 		{
-			CalamityPlayer calamityPlayer = player.Calamity();
-			calamityPlayer.umbraphileSet = true;
-			calamityPlayer.rogueStealthMax += 0.8f;
-			player.setBonus = "+5 Defense, Increases throwable damage by 6%, Increases movement speed and +80 maximum stealth";
-			player.Calamity().wearingRogueArmor = true;
-			player.GetDamage(DamageClass.Throwing) += 0.06f;
-			player.statDefense += 5;
-			player.moveSpeed += 0.05f;
+			if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod))
+			{
+                CalamityPlayer calamityPlayer = player.Calamity();
+				// calamityMod.Call("SetSetBonus", "umbraphile",true);
+				// calamityMod.Call("AddMaxStealth", 0.8f);
+				calamityPlayer.umbraphileSet = true;
+				calamityPlayer.rogueStealthMax += 0.8f;
+				player.setBonus = "+5 Defense, Increases throwable damage by 6%, Increases movement speed and +80 maximum stealth";
+				player.Calamity().wearingRogueArmor = true;
+				player.GetDamage(DamageClass.Throwing) += 0.06f;
+				player.statDefense += 5;
+				player.moveSpeed += 0.05f;
+			}
 		}
 
 		public override void AddRecipes()

@@ -282,7 +282,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				int Basedefense = 8;
 				if (RemnantOfTheAncientsMod.CalamityMod != null)
 				{
-					Basedefense = CalamityPrefixChanger(player);
+					Basedefense = CalamityPrefixChanger();
 					player.endurance += 0.02f;
 				}
 				CustomTooltip.UnpenetrableReforgeValue = Basedefense;
@@ -310,21 +310,27 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			}
 		}
 		[JITWhenModsEnabled("CalamityMod")]
-		private int CalamityPrefixChanger(Player player)
+		private static int CalamityPrefixChanger()
 		{
-			if (CalamityMod.DownedBossSystem.downedYharon)
+
+			bool downedYharon = CalamityUtils.IsBossDefeated("yharon");
+			bool downedDoG = CalamityUtils.IsBossDefeated("devourerofgods");
+			bool downedPolterghast = CalamityUtils.IsBossDefeated("polterghast");
+			bool downedProvidence = CalamityUtils.IsBossDefeated("providence");
+
+			if (downedYharon)
 			{
 				return 20;
 			}
-			else if (CalamityMod.DownedBossSystem.downedDoG)
+			else if (downedDoG)
 			{
 				return 19;
 			}
-			else if (CalamityMod.DownedBossSystem.downedPolterghast)
+			else if (downedPolterghast)
 			{
 				return 18;
 			}
-			else if (CalamityMod.DownedBossSystem.downedProvidence)
+			else if (downedProvidence)
 			{
 				return 16;
 			}

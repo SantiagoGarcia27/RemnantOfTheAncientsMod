@@ -2,12 +2,11 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using System.Text;
-using static Humanizer.In;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using IL.Terraria.ID;
-using Terraria.Utilities;
 using RemnantOfTheAncientsMod.World;
+using Terraria.ModLoader.Config;
+using System.Reflection;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -118,7 +117,54 @@ namespace RemnantOfTheAncientsMod
 		{
 			return mod.Find<ModItem>(item).Type;
 		}
-		public static bool NameHasWord(string word, string SeachedWord)
+        public static int GetTileFromMod(Mod mod, string tile)
+        {
+            return mod.Find<ModTile>(tile).Type;
+        }
+        public static int GetNpcFromMod(Mod mod, string npc)
+        {
+            return mod.Find<ModTile>(npc).Type;
+        }
+        public static DamageClass GetDamageClassFromMod(Mod mod, string damageClass)
+        {
+            return mod.Find<DamageClass>(damageClass);
+        }
+        public static int GetBuffFromMod(Mod mod, string buff)
+        {
+            return mod.Find<ModBuff>(buff).Type;
+        }
+        public static int GetDustFromMod(Mod mod, string dust)
+        {
+            return mod.Find<ModBuff>(dust).Type;
+        }
+        public static int GetPrefixFromMod(Mod mod, string prefix)
+        {
+            return mod.Find<ModPrefix>(prefix).Type;
+        }
+        //public static bool GetInstanceFromMod(Mod mod, string config, bool expectedValue)
+        //{
+
+        //	var value = mod.Find<ModConfig>(config);
+        //	var a = (bool)value.GetType().GetField("MyBooleanName").GetValue(value);
+        //	if (a == expectedValue)
+        //	{
+        //		return true;
+        //	}
+        //	else
+        //	{
+        //		return false;
+        //	}
+        //      }
+       /* public static T GetValue<T>(this ModConfig config, string name)
+        {
+            return config.GetType().GetMember(name) switch
+            {
+                FieldInfo field => (T)field.GetValue(config),
+                PropertyInfo property => (T)property.GetValue(config),
+                _ => throw new Exception("The specified value is not a field or a property or does not exist")
+            };
+        }*/
+        public static bool NameHasWord(string word, string SeachedWord)
 		{
 			return word.Contains(SeachedWord) ? true : false;
 		}
@@ -132,6 +178,9 @@ namespace RemnantOfTheAncientsMod
 		{
 			return mod.TryFind<ModPrefix>(name, out var ret) ? ret.Type : 0;
 		}
+
+
+
 
    //     public override struct DropAttemptInfo : 
    //     {

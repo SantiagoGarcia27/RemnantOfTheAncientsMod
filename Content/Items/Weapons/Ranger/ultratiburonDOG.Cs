@@ -8,7 +8,6 @@ using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -79,7 +78,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
 				recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
-                recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+                recipe.AddTile(Utils1.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
                 recipe.Register();
 			}
 		}

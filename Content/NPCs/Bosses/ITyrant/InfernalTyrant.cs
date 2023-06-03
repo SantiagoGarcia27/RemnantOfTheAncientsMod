@@ -1,5 +1,3 @@
-using CalamityMod;
-using CalamityMod.World;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Global;
@@ -25,7 +23,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using CalamityMod.Items.Materials;
+using CalamityMod;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -93,9 +91,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
-            NPC.Calamity().VulnerableToHeat = false;
-            NPC.Calamity().VulnerableToCold = false;
-            NPC.Calamity().VulnerableToSickness = true;
             SetNpcDamageReductionCalamity(0.02f,0.22f,0.29f,0.3f);
             CalamityLifeScale(BaseStats.LifeMax);
         }
@@ -103,12 +98,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void CalamityLifeScale(int life)
         {
             life = (int)NpcChanges1.ExpertLifeScale(life);
-            NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
+            CalamityUtils.SetLifeBonus(NPC, life,1.5f,1.7f,1.8f);
         }
         [JITWhenModsEnabled("CalamityMod")]
         public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
         {
             NPC.DR_NERD(normal, revenge, death, bossrush);
+            // CalamityUtils.SetDamageReduction(NPC, normal, revenge, death, bossrush);
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
@@ -122,7 +118,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public override void Init()
         {
             MinSegmentLength = 15;
-            MaxSegmentLength = RemnantOfTheAncientsMod.CalamityMod != null? MaxSegmentCount(MinSegmentLength, RemnantOfTheAncientsMod.CalamityMod) : MaxSegmentCount(MinSegmentLength);
+            MaxSegmentLength = MaxSegmentCount(MinSegmentLength);
             head = true;
             CommonWormInit(this);
         }
@@ -142,22 +138,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             attackCounter = reader.ReadInt32();
         }
-        [JITWhenModsEnabled("CalamityMod")]
-        private int MaxSegmentCount(int MinSegmentLength, Mod calamity) 
+        private int MaxSegmentCount(int MinSegmentLength) 
         {
             int scale = 0;
-            if (CalamityWorld.death) scale = 20;
-            else if (CalamityWorld.revenge) scale = 10;
+            if (CalamityUtils.IsDificultyActive("death")) scale = 20;
+            else if (CalamityUtils.IsDificultyActive("death")) scale = 10;
             else if (Main.masterMode) scale = 5;
             else if (Main.expertMode) scale = 2;
-            return MinSegmentLength + scale;
-        }
-        private int MaxSegmentCount(int MinSegmentLength)
-        {
-            int scale = 0;
-            if (Main.masterMode) scale = 5;
-            else if (Main.expertMode) scale = 2;
-
             return MinSegmentLength + scale;
         }
         public override void AI()
@@ -457,9 +444,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         public void SetDefautsCalamity()
         {
-            NPC.Calamity().VulnerableToHeat = false;
-            NPC.Calamity().VulnerableToCold = false;
-            NPC.Calamity().VulnerableToSickness = true;
             NPC.Calamity().canBreakPlayerDefense = true;
             SetNpcDamageReductionCalamity(0.2f, 0.42f, 0.59f, 0.6f);
             CalamityLifeScale(BaseStats.LifeMax);
@@ -468,12 +452,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void CalamityLifeScale(int life)
         {
             life = (int)NpcChanges1.ExpertLifeScale(life);
+            //CalamityUtils.SetLifeBonus(NPC, life, 1.5f, 1.7f, 1.8f);
             NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
         }
         [JITWhenModsEnabled("CalamityMod")]
         public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
         {
             NPC.DR_NERD(normal, revenge, death, bossrush);
+           // CalamityUtils.SetDamageReduction(NPC,normal,revenge, death, bossrush);
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -563,9 +549,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         public void SetDefautsCalamity()
         {
-            NPC.Calamity().VulnerableToHeat = false;
-            NPC.Calamity().VulnerableToCold = false;
-            NPC.Calamity().VulnerableToSickness = true;
             NPC.Calamity().canBreakPlayerDefense = true;
             SetNpcDamageReductionCalamity(0.01f, 0.12f, 0.19f, 0.2f);
             CalamityLifeScale(BaseStats.LifeMax);
@@ -575,10 +558,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             life = (int)NpcChanges1.ExpertLifeScale(life);
             NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
+           // CalamityUtils.SetLifeBonus(NPC, life, 1.5f, 1.7f, 1.8f);
         }
         [JITWhenModsEnabled("CalamityMod")]
         public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
         {
+           // CalamityUtils.SetDamageReduction(NPC, normal, revenge, death, bossrush);
             NPC.DR_NERD(normal, revenge, death, bossrush);
         }
         public override void AI()

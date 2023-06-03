@@ -3,10 +3,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using CalamityMod;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
+using CalamityMod;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
 {
@@ -59,7 +59,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
         [JITWhenModsEnabled("CalamityMod")]
         public void SetDefaultCalamity()
         {
-            Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
+            Item.DamageType = Utils1.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod,"RogueDamageClass");
         }
         [JITWhenModsEnabled("CalamityMod")]
         private void StealStrike(Player player, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

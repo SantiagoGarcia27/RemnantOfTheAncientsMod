@@ -15,10 +15,10 @@ using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-using CalamityMod;
 using Terraria.Chat;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using CalamityMod;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -60,14 +60,14 @@ namespace RemnantOfTheAncientsMod
 		public static int DummyMode = 0;
 		public bool CouwldownHolySaber;
 		public static bool tuxoniteStealth;
-        public static int tuxoniteStealthDuration = 0;
-        public static float tuxoniteStealthCounter = 0;
+		public static int tuxoniteStealthDuration = 0;
+		public static float tuxoniteStealthCounter = 0;
 		public static bool DaylightArmorSetBonus;
 		public bool HealingDrone;
-        public bool InterceptionDrone;
+		public bool InterceptionDrone;
 
 
-        public override void ResetEffects()
+		public override void ResetEffects()
 		{
 			Burn_Sand = false;
 			hBurn = false;
@@ -90,13 +90,13 @@ namespace RemnantOfTheAncientsMod
 			ChaliceOn = false;
 			MeleeKit = false;
 			MoneyCollector = false;
-			SunflowerSentry= false;
+			SunflowerSentry = false;
 			tuxoniteStealth = false;
 			DaylightArmorSetBonus = false;
 			HealingDrone = false;
 			InterceptionDrone = false;
 			//tuxoniteStealthCounter = 1;
-        }
+		}
 
 
 		public override void UpdateDead()
@@ -108,7 +108,7 @@ namespace RemnantOfTheAncientsMod
 			MoneyCollector = false;
 
 			int selection = chanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
-			if (selection != 0) 
+			if (selection != 0)
 			{
 				if (Main.rand.NextBool(selection))
 				{
@@ -123,10 +123,10 @@ namespace RemnantOfTheAncientsMod
 				case 0:
 					return 1;
 				case 1:
-					return 2;	
+					return 2;
 				case 2:
-					return 0;		
-				default: 
+					return 0;
+				default:
 					return 0;
 			}
 		}
@@ -156,11 +156,11 @@ namespace RemnantOfTheAncientsMod
 			if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityMessage();
 
 
-        }
-        [JITWhenModsEnabled("CalamityMod")]
+		}
+		[JITWhenModsEnabled("CalamityMod")] 
         public void CalamityMessage()
 		{
-			if(ModContent.GetInstance<CalamityConfig>().RemoveReforgeRNG)
+			if(ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) && GetInstance<CalamityConfig>().RemoveReforgeRNG)
 			{
                 ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Config.EntryTitle.RemoveReforgeRNG"))), Color.Red);
             }

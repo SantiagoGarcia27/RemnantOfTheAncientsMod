@@ -19,13 +19,9 @@ using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using System.IO;
-using CalamityMod.World;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -105,7 +101,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     DesertTp();
                 }
             }
-            NPC.scale = RemnantOfTheAncientsMod.CalamityMod != null ? LifeSize(NPC, RemnantOfTheAncientsMod.CalamityMod) : LifeSize(NPC);
+            NPC.scale = RemnantOfTheAncientsMod.CalamityMod != null ? LifeSize(NPC) : LifeSize(NPC);
             if (player.dead || NPC.target < 0 || NPC.target == 255 || !player.active)
             {
                 NPC.TargetClosest(true);
@@ -402,8 +398,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         {
             float porcentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
 
-
-            if (Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
+            if (CalamityUtils.IsDificultyActive("death")) return applyLifeSize(porcentage, 2f);
+            else if (CalamityUtils.IsDificultyActive("revengeance") || Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
+            else if (Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
             else if (Main.masterMode) return applyLifeSize(porcentage, 1.35f);
             else if (Main.expertMode) return applyLifeSize(porcentage, 1.3f);
             else return applyLifeSize(porcentage, 1.25f);
@@ -418,17 +415,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             //else if (porcentage < 5) return 0.5f;
             //return 1f;
         }
-        [JITWhenModsEnabled("CalamityMod")]
-        private float LifeSize(NPC npc, Mod mod)
-        {
-            float porcentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
-            if (CalamityWorld.death) return applyLifeSize(porcentage, 2f);
-            else if (CalamityWorld.revenge || Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
-            else if (Main.masterMode) return applyLifeSize(porcentage, 1.35f);
-            else if (Main.expertMode) return applyLifeSize(porcentage, 1.3f);
-            else return applyLifeSize(porcentage, 1.25f);
-        }
-
         private float applyLifeSize(float porcentage, float MaxValue)
         {
            

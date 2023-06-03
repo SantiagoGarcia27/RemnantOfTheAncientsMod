@@ -23,7 +23,6 @@ using Terraria.GameContent;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
-using CalamityMod.Items.Materials;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
 {

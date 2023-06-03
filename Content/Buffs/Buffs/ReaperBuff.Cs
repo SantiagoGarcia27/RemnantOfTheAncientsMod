@@ -25,6 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
 		{
 			player.GetDamage(DamageClass.Generic) += 0.50f;
 			player.statLifeMax2 = 1;
+			player.maxMinions++;
 			if (Reaper.ReaperMode) player.buffTime[buffIndex] = 1;
 			else
 			{

@@ -1,8 +1,6 @@
-using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

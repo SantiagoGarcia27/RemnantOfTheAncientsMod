@@ -71,6 +71,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             SafeAddContentToList(ModContent.ItemType<DesertChest>());
             SafeAddContentToList(ModContent.ItemType<FrozenArtifact>());
             SafeAddContentToList(ModContent.ItemType<InfernalCalis>());
+            SafeAddContentToList(ModContent.ItemType<ElderSpeaker>());
         }
 		[JITWhenModsEnabled("ThoriumMod")]
 		public static void AddBossSummonThorium()
@@ -101,18 +102,5 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
-	}
-	public class FchangesNpc : GlobalNPC
-	{
-		public override void SetDefaults(NPC npc)
-		{
-			if (npc.boss) ModifyBossStats(npc, ref npc.damage, npc.lifeMax);
-		}
-		public static void ModifyBossStats(NPC npc, ref int damage, int lifeMax)
-		{
-			npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax);
-			npc.damage = (int)NpcChanges1.ExpertDamageScale(damage);
-		}
-
 	}
 }

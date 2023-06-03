@@ -9,7 +9,6 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
-using CalamityMod;
 using RemnantOfTheAncientsMod.Common.Systems;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis

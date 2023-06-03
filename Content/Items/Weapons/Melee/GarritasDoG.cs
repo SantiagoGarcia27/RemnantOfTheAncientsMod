@@ -2,14 +2,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using Terraria.Localization;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System.Linq;
-using CalamityMod.Tiles.Furniture.CraftingStations;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using Mono.Cecil;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -76,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 				.AddIngredient(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
 				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
 				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddTile(ModContent.TileType<CosmicAnvil>());
+				recipe.AddTile(Utils1.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
 				recipe.Register();
 			}
 		}

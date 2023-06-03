@@ -13,6 +13,6 @@
   <ItemGroup>
     <Reference Include="CalamityMod">
       <HintPath>..\..\..\..\..\..\..\Escritorio\TmlPartcher\Extracted\CalamityMod.tmod\CalamityMod.dll</HintPath>
-    </Reference> 
+    </Reference>
   </ItemGroup>
 </Project>

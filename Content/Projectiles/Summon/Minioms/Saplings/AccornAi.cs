@@ -1,13 +1,11 @@
-using CalamityMod.Buffs.Potions;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using System;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 {
-	public abstract class AccornAi: Minion
+    public abstract class AccornAi: Minion
 	{
 		protected float idleAccel = 0.05f;
 		protected float spacingMult = 1f;

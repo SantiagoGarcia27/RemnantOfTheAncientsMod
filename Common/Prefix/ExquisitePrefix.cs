@@ -7,12 +7,8 @@ namespace RemnantOfTheAncientsMod.Prefixe
     [ExtendsFromMod("CalamityMod")]
     public class Exquisite : RogueWeaponPrefix
     {
-        //public override bool IsLoadingEnabled(Mod mod)
-        //{
-        //    return ModLoader.TryGetMod("CalamityMod", out mod);
-        //}
         public override string Name => "Exquisite";
-        public Exquisite(): 
+        public Exquisite() :
             base(1.20f, 0.8f, 10, 1.2f, 1.20f)
         {
 

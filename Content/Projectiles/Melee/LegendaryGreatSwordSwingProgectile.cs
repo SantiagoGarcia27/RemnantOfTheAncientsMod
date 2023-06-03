@@ -1,13 +1,7 @@
-using CalamityMod.NPCs.TownNPCs;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using System;
 using Terraria;
-using Terraria.Enums;
-using Terraria.GameContent.Drawing;
 using Terraria.ModLoader;
-using static Humanizer.In;
-using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 {
