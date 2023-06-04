@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		public bool Can_Marble;
 		public bool CanMakeCrit;
 		public int CritChance;
-
+		public bool CanDrop = true;
 		public override void ResetEffects(NPC NPC)
 		{
 			Burn_Sand = false;
@@ -125,9 +125,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             Lighting.AddLight(NPC.position, 0.1f, 0.2f, 0.7f);
         }
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+		{
+			if (CanDrop)
+			{
+				base.ModifyNPCLoot(npc, npcLoot);
+            }
+		}
 
-
-	}
+    }
 }
 
 	

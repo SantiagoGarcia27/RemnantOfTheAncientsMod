@@ -53,7 +53,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             if (AttackCounter == 0)
             {
                 var p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, (player.position - Projectile.position), ModContent.ProjectileType<HealthBream>(), 0, 0f, Main.myPlayer);
-                Main.projectile[p].hostile = true;
+                Main.projectile[p].hostile = false;
+                Main.projectile[p].friendly = true;
                 Main.projectile[p].damage = 1;
                 AttackCounter = Utils1.FormatTime(0, 0, 0, 6);
             }
@@ -151,7 +152,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     float distance = Vector2.Distance(Projectile.position, Main.projectile[i].position);
                     if (distance < Range)
                     {
-                        var a = Main.projectile[i].Name;
+                       // var a = Main.projectile[i].Name;
                         return Main.projectile[i];
                     }
                 }

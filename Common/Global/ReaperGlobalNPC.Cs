@@ -6,6 +6,11 @@ using Terraria.ModLoader;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using CalamityMod.NPCs.VanillaNPCOverrides.Bosses;
+using System;
+using Microsoft.Xna.Framework;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using RemnantOfTheAncientsMod.Content.NPCs;
 
 public class FchangesNpc : GlobalNPC
 {
@@ -65,9 +70,11 @@ public class FchangesNpc : GlobalNPC
         }
         base.OnSpawn(npc, source);
     }
+    int attackCounter = 0;
     public override void AI(NPC npc)
     {
         base.AI(npc);
+        Player player = Main.player[npc.target];
         if (Reaper.ReaperMode)
         {
             if (npc.type == NPCID.SkeletronHead)
@@ -82,6 +89,155 @@ public class FchangesNpc : GlobalNPC
                         }
                     }
                 }
+            }
+            if (npc.type == NPCID.Spazmatism)
+            {
+                if (npc.localAI[2] >= 1f)
+                {
+                    if (npc.ai[2] == 100f || npc.ai[2] == 50f || npc.ai[2] == 150f || npc.ai[2] == 0f || npc.ai[2] == 200f)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            ShootIa(npc, npc.damage, ProjectileID.CursedFlameHostile, player, 10f + i, new(-0.5f + i, 0.5f + i), i * 10);
+                        }
+                    }
+                }
+            }
+            if (npc.type == NPCID.Retinazer)
+            {
+
+                if (NPC.AnyNPCs(NPCID.Spazmatism))
+                {
+                    if (attackCounter < 200)
+                    {
+                        attackCounter++;
+                    }
+                    else
+                    {
+                        attackCounter = 0;
+                    }
+
+                    if (attackCounter == 100)
+                    {
+                        for (int i = 0; i < Main.maxNPCs; i++)
+                        {
+                            if (Main.npc[i].type == NPCID.Spazmatism)
+                            {
+                                updateRotation(npc);
+                                var p = ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<HealthBream>(), Main.npc[i], 10f);
+                                Main.projectile[p].Size = new(60f, 60f);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    public static NPC target;
+    private void updateRotation(NPC npc)
+    {
+        if (SearchForTeamTarget(npc) != null)
+        {
+            target = SearchForTeamTarget(npc);
+            npc.rotation = (npc.Center - target.Center).ToRotation();
+        }
+    }
+
+    public float Range = 40f * 16f;
+    private NPC SearchForTeamTarget(NPC npc)
+    {
+        for (int i = 0; i < Main.maxNPCs; i++)
+        {
+            if (Main.npc[i].friendly == npc.friendly && Main.npc[i].active && Main.npc[i].type != npc.type)
+            {
+                float distance = Vector2.Distance(npc.position, Main.npc[i].position);
+                if (distance < Range)
+                {
+                    // var a = Main.projectile[i].Name;
+                    return Main.npc[i];
+                }
+            }
+        }
+        return null;
+    }
+    public static void ShootIa(NPC npc, int dammage, int type, Player player, float Speed, Vector2 position, float angle)
+    {
+        Vector2 NpcPosition = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
+        float rotation = (float)Math.Atan2(NpcPosition.Y - (player.position.Y + (player.height * position.X)), NpcPosition.X - (player.position.X + (player.width * position.Y)));
+        Vector2 direction;
+        direction.X = (float)(Math.Cos(rotation) * Speed * -1);
+        direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
+        direction.RotatedBy(angle);
+        Projectile.NewProjectile(npc.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
+    }
+    public static void ShootIa(NPC npc, int dammage, int type, NPC target, float Speed, Vector2 position, float angle)
+    {
+        Vector2 NpcPosition = new Vector2(npc.position.X /*+ (npc.width / 2)*/, npc.position.Y /*+ (npc.height / 2)*/);
+        float rotation = (float)Math.Atan2(NpcPosition.Y - (target.position.Y + (target.height * position.X)), NpcPosition.X - (target.position.X + (target.width * position.Y)));
+        Vector2 direction;
+        direction.X = (float)(Math.Cos(rotation) * Speed * -1);
+        direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
+        direction.RotatedBy(angle);
+        var p = Projectile.NewProjectile(npc.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
+        Main.projectile[p].hostile = true;
+        Main.projectile[p].friendly = false;
+    }
+    public static int ShootIa(NPC npc, int dammage, int type, NPC target, float Speed)
+    {
+        Vector2 NpcPosition = new Vector2(npc.position.X /*+ (npc.width / 2)*/, npc.position.Y /*+ (npc.height / 2)*/);
+        float rotation = (float)Math.Atan2(NpcPosition.Y - (target.position.Y + (target.height)), NpcPosition.X - (target.position.X + (target.width)));
+        Vector2 direction;
+        direction.X = (float)(Math.Cos(rotation) * Speed * -1);
+        direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
+        var p = Projectile.NewProjectile(npc.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
+        Main.projectile[p].hostile = true;
+        Main.projectile[p].friendly = false;
+        return p;
+    }
+
+
+    public override void HitEffect(NPC npc, int hitDirection, double damage)
+    {
+        List<int> SlimesList = new List<int>()
+        {
+            -25,
+            -26,
+            -10,
+            -9,
+            -8,
+            -7,
+            -6,
+            -5,
+            -4,
+            -3,
+            -2,
+            -1,
+            1,
+            16,
+            59,
+            71,
+            81,
+            138,
+            147,
+            183,
+            184,
+            204,
+            225,
+            244,
+            302,
+            535,
+            537
+        };
+
+        base.HitEffect(npc, hitDirection, damage);
+        if (Reaper.ReaperMode)
+        {
+            if (npc.type == NPCID.KingSlime)
+            {
+                int choice = Main.rand.Next(SlimesList.Count);
+                var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, SlimesList[choice]);
+                Main.npc[p].GetGlobalNPC<RemnantGlobalNPC>().CanDrop = false;
             }
         }
     }

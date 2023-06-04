@@ -1,23 +1,65 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
 {
-    internal class HealthBream : BaseBolt
+    internal class HealthBream : BaseBream
     {
         public override Color color => Color.LightGreen;
         public override int ProjId => ProjectileID.PinkLaser;
-
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.Heal((int)Utils1.GetValueFromPorcentage(target.statLifeMax2, 5));
+            if (Projectile.hostile && !Projectile.friendly)
+            {
+                target.life += damage;
+                target.HealEffect(damage);
+            }
+        }
+        public override void AI()
+        {
+            base.AI();
+            if (!Projectile.hostile && Projectile.friendly)
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].dead)
+                    {
+                        if (Vector2.Distance(Projectile.Center, Main.player[i].Center) < 10)
+                        {
+                            Main.player[i].Heal((int)Utils1.GetValueFromPorcentage(Main.player[i].statLifeMax2, 5));
+                            Projectile.Kill();
+                        }
+                    }
+                }
+            }
+            else if(Projectile.hostile && !Projectile.friendly)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && !Main.npc[i].friendly)
+                    {
+                        if (Main.npc[i].type != NPCID.Retinazer)
+                        {
+                            float Distance = Vector2.Distance(Projectile.Center, Main.npc[i].Center);
+                            if (Distance <= 50)
+                            {
+                                if (Main.npc[i].life < Main.npc[i].lifeMax - Projectile.damage)
+                                {
+                                    Main.npc[i].life += Projectile.damage;
+                                    Main.npc[i].HealEffect(Projectile.damage);
+                                    Projectile.Kill();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-    internal class InterceptionBream : BaseBolt
+    internal class InterceptionBream : BaseBream
     {
         public override Color color => Color.Blue;
         public override int ProjId => ProjectileID.PinkLaser;
@@ -39,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         }
     }
 
-    public abstract class BaseBolt : ModProjectile
+    public abstract class BaseBream: ModProjectile
     {
         public override string Texture => "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/CustomBream";
         public abstract int ProjId { get; }
