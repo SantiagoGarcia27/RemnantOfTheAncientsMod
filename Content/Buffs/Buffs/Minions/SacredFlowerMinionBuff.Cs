@@ -18,7 +18,8 @@ namespace  RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
             Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La flor sagrada te protegerá");
             Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
-		}
+            Main.persistentBuff[Type] = true;
+        }
 		public override void Update(Player player, ref int buffIndex)
 		{
 			if (player.ownedProjectileCounts[ProjectileType<SacredFlowerMinion>()] > 0)

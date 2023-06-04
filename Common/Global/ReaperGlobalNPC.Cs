@@ -11,6 +11,10 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.PlayerDrawLayer;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
+using System.Reflection.Metadata;
+using RemnantOfTheAncientsMod;
+using Microsoft.Xna.Framework.Audio;
+using System.Collections;
 
 public class FchangesNpc : GlobalNPC
 {
@@ -77,6 +81,30 @@ public class FchangesNpc : GlobalNPC
         Player player = Main.player[npc.target];
         if (Reaper.ReaperMode)
         {
+            if (npc.type == NPCID.BrainofCthulhu)
+            {
+               // npc.velocity *= 1.1f;
+            }
+            if (npc.type == NPCID.Creeper)
+            {
+                npc.velocity *= 0.1f;
+                npc.defense += 5;
+
+
+                for (int i = 0; i < Main.maxNPCs; i++) {
+                    if (Main.npc[i].type == NPCID.BrainofCthulhu)
+                    {
+                        // Main.player[Main.myPlayer].position = BrainOfChutuluCreeperLocation(Main.npc[i], npc);
+                        List<Vector2> Postions = GetPositionsAroundNPC(Main.npc[i], 25 * 15f, GetCreeperCount());
+                        List<NPC> CreepersList = GetBrainOfChutuluCreeperList();
+
+                        for (int a = 0; a < GetCreeperCount(); a++)
+                        {
+                            CreepersList[a].position = Postions[a];
+                        }
+                    }
+                }
+            }
             if (npc.type == NPCID.SkeletronHead)
             {
                 for (int i = 0; i < Main.maxNPCs; i++)
@@ -134,6 +162,54 @@ public class FchangesNpc : GlobalNPC
             }
         }
     }
+
+    public int GetCreeperCount()
+    {
+        int CreeperCount = 0;
+        for (int i = 0; i < Main.maxNPCs; i++)
+        {
+            if (Main.npc[i].type == NPCID.Creeper)
+            {
+                CreeperCount++;
+            }
+        }
+        return CreeperCount;
+    }
+    private List<NPC> GetBrainOfChutuluCreeperList() 
+    {
+        List<NPC> CreepersList = new List<NPC> { };
+        for(int i = 0; i < Main.maxNPCs; i++)
+        {
+            if (Main.npc[i].type == NPCID.Creeper)
+            {
+                CreepersList.Add(Main.npc[i]);
+            }
+        }
+        return CreepersList;
+
+    }
+    List<Vector2> GetPositionsAroundNPC(NPC npc, float radius, int numPositions)
+    {
+        List<Vector2> positions = new List<Vector2>();
+ 
+        float angleSpacing = MathHelper.TwoPi / numPositions;
+
+        for (int i = 0; i < numPositions; i++)
+        {
+            float angle = angleSpacing * i;
+
+            float x = radius * MathF.Cos(angle);
+            float y = radius * MathF.Sin(angle);
+
+            Vector2 position = npc.Center + new Vector2(x, y);
+
+            positions.Add(position);
+        }
+
+        return positions;
+    }
+
+
     public static NPC target;
     private void updateRotation(NPC npc)
     {
@@ -238,6 +314,37 @@ public class FchangesNpc : GlobalNPC
                 int choice = Main.rand.Next(SlimesList.Count);
                 var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, SlimesList[choice]);
                 Main.npc[p].GetGlobalNPC<RemnantGlobalNPC>().CanDrop = false;
+            }
+            if (npc.type == NPCID.EaterofWorldsHead && npc.life <= 0)
+            {
+                int NumberOfProjectiles = 8;
+                float angle = 0f;
+                float angleSpacing = MathHelper.TwoPi / NumberOfProjectiles;
+                float projectileSpeed = 8f;
+
+                for (int i = 0; i < NumberOfProjectiles; i++)
+                {
+                    Vector2 direction = new Vector2(1f, 0f).RotatedBy(angle);
+ 
+                    var p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position, direction * projectileSpeed, ProjectileID.CursedFlameHostile, 50, 0f, Main.myPlayer);
+                    angle += angleSpacing;
+                }
+            }
+            if(npc.type == NPCID.Creeper)
+            {
+                Main.player[npc.target].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
+                Main.player[npc.target].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+            }
+        }
+    }
+    public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
+    {
+        base.OnHitByProjectile(npc, projectile, damage, knockback, crit);
+        if (Reaper.ReaperMode)
+        {
+            if(npc.type == NPCID.Creeper)
+            {
+                projectile.penetrate = 1;
             }
         }
     }

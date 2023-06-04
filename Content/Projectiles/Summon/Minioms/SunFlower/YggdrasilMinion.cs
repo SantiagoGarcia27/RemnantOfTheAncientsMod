@@ -119,13 +119,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         }
         public void CheckActive(Player player)
         {
-            if (player.dead || !player.active)
-            {
-                player.ClearBuff(BuffType<YggdrasilMinionBuff>());
-            }
             if (player.HasBuff(BuffType<YggdrasilMinionBuff>()))
             {
-                Projectile.timeLeft = Utils1.FormatTime(0,0,0,30);
+                Projectile.timeLeft = 2;
             }
         }
         public float fade = 2.6f;
