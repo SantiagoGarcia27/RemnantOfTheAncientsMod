@@ -5,16 +5,12 @@ using Terraria;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using Terraria.DataStructures;
-using CalamityMod.NPCs.VanillaNPCOverrides.Bosses;
 using System;
 using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.PlayerDrawLayer;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
-using System.Reflection.Metadata;
 using RemnantOfTheAncientsMod;
-using Microsoft.Xna.Framework.Audio;
-using System.Collections;
+using Terraria.GameContent.RGB;
 
 public class FchangesNpc : GlobalNPC
 {
@@ -47,6 +43,12 @@ public class FchangesNpc : GlobalNPC
             {
                 npc.scale = 0.8f;
             }
+            if(npc.type == NPCID.Creeper)
+            {
+                npc.damage = (int)(npc.damage * 0.1f);
+                npc.velocity *= 0.1f;
+                npc.defense += 5;
+            }
         }
     }
     public List<int> destroyer = new List<int>
@@ -71,6 +73,18 @@ public class FchangesNpc : GlobalNPC
                     NPC.SpawnOnPlayer(Main.player[npc.target].whoAmI, NPCID.SkeletronHand);
                 }
             }
+            if(npc.type == NPCID.Deerclops) 
+            {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 1, 30);
+                }
+                else
+                {
+                    Main.player[npc.target].AddBuff(BuffID.Hunger, Utils1.FormatTime(0, 0, 0, 30));
+                }
+               // Main.dontStarveWorld = true;
+            }
         }
         base.OnSpawn(npc, source);
     }
@@ -78,18 +92,34 @@ public class FchangesNpc : GlobalNPC
     public override void AI(NPC npc)
     {
         base.AI(npc);
-        Player player = Main.player[npc.target];
-        if (Reaper.ReaperMode)
+
+        List<int> ReaperAffectedNPCs = new List<int>()
         {
+            NPCID.BrainofCthulhu,
+            NPCID.Creeper,
+            NPCID.QueenBee,
+            NPCID.SkeletronHead,
+            NPCID.SkeletronHand,
+            NPCID.Deerclops,
+            NPCID.Spazmatism,
+            NPCID.Retinazer
+        };
+
+        if (Reaper.ReaperMode && ReaperAffectedNPCs.Contains(npc.type))
+        {
+            if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+            {
+                npc.TargetClosest();
+            }
+            Player player = Main.player[npc.target];
             if (npc.type == NPCID.BrainofCthulhu)
             {
                // npc.velocity *= 1.1f;
             }
             if (npc.type == NPCID.Creeper)
             {
-                npc.velocity *= 0.1f;
-                npc.defense += 5;
-
+               
+               
 
                 for (int i = 0; i < Main.maxNPCs; i++) {
                     if (Main.npc[i].type == NPCID.BrainofCthulhu)
@@ -105,6 +135,31 @@ public class FchangesNpc : GlobalNPC
                     }
                 }
             }
+            if(npc.type == NPCID.QueenBee)
+            {
+                if (attackCounter < 300)
+                {
+                    attackCounter++;
+                }
+                else
+                {
+                    attackCounter = 0;
+                }
+
+                if (attackCounter == 200) 
+                {
+                    NPC.NewNPC(NPC.GetSource_None(), (int)npc.Center.X, (int)npc.Center.Y, -57);
+                }
+                Point NpcFloor = Utils.ToTileCoordinates(npc.Center);
+                if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0 && Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidType == LiquidID.Honey)
+                {
+                    if (npc.life < npc.lifeMax - 5)
+                    {
+                        npc.life += 5;
+                        npc.HealEffect(5);
+                    }
+                }
+            }
             if (npc.type == NPCID.SkeletronHead)
             {
                 for (int i = 0; i < Main.maxNPCs; i++)
@@ -116,6 +171,27 @@ public class FchangesNpc : GlobalNPC
                             npc.dontTakeDamage = NPC.AnyNPCs(NPCID.SkeletronHand);
                         }
                     }
+                }
+            }
+            if(npc.type == NPCID.Deerclops)
+            {
+                Main.windSpeedCurrent = 2f;
+                Main.screenMaximized = false;
+                
+                Main.StartRain();
+                Main.SyncRain();
+
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Darkness, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
+                }
+                else
+                {
+                    Main.player[npc.target].AddBuff(BuffID.Hunger, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Darkness, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 30));
                 }
             }
             if (npc.type == NPCID.Spazmatism)
@@ -325,15 +401,34 @@ public class FchangesNpc : GlobalNPC
                 for (int i = 0; i < NumberOfProjectiles; i++)
                 {
                     Vector2 direction = new Vector2(1f, 0f).RotatedBy(angle);
- 
+
                     var p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position, direction * projectileSpeed, ProjectileID.CursedFlameHostile, 50, 0f, Main.myPlayer);
                     angle += angleSpacing;
                 }
             }
-            if(npc.type == NPCID.Creeper)
+            if (npc.type == NPCID.Creeper)
             {
-                Main.player[npc.target].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
-                Main.player[npc.target].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                if (npc.life <= 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        Main.player[Main.myPlayer].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
+                        Main.player[Main.myPlayer].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                    }
+                    else
+                    {
+                        Main.player[npc.target].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
+                        Main.player[npc.target].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                    }
+                }
+            }
+            if (npc.type == NPCID.Deerclops)
+            {
+                if (npc.life <= 0)
+                {
+                    Main.windSpeedCurrent= 0;
+                    Main.StopRain();
+                }
             }
         }
     }
