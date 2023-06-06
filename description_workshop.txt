@@ -39,5 +39,5 @@ A more detailed breakdown of the content available in the mod:
 [*] 18+ tweaks and improvements to vanilla items
 [*] 3 Language translation (English,Spanish and French)
 [*] Cross-mod support for the Calamity Mod,BossChecklist,Terraria Overhaul and Census
-[*] Separated mod balanced for CalamityMod
+[*] Separated mod balanced for CalamityMod (it is activated automatically when having the mod activated)
 [/olist]

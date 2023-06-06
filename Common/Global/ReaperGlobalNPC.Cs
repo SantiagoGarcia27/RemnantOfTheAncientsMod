@@ -49,6 +49,10 @@ public class FchangesNpc : GlobalNPC
                 npc.velocity *= 0.1f;
                 npc.defense += 5;
             }
+            if (npc.type == NPCID.WallofFleshEye)
+            {
+                npc.scale /= 2;
+            }
         }
     }
     public List<int> destroyer = new List<int>
@@ -101,6 +105,8 @@ public class FchangesNpc : GlobalNPC
             NPCID.SkeletronHead,
             NPCID.SkeletronHand,
             NPCID.Deerclops,
+            NPCID.WallofFlesh,
+            NPCID.WallofFleshEye,
             NPCID.Spazmatism,
             NPCID.Retinazer
         };
@@ -111,20 +117,12 @@ public class FchangesNpc : GlobalNPC
             {
                 npc.TargetClosest();
             }
-            Player player = Main.player[npc.target];
-            if (npc.type == NPCID.BrainofCthulhu)
-            {
-               // npc.velocity *= 1.1f;
-            }
+            Player player = Main.player[npc.target];     
             if (npc.type == NPCID.Creeper)
             {
-               
-               
-
                 for (int i = 0; i < Main.maxNPCs; i++) {
                     if (Main.npc[i].type == NPCID.BrainofCthulhu)
                     {
-                        // Main.player[Main.myPlayer].position = BrainOfChutuluCreeperLocation(Main.npc[i], npc);
                         List<Vector2> Postions = GetPositionsAroundNPC(Main.npc[i], 25 * 15f, GetCreeperCount());
                         List<NPC> CreepersList = GetBrainOfChutuluCreeperList();
 
@@ -194,6 +192,30 @@ public class FchangesNpc : GlobalNPC
                     Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 30));
                 }
             }
+            if(npc.type == NPCID.WallofFleshEye)
+            {
+                if (attackCounter < 100)
+                {
+                    attackCounter++;
+                }
+                else
+                {
+                    attackCounter = 0;
+                }
+
+                if (attackCounter == 50)
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].friendly)
+                        {
+                            updateRotation(npc, true);
+                            var p = ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<InterceptionBream>(), Main.npc[i], 20f);
+                            Main.projectile[p].Size = new(60f, 60f);
+                        }
+                    }
+                }
+            }
             if (npc.type == NPCID.Spazmatism)
             {
                 if (npc.localAI[2] >= 1f)
@@ -227,7 +249,7 @@ public class FchangesNpc : GlobalNPC
                         {
                             if (Main.npc[i].type == NPCID.Spazmatism)
                             {
-                                updateRotation(npc);
+                                updateRotation(npc, false);
                                 var p = ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<HealthBream>(), Main.npc[i], 10f);
                                 Main.projectile[p].Size = new(60f, 60f);
                             }
@@ -287,12 +309,24 @@ public class FchangesNpc : GlobalNPC
 
 
     public static NPC target;
-    private void updateRotation(NPC npc)
+    public static Projectile targetProj;
+    private void updateRotation(NPC npc, bool p)
     {
-        if (SearchForTeamTarget(npc) != null)
+        if (p)
         {
-            target = SearchForTeamTarget(npc);
-            npc.rotation = (npc.Center - target.Center).ToRotation();
+            if (SearchForProjectileTarget(npc) != null)
+            {
+                targetProj = SearchForProjectileTarget(npc);
+                npc.rotation = (npc.Center - targetProj.Center).ToRotation();
+            }
+        }
+        else
+        {
+            if (SearchForTeamTarget(npc) != null)
+            {
+                target = SearchForTeamTarget(npc);
+                npc.rotation = (npc.Center - target.Center).ToRotation();
+            }
         }
     }
 
@@ -308,6 +342,22 @@ public class FchangesNpc : GlobalNPC
                 {
                     // var a = Main.projectile[i].Name;
                     return Main.npc[i];
+                }
+            }
+        }
+        return null;
+    }
+    private Projectile SearchForProjectileTarget(NPC npc)
+    {
+        for (int i = 0; i < Main.maxProjectiles; i++)
+        {
+            if (Main.projectile[i].friendly == !npc.friendly && Main.projectile[i].active)
+            {
+                float distance = Vector2.Distance(npc.position, Main.npc[i].position);
+                if (distance < Range)
+                {
+                    // var a = Main.projectile[i].Name;
+                    return Main.projectile[i];
                 }
             }
         }

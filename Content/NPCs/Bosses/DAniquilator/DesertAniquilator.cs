@@ -22,6 +22,7 @@ using System.IO;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -62,9 +63,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
 
         private int attackCounter;
+        private int tornadoCounter;
         private int summonCounter;
         private int tpDirection;
         private int currentPhase;
+        private bool BossIsInRage = false;
+        Point NpcFloor; 
         int tpParticleTimer = Utils1.FormatTime(0,0,0,5);
         public override void SendExtraAI(BinaryWriter writer)
         {
@@ -83,16 +87,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             NPC.ai[0] = 10;
             NPC.ai[1] = (NPC.ai[1] + 1) % 800;
             NPC.ai[2]++;
-
-            if (NPC.Distance(player.Center) >= 100 * 16 && !player.dead)
+           
+            BossIsInRage = CheckRage(player);
+            NPC.scale = LifeSize(NPC);
+            float distance = NPC.Distance(player.Center);
+            if (distance >= 110 * 16 && !player.dead && !Reaper.ReaperMode)
             {
                 GenerateTpParticles();
                 DesertTp();
             }
 
-            Point NpcFloor = Utils.ToTileCoordinates(NPC.Center);
+            NpcFloor = Utils.ToTileCoordinates(NPC.Center);
             Point PlayerFloor = Utils.ToTileCoordinates(Main.player[NPC.target].Center);
-            // Main.player[NPC.target].position = Utils.ToTileCoordinates(NPC.Center).ToVector2();//test teleport
+       
             if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0)
             {
                 if (Main.tile[PlayerFloor.X, PlayerFloor.Y + 1].LiquidAmount == 0)
@@ -101,188 +108,198 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     DesertTp();
                 }
             }
-            NPC.scale = RemnantOfTheAncientsMod.CalamityMod != null ? LifeSize(NPC) : LifeSize(NPC);
             if (player.dead || NPC.target < 0 || NPC.target == 255 || !player.active)
             {
                 NPC.TargetClosest(true);
             }
             setCurrentPhase(NPC);
             AttackIA(player);
+           
             if (player.dead)
             {
                 NPC.EncourageDespawn(7);
                 DespawnBoss();
             }
         }
+        public static bool CheckRage(Player player) => !player.dead && player.active && !player.ZoneDesert && !player.ZoneUndergroundDesert;
         private void AttackIA(Player target)
         {
-            bool IsRage = !target.ZoneDesert; 
-            if (attackCounter >= 0)
-            {
-                setAttackCounter(1000,target);
-            }
+            int mark = NPC.target;
+            List<int[]> AttackValue = setAttackCounter();
+            UpdateCounters(AttackValue);
 
-            if (!Reaper.ReaperMode)
+            if (Reaper.ReaperMode)
             {
-                switch (summonCounter)
+                for (int i = 1; i <= 2; i++)
                 {
-                    case 600:
-                    case 400:
-                        if (!IsRage)
-                        {
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        }
-                        else
-                        {
-                            for (int i = 0; i >= 4; i++) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        }
-                        break;
-                    case 200:
-                        if (Main.expertMode)
-                        {
-                            if (!IsRage)
-                            {
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.TombCrawlerHead);
-                            }
-                            else
-                            {
-                                for (int i = 0; i >= 4; i++)
-                                {
-                                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.TombCrawlerHead);
-                                }
-                            }
-                        }
-                
-                        break;
-                    case 100:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                        break;
-                    case 10:
-                        if(currentPhase >= 2)
-                        {
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.DuneSplicerHead);
-                            if (Main.expertMode)
-                            {
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
-                            }
-                        }
-                        break;
-                }
-                if (Main.expertMode)
-                {
-                    switch (attackCounter)
+                    for (int j = 0; j < AttackValue[i].Length; j++)
                     {
-                        case 600:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, 0.5f);
-                            break;
-                        case 590:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
-                            break;
-                        case 580:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
-                            break;
-                        case 530:
-                            if (IsRage)
-                            {
-                                if (!Reaper.ReaperMode)
-                                {
-                                    for (int i = 0; i <= 7; i++)
-                                    {
-                                        ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f + i, -0.5f + (i), 0.5f);
-                                    }
-                                }
-                                else
-                                {
-                                    for (float i = 0f; i <= 6; i += 0.5f)
-                                    {
-                                        ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f + i, 3.5f - i);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (!Reaper.ReaperMode)
-                                {
-                                    ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, 0.5f);
-                                }
-                                else
-                                {
-                                    for(float i = 0f; i <= 4; i += 0.5f) 
-                                    {
-                                        ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f + i, 3.5f - i);
-                                    }
-                                }
-                            }
-                            break;
-                        case 500:
-
-                            GenerateTpParticles();
-                            DesertTp();
-                            break;
-                    }
-                    if(attackCounter < 560 && attackCounter > 500)
-                    {
-                        GenerateTpParticles();
+                        AttackValue[i][j] -= Utils1.FormatTime(0, 0, 0, 2);
                     }
                 }
             }
-            else
+            if (BossIsInRage)
             {
-                switch (summonCounter)
+                for (int i = 1; i <= 2; i++)
                 {
-                    case 500:
-                    case 400:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
-                        break;
-                    case 200:
-                        if (Main.expertMode) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface - (3 * 16), NPCID.TombCrawlerHead);
-                        break;
-                    case 100:
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
-                        break;
-                    case 10:
-                        if (currentPhase >= 2)
-                        {
-                            NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DuneSplicerHead);
-                            if (Main.expertMode)
-                            {
-                                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
-                            }
-                        }
-                        break;
-                }        
-                if (Main.expertMode)
-                {
-                    switch (attackCounter)
+                    for (int j = 0; j < AttackValue[i].Length; j++)
                     {
-                        case 500:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, 0.5f);
-                            break;
-                        case 490:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
-                            break;
-                        case 480:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
-                            break;
-                        case 430:
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, 0.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 3.5f, 3.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, 3.5f, -3.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f, -3.5f);
-                            ShootIa((int)NpcChanges1.ExpertDamageScale(30), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f, 3.5f);
-                            break;
-                        case 400:
-                            GenerateTpParticles();
-                            DesertTp();
-                            break;
+                        AttackValue[i][j] -= Utils1.FormatTime(0, 0, 0, 4);
+                    }
+                }
+            }
+            SummonAI(AttackValue);
+            if (Main.expertMode)
+            {
+                ShootAI(AttackValue,target);
+                TornadoAI(mark);
+            }
+            if (attackCounter == 500)
+            {
+                DesertTp();
+            }
+            if (attackCounter < 560)
+            {
+                if (attackCounter > 500)
+                {
+                    GenerateTpParticles();
+                }
+            }
+        }
+        public void ShootAI(List<int[]> AttackValue, Player target)
+        {
+            if (attackCounter == AttackValue[1][0])
+            {
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, 0.5f);
+            }
+            if (attackCounter == AttackValue[1][1])
+            {
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
+            }
+            if (attackCounter == AttackValue[1][2])
+            {
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
+            }
+            if (attackCounter == AttackValue[1][3])
+            {
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
+            }
+            if (attackCounter == AttackValue[1][4])
+            {
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
+            }
+            if (attackCounter == AttackValue[1][5])
+            {
+                if (BossIsInRage)
+                {
+                    for (int i = 0; i <= 7; i++)
+                    {
+                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f + i, -0.5f + i, 0.5f);
+                    }  
+                }
+                else
+                {
+                    int n = Reaper.ReaperMode ? 2 : 0;
+
+                    for (float i = 0f; i < n; i += 0.5f)
+                    {
+                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f + i, 3.5f - i);
                     }
                 }
             }
         }
+        public void SummonAI(List<int[]> AttackValue)
+        {
+            if (summonCounter == AttackValue[2][0] || summonCounter == AttackValue[2][1])
+            {
+                int NumberOfNPCs = BossIsInRage ? 4 : 0;
+
+                for (int i = 0; i <= NumberOfNPCs; i++)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                }
+            }
+
+            if (summonCounter == AttackValue[2][2] && Main.expertMode && Main.tile[NpcFloor.X, NpcFloor.Y + 1].TileType == TileID.Sand)
+            {
+                int NumberOfNPCs = BossIsInRage ? 4 : 0;
+
+                for (int i = 0; i <= NumberOfNPCs; i++)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.TombCrawlerHead);
+                }
+            }
+            if (summonCounter == AttackValue[2][3])
+            {
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+            }
+            if (summonCounter == AttackValue[2][4])
+            {
+                if (currentPhase >= 2)
+                {
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)Main.worldSurface + (3 * 16), NPCID.DuneSplicerHead);
+
+                    if (Main.expertMode)
+                    {
+                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.DesertScorpionWalk);
+                    }
+                }
+            }
+
+        }
+        public void TornadoAI(int mark)
+        {
+
+            if (tornadoCounter == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, 3))
+            {
+                tornadoCounter = Utils1.FormatTime(0, 0, 0, 5);
+            }
+            else if (tornadoCounter > 0)
+            {
+                tornadoCounter--;
+            }
+            else
+            {
+                tornadoCounter = 0;
+            }
+
+            if (!Reaper.ReaperMode)
+            {
+                if (tornadoCounter == 0)
+                {
+                    mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position, Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
+                }
+                else if (tornadoCounter == Utils1.FormatTime(0, 0, 0, 4))
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, 30, 1, Main.myPlayer);
+                }           
+            }
+            else
+            {
+                float distanceBetweenTornados = 5f;
+                if (tornadoCounter == 1)
+                {
+                    for (int a = 0; a < 7; a++)
+                    {
+                        mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position + new Vector2(a * 16 * distanceBetweenTornados * Main.player[NPC.target].direction, 0), Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
+                    }
+                }
+                else if (tornadoCounter == Utils1.FormatTime(0, 0, 0, 4))
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, 40, 1, Main.myPlayer);
+                }
+            }
+
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
+            int choice = Main.rand.Next(2, 8);
+            if (Reaper.ReaperMode || BossIsInRage) choice *= 2;
+            for (int i = 0; i < choice; i++)
+            {
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.SandSlime);
+            }
             if (NPC.life <= 0)
             {
                 if (Main.netMode != NetmodeID.Server)
@@ -295,24 +312,59 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 }
             }
         }
-        public void setAttackCounter(int i, Player player)
+        public List<int[]> setAttackCounter()
         {
-            int masterAttackCounterScale = AttackCounterScale(i - 400, player);
-            int expertAttackCounterScale = AttackCounterScale(i - 300, player);
-            int normalAttackCounterScale = AttackCounterScale(i - 200, player);
+            int[] MaxCounter = new int[2] { 0, 0 };
+            int[] AttackCounter = new int[6] { 0, 0, 0, 0, 0, 0 };
+            int[] SummonCounter = new int[5] { 0, 0, 0, 0, 0};
 
+            if (!Main.expertMode && !Main.masterMode)
+            {
+                MaxCounter[0] = Utils1.FormatTime(0, 0, 0, 15);
+                MaxCounter[1] = Utils1.FormatTime(0, 0, 0, 14);
+            }
+            else if (Main.expertMode && !Main.masterMode)
+            {
+                MaxCounter[0] = Utils1.FormatTime(0, 0, 0, 13);
+                MaxCounter[1] = Utils1.FormatTime(0, 0, 0, 13);
+            }
+            else if (Main.expertMode && Main.masterMode)
+            {
+                MaxCounter[0] = Utils1.FormatTime(0, 0, 0, 10);
+                MaxCounter[1] = Utils1.FormatTime(0, 0, 0, 8);
+            }
+            for (int i = 0; i < AttackCounter.Length; i++)
+            {
+                AttackCounter[i] = (MaxCounter[0] / AttackCounter.Length) * i;
+            }
+            for (int l = 0; l < SummonCounter.Length; l++)
+            {
+                SummonCounter[l] = (MaxCounter[1] / SummonCounter.Length) * l;
+            }
+
+            List<int[]> ListCounter = new List<int[]>()
+            {
+                MaxCounter,
+                AttackCounter,
+                SummonCounter
+            };
+            return ListCounter;
+        }
+        public void UpdateCounters(List<int[]> ListCounter)
+        {
             if (summonCounter > 0) summonCounter--;
             if (attackCounter > 0) attackCounter--;
 
             if (summonCounter <= 0)
             {
-                summonCounter = Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
+                var a = ListCounter[0][1];
+                summonCounter = ListCounter[0][1]; // Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
                 NPC.netUpdate = true;
             }
 
             if (attackCounter <= 0)
             {
-                attackCounter = Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
+                attackCounter = ListCounter[0][0];// Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
                 NPC.netUpdate = true;
             }
         }
@@ -326,12 +378,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 return pos;
             }
             else
-            {   
+            {
                 do
                 {
                     blockIncrement++;
                     newPos = new(pos.X, pos.Y - blockIncrement * 16);
                 } while (CoordHasTile(newPos));
+
                 blockIncrement = 0;
                 return newPos;
             }
@@ -359,19 +412,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             return (!Reaper.ReaperMode) ? Num : Num - 100;
         }
         public void DesertTp()
-        {
-            
-            tpDirection = new Random().Next(1, 3);
+        {    
+            tpDirection = new Random().Next(1,2);
 
             switch (tpDirection)
             {
                 case 1:
                     NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(30 * 16,0));
                     break;
-                case 2:
-                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(0, -20 * 16));
+               // case 2:
+                    //NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(0, -20 * 16));
                     break;
-                case 3:
+                case 2:
                     NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(-30 * 16, 0));
                     break;
 
@@ -444,7 +496,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
            // return 1f;
         
         
-        public void ShootIa(int dammage, int type, Player player, float Speed, double x, double y)
+        public void ShootHelper(int dammage, int type, Player player, float Speed, double x, double y)
         {
             Vector2 NpcPosition = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             float rotation = (float)Math.Atan2(NpcPosition.Y - (player.position.Y + (player.height * x)), NpcPosition.X - (player.position.X + (player.width * y)));

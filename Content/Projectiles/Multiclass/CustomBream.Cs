@@ -69,7 +69,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             base.AI();
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].hostile && !Main.projectile[i].friendly)
+
+                if (Main.projectile[i].hostile != Projectile.hostile  && Main.projectile[i].friendly != Projectile.friendly)
                 { 
                     if (Vector2.Distance(Projectile.Center, Main.projectile[i].Center) < 10)
                     {
