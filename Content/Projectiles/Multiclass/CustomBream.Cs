@@ -69,10 +69,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             base.AI();
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-
+               var f = Main.projectile[i].Name;
                 if (Main.projectile[i].hostile != Projectile.hostile  && Main.projectile[i].friendly != Projectile.friendly)
                 { 
-                    if (Vector2.Distance(Projectile.Center, Main.projectile[i].Center) < 10)
+                    if (Vector2.Distance(Projectile.Center, Main.projectile[i].Center) < 20)
                     {
                         Main.projectile[i].Kill();
                         Projectile.Kill();

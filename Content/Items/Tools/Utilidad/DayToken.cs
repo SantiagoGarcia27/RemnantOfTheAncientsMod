@@ -40,8 +40,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		{
 			//if (Main.netMode != NetmodeID.MultiplayerClient)
 			//{
-				Main.dayTime = true;
-				Netcode.SyncWorld();
+			Main.dayTime = true;
+            Main.time = 5000.0;
+            Netcode.SyncWorld();
 			//}
 			return true;
 		}

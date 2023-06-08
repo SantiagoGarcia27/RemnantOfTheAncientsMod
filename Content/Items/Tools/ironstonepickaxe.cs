@@ -24,28 +24,30 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 
 		public override void SetDefaults()
 		{
+			Item.CloneDefaults(ItemID.IronPickaxe);
 			Item.damage = 4;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
-			Item.useTime = 8; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
-			Item.useAnimation = 8;  //Animacion normal de Pico
-			Item.pick = 49; //Potencia de Pico. 
-			Item.useStyle = 1; //Dejar en 1 para que el personaje use el arma de forma normal
-			Item.knockBack = 6; //Retroceso al golpear
-			Item.value = 1000; 
-			Item.rare = 0;
+			Item.useTime = 9; 
+			Item.useAnimation = 9; 
+			Item.pick -= 5;
+			Item.useStyle = ItemUseStyleID.Swing; 
+			Item.knockBack = 6; 
+			Item.value = 1000;
+			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
+			Item.autoReuse = true;
 			Item.useTurn = true;
-		}
+            Item.tileBoost += 2;
+        }
 
 		public override void AddRecipes() //Crafteo del objeto
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.StoneBlock, 30)
-.AddIngredient(ItemID.IronBar, 5)
-.AddIngredient(ItemID.Wood, 15)
+			.AddIngredient(ItemID.IronBar, 5)
+			.AddIngredient(ItemID.Wood, 15)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

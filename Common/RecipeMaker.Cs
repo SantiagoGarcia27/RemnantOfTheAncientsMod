@@ -492,7 +492,11 @@ namespace RemnantOfTheAncientsMod
                 .AddIngredient(ItemID.Wire, 20)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
-
+            Recipe.Create(ItemID.BandofRegeneration)
+               .AddIngredient(ModContent.ItemType<IronBand>(), 1)
+               .AddIngredient(ItemID.LifeCrystal, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
         }
 
         private static void OceanAccesories()
@@ -572,6 +576,12 @@ namespace RemnantOfTheAncientsMod
         {
             Recipe.Create(ItemID.BandofStarpower).AddIngredient(ItemID.PanicNecklace, 1).AddTile(TileID.AlchemyTable).Register();
             Recipe.Create(ItemID.PanicNecklace).AddIngredient(ItemID.BandofStarpower, 1).AddTile(TileID.AlchemyTable).Register();
+
+            Recipe.Create(ItemID.BandofStarpower)
+                .AddIngredient(ModContent.ItemType<IronBand>(), 1)
+                .AddIngredient(ItemID.ManaCrystal, 2)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
 
         private static void UnderworldAccesories()

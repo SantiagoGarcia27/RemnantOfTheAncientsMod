@@ -10,9 +10,8 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod;
-using Terraria.GameContent.RGB;
 
-public class FchangesNpc : GlobalNPC
+public class ReaperGlobalNpc : GlobalNPC
 {
     public override bool InstancePerEntity => true;
     public override void SetDefaults(NPC npc)
@@ -26,7 +25,7 @@ public class FchangesNpc : GlobalNPC
         {
             if (destroyer.Contains(npc.type))
             {
-                npc.scale = 2f;
+                npc.scale *= 2f;
             }
             if (npc.type == NPCID.EyeofCthulhu)
             {
@@ -53,6 +52,18 @@ public class FchangesNpc : GlobalNPC
             {
                 npc.scale /= 2;
             }
+            if (npc.type == NPCID.PrimeSaw)
+            {
+                npc.scale = 1.5f;
+            }
+            if (npc.type == NPCID.PrimeVice)
+            {
+                npc.scale = 1.5f;
+            }
+            if (npc.type == NPCID.SkeletronPrime)
+            {
+                npc.scale = 0.8f;
+            }
         }
     }
     public List<int> destroyer = new List<int>
@@ -77,7 +88,7 @@ public class FchangesNpc : GlobalNPC
                     NPC.SpawnOnPlayer(Main.player[npc.target].whoAmI, NPCID.SkeletronHand);
                 }
             }
-            if(npc.type == NPCID.Deerclops) 
+            if (npc.type == NPCID.Deerclops)
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -87,12 +98,37 @@ public class FchangesNpc : GlobalNPC
                 {
                     Main.player[npc.target].AddBuff(BuffID.Hunger, Utils1.FormatTime(0, 0, 0, 30));
                 }
-               // Main.dontStarveWorld = true;
+                // Main.dontStarveWorld = true;
             }
+            if (npc.type == NPCID.Golem)
+            {
+                NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.GolemFistLeft);
+                NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.GolemFistRight);
+            }
+            if (npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight)
+            {
+                npc.life = npc.lifeMax;
+            }
+            if (npc.type == NPCID.HallowBoss)
+            {
+                Main.dayTime = true;
+                Main.time = 5000.0;
+                Netcode.SyncWorld();
+            }
+            //if(npc.type == NPCID.MoonLordCore)
+            //{
+            //    for (int i = 0; i < 2; i++)
+            //    {
+            //      int a =  NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.MoonLordHand);
+            //        Main.npc[a].velocity *= 2;
+            //        NpcList.Add(Main.npc[a]);
+            //    }
+            //}
+            base.OnSpawn(npc, source);
         }
-        base.OnSpawn(npc, source);
     }
     int attackCounter = 0;
+    List<NPC> NpcList = new List<NPC>();
     public override void AI(NPC npc)
     {
         base.AI(npc);
@@ -108,7 +144,27 @@ public class FchangesNpc : GlobalNPC
             NPCID.WallofFlesh,
             NPCID.WallofFleshEye,
             NPCID.Spazmatism,
-            NPCID.Retinazer
+            NPCID.Retinazer,
+            NPCID.SkeletronPrime,
+            NPCID.PrimeCannon,
+            NPCID.PrimeLaser,
+            NPCID.PrimeSaw,
+            NPCID.PrimeVice,
+            NPCID.QueenSlimeBoss,
+            NPCID.Plantera,
+            NPCID.Golem,
+            NPCID.DukeFishron,
+            NPCID.HallowBoss,
+            NPCID.CultistBoss,
+            NPCID.MoonLordCore
+        };
+
+        List<int> SkeletronPrimeHands = new List<int>()
+        {
+            NPCID.PrimeCannon,
+            NPCID.PrimeLaser,
+            NPCID.PrimeSaw,
+            NPCID.PrimeVice
         };
 
         if (Reaper.ReaperMode && ReaperAffectedNPCs.Contains(npc.type))
@@ -117,23 +173,24 @@ public class FchangesNpc : GlobalNPC
             {
                 npc.TargetClosest();
             }
-            Player player = Main.player[npc.target];     
+            Player player = Main.player[npc.target];
             if (npc.type == NPCID.Creeper)
             {
-                for (int i = 0; i < Main.maxNPCs; i++) {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
                     if (Main.npc[i].type == NPCID.BrainofCthulhu)
                     {
-                        List<Vector2> Postions = GetPositionsAroundNPC(Main.npc[i], 25 * 15f, GetCreeperCount());
-                        List<NPC> CreepersList = GetBrainOfChutuluCreeperList();
+                        List<Vector2> Postions = GetPositionsAroundNPC(Main.npc[i], 25 * 15f, GetEnemyCount(NPCID.Creeper));
+                        List<NPC> CreepersList = GetNPCList(NPCID.Creeper);
 
-                        for (int a = 0; a < GetCreeperCount(); a++)
+                        for (int a = 0; a < GetEnemyCount(NPCID.Creeper); a++)
                         {
                             CreepersList[a].position = Postions[a];
                         }
                     }
                 }
             }
-            if(npc.type == NPCID.QueenBee)
+            if (npc.type == NPCID.QueenBee)
             {
                 if (attackCounter < 300)
                 {
@@ -144,7 +201,7 @@ public class FchangesNpc : GlobalNPC
                     attackCounter = 0;
                 }
 
-                if (attackCounter == 200) 
+                if (attackCounter == 200)
                 {
                     NPC.NewNPC(NPC.GetSource_None(), (int)npc.Center.X, (int)npc.Center.Y, -57);
                 }
@@ -171,11 +228,11 @@ public class FchangesNpc : GlobalNPC
                     }
                 }
             }
-            if(npc.type == NPCID.Deerclops)
+            if (npc.type == NPCID.Deerclops)
             {
                 Main.windSpeedCurrent = 2f;
                 Main.screenMaximized = false;
-                
+
                 Main.StartRain();
                 Main.SyncRain();
 
@@ -192,7 +249,22 @@ public class FchangesNpc : GlobalNPC
                     Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 30));
                 }
             }
-            if(npc.type == NPCID.WallofFleshEye)
+            if (npc.type == NPCID.QueenSlimeBoss)
+            {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.WindPushed, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.VortexDebuff, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.QueenSlimeMount, 0, 0, 30);
+                }
+                else
+                {
+                    Main.player[npc.target].AddBuff(BuffID.WindPushed, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.VortexDebuff, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.QueenSlimeMount, Utils1.FormatTime(0, 0, 0, 30));
+                }
+            }
+            if (npc.type == NPCID.WallofFleshEye)
             {
                 if (attackCounter < 100)
                 {
@@ -203,15 +275,19 @@ public class FchangesNpc : GlobalNPC
                     attackCounter = 0;
                 }
 
-                if (attackCounter == 50)
+                if (attackCounter >= 50 && attackCounter <= 60)
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
-                        if (Main.projectile[i].friendly)
+                        if (Main.projectile[i].friendly && !Main.projectile[i].minion && Main.projectile[i].damage > 0 && npc.Distance(Main.projectile[i].position) < 100 * 14f)
                         {
+                            var t = Main.projectile[i].Name;
                             updateRotation(npc, true);
-                            var p = ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<InterceptionBream>(), Main.npc[i], 20f);
+                            var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, (Main.projectile[i].position - npc.position), ModContent.ProjectileType<InterceptionBream>(), 0, 0, Main.myPlayer);//ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<InterceptionBream>(), Main.npc[i], 20f);
                             Main.projectile[p].Size = new(60f, 60f);
+                            Main.projectile[p].hostile = true;
+                            Main.projectile[p].friendly = false;
+                            Main.projectile[p].velocity *= 3;
                         }
                     }
                 }
@@ -256,35 +332,226 @@ public class FchangesNpc : GlobalNPC
                         }
                     }
                 }
+            }
 
+            bool[] IsInmune = new bool[4];
+            if (npc.type == NPCID.SkeletronPrime)
+            {
+                if (NPC.AnyNPCs(NPCID.PrimeCannon) || NPC.AnyNPCs(NPCID.PrimeLaser) || NPC.AnyNPCs(NPCID.PrimeSaw) || NPC.AnyNPCs(NPCID.PrimeVice))
+                {
+                    for (int a = 0; a < Main.maxNPCs; a++)
+                    {
+                        for (int i = 0; i < SkeletronPrimeHands.Count; i++)
+                        {
+                            if (SkeletronPrimeHands.Contains(Main.npc[a].type) && !Main.npc[a].dontTakeDamage)
+                            {
+                                IsInmune[i] = true;
+                            }
+                            else
+                            {
+                                IsInmune[i] = false;
+                            }
+                        }
+                    }
+                    if (!IsInmune[0] && !IsInmune[1] && !IsInmune[2] && !IsInmune[3])
+                    {
+                        npc.dontTakeDamage = true;
+                    }
+                    else
+                    {
+                        npc.dontTakeDamage = false;
+                    }
+                }
+                else
+                {
+                    npc.dontTakeDamage = false;
+                }
+            }
+            if (npc.type == NPCID.Plantera)
+            {
+
+
+                int maxHook = GetHootAmount(npc);
+                if (NpcList.Count > maxHook)
+                {
+                    NpcList[NpcList.Count - 1].dontTakeDamage = false;
+                    NpcList[NpcList.Count - 1].life = 0;
+                    NpcList[NpcList.Count - 1].scale = 5;
+                    NpcList.RemoveAt(NpcList.Count - 1);
+                }
+                else if (NpcList.Count == 0)
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        if (Main.npc[i].type == NPCID.PlanterasHook && Main.npc[i].active)
+                        {
+                            NpcList.Add(Main.npc[i]);
+                        }
+                    }
+                }
+
+                if (NPC.AnyNPCs(NPCID.PlanterasHook))
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        if (Main.npc[i].type == NPCID.PlanterasHook)
+                        {
+                            if (attackCounter == 100)
+                            {
+                                Main.npc[i].velocity = player.position + new Vector2(Main.rand.Next(-6, 6) * 16, Main.rand.Next(-6, 6) * 16) - npc.position;
+                            }
+                        }
+                    }
+                }
+                if (attackCounter < 110)
+                {
+                    attackCounter++;
+                }
+                else
+                {
+                    attackCounter = 0;
+                }
+            }
+            if (npc.type == NPCID.DukeFishron)
+            {
+                if (attackCounter == 50)
+                {
+                    if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 3)
+                    {
+                        int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
+                        Main.npc[n].lifeMax = 1000;
+                        Main.npc[n].life = 1000;
+                    }
+                }
+                if (attackCounter < 400)
+                {
+                    attackCounter++;
+                }
+                else
+                {
+                    attackCounter = 0;
+                }
+            }
+            if (npc.type == NPCID.HallowBoss)
+            {
+                Main.dayTime = true;
+                Main.time = 27000.0;
+                Netcode.SyncWorld();
+            }
+            if (npc.type == NPCID.CultistBoss)
+            {
+                if (!npc.dontTakeDamage)
+                {
+                    if (attackCounter == 100)
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position + new Vector2(i * 50, 0), (Main.player[npc.target].position - npc.position).RotatedBy(i * 10), ProjectileID.CultistBossFireBall, 30, 0, 255);
+                            Main.projectile[p].velocity /= 2;
+                        }
+                    }
+                    if (attackCounter == 110)
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position + new Vector2(i * 50, 0), (Main.player[npc.target].position - npc.position).RotatedBy(i * 10), ProjectileID.CultistBossFireBallClone, 30, 0, 255);
+                            Main.projectile[p].velocity /= 4;
+                        }
+                    }
+                }
+                if (attackCounter < 200)
+                {
+                    attackCounter++;
+                }
+                else
+                {
+                    attackCounter = 0;
+                }
+            }
+            if (npc.type == NPCID.MoonLordCore)
+            {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Horrified, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Weak, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.ChaosState, 0, 0, 30);
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.NoBuilding, 0, 0, 30);
+                    if (NPC.AnyNPCs(NPCID.Dryad))
+                    {
+                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.DryadsWardDebuff, 0, 0, 30);
+                    }
+                }
+                else
+                {
+                    Main.player[npc.target].AddBuff(BuffID.Horrified, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Weak, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.ChaosState, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.NoBuilding, Utils1.FormatTime(0, 0, 0, 30));
+                    if (NPC.AnyNPCs(NPCID.Dryad))
+                    {
+                        Main.player[npc.target].AddBuff(BuffID.DryadsWardDebuff, Utils1.FormatTime(0, 0, 0, 30));
+                    }
+                }
+                if (attackCounter == 110)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.SolarCrawltipedeHead);
+                        Main.npc[p].lifeMax = 100;
+                        Main.npc[p].life = 50;
+                        Main.npc[p].defDefense = 0;
+                        Main.npc[p].defense = 0;
+                        Main.npc[p].dontTakeDamage = false;
+                    }
+                }
+            }
+            if (attackCounter < 800)
+            {
+                attackCounter++;
+            }
+            else
+            {
+                attackCounter = 0;
             }
         }
     }
-
-    public int GetCreeperCount()
+    public int GetHootAmount(NPC npc)
     {
-        int CreeperCount = 0;
+        if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 50))
+        {
+            if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 25))
+            {
+                return 1;
+            }
+            return 2;
+        }
+        else return 3;
+    }
+    public int GetEnemyCount(int npcid)
+    {
+        int EnemyCount = 0;
         for (int i = 0; i < Main.maxNPCs; i++)
         {
-            if (Main.npc[i].type == NPCID.Creeper)
+            if (Main.npc[i].type == npcid)
             {
-                CreeperCount++;
+                EnemyCount++;
             }
         }
-        return CreeperCount;
+        return EnemyCount;
     }
-    private List<NPC> GetBrainOfChutuluCreeperList() 
+    private List<NPC> GetNPCList(int npcid) 
     {
         List<NPC> CreepersList = new List<NPC> { };
         for(int i = 0; i < Main.maxNPCs; i++)
         {
-            if (Main.npc[i].type == NPCID.Creeper)
+            if (Main.npc[i].type == npcid)
             {
                 CreepersList.Add(Main.npc[i]);
             }
         }
         return CreepersList;
-
     }
     List<Vector2> GetPositionsAroundNPC(NPC npc, float radius, int numPositions)
     {

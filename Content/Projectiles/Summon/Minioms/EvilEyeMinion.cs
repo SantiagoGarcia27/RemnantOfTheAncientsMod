@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Humanizer.In;
@@ -17,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Evil Eye Minion");
-            Main.projFrames[Projectile.type] = 3;
+            Main.projFrames[Projectile.type] = 6;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.SentryShot[Projectile.type] = true;
@@ -55,7 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             {
                 target = Main.npc[player.MinionAttackTargetNPC];
             }
-
+            Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width, TextureAssets.Projectile[Projectile.type].Value.Height/ Main.projFrames[Projectile.type]);
 
             CheckActive(player);
             GeneralBehavior(player, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition);

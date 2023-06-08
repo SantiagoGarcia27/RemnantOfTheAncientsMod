@@ -135,7 +135,7 @@ namespace RemnantOfTheAncientsMod
         }
         public static int GetDustFromMod(Mod mod, string dust)
         {
-            return mod.Find<ModBuff>(dust).Type;
+            return mod.Find<ModDust>(dust).Type;
         }
         public static int GetPrefixFromMod(Mod mod, string prefix)
         {

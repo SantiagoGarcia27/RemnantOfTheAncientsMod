@@ -119,16 +119,16 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCType<MoltenZombie>()) ZombieOreLoot(npcLoot,ItemID.Hellstone,ItemID.HellstoneBar);
             if (npc.type == NPCType<NightZombie>())
             {
-                npcLoot.Add(ItemDropRule.Common(ItemID.JungleSpores, 8 / dificultyDrop(1), 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Obsidian, 8 / dificultyDrop(1), 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Hellstone, 8 / dificultyDrop(1), 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Bone, 8 / dificultyDrop(1), 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Cobweb, 8 / dificultyDrop(1), 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(ItemID.JungleSpores, 8 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Obsidian, 8 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Hellstone, 8 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Bone, 8 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Cobweb, 8 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 5));
                 int corruptOre = WorldGen.crimson ? ItemID.DemoniteOre : ItemID.CrimtaneOre;
-                npcLoot.Add(ItemDropRule.Common(corruptOre, 8 / dificultyDrop(1), 1, 1));
-                npcLoot.Add(ItemDropRule.Common(ItemType<NightBar>(), 50 / dificultyDrop(1), 1, 1));
+                npcLoot.Add(ItemDropRule.Common(corruptOre, 8 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(ItemDropRule.Common(ItemType<NightBar>(), 50 / dificultyDrop(1), 1, 5));
             }
             if (npc.type == NPCType<ArmoredSlime>())
             {
@@ -253,7 +253,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         
         public void ZombieOreLoot(NPCLoot npcLoot,int ore, int bar)
         {
-            npcLoot.Add(ItemDropRule.Common(ore, 1/ dificultyDrop(1), 1, 1));
+            npcLoot.Add(ItemDropRule.Common(ore, 1/ dificultyDrop(1), 1, 4));
             npcLoot.Add(ItemDropRule.Common(bar, 50/ dificultyDrop(1), 1, 1));
         }
         public void BossTrpoyMask(int Tropy, int Mask, NPCLoot npcLoot)

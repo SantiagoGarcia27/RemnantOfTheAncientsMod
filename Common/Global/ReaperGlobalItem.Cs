@@ -65,6 +65,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             SafeAddContentToList(ItemID.BloodySpine);
             SafeAddContentToList(ItemID.Abeemination);
             SafeAddContentToList(ItemID.DeerThing);
+            SafeAddContentToList(ItemID.QueenSlimeCrystal);
             SafeAddContentToList(ItemID.MechanicalEye);
             SafeAddContentToList(ItemID.MechanicalWorm);
             SafeAddContentToList(ItemID.MechanicalSkull);

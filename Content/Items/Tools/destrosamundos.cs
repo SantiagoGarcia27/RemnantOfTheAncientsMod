@@ -37,7 +37,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
 			Item.useTurn = true;
-		}
+            Item.tileBoost += 5;
+        }
 
 
 		public override void AddRecipes() //Crafteo del objeto
