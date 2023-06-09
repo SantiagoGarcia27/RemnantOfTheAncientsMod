@@ -32,9 +32,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax / 2;
             NPC.value = 60f;
             NPC.knockBackResist = 1.2f;
+            AIType = NPCID.Zombie;
+            AnimationType = NPCID.Zombie;
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot) => Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ItemID.Gel);
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) 
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if (NPC.downedBoss3) return SpawnCondition.OverworldNightMonster.Chance * 0f;
             else if (NPC.downedBoss1) return SpawnCondition.OverworldNightMonster.Chance * 0.001f;
@@ -68,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -111,7 +113,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -154,7 +156,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -198,7 +200,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -241,7 +243,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -284,7 +286,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -327,7 +329,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -339,7 +341,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if(Main.hardMode) return SpawnCondition.OverworldNightMonster.Chance * 0f;
+            if (Main.hardMode) return SpawnCondition.OverworldNightMonster.Chance * 0f;
             else if (NPC.downedBoss3) return SpawnCondition.OverworldNightMonster.Chance * 0.02f;
             else if (NPC.downedBoss1) return SpawnCondition.OverworldNightMonster.Chance * 0.016f;
             else return SpawnCondition.OverworldNightMonster.Chance * 0.006f;
@@ -373,7 +375,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -418,7 +420,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += 0;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -470,7 +472,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += 0;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -510,7 +512,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -564,7 +566,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -620,7 +622,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -634,8 +636,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             if (Main.hardMode)
             {
-               if(RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0f;
-               else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
             }
             else if (NPC.downedBoss3) return SpawnCondition.OverworldNightMonster.Chance * 0.016f;
             else return SpawnCondition.OverworldNightMonster.Chance * 0f;
@@ -660,7 +662,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += 0;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -713,7 +715,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -761,7 +763,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
             NPC.value += 60f;
-            NPC.knockBackResist /= 2;
+            NPC.knockBackResist = 0;
             NPC.aiStyle = 3;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
@@ -791,7 +793,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
                 {
                     if (RegenCounter < Utils1.FormatTime(0, 0, 0, 4))
                     {
-                       if(Main.rand.NextBool(2)) NPC.life++;
+                        if (Main.rand.NextBool(2)) NPC.life++;
                         RegenCounter++;
                     }
                     else

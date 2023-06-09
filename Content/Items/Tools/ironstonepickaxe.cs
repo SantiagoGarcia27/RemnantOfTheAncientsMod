@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			Item.useAnimation = 9; 
 			Item.pick -= 5;
 			Item.useStyle = ItemUseStyleID.Swing; 
-			Item.knockBack = 6; 
+			Item.knockBack = 0; 
 			Item.value = 1000;
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;

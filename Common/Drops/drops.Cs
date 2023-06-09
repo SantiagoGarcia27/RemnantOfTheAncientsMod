@@ -19,7 +19,6 @@ using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -33,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             BossLoot(npc, npcLoot);
             LegendaryLoot(npc,npcLoot);
             CommonLoot(npc,npcLoot);
-         
+            PilarEnemiyLoot(npc, npcLoot);
             if (npc.lifeMax > 1 && npc.lifeMax < 100000 && npc.value > 0f) npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 500000/ dificultyDrop(1), 1, 1));
             if (npc.lifeMax > 100000 && npc.value > 0f) npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 100000/ dificultyDrop(1), 1, 1));
           //  npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fake_The_Legion>(), 1 / dificultyDrop(1), 1, 1));
@@ -89,7 +88,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         }
         public void PajarosLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.BirdRed || npc.type == NPCID.BirdBlue || npc.type == NPCID.Bird) npcLoot.Add(ItemDropRule.Common(ItemType<BirdWings>(), 500/ dificultyDrop(1), 1, 1)); //dificultyDrop(1)/500
+            if (npc.type == NPCID.BirdRed || npc.type == NPCID.BirdBlue || npc.type == NPCID.Bird) npcLoot.Add(ItemDropRule.Common(ItemType<BirdWings>(), 100/ dificultyDrop(1), 1, 1)); //dificultyDrop(1)/500
         }
         public void ArmoredZombiesLoot(NPC npc,NPCLoot npcLoot)
         {

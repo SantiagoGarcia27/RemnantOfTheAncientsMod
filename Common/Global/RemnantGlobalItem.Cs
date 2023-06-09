@@ -82,6 +82,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				if (item.type == ItemID.DD2LightningAuraT3Popper) item.damage = 50;//150
 
 
+				if(item.maxStack > 1 && item.maxStack < 9999)
+				{
+					item.maxStack = 9999;
+				}
+
 				AddToDashWeaponsLists(item);
 
 				if (SpearsList.Contains(item.type))
