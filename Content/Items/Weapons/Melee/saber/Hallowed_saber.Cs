@@ -5,10 +5,11 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
-	public class Hallowed_saber : ModItem
+    public class Hallowed_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

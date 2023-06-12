@@ -7,10 +7,11 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System.Linq;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
-	public class GarritasDoG : ModItem
+    public class GarritasDoG : ModItem
 	{
 		public static int Attacks = 0;
 		public override bool IsLoadingEnabled(Mod mod)
@@ -70,10 +71,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			{
 				Recipe recipe = CreateRecipe()
 				.AddIngredient(ItemType<Garritas>())
-				.AddIngredient(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
+				.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
 				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
 				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddTile(Utils1.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
+				recipe.AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
 				recipe.Register();
 			}
 		}

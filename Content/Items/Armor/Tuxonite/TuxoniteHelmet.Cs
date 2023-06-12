@@ -4,10 +4,11 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 	public class TuxoniteHelmet : ModItem
 	{
 		public override void SetStaticDefaults()

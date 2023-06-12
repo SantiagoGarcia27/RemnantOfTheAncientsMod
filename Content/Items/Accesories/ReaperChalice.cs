@@ -5,6 +5,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {

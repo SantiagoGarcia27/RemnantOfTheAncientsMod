@@ -3,11 +3,12 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 {
-	[AutoloadEquip(EquipType.Legs)]
+    [AutoloadEquip(EquipType.Legs)]
 	public class Daylight_Legging : ModItem
 	{
 		public override void SetStaticDefaults()
@@ -40,9 +41,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 25)//30
-			.AddTile(TileID.Anvils)
-			.Register();
+            .AddIngredient(ItemID.Daybloom, 8)
+            .AddIngredient(ItemID.Vine, 1)
+            .AddIngredient<IronBand>()
+            .AddTile(TileID.Anvils)
+            .Register();
 		}
 	}
 }

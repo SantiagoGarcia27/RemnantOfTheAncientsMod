@@ -3,8 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 {

@@ -4,13 +4,13 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod;
 using Terraria.ModLoader.IO;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
-	public class FleshSoul : ModItem
+    public class FleshSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 

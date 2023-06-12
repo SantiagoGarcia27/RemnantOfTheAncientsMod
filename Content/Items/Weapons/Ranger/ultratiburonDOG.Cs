@@ -8,10 +8,11 @@ using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
-	public class ultratiburonDOG : ModItem
+    public class ultratiburonDOG : ModItem
 	{
 		public override bool IsLoadingEnabled(Mod mod)
 		{
@@ -78,7 +79,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
 				recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
-                recipe.AddTile(Utils1.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
+                recipe.AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
                 recipe.Register();
 			}
 		}

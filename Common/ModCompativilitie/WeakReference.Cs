@@ -14,10 +14,11 @@ using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.NPCs.Town;
 using Terraria.ID;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod
 {
-	internal class WeakReference
+    internal class WeakReference
 	{
 		private static void AddBoss(Mod bossChecklist, Mod hostMod, string name, float difficulty, List<int> npcType, Func<bool> downed, object summon, List<int> collection, string instructions, string despawn, string bossTexture = null, string bossHead = null)
 		{

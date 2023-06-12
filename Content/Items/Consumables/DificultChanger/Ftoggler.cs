@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.World;
 using Terraria.GameContent.Creative;
 using Terraria.Chat;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
 {

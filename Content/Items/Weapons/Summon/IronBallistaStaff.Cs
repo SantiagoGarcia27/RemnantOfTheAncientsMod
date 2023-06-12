@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 {
@@ -15,20 +16,23 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Iron Ballista Staff");
-			Tooltip.SetDefault("Summons a Baby Frozen Assaulter to fight for you");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo congelado");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a un asaltante bebé congelado para que luche por ti");
+			DisplayName.SetDefault("Rolling Crossbow Staff");
+			Tooltip.SetDefault("Summons a Rolling Crossbow"+
+                "\nUse 2 minion slot");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo de Ballesta con ruedas");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a una ballesta con ruedas para que luche por ti"+
+				"\nUtiliza 2 espacios de subditos");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton gelé");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque un bébé assaillant gelé pour qu'il se batte à vos côtés");
-            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque une arbalète roulante" + 
+				"\nUtiliser 2 emplacements de serviteur");
+            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;	
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.damage = 9;
+			Item.damage = 23;
 			Item.knockBack = 3f;
 			Item.mana = 10;
 			Item.width = 32;
@@ -36,14 +40,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 			Item.useTime = 36;
 			Item.useAnimation = 36;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.value = Item.buyPrice(0, 2, 0, 0);
-			Item.rare = ItemRarityID.LightRed;
+			Item.value = Item.buyPrice(0, 0, 10, 0);
+			Item.rare = 0;
 			Item.UseSound = SoundID.Item44;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Summon;
 			Item.buffType = BuffType<IronBallistaBuff>();
 			Item.shoot = ProjectileType<IronBallistMinion>();
-			if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.damage = 11;
+			//if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.damage = 11;
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
@@ -57,5 +61,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 			player.AddBuff(Item.buffType, 2);
 			position = Main.MouseWorld;
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ModContent.ItemType<Reinforced_ironBar>(),5)
+            .AddIngredient(ItemID.Minecart)
+            .AddTile(TileID.Anvils)
+            .Register();
+        }
+    }
 }

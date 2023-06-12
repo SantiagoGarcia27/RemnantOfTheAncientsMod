@@ -10,6 +10,7 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {

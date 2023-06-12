@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
-	public class PlayerStatViewer : ModItem
+    public class PlayerStatViewer : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

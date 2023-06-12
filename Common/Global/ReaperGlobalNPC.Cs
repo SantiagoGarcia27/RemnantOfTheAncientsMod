@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 public class ReaperGlobalNpc : GlobalNPC
 {

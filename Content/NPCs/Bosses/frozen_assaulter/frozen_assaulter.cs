@@ -23,6 +23,7 @@ using Terraria.GameContent;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
 {
@@ -330,7 +331,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
         [JITWhenModsEnabled("CalamityMod")]
         private void CalamityDrop(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofEleum"), 1,2,Utils1.ReaperDropScaler(5)));
+            npcLoot.Add(ItemDropRule.Common(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofEleum"), 1,2,Utils1.ReaperDropScaler(5)));
         } 
         public override void OnSpawn(IEntitySource source)
         {

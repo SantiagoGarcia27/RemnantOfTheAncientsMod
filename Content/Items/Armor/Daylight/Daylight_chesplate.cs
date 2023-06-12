@@ -4,10 +4,11 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 {
-	[AutoloadEquip(EquipType.Body)]
+    [AutoloadEquip(EquipType.Body)]
 	public class Daylight_chesplate : ModItem
 	{
 		public override void SetStaticDefaults()

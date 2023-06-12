@@ -1,9 +1,8 @@
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -78,14 +77,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
 		[JITWhenModsEnabled("ThoriumMod")]
 		public static void AddBossSummonThorium()
 		{
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StormFlare"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
-			SafeAddContentToList(Utils1.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StormFlare"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
+			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
 		}
 		public static void SafeAddContentToList(int id)
 		{

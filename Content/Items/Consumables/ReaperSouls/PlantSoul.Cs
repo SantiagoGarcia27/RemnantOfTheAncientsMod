@@ -5,10 +5,11 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
-	public class PlantSoul : ModItem
+    public class PlantSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 

@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -118,13 +119,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 
             for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(20); i++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,Utils1.GetDustFromMod(RemnantOfTheAncientsMod.CalamityMod,"CosmiliteBarDust"), 0f, 0f, 100, default(Color), 1.5f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,ExternalModCallUtils.GetDustFromMod(RemnantOfTheAncientsMod.CalamityMod,"CosmiliteBarDust"), 0f, 0f, 100, default(Color), 1.5f);
             }
         }
         [JITWhenModsEnabled("CalamityMod")]
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(Utils1.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod,"GodSlayerInferno"),100);
+            target.AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod,"GodSlayerInferno"),100);
             Projectile.Kill();
         }
     }

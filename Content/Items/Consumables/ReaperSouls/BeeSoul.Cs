@@ -5,11 +5,12 @@ using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
-	//este es un comentario de prueba no es necesario para nada y un XD
-	public class BeeSoul : ModItem
+    //este es un comentario de prueba no es necesario para nada y un XD
+    public class BeeSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
