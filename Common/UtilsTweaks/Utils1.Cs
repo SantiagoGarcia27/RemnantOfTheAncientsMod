@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         public static string ColorMessage(string msg, Color color)
         {
-         
+
             StringBuilder stringBuilder;
             if (!msg.Contains("\n"))
             {
@@ -74,6 +74,18 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return stringBuilder.ToString();
         }
+        internal static Color GetRarityColor(Color rarityColorOne, Color rarityColorTwo)
+        {
+            return ColorSwap(rarityColorOne, rarityColorTwo, 3f);
+        }
+        public static Color GetReaperColor(int x)
+        {
+            //Color color;// = new Color(100, 100, 100);
+            if (x == 1) return new Color(46, 45, 45);
+            else if (x == 2) return new Color(212, 210, 210);//191,187,187
+            else return new Color(255, 255, 255);
+            //return color;
+        }
         public static Rectangle GetCurrentFrame(Item item, ref int frame, ref int frameCounter, int frameDelay, int frameAmt, bool frameCounterUp = true)
         {
             if (frameCounter >= frameDelay)
@@ -87,7 +99,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return new Rectangle(0, item.height * frame, item.width, item.height);
         }
-       
+
         public static RemnantPlayer RemnantOfTheAncientsMod(this Player player)
         {
             return player.GetModPlayer<RemnantPlayer>();
@@ -130,7 +142,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             if (Reaper.ReaperMode) a = i * 5;
             return a;
         }
- 
+
         public static string IncreasedMinionTooltip(int amount)
         {
             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMinion", amount);
@@ -146,6 +158,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static string IncreasedManaMaxTooltip(int amount)
         {
             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedManaMax", amount);
+        }
+        public static string IncreasedDamageReductionTooltip(int amount)
+        {
+            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedDamageReduction", amount);
         }
         public static string IncreasedDamageByTooltip(int amount, DamageClass WeaponClass)
         {
@@ -188,32 +204,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             {
                 return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassCritChance", amount, WeaponClass.DisplayName);
             }
-
-            //if (WeaponClass == DamageClass.Generic)
-            //{
-            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedMagicCritChance}", amount);
-            //}
-            //else if (WeaponClass == DamageClass.Melee)
-            //{
-            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedMeleeCritChance}", amount);
-            //}
-            //else if (WeaponClass == DamageClass.Ranged)
-            //{
-            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedRangedCritChance}", amount);
-            //}
-            //else if (WeaponClass == DamageClass.Summon)
-            //{
-            //    return Language.GetTextValue("{$CommonItemTooltip.PercentSummonTagCritChance}", amount);
-            //}
-            //else if (WeaponClass == DamageClass.Magic)
-            //{
-            //    return Language.GetTextValue("{$CommonItemTooltip.PercentIncreasedMagicCritChance}", amount);
-            //}
-            //else
-            //{
-            //    return $"{amount}% increased magic {WeaponClass} strike chance";
-            //}
         }
-
+        public static string IncreasedMovmentSpeedTooltip(int amount)
+        {
+            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMovementSpeed", amount);
+        }
     }
 }

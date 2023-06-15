@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         {
             float numberProjectiles = 2;
             float rotation = MathHelper.ToRadians(10);
-
+          
             position += Vector2.Normalize(velocity) * 1f;
 
             for (int i = 0; i < numberProjectiles; i++)
@@ -60,6 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 Projectile.NewProjectile(source, position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
             }
             Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
+          
             return false;
         }
         public override bool CanUseItem(Player player)
@@ -80,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 }
                 Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileType<DesertS>(), Item.damage, 1, player.whoAmI);
             }
-            return true;
+            return base.CanUseItem(player);
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
         {

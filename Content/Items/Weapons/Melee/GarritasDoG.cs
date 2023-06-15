@@ -8,9 +8,11 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using CalamityMod.Rarities;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
+    [JITWhenModsEnabled("CalamityMod")]
     public class GarritasDoG : ModItem
 	{
 		public static int Attacks = 0;
@@ -37,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(gold: 100);
-			Item.rare = ItemRarityID.Red;
+			Item.rare = ModContent.RarityType<DarkBlue>(); 
 			Item.scale = 2.0f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
 using Terraria.ID;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo;
+using System.Collections.Generic;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -44,8 +47,25 @@ namespace RemnantOfTheAncientsMod
             if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
             {
                 ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
-
             }
+
+            //for (int i = 1; i < ItemLoader.ItemCount; i++)
+            //{
+            //     // Item item = new Item(i);
+            //    if (i > 5288)
+            //    {
+            //        int ammo = ItemLoader.GetItem(i).Item.ammo;
+            //        if (ItemLoader.GetItem(i).Item.type == ModContent.ItemType<DesertArrow>()) 
+            //        {
+            //            int j = ItemLoader.GetItem(i).Item.ammo;
+            //            string h = ItemLoader.GetItem(i).Item.Name;
+            //        }
+            //        if (ammo > 0)
+            //        {
+            //            AddContent(new EndelssAmmoGenerator(i));
+            //        }
+            //    }
+            //}
         }
 
         public static int GetMaxRarity()

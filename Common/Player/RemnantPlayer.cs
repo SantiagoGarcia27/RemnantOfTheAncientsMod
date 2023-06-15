@@ -19,6 +19,7 @@ using Terraria.Chat;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using CalamityMod;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -65,7 +66,8 @@ namespace RemnantOfTheAncientsMod
 		public static bool DaylightArmorSetBonus;
 		public bool HealingDrone;
 		public bool InterceptionDrone;
-
+		public bool ReaperSoulBoost;
+		public bool DesertHeraldSetBonus;
 
 		public override void ResetEffects()
 		{
@@ -95,11 +97,153 @@ namespace RemnantOfTheAncientsMod
 			DaylightArmorSetBonus = false;
 			HealingDrone = false;
 			InterceptionDrone = false;
-			//tuxoniteStealthCounter = 1;
+			ReaperSoulBoost = false;
+			DesertHeraldSetBonus = false;
+            //tuxoniteStealthCounter = 1;
+        }
+
+        public override void Load()
+        {
+            On.Terraria.Player.TryGettingDevArmor += Player_TryGettingDevArmor;		
+            base.Load();
+        }
+
+		private void Player_TryGettingDevArmor(On.Terraria.Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
+		{
+			//TryGettingPatreonOrDevArmor(source, this);
+			if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : 20))
+			{
+				switch (Main.rand.Next(20))
+				{
+					case 0:
+						player.QuickSpawnItem(source, 666);
+						player.QuickSpawnItem(source, 667);
+						player.QuickSpawnItem(source, 668);
+						player.QuickSpawnItem(source, 665);
+						player.QuickSpawnItem(source, 3287);
+						break;
+					case 1:
+						player.QuickSpawnItem(source, 1554);
+						player.QuickSpawnItem(source, 1555);
+						player.QuickSpawnItem(source, 1556);
+						player.QuickSpawnItem(source, 1586);
+						break;
+					case 2:
+						player.QuickSpawnItem(source, 1554);
+						player.QuickSpawnItem(source, 1587);
+						player.QuickSpawnItem(source, 1588);
+						player.QuickSpawnItem(source, 1586);
+						break;
+					case 3:
+						player.QuickSpawnItem(source, 1557);
+						player.QuickSpawnItem(source, 1558);
+						player.QuickSpawnItem(source, 1559);
+						player.QuickSpawnItem(source, 1585);
+						break;
+					case 4:
+						player.QuickSpawnItem(source, 1560);
+						player.QuickSpawnItem(source, 1561);
+						player.QuickSpawnItem(source, 1562);
+						player.QuickSpawnItem(source, 1584);
+						break;
+					case 5:
+						player.QuickSpawnItem(source, 1563);
+						player.QuickSpawnItem(source, 1564);
+						player.QuickSpawnItem(source, 1565);
+						player.QuickSpawnItem(source, 3582);
+						break;
+					case 6:
+						player.QuickSpawnItem(source, 1566);
+						player.QuickSpawnItem(source, 1567);
+						player.QuickSpawnItem(source, 1568);
+						break;
+					case 7:
+						player.QuickSpawnItem(source, 1580);
+						player.QuickSpawnItem(source, 1581);
+						player.QuickSpawnItem(source, 1582);
+						player.QuickSpawnItem(source, 1583);
+						break;
+					case 8:
+						player.QuickSpawnItem(source, 3226);
+						player.QuickSpawnItem(source, 3227);
+						player.QuickSpawnItem(source, 3228);
+						player.QuickSpawnItem(source, 3288);
+						break;
+					case 9:
+						player.QuickSpawnItem(source, 3583);
+						player.QuickSpawnItem(source, 3581);
+						player.QuickSpawnItem(source, 3578);
+						player.QuickSpawnItem(source, 3579);
+						player.QuickSpawnItem(source, 3580);
+						break;
+					case 10:
+						player.QuickSpawnItem(source, 3585);
+						player.QuickSpawnItem(source, 3586);
+						player.QuickSpawnItem(source, 3587);
+						player.QuickSpawnItem(source, 3588);
+						player.QuickSpawnItem(source, 3024, 4);
+						break;
+					case 11:
+						player.QuickSpawnItem(source, 3589);
+						player.QuickSpawnItem(source, 3590);
+						player.QuickSpawnItem(source, 3591);
+						player.QuickSpawnItem(source, 3592);
+						player.QuickSpawnItem(source, 3599, 4);
+						break;
+					case 12:
+						player.QuickSpawnItem(source, 3368);
+						player.QuickSpawnItem(source, 3921);
+						player.QuickSpawnItem(source, 3922);
+						player.QuickSpawnItem(source, 3923);
+						player.QuickSpawnItem(source, 3924);
+						break;
+					case 13:
+						player.QuickSpawnItem(source, 3925);
+						player.QuickSpawnItem(source, 3926);
+						player.QuickSpawnItem(source, 3927);
+						player.QuickSpawnItem(source, 3928);
+						player.QuickSpawnItem(source, 3929);
+						break;
+					case 14:
+						player.QuickSpawnItem(source, 4732);
+						player.QuickSpawnItem(source, 4733);
+						player.QuickSpawnItem(source, 4734);
+						player.QuickSpawnItem(source, 4730);
+						break;
+					case 15:
+						player.QuickSpawnItem(source, 4747);
+						player.QuickSpawnItem(source, 4748);
+						player.QuickSpawnItem(source, 4749);
+						player.QuickSpawnItem(source, 4746);
+						break;
+					case 16:
+						player.QuickSpawnItem(source, 4751);
+						player.QuickSpawnItem(source, 4752);
+						player.QuickSpawnItem(source, 4753);
+						player.QuickSpawnItem(source, 4750);
+						break;
+					case 17:
+						player.QuickSpawnItem(source, 4755);
+						player.QuickSpawnItem(source, 4756);
+						player.QuickSpawnItem(source, 4757);
+						player.QuickSpawnItem(source, 4754);
+						break;
+					case 18:
+						player.QuickSpawnItem(source, ItemType<Sangar_Head>());
+						player.QuickSpawnItem(source, ItemType<Sangar_Body>());
+						player.QuickSpawnItem(source, ItemType<Sangar_Legs>());
+						break;
+					case 19:
+						player.QuickSpawnItem(source, ItemType<Ttim_Head>());
+						player.QuickSpawnItem(source, ItemType<Ttim_Body>());
+						player.QuickSpawnItem(source, ItemType<Ttim_Legs>());
+						break;
+				}
+			}
 		}
+       
 
-
-		public override void UpdateDead()
+        public override void UpdateDead()
 		{
 			Burn_Sand = false;
 			Hell_Fire = false;
@@ -185,6 +329,14 @@ namespace RemnantOfTheAncientsMod
 				Main.player[CurrentPlayer].AddBuff(BuffId, BuffTime);
 			}
 		}
+		public static void ClearBuffToAllPlayers(int BuffId)
+		{
+            int MaxPlayer = RemnantOfTheAncientsMod.MaxPlayerOnline();
+            for (int CurrentPlayer = 0; CurrentPlayer <= MaxPlayer; CurrentPlayer++)
+            {
+                Main.player[CurrentPlayer].ClearBuff(BuffId);
+            }
+        }
 		public void ReaperStarter()
 		{
 			if (!ReaperFirstTime)
@@ -367,9 +519,9 @@ namespace RemnantOfTheAncientsMod
 
 			if (Reaper.ReaperMode) 
 			{
-				if (DesertAnhilatorActivated && !MoonlordRespawnActivated) return 0.7f;
-				else if (!DesertAnhilatorActivated && MoonlordRespawnActivated) return 0.5f;
-				else if (DesertAnhilatorActivated && MoonlordRespawnActivated) return 0.3f;
+				if (DesertAnhilatorActivated && !MoonlordRespawnActivated) return ReaperSoulBoost? 0.7f : 0.8f;
+				else if (!DesertAnhilatorActivated && MoonlordRespawnActivated) return ReaperSoulBoost? 0.5f : 0.7f;
+				else if (DesertAnhilatorActivated && MoonlordRespawnActivated) return ReaperSoulBoost? 0.3f : 0.5f;
 			}
 			return 1;
 		}
@@ -380,56 +532,94 @@ namespace RemnantOfTheAncientsMod
 			{
 				if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade)
 				{
+
 					float speedForce = (GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul/100) + 1;
-                    Player.moveSpeed = OgPlayerSpeed + speedForce;
+                    Player.moveSpeed = ReaperSoulBoost? OgPlayerSpeed + speedForce *1.2f : OgPlayerSpeed + speedForce;
 				}
 				if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade && GetInstance<ConfigClient>().ToggleEyeOfChutuluSoul)
 				{
-					Player.statLifeMax2 += 10;
+					Player.statLifeMax2 += ReaperSoulBoost ? 20 : 10;
 				}
 				if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade && GetInstance<ConfigClient>().ToggleCorruptSoul)
 				{
-					Player.lifeRegen += 5;
+					Player.lifeRegen += ReaperSoulBoost ? 10 : 5;
 				}
 				if (Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade && GetInstance<ConfigClient>().ToggleQueenBeeSoul)
 				{
 					Player.honey = true;
-					Player.beeDamage(20);
+					Player.strongBees = true;
+					if (ReaperSoulBoost)
+					{
+                        Player.beeDamage(80);
+                    }
+					else
+					{
+						Player.beeDamage(20);
+					}
 				}
 				if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade && GetInstance<ConfigClient>().ToggleSkeletronSoul) 
 				{ 
-					Player.statDefense += 5; 
+					Player.statDefense += ReaperSoulBoost ? 10: 5; 
 				}
 				if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade && GetInstance<ConfigClient>().ToggleWallOfFleshSoul)
 				{
-					Player.GetDamage(DamageClass.Generic) *= 1.10f;
+					Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f: 1.10f;
 				}
 				if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade && GetInstance<ConfigClient>().ToggleFrozenAssaulterSoul) FrostInmune();
-				if (Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade && GetInstance<ConfigClient>().ToggleQueenSlimeSoul) Player.statLifeMax2 += 15;
-				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade && GetInstance<ConfigClient>().ToggleDestroyerSoul) Player.pickSpeed -= 0.35f;
+				if (Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade && GetInstance<ConfigClient>().ToggleQueenSlimeSoul) Player.statLifeMax2 += ReaperSoulBoost ? 30 : 15;
+				if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade && GetInstance<ConfigClient>().ToggleDestroyerSoul) Player.pickSpeed -= ReaperSoulBoost ? 0.7f : 0.35f;
 				if (Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade) FirenInmune();
 				if (Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade)
 				{
                     float JumpForce = ModContent.GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
                     Player.findTreasure = true;
-					Player.jumpSpeedBoost += JumpForce;
+					if (ReaperSoulBoost)
+					{
+						Player.dangerSense = true;
+					}
+					Player.jumpSpeedBoost += ReaperSoulBoost ? JumpForce * 2 : JumpForce;
 				}
-				if (Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade && GetInstance<ConfigClient>().ToggleEmpressOfLightSoul) Player.empressBrooch = true;
+				if (Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade && GetInstance<ConfigClient>().ToggleEmpressOfLightSoul)
+				{
+					Player.empressBrooch = true;
+					if (ReaperSoulBoost)
+					{
+						Player.wingAccRunSpeed *= 2;
+					}
+				}
 
 				if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade && GetInstance<ConfigClient>().ToggleInfernalTyrantSoul)
 				{
 					Player.fireWalk = true;
 					Player.lavaImmune = true;
-					Player.GetDamage(DamageClass.Generic) *= 1.10f;
+					Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
 				}
-				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade && GetInstance<ConfigClient>().ToggleGolemSoul) Player.statDefense += 10;
+				if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade && GetInstance<ConfigClient>().ToggleGolemSoul) Player.statDefense += ReaperSoulBoost ? 15 : 10;
 
 				if (Reaper.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && GetInstance<ConfigClient>().ToggleDukeFishronSoul)
 				{
-					AddMinion(ProjectileType<TempestClone>(), 140, 10f);
-					Player.aggro -= 400;
+					if (ReaperSoulBoost)
+					{
+                        AddMinion(ProjectileType<TempestClone>(), 280, 10f);
+                        Player.aggro -= 2400;
+                    }
+					else
+					{
+						AddMinion(ProjectileType<TempestClone>(), 140, 10f);
+						Player.aggro -= 400;
+					}
 				}
-				if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && GetInstance<ConfigClient>().ToggleLunaticCultistSoul) AddMinion(ProjectileType<IceMistF>(), 680, 10f);
+				if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && GetInstance<ConfigClient>().ToggleLunaticCultistSoul)
+				{
+					if (ReaperSoulBoost)
+					{
+						AddMinion(ProjectileType<IceMistF>(), 980, 10f);
+					}
+					else
+					{
+						AddMinion(ProjectileType<IceMistF>(), 680, 10f);
+					}
+				}
 
 			}
 		}
@@ -441,10 +631,47 @@ namespace RemnantOfTheAncientsMod
                 {
 					Player.sporeSac = true;
 					Player.SporeSac(item);
-					Player.statLifeMax2 += 10;
+					Player.statLifeMax2 += ReaperSoulBoost? 15:10;
 				}
-				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade && GetInstance<ConfigClient>().ToggleDearclopsSoul) SpawnHallucination(item);
+				if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade && GetInstance<ConfigClient>().ToggleDearclopsSoul)
+				{
+					SpawnHallucination(item);
+					if (ReaperSoulBoost)
+					{
+                        SpawnHallucination(item);
+                    }
+				}
 			}
+		}
+		public bool AllSoulsAreActive()
+		{
+			if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade &&
+				Player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade &&
+				Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade &&
+				Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade &&
+				Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade &&
+				Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade &&
+				Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade &&
+				Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade &&
+				Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade &&
+				Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade &&
+				Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade &&
+				Player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade &&
+				Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade &&
+				Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade &&
+				Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade &&
+				Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade &&
+				Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade &&
+				Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade &&
+				Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade &&
+				Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade &&
+				Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade)
+			{
+				return true;
+			}
+			bool a = Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade;
+
+            return false;
 		}
 		public void AddMinion(int proj, int damage, float knockback)
 		{
@@ -484,6 +711,22 @@ namespace RemnantOfTheAncientsMod
 				Projectile.RandomizeInsanityShadowFor(Main.rand.NextFromCollection(_hallucinationCandidates), isHostile: false, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
 				Projectile.NewProjectile(new EntitySource_ItemUse(Player, item), spawnposition, spawnvelocity, ProjectileID.InsanityShadowFriendly, damage, 0f, Player.whoAmI, ai, ai2);
 			}
+		}
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+			if(DesertHeraldSetBonus)
+			{
+				Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, Vector2.Zero, ProjectileID.SandnadoFriendly,30 , 0, Main.myPlayer);
+			}
+            base.OnHitByNPC(npc, damage, crit);
+        }
+		public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+		{
+			if (DesertHeraldSetBonus)
+			{
+                Projectile.NewProjectile(Projectile.GetSource_None(), Main.npc[proj.owner].position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
+            }
+			base.OnHitByProjectile(proj, damage, crit);
 		}
         public static void BasicInfusion(Player player)
 		{

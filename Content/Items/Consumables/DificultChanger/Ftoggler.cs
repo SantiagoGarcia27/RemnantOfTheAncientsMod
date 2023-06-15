@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
     public class Ftoggler : ModItem
     {
 
-        private static readonly Color rarityColorOne = GetReaperColor(1);
+        private static readonly Color rarityColorOne = Utils1.GetReaperColor(1);
 
-        private static readonly Color rarityColorTwo = GetReaperColor(2);
+        private static readonly Color rarityColorTwo = Utils1.GetReaperColor(2);
 
         public override void SetStaticDefaults()
         {
@@ -59,14 +59,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
         internal static Color GetRarityColor()
         {
             return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
-        }
-        public static Color GetReaperColor(int x)
-        {
-            Color color = new Color(100, 100, 100);
-            if (x == 1) color = new Color(46, 45, 45);
-            else if (x == 2) color = new Color(191, 187, 187);
-            return color;
-        }
+        } 
         public override void SetDefaults()
         {
             Item.width = 26;
@@ -79,47 +72,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
             Item.UseSound = SoundID.Item60;
             Item.consumable = false;
         }
-        //      public override bool? UseItem(Player player)
-        //{
-        //	if (Main.netMode != 1)
-        //	{
-        //		if (!Utils1.IsAnyBossAlive())
-        //		{
-        ///*Reaper.ReaperMode = !Reaper.ReaperMode ? true : false;   --> no entendi para que esta esto*/
-        //if (Reaper.ReaperMode == false)
-        //{
-        //	//Reaper.CanReaper = true;
-        //	Reaper.ReaperMode = true;
-        //	Item.buffTime = 1;
-        //	Color gray = Color.DarkSlateGray;
-        //	Main.NewText("Welcome to hell, now you're a reaper.", gray);
-
-        //	if (player.GetModPlayer<RemnantPlayer>().ChaliceOn != true)
-        //	{
-        //		player.GetModPlayer<RemnantPlayer>().ReaperStarter();
-        //		RemnantPlayer.ReaperFirstTime = true;
-        //	}
-        //}
-        //else
-        //{
-        //                     // Reaper.CanReaper = false;
-        //                      Reaper.ReaperMode = false;
-
-        //	Color gray = Color.DarkSlateGray;
-        //	Main.NewText("Well your soul is free... for now.", gray);
-        //}
-        //		}
-        //		if (Main.netMode == NetmodeID.Server)
-        //		{
-        //NetMessage.SendData(MessageID.WorldData);
-        //		}
-        //	}
-        //	return true;
-        //}
         public override bool? UseItem(Player player)
         {
-            //if (Main.netMode != 1)
-            //{
+           
             if (!Utils1.IsAnyBossAlive())
             {
                 if (!Reaper.ReaperMode)
@@ -141,19 +96,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                     Color gray = Color.DarkSlateGray;
 
                     ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Well your soul is free... for now."), gray);
-                }
-
-                //  if (Main.netMode == NetmodeID.Server)
-                //  {
-                //      NetMessage.SendData(MessageID.WorldData);
-                //  }
-                // }
+                } 
             }
 
             return true;
         }
-
-
 
         public override void AddRecipes()
         {

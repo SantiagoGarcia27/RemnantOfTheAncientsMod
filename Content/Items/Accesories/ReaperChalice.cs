@@ -31,8 +31,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             player.GetModPlayer<RemnantPlayer>().ChaliceOn = true;
             player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost(Item);
-            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost();
-        }
+            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost(); // this method
+        } 
         public override void SetDefaults()
         {
             Item.height = 34;

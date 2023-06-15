@@ -1,7 +1,7 @@
 using CalamityMod.Prefixes;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Prefixe
+namespace RemnantOfTheAncientsMod.Prefix.CalamityPrefix
 {
     [JITWhenModsEnabled("CalamityMod")]
     [ExtendsFromMod("CalamityMod")]

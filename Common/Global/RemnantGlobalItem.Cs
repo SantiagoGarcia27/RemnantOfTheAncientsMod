@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 
 namespace RemnantOfTheAncientsMod.Common.Global
 {
@@ -101,7 +102,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
-		public void AddToDashWeaponsLists(Item item)
+
+		
+        public void AddToDashWeaponsLists(Item item)
 		{
 
 			AddVanilaSpear();
@@ -247,7 +250,30 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
-		public override void UpdateInventory(Item item, Player player)
+        public override bool? CanBurnInLava(Item item)
+        {
+			if (Reaper.ReaperMode)
+			{
+				if (Main.player[Main.myPlayer].GetModPlayer<RemnantPlayer>().AllSoulsAreActive())
+				{
+					if (item.type == ItemID.ReaperHood)
+					{
+						Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Hood>(), 1);
+					}
+					if (item.type == ItemID.ReaperRobe)
+					{
+						Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Robe>(), 1);
+					}
+					if (item.type == ItemID.NecroGreaves)
+					{
+						Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Pants>(), 1);
+						item.rare = 0;
+					}
+				}
+            }
+            return base.CanBurnInLava(item);	
+        }
+        public override void UpdateInventory(Item item, Player player)
 		{
 			if (Reaper.ReaperMode)
 			{

@@ -9,9 +9,11 @@ using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using CalamityMod.Rarities;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
+	[JITWhenModsEnabled("CalamityMod")]
     public class ultratiburonDOG : ModItem
 	{
 		public override bool IsLoadingEnabled(Mod mod)
@@ -44,8 +46,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.noMelee = true;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(1, 50, 2, 0);
-			Item.rare = ItemRarityID.Red;
-			Item.UseSound = SoundID.Item12;
+			Item.rare = ModContent.RarityType<DarkBlue>();
+            Item.UseSound = SoundID.Item12;
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.PurificationPowder;
 			Item.shootSpeed = 100f;

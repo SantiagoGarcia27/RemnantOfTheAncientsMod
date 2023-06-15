@@ -132,6 +132,7 @@
 			IncreasedManaMax:"Aumenta el maná en {0}"
 			IncreasedLifeMax:"Aumenta la vida máxima en {0}"
 			IncreasedLifeMaxPercent:"Aumenta la vida máxima en {0}%"
+			IncreasedDamageReduction:"Reduce el daño recibido en {0}%"
 		}
 	}
 }

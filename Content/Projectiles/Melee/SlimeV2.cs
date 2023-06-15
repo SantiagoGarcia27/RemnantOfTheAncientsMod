@@ -17,9 +17,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			Projectile.aiStyle = 20;
 			Projectile.friendly = true;
 			Projectile.penetrate = -1;
+			Projectile.timeLeft = 100;
 			Projectile.tileCollide = false;
-			Projectile.hide = true;
-			Projectile.ownerHitCheck = true; //so you can't hit enemies through walls
+			Projectile.hide = false;
+			//Projectile.ownerHitCheck = true; //so you can't hit enemies through walls
 		}
 
 		public override void AI()

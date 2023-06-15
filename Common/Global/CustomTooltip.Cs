@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
 using RemnantOfTheAncientsMod.Prefixe;
 using RemnantOfTheAncientsMod.World;
@@ -108,11 +110,39 @@ namespace RemnantOfTheAncientsMod.Common.Global
                  };
                  if (RemanntWorld.ReaperMode) tooltips.Add(item2);
              }*/
+
+
+        public List<int> ReaperItems = new List<int>
+        {
+           ModContent.ItemType<Ftoggler>(),
+           ModContent.ItemType<Reaper_Hood>(),
+           ModContent.ItemType<Reaper_Robe>(),
+           ModContent.ItemType<Reaper_Pants>()
+        };
+
         private void ApplyRarityColor(Item item, TooltipLine nameLine)
         {
             Color? rarityColor = Utils1.GetRarityColor(customRarity);
             if (!item.expert && rarityColor.HasValue) nameLine.OverrideColor = rarityColor.Value;
-            if (item.type == ModContent.ItemType<Ftoggler>()) nameLine.OverrideColor = Ftoggler.GetRarityColor();
+            if (ReaperItems.Contains(item.type))
+            {
+                if (item.type == ReaperItems[0])
+                {
+                    nameLine.OverrideColor = Ftoggler.GetRarityColor();
+                }
+                else if (item.type == ReaperItems[1])
+                {
+                    nameLine.OverrideColor = Reaper_Hood.GetRarityColor();
+                }
+                else if (item.type == ReaperItems[2])
+                {
+                    nameLine.OverrideColor = Reaper_Robe.GetRarityColor();
+                }
+                else if (item.type == ReaperItems[3])
+                {
+                    nameLine.OverrideColor = Reaper_Pants.GetRarityColor();
+                }
+            }
         }
 
         private void LegendaryToolTip(Item item, IList<TooltipLine> tooltips)
@@ -128,7 +158,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         private void ReaperToolTip(Item item, IList<TooltipLine> tooltips)
         {
-            Color? color = new Color(10, Main.DiscoG, 10);
+            Color? color = Utils1.ReaperRarityColor;
             Color valueOrDefault = color.GetValueOrDefault(Utils1.ReaperRarityColor);
             string text = (color.HasValue ? "["+Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.ReaperTooltip")+"]" : "");
             TooltipLine item2 = new TooltipLine(Mod, "ReaperItem", text)

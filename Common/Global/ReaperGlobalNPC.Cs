@@ -242,12 +242,14 @@ public class ReaperGlobalNpc : GlobalNPC
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 0, 30);
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Darkness, 0, 0, 30);
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
+                    player.dontStarveShader = true;
                 }
                 else
                 {
                     Main.player[npc.target].AddBuff(BuffID.Hunger, Utils1.FormatTime(0, 0, 0, 30));
                     Main.player[npc.target].AddBuff(BuffID.Darkness, Utils1.FormatTime(0, 0, 0, 30));
                     Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].dontStarveShader = true;
                 }
             }
             if (npc.type == NPCID.QueenSlimeBoss)
@@ -263,6 +265,7 @@ public class ReaperGlobalNpc : GlobalNPC
                     Main.player[npc.target].AddBuff(BuffID.WindPushed, Utils1.FormatTime(0, 0, 0, 30));
                     Main.player[npc.target].AddBuff(BuffID.VortexDebuff, Utils1.FormatTime(0, 0, 0, 30));
                     Main.player[npc.target].AddBuff(BuffID.QueenSlimeMount, Utils1.FormatTime(0, 0, 0, 30));
+                   
                 }
             }
             if (npc.type == NPCID.WallofFleshEye)
@@ -744,11 +747,38 @@ public class ReaperGlobalNpc : GlobalNPC
             {
                 if (npc.life <= 0)
                 {
-                    Main.windSpeedCurrent= 0;
+                    Main.windSpeedCurrent = 0;
                     Main.StopRain();
                 }
             }
+            
         }
+    }
+    public override bool CheckDead(NPC npc)
+    {
+        if (npc.type == NPCID.MoonLordCore)
+        {
+            if (npc.life <= 0)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Weak);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.ChaosState);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.NoBuilding);
+                }
+                else
+                {
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.Horrified);
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.Weak);
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.ChaosState);
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.NoBuilding);
+                }
+            }
+        }
+        return base.CheckDead(npc);
     }
     public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
     {
@@ -761,4 +791,5 @@ public class ReaperGlobalNpc : GlobalNPC
             }
         }
     }
+
 }

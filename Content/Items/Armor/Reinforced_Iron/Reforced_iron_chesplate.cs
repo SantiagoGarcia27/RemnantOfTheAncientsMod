@@ -15,7 +15,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 			DisplayName.SetDefault("Reinforced Iron Breastplate");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cuirasse en fer renforcé");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Corasa de hierro reforzada");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("Increases damage reduction by 10%"
+            + "\nDecrease the maximum speed by 1/4");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la réduction des dégâts de 10%"
+                 + "\nDisminulle la velocidad maxima en 1/4");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 10% la reducción de daño"
+                + "\nDiminuez la vitesse maximale de 1/4");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
@@ -23,9 +29,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 			Item.height = 18;
 			Item.value = 10000;
 			Item.rare = ItemRarityID.Blue;
-			Item.defense = 5;
+			Item.defense = 13;//5
 		}
-		public override void AddRecipes()
+        public override void UpdateEquip(Player player)
+        {
+			player.endurance += 0.10f;
+            player.moveSpeed -= 0.25f;
+        }
+
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), 5)

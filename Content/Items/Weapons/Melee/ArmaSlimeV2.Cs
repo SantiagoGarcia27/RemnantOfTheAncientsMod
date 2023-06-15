@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -38,6 +39,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.shoot = ProjectileID.Terragrim; 
             Item.shootSpeed = 100f;
             Item.noUseGraphic = false;
+        } 
+        public override bool? UseItem(Player player)
+        {
+           // Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<SlimeV2>(), 0, 0, Main.myPlayer);
+            return base.UseItem(player);
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
         public override Vector2? HoldoutOffset()
         {
