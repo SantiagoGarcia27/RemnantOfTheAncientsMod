@@ -730,10 +730,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             if (Main.hardMode)
             {
-                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
                 else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
             }
-            else if (NPC.downedBoss3) return SpawnCondition.OverworldNightMonster.Chance * 0.016f;
             else return SpawnCondition.OverworldNightMonster.Chance * 0f;
         }
         public override void AI()
@@ -778,10 +777,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             if (Main.hardMode)
             {
-                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
                 else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
             }
-            else if (NPC.downedBoss3) return SpawnCondition.OverworldNightMonster.Chance * 0.016f;
             else return SpawnCondition.OverworldNightMonster.Chance * 0f;
         }
         int RegenCounter = 0;

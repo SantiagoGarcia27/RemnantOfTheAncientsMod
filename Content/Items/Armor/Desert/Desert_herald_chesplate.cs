@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<Sand_escense>(), 5)
+			.AddIngredient(ModContent.ItemType<Sand_escense>(), 10)
             .AddIngredient(ItemID.SandBlock,10)
             .AddIngredient(ItemID.Sandstone, 5)
             .AddTile(TileID.Anvils)

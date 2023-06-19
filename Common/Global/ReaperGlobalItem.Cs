@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
 		public override void ModifyItemScale(Item item, Player player, ref float scale)
 		{
-			RemnantPlayer modPlayer = player.GetModPlayer<RemnantPlayer>();
+			ReaperPlayer modPlayer = player.GetModPlayer<ReaperPlayer>();
 
 			if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && !item.noMelee && item.active)
 			{

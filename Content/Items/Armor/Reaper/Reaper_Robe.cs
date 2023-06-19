@@ -55,14 +55,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
             player.raven = true;
             player.statLifeMax2 += 40;        
         }
-
-        public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), 5)
-			.AddTile(TileID.Anvils)
-			.Register();
-		}
 	}
 }
 

@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Kits
 
         public override void Update(Player player, ref int buffIndex)
         {
-            RemnantPlayer.MeleeInfusion(player);
+            PlayerBuffEffects.MeleeInfusion(player);
         }
      
     }

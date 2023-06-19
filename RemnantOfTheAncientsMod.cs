@@ -3,10 +3,6 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
-using Terraria.ID;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo;
-using System.Collections.Generic;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -19,7 +15,9 @@ namespace RemnantOfTheAncientsMod
         public static Mod Census;
         public static Mod RemnantOfTheAncients;
         public static bool DebuggMode;
+#pragma warning disable CS0649 // Field 'RemnantOfTheAncientsMod.CustomCurrencyId' is never assigned to, and will always have its default value 0
         public static int CustomCurrencyId;
+#pragma warning restore CS0649 // Field 'RemnantOfTheAncientsMod.CustomCurrencyId' is never assigned to, and will always have its default value 0
         public static int MaxRarity = GetMaxRarity();
         public static int MaxPlayers = 0;
         public RemnantOfTheAncientsMod()
@@ -28,7 +26,9 @@ namespace RemnantOfTheAncientsMod
         }
 
 
+#pragma warning disable CS0672 // Member 'RemnantOfTheAncientsMod.AddRecipes()' overrides obsolete member 'Mod.AddRecipes()'. Add the Obsolete attribute to 'RemnantOfTheAncientsMod.AddRecipes()'.
         public override void AddRecipes()
+#pragma warning restore CS0672 // Member 'RemnantOfTheAncientsMod.AddRecipes()' overrides obsolete member 'Mod.AddRecipes()'. Add the Obsolete attribute to 'RemnantOfTheAncientsMod.AddRecipes()'.
         {
             RecipeMaker.AddRecipes();
         }

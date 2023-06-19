@@ -3,9 +3,13 @@ using Terraria.ID;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
+#pragma warning disable CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings' appeared previously in this namespace
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
+#pragma warning restore CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings' appeared previously in this namespace
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns;
+#pragma warning disable CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns' appeared previously in this namespace
 using  RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns;
+#pragma warning restore CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns' appeared previously in this namespace
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 {

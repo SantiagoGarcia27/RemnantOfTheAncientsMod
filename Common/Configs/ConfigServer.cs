@@ -46,6 +46,15 @@ namespace RemnantOfTheAncientsMod
         "\n 1 - 50% Chance to drop tombs" +
         "\n 2 - 100% Chance to drop tombs")]
         public float DropTombstomOnDeadtConf { get; set; }
+
+        [Label("Max stack for items")]
+        [SliderColor(11, 181, 176, 29)]
+        [Range(0f, 9999f)]
+        [Increment(100f)]
+        [DrawTicks]
+        [DefaultValue(999f)]
+        [Tooltip("Defines the max stack of items")]
+        public float MaxItemStackConf { get; set; }
         #endregion
 
 

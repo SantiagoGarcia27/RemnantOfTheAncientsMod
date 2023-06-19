@@ -83,11 +83,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                     Item.buffTime = 1;
                     Color gray = Color.DarkSlateGray;
                     ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Welcome to hell, now you're a reaper."), gray);
-                    var modPlayer = player.GetModPlayer<RemnantPlayer>();
+                    var modPlayer = player.GetModPlayer<ReaperPlayer>();
                     if (modPlayer.ChaliceOn != true)
                     {
                         modPlayer.ReaperStarter();
-                        RemnantPlayer.ReaperFirstTime = true;
+                        ReaperPlayer.ReaperFirstTime = true;
                     }
                 }
                 else

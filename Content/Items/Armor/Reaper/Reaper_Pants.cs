@@ -57,14 +57,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 			player.statManaMax2 += 40;
 			player.GetCritChance(DamageClass.Generic) += 5;
         }
-
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), 6)
-			.AddTile(TileID.Anvils)
-			.Register();
-		}
 	}
 }
 

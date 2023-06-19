@@ -1,8 +1,9 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 {
@@ -13,13 +14,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		{
 			DisplayName.SetDefault("Daylight Hat");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sombrero de luz diurna");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chapeau de la lumière du jour");
-            Tooltip.SetDefault("Increases maximum mana by 20" +
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chapeau de la lumiï¿½re du jour");
+            Tooltip.SetDefault(Utils1.IncreasedManaMaxTooltip(20)+// "Increases maximum mana by 20" +
 				"\n3% increased magic and summon damage");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente le maximum de mana de 20" +
-                "\n3 % d'augmentation des dégâts magiques et d'invocation");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el maná máximo en 20" +
-                "\nAumenta el daño de magia e invocación en 3%");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), Utils1.IncreasedManaMaxTooltip(20) + 
+                "\nAumenta el daï¿½o de magia e invocaciÃ³n en 3%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			RemnantPlayer.SuperSenseBuff(player);
+			PlayerBuffEffects.SuperSenseBuff(player);
 		}
 	}
 }

@@ -8,8 +8,8 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_Basic_Potion_Kit;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips;
+using RemnantOfTheAncientsMod.Content.Items.Tools;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -24,7 +24,9 @@ namespace RemnantOfTheAncientsMod
         }
 
 
+#pragma warning disable CS0114 // 'RecipeMaker.AddRecipes()' hides inherited member 'ModSystem.AddRecipes()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
         public static void AddRecipes()
+#pragma warning restore CS0114 // 'RecipeMaker.AddRecipes()' hides inherited member 'ModSystem.AddRecipes()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
         {
             Uncrafting();
             Swaped();
@@ -371,6 +373,13 @@ namespace RemnantOfTheAncientsMod
                .AddTile(TileID.Hellforge)
                .Register();
 
+            Recipe.Create(ItemID.GoldenFishingRod)
+               .AddIngredient(ModContent.ItemType<TuxoniteFishingPole>())
+               .AddIngredient(ModContent.ItemType<Endless_Fish_Potion>(), 1)
+               .AddIngredient(ItemID.GoldDust, 40)
+               .AddIngredient(ItemID.SoulofLight, 50)
+               .AddTile(TileID.MythrilAnvil)
+               .Register();
         }
         private static void Emblemas()
         {

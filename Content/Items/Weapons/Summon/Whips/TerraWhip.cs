@@ -48,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
             Item.channel = false; // This is used for the charging functionality. Remove it if your whip shouldn't be chargeable.
             Item.noMelee = true;
             Item.noUseGraphic = true;
-            Item.autoReuse = false;
+            Item.autoReuse = RemnantOfTheAncientsMod.CalamityMod != null;
         }
         public override void AddRecipes()
         {

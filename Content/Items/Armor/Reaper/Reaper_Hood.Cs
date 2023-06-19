@@ -73,17 +73,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 			player.setBonus = "+100 life, + 20% damage, Soul effects are boosted";
 			player.statLifeMax2 += 100;
 			player.GetDamage(DamageClass.Generic) *= 1.2f;
-            player.GetModPlayer<RemnantPlayer>().ReaperSoulBoost = true;
-            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost(Item);
-            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost();
+            player.GetModPlayer<ReaperPlayer>().ReaperSoulBoost = true;
+            player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost(Item);
+            player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost();
         }
-	
-		public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), 4)
-			.AddTile(TileID.Anvils)
-			.Register();
-		}
 	}
 }

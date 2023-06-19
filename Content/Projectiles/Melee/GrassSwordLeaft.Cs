@@ -28,7 +28,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             Projectile.extraUpdates = 0;
         }
         float num = (float)Math.PI / 2f;
+#pragma warning disable CS0414 // The field 'GrassSwordLeaft.flag' is assigned but its value is never used
         bool flag = false;
+#pragma warning restore CS0414 // The field 'GrassSwordLeaft.flag' is assigned but its value is never used
         public override void AI()
         {
 

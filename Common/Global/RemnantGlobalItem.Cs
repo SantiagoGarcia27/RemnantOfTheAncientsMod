@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.World;
+﻿using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Common.Global
 {
@@ -82,11 +83,26 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				if (item.type == ItemID.DD2LightningAuraT1Popper) item.damage = 10;//30
 				if (item.type == ItemID.DD2LightningAuraT2Popper) item.damage = 16;//50
 				if (item.type == ItemID.DD2LightningAuraT3Popper) item.damage = 50;//150
-
-
-				if(item.maxStack > 1 && item.maxStack < 9999)
+				if(item.type == ItemID.BandofRegeneration)
 				{
-					item.maxStack = 9999;
+					item.lifeRegen += 2;
+				}
+                if (item.type == ItemID.PlatinumWatch)
+                {
+					item.defense = 1;
+                }
+                if (item.type == ItemID.GoldWatch)
+                {
+                    item.defense = 1;
+                }
+                if (item.type == ItemID.PortableStool)
+                {
+                    item.defense = 2;
+                }
+
+                if (item.maxStack > 1 && item.maxStack < 9999)
+				{
+					item.maxStack = (int)ModContent.GetInstance<ConfigServer>().MaxItemStackConf;
 				}
 
 				AddToDashWeaponsLists(item);
@@ -158,8 +174,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
-
-		public void AddSecureToList(List<int> list, int Content)
+        public override void UpdateEquip(Item item, Player player)
+        {
+            base.UpdateEquip(item, player);
+        }
+        public void AddSecureToList(List<int> list, int Content)
 		{
 			if (!list.Contains(Content)) list.Add(Content);
 		}
@@ -254,7 +273,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
 			if (Reaper.ReaperMode)
 			{
-				if (Main.player[Main.myPlayer].GetModPlayer<RemnantPlayer>().AllSoulsAreActive())
+				if (Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>().AllSoulsAreActive())
 				{
 					if (item.type == ItemID.ReaperHood)
 					{

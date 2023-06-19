@@ -137,7 +137,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
             }
         }
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public void Movment(Player player, NPC? target)
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
 
             float speed = 5f;
@@ -252,7 +254,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
         private void FixSize()
         {
-            Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width - 35, (TextureAssets.Projectile[Projectile.type].Value.Height / Main.projFrames[Projectile.type]) - 25);
+            Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width - 35, (TextureAssets.Projectile[Projectile.type].Value.Height / Main.projFrames[Projectile.type]) /*+ 125*/);
         }
         private bool CheckActive(Player owner)
         {

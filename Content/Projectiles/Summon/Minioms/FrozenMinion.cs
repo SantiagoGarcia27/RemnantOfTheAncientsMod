@@ -9,11 +9,21 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
     public class FrozenMinion : HoverShooter
     {
+#pragma warning disable CS0414 // The field 'FrozenMinion.currentPhase' is assigned but its value is never used
         int currentPhase = 1;
+#pragma warning restore CS0414 // The field 'FrozenMinion.currentPhase' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'FrozenMinion.i' is assigned but its value is never used
         float i = 0;
+#pragma warning restore CS0414 // The field 'FrozenMinion.i' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'FrozenMinion.idelay' is assigned but its value is never used
         int idelay = 5;
+#pragma warning restore CS0414 // The field 'FrozenMinion.idelay' is assigned but its value is never used
+#pragma warning disable CS0414 // The field 'FrozenMinion.TpDelay' is assigned but its value is never used
         int TpDelay = 20;
+#pragma warning restore CS0414 // The field 'FrozenMinion.TpDelay' is assigned but its value is never used
+#pragma warning disable CS0169 // The field 'FrozenMinion.attackCounter' is never used
         private int attackCounter;
+#pragma warning restore CS0169 // The field 'FrozenMinion.attackCounter' is never used
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Baby Frozen Assaulter Minion");

@@ -29,9 +29,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantPlayer>().ChaliceOn = true;
-            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost(Item);
-            player.GetModPlayer<RemnantPlayer>().ReaperSoulsBoost(); // this method
+            player.GetModPlayer<ReaperPlayer>().ChaliceOn = true;
+            player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost(Item);
+            player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost(); // this method
         } 
         public override void SetDefaults()
         {

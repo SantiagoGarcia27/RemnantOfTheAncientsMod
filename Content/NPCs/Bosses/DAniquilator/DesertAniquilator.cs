@@ -423,7 +423,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     break;
                // case 2:
                     //NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(0, -20 * 16));
+#pragma warning disable CS0162 // Unreachable code detected
                     break;
+#pragma warning restore CS0162 // Unreachable code detected
                 case 2:
                     NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(-30 * 16, 0));
                     break;
