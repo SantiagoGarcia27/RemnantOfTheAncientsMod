@@ -3,13 +3,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader.IO;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
-    public class MoonSoul : ModItem
+	public class MoonSoul : ModItem
 	{
 		private static readonly Color rarityColorOne = new Color(46, 45, 45);
 
@@ -45,34 +44,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 
 		public override bool CanUseItem(Player player)
 		{
-
-			return !player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[20];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[20] = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
 		{
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
-		}
-	}
-	public class MoonReaperSoulPlayer : ModPlayer
-	{
-		public bool MoonReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(MoonReaperUpgrade);
-		}
-		public override void SaveData(TagCompound tag)
-		{
-			tag["MoonReaperUpgrade"] = MoonReaperUpgrade;
-		}
-		public override void LoadData(TagCompound tag)
-		{
-			MoonReaperUpgrade = tag.Get<bool>("MoonReaperUpgrade");
 		}
 	}
 }

@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
 {
 	public class ice_bullet : ModItem
 	{

@@ -12,6 +12,7 @@ using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using Terraria.ID;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using Terraria.ModLoader.IO;
 
 public class ReaperPlayer : ModPlayer
 {
@@ -20,6 +21,37 @@ public class ReaperPlayer : ModPlayer
     public static bool ReaperFirstTime;
     private static List<NPC> _hallucinationCandidates = new List<NPC>();
     public bool ReaperSoulBoost;
+    //public bool SlimeReaperUpgrade = false;
+    //public bool EyeReaperUpgrade = false;
+    //public bool CorruptReaperUpgrade = false;
+    //public bool BeeReaperUpgrade = false;
+    //public bool SkeletonReaperUpgrade = false;
+    //public bool DeerclopsReaperUpgrade = false;
+    //public bool DesertReaperUpgrade = false;
+    //public bool FleshReaperUpgrade = false;
+    //public bool FrozenReaperUpgrade = false;
+    //public bool QueenReaperUpgrade = false;
+    //public bool SpazmatismReaperUpgrade = false;
+    //public bool RetinazorReaperUpgrade = false;
+    //public bool SkeletronPrimeReaperUpgrade = false;
+    //public bool DestroyerReaperUpgrade = false;
+    //public bool PlantReaperUpgrade = false;
+    //public bool InfernalReaperUpgrade = false;
+    //public bool GolemReaperUpgrade = false;
+    //public bool EmpressReaperUpgrade = false;
+    //public bool DukeReaperUpgrade = false;
+    //public bool CultistReaperUpgrade = false;
+    //public bool MoonReaperUpgrade = false;
+
+    public List<bool> SoulsUpgrades = new List<bool>()
+    {
+        false,false,false,false,
+        false,false,false,false,
+        false,false,false,false,
+        false,false,false,false,
+        false,false,false,false,
+        false
+    };
     public override void ResetEffects()
     {
         ReaperSoulBoost = false;
@@ -29,6 +61,7 @@ public class ReaperPlayer : ModPlayer
     {
         FWeapons = true;
         ReaperGlobalItem.ReaperWingsNerf(player);
+
     }
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
     {
@@ -37,9 +70,90 @@ public class ReaperPlayer : ModPlayer
     }
     public override void UpdateEquips()
     {
-        if (Player.wingTimeMax > 4) ReaperGlobalItem.ReaperWingsNerf(Player);
-        //if(RemnantOfTheAncientsMod.DebuggMode) Debugg();
+        if (Player.wingTimeMax > 4) ReaperGlobalItem.ReaperWingsNerf(Player); 
     }
+    
+        //SoulsUpgrades[0] = SlimeReaperUpgrade;
+        //SoulsUpgrades[1] = EyeReaperUpgrade;
+        //SoulsUpgrades[2] = CorruptReaperUpgrade;
+        //SoulsUpgrades[3] = BeeReaperUpgrade;
+        //SoulsUpgrades[4] = SkeletonReaperUpgrade;
+        //SoulsUpgrades[5] = DeerclopsReaperUpgrade;
+        //SoulsUpgrades[6] = DesertReaperUpgrade;
+        //SoulsUpgrades[7] = FleshReaperUpgrade;
+        //SoulsUpgrades[8] = FrozenReaperUpgrade;
+        //SoulsUpgrades[9] = QueenReaperUpgrade;
+        //SoulsUpgrades[10] = SpazmatismReaperUpgrade;
+        //SoulsUpgrades[11] = RetinazorReaperUpgrade;
+        //SoulsUpgrades[12] = SkeletronPrimeReaperUpgrade;
+        //SoulsUpgrades[13] = DestroyerReaperUpgrade;
+        //SoulsUpgrades[14] = PlantReaperUpgrade;
+        //SoulsUpgrades[15] = InfernalReaperUpgrade;
+        //SoulsUpgrades[16] = GolemReaperUpgrade;
+        //SoulsUpgrades[17] = EmpressReaperUpgrade;
+        //SoulsUpgrades[18] = DukeReaperUpgrade;
+        //SoulsUpgrades[19] = CultistReaperUpgrade;
+        //SoulsUpgrades[20] = MoonReaperUpgrade;
+    
+    public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+    {  
+        ModPacket packet = Mod.GetPacket();
+        for (int i = 0; i < SoulsUpgrades.Count; i++)
+        {
+            packet.Write(SoulsUpgrades[i]);
+        }
+
+    }
+    public override void SaveData(TagCompound tag)
+    {
+        tag["SlimeReaperUpgrade"] = SoulsUpgrades[0];
+        tag["EyeReaperUpgrade"] = SoulsUpgrades[1];
+        tag["CorruptReaperUpgrade"] = SoulsUpgrades[2];
+        tag["BeeReaperUpgrade"] = SoulsUpgrades[3];
+        tag["SkeletonReaperUpgrade"] = SoulsUpgrades[4];
+        tag["DeerclopsReaperUpgrade"] = SoulsUpgrades[5];       
+        tag["DesertReaperUpgrade"] = SoulsUpgrades[6];
+        tag["FleshReaperUpgrade"] = SoulsUpgrades[7];
+        tag["FrozenReaperUpgrade"] = SoulsUpgrades[8];
+        tag["QueenReaperUpgrade"] = SoulsUpgrades[9];
+        tag["SpazmatismReaperUpgrade"] = SoulsUpgrades[10];
+        tag["RetinazorReaperUpgrade"] = SoulsUpgrades[11];
+        tag["SkeletronPrimeReaperUpgrade"] = SoulsUpgrades[12];
+        tag["DestroyerReaperUpgrade"] = SoulsUpgrades[13];
+        tag["PlantReaperUpgrade"] = SoulsUpgrades[14];
+        tag["InfernalReaperUpgrade"] = SoulsUpgrades[15];
+        tag["GolemReaperUpgrade"] = SoulsUpgrades[16];
+        tag["EmpressReaperUpgrade"] = SoulsUpgrades[17];
+        tag["DukeReaperUpgrade"] = SoulsUpgrades[18];
+        tag["CultistReaperUpgrade"] = SoulsUpgrades[19];
+        tag["MoonReaperUpgrade"] = SoulsUpgrades[20];
+
+    }
+    public override void LoadData(TagCompound tag)
+    {
+        SoulsUpgrades[0] = tag.Get<bool>("SlimeReaperUpgrade");
+        SoulsUpgrades[1] = tag.Get<bool>("EyeReaperUpgrade");
+        SoulsUpgrades[2] = tag.Get<bool>("CorruptReaperUpgrade");
+        SoulsUpgrades[3] = tag.Get<bool>("BeeReaperUpgrade");
+        SoulsUpgrades[4] = tag.Get<bool>("SkeletonReaperUpgrade");
+        SoulsUpgrades[5] = tag.Get<bool>("DeerclopsReaperUpgrade");
+        SoulsUpgrades[6] = tag.Get<bool>("DesertReaperUpgrade");
+        SoulsUpgrades[7] = tag.Get<bool>("FleshReaperUpgrade");
+        SoulsUpgrades[8] = tag.Get<bool>("FrozenReaperUpgrade");
+        SoulsUpgrades[9] = tag.Get<bool>("QueenReaperUpgrade");
+        SoulsUpgrades[10] = tag.Get<bool>("SpazmatismReaperUpgrade");
+        SoulsUpgrades[11] = tag.Get<bool>("RetinazorReaperUpgrade");
+        SoulsUpgrades[12] = tag.Get<bool>("SkeletronPrimeReaperUpgrade");
+        SoulsUpgrades[13] = tag.Get<bool>("DestroyerReaperUpgrade");
+        SoulsUpgrades[14] = tag.Get<bool>("PlantReaperUpgrade");
+        SoulsUpgrades[15] = tag.Get<bool>("InfernalReaperUpgrade");
+        SoulsUpgrades[16] = tag.Get<bool>("GolemReaperUpgrade");
+        SoulsUpgrades[17] = tag.Get<bool>("EmpressReaperUpgrade");
+        SoulsUpgrades[18] = tag.Get<bool>("DukeReaperUpgrade");
+        SoulsUpgrades[19] = tag.Get<bool>("CultistReaperUpgrade");
+        SoulsUpgrades[20] = tag.Get<bool>("MoonReaperUpgrade");
+    }
+
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
     {
         Player.respawnTimer *= (int)RespawnCalculator();
@@ -59,9 +173,9 @@ public class ReaperPlayer : ModPlayer
     }
     private float RespawnCalculator()
     {
-        bool DesertAnhilatorActivated = (GetInstance<ConfigClient>().ToggleDesertAnhilatorSoul && Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade) ? true : false;
+        bool DesertAnhilatorActivated = (GetInstance<ConfigClient>().ToggleDesertAnhilatorSoul && SoulsUpgrades[6]) ? true : false;
 
-        bool MoonlordRespawnActivated = (GetInstance<ConfigClient>().ToggleMoonlordSoul && Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade) ? true : false;
+        bool MoonlordRespawnActivated = (GetInstance<ConfigClient>().ToggleMoonlordSoul && SoulsUpgrades[20]) ? true : false;
 
         if (Reaper.ReaperMode)
         {
@@ -73,24 +187,24 @@ public class ReaperPlayer : ModPlayer
     }
     public void ReaperSoulsBoost()
     {
+        //UpdateSoulsList();
         float OgPlayerSpeed = Player.moveSpeed;
         if (Reaper.ReaperMode && ChaliceOn)
         {
-            if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade)
+            if (SoulsUpgrades[0])
             {
-
                 float speedForce = (GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul / 100) + 1;
                 Player.moveSpeed = ReaperSoulBoost ? OgPlayerSpeed + speedForce * 1.2f : OgPlayerSpeed + speedForce;
             }
-            if (Player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade && GetInstance<ConfigClient>().ToggleEyeOfChutuluSoul)
+            if (SoulsUpgrades[1] && GetInstance<ConfigClient>().ToggleEyeOfChutuluSoul)
             {
                 Player.statLifeMax2 += ReaperSoulBoost ? 20 : 10;
             }
-            if (Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade && GetInstance<ConfigClient>().ToggleCorruptSoul)
+            if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
             {
                 Player.lifeRegen += ReaperSoulBoost ? 10 : 5;
             }
-            if (Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade && GetInstance<ConfigClient>().ToggleQueenBeeSoul)
+            if (SoulsUpgrades[3] && GetInstance<ConfigClient>().ToggleQueenBeeSoul)
             {
                 Player.honey = true;
                 Player.strongBees = true;
@@ -103,19 +217,19 @@ public class ReaperPlayer : ModPlayer
                     Player.beeDamage(20);
                 }
             }
-            if (Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade && GetInstance<ConfigClient>().ToggleSkeletronSoul)
+            if (SoulsUpgrades[4] && GetInstance<ConfigClient>().ToggleSkeletronSoul)
             {
                 Player.statDefense += ReaperSoulBoost ? 10 : 5;
             }
-            if (Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade && GetInstance<ConfigClient>().ToggleWallOfFleshSoul)
+            if (SoulsUpgrades[7] && GetInstance<ConfigClient>().ToggleWallOfFleshSoul)
             {
                 Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
             }
-            if (Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade && GetInstance<ConfigClient>().ToggleFrozenAssaulterSoul) Player.GetModPlayer<RemnantPlayer>().FrostInmune();
-            if (Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade && GetInstance<ConfigClient>().ToggleQueenSlimeSoul) Player.statLifeMax2 += ReaperSoulBoost ? 30 : 15;
-            if (Player.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade && GetInstance<ConfigClient>().ToggleDestroyerSoul) Player.pickSpeed -= ReaperSoulBoost ? 0.7f : 0.35f;
-            if (Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade) Player.GetModPlayer<RemnantPlayer>().FirenInmune();
-            if (Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade)
+            if (SoulsUpgrades[8] && GetInstance<ConfigClient>().ToggleFrozenAssaulterSoul) Player.GetModPlayer<RemnantPlayer>().FrostInmune();
+            if (SoulsUpgrades[9] && GetInstance<ConfigClient>().ToggleQueenSlimeSoul) Player.statLifeMax2 += ReaperSoulBoost ? 30 : 15;
+            if (SoulsUpgrades[13] && GetInstance<ConfigClient>().ToggleDestroyerSoul) Player.pickSpeed -= ReaperSoulBoost ? 0.7f : 0.35f;
+            if (SoulsUpgrades[10]) Player.GetModPlayer<RemnantPlayer>().FirenInmune();
+            if (SoulsUpgrades[12])
             {
                 float JumpForce = GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
                 Player.findTreasure = true;
@@ -125,7 +239,7 @@ public class ReaperPlayer : ModPlayer
                 }
                 Player.jumpSpeedBoost += ReaperSoulBoost ? JumpForce * 2 : JumpForce;
             }
-            if (Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade && GetInstance<ConfigClient>().ToggleEmpressOfLightSoul)
+            if (SoulsUpgrades[17] && GetInstance<ConfigClient>().ToggleEmpressOfLightSoul)
             {
                 Player.empressBrooch = true;
                 if (ReaperSoulBoost)
@@ -134,15 +248,15 @@ public class ReaperPlayer : ModPlayer
                 }
             }
 
-            if (Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade && GetInstance<ConfigClient>().ToggleInfernalTyrantSoul)
+            if (SoulsUpgrades[15] && GetInstance<ConfigClient>().ToggleInfernalTyrantSoul)
             {
                 Player.fireWalk = true;
                 Player.lavaImmune = true;
                 Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
             }
-            if (Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade && GetInstance<ConfigClient>().ToggleGolemSoul) Player.statDefense += ReaperSoulBoost ? 15 : 10;
+            if (SoulsUpgrades[16] && GetInstance<ConfigClient>().ToggleGolemSoul) Player.statDefense += ReaperSoulBoost ? 15 : 10;
 
-            if (Reaper.ReaperMode && Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade && GetInstance<ConfigClient>().ToggleDukeFishronSoul)
+            if (Reaper.ReaperMode && SoulsUpgrades[18] && GetInstance<ConfigClient>().ToggleDukeFishronSoul)
             {
                 if (ReaperSoulBoost)
                 {
@@ -155,7 +269,7 @@ public class ReaperPlayer : ModPlayer
                     Player.aggro -= 400;
                 }
             }
-            if (Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade && GetInstance<ConfigClient>().ToggleLunaticCultistSoul)
+            if (SoulsUpgrades[19] && GetInstance<ConfigClient>().ToggleLunaticCultistSoul)
             {
                 if (ReaperSoulBoost)
                 {
@@ -173,13 +287,13 @@ public class ReaperPlayer : ModPlayer
     {
         if (Reaper.ReaperMode && ChaliceOn)
         {
-            if (Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade && GetInstance<ConfigClient>().TogglePlanteraSoul)
+            if (SoulsUpgrades[14] && GetInstance<ConfigClient>().TogglePlanteraSoul)
             {
                 Player.sporeSac = true;
                 Player.SporeSac(item);
                 Player.statLifeMax2 += ReaperSoulBoost ? 15 : 10;
             }
-            if (Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade && GetInstance<ConfigClient>().ToggleDearclopsSoul)
+            if (SoulsUpgrades[5] && GetInstance<ConfigClient>().ToggleDearclopsSoul)
             {
                 SpawnHallucination(item);
                 if (ReaperSoulBoost)
@@ -191,33 +305,11 @@ public class ReaperPlayer : ModPlayer
     }
     public bool AllSoulsAreActive()
     {
-        if (Player.GetModPlayer<SlimeReaperSoulPlayer>().SlimeReaperUpgrade &&
-            Player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade &&
-            Player.GetModPlayer<CorruptReaperSoulPlayer>().CorruptReaperUpgrade &&
-            Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade &&
-            Player.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade &&
-            Player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade &&
-            Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade &&
-            Player.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade &&
-            Player.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade &&
-            Player.GetModPlayer<QueenReaperSoulPlayer>().QueenReaperUpgrade &&
-            Player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade &&
-            Player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade &&
-            Player.GetModPlayer<DesertReaperSoulPlayer>().DesertReaperUpgrade &&
-            Player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade &&
-            Player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade &&
-            Player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade &&
-            Player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade &&
-            Player.GetModPlayer<InfernalReaperSoulPlayer>().InfernalReaperUpgrade &&
-            Player.GetModPlayer<DukeReaperSoulPlayer>().DukeReaperUpgrade &&
-            Player.GetModPlayer<CultistReaperSoulPlayer>().CultistReaperUpgrade &&
-            Player.GetModPlayer<MoonReaperSoulPlayer>().MoonReaperUpgrade)
+        for (int i = 0; i < SoulsUpgrades.Count; i++)
         {
-            return true;
+            if (!SoulsUpgrades[0]) return false;
         }
-        bool a = Player.GetModPlayer<BeeReaperSoulPlayer>().BeeReaperUpgrade;
-
-        return false;
+        return true;
     }
     private void SpawnHallucination(Item item)
     {

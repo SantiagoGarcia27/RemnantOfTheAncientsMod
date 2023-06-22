@@ -46,34 +46,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 
 		public override bool CanUseItem(Player player)
 		{
-
-			return !player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[14];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<PlantReaperSoulPlayer>().PlantReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[14] = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
 		{
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
-	}
-	public class PlantReaperSoulPlayer : ModPlayer
-	{
-		public bool PlantReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(PlantReaperUpgrade);
-		}
-		public override void SaveData(TagCompound tag)
-		{
-			tag["PlantReaperUpgrade"] = PlantReaperUpgrade;
-		}
-		public override void LoadData(TagCompound tag)
-		{
-			PlantReaperUpgrade = tag.Get<bool>("PlantReaperUpgrade");
-		}
-	}
+	}	
 }

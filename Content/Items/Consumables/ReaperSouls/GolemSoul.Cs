@@ -43,34 +43,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 
 		public override bool CanUseItem(Player player)
 		{
-
-			return !player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[16];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<GolemReaperSoulPlayer>().GolemReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[16] = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
 		{
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
-		}
-	}
-	public class GolemReaperSoulPlayer : ModPlayer
-	{
-		public bool GolemReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(GolemReaperUpgrade);
-		}
-		public override void SaveData(TagCompound tag)
-		{
-			tag["GolemReaperUpgrade"] = GolemReaperUpgrade;
-		}
-		public override void LoadData(TagCompound tag)
-		{
-			GolemReaperUpgrade = tag.Get<bool>("GolemReaperUpgrade");
 		}
 	}
 }

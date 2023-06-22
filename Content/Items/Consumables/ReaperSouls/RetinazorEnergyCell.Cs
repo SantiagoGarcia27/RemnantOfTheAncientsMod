@@ -48,29 +48,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[11];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[11] = true;
 			return true;
-		}
-	}
-	public class RetinazorReaperSoulPlayer : ModPlayer
-	{
-		public bool RetinazorReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(RetinazorReaperUpgrade);
-		}
-		public override void SaveData(TagCompound tag)
-		{
-			tag["RetinazorReaperUpgrade"] = RetinazorReaperUpgrade;
-		}
-		public override void LoadData(TagCompound tag)
-		{
-			RetinazorReaperUpgrade = tag.Get<bool>("RetinazorReaperUpgrade");
 		}
 	}
 }

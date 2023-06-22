@@ -45,19 +45,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 			Item.consumable = true;
 		}
 
-		public override bool CanUseItem(Player player) => !player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade;
+		public override bool CanUseItem(Player player) => !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[5];
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<DeerclopsReaperSoulPlayer>().DeerclopsReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[5] = true;
 			return true;
 		}
 		internal static Color GetRarityColor() => Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
-	}
-	public class DeerclopsReaperSoulPlayer : ModPlayer
-	{
-		public bool DeerclopsReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) => Mod.GetPacket().Write(DeerclopsReaperUpgrade);
-		public override void SaveData(TagCompound tag) => tag["DeerclopsReaperUpgrade"] = DeerclopsReaperUpgrade;
-		public override void LoadData(TagCompound tag) => DeerclopsReaperUpgrade = tag.Get<bool>("DeerclopsReaperUpgrade");
 	}
 }

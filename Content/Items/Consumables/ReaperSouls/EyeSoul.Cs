@@ -42,11 +42,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 		}
 		public override bool CanUseItem(Player player)
 		{
-			return !player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[1];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<EyeReaperSoulPlayer>().EyeReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[1] = true;
 			return true;
 		}
 		internal static Color GetRarityColor()
@@ -54,21 +54,5 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
 		}
 	}
-	public class EyeReaperSoulPlayer : ModPlayer
-	{
-		public bool EyeReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(EyeReaperUpgrade);
-		}
-		public override void SaveData(TagCompound tag)
-		{
-			tag["EyeReaperUpgrade"] = EyeReaperUpgrade;
-		}
-		public override void LoadData(TagCompound tag)
-		{
-			EyeReaperUpgrade = tag.Get<bool>("EyeeReaperUpgrade");
-		}
-	}
+
 }

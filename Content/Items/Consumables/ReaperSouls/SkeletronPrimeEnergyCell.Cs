@@ -48,29 +48,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[12];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<SkeletronPrimeReaperSoulPlayer>().SkeletronPrimeReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[12] = true;
 			return true;
-		}
-	}
-	public class SkeletronPrimeReaperSoulPlayer : ModPlayer
-	{
-		public bool SkeletronPrimeReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(SkeletronPrimeReaperUpgrade);
-		}
-		public override void SaveData(TagCompound tag)
-		{
-			tag["SkeletronPrimeReaperUpgrade"] = SkeletronPrimeReaperUpgrade;
-		}
-		public override void LoadData(TagCompound tag)
-		{
-			SkeletronPrimeReaperUpgrade = tag.Get<bool>("SkeletronPrimeReaperUpgrade");
 		}
 	}
 }

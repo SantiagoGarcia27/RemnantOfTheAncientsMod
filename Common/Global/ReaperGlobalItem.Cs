@@ -98,7 +98,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				if (player.wingTimeMax >= 4)
 				{
 					OgWingTime = player.wingTimeMax;
-					if (!player.GetModPlayer<RetinazorReaperSoulPlayer>().RetinazorReaperUpgrade || !player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade) player.wingTimeMax = OgWingTime / 2;
+					if (!player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[11] || !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[17]) player.wingTimeMax = OgWingTime / 2;
 					else player.wingTimeMax = OgWingTime;
 				}
 			}

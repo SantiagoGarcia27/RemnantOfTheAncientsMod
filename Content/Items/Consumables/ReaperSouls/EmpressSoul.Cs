@@ -43,21 +43,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 
 		public override bool CanUseItem(Player player)
 		{
-
-			return !player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[17];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<EmpressReaperSoulPlayer>().EmpressReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[17] = true;
 			return true;
 		}
 		internal static Color GetRarityColor() => Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
-	}
-	public class EmpressReaperSoulPlayer : ModPlayer
-	{
-		public bool EmpressReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) => Mod.GetPacket().Write(EmpressReaperUpgrade);
-		public override void SaveData(TagCompound tag) => tag["EmpressReaperUpgrade"] = EmpressReaperUpgrade;
-		public override void LoadData(TagCompound tag) => EmpressReaperUpgrade = tag.Get<bool>("EmpressReaperUpgrade");
 	}
 }

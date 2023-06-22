@@ -47,29 +47,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 		public override bool CanUseItem(Player player)
 		{
 
-			return !player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade;
+			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[10];
 		}
 		public override bool? UseItem(Player player)
 		{
-			player.GetModPlayer<SpazmatismReaperSoulPlayer>().SpazmatismReaperUpgrade = true;
+			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[10] = true;
 			return true;
-		}
-	}
-	public class SpazmatismReaperSoulPlayer : ModPlayer
-	{
-		public bool SpazmatismReaperUpgrade = false;
-		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-		{
-			ModPacket packet = Mod.GetPacket();
-			packet.Write(SpazmatismReaperUpgrade);
-		}
-		public override void SaveData(TagCompound tag)
-		{
-			tag["SpazmatismReaperUpgrade"] = SpazmatismReaperUpgrade;
-		}
-		public override void LoadData(TagCompound tag)
-		{
-			SpazmatismReaperUpgrade = tag.Get<bool>("SpazmatismReaperUpgrade");
 		}
 	}
 }
