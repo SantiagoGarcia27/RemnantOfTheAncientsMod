@@ -688,9 +688,9 @@ public class ReaperGlobalNpc : GlobalNPC
             -1,
             1,
             16,
-            59,
             71,
             81,
+            121,
             138,
             147,
             183,
@@ -731,15 +731,18 @@ public class ReaperGlobalNpc : GlobalNPC
             {
                 if (npc.life <= 0)
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    if (Main.rand.NextBool(4))
                     {
-                        Main.player[Main.myPlayer].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
-                        Main.player[Main.myPlayer].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
-                    }
-                    else
-                    {
-                        Main.player[npc.target].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
-                        Main.player[npc.target].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            Main.player[Main.myPlayer].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
+                            Main.player[Main.myPlayer].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                        }
+                        else
+                        {
+                            Main.player[npc.target].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
+                            Main.player[npc.target].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                        }
                     }
                 }
             }

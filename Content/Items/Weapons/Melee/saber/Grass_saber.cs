@@ -35,7 +35,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.scale = 1.28f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-             Item.GetGlobalItem<CustomTooltip>().Saber = true;
+            Item.scale = 1;
+            Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{

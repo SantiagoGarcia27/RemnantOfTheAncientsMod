@@ -8,98 +8,103 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Drops
 {
     public class BossBags : GlobalItem
     {
-        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        public override void RightClick(Item item, Player player)
         {
+            int commonScroll = Utils1.GetReaperNumber(5, 1);
+            int SkeletronScroll = Utils1.GetReaperNumber(2, 1);
             switch (item.type)
             {
                 case ItemID.KingSlimeBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemType<KingSlimeScroll>(), 5));
-                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
-                    //itemLoot.Add(ItemDropRule.ByCondition(new SlimeReaperSoulRule(), ItemType<KingSoul>()));
+                    Utils1.DroppItem(player,item,ItemType<KingSlimeScroll>(),1, commonScroll);
                     break;
                 case ItemID.EyeOfCthulhuBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemType<EyeOfCthulhuScroll>(), 5));
-                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
-                    //itemLoot.Add(ItemDropRule.ByCondition(new EyeOfChutuluReaperSoulRule(), ItemType<EyeSoul>()));
+                    Utils1.DroppItem(player, item, ItemType<EyeOfCthulhuScroll>(), 1, commonScroll);
                     break;
                 case ItemID.EaterOfWorldsBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemType<EaterOfWorldsScroll>(), 5));
-                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
-                    //itemLoot.Add(ItemDropRule.ByCondition(new CorruptReaperSoulRule(), ItemType<CorruptSoul>()));
+                    Utils1.DroppItem(player, item, ItemType<EaterOfWorldsScroll>(), 1, commonScroll);
                     break;
                 case ItemID.BrainOfCthulhuBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemType<BrainOfCthulhuScroll>(), 5));
+                    Utils1.DroppItem(player, item, ItemType<BrainOfCthulhuScroll>(), 1, commonScroll);
+                    break;
+                case ItemID.QueenBeeBossBag:
+                    Utils1.DroppItem(player, item, ItemType<QueenBeeScroll>(), 1, commonScroll);
+                    break;
+                case ItemID.SkeletronBossBag:
+                    Utils1.DroppItem(player, item, ItemType<SkeletronScroll>(), 1,SkeletronScroll);
+                    break;
+                case ItemID.WallOfFleshBossBag:
+                    Utils1.DroppItem(player, item, ItemType<WallOfFleshScroll>(), 1, commonScroll);
+                    break;
+
+            }
+            base.RightClick(item, player);
+        }
+
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+           
+            switch (item.type)
+            {         
+                case ItemID.KingSlimeBossBag: 
+                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
+                    break;
+                case ItemID.EyeOfCthulhuBossBag:       
+                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
+                    break;
+                case ItemID.EaterOfWorldsBossBag:                    
+                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
+                    break;
+                case ItemID.BrainOfCthulhuBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss3, 7));
-                  //  itemLoot.Add(ItemDropRule.ByCondition(new CorruptReaperSoulRule(), ItemType<CorruptSoul>()));
                     break;
                 case ItemID.QueenBeeBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss5, 7));
-                    itemLoot.Add(ItemDropRule.Common(ItemType<QueenBeeScroll>(), 5));
-                  //  itemLoot.Add(ItemDropRule.ByCondition(new QueenBeeReaperSoulRule(), ItemType<BeeSoul>()));
                     break;
                 case ItemID.SkeletronBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemType<SkeletronScroll>(), 5));
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
-                  //  itemLoot.Add(ItemDropRule.ByCondition(new SkeletronReaperSoulRule(), ItemType<SkeletonSoul>()));
                     break;
                 case ItemID.DeerclopsBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxDeerclops, 7));
-                    //itemLoot.Add(ItemDropRule.Common(ItemType<DeerclopsScroll>(), 5));
-                  //  itemLoot.Add(ItemDropRule.ByCondition(new DeerclopsReaperSoulRule(), ItemType<DeerclopsSoul>()));
                     break;
                 case ItemID.WallOfFleshBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemType<WallOfFleshScroll>(), 5));
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss2, 7));
-                    //itemLoot.Add(ItemDropRule.ByCondition(new WallOfFLeshReaperSoulRule(), ItemType<FleshSoul>()));
                     break;
                 case ItemID.QueenSlimeBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxQueenSlime, 7));
-                    itemLoot.Add(ItemDropRule.Common(ItemType<QueenSlimeScroll>(), 5));
-                    //itemLoot.Add(ItemDropRule.ByCondition(new QueenSlimeReaperSoulRule(), ItemType<QueenSoul>()));
                     break;
                 case ItemID.TwinsBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss2, 7));
-                    itemLoot.Add(ItemDropRule.ByCondition(new RetinazorReaperSoulRule(), ItemType<RetinazorEnergyCell>()));
-                    //itemLoot.Add(ItemDropRule.ByCondition(new SpazmatismReaperSoulRule(), ItemType<SpazmatismEnergyCell>()));
+                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss2, 7)); 
                     break;
                 case ItemID.SkeletronPrimeBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
-                  //  itemLoot.Add(ItemDropRule.ByCondition(new SkeletronPrimeReaperSoulRule(), ItemType<SkeletronPrimeEnergyCell>()));
+                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));     
                     break;
                 case ItemID.DestroyerBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss3, 7));
-                    //itemLoot.Add(ItemDropRule.ByCondition(new DestroyerReaperSoulRule(), ItemType<DestroyerEnergyCell>()));
+                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss3, 7));            
                     itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<MechanicalPersonalLifeSafeSystem>()));
                     break;
                 case ItemID.PlanteraBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxPlantera, 7));
-                   // itemLoot.Add(ItemDropRule.ByCondition(new PlanteraReaperSoulRule(), ItemType<PlantSoul>()));
                     break;
                 case ItemID.FairyQueenBossBag:
-                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxEmpressOfLight, 7));
-                    //itemLoot.Add(ItemDropRule.Common(ItemType<EmpressOfLightScroll>(), 5));
-                   // itemLoot.Add(ItemDropRule.ByCondition(new EmpressOfLightReaperSoulRule(), ItemType<EmpressSoul>()));
+                    itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxEmpressOfLight, 7));           
                     break;
                 case ItemID.GolemBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss4, 7));
-                   // itemLoot.Add(ItemDropRule.ByCondition(new GolemReaperSoulRule(), ItemType<GolemSoul>()));
                     break;
                 case ItemID.FishronBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxDukeFishron, 7));
-                  //  itemLoot.Add(ItemDropRule.ByCondition(new DukeFishronReaperSoulRule(), ItemType<FishSoul>()));
                     break;
                 case ItemID.CultistBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss4, 7));
-                //    itemLoot.Add(ItemDropRule.ByCondition(new LunaticCultistReaperSoulRule(), ItemType<CultistSoul>()));
                     break;
                 case ItemID.MoonLordBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxLunarBoss, 7));
-                  //  itemLoot.Add(ItemDropRule.ByCondition(new MoonLordReaperSoulRule(), ItemType<MoonSoul>()));
                     break;
             }
         }

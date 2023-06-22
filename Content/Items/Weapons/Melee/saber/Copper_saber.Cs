@@ -31,6 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.rare = Base.rare;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
+            Item.scale = 1;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override bool AltFunctionUse(Player player) => true;

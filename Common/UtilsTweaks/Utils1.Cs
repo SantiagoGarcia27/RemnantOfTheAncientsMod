@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
@@ -88,6 +89,20 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             else if (x == 2) return new Color(212, 210, 210);//191,187,187
             else return new Color(255, 255, 255);
             //return color;
+        }
+        public static void DroppItem(Player player,Item item,int drop,int numerator, int denominator)
+        {
+            int choice = Main.rand.Next(denominator);
+            if (choice == 0) choice++; 
+            if (choice == numerator) player.QuickSpawnItem(item.GetSource_DropAsItem(), drop, 1);
+        }
+        public static int GetReaperNumber(int common, int reaper)
+        {
+            if (Reaper.ReaperMode)
+            {
+                return reaper;
+            }
+            return common;
         }
         public static Rectangle GetCurrentFrame(Item item, ref int frame, ref int frameCounter, int frameDelay, int frameAmt, bool frameCounterUp = true)
         {

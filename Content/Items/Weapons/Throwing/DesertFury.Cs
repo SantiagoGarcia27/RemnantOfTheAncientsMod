@@ -8,13 +8,14 @@ using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
 {
     public class DesertFury : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
+    {
+        public override void SetStaticDefaults()
+        {
             string textEn = RemnantOfTheAncientsMod.CalamityMod != null ? "\nStealth Strike fires two more copies of the spear" : "";
             string textEs = RemnantOfTheAncientsMod.CalamityMod != null ? "\nEl ataque con sigilo hace un diparo triple" : "";
             string textFr = RemnantOfTheAncientsMod.CalamityMod != null ? "\nStealth Strike tire deux autres copies de la lance" : "";
@@ -22,45 +23,45 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
             DisplayName.SetDefault("Desert Fury");
             Tooltip.SetDefault("The power of the earth will indulge in this weapon." + textEn);
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"fureur du désert");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "fureur du désert");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La puissance de la terre se livrera à cette arme" + textFr);
 
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Furia desertica");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"El poder de la tierra se consentra en este arma" + textEs);
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Furia desertica");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El poder de la tierra se consentra en este arma" + textEs);
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
-		public override void SetDefaults()
-		{ 
-	        Item.damage = 210;
+        public override void SetDefaults()
+        {
+            Item.damage = 210;
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 SetDefaultCalamity();
             }
-            else Item.DamageType = DamageClass.Throwing;       
+            else Item.DamageType = DamageClass.Throwing;
             Item.noMelee = true;
             Item.width = 20;
             Item.height = 20;
-            Item.useTime = 20;       
-            Item.useAnimation = 20;   
-            Item.useStyle = ItemUseStyleID.Swing;      
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 6;
-            Item.value = Item.sellPrice(silver:1100);
+            Item.value = Item.sellPrice(silver: 1100);
             Item.rare = ItemRarityID.Cyan;
-            Item.reuseDelay = 20;   
+            Item.reuseDelay = 20;
             Item.UseSound = SoundID.Item18;
             Item.autoReuse = true;
-	        Item.shoot = ModContent.ProjectileType<DesertFuryP>();
-            Item.shootSpeed = 28f;     
+            Item.shoot = ModContent.ProjectileType<DesertFuryP>();
+            Item.shootSpeed = 28f;
             Item.useTurn = true;
-            Item.maxStack = 1;     
-            Item.consumable = false; 
+            Item.maxStack = 1;
+            Item.consumable = false;
             Item.noUseGraphic = true;
-		}
+        }
         [JITWhenModsEnabled("CalamityMod")]
         public void SetDefaultCalamity()
         {
-            Item.DamageType = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod,"RogueDamageClass");
+            Item.DamageType = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
         }
         [JITWhenModsEnabled("CalamityMod")]
         private void StealStrike(Player player, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -84,6 +85,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
         {
             if (RemnantOfTheAncientsMod.CalamityMod != null) StealStrike(player, position, velocity, type, damage, knockback);
             return true;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ModContent.ItemType<Neutrum_Fragment>(),18)
+            .AddTile(TileID.LunarCraftingStation)
+            .Register();
         }
     }
 }

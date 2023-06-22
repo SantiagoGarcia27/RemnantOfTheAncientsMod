@@ -29,6 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             Item.knockBack += 5;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
+            Item.scale = 1;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;
 
         }

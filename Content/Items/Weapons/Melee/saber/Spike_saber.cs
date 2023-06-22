@@ -35,7 +35,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.scale = 1.60f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+            Item.scale = 1;
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
 			{
 				if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<InfernalSpike_f>();
 			}
