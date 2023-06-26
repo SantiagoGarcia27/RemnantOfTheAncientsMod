@@ -77,7 +77,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		{
             CreateRecipe()
              .AddIngredient(ItemID.Daybloom, 10)
-             .AddIngredient(ItemID.Star, 1)
+             .AddIngredient(ItemID.FallenStar, 1)
              .AddTile(TileID.Anvils)
              .Register();
         }

@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 		{
 			DisplayName.SetDefault("King Slime Soul");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "King Slime Soul");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rey Slime Soul");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma del Rey Slime");
 			Tooltip.SetDefault("30% increased movement speed");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "30% d'augmentation de la vitesse de déplacement");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Velocidad de movimiento en 30%");

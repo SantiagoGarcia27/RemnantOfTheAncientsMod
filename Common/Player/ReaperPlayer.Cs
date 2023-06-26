@@ -13,6 +13,7 @@ using Terraria.ID;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using Terraria.ModLoader.IO;
+using Microsoft.Xna.Framework;
 
 public class ReaperPlayer : ModPlayer
 {
@@ -70,33 +71,33 @@ public class ReaperPlayer : ModPlayer
     }
     public override void UpdateEquips()
     {
-        if (Player.wingTimeMax > 4) ReaperGlobalItem.ReaperWingsNerf(Player); 
+        if (Player.wingTimeMax > 4) ReaperGlobalItem.ReaperWingsNerf(Player);
     }
-    
-        //SoulsUpgrades[0] = SlimeReaperUpgrade;
-        //SoulsUpgrades[1] = EyeReaperUpgrade;
-        //SoulsUpgrades[2] = CorruptReaperUpgrade;
-        //SoulsUpgrades[3] = BeeReaperUpgrade;
-        //SoulsUpgrades[4] = SkeletonReaperUpgrade;
-        //SoulsUpgrades[5] = DeerclopsReaperUpgrade;
-        //SoulsUpgrades[6] = DesertReaperUpgrade;
-        //SoulsUpgrades[7] = FleshReaperUpgrade;
-        //SoulsUpgrades[8] = FrozenReaperUpgrade;
-        //SoulsUpgrades[9] = QueenReaperUpgrade;
-        //SoulsUpgrades[10] = SpazmatismReaperUpgrade;
-        //SoulsUpgrades[11] = RetinazorReaperUpgrade;
-        //SoulsUpgrades[12] = SkeletronPrimeReaperUpgrade;
-        //SoulsUpgrades[13] = DestroyerReaperUpgrade;
-        //SoulsUpgrades[14] = PlantReaperUpgrade;
-        //SoulsUpgrades[15] = InfernalReaperUpgrade;
-        //SoulsUpgrades[16] = GolemReaperUpgrade;
-        //SoulsUpgrades[17] = EmpressReaperUpgrade;
-        //SoulsUpgrades[18] = DukeReaperUpgrade;
-        //SoulsUpgrades[19] = CultistReaperUpgrade;
-        //SoulsUpgrades[20] = MoonReaperUpgrade;
-    
+
+    //SoulsUpgrades[0] = SlimeReaperUpgrade;
+    //SoulsUpgrades[1] = EyeReaperUpgrade;
+    //SoulsUpgrades[2] = CorruptReaperUpgrade;
+    //SoulsUpgrades[3] = BeeReaperUpgrade;
+    //SoulsUpgrades[4] = SkeletonReaperUpgrade;
+    //SoulsUpgrades[5] = DeerclopsReaperUpgrade;
+    //SoulsUpgrades[6] = DesertReaperUpgrade;
+    //SoulsUpgrades[7] = FleshReaperUpgrade;
+    //SoulsUpgrades[8] = FrozenReaperUpgrade;
+    //SoulsUpgrades[9] = QueenReaperUpgrade;
+    //SoulsUpgrades[10] = SpazmatismReaperUpgrade;
+    //SoulsUpgrades[11] = RetinazorReaperUpgrade;
+    //SoulsUpgrades[12] = SkeletronPrimeReaperUpgrade;
+    //SoulsUpgrades[13] = DestroyerReaperUpgrade;
+    //SoulsUpgrades[14] = PlantReaperUpgrade;
+    //SoulsUpgrades[15] = InfernalReaperUpgrade;
+    //SoulsUpgrades[16] = GolemReaperUpgrade;
+    //SoulsUpgrades[17] = EmpressReaperUpgrade;
+    //SoulsUpgrades[18] = DukeReaperUpgrade;
+    //SoulsUpgrades[19] = CultistReaperUpgrade;
+    //SoulsUpgrades[20] = MoonReaperUpgrade;
+
     public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-    {  
+    {
         ModPacket packet = Mod.GetPacket();
         for (int i = 0; i < SoulsUpgrades.Count; i++)
         {
@@ -111,7 +112,7 @@ public class ReaperPlayer : ModPlayer
         tag["CorruptReaperUpgrade"] = SoulsUpgrades[2];
         tag["BeeReaperUpgrade"] = SoulsUpgrades[3];
         tag["SkeletonReaperUpgrade"] = SoulsUpgrades[4];
-        tag["DeerclopsReaperUpgrade"] = SoulsUpgrades[5];       
+        tag["DeerclopsReaperUpgrade"] = SoulsUpgrades[5];
         tag["DesertReaperUpgrade"] = SoulsUpgrades[6];
         tag["FleshReaperUpgrade"] = SoulsUpgrades[7];
         tag["FrozenReaperUpgrade"] = SoulsUpgrades[8];
@@ -184,6 +185,49 @@ public class ReaperPlayer : ModPlayer
             else if (DesertAnhilatorActivated && MoonlordRespawnActivated) return ReaperSoulBoost ? 0.3f : 0.5f;
         }
         return 1;
+    }
+    public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
+    {
+        if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
+        {
+            if (Main.rand.NextBool(4))
+            {
+                Player.SetImmuneTimeForAllTypes(120);
+              //  Player.shadowDodge = true;
+                Player.BrainOfConfusionDodge();
+                Dust.QuickDust(Player.position, Color.Gray);
+
+                return false;
+            }
+            else
+            {
+                return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource, ref cooldownCounter);
+            }
+        }
+        else
+        {
+            return base.PreHurt(pvp, quiet, ref damage, ref hitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource, ref cooldownCounter);
+        }
+    }
+    public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+    {
+        if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
+        {
+            if (Main.rand.NextBool(1))
+            {
+                Player.SetImmuneTimeForAllTypes(120);
+                Player.shadowDodge= true;
+                Player.BrainOfConfusionDodge();
+                Dust.QuickDust(Player.position, Color.Gray);
+
+                return;
+            }
+            else
+            {
+                base.Hurt(pvp, quiet, damage, hitDirection, crit, cooldownCounter);
+            }
+        }
+
     }
     public void ReaperSoulsBoost()
     {
@@ -260,7 +304,7 @@ public class ReaperPlayer : ModPlayer
             {
                 if (ReaperSoulBoost)
                 {
-                  Player.GetModPlayer<RemnantPlayer>().AddMinion(ProjectileType<TempestClone>(), 280, 10f);
+                    Player.GetModPlayer<RemnantPlayer>().AddMinion(ProjectileType<TempestClone>(), 280, 10f);
                     Player.aggro -= 2400;
                 }
                 else
@@ -287,6 +331,11 @@ public class ReaperPlayer : ModPlayer
     {
         if (Reaper.ReaperMode && ChaliceOn)
         {
+            if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
+            {
+
+                Player.brainOfConfusionItem = item;
+            }
             if (SoulsUpgrades[14] && GetInstance<ConfigClient>().TogglePlanteraSoul)
             {
                 Player.sporeSac = true;

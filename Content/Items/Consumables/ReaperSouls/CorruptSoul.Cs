@@ -19,9 +19,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 			DisplayName.SetDefault("Corrupt Soul");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme Âme corrompue");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma Corrupta");
-			Tooltip.SetDefault("increases life regen");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "augmente la régénération de vie");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta la regeneración de vida");
+			Tooltip.SetDefault("Increases life regen and give 25% chance to dogue");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la régénération de vie et donne 25% de chance de dogue");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la regeneración de vida y otorga un 25% de posibilidad de esquivar");
 
 			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/

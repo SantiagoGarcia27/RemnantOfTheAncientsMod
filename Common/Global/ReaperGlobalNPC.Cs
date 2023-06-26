@@ -84,7 +84,7 @@ public class ReaperGlobalNpc : GlobalNPC
         {
             if (npc.type == NPCID.SkeletronHead)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     NPC.SpawnOnPlayer(Main.player[npc.target].whoAmI, NPCID.SkeletronHand);
                 }
