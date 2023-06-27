@@ -15,9 +15,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 			DisplayName.SetDefault("Optic Scroll");
 			Tooltip.SetDefault("Increases your jump, cancels fall damage and gain the ability to dash");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Défilement optique");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "augmentez votre saut, annulez les dégâts de chute et gagnez un tiret");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentez votre saut, annulez les dégâts de chute et gagnez un tiret");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino óptico");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "aumenta tu salto, anula daño por caída y ganas un dash");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta tu salto, anula daño por caída y ganas un dash");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

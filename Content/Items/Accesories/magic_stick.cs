@@ -1,8 +1,9 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -11,16 +12,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Magic Stick");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton Magique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Palo Mágico");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "BÃ¢ton magique");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Palo MÃ¡gico");
 
-            Tooltip.SetDefault("10% increased magic damage");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 10%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 10%");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault(tooltip());
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(10, DamageClass.Magic);
+        }
         public override void SetDefaults()
         {
             Item.width = 10;

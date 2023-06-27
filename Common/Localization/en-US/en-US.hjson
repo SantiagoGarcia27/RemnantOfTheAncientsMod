@@ -120,6 +120,7 @@ Mods:
 			IncreasedGenericCritAndDamage:"{0}% increased damage and critical strike chance"
 			IncreasedGenericCritAndDamage:"{0}% increased {1} damage and critical strike chance"
 			IncreasedMovementSpeed:"{0}% increased movement speed"
+			DecreasedMovementSpeed:"{0}% decreased movement speed"
 			IncreasedManaMax:"Increases maximum mana by {0}"
 			IncreasedLifeMax:"Increases maximum life by {0}"
 			IncreasedLifeMaxPercent:"Increases maximum life by {0}%"

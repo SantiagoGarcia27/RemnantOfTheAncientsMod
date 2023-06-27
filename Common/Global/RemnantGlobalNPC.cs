@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Dusts;
+using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
@@ -97,21 +98,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
         public override void DrawEffects(NPC NPC, ref Color drawColor)
 		{
-			int type = DustType<PlaceHolder>(); 
+			int type = DustType<PlaceHolder>();
+			int torchColor = 0;
 			if (Burn_Sand)
 			{
 				type = DustType<QuemaduraA>();
-			}
+				torchColor = TorchID.Desert;
+            }
 			if (Hell_Fire)
 			{
                 type = DustType<Hell_Fire_P>();
+                torchColor = TorchID.Torch;
             }
 			if (hBurn)
 			{
                 type = DustType<HollyBurn_P>();
+                torchColor = TorchID.White;
             }
 
-            if (Main.rand.Next(4) < 3)
+            if (Main.rand.Next(4) < 3 && type != DustType<PlaceHolder>())
             {
                 int dust = Dust.NewDust(NPC.position - new Vector2(2f, 2f), NPC.width + 4, NPC.height + 4, type, NPC.velocity.X * 0.4f, NPC.velocity.Y * 0.4f, 100, default(Color), 3.5f);
                 Main.dust[dust].noGravity = true;
@@ -122,8 +127,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                     Main.dust[dust].noGravity = false;
                     Main.dust[dust].scale *= 0.5f;
                 }
-            }
-            Lighting.AddLight(NPC.position, 0.1f, 0.2f, 0.7f);
+                Lighting.AddLight(NPC.position, torchColor);
+            }      
         }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
 		{

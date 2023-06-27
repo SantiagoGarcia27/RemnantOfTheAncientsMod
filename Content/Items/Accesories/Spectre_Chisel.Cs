@@ -1,4 +1,4 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
@@ -14,18 +14,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Spectre Chisel");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cincel espectral");
             Tooltip.SetDefault("Increases mining speed by 45%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de minage de 45 %");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de minage de 45%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de minado en un 45%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 10;
-            Item.height = 14;
-            Item.value = new Item(ItemID.SpectrePaintbrush).value;
-            Item.rare = new Item(ItemID.SpectrePaintbrush).rare;
-            Item.accessory = true;
+            Item.CloneDefaults(ItemID.AncientChisel);
+            Item.value = Item.sellPrice(0,1,0,0);
+            Item.rare = ItemRarityID.Yellow;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

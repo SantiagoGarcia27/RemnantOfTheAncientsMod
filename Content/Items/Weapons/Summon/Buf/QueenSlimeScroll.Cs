@@ -13,13 +13,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Queen Scroll");
-            Tooltip.SetDefault("50% increases movement speed and minion damage by 5%, increase your max number of minions by 1 and increases your max life by 20%");
+            Tooltip.SetDefault("50% increases player movement speed and minion damage by 5%," +
+                "\n increase your max number of minions by 1 and increases your max life by 20%");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin royal");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente votre vie max de 50 %");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "50% augmente la vitesse de déplacement du joueur et les dégâts des sbires de 5%," +
+                "\n augmentez votre nombre maximum de sbires de 1 et augmentez votre vie maximum de 20 %");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de la reina");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de movimiento en un 50%."
-                            + "\n Aumentael daño de los súbditos en un 5%, aumenta tu minion máximo en 1"
-                            + "\n Aumenta la vida maxima un 20%");
+                            + "\nAumentael daño de los súbditos en un 5%, aumenta tu minion máximo en 1"
+                            + "\nAumenta la vida maxima un 20%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
@@ -17,14 +17,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 		{
 			DisplayName.SetDefault("Sacred Flower Staff");
 			Tooltip.SetDefault("Summons a sacred flower to protect you, " +
-               "\nnearby players can gain a happiness buff,10 of defense,5% damage and heal if they are in its radius");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Báculo de flor sacra");
+			   "\nnearby players can gain a happiness buff,10 of defense,5% damage and heal if they are in its radius");
+
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton de la fleur sacrée");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque une fleur sacrée pour vous protéger" +
-                "\nles joueurs à proximité peuvent gagner un buff de bonheur, 10 de défense, 5% de dégâts et soigner s'ils se trouvent dans son rayon");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bâton de la fleur sacrée");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca una flor sacra para protegerte" +
-                "\nlos jugadores cercanos del obtienen un beneficio de Felicidad,10 de defensa,5% de daño y pueden curarse si están en su radio");
-            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
+				"\nles joueurs à proximité peuvent gagner un buff de bonheur, 10 de défense, 5% de dégâts et soigner s'ils se trouvent dans son rayon");
+
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo de flor sacra");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca una flor sacra para protegerte" +
+				"\nlos jugadores cercanos del obtienen un beneficio de Felicidad,10 de defensa,5% de daño y pueden curarse si están en su radio");
+			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

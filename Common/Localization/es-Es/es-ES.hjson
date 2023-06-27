@@ -129,6 +129,7 @@
 			IncreasedGenericCritAndDamage:"+{0}% daño y probabilidad de golpe crítico"
 			IncreasedGenericCritAndDamage:"+{0}% daño y probabilidad de golpe crítico {1}"
 			IncreasedMovementSpeed:"Aumenta un {0}% la velocidad de movimiento"
+			DecreasedMovementSpeed:"Disminuye un {0}% la velocidad de movimiento"
 			IncreasedManaMax:"Aumenta el maná en {0}"
 			IncreasedLifeMax:"Aumenta la vida máxima en {0}"
 			IncreasedLifeMaxPercent:"Aumenta la vida máxima en {0}%"

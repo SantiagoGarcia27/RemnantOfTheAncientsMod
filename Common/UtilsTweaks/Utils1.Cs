@@ -225,7 +225,14 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static string IncreasedMovmentSpeedTooltip(int amount)
         {
-            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMovementSpeed", amount);
+            if (amount > 0)
+            {
+                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMovementSpeed", amount);
+            }
+            else
+            {              
+                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.DecreasedMovementSpeed", -amount);
+            }
         }
        
         

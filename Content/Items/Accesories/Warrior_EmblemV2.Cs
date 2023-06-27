@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -13,10 +14,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             DisplayName.SetDefault("Warrior Emblem V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Guerrier V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Guerrero V2");
-            Tooltip.SetDefault("Increases melee damage by 25%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de mêlée de 25%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño cuerpo a cuerpo en un 25% ");
+            Tooltip.SetDefault(tooltip());
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(25, DamageClass.Melee);
         }
 
         public override void SetDefaults()

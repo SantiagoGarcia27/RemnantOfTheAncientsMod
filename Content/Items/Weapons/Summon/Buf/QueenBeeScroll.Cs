@@ -14,18 +14,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		{
 			DisplayName.SetDefault("Hive Scroll");
 			Tooltip.SetDefault("You gain the honey effect, your defense increases by 5"
-			+ "\n Releases bees when damaged and increases the strength of friendly bees"
-			+ "\n Increases armor penetration by 15”");
+			+ "\nReleases bees when damaged and increases the strength of friendly bees"
+			+ "\nIncreases armor penetration by 15”");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin de la Ruche");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "vous gagnez l'effet miel, votre défense augmente de 5 "
-					   + "\n Libère les abeilles lorsqu'elles sont endommagées et augmente la force des abeilles amicales"
-					   + "\n augmente la pénétration de l'armure de 15");
+					   + "\nLibère les abeilles lorsqu'elles sont endommagées et augmente la force des abeilles amicales"
+					   + "\naugmente la pénétration de l'armure de 15");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de la colmena");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "obtienes el efecto miel, tu defensa aumenta en 5 "
-			+ "\n Libera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas"
-			+ "\n aumenta la penetración de armadura en 15");
+			+ "\nLibera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas"
+			+ "\naumenta la penetración de armadura en 15");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

@@ -15,12 +15,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Legion");
-            Tooltip.SetDefault("Increases the summon damage by 25% "
-            + "\n+5 minions"
+            Tooltip.SetDefault( tooltip()
             + "\nMany thanks to:"
             + "\n S-Pladison   -NKSHV  -perrogalan"
             + "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(9, 8));
+        }
+        public string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(25, DamageClass.Summon)
+                + "\n" + Utils1.IncreasedMinionTooltip(5);
+
         }
         internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);
         public override void SetDefaults()

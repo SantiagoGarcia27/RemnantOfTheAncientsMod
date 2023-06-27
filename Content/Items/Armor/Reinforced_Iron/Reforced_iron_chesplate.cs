@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
@@ -15,15 +16,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 			DisplayName.SetDefault("Reinforced Iron Breastplate");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cuirasse en fer renforcé");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Corasa de hierro reforzada");
-            Tooltip.SetDefault("Increases damage reduction by 10%"
-            + "\nDecrease the maximum speed by 1/4");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la réduction des dégâts de 10%"
-                 + "\nDisminulle la velocidad maxima en 1/4");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 10% la reducción de daño"
-                + "\nDiminuez la vitesse maximale de 1/4");
+			Tooltip.SetDefault(tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		public override void SetDefaults()
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageReductionTooltip(10)
+                + "\n" + Utils1.IncreasedMovmentSpeedTooltip(-25);
+        }
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;

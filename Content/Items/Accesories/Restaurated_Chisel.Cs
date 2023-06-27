@@ -1,4 +1,4 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
@@ -11,21 +11,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Restaurated Chisel");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ciseau restauré");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ciseau restaurï¿½");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cincel restaurado");
             Tooltip.SetDefault("Increases mining speed by 35%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de minage de 35 %");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de minage de 35%");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de minado en un 35%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 10;
-            Item.height = 14;
-            Item.value = new Item(ItemID.AncientChisel).value;
-            Item.rare = 0;
-            Item.accessory = true;
+            Item.CloneDefaults(ItemID.AncientChisel);
+            Item.value += Item.sellPrice(0,0,30,0);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		{
 			DisplayName.SetDefault("True Reaper Hood");
 			Tooltip.SetDefault(Utils1.IncreasedDamageByTooltip(20,DamageClass.Generic)
-            + "\nLuck increased in 2"
-            + "\nNot moving puts you in stealth," 
+            +"\nLuck increased in 2"
+            +"\nNot moving puts you in stealth," 
 			+"\nincreasing ranged ability and reducing chance for enemies to target you");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Capuche de la vraie faucheuse");

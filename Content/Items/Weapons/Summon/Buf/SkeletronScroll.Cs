@@ -14,18 +14,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		{
 			DisplayName.SetDefault("Undead Scroll");
 			Tooltip.SetDefault("You have a super sense"
-		   + "\n Grants immunity to most debuffs"
-		   + "\n Increases throwing damage by 20% and 50% chance to not consume ammo");
+		   + "\nGrants immunity to most debuffs"
+		   + "\nIncreases throwing damage by 20% and 50% chance to not consume ammo");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Défilement des morts-vivants");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "tu as un super sens"
-		   + "\n Accorde l'immunité à la plupart des affaiblissements"
-		   + "\n Augmente les dégâts jetables de 20% et ne gaspille pas de munitions à 50%");
+		   + "\nAccorde l'immunité à la plupart des affaiblissements"
+		   + "\nAugmente les dégâts jetables de 20% et ne gaspille pas de munitions à 50%");
 
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de muertos vivientes");
 			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "tienes una súper sentido"
-			+ "\n Otorga inmunidad a la mayoría de las desventajas."
-			+ "\n Incrementa el daño lanzable en 20% y posees un 50% de no gastar municion");
+			+ "\nOtorga inmunidad a la mayoría de las desventajas."
+			+ "\nIncrementa el daño lanzable en 20% y posees un 50% de no gastar municion");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

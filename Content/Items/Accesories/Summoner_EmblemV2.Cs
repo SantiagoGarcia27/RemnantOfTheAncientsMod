@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -11,17 +12,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Summoner Emblem V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Godło Przywoływacza V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème D'invocateur V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Invocador V2");
-
-            Tooltip.SetDefault("Increases the summon damage by 25%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Zwiększ obrażenia przywołania o 25%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts d'invocation de 25%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño de las imvocaciones en un 25 ");
+            Tooltip.SetDefault(tooltip());
+           
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(25, DamageClass.Summon);
+        }
         public override void SetDefaults()
         {
             Item.width = 10;

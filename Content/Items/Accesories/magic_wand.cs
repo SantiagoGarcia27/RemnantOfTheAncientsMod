@@ -1,8 +1,9 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -12,15 +13,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             DisplayName.SetDefault("Magic Wand");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Daguette magique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Vara Mágica");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Vara MÃ¡gica");
 
-            Tooltip.SetDefault("15% Increased magic damage"
-                + "\nIncreases critical strike chance by 10");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts magiques de 15%"
-                + "\nAugmente les chances de coup critique de 10");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño magico en un 15%"
-                + "\nAumenta la provabilidad de critico en 10");
+
+            Tooltip.SetDefault(tooltip());
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(15, DamageClass.Summon)
+                    + "\n" + Utils1.IncreasedCritByTooltip(10, DamageClass.Generic);
         }
 
         public override void SetDefaults()
@@ -32,11 +35,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
-        { 
+        {
             player.GetDamage(DamageClass.Magic) *= 1.15f;
             player.GetCritChance(DamageClass.Magic) += 10;
         }
-        public override void AddRecipes()  
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.SoulofLight, 15)

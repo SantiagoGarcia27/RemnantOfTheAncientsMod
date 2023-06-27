@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
@@ -13,11 +13,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Psychic Scroll");
-			Tooltip.SetDefault("You become invunerable for 4s");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin psychique");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "tu es invulnérable pendant 4s");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino psíquico");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "eres invulnerable durante 4s");
+			Tooltip.SetDefault("You become invunerable for 4s" +
+				"\nBut you cant use items for 8s");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Parchemin psychique");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"tu es invulnérable pendant 4s" +
+                "\nMais vous ne pouvez pas utiliser d'objets pendant 8 secondes");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Pergamino psíquico");
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Eres invulnerable durante 4s" + 
+				"\nPero no puedes usar objetos por 8s");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

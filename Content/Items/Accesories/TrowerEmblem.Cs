@@ -1,8 +1,9 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -16,12 +17,25 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             string TextEs = ModLoader.TryGetMod("CalamityMod", out _) ? "de picaro" : "lanzable";
 
             DisplayName.SetDefault("Thrower Emblem");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du Lanceur");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "EmblÃ¨me du lanceur");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador");
-            Tooltip.SetDefault("Increases "+ TextUs + " damage by 15% ");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de "+ TextFr +" de 15%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño "+ TextEs + " en un 15%");
+            Tooltip.SetDefault(tooltip());
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public static string tooltip()
+        {
+            string option;
+            if (ModLoader.TryGetMod("CalamityMod", out _))
+            {
+               DamageClass Rogue = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
+                option = Utils1.IncreasedDamageByTooltip(15, Rogue);
+            }
+            else 
+            {
+                option = Utils1.IncreasedDamageByTooltip(15, DamageClass.Throwing);
+            }
+            return option;
         }
 
         public override void SetDefaults()

@@ -14,14 +14,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		{
 			DisplayName.SetDefault("Daylight Hat");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sombrero de luz diurna");
-			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chapeau de la lumi�re du jour");
-            Tooltip.SetDefault(Utils1.IncreasedManaMaxTooltip(20)+// "Increases maximum mana by 20" +
-				"\n3% increased magic and summon damage");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), Utils1.IncreasedManaMaxTooltip(20) + 
-                "\nAumenta el da�o de magia e invocación en 3%");
+			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chapeau de la lumière du jour");
+
+            Tooltip.SetDefault(tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		public override void SetDefaults()
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(3,DamageClass.Magic) +
+                "\n" + Utils1.IncreasedDamageByTooltip(3, DamageClass.Summon) +
+                "\n" + Utils1.IncreasedManaMaxTooltip(20);
+        }
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;

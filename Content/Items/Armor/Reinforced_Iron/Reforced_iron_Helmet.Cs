@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
@@ -12,21 +13,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Reinforced Iron Helmet");
-			Tooltip.SetDefault("Increases melee damage by 5%"
-            +"\nDecrease the maximum speed by 1/4");
-
+			DisplayName.SetDefault("Reinforced Iron Helmet");		       
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque en fer renforc�");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente les dégâts de m�l�e de 5%"
-                 + "\nDisminulle la velocidad maxima en 1/4");
-
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de hierro reforzado");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 5% de daño cuerpo a cuerpo"
-                + "\nDiminuez la vitesse maximale de 1/4");
+            Tooltip.SetDefault(tooltip());
+
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-
-		public override void SetDefaults()
+        public static string tooltip()
+        {
+            return Utils1.IncreasedDamageByTooltip(5, DamageClass.Melee)
+				+"\n"+ Utils1.IncreasedMovmentSpeedTooltip(-25);
+        }
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;
@@ -47,7 +46,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+2 defense, + 2% damage, + 15% movement speed";
+			player.setBonus = " + 2 defense"
+				+ "\n" + Utils1.IncreasedDamageByTooltip(2, DamageClass.Generic)
+				+ "\n" + Utils1.IncreasedMovmentSpeedTooltip(15);
 			player.GetDamage(DamageClass.Generic) *= 1.02f;
 			player.statDefense += 2;
 			player.moveSpeed += 0.15f;
