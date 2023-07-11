@@ -23,19 +23,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("True Reaper Hood");
-			Tooltip.SetDefault(Utils1.IncreasedDamageByTooltip(20,DamageClass.Generic)
+			Tooltip.SetDefault(LocalizationHelper.IncreasedDamageByTooltip(20,DamageClass.Generic)
             +"\nLuck increased in 2"
             +"\nNot moving puts you in stealth," 
 			+"\nincreasing ranged ability and reducing chance for enemies to target you");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Capuche de la vraie faucheuse");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), Utils1.IncreasedDamageByTooltip(20,DamageClass.Generic)
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), LocalizationHelper.IncreasedDamageByTooltip(20,DamageClass.Generic)
             + "\nLuck increased in 2"
             + "\nNot moving puts you in stealth," 
 			+"\nincreasing ranged ability and reducing chance for enemies to target you");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Verdadera capucha de parca");
-			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), Utils1.IncreasedDamageByTooltip(20, DamageClass.Generic)
+			Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), LocalizationHelper.IncreasedDamageByTooltip(20, DamageClass.Generic)
             + "\nAumenta la suerte en 2"
             + "\nEntras en sigilo al quedarte quieto,"
             + "\naumenta el rango y es menos probable que los enemigos te detecten");

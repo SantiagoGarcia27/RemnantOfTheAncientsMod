@@ -27,9 +27,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		}
         public static string tooltip()
         {
-            return Utils1.IncreasedMovmentSpeedTooltip(10) +
-                "\n" + Utils1.IncreasedManaMaxTooltip(40) +
-                "\n" + Utils1.IncreasedCritByTooltip(5,DamageClass.Generic);
+            return LocalizationHelper.IncreasedMovmentSpeedTooltip(10) +
+                "\n" + LocalizationHelper.IncreasedManaMaxTooltip(40) +
+                "\n" + LocalizationHelper.IncreasedCritByTooltip(5,DamageClass.Generic);
         }
         private static readonly Color rarityColorOne = Utils1.GetReaperColor(1);
 

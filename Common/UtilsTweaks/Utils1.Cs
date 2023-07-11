@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Terraria;
@@ -52,7 +53,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return false;
         }
-
+        public static bool IsItemOnPlayerInventory(int id,Player player)
+        {
+            return player.inventory.Any(item => !item.IsAir && item.type == id);
+        }
         public static string ColorMessage(string msg, Color color)
         {
 
@@ -90,10 +94,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             else return new Color(255, 255, 255);
             //return color;
         }
-        public static void DroppItem(Player player,Item item,int drop,int numerator, int denominator)
+        public static void DroppItem(Player player, Item item, int drop, int numerator, int denominator)
         {
             int choice = Main.rand.Next(denominator);
-            if (choice == 0) choice++; 
+            if (choice == 0) choice++;
             if (choice == numerator) player.QuickSpawnItem(item.GetSource_DropAsItem(), drop, 1);
         }
         public static int GetReaperNumber(int common, int reaper)
@@ -159,107 +163,6 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             int a = i;
             if (Reaper.ReaperMode) a = i * 5;
             return a;
-        }
-
-        public static string IncreasedMinionTooltip(int amount)
-        {
-            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMinion", amount);
-        }
-        public static string IncreasedCentryTooltip(int amount)
-        {
-            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedSentry", amount);
-        }
-        public static string IncreasedLifeMaxTooltip(int amount)
-        {
-            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedLifeMax", amount);
-        }
-        public static string IncreasedManaMaxTooltip(int amount)
-        {
-            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedManaMax", amount);
-        }
-        public static string IncreasedDamageReductionTooltip(int amount)
-        {
-            return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedDamageReduction", amount);
-        }
-        public static string IncreasedDamageByTooltip(int amount, DamageClass WeaponClass)
-        {
-            if (WeaponClass == DamageClass.Generic)
-            {
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedGenericDamage", amount);
-            }
-            else
-            {
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount, WeaponClass.DisplayName);
-            }
-            //else if (WeaponClass == DamageClass.Melee)
-            //         {
-            //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount, WeaponClass.ClassName);
-            //         }
-            //         else if (WeaponClass == DamageClass.Ranged)
-            //         {
-            //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount);
-            //         }
-            //         else if (WeaponClass == DamageClass.Summon)
-            //         {
-            //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount);
-            //         }
-            //         else if (WeaponClass == DamageClass.Magic)
-            //         {
-            //             return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage", amount);
-            //         } 
-            //else
-            //{
-            //             return $"{amount}% increased {WeaponClass} damage";
-            //         }
-        }
-        public static string IncreasedCritByTooltip(int amount, DamageClass WeaponClass)
-        {
-            if (WeaponClass == DamageClass.Generic)
-            {
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedGenericCritChance", amount);
-            }
-            else
-            {
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassCritChance", amount, WeaponClass.DisplayName);
-            }
-        }
-        public static string IncreasedMovmentSpeedTooltip(int amount)
-        {
-            if (amount > 0)
-            {
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMovementSpeed", amount);
-            }
-            else
-            {              
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.CommonTooltip.DecreasedMovementSpeed", -amount);
-            }
-        }
-       
-        
-        internal static readonly MethodInfo LocalizationLoader_AutoloadTranslations = typeof(LocalizationLoader).GetMethod("AutoloadTranslations", BindingFlags.NonPublic | BindingFlags.Static)!;
-        internal static readonly MethodInfo LocalizationLoader_SetLocalizedText = typeof(LocalizationLoader).GetMethod("SetLocalizedText", BindingFlags.NonPublic | BindingFlags.Static)!;
-        internal static readonly FieldInfo LanguageManager__localizedTexts = typeof(LanguageManager).GetField("_localizedTexts", BindingFlags.NonPublic | BindingFlags.Instance)!;
-
-        /// <summary>
-        /// Force's the localization for the given mod, <paramref name="mod"/>, to be loaded for use with <seealso cref="Language"/>
-        /// </summary>
-        /// <param name="mod">The mod instance</param>
-        public static void ForceLoadModHJsonLocalization(Mod mod)
-        {
-            Dictionary<string, ModTranslation> modTranslationDictionary = new();
-
-            LocalizationLoader_AutoloadTranslations.Invoke(null, new object[] { mod, modTranslationDictionary });
-
-            Dictionary<string, LocalizedText> dict = LanguageManager__localizedTexts.GetValue(LanguageManager.Instance) as Dictionary<string, LocalizedText>;
-
-            var culture = Language.ActiveCulture;
-            foreach (ModTranslation translation in modTranslationDictionary.Values)
-            {
-                //LocalizedText text = new LocalizedText(translation.Key, translation.GetTranslation(culture));
-                LocalizedText text = Activator.CreateInstance(typeof(LocalizedText), BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.CreateInstance, null, new object[] { translation.Key, translation.GetTranslation(culture) }, CultureInfo.InvariantCulture) as LocalizedText;
-
-                LocalizationLoader_SetLocalizedText.Invoke(null, new object[] { dict, text });
-            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using Terraria.Localization;
 using Terraria;
 using Terraria.ID;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 {
@@ -35,6 +36,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             DisplayName.SetDefault("Endless Star");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Étoile sans fin");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estrella Eterna");
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 8));
+            Item.useAnimation = ItemID.FallenStar;
         }
     }
     public class EndlesNail : EndlessBase

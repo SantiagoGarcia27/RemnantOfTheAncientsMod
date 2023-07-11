@@ -21,9 +21,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		}
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageByTooltip(3,DamageClass.Magic) +
-                "\n" + Utils1.IncreasedDamageByTooltip(3, DamageClass.Summon) +
-                "\n" + Utils1.IncreasedManaMaxTooltip(20);
+            return LocalizationHelper.IncreasedDamageByTooltip(3,DamageClass.Magic) +
+                "\n" + LocalizationHelper.IncreasedDamageByTooltip(3, DamageClass.Summon) +
+                "\n" + LocalizationHelper.IncreasedManaMaxTooltip(20);
         }
         public override void SetDefaults()
 		{

@@ -23,8 +23,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 		}
         public static string tooltip()
         {
-			return Utils1.IncreasedDamageByTooltip(8, DamageClass.Summon) +
-				"\n" + Utils1.IncreasedMinionTooltip(1);
+			return LocalizationHelper.IncreasedDamageByTooltip(8, DamageClass.Summon) +
+				"\n" + LocalizationHelper.IncreasedMinionTooltip(1);
         }
         public override void SetDefaults()
 		{

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             DisplayName.SetDefault("Exotic Amulet");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Amulette Exotique");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Amuleto Exótico");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Amuleto ExÃ³tico");
 
             Tooltip.SetDefault("Increases maximum mana by 20,"
             + "\nmana regeneration rate"
@@ -23,17 +23,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             + "\nyou have the effect of Sweetheart Necklace, Charm of Myths,"
             + "\nArctic Diving Gear and Star Veil");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente le maximum de mana de 20,"
-            + "\ntaux de régénération de mana"
-            + "\net pénétration d'armure de 5."
-            + "\nfournir une immunité à la lave et aux blocs de feu"
-            + "\nvous avez pour effet Collier chérie, Charme des mythes,"
-            + "\nÉquipement de plongée arctique et voile étoilé");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el maná máximo en 20,"
-            + "\nla regeneración de maná"
-            + "\ny penetración de armadura en 5."
+            + "\ntaux de rÃ©gÃ©nÃ©ration du mana"
+            + "\net pÃ©nÃ©tration d'armure de 5."
+            + "\noffre une immunitÃ© Ã  la lave et aux blocs de feu"
+            + "\nvous avez l'effet de Collier d'amoureux, Charme des mythes,"
+            + "\n Arctic Diving Gear et Star Veil"Â );
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el manÃ¡ mÃ¡ximo en 20,"
+            + "\nla regeneraciÃ³n de manÃ¡"
+            + "\ny penetraciÃ³n de armadura en 5."
             + "\nproporciona inmunidad a la lava y los bloques de fuego"
-            + "\notorga el efecto de Collar de cariño, talismán de mitos"
-            + "\nEquipo de buceo ártico y Velo de estrella");
+            + "\notorga el efecto de Collar de cariÃ±o, talismÃ¡n de mitos"
+            + "\nEquipo de buceo Ã¡rtico y Velo de estrella");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -48,17 +48,39 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public override void AddRecipes()  //How to craft this item
         {
-           CreateRecipe()
-           .AddIngredient(ItemID.ManaRegenerationBand, 1)
-           .AddIngredient(ItemID.Shackle, 1)
-           .AddIngredient(ItemID.SweetheartNecklace, 1)
-           .AddIngredient(ItemID.SharkToothNecklace, 1)
-           .AddIngredient(ItemID.ArcticDivingGear, 1)
-           .AddIngredient(ItemID.StarVeil, 1)
-           .AddIngredient(ItemID.CharmofMyths, 1)
-           .AddIngredient(ItemID.LavaCharm, 1)
-           .AddTile(TileID.MythrilAnvil)  
-           .Register();
+            CreateRecipe()
+            .AddIngredient(ItemID.MagicCuffs, 1)
+            .AddIngredient(ItemID.SweetheartNecklace, 1)
+            .AddIngredient(ItemID.SharkToothNecklace, 1)
+            .AddIngredient(ItemID.ArcticDivingGear, 1)
+            .AddIngredient(ItemID.StarVeil, 1)
+            .AddIngredient(ItemID.CharmofMyths, 1)
+            .AddIngredient(ItemID.LavaCharm, 1)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
+
+            CreateRecipe()
+            .AddIngredient(ItemID.MagicCuffs, 1)
+            .AddIngredient(ItemID.PanicNecklace, 1)
+            .AddIngredient(ItemID.StingerNecklace, 1)
+            .AddIngredient(ItemID.ArcticDivingGear, 1)
+            .AddIngredient(ItemID.StarVeil, 1)
+            .AddIngredient(ItemID.CharmofMyths, 1)
+            .AddIngredient(ItemID.LavaCharm, 1)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
+
+            CreateRecipe()
+            .AddIngredient(ItemID.MagicCuffs, 1)
+            .AddIngredient(ItemID.PanicNecklace, 1)
+            .AddIngredient(ItemID.SharkToothNecklace, 1)
+            .AddIngredient(ItemID.ArcticDivingGear, 1)
+            .AddIngredient(ItemID.CrossNecklace, 1)
+            .AddIngredient(ItemID.BeeCloak, 1)
+            .AddIngredient(ItemID.CharmofMyths, 1)
+            .AddIngredient(ItemID.LavaCharm, 1)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

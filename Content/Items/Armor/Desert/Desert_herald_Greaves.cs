@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
         }
         public static string tooltip()
         {
-            return Utils1.IncreasedMinionTooltip(1);
+            return LocalizationHelper.IncreasedMinionTooltip(1);
         }
 
         public override void SetDefaults()

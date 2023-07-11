@@ -29,11 +29,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             if (ModLoader.TryGetMod("CalamityMod", out _))
             {
                DamageClass Rogue = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
-                option = Utils1.IncreasedDamageByTooltip(15, Rogue);
+                option = LocalizationHelper.IncreasedDamageByTooltip(15, Rogue);
             }
             else 
             {
-                option = Utils1.IncreasedDamageByTooltip(15, DamageClass.Throwing);
+                option = LocalizationHelper.IncreasedDamageByTooltip(15, DamageClass.Throwing);
             }
             return option;
         }

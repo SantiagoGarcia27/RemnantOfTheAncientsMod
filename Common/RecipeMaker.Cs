@@ -26,7 +26,6 @@ namespace RemnantOfTheAncientsMod
 
 #pragma warning disable CS0114 // 'RecipeMaker.AddRecipes()' hides inherited member 'ModSystem.AddRecipes()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
         public static void AddRecipes()
-#pragma warning restore CS0114 // 'RecipeMaker.AddRecipes()' hides inherited member 'ModSystem.AddRecipes()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
         {
             Uncrafting();
             Swaped();
@@ -41,8 +40,15 @@ namespace RemnantOfTheAncientsMod
             LivingFlames();
             BossSummon();
             HardmodeItems();
+            CraftingItems();
         }
-
+        private static void CraftingItems()
+        {
+            Recipe.Create(ItemID.Leather)
+              .AddIngredient(ItemID.Vertebrae, 5)
+              .AddTile(TileID.WorkBenches)
+              .Register();
+        }
         private static void HardmodeItems()
         {
             Recipe.Create(ItemID.RodofDiscord)
@@ -212,9 +218,13 @@ namespace RemnantOfTheAncientsMod
             SwapCorruptMushroom();
             SwapDolls();
             CorruptExpertAccesories();
-
+            SwapFish();
         }
-
+        private static void SwapFish()
+        {
+            Recipe.Create(ItemID.Hemopiranha).AddIngredient(ItemID.Ebonkoi).AddTile(TileID.AlchemyTable).Register();
+            Recipe.Create(ItemID.Ebonkoi).AddIngredient(ItemID.Hemopiranha).AddTile(TileID.AlchemyTable).Register();
+        }
         private static void CorruptExpertAccesories()
         {
             Recipe.Create(ItemID.BrainOfConfusion)
@@ -380,6 +390,17 @@ namespace RemnantOfTheAncientsMod
                .AddIngredient(ItemID.SoulofLight, 50)
                .AddTile(TileID.MythrilAnvil)
                .Register();
+
+            Recipe.Create(ItemID.MagicConch)
+              .AddIngredient(ItemID.MagicMirror)
+              .AddIngredient(ItemID.Seashell,5)
+              .AddTile(TileID.Anvils)
+              .Register();
+            Recipe.Create(ItemID.DemonConch)
+             .AddIngredient(ItemID.MagicConch)
+             .AddIngredient(ItemID.HellstoneBar, 3)
+             .AddTile(TileID.Hellforge)
+             .Register();
         }
         private static void Emblemas()
         {
@@ -523,6 +544,13 @@ namespace RemnantOfTheAncientsMod
                 .AddTile(TileID.Anvils)
                 .Register();
 
+            Recipe.Create(ItemID.WaterWalkingBoots)
+               .AddIngredient<Boot>()
+                .AddIngredient(ItemID.WaterWalkingPotion, 2)
+                .AddIngredient(ItemID.SharkFin, 2)
+                .AddTile(TileID.Anvils)
+                .Register();
+
         }
 
         private static void DesertAccesories()
@@ -591,6 +619,17 @@ namespace RemnantOfTheAncientsMod
                 .AddIngredient(ItemID.ManaCrystal, 2)
                 .AddTile(TileID.Anvils)
                 .Register();
+
+            Recipe.Create(ItemID.CrimsonHeart)
+               .AddIngredient(ItemID.LifeCrystal, 1)
+               .AddIngredient(ItemID.TissueSample, 10)
+               .AddTile(TileID.DemonAltar)
+               .Register();
+            Recipe.Create(ItemID.ShadowOrb)
+               .AddIngredient(ItemID.ManaCrystal, 1)
+               .AddIngredient(ItemID.ShadowScale, 10)
+               .AddTile(TileID.DemonAltar)
+               .Register();
         }
 
         private static void UnderworldAccesories()

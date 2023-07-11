@@ -20,6 +20,10 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic;
+using Terraria.Audio;
+using Terraria.GameInput;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -60,6 +64,7 @@ namespace RemnantOfTheAncientsMod
 		public static int tuxoniteStealthDuration = 0;
 		public static float tuxoniteStealthCounter = 0;
 		public static bool DaylightArmorSetBonus;
+		public static bool CanWormHole;
 		public bool HealingDrone;
 		public bool InterceptionDrone;
 		public bool DesertHeraldSetBonus;
@@ -92,6 +97,7 @@ namespace RemnantOfTheAncientsMod
 			HealingDrone = false;
 			InterceptionDrone = false;	
 			DesertHeraldSetBonus = false;
+			CanWormHole = false;
             //tuxoniteStealthCounter = 1;
         }
 
@@ -253,6 +259,11 @@ namespace RemnantOfTheAncientsMod
 				}
 			}
 		}
+		public void checkInventory(Player player)
+		{
+			CanWormHole = Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>(), player);
+		}
+
 		private int chanceTomb(float config)
 		{
 			switch (config)
@@ -283,7 +294,9 @@ namespace RemnantOfTheAncientsMod
 			{
 				MoneyColectorBuff.UpdateCoins(Player);
 			}
-		}
+			checkInventory(Player);
+			WormHoleEffect(Player);
+        }
 
 		public override void OnEnterWorld(Player player)
 		{
@@ -301,7 +314,37 @@ namespace RemnantOfTheAncientsMod
             }
 
 		}
-		
+		public static void WormHoleEffect(Player player)
+		{
+            if (Main.mapFullscreen && Main.netMode == NetmodeID.MultiplayerClient && Main.myPlayer == player.whoAmI && player.team > 0 && Main.mouseLeft && Main.mouseLeftRelease)
+            {
+                for (int k = 0; k < 255; k++)
+                {
+                    if (Main.player[k].active && !Main.player[k].dead && k != Main.myPlayer && player.team == Main.player[k].team)
+                    {
+                        float mapFullscreenScale = Main.mapFullscreenScale;
+                        Vector2 mouse = new Vector2(PlayerInput.MouseX, PlayerInput.MouseY);
+                        float num2 = DistanceHelper.ToTilePosition(Main.player[k].position.X + Main.player[k].width / 2) * mapFullscreenScale;
+                        float num7 = DistanceHelper.ToTilePosition(Main.player[k].position.Y + Main.player[k].gfxOffY + Main.player[k].height / 2) * mapFullscreenScale;
+                        num2 +=  -Main.mapFullscreenPos.X * mapFullscreenScale + Main.screenWidth / 2 - 6f;
+                        float num8 = num7 + (0f - Main.mapFullscreenPos.Y * mapFullscreenScale + Main.screenHeight / 2 - 4f - mapFullscreenScale / 5f * 2f);
+                        float num3 = num2 + 4f - 14f * Main.UIScale;
+                        float num4 = num8 + 2f - 14f * Main.UIScale;
+                        float num5 = num3 + 28f * Main.UIScale;
+                        float num6 = num4 + 28f * Main.UIScale;
+                       
+                        if (mouse.X >= num3 && mouse.X <= num5 && mouse.Y >= num4 && mouse.Y <= num6)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item12, new Vector2(-1f, 120f));
+                            Main.mouseLeftRelease = false;
+                            Main.mapFullscreen = false;
+                            player.UnityTeleport(Main.player[k].position);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
 		public static void ApplyBuffToAllPlayers(int BuffId, int Hours, int Minutes, int Seconds)
 		{
 			int BuffTime = (Seconds *60) + (Minutes * 60 * 60)+ (Hours * 60 *60 *60);

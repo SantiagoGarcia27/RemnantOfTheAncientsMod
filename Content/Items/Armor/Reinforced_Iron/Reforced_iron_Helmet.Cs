@@ -22,8 +22,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		}
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageByTooltip(5, DamageClass.Melee)
-				+"\n"+ Utils1.IncreasedMovmentSpeedTooltip(-25);
+            return LocalizationHelper.IncreasedDamageByTooltip(5, DamageClass.Melee)
+				+"\n"+ LocalizationHelper.IncreasedMovmentSpeedTooltip(-25);
         }
         public override void SetDefaults()
 		{
@@ -47,8 +47,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = " + 2 defense"
-				+ "\n" + Utils1.IncreasedDamageByTooltip(2, DamageClass.Generic)
-				+ "\n" + Utils1.IncreasedMovmentSpeedTooltip(15);
+				+ "\n" + LocalizationHelper.IncreasedDamageByTooltip(2, DamageClass.Generic)
+				+ "\n" + LocalizationHelper.IncreasedMovmentSpeedTooltip(15);
 			player.GetDamage(DamageClass.Generic) *= 1.02f;
 			player.statDefense += 2;
 			player.moveSpeed += 0.15f;

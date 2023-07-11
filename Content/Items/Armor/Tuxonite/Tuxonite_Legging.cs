@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 {
@@ -15,11 +16,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 			DisplayName.SetDefault("Tuxonite Greaves");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Grebas de tusonita");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves Tuxonite");
-            Tooltip.SetDefault("5% increased ranged critical strike chance");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "+5% de chances de coup critique à distance");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Probabilidad de golpe crítico a distancia aumentada un 5%");
+            Tooltip.SetDefault(tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
+		public string tooltip()
+		{
+			return LocalizationHelper.IncreasedCritByTooltip(5, DamageClass.Ranged);
+        }
 
 		public override void SetDefaults()
 		{

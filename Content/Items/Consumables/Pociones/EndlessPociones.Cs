@@ -366,4 +366,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de suerte grande eterna");
         }
     }
+    public class EndlessWormHole : BasePotions
+    {
+        public override Item ItemBase => new(ItemID.WormholePotion);
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Wormhole Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de agujero de gusano eterna");
+
+        }
+    }
 }

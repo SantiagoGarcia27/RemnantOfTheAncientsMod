@@ -1,4 +1,4 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Regenerative");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Régénérateur)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(RÃ©gÃ©nÃ©rateur)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Regenerativo)");
         }
 

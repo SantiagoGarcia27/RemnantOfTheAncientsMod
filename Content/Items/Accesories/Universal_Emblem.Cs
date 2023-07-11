@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using ReLogic.Utilities;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -12,14 +13,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         int multiplier;
         public override void SetStaticDefaults()
         {
-            multiplier =(ModLoader.TryGetMod("CalamityMod", out Mod mod))? 10: 15;
             DisplayName.SetDefault("Universal Emblem");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Embl�me Universel");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème universel");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal");
-            Tooltip.SetDefault("Increases all damage by " + multiplier + "%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente tous les d�g�ts de " + multiplier + "%");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta todo el da�o en un " + multiplier + "%");
+            Tooltip.SetDefault(tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        private string tooltip()
+        {
+            return LocalizationHelper.IncreasedDamageByTooltip(15, DamageClass.Generic);
         }
 
         public override void SetDefaults()
@@ -33,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) *= (ModLoader.TryGetMod("CalamityMod", out Mod mod))?1.10f : 1.15f;
+            player.GetDamage(DamageClass.Generic) *= (ModLoader.TryGetMod("CalamityMod", out Mod mod))?1.15f : 1.15f;
         }
         public override void AddRecipes()
         {

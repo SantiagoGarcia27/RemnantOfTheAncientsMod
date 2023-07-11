@@ -60,5 +60,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             float y = request.position.Y - target.position.Y;
             return new Vector2(x, y);
         }
+        public static float ToTilePosition(float NpcPosition)
+        {
+            return NpcPosition / 16;
+        }
     }
 }

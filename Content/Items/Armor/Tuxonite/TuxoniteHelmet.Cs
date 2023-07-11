@@ -16,12 +16,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 			DisplayName.SetDefault("Tuxonite Helmet");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de tusonita");
 			DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque Tuxonite");
-            Tooltip.SetDefault("3% increased ranged damage");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "3% d'augmentation des dégâts à distance");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 3% el daño a distancia");
+            Tooltip.SetDefault(tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-		public override void SetDefaults()
+        }
+        public string tooltip()
+        {
+            return LocalizationHelper.IncreasedCritByTooltip(3, DamageClass.Ranged);
+        }
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;

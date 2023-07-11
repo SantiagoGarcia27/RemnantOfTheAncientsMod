@@ -1,4 +1,4 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Impenetrable");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Impénétrable)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(ImpÃ©nÃ©trable)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Impenetrable)");
         }
 

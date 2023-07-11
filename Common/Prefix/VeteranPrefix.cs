@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Prefixe;
+ï»¿using RemnantOfTheAncientsMod.Prefixe;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Veteran");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(vétéran)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(VÃ©tÃ©ran)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Veterano)");
         }
 

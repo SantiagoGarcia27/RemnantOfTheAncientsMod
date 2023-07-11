@@ -37,7 +37,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			ItemID.HallowJoustingLance,
 			ItemID.ShadowJoustingLance
 		};
-
+		public List<int> CoinsId = new List<int>()
+		{
+			ItemID.CopperCoin,
+			ItemID.SilverCoin,
+			ItemID.GoldCoin,
+			ItemID.PlatinumCoin
+		};
 		public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -100,9 +106,12 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     item.defense = 2;
                 }
 
-                if (item.maxStack > 1 && item.maxStack < 9999)
+				if (item.maxStack > 1 && item.maxStack < 9999)
 				{
-					item.maxStack = (int)ModContent.GetInstance<ConfigServer>().MaxItemStackConf;
+					if (!CoinsId.Contains(item.type))
+					{
+						item.maxStack = (int)ModContent.GetInstance<ConfigServer>().MaxItemStackConf;
+					}
 				}
 
 				AddToDashWeaponsLists(item);
@@ -245,10 +254,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
 					}
 					if (SpearsList.Contains(item.type))
 					{
-						float n = 0.1f;
 						for (int j = 0; j < RemnantOfTheAncientsMod.MaxRarity; j++)
 						{
-							if (item.rare == j) WeaponDash(player, n * j + 1, 0f);
+							if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2), 0f);
 						}
 					}
 					return true;

@@ -33,8 +33,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             LegendaryLoot(npc,npcLoot);
             CommonLoot(npc,npcLoot);
             PilarEnemiyLoot(npc, npcLoot);
-            if (npc.lifeMax > 1 && npc.lifeMax < 100000 && npc.value > 0f) npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 500000/ dificultyDrop(1), 1, 1));
-            if (npc.lifeMax > 100000 && npc.value > 0f) npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 100000/ dificultyDrop(1), 1, 1));
+            if (npc.lifeMax > 1 && npc.lifeMax < 100000 && npc.value > 0f) 
+                npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 500000/ dificultyDrop(1), 1, 1));
+            if (npc.lifeMax > 100000 && npc.value > 0f) 
+                npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 100000/ dificultyDrop(1), 1, 1));
           //  npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fake_The_Legion>(), 1 / dificultyDrop(1), 1, 1));
             SoulLoot(npc,npcLoot,new Player());
         }

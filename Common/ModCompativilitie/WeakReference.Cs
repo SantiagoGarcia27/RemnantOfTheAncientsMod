@@ -81,7 +81,7 @@ namespace RemnantOfTheAncientsMod
 				ItemType<DesertMusicBox>()
 			};
 			DespawnMessage = Utils1.ColorMessage("The desert guardian has teleport.", new Color(100, 149, 237));
-			AddGenericBoss("Desert Annihilator", 6.8f, new List<int> { NPCType<DesertAniquilator>() }, () => RemnantDownedBossSystem.downedDesert, ItemType<DesertChest>(), collection, "desert", DespawnMessage);
+			AddGenericBoss(LocalizationHelper.GetNpcName(NPCType<DesertAniquilator>()), 6.8f, new List<int> { NPCType<DesertAniquilator>() }, () => RemnantDownedBossSystem.downedDesert, ItemType<DesertChest>(), collection, "desert", DespawnMessage);
 			#endregion
 
 
@@ -94,7 +94,7 @@ namespace RemnantOfTheAncientsMod
 				ItemType<Frozenp2MusicBox>()
 			};
 			DespawnMessage = Utils1.ColorMessage("The frozen threat disappears on the horizon", new Color(238, 232, 170));
-			AddGenericBoss("Frozen Assaulter", 7.2f, new List<int> { NPCType<frozen_assaulter>() }, () => RemnantDownedBossSystem.downedFrozen, ItemType<FrozenArtifact>(), collection, "snow at the night", DespawnMessage);
+			AddGenericBoss(LocalizationHelper.GetNpcName(NPCType<frozen_assaulter>()), 7.2f, new List<int> { NPCType<frozen_assaulter>() }, () => RemnantDownedBossSystem.downedFrozen, ItemType<FrozenArtifact>(), collection, "snow at the night", DespawnMessage);
 			#endregion
 
 			#region tyrant
@@ -116,7 +116,7 @@ namespace RemnantOfTheAncientsMod
 			string bossImage = path + "InfernalTyrant_BossChecklist";
 			string bossHead = path + "InfernalTyrantHead_Head_Boss";
 
-			AddGenericBoss("Infernal Tyrant", 12.9f, npcTypes, () => RemnantDownedBossSystem.downedTyrant, ItemType<InfernalCalis>(), collection, "Underworld", DespawnMessage, bossHead, bossImage);
+			AddGenericBoss(LocalizationHelper.GetNpcName(NPCType<InfernalTyrantHead>()), 12.9f, npcTypes, () => RemnantDownedBossSystem.downedTyrant, ItemType<InfernalCalis>(), collection, "Underworld", DespawnMessage, bossHead, bossImage);
 			#endregion
 		}
 		public static void AddGenericBoss(string BossName, float progrecion, List<int> npcType, Func<bool> Downed, int Spawner, List<int> Collection,string spawnBiome,string DespawnText,string BossHead = null,string BossImage = null)

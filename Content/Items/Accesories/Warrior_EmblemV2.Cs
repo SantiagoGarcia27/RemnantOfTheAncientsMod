@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageByTooltip(25, DamageClass.Melee);
+            return LocalizationHelper.IncreasedDamageByTooltip(25, DamageClass.Melee);
         }
 
         public override void SetDefaults()

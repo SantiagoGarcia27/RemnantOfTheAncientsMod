@@ -13,13 +13,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Infernal Chalice");
-            Tooltip.SetDefault("Summons the Infernal Tyrant");
+            Tooltip.SetDefault("Summons the Infernal Tyrant " +
+                "\nNot work on multiplayer");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Calice infernal");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque le tyran infernal");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque le tyran infernal" +
+                "\nNe fonctionne pas en multijoueur");
 
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cáliz infernal");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Tirano Infernal");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Tirano Infernal" + 
+                "\nNo funciona en multijugador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 

@@ -30,8 +30,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		}
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageByTooltip(4, DamageClass.Summon) +
-                "\n" + Utils1.IncreasedManaMaxTooltip(5);
+            return LocalizationHelper.IncreasedDamageByTooltip(4, DamageClass.Summon) +
+                "\n" + LocalizationHelper.IncreasedManaMaxTooltip(5);
         }
         public override void UpdateEquip(Player player)
         {

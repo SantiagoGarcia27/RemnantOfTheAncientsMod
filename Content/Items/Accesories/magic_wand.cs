@@ -22,8 +22,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageByTooltip(15, DamageClass.Summon)
-                    + "\n" + Utils1.IncreasedCritByTooltip(10, DamageClass.Generic);
+            return LocalizationHelper.IncreasedDamageByTooltip(15, DamageClass.Summon)
+                    + "\n" + LocalizationHelper.IncreasedCritByTooltip(10, DamageClass.Generic);
         }
 
         public override void SetDefaults()

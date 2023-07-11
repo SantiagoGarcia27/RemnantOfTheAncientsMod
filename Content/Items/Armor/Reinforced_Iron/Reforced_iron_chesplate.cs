@@ -21,8 +21,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		}
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageReductionTooltip(10)
-                + "\n" + Utils1.IncreasedMovmentSpeedTooltip(-25);
+            return LocalizationHelper.IncreasedDamageReductionTooltip(10)
+                + "\n" + LocalizationHelper.IncreasedMovmentSpeedTooltip(-25);
         }
         public override void SetDefaults()
 		{

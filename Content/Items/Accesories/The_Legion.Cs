@@ -1,9 +1,11 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.Localization;
+using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -12,10 +14,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     {
         private static readonly Color ColorOne = new Color(255, 0, 0);
         private static readonly Color ColorTwo = new Color(0, 0, 255);
+        private List<string> ForumComments = new List<string>()
+        {
+            "S-Pladison",
+            "NKSHV",
+            "perrogalan",
+            "Banmei",
+            "Scratch Lunin",
+            "DinoZers",
+            "scorpion17907"
+        };
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Legion");
-            Tooltip.SetDefault( tooltip()
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La Légion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La Legión");
+            Tooltip.SetDefault(tooltip()
             + "\nMany thanks to:"
             + "\n S-Pladison   -NKSHV  -perrogalan"
             + "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
@@ -23,8 +37,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public string tooltip()
         {
-            return Utils1.IncreasedDamageByTooltip(25, DamageClass.Summon)
-                + "\n" + Utils1.IncreasedMinionTooltip(5);
+            return LocalizationHelper.IncreasedDamageByTooltip(25, DamageClass.Summon)
+                + "\n" + LocalizationHelper.IncreasedMinionTooltip(5);
 
         }
         internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);
@@ -39,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (player.name == "S-Pladison" || player.name == "NKSHV" || player.name == "perrogalan" || player.name == "Banmei" || player.name == "Scratch Lunin" || player.name == "DinoZers" || player.name == "scorpion17907")
+            if (ForumComments.Contains(player.name))
             {
                 player.GetDamage(DamageClass.Summon) *= 2f;
                 player.maxMinions += 8;

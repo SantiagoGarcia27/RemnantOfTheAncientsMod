@@ -1,4 +1,4 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         {
             DisplayName.SetDefault("Supersonic");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Supersonique)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Supers�nico)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Supersónico)");
         }
 
 

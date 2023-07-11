@@ -14,16 +14,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void SetStaticDefaults()
         {
-            multilier = (ModLoader.TryGetMod("CalamityMod", out Mod mod)) ? 20 : 25;
+           // multilier = (ModLoader.TryGetMod("CalamityMod", out Mod mod)) ? 20 : 25;
             DisplayName.SetDefault("Universal Emblem V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème universel V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal V2");
-            Tooltip.SetDefault(Utils1.IncreasedDamageByTooltip(multilier, DamageClass.Generic));
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), Utils1.IncreasedDamageByTooltip(multilier, DamageClass.Generic));
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), Utils1.IncreasedDamageByTooltip(multilier, DamageClass.Generic));
+            Tooltip.SetDefault(tooltip());    
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        private string tooltip()
+        {
+            return LocalizationHelper.IncreasedDamageByTooltip(25, DamageClass.Generic);
+        }
         public override void SetDefaults()
         {
             Item.width = 10;
@@ -35,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) *= (ModLoader.TryGetMod("CalamityMod", out Mod mod)) ? 1.20f : 1.25f;
+            player.GetDamage(DamageClass.Generic) *= (ModLoader.TryGetMod("CalamityMod", out Mod mod)) ? 1.25f : 1.25f;
         }
         public override void AddRecipes()
         {

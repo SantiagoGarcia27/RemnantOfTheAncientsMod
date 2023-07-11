@@ -12,7 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sorcerer Emblem V2");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Godło Czarnoksiężnika V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du sorcier V2");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Hechicero V2");
             Tooltip.SetDefault(tooltip());
@@ -21,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageByTooltip(25, DamageClass.Magic);
+            return LocalizationHelper.IncreasedDamageByTooltip(25, DamageClass.Magic);
         }
         public override void SetDefaults()
         {
@@ -46,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Magic) *= 0.25f;
+            player.GetDamage(DamageClass.Magic) *= 1.25f;
         }
     }
 }

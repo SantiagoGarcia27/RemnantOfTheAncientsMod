@@ -32,10 +32,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		}
         public static string tooltip()
         {
-            return Utils1.IncreasedDamageReductionTooltip(10) +
-                "\n" + Utils1.IncreasedMinionTooltip(2) +
-                "\n" + Utils1.IncreasedCentryTooltip(2) +
-                "\n" + Utils1.IncreasedLifeMaxTooltip(40);   
+            return LocalizationHelper.IncreasedDamageReductionTooltip(10) +
+                "\n" + LocalizationHelper.IncreasedMinionTooltip(2) +
+                "\n" + LocalizationHelper.IncreasedCentryTooltip(2) +
+                "\n" + LocalizationHelper.IncreasedLifeMaxTooltip(40);   
         }
         public override void SetDefaults()
 		{

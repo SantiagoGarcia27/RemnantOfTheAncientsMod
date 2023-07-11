@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Prefixe;
+Ôªøusing RemnantOfTheAncientsMod.Prefixe;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Healer");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(GuÈrisseur)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Gu√©risseur)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Sanador)");
         }
         public override float RollChance(Item item)
@@ -64,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Athletic");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(AthlÈtique)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Athl√©tique)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Atletico)");
         }
         public override float RollChance(Item item)
@@ -83,7 +83,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Giant");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(GÈant)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(G√©ant)");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Gigante)");
         }
         public override float RollChance(Item item)
@@ -103,7 +103,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         {
             DisplayName.SetDefault("Titanic");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "(Titanesque)");
-            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Tit·nico)");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "(Tit√°nico)");
         }
         public override float RollChance(Item item)
         {

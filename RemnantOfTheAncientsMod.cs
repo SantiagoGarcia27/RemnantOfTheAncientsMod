@@ -43,25 +43,7 @@ namespace RemnantOfTheAncientsMod
             {
                 ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
             }
-            Utils1.ForceLoadModHJsonLocalization(this);
-
-            //for (int i = 1; i < ItemLoader.ItemCount; i++)
-            //{
-            //     // Item item = new Item(i);
-            //    if (i > 5288)
-            //    {
-            //        int ammo = ItemLoader.GetItem(i).Item.ammo;
-            //        if (ItemLoader.GetItem(i).Item.type == ModContent.ItemType<DesertArrow>()) 
-            //        {
-            //            int j = ItemLoader.GetItem(i).Item.ammo;
-            //            string h = ItemLoader.GetItem(i).Item.Name;
-            //        }
-            //        if (ammo > 0)
-            //        {
-            //            AddContent(new EndelssAmmoGenerator(i));
-            //        }
-            //    }
-            //}
+            LocalizationHelper.ForceLoadModHJsonLocalization(this);
         }
 
         public static int GetMaxRarity()
