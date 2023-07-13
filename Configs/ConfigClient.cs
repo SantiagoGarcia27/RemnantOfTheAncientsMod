@@ -10,146 +10,146 @@ namespace RemnantOfTheAncientsMod
         
         #region ToggleEffects
         [Header("Potion Effects")]
-        [Label("Feather fall effect on kits")]
+        //[Label("Feather fall effect on kits")]
         [DefaultValue(true)]
-        [Tooltip("Activate the feather fall effect of potion kits")]
+       // [Tooltip("Activate the feather fall effect of potion kits")]
         public bool KitsFeatherFall { get; set; }
 
-        [Label("Invisibility effect on kits")]
+        //[Label("Invisibility effect on kits")]
         [DefaultValue(true)]
-        [Tooltip("Activate the invisibility effect of potion kits")]
+       // [Tooltip("Activate the invisibility effect of potion kits")]
         public bool KitsInvis { get; set; }
 
-        [Label("Gravitation control effect on kits")]
+        //[Label("Gravitation control effect on kits")]
         [DefaultValue(true)]
-        [Tooltip("Activate the gravitation control effect of potion kits")]
+        //[Tooltip("Activate the gravitation control effect of potion kits")]
         public bool KitsGrav { get; set; }
 
-        [Label("Inferno effect on kits")]
+       // [Label("Inferno effect on kits")]
         [DefaultValue(true)]
-        [Tooltip("Activate the inferno effect of potion kits")]
+       // [Tooltip("Activate the inferno effect of potion kits")]
         public bool KitsInferno { get; set; }
 
-        [Label("Gills effect on kits")]
+       // [Label("Gills effect on kits")]
         [DefaultValue(true)]
-        [Tooltip("Activate the gills effect of potion kits")]
+        //[Tooltip("Activate the gills effect of potion kits")]
         public bool KitsGills { get; set; }
         #endregion
 
         #region ReaperSouls
         [Header("Reaper")]
 
-        [Label("Toggle King Slime soul")]
+        //[Label("Toggle King Slime soul")]
         [SliderColor(11, 181, 176, 29)]
         [Range(0f, 30f)]
         [Increment(1f)]
         [DrawTicks]
         [DefaultValue(30f)]
-        [Tooltip("Activate the King Slime soul effect")]
+       // [Tooltip("Activate the King Slime soul effect")]
         public float ToggleKingSlimeSoul { get; set; }
 
-        [Label("Toggle Eye of Chutulu soul")]
+       // [Label("Toggle Eye of Chutulu soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Eye of Chutulu soul effect")]
+       // [Tooltip("Activate the Eye of Chutulu soul effect")]
         public bool ToggleEyeOfChutuluSoul { get; set; }
 
-        [Label("Toggle Corrupt soul")]
+       // [Label("Toggle Corrupt soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Corrupt soul effect")]
+       // [Tooltip("Activate the Corrupt soul effect")]
         public bool ToggleCorruptSoul { get; set; }
 
-        [Label("Toggle QueenBee soul")]
+       // [Label("Toggle QueenBee soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Queen Bee soul effect")]
+       // [Tooltip("Activate the Queen Bee soul effect")]
         public bool ToggleQueenBeeSoul { get; set; }
 
-        [Label("Toggle Skeletron soul")]
+      //  [Label("Toggle Skeletron soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Skeletron soul effect")]
+       // [Tooltip("Activate the Skeletron soul effect")]
         public bool ToggleSkeletronSoul { get; set; }
 
-        [Label("Toggle Dearclops soul")]
+        //[Label("Toggle Dearclops soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Dearclops soul effect")]
+       // [Tooltip("Activate the Dearclops soul effect")]
         public bool ToggleDearclopsSoul { get; set; }
 
-        [Label("Toggle Desert Anhilator soul")]
+        //[Label("Toggle Desert Anhilator soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Desert Anhilator soul effect")]
+       // [Tooltip("Activate the Desert Anhilator soul effect")]
         public bool ToggleDesertAnhilatorSoul { get; set; }
 
-        [Label("Toggle Wall of flesh soul")]
+        //[Label("Toggle Wall of flesh soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Wall of flesh soul effect")]
+        //[Tooltip("Activate the Wall of flesh soul effect")]
         public bool ToggleWallOfFleshSoul { get; set; }
 
-        [Label("Toggle Frozen Assaulter soul")]
+       // [Label("Toggle Frozen Assaulter soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Frozen Assaulter soul effect")]
+        //[Tooltip("Activate the Frozen Assaulter soul effect")]
         public bool ToggleFrozenAssaulterSoul { get; set; }
 
-        [Label("Toggle Queen Slime soul")]
+       // [Label("Toggle Queen Slime soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Queen Slime soul effect")]
+       // [Tooltip("Activate the Queen Slime soul effect")]
         public bool ToggleQueenSlimeSoul { get; set; }
 
-        [Label("Toggle Destroyer enrgy cell")]
+       // [Label("Toggle Destroyer enrgy cell")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Destroyer energy cell effect")]
+       // [Tooltip("Activate the Destroyer energy cell effect")]
         public bool ToggleDestroyerSoul { get; set; }
 
-        [Label("Toggle Spazmatism enrgy cell")]
+       // [Label("Toggle Spazmatism enrgy cell")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Spazmatism energy cell effect")]
+       // [Tooltip("Activate the Spazmatism energy cell effect")]
         public bool ToggleSpazmatismSoul { get; set; }
 
-        [Label("Toggle Retinazor enrgy cell")]
+       // [Label("Toggle Retinazor enrgy cell")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Retinazor energy cell effect")]
+       // [Tooltip("Activate the Retinazor energy cell effect")]
         public bool ToggleRetinazorSoul { get; set; }
 
-        [Label("Toggle Skeletron prime enrgy cell")]
+       // [Label("Toggle Skeletron prime enrgy cell")]
         [SliderColor(11, 181, 176, 29)]
         [Range(0f, 10f)]
         [Increment(1f)]
         [DrawTicks]
         [DefaultValue(10f)]
-        [Tooltip("Activate the SkeletronPrime energy cell effect")]
+       // [Tooltip("Activate the SkeletronPrime energy cell effect")]
         public float ToggleSkeletronPrimeSoul { get; set; }
 
-        [Label("Toggle Empress of light soul")]
+       // [Label("Toggle Empress of light soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Empress of light soul effect")]
+       // [Tooltip("Activate the Empress of light soul effect")]
         public bool ToggleEmpressOfLightSoul { get; set; }
 
-        [Label("Toggle Plantera soul")]
+       // [Label("Toggle Plantera soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Plantera soul effect")]
+       // [Tooltip("Activate the Plantera soul effect")]
         public bool TogglePlanteraSoul { get; set; }
 
-        [Label("Toggle Infernal Tyrant soul")]
+       // [Label("Toggle Infernal Tyrant soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Infernal Tyrant soul effect")]
+       // [Tooltip("Activate the Infernal Tyrant soul effect")]
         public bool ToggleInfernalTyrantSoul { get; set; }
 
-        [Label("Toggle Golem soul")]
+       // [Label("Toggle Golem soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Golem soul effect")]
+       // [Tooltip("Activate the Golem soul effect")]
         public bool ToggleGolemSoul { get; set; }
 
-        [Label("Toggle Duke Fishron soul")]
+      //  [Label("Toggle Duke Fishron soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Duke Fishron soul effect")]
+       // [Tooltip("Activate the Duke Fishron soul effect")]
         public bool ToggleDukeFishronSoul { get; set; }
 
-        [Label("Toggle Lunatic cultist soul")]
+       // [Label("Toggle Lunatic cultist soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Lunatic cultis soul effect")]
+       // [Tooltip("Activate the Lunatic cultis soul effect")]
         public bool ToggleLunaticCultistSoul { get; set; }
 
-        [Label("Toggle Moonlord soul")]
+       // [Label("Toggle Moonlord soul")]
         [DefaultValue(true)]
-        [Tooltip("Activate the Moonlord soul effect")]
+       // [Tooltip("Activate the Moonlord soul effect")]
         public bool ToggleMoonlordSoul { get; set; }
         #endregion
 
