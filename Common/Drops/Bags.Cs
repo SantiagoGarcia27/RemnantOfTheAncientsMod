@@ -9,6 +9,9 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 
 namespace RemnantOfTheAncientsMod.Drops
 {
@@ -41,6 +44,21 @@ namespace RemnantOfTheAncientsMod.Drops
                 case ItemID.WallOfFleshBossBag:
                     Utils1.DroppItem(player, item, ItemType<WallOfFleshScroll>(), 1, commonScroll);
                     break;
+                case ItemID.GolemBossBag:
+                    Utils1.DroppItem(player, item, ItemType<Legendary_Great_Sword>(), Utils1.GetReaperNumber(5, 1), 800);
+                    break;
+                case ItemID.MoonLordBossBag:
+                    Utils1.DroppItem(player, item, ItemType<LaserMachineGun>(), Utils1.GetReaperNumber(5, 1), 100);
+                    break;
+                default:
+                    if (item.type == ModContent.ItemType<infernalBag>())
+                    {
+                        Utils1.DroppItem(player, item, ItemType<TheSpiker>(), Utils1.GetReaperNumber(5, 1),200);
+                    }
+                    
+                    break;
+
+               
 
             }
             base.RightClick(item, player);
