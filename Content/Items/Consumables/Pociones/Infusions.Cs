@@ -37,16 +37,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             .AddIngredient(ItemType<Melee_Potion_Kit>())
             .AddTile(TileID.Bottles)
             .Register();
-
-            CreateRecipe()
-            .AddIngredient(ItemType<Endless_Melee_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Ranger_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Summon_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Magic_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Tank_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Advanced_Potion_Kit>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
         }
     }
 

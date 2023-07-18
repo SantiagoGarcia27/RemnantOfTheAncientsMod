@@ -157,7 +157,9 @@ public class ReaperPlayer : ModPlayer
 
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
     {
-        Player.respawnTimer *= (int)RespawnCalculator();
+        float respawnMult = RespawnCalculator();
+        float respawnTime = Player.respawnTimer * respawnMult;
+        Player.respawnTimer = (int)respawnTime;
     }
     public void ReaperStarter()
     {
@@ -180,9 +182,12 @@ public class ReaperPlayer : ModPlayer
 
         if (Reaper.ReaperMode)
         {
-            if (DesertAnhilatorActivated && !MoonlordRespawnActivated) return ReaperSoulBoost ? 0.7f : 0.8f;
-            else if (!DesertAnhilatorActivated && MoonlordRespawnActivated) return ReaperSoulBoost ? 0.5f : 0.7f;
-            else if (DesertAnhilatorActivated && MoonlordRespawnActivated) return ReaperSoulBoost ? 0.3f : 0.5f;
+            if (DesertAnhilatorActivated && !MoonlordRespawnActivated) 
+                return ReaperSoulBoost ? 0.7f : 0.8f;
+            else if (!DesertAnhilatorActivated && MoonlordRespawnActivated) 
+                return ReaperSoulBoost ? 0.5f : 0.7f;
+            else if (DesertAnhilatorActivated && MoonlordRespawnActivated) 
+                return ReaperSoulBoost ? 0.3f : 0.5f;
         }
         return 1;
     }

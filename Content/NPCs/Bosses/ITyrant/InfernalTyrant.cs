@@ -297,7 +297,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
-                            worm.Acceleration = 1.5f;
+                            worm.Acceleration = 1.4f;
                         }
                         else
                         {

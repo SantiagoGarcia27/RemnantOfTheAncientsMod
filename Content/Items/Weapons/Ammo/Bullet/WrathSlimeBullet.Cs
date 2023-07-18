@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
 		}
 		public override void AddRecipes()
 		{
-			CreateRecipe()
+			CreateRecipe(100)
 			.AddIngredient(ItemID.MusketBall, 100)
 			.AddIngredient(ItemID.Meteorite, 5)
 			.AddIngredient(ItemID.PinkGel, 5)

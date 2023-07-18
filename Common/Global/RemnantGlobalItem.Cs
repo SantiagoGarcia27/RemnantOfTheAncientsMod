@@ -105,7 +105,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     item.defense = 2;
                 }
-
+				if(item.type == ItemID.PearlwoodBow)
+				{
+					item.damage = 30;
+					item.shootSpeed = 10;
+					item.useTime= 8;
+					item.useAnimation = 70;	
+				}
 				if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -127,8 +133,28 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
+        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+			if (WeaponConf)
+			{
+				if (item.type == ItemID.PearlwoodBow)
+				{
+					type = ProjectileID.JestersArrow;
+					base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
+				}
+			}
+			else base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
+        }
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+			if(item.type == ItemID.PearlwoodBow)
+			{
+                return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
+            }
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+        }
 
-		
         public void AddToDashWeaponsLists(Item item)
 		{
 

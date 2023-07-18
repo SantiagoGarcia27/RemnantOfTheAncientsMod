@@ -385,55 +385,55 @@ namespace RemnantOfTheAncientsMod
 
             Recipe.Create(ItemID.GoldenFishingRod)
                .AddIngredient(ModContent.ItemType<TuxoniteFishingPole>())
-               .AddIngredient(ModContent.ItemType<Endless_Fish_Potion>(), 1)
+               .AddIngredient(ModContent.ItemType<Fish_Potion>(), 1)
                .AddIngredient(ItemID.GoldDust, 40)
-               .AddIngredient(ItemID.SoulofLight, 50)
+               .AddIngredient(ItemID.SoulofLight, 30)
                .AddTile(TileID.MythrilAnvil)
                .Register();
 
             Recipe.Create(ItemID.MagicConch)
               .AddIngredient(ItemID.MagicMirror)
-              .AddIngredient(ItemID.Seashell,5)
+              .AddIngredient(ItemID.Seashell, 5)
               .AddTile(TileID.Anvils)
               .Register();
+
             Recipe.Create(ItemID.DemonConch)
              .AddIngredient(ItemID.MagicConch)
              .AddIngredient(ItemID.HellstoneBar, 3)
              .AddTile(TileID.Hellforge)
              .Register();
+
+            Recipe.Create(ItemID.LavaFishingHook)
+                .AddIngredient(ItemID.HellstoneBar, 5)
+                .AddIngredient(ItemID.MasterBait, 2)
+                .AddTile(TileID.Hellforge)
+                .Register();
         }
         private static void Emblemas()
         {
-            {
-                Recipe.Create(ItemID.SummonerEmblem)
-                   .AddRecipeGroup("Emblemas")
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.SorcererEmblem)
-                   .AddRecipeGroup("Emblemas")
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.WarriorEmblem)
-                   .AddRecipeGroup("Emblemas")
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.RangerEmblem)
-                   .AddRecipeGroup("Emblemas")
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
-            }
-            {
-                Recipe.Create(ModContent.ItemType<TrowerEmblem>())
-                   .AddRecipeGroup("Emblemas")
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
-            }
+            Recipe.Create(ItemID.SummonerEmblem)
+               .AddRecipeGroup("Emblemas")
+               .AddTile(TileID.AlchemyTable)
+               .Register();
+            Recipe.Create(ItemID.SorcererEmblem)
+               .AddRecipeGroup("Emblemas")
+               .AddTile(TileID.AlchemyTable)
+               .Register();
+
+            Recipe.Create(ItemID.WarriorEmblem)
+               .AddRecipeGroup("Emblemas")
+               .AddTile(TileID.AlchemyTable)
+               .Register();
+
+            Recipe.Create(ItemID.RangerEmblem)
+               .AddRecipeGroup("Emblemas")
+               .AddTile(TileID.AlchemyTable)
+               .Register();
+
+            Recipe.Create(ModContent.ItemType<TrowerEmblem>())
+               .AddRecipeGroup("Emblemas")
+               .AddTile(TileID.AlchemyTable)
+               .Register();
         }
         private static void CraftinStationsCraft()
         {
@@ -724,6 +724,7 @@ namespace RemnantOfTheAncientsMod
 
         private static void VanillaPotionCrafting()
         {
+            int count = 2;
             for (int i = 288; i <= 305; i++)
             {
                 Recipe.Create(i, 2)
@@ -741,9 +742,10 @@ namespace RemnantOfTheAncientsMod
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
-            for (int i = 2344; i <= 2350; i++)
+            for (int i = 2344; i <= 2356; i++)
             {
-                Recipe.Create(i, 2)
+                count = i == 2353? 10: 2;
+                Recipe.Create(i, count)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
@@ -751,37 +753,18 @@ namespace RemnantOfTheAncientsMod
             }
             for (int i = 4477; i <= 4478; i++)
             {
+
                 Recipe.Create(i, 2)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
-            Recipe.Create(ItemID.FishingPotion, 2)
-                  .AddRecipeGroup("anyStrangePlants")
-                  .AddIngredient(ItemID.BottledWater)
-                  .AddTile(TileID.AlchemyTable)
-                  .Register();
-            {
-
-                Recipe.Create(ItemID.LuckPotionGreater, 4)
+                 Recipe.Create(ItemID.LuckPotionGreater, 4)
                    .AddRecipeGroup("anyStrangePlants")
                    .AddIngredient(ItemID.BottledWater)
                    .AddTile(TileID.AlchemyTable)
                    .Register();
-            }
-            {
-                Recipe.Create(ItemID.SonarPotion, 2)
-                   .AddRecipeGroup("anyStrangePlants")
-                   .AddIngredient(ItemID.BottledWater)
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
-            }
-            Recipe.Create(ItemID.CratePotion, 2)
-               .AddRecipeGroup("anyStrangePlants")
-               .AddIngredient(ItemID.BottledWater)
-               .AddTile(TileID.AlchemyTable)
-               .Register();
 
             Recipe.Create(ModContent.ItemType<Commander_Potion>(), 2)
               .AddRecipeGroup("anyStrangePlants")
@@ -960,7 +943,7 @@ namespace RemnantOfTheAncientsMod
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Intestine", new int[]
             {
                 ModContent.ItemType<Intestine>(),
-                 ModContent.ItemType<SoulHarvester>(),
+                ModContent.ItemType<SoulHarvester>(),
             });
             RecipeGroup.RegisterGroup("anyCorruptWhip", group);
 

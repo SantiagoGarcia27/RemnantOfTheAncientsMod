@@ -11,6 +11,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using CalamityMod.Buffs.StatDebuffs;
 
 public class ReaperGlobalNpc : GlobalNPC
 {
@@ -370,11 +371,30 @@ public class ReaperGlobalNpc : GlobalNPC
                 {
                     npc.dontTakeDamage = false;
                 }
+
+                if(!npc.dontTakeDamage)
+                {
+                    if (attackCounter < 200)
+                    {
+                        attackCounter++;
+                    }
+                    else
+                    {
+                        attackCounter = 0;
+                    }
+                    if(attackCounter == 180)
+                    {
+                        for(int i = -2; i < 5; i++)
+                        {
+                            Vector2 pos = ( player.Center - npc.Center).RotatedBy(i * 0.2f);
+                            int proj = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, pos, ProjectileID.PinkLaser, 20, 1, Main.myPlayer);
+                            Main.projectile[proj].velocity /= 2;
+                        }
+                    }
+                }
             }
             if (npc.type == NPCID.Plantera)
             {
-
-
                 int maxHook = GetHootAmount(npc);
                 if (NpcList.Count > maxHook)
                 {

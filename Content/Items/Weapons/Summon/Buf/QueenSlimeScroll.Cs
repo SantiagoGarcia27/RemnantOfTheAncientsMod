@@ -1,4 +1,4 @@
-using Terraria;
+ï»¿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -14,14 +14,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
         {
             DisplayName.SetDefault("Queen Scroll");
             Tooltip.SetDefault("50% increases player movement speed and minion damage by 5%," +
-                "\n increase your max number of minions by 1 and increases your max life by 20%");
+                "\nincrease your max number of minions by 1 and increases your max life by 20%");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin royal");
-            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "50% augmente la vitesse de déplacement du joueur et les dégâts des sbires de 5%," +
-                "\n augmentez votre nombre maximum de sbires de 1 et augmentez votre vie maximum de 20 %");
+            Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "50% augmente la vitesse de dÃ©placement du joueur et les dÃ©gÃ¢ts des sbires de 5%," +
+                "\naugmentez votre nombre maximum de sbires de 1 et augmentez votre vie maximum de 20Â %");
             DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de la reina");
             Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de movimiento en un 50%."
-                            + "\nAumentael daño de los súbditos en un 5%, aumenta tu minion máximo en 1"
-                            + "\nAumenta la vida maxima un 20%");
+                + "\nAumentael daÃ±o de los sÃºbditos en un 5%, aumenta tu minion mÃ¡ximo en 1"
+                + "\nAumenta la vida maxima un 20%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

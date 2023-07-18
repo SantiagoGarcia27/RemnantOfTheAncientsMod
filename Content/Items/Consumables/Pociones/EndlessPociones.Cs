@@ -376,4 +376,24 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 
         }
     }
+    public class EndlessStink : BasePotions
+    {
+        public override Item ItemBase => new(ItemID.StinkPotion);
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Stink Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción apestoza eterna");
+
+        }
+    }
+    public class EndlessLove : BasePotions
+    {
+        public override Item ItemBase => new(ItemID.LovePotion);
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Endless Love Potion");
+            DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de de amor eterna");
+
+        }
+    }
 }

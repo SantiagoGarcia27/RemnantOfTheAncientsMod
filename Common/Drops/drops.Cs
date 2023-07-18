@@ -19,6 +19,7 @@ using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -33,10 +34,17 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             LegendaryLoot(npc,npcLoot);
             CommonLoot(npc,npcLoot);
             PilarEnemiyLoot(npc, npcLoot);
-            if (npc.lifeMax > 1 && npc.lifeMax < 100000 && npc.value > 0f) 
-                npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 500000/ dificultyDrop(1), 1, 1));
-            if (npc.lifeMax > 100000 && npc.value > 0f) 
-                npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 100000/ dificultyDrop(1), 1, 1));
+            if(npc.value > 0f)
+            {
+                if (npc.lifeMax > 100000)
+                {
+                    npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 100000 / dificultyDrop(1), 1, 1));
+                }
+                else
+                {
+                    npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 500000 / dificultyDrop(1), 1, 1));
+                }
+            }
           //  npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fake_The_Legion>(), 1 / dificultyDrop(1), 1, 1));
             SoulLoot(npc,npcLoot,new Player());
         }
@@ -138,6 +146,11 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             }
             if (npc.type == NPCType<CobaltZombie>()) ZombieOreLoot(npcLoot, ItemID.CobaltOre, ItemID.CobaltBar);
             if (npc.type == NPCType<PaladiumZombie>()) ZombieOreLoot(npcLoot, ItemID.PalladiumOre, ItemID.PalladiumBar);
+            if (npc.type == NPCID.HallowBoss) 
+            {
+                npcLoot.Add(ItemDropRule.ByCondition(new IsDay(),ModContent.ItemType<StarChunk>(),1,3,5));
+                npcLoot.Add(ItemDropRule.ByCondition(new IsNight(), ItemType<StarChunk>(), 1, 1, 2));
+            }
         }
         public override void OnKill(NPC npc)
         {
@@ -149,7 +162,6 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             {
                 switch (npc.type)
                 {
-
                     case NPCID.KingSlime:
                         npcLoot.Add(ItemDropRule.ByCondition(new SlimeReaperSoulRule(), ItemType<KingSoul>()));
                         break;
@@ -189,7 +201,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                     case NPCID.Plantera:
                         npcLoot.Add(ItemDropRule.ByCondition(new PlanteraReaperSoulRule(), ItemType<PlantSoul>()));
                         break;
-                    case NPCID.EmpressButterfly:             
+                    case NPCID.HallowBoss:             
                         npcLoot.Add(ItemDropRule.ByCondition(new EmpressOfLightReaperSoulRule(), ItemType<EmpressSoul>()));
                         break;
                     case NPCID.Golem:

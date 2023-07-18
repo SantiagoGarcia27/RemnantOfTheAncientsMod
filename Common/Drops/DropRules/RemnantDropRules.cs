@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
     public class IsReaperMode : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => Main.masterMode;
+        public bool CanDrop(DropAttemptInfo info) => Reaper.ReaperMode;
 
-        public bool CanShowItemDropInUI() => Main.masterMode;
+        public bool CanShowItemDropInUI() => Reaper.ReaperMode;
 
         public string GetConditionDescription() => null;
     }
@@ -39,9 +39,19 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         public bool CanShowItemDropInUI() => Reaper.ReaperMode ? (!Main.expertMode && Main.masterMode) : false;
         public string GetConditionDescription() => null;
     }
-    
-    
-    
+    public class IsDay : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => Main.dayTime;
+        public bool CanShowItemDropInUI() => Main.dayTime;
+        public string GetConditionDescription() => null;
+    }
+    public class IsNight : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => !Main.dayTime;
+        public bool CanShowItemDropInUI() => !Main.dayTime;
+        public string GetConditionDescription() => null;
+    }
+
     //public class DropBasedOnReaperNormalMode : IItemDropRule, INestedItemDropRule
     //{
     //    public IItemDropRule ruleForNormalMode;
