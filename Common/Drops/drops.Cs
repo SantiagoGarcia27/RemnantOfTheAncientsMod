@@ -54,7 +54,8 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCID.Shark) npcLoot.Add (ItemDropRule.Common(ItemType<SharkTooth>(), 10/ dificultyDrop(1), 1, 5 ));
             if (npc.type == NPCID.Tim) npcLoot.Add(ItemDropRule.Common(ItemType<magic_stick>(), 50/ dificultyDrop(5), 1, 1));
             if (npc.type == NPCID.DungeonGuardian) npcLoot.Add(ItemDropRule.Common(ItemType<TortugaPet>(), 10 / dificultyDrop(2), 1, 1));
-
+            if (npc.type == NPCID.BigMimicCorruption) npcLoot.Add(ItemDropRule.ByCondition(new DownedPlantera(), ItemID.ScourgeoftheCorruptor, 4, 1, 1));
+            if (npc.type == NPCID.BigMimicCrimson) npcLoot.Add(ItemDropRule.ByCondition(new DownedPlantera(), ItemID.VampireKnives, 4, 1, 1));
         }
         public void PilarEnemiyLoot(NPC npc ,NPCLoot npcLoot)
         {

@@ -51,7 +51,12 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         public bool CanShowItemDropInUI() => !Main.dayTime;
         public string GetConditionDescription() => null;
     }
-
+    public class DownedPlantera : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        public bool CanDrop(DropAttemptInfo info) => NPC.downedPlantBoss;
+        public bool CanShowItemDropInUI() => NPC.downedPlantBoss;
+        public string GetConditionDescription() => null;
+    }
     //public class DropBasedOnReaperNormalMode : IItemDropRule, INestedItemDropRule
     //{
     //    public IItemDropRule ruleForNormalMode;

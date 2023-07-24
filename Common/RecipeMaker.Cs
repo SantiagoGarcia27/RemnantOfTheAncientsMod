@@ -170,7 +170,11 @@ namespace RemnantOfTheAncientsMod
 
         private static void PreHardmodeRangerWeapons()
         {
-
+            Recipe.Create(ItemID.PainterPaintballGun)
+               .AddIngredient(ItemID.DyeVat, 1)
+               .AddIngredient(ItemID.FlintlockPistol, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
         }
         private static void PreHardmodeMagicWeapons()
         {

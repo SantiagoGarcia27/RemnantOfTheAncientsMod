@@ -36,7 +36,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
 		static List<int> BossSummons = new List<int>();
 		public static void ReaperConsumable(Item item)
 		{
-			AddBossSummon();
+			AddEventSummon();
+            AddBossSummon();
 			if (RemnantOfTheAncientsMod.ThoriumMod != null) AddBossSummonThorium();
 
 			if (RemnantOfTheAncientsMod.CalamityMod == null)
@@ -55,7 +56,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
-
+		public static void AddEventSummon()
+		{
+            SafeAddContentToList(ItemID.BloodMoonStarter);
+            SafeAddContentToList(ItemID.GoblinBattleStandard);
+            SafeAddContentToList(ItemID.DD2ElderCrystal);
+            SafeAddContentToList(ItemID.SnowGlobe);
+            SafeAddContentToList(ItemID.SolarTablet);
+            SafeAddContentToList(ItemID.PirateMap);
+            SafeAddContentToList(ItemID.PumpkinMoonMedallion);
+            SafeAddContentToList(ItemID.NaughtyPresent);
+        }
 		public static void AddBossSummon()
 		{
             SafeAddContentToList(ItemID.SlimeCrown);
@@ -64,9 +75,12 @@ namespace RemnantOfTheAncientsMod.Common.Global
             SafeAddContentToList(ItemID.BloodySpine);
             SafeAddContentToList(ItemID.Abeemination);
             SafeAddContentToList(ItemID.DeerThing);
+            SafeAddContentToList(ItemID.GuideVoodooDoll);
             SafeAddContentToList(ItemID.QueenSlimeCrystal);
             SafeAddContentToList(ItemID.MechanicalEye);
             SafeAddContentToList(ItemID.MechanicalWorm);
+            SafeAddContentToList(ItemID.EmpressButterfly);
+            SafeAddContentToList(ItemID.TruffleWorm);
             SafeAddContentToList(ItemID.MechanicalSkull);
             SafeAddContentToList(ItemID.CelestialSigil);
             SafeAddContentToList(ModContent.ItemType<DesertChest>());

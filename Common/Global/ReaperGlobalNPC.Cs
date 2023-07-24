@@ -503,19 +503,19 @@ public class ReaperGlobalNpc : GlobalNPC
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.NoBuilding, 0, 0, 30);
                     if (NPC.AnyNPCs(NPCID.Dryad))
                     {
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.DryadsWardDebuff, 0, 0, 30);
+                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.DryadsWard, 0, 0, 30);
                     }
                 }
                 else
                 {
-                    Main.player[npc.target].AddBuff(BuffID.Horrified, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.Weak, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.ChaosState, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.NoBuilding, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Horrified, Utils1.FormatTime(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.Weak, Utils1.FormatTime(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.ChaosState, Utils1.FormatTime(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.NoBuilding, Utils1.FormatTime(0, 0, 0, 1));
                     if (NPC.AnyNPCs(NPCID.Dryad))
                     {
-                        Main.player[npc.target].AddBuff(BuffID.DryadsWardDebuff, Utils1.FormatTime(0, 0, 0, 30));
+                        Main.player[npc.target].AddBuff(BuffID.DryadsWard, Utils1.FormatTime(0, 0, 0, 30));
                     }
                 }
                 if (attackCounter == 110)
@@ -781,9 +781,9 @@ public class ReaperGlobalNpc : GlobalNPC
     {
         if (npc.type == NPCID.MoonLordCore)
         {
-            if (npc.life <= 0)
+            if (npc.life <= 1)
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);
                     RemnantPlayer.ClearBuffToAllPlayers(BuffID.Weak);

@@ -1,6 +1,9 @@
+using IL.Terraria.ID;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.World;
 using System;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.PlayerDrawLayer;
 
@@ -26,6 +29,5 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public static int DefenseCalculator(int defensa) => defensa + 6;
         public static int DamageCalculator(double damagebonus) => (int)(28 * damagebonus);
-
     }
 }

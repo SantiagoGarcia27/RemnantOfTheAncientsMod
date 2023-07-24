@@ -323,7 +323,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
 						item.rare = 0;
 					}
 				}
+				if(item.type == ItemID.GuideVoodooDoll)
+				{
+                  int a = Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ItemID.GuideVoodooDoll, 1);
+                  Main.item[a].rare = 1;
+                    return false;
+				}
             }
+			
             return base.CanBurnInLava(item);	
         }
         public override void UpdateInventory(Item item, Player player)

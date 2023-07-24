@@ -29,9 +29,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			Marble_Erosion = false;
 		}
 
-		public override void SetDefaults(NPC NPC)
+		public override void SetDefaults(NPC npc)
 		{
-		}
+			if (npc.type == NPCID.BigMimicCrimson)
+			{
+				npc.lifeMax *= 2;
+				npc.defense += 10;
+			}
+            if (npc.type == NPCID.BigMimicCorruption)
+            {
+                npc.lifeMax *= 2;
+                npc.defense += 10;
+            }
+        }
 
 		public override void UpdateLifeRegen(NPC NPC, ref int damage)
 		{
