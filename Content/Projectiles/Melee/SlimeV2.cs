@@ -1,0 +1,31 @@
+using Terraria;
+using Terraria.ModLoader;
+
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
+{
+	//ported from my tAPI mod because I don't want to make artwork
+	public class SlimeV2 : ModProjectile
+	{
+		public override void SetStaticDefaults()
+		{
+			Main.projFrames[Projectile.type] = 9;
+		}
+		public override void SetDefaults()
+		{
+			Projectile.width = 22;
+			Projectile.height = 22;
+			Projectile.aiStyle = 20;
+			Projectile.friendly = true;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 100;
+			Projectile.tileCollide = false;
+			Projectile.hide = false;
+			//Projectile.ownerHitCheck = true; //so you can't hit enemies through walls
+		}
+
+		public override void AI()
+		{
+		}
+
+	}
+}

@@ -1,9 +1,9 @@
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
-using Terraria.ID;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -14,16 +14,17 @@ namespace RemnantOfTheAncientsMod
         public static Mod ThoriumMod;
         public static Mod TerrariaOverhaul;
         public static Mod Census;
+        public static Mod RemnantOfTheAncients;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
-        public static readonly int MaxRarity = GetMaxRarity();
+        public static int MaxRarity = GetMaxRarity();
         public static int MaxPlayers = 0;
         public RemnantOfTheAncientsMod()
         {
 
         }
 
-
+        [Obsolete]
         public override void AddRecipes()
         {
             RecipeMaker.AddRecipes();
@@ -38,25 +39,16 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("BossChecklist", out BossChecklist);
             ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
             ModLoader.TryGetMod("Census", out Census);
-
-            // else CalamityMod = null;
-            // if (ModLoader.HasMod("ThoriumMod")) ThoriumMod = ModLoader.GetMod("ThoriumMod");
-            // else ThoriumMod = null;
-            //if (ModLoader.HasMod("BossChecklist")) BossChecklist = ModLoader.GetMod("BossChecklist");
-            //else BossChecklist = null;
-            // CustomCurrencyId = CustomCurrencyManager.RegisterCurrency(new Currencies.RemnantCurrency(ModContent.ItemType<Terracoin>(), 999L, "Mods.RemnantOfTheAncientsMod.Currencies.ExampleCustomCurrency"));
-
-
-
+            ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncients);
 
             if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
             {
                 ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
-
             }
+           // LocalizationHelper.ForceLoadModHJsonLocalization(this);
         }
 
-        private static int GetMaxRarity()
+        public static int GetMaxRarity()
         {
             int max = 0;
             for (int i = 0; i < RarityLoader.RarityCount; i++)
@@ -93,6 +85,7 @@ namespace RemnantOfTheAncientsMod
         }
         public static int MaxPlayerOnline()
         {
+            MaxPlayers = 0;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (MaxPlayers < 10)
@@ -104,7 +97,7 @@ namespace RemnantOfTheAncientsMod
                     }
                 }   
             }
-            return MaxPlayers;
+            return MaxPlayers -1;
         }
     }
 }

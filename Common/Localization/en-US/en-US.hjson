@@ -1,0 +1,161 @@
+Mods: 
+{
+	RemnantOfTheAncientsMod: 
+	{
+		ChatMessage:
+		{
+			CalamityReforgeConfig: 
+				'''
+				Warning, the mod's cutom reforge are disabled by a calamity config.
+				To fix it please disable the "{0}" option in calamity settings.
+				'''
+		}
+		SetBonus:
+		{
+			Tuxonite: 
+				'''
+				Randomly puts you in stealth, 
+				increasing ranged ability and reducing chance for enemies to target you
+				'''
+			Daylight: 
+				'''
+				During the day, doubles the health regeneration.
+				At night increases max mana by 20.
+				Bright Daisy no cost mana.
+				'''
+		}
+		TownNPCMood:
+		{
+			Time_Wizard: 
+			{
+				//DisplayName: Time wizard
+				Content: I feel pretty fine right now.
+				NoHome: I would very much like a house, all the colorful monsters scare me.
+				LoveSpace: I love how there is so much space here to practice magic!
+				FarFromHome: Could you please get me back to my house?
+				DislikeCrowded: There are too many people around, it makes it hard for me to focus on my studies.
+				HateCrowded: I can't test my spells with so many people around!
+				LikeBiome: "{BiomeName} is a very nice place to live."
+				LoveBiome: "I love {BiomeName}."
+				DislikeBiome: "It's way too cold in {BiomeName}, I'm freezing!"
+				HateBiome: "Its kind of hard to view the sky while being attacked by monsters in {BiomeName}."
+				LikeNPC: "I can respect {NPCName} as a fellow guide and educator!"
+				LoveNPC: "Do you think {NPCName} notices me?"
+				DislikeNPC: "I honestly don't like {NPCName} very much."
+				HateNPC: "I hate all the loud noises caused by {NPCName} and his explosives! I just want peace and quiet."
+			}
+		}
+		Dialogue:
+		{
+			Time_Wizard: 
+			{
+				WizardDialogue: "{0}?, He is a great friend of mine, I remember when we studied at the school of witchcraft."
+				ClotierDialogue: 
+					'''
+					Oh? You're approaching me? Instead of running away, you're coming right to me?
+					Even Though your clothier, {0}, told you the secret of The World, *dead {0} pics*
+					like an exam student scrambling to finish the problems on an exam until the last moments before the chime?
+					'''
+				DayDialogue1: "It's a beautiful day today, it would be a shame if someone changed it"
+				DayDialogue2: "Oh hi {0}, hope you have a nice day."
+				NightDialogue1: "It's a beautiful nigth today, it would be a shame if someone changed it."
+				NightDialogue2: "Oh hi {0}, hope you have a nice night."
+				JudmnetDialogue1: "What an interesting weapon, did you try aiming at your feet?"
+				NoBeeDefeatedDialogue1: "Since the bees bother me, could you remove them?"	
+				GenericDialog1: "Nice cloak"
+				ErrorDialgog: "Error en la realidad, algo salió mal, si ves este mensaje avisale a la tortuga ;)"
+			}
+			MinerSoul:
+			{
+				CommonDialogue1:"Hello, could you bring an simple pickaxe?"
+				CommonDialogue2:
+					'''
+					I remember those days when I was looking for gold in these parts.
+					But now I've run out of a iron pick, could you get me one?
+					'''
+				ThanksDialogue1: Many thanks....
+				UpgradeItem: I upgrade your item...
+			}
+		}
+		UI:
+		{	
+			Buttoms:
+			{
+				DeliverPickaxe: Entregar pico
+				UpgradeItem: "Upgrade {0}"
+				SkipDay: Skip day
+			}
+		}
+		Prefix:
+		{
+			Description:
+			{
+				Life: "+{0} life max"	
+				Defense: "+{0} defense"
+				Speed: "+{0}% movment speed"
+				CritChance: "+{0}% critical strike chance"
+				Damage: "+{0}% damage"
+				MeleeSpeed: "+{0}% melee speed"
+				LifeRegeneration: "+{0} life regeneration"
+				DamageReduction: "+{0}% damage reduction"
+			}
+		}
+		Generic:
+		{
+			RightClickSaberHabilitie: Right click to use dash
+			RightClickSecondHabilitie: Right click to use the scondary hability
+			MusicBoxCredit: "by {0}"
+			Reaper//Tooltip: "Reaper Item"
+			Legendary//Tooltip: "Legendary Drop"
+			NotConsumable//Tooltip : "Not Consumable"
+		}
+		Common//Tooltip:
+		{
+			IncreasedMinion:"Increases your max number of minions by {0}"
+			IncreasedSentry:"Increases your max number of sentries by {0}"
+			IncreasedGenericDamage: "{0}% increased damage"
+			IncreasedClassDamage:"{0}% increased {1} damage"
+			IncreasedGenericCritChance:"{0}% increased critical strike chance"
+			IncreasedClassCritChance:"{0}% increased {1} critical strike chance"
+			IncreasedGenericCritAndDamage:"{0}% increased damage and critical strike chance"
+			IncreasedGenericCritAndDamage:"{0}% increased {1} damage and critical strike chance"
+			IncreasedMovementSpeed:"{0}% increased movement speed"
+			DecreasedMovementSpeed:"{0}% decreased movement speed"
+			IncreasedManaMax:"Increases maximum mana by {0}"
+			IncreasedLifeMax:"Increases maximum life by {0}"
+			IncreasedLifeMaxPercent:"Increases maximum life by {0}%"
+			IncreasedDamageReduction:"Reduces damage taken by {0}%"
+		}
+		NPCs:
+		{
+			AntlionD.//DisplayName: Antlion
+			ArmoredSlime.//DisplayName: Armored Slime
+			DesertAniquilator.//DisplayName: Desert Annihilator
+			DesertScorpionD.//DisplayName: Sand Poacher
+			DSlime.//DisplayName: Servant of Desert Annihilator
+			FlyingAntlionD.//DisplayName: Antlion Swarmer
+			frozen_assaulter.//DisplayName: Frozen Assaulter
+			IGolem.//DisplayName: Ice Golem
+			InfernalTyrantBody.//DisplayName: Infernal Tyrant
+			InfernalTyrantHead.//DisplayName: Infernal Tyrant
+			InfernalTyrantTail.//DisplayName: Infernal Tyrant
+			MinerSoul.//DisplayName: Miner Soul
+			Time_Wizard.//DisplayName: Time_ Wizard
+			VultureD.//DisplayName: Vulture
+			WalkingAntlionD.//DisplayName: Antlion Charger
+			Armoredzombie.//DisplayName: Armored Zombie
+			Copperzombie.//DisplayName: Armored Zombie
+			Crimsonzombi.//DisplayName: Armored Zombie
+			Fastzombie.//DisplayName: weak zombie
+			Goldzombie.//DisplayName: Armored Zombie
+			Ironzombie.//DisplayName: Armored Zombie
+			Leadzombie.//DisplayName: Armored Zombie
+			Platinumzombie.//DisplayName: Armored Zombie
+			Shadowzombie.//DisplayName: Armored Zombie
+			Silverzombie.//DisplayName: Armored Zombie
+			Tinzombie.//DisplayName: Armored Zombie
+			Tungstenzombie.//DisplayName: Armored Zombie
+			Tuxonitezombie.//DisplayName: Armored Zombie
+		}
+	}
+}

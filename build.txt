@@ -1,6 +1,6 @@
 author = Sangar & TTIM
-version = 2.0.1
-displayName = Remnant Of TheAncient Mod 1.4.4
+version = 2.1.9
+//DisplayName = Remnant Of The Ancient Mod
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 hideCode = false
 hideResources = false
