@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod
         public override ConfigScope Mode => ConfigScope.ClientSide;
         
         #region ToggleEffects
-        [Header("Potion Effects")]
+       // [Header("Potion Effects")]
         //[Label("Feather fall effect on kits")]
         [DefaultValue(true)]
         //[//Tooltip("Activate the feather fall effect of potion kits")]
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod
         #endregion
 
         #region ReaperSouls
-        [Header("Reaper")]
+       // [Header("Reaper")]
 
         //[Label("Toggle King Slime soul")]
         [SliderColor(11, 181, 176, 29)]

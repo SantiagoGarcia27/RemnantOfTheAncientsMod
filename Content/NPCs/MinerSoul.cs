@@ -11,7 +11,7 @@ using Terraria.Utilities;
 using RemnantOfTheAncientsMod.Content.Items.Tools;
 using RemnantOfTheAncientsMod.Content.NPCs;
 
-namespace RemnantOfTheAncientsMod.NPCs
+namespace RemnantOfTheAncientsMod.Content.NPCs
 {
     // This NPC inherits from the Hover abstract class included in ExampleMod, which is a more customizable copy of the vanilla Hovering AI.
     // It implements the `CustomBehavior` and `ShouldMove` virtual methods being overridden here, as well as the `acceleration` and `accelerationY` field being set in the class constructor.

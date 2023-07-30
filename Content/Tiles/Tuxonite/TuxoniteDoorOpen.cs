@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
 
-namespace RemnantOfTheAncientsMod.Tiles
+namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 {
     public class TuxoniteDoorOpen : ModTile
     {
@@ -86,10 +86,10 @@ namespace RemnantOfTheAncientsMod.Tiles
             num = 1;
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<TuxoniteDoor>());
-        }
+        //public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        //{
+        //    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<TuxoniteDoor>());
+        //}
 
         public override void MouseOver(int i, int j)
         {

@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod
         public override ConfigScope Mode => ConfigScope.ServerSide;
         #region Performance
 
-        [Header("Performance")]
+        //[Header("Performance")]
 
        //[Label("Lag Reducer Mode")]
         [SliderColor(11, 181, 176, 29)]
@@ -27,12 +27,12 @@ namespace RemnantOfTheAncientsMod
         #endregion
 
         #region VanillaChanges
-        [Header("Vanilla Changes")]
+      //  [Header("Vanilla Changes")]
 
        //[Label("Vanilla Weapons Changes")]
         [DefaultValue(true)]
-       /* [//Tooltip("Activate the balance changes of vanilla items"
-        //+ "\n(deactivate this if it generates incompatibility with some other mod)")]*/
+        //[//Tooltip("Activate the balance changes of vanilla items"
+        //+ "\n(deactivate this if it generates incompatibility with some other mod)")]
         public bool VanillaWeaponsChangesConf { get; set; }
 
        //[Label("Drop tombs on death")]
@@ -41,8 +41,8 @@ namespace RemnantOfTheAncientsMod
         [Increment(1f)]
         [DrawTicks]
         [DefaultValue(2f)]
-       /* [//Tooltip("Defines if the player drops graves upon death" +
-        "\n 0- Disable all of the tombs" +
+       // [//Tooltip("Defines if the player drops graves upon death" +
+       /* "\n 0- Disable all of the tombs" +
         "\n 1 - 50% Chance to drop tombs" +
         "\n 2 - 100% Chance to drop tombs")]*/
         public float DropTombstomOnDeadtConf { get; set; }
@@ -68,12 +68,12 @@ namespace RemnantOfTheAncientsMod
         //public float xdlevel { get; set; }
         #region ModsCompativilities
         [JITWhenModsEnabled("TerrariaOverhaul")]
-        [Header("Terraria Overhaul")]
+        //[Header("Terraria Overhaul")]
 
        //[Label("Melee weapons cost maná")]
         [DefaultValue(true)]
-       /* [Tooltip("Activate the mechanic of melee cost mana"+
-            "\nRequires recharging")]*/
+        [Tooltip("Activate the mechanic of melee cost mana"+
+            "\nRequires recharging")]
         [ReloadRequired]
         public bool OverhaulMeleeManaCostConfig { get; set; }
         #endregion
