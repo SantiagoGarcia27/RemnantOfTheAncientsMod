@@ -5,13 +5,18 @@ using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.Global;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 {
 	[AutoloadEquip(EquipType.Legs)]
 	public class Reaper_Pants : ModItem
 	{
-		public override void SetStaticDefaults()
+        public int IncreasedMovementSpeed = 10;
+        public int IncreasesMaxMana = 40;
+        public int PercentIncreasedCritChance = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMovementSpeed, IncreasesMaxMana, PercentIncreasedCritChance);
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("True Reaper Pants");
 			//Tooltip.SetDefault(//Tooltip());

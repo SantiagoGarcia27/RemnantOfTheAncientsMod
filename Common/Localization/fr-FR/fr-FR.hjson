@@ -2605,73 +2605,90 @@ Mods: {
 			}
 
 			Restaurated_Chisel: {
-				// DisplayName: Restaurated_ Chisel
-				// Tooltip: ""
+				// DisplayName: Restaurated Chisel
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
 			Spectre_Chisel: {
-				// DisplayName: Spectre_ Chisel
-				// Tooltip: ""
+				// DisplayName: Spectre Chisel
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
 			Sangar_Body: {
-				// DisplayName: Sangar_ Body
+				// DisplayName: Sangar Body
 				// Tooltip: ""
 			}
 
 			Sangar_Head: {
-				// DisplayName: Sangar_ Head
+				// DisplayName: Sangar Head
 				// Tooltip: ""
 			}
 
 			Sangar_Legs: {
-				// DisplayName: Sangar_ Legs
+				// DisplayName: Sangar Legs
 				// Tooltip: ""
 			}
 
 			Ttim_Body: {
-				// DisplayName: Ttim_ Body
+				// DisplayName: Ttim Body
 				// Tooltip: ""
 			}
 
 			Ttim_Head: {
-				// DisplayName: Ttim_ Head
+				// DisplayName: Ttim Head
 				// Tooltip: ""
 			}
 
 			Ttim_Legs: {
-				// DisplayName: Ttim_ Legs
+				// DisplayName: Ttim Legs
 				// Tooltip: ""
 			}
 
 			Desert_herald_chesplate: {
-				// DisplayName: Desert_herald_chesplate
+				// DisplayName: Desert herald chesplate
 				// Tooltip: ""
 			}
 
 			Desert_herald_Greaves: {
-				// DisplayName: Desert_herald_ Greaves
+				// DisplayName: Desert_herald  Greaves
 				// Tooltip: ""
 			}
 
 			Desert_herald_Helmet: {
-				// DisplayName: Desert_herald_ Helmet
+				// DisplayName: Desert_herald Helmet
 				// Tooltip: ""
 			}
 
 			Reaper_Hood: {
-				// DisplayName: Reaper_ Hood
-				// Tooltip: ""
+				// DisplayName: Reaper Hood
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					Luck increased in 2
+					      Not moving puts you in stealth,
+					increasing ranged ability and reducing chance for enemies to target you
+					''' */
 			}
 
 			Reaper_Pants: {
-				// DisplayName: Reaper_ Pants
-				// Tooltip: ""
+				// DisplayName: Reaper Pants
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.IncreasesMaxManaBy@1}
+					{$CommonItemTooltip.PercentIncreasedCritChance@2}
+					''' */
 			}
 
 			Reaper_Robe: {
-				// DisplayName: Reaper_ Robe
-				// Tooltip: ""
+				// DisplayName: Reaper Robe
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					{$CommonItemTooltip.IncreasesMaxLifeBy@1}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@2}
+					{$CommonItemTooltip.IncreasesMaxSentriesBy@3}
+					''' */
 			}
 
 			EndlessLove: {

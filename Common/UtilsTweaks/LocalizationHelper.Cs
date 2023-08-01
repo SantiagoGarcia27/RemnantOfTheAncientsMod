@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Steamworks;
+using System.Reflection;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;

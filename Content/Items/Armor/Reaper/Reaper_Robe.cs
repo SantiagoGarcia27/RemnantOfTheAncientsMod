@@ -17,6 +17,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 
         private static readonly Color rarityColorTwo = Utils1.GetReaperColor(2);
 
+        public int IncreasedDamageReduction = 10;
+        public int MaxLifeBonus = 40;
+        public int MaxMinions = 2;
+        public int MaxCentries = 2;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedDamageReduction, MaxLifeBonus, MaxMinions, MaxCentries);
         internal static Color GetRarityColor()
         {
             return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);

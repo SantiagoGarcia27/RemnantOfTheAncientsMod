@@ -8,6 +8,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class Restaurated_Chisel : ModItem
     {
+        public int MiningBoost = 35;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MiningBoost);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Restaurated Chisel");
