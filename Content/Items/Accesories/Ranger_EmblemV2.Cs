@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
@@ -10,6 +8,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class Ranger_EmblemV2 : ModItem
     {
+       // public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Ranger Emblem V2");

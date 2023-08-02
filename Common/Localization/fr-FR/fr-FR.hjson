@@ -2665,8 +2665,8 @@ Mods: {
 					'''
 					{$CommonItemTooltip.PercentIncreasedDamage}
 					Luck increased in 2
-					      Not moving puts you in stealth,
-					increasing ranged ability and reducing chance for enemies to target you
+					Not moving puts you in stealth,
+					Increasing ranged ability and reducing chance for enemies to target you
 					''' */
 			}
 

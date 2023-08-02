@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.buffImmune[24] = true;
-            Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Desert_Aniquilator");
+            Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Desert_Aniquilator");
             NPC.netAlways = true;
             AnimationType = NPCID.BlueSlime;
             NPC.stepSpeed = 8f;
@@ -299,7 +299,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             if (Reaper.ReaperMode || BossIsInRage) choice *= 2;
             for (int i = 0; i < choice; i++)
             {
-                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.SandSlime);
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
             }
             if (NPC.life <= 0)
             {
@@ -423,9 +423,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     break;
                // case 2:
                     //NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(0, -20 * 16));
-#pragma warning disable CS0162 // Unreachable code detected
-                    break;
-#pragma warning restore CS0162 // Unreachable code detected
                 case 2:
                     NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(-30 * 16, 0));
                     break;
