@@ -81,7 +81,7 @@ Mods:
 		{	
 			Buttoms:
 			{
-				DeliverPickaxe: Entregar pico
+				DeliverPickaxe: Deliver pickaxe
 				UpgradeItem: "Upgrade {0}"
 				SkipDay: Skip day
 			}

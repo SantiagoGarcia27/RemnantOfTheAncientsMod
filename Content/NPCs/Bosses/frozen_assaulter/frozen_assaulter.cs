@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.buffImmune[24] = true;
-            Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Frozen_Assaulter_p1");
+            Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Frozen_Assaulter_p1");
             NPC.netAlways = true;  
         }
         private int attackCounter;
