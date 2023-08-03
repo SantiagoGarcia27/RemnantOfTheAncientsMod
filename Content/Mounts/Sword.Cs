@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.Content.Dusts;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using static Terraria.IL_Mount;
 using static Terraria.Mount;
 
 namespace RemnantOfTheAncientsMod.Content.Mounts
@@ -151,12 +152,7 @@ mountData.acceleration = 0.3f;
 						NPC npc = Main.npc[i];
 						if (npc.active && npc.immune[player.whoAmI] == 0 && npc.life > 0 && mountHitbox.Intersects(npc.getRect()))
 						{
-							// Damage the NPC and add knockback
-							int damage = 20; // Change this value to adjust the amount of damage dealt
-							float knockback = 6f; // Change this value to adjust the knockback
-
-
-							//npc.StrikeNPC(damage, knockback, npc.direction, true, false);
+							npc.SimpleStrikeNPC(20, player.direction, true, 6f, DamageClass.Melee, false, 0, false);
 						}
 					}
 				}

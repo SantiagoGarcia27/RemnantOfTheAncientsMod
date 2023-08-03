@@ -1,10 +1,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Tiles;
-using RemnantOfTheAncientsMod.Content.Tiles.Tuxonite;
+using Terraria;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Items
 {
@@ -20,7 +19,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 
 		public override void SetDefaults()
 		{
-            Item.CloneDefaults(ItemID.PlatinumBar);
+            Item.width = 26;
+            Item.height = 22;
+            Item.maxStack = 99;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.consumable = true;
+			Item.value = new Item(ItemID.PlatinumBar).value;
+            Item.rare = ItemRarityID.White;
             Item.createTile = TileType<TuxoniteBarB>();
 		}
 

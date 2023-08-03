@@ -1,14 +1,10 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using static Terraria.ModLoader.ModContent;
 
-
-namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
+namespace RemnantOfTheAncientsMod.Content.Tiles
 {
 	public class TuxoniteBarB : ModTile
 	{
@@ -24,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.MetalBar"));
+			AddMapEntry(new Color(234, 20, 39), Language.GetText("MapObject.MetalBar"));
 		}
 
 		//public override bool Drop(int i, int j)
@@ -33,9 +29,9 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 		//	int style = t.TileFrameX / 18;
 		//	if (style == 0) // It can be useful to share a single tile with multiple styles. This code will let you drop the appropriate bar if you had multiple.
 		//	{
-		//		Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemType<TuxoniteBar>());
+		//		Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemType<Reinforced_ironBar>());
 		//	}
 		//	return base.Drop(i, j);
 		//}
-	}//textura cobalto brillo -39 contraste 27
+	}
 }
