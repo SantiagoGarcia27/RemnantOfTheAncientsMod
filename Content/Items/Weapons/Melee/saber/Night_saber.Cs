@@ -7,6 +7,8 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Common.Global;
+using Terraria.DataStructures;
+using Mono.Cecil;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -33,9 +35,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.autoReuse = true;
             Item.scale = 1;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;
+			Item.shoot = ProjectileID.NightsEdge;
         }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
+            Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale +0.4f );
+            NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
 
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
+        }
+        public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.NextBool(3))
 			{
@@ -65,6 +75,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             {
                 if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
                 {
+                    float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
+                    Projectile.NewProjectile(Projectile.GetSource_None(), player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, Item.damage + 10, Item.knockBack, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + 0.7f);
+                    NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
+
                     DashPlayer.JumpDash(player, 1f, 0.75f);
 					var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, new Vector2(0, 0), ModContent.ProjectileType<DamageHitbox>(), Item.damage, 2f, Main.myPlayer, 3, 1);
                     Main.projectile[p].width = Item.width * 2;
