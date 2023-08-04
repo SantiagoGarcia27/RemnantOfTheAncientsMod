@@ -6,6 +6,8 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -33,8 +35,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.autoReuse = true;
             Item.scale = 1;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;
+			Item.shoot = ProjectileID.Excalibur;
         }
         public override bool AltFunctionUse(Player player) => true;
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
+            Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale);
+            NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
+
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
+        }
         public override bool CanUseItem(Player player)
         {
             if (player.altFunctionUse == 2)

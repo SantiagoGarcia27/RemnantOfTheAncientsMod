@@ -2927,6 +2927,7 @@ Mods: {
 			Golden_ShurikenP.DisplayName: Golden_ShurikenP
 			DamageHitbox.DisplayName: Damage Hitbox
 			MisilUltra.DisplayName: Misil Ultra
+			MoltenGrassSwordLeaft.DisplayName: Molten Grass Sword Leaft
 		}
 
 		Tiles: {

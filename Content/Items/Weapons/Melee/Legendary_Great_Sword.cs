@@ -2,15 +2,18 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
     public class Legendary_Great_Sword : ModItem
     {
+        public int attackType = 0; // keeps track of which attack it is
+        public int comboExpireTimer = 0; // we want the attack pattern to reset if the weapon is not used for certain period of time
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Legendary Great Sword");
@@ -40,13 +43,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.value = Item.sellPrice(gold: 35);
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
-            //if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
-            //{
-            //    if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ModContent.ProjectileType<LegendaryGreatSwordSwingProgectile>();
-            //}
-            //else Item.shoot = ModContent.ProjectileType<LegendaryGreatSwordSwingProgectile>();
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+            {
+                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ModContent.ProjectileType<LegendaryGreatSwordSwingProgectile>();
+            }
+            else Item.shoot = ModContent.ProjectileType<LegendaryGreatSwordSwingProgectile>();
             Item.shootSpeed = 10f;
-           // Item.noUseGraphic = true;
+            Item.noUseGraphic = true;
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 Item.damage = 400;
@@ -67,9 +70,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             target.AddBuff(BuffID.Venom, 300);
             target.AddBuff(BuffID.Poisoned, 300);
 
-            //int x = Main.rand.Next(0, 3);
-            //int p = Projectile.NewProjectile(Projectile.GetSource_None(), target.position - new Vector2(x*16,50*16), new Vector2(0,5), ProjectileID.BoulderStaffOfEarth, damage, 1, player.whoAmI);
-            //Main.projectile[p].timeLeft = 300;
+            int x = Main.rand.Next(0, 3);
+            int p = Projectile.NewProjectile(Projectile.GetSource_None(), target.position - new Vector2(x * 16, 50 * 16), new Vector2(0, 5), ProjectileID.BoulderStaffOfEarth, damageDone, 1, player.whoAmI);
+            Main.projectile[p].timeLeft = 300;
 
 
             Vector2 postition = Main.screenPosition + new Vector2(target.position.X, target.position.Y);
@@ -97,12 +100,25 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 }
 
                 heading.Normalize();
-               // heading *= velocity.Length();
+                //heading *= velocity.Length();
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
                 Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, ProjectileID.BoulderStaffOfEarth, damageDone * 2,hit.Knockback, player.whoAmI, 0f, ceilingLimit);
             }
         }
         public override void MeleeEffects(Player player, Rectangle hitbox) => Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            // Using the shoot function, we override the swing projectile to set ai[0] (which attack it is)
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, attackType);
+            attackType = (attackType + 1) % 2; // Increment attackType to make sure next swing is different
+            comboExpireTimer = 0; // Every time the weapon is used, we reset this so the combo does not expire
+            return false; // return false to prevent original projectile from being shot
+        }
 
+        public override void UpdateInventory(Player player)
+        {
+            if (comboExpireTimer++ >= 120) // after 120 ticks (== 2 seconds) in inventory, reset the attack pattern
+                attackType = 0;
+        }
     }
 }

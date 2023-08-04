@@ -1,6 +1,11 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
@@ -11,90 +16,289 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 	// Values chosen mostly correspond to Iron Shortword
 	public class LegendaryGreatSwordSwingProgectile : ModProjectile
 	{
-		public const int FadeInDuration = 7;
-		public const int FadeOutDuration = 4;
+        // We define some constants that determine the swing range of the sword
+        // Not that we use multipliers here since that simplifies the amount of tweaks for these interactions
+        // You could change the values or even replace them entirely, but they are tweaked with looks in mind
+        private const float SWINGRANGE = 1.67f * (float)Math.PI; // The angle a swing attack covers (300 deg)
+        private const float FIRSTHALFSWING = 0.45f; // How much of the swing happens before it reaches the target angle (in relation to swingRange)
+        private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
+        private const float WINDUP = 0.15f; // How far back the player's hand goes when winding their attack (in relation to swingRange)
+        private const float UNWIND = 0.4f; // When should the sword start disappearing
+        private const float SPINTIME = 2.5f; // How much longer a spin is than a swing
 
-		public const int TotalDuration = 16;
+        private enum AttackType // Which attack is being performed
+        {
+            // Swings are normal sword swings that can be slightly aimed
+            // Swings goes through the full cycle of animations
+            Swing,
+            SwingReverse
+        }
 
-		// The "width" of the blade
-		public float CollisionWidth => 10f * Projectile.scale;
+        private enum AttackStage // What stage of the attack is being executed, see functions found in AI for description
+        {
+            Prepare,
+            Execute,
+            Unwind
+        }
 
-		public int Timer
-		{
-			get => (int)Projectile.ai[0];
-			set => Projectile.ai[0] = value;
-		}
+        // These properties wrap the usual ai and localAI arrays for cleaner and easier to understand code.
+        private AttackType CurrentAttack
+        {
+            get => (AttackType)Projectile.ai[0];
+            set => Projectile.ai[0] = (float)value;
+        }
 
-		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Legendary Great Sword");
-		}
-
-		public override void SetDefaults()
-		{
-			Projectile.width = 16;
-			Projectile.height = 16;
-			Projectile.aiStyle = 190;
-			Projectile.friendly = true;
-			Projectile.DamageType = DamageClass.Melee;
-			Projectile.penetrate = 3;
-			Projectile.usesLocalNPCImmunity = true;
-			Projectile.tileCollide = false;
-			Projectile.ignoreWater = true;
-			Projectile.localNPCHitCooldown = -1;
-			Projectile.ownerHitCheck = true;
-			Projectile.ownerHitCheckDistance = 300f;
-			//Projectile.usesOwnerMeleeHitCD = true;
-			//Projectile.stopsDealingDamageAfterPenetrateHits = true;
-		}
-
-		public override void AI()
-		{
-			Player player = Main.player[Projectile.owner];
-			//for (int i = 0; i < 200; i++)
-			//{
-			//	NPC target = Main.npc[i];
-			//	Vector2 positionInWorld = Main.rand.NextVector2FromRectangle(Main.npc[i].Hitbox);
-			//	ParticleOrchestraSettings particleOrchestraSettings = default(ParticleOrchestraSettings);
-			//	particleOrchestraSettings.PositionInWorld = positionInWorld;
-			//	ParticleOrchestraSettings settings = particleOrchestraSettings;
-
-
-			//	ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.Keybrand, settings, 255);
-   //         }
-
-
-
-
-           
-            Projectile.localAI[0] += 1f;
-            float num = Projectile.localAI[0] / Projectile.ai[1]; 
-            float num5 = 0.6f;
-            float num6 = 1f;
-			//Projectile.ai[2]++;
-            Projectile.Center = player.RotatedRelativePoint(player.MountedCenter) - Projectile.velocity;
-            Projectile.scale = num6 + num * num5;
-
-
-            float num8 = Projectile.rotation + Main.rand.NextFloatDirection() * ((float)Math.PI / 2f) * 0.7f;
-            Vector2 vector2 = Projectile.Center + num8.ToRotationVector2() * 84f * Projectile.scale;
-            Vector2 vector3 = (num8 + Projectile.ai[0] * ((float)Math.PI / 2f)).ToRotationVector2();
-            if (Main.rand.NextFloat() * 2f < Projectile.Opacity)
+        private AttackStage CurrentStage
+        {
+            get => (AttackStage)Projectile.localAI[0];
+            set
             {
-                Dust dust2 = Dust.NewDustPerfect(Projectile.Center + num8.ToRotationVector2() * (Main.rand.NextFloat() * 80f * Projectile.scale + 20f * Projectile.scale), 278, vector3 * 1f, 100, Color.Lerp(Color.Gold, Color.White, Main.rand.NextFloat() * 0.3f), 0.4f);
-                dust2.fadeIn = 0.4f + Main.rand.NextFloat() * 0.15f;
-                dust2.noGravity = true;
+                Projectile.localAI[0] = (float)value;
+                Timer = 0; // reset the timer when the projectile switches states
             }
-            if (Main.rand.NextFloat() * 1.5f < Projectile.Opacity)
-            {
-                Dust.NewDustPerfect(vector2, 43, vector3 * 1f, 100, Color.White * Projectile.Opacity, 1.2f * Projectile.Opacity);
-            }
+        }
 
+        // Variables to keep track of during runtime
+        private ref float InitialAngle => ref Projectile.ai[1]; // Angle aimed in (with constraints)
+        private ref float Timer => ref Projectile.ai[2]; // Timer to keep track of progression of each stage
+        private ref float Progress => ref Projectile.localAI[1]; // Position of sword relative to initial angle
+        private ref float Size => ref Projectile.localAI[2]; // Size of sword
 
-            Projectile.scale *= 2;
-            if (Projectile.localAI[0] >= Projectile.ai[1])
+        // We define timing functions for each stage, taking into account melee attack speed
+        // Note that you can change this to suit the need of your projectile
+        private float prepTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
+        private float execTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
+        private float hideTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
+
+        public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Melee/Legendary_Great_Sword"; // Use texture of item as projectile texture
+        private Player Owner => Main.player[Projectile.owner];
+
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 46; // Hitbox width of projectile
+            Projectile.height = 48; // Hitbox height of projectile
+            Projectile.friendly = true; // Projectile hits enemies
+            Projectile.timeLeft = 10000; // Time it takes for projectile to expire
+            Projectile.penetrate = -1; // Projectile pierces infinitely
+            Projectile.tileCollide = false; // Projectile does not collide with tiles
+            Projectile.usesLocalNPCImmunity = true; // Uses local immunity frames
+            Projectile.localNPCHitCooldown = -1; // We set this to -1 to make sure the projectile doesn't hit twice
+            Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
+            Projectile.DamageType = DamageClass.Melee; // Projectile is a melee projectile
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
+            float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
+            
+            
+                if (Projectile.spriteDirection == 1)
+                {
+                    targetAngle = MathHelper.Clamp(targetAngle, (float)-Math.PI * 1 / 3, (float)Math.PI * 1 / 6);
+                }
+                else
+                {
+                    if (targetAngle < 0)
+                    {
+                        targetAngle += 2 * (float)Math.PI; // This makes the range continuous for easier operations
+                    }
+
+                    targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
+                }
+            targetAngle = CurrentAttack == AttackType.Swing ? targetAngle : -targetAngle;
+            InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // Otherwise, we calculate the angle           
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            // Projectile.spriteDirection for this projectile is derived from the mouse position of the owner in OnSpawn, as such it needs to be synced. spriteDirection is not one of the fields automatically synced over the network. All Projectile.ai slots are used already, so we will sync it manually. 
+            writer.Write((sbyte)Projectile.spriteDirection);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            Projectile.spriteDirection = reader.ReadSByte();
+        }
+
+        public override void AI()
+        {
+            // Extend use animation until projectile is killed
+            Owner.itemAnimation = 2;
+            Owner.itemTime = 2;
+
+            // Kill the projectile if the player dies or gets crowd controlled
+            if (!Owner.active || Owner.dead || Owner.noItems || Owner.CCed)
             {
                 Projectile.Kill();
+                return;
+            }
+
+            // AI depends on stage and attack
+            // Note that these stages are to facilitate the scaling effect at the beginning and end
+            // If this is not desireable for you, feel free to simplify
+            switch (CurrentStage)
+            {
+                case AttackStage.Prepare:
+                    PrepareStrike();
+                    break;
+                case AttackStage.Execute:
+                    ExecuteStrike();
+                    break;
+                default:
+                    UnwindStrike();
+                    break;
+            }
+
+            SetSwordPosition();
+            Timer++;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            // Calculate origin of sword (hilt) based on orientation and offset sword rotation (as sword is angled in its sprite)
+            Vector2 origin;
+            float rotationOffset;
+            SpriteEffects effects;
+
+            if (Projectile.spriteDirection > 0)
+            {
+                origin = new Vector2(0, Projectile.height);
+                rotationOffset = MathHelper.ToRadians(45f);
+                effects = SpriteEffects.None;
+            }
+            else
+            {
+                origin = new Vector2(Projectile.width, Projectile.height);
+                rotationOffset = MathHelper.ToRadians(135f);
+                effects = SpriteEffects.FlipHorizontally;
+            }
+
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+
+            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, default, lightColor * Projectile.Opacity, Projectile.rotation + rotationOffset, origin, Projectile.scale, effects, 0);
+
+            // Since we are doing a custom draw, prevent it from normally drawing
+            return false;
+        }
+
+        // Find the start and end of the sword and use a line collider to check for collision with enemies
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            Vector2 start = Owner.MountedCenter;
+            Vector2 end = start + Projectile.rotation.ToRotationVector2() * ((Projectile.Size.Length()) * Projectile.scale);
+            float collisionPoint = 0f;
+            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), start, end, 15f * Projectile.scale, ref collisionPoint);
+        }
+
+        // Do a similar collision check for tiles
+        public override void CutTiles()
+        {
+            Vector2 start = Owner.MountedCenter;
+            Vector2 end = start + Projectile.rotation.ToRotationVector2() * (Projectile.Size.Length() * Projectile.scale);
+            Utils.PlotTileLine(start, end, 15 * Projectile.scale, DelegateMethods.CutTiles);
+        }
+
+        // We make it so that the projectile can only do damage in its release and unwind phases
+        public override bool? CanDamage()
+        {
+            if (CurrentStage == AttackStage.Prepare)
+                return false;
+            return base.CanDamage();
+        }
+
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
+            // Make knockback go away from player
+            modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;  
+        }
+
+        // Function to easily set projectile and arm position
+        public void SetSwordPosition()
+        {
+            Projectile.rotation = InitialAngle + Projectile.spriteDirection * Progress; // Set projectile rotation
+
+            // Set composite arm allows you to set the rotation of the arm and stretch of the front and back arms independently
+            Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f)); // set arm position (90 degree offset since arm starts lowered)
+            Vector2 armPosition = Owner.GetFrontHandPosition(Player.CompositeArmStretchAmount.Full, Projectile.rotation - (float)Math.PI / 2); // get position of hand
+
+            armPosition.Y += Owner.gfxOffY;
+            Projectile.Center = armPosition; // Set projectile to arm position
+            Projectile.scale = Size * 1.2f * Owner.GetAdjustedItemScale(Owner.HeldItem); // Slightly scale up the projectile and also take into account melee size modifiers
+
+            Owner.heldProj = Projectile.whoAmI; // set held projectile to this projectile
+        }
+
+        // Function facilitating the taking out of the sword
+        private void PrepareStrike()
+        {
+            Progress = WINDUP * SWINGRANGE * (1f - Timer / prepTime); // Calculates rotation from initial angle
+            Size = MathHelper.SmoothStep(0, 1, Timer / prepTime); // Make sword slowly increase in size as we prepare to strike until it reaches max
+
+            if (Timer >= prepTime)
+            {
+                SoundEngine.PlaySound(SoundID.Item1); // Play sword sound here since playing it on spawn is too early
+                CurrentStage = AttackStage.Execute; // If attack is over prep time, we go to next stage
+            }
+        }
+
+        // Function facilitating the first half of the swing
+        private void ExecuteStrike()
+        {
+            //if (CurrentAttack == AttackType.Swing)
+            //{
+                Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) * Timer / execTime);
+
+                if (Timer >= execTime)
+                {
+                    CurrentStage = AttackStage.Unwind;
+                }
+            
+
+            //else
+            //{
+            //    Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) * Timer / (execTime * SPINTIME));
+
+            //    if (Timer == (int)(execTime * SPINTIME * 3 / 4))
+            //    {
+            //        SoundEngine.PlaySound(SoundID.Item1); // Play sword sound again
+            //        Projectile.ResetLocalNPCHitImmunity(); // Reset the local npc hit immunity for second half of spin
+            //    }
+
+            //    if (Timer >= execTime * SPINTIME)
+            //    {
+            //        CurrentStage = AttackStage.Unwind;
+            //    }
+            //}
+        }
+
+        // Function facilitating the latter half of the swing where the sword disappears
+        private void UnwindStrike()
+        {
+            if (CurrentAttack == AttackType.Swing)
+            {
+                Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) + UNWIND * Timer / hideTime);
+                Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime); // Make sword slowly decrease in size as we end the swing to make a smooth hiding animation
+
+                if (Timer >= hideTime)
+                {
+                    Projectile.Kill();
+                }
+            }
+            else
+            {
+                Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) + UNWIND / 2 * Timer / (hideTime * SPINTIME / 2));
+                Size = 1f - MathHelper.SmoothStep(0, 1, Timer / (hideTime * SPINTIME / 2));
+
+                if (Timer >= hideTime * SPINTIME / 2)
+                {
+                    Projectile.Kill();
+                }
             }
         }
     }
