@@ -1,7 +1,6 @@
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using Terraria;
@@ -56,7 +55,18 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
-		public static void AddEventSummon()
+		public override void OnConsumeItem(Item item, Player player)
+		{
+			if (Reaper.ReaperMode)
+			{
+				if (item.type == ItemID.LihzahrdPowerCell)
+				{
+					Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), item.type, 1);
+				}
+			}
+			base.OnConsumeItem(item, player);
+		}
+        public static void AddEventSummon()
 		{
             SafeAddContentToList(ItemID.BloodMoonStarter);
             SafeAddContentToList(ItemID.GoblinBattleStandard);
@@ -80,6 +90,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             SafeAddContentToList(ItemID.MechanicalEye);
             SafeAddContentToList(ItemID.MechanicalWorm);
             SafeAddContentToList(ItemID.EmpressButterfly);
+            SafeAddContentToList(ItemID.LihzahrdPowerCell);
             SafeAddContentToList(ItemID.TruffleWorm);
             SafeAddContentToList(ItemID.MechanicalSkull);
             SafeAddContentToList(ItemID.CelestialSigil);
