@@ -56,7 +56,18 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
-		public static void AddEventSummon()
+        public override void OnConsumeItem(Item item, Player player)
+        {
+            if (Reaper.ReaperMode)
+            {
+                if (item.type == ItemID.LihzahrdPowerCell)
+                {
+                    Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), item.type, 1);
+                }
+            }
+            base.OnConsumeItem(item, player);
+        }
+        public static void AddEventSummon()
 		{
             SafeAddContentToList(ItemID.BloodMoonStarter);
             SafeAddContentToList(ItemID.GoblinBattleStandard);
