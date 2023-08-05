@@ -132,6 +132,13 @@ namespace RemnantOfTheAncientsMod
             .AddIngredient(ItemID.SoulofNight, 30)
             .AddTile(TileID.MythrilAnvil)
             .Register();
+
+            Recipe.Create(ItemID.TacticalShotgun)
+            .AddIngredient(ItemID.Shotgun)
+            .AddIngredient(ItemID.RifleScope)
+            .AddIngredient(ItemID.IllegalGunParts, 1)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
         }
 
         private static void PreHardmodeMeleeWeapons()
