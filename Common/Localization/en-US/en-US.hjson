@@ -56,7 +56,7 @@ Mods: {
 				JudmnetDialogue1: What an interesting weapon, did you try aiming at your feet?
 				NoBeeDefeatedDialogue1: Since the bees bother me, could you remove them?
 				GenericDialog1: Nice cloak
-				ErrorDialgog: Error en la realidad, algo sali� mal, si ves este mensaje avisale a la tortuga ;)
+				ErrorDialgog: Error en la realidad, algo salió mal, si ves este mensaje avisale a la tortuga ;)
 			}
 
 			MinerSoul: {
@@ -73,7 +73,7 @@ Mods: {
 
 		UI: {
 			Buttoms: {
-				DeliverPickaxe: Entregar pico
+				DeliverPickaxe: Deliver pickaxe
 				UpgradeItem: Upgrade {0}
 				SkipDay: Skip day
 			}
@@ -465,14 +465,14 @@ Mods: {
 				DisplayName: Bird Wings
 				Tooltip:
 					'''
-					Allows flight and fall slowly
-					10% increased movment speed
+					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}	
 					'''
 			}
 
 			LuminiteWings: {
 				DisplayName: Luminite Wings
-				Tooltip: Allows flight and fall slowly
+				Tooltip: {$CommonItemTooltip.FlightAndSlowfall}
 			}
 
 			Ankh_Amulet: {

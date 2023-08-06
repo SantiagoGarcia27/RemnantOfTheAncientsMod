@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Alas
 {
@@ -24,7 +24,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Alas
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(39, 5f, 0.2f);
         }
-
+        int MovmentSpeedBonus = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus);
         public override void SetDefaults()
         {
             Item.width = 22;

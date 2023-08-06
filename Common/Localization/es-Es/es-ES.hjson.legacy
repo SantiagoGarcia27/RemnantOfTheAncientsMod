@@ -1,316 +1,316 @@
 Mods: {
 	RemnantOfTheAncientsMod: {
-		/* ChatMessage.CalamityReforgeConfig:
+		 ChatMessage.CalamityReforgeConfig:
 			'''
 			Warning, the mod's cutom reforge are disabled by a calamity config.
 			To fix it please disable the "{0}" option in calamity settings.
-			''' */
+			''' 
 
 		SetBonus: {
-			/* Tuxonite:
+			 Tuxonite:
 				'''
 				Randomly puts you in stealth, 
 				increasing ranged ability and reducing chance for enemies to target you
-				''' */
-			/* Daylight:
+				''' 
+			 Daylight:
 				'''
 				During the day, doubles the health regeneration.
 				At night increases max mana by 20.
 				Bright Daisy no cost mana.
-				''' */
+				''' 
 		}
 
 		TownNPCMood: {
 			Time_Wizard: {
-				// DisplayName: Time wizard
-				// Content: I feel pretty fine right now.
-				// NoHome: I would very much like a house, all the colorful monsters scare me.
-				// LoveSpace: I love how there is so much space here to practice magic!
-				// FarFromHome: Could you please get me back to my house?
-				// DislikeCrowded: There are too many people around, it makes it hard for me to focus on my studies.
-				// HateCrowded: I can't test my spells with so many people around!
-				// LikeBiome: "{BiomeName} is a very nice place to live."
-				// LoveBiome: I love {BiomeName}.
-				// DislikeBiome: It's way too cold in {BiomeName}, I'm freezing!
-				// HateBiome: Its kind of hard to view the sky while being attacked by monsters in {BiomeName}.
-				// LikeNPC: I can respect {NPCName} as a fellow guide and educator!
-				// LoveNPC: Do you think {NPCName} notices me?
-				// DislikeNPC: I honestly don't like {NPCName} very much.
-				// HateNPC: I hate all the loud noises caused by {NPCName} and his explosives! I just want peace and quiet.
+				 DisplayName: Time wizard
+				 Content: I feel pretty fine right now.
+				 NoHome: I would very much like a house, all the colorful monsters scare me.
+				 LoveSpace: I love how there is so much space here to practice magic!
+				 FarFromHome: Could you please get me back to my house?
+				 DislikeCrowded: There are too many people around, it makes it hard for me to focus on my studies.
+				 HateCrowded: I can't test my spells with so many people around!
+				 LikeBiome: "{BiomeName} is a very nice place to live."
+				 LoveBiome: I love {BiomeName}.
+				 DislikeBiome: It's way too cold in {BiomeName}, I'm freezing!
+				 HateBiome: Its kind of hard to view the sky while being attacked by monsters in {BiomeName}.
+				 LikeNPC: I can respect {NPCName} as a fellow guide and educator!
+				 LoveNPC: Do you think {NPCName} notices me?
+				 DislikeNPC: I honestly don't like {NPCName} very much.
+				 HateNPC: I hate all the loud noises caused by {NPCName} and his explosives! I just want peace and quiet.
 			}
 		}
 
 		Dialogue: {
 			Time_Wizard: {
-				// WizardDialogue: "{0}?, He is a great friend of mine, I remember when we studied at the school of witchcraft."
-				/* ClotierDialogue:
+				 WizardDialogue: "{0}?, He is a great friend of mine, I remember when we studied at the school of witchcraft."
+				 ClotierDialogue:
 					'''
 					Oh? You're approaching me? Instead of running away, you're coming right to me?
 					Even Though your clothier, {0}, told you the secret of The World, *dead {0} pics*
 					like an exam student scrambling to finish the problems on an exam until the last moments before the chime?
-					''' */
-				// DayDialogue1: It's a beautiful day today, it would be a shame if someone changed it
-				// DayDialogue2: Oh hi {0}, hope you have a nice day.
-				// NightDialogue1: It's a beautiful nigth today, it would be a shame if someone changed it.
-				// NightDialogue2: Oh hi {0}, hope you have a nice night.
-				// JudmnetDialogue1: What an interesting weapon, did you try aiming at your feet?
-				// NoBeeDefeatedDialogue1: Since the bees bother me, could you remove them?
-				// GenericDialog1: Nice cloak
-				// ErrorDialgog: Error en la realidad, algo sali� mal, si ves este mensaje avisale a la tortuga ;)
+					''' 
+				 DayDialogue1: It's a beautiful day today, it would be a shame if someone changed it
+				 DayDialogue2: Oh hi {0}, hope you have a nice day.
+				 NightDialogue1: It's a beautiful nigth today, it would be a shame if someone changed it.
+				 NightDialogue2: Oh hi {0}, hope you have a nice night.
+				 JudmnetDialogue1: What an interesting weapon, did you try aiming at your feet?
+				 NoBeeDefeatedDialogue1: Since the bees bother me, could you remove them?
+				 GenericDialog1: Nice cloak
+				 ErrorDialgog: Error en la realidad, algo sali� mal, si ves este mensaje avisale a la tortuga ;)
 			}
 
 			MinerSoul: {
-				// CommonDialogue1: Hello, could you bring an simple pickaxe?
-				/* CommonDialogue2:
+				 CommonDialogue1: Hello, could you bring an simple pickaxe?
+				 CommonDialogue2:
 					'''
 					I remember those days when I was looking for gold in these parts.
 					But now I've run out of a iron pick, could you get me one?
-					''' */
-				// ThanksDialogue1: Many thanks....
-				// UpgradeItem: I upgrade your item...
+					''' 
+				 ThanksDialogue1: Many thanks....
+				 UpgradeItem: I upgrade your item...
 			}
 		}
 
 		UI: {
 			Buttoms: {
-				// DeliverPickaxe: Entregar pico
-				// UpgradeItem: Upgrade {0}
-				// SkipDay: Skip day
+				 DeliverPickaxe: Entregar pico
+				 UpgradeItem: Upgrade {0}
+				 SkipDay: Skip day
 			}
 		}
 
 		Prefix: {
 			Description: {
-				// Life: +{0} life max
-				// Defense: +{0} defense
-				// Speed: +{0}% movment speed
-				// CritChance: +{0}% critical strike chance
-				// Damage: +{0}% damage
-				// MeleeSpeed: +{0}% melee speed
-				// LifeRegeneration: +{0} life regeneration
-				// DamageReduction: +{0}% damage reduction
+				 Life: +{0} life max
+				 Defense: +{0} defense
+				 Speed: +{0}% movment speed
+				 CritChance: +{0}% critical strike chance
+				 Damage: +{0}% damage
+				 MeleeSpeed: +{0}% melee speed
+				 LifeRegeneration: +{0} life regeneration
+				 DamageReduction: +{0}% damage reduction
 			}
 		}
 
 		Prefixes: {
-			// Acurate.DisplayName: Accurate
-			// Atletic.DisplayName: Athletic
-			// Berserk.DisplayName: Berserk
-			// Gigant.DisplayName: Giant
-			// Healer.DisplayName: Healer
-			// Healthy.DisplayName: Healthy
-			// Impenetrable.DisplayName: Impenetrable
-			// Regenerative.DisplayName: Regenerative
-			// Relic.DisplayName: Relic
-			// Sharp.DisplayName: Sharp
-			// Supersonic.DisplayName: Supersonic
-			// Titanic.DisplayName: Titanic
-			// Uncontrolled.DisplayName: Uncontrolled
-			// Veteran.DisplayName: Veteran
+			 Acurate.DisplayName: Accurate
+			 Atletic.DisplayName: Athletic
+			 Berserk.DisplayName: Berserk
+			 Gigant.DisplayName: Giant
+			 Healer.DisplayName: Healer
+			 Healthy.DisplayName: Healthy
+			 Impenetrable.DisplayName: Impenetrable
+			 Regenerative.DisplayName: Regenerative
+			 Relic.DisplayName: Relic
+			 Sharp.DisplayName: Sharp
+			 Supersonic.DisplayName: Supersonic
+			 Titanic.DisplayName: Titanic
+			 Uncontrolled.DisplayName: Uncontrolled
+			 Veteran.DisplayName: Veteran
 		}
 
 		Generic: {
-			// RightClickSaberHabilitie: Right click to use dash
-			// RightClickSecondHabilitie: Right click to use the scondary hability
-			// MusicBoxCredit: by {0}
-			// ReaperTooltip: Reaper Item
-			// LegendaryTooltip: Legendary Drop
-			// NotConsumableTooltip: Not Consumable
+			 RightClickSaberHabilitie: Right click to use dash
+			 RightClickSecondHabilitie: Right click to use the scondary hability
+			 MusicBoxCredit: by {0}
+			 ReaperTooltip: Reaper Item
+			 LegendaryTooltip: Legendary Drop
+			 NotConsumableTooltip: Not Consumable
 		}
 
 		CommonTooltip: {
-			// IncreasedMinion: Increases your max number of minions by {0}
-			// IncreasedSentry: Increases your max number of sentries by {0}
-			// IncreasedGenericDamage: "{0}% increased damage"
-			// IncreasedClassDamage: "{0}% increased {1} damage"
-			// IncreasedGenericCritChance: "{0}% increased critical strike chance"
-			// IncreasedClassCritChance: "{0}% increased {1} critical strike chance"
-			// IncreasedGenericCritAndDamage: "{0}% increased {1} damage and critical strike chance"
-			// IncreasedMovementSpeed: "{0}% increased movement speed"
-			// IncreasedManaMax: Increases maximum mana by {0}
-			// IncreasedLifeMax: Increases maximum life by {0}
-			// IncreasedLifeMaxPercent: Increases maximum life by {0}%
+			 IncreasedMinion: Increases your max number of minions by {0}
+			 IncreasedSentry: Increases your max number of sentries by {0}
+			 IncreasedGenericDamage: "{0}% increased damage"
+			 IncreasedClassDamage: "{0}% increased {1} damage"
+			 IncreasedGenericCritChance: "{0}% increased critical strike chance"
+			 IncreasedClassCritChance: "{0}% increased {1} critical strike chance"
+			 IncreasedGenericCritAndDamage: "{0}% increased {1} damage and critical strike chance"
+			 IncreasedMovementSpeed: "{0}% increased movement speed"
+			 IncreasedManaMax: Increases maximum mana by {0}
+			 IncreasedLifeMax: Increases maximum life by {0}
+			 IncreasedLifeMaxPercent: Increases maximum life by {0}%
 		}
 
 		Buffs: {
 			CentryBuff: {
-				// DisplayName: Comander Potion
-				// Description: Increased max number of sentries
+				 DisplayName: Comander Potion
+				 Description: Increased max number of sentries
 			}
 
 			CombatAdrenalineBuff: {
-				// DisplayName: Combat Adrenaline
-				// Description: You gain a 200% attack speed bonus
+				 DisplayName: Combat Adrenaline
+				 Description: You gain a 200% attack speed bonus
 			}
 
 			FishBuff: {
-				// DisplayName: Fish
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.FishBuff.Description
+				 DisplayName: Fish
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.FishBuff.Description
 			}
 
 			GravityControlBuff: {
-				// DisplayName: Gravity control
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.GravityControlBuff.Description
+				 DisplayName: Gravity control
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.GravityControlBuff.Description
 			}
 
 			Advanced_Infusion: {
-				// DisplayName: Advanced infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Advanced_Infusion.Description
+				 DisplayName: Advanced infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Advanced_Infusion.Description
 			}
 
 			Basic_Infusion: {
-				// DisplayName: Basic infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Basic_Infusion.Description
+				 DisplayName: Basic infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Basic_Infusion.Description
 			}
 
 			Combat_infusion: {
-				// DisplayName: Combat infusion
-				// Description: Definitive offensive buff
+				 DisplayName: Combat infusion
+				 Description: Definitive offensive buff
 			}
 
 			Exploration_infusion: {
-				// DisplayName: Exploration infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Exploration_infusion.Description
+				 DisplayName: Exploration infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Exploration_infusion.Description
 			}
 
 			Fishing_Infusion: {
-				// DisplayName: Fishing infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Fishing_Infusion.Description
+				 DisplayName: Fishing infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Fishing_Infusion.Description
 			}
 
 			Mage_Infusion: {
-				// DisplayName: Mage infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Mage_Infusion.Description
+				 DisplayName: Mage infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Mage_Infusion.Description
 			}
 
 			Melee_Infusion: {
-				// DisplayName: Melee infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Melee_Infusion.Description
+				 DisplayName: Melee infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Melee_Infusion.Description
 			}
 
 			Mining_infusion: {
-				// DisplayName: Mining infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Mining_infusion.Description
+				 DisplayName: Mining infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Mining_infusion.Description
 			}
 
 			Poseidon_Infusion: {
-				// DisplayName: Poseidon infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Poseidon_Infusion.Description
+				 DisplayName: Poseidon infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Poseidon_Infusion.Description
 			}
 
 			Ranger_Infusion: {
-				// DisplayName: Ranger infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Ranger_Infusion.Description
+				 DisplayName: Ranger infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Ranger_Infusion.Description
 			}
 
 			Summon_Infusion: {
-				// DisplayName: Summon infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Summon_Infusion.Description
+				 DisplayName: Summon infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Summon_Infusion.Description
 			}
 
 			Tank_Infusion: {
-				// DisplayName: Tank infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Tank_Infusion.Description
+				 DisplayName: Tank infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Tank_Infusion.Description
 			}
 
 			Ultimate_Infusion: {
-				// DisplayName: Ultimate infusion
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Ultimate_Infusion.Description
+				 DisplayName: Ultimate infusion
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Ultimate_Infusion.Description
 			}
 
 			GoldenAcornBuff: {
-				// DisplayName: Animated Golden Sapling
-				// Description: The Animated Golden Sapling will fight for you
+				 DisplayName: Animated Golden Sapling
+				 Description: The Animated Golden Sapling will fight for you
 			}
 
 			PlatinumAcornBuff: {
-				// DisplayName: Animated Platinum Sapling
-				// Description: The Animated Platinum Sapling will fight for you
+				 DisplayName: Animated Platinum Sapling
+				 Description: The Animated Platinum Sapling will fight for you
 			}
 
 			SaplingMinionBuff: {
-				// DisplayName: Animated Sapling
-				// Description: The Animated Sapling will fight for you
+				 DisplayName: Animated Sapling
+				 Description: The Animated Sapling will fight for you
 			}
 
 			SilverAcornBuff: {
-				// DisplayName: Animated Silver Sapling
-				// Description: The Animated Silver Sapling will fight for you
+				 DisplayName: Animated Silver Sapling
+				 Description: The Animated Silver Sapling will fight for you
 			}
 
 			TungstenAcornBuff: {
-				// DisplayName: Animated Tungsten Sapling
-				// Description: The Animated Tungsten Sapling will fight for you
+				 DisplayName: Animated Tungsten Sapling
+				 Description: The Animated Tungsten Sapling will fight for you
 			}
 
 			DesertMinionBuff: {
-				// DisplayName: Baby Desert Aniquilator
-				// Description: The Baby Desert will fight for you
+				 DisplayName: Baby Desert Aniquilator
+				 Description: The Baby Desert will fight for you
 			}
 
 			EvilEyeMinionBuff: {
-				// DisplayName: Evil eye
-				// Description: The Yggdrasil will protect you
+				 DisplayName: Evil eye
+				 Description: The Yggdrasil will protect you
 			}
 
 			ExcaliburMinionBuff: {
-				// DisplayName: Excalibur
-				// Description: The excalibur will fight for you
+				 DisplayName: Excalibur
+				 Description: The excalibur will fight for you
 			}
 
 			FrozenMinionBuff: {
-				// DisplayName: Baby Frozen Assaulter
-				// Description: The Baby Frozen will fight for you
+				 DisplayName: Baby Frozen Assaulter
+				 Description: The Baby Frozen will fight for you
 			}
 
 			IlluminatedSunflowerMinionBuff: {
-				// DisplayName: Illuminated Sunflower
-				// Description: The sunflower will protect you
+				 DisplayName: Illuminated Sunflower
+				 Description: The sunflower will protect you
 			}
 
 			IronBallistaBuff: {
-				// DisplayName: Iron Ballista
-				// Description: The Baby Frozen will fight for you
+				 DisplayName: Iron Ballista
+				 Description: The Baby Frozen will fight for you
 			}
 
 			SacredFlowerMinionBuff: {
-				// DisplayName: Sacred flower
-				// Description: The sacred flower will protect you
+				 DisplayName: Sacred flower
+				 Description: The sacred flower will protect you
 			}
 
 			StardustMinionBuff: {
-				// DisplayName: Stardust
-				// Description: The stardust will fight for you
+				 DisplayName: Stardust
+				 Description: The stardust will fight for you
 			}
 
 			SunflowerMinionBuff: {
-				// DisplayName: Sunflower
-				// Description: The sunflower will protect you
+				 DisplayName: Sunflower
+				 Description: The sunflower will protect you
 			}
 
 			YggdrasilMinionBuff: {
-				// DisplayName: Yggdrasil
-				// Description: The Yggdrasil will protect you
+				 DisplayName: Yggdrasil
+				 Description: The Yggdrasil will protect you
 			}
 
 			MoneyColectorBuff: {
-				// DisplayName: Money Collector
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.MoneyColectorBuff.Description
+				 DisplayName: Money Collector
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.MoneyColectorBuff.Description
 			}
 
 			Night_Bleasing_Buff: {
-				// DisplayName: Night Bleasing
-				// Description: Increase defense by 5
+				 DisplayName: Night Bleasing
+				 Description: Increase defense by 5
 			}
 
 			TortugaPetBuff: {
-				// DisplayName: The Turtle
-				// Description: ._.
+				 DisplayName: The Turtle
+				 Description: ._.
 			}
 
 			YoutubeMoradoBuff: {
-				// DisplayName: Twitch
-				/* Description:
+				 DisplayName: Twitch
+				 Description:
 					'''
 					Many thanks to -febo1apolo - eltonyhelou - Jormanas_gt 
 					 -LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
@@ -324,158 +324,158 @@ Mods: {
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					 -LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
 					 for being the first to give this mod a chance
-					''' */
+					''' 
 			}
 
 			YtBuff: {
-				// DisplayName: Yt
-				// Description: ...
+				 DisplayName: Yt
+				 Description: ...
 			}
 
 			ReaperBuff: {
-				// DisplayName: Reaper mode
-				// Description: You feel hollow
+				 DisplayName: Reaper mode
+				 Description: You feel hollow
 			}
 
 			Sand_Weapons: {
-				// DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]"
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Sand_Weapons.Description
+				 DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]"
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Sand_Weapons.Description
 			}
 
 			Bee: {
-				// DisplayName: Queen Bee
-				// Description: The bees give you their power
+				 DisplayName: Queen Bee
+				 Description: The bees give you their power
 			}
 
 			BrainOfChutuluScrollBuff: {
-				// DisplayName: Dodge Apprentice
-				// Description: You are untouchable
+				 DisplayName: Dodge Apprentice
+				 Description: You are untouchable
 			}
 
 			Eye: {
-				// DisplayName: Dash master
-				// Description: Your reflexes sharpen
+				 DisplayName: Dash master
+				 Description: Your reflexes sharpen
 			}
 
 			Infernal: {
-				// DisplayName: Infernal
-				// Description: The flames of hell cover you
+				 DisplayName: Infernal
+				 Description: The flames of hell cover you
 			}
 
 			MasterD: {
-				// DisplayName: Master of the Desert
-				// Description: You feel with leadership
+				 DisplayName: Master of the Desert
+				 Description: You feel with leadership
 			}
 
 			Putrid: {
-				// DisplayName: Putrid
-				// Description: You're breaking down
+				 DisplayName: Putrid
+				 Description: You're breaking down
 			}
 
 			QueenSlimeScrollBuff: {
-				// DisplayName: Queen's blessing
-				// Description: You feel blessed
+				 DisplayName: Queen's blessing
+				 Description: You feel blessed
 			}
 
 			Skeleton: {
-				// DisplayName: Undead
-				// Description: Your senses are heightened
+				 DisplayName: Undead
+				 Description: Your senses are heightened
 			}
 
 			Slim: {
-				// DisplayName: King's blessing
-				// Description: You feel lighter
+				 DisplayName: King's blessing
+				 Description: You feel lighter
 			}
 
 			SuperSenseBuff: {
-				// DisplayName: Super Sense
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.SuperSenseBuff.Description
+				 DisplayName: Super Sense
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.SuperSenseBuff.Description
 			}
 
 			SwordMount: {
-				// DisplayName: Travel sword
-				// Description: Who said that melee could not be buff more?
+				 DisplayName: Travel sword
+				 Description: Who said that melee could not be buff more?
 			}
 
 			True_Night_Bleasing_Buff: {
-				// DisplayName: Night Bleasing
-				// Description: Increase defense by 7
+				 DisplayName: Night Bleasing
+				 Description: Increase defense by 7
 			}
 
 			Burning_Sand: {
-				// DisplayName: Burning Sand
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.Burning_Sand.Description
+				 DisplayName: Burning Sand
+				 Description: Mods.RemnantOfTheAncientsMod.Buffs.Burning_Sand.Description
 			}
 
 			FireStormDebuff: {
-				// DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.FireStormDebuff
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.FireStormDebuff
+				 DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.FireStormDebuff
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.FireStormDebuff
 			}
 
 			Hell_Fire: {
-				// DisplayName: Hell Fire
-				// Description: ...
+				 DisplayName: Hell Fire
+				 Description: ...
 			}
 
 			HollyBurn: {
-				// DisplayName: Holly Burn
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn
+				 DisplayName: Holly Burn
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn
 			}
 
 			HolyCouldownDebuff: {
-				// DisplayName: Holy Couldown
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HolyCouldownDebuff
+				 DisplayName: Holy Couldown
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HolyCouldownDebuff
 			}
 
 			Javalina: {
-				// DisplayName: Javalina
-				// Description: Losing life
+				 DisplayName: Javalina
+				 Description: Losing life
 			}
 
 			Marble_erosion: {
-				// DisplayName: Marble rosion
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion
+				 DisplayName: Marble rosion
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion
 			}
 
 			NightWhipDebuff: {
-				// DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.NightWhipDebuff
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.NightWhipDebuff
+				 DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.NightWhipDebuff
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.NightWhipDebuff
 			}
 
 			TerraWhipDebuff: {
-				// DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TerraWhipDebuff
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TerraWhipDebuff
+				 DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TerraWhipDebuff
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TerraWhipDebuff
 			}
 
 			TrueDurendalDebuff: {
-				// DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueDurendalDebuff
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueDurendalDebuff
+				 DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueDurendalDebuff
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueDurendalDebuff
 			}
 
 			TrueTwiligtDebuff: {
-				// DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueTwiligtDebuff
-				// Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueTwiligtDebuff
+				 DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueTwiligtDebuff
+				 Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueTwiligtDebuff
 			}
 		}
 
 		Items: {
 			BirdWings: {
-				// DisplayName: Bird Wings
-				/* Tooltip:
+				 DisplayName: Bird Wings
+				 Tooltip:
 					'''
 					Allows flight and fall slowly
 					10% increased movment speed
-					''' */
+					''' 
 			}
 
 			LuminiteWings: {
-				// DisplayName: Luminite Wings
-				// Tooltip: Allows flight and fall slowly
+				 DisplayName: Luminite Wings
+				 Tooltip: Allows flight and fall slowly
 			}
 
 			Ankh_Amulet: {
-				// DisplayName: Ankh Amulet
-				/* Tooltip:
+				 DisplayName: Ankh Amulet
+				 Tooltip:
 					'''
 					Increases maximum mana by 20,
 					mana regeneration rate
@@ -484,46 +484,46 @@ Mods: {
 					you have the effect of Sweetheart Necklace, Charm of Myths,
 					Arctic Diving Gear and Star Veil
 					Grants immunity to most debuffs
-					''' */
+					''' 
 			}
 
 			Boot: {
-				// DisplayName: Boot
-				// Tooltip: Increases fall acceleration
+				 DisplayName: Boot
+				 Tooltip: Increases fall acceleration
 			}
 
 			Desert_Core: {
-				// DisplayName: Desert Annihilator Core
-				/* Tooltip:
+				 DisplayName: Desert Annihilator Core
+				 Tooltip:
 					'''
 					Increases your max number of minions by 2
 					 Increases all damage by 8% and life regeneration while in desert
 					 Your max life increases by 50 points while in sandstorms
-					''' */
+					''' 
 			}
 
 			Frost_core: {
-				// DisplayName: Frozen Assaulter Core
-				/* Tooltip:
+				 DisplayName: Frozen Assaulter Core
+				 Tooltip:
 					'''
 					Increases magic damage by 10%
 					 Movement speed increases and you become immune to frozen and chilled debuffs while in snow
-					''' */
+					''' 
 			}
 
 			Infernal_core: {
-				// DisplayName: Infernal Tyrant Core
-				/* Tooltip:
+				 DisplayName: Infernal Tyrant Core
+				 Tooltip:
 					'''
 					Increases melee damage by 10%
 					 Inflict Hellfire on attack
 					 Movement speed increases and you become immune to fire blocks and On Fire debuffs
-					''' */
+					''' 
 			}
 
 			Exotic_Amulet: {
-				// DisplayName: Exotic Amulet
-				/* Tooltip:
+				 DisplayName: Exotic Amulet
+				 Tooltip:
 					'''
 					Increases maximum mana by 20,
 					mana regeneration rate
@@ -531,269 +531,269 @@ Mods: {
 					provide immunity to lava and fire blocks
 					you have the effect of Sweetheart Necklace, Charm of Myths,
 					Arctic Diving Gear and Star Veil
-					''' */
+					''' 
 			}
 
 			IronBand: {
-				// DisplayName: Iron Band
-				// Tooltip: 2% Increased damage reduction
+				 DisplayName: Iron Band
+				 Tooltip: 2% Increased damage reduction
 			}
 
 			magic_stick: {
-				// DisplayName: Magic Stick
-				// Tooltip: 10% increased magic damage
+				 DisplayName: Magic Stick
+				 Tooltip: 10% increased magic damage
 			}
 
 			magic_wand: {
-				// DisplayName: Magic Wand
-				/* Tooltip:
+				 DisplayName: Magic Wand
+				 Tooltip:
 					'''
 					15% Increased magic damage
 					Increases critical strike chance by 10
-					''' */
+					''' 
 			}
 
 			ManaO: {
-				// DisplayName: Mana Overcharger
-				/* Tooltip:
+				 DisplayName: Mana Overcharger
+				 Tooltip:
 					'''
 					Increases mana regeneration in exchange for magic damage by 5%
 					10% reduce mana usage
 					Automatically use mana potions when needed
 					increases pickup range for mana stars
 					you are immune to Mana Sickness
-					''' */
+					''' 
 			}
 
 			MechanicalPersonalLifeSafeSystem: {
-				// DisplayName: Mechanical Personal Life Safe System
-				/* Tooltip:
+				 DisplayName: Mechanical Personal Life Safe System
+				 Tooltip:
 					'''
 					Summon two probes to protect you
 					Green shoots a green laser towards the player which will heal them
 					While blue will intercept enemy projectiles from time to time
-					''' */
+					''' 
 			}
 
 			Ranger_EmblemV2: {
-				// DisplayName: Ranger Emblem V2
-				// Tooltip: Increases ranged damage by 25%
+				 DisplayName: Ranger Emblem V2
+				 Tooltip: Increases ranged damage by 25%
 			}
 
 			ReaperChalice: {
-				// DisplayName: Chalice of souls
-				/* Tooltip:
+				 DisplayName: Chalice of souls
+				 Tooltip:
 					'''
 					You can store the souls of defeated bosses in this chalice to gain their power.
 					(only works in reaper)
-					''' */
+					''' 
 			}
 
 			Sorcerer_EmblemV2: {
-				// DisplayName: Sorcerer Emblem V2
-				// Tooltip: Increases magic damage by 25%
+				 DisplayName: Sorcerer Emblem V2
+				 Tooltip: Increases magic damage by 25%
 			}
 
 			Summoner_EmblemV2: {
-				// DisplayName: Summoner Emblem V2
-				// Tooltip: Increases the summon damage by 25%
+				 DisplayName: Summoner Emblem V2
+				 Tooltip: Increases the summon damage by 25%
 			}
 
 			The_Completist: {
-				// DisplayName: The Completist
-				/* Tooltip:
+				 DisplayName: The Completist
+				 Tooltip:
 					'''
 					A grand prize for those who made it to the top of the mod
 					Thanks to Johy315 (Quizo hacer trampa y no le salio)
-					''' */
+					''' 
 			}
 
 			The_Legion: {
-				// DisplayName: The Legion
-				/* Tooltip:
+				 DisplayName: The Legion
+				 Tooltip:
 					'''
 					Increases the summon damage by 25% 
 					+5 minions
 					Many thanks to:
 					 S-Pladison   -NKSHV  -perrogalan
 					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
-					''' */
+					''' 
 			}
 
 			TrowerEmblem: {
-				// DisplayName: Thrower Emblem
-				// Tooltip: "Increases throwing damage by 15% "
+				 DisplayName: Thrower Emblem
+				 Tooltip: "Increases throwing damage by 15% "
 			}
 
 			TrowerEmblemV2: {
-				// DisplayName: Thrower Emblem V2
-				// Tooltip: "Increases throwing damage by 25% "
+				 DisplayName: Thrower Emblem V2
+				 Tooltip: "Increases throwing damage by 25% "
 			}
 
 			Universal_Emblem: {
-				// DisplayName: Universal Emblem
-				// Tooltip: Increases all damage by 15%
+				 DisplayName: Universal Emblem
+				 Tooltip: Increases all damage by 15%
 			}
 
 			Universal_EmblemV2: {
-				// DisplayName: Universal Emblem V2
-				// Tooltip: Increases all damage by 25%
+				 DisplayName: Universal Emblem V2
+				 Tooltip: Increases all damage by 25%
 			}
 
 			Warrior_EmblemV2: {
-				// DisplayName: Warrior Emblem V2
-				// Tooltip: Increases melee damage by 25%
+				 DisplayName: Warrior Emblem V2
+				 Tooltip: Increases melee damage by 25%
 			}
 
 			Daylight_chesplate: {
-				// DisplayName: Daylight Shirt
-				/* Tooltip:
+				 DisplayName: Daylight Shirt
+				 Tooltip:
 					'''
 					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassCritChance
 					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMinion
 					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedManaMax
-					''' */
+					''' 
 			}
 
 			Daylight_Legging: {
-				// DisplayName: Daylight skirt
-				/* Tooltip:
+				 DisplayName: Daylight skirt
+				 Tooltip:
 					'''
 					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage
 					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedManaMax
-					''' */
+					''' 
 			}
 
 			DaylightHat: {
-				// DisplayName: Daylight Hat
-				/* Tooltip:
+				 DisplayName: Daylight Hat
+				 Tooltip:
 					'''
 					Increases maximum mana by 20
 					3% increased magic and summon damage
-					''' */
+					''' 
 			}
 
 			DesertAMask: {
-				// DisplayName: Desert Annihilator Mask
-				// Tooltip: ""
+				 DisplayName: Desert Annihilator Mask
+				 Tooltip: ""
 			}
 
 			FrozenMask: {
-				// DisplayName: Frozen Assaulter Mask
-				// Tooltip: ""
+				 DisplayName: Frozen Assaulter Mask
+				 Tooltip: ""
 			}
 
 			InfernalMask: {
-				// DisplayName: Infernal Tyrant Mask
-				// Tooltip: ""
+				 DisplayName: Infernal Tyrant Mask
+				 Tooltip: ""
 			}
 
 			Nightchesplate: {
-				// DisplayName: Night Breastplate
-				/* Tooltip:
+				 DisplayName: Night Breastplate
+				 Tooltip:
 					'''
 
 					Increase maximum Mana by 20 
 					Increase maximum life by 50 
 					Immune to glow effect, fire and broken armor
-					''' */
+					''' 
 			}
 
 			NightHelmet: {
-				// DisplayName: Night Headgear
-				/* Tooltip:
+				 DisplayName: Night Headgear
+				 Tooltip:
 					'''
 
 					Increases magic damage by 13%
-					''' */
+					''' 
 			}
 
 			NightHelmetL: {
-				// DisplayName: Night Hood
-				// Tooltip: Increases Throwing damage by 13%.
+				 DisplayName: Night Hood
+				 Tooltip: Increases Throwing damage by 13%.
 			}
 
 			NightHelmetMe: {
-				// DisplayName: Night Helmet
-				// Tooltip: Increase melee damage by 13%
+				 DisplayName: Night Helmet
+				 Tooltip: Increase melee damage by 13%
 			}
 
 			NightHelmetR: {
-				// DisplayName: Night Mask
-				// Tooltip: Ranged damage increased by 13%
+				 DisplayName: Night Mask
+				 Tooltip: Ranged damage increased by 13%
 			}
 
 			NightHelmetS: {
-				// DisplayName: Night Hat
-				/* Tooltip:
+				 DisplayName: Night Hat
+				 Tooltip:
 					'''
 
 					Summon damage increased by 13%
-					''' */
+					''' 
 			}
 
 			NightLeggings: {
-				// DisplayName: Night Greaves
-				// Tooltip: 15% increased movement speed
+				 DisplayName: Night Greaves
+				 Tooltip: 15% increased movement speed
 			}
 
 			Reforced_iron_chesplate: {
-				// DisplayName: Reinforced Iron Breastplate
-				// Tooltip: ""
+				 DisplayName: Reinforced Iron Breastplate
+				 Tooltip: ""
 			}
 
 			Reforced_Iron_Greaves: {
-				// DisplayName: Reinforced Iron Greaves
-				/* Tooltip:
+				 DisplayName: Reinforced Iron Greaves
+				 Tooltip:
 					'''
 
 					Decrease the maximum speed by 3/4
-					''' */
+					''' 
 			}
 
 			Reforced_iron_Helmet: {
-				// DisplayName: Reinforced Iron Helmet
-				// Tooltip: Increases melee damage by 5%
+				 DisplayName: Reinforced Iron Helmet
+				 Tooltip: Increases melee damage by 5%
 			}
 
 			Tuxonite_chesplate: {
-				// DisplayName: Tuxonite Chainmail
-				// Tooltip: 3% increased ranged damage
+				 DisplayName: Tuxonite Chainmail
+				 Tooltip: 3% increased ranged damage
 			}
 
 			Tuxonite_Legging: {
-				// DisplayName: Tuxonite Greaves
-				// Tooltip: 5% increased ranged critical strike chance
+				 DisplayName: Tuxonite Greaves
+				 Tooltip: 5% increased ranged critical strike chance
 			}
 
 			TuxoniteHelmet: {
-				// DisplayName: Tuxonite Helmet
-				// Tooltip: 3% increased ranged damage
+				 DisplayName: Tuxonite Helmet
+				 Tooltip: 3% increased ranged damage
 			}
 
 			DesertChest: {
-				// DisplayName: Desert Chest
-				// Tooltip: Summons the Desert Annihilator
+				 DisplayName: Desert Chest
+				 Tooltip: Summons the Desert Annihilator
 			}
 
 			ElderSpeaker: {
-				// DisplayName: Elder Speaker
-				// Tooltip: Summons Skeletron
+				 DisplayName: Elder Speaker
+				 Tooltip: Summons Skeletron
 			}
 
 			FrozenArtifact: {
-				// DisplayName: Frozen Artifact
-				// Tooltip: Summons the Frozen Assaulter
+				 DisplayName: Frozen Artifact
+				 Tooltip: Summons the Frozen Assaulter
 			}
 
 			InfernalCalis: {
-				// DisplayName: Infernal Chalice
-				// Tooltip: Summons the Infernal Tyrant
+				 DisplayName: Infernal Chalice
+				 Tooltip: Summons the Infernal Tyrant
 			}
 
 			Ftoggler: {
-				// DisplayName: Reaper
-				/* Tooltip:
+				 DisplayName: Reaper
+				 Tooltip:
 					'''
 					Active the Reaper mode
 					you natural max hp set in 1
@@ -805,2298 +805,2298 @@ Mods: {
 					Legendary drops are more common
 					Treasure bags have unique items
 					The vanilla and mod bosses drop permanent reaper player upgrades
-					''' */
+					''' 
 			}
 
 			Basic_Potion_Kit: {
-				// DisplayName: Basic Potions Kit
-				// Tooltip: ""
+				 DisplayName: Basic Potions Kit
+				 Tooltip: ""
 			}
 
 			Combat_Potion_Kit: {
-				// DisplayName: Combat Potions Kit
-				// Tooltip: ""
+				 DisplayName: Combat Potions Kit
+				 Tooltip: ""
 			}
 
 			Commander_Potion: {
-				// DisplayName: Comander Potions
-				// Tooltip: Increases your max number of centries by 1
+				 DisplayName: Comander Potions
+				 Tooltip: Increases your max number of centries by 1
 			}
 
 			Endless_Basic_Potion_Kit: {
-				// DisplayName: Endless Basic Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Basic Potions Kit
+				 Tooltip: ""
 			}
 
 			Advanced_Potion_Kit: {
-				// DisplayName: Advanced Potions Kit
-				// Tooltip: ""
+				 DisplayName: Advanced Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Advanced_Potion_Kit: {
-				// DisplayName: Endless Advanced Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Advanced Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Exploration_Potion_Kit: {
-				// DisplayName: Endless Exploration Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Exploration Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Fisher_Potion_Kit: {
-				// DisplayName: Endless Fisher Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Fisher Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Poseidon_Potion_Kit: {
-				// DisplayName: Endless Poseidon Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Poseidon Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Ultimate_Potion_Kit: {
-				// DisplayName: Endless Ultimate Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Ultimate Potions Kit
+				 Tooltip: ""
 			}
 
 			Exploration_Potion_Kit: {
-				// DisplayName: Exploration Potions Kit
-				// Tooltip: ""
+				 DisplayName: Exploration Potions Kit
+				 Tooltip: ""
 			}
 
 			Fisher_Potion_Kit: {
-				// DisplayName: Fisher Potions Kit
-				// Tooltip: ""
+				 DisplayName: Fisher Potions Kit
+				 Tooltip: ""
 			}
 
 			Poseidon_Potion_Kit: {
-				// DisplayName: Poseidon Potions Kit
-				// Tooltip: ""
+				 DisplayName: Poseidon Potions Kit
+				 Tooltip: ""
 			}
 
 			Ultimate_Potion_Kit: {
-				// DisplayName: Ultimate Potions Kit
-				// Tooltip: ""
+				 DisplayName: Ultimate Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Combat_Potion_Kit: {
-				// DisplayName: Endless Combat Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Combat Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Commander_Porion: {
-				// DisplayName: Endless Comander Potions
-				// Tooltip: Augmente votre nombre maximum de centries de 1
+				 DisplayName: Endless Comander Potions
+				 Tooltip: Augmente votre nombre maximum de centries de 1
 			}
 
 			Endless_Fish_Potion: {
-				// DisplayName: Endless Fish Potions
-				// Tooltip: ""
+				 DisplayName: Endless Fish Potions
+				 Tooltip: ""
 			}
 
 			Endless_Gravitation_Control_Potion: {
-				// DisplayName: Endless Gravity Control Potions
-				// Tooltip: ""
+				 DisplayName: Endless Gravity Control Potions
+				 Tooltip: ""
 			}
 
 			Endless_Magic_Potion_Kit: {
-				// DisplayName: Endless Magic Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Magic Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Melee_Potion_Kit: {
-				// DisplayName: Unlimited Melee Potions Kit
-				// Tooltip: ""
+				 DisplayName: Unlimited Melee Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Mining_Potion_Kit: {
-				// DisplayName: Endless Mining Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Mining Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Money_Collector_Potion: {
-				// DisplayName: Endless Money Collector Potions
-				// Tooltip: Transport the money from your inventory to the piggy bank
+				 DisplayName: Endless Money Collector Potions
+				 Tooltip: Transport the money from your inventory to the piggy bank
 			}
 
 			Endless_Ranger_Potion_Kit: {
-				// DisplayName: Unlimited Ranger Potions Kit
-				// Tooltip: ""
+				 DisplayName: Unlimited Ranger Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Sand_Flask: {
-				// DisplayName: Endless Sand Flask
-				// Tooltip: Melee attacks set enemies burning sand
+				 DisplayName: Endless Sand Flask
+				 Tooltip: Melee attacks set enemies burning sand
 			}
 
 			Endless_Summon_Potion_Kit: {
-				// DisplayName: Endless Summoner Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Summoner Potions Kit
+				 Tooltip: ""
 			}
 
 			Endless_Supe_Sense_Potion: {
-				// DisplayName: Endless Super Sense Potions
-				// Tooltip: Show the locations of enemies and danger sources
+				 DisplayName: Endless Super Sense Potions
+				 Tooltip: Show the locations of enemies and danger sources
 			}
 
 			Endless_Tank_Potion_Kit: {
-				// DisplayName: Endless Tank Potions Kit
-				// Tooltip: ""
+				 DisplayName: Endless Tank Potions Kit
+				 Tooltip: ""
 			}
 
 			EndlessAmmoReservation: {
-				// DisplayName: Endless Ammo Reservation Potion
-				// Tooltip: ""
+				 DisplayName: Endless Ammo Reservation Potion
+				 Tooltip: ""
 			}
 
 			EndlessArchery: {
-				// DisplayName: Endless Archery Potion
-				// Tooltip: ""
+				 DisplayName: Endless Archery Potion
+				 Tooltip: ""
 			}
 
 			EndlessBattle: {
-				// DisplayName: Endless Battle Potion
-				// Tooltip: ""
+				 DisplayName: Endless Battle Potion
+				 Tooltip: ""
 			}
 
 			EndlessBuilder: {
-				// DisplayName: Endless Builder Potion
-				// Tooltip: ""
+				 DisplayName: Endless Builder Potion
+				 Tooltip: ""
 			}
 
 			EndlessCalming: {
-				// DisplayName: Endless Calming Potion
-				// Tooltip: ""
+				 DisplayName: Endless Calming Potion
+				 Tooltip: ""
 			}
 
 			EndlessCrate: {
-				// DisplayName: Endless Crate Potion
-				// Tooltip: ""
+				 DisplayName: Endless Crate Potion
+				 Tooltip: ""
 			}
 
 			EndlessCurcedFlask: {
-				// DisplayName: Endless Cursed Flames Flask
-				// Tooltip: ""
+				 DisplayName: Endless Cursed Flames Flask
+				 Tooltip: ""
 			}
 
 			EndlessDangersense: {
-				// DisplayName: Endless Dangersense Potion
-				// Tooltip: ""
+				 DisplayName: Endless Dangersense Potion
+				 Tooltip: ""
 			}
 
 			EndlessEndurance: {
-				// DisplayName: Endless Endurance Potion
-				// Tooltip: ""
+				 DisplayName: Endless Endurance Potion
+				 Tooltip: ""
 			}
 
 			EndlessFeather: {
-				// DisplayName: Endless Featherfall Potion
-				// Tooltip: ""
+				 DisplayName: Endless Featherfall Potion
+				 Tooltip: ""
 			}
 
 			EndlessFireFlask: {
-				// DisplayName: Endless Fire Flask
-				// Tooltip: ""
+				 DisplayName: Endless Fire Flask
+				 Tooltip: ""
 			}
 
 			EndlessFishing: {
-				// DisplayName: Endless Fishing Potion
-				// Tooltip: ""
+				 DisplayName: Endless Fishing Potion
+				 Tooltip: ""
 			}
 
 			EndlessFlipper: {
-				// DisplayName: Endless Flipper Potion
-				// Tooltip: ""
+				 DisplayName: Endless Flipper Potion
+				 Tooltip: ""
 			}
 
 			EndlessGills: {
-				// DisplayName: Endless Gills Potion
-				// Tooltip: ""
+				 DisplayName: Endless Gills Potion
+				 Tooltip: ""
 			}
 
 			EndlessGoldFlask: {
-				// DisplayName: Endless Gold Flask
-				// Tooltip: ""
+				 DisplayName: Endless Gold Flask
+				 Tooltip: ""
 			}
 
 			EndlessGravitation: {
-				// DisplayName: Endless Gravitation Potion
-				// Tooltip: ""
+				 DisplayName: Endless Gravitation Potion
+				 Tooltip: ""
 			}
 
 			EndlessGreaterLuck: {
-				// DisplayName: Endless Greater Luck Potion
-				// Tooltip: ""
+				 DisplayName: Endless Greater Luck Potion
+				 Tooltip: ""
 			}
 
 			EndlessHeaRtreach: {
-				// DisplayName: Endless Heartreach Potion
-				// Tooltip: ""
+				 DisplayName: Endless Heartreach Potion
+				 Tooltip: ""
 			}
 
 			EndlessHunter: {
-				// DisplayName: Endless Hunter Potion
-				// Tooltip: ""
+				 DisplayName: Endless Hunter Potion
+				 Tooltip: ""
 			}
 
 			EndlessIchorFlask: {
-				// DisplayName: Endless Ichor Flask
-				// Tooltip: ""
+				 DisplayName: Endless Ichor Flask
+				 Tooltip: ""
 			}
 
 			EndlessInferno: {
-				// DisplayName: Endless Inferno Potion
-				// Tooltip: ""
+				 DisplayName: Endless Inferno Potion
+				 Tooltip: ""
 			}
 
 			EndlessInvisibility: {
-				// DisplayName: Endless Invisibility Potion
-				// Tooltip: ""
+				 DisplayName: Endless Invisibility Potion
+				 Tooltip: ""
 			}
 
 			EndlessIronSkin: {
-				// DisplayName: Endless Ironskin Potion
-				// Tooltip: ""
+				 DisplayName: Endless Ironskin Potion
+				 Tooltip: ""
 			}
 
 			EndlessLeasserLuck: {
-				// DisplayName: Endless Lesser Luck Potion
-				// Tooltip: ""
+				 DisplayName: Endless Lesser Luck Potion
+				 Tooltip: ""
 			}
 
 			EndlessLifeForce: {
-				// DisplayName: Endless Lifeforce Potion
-				// Tooltip: ""
+				 DisplayName: Endless Lifeforce Potion
+				 Tooltip: ""
 			}
 
 			EndlessLuck: {
-				// DisplayName: Endless Luck Potion
-				// Tooltip: ""
+				 DisplayName: Endless Luck Potion
+				 Tooltip: ""
 			}
 
 			EndlessManaPower: {
-				// DisplayName: Endless Magic Power Potion
-				// Tooltip: ""
+				 DisplayName: Endless Magic Power Potion
+				 Tooltip: ""
 			}
 
 			EndlessManaRegeneration: {
-				// DisplayName: Endless Magic Regeneration Potion
-				// Tooltip: ""
+				 DisplayName: Endless Magic Regeneration Potion
+				 Tooltip: ""
 			}
 
 			EndlessMining: {
-				// DisplayName: Endless Mining Potion
-				// Tooltip: ""
+				 DisplayName: Endless Mining Potion
+				 Tooltip: ""
 			}
 
 			EndlessNaniteFlask: {
-				// DisplayName: Endless Nanites Flask
-				// Tooltip: ""
+				 DisplayName: Endless Nanites Flask
+				 Tooltip: ""
 			}
 
 			EndlessNecroticRestauration: {
-				// DisplayName: Endless Necrotic Restauration Potion
-				// Tooltip: Teleports you to your last death
+				 DisplayName: Endless Necrotic Restauration Potion
+				 Tooltip: Teleports you to your last death
 			}
 
 			EndlessNightOwl: {
-				// DisplayName: Endless Night Owl Potion
-				// Tooltip: ""
+				 DisplayName: Endless Night Owl Potion
+				 Tooltip: ""
 			}
 
 			EndlessObsidian: {
-				// DisplayName: Endless Obsidian Skin Potion
-				// Tooltip: ""
+				 DisplayName: Endless Obsidian Skin Potion
+				 Tooltip: ""
 			}
 
 			EndlessPartyFlask: {
-				// DisplayName: Endless Party Flask
-				// Tooltip: ""
+				 DisplayName: Endless Party Flask
+				 Tooltip: ""
 			}
 
 			EndlessPoisonFlask: {
-				// DisplayName: Endless Poison Flask
-				// Tooltip: ""
+				 DisplayName: Endless Poison Flask
+				 Tooltip: ""
 			}
 
 			EndlessRage: {
-				// DisplayName: Endless Rage Potion
-				// Tooltip: ""
+				 DisplayName: Endless Rage Potion
+				 Tooltip: ""
 			}
 
 			EndlessRegeneration: {
-				// DisplayName: Endless Regeneration Potion
-				// Tooltip: ""
+				 DisplayName: Endless Regeneration Potion
+				 Tooltip: ""
 			}
 
 			EndlessSake: {
-				// DisplayName: Endless Sake
-				// Tooltip: ""
+				 DisplayName: Endless Sake
+				 Tooltip: ""
 			}
 
 			EndlessShine: {
-				// DisplayName: Endless Shine Potion
-				// Tooltip: ""
+				 DisplayName: Endless Shine Potion
+				 Tooltip: ""
 			}
 
 			EndlessSonar: {
-				// DisplayName: Endless Sonar Potion
-				// Tooltip: ""
+				 DisplayName: Endless Sonar Potion
+				 Tooltip: ""
 			}
 
 			EndlessSpelunker: {
-				// DisplayName: Endless Spelunker Potion
-				// Tooltip: ""
+				 DisplayName: Endless Spelunker Potion
+				 Tooltip: ""
 			}
 
 			EndlessSummoning: {
-				// DisplayName: Endless Summoning Potion
-				// Tooltip: ""
+				 DisplayName: Endless Summoning Potion
+				 Tooltip: ""
 			}
 
 			EndlessSwiftness: {
-				// DisplayName: Endless Swiftness Potion
-				// Tooltip: ""
+				 DisplayName: Endless Swiftness Potion
+				 Tooltip: ""
 			}
 
 			EndlessThorns: {
-				// DisplayName: Endless Thorns Potion
-				// Tooltip: ""
+				 DisplayName: Endless Thorns Potion
+				 Tooltip: ""
 			}
 
 			EndlessTitan: {
-				// DisplayName: Endless Titan Potion
-				// Tooltip: ""
+				 DisplayName: Endless Titan Potion
+				 Tooltip: ""
 			}
 
 			EndlessVenomFlask: {
-				// DisplayName: Endless Venom Flask
-				// Tooltip: ""
+				 DisplayName: Endless Venom Flask
+				 Tooltip: ""
 			}
 
 			EndlessWarmth: {
-				// DisplayName: Endless Warmth Potion
-				// Tooltip: ""
+				 DisplayName: Endless Warmth Potion
+				 Tooltip: ""
 			}
 
 			EndlessWaterWalking: {
-				// DisplayName: Endless Water Walking Potion
-				// Tooltip: ""
+				 DisplayName: Endless Water Walking Potion
+				 Tooltip: ""
 			}
 
 			EndlessWrath: {
-				// DisplayName: Endless Wrath Potion
-				// Tooltip: ""
+				 DisplayName: Endless Wrath Potion
+				 Tooltip: ""
 			}
 
 			Fish_Potion: {
-				// DisplayName: Fish Potions
-				// Tooltip: ""
+				 DisplayName: Fish Potions
+				 Tooltip: ""
 			}
 
 			Gravitation_Control_Potion: {
-				// DisplayName: Gravity Control Potions
-				// Tooltip: ""
+				 DisplayName: Gravity Control Potions
+				 Tooltip: ""
 			}
 
 			Mage_Potion_Kit: {
-				// DisplayName: Magic Potions Kit
-				// Tooltip: ""
+				 DisplayName: Magic Potions Kit
+				 Tooltip: ""
 			}
 
 			Melee_Potion_Kit: {
-				// DisplayName: Melee Potions Kit
-				// Tooltip: ""
+				 DisplayName: Melee Potions Kit
+				 Tooltip: ""
 			}
 
 			Mining_Potion_Kit: {
-				// DisplayName: Mining Potions Kit
-				// Tooltip: ""
+				 DisplayName: Mining Potions Kit
+				 Tooltip: ""
 			}
 
 			Money_Collector_Potion: {
-				// DisplayName: Money Collector Potions
-				// Tooltip: Transport the money from your inventory to the piggy bank
+				 DisplayName: Money Collector Potions
+				 Tooltip: Transport the money from your inventory to the piggy bank
 			}
 
 			NecroticRestauration: {
-				// DisplayName: Necrotic Restauration Potion
-				// Tooltip: Teleports you to your last death
+				 DisplayName: Necrotic Restauration Potion
+				 Tooltip: Teleports you to your last death
 			}
 
 			Ranger_Potion_Kit: {
-				// DisplayName: Ranger Potions Kit
-				// Tooltip: ""
+				 DisplayName: Ranger Potions Kit
+				 Tooltip: ""
 			}
 
 			Sand_Flask: {
-				// DisplayName: Sand Flask
-				// Tooltip: Melee attacks set enemies burning sand
+				 DisplayName: Sand Flask
+				 Tooltip: Melee attacks set enemies burning sand
 			}
 
 			Summon_Potion_Kit: {
-				// DisplayName: Summoner Potions Kit
-				// Tooltip: ""
+				 DisplayName: Summoner Potions Kit
+				 Tooltip: ""
 			}
 
 			Supe_Sense_Potion: {
-				// DisplayName: Super Sense Potions
-				// Tooltip: Show the locations of enemies and danger sources
+				 DisplayName: Super Sense Potions
+				 Tooltip: Show the locations of enemies and danger sources
 			}
 
 			Tank_Potion_Kit: {
-				// DisplayName: Tank Potions Kit
-				// Tooltip: ""
+				 DisplayName: Tank Potions Kit
+				 Tooltip: ""
 			}
 
 			UltraHealtingPotion: {
-				// DisplayName: Ultra Healing potion
-				// Tooltip: ""
+				 DisplayName: Ultra Healing potion
+				 Tooltip: ""
 			}
 
 			BeeSoul: {
-				// DisplayName: Queen Bee Soul
-				// Tooltip: Releases bees when damaged
+				 DisplayName: Queen Bee Soul
+				 Tooltip: Releases bees when damaged
 			}
 
 			CorruptSoul: {
-				// DisplayName: Corrupt Soul
-				// Tooltip: increases life regen
+				 DisplayName: Corrupt Soul
+				 Tooltip: increases life regen
 			}
 
 			CultistSoul: {
-				// DisplayName: Cultist Soul
-				// Tooltip: A Ice Mist will protect you
+				 DisplayName: Cultist Soul
+				 Tooltip: A Ice Mist will protect you
 			}
 
 			DeerclopsSoul: {
-				// DisplayName: Deerclops Soul
-				// Tooltip: Gives you the ability to summon shadow hands to attack your enemies with 1/4 of your dps
+				 DisplayName: Deerclops Soul
+				 Tooltip: Gives you the ability to summon shadow hands to attack your enemies with 1/4 of your dps
 			}
 
 			DesertSoul: {
-				// DisplayName: Desert Annihilator Soul
-				// Tooltip: Reduces respawn time
+				 DisplayName: Desert Annihilator Soul
+				 Tooltip: Reduces respawn time
 			}
 
 			DestroyerEnergyCell: {
-				// DisplayName: Destroyer Energy Cell
-				// Tooltip: Increases mining speed by 35%
+				 DisplayName: Destroyer Energy Cell
+				 Tooltip: Increases mining speed by 35%
 			}
 
 			EmpressSoul: {
-				// DisplayName: Empress of Light Soul
-				// Tooltip: Grants infinite wing and rocket boot flight
+				 DisplayName: Empress of Light Soul
+				 Tooltip: Grants infinite wing and rocket boot flight
 			}
 
 			EyeSoul: {
-				// DisplayName: Eye Soul
-				// Tooltip: Permanently increases maximum life by 10
+				 DisplayName: Eye Soul
+				 Tooltip: Permanently increases maximum life by 10
 			}
 
 			FishSoul: {
-				// DisplayName: Duke Fishron Soul
-				// Tooltip: A Sharknado will protect you
+				 DisplayName: Duke Fishron Soul
+				 Tooltip: A Sharknado will protect you
 			}
 
 			FleshSoul: {
-				// DisplayName: Wall of Flesh Soul
-				// Tooltip: Increased all damage by 10%
+				 DisplayName: Wall of Flesh Soul
+				 Tooltip: Increased all damage by 10%
 			}
 
 			FrozenSoul: {
-				// DisplayName: Frozen Assaulter Soul
-				// Tooltip: Grants immunity to Frozen, Chilled and Frostburn
+				 DisplayName: Frozen Assaulter Soul
+				 Tooltip: Grants immunity to Frozen, Chilled and Frostburn
 			}
 
 			GolemSoul: {
-				// DisplayName: Golem Soul
-				// Tooltip: Increases defense by 10
+				 DisplayName: Golem Soul
+				 Tooltip: Increases defense by 10
 			}
 
 			InfernalSoul: {
-				// DisplayName: Infernal Tyrant Soul
-				/* Tooltip:
+				 DisplayName: Infernal Tyrant Soul
+				 Tooltip:
 					'''
 					Increased all damage by 10%
 					Grants immunity lava and fire blocks
-					''' */
+					''' 
 			}
 
 			KingSoul: {
-				// DisplayName: King Slime Soul
-				// Tooltip: 30% increased movement speed
+				 DisplayName: King Slime Soul
+				 Tooltip: 30% increased movement speed
 			}
 
 			MoonSoul: {
-				// DisplayName: Moon Lord Soul
-				// Tooltip: Reduces respawn time
+				 DisplayName: Moon Lord Soul
+				 Tooltip: Reduces respawn time
 			}
 
 			PlantSoul: {
-				// DisplayName: Plantera Soul
-				/* Tooltip:
+				 DisplayName: Plantera Soul
+				 Tooltip:
 					'''
 					Permanently increases maximum life by 10
 					Summons spores over time that will damage enemies
-					''' */
+					''' 
 			}
 
 			QueenSoul: {
-				// DisplayName: Queen Slime Soul
-				// Tooltip: Permanently increases maximum life by 15
+				 DisplayName: Queen Slime Soul
+				 Tooltip: Permanently increases maximum life by 15
 			}
 
 			RetinazorEnergyCell: {
-				// DisplayName: Retinazor Energy Cell
-				// Tooltip: Removes restriction on wings of Reaper Mode
+				 DisplayName: Retinazor Energy Cell
+				 Tooltip: Removes restriction on wings of Reaper Mode
 			}
 
 			SkeletonSoul: {
-				// DisplayName: Skeleton Soul
-				// Tooltip: Increases defense by 5
+				 DisplayName: Skeleton Soul
+				 Tooltip: Increases defense by 5
 			}
 
 			SkeletronPrimeEnergyCell: {
-				// DisplayName: Skeletron Prime Energy Cell
-				/* Tooltip:
+				 DisplayName: Skeletron Prime Energy Cell
+				 Tooltip:
 					'''
 					Increase jump height drastically 
 					Allows to see the minerals
-					''' */
+					''' 
 			}
 
 			SpazmatismEnergyCell: {
-				// DisplayName: Spazmatism Energy Cell
-				// Tooltip: Grants immunity to all fire debuffs
+				 DisplayName: Spazmatism Energy Cell
+				 Tooltip: Grants immunity to all fire debuffs
 			}
 
 			desertBag: {
-				// DisplayName: Treasure Bag
-				// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+				 DisplayName: Treasure Bag
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			frostBag: {
-				// DisplayName: Treasure Bag
-				// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+				 DisplayName: Treasure Bag
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			infernalBag: {
-				// DisplayName: Treasure Bag
-				// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+				 DisplayName: Treasure Bag
+				 Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			DebuggToggle: {
-				// DisplayName: DebuggToggle
-				// Tooltip: ""
+				 DisplayName: DebuggToggle
+				 Tooltip: ""
 			}
 
 			AncientT: {
-				// DisplayName: Ancient tablet
-				// Tooltip: ""
+				 DisplayName: Ancient tablet
+				 Tooltip: ""
 			}
 
 			BoneBar: {
-				// DisplayName: Bone Bar
-				// Tooltip: ""
+				 DisplayName: Bone Bar
+				 Tooltip: ""
 			}
 
 			CelestialAmalgamate: {
-				// DisplayName: Celestial Amalgam
-				// Tooltip: ""
+				 DisplayName: Celestial Amalgam
+				 Tooltip: ""
 			}
 
 			JungleBar: {
-				// DisplayName: Jungle Bar
-				// Tooltip: ""
+				 DisplayName: Jungle Bar
+				 Tooltip: ""
 			}
 
 			LuminiteFeathers: {
-				// DisplayName: Luminite Feathers
-				// Tooltip: ""
+				 DisplayName: Luminite Feathers
+				 Tooltip: ""
 			}
 
 			Neutrum_Fragment: {
-				// DisplayName: Neutrum Fragment
-				// Tooltip: ""
+				 DisplayName: Neutrum Fragment
+				 Tooltip: ""
 			}
 
 			NightBar: {
-				// DisplayName: Night Bar
-				// Tooltip: ""
+				 DisplayName: Night Bar
+				 Tooltip: ""
 			}
 
 			Reinforced_iron_ore: {
-				// DisplayName: Reinforced iron ore
-				// Tooltip: ""
+				 DisplayName: Reinforced iron ore
+				 Tooltip: ""
 			}
 
 			Reinforced_ironBar: {
-				// DisplayName: Reinforced iron Bar
-				// Tooltip: ""
+				 DisplayName: Reinforced iron Bar
+				 Tooltip: ""
 			}
 
 			Sand_escense: {
-				// DisplayName: Sand Essence
-				// Tooltip: ""
+				 DisplayName: Sand Essence
+				 Tooltip: ""
 			}
 
 			SharkTooth: {
-				// DisplayName: Shark Tooth
-				// Tooltip: ""
+				 DisplayName: Shark Tooth
+				 Tooltip: ""
 			}
 
 			Terracoin: {
-				// DisplayName: Terra Coin
-				// Tooltip: ""
+				 DisplayName: Terra Coin
+				 Tooltip: ""
 			}
 
 			TuxoniteBar: {
-				// DisplayName: Tuxonite Bar
-				// Tooltip: ""
+				 DisplayName: Tuxonite Bar
+				 Tooltip: ""
 			}
 
 			TuxoniteOre: {
-				// DisplayName: Tuxonite Ore
-				// Tooltip: ""
+				 DisplayName: Tuxonite Ore
+				 Tooltip: ""
 			}
 
 			Magic_Sword: {
-				// DisplayName: Magic Sword
-				// Tooltip: Summons a traveling sword.
+				 DisplayName: Magic Sword
+				 Tooltip: Summons a traveling sword.
 			}
 
 			TortugaPet: {
-				// DisplayName: Magic Lettuce
-				// Tooltip: ""
+				 DisplayName: Magic Lettuce
+				 Tooltip: ""
 			}
 
 			Twitch: {
-				// DisplayName: Follow
-				// Tooltip: ""
+				 DisplayName: Follow
+				 Tooltip: ""
 			}
 
 			Yt: {
-				// DisplayName: Yt
-				// Tooltip: ""
+				 DisplayName: Yt
+				 Tooltip: ""
 			}
 
 			ArmoredSlimeBanner: {
-				// DisplayName: Armored Slime Banner
-				// Tooltip: ""
+				 DisplayName: Armored Slime Banner
+				 Tooltip: ""
 			}
 
 			ArmoredzombieBanner: {
-				// DisplayName: Armored Zombie Banner
-				// Tooltip: ""
+				 DisplayName: Armored Zombie Banner
+				 Tooltip: ""
 			}
 
 			TuxoniteChair: {
-				// DisplayName: Tuxonite Chair
-				// Tooltip: ""
+				 DisplayName: Tuxonite Chair
+				 Tooltip: ""
 			}
 
 			TuxoniteDoor: {
-				// DisplayName: Tuxonite Door
-				// Tooltip: ""
+				 DisplayName: Tuxonite Door
+				 Tooltip: ""
 			}
 
 			TuxoniteTable: {
-				// DisplayName: Tuxonite Table
-				// Tooltip: ""
+				 DisplayName: Tuxonite Table
+				 Tooltip: ""
 			}
 
 			TuxoniteToilet: {
-				// DisplayName: Tuxonite Toilet
-				// Tooltip: ""
+				 DisplayName: Tuxonite Toilet
+				 Tooltip: ""
 			}
 
 			DesertMusicBox: {
-				// DisplayName: Music Box (Desert Annihilator)
-				// Tooltip: ""
+				 DisplayName: Music Box (Desert Annihilator)
+				 Tooltip: ""
 			}
 
 			FrozenMusicBox: {
-				// DisplayName: Music Box (Frozen Assaulter)
-				// Tooltip: ""
+				 DisplayName: Music Box (Frozen Assaulter)
+				 Tooltip: ""
 			}
 
 			Frozenp2MusicBox: {
-				// DisplayName: Music Box (Frozen Assaulter p2)
-				// Tooltip: ""
+				 DisplayName: Music Box (Frozen Assaulter p2)
+				 Tooltip: ""
 			}
 
 			InfernalMusicBox: {
-				// DisplayName: Music Box (Infernal Tyrant)
-				// Tooltip: ""
+				 DisplayName: Music Box (Infernal Tyrant)
+				 Tooltip: ""
 			}
 
 			Desert_Relic: {
-				// DisplayName: Desert Annihilator relic
-				// Tooltip: ""
+				 DisplayName: Desert Annihilator relic
+				 Tooltip: ""
 			}
 
 			Frozen_Relic: {
-				// DisplayName: Frozen Assaulter relic
-				// Tooltip: ""
+				 DisplayName: Frozen Assaulter relic
+				 Tooltip: ""
 			}
 
 			Tyrant_Relic: {
-				// DisplayName: Infernal Tyrant relic
-				// Tooltip: ""
+				 DisplayName: Infernal Tyrant relic
+				 Tooltip: ""
 			}
 
 			DesertTrophy: {
-				// DisplayName: Desert Annihilator Trophy
-				// Tooltip: ""
+				 DisplayName: Desert Annihilator Trophy
+				 Tooltip: ""
 			}
 
 			FrostTrophy: {
-				// DisplayName: Frozen Assaulter Trophy
-				// Tooltip: ""
+				 DisplayName: Frozen Assaulter Trophy
+				 Tooltip: ""
 			}
 
 			InfernalTrophy: {
-				// DisplayName: Infernal Tyrant Trophy
-				// Tooltip: ""
+				 DisplayName: Infernal Tyrant Trophy
+				 Tooltip: ""
 			}
 
 			destrosamundos: {
-				// DisplayName: World Crusher
-				// Tooltip: ""
+				 DisplayName: World Crusher
+				 Tooltip: ""
 			}
 
 			Ghost_Pickaxe: {
-				// DisplayName: Ghost Pickaxe
-				// Tooltip: ""
+				 DisplayName: Ghost Pickaxe
+				 Tooltip: ""
 			}
 
 			Granite_axe: {
-				// DisplayName: Granite Axe
-				// Tooltip: ""
+				 DisplayName: Granite Axe
+				 Tooltip: ""
 			}
 
 			Granite_Pickaxe: {
-				// DisplayName: Granite Pickaxe
-				// Tooltip: ""
+				 DisplayName: Granite Pickaxe
+				 Tooltip: ""
 			}
 
 			ironstonepickaxe: {
-				// DisplayName: Ironstone Pickaxe
-				// Tooltip: ""
+				 DisplayName: Ironstone Pickaxe
+				 Tooltip: ""
 			}
 
 			Marble_axe: {
-				// DisplayName: Marble Axe
-				// Tooltip: ""
+				 DisplayName: Marble Axe
+				 Tooltip: ""
 			}
 
 			Marble_Pickaxe: {
-				// DisplayName: Marble Pickaxe
-				// Tooltip: ""
+				 DisplayName: Marble Pickaxe
+				 Tooltip: ""
 			}
 
 			night_pickaxe: {
-				// DisplayName: Night Pickaxe
-				// Tooltip: ""
+				 DisplayName: Night Pickaxe
+				 Tooltip: ""
 			}
 
 			NigthFishingRod: {
-				// DisplayName: Night Fishing Rod
-				// Tooltip: ""
+				 DisplayName: Night Fishing Rod
+				 Tooltip: ""
 			}
 
 			Tuxonite_axe: {
-				// DisplayName: Tuxonite Axe
-				// Tooltip: ""
+				 DisplayName: Tuxonite Axe
+				 Tooltip: ""
 			}
 
 			Tuxonite_hammer: {
-				// DisplayName: Tuxonite Hammer
-				// Tooltip: ""
+				 DisplayName: Tuxonite Hammer
+				 Tooltip: ""
 			}
 
 			Tuxonite_pickaxe: {
-				// DisplayName: Tuxonite Pickaxe
-				// Tooltip: ""
+				 DisplayName: Tuxonite Pickaxe
+				 Tooltip: ""
 			}
 
 			TuxoniteFishingPole: {
-				// DisplayName: Tuxonite Fishing Pole
-				// Tooltip: ""
+				 DisplayName: Tuxonite Fishing Pole
+				 Tooltip: ""
 			}
 
 			DayToken: {
-				// DisplayName: Day Token
-				// Tooltip: Summons the sun
+				 DisplayName: Day Token
+				 Tooltip: Summons the sun
 			}
 
 			MoonManipulator: {
-				// DisplayName: Moon Manipulator
-				// Tooltip: Summons the moon
+				 DisplayName: Moon Manipulator
+				 Tooltip: Summons the moon
 			}
 
 			NightToken: {
-				// DisplayName: Night Token
-				// Tooltip: Summons the moon
+				 DisplayName: Night Token
+				 Tooltip: Summons the moon
 			}
 
 			PlayerStatViewer: {
-				// DisplayName: Player stat meter
-				// Tooltip: Shows most of the player's stats
+				 DisplayName: Player stat meter
+				 Tooltip: Shows most of the player's stats
 			}
 
 			RainToken: {
-				// DisplayName: Rain Token
-				// Tooltip: Summons the rain
+				 DisplayName: Rain Token
+				 Tooltip: Summons the rain
 			}
 
 			SandstormToken: {
-				// DisplayName: Sandstorm Token
-				// Tooltip: Summons the sandstorm
+				 DisplayName: Sandstorm Token
+				 Tooltip: Summons the sandstorm
 			}
 
 			SunManipulator: {
-				// DisplayName: Sun Manipulator
-				// Tooltip: Summons the sun
+				 DisplayName: Sun Manipulator
+				 Tooltip: Summons the sun
 			}
 
 			SuperDummy: {
-				// DisplayName: Advanced Dummy
-				// Tooltip: Right click to change mode
+				 DisplayName: Advanced Dummy
+				 Tooltip: Right click to change mode
 			}
 
 			TimeManipulator3000: {
-				// DisplayName: Time Manipulator 3000
-				// Tooltip: Summons the moon and de sun
+				 DisplayName: Time Manipulator 3000
+				 Tooltip: Summons the moon and de sun
 			}
 
 			DesertArrow: {
-				// DisplayName: Desert Arrow
-				// Tooltip: ""
+				 DisplayName: Desert Arrow
+				 Tooltip: ""
 			}
 
 			Endles_High_Velocity_Bullet: {
-				// DisplayName: Endless High Velocity Pouch
-				// Tooltip: ""
+				 DisplayName: Endless High Velocity Pouch
+				 Tooltip: ""
 			}
 
 			EndlesChlorophyte: {
-				// DisplayName: Endless Chlorophyte Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Chlorophyte Pouch
+				 Tooltip: ""
 			}
 
-			// EndlesCoper.DisplayName: Endless Copper Coin
+			 EndlesCoper.DisplayName: Endless Copper Coin
 
 			EndlesCrystal: {
-				// DisplayName: Endless Crystal Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Crystal Pouch
+				 Tooltip: ""
 			}
 
 			EndlesCursed: {
-				// DisplayName: Endless Cursed Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Cursed Pouch
+				 Tooltip: ""
 			}
 
 			EndlesExplosive: {
-				// DisplayName: Endless Exploding Bullet Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Exploding Bullet Pouch
+				 Tooltip: ""
 			}
 
 			EndlesFlare: {
-				// DisplayName: Endless Flare
-				// Tooltip: ""
+				 DisplayName: Endless Flare
+				 Tooltip: ""
 			}
 
 			EndlesGold: {
-				// DisplayName: Endless Gold Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Gold Pouch
+				 Tooltip: ""
 			}
 
-			// EndlesGoldC.DisplayName: Endless Gold Coin
-			// EndlesIchor.DisplayName: "Endless Ichor Pouch "
+			 EndlesGoldC.DisplayName: Endless Gold Coin
+			 EndlesIchor.DisplayName: "Endless Ichor Pouch "
 
 			EndlesLuminite_Bullet: {
-				// DisplayName: Endless Luminite Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Luminite Pouch
+				 Tooltip: ""
 			}
 
 			EndlesMeteorite: {
-				// DisplayName: Endless Meteorite Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Meteorite Pouch
+				 Tooltip: ""
 			}
 
 			EndlesNail: {
-				// DisplayName: Endless Nail
-				// Tooltip: ""
+				 DisplayName: Endless Nail
+				 Tooltip: ""
 			}
 
 			EndlesNano_Bullet: {
-				// DisplayName: Endless Nano Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Nano Pouch
+				 Tooltip: ""
 			}
 
 			EndlesParty_Bullet: {
-				// DisplayName: Endless Party Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Party Pouch
+				 Tooltip: ""
 			}
 
-			// EndlesPlatinumC.DisplayName: Endless Platinum Coin
+			 EndlesPlatinumC.DisplayName: Endless Platinum Coin
 
 			Endless_Tomb_bullet: {
-				// DisplayName: Endless Grave Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Grave Pouch
+				 Tooltip: ""
 			}
 
 			EndlessBone: {
-				// DisplayName: Endless Bone Arrow Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Bone Arrow Quiver
+				 Tooltip: ""
 			}
 
 			EndlessChlorophyte: {
-				// DisplayName: Endless Chlorophyte Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Chlorophyte Quiver
+				 Tooltip: ""
 			}
 
 			EndlessCurced: {
-				// DisplayName: Endless Cursed Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Cursed Quiver
+				 Tooltip: ""
 			}
 
 			EndlessDesert: {
-				// DisplayName: Endless Desert Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Desert Quiver
+				 Tooltip: ""
 			}
 
 			EndlessFire: {
-				// DisplayName: Endless Flaming Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Flaming Pouch
+				 Tooltip: ""
 			}
 
 			EndlessFlaming: {
-				// DisplayName: Endless Flaming Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Flaming Quiver
+				 Tooltip: ""
 			}
 
 			EndlessFrostburn: {
-				// DisplayName: Endless Frostburn Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Frostburn Quiver
+				 Tooltip: ""
 			}
 
 			EndlessHell: {
-				// DisplayName: Endless Hellfire Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Hellfire Quiver
+				 Tooltip: ""
 			}
 
 			EndlessHoly: {
-				// DisplayName: Endless Holy Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Holy Quiver
+				 Tooltip: ""
 			}
 
 			EndlessIce: {
-				// DisplayName: Endless Frozen Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Frozen Pouch
+				 Tooltip: ""
 			}
 
 			EndlessIchor: {
-				// DisplayName: Endless Ichor Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Ichor Quiver
+				 Tooltip: ""
 			}
 
 			EndlesSilver: {
-				// DisplayName: Endless Silver Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Silver Pouch
+				 Tooltip: ""
 			}
 
-			// EndlesSilverC.DisplayName: Endless Silver Coin
+			 EndlesSilverC.DisplayName: Endless Silver Coin
 
 			EndlessJest: {
-				// DisplayName: Endless Jester's Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Jester's Quiver
+				 Tooltip: ""
 			}
 
 			EndlessLuminite: {
-				// DisplayName: Endless Luminite Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Luminite Quiver
+				 Tooltip: ""
 			}
 
 			EndlesStar: {
-				// DisplayName: Endless Star
-				// Tooltip: ""
+				 DisplayName: Endless Star
+				 Tooltip: ""
 			}
 
 			EndlessUnholy: {
-				// DisplayName: Endless Unholy Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Unholy Quiver
+				 Tooltip: ""
 			}
 
 			EndlessVenom: {
-				// DisplayName: Endless Venom Quiver
-				// Tooltip: ""
+				 DisplayName: Endless Venom Quiver
+				 Tooltip: ""
 			}
 
 			EndlessWrathSlimeBullet: {
-				// DisplayName: Endless Angry Slime Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Angry Slime Pouch
+				 Tooltip: ""
 			}
 
 			EndlesVenom_Bullet: {
-				// DisplayName: Endless Venom Pouch
-				// Tooltip: ""
+				 DisplayName: Endless Venom Pouch
+				 Tooltip: ""
 			}
 
 			FireBullet: {
-				// DisplayName: Flaming Bullet
-				// Tooltip: ""
+				 DisplayName: Flaming Bullet
+				 Tooltip: ""
 			}
 
 			ice_bullet: {
-				// DisplayName: Frozen Bullet
-				// Tooltip: ""
+				 DisplayName: Frozen Bullet
+				 Tooltip: ""
 			}
 
 			Tomb_bullet: {
-				// DisplayName: Grave Bullet
-				// Tooltip: ""
+				 DisplayName: Grave Bullet
+				 Tooltip: ""
 			}
 
 			WrathSlimeBullet: {
-				// DisplayName: Wrath Slime Bullet
-				// Tooltip: ""
+				 DisplayName: Wrath Slime Bullet
+				 Tooltip: ""
 			}
 
 			Bee_worm: {
-				// DisplayName: Bee Worm
-				// Tooltip: ""
+				 DisplayName: Bee Worm
+				 Tooltip: ""
 			}
 
 			Bloodtray: {
-				// DisplayName: Blood Ray
-				// Tooltip: ""
+				 DisplayName: Blood Ray
+				 Tooltip: ""
 			}
 
 			BombTome: {
-				// DisplayName: Bomb Tome
-				// Tooltip: ""
+				 DisplayName: Bomb Tome
+				 Tooltip: ""
 			}
 
 			BrightDaisy: {
-				// DisplayName: Bright Daisy
-				// Tooltip: A daisy with the power of luminous skies
+				 DisplayName: Bright Daisy
+				 Tooltip: A daisy with the power of luminous skies
 			}
 
 			CorrupedRay: {
-				// DisplayName: Shadow Ray
-				// Tooltip: ""
+				 DisplayName: Shadow Ray
+				 Tooltip: ""
 			}
 
 			CurcedFlower: {
-				// DisplayName: Flower of Cursed Flame
-				// Tooltip: ""
+				 DisplayName: Flower of Cursed Flame
+				 Tooltip: ""
 			}
 
 			DesertTome: {
-				// DisplayName: Desert Tome
-				// Tooltip: ""
+				 DisplayName: Desert Tome
+				 Tooltip: ""
 			}
 
 			frozen_staff: {
-				// DisplayName: Frozen Staff
-				// Tooltip: ""
+				 DisplayName: Frozen Staff
+				 Tooltip: ""
 			}
 
 			Judgment: {
-				// DisplayName: Judgment
-				// Tooltip: ""
+				 DisplayName: Judgment
+				 Tooltip: ""
 			}
 
 			JudgmentII: {
-				// DisplayName: Judgment II
-				// Tooltip: ""
+				 DisplayName: Judgment II
+				 Tooltip: ""
 			}
 
 			JudgmentIII: {
-				// DisplayName: Judgment III
-				// Tooltip: ""
+				 DisplayName: Judgment III
+				 Tooltip: ""
 			}
 
 			LaserMachineGun: {
-				// DisplayName: L.M.G
-				// Tooltip: Legendary Drop
+				 DisplayName: L.M.G
+				 Tooltip: Legendary Drop
 			}
 
 			RazorpineV2: {
-				// DisplayName: Pine Fury
-				// Tooltip: ""
+				 DisplayName: Pine Fury
+				 Tooltip: ""
 			}
 
 			SkyCuter: {
-				// DisplayName: SkyCutter
-				// Tooltip: ""
+				 DisplayName: SkyCutter
+				 Tooltip: ""
 			}
 
 			StarStormTome: {
-				// DisplayName: Star Storm Tome
-				// Tooltip: ""
+				 DisplayName: Star Storm Tome
+				 Tooltip: ""
 			}
 
 			StarTome: {
-				// DisplayName: Star Tome
-				// Tooltip: ""
+				 DisplayName: Star Tome
+				 Tooltip: ""
 			}
 
 			True_Demoncicle: {
-				// DisplayName: True Demon Scythe
-				// Tooltip: ""
+				 DisplayName: True Demon Scythe
+				 Tooltip: ""
 			}
 
 			Tyran_Blast: {
-				// DisplayName: Tyrant blast
-				// Tooltip: ""
+				 DisplayName: Tyrant blast
+				 Tooltip: ""
 			}
 
 			ArmaSlimeV2: {
-				// DisplayName: SlimeGun V2
-				// Tooltip: ""
+				 DisplayName: SlimeGun V2
+				 Tooltip: ""
 			}
 
 			BurningJungle: {
-				// DisplayName: Burning Jungle
-				// Tooltip: Inflict poison and fire on enemies
+				 DisplayName: Burning Jungle
+				 Tooltip: Inflict poison and fire on enemies
 			}
 
 			DesertEdge: {
-				// DisplayName: Desert Edge
-				// Tooltip: ""
+				 DisplayName: Desert Edge
+				 Tooltip: ""
 			}
 
 			Garritas: {
-				// DisplayName: Solar Claws
-				// Tooltip: ""
+				 DisplayName: Solar Claws
+				 Tooltip: ""
 			}
 
 			Amethyst_Sword: {
-				// DisplayName: Amethyst Sword
-				// Tooltip: ""
+				 DisplayName: Amethyst Sword
+				 Tooltip: ""
 			}
 
 			Diamond_Sword: {
-				// DisplayName: Diamond Sword
-				// Tooltip: Wrong game
+				 DisplayName: Diamond Sword
+				 Tooltip: Wrong game
 			}
 
 			Emerald_Sword: {
-				// DisplayName: Emerald Sword
-				// Tooltip: ""
+				 DisplayName: Emerald Sword
+				 Tooltip: ""
 			}
 
 			The_Geode: {
-				// DisplayName: The Geode
-				// Tooltip: ""
+				 DisplayName: The Geode
+				 Tooltip: ""
 			}
 
 			The_Geode_Blue: {
-				// DisplayName: The Geode
-				/* Tooltip:
+				 DisplayName: The Geode
+				 Tooltip:
 					'''
 					Inflict Slow on enemies
 					Shoot a sapphire sword that fragments on hit
-					''' */
+					''' 
 			}
 
 			The_Geode_Green: {
-				// DisplayName: The Geode
-				// Tooltip: 50% chance to heal player 5hp per hit
+				 DisplayName: The Geode
+				 Tooltip: 50% chance to heal player 5hp per hit
 			}
 
 			The_Geode_Red: {
-				// DisplayName: The Geode
-				/* Tooltip:
+				 DisplayName: The Geode
+				 Tooltip:
 					'''
 					Inflict fire on enemies
 					 Create explosions on hit
-					''' */
+					''' 
 			}
 
 			The_Geode_Vi: {
-				// DisplayName: The Geode
-				// Tooltip: Inflict Confused on enemies
+				 DisplayName: The Geode
+				 Tooltip: Inflict Confused on enemies
 			}
 
 			The_Geode_White: {
-				// DisplayName: The Geode
-				// Tooltip: ""
+				 DisplayName: The Geode
+				 Tooltip: ""
 			}
 
 			The_Geode_Yellow: {
-				// DisplayName: The Geode
-				// Tooltip: Inflict Ichor on enemies
+				 DisplayName: The Geode
+				 Tooltip: Inflict Ichor on enemies
 			}
 
 			Ruby_Sword: {
-				// DisplayName: Ruby Sword
-				// Tooltip: ""
+				 DisplayName: Ruby Sword
+				 Tooltip: ""
 			}
 
 			Sapphire_Sword: {
-				// DisplayName: Sapphire Sword
-				// Tooltip: ""
+				 DisplayName: Sapphire Sword
+				 Tooltip: ""
 			}
 
 			Topaz_Sword: {
-				// DisplayName: Topaz Sword
-				// Tooltip: ""
+				 DisplayName: Topaz Sword
+				 Tooltip: ""
 			}
 
 			Granite_Broadsword: {
-				// DisplayName: Granite Broadsword
-				// Tooltip: Doubles its stats while in the granite biome.
+				 DisplayName: Granite Broadsword
+				 Tooltip: Doubles its stats while in the granite biome.
 			}
 
 			Legendary_Great_Sword: {
-				// DisplayName: Legendary Great Sword
-				// Tooltip: Inflict fire,ichor,venom,hellfire and poison on enemies
+				 DisplayName: Legendary Great Sword
+				 Tooltip: Inflict fire,ichor,venom,hellfire and poison on enemies
 			}
 
 			Marble_Broadsword: {
-				// DisplayName: Marble Broadsword
-				// Tooltip: Decrease enemy defense by 2.
+				 DisplayName: Marble Broadsword
+				 Tooltip: Decrease enemy defense by 2.
 			}
 
 			Permafrost: {
-				// DisplayName: Permafrost
-				// Tooltip: ""
+				 DisplayName: Permafrost
+				 Tooltip: ""
 			}
 
 			Reinforced_Iron_Broadsword: {
-				// DisplayName: Reinforced Iron Broadsword
-				// Tooltip: ""
+				 DisplayName: Reinforced Iron Broadsword
+				 Tooltip: ""
 			}
 
 			Adamantite_saber: {
-				// DisplayName: Adamantite Saber
-				// Tooltip: ""
+				 DisplayName: Adamantite Saber
+				 Tooltip: ""
 			}
 
 			Cobalt_saber: {
-				// DisplayName: Cobalt Saber
-				// Tooltip: ""
+				 DisplayName: Cobalt Saber
+				 Tooltip: ""
 			}
 
 			Copper_saber: {
-				// DisplayName: Copper Saber
-				// Tooltip: ""
+				 DisplayName: Copper Saber
+				 Tooltip: ""
 			}
 
 			Corrupted_saber: {
-				// DisplayName: Light´s Saber
-				// Tooltip: ""
+				 DisplayName: Light´s Saber
+				 Tooltip: ""
 			}
 
 			Crimson_saber: {
-				// DisplayName: Blood Saber
-				// Tooltip: ""
+				 DisplayName: Blood Saber
+				 Tooltip: ""
 			}
 
 			Enchanted_saber: {
-				// DisplayName: Enchanted Saber
-				// Tooltip: Shoot an enchanted sword beam
+				 DisplayName: Enchanted Saber
+				 Tooltip: Shoot an enchanted sword beam
 			}
 
 			Fire_saber: {
-				// DisplayName: Fiery Saber
-				// Tooltip: Inflict fire on enemies
+				 DisplayName: Fiery Saber
+				 Tooltip: Inflict fire on enemies
 			}
 
 			gold_saber: {
-				// DisplayName: Golden Saber
-				// Tooltip: ""
+				 DisplayName: Golden Saber
+				 Tooltip: ""
 			}
 
 			Grass_saber: {
-				// DisplayName: Grass Saber
-				// Tooltip: Inflict poison on enemies
+				 DisplayName: Grass Saber
+				 Tooltip: Inflict poison on enemies
 			}
 
 			Hallowed_saber: {
-				// DisplayName: Sabebur
-				// Tooltip: ""
+				 DisplayName: Sabebur
+				 Tooltip: ""
 			}
 
 			iron_saber: {
-				// DisplayName: Iron Saber
-				// Tooltip: ""
+				 DisplayName: Iron Saber
+				 Tooltip: ""
 			}
 
 			Lead_saber: {
-				// DisplayName: Lead Saber
-				// Tooltip: ""
+				 DisplayName: Lead Saber
+				 Tooltip: ""
 			}
 
 			Mythril_saber: {
-				// DisplayName: Mythril Saber
-				// Tooltip: ""
+				 DisplayName: Mythril Saber
+				 Tooltip: ""
 			}
 
 			Night_saber: {
-				// DisplayName: Night Saber
-				// Tooltip: ""
+				 DisplayName: Night Saber
+				 Tooltip: ""
 			}
 
 			Orichalcum_saber: {
-				// DisplayName: Orichalcum Saber
-				// Tooltip: ""
+				 DisplayName: Orichalcum Saber
+				 Tooltip: ""
 			}
 
 			Palladium_saber: {
-				// DisplayName: Palladium Saber
-				// Tooltip: ""
+				 DisplayName: Palladium Saber
+				 Tooltip: ""
 			}
 
 			platinum_saber: {
-				// DisplayName: Platinum Saber
-				// Tooltip: ""
+				 DisplayName: Platinum Saber
+				 Tooltip: ""
 			}
 
 			Reinforced_Iron_saber: {
-				// DisplayName: Reinforced Iron Saber
-				// Tooltip: ""
+				 DisplayName: Reinforced Iron Saber
+				 Tooltip: ""
 			}
 
 			silver_saber: {
-				// DisplayName: Silver Saber
-				// Tooltip: ""
+				 DisplayName: Silver Saber
+				 Tooltip: ""
 			}
 
 			Spike_saber: {
-				// DisplayName: Spike saber
-				// Tooltip: ""
+				 DisplayName: Spike saber
+				 Tooltip: ""
 			}
 
 			tin_saber: {
-				// DisplayName: Tin Saber
-				// Tooltip: ""
+				 DisplayName: Tin Saber
+				 Tooltip: ""
 			}
 
 			Titanium_saber: {
-				// DisplayName: Titanium Saber
-				// Tooltip: ""
+				 DisplayName: Titanium Saber
+				 Tooltip: ""
 			}
 
 			tungsteno_saber: {
-				// DisplayName: Tungsten Saber
-				// Tooltip: ""
+				 DisplayName: Tungsten Saber
+				 Tooltip: ""
 			}
 
 			Tuxonite_saber: {
-				// DisplayName: Tuxonite Saber
-				// Tooltip: ""
+				 DisplayName: Tuxonite Saber
+				 Tooltip: ""
 			}
 
 			wooden_saber: {
-				// DisplayName: Wooden Saber
-				// Tooltip: ""
+				 DisplayName: Wooden Saber
+				 Tooltip: ""
 			}
 
 			Solarang: {
-				// DisplayName: Solarang
-				// Tooltip: ""
+				 DisplayName: Solarang
+				 Tooltip: ""
 			}
 
 			TheSpiker: {
-				// DisplayName: The Spiker
-				// Tooltip: ""
+				 DisplayName: The Spiker
+				 Tooltip: ""
 			}
 
 			Tuxonite_Shortsword: {
-				// DisplayName: Tuxonite Shortsword
-				// Tooltip: ""
+				 DisplayName: Tuxonite Shortsword
+				 Tooltip: ""
 			}
 
 			Tuxonite_Sword: {
-				// DisplayName: Tuxonite Broadsword
-				// Tooltip: ""
+				 DisplayName: Tuxonite Broadsword
+				 Tooltip: ""
 			}
 
 			ultrablade: {
-				// DisplayName: UltraBlade
-				// Tooltip: ""
+				 DisplayName: UltraBlade
+				 Tooltip: ""
 			}
 
 			desertbow: {
-				// DisplayName: Desert Bow
-				/* Tooltip:
+				 DisplayName: Desert Bow
+				 Tooltip:
 					'''
 
 					Transform normal arrows in desert arrows
-					''' */
+					''' 
 			}
 
 			Nigthbow: {
-				// DisplayName: Night Bow
-				// Tooltip: ""
+				 DisplayName: Night Bow
+				 Tooltip: ""
 			}
 
 			ReinforcedIronBow: {
-				// DisplayName: Reinforced Iron Bow
-				// Tooltip: ""
+				 DisplayName: Reinforced Iron Bow
+				 Tooltip: ""
 			}
 
 			TuxoniteBow: {
-				// DisplayName: Tuxonite Bow
-				// Tooltip: ""
+				 DisplayName: Tuxonite Bow
+				 Tooltip: ""
 			}
 
 			CorrupterRifle: {
-				// DisplayName: Corruptor Musket
-				// Tooltip: ""
+				 DisplayName: Corruptor Musket
+				 Tooltip: ""
 			}
 
 			CurcedShotGun: {
-				// DisplayName: Cursed Shotgun
-				// Tooltip: 5% chance of not spending ammo
+				 DisplayName: Cursed Shotgun
+				 Tooltip: 5% chance of not spending ammo
 			}
 
 			flaremachinegun: {
-				// DisplayName: Flare Machine Gun
-				// Tooltip: ""
+				 DisplayName: Flare Machine Gun
+				 Tooltip: ""
 			}
 
 			FrostShark: {
-				// DisplayName: Frozen Shark
-				// Tooltip: ""
+				 DisplayName: Frozen Shark
+				 Tooltip: ""
 			}
 
 			Ichor_asault_rifle: {
-				// DisplayName: Ichor Assault Rifle
-				// Tooltip: Transform musket bullets into ichor bullets
+				 DisplayName: Ichor Assault Rifle
+				 Tooltip: Transform musket bullets into ichor bullets
 			}
 
 			minigun: {
-				// DisplayName: mini/gun
-				// Tooltip: A small pistol
+				 DisplayName: mini/gun
+				 Tooltip: A small pistol
 			}
 
 			P90: {
-				// DisplayName: P90
-				// Tooltip: Fast and effective
+				 DisplayName: P90
+				 Tooltip: Fast and effective
 			}
 
 			Paintshotgun: {
-				// DisplayName: Paint Shotgun
-				// Tooltip: ""
+				 DisplayName: Paint Shotgun
+				 Tooltip: ""
 			}
 
 			copper_repeter: {
-				// DisplayName: Copper Repeater
-				// Tooltip: ""
+				 DisplayName: Copper Repeater
+				 Tooltip: ""
 			}
 
 			gold_repeter: {
-				// DisplayName: Gold Repeater
-				// Tooltip: ""
+				 DisplayName: Gold Repeater
+				 Tooltip: ""
 			}
 
 			iron_repeter: {
-				// DisplayName: Iron Repeater
-				// Tooltip: ""
+				 DisplayName: Iron Repeater
+				 Tooltip: ""
 			}
 
 			lead_repeter: {
-				// DisplayName: Lead Repeater
-				// Tooltip: ""
+				 DisplayName: Lead Repeater
+				 Tooltip: ""
 			}
 
 			platinum_repeter: {
-				// DisplayName: Platinum Repeater
-				// Tooltip: ""
+				 DisplayName: Platinum Repeater
+				 Tooltip: ""
 			}
 
 			Silver_Repeater: {
-				// DisplayName: Silver Repeater
-				// Tooltip: ""
+				 DisplayName: Silver Repeater
+				 Tooltip: ""
 			}
 
 			tin_repeter: {
-				// DisplayName: Tin Repeater
-				// Tooltip: ""
+				 DisplayName: Tin Repeater
+				 Tooltip: ""
 			}
 
 			tungsten_repeter: {
-				// DisplayName: Tungsten Repeater
-				// Tooltip: ""
+				 DisplayName: Tungsten Repeater
+				 Tooltip: ""
 			}
 
 			Tuxonite_repeter: {
-				// DisplayName: Tuxonite Repeater
-				// Tooltip: ""
+				 DisplayName: Tuxonite Repeater
+				 Tooltip: ""
 			}
 
 			Tyrant_repeater: {
-				// DisplayName: Tyrant repeater
-				// Tooltip: ""
+				 DisplayName: Tyrant repeater
+				 Tooltip: ""
 			}
 
 			wooden_repeter: {
-				// DisplayName: Wooden Repeater
-				// Tooltip: ""
+				 DisplayName: Wooden Repeater
+				 Tooltip: ""
 			}
 
 			StarCannonV2: {
-				// DisplayName: Star Cannon Mk2
-				// Tooltip: ""
+				 DisplayName: Star Cannon Mk2
+				 Tooltip: ""
 			}
 
 			StarCannonV3: {
-				// DisplayName: Star Cannon Mk3
-				// Tooltip: ""
+				 DisplayName: Star Cannon Mk3
+				 Tooltip: ""
 			}
 
 			SuperShark: {
-				// DisplayName: Supershark
-				// Tooltip: 40% chance of not spending ammo
+				 DisplayName: Supershark
+				 Tooltip: 40% chance of not spending ammo
 			}
 
 			TerraGun: {
-				// DisplayName: TerraGun1
-				/* Tooltip:
+				 DisplayName: TerraGun1
+				 Tooltip:
 					'''
 					A weapon fit for a legend
 					50% chance of not spending ammo
 					Musquet bullets turn into terra bullet
-					''' */
+					''' 
 			}
 
 			ultratiburon: {
-				// DisplayName: Ultrashark
-				/* Tooltip:
+				 DisplayName: Ultrashark
+				 Tooltip:
 					'''
 					the older sister of the 4
 					70% chance of not spending ammo 
-					''' */
+					''' 
 			}
 
 			VampireGun: {
-				// DisplayName: Vampire Gun
-				// Tooltip: healing gun.
+				 DisplayName: Vampire Gun
+				 Tooltip: healing gun.
 			}
 
 			BrainOfCthulhuScroll: {
-				// DisplayName: Psychic Scroll
-				// Tooltip: You become invunerable for 4s
+				 DisplayName: Psychic Scroll
+				 Tooltip: You become invunerable for 4s
 			}
 
 			DesertAniquilatorScroll: {
-				// DisplayName: Desert Scroll
-				// Tooltip: 50% increases movement speed and minion damage by 5% and increase your max number of minions by 1
+				 DisplayName: Desert Scroll
+				 Tooltip: 50% increases movement speed and minion damage by 5% and increase your max number of minions by 1
 			}
 
 			EaterOfWorldsScroll: {
-				// DisplayName: Putrid Scroll
-				// Tooltip: Reduces damage taken by 10% and increases critical damage by 5%
+				 DisplayName: Putrid Scroll
+				 Tooltip: Reduces damage taken by 10% and increases critical damage by 5%
 			}
 
 			EyeOfCthulhuScroll: {
-				// DisplayName: Optic Scroll
-				// Tooltip: Increases your jump, cancels fall damage and gain the ability to dash
+				 DisplayName: Optic Scroll
+				 Tooltip: Increases your jump, cancels fall damage and gain the ability to dash
 			}
 
 			KingSlimeScroll: {
-				// DisplayName: Royal Scroll
-				// Tooltip: Increases you movement speed by 50% and increases your minion damage by 5%
+				 DisplayName: Royal Scroll
+				 Tooltip: Increases you movement speed by 50% and increases your minion damage by 5%
 			}
 
 			QueenBeeScroll: {
-				// DisplayName: Hive Scroll
-				/* Tooltip:
+				 DisplayName: Hive Scroll
+				 Tooltip:
 					'''
 					You gain the honey effect, your defense increases by 5
 					 Releases bees when damaged and increases the strength of friendly bees
 					 Increases armor penetration by 15”
-					''' */
+					''' 
 			}
 
 			QueenSlimeScroll: {
-				// DisplayName: Queen Scroll
-				// Tooltip: 50% increases movement speed and minion damage by 5%, increase your max number of minions by 1 and increases your max life by 20%
+				 DisplayName: Queen Scroll
+				 Tooltip: 50% increases movement speed and minion damage by 5%, increase your max number of minions by 1 and increases your max life by 20%
 			}
 
 			SkeletronScroll: {
-				// DisplayName: Undead Scroll
-				/* Tooltip:
+				 DisplayName: Undead Scroll
+				 Tooltip:
 					'''
 					You have a super sense
 					 Grants immunity to most debuffs
 					 Increases throwing damage by 20% and 50% chance to not consume ammo
-					''' */
+					''' 
 			}
 
 			WallOfFleshScroll: {
-				// DisplayName: Infernal Scroll
-				// Tooltip: You gain 10% of damage and an infernal power covers you
+				 DisplayName: Infernal Scroll
+				 Tooltip: You gain 10% of damage and an infernal power covers you
 			}
 
 			DesertStaff: {
-				// DisplayName: Desert Staff
-				// Tooltip: Summons a Baby Desert Aniquilator to fight for you
+				 DisplayName: Desert Staff
+				 Tooltip: Summons a Baby Desert Aniquilator to fight for you
 			}
 
 			EvilEyeStaff: {
-				// DisplayName: Demonic Eye Staff
-				// Tooltip: Summons a demonic eye to fight for you
+				 DisplayName: Demonic Eye Staff
+				 Tooltip: Summons a demonic eye to fight for you
 			}
 
 			FrozenStafff: {
-				// DisplayName: Frozen Staff
-				// Tooltip: Summons a Baby Frozen Assaulter to fight for you
+				 DisplayName: Frozen Staff
+				 Tooltip: Summons a Baby Frozen Assaulter to fight for you
 			}
 
 			IluminatedSunflowerStaff: {
-				// DisplayName: Illuminated Sunflower Staff
-				/* Tooltip:
+				 DisplayName: Illuminated Sunflower Staff
+				 Tooltip:
 					'''
 					Summons a Sunflowr to protect you, 
 					nearby players can gain a happiness buff,5 of defense and heal if they are in its radius
-					''' */
+					''' 
 			}
 
 			IronBallistaStaff: {
-				// DisplayName: Iron Ballista Staff
-				// Tooltip: Summons a Baby Frozen Assaulter to fight for you
+				 DisplayName: Iron Ballista Staff
+				 Tooltip: Summons a Baby Frozen Assaulter to fight for you
 			}
 
 			SacredFlowerStaff: {
-				// DisplayName: Sacred Flower Staff
-				/* Tooltip:
+				 DisplayName: Sacred Flower Staff
+				 Tooltip:
 					'''
 					Summons a sacred flower to protect you, 
 					nearby players can gain a happiness buff,10 of defense,5% damage and heal if they are in its radius
-					''' */
+					''' 
 			}
 
 			ForestStaff: {
-				// DisplayName: Forest Staff
-				// Tooltip: Summons a Sapling to fight for you
+				 DisplayName: Forest Staff
+				 Tooltip: Summons a Sapling to fight for you
 			}
 
 			ForestStaff_G: {
-				// DisplayName: Golden Forest Staff
-				// Tooltip: Summons a Golden Sapling to fight for you
+				 DisplayName: Golden Forest Staff
+				 Tooltip: Summons a Golden Sapling to fight for you
 			}
 
 			ForestStaff_P: {
-				// DisplayName: Platinum Forest Staff
-				// Tooltip: Summons a Platinum Sapling to fight for you
+				 DisplayName: Platinum Forest Staff
+				 Tooltip: Summons a Platinum Sapling to fight for you
 			}
 
 			ForestStaff_S: {
-				// DisplayName: Silver Forest Staff
-				// Tooltip: Summons a Silver Sapling to fight for you
+				 DisplayName: Silver Forest Staff
+				 Tooltip: Summons a Silver Sapling to fight for you
 			}
 
 			ForestStaff_T: {
-				// DisplayName: Tungsten Forest Staff
-				// Tooltip: Summons a tungsten Sapling to fight for you
+				 DisplayName: Tungsten Forest Staff
+				 Tooltip: Summons a tungsten Sapling to fight for you
 			}
 
 			StardustMinionStaff: {
-				// DisplayName: Stardust Staff
-				// Tooltip: Summons a Stardust power to fight for you
+				 DisplayName: Stardust Staff
+				 Tooltip: Summons a Stardust power to fight for you
 			}
 
 			SunflowerStaff: {
-				// DisplayName: Sunflower Staff
-				/* Tooltip:
+				 DisplayName: Sunflower Staff
+				 Tooltip:
 					'''
 					Summons a Sunflowr to protect you, 
 					nearby players can gain a happiness buff and heal if they are in its radius
-					''' */
+					''' 
 			}
 
 			FireStorm: {
-				// DisplayName: Fire Storm
-				/* Tooltip:
+				 DisplayName: Fire Storm
+				 Tooltip:
 					'''
 					8 summon tag damage
 					Your summons will focus struck enemies
 					Strike enemies inflict Fire debuff
-					''' */
+					''' 
 			}
 
 			Intestine: {
-				// DisplayName: Intestine
-				/* Tooltip:
+				 DisplayName: Intestine
+				 Tooltip:
 					'''
 					5 summon tag damage
 					Your summons will focus struck enemies
 					Heal 1hp per hit
-					''' */
+					''' 
 			}
 
 			SoulHarvester: {
-				// DisplayName: Soul Harvester
-				/* Tooltip:
+				 DisplayName: Soul Harvester
+				 Tooltip:
 					'''
 					Your summons will focus struck enemies
 					Has a chance to increase attack speed by 10%
-					''' */
+					''' 
 			}
 
 			TerraWhip: {
-				// DisplayName: Terra Whip
-				/* Tooltip:
+				 DisplayName: Terra Whip
+				 Tooltip:
 					'''
 					18 summon tag damage
 					Your summons will focus struck enemies
-					''' */
+					''' 
 			}
 
 			TrueDurendal: {
-				// DisplayName: True Durendal
-				/* Tooltip:
+				 DisplayName: True Durendal
+				 Tooltip:
 					'''
 					14 summon tag damage
 					Your summons will focus struck enemies
 					Strike enemies to gain attack speed and summon a friendly Excalibur
-					''' */
+					''' 
 			}
 
 			TrueTwilight: {
-				// DisplayName: True Twilight
-				/* Tooltip:
+				 DisplayName: True Twilight
+				 Tooltip:
 					'''
 					13 summon tag damage
 					Your summons will focus struck enemies
 					Performs better against multiple targets than most whips
 					Strike enemies to gain 7 of defense to all players
-					''' */
+					''' 
 			}
 
 			Twilight: {
-				// DisplayName: Twilight
-				/* Tooltip:
+				 DisplayName: Twilight
+				 Tooltip:
 					'''
 					9 summon tag damage
 					Your summons will focus struck enemies
 					Performs better against multiple targets than most whips
 					Strike enemies to gain 5 of defense
-					''' */
+					''' 
 			}
 
 			YggdrasilStaff: {
-				// DisplayName: Yggdrasil Staff
-				/* Tooltip:
+				 DisplayName: Yggdrasil Staff
+				 Tooltip:
 					'''
 					Summons a Yggdrasil to protect you, 
 					nearby players can gain a happiness buff,15 of defense,10% damage,5% damage reduction and heal if they are in its radius
-					''' */
+					''' 
 			}
 
 			DesertFury: {
-				// DisplayName: Desert Fury
-				// Tooltip: The power of the earth will indulge in this weapon.
+				 DisplayName: Desert Fury
+				 Tooltip: The power of the earth will indulge in this weapon.
 			}
 
 			Golden_Shuriken: {
-				// DisplayName: Golden Shuriken
-				// Tooltip: ""
+				 DisplayName: Golden Shuriken
+				 Tooltip: ""
 			}
 
 			Restaurated_Chisel: {
-				// DisplayName: Restaurated_ Chisel
-				// Tooltip: ""
+				 DisplayName: Restaurated_ Chisel
+				 Tooltip: ""
 			}
 
 			Spectre_Chisel: {
-				// DisplayName: Spectre_ Chisel
-				// Tooltip: ""
+				 DisplayName: Spectre_ Chisel
+				 Tooltip: ""
 			}
 
 			Sangar_Body: {
-				// DisplayName: Sangar_ Body
-				// Tooltip: ""
+				 DisplayName: Sangar_ Body
+				 Tooltip: ""
 			}
 
 			Sangar_Head: {
-				// DisplayName: Sangar_ Head
-				// Tooltip: ""
+				 DisplayName: Sangar_ Head
+				 Tooltip: ""
 			}
 
 			Sangar_Legs: {
-				// DisplayName: Sangar_ Legs
-				// Tooltip: ""
+				 DisplayName: Sangar_ Legs
+				 Tooltip: ""
 			}
 
 			Ttim_Body: {
-				// DisplayName: Ttim_ Body
-				// Tooltip: ""
+				 DisplayName: Ttim_ Body
+				 Tooltip: ""
 			}
 
 			Ttim_Head: {
-				// DisplayName: Ttim_ Head
-				// Tooltip: ""
+				 DisplayName: Ttim_ Head
+				 Tooltip: ""
 			}
 
 			Ttim_Legs: {
-				// DisplayName: Ttim_ Legs
-				// Tooltip: ""
+				 DisplayName: Ttim_ Legs
+				 Tooltip: ""
 			}
 
 			Desert_herald_chesplate: {
-				// DisplayName: Desert_herald_chesplate
-				// Tooltip: ""
+				 DisplayName: Desert_herald_chesplate
+				 Tooltip: ""
 			}
 
 			Desert_herald_Greaves: {
-				// DisplayName: Desert_herald_ Greaves
-				// Tooltip: ""
+				 DisplayName: Desert_herald_ Greaves
+				 Tooltip: ""
 			}
 
 			Desert_herald_Helmet: {
-				// DisplayName: Desert_herald_ Helmet
-				// Tooltip: ""
+				 DisplayName: Desert_herald_ Helmet
+				 Tooltip: ""
 			}
 
 			Reaper_Hood: {
-				// DisplayName: Reaper_ Hood
-				// Tooltip: ""
+				 DisplayName: Reaper_ Hood
+				 Tooltip: ""
 			}
 
 			Reaper_Pants: {
-				// DisplayName: Reaper_ Pants
-				// Tooltip: ""
+				 DisplayName: Reaper_ Pants
+				 Tooltip: ""
 			}
 
 			Reaper_Robe: {
-				// DisplayName: Reaper_ Robe
-				// Tooltip: ""
+				 DisplayName: Reaper_ Robe
+				 Tooltip: ""
 			}
 
 			EndlessLove: {
-				// DisplayName: Endless Love
-				// Tooltip: ""
+				 DisplayName: Endless Love
+				 Tooltip: ""
 			}
 
 			EndlessStink: {
-				// DisplayName: Endless Stink
-				// Tooltip: ""
+				 DisplayName: Endless Stink
+				 Tooltip: ""
 			}
 
 			EndlessWormHole: {
-				// DisplayName: Endless Worm Hole
-				// Tooltip: ""
+				 DisplayName: Endless Worm Hole
+				 Tooltip: ""
 			}
 
 			StarChunk: {
-				// DisplayName: Star Chunk
-				// Tooltip: ""
+				 DisplayName: Star Chunk
+				 Tooltip: ""
 			}
 
 			Endless_Ichor_Pouch: {
-				// DisplayName: Endless_ Ichor_ Pouch
-				// Tooltip: ""
+				 DisplayName: Endless_ Ichor_ Pouch
+				 Tooltip: ""
 			}
 
 			EndlesBlueFlare: {
-				// DisplayName: Endles Blue Flare
-				// Tooltip: ""
+				 DisplayName: Endles Blue Flare
+				 Tooltip: ""
 			}
 
 			EndlesBlueSolution: {
-				// DisplayName: Endles Blue Solution
-				// Tooltip: ""
+				 DisplayName: Endles Blue Solution
+				 Tooltip: ""
 			}
 
 			EndlesCoperCoin: {
-				// DisplayName: Endles Coper Coin
-				// Tooltip: ""
+				 DisplayName: Endles Coper Coin
+				 Tooltip: ""
 			}
 
 			EndlesDarkBlueSolution: {
-				// DisplayName: Endles Dark Blue Solution
-				// Tooltip: ""
+				 DisplayName: Endles Dark Blue Solution
+				 Tooltip: ""
 			}
 
 			EndlesGel: {
-				// DisplayName: Endles Gel
-				// Tooltip: ""
+				 DisplayName: Endles Gel
+				 Tooltip: ""
 			}
 
 			EndlesGoldCoin: {
-				// DisplayName: Endles Gold Coin
-				// Tooltip: ""
+				 DisplayName: Endles Gold Coin
+				 Tooltip: ""
 			}
 
 			EndlesGreenSolution: {
-				// DisplayName: Endles Green Solution
-				// Tooltip: ""
+				 DisplayName: Endles Green Solution
+				 Tooltip: ""
 			}
 
 			EndlesPlatinumCoin: {
-				// DisplayName: Endles Platinum Coin
-				// Tooltip: ""
+				 DisplayName: Endles Platinum Coin
+				 Tooltip: ""
 			}
 
 			EndlesPurpleSolution: {
-				// DisplayName: Endles Purple Solution
-				// Tooltip: ""
+				 DisplayName: Endles Purple Solution
+				 Tooltip: ""
 			}
 
 			EndlesRedSolution: {
-				// DisplayName: Endles Red Solution
-				// Tooltip: ""
+				 DisplayName: Endles Red Solution
+				 Tooltip: ""
 			}
 
 			EndlesSilverCoin: {
-				// DisplayName: Endles Silver Coin
-				// Tooltip: ""
+				 DisplayName: Endles Silver Coin
+				 Tooltip: ""
 			}
 
 			EndlesSnowBall: {
-				// DisplayName: Endles Snow Ball
-				// Tooltip: ""
+				 DisplayName: Endles Snow Ball
+				 Tooltip: ""
 			}
 
 			EndlesStake: {
-				// DisplayName: Endles Stake
-				// Tooltip: ""
+				 DisplayName: Endles Stake
+				 Tooltip: ""
 			}
 		}
 
 		NPCs: {
-			// AntlionD.DisplayName: Antlion
-			// ArmoredSlime.DisplayName: Armored Slime
-			// DesertAniquilator.DisplayName: Desert Annihilator
-			// frozen_assaulter.DisplayName: Frozen Assaulter
-			// InfernalTyrantBody.DisplayName: Infernal Tyrant
-			// InfernalTyrantHead.DisplayName: Infernal Tyrant
-			// InfernalTyrantTail.DisplayName: Infernal Tyrant
-			// DesertScorpionD.DisplayName: Sand Poacher
-			// DSlime.DisplayName: Servant of Desert Annihilator
-			// FlyingAntlionD.DisplayName: Antlion Swarmer
-			// IGolem.DisplayName: Ice Golem
-			// MinerSoul.DisplayName: Miner Soul
-			// MiniDuke.DisplayName: Fishron specter
-			// SuperDummyNPC.DisplayName: Super Dummy
+			 AntlionD.DisplayName: Antlion
+			 ArmoredSlime.DisplayName: Armored Slime
+			 DesertAniquilator.DisplayName: Desert Annihilator
+			 frozen_assaulter.DisplayName: Frozen Assaulter
+			 InfernalTyrantBody.DisplayName: Infernal Tyrant
+			 InfernalTyrantHead.DisplayName: Infernal Tyrant
+			 InfernalTyrantTail.DisplayName: Infernal Tyrant
+			 DesertScorpionD.DisplayName: Sand Poacher
+			 DSlime.DisplayName: Servant of Desert Annihilator
+			 FlyingAntlionD.DisplayName: Antlion Swarmer
+			 IGolem.DisplayName: Ice Golem
+			 MinerSoul.DisplayName: Miner Soul
+			 MiniDuke.DisplayName: Fishron specter
+			 SuperDummyNPC.DisplayName: Super Dummy
 
 			Time_Wizard: {
-				// DisplayName: Time Wizard
+				 DisplayName: Time Wizard
 
 				TownNPCMood: {
-					// Content: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.Content}"
-					// NoHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.NoHome}"
-					// FarFromHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.FarFromHome}"
-					// LoveSpace: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveSpace}"
-					// DislikeCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeCrowded}"
-					// HateCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateCrowded}"
-					// LoveBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveBiome}"
-					// LikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeBiome}"
-					// DislikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeBiome}"
-					// LoveNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveNPC}"
-					// LikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeNPC}"
-					// DislikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeNPC}"
-					// HateNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateNPC}"
-					// LikeNPC_Princess: I like {NPCName}.
-					// Princess_LovesNPC: I like {NPCName}.
+					 Content: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.Content}"
+					 NoHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.NoHome}"
+					 FarFromHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.FarFromHome}"
+					 LoveSpace: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveSpace}"
+					 DislikeCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeCrowded}"
+					 HateCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateCrowded}"
+					 LoveBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveBiome}"
+					 LikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeBiome}"
+					 DislikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeBiome}"
+					 LoveNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveNPC}"
+					 LikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeNPC}"
+					 DislikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeNPC}"
+					 HateNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateNPC}"
+					 LikeNPC_Princess: I like {NPCName}.
+					 Princess_LovesNPC: I like {NPCName}.
 				}
 			}
 
-			// VultureD.DisplayName: Vulture
-			// WalkingAntlionD.DisplayName: Antlion Charger
-			// CobaltZombie.DisplayName: Armored Zombie
-			// Copperzombie.DisplayName: Armored Zombie
-			// Crimsonzombi.DisplayName: Armored Zombie
-			// Fastzombie.DisplayName: weak zombie
-			// Goldzombie.DisplayName: Armored Zombie
-			// Ironzombie.DisplayName: Armored Zombie
-			// Leadzombie.DisplayName: Armored Zombie
-			// MoltenZombie.DisplayName: Armored Zombie
-			// NightZombie.DisplayName: Armored Zombie
-			// PaladiumZombie.DisplayName: Armored Zombie
-			// Platinumzombie.DisplayName: Armored Zombie
-			// ReinforcedIronZombie.DisplayName: Armored Zombie
-			// Shadowzombie.DisplayName: Armored Zombie
-			// Silverzombie.DisplayName: Armored Zombie
-			// Tinzombie.DisplayName: Armored Zombie
-			// Tungstenzombie.DisplayName: Armored Zombie
-			// Tuxonitezombie.DisplayName: Armored Zombie
+			 VultureD.DisplayName: Vulture
+			 WalkingAntlionD.DisplayName: Antlion Charger
+			 CobaltZombie.DisplayName: Armored Zombie
+			 Copperzombie.DisplayName: Armored Zombie
+			 Crimsonzombi.DisplayName: Armored Zombie
+			 Fastzombie.DisplayName: weak zombie
+			 Goldzombie.DisplayName: Armored Zombie
+			 Ironzombie.DisplayName: Armored Zombie
+			 Leadzombie.DisplayName: Armored Zombie
+			 MoltenZombie.DisplayName: Armored Zombie
+			 NightZombie.DisplayName: Armored Zombie
+			 PaladiumZombie.DisplayName: Armored Zombie
+			 Platinumzombie.DisplayName: Armored Zombie
+			 ReinforcedIronZombie.DisplayName: Armored Zombie
+			 Shadowzombie.DisplayName: Armored Zombie
+			 Silverzombie.DisplayName: Armored Zombie
+			 Tinzombie.DisplayName: Armored Zombie
+			 Tungstenzombie.DisplayName: Armored Zombie
+			 Tuxonitezombie.DisplayName: Armored Zombie
 		}
 
 		Projectiles: {
-			// AcornLeaftShoot.DisplayName: Acorn Leaft Shoot
-			// NigthBobber.DisplayName: Nigth Bobber
-			// TuxoniteBobber.DisplayName: Tuxonite Bobber
-			// BossMark.DisplayName: Boss Mark
-			// DesertTyphoon.DisplayName: Desert Typhoon
-			// DesertTyphoonFriendly.DisplayName: Desert Typhoon Friendly
-			// frozen_p_f.DisplayName: frozen_p_f
-			// Frozenp.DisplayName: Frozenp
-			// Frozenp_M.DisplayName: Frozenp_ M
-			// InfernalBall.DisplayName: Infernal Ball
-			// InfernalBall_f.DisplayName: Infernal Ball_f
-			// InfernalBallF.DisplayName: Infernal Ball F
-			// InfernalBallF_f.DisplayName: Infernal Ball F_f
-			// InfernalSpike.DisplayName: Infernal Spike
-			// InfernalSpike_f.DisplayName: Infernal Spike_f
-			// InfernalSpikeF.DisplayName: Infernal Spike F
-			// InfernalSpikeF_f.DisplayName: Infernal Spike F_f
-			// CloneFallingStar.DisplayName: Clone Falling Star
-			// CloneStarFury.DisplayName: Clone Star Fury
-			// CloneStarWrath.DisplayName: Clone Star Wrath
-			// Curecedball.DisplayName: Curecedball
-			// DemonCycle.DisplayName: DemonScytheP
-			// EnchantedShield.DisplayName: Curecedball
-			// ExcaliburMinion.DisplayName: IceMistF
-			// IceMistF.DisplayName: IceMistF
-			// LeafFriendlyClone.DisplayName: LeafFriendlyClone
-			// BrightPetal.DisplayName: Bright Petal
-			// BrightPetal_Fire.DisplayName: Bright Petal
-			// CorruptBolt.DisplayName: Corrupt Bolt
-			// CrimsomBolt.DisplayName: Crimsom Bolt
-			// HollyLaser.DisplayName: Holly Laser
-			// SkyCutterS.DisplayName: SkyCutterS
-			// DesertS.DisplayName: DesertS
-			// GodClaws.DisplayName: God Slayer Slash
-			// GrassSwordLeaft.DisplayName: Sharp Leaf
-			// LegendaryGreatSwordSwingProgectile.DisplayName: Legendary Great Sword
-			// PermafrostRain.DisplayName: SkyCutterS
-			// SlimeV2.DisplayName: Slime V2
-			// SolarangP.DisplayName: SolarangP
-			// SpiritGemSword.DisplayName: Spirit Gem Sword
-			// UltraBladeS.DisplayName: UltraBladeS
-			// FrostBeamF.DisplayName: FrostBeamF
-			// HealingDrone.DisplayName: HealingDrone
-			// HealthBream.DisplayName: Health Bream
-			// InterceptionBream.DisplayName: Interception Bream
-			// InterceptionDrone.DisplayName: InterceptionDrone
-			// TerraExplosion.DisplayName: TerraExplosion
-			// TortugaPetProjectile.DisplayName: Tortuga Pet Projectile
-			// TwitchPet.DisplayName: Twitch Pet
-			// YtPet.DisplayName: Yt Pet
-			// bullettestp.DisplayName: Bala de slime furioso
-			// DesertArrowP.DisplayName: Desert Arrow
-			// Fibullet.DisplayName: Fire bullet
-			// ice_bulletP.DisplayName: ice_bulletP
-			// LittleDevourer.DisplayName: Little Devourer
-			// LittleShark.DisplayName: LittleShark
-			// MisilDevourer.DisplayName: Misil Devourer
-			// SuperFlare.DisplayName: Super Flare
-			// TerraBlockP.DisplayName: Terra Block
-			// TerraBulletP.DisplayName: Terra Bullet
-			// TerracoinP.DisplayName: Terracoin P
-			// Tomb_BulletP.DisplayName: Tomb_BulletP
-			// DesertMinion.DisplayName: Baby Desert Aniquilator Minion
-			// EvilEyeMinion.DisplayName: Evil Eye Minion
-			// FrozenMinion.DisplayName: Baby Frozen Assaulter Minion
-			// IronBallistMinion.DisplayName: Assault Ballista Minion
-			// SaplingGoldMinion.DisplayName: Animated Golden Sapling Minion
-			// SaplingMinion.DisplayName: Animated Sapling Minion
-			// SaplingPlatinumMinion.DisplayName: Animated Platinum Sapling Minion
-			// SaplingSilverMinion.DisplayName: Animated Silver Sapling Minion
-			// SaplingTungstenMinion.DisplayName: Animated Tungsten Sapling Minion
-			// StardustMinion.DisplayName: StardustMinion
-			// IlluminatedSunFlowerMinion.DisplayName: Illuminated SunFlower Minion
-			// SacredFlowerMinion.DisplayName: Sacred Flowe Minion
-			// SunFlowerMinion.DisplayName: SunFlower Minion
-			// YggdrasilMinion.DisplayName: Yggdrasil Minion
-			// BloodyWhipProjectile.DisplayName: Bloody Whip Projectile
-			// FireStormProjectile.DisplayName: Fire Storm Projectile
-			// NightWhipProjectile.DisplayName: Night Whip Projectile
-			// SoulHarvesterProjectile.DisplayName: Soul Harvester Projectile
-			// TerraWhipProjectile.DisplayName: Terra Whip Projectile
-			// TrueDurendalProjectile.DisplayName: True Durendal Projectile
-			// TrueTwilightProjectile.DisplayName: True Twilight Projectile
-			// TempestClone.DisplayName: IceMistF
-			// DesertFuryP.DisplayName: DesertFuryP
-			// Golden_ShurikenP.DisplayName: Golden_ShurikenP
-			// DamageHitbox.DisplayName: Damage Hitbox
-			// MisilUltra.DisplayName: Misil Ultra
+			 AcornLeaftShoot.DisplayName: Acorn Leaft Shoot
+			 NigthBobber.DisplayName: Nigth Bobber
+			 TuxoniteBobber.DisplayName: Tuxonite Bobber
+			 BossMark.DisplayName: Boss Mark
+			 DesertTyphoon.DisplayName: Desert Typhoon
+			 DesertTyphoonFriendly.DisplayName: Desert Typhoon Friendly
+			 frozen_p_f.DisplayName: frozen_p_f
+			 Frozenp.DisplayName: Frozenp
+			 Frozenp_M.DisplayName: Frozenp_ M
+			 InfernalBall.DisplayName: Infernal Ball
+			 InfernalBall_f.DisplayName: Infernal Ball_f
+			 InfernalBallF.DisplayName: Infernal Ball F
+			 InfernalBallF_f.DisplayName: Infernal Ball F_f
+			 InfernalSpike.DisplayName: Infernal Spike
+			 InfernalSpike_f.DisplayName: Infernal Spike_f
+			 InfernalSpikeF.DisplayName: Infernal Spike F
+			 InfernalSpikeF_f.DisplayName: Infernal Spike F_f
+			 CloneFallingStar.DisplayName: Clone Falling Star
+			 CloneStarFury.DisplayName: Clone Star Fury
+			 CloneStarWrath.DisplayName: Clone Star Wrath
+			 Curecedball.DisplayName: Curecedball
+			 DemonCycle.DisplayName: DemonScytheP
+			 EnchantedShield.DisplayName: Curecedball
+			 ExcaliburMinion.DisplayName: IceMistF
+			 IceMistF.DisplayName: IceMistF
+			 LeafFriendlyClone.DisplayName: LeafFriendlyClone
+			 BrightPetal.DisplayName: Bright Petal
+			 BrightPetal_Fire.DisplayName: Bright Petal
+			 CorruptBolt.DisplayName: Corrupt Bolt
+			 CrimsomBolt.DisplayName: Crimsom Bolt
+			 HollyLaser.DisplayName: Holly Laser
+			 SkyCutterS.DisplayName: SkyCutterS
+			 DesertS.DisplayName: DesertS
+			 GodClaws.DisplayName: God Slayer Slash
+			 GrassSwordLeaft.DisplayName: Sharp Leaf
+			 LegendaryGreatSwordSwingProgectile.DisplayName: Legendary Great Sword
+			 PermafrostRain.DisplayName: SkyCutterS
+			 SlimeV2.DisplayName: Slime V2
+			 SolarangP.DisplayName: SolarangP
+			 SpiritGemSword.DisplayName: Spirit Gem Sword
+			 UltraBladeS.DisplayName: UltraBladeS
+			 FrostBeamF.DisplayName: FrostBeamF
+			 HealingDrone.DisplayName: HealingDrone
+			 HealthBream.DisplayName: Health Bream
+			 InterceptionBream.DisplayName: Interception Bream
+			 InterceptionDrone.DisplayName: InterceptionDrone
+			 TerraExplosion.DisplayName: TerraExplosion
+			 TortugaPetProjectile.DisplayName: Tortuga Pet Projectile
+			 TwitchPet.DisplayName: Twitch Pet
+			 YtPet.DisplayName: Yt Pet
+			 bullettestp.DisplayName: Bala de slime furioso
+			 DesertArrowP.DisplayName: Desert Arrow
+			 Fibullet.DisplayName: Fire bullet
+			 ice_bulletP.DisplayName: ice_bulletP
+			 LittleDevourer.DisplayName: Little Devourer
+			 LittleShark.DisplayName: LittleShark
+			 MisilDevourer.DisplayName: Misil Devourer
+			 SuperFlare.DisplayName: Super Flare
+			 TerraBlockP.DisplayName: Terra Block
+			 TerraBulletP.DisplayName: Terra Bullet
+			 TerracoinP.DisplayName: Terracoin P
+			 Tomb_BulletP.DisplayName: Tomb_BulletP
+			 DesertMinion.DisplayName: Baby Desert Aniquilator Minion
+			 EvilEyeMinion.DisplayName: Evil Eye Minion
+			 FrozenMinion.DisplayName: Baby Frozen Assaulter Minion
+			 IronBallistMinion.DisplayName: Assault Ballista Minion
+			 SaplingGoldMinion.DisplayName: Animated Golden Sapling Minion
+			 SaplingMinion.DisplayName: Animated Sapling Minion
+			 SaplingPlatinumMinion.DisplayName: Animated Platinum Sapling Minion
+			 SaplingSilverMinion.DisplayName: Animated Silver Sapling Minion
+			 SaplingTungstenMinion.DisplayName: Animated Tungsten Sapling Minion
+			 StardustMinion.DisplayName: StardustMinion
+			 IlluminatedSunFlowerMinion.DisplayName: Illuminated SunFlower Minion
+			 SacredFlowerMinion.DisplayName: Sacred Flowe Minion
+			 SunFlowerMinion.DisplayName: SunFlower Minion
+			 YggdrasilMinion.DisplayName: Yggdrasil Minion
+			 BloodyWhipProjectile.DisplayName: Bloody Whip Projectile
+			 FireStormProjectile.DisplayName: Fire Storm Projectile
+			 NightWhipProjectile.DisplayName: Night Whip Projectile
+			 SoulHarvesterProjectile.DisplayName: Soul Harvester Projectile
+			 TerraWhipProjectile.DisplayName: Terra Whip Projectile
+			 TrueDurendalProjectile.DisplayName: True Durendal Projectile
+			 TrueTwilightProjectile.DisplayName: True Twilight Projectile
+			 TempestClone.DisplayName: IceMistF
+			 DesertFuryP.DisplayName: DesertFuryP
+			 Golden_ShurikenP.DisplayName: Golden_ShurikenP
+			 DamageHitbox.DisplayName: Damage Hitbox
+			 MisilUltra.DisplayName: Misil Ultra
 		}
 
 		Tiles: {
-			// AncientTableTile.MapEntry: Table
-			// BossTrophy.MapEntry: Trophy
-			// Completist.MapEntry: Table
-			// DesertMusicBoxT.MapEntry: Music Box
-			// FrozenMusicBoxT.MapEntry: Music Box
-			// Frozenp2MusicBoxT.MapEntry: Music Box
-			// InfernalMusicBoxT.MapEntry: Music Box
-			// TuxoniteDoorClosed.MapEntry: Example Door
-			// TuxoniteDoorOpen.MapEntry: Example Door
-			// TuxoniteTableTile.MapEntry: Table
+			 AncientTableTile.MapEntry: Table
+			 BossTrophy.MapEntry: Trophy
+			 Completist.MapEntry: Table
+			 DesertMusicBoxT.MapEntry: Music Box
+			 FrozenMusicBoxT.MapEntry: Music Box
+			 Frozenp2MusicBoxT.MapEntry: Music Box
+			 InfernalMusicBoxT.MapEntry: Music Box
+			 TuxoniteDoorClosed.MapEntry: Example Door
+			 TuxoniteDoorOpen.MapEntry: Example Door
+			 TuxoniteTableTile.MapEntry: Table
 		}
 
 		Configs: {
 			ConfigClient: {
-				// DisplayName: Config Client
+				 DisplayName: Config Client
 
 				KitsFeatherFall: {
-					// Label: Kits Feather Fall
-					// Tooltip: ""
+					 Label: Kits Feather Fall
+					 Tooltip: ""
 				}
 
 				KitsInvis: {
-					// Label: Kits Invis
-					// Tooltip: ""
+					 Label: Kits Invis
+					 Tooltip: ""
 				}
 
 				KitsGrav: {
-					// Label: Kits Grav
-					// Tooltip: ""
+					 Label: Kits Grav
+					 Tooltip: ""
 				}
 
 				KitsInferno: {
-					// Label: Kits Inferno
-					// Tooltip: ""
+					 Label: Kits Inferno
+					 Tooltip: ""
 				}
 
 				ToggleKingSlimeSoul: {
-					// Label: Toggle King Slime Soul
-					// Tooltip: ""
+					 Label: Toggle King Slime Soul
+					 Tooltip: ""
 				}
 
 				ToggleEyeOfChutuluSoul: {
-					// Label: Toggle Eye Of Chutulu Soul
-					// Tooltip: ""
+					 Label: Toggle Eye Of Chutulu Soul
+					 Tooltip: ""
 				}
 
 				ToggleCorruptSoul: {
-					// Label: Toggle Corrupt Soul
-					// Tooltip: ""
+					 Label: Toggle Corrupt Soul
+					 Tooltip: ""
 				}
 
 				ToggleQueenBeeSoul: {
-					// Label: Toggle Queen Bee Soul
-					// Tooltip: ""
+					 Label: Toggle Queen Bee Soul
+					 Tooltip: ""
 				}
 
 				ToggleSkeletronSoul: {
-					// Label: Toggle Skeletron Soul
-					// Tooltip: ""
+					 Label: Toggle Skeletron Soul
+					 Tooltip: ""
 				}
 
 				ToggleDearclopsSoul: {
-					// Label: Toggle Dearclops Soul
-					// Tooltip: ""
+					 Label: Toggle Dearclops Soul
+					 Tooltip: ""
 				}
 
 				ToggleDesertAnhilatorSoul: {
-					// Label: Toggle Desert Anhilator Soul
-					// Tooltip: ""
+					 Label: Toggle Desert Anhilator Soul
+					 Tooltip: ""
 				}
 
 				ToggleWallOfFleshSoul: {
-					// Label: Toggle Wall Of Flesh Soul
-					// Tooltip: ""
+					 Label: Toggle Wall Of Flesh Soul
+					 Tooltip: ""
 				}
 
 				ToggleFrozenAssaulterSoul: {
-					// Label: Toggle Frozen Assaulter Soul
-					// Tooltip: ""
+					 Label: Toggle Frozen Assaulter Soul
+					 Tooltip: ""
 				}
 
 				ToggleQueenSlimeSoul: {
-					// Label: Toggle Queen Slime Soul
-					// Tooltip: ""
+					 Label: Toggle Queen Slime Soul
+					 Tooltip: ""
 				}
 
 				ToggleDestroyerSoul: {
-					// Label: Toggle Destroyer Soul
-					// Tooltip: ""
+					 Label: Toggle Destroyer Soul
+					 Tooltip: ""
 				}
 
 				ToggleSpazmatismSoul: {
-					// Label: Toggle Spazmatism Soul
-					// Tooltip: ""
+					 Label: Toggle Spazmatism Soul
+					 Tooltip: ""
 				}
 
 				ToggleRetinazorSoul: {
-					// Label: Toggle Retinazor Soul
-					// Tooltip: ""
+					 Label: Toggle Retinazor Soul
+					 Tooltip: ""
 				}
 
 				ToggleSkeletronPrimeSoul: {
-					// Label: Toggle Skeletron Prime Soul
-					// Tooltip: ""
+					 Label: Toggle Skeletron Prime Soul
+					 Tooltip: ""
 				}
 
 				ToggleEmpressOfLightSoul: {
-					// Label: Toggle Empress Of Light Soul
-					// Tooltip: ""
+					 Label: Toggle Empress Of Light Soul
+					 Tooltip: ""
 				}
 
 				TogglePlanteraSoul: {
-					// Label: Toggle Plantera Soul
-					// Tooltip: ""
+					 Label: Toggle Plantera Soul
+					 Tooltip: ""
 				}
 
 				ToggleInfernalTyrantSoul: {
-					// Label: Toggle Infernal Tyrant Soul
-					// Tooltip: ""
+					 Label: Toggle Infernal Tyrant Soul
+					 Tooltip: ""
 				}
 
 				ToggleGolemSoul: {
-					// Label: Toggle Golem Soul
-					// Tooltip: ""
+					 Label: Toggle Golem Soul
+					 Tooltip: ""
 				}
 
 				ToggleDukeFishronSoul: {
-					// Label: Toggle Duke Fishron Soul
-					// Tooltip: ""
+					 Label: Toggle Duke Fishron Soul
+					 Tooltip: ""
 				}
 
 				ToggleLunaticCultistSoul: {
-					// Label: Toggle Lunatic Cultist Soul
-					// Tooltip: ""
+					 Label: Toggle Lunatic Cultist Soul
+					 Tooltip: ""
 				}
 
 				ToggleMoonlordSoul: {
-					// Label: Toggle Moonlord Soul
-					// Tooltip: ""
+					 Label: Toggle Moonlord Soul
+					 Tooltip: ""
 				}
 			}
 
 			ConfigServer: {
-				// DisplayName: Config Server
+				 DisplayName: Config Server
 
 				LagReducer: {
-					// Label: Lag Reducer
-					// Tooltip: ""
+					 Label: Lag Reducer
+					 Tooltip: ""
 				}
 
 				VanillaWeaponsChangesConf: {
-					// Label: Vanilla Weapons Changes Conf
-					// Tooltip: ""
+					 Label: Vanilla Weapons Changes Conf
+					 Tooltip: ""
 				}
 
 				DropTombstomOnDeadtConf: {
-					// Label: Drop Tombstom On Deadt Conf
-					// Tooltip: ""
+					 Label: Drop Tombstom On Deadt Conf
+					 Tooltip: ""
 				}
 
 				MaxItemStackConf: {
-					// Label: Max Item Stack Conf
-					// Tooltip: ""
+					 Label: Max Item Stack Conf
+					 Tooltip: ""
 				}
 
 				OverhaulMeleeManaCostConfig: {
-					// Label: Overhaul Melee Mana Cost Config
-					/* Tooltip:
+					 Label: Overhaul Melee Mana Cost Config
+					 Tooltip:
 						'''
 						Activate the mechanic of melee cost mana
 						Requires recharging
-						''' */
+						''' 
 				}
 			}
 		}
 
 		Conditions: {
-			// OpositeOreGeneration: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration
-			// IsHardmode: Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode
-			// KingSlimeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated
-			// IsRaining: Mods.RemnantOfTheAncientsMod.Conditions.IsRaining
-			// IsSandstorm: Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm
-			// QueenBeeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated
-			// TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
+			 OpositeOreGeneration: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration
+			 IsHardmode: Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode
+			 KingSlimeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated
+			 IsRaining: Mods.RemnantOfTheAncientsMod.Conditions.IsRaining
+			 IsSandstorm: Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm
+			 QueenBeeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated
+			 TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
 		}
 	}
 }
