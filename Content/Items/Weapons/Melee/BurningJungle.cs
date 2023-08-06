@@ -5,6 +5,8 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -39,6 +41,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
             Item.value = Base.value;
+           // Item.shoot = ProjectileID.BladeOfGrass;
+            Item.shoot = ModContent.ProjectileType<MoltenGrassSwordLeaft>();
             //Item.shoot = ModContent.ProjectileType<GrassSwordLeaft>();
             //Item.shootSpeed= 20f;
 
@@ -48,7 +52,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 Item.scale = 1.70f;
             }*/
         }
-
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Projectile.NewProjectile(source, position + (new Vector2(2 * 16, -7* 16*player.direction) * player.direction), velocity, type, (int)(damage * 0.25f), knockback, Main.myPlayer, -0.1f * player.direction, 0, 0);
+            return false;
+        }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 40);

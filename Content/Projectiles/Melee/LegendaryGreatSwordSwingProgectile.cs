@@ -10,15 +10,12 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 {
-	// Shortsword projectiles are handled in a special way with how they draw and damage things
-	// The "hitbox" itself is closer to the player, the sprite is centered on it
-	// However the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
-	// Values chosen mostly correspond to Iron Shortword
-	public class LegendaryGreatSwordSwingProgectile : ModProjectile
-	{
-        // We define some constants that determine the swing range of the sword
-        // Not that we use multipliers here since that simplifies the amount of tweaks for these interactions
-        // You could change the values or even replace them entirely, but they are tweaked with looks in mind
+    // Shortsword projectiles are handled in a special way with how they draw and damage things
+    // The "hitbox" itself is closer to the player, the sprite is centered on it
+    // However the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
+    // Values chosen mostly correspond to Iron Shortword
+    public class LegendaryGreatSwordSwingProgectile : ModProjectile
+    {
         private const float SWINGRANGE = 1.67f * (float)Math.PI; // The angle a swing attack covers (300 deg)
         private const float FIRSTHALFSWING = 0.45f; // How much of the swing happens before it reaches the target angle (in relation to swingRange)
         private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
@@ -31,7 +28,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             // Swings are normal sword swings that can be slightly aimed
             // Swings goes through the full cycle of animations
             Swing,
-            SwingReverse
+            // Spins are swings that go full circle
+            // They are slower and deal more knockback
+            Spin,
         }
 
         private enum AttackStage // What stage of the attack is being executed, see functions found in AI for description
@@ -90,16 +89,23 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             Projectile.localNPCHitCooldown = -1; // We set this to -1 to make sure the projectile doesn't hit twice
             Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
             Projectile.DamageType = DamageClass.Melee; // Projectile is a melee projectile
+            Projectile.scale *= 2;
         }
 
         public override void OnSpawn(IEntitySource source)
         {
             Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
             float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
-            
-            
+
+            if (CurrentAttack == AttackType.Spin)
+            {
+                InitialAngle = (float)(-Math.PI / 2 - Math.PI * 1 / 3 * Projectile.spriteDirection); // For the spin, starting angle is designated based on direction of hit
+            }
+            else
+            {
                 if (Projectile.spriteDirection == 1)
                 {
+                    // However, we limit the rangle of possible directions so it does not look too ridiculous
                     targetAngle = MathHelper.Clamp(targetAngle, (float)-Math.PI * 1 / 3, (float)Math.PI * 1 / 6);
                 }
                 else
@@ -111,8 +117,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
                     targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
                 }
-            targetAngle = CurrentAttack == AttackType.Swing ? targetAngle : -targetAngle;
-            InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // Otherwise, we calculate the angle           
+
+                InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // Otherwise, we calculate the angle
+            }
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -215,7 +222,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             // Make knockback go away from player
-            modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;  
+            modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
+
+            // If the NPC is hit by the spin attack, increase knockback slightly
+            if (CurrentAttack == AttackType.Spin)
+                modifiers.Knockback += 1;
         }
 
         // Function to easily set projectile and arm position
@@ -250,31 +261,30 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         // Function facilitating the first half of the swing
         private void ExecuteStrike()
         {
-            //if (CurrentAttack == AttackType.Swing)
-            //{
+            if (CurrentAttack == AttackType.Swing)
+            {
                 Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) * Timer / execTime);
 
                 if (Timer >= execTime)
                 {
                     CurrentStage = AttackStage.Unwind;
                 }
-            
+            }
+            else
+            {
+                Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) * Timer / (execTime * SPINTIME));
 
-            //else
-            //{
-            //    Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) * Timer / (execTime * SPINTIME));
+                if (Timer == (int)(execTime * SPINTIME * 3 / 4))
+                {
+                    SoundEngine.PlaySound(SoundID.Item1); // Play sword sound again
+                    Projectile.ResetLocalNPCHitImmunity(); // Reset the local npc hit immunity for second half of spin
+                }
 
-            //    if (Timer == (int)(execTime * SPINTIME * 3 / 4))
-            //    {
-            //        SoundEngine.PlaySound(SoundID.Item1); // Play sword sound again
-            //        Projectile.ResetLocalNPCHitImmunity(); // Reset the local npc hit immunity for second half of spin
-            //    }
-
-            //    if (Timer >= execTime * SPINTIME)
-            //    {
-            //        CurrentStage = AttackStage.Unwind;
-            //    }
-            //}
+                if (Timer >= execTime * SPINTIME)
+                {
+                    CurrentStage = AttackStage.Unwind;
+                }
+            }
         }
 
         // Function facilitating the latter half of the swing where the sword disappears

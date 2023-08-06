@@ -4,6 +4,12 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
+using Terraria.DataStructures;
+using Mono.Cecil;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using System.Collections.Generic;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.Diagnostics.Metrics;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -41,7 +47,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         {
 			target.AddBuff(BuffID.Poisoned, 80);
 		}
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+			if (player.altFunctionUse == 2)
+			{
+				if (DistanceHelper.PlayerTouchFlour(player))
+				{
+					Projectile.NewProjectile(source, position + (new Vector2(3 * 16, 0) * player.direction), velocity, type, (int)(damage * 0.25f), knockback, Main.myPlayer, -0.07f * player.direction, 0, 0);
+				}
+			}
+			else
+			{
+				Projectile.NewProjectile(source, position + (new Vector2(3 * 16, 0) * player.direction), velocity, type, (int)(damage * 0.25f), knockback, Main.myPlayer, -0.07f * player.direction, 0, 0);
+			}
+            return false;
+        }
+        public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.NextBool(1)) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Grass);
 		}
@@ -51,12 +72,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             if (player.altFunctionUse == 2)
             {
                 if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
-                {
-                    DashPlayer.JumpDash(player, 0.6f, 1.25f);
-                }
-            }
-            return true;
-        }
+				{
+					DashPlayer.JumpDash(player, 0.6f, 1.25f);
+				}
+			}
+			return true;
+		}
         public override void AddRecipes()
 		{
 			CreateRecipe()

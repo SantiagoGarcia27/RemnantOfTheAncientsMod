@@ -107,6 +107,8 @@ Mods: {
 			Titanic.DisplayName: (Titanesque)
 			Uncontrolled.DisplayName: (Incontrôlé)
 			Veteran.DisplayName: (vétéran)
+			// Exquisite.DisplayName: Exquisite
+			// Shadow.DisplayName: Shadow
 		}
 
 		Generic: {
@@ -2778,6 +2780,106 @@ Mods: {
 
 			EndlesStake: {
 				// DisplayName: Endles Stake
+				// Tooltip: ""
+			}
+
+			EndlesAccelerationRound: {
+				// DisplayName: Endles Acceleration Round
+				// Tooltip: ""
+			}
+
+			EndlesAcidRound: {
+				// DisplayName: Endles Acid Round
+				// Tooltip: ""
+			}
+
+			EndlesArcticArrow: {
+				// DisplayName: Endles Arctic Arrow
+				// Tooltip: ""
+			}
+
+			EndlesBloodfireArrow: {
+				// DisplayName: Endles Bloodfire Arrow
+				// Tooltip: ""
+			}
+
+			EndlesBloodfireBullet: {
+				// DisplayName: Endles Bloodfire Bullet
+				// Tooltip: ""
+			}
+
+			EndlesElysianArrow: {
+				// DisplayName: Endles Elysian Arrow
+				// Tooltip: ""
+			}
+
+			EndlesEnhancedNanoRound: {
+				// DisplayName: Endles Enhanced Nano Round
+				// Tooltip: ""
+			}
+
+			EndlesGodSlayerSlug: {
+				// DisplayName: Endles God Slayer Slug
+				// Tooltip: ""
+			}
+
+			EndlesHolyFireBullet: {
+				// DisplayName: Endles Holy Fire Bullet
+				// Tooltip: ""
+			}
+
+			EndlesHyperiusBullet: {
+				// DisplayName: Endles Hyperius Bullet
+				// Tooltip: ""
+			}
+
+			EndlesIcicleArrow: {
+				// DisplayName: Endles Icicle Arrow
+				// Tooltip: ""
+			}
+
+			EndlesIcyBullet: {
+				// DisplayName: Endles Icy Bullet
+				// Tooltip: ""
+			}
+
+			EndlesNapalmArrow: {
+				// DisplayName: Endles Napalm Arrow
+				// Tooltip: ""
+			}
+
+			EndlesTerraArrow: {
+				// DisplayName: Endles Terra Arrow
+				// Tooltip: ""
+			}
+
+			EndlesTerraBullet: {
+				// DisplayName: Endles Terra Bullet
+				// Tooltip: ""
+			}
+
+			EndleSuperballBullet: {
+				// DisplayName: Endle Superball Bullet
+				// Tooltip: ""
+			}
+
+			EndlesVanquisherArrow: {
+				// DisplayName: Endles Vanquisher Arrow
+				// Tooltip: ""
+			}
+
+			EndlesVeriumBullet: {
+				// DisplayName: Endles Verium Bullet
+				// Tooltip: ""
+			}
+
+			GarritasDoG: {
+				// DisplayName: Garritas Do G
+				// Tooltip: ""
+			}
+
+			ultratiburonDOG: {
+				// DisplayName: ultratiburon D O G
 				// Tooltip: ""
 			}
 		}

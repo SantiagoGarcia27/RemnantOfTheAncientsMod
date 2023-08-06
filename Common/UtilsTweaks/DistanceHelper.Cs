@@ -64,5 +64,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return NpcPosition / 16;
         }
+        public static bool PlayerTouchFlour(Player player)
+        {
+            return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
+        }
     }
 }

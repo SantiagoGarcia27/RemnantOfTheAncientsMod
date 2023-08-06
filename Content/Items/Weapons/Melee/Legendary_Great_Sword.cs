@@ -110,11 +110,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         {
             // Using the shoot function, we override the swing projectile to set ai[0] (which attack it is)
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, attackType);
-            attackType = (attackType + 1) % 2; // Increment attackType to make sure next swing is different
+            attackType = 0; // Increment attackType to make sure next swing is different
             comboExpireTimer = 0; // Every time the weapon is used, we reset this so the combo does not expire
             return false; // return false to prevent original projectile from being shot
         }
-
+        public override bool MeleePrefix()
+        {
+            return true; 
+        }
         public override void UpdateInventory(Player player)
         {
             if (comboExpireTimer++ >= 120) // after 120 ticks (== 2 seconds) in inventory, reset the attack pattern
