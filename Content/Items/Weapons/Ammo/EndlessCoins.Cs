@@ -1,6 +1,8 @@
 using Terraria.Localization;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 {
@@ -36,6 +38,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'or sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Monedas de oro infinitas");
         }
+        public override void AddRecipes()
+        {
+            base.AddRecipes();
+            CreateRecipe()
+            .AddIngredient(ItemID.PlatinumCoin, 40)
+            .AddTile(TileID.CrystalBall)
+            .Register();
+
+        }
     }
     public class EndlesPlatinumCoin : EndlessBase
     {
@@ -46,6 +57,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
            // //DisplayName.SetDefault("Endless Gold Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'or sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Monedas de oro infinitas");
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemBase.type, 600)
+            .AddTile(TileID.CrystalBall)
+            .Register();
+
+            CreateRecipe()
+           .AddIngredient(ModContent.ItemType<Terracoin>(), 6)
+           .AddTile(TileID.CrystalBall)
+           .Register();
         }
     }
 }

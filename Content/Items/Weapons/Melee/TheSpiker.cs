@@ -118,6 +118,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             return false;
         }
 
-        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) => target.defense = target.defense / 2;
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) 
+        { 
+            target.defDefense = target.defDefense / 2;
+            target.defense = target.defDefense;
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         //    return LocalizationHelper.IncreasedDamageBy//Tooltip(15, DamageClass.Summon)
         //            //+ "\n" + LocalizationHelper.IncreasedCritBy//Tooltip(10, DamageClass.Generic);
         //}
-
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(15,10);
         public override void SetDefaults()
         {
             Item.width = 10;

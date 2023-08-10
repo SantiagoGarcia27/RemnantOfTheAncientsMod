@@ -24,7 +24,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
         //{
         //    return LocalizationHelper.IncreasedMinion//Tooltip(1);
         //}
-
+        public int MinionMaxBonus = 1;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MinionMaxBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;

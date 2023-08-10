@@ -1,14 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 {
-    [AutoloadEquip(EquipType.Body)]
+	[AutoloadEquip(EquipType.Body)]
 	public class Daylight_chesplate : ModItem
 	{
 		public override void SetStaticDefaults()
@@ -21,7 +19,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
             //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), //Tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		public override void SetDefaults()
+        public int IncreasedMagicDamage = 3;
+        public int IncreasedMinionBonus = 1;
+        public int IncreasesMaxMana = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMagicDamage, IncreasedMinionBonus, IncreasesMaxMana);
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;

@@ -20,11 +20,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-    //    public static string //Tooltip()
-    //    {
-    //        return LocalizationHelper.IncreasedDamageBy//Tooltip(5, DamageClass.Melee)
-				//+"\n"+ LocalizationHelper.IncreasedMovmentSpeed//Tooltip(-25);
-    //    }
+		//    public static string //Tooltip()
+		//    {
+		//        return LocalizationHelper.IncreasedDamageBy//Tooltip(5, DamageClass.Melee)
+		//+"\n"+ LocalizationHelper.IncreasedMovmentSpeed//Tooltip(-25);
+		//    }
+		public int MeleeDamageBonus = 5;
+        public int MovmentSpeedBonus = -25;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus,MovmentSpeedBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;

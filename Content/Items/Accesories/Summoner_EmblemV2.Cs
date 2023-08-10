@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -18,6 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
            
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
         //public static string //Tooltip()
         //{
         //    return LocalizationHelper.IncreasedDamageBy//Tooltip(25, DamageClass.Summon);

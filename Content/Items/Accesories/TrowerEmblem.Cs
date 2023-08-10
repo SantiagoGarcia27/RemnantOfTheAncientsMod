@@ -23,9 +23,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public static string Tooltip()
-        {
-            string option;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(15);
+        //public static string Tooltip()
+        //{
+        //    string option;
             //if (ModLoader.TryGetMod("CalamityMod", out _))
             //{
             //   DamageClass Rogue = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
@@ -33,10 +34,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             //}
            // else 
            // {
-                option = LocalizationHelper.IncreasedDamageByTooltip(15, DamageClass.Throwing);
-            //}
-            return option;
-        }
+        //        option = LocalizationHelper.IncreasedDamageByTooltip(15, DamageClass.Throwing);
+        //    //}
+        //    return option;
+        //}
 
         public override void SetDefaults()
         {

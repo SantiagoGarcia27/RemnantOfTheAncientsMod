@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -34,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
              //+ "\neres inmune a la locura de maná");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(-5, 10);
         public override void SetDefaults()
         {
             Item.width = 10;

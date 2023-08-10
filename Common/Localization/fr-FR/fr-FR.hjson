@@ -744,7 +744,11 @@ Mods: {
 
 			Reforced_iron_chesplate: {
 				DisplayName: Cuirasse en fer renforcé
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					''' */
 			}
 
 			Reforced_Iron_Greaves: {
@@ -2648,17 +2652,21 @@ Mods: {
 
 			Desert_herald_chesplate: {
 				// DisplayName: Desert herald chesplate
-				// Tooltip: ""
+				// Tooltip: "{$CommonItemTooltip.IncreasesMaxMinionsBy}"
 			}
 
 			Desert_herald_Greaves: {
-				// DisplayName: Desert_herald  Greaves
-				// Tooltip: ""
+				// DisplayName: Desert herald  Greaves
+				// Tooltip: "{$CommonItemTooltip.IncreasesMaxMinionsBy}"
 			}
 
 			Desert_herald_Helmet: {
-				// DisplayName: Desert_herald Helmet
-				// Tooltip: ""
+				// DisplayName: Desert herald Helmet
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					''' */
 			}
 
 			Reaper_Hood: {
@@ -3033,6 +3041,7 @@ Mods: {
 			// DamageHitbox.DisplayName: Damage Hitbox
 			// MisilUltra.DisplayName: Misil Ultra
 			// MoltenGrassSwordLeaft.DisplayName: Molten Grass Sword Leaft
+			// DesertEdgeSwordSwingProgectile.DisplayName: Desert Edge Sword Swing Progectile
 		}
 
 		Tiles: {

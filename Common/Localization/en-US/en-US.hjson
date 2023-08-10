@@ -466,7 +466,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.FlightAndSlowfall}
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed}	
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
 					'''
 			}
 
@@ -498,9 +498,11 @@ Mods: {
 				DisplayName: Desert Annihilator Core
 				Tooltip:
 					'''
-					Increases your max number of minions by 2
-					 Increases all damage by 8% and life regeneration while in desert
-					 Your max life increases by 50 points while in sandstorms
+					{$CommonItemTooltip.IncreasesMaxMinionsBy} 
+					while you are in desert biome
+					increase life regeneration and {$CommonItemTooltip.PercentIncreasedDamage@1} 
+					while you are in sandstorms
+					{$CommonItemTooltip.IncreasesMaxLifeBy@2} 
 					'''
 			}
 
@@ -508,7 +510,7 @@ Mods: {
 				DisplayName: Frozen Assaulter Core
 				Tooltip:
 					'''
-					Increases magic damage by 10%
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
 					 Movement speed increases and you become immune to frozen and chilled debuffs while in snow
 					'''
 			}
@@ -517,9 +519,10 @@ Mods: {
 				DisplayName: Infernal Tyrant Core
 				Tooltip:
 					'''
-					Increases melee damage by 10%
-					 Inflict Hellfire on attack
-					 Movement speed increases and you become immune to fire blocks and On Fire debuffs
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					Inflict Hellfire on attack
+					You become immune to fire blocks and On Fire debuffs
 					'''
 			}
 
@@ -543,15 +546,15 @@ Mods: {
 
 			magic_stick: {
 				DisplayName: Magic Stick
-				Tooltip: 10% increased magic damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 			}
 
 			magic_wand: {
 				DisplayName: Magic Wand
 				Tooltip:
 					'''
-					15% Increased magic damage
-					Increases critical strike chance by 10
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{$CommonItemTooltip.PercentIncreasedMagicCritChance}
 					'''
 			}
 
@@ -559,8 +562,9 @@ Mods: {
 				DisplayName: Mana Overcharger
 				Tooltip:
 					'''
-					Increases mana regeneration in exchange for magic damage by 5%
-					10% reduce mana usage
+					Increases mana regeneration
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{$CommonItemTooltip.PercentReducedManaCost}
 					Automatically use mana potions when needed
 					increases pickup range for mana stars
 					you are immune to Mana Sickness
@@ -579,7 +583,7 @@ Mods: {
 
 			Ranger_EmblemV2: {
 				DisplayName: Ranger Emblem V2
-				Tooltip: Increases ranged damage by 25%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
 			}
 
 			ReaperChalice: {
@@ -593,12 +597,12 @@ Mods: {
 
 			Sorcerer_EmblemV2: {
 				DisplayName: Sorcerer Emblem V2
-				Tooltip: Increases magic damage by 25%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 			}
 
 			Summoner_EmblemV2: {
 				DisplayName: Summoner Emblem V2
-				Tooltip: Increases the summon damage by 25%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 			}
 
 			The_Completist: {
@@ -624,36 +628,36 @@ Mods: {
 
 			TrowerEmblem: {
 				DisplayName: Thrower Emblem
-				Tooltip: "Increases throwing damage by 15% "
+				Tooltip: 15% Increased throwing damage
 			}
 
 			TrowerEmblemV2: {
 				DisplayName: Thrower Emblem V2
-				Tooltip: "Increases throwing damage by 25% "
+				Tooltip: 25% Increased throwing damage
 			}
 
 			Universal_Emblem: {
 				DisplayName: Universal Emblem
-				Tooltip: Increases all damage by 15%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
 			Universal_EmblemV2: {
 				DisplayName: Universal Emblem V2
-				Tooltip: Increases all damage by 25%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
 			Warrior_EmblemV2: {
 				DisplayName: Warrior Emblem V2
-				Tooltip: Increases melee damage by 25%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
 			}
 
 			Daylight_chesplate: {
 				DisplayName: Daylight Shirt
 				Tooltip:
 					'''
-					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassCritChance
-					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMinion
-					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedManaMax
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{$CommonItemTooltip.IncreasesMaxManaBy@1}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@2}
 					'''
 			}
 
@@ -661,8 +665,8 @@ Mods: {
 				DisplayName: Daylight skirt
 				Tooltip:
 					'''
-					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedClassDamage
-					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedManaMax
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}	
+					{$CommonItemTooltip.IncreasesMaxManaBy@1}
 					'''
 			}
 
@@ -670,8 +674,9 @@ Mods: {
 				DisplayName: Daylight Hat
 				Tooltip:
 					'''
-					Increases maximum mana by 20
-					3% increased magic and summon damage
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.PercentIncreasedMagicDamage@1}
+					{$CommonItemTooltip.IncreasesMaxManaBy@2}
 					'''
 			}
 
@@ -741,36 +746,40 @@ Mods: {
 
 			Reforced_iron_chesplate: {
 				DisplayName: Reinforced Iron Breastplate
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					'''
 			}
 
 			Reforced_Iron_Greaves: {
 				DisplayName: Reinforced Iron Greaves
-				Tooltip:
-					'''
-
-					Decrease the maximum speed by 3/4
-					'''
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Reforced_iron_Helmet: {
 				DisplayName: Reinforced Iron Helmet
-				Tooltip: Increases melee damage by 5%
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					'''
 			}
 
 			Tuxonite_chesplate: {
 				DisplayName: Tuxonite Chainmail
-				Tooltip: 3% increased ranged damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
 			Tuxonite_Legging: {
 				DisplayName: Tuxonite Greaves
-				Tooltip: 5% increased ranged critical strike chance
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedCritChance}"
 			}
 
 			TuxoniteHelmet: {
 				DisplayName: Tuxonite Helmet
-				Tooltip: 3% increased ranged damage
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
 			DesertChest: {
@@ -2645,17 +2654,21 @@ Mods: {
 
 			Desert_herald_chesplate: {
 				DisplayName: Desert herald chesplate
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.IncreasesMaxMinionsBy}"
 			}
 
 			Desert_herald_Greaves: {
-				DisplayName: Desert_herald  Greaves
-				Tooltip: ""
+				DisplayName: Desert herald  Greaves
+				Tooltip: "{$CommonItemTooltip.IncreasesMaxMinionsBy}"
 			}
 
 			Desert_herald_Helmet: {
-				DisplayName: Desert_herald Helmet
-				Tooltip: ""
+				DisplayName: Desert herald Helmet
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					'''
 			}
 
 			Reaper_Hood: {
@@ -3030,6 +3043,7 @@ Mods: {
 			DamageHitbox.DisplayName: Damage Hitbox
 			MisilUltra.DisplayName: Misil Ultra
 			MoltenGrassSwordLeaft.DisplayName: Molten Grass Sword Leaft
+			DesertEdgeSwordSwingProgectile.DisplayName: Desert Edge Sword Swing Progectile
 		}
 
 		Tiles: {

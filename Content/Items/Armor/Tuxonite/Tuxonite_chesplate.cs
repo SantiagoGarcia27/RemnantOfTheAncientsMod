@@ -20,7 +20,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
             //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 3% el daño a distancia");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		public override void SetDefaults()
+        public int RangerDamageBonus = 3;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangerDamageBonus);
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;

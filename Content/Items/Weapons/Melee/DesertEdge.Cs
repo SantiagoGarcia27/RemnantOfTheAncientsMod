@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
@@ -9,9 +8,6 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Projectiles;
-using Mono.Cecil;
-using static Terraria.ModLoader.PlayerDrawLayer;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
@@ -45,10 +41,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             }
             else Item.shoot = ProjectileType<DesertS>();
             Item.shootSpeed = 10f;
-            Item.noUseGraphic = false;
+            Item.noUseGraphic = true;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<DesertEdgeSwordSwingProgectile>(), damage, knockback, Main.myPlayer, 0);
             float numberProjectiles = 2;
             float rotation = MathHelper.ToRadians(10);
           
@@ -60,7 +57,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 Projectile.NewProjectile(source, position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
             }
             Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
-          
+
+           
+
             return false;
         }
         public override bool CanUseItem(Player player)
@@ -86,6 +85,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffType<Burning_Sand>(), 300);
+        }
+        public override bool MeleePrefix()
+        {
+            return true;
         }
         public override void AddRecipes()
         {

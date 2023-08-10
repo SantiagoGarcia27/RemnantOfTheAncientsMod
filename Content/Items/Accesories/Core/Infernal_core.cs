@@ -27,7 +27,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public static readonly int MoveSpeedBonus = 50;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(10, MoveSpeedBonus);
         public override void SetDefaults()
         {
             Item.width = 10;
@@ -43,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
             player.GetDamage(DamageClass.Melee) += 0.10f;
             RemnantPlayer player1 = player.GetModPlayer<RemnantPlayer>();
             player1.hasInfernal_core = true;
-            player.moveSpeed += 1.50f;
+            player.moveSpeed += MoveSpeedBonus/100f;
             player.buffImmune[BuffID.OnFire] = true;
         }
     }

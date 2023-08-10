@@ -64,9 +64,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 NPC.scale = 10;
             }
         }
+
+        public static int OldDef = 0;
+        public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone)
+        {
+            if (NPC.defense < OldDef || NPC.defense > OldDef)
+            {
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Defense: " + NPC.defense.ToString() + " [i:156]"), Color.Blue);
+                base.OnHitByItem(player, item, hit, damageDone);
+                OldDef = NPC.defense;
+            }
+        }
+        public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
+        {
+            if (NPC.defense < OldDef || NPC.defense > OldDef)
+            {
+                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Defense: " + NPC.defense.ToString() + " [i:156]"), Color.Blue);
+                base.OnHitByProjectile(projectile, hit, damageDone);
+                OldDef = NPC.defense;
+            }
+        }
         public override void OnKill()
         {
-            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Small with player defense"), Color.Red);
+           // ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Small with player defense"), Color.Red);
             base.OnKill();
         }
       

@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -10,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public abstract Item ItemBase { get; }
         public override string Texture => GetTextureFromItem(ItemBase);
 
-        public override void SetStaticDefaults()
+        public override void SetStaticDefaults() 
         {       
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

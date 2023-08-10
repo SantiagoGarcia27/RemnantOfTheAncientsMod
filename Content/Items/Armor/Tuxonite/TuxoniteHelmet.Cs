@@ -23,6 +23,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
         //{
         //    return LocalizationHelper.IncreasedCritBy//Tooltip(3, DamageClass.Ranged);
         //}
+        public int RangerDamageBonus = 3;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangerDamageBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;

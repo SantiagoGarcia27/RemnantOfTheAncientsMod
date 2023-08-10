@@ -19,12 +19,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
             //Tooltip.SetDefault(//Tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(3,DamageClass.Magic) +
-        //        "\n" + LocalizationHelper.IncreasedDamageBy//Tooltip(3, DamageClass.Summon) +
-        //        "\n" + LocalizationHelper.IncreasedManaMax//Tooltip(20);
-        //}
+		//public static string //Tooltip()
+		//{
+		//    return LocalizationHelper.IncreasedDamageBy//Tooltip(3,DamageClass.Magic) +
+		//        "\n" + LocalizationHelper.IncreasedDamageBy//Tooltip(3, DamageClass.Summon) +
+		//        "\n" + LocalizationHelper.IncreasedManaMax//Tooltip(20);
+		//}
+		public int IncreasedMagicDamage = 3;
+        public int IncreasedSummonDamage = 3;
+        public int IncreasesMaxMana = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMagicDamage, IncreasedSummonDamage, IncreasesMaxMana);
         public override void SetDefaults()
 		{
 			Item.width = 18;

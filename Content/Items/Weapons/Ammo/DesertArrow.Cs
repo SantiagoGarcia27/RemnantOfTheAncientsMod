@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 
 		public override void AddRecipes()
 		{
-			CreateRecipe()
+			CreateRecipe(200)
 			.AddIngredient(ItemID.WoodenArrow, 200)
 			.AddIngredient(ModContent.ItemType<Sand_escense>())
 			.AddTile(TileID.Anvils)

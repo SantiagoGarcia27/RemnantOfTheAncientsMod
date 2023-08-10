@@ -19,12 +19,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
             //Tooltip.SetDefault(//Tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		//public string //Tooltip()
-		//{
-		//	return LocalizationHelper.IncreasedCritBy//Tooltip(5, DamageClass.Ranged);
-  //      }
-
-		public override void SetDefaults()
+        //public string //Tooltip()
+        //{
+        //	return LocalizationHelper.IncreasedCritBy//Tooltip(5, DamageClass.Ranged);
+        //      }
+        public int RangerCritBonus = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangerCritBonus);
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;

@@ -7,11 +7,10 @@ using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria.Chat;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
-	public class SuperDummy : ModItem
+    public class SuperDummy : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

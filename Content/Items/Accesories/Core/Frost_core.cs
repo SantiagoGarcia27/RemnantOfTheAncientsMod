@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
             //+ "\n La velocidad de movimiento aumenta y eres inmune a la desventaja de Congelado y Helado cuando estás en la nieve.");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
         public override void SetDefaults()
         {
             Item.width = 10;

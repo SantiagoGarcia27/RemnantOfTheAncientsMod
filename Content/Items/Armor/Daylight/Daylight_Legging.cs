@@ -1,10 +1,9 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 {
@@ -19,8 +18,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
             //Tooltip.SetDefault(//Tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-
-		public override void SetDefaults()
+        public int IncreasedMinionDamage = 4;
+        public int IncreasesMaxMana = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMinionDamage, IncreasesMaxMana);
+        public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;

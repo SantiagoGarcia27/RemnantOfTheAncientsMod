@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
             ////+ "\n En las tormentas de arena tu vida aumenta en 50 puntos");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(2,8,50);
         public override void SetDefaults()
         {
             Item.width = 10;

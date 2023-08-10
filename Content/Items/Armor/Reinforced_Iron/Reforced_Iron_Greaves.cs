@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
@@ -23,7 +22,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
         //{
         //    return LocalizationHelper.IncreasedMovmentSpeed//Tooltip(-25);
         //}
-
+        public int MovmentSpeedBonus = -25;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;

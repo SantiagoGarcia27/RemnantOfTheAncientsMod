@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño a distancia en un 25% ");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
         public override void SetDefaults()
         {
             Item.width = 10;
