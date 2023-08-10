@@ -182,6 +182,11 @@ namespace RemnantOfTheAncientsMod
                .AddIngredient(ItemID.FlintlockPistol, 1)
                .AddTile(TileID.Anvils)
                .Register();
+
+            Recipe.Create(ItemID.BoneArrow, 10)
+             .AddIngredient(ItemID.Bone, 1)
+             .AddTile(TileID.BoneWelder)
+             .Register();
         }
         private static void PreHardmodeMagicWeapons()
         {
