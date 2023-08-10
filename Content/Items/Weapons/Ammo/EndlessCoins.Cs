@@ -16,6 +16,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce de Cuivre Sans Fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Moneda de Cobre Eterna");
         }
+        public override void AddRecipes()
+        {
+            base.AddRecipes();
+            CreateRecipe()
+            .AddIngredient(ItemID.SilverCoin, 40)
+            .AddTile(TileID.CrystalBall)
+            .Register();
+        }
     }
     public class EndlesSilverCoin : EndlessBase
     {
@@ -26,6 +34,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
            // //DisplayName.SetDefault("Endless Silver Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'argent sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Moneda de plata infinita");
+        }
+        public override void AddRecipes()
+        {
+            base.AddRecipes();
+            CreateRecipe()
+            .AddIngredient(ItemID.GoldCoin, 40)
+            .AddTile(TileID.CrystalBall)
+            .Register();
         }
     }
     public class EndlesGoldCoin : EndlessBase
