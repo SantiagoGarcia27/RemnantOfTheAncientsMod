@@ -95,7 +95,16 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCType<frozen_assaulter>()) BossTrpoyMask(ItemType<FrostTrophy>(), ItemType<FrozenMask>(), npcLoot);
             if (npc.type == NPCType<InfernalTyrantHead>()) BossTrpoyMask(ItemType<InfernalTrophy>(), ItemType<InfernalMask>(), npcLoot);
             if (npc.type == NPCID.WallofFlesh) npcLoot.Add(ItemDropRule.Common(ItemType<TrowerEmblem>(), (3/ dificultyDrop(1)), 1, 1));
-            if (npc.type == NPCID.CultistBoss) npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));    
+            if (npc.type == NPCID.CultistBoss) npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));
+            if (npc.type == NPCID.HallowBoss)
+            {
+                npcLoot.Add(ItemDropRule.ByCondition(new IsDay(), ModContent.ItemType<StarChunk>(), 1, 3, 5));
+                npcLoot.Add(ItemDropRule.ByCondition(new IsNight(), ItemType<StarChunk>(), 1, 1, 2));
+            }
+            if (npc.type == NPCID.Plantera)
+            {
+                npcLoot.Add(ItemDropRule.Common(ItemID.StrangePlant1,1, dificultyDrop(1), dificultyDrop(1)));
+            }
         }
         public void PajarosLoot(NPC npc, NPCLoot npcLoot)
         {
@@ -147,11 +156,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             }
             if (npc.type == NPCType<CobaltZombie>()) ZombieOreLoot(npcLoot, ItemID.CobaltOre, ItemID.CobaltBar);
             if (npc.type == NPCType<PaladiumZombie>()) ZombieOreLoot(npcLoot, ItemID.PalladiumOre, ItemID.PalladiumBar);
-            if (npc.type == NPCID.HallowBoss) 
-            {
-                npcLoot.Add(ItemDropRule.ByCondition(new IsDay(),ModContent.ItemType<StarChunk>(),1,3,5));
-                npcLoot.Add(ItemDropRule.ByCondition(new IsNight(), ItemType<StarChunk>(), 1, 1, 2));
-            }
+            
         }
         public override void OnKill(NPC npc)
         {
