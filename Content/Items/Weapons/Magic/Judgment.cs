@@ -37,6 +37,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
+			//int proj = Projectile.NewProjectile(source, position + new Vector2(8 * 16 * player.direction, 0), velocity * new Vector2(0.5f, 0.5f), ProjectileID.PiercingStarlight, damage, knockback, 255, 2.4f);
+			//Main.projectile[proj].ai[0] = 10f;
 			Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
 			float ceilingLimit = target.Y;
 			for (int i = 0; i < 1; i++)

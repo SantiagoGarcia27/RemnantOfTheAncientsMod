@@ -81,7 +81,7 @@ Mods: {
 
 		Prefix: {
 			Description: {
-				Life: +{0} life max
+				Life: +{0} max life
 				Defense: +{0} defense
 				Speed: +{0}% movment speed
 				CritChance: +{0}% critical strike chance

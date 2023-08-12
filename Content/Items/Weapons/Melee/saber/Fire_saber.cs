@@ -67,8 +67,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.OnFire, 80);
-		}
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, damageDone / 10, 0);  
+            }
+        }
+     
+        
+        public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.NextBool(1)) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
 		}

@@ -4,6 +4,8 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -29,7 +31,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.scale = 1;
-                       Item.GetGlobalItem<CustomTooltip>().Saber = true;
+            Item.shootSpeed = 1f;
+            Item.shoot = ProjectileID.LightsBane;
+           // Item.glowMask = 328;
+            Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
@@ -42,6 +47,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
                 }
             }
             return true;
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            int proj = Projectile.NewProjectile(source, position + new Vector2(8 * 16 * player.direction,0), velocity * new Vector2(0.5f,0.5f), type, damage, knockback, 255, 2.4f);
+            Main.projectile[proj].ai[0] = Main.rand.NextFloat(1.5f, 1.6f);
+            Main.projectile[proj].damage = damage;
+            Main.projectile[proj].DamageType = DamageClass.Melee;
+            Main.projectile[proj].active = true;
+                // float ia0 = Main.projectile[proj].ai[0];
+            //  float ia0 = Main.projectile[proj].rotation;
+            return false;
         }
         public override void AddRecipes()
 		{
