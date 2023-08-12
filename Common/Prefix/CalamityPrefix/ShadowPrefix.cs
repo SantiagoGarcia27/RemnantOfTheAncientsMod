@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Prefix.CalamityPrefix
         }
         public override string Name => "Shadow";
         public Shadow() :
-            base(1.20f)
+            base(1.10f)
         {
 
         }

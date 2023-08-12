@@ -96,6 +96,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCType<InfernalTyrantHead>()) BossTrpoyMask(ItemType<InfernalTrophy>(), ItemType<InfernalMask>(), npcLoot);
             if (npc.type == NPCID.WallofFlesh) npcLoot.Add(ItemDropRule.Common(ItemType<TrowerEmblem>(), (3/ dificultyDrop(1)), 1, 1));
             if (npc.type == NPCID.CultistBoss) npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));    
+            if (npc.type == NPCID.Plantera)  npcLoot.Add(ItemDropRule.Common(ItemID.StrangePlant1,1, dificultyDrop(1)));  
         }
         public void PajarosLoot(NPC npc, NPCLoot npcLoot)
         {
