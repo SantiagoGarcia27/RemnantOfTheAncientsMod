@@ -64,10 +64,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
             if (target != null)
             {
-                Vector2 TargetDistance = Utils1.FormatToPositive(DistanceHelper.GetDistance(target, Projectile));
+                Vector2 TargetDistance = Utils1.FormatToPositive(DistanceUtils.GetDistance(target, Projectile));
                 if (FoundTarget)
                 {
-                    Projectile.direction = DistanceHelper.GetDistance(target, Projectile).X > 0 ? 1 : -1;
+                    Projectile.direction = DistanceUtils.GetDistance(target, Projectile).X > 0 ? 1 : -1;
                     Projectile.spriteDirection = Projectile.direction;
                     if (TargetDistance.X < 400 && TargetDistance.X > 0)
                     {
@@ -160,7 +160,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         {
             Point ProjectileFoor = Utils.ToTileCoordinates(Projectile.Center);
             float playerDistanceFloat = Projectile.Distance(player.position);
-            Vector2 playerDistance = DistanceHelper.GetDistance(Projectile, player);
+            Vector2 playerDistance = DistanceUtils.GetDistance(Projectile, player);
             if (playerDistanceFloat < 2200 && !FoundTarget)
             {
                 if (Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width + 2, Projectile.height))
@@ -211,7 +211,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         {
             Point ProjectileFoor = Utils.ToTileCoordinates(Projectile.Center);
             float targetDistanceTotal = Projectile.Distance(target.position);
-            Vector2 targetDistance = Utils1.FormatToPositive(DistanceHelper.GetDistance(Projectile, target));
+            Vector2 targetDistance = Utils1.FormatToPositive(DistanceUtils.GetDistance(Projectile, target));
             if (targetDistance.X < 200)
             {
                 Projectile.velocity = new Vector2(0, 18);

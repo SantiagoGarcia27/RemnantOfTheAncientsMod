@@ -1,14 +1,13 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Common.Global;
 using Terraria.DataStructures;
-using Mono.Cecil;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -73,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         {
             if (player.altFunctionUse == 2)
             {
-                if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
+                if (DistanceUtils.PlayerTouchFlour(player))
                 {
                     float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
                     Projectile.NewProjectile(Projectile.GetSource_None(), player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, Item.damage + 10, Item.knockBack, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + 0.7f);
@@ -92,7 +91,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         public override void AddRecipes()
 		{
 			CreateRecipe()
-					   .AddRecipeGroup("CorruptSaber")
+			.AddRecipeGroup("CorruptSaber")
 			.AddIngredient(ItemType<Grass_saber>())
 			.AddIngredient(ItemID.Muramasa, 1)
 			.AddIngredient(ItemType<Fire_saber>())

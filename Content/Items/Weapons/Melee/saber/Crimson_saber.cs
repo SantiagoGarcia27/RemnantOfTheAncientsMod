@@ -2,8 +2,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.scale = 1;
-                       Item.GetGlobalItem<CustomTooltip>().Saber = true;
+            Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
@@ -43,6 +43,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
                 }
             }
             return true;
+        }
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.BloodButcherer, 540);
+
+            Vector2 postion = target.position + new Vector2(target.width, player.height);
+            Projectile.NewProjectile(Projectile.GetSource_None(), postion, target.DirectionTo(player.Center), ProjectileID.BloodButcherer, 0, 0, player.whoAmI, 1, target.whoAmI);
         }
         public override void AddRecipes()
 		{

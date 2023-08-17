@@ -4,6 +4,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -54,9 +55,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.height = 34;
             Item.width = 30;
             Item.accessory = true;
-            Item.rare = 5;
+            Item.rare = ItemRarityID.Pink;
             Item.master = true;
-            Item.defense= 5;
+            Item.defense = 5;
+            Item.value = Item.buyPrice(0, 2, 70, 72);
         } 
     }
 }

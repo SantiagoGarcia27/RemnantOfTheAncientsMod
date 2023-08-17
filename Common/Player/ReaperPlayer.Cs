@@ -190,29 +190,20 @@ public class ReaperPlayer : ModPlayer
         }
         return 1;
     }
-    public override void OnHurt(Player.HurtInfo info)
+    public override bool FreeDodge(Player.HurtInfo info)
     {
         if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
         {
             if (Main.rand.NextBool(4))
             {
-                Player.SetImmuneTimeForAllTypes(120);
-                //  Player.shadowDodge = true;
+                //FreeDodge(info);
                 Player.BrainOfConfusionDodge();
+                Player.SetImmuneTimeForAllTypes(120);
                 Dust.QuickDust(Player.position, Color.Gray);
-
-                //return false;
-            }
-            else
-            {
-                base.OnHurt(info);
+                return true;
             }
         }
-        else
-        {
-            base.OnHurt(info);
-        }
-       
+        return base.FreeDodge(info);
     }
     //public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hit.HitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
     //{

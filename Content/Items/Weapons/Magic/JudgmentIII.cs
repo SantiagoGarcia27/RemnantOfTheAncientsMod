@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer;
+using RemnantOfTheAncientsMod.Common.Global;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
@@ -33,7 +34,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 20;
-			Item.shoot = ProjectileType<HollyLaser>(); //Laser
+            Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
+            Item.shoot = ProjectileType<HollyLaser>(); //Laser
 			Item.value = Item.sellPrice(gold: 5);
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

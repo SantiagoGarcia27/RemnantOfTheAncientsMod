@@ -3,7 +3,7 @@ using Terraria;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
-    public static class DistanceHelper
+    public static class DistanceUtils
     {
         public static Vector2 GetDistance(NPC request, NPC target)
         {
@@ -63,6 +63,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static float ToTilePosition(float NpcPosition)
         {
             return NpcPosition / 16;
+        }
+        public static float ToCoordenatePosition(float NpcPosition)
+        {
+            return NpcPosition * 16;
         }
         public static bool PlayerTouchFlour(Player player)
         {

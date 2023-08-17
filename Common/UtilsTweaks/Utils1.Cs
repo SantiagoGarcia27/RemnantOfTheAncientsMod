@@ -1,15 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.World;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using Terraria;
-using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
@@ -17,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
     {
         internal static readonly Color ReaperRarityColor = new Color(48, 48, 48); // 
         internal static readonly Color LegendaryRarityColor = new Color(0, 255, 200);
-
+        internal static readonly Color CompletistRarityColor = new Color(242, 231, 15);
 
         internal static bool IsABoss()
         {

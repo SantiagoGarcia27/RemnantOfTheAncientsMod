@@ -65,9 +65,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
     public abstract class EndlessSolutions : ModItem
     {
         public abstract Item ItemBase { get; }
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public abstract string? TexturePath { get; }
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         public override string Texture => GetTextureFromItem(ItemBase);
         public override void SetStaticDefaults()
         {

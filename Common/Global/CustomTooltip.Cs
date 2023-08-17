@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using rail;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron;
@@ -19,6 +20,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         public bool LegendaryDrop;
         public bool ReaperItem;
+        public bool DonatorItem;
+        public bool CompletistItem;
         public bool BossSummon;
         public bool SizedByReaper;
         public bool ReaperAccesories;
@@ -45,6 +48,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             if (LegendaryDrop) LegendaryTooltip(item, Tooltips);
             if (ReaperItem) ReaperTooltip(item, Tooltips);
             if (BossSummon) BossSummonTooltip(item, Tooltips);
+            if (CompletistItem) CompletistTooltip(item, Tooltips);
             AplyReforgeTooltip(item, Tooltips);
         }
 
@@ -62,6 +66,18 @@ namespace RemnantOfTheAncientsMod.Common.Global
             };
             if (Reaper.ReaperMode) Tooltips.Add(item2);
         }
+        private void CompletistTooltip(Item item, IList<TooltipLine> Tooltips)
+        {    
+            Color? color = Utils1.ColorSwap(new Color(247, 239, 72),new Color(250, 205, 7), 3f);
+            Color valueOrDefault = color.GetValueOrDefault(Utils1.CompletistRarityColor);
+            string text = (color.HasValue ? "["+Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.CompletistTooltip")+ "]" : "");
+            TooltipLine item2 = new TooltipLine(Mod, "CompletistItem", text)
+            {
+                OverrideColor = valueOrDefault
+            };
+            Tooltips.Add(item2);
+        }
+
         private void SaberHbilitieTooltip(Item item, IList<TooltipLine> Tooltips)
         {
             Color? color = Color.Red;
@@ -211,5 +227,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
             };
             Tooltips.Add(item2);
         }
+
     }
 }

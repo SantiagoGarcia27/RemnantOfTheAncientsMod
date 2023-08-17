@@ -1,10 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic
+namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM
 {
     [AutoloadEquip(EquipType.Head)]
     public class Ttim_Head : ModItem

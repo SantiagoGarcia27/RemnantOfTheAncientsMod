@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-using RemnantOfTheAncientsMod;
 using Terraria.ModLoader;
 using Terraria;
 using static Terraria.ModLoader.ModContent;

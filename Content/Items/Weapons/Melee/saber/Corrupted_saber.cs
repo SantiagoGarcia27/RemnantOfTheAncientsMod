@@ -6,20 +6,22 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using System;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
-	public class Corrupted_saber : ModItem
-	{
-		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Light´s Saber");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre Laser");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de la Luz");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-		public override void SetDefaults()
-		{
+    public class Corrupted_saber : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            //DisplayName.SetDefault("Light´s Saber");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre Laser");
+            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de la Luz");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
             Item.CloneDefaults(ItemID.LightsBane);
             Item.damage -= 3;
             Item.DamageType = DamageClass.Melee;
@@ -33,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             Item.scale = 1;
             Item.shootSpeed = 1f;
             Item.shoot = ProjectileID.LightsBane;
-           // Item.glowMask = 328;
+            Item.glowMask = -1;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override bool AltFunctionUse(Player player) => true;
@@ -44,17 +46,29 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
                 if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
                 {
                     DashPlayer.JumpDash(player, 0.8f, 0.77f);
+
+     
+                    int proj = Projectile.NewProjectile(Projectile.GetSource_None(), player.MountedCenter + new Vector2(DistanceUtils.ToCoordenatePosition(8) * player.direction, 0), new Vector2(player.direction, 0f) * new Vector2(0.5f, 0.5f), ProjectileID.LightsBane, Item.damage + 10, Item.knockBack, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, 3.4f);
+                    Main.projectile[proj].ai[0] = Main.rand.NextFloat(3.5f, 4.6f); ;
                 }
             }
             return true;
         }
+        public override void MeleeEffects(Player player, Rectangle hitbox)
+        {
+            int choice = (int)Math.Pow(new RemnantOfTheAncientsMod().ParticleMeter(3, true),2);
+            if (choice > 0)
+            {
+                if (Main.rand.NextBool(choice))
+                {
+                    Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Demonite);
+                }
+            }
+        }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            int proj = Projectile.NewProjectile(source, position + new Vector2(8 * 16 * player.direction,0), velocity * new Vector2(0.5f,0.5f), type, damage, knockback, 255, 2.4f);
-            Main.projectile[proj].ai[0] = Main.rand.NextFloat(1.5f, 1.6f);
-            Main.projectile[proj].damage = damage;
-            Main.projectile[proj].DamageType = DamageClass.Melee;
-            Main.projectile[proj].active = true;
+            int proj = Projectile.NewProjectile(source, position + new Vector2(DistanceUtils.ToCoordenatePosition(8) * player.direction,0), velocity * new Vector2(0.5f,0.5f), type, damage, knockback, player.whoAmI, 2.4f);
+            Main.projectile[proj].ai[0] = Main.rand.NextFloat(1.5f, 1.6f);         
                 // float ia0 = Main.projectile[proj].ai[0];
             //  float ia0 = Main.projectile[proj].rotation;
             return false;

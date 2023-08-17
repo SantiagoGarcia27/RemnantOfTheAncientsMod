@@ -43,13 +43,13 @@ namespace RemnantOfTheAncientsMod
 		public bool StardustDragonV2Minion;
 		public bool TyrantMinion;
 		public bool SunflowerSentry;
-        #endregion
-        #region Debuffs
-        public bool Burn_Sand;
+		#endregion
+		#region Debuffs
+		public bool Burn_Sand;
 		public bool hBurn;
 		public bool Marble_Erosion;
-        #endregion
-        public bool Hell_Fire;
+		#endregion
+		public bool Hell_Fire;
 		public bool hasInfernal_core;
 		public bool SandWeapons;
 		public bool MeleeKit;
@@ -59,7 +59,7 @@ namespace RemnantOfTheAncientsMod
 		public bool YtPet;
 		public bool ModPlayer = true;
 		public bool anyBossIsAlive;
-		public bool MoneyCollector;	
+		public bool MoneyCollector;
 		public List<int> ScrollsBuff = new List<int>();
 		public static int DummyMode = 0;
 		public bool CouwldownHolySaber;
@@ -71,14 +71,15 @@ namespace RemnantOfTheAncientsMod
 		public bool HealingDrone;
 		public bool InterceptionDrone;
 		public bool DesertHeraldSetBonus;
+		public bool BrainDogde;
 
 		public override void ResetEffects()
 		{
 			Burn_Sand = false;
 			hBurn = false;
 			Hell_Fire = false;
-            Marble_Erosion = false;
-            healHurt = 0;
+			Marble_Erosion = false;
+			healHurt = 0;
 			TortugaPet = false;
 			TwitchPet = false;
 			YtPet = false;
@@ -92,26 +93,27 @@ namespace RemnantOfTheAncientsMod
 			StardustDragonV2Minion = false;
 			TyrantMinion = false;
 			hasInfernal_core = false;
-			SandWeapons = false;		
+			SandWeapons = false;
 			MeleeKit = false;
 			MoneyCollector = false;
 			SunflowerSentry = false;
 			tuxoniteStealth = false;
 			DaylightArmorSetBonus = false;
 			HealingDrone = false;
-			InterceptionDrone = false;	
+			InterceptionDrone = false;
 			DesertHeraldSetBonus = false;
 			CanWormHole = false;
-            //tuxoniteStealthCounter = 1;
-        }
+			BrainDogde = false;
+			//tuxoniteStealthCounter = 1;
+		}
 
-        public override void Load()
-        {
-           // On.Terraria.Player.TryGettingDevArmor += Player_TryGettingDevArmor;		
-            base.Load();
-        }
+		public override void Load()
+		{
+			// On.Terraria.Player.TryGettingDevArmor += Player_TryGettingDevArmor;		
+			base.Load();
+		}
 
-	//	private void Player_TryGettingDevArmor(On.Terraria.Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
+		//	private void Player_TryGettingDevArmor(On.Terraria.Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
 		//{
 		//	//TryGettingPatreonOrDevArmor(source, this);
 		//	if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : 20))
@@ -244,9 +246,9 @@ namespace RemnantOfTheAncientsMod
 		//		}
 		//	}
 		//}
-       
 
-        public override void UpdateDead()
+
+		public override void UpdateDead()
 		{
 			Burn_Sand = false;
 			Hell_Fire = false;
@@ -255,7 +257,7 @@ namespace RemnantOfTheAncientsMod
 			MoneyCollector = false;
 			Marble_Erosion = false;
 
-            int selection = chanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
+			int selection = chanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
 			if (selection != 0)
 			{
 				if (Main.rand.NextBool(selection))
@@ -301,8 +303,25 @@ namespace RemnantOfTheAncientsMod
 			}
 			checkInventory(Player);
 			WormHoleEffect(Player);
+		}
+        public override bool FreeDodge(Player.HurtInfo info)
+        {
+			if(BrainDogde)
+			{
+                if (Main.rand.NextBool(4))
+                {
+                    Player.BrainOfConfusionDodge();
+                    Player.SetImmuneTimeForAllTypes(120);
+                    Dust.QuickDust(Player.position, Color.Gray);
+					return true;
+                }
+            }
+            return base.FreeDodge(info);
         }
-
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+            base.ModifyHurt(ref modifiers);
+        }
         public override void OnEnterWorld()
 		{
 			AddScrollBuff();
@@ -326,8 +345,8 @@ namespace RemnantOfTheAncientsMod
                     {
                         float mapFullscreenScale = Main.mapFullscreenScale;
                         Vector2 mouse = new Vector2(PlayerInput.MouseX, PlayerInput.MouseY);
-                        float num2 = DistanceHelper.ToTilePosition(Main.player[k].position.X + Main.player[k].width / 2) * mapFullscreenScale;
-                        float num7 = DistanceHelper.ToTilePosition(Main.player[k].position.Y + Main.player[k].gfxOffY + Main.player[k].height / 2) * mapFullscreenScale;
+                        float num2 = DistanceUtils.ToTilePosition(Main.player[k].position.X + Main.player[k].width / 2) * mapFullscreenScale;
+                        float num7 = DistanceUtils.ToTilePosition(Main.player[k].position.Y + Main.player[k].gfxOffY + Main.player[k].height / 2) * mapFullscreenScale;
                         num2 +=  -Main.mapFullscreenPos.X * mapFullscreenScale + Main.screenWidth / 2 - 6f;
                         float num8 = num7 + (0f - Main.mapFullscreenPos.Y * mapFullscreenScale + Main.screenHeight / 2 - 4f - mapFullscreenScale / 5f * 2f);
                         float num3 = num2 + 4f - 14f * Main.UIScale;

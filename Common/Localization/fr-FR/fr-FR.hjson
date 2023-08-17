@@ -117,6 +117,7 @@ Mods: {
 			MusicBoxCredit: by {0}
 			ReaperTooltip: Reaper Item
 			LegendaryTooltip: Legendary Drop
+			// CompletistTooltip: Completist Item
 			NotConsumableTooltip: Not Consumable
 		}
 
@@ -2882,12 +2883,37 @@ Mods: {
 			}
 
 			GarritasDoG: {
-				// DisplayName: Garritas Do G
+				// DisplayName: Dod Slayer Claws
 				// Tooltip: ""
 			}
 
 			ultratiburonDOG: {
 				// DisplayName: ultratiburon D O G
+				// Tooltip: ""
+			}
+
+			Corrupt_Heart: {
+				// DisplayName: Corrupt Heart
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.IncreasesMaxLifeBy}
+					{$CommonItemTooltip.ReducesDamageTakenByPercent@1}
+					{$ItemTooltip.BrainOfConfusion}
+					''' */
+			}
+
+			Flower_Defender_Helmet: {
+				// DisplayName: Flower_ Defender_ Helmet
+				// Tooltip: ""
+			}
+
+			Flower_Defender_Body: {
+				// DisplayName: Flower_ Defender_ Body
+				// Tooltip: ""
+			}
+
+			Flower_Defender_Legs: {
+				// DisplayName: Flower_ Defender_ Legs
 				// Tooltip: ""
 			}
 		}

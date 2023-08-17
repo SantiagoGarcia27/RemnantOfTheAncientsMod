@@ -83,6 +83,31 @@ namespace RemnantOfTheAncientsMod
 
             return (int)(i / Math.Pow(2, (int)lagLevel));
         }
+        public int ParticleMeter(int i,bool increment)
+        {
+            float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
+
+            if (lagLevel == 3)
+            {
+                return 0;
+            }
+            if (increment)
+            {
+                if (lagLevel == 2)
+                {
+                    return i * 2;
+                }
+                else if (lagLevel == 1)
+                {
+                    return (int)(i * 1.5f);
+                }
+                else return i;
+            }
+            else
+            {
+                return (int)(i / Math.Pow(2, (int)lagLevel));
+            }
+        }
         public static int MaxPlayerOnline()
         {
             MaxPlayers = 0;
