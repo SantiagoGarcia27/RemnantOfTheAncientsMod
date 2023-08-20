@@ -2907,17 +2907,17 @@ Mods: {
 			}
 
 			Flower_Defender_Helmet: {
-				DisplayName: Flower_ Defender_ Helmet
+				DisplayName: Flower Defender Helmet
 				Tooltip: ""
 			}
 
 			Flower_Defender_Body: {
-				DisplayName: Flower_ Defender_ Body
+				DisplayName: Flower Defender Body
 				Tooltip: ""
 			}
 
 			Flower_Defender_Legs: {
-				DisplayName: Flower_ Defender_ Legs
+				DisplayName: Flower Defender Legs
 				Tooltip: ""
 			}
 		}

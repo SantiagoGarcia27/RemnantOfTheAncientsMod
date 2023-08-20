@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Text;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
@@ -157,6 +158,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             int a = i;
             if (Reaper.ReaperMode) a = i * 5;
             return a;
+        }
+        public static DamageClass GetClassForHeldItem(Player player)
+        {
+            return player.HeldItem.DamageType;
         }
     }
 }

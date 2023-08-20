@@ -4,6 +4,12 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.GameContent;
+using Terraria.ID;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System.Collections.Generic;
+using Terraria.GameContent.ItemDropRules;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -61,6 +67,22 @@ namespace RemnantOfTheAncientsMod
         public override void Unload()
         {
             BossChecklist = null;
+            Array.Resize(ref TextureAssets.GlowMask, GlowMaskID.Count);
+        }
+        public static short AddGlowMask(string texture)
+        {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                string name = texture;
+                if (ModContent.RequestIfExists(name, out Asset<Texture2D> asset))
+                {
+                    int index = TextureAssets.GlowMask.Length;
+                    Array.Resize(ref TextureAssets.GlowMask, index + 1);
+                    TextureAssets.GlowMask[^1] = asset;
+                    return (short)index;
+                }
+            }
+            return -1;
         }
         public static Color GetLightColor(Vector2 position)
         {

@@ -4,6 +4,8 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using Terraria.ID;
+using System.Collections.Generic;
+using Terraria.GameContent.ItemDropRules;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
@@ -41,6 +43,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 npc.lifeMax *= 2;
                 npc.defense += 10;
             }
+			//if (npc.boss) 
+			//{
+			//	GetItemForTreasureBag(npc.type);
+			//}
         }
 
 		public override void UpdateLifeRegen(NPC NPC, ref int damage)
@@ -82,21 +88,30 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 				}
 			}
 		}
+        public void GetItemForTreasureBag(int npcId)
+        {
+            List<IItemDropRule> rulesForNPCID = Main.ItemDropsDB.GetRulesForItemID(npcId);
+            List<DropRateInfo> list = new List<DropRateInfo>();
+            DropRateInfoChainFeed ratesInfo = new DropRateInfoChainFeed(1f);
+            foreach (IItemDropRule item3 in rulesForNPCID)
+            {
+                item3.ReportDroprates(list, ratesInfo);
+            }
+        }
+        //public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hit.HitDirection, ref bool crit)
+        //{
+        //	if (Marble_Erosion)
+        //	{
+        //		npc.defense = npc.defDefense - 2;
+        //		Can_Marble = true;
+        //	}
+        //	else
+        //	{
+        //		npc.defense = npc.defDefense;
+        //	}
+        //	return base.StrikeNPC(npc, ref damage, defense, ref knockback,hit.HitDirection, ref crit);
+        //}
 
-		//public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hit.HitDirection, ref bool crit)
-		//{
-		//	if (Marble_Erosion)
-		//	{
-		//		npc.defense = npc.defDefense - 2;
-		//		Can_Marble = true;
-		//	}
-		//	else
-		//	{
-		//		npc.defense = npc.defDefense;
-		//	}
-		//	return base.StrikeNPC(npc, ref damage, defense, ref knockback,hit.HitDirection, ref crit);
-		//}
-      
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
 			if (CanMakeCrit)

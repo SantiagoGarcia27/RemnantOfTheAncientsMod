@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Daylight;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
 {
@@ -21,6 +23,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
             Item.Size = new(30,30);
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Cyan;
+            Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.Sunflower, 1)
+            .AddIngredient(ModContent.ItemType<DaylightHat>())
+            .AddTile(TileID.Loom)
+            .Register();
         }
     }
 
@@ -32,7 +43,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
         public override bool IsHeadLayer => true;
         public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
         {
-            return Main.LocalPlayer.armor[0].type == ModContent.ItemType<Flower_Defender_Helmet>();
+            Player drawPlayer = drawInfo.drawPlayer;
+            if (drawInfo.shadow != 0f || drawPlayer.dead)
+            {
+                return false;
+            }
+            return drawPlayer.head == EquipLoader.GetEquipSlot(Mod, nameof(Flower_Defender_Helmet), EquipType.Head);
+            //  return Main.LocalPlayer.armor[0].type == ModContent.ItemType<Flower_Defender_Helmet>()|| Main.LocalPlayer.armor[10].type == ModContent.ItemType<Flower_Defender_Helmet>();
         }
         public override Position GetDefaultPosition() => new BeforeParent(PlayerDrawLayers.Head);     
         protected override void Draw(ref PlayerDrawSet drawInfo)
@@ -40,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
             var position = drawInfo.Center + new Vector2(-20f * Main.LocalPlayer.direction, -25f - floatingCounter) - Main.screenPosition;
             position = new Vector2((int)position.X, (int)position.Y); // You'll sometimes want to do this, to avoid quivering.
             UpdateCounters();
-
+            var ñ = drawInfo.shadow;
             drawInfo.DrawDataCache.Add(new DrawData(BaseTexture.Value,position,null,Color.White,0f,BaseTexture.Size() * 0.5f, 1f, SpriteEffects.None,0));
         }
         public void UpdateCounters()

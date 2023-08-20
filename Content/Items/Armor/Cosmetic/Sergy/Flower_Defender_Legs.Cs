@@ -5,6 +5,8 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
 {
@@ -24,12 +26,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
             Item.Size = new(30,30);
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Cyan;
+            Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
         }
         
         public override void UpdateVanity(Player player)
-        {
-           
+        {   
             base.UpdateVanity(player);
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddRecipeGroup("anyStrangePlants")
+            .AddIngredient(ItemID.DirtBlock, 10)
+            .AddIngredient(ItemID.Silk, 5)
+            .AddTile(TileID.Loom)
+            .Register();
         }
     }
 }

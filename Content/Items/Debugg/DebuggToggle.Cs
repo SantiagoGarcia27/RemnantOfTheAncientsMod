@@ -11,7 +11,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
     public class DebuggToggle : ModItem
     {
         //public override void SetStaticDefaults() =>// //DisplayName.SetDefault("DebuggToggle");
-
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return Main.LocalPlayer.name == "a";
+        }
         public override void SetDefaults()
         {
             Item.width = 20;

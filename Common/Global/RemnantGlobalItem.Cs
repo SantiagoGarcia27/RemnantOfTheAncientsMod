@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 
 namespace RemnantOfTheAncientsMod.Common.Global
 {
@@ -119,7 +120,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
 						item.maxStack = (int)ModContent.GetInstance<ConfigServer>().MaxItemStackConf;
 					}
 				}
-
+				if (ItemID.Sets.BossBag[item.type]) 
+				{
+					AddValueToTreasureBags(item);
+				}
 				AddToDashWeaponsLists(item);
 
 				if (SpearsList.Contains(item.type))
@@ -133,6 +137,12 @@ namespace RemnantOfTheAncientsMod.Common.Global
 				}
 			}
 		}
+		public void AddValueToTreasureBags(Item item)
+		{
+			var m = Main.ItemDropsDB.GetRulesForItemID(item.type);// .GetRulesForItemID(item.type);
+			var ñ = 4;
+        }
+		
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;

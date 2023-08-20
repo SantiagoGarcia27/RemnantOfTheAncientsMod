@@ -29,24 +29,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		}
 		public override void ModifyTooltips(List<TooltipLine> list)
 		{
-			Player val = Main.player[Main.myPlayer];
-			if (val == null)
-			{
-				return;
-			}
-			RemnantPlayer modPlayer = val.RemnantOfTheAncientsMod();
-
-
-			foreach (TooltipLine item in list)
-			{
-				if (item.Mod == "Terraria" && item.Name == "//Tooltip0")
-				{
-					item.Text = CreateStatMeterTooltip(val, modPlayer);
-				}
-			}
-			list.RemoveAll((TooltipLine l) => l.Mod == "Terraria" && (l.Name == "Favorite" || l.Name == "FavoriteDesc"));
+			
 		}
-		private string CreateStatMeterTooltip(Player player, RemnantPlayer modPlayer)
+        public override void UpdateInventory(Player player)
+        {
+            player.GetModPlayer<InfoDisplayPlayer>().showMaxMinion = true;
+            base.UpdateInventory(player);
+        }
+        private string CreateStatMeterTooltip(Player player, RemnantPlayer modPlayer)
 		{
 			int value = player.statDefense;
 			float DamageReductionStat = player.endurance * 100f;

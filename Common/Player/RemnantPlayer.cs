@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -6,24 +5,18 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using System.Collections.Generic;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
 using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
-using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Dusts;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-using Terraria.Chat;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using CalamityMod;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic;
 using Terraria.Audio;
 using Terraria.GameInput;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -109,144 +102,87 @@ namespace RemnantOfTheAncientsMod
 
 		public override void Load()
 		{
-			// On.Terraria.Player.TryGettingDevArmor += Player_TryGettingDevArmor;		
+            On_Player.TryGettingDevArmor += Player_TryGettingDevArmor;
 			base.Load();
 		}
 
-		//	private void Player_TryGettingDevArmor(On.Terraria.Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
-		//{
-		//	//TryGettingPatreonOrDevArmor(source, this);
-		//	if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : 20))
-		//	{
-		//		switch (Main.rand.Next(20))
-		//		{
-		//			case 0:
-		//				player.QuickSpawnItem(source, 666);
-		//				player.QuickSpawnItem(source, 667);
-		//				player.QuickSpawnItem(source, 668);
-		//				player.QuickSpawnItem(source, 665);
-		//				player.QuickSpawnItem(source, 3287);
-		//				break;
-		//			case 1:
-		//				player.QuickSpawnItem(source, 1554);
-		//				player.QuickSpawnItem(source, 1555);
-		//				player.QuickSpawnItem(source, 1556);
-		//				player.QuickSpawnItem(source, 1586);
-		//				break;
-		//			case 2:
-		//				player.QuickSpawnItem(source, 1554);
-		//				player.QuickSpawnItem(source, 1587);
-		//				player.QuickSpawnItem(source, 1588);
-		//				player.QuickSpawnItem(source, 1586);
-		//				break;
-		//			case 3:
-		//				player.QuickSpawnItem(source, 1557);
-		//				player.QuickSpawnItem(source, 1558);
-		//				player.QuickSpawnItem(source, 1559);
-		//				player.QuickSpawnItem(source, 1585);
-		//				break;
-		//			case 4:
-		//				player.QuickSpawnItem(source, 1560);
-		//				player.QuickSpawnItem(source, 1561);
-		//				player.QuickSpawnItem(source, 1562);
-		//				player.QuickSpawnItem(source, 1584);
-		//				break;
-		//			case 5:
-		//				player.QuickSpawnItem(source, 1563);
-		//				player.QuickSpawnItem(source, 1564);
-		//				player.QuickSpawnItem(source, 1565);
-		//				player.QuickSpawnItem(source, 3582);
-		//				break;
-		//			case 6:
-		//				player.QuickSpawnItem(source, 1566);
-		//				player.QuickSpawnItem(source, 1567);
-		//				player.QuickSpawnItem(source, 1568);
-		//				break;
-		//			case 7:
-		//				player.QuickSpawnItem(source, 1580);
-		//				player.QuickSpawnItem(source, 1581);
-		//				player.QuickSpawnItem(source, 1582);
-		//				player.QuickSpawnItem(source, 1583);
-		//				break;
-		//			case 8:
-		//				player.QuickSpawnItem(source, 3226);
-		//				player.QuickSpawnItem(source, 3227);
-		//				player.QuickSpawnItem(source, 3228);
-		//				player.QuickSpawnItem(source, 3288);
-		//				break;
-		//			case 9:
-		//				player.QuickSpawnItem(source, 3583);
-		//				player.QuickSpawnItem(source, 3581);
-		//				player.QuickSpawnItem(source, 3578);
-		//				player.QuickSpawnItem(source, 3579);
-		//				player.QuickSpawnItem(source, 3580);
-		//				break;
-		//			case 10:
-		//				player.QuickSpawnItem(source, 3585);
-		//				player.QuickSpawnItem(source, 3586);
-		//				player.QuickSpawnItem(source, 3587);
-		//				player.QuickSpawnItem(source, 3588);
-		//				player.QuickSpawnItem(source, 3024, 4);
-		//				break;
-		//			case 11:
-		//				player.QuickSpawnItem(source, 3589);
-		//				player.QuickSpawnItem(source, 3590);
-		//				player.QuickSpawnItem(source, 3591);
-		//				player.QuickSpawnItem(source, 3592);
-		//				player.QuickSpawnItem(source, 3599, 4);
-		//				break;
-		//			case 12:
-		//				player.QuickSpawnItem(source, 3368);
-		//				player.QuickSpawnItem(source, 3921);
-		//				player.QuickSpawnItem(source, 3922);
-		//				player.QuickSpawnItem(source, 3923);
-		//				player.QuickSpawnItem(source, 3924);
-		//				break;
-		//			case 13:
-		//				player.QuickSpawnItem(source, 3925);
-		//				player.QuickSpawnItem(source, 3926);
-		//				player.QuickSpawnItem(source, 3927);
-		//				player.QuickSpawnItem(source, 3928);
-		//				player.QuickSpawnItem(source, 3929);
-		//				break;
-		//			case 14:
-		//				player.QuickSpawnItem(source, 4732);
-		//				player.QuickSpawnItem(source, 4733);
-		//				player.QuickSpawnItem(source, 4734);
-		//				player.QuickSpawnItem(source, 4730);
-		//				break;
-		//			case 15:
-		//				player.QuickSpawnItem(source, 4747);
-		//				player.QuickSpawnItem(source, 4748);
-		//				player.QuickSpawnItem(source, 4749);
-		//				player.QuickSpawnItem(source, 4746);
-		//				break;
-		//			case 16:
-		//				player.QuickSpawnItem(source, 4751);
-		//				player.QuickSpawnItem(source, 4752);
-		//				player.QuickSpawnItem(source, 4753);
-		//				player.QuickSpawnItem(source, 4750);
-		//				break;
-		//			case 17:
-		//				player.QuickSpawnItem(source, 4755);
-		//				player.QuickSpawnItem(source, 4756);
-		//				player.QuickSpawnItem(source, 4757);
-		//				player.QuickSpawnItem(source, 4754);
-		//				break;
-		//			case 18:
-		//				player.QuickSpawnItem(source, ItemType<Sangar_Head>());
-		//				player.QuickSpawnItem(source, ItemType<Sangar_Body>());
-		//				player.QuickSpawnItem(source, ItemType<Sangar_Legs>());
-		//				break;
-		//			case 19:
-		//				player.QuickSpawnItem(source, ItemType<Ttim_Head>());
-		//				player.QuickSpawnItem(source, ItemType<Ttim_Body>());
-		//				player.QuickSpawnItem(source, ItemType<Ttim_Legs>());
-		//				break;
-		//		}
-		//	}
-		//}
-
+		private void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
+		{
+			//TryGettingPatreonOrDevArmor(source, this);
+			if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : 20))
+			{
+				switch (Main.rand.Next(20))
+				{
+					case 0:
+						SpawnSuit(player, source, new List<int>() { 666, 667, 668, 665 });
+						break;
+					case 1:
+						SpawnSuit(player, source, new List<int>() { 1554, 1555, 1556, 1586 });
+						break;
+					case 2:
+						SpawnSuit(player, source, new List<int>() { 1554, 1587, 1588, 1586 });
+						break;
+					case 3:
+						SpawnSuit(player, source, new List<int>() { 1557, 1558, 1559, 1585 });
+						break;
+					case 4:
+						SpawnSuit(player, source, new List<int>() { 1560, 1561, 1562, 1584 });
+						break;
+					case 5:
+						SpawnSuit(player, source, new List<int>() { 1563, 1564, 1565, 3582 });
+						break;
+					case 6:
+                        SpawnSuit(player, source, new List<int>() { 1566, 1567, 1568});
+						break;
+					case 7:
+						SpawnSuit(player, source, new List<int>() { 1580, 1581, 1582, 1583 });
+						break;
+					case 8:
+						SpawnSuit(player, source, new List<int>() { 3226, 3227, 3228, 3288 });
+						break;
+					case 9:
+						SpawnSuit(player, source, new List<int>() { 3583, 3581, 3578, 3579 });
+						break;
+					case 10:
+						SpawnSuit(player, source, new List<int>() { 3585, 3586, 3587, 3588 });
+						break;
+					case 11:
+						SpawnSuit(player, source, new List<int>() { 3589, 3590, 3591, 3592 });
+						break;
+					case 12:
+						SpawnSuit(player, source, new List<int>() { 3368, 3921, 3922, 3923 });
+						break;
+					case 13:
+						SpawnSuit(player, source, new List<int>() { 3925, 3926, 3927, 3928 });
+						break;
+					case 14:
+						SpawnSuit(player, source, new List<int>() { 4732, 4733, 4734, 4730 });
+						break;
+					case 15:
+						SpawnSuit(player, source, new List<int>() { 4747, 4748, 4749, 4746 });
+						break;
+					case 16:
+                        SpawnSuit(player, source, new List<int>() { 4751, 4752, 4753, 4750 });
+                        break;
+					case 17:	
+						SpawnSuit(player, source, new List<int>() { 4755, 4756, 4757, 4754 });
+						break;
+					case 18:
+                        SpawnSuit(player, source, new List<int>() { ItemType<Sangar_Head>(), ItemType<Sangar_Body>(), ItemType<Sangar_Legs>() });
+                        break;
+					case 19:
+						SpawnSuit(player, source, new List<int>() { ItemType<Ttim_Head>(), ItemType<Ttim_Body>(), ItemType<Ttim_Legs>() });
+						break;
+				}
+			}
+		}
+		public void SpawnSuit(Player player,IEntitySource source, List<int> suitParts) 
+		{ 
+			for(int a = 0; a < suitParts.Count; a++)
+			{
+				player.QuickSpawnItem(source, suitParts[a]);
+            }
+		}
 
 		public override void UpdateDead()
 		{
