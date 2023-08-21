@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -13,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
        // public abstract ModTranslation ItemName { get; }
       // public abstract ModTranslation ItemDescription { get; }
         public override string Texture => GetTextureFromItem(ItemBase);
-
+       // public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemBase.ToolTip.GetLine(0));
         public override void SetStaticDefaults()
         {
            /*// //DisplayName.SetDefault($"Endless {ItemName.GetDefault()}");

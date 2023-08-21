@@ -10,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {      
         public abstract Item ItemBase { get; }
         public override string Texture => GetTextureFromItem(ItemBase);
-
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemBase.ToolTip.GetLine(0));
         public override void SetStaticDefaults() 
         {       
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

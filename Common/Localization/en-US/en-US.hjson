@@ -213,7 +213,7 @@ Mods: {
 
 			Tank_Infusion: {
 				DisplayName: Tank infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Tank_Infusion.Description
+				Description: Combination of all vanilla defensive effects
 			}
 
 			Ultimate_Infusion: {
@@ -899,7 +899,7 @@ Mods: {
 
 			Endless_Commander_Porion: {
 				DisplayName: Endless Comander Potions
-				Tooltip: Augmente votre nombre maximum de centries de 1
+				Tooltip: ""
 			}
 
 			Endless_Fish_Potion: {
@@ -939,7 +939,7 @@ Mods: {
 
 			Endless_Sand_Flask: {
 				DisplayName: Endless Sand Flask
-				Tooltip: Melee attacks set enemies burning sand
+				Tooltip: ""
 			}
 
 			Endless_Summon_Potion_Kit: {
@@ -949,7 +949,7 @@ Mods: {
 
 			Endless_Supe_Sense_Potion: {
 				DisplayName: Endless Super Sense Potions
-				Tooltip: Show the locations of enemies and danger sources
+				Tooltip: ""
 			}
 
 			Endless_Tank_Potion_Kit: {
@@ -959,247 +959,247 @@ Mods: {
 
 			EndlessAmmoReservation: {
 				DisplayName: Endless Ammo Reservation Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessArchery: {
 				DisplayName: Endless Archery Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessBattle: {
 				DisplayName: Endless Battle Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessBuilder: {
 				DisplayName: Endless Builder Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessCalming: {
 				DisplayName: Endless Calming Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessCrate: {
 				DisplayName: Endless Crate Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessCurcedFlask: {
 				DisplayName: Endless Cursed Flames Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessDangersense: {
 				DisplayName: Endless Dangersense Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessEndurance: {
 				DisplayName: Endless Endurance Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessFeather: {
 				DisplayName: Endless Featherfall Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessFireFlask: {
 				DisplayName: Endless Fire Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessFishing: {
 				DisplayName: Endless Fishing Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessFlipper: {
 				DisplayName: Endless Flipper Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessGills: {
 				DisplayName: Endless Gills Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessGoldFlask: {
 				DisplayName: Endless Gold Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessGravitation: {
 				DisplayName: Endless Gravitation Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessGreaterLuck: {
 				DisplayName: Endless Greater Luck Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessHeaRtreach: {
 				DisplayName: Endless Heartreach Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessHunter: {
 				DisplayName: Endless Hunter Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessIchorFlask: {
 				DisplayName: Endless Ichor Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessInferno: {
 				DisplayName: Endless Inferno Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessInvisibility: {
 				DisplayName: Endless Invisibility Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessIronSkin: {
 				DisplayName: Endless Ironskin Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessLeasserLuck: {
 				DisplayName: Endless Lesser Luck Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessLifeForce: {
 				DisplayName: Endless Lifeforce Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessLuck: {
 				DisplayName: Endless Luck Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessManaPower: {
 				DisplayName: Endless Magic Power Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessManaRegeneration: {
 				DisplayName: Endless Magic Regeneration Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessMining: {
 				DisplayName: Endless Mining Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessNaniteFlask: {
 				DisplayName: Endless Nanites Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessNecroticRestauration: {
 				DisplayName: Endless Necrotic Restauration Potion
-				Tooltip: Teleports you to your last death
+				Tooltip: "{0}"
 			}
 
 			EndlessNightOwl: {
 				DisplayName: Endless Night Owl Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessObsidian: {
 				DisplayName: Endless Obsidian Skin Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessPartyFlask: {
 				DisplayName: Endless Party Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessPoisonFlask: {
 				DisplayName: Endless Poison Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessRage: {
 				DisplayName: Endless Rage Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessRegeneration: {
 				DisplayName: Endless Regeneration Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessSake: {
 				DisplayName: Endless Sake
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessShine: {
 				DisplayName: Endless Shine Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessSonar: {
 				DisplayName: Endless Sonar Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessSpelunker: {
 				DisplayName: Endless Spelunker Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessSummoning: {
 				DisplayName: Endless Summoning Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessSwiftness: {
 				DisplayName: Endless Swiftness Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessThorns: {
 				DisplayName: Endless Thorns Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessTitan: {
 				DisplayName: Endless Titan Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessVenomFlask: {
 				DisplayName: Endless Venom Flask
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessWarmth: {
 				DisplayName: Endless Warmth Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessWaterWalking: {
 				DisplayName: Endless Water Walking Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			EndlessWrath: {
 				DisplayName: Endless Wrath Potion
-				Tooltip: ""
+				Tooltip: "{0}"
 			}
 
 			Fish_Potion: {

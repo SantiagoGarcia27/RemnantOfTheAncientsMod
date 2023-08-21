@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sake eterno");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(new Item(ItemID.Sake).ToolTip.GetLine(0));
         public override void SetDefaults()
         {
             Item.width = 20;
