@@ -50,6 +50,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
             Item.defense = 5;
             Item.accessory = true;
+            Item.master = true;
+            Item.masterOnly = true;
         }
         public override void AddRecipes()  //How to craft this item
         {

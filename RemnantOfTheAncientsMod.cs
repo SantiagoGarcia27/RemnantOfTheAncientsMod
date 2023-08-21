@@ -51,7 +51,10 @@ namespace RemnantOfTheAncientsMod
             {
                 ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
             }
-           // LocalizationHelper.ForceLoadModHJsonLocalization(this);
+            // LocalizationHelper.ForceLoadModHJsonLocalization(this);
+
+
+            BackgroundTextureLoader.AddBackgroundTexture(this, "RemnantOfTheAncientsMod/Common/Menu/PlaceHolder");
         }
 
         public static int GetMaxRarity()

@@ -5,7 +5,7 @@ namespace RemnantOfTheAncientsMod.Common.Menu;
 
 internal class MenuBackground : ModSurfaceBackgroundStyle
 {
-	private static readonly string TexPath = "RemnantOfTheAncientsMod/Common/Menu/Banner";
+	private static readonly string TexPath = "Common/Menu/PlaceHolder";
 
 	public override void ModifyFarFades(float[] fades, float transitionSpeed)
 	{
@@ -32,17 +32,19 @@ internal class MenuBackground : ModSurfaceBackgroundStyle
 
 	public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
 	{
-		return BackgroundTextureLoader.GetBackgroundSlot(TexPath);
+		BackgroundTextureLoader.AddBackgroundTexture(Mod, TexPath);
+
+        return BackgroundTextureLoader.GetBackgroundSlot(Mod,TexPath);
 	}
 
 	public override int ChooseFarTexture()
 	{
-		return BackgroundTextureLoader.GetBackgroundSlot(TexPath);
+		return BackgroundTextureLoader.GetBackgroundSlot(Mod,TexPath);
 	}
 
 	public override int ChooseMiddleTexture()
 	{
-		return BackgroundTextureLoader.GetBackgroundSlot(TexPath);
+		return BackgroundTextureLoader.GetBackgroundSlot(Mod, TexPath);
 	}
 
 	public override bool PreDrawCloseBackground(SpriteBatch spriteBatch)
