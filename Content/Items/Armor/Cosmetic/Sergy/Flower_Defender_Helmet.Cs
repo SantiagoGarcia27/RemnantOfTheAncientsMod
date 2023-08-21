@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
             var position = drawInfo.Center + new Vector2(-20f * Main.LocalPlayer.direction, -25f - floatingCounter) - Main.screenPosition;
             position = new Vector2((int)position.X, (int)position.Y); // You'll sometimes want to do this, to avoid quivering.
             UpdateCounters();
-            var ñ = drawInfo.shadow;
+           // var ñ = drawInfo.shadow;
             drawInfo.DrawDataCache.Add(new DrawData(BaseTexture.Value,position,null,Color.White,0f,BaseTexture.Size() * 0.5f, 1f, SpriteEffects.None,0));
         }
         public void UpdateCounters()

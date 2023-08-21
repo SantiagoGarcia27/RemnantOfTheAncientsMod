@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod
         }
 
         [Obsolete]
-        public override void AddRecipes()
+        public override void AddRecipes()/* tModPorter Note: Removed. Use ModSystem.AddRecipes */
         {
             RecipeMaker.AddRecipes();
         }
