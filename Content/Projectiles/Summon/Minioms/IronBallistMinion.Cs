@@ -7,6 +7,8 @@ using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using Terraria.GameContent;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Microsoft.CodeAnalysis;
+using CalamityMod;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
@@ -48,25 +50,53 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             return true;
         }
 
-        Vector2 targetPos;
+        public override bool PreDraw(ref Color lightColor)
+        {
+            //Vector2 t = Projectile.Center + new Vector2(10 * 16, 10 * 16);
+            //Rectangle rec = new Rectangle((int)Projectile.Center.X, (int)Projectile.Center.Y, (int)t.X, (int)t.Y );
+            //var origin = Request<Texture2D>(Texture).Size() / 2;
+            //Main.EntitySpriteDraw(TextureAssets.MagicPixel.Value, Projectile.position - Main.screenPosition, rec, Color.Orange * 0.75f, 0f, origin, 1, 0);
+            return true;
+        }
+
+
+
+            Vector2 targetPos;
         float targetDist;
         NPC target = null;
+        Vector2 UnfocusDistance = new(1,1);
         public override void AI()
         {
+            //Main.NewText(Projectile.position);   
             Player player = Main.player[Projectile.owner];
-            if (!CheckActive(player)) return;
+            UnfocusDistance = new Vector2(Main.screenWidth, Main.screenHeight);
 
+            //Dust.NewDust(Projectile.Center - UnfocusDistance/2, (int)UnfocusDistance.X, (int)UnfocusDistance.Y, DustID.Torch, 0, 0, 1, default, 1);
+            //Rectangle rec = new Rectangle((int)Projectile.Center.X, (int)Projectile.Center.Y, (int)UnfocusDistance.X, (int)UnfocusDistance.Y);
+ 
+            //if (!rec.Contains(Utils1.ToPoint(player.Center))) Main.NewText("fuera de rango");
+            //else Main.NewText("dentro de rango");
+           
+
+            if (!CheckActive(player)) return;
             FixSize();
             FindFrame();
             if (target == null || !target.active || !FoundTarget || player.HasMinionAttackTargetNPC) target = FindTarget(player);
             float playerDistance = Projectile.Distance(player.position);
-            Projectile.tileCollide = (playerDistance > 1000 && !FoundTarget) ? false : true;
+            Projectile.tileCollide = (playerDistance > UnfocusDistance.X && !FoundTarget) ? false : true;
 
             if (target != null)
             {
                 Vector2 TargetDistance = Utils1.FormatToPositive(DistanceUtils.GetDistance(target, Projectile));
+
                 if (FoundTarget)
                 {
+                    if (playerDistance >= UnfocusDistance.X)
+                    {
+                        target = null;
+                        Projectile.velocity = Projectile.Center - player.Center;
+                        return;
+                    }
                     Projectile.direction = DistanceUtils.GetDistance(target, Projectile).X > 0 ? 1 : -1;
                     Projectile.spriteDirection = Projectile.direction;
                     if (TargetDistance.X < 400 && TargetDistance.X > 0)
@@ -74,6 +104,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                         Shoot(target);
                     }
                 }
+            }
+            else if(playerDistance >= UnfocusDistance.X)
+            {
+                Projectile.Center = player.Center;
             }
             Movment(player, target);
         }
@@ -137,121 +171,207 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
             }
         }
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
         public void Movment(Player player, NPC? target)
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         {
 
             float speed = 5f;
-            float Range = 500f;
-            if (!FoundTarget || target == null)
+            float Range = 300f * 16;
+            bool TouchBlock = Collision.SolidCollision((Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f)), Projectile.width + 2, Projectile.height);
+            Tile tile = Main.tile[(int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16)];
+            bool MinionStuck = tile.HasTile && Main.tileSolid[tile.TileType];
+         // int a =  Dust.NewDust(DistanceUtils.ToCoordenatePosition(new Vector2(Projectile.Center.X / 16, Projectile.Center.Y / 16)), 1, 1, DustID.AmberBolt,0,0,1,default,1);
+          //  Main.dust[a].noGravity = true;
+            if (TouchBlock)
             {
-
-                MovmentToPlayer(player, speed);
+                Jump(2f);
+            }
+            if (MinionStuck)
+            {
+                Projectile.tileCollide = false;
+                Jump(4f);
+            }
+            if (DistanceUtils.ProjectileTouchFlourLiquid(Projectile) && player.waterWalk)
+            {
+                Jump(1f);
             }
             else
             {
-                MovmentToTarget(target, speed * 2, Range);
-            }
-
-        }
-        int jumpCounter = 0;
-        public void MovmentToPlayer(Player player, float speed)
-        {
-            Point ProjectileFoor = Utils.ToTileCoordinates(Projectile.Center);
-            float playerDistanceFloat = Projectile.Distance(player.position);
-            Vector2 playerDistance = DistanceUtils.GetDistance(Projectile, player);
-            if (playerDistanceFloat < 2200 && !FoundTarget)
-            {
-                if (Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width + 2, Projectile.height))
+                if (!FoundTarget || target == null)
                 {
-                    Projectile.velocity.X = Projectile.position.DirectionTo(player.position).X * speed;
-                    Projectile.velocity -= new Vector2(0, 2);
+
+                    MovmentToPlayer(player, speed * (player.moveSpeed * 1.5f));
                 }
                 else
                 {
-                    List<Tile> positionsFloor = new List<Tile>
-                    {
-                        Main.tile[ProjectileFoor.X, (ProjectileFoor.Y + 1)],
-                        Main.tile[ProjectileFoor.X , (ProjectileFoor.Y + 2)]
-                    };
+                    MovmentToTarget(target, speed * 2, Range);
+                }
+            }
 
-                    if (!positionsFloor[0].HasTile && !positionsFloor[1].HasTile)
+        }
+        public void MovmentToPlayer(Player player, float speed)
+        { 
+            float playerDistanceFloat = Projectile.Distance(player.position);
+           
+         
+            if (playerDistanceFloat < 2200 && !FoundTarget)
+            {
+                Vector2 playerDistance = player.Center - Projectile.Center;
+                if (Utils1.FormatToPositive(playerDistance).Y < 20 * 16)
+                {
+                    Projectile.tileCollide = -playerDistance.Y < 5 * 16;
+                    Projectile.velocity.X = (Projectile.position.DirectionTo(player.position).X * (speed / 2));
+                    ApplyGravity();
+                }
+                else
+                {
+                    if (DistanceUtils.PlayerTouchFlour(player))
                     {
-                        Projectile.velocity += new Vector2(0, 8);
-                    }
-                    if (playerDistance.X / 16 > 10 && jumpCounter >= 20)
-                    {
-                        if (jumpCounter >= 20)
-                        {
-                            Projectile.velocity -= new Vector2(16, 0);
-                            Projectile.tileCollide = false;
-                        }
-                        if (jumpCounter == 10)
-                        {
-                            Projectile.velocity -= new Vector2(0, 18);
-                            Projectile.tileCollide = false;
-                        }
-                        jumpCounter = 0;
+                        Projectile.velocity = Projectile.position.DirectionTo(player.position) * speed;
+                        Projectile.tileCollide = false;
+                        Projectile.Center = player.Center;
                     }
                     else
                     {
-                        jumpCounter++;
-                        Projectile.velocity.X = Projectile.position.DirectionTo(player.position).X * speed;
-                        Projectile.tileCollide = true;
+                        Projectile.velocity.X = (Projectile.position.DirectionTo(player.position).X * (speed / 2));
+                        ApplyGravity();
                     }
                 }
+               
+
+
             }
-            else
-            {
-                Projectile.position = Main.player[Projectile.owner].position;
-            }
+            //    if (TouchBlock)
+            //    {
+            //        Projectile.velocity.X = Projectile.position.DirectionTo(player.position).X * speed;
+            //        Projectile.velocity -= new Vector2(0, 2);
+            //        Projectile.tileCollide = Projectile.Center.DistanceSQ(player.Center) > UnfocusDistance.X ? false : true;
+            //    }
+            //    else
+            //    {
+     
+            //        List<Tile> positionsFloor = new List<Tile>
+            //        {
+            //            Main.tile[ProjectileFoor.X, (ProjectileFoor.Y + 1)],
+            //            Main.tile[ProjectileFoor.X , (ProjectileFoor.Y + 2)]
+            //        };
+
+            //        if (!positionsFloor[0].HasTile && !positionsFloor[1].HasTile)
+            //        {
+            //            if ((Projectile.Center.Y- player.Center.Y) < 10*16)
+            //            {
+            //                Projectile.velocity += new Vector2(0, 8);
+            //            }
+            //            else
+            //            {
+            //                if (DistanceUtils.PlayerTouchFlour(player) || DistanceUtils.PlayerTouchFlourLiquid(player))
+            //                {
+            //                    Projectile.velocity = (player.Center - Projectile.Center);// * speed;
+            //                    Projectile.tileCollide = false;
+            //                }
+            //            }
+
+            //        }
+            //        if (playerDistance.X / 16 > 10 && jumpCounter >= 20)
+            //        {
+            //            if (jumpCounter >= 20)
+            //            {
+            //                Projectile.velocity -= new Vector2(16, 0);
+            //                //Projectile.tileCollide = false;
+            //            }
+            //            if (jumpCounter == 10)
+            //            {
+            //                Projectile.velocity -= new Vector2(0, 2);
+            //               // Projectile.tileCollide = false;
+            //            }
+            //            jumpCounter = 0;
+            //        }
+            //        else
+            //        {
+            //            jumpCounter++;
+            //            Projectile.velocity.X = Projectile.Center.DirectionTo(player.Center).X * speed;
+            //            Projectile.tileCollide = true;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    Projectile.Center = player.Center;
+            //}
         }
         public void MovmentToTarget(NPC target, float speed, float range)
         {
-            Point ProjectileFoor = Utils.ToTileCoordinates(Projectile.Center);
-            float targetDistanceTotal = Projectile.Distance(target.position);
-            Vector2 targetDistance = Utils1.FormatToPositive(DistanceUtils.GetDistance(Projectile, target));
-            if (targetDistance.X < 200)
-            {
-                Projectile.velocity = new Vector2(0, 18);
-            }
-            else if (targetDistance.X < range)
-            {
+            //Vector2 distance =  Projectile.Center -target.Center;
+            //if (distance.X <= range && distance.Y <= range)
+            //{
+            int dist = 10 * 16;
 
-                if (Projectile.velocity.Y > 0)
-                {
-                    Projectile.velocity.Y = 0;
-                }
-                else
-                {
-                    Projectile.velocity.X = Projectile.position.DirectionTo(target.position).X * speed;
-                }
-                if (Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width, Projectile.height))
-                {
-                    Projectile.velocity -= new Vector2(0, 4);
-                }
-                else if (!Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width, Projectile.height))
-                {
-                    List<Tile> positionsFloor = new List<Tile>
-                    {
-                    Main.tile[ProjectileFoor.X, (ProjectileFoor.Y + 1)],
-                    Main.tile[ProjectileFoor.X , (ProjectileFoor.Y + 2)]
-                    };
-
-                    if (!positionsFloor[0].HasTile && !positionsFloor[1].HasTile)
-                    {
-                        Projectile.velocity += new Vector2(0, 8);
-                    }
-                }
+            if (Projectile.DistanceSQ(target.Center) > dist * dist)
+            {
+                Projectile.velocity = Projectile.DirectionTo(target.Center) * speed;
             }
             else
             {
-                FoundTarget = false;
+                Projectile.velocity = Vector2.Zero;
             }
+
+
+            //Projectile.velocity.X = Projectile.position.DirectionTo(target.position + new Vector2(10 * 16) *Projectile.direction).X  * speed;
+                ApplyGravity();
+                Projectile.tileCollide = true;
+          
+            //}
+            //else
+            //{
+            //    FindTarget(Main.player[Projectile.owner]);
+            //}
+            //if (targetDistance.X < 200)
+            //{
+            //    Projectile.velocity += new Vector2(0, 18);
+            //}
+            //else if (targetDistance.X < range)
+            //{
+
+            //    if (Projectile.velocity.Y > 0)
+            //    {
+            //        Projectile.velocity.Y = 0;
+            //    }
+            //    else
+            //    {
+            //        Projectile.velocity.X = Projectile.position.DirectionTo(target.position).X * speed;
+            //    }
+            //    if (Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width, Projectile.height))
+            //    {
+            //        Projectile.velocity -= new Vector2(0, 4);
+            //    }
+            //    else if (!Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width, Projectile.height))
+            //    {
+            //        List<Tile> positionsFloor = new List<Tile>
+            //        {
+            //        Main.tile[ProjectileFoor.X, (ProjectileFoor.Y + 1)],
+            //        Main.tile[ProjectileFoor.X , (ProjectileFoor.Y + 2)]
+            //        };
+
+            //        if (!positionsFloor[0].HasTile && !positionsFloor[1].HasTile)
+            //        {
+            //            Projectile.velocity += new Vector2(0, 8);
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    FoundTarget = false;
+            //}
         }
 
-
+        public void ApplyGravity()
+        {
+            Projectile.velocity.Y += 2;
+        }
+        public void Jump(float force)
+        {
+            Projectile.velocity.Y -= 2 + force;
+        }
         private void FixSize()
         {
             Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width - 35, (TextureAssets.Projectile[Projectile.type].Value.Height / Main.projFrames[Projectile.type]) /*+ 125*/);

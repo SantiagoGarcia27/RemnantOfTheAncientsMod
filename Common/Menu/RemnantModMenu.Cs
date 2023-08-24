@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Common.Menu
 
         public override Asset<Texture2D> MoonTexture => ModContent.Request<Texture2D>($"{menuAssetPath}/PlaceHolder");
 
-       // public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/MysteriousMystery");
+     //  public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Menu");
 
         public override ModSurfaceBackgroundStyle MenuBackgroundStyle => ModContent.GetInstance<MenuBackground>();
 
@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Common.Menu
 
         public override void OnSelected()
         {
-            SoundEngine.PlaySound(SoundID.Thunder); // Plays a thunder sound when this ModMenu is selected
+            SoundEngine.PlaySound(SoundID.Chat); // Plays a thunder sound when this ModMenu is selected
         }
 
         public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor)
@@ -53,6 +53,7 @@ namespace RemnantOfTheAncientsMod.Common.Menu
             //    // scale = 0.417f;
             //}
             spriteBatch.Draw(texture, drawOffset, null, Color.White, 0f, Vector2.Zero, scale, 0, 0f);
+            drawColor = Color.White;
             return true;
         }
     }

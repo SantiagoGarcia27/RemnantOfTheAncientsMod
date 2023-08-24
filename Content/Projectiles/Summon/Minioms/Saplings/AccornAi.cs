@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 		protected float chaseDist = 200f;
 		protected float chaseAccel = 6f;
 		protected float inertia = 40f;
-		protected float shootCool = 90f;
+		protected float shootCool = 80f;
 		protected float shootSpeed;
 		protected int shoot;
 
@@ -107,12 +107,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
             if (player.HasMinionAttackTargetNPC)
             {
                 NPC npc = Main.npc[player.MinionAttackTargetNPC];
-                if (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
-                {
+                /*if (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))    //Sirve para checkear las paredes
+                {*/
                     targetDist = Vector2.Distance(Projectile.Center, targetPos);
                     targetPos = npc.Center;
                     target = true;
-                }
+               // }
             }
             else
             {
@@ -122,7 +122,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
                     if (npc.CanBeChasedBy(this, false))
                     {
                         float distance = Vector2.Distance(npc.Center, Projectile.Center);
-                        if ((distance < targetDist || !target) && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
+                        if ((distance < targetDist || !target) /*&& Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height)*/)
                         {
                             targetDist = distance;
                             targetPos = npc.Center;

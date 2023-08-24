@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace RemnantOfTheAncientsMod
@@ -9,7 +8,7 @@ namespace RemnantOfTheAncientsMod
         public override ConfigScope Mode => ConfigScope.ClientSide;
         
         #region ToggleEffects
-       // [Header("Potion Effects")]
+        [Header("PotionEffects")]
         //[Label("Feather fall effect on kits")]
         [DefaultValue(true)]
         //[//Tooltip("Activate the feather fall effect of potion kits")]
@@ -29,10 +28,15 @@ namespace RemnantOfTheAncientsMod
         [DefaultValue(true)]
        // //[//Tooltip("Activate the inferno effect of potion kits")]
         public bool KitsInferno { get; set; }
+
+        [DefaultValue(true)]
+        // //[//Tooltip("Activate the inferno effect of potion kits")]
+        public bool KitsGills { get; set; }
         #endregion
 
         #region ReaperSouls
-       // [Header("Reaper")]
+      
+        [Header("ReaperSouls")]
 
         //[Label("Toggle King Slime soul")]
         [SliderColor(11, 181, 176, 29)]

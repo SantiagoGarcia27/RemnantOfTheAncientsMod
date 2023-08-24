@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod
         public override ConfigScope Mode => ConfigScope.ServerSide;
         #region Performance
 
-        //[Header("Performance")]
+        [Header($"$Mods.RemnantOfTheAncientsMod.ConfigServer.Headers.Performance")]
 
        //[Label("Lag Reducer Mode")]
         [SliderColor(11, 181, 176, 29)]
@@ -68,12 +68,12 @@ namespace RemnantOfTheAncientsMod
         //public float xdlevel { get; set; }
         #region ModsCompativilities
         [JITWhenModsEnabled("TerrariaOverhaul")]
-        //[Header("Terraria Overhaul")]
+        [Header("TerrariaOverhaul")]
 
        //[Label("Melee weapons cost maná")]
         [DefaultValue(true)]
-        [Tooltip("Activate the mechanic of melee cost mana"+
-            "\nRequires recharging")]
+        //[Tooltip("Activate the mechanic of melee cost mana"+
+        //    "\nRequires recharging")]
         [ReloadRequired]
         public bool OverhaulMeleeManaCostConfig { get; set; }
         #endregion

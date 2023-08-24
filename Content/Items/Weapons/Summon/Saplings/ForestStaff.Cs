@@ -1,15 +1,8 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
-#pragma warning disable CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings' appeared previously in this namespace
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
-#pragma warning restore CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings' appeared previously in this namespace
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns;
-#pragma warning disable CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns' appeared previously in this namespace
-using  RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns;
-#pragma warning restore CS0105 // The using directive for 'RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns' appeared previously in this namespace
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 {
@@ -18,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 		public override int ItemId => ItemID.Wood;
 		public override int BuffId => BuffType<SaplingMinionBuff>();
 		public override int MinionId => ProjectileType<SaplingMinion>();
-		public override int Damage => 5;
+		public override int Damage => 4;
 		public override int UseTime => 36;
 		public override int Useanimation => 36;
 		public override int Mana => 5;
@@ -48,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 		public override int ItemId => ItemID.SilverBar;
 		public override int BuffId => BuffType<SilverAcornBuff>();
 		public override int MinionId => ProjectileType<SaplingSilverMinion>();
-		public override int Damage => 7;
+		public override int Damage => 6;
 		public override int UseTime => 36;
 		public override int Useanimation => 36;
 		public override int Mana => 5;
@@ -68,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 		public override int ItemId => ItemID.TungstenBar;
 		public override int BuffId => BuffType<TungstenAcornBuff>();
 		public override int MinionId => ProjectileType<SaplingTungstenMinion>();
-		public override int Damage => 8;
+		public override int Damage => 7;
 		public override int UseTime => 36;
 		public override int Useanimation => 36;
 		public override int Mana => 5;
@@ -87,7 +80,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 		public override int ItemId => ItemID.GoldBar;
 		public override int BuffId => BuffType<GoldenAcornBuff>();
 		public override int MinionId => ProjectileType<SaplingGoldMinion>();
-		public override int Damage => 9;
+		public override int Damage => 8;
 		public override int UseTime => 36;
 		public override int Useanimation => 36;
 		public override int Mana => 5;
@@ -105,7 +98,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 		public override int ItemId => ItemID.PlatinumBar;
 		public override int BuffId => BuffType<PlatinumAcornBuff>();
 		public override int MinionId => ProjectileType<SaplingPlatinumMinion>();
-		public override int Damage => 10;
+		public override int Damage => 9;
 		public override int UseTime => 36;
 		public override int Useanimation => 36;
 		public override int Mana => 5;

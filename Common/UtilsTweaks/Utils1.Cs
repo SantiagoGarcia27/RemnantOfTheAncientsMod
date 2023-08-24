@@ -163,5 +163,13 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return player.HeldItem.DamageType;
         }
+        public static Point ToPoint(Vector2 vector2)
+        {
+            return new Point((int)vector2.X, (int)vector2.Y);
+        }
+        public static bool NumberBetween(float min,float max,float number)
+        {
+            return (number - min) * (max - number) >= 0;
+        }
     }
 }

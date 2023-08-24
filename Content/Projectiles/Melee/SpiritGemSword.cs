@@ -101,7 +101,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                 case 5:
                     return Color.White;
                 case 6:
-                    return new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B);                 
+                    return new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B);
+                case 7:
+                    return Color.SandyBrown;
                 default: 
                   return Color.Black;
                     

@@ -177,7 +177,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
     }
     public class The_Geode_White : BaseGeode
     {
-        public override int damage => 30;
+        public override int damage => 35;
         public override int attakSpeed => 18;
         public override int knockBack => 5;
         public override int GemId => ItemID.LargeDiamond;
@@ -187,6 +187,43 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
             //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+    }
+    public class The_Geode_Brown : BaseGeode
+    {
+        public override int damage => 30;
+        public override int attakSpeed => 18;
+        public override int knockBack => 5;
+        public override int GemId => ItemID.LargeAmber;
+        public override void SetStaticDefaults()
+        {
+            // //DisplayName.SetDefault("The Geode");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La géode");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La geoda");
+            //CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.shoot = ProjectileID.Excalibur;
+            Item.shootSpeed = 5f;
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
+           int p = Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale * 1.2f);
+            Main.projectile[p].GetAlpha(Color.SandyBrown);
+            int a = Projectile.NewProjectile(source, player.MountedCenter, new Vector2(-player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale * 1.3f);
+            Main.projectile[a].GetAlpha(Color.SandyBrown);
+
+
+             p = Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction *2f, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale * 1.4f);
+            Main.projectile[p].GetAlpha(Color.SandyBrown);
+             a = Projectile.NewProjectile(source, player.MountedCenter, new Vector2(-player.direction *2f, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale * 1f);
+            Main.projectile[a].GetAlpha(Color.SandyBrown);
+            NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
+
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
     public abstract class BaseGeode : ModItem
@@ -260,6 +297,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
                 .AddIngredient(ModContent.ItemType<Sapphire_Sword>())
                 .AddIngredient(ModContent.ItemType<Ruby_Sword>())
                 .AddIngredient(ModContent.ItemType<Emerald_Sword>())
+                 .AddIngredient(ModContent.ItemType<Amber_Sword>())
                 .AddIngredient(ModContent.ItemType<Diamond_Sword>())
                 .AddIngredient(ModContent.ItemType<BoneBar>(), 2)
                 .AddIngredient(ItemID.StoneBlock, 10)

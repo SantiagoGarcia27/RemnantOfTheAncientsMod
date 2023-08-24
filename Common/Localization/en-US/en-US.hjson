@@ -668,7 +668,7 @@ Mods: {
 				DisplayName: Daylight skirt
 				Tooltip:
 					'''
-					{$CommonItemTooltip.PercentIncreasedSummonDamage}	
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxManaBy@1}
 					'''
 			}
@@ -1521,7 +1521,7 @@ Mods: {
 
 			TuxoniteToilet: {
 				DisplayName: Tuxonite Toilet
-				Tooltip: ""
+				Tooltip: A rare gift for a big fan
 			}
 
 			DesertMusicBox: {
@@ -2920,15 +2920,59 @@ Mods: {
 				DisplayName: Flower Defender Legs
 				Tooltip: ""
 			}
+
+			Amber_Sword: {
+				DisplayName: Amber Sword
+				Tooltip: ""
+			}
+
+			The_Geode_Brown: {
+				DisplayName: The Geode
+				Tooltip: ""
+			}
+
+			PalidNail: {
+				DisplayName: Palid Nail
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
 			AntlionD.DisplayName: Antlion
 			ArmoredSlime.DisplayName: Armored Slime
-			DesertAniquilator.DisplayName: Desert Annihilator
-			frozen_assaulter.DisplayName: Frozen Assaulter
+
+			DesertAniquilator: {
+				DisplayName: Desert Annihilator
+
+				BossChecklistIntegration: {
+					EntryName: Mods.RemnantOfTheAncientsMod.NPCs.DesertAniquilator.//DisplayName
+					SpawnInfo: Use a [i:5703] in the desert
+					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+				}
+			}
+
+			frozen_assaulter: {
+				DisplayName: Frozen Assaulter
+
+				BossChecklistIntegration: {
+					EntryName: Mods.RemnantOfTheAncientsMod.NPCs.frozen_assaulter.//DisplayName
+					SpawnInfo: Use a [i:5705] in the snow at the night
+					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+				}
+			}
+
 			InfernalTyrantBody.DisplayName: Infernal Tyrant
-			InfernalTyrantHead.DisplayName: Infernal Tyrant
+
+			InfernalTyrantHead: {
+				DisplayName: Infernal Tyrant
+
+				BossChecklistIntegration: {
+					EntryName: Mods.RemnantOfTheAncientsMod.NPCs.InfernalTyrantHead.//DisplayName
+					SpawnInfo: Use a [i:5706] in the Underworld
+					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+				}
+			}
+
 			InfernalTyrantTail.DisplayName: Infernal Tyrant
 			DesertScorpionD.DisplayName: Sand Poacher
 			DSlime.DisplayName: Servant of Desert Annihilator
@@ -3072,6 +3116,7 @@ Mods: {
 			MisilUltra.DisplayName: Misil Ultra
 			MoltenGrassSwordLeaft.DisplayName: Molten Grass Sword Leaft
 			DesertEdgeSwordSwingProgectile.DisplayName: Desert Edge Sword Swing Progectile
+			NailSlash.DisplayName: Nail Slash
 		}
 
 		Tiles: {
@@ -3087,9 +3132,24 @@ Mods: {
 			TuxoniteTableTile.MapEntry: Table
 		}
 
+		Conditions: {
+			OpositeOreGeneration: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration
+			IsHardmode: Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode
+			KingSlimeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated
+			IsRaining: Mods.RemnantOfTheAncientsMod.Conditions.IsRaining
+			IsSandstorm: Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm
+			QueenBeeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated
+			TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
+		}
+
 		Configs: {
 			ConfigClient: {
 				DisplayName: Config Client
+
+				Headers: {
+					PotionEffects: Potion Effects Header
+					ReaperSouls: Reaper Souls Header
+				}
 
 				KitsFeatherFall: {
 					Label: Kits Feather Fall
@@ -3108,6 +3168,11 @@ Mods: {
 
 				KitsInferno: {
 					Label: Kits Inferno
+					Tooltip: ""
+				}
+
+				KitsGills: {
+					Label: Kits Gills
 					Tooltip: ""
 				}
 
@@ -3220,6 +3285,12 @@ Mods: {
 			ConfigServer: {
 				DisplayName: Config Server
 
+				Headers: {
+					Performance: Performance Header
+					TerrariaOverhaul: Terraria Overhaul Header
+					TerrariaOverhaulHeader: Terraria Overhaul Header Header
+				}
+
 				LagReducer: {
 					Label: Lag Reducer
 					Tooltip: ""
@@ -3242,23 +3313,17 @@ Mods: {
 
 				OverhaulMeleeManaCostConfig: {
 					Label: Overhaul Melee Mana Cost Config
-					Tooltip:
-						'''
-						Activate the mechanic of melee cost mana
-						Requires recharging
-						'''
+					Tooltip: ""
 				}
 			}
 		}
 
-		Conditions: {
-			OpositeOreGeneration: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration
-			IsHardmode: Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode
-			KingSlimeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated
-			IsRaining: Mods.RemnantOfTheAncientsMod.Conditions.IsRaining
-			IsSandstorm: Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm
-			QueenBeeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated
-			TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
+		ConfigServer: {
+			Headers: {
+				Performance: Lag Reducer Header
+				TerrariaOverhaul: Overhaul Melee Mana Cost Config Header
+				TerrariaOverhaulHeader: Overhaul Melee Mana Cost Config Header
+			}
 		}
 	}
 }
