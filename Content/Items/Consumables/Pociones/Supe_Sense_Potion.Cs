@@ -30,13 +30,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void AddRecipes()
         {
-             CreateRecipe(2)
-             .AddIngredient(ItemID.Lens, 2)
-             .AddIngredient(ItemID.SpiderFang, 1)
-             .AddIngredient(ItemID.Daybloom, 1)
-             .AddIngredient(ItemID.BottledWater, 1)
-             .AddTile(TileID.Bottles)
-             .Register();
+            CreateRecipe(2)
+            .AddIngredient(ItemID.Cobweb, 20)
+            .AddIngredient(ItemID.Shiverthorn, 2)
+            .AddIngredient(ItemID.Blinkroot, 2)
+            .AddIngredient(ItemID.Daybloom, 2)
+            .AddIngredient(ItemID.BottledWater, 1)
+            .AddTile(TileID.Bottles)
+            .Register();
 
             CreateRecipe(2)
              .AddIngredient(ItemID.HunterPotion, 1)
@@ -61,13 +62,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override void AddRecipes()
         {
             base.AddRecipes();
-            CreateRecipe()
-            .AddIngredient(ItemID.Lens, 30)
-            .AddIngredient(ItemID.SpiderFang, 15)
-            .AddIngredient(ItemID.Daybloom, 15)
-            .AddIngredient(ItemID.BottledWater, 15)
-            .AddTile(TileID.Bottles)
-            .Register();
+            CreateRecipe(2)
+           .AddIngredient(ItemID.Cobweb, 300)
+           .AddIngredient(ItemID.Shiverthorn, 30)
+           .AddIngredient(ItemID.Blinkroot, 30)
+           .AddIngredient(ItemID.Daybloom, 30)
+           .AddIngredient(ItemID.BottledWater, 15)
+           .AddTile(TileID.Bottles)
+           .Register();
 
             CreateRecipe()
             .AddIngredient(ItemID.HunterPotion, 15)

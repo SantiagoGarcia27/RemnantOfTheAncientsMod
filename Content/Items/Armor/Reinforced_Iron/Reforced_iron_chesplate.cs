@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		}
         public override void UpdateEquip(Player player)
         {
-			player.endurance += 0.10f;
+			player.endurance += 0.08f;
             player.moveSpeed -= 0.25f;
         }
 

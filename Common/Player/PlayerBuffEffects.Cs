@@ -55,7 +55,7 @@ namespace RemnantOfTheAncientsMod
             player.waterWalk = true;
             player.ignoreWater = true;
             player.accFlipper = true;
-            player.gills = true;
+            if (GetInstance<ConfigClient>().KitsGills) player.gills = true;
             player.buffImmune[4] = true;
             player.buffImmune[15] = true;
             player.buffImmune[109] = true;

@@ -512,7 +512,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
-					 Movement speed increases and you become immune to frozen and chilled debuffs while in snow
+					Movement speed increases and you become immune to frozen and chilled debuffs while in snow
 					'''
 			}
 
@@ -565,7 +565,7 @@ Mods: {
 					'''
 					Increases mana regeneration
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
-					{$CommonItemTooltip.PercentReducedManaCost}
+					{$CommonItemTooltip.PercentReducedManaCost@1}
 					Automatically use mana potions when needed
 					increases pickup range for mana stars
 					you are immune to Mana Sickness
@@ -1109,7 +1109,7 @@ Mods: {
 
 			EndlessNecroticRestauration: {
 				DisplayName: Endless Necrotic Restauration Potion
-				Tooltip: "{0}"
+				Tooltip: Teleports you to your last death-
 			}
 
 			EndlessNightOwl: {
@@ -2945,18 +2945,18 @@ Mods: {
 				DisplayName: Desert Annihilator
 
 				BossChecklistIntegration: {
-					EntryName: Mods.RemnantOfTheAncientsMod.NPCs.DesertAniquilator.//DisplayName
-					SpawnInfo: Use a [i:5703] in the desert
+					EntryName: Desert Annihilator
+					SpawnInfo: Use a [i:5599] in the desert
 					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 			}
 
-			frozen_assaulter: {
+			FrozenAssaulter: {
 				DisplayName: Frozen Assaulter
 
 				BossChecklistIntegration: {
-					EntryName: Mods.RemnantOfTheAncientsMod.NPCs.frozen_assaulter.//DisplayName
-					SpawnInfo: Use a [i:5705] in the snow at the night
+					EntryName: Frozen Assaulter
+					SpawnInfo: Use a [i:5601] in the snow at the night
 					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
@@ -2967,8 +2967,8 @@ Mods: {
 				DisplayName: Infernal Tyrant
 
 				BossChecklistIntegration: {
-					EntryName: Mods.RemnantOfTheAncientsMod.NPCs.InfernalTyrantHead.//DisplayName
-					SpawnInfo: Use a [i:5706] in the Underworld
+					EntryName: Infernal Tyrant
+					SpawnInfo: Use a [i:5602] in the Underworld
 					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
@@ -3286,9 +3286,9 @@ Mods: {
 				DisplayName: Config Server
 
 				Headers: {
-					Performance: Performance Header
-					TerrariaOverhaul: Terraria Overhaul Header
-					TerrariaOverhaulHeader: Terraria Overhaul Header Header
+					Performance: Performance
+					TerrariaOverhaul: Terraria Overhaul
+					TerrariaOverhaulHeader: Terraria Overhaul
 				}
 
 				LagReducer: {
@@ -3318,12 +3318,6 @@ Mods: {
 			}
 		}
 
-		ConfigServer: {
-			Headers: {
-				Performance: Lag Reducer Header
-				TerrariaOverhaul: Overhaul Melee Mana Cost Config Header
-				TerrariaOverhaulHeader: Overhaul Melee Mana Cost Config Header
-			}
-		}
+		ConfigServer.Headers.Performance: Lag Reducer Header
 	}
 }

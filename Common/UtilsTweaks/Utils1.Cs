@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Text;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
@@ -171,5 +172,24 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return (number - min) * (max - number) >= 0;
         }
+
+        public static bool CanDevourerOfWorldsDrop(NPC npc)
+        {
+            return npc.boss && Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1;
+        }
+        public static bool CanDropCorruptBoss(NPC npc)
+        {
+            return CanDevourerOfWorldsDrop(npc) || npc.type == NPCID.BrainofCthulhu;
+        }
+
+        //public static bool debug (NPC npc)
+        //{
+        //    bool r = Reaper.ReaperMode;
+        //    bool b = npc.boss;
+        //    bool f = Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1;
+        //    bool j = npc.type == NPCID.BrainofCthulhu;
+
+        //    return r && b && f || j;
+        //}
     }
 }

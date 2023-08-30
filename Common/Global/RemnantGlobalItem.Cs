@@ -113,6 +113,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
 					item.useTime= 8;
 					item.useAnimation = 70;	
 				}
+				if(item.type == ItemID.FlinxFurCoat)
+				{
+					item.defense = 3;
+				}
 				if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -162,7 +166,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
 			{
                 return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
             }
+			if (item.type == ItemID.BabyBirdStaff)
+			{
+                var a = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
+                Main.projectile[a].minionSlots = 0.5f;
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2,Main.myPlayer, 0, 0, 0);
+				Main.projectile[p].minionSlots = 0.5f;
+				Main.projectile[p].alpha = 200;
+				return false;
+            }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+
         }
 
         public void AddToDashWeaponsLists(Item item)
@@ -321,6 +335,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
         {
+			orig(item, i);
 			if (Reaper.ReaperMode)
 			{
 				if (Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>().AllSoulsAreActive())
@@ -339,13 +354,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
 						item.rare = 0;
 					}
 				}
-				if(item.type == ItemID.GuideVoodooDoll)
+				if(item.type == ItemID.GuideVoodooDoll && item.rare == 0)
 				{
                   int a = Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ItemID.GuideVoodooDoll, 1);
                   Main.item[a].rare = 1;
 				}
             }
-			
+
           //  return base.CanBurnInLava(item);	
         }
         public override void UpdateInventory(Item item, Player player)

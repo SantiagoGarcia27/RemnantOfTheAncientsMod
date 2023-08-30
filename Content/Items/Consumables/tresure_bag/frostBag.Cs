@@ -45,18 +45,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
         }
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>()));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<FrozenAssaulter>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<FrozenMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Frozenp2MusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>(), 1, 1, 1));
-            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<frozen_assaulter>())); ;
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<FrozenAssaulter>())); ;
             // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<FrostShark>(), ItemType<Permafrost>(), ItemType<frozen_staff>(), ItemType<FrozenStafff>()));
             itemLoot.Add(ItemDropRule.ByCondition(new FrozenReaperSoul(), ItemType<FrozenSoul>()));
 
 
         }
-        //public override int BossBagNPC => NPCType<frozen_assaulter>();
+        //public override int BossBagNPC => NPCType<FrozenAssaulter>();
 
         public override Color? GetAlpha(Color lightColor)
         {

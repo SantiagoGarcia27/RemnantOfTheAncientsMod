@@ -37,7 +37,7 @@
 
 //            if (ShieldTexture == null)
 //            {
-//                ShieldTexture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/frozen_assaulter/frozen_assaulter_Shield");
+//                ShieldTexture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/FrozenAssaulter/frozen_assaulter_Shield");
 //            }
 
 //            var position = drawInfo.Center + new Vector2(0f, -20f) - Main.screenPosition;

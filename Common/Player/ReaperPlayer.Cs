@@ -194,7 +194,7 @@ public class ReaperPlayer : ModPlayer
     {
         if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
         {
-            if (Main.rand.NextBool(4))
+            if (Main.rand.NextBool(6))
             {
                 //FreeDodge(info);
                 Player.BrainOfConfusionDodge();

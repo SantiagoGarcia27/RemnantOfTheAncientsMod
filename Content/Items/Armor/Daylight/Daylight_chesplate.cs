@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
         public int IncreasedMagicDamage = 3;
         public int IncreasedMinionBonus = 1;
         public int IncreasesMaxMana = 5;
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMagicDamage, IncreasedMinionBonus, IncreasesMaxMana);
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMagicDamage, IncreasesMaxMana, IncreasedMinionBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;

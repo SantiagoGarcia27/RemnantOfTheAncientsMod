@@ -50,6 +50,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void AddRecipes()
         {
+            base.AddRecipes();
             CreateRecipe()
             .AddIngredient(ItemID.DefenderMedal, 30)
             .AddIngredient(ItemID.BottledWater, 30)

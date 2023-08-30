@@ -12,6 +12,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Drops
 {
@@ -31,6 +32,10 @@ namespace RemnantOfTheAncientsMod.Drops
                     break;
                 case ItemID.EaterOfWorldsBossBag:
                     Utils1.DroppItem(player, item, ItemType<EaterOfWorldsScroll>(), 1, commonScroll);
+                    if (!Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[2] && Reaper.ReaperMode) 
+                    {
+                        Utils1.DroppItem(player, item, ItemType<CorruptSoul>(), 1, 1);
+                    }
                     break;
                 case ItemID.BrainOfCthulhuBossBag:
                     Utils1.DroppItem(player, item, ItemType<BrainOfCthulhuScroll>(), 1, commonScroll);

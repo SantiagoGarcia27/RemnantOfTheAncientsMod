@@ -980,13 +980,13 @@ namespace RemnantOfTheAncientsMod
                 if (recipe.TryGetResult(ItemID.JungleShirt, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
-                    recipe.RemoveIngredient(ItemID.Vine);
+                    recipe.RemoveIngredient(ItemID.Stinger);
                     recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 6);
                 }
                 if (recipe.TryGetResult(ItemID.JunglePants, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
-                    recipe.RemoveIngredient(ItemID.Stinger);
+                    recipe.RemoveIngredient(ItemID.Vine);
                     recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 3);
                 }
                 if (recipe.TryGetResult(ItemID.NecroHelmet, out _))

@@ -1,4 +1,5 @@
-﻿using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
+﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using Terraria;
@@ -27,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
     }
     public class CorruptReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[2] && Reaper.ReaperMode;
+        public bool CanDrop(DropAttemptInfo info) => !info.player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[2] && Reaper.ReaperMode && Utils1.CanDropCorruptBoss(info.npc);
         public bool CanShowItemDropInUI() => Reaper.ReaperMode;
         public string GetConditionDescription() => null;
     }

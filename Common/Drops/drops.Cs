@@ -20,6 +20,7 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -92,7 +93,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         public void BossLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCType<DesertAniquilator>()) BossTrpoyMask(ItemType<DesertTrophy>(), ItemType<DesertAMask>(), npcLoot);
-            if (npc.type == NPCType<frozen_assaulter>()) BossTrpoyMask(ItemType<FrostTrophy>(), ItemType<FrozenMask>(), npcLoot);
+            if (npc.type == NPCType<FrozenAssaulter>()) BossTrpoyMask(ItemType<FrostTrophy>(), ItemType<FrozenMask>(), npcLoot);
             if (npc.type == NPCType<InfernalTyrantHead>()) BossTrpoyMask(ItemType<InfernalTrophy>(), ItemType<InfernalMask>(), npcLoot);
             if (npc.type == NPCID.WallofFlesh) npcLoot.Add(ItemDropRule.Common(ItemType<TrowerEmblem>(), (3/ dificultyDrop(1)), 1, 1));
             if (npc.type == NPCID.CultistBoss) npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));
@@ -223,15 +224,17 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         npcLoot.Add(ItemDropRule.ByCondition(new MoonLordReaperSoulRule(), ItemType<MoonSoul>()));
                         break;
                 }
-                if (System.Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1)
-                {
-                    npcLoot.Add(ItemDropRule.ByCondition(new CorruptReaperSoulRule(), ItemType<CorruptSoul>()));
-                }
+                //if (npc.boss && System.Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1 )
+                //{
+             //   bool j = Utils1.debug(npc);
+
+                  //  npcLoot.Add(ItemDropRule.ByCondition(new CorruptReaperSoulRule(), ItemType<CorruptSoul>()));
+               // }
                 if(npc.type == NPCType<DesertAniquilator>())
                 {
                     npcLoot.Add(ItemDropRule.ByCondition(new DesertAnhilatorReaperSoulRule(), ItemType<DesertSoul>()));
                 }
-                if (npc.type == NPCType<frozen_assaulter>())
+                if (npc.type == NPCType<FrozenAssaulter>())
                 {
                     npcLoot.Add(ItemDropRule.ByCondition(new FrozenAssaulterReaperSoulRule(), ItemType<FrozenSoul>()));
                 }
@@ -246,7 +249,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
 
                 //if (npc.type == NPCID.WallofFlesh && !Main.LocalPlayer.GetModPlayer<FleshReaperSoulPlayer>().FleshReaperUpgrade) ItemDropRule.Common(ItemType<FleshSoul>(), 1, 1, 1);
 
-                //if (npc.type == NPCType<frozen_assaulter>() && !Main.LocalPlayer.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) ItemDropRule.Common(ItemType<FrozenSoul>(), 1, 1, 1);
+                //if (npc.type == NPCType<FrozenAssaulter>() && !Main.LocalPlayer.GetModPlayer<FrozenReaperSoulPlayer>().FrozenReaperUpgrade) ItemDropRule.Common(ItemType<FrozenSoul>(), 1, 1, 1);
 
                 //if (npc.type == NPCID.TheDestroyer && !Main.LocalPlayer.GetModPlayer<DestroyerReaperSoulPlayer>().DestroyerReaperUpgrade) ItemDropRule.Common(ItemType<DestroyerEnergyCell>(), 1, 1, 1);
 

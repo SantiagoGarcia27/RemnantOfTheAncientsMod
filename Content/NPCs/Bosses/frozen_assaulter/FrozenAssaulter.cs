@@ -27,7 +27,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
 {
     [AutoloadBossHead]
-    public class frozen_assaulter : ModNPC
+    public class FrozenAssaulter : ModNPC
     {
         int invincibilityTimer = 0;
         bool healAnimation = false;
@@ -403,7 +403,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
                 }
                 Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
                 Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0, -45));
-                var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/frozen_assaulter/frozen_assaulter_Shield");
+                var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/FrozenAssaulter/frozen_assaulter_Shield");
                 position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
                 position += vectorFrame + new Vector2(0f, 4f + NPC.gfxOffY);
                 Color color = new Color(147, 219, 252,150);

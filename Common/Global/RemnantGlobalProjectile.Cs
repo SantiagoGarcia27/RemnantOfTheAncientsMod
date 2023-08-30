@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.DataStructures;
@@ -8,12 +9,28 @@ namespace RemnantOfTheAncientsMod.Common.Global
 {
     public class RemnantGlobalProjectile : GlobalProjectile
     {
+        public override bool InstancePerEntity => true;
+        bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
         public override void SetDefaults(Projectile projectile)
-        {
-            if (projectile.type == ProjectileID.BabySlime)
+        {  
+            if (WeaponConf)
             {
-                projectile.minionSlots = 0.5f;
+                if (projectile.type == ProjectileID.BabySlime)
+                {
+                    projectile.minionSlots = 0.5f;
+                }
             }
+        }
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (WeaponConf)
+            {
+                if (Main.rand.NextBool(4) && projectile.type == ProjectileID.FlinxMinion)
+                {
+                    target.AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 5));
+                }
+            }
+            base.OnHitNPC(projectile, target, hit, damageDone);
         }
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
@@ -24,5 +41,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 projectile.scale *= 2.5f;
             }
         }
+       
     }
 }

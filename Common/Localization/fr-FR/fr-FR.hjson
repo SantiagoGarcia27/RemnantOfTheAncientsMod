@@ -2941,18 +2941,18 @@ Mods: {
 				DisplayName: Aniquilateur du désert
 
 				BossChecklistIntegration: {
-					// EntryName: Mods.RemnantOfTheAncientsMod.NPCs.DesertAniquilator.//DisplayName
-					// SpawnInfo: Use a [i:5703] in the desert
+					// EntryName: Desert Annihilator
+					// SpawnInfo: Use a [i:5599] in the desert
 					// DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 			}
 
-			frozen_assaulter: {
-				DisplayName: Agresseur gelé
+			FrozenAssaulter: {
+				// DisplayName: Frozen Assaulter
 
 				BossChecklistIntegration: {
-					// EntryName: Mods.RemnantOfTheAncientsMod.NPCs.frozen_assaulter.//DisplayName
-					// SpawnInfo: Use a [i:5705] in the snow at the night
+					// EntryName: Frozen Assaulter
+					// SpawnInfo: Use a [i:5601] in the snow at the night
 					// DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
@@ -2963,8 +2963,8 @@ Mods: {
 				DisplayName: Tyran infernal
 
 				BossChecklistIntegration: {
-					// EntryName: Mods.RemnantOfTheAncientsMod.NPCs.InfernalTyrantHead.//DisplayName
-					// SpawnInfo: Use a [i:5706] in the Underworld
+					// EntryName: Infernal Tyrant
+					// SpawnInfo: Use a [i:5602] in the Underworld
 					// DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
@@ -3282,9 +3282,9 @@ Mods: {
 				// DisplayName: Config Server
 
 				Headers: {
-					// Performance: Performance Header
-					// TerrariaOverhaul: Terraria Overhaul Header
-					// TerrariaOverhaulHeader: Terraria Overhaul Header Header
+					// Performance: Performance
+					// TerrariaOverhaul: Terraria Overhaul
+					// TerrariaOverhaulHeader: Terraria Overhaul
 				}
 
 				LagReducer: {
@@ -3314,12 +3314,6 @@ Mods: {
 			}
 		}
 
-		ConfigServer: {
-			Headers: {
-				// Performance: Lag Reducer Header
-				// TerrariaOverhaul: Overhaul Melee Mana Cost Config Header
-				// TerrariaOverhaulHeader: Overhaul Melee Mana Cost Config Header
-			}
-		}
+		// ConfigServer.Headers.Performance: Lag Reducer Header
 	}
 }

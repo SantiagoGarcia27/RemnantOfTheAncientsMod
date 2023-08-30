@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
         }
         public override bool CanUseItem(Player player)
         {
-            return player.ZoneSnow && !NPC.AnyNPCs(ModContent.NPCType<frozen_assaulter>()) && !Main.dayTime;
+            return player.ZoneSnow && !NPC.AnyNPCs(ModContent.NPCType<FrozenAssaulter>()) && !Main.dayTime;
         }
         public override bool? UseItem(Player player)
         {
@@ -46,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
             {   
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-                int type = ModContent.NPCType<frozen_assaulter>();
+                int type = ModContent.NPCType<FrozenAssaulter>();
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {

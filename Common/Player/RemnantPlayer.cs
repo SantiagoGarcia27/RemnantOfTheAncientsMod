@@ -244,7 +244,7 @@ namespace RemnantOfTheAncientsMod
         {
 			if(BrainDogde)
 			{
-                if (Main.rand.NextBool(4))
+                if (Main.rand.NextBool(5))
                 {
                     Player.BrainOfConfusionDodge();
                     Player.SetImmuneTimeForAllTypes(120);

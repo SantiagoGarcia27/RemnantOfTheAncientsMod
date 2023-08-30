@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -93,7 +94,6 @@ namespace RemnantOfTheAncientsMod
         }
         public override void PostSetupContent()
         {
-            WeakReference.Setup();
         }
 
 

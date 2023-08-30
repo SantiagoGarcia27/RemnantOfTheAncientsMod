@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 	{
 		protected float idleAccel = 0.05f;
 		protected float spacingMult = 1f;
-		protected float viewDist = 400f;
+		protected float viewDist = 50f;
 		protected float chaseDist = 200f;
 		protected float chaseAccel = 6f;
 		protected float inertia = 40f;
@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
         public override void Behavior()
 		{
 			Player player = Main.player[Projectile.owner];
-			float spacing = (float)Projectile.width * spacingMult;
+			float spacing = Projectile.width * spacingMult;
 			
 			Projectile.rotation = Projectile.velocity.X * 0.05f;
             Movment(player,spacing);

@@ -5,16 +5,15 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using Terraria.GameContent;
-using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using Microsoft.CodeAnalysis;
-using CalamityMod;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
     public class IronBallistMinion : ModProjectile
     {
         bool FoundTarget = false;
+        float GravityForce = 2f;
+        float ViewDistance = 500;
 
         public override void SetStaticDefaults()
         {
@@ -46,7 +45,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public override bool MinionContactDamage() => false;
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
-            fallThrough = true;
+
+            fallThrough = false;
+
             return true;
         }
 
@@ -61,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
 
 
-            Vector2 targetPos;
+        Vector2 targetPos;
         float targetDist;
         NPC target = null;
         Vector2 UnfocusDistance = new(1,1);
@@ -81,7 +82,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             if (!CheckActive(player)) return;
             FixSize();
             FindFrame();
-            if (target == null || !target.active || !FoundTarget || player.HasMinionAttackTargetNPC) target = FindTarget(player);
+            if (target == null || !target.active || !FoundTarget || player.HasMinionAttackTargetNPC) 
+                target = FindTarget(player);
             float playerDistance = Projectile.Distance(player.position);
             Projectile.tileCollide = (playerDistance > UnfocusDistance.X && !FoundTarget) ? false : true;
 
@@ -103,6 +105,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                     {
                         Shoot(target);
                     }
+                    if (playerDistance >= UnfocusDistance.X)
+                    {
+                        Projectile.Center = player.Center;
+                    }
                 }
             }
             else if(playerDistance >= UnfocusDistance.X)
@@ -111,11 +117,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             }
             Movment(player, target);
         }
+
+
         public NPC FindTarget(Player player)
         {
-            int Range = 10;
             targetPos = Projectile.position;
-            targetDist = Range;
+            targetDist = ViewDistance;
             NPC npc = Main.npc[0];
             if (player.HasMinionAttackTargetNPC)
             {
@@ -132,11 +139,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             {
                 for (int k = 0; k < Main.maxNPCs; k++)
                 {
+
                     npc = Main.npc[k];
                     if (npc.CanBeChasedBy(this, false) && npc.active)
                     {
                         float distance = Vector2.Distance(npc.Center, Projectile.Center);
-                        if ((distance < targetDist && distance > 0 || !FoundTarget) && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
+                        if ((distance < targetDist /*|| !FoundTarget*/) && Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
                         {
                             targetDist = distance;
                             targetPos = npc.Center;
@@ -305,14 +313,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             //if (distance.X <= range && distance.Y <= range)
             //{
             int dist = 10 * 16;
+            bool touchFlour = DistanceUtils.ProjectileTouchFlour(Projectile);
 
-            if (Projectile.DistanceSQ(target.Center) > dist * dist)
+
+            if (Projectile.DistanceSQ(target.Center) > dist * dist && touchFlour)
             {
                 Projectile.velocity = Projectile.DirectionTo(target.Center) * speed;
+                
+                Projectile.velocity.Y -= 1f;
             }
             else
             {
-                Projectile.velocity = Vector2.Zero;
+                //Jump(1);
             }
 
 
@@ -366,11 +378,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
         public void ApplyGravity()
         {
-            Projectile.velocity.Y += 2;
+            Projectile.velocity.Y += GravityForce;
         }
         public void Jump(float force)
         {
-            Projectile.velocity.Y -= 2 + force;
+            Projectile.velocity.Y -= GravityForce + force;
         }
         private void FixSize()
         {

@@ -42,6 +42,7 @@ public abstract class ModelSummonerStaff : ModItem
 		Item.DamageType = DamageClass.Summon;
 		Item.buffType = BuffId;
 		Item.shoot = MinionId;
+		Item.knockBack = 0.1f;
 		if (ModLoader.TryGetMod("CalamityMod", out Mod mod))
 		{
 			Item.damage = Damage + 3;

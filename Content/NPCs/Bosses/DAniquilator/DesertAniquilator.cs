@@ -13,7 +13,6 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
 using RemnantOfTheAncientsMod.Common.Systems;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
