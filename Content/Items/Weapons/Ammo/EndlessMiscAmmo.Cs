@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Flare");
+           // //DisplayName.SetDefault("ModelEndless Flare");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Flare sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bengala Eterna");
         }
@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Blue Flare");
+           // //DisplayName.SetDefault("ModelEndless Blue Flare");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusée bleue sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bengala Azul Eterna");
         }
@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Star");
+           // //DisplayName.SetDefault("ModelEndless Star");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Étoile sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estrella Eterna");
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 8));
@@ -46,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Nail");
+           // //DisplayName.SetDefault("ModelEndless Nail");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Clou sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Clavo Infinito");
         }
@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gel");
+           // //DisplayName.SetDefault("ModelEndless Gel");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Gel sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Gel infinito");
         }
@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Stake");
+           // //DisplayName.SetDefault("ModelEndless Stake");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jeu sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estaca eterna");
         }
@@ -79,7 +79,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Snow Ball");
+           // //DisplayName.SetDefault("ModelEndless Snow Ball");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Boule de neige sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bola de nieve eterna");
         }

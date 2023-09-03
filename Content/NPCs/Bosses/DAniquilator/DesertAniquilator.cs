@@ -23,6 +23,7 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.GameContent.Bestiary;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -60,6 +61,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             NPC.netAlways = true;
             AnimationType = NPCID.BlueSlime;
             NPC.stepSpeed = 8f;
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                //new FlavorTextBestiaryInfoElement("A great and dreaded worm rules the underworld with an iron fist and his flames, powerful and majestic in equal parts, maintain the order and warmth of the underworld.")
+            });
         }
 
         private int attackCounter;
@@ -168,25 +177,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public void ShootAI(List<int[]> AttackValue, Player target)
         {
+            int type = Reaper.ReaperMode? ModContent.NPCType<DesertTyphoonParry>(): ModContent.ProjectileType<DesertTyphoon>();
+            bool proj = !Reaper.ReaperMode;
             if (attackCounter == AttackValue[1][0])
             {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, 0.5f);
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, 0.5f, 0.5f, proj);
             }
             if (attackCounter == AttackValue[1][1])
             {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, 0.5f, -0.5f);
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, 0.5f, -0.5f, proj);
             }
             if (attackCounter == AttackValue[1][2])
             {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -0.5f, -0.5f, proj);
             }
             if (attackCounter == AttackValue[1][3])
             {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -0.5f, -0.5f, proj);
             }
             if (attackCounter == AttackValue[1][4])
             {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -0.5f, -0.5f);
+                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -0.5f, -0.5f, proj);
             }
             if (attackCounter == AttackValue[1][5])
             {
@@ -194,7 +205,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     for (int i = 0; i <= 7; i++)
                     {
-                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f + i, -0.5f + i, 0.5f);
+                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f + i, -0.5f + i, 0.5f, proj);
                     }  
                 }
                 else
@@ -203,7 +214,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
                     for (float i = 0f; i < n; i += 0.5f)
                     {
-                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), ProjectileType<DesertTyphoon>(), target, 12f, -3.5f + i, 3.5f - i);
+                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -3.5f + i, 3.5f - i, proj);
                     }
                 }
             }
@@ -495,14 +506,24 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
            // return 1f;
         
         
-        public void ShootHelper(int dammage, int type, Player player, float Speed, double x, double y)
+        public void ShootHelper(int dammage, int type, Player player, float Speed, double x, double y,bool proj)
         {
             Vector2 NpcPosition = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             float rotation = (float)Math.Atan2(NpcPosition.Y - (player.position.Y + (player.height * x)), NpcPosition.X - (player.position.X + (player.width * y)));
             Vector2 direction;
             direction.X = (float)(Math.Cos(rotation) * Speed * -1);
             direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
+            if (proj)
+            {
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
+            }
+            else
+            {
+                var n = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NpcPosition.X, (int)NpcPosition.Y, type);
+                Main.npc[n].lifeMax = 10;
+                Main.npc[n].damage = dammage;
+                Main.npc[n].velocity = direction;
+            }
         }
         public void DespawnBoss()
         {
@@ -516,7 +537,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-        if (Main.rand.NextBool(3)) target.AddBuff(BuffType<Burning_Sand>(), 100, true);	
+            if (Main.rand.NextBool(3)) target.AddBuff(BuffType<Burning_Sand>(), 100, true);	
 		}
         public override void BossLoot(ref string name, ref int potionType)
         {

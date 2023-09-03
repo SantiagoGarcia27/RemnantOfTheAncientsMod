@@ -2,7 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 

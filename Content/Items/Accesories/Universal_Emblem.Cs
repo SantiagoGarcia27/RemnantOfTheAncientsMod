@@ -2,15 +2,12 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using ReLogic.Utilities;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class Universal_Emblem : ModItem
     {
-        int multiplier;
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Universal Emblem");

@@ -2935,6 +2935,11 @@ Mods: {
 				DisplayName: Palid Nail
 				Tooltip: ""
 			}
+
+			EndlessBiomeSightPotion: {
+				DisplayName: Endless Biome Sight Potion
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -2946,7 +2951,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: Desert Annihilator
-					SpawnInfo: Use a [i:5599] in the desert
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertChest] in the desert
 					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 			}
@@ -2956,7 +2961,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: Frozen Assaulter
-					SpawnInfo: Use a [i:5601] in the snow at the night
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
 					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
@@ -2968,7 +2973,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: Infernal Tyrant
-					SpawnInfo: Use a [i:5602] in the Underworld
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
 					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
@@ -3023,6 +3028,7 @@ Mods: {
 			Tinzombie.DisplayName: Armored Zombie
 			Tungstenzombie.DisplayName: Armored Zombie
 			Tuxonitezombie.DisplayName: Armored Zombie
+			DesertTyphoonParry.DisplayName: Desert Typhoon Parry
 		}
 
 		Projectiles: {
@@ -3293,17 +3299,34 @@ Mods: {
 
 				LagReducer: {
 					Label: Lag Reducer
-					Tooltip: ""
+					Tooltip: 
+					'''
+					Reduces graphical aspects of the mod in order to improve game performance.
+					0 - Disable anti lagg
+					1 - 50% of mod effects
+					2 - 25% of mod effects
+					3 - Disable mod effects
+					'''
 				}
 
 				VanillaWeaponsChangesConf: {
 					Label: Vanilla Weapons Changes Conf
-					Tooltip: ""
+					Tooltip: 
+					'''
+					Activate the balance changes of vanilla items
+					deactivate this if it generates incompatibility with some other mod
+					'''
 				}
 
 				DropTombstomOnDeadtConf: {
 					Label: Drop Tombstom On Deadt Conf
-					Tooltip: ""
+					Tooltip: 
+					'''
+					Defines if the player drops graves upon death
+					0- Disable all of the tombs
+					1 - 50% Chance to drop tombs
+					2 - 100% Chance to drop tombs
+					'''
 				}
 
 				MaxItemStackConf: {
@@ -3313,7 +3336,7 @@ Mods: {
 
 				OverhaulMeleeManaCostConfig: {
 					Label: Overhaul Melee Mana Cost Config
-					Tooltip: ""
+					Tooltip: "Activate the mechanic of melee cost mana"
 				}
 			}
 		}

@@ -5,6 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -36,12 +37,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
              .Register();
         }
     }
-    public class Endless_Commander_Porion : Endless
+    public class Endless_Commander_Porion : ModelEndless
     {
         public override Item ItemBase => new(ItemType<Commander_Potion>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Comander Potions");
+           // //DisplayName.SetDefault("ModelEndless Comander Potions");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de comandante sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de comandante eterna");
             //Tooltip.SetDefault("Augmente votre nombre maximum de centries de 1");

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
+namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
     public abstract class BasePotions : ModItem
     {      

@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.damage = RemnantOfTheAncientsMod.CalamityMod != null? 145: 45;
+            Item.damage = RemnantOfTheAncientsMod.CalamityMod != null? 125: 45;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.width = 72;
             Item.height = 72;

@@ -5,7 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -46,12 +46,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
              .Register();
         }
     }
-    public class Endless_Supe_Sense_Potion : Endless
+    public class Endless_Supe_Sense_Potion : ModelEndless
     {
         public override Item ItemBase => new(ItemType<Supe_Sense_Potion>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Super Sense Potions");
+           // //DisplayName.SetDefault("ModelEndless Super Sense Potions");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de super sens sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de super sentido eterna");
             //Tooltip.SetDefault("Show the locations of enemies and danger sources");

@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -9,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.GravitationPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gravitation Potion");
+           // //DisplayName.SetDefault("ModelEndless Gravitation Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de gravedad eterna");
         }
     }
@@ -18,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.HeartreachPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Heartreach Potion");
+           // //DisplayName.SetDefault("ModelEndless Heartreach Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de alcanzacorazón eterna");
         }
     }
@@ -27,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.InfernoPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Inferno Potion");
+           // //DisplayName.SetDefault("ModelEndless Inferno Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción del infierno eterna");
         }
     }
@@ -36,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.IronskinPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Ironskin Potion");
+           // //DisplayName.SetDefault("ModelEndless Ironskin Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de piel de hierro eterna");
         }
     }
@@ -45,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.AmmoReservationPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Ammo Reservation Potion");
+           // //DisplayName.SetDefault("ModelEndless Ammo Reservation Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de munición eterna");
         }
     }
@@ -54,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.ArcheryPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Archery Potion");
+           // //DisplayName.SetDefault("ModelEndless Archery Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de arquero eterna");
         }
     }
@@ -63,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.BuilderPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Builder Potion");
+           // //DisplayName.SetDefault("ModelEndless Builder Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción constructora eterna");
         }
     }
@@ -72,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.CalmingPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Calming Potion");
+           // //DisplayName.SetDefault("ModelEndless Calming Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción tranquilizadora eterna");
         }
     }
@@ -81,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.CratePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Crate Potion");
+           // //DisplayName.SetDefault("ModelEndless Crate Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caja eterna");
 
         }
@@ -91,7 +92,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.TrapsightPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Dangersense Potion");
+           // //DisplayName.SetDefault("ModelEndless Dangersense Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de sentido del peligro eterna");
 
         }
@@ -101,7 +102,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FishingPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Fishing Potion");
+           // //DisplayName.SetDefault("ModelEndless Fishing Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de pesca eterna");
         }
     }
@@ -110,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.RegenerationPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Regeneration Potion");
+           // //DisplayName.SetDefault("ModelEndless Regeneration Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de regeneración eterna");
         }
     }
@@ -120,7 +121,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.SonarPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Sonar Potion");
+           // //DisplayName.SetDefault("ModelEndless Sonar Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de sonar eterna");
         }
     }
@@ -130,7 +131,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.SpelunkerPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Spelunker Potion");
+           // //DisplayName.SetDefault("ModelEndless Spelunker Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de espeleógo eterna");
         }
     }
@@ -140,7 +141,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.SummoningPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Summoning Potion");
+           // //DisplayName.SetDefault("ModelEndless Summoning Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de invocación eterna");
         }
     }
@@ -150,7 +151,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.SwiftnessPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Swiftness Potion");
+           // //DisplayName.SetDefault("ModelEndless Swiftness Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de rapidez eterna");
         }
     }
@@ -159,7 +160,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.ThornsPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Thorns Potion");
+           // //DisplayName.SetDefault("ModelEndless Thorns Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de espinas eterna");
         }
     }
@@ -168,7 +169,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.BattlePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Battle Potion");
+           // //DisplayName.SetDefault("ModelEndless Battle Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de batalla eterna");
         }
     }
@@ -177,7 +178,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.EndurancePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Endurance Potion");
+           // //DisplayName.SetDefault("ModelEndless Endurance Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de resistencia eterna");
         }
     }
@@ -187,7 +188,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FeatherfallPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Featherfall Potion");
+           // //DisplayName.SetDefault("ModelEndless Featherfall Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caída de pluma eterna");
         }
     }
@@ -196,7 +197,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.GillsPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gills Potion");
+           // //DisplayName.SetDefault("ModelEndless Gills Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de agallas eterna");
         }
     }
@@ -205,7 +206,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlipperPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Flipper Potion");
+           // //DisplayName.SetDefault("ModelEndless Flipper Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de fltación eterna");
         }
     }
@@ -214,7 +215,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.WaterWalkingPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Water Walking Potion");
+           // //DisplayName.SetDefault("ModelEndless Water Walking Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de caminar sobre el agua eterna");
         }
     }
@@ -223,7 +224,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.HunterPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Hunter Potion");
+           // //DisplayName.SetDefault("ModelEndless Hunter Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de cazador eterna");
         }
     }
@@ -232,7 +233,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.InvisibilityPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Invisibility Potion");
+           // //DisplayName.SetDefault("ModelEndless Invisibility Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de invisibilidad eterna");
         }
     }
@@ -242,7 +243,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.LifeforcePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Lifeforce Potion");
+           // //DisplayName.SetDefault("ModelEndless Lifeforce Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de fuerza vital eterna");
         }
     }
@@ -252,7 +253,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.MiningPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Mining Potion");
+           // //DisplayName.SetDefault("ModelEndless Mining Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de minería eterna");
         }
     }
@@ -262,7 +263,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.MagicPowerPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Magic Power Potion");
+           // //DisplayName.SetDefault("ModelEndless Magic Power Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de poder mágico eterna");
         }
     }
@@ -272,7 +273,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.ManaRegenerationPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Magic Regeneration Potion");
+           // //DisplayName.SetDefault("ModelEndless Magic Regeneration Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción reg. de maná eterna");
         }
     }
@@ -281,7 +282,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.NightOwlPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Night Owl Potion");
+           // //DisplayName.SetDefault("ModelEndless Night Owl Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de noctámbulo eterna");
         }
     }
@@ -290,7 +291,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.ObsidianSkinPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Obsidian Skin Potion");
+           // //DisplayName.SetDefault("ModelEndless Obsidian Skin Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de piel de obsidiana eterna");
         }
     }
@@ -299,7 +300,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.RagePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Rage Potion");
+           // //DisplayName.SetDefault("ModelEndless Rage Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de furia eterna");
         }
     }
@@ -308,7 +309,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.ShinePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Shine Potion");
+           // //DisplayName.SetDefault("ModelEndless Shine Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de brillo eterna");
         }
     }
@@ -317,7 +318,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.TitanPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Titan Potion");
+           // //DisplayName.SetDefault("ModelEndless Titan Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de titán eterna");
         }
     }
@@ -326,7 +327,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.WarmthPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Warmth Potion");
+           // //DisplayName.SetDefault("ModelEndless Warmth Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción del calor eterna");
         }
     }
@@ -335,7 +336,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.WrathPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Wrath Potion");
+           // //DisplayName.SetDefault("ModelEndless Wrath Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de ira eterna");
         }
     }
@@ -344,7 +345,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.LuckPotionLesser);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Lesser Luck Potion");
+           // //DisplayName.SetDefault("ModelEndless Lesser Luck Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de suerte menor eterna");
         }
     }
@@ -353,7 +354,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.LuckPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Luck Potion");
+           // //DisplayName.SetDefault("ModelEndless Luck Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de suerte eterna");
         }
     }
@@ -362,7 +363,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.LuckPotionGreater);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Greater Luck Potion");
+           // //DisplayName.SetDefault("ModelEndless Greater Luck Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de suerte grande eterna");
         }
     }
@@ -371,7 +372,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.WormholePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Wormhole Potion");
+           // //DisplayName.SetDefault("ModelEndless Wormhole Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de agujero de gusano eterna");
 
         }
@@ -381,7 +382,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.StinkPotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Stink Potion");
+           // //DisplayName.SetDefault("ModelEndless Stink Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción apestoza eterna");
 
         }
@@ -391,8 +392,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.LovePotion);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Love Potion");
+           // //DisplayName.SetDefault("ModelEndless Love Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de de amor eterna");
+
+        }
+    }
+    public class EndlessBiomeSightPotion : BasePotions
+    {
+        public override Item ItemBase => new(ItemID.BiomeSightPotion);
+        public override void SetStaticDefaults()
+        {
+            // //DisplayName.SetDefault("ModelEndless Love Potion");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de de amor eterna");
 
         }
     }

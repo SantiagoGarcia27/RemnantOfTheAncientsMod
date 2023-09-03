@@ -144,7 +144,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 		public void AddValueToTreasureBags(Item item)
 		{
 			var m = Main.ItemDropsDB.GetRulesForItemID(item.type);// .GetRulesForItemID(item.type);
-			var ñ = 4;
+			//var ñ = 4;
         }
 		
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
@@ -335,7 +335,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
         {
-			orig(item, i);
+		
 			if (Reaper.ReaperMode)
 			{
 				if (Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>().AllSoulsAreActive())
@@ -360,8 +360,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
                   Main.item[a].rare = 1;
 				}
             }
+            orig(item, i);
 
-          //  return base.CanBurnInLava(item);	
+            //  return base.CanBurnInLava(item);	
         }
         public override void UpdateInventory(Item item, Player player)
 		{

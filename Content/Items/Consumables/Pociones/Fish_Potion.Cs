@@ -5,6 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -34,12 +35,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             .Register();
         }
     }
-    public class Endless_Fish_Potion : Endless
+    public class Endless_Fish_Potion : ModelEndless
     {
         public override Item ItemBase => new Item(ItemType<Fish_Potion>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Fish Potions");
+           // //DisplayName.SetDefault("ModelEndless Fish Potions");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de poisson sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de pez eterna");
         }

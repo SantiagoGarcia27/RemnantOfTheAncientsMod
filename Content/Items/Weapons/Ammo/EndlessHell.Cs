@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Hellfire Quiver");
+           // //DisplayName.SetDefault("ModelEndless Hellfire Quiver");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Carquois des flammes infernales");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Carcaj infernal eterno");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

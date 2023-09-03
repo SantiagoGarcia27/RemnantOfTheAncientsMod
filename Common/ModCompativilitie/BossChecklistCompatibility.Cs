@@ -6,7 +6,7 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using System;
 using System.Collections.Generic;

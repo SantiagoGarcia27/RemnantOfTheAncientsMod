@@ -23,8 +23,9 @@ using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.GameContent.Bestiary;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
+namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
     [AutoloadBossHead]
     public class FrozenAssaulter : ModNPC
@@ -65,7 +66,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
             NPC.netAlways = true;  
         }
         private int attackCounter;
-
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
+            {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow,
+                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime
+                //new FlavorTextBestiaryInfoElement("A great and dreaded worm rules the underworld with an iron fist and his flames, powerful and majestic in equal parts, maintain the order and warmth of the underworld.")
+            });
+        }
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(attackCounter);
@@ -152,13 +161,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
                             if (currentPhase > 2) shootIa(10, ProjectileType<Frozenp>(), target, -20f, 0.5, 0.5);
                             for (int i = -1; i < MaxPlayers; i++)
                             {
-                                int a = i == -1? Main.myPlayer: i>1 ? i-1 : i;
+                                int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
                                 shootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f, 0.5, 0.5);
                             }
                         }
                         else
                         {
-                            if (++delay >= 3)
+                            int framerate;
+                            if (Main.frameRate >= 60)
+                            {
+                                framerate = 60;
+                            }
+                            else
+                            {
+                                framerate = Main.frameRate;
+                            }
+                            float diferencia = Utils1.FormatToPositive(55 - framerate);
+                            if (++delay >= diferencia)
                             {
                                 for (int j = 0; j < 3; j++)
                                 {
@@ -173,7 +192,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
                         }
                     }
                     break;
-
             }
         }
         private void setAttackCounter(Player target)
@@ -260,6 +278,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
                     invincibilityTimer--;
                         break;
             }
+        }
+        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if (currentPhase == 3 && NPC.defDefense == 9999) modifiers.SetMaxDamage(1);
+            base.ModifyHitByProjectile(projectile, ref modifiers);
+        }
+        public override void ModifyHitByItem(Player player, Item item, ref NPC.HitModifiers modifiers)
+        {
+            if (currentPhase == 3 && NPC.defDefense == 9999) modifiers.SetMaxDamage(1);
+            base.ModifyHitByItem(player, item, ref modifiers);
         }
         public override void HitEffect(NPC.HitInfo hit)
         {
@@ -403,7 +431,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.frozen_assaulter
                 }
                 Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
                 Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0, -45));
-                var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/FrozenAssaulter/frozen_assaulter_Shield");
+                var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/FrozenAssaulter/FrozenAssaulter_Shield");
                 position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
                 position += vectorFrame + new Vector2(0f, 4f + NPC.gfxOffY);
                 Color color = new Color(147, 219, 252,150);

@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
 using RemnantOfTheAncientsMod.World;
@@ -61,6 +60,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
             if (Reaper.ReaperMode)
             {
                 if (item.type == ItemID.LihzahrdPowerCell)
+                {
+                    Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), item.type, 1);
+                }
+                if (item.type == ItemID.DD2ElderCrystal)
                 {
                     Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), item.type, 1);
                 }

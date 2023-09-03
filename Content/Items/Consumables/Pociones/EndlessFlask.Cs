@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -10,7 +9,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofGold);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gold Flask");
+           // //DisplayName.SetDefault("ModelEndless Gold Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de oro eterno");
         }
     }
@@ -19,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofIchor);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Ichor Flask");
+           // //DisplayName.SetDefault("ModelEndless Ichor Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de icor eterno");
         }
     }
@@ -28,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofFire);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Fire Flask");
+           // //DisplayName.SetDefault("ModelEndless Fire Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de fuego eterno");
         }
     }
@@ -37,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofCursedFlames);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Cursed Flames Flask");
+           // //DisplayName.SetDefault("ModelEndless Cursed Flames Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de las llamas malditas eterno");
         }
     }
@@ -46,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofVenom);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Venom Flask");
+           // //DisplayName.SetDefault("ModelEndless Venom Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de ponzoña eterno");
         }
     }
@@ -55,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofParty);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Party Flask");
+           // //DisplayName.SetDefault("ModelEndless Party Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco fiestero eterno");
         }
     }
@@ -64,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofPoison);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Poison Flask");
+           // //DisplayName.SetDefault("ModelEndless Poison Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de veneno eterno");  
         }
     }
@@ -73,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemID.FlaskofNanites);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Nanites Flask");
+           // //DisplayName.SetDefault("ModelEndless Nanites Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de nanitos eterno");
         }
     }

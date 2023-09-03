@@ -39,13 +39,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
                 }
                 else
                 {
-                    if (player.ownedProjectileCounts[ModContent.ProjectileType<InterceptionDrone>()] < 1)
+                    for (int e = 0; e < 2; e++)
                     {
-                        Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(), 1, 0, Main.myPlayer);
-                    }
-                    if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingDrone>()] < 1)
-                    {
-                        Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, Main.myPlayer);
+                        if (player.ownedProjectileCounts[ModContent.ProjectileType<InterceptionDrone>()] < 2)
+                        {
+                            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(),1,0, Main.myPlayer, 1*e * 10);
+                        }
+                        if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingDrone>()] < 2)
+                        {
+                            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(),1,0, Main.myPlayer,1 *e * 10);
+                        }
                     }
                 }
             }

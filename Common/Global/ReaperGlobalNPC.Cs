@@ -11,7 +11,6 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using CalamityMod.Buffs.StatDebuffs;
 
 public class ReaperGlobalNpc : GlobalNPC
 {
@@ -279,22 +278,24 @@ public class ReaperGlobalNpc : GlobalNPC
                 {
                     attackCounter = 0;
                 }
-
-                if (attackCounter >= 50 && attackCounter <= 60)
+                if (attackCounter >= 50 && attackCounter <= 55)
                 {
-                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    targetProj = SearchTargetWallOfFlesh(npc);
+
+                    if (targetProj != null)
                     {
-                        if (Main.projectile[i].friendly && !Main.projectile[i].minion && Main.projectile[i].damage > 0 && npc.Distance(Main.projectile[i].position) < 100 * 14f)
+                        GeneralDataStorage.InterceptionDroneTarget = targetProj;
+                        if (targetProj.active)
                         {
-                            var t = Main.projectile[i].Name;
+                            Vector2 velocity = targetProj.position - npc.position;
                             updateRotation(npc, true);
-                            var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, (Main.projectile[i].position - npc.position), ModContent.ProjectileType<InterceptionBream>(), 0, 0, Main.myPlayer);//ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<InterceptionBream>(), Main.npc[i], 20f);
+                            var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, velocity, ModContent.ProjectileType<InterceptionBream>(), 0, 0, Main.myPlayer);
                             Main.projectile[p].Size = new(60f, 60f);
                             Main.projectile[p].hostile = true;
                             Main.projectile[p].friendly = false;
                             Main.projectile[p].velocity *= 3;
                         }
-                    }
+                    } 
                 }
             }
             if (npc.type == NPCID.Spazmatism)
@@ -437,16 +438,7 @@ public class ReaperGlobalNpc : GlobalNPC
                 }
             }
             if (npc.type == NPCID.DukeFishron)
-            {
-                if (attackCounter == 50)
-                {
-                    if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 3)
-                    {
-                        int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
-                        Main.npc[n].lifeMax = 1000;
-                        Main.npc[n].life = 1000;
-                    }
-                }
+            {    
                 if (attackCounter < 400)
                 {
                     attackCounter++;
@@ -454,6 +446,12 @@ public class ReaperGlobalNpc : GlobalNPC
                 else
                 {
                     attackCounter = 0;
+                    if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 3)
+                    {
+                        int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
+                        Main.npc[n].lifeMax = 1000;
+                        Main.npc[n].life = 1000;
+                    }
                 }
             }
             if (npc.type == NPCID.HallowBoss)
@@ -540,6 +538,28 @@ public class ReaperGlobalNpc : GlobalNPC
                 attackCounter = 0;
             }
         }
+    }
+
+    private Projectile SearchTargetWallOfFlesh(NPC npc)
+    {
+        for (int i = 0; i < Main.maxProjectiles; i++)
+        {
+            float dist = npc.Distance(Main.projectile[i].position);
+            float viewRange = 100 * 14f;
+            if (dist < viewRange)
+            {
+                if (Main.projectile[i].active && !Main.projectile[i].minion && !Main.projectile[i].sentry)
+                {
+                    if (!Main.projectile[i].hostile && Main.projectile[i].friendly)
+                    {
+                        Projectile p = Main.projectile[i];
+                        GeneralDataStorage.InterceptionRayEnemyTarget = p;
+                        return p;
+                    }
+                }
+            }
+        }
+        return null;
     }
     public int GetHootAmount(NPC npc)
     {
@@ -797,6 +817,40 @@ public class ReaperGlobalNpc : GlobalNPC
                     Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
                     Main.player[Main.myPlayer].ClearBuff(BuffID.ChaosState);
                     Main.player[Main.myPlayer].ClearBuff(BuffID.NoBuilding);
+                }
+            }
+        }
+        if (npc.type == NPCID.Deerclops)
+        {
+            if (npc.life <= 1)
+            {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Darkness);
+                }
+                else
+                {
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.Darkness);
+                }
+            }
+        }
+        if (npc.type == NPCID.QueenSlimeBoss)
+        {
+            if (npc.life <= 1)
+            {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.WindPushed);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.VortexDebuff);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.QueenSlimeMount);
+                }
+                else
+                {
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.WindPushed);
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.VortexDebuff);
+                    Main.player[Main.myPlayer].ClearBuff(BuffID.QueenSlimeMount);
                 }
             }
         }

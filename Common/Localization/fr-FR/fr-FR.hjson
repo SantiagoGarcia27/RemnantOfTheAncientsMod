@@ -2931,6 +2931,11 @@ Mods: {
 				// DisplayName: Palid Nail
 				// Tooltip: ""
 			}
+
+			EndlessBiomeSightPotion: {
+				// DisplayName: Endless Biome Sight Potion
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -2942,7 +2947,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					// EntryName: Desert Annihilator
-					// SpawnInfo: Use a [i:5599] in the desert
+					// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertChest] in the desert
 					// DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 			}
@@ -2952,7 +2957,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					// EntryName: Frozen Assaulter
-					// SpawnInfo: Use a [i:5601] in the snow at the night
+					// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
 					// DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
@@ -2964,7 +2969,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					// EntryName: Infernal Tyrant
-					// SpawnInfo: Use a [i:5602] in the Underworld
+					// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
 					// DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
@@ -3019,6 +3024,7 @@ Mods: {
 			Tinzombie.DisplayName: Zombie blindé
 			Tungstenzombie.DisplayName: Zombie blindé
 			Tuxonitezombie.DisplayName: Zombie blindé
+			// DesertTyphoonParry.DisplayName: Desert Typhoon Parry
 		}
 
 		Projectiles: {

@@ -3,12 +3,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using Terraria.Localization;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
+namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
 
-    public abstract class Endless : ModItem
+    public abstract class ModelEndless : ModItem
     {
         public abstract Item ItemBase { get; }
        // public abstract ModTranslation ItemName { get; }
@@ -17,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
        // public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemBase.ToolTip.GetLine(0));
         public override void SetStaticDefaults()
         {
-           /*// //DisplayName.SetDefault($"Endless {ItemName.GetDefault()}");
+           /*// //DisplayName.SetDefault($"ModelEndless {ItemName.GetDefault()}");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), $"{ItemName.GetTranslation(4)} sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), $"{ItemName.GetTranslation(5)} Eterno");
             //Tooltip.SetDefault(ItemDescription.GetDefault());

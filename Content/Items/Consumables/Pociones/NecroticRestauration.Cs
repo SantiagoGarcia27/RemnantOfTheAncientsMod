@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Consumables/Pociones/NecroticRestauration";
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Necrotic Restauration Potion");
+           // //DisplayName.SetDefault("ModelEndless Necrotic Restauration Potion");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de restauration nécrotique sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de restauración necrótica eterna");
             //Tooltip.SetDefault("Teleports you to your last death");

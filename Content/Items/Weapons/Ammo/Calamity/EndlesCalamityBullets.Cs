@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Aceleration Round Pouch");
+           // //DisplayName.SetDefault("ModelEndless Aceleration Round Pouch");
         }
     }
     public class EndlesAcidRound : EndlessAmmo
@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Bubonic Round Pouch");
+           // //DisplayName.SetDefault("ModelEndless Bubonic Round Pouch");
         }
     }
     public class EndlesBloodfireBullet : EndlessAmmo
@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Bloodfire Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Bloodfire Bullet Pouch");
         }
     }
     public class EndlesEnhancedNanoRound : EndlessAmmo
@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Enhanced Nano Round Pouch");
+           // //DisplayName.SetDefault("ModelEndless Enhanced Nano Round Pouch");
         }
     }
     public class EndlesGodSlayerSlug : EndlessAmmo
@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless God Slayer Slug Pouch");
+           // //DisplayName.SetDefault("ModelEndless God Slayer Slug Pouch");
         }
     }
     public class EndlesHolyFireBullet : EndlessAmmo
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Holy Fire Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Holy Fire Bullet Pouch");
         }
     }
     public class EndlesHyperiusBullet : EndlessAmmo
@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Hyperius Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Hyperius Bullet Pouch");
         }
     }
     public class EndlesIcyBullet : EndlessAmmo
@@ -81,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Icy Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Icy Bullet Pouch");
         }
     }
     public class EndlesVeriumBullet : EndlessAmmo
@@ -91,7 +91,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Verium Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Verium Bullet Pouch");
         }
     }
     public class EndleSuperballBullet : EndlessAmmo
@@ -101,7 +101,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Superball Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Superball Bullet Pouch");
         }
     }
     public class EndlesTerraBullet : EndlessAmmo
@@ -111,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Terra Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Terra Bullet Pouch");
         }
     }
 }

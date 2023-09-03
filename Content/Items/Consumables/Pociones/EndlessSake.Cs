@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Sake");
+           // //DisplayName.SetDefault("ModelEndless Sake");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sake eterno");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -40,4 +40,7 @@ A more detailed breakdown of the content available in the mod:
 [*] 3 Language translation (English,Spanish and French) (no completed)
 [*] Cross-mod support for the Calamity Mod,Thorium,BossChecklist,Terraria Overhaul and Census
 [*] Separated mod balanced for CalamityMod (it is activated automatically when having the mod activated)
+
+Patch notes:
+https://docs.google.com/document/d/1SjHv7QnOTsFYEbybGiapBTX3jB74eZen8GjYSnC93ks/edit?usp=sharing
 [/olist]

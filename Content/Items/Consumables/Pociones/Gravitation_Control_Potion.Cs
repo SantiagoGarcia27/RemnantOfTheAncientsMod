@@ -5,7 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -34,12 +34,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
              .Register();
         }
     }
-    public class Endless_Gravitation_Control_Potion : Endless
+    public class Endless_Gravitation_Control_Potion : ModelEndless
     {
         public override Item ItemBase => new(ItemType<Gravitation_Control_Potion>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gravity Control Potions");
+           // //DisplayName.SetDefault("ModelEndless Gravity Control Potions");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de contrôle de la gravité sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de control gravitacional eterna");
         }

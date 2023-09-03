@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Endless Luminite Quiver");
+			//DisplayName.SetDefault("ModelEndless Luminite Quiver");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Carquois Luminite sans fin");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Carcaj de luminita eterno");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

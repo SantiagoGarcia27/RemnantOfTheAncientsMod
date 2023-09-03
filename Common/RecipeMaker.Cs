@@ -48,6 +48,10 @@ namespace RemnantOfTheAncientsMod
               .AddIngredient(ItemID.Vertebrae, 5)
               .AddTile(TileID.WorkBenches)
               .Register();
+            Recipe.Create(ItemID.Chain,5)
+             .AddRecipeGroup("IronOre")
+             .AddTile(TileID.Anvils)
+             .Register();
         }
         private static void HardmodeItems()
         {
@@ -776,11 +780,31 @@ namespace RemnantOfTheAncientsMod
                    .AddTile(TileID.AlchemyTable)
                    .Register();
             }
-                 Recipe.Create(ItemID.LuckPotionGreater, 4)
-                   .AddRecipeGroup("anyStrangePlants")
-                   .AddIngredient(ItemID.BottledWater)
-                   .AddTile(TileID.AlchemyTable)
-                   .Register();
+            Recipe.Create(ItemID.LuckPotionGreater, 4)
+            .AddRecipeGroup("anyStrangePlants")
+            .AddIngredient(ItemID.BottledWater)
+            .AddTile(TileID.AlchemyTable)
+            .Register();
+
+            Recipe.Create(ItemID.BiomeSightPotion, 2)
+            .AddRecipeGroup("anyStrangePlants")
+            .AddIngredient(ItemID.BottledWater)
+            .AddTile(TileID.AlchemyTable)
+            .Register();
+
+            Recipe.Create(ItemID.RedPotion, 2)
+            .AddRecipeGroup("anyStrangePlants",3)
+            .AddIngredient(ItemID.BottledWater)
+            .AddTile(TileID.AlchemyTable)
+            .AddCondition(Condition.ForTheWorthyWorld) 
+            .Register();
+
+            Recipe.Create(ItemID.RedPotion, 2)
+           .AddRecipeGroup("anyStrangePlants", 3)
+           .AddIngredient(ItemID.BottledWater)
+           .AddTile(TileID.AlchemyTable)
+           .AddCondition(Condition.ZenithWorld)
+           .Register();
 
             Recipe.Create(ModContent.ItemType<Commander_Potion>(), 2)
               .AddRecipeGroup("anyStrangePlants")
@@ -863,6 +887,14 @@ namespace RemnantOfTheAncientsMod
                 ItemID.PlatinumBar
             });
             RecipeGroup.RegisterGroup("GoldBar", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "IronOre", new int[]
+            {
+                ItemID.IronOre,
+                ItemID.LeadOre
+            });
+            RecipeGroup.RegisterGroup("IronOre", group);
+            
 
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " DemoniteBar", new int[]
             {

@@ -149,7 +149,14 @@ Configs: {
 
 		LagReducer: {
 			Label: Lag Reducer
-			Tooltip: ""
+			Tooltip: 
+			'''
+			Reduces graphical aspects of the mod in order to improve game performance.
+			0 - Disable anti lagg
+			1 - 50% of mod effects
+			2 - 25% of mod effects
+			3 - Disable mod effects
+			'''
 		}
 
 		VanillaWeaponsChangesConf: {

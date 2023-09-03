@@ -17,6 +17,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
+using System.Linq;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -53,7 +54,7 @@ namespace RemnantOfTheAncientsMod
 		public bool ModPlayer = true;
 		public bool anyBossIsAlive;
 		public bool MoneyCollector;
-		public List<int> ScrollsBuff = new List<int>();
+        public List<int> ScrollsBuff = new List<int>();
 		public static int DummyMode = 0;
 		public bool CouwldownHolySaber;
 		public static bool tuxoniteStealth;
@@ -97,6 +98,7 @@ namespace RemnantOfTheAncientsMod
 			DesertHeraldSetBonus = false;
 			CanWormHole = false;
 			BrainDogde = false;
+
 			//tuxoniteStealthCounter = 1;
 		}
 
@@ -238,7 +240,11 @@ namespace RemnantOfTheAncientsMod
 				MoneyColectorBuff.UpdateCoins(Player);
 			}
 			checkInventory(Player);
-			WormHoleEffect(Player);
+
+			if (Utils1.IsItemOnPlayerInventory(ModContent.ItemType<EndlessWormHole>())) 
+			{ 
+				WormHoleEffect(Player);
+			}
 		}
         public override bool FreeDodge(Player.HurtInfo info)
         {

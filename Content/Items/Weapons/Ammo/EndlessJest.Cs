@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Endless Jester's Quiver");
+			//DisplayName.SetDefault("ModelEndless Jester's Quiver");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Carquois de bouffon sans fin");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Carcaj del bufón eterno");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

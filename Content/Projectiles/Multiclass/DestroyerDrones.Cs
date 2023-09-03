@@ -10,16 +10,26 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("HealingDrone");
+            // //DisplayName.SetDefault("HealingDrone");
         }
-       
+
         public static int AttackCounter = 0;
         float distanceFromPlayer = 150f;
         float orbitSpeed = 0.02f;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Shoot(player);
+
+
+            if (AttackCounter == 0)
+            {
+                AttackCounter = Utils1.FormatTime(0, 0, 0, 6);
+                Shoot(player);
+            }
+            else
+            {
+                AttackCounter--;
+            }
             movement(player);
             checkActive(player);
             updateRotation(player);
@@ -51,20 +61,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         }
         private void Shoot(Player player)
         {
-            if (AttackCounter == 0)
-            {
-                var p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, (player.position - Projectile.position), ModContent.ProjectileType<HealthBream>(), 0, 0f, Main.myPlayer);
-                Main.projectile[p].hostile = false;
-                Main.projectile[p].friendly = true;
-                Main.projectile[p].damage = 1;
-                AttackCounter = Utils1.FormatTime(0, 0, 0, 6);
-            }
-            else
-            {
-                AttackCounter--;
-            }
+            var p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, (player.position - Projectile.position), ModContent.ProjectileType<HealthBream>(), 0, 0f, Main.myPlayer);
+            Main.projectile[p].hostile = false;
+            Main.projectile[p].friendly = true;
+            Main.projectile[p].damage = 1;        
         }
-      
     }
     public class InterceptionDrone : DroneModel
     {
@@ -88,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         public static Projectile target;
         private void movement(Player player)
         {
-            Vector2 orbitPosition = player.Center + new Vector2(distanceFromPlayer, 0).RotatedBy(Projectile.ai[0]+3);
+            Vector2 orbitPosition = player.Center + new Vector2(distanceFromPlayer + 3, -100).RotatedBy(Projectile.ai[0]);
             Projectile.position = orbitPosition + new Vector2(Projectile.width / 2, Projectile.height / 2);
 
             Projectile.ai[0] += orbitSpeed;
@@ -127,6 +128,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                 if (SearchTarget() != null)
                 {
                     target = SearchTarget();
+                   
                     if (target.active)
                     {
                         Vector2 velocity = target.position - Projectile.position;
@@ -168,7 +170,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Projectile.width = 10;
             Projectile.height = 10;
             Projectile.friendly = true;
-            Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Summon;
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;

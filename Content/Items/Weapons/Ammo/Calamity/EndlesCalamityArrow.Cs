@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Arctic Arrow Quiver");
+           // //DisplayName.SetDefault("ModelEndless Arctic Arrow Quiver");
         }
     }
     public class EndlesBloodfireArrow : EndlessAmmo
@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Bloodfire Arrow Quiver");
+           // //DisplayName.SetDefault("ModelEndless Bloodfire Arrow Quiver");
         }
     }
     public class EndlesElysianArrow : EndlessAmmo
@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Elysian Arrow Quiver");
+           // //DisplayName.SetDefault("ModelEndless Elysian Arrow Quiver");
         }
     }
     public class EndlesIcicleArrow : EndlessAmmo
@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Icicle Arrow Quiver");
+           // //DisplayName.SetDefault("ModelEndless Icicle Arrow Quiver");
         }
     }
     public class EndlesNapalmArrow : EndlessAmmo
@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Napalm Arrow Quiver");
+           // //DisplayName.SetDefault("ModelEndless Napalm Arrow Quiver");
         }
     }
     public class EndlesTerraArrow : EndlessAmmo
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Terra Arrow Quiver");
+           // //DisplayName.SetDefault("ModelEndless Terra Arrow Quiver");
         }
     }
     public class EndlesVanquisherArrow : EndlessAmmo
@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Vanquisher Arrow Quiver");
+           // //DisplayName.SetDefault("ModelEndless Vanquisher Arrow Quiver");
         }
     }
 }

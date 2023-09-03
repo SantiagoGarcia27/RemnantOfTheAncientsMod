@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Cursed Pouch");
+           // //DisplayName.SetDefault("ModelEndless Cursed Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette incurvée sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de malditas eterna");
         }
@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless High Velocity Pouch");
+           // //DisplayName.SetDefault("ModelEndless High Velocity Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette à haute vitesse sans Fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Saco Infinito de Balas de Alta Velocidad");
         }
@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Chlorophyte Pouch");
+           // //DisplayName.SetDefault("ModelEndless Chlorophyte Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de Chlorophyte Sans Fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Clorofita Eterna");
            
@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Crystal Pouch");
+           // //DisplayName.SetDefault("ModelEndless Crystal Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette en cristal sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de cristal eterna");
         }
@@ -56,7 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Exploding Bullet Pouch");
+           // //DisplayName.SetDefault("ModelEndless Exploding Bullet Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de balles explosives sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de balas explosivas Eterna");
         }
@@ -67,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gold Pouch");
+           // //DisplayName.SetDefault("ModelEndless Gold Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sac à balles en or éternel");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de oro eterna");        
         }
@@ -78,7 +78,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Ichor Pouch ");
+           // //DisplayName.SetDefault("ModelEndless Ichor Pouch ");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette Ichor sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de Ichor eterna");
            
@@ -90,7 +90,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Luminite Pouch");
+           // //DisplayName.SetDefault("ModelEndless Luminite Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de luminite sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de Luminita eterna");
            
@@ -102,7 +102,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Meteorite Pouch");
+           // //DisplayName.SetDefault("ModelEndless Meteorite Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de météorite sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de meteorito eterna");
         }
@@ -113,7 +113,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Nano Pouch");
+           // //DisplayName.SetDefault("ModelEndless Nano Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette Nano Bullets sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Nanobalas eterna");
         }
@@ -124,7 +124,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Party Pouch");
+           // //DisplayName.SetDefault("ModelEndless Party Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sac à balles Eternal Party");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas fiesteras eterna");
         }
@@ -135,7 +135,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Venom Pouch");
+           // //DisplayName.SetDefault("ModelEndless Venom Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sac éternel de balles empoisonnées");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas Envenenadas eterna");
         }
@@ -146,7 +146,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Silver Pouch");
+           // //DisplayName.SetDefault("ModelEndless Silver Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bourse d'argent sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa de Balas de plata eterna");
         }
@@ -157,7 +157,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Grave Pouch");
+           // //DisplayName.SetDefault("ModelEndless Grave Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Balle tombale sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bala de tumba eterna");
         }
@@ -168,7 +168,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Frozen Pouch");
+           // //DisplayName.SetDefault("ModelEndless Frozen Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette gelée sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bolsa congelada eterna");
         }
@@ -179,7 +179,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Angry Slime Pouch");
+           // //DisplayName.SetDefault("ModelEndless Angry Slime Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pochette de Slime en Colère Sans Fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Saco Infinito de Bala de Slime Furioso");
         }
@@ -190,7 +190,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Bullet/" + Name;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Flaming Pouch");
+           // //DisplayName.SetDefault("ModelEndless Flaming Pouch");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Balle enflammée sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Saco Infinito de Bala llameante ");
         }

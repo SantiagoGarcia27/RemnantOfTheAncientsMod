@@ -60,6 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
                 }
             }
         }
+
         public void AnimateTexture()
         {
             if (++Projectile.frameCounter >= 4)
@@ -174,8 +175,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
 
         public override void SetDefaults()
         {
-            //Projectile.CloneDefaults(ProjectileID.DemonScythe);
-            //Projectile.aiStyle = ProjectileID.Typhoon;
             Projectile.width = 36;
             Projectile.height = 36;
             Projectile.friendly = Friendly;
@@ -187,12 +186,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
             Projectile.light = 0.75f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
-
         }
         public override void AI()
         {
             Projectile.light = 1.0f;
-
         }
 
         public override bool PreDraw(ref Color lightColor)

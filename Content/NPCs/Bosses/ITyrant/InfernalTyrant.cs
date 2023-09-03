@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
             var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
-                CustomTexturePath = "RemnantOfTheAncientsMod/Content/NPCs/ITyrant/InfernalTyrantHead_Bestiary", 
+                CustomTexturePath = "RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrantHead_Bestiary", 
                 Position = new Vector2(40f, 24f),
                 PortraitPositionXOverride = 0f,
                 PortraitPositionYOverride = 12f

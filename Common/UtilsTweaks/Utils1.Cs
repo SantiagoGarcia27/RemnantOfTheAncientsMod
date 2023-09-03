@@ -45,7 +45,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active && Main.npc[i].boss)
+                {
+                    NPC test = Main.npc[i];
                     return true;
+                }
             }
             return false;
         }
@@ -149,6 +152,11 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             Output.Y = imput.Y < 0 ? -imput.Y : imput.Y;
             return Output;
         }
+        public static float FormatToPositive(float imput)
+        {
+            if(imput >= 0) return imput;
+            return -imput;
+        }
 
         public static bool NameHasWord(string word, string SeachedWord)
         {
@@ -180,6 +188,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static bool CanDropCorruptBoss(NPC npc)
         {
             return CanDevourerOfWorldsDrop(npc) || npc.type == NPCID.BrainofCthulhu;
+        }
+        public static bool IsItemOnPlayerInventory(int type)
+        {
+            return Main.player[Main.myPlayer].inventory.Any(item => !item.IsAir && item.type == type);
         }
 
         //public static bool debug (NPC npc)

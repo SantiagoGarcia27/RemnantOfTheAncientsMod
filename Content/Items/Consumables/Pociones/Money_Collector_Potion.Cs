@@ -5,7 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -38,12 +38,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
              .Register();
         }
     }
-    public class Endless_Money_Collector_Potion : Endless
+    public class Endless_Money_Collector_Potion : ModelEndless
     {
         public override Item ItemBase => new(ItemType<Money_Collector_Potion>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Money Collector Potions");
+           // //DisplayName.SetDefault("ModelEndless Money Collector Potions");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de super sens sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de recolectora de dinero eterna");
             //Tooltip.SetDefault("Transport the money from your inventory to the piggy bank");

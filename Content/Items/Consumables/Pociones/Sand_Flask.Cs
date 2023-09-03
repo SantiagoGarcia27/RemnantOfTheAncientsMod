@@ -1,4 +1,5 @@
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -46,12 +47,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             .Register();
         }
     }
-    public class Endless_Sand_Flask : Endless
+    public class Endless_Sand_Flask : ModelEndless
     {
         public override Item ItemBase => new(ModContent.ItemType<Sand_Flask>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Sand Flask");
+           // //DisplayName.SetDefault("ModelEndless Sand Flask");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de Arena Ardiente eterno");
             //Tooltip.SetDefault("Melee attacks set enemies burning sand");
             //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Los ataques cuerpo a cuerpo hacen que los enemigos se quemen con arena ardiendo");

@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void SetDefaults()
         {
             NPC.CloneDefaults(NPCID.DukeFishron);
-            NPC.lifeMax = 300;
+            NPC.lifeMax = 1000;
             NPC.damage /= 4;
             NPC.alpha = 0;
             NPC.boss = false;

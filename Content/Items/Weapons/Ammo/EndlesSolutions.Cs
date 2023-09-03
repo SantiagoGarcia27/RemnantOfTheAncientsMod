@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless green solution");
+           // //DisplayName.SetDefault("ModelEndless green solution");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Solution verte sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Solución verde eterna");
         }
@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless blue solution");
+           // //DisplayName.SetDefault("ModelEndless blue solution");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Solution bleu sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Solución azul eterna");
         }
@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless purple solution");
+           // //DisplayName.SetDefault("ModelEndless purple solution");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Solution violet sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Solución morada eterna");
         }
@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless red solution");
+           // //DisplayName.SetDefault("ModelEndless red solution");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Solution rouge sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Solución roja eterna");
         }
@@ -56,7 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless dark blue solution");
+           // //DisplayName.SetDefault("ModelEndless dark blue solution");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Solution bleu foncé sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Solución azul obscura eterna");
         }

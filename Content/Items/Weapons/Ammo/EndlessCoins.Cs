@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Copper Coin");
+           // //DisplayName.SetDefault("ModelEndless Copper Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce de Cuivre Sans Fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Moneda de Cobre Eterna");
         }
@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Silver Coin");
+           // //DisplayName.SetDefault("ModelEndless Silver Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'argent sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Moneda de plata infinita");
         }
@@ -50,7 +50,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gold Coin");
+           // //DisplayName.SetDefault("ModelEndless Gold Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'or sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Monedas de oro infinitas");
         }
@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Gold Coin");
+           // //DisplayName.SetDefault("ModelEndless Gold Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'or sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Monedas de oro infinitas");
         }

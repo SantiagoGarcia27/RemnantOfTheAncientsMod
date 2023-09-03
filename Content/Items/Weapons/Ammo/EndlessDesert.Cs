@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Endless Desert Quiver");
+           // //DisplayName.SetDefault("ModelEndless Desert Quiver");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Carquois du désert sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Carcaj Desertico eterno");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

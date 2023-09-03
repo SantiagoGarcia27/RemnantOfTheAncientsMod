@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Endless Unholy Quiver");
+			//DisplayName.SetDefault("ModelEndless Unholy Quiver");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Carquois impie sans fin");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Carcaj infame eterno");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

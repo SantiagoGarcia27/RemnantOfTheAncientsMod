@@ -64,22 +64,56 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
     {
         public override Color color => Color.Blue;
         public override int ProjId => ProjectileID.PinkLaser;
-
+        Projectile target = null;
+        float distance;
         public override void AI()
-        {
+        {   
+            if(target != null)
+            {
+                Projectile.velocity.DirectionTo(target.Center);
+                distance = Vector2.Distance(Projectile.Center, target.Center);
+                if (distance < 200)
+                {
+                    target.Kill();
+                    Projectile.Kill();
+                }
+            }
+            else
+            {
+                if (!Projectile.friendly)
+                {
+                    target = GeneralDataStorage.InterceptionRayEnemyTarget;
+                }
+                else
+                {
+                    target = GeneralDataStorage.InterceptionDroneTarget;
+                }
+            }
             base.AI();
+        }
+        public Projectile searchTarget()
+        {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-               var f = Main.projectile[i].Name;
-                if (Main.projectile[i].hostile != Projectile.hostile  && Main.projectile[i].friendly != Projectile.friendly)
-                { 
-                    if (Vector2.Distance(Projectile.Center, Main.projectile[i].Center) < 20)
+                if (Main.projectile[i].hostile != Projectile.hostile && Main.projectile[i].friendly != Projectile.friendly && !Main.projectile[i].minion && !Main.projectile[i].sentry && Main.projectile[i].active)
+                {
+                    if (Main.projectile[i].friendly)
                     {
-                        Main.projectile[i].Kill();
-                        Projectile.Kill();
+                        if (Main.projectile[i].owner != Main.myPlayer)
+                        {
+                            return Main.projectile[i];
+                        }
+                    }
+                    else
+                    {
+                        if (Main.projectile[i].owner == Main.myPlayer)
+                        {
+                            return Main.projectile[i];
+                        }
                     }
                 }
             }
+             return null;
         }
     }
 
