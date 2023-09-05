@@ -133,6 +133,7 @@ Mods: {
 			IncreasedManaMax: Increases maximum mana by {0}
 			IncreasedLifeMax: Increases maximum life by {0}
 			IncreasedLifeMaxPercent: Increases maximum life by {0}%
+			IncreasedPickSpeed: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 		}
 
 		Buffs: {
@@ -813,7 +814,7 @@ Mods: {
 					you natural max hp set in 1
 					increase all damage by 50%
 					melee weapons size are increased by 150%
-					Mods.RemnantOfTheAncientsMod.CommonTooltip.IncreasedMinion
+					{$CommonItemTooltip.IncreasesMaxMinionsBy} 
 					reduce flight time in half.
 					damage and max health of bosses are doubled
 					Legendary drops are more common

@@ -14,6 +14,7 @@ using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 public class ReaperPlayer : ModPlayer
 {

@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Common.Global
+namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
 	public class ReaperGlobalItem : GlobalItem
 	{

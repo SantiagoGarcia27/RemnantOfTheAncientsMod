@@ -18,6 +18,9 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using System.Linq;
+using Terraria.Chat;
+using Terraria.Localization;
+using CalamityMod;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -267,16 +270,16 @@ namespace RemnantOfTheAncientsMod
         public override void OnEnterWorld()
 		{
 			AddScrollBuff();
-		//	if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod) && RemnantOfTheAncientsMod.CalamityMod != null) CalamityMessage();
+			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod) && RemnantOfTheAncientsMod.CalamityMod != null) CalamityMessage();
 		}
-		//[JITWhenModsEnabled("CalamityMod")] 
-  //      public void CalamityMessage()
-		//{
-		//	if(ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) && GetInstance<CalamityConfig>().RemoveReforgeRNG)
-		//	{
-  //              ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Config.EntryTitle.RemoveReforgeRNG"))), Color.Red);
-  //          }
-		//}
+		[JITWhenModsEnabled("CalamityMod")]
+		public void CalamityMessage()
+		{
+			if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) && GetInstance<CalamityConfig>().RemoveReforgeRNG)
+			{
+				ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Config.EntryTitle.RemoveReforgeRNG"))), Color.Red);
+			}
+		}
 		public static void WormHoleEffect(Player player)
 		{
             if (Main.mapFullscreen && Main.netMode == NetmodeID.MultiplayerClient && Main.myPlayer == player.whoAmI && player.team > 0 && Main.mouseLeft && Main.mouseLeftRelease)

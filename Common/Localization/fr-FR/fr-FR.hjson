@@ -133,6 +133,7 @@ Mods: {
 			IncreasedManaMax: Increases maximum mana by {0}
 			IncreasedLifeMax: Increases maximum life by {0}
 			IncreasedLifeMaxPercent: Increases maximum life by {0}%
+			// IncreasedPickSpeed: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 		}
 
 		Buffs: {
