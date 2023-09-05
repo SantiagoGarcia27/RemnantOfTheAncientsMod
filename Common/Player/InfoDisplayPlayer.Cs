@@ -15,6 +15,7 @@ public class InfoDisplayPlayer : ModPlayer
     public bool showMeleeAttackspeed = false;
     public bool showWingsTime = false;
     public bool showMiningSpeedBonus = false;
+    public bool showMovmentSpeedBonus = false;
     public bool showLuck = false;
     public bool showDamageBonus = false;
     public bool showCritBonus = false;
@@ -35,6 +36,7 @@ public class InfoDisplayPlayer : ModPlayer
         showLuck= n;
         showDamageBonus = n;
         showCritBonus= n;
+        showMovmentSpeedBonus = n;
 
         base.PostUpdate();
     }

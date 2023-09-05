@@ -113,4 +113,12 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
             return $"{Main.LocalPlayer.luck}/{Main.LocalPlayer.luckMaximumCap} Luck";
         }
     }
+    public class MovmentSpeedBonusDisplay : InfoDisplay
+    {
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showMovmentSpeedBonus;
+        public override string DisplayValue(ref Color displayColor)
+        {
+            return $"{(Main.LocalPlayer.moveSpeed * 100f) - 100f}% Movment speed bonus";
+        }
+    }
 }

@@ -162,9 +162,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
             if (!GenericVariables.SizeChanged[0])
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                try
                 {
-                    NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
+                    }
+                }
+                catch(Exception ex) 
+                {
+                    NPC.Size = new(75, 75);
                 }
                 GenericVariables.SizeChanged[0] = true;
             }
@@ -503,9 +510,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             GenericVariables gv = new GenericVariables();
             if (!GenericVariables.SizeChanged[1])
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                try
                 {
-                    NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    NPC.Size = new(75, 75);
                 }
                 GenericVariables.SizeChanged[1] = true;
             }
@@ -588,9 +602,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             //bool ñ = GenericVariables.SizeChanged[2];
             if (!GenericVariables.SizeChanged[2])
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                try
                 {
-                    NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    NPC.Size = new(75, 75);
                 }
                 GenericVariables.SizeChanged[2] = true;
             }

@@ -3295,17 +3295,34 @@ Mods: {
 
 				LagReducer: {
 					// Label: Lag Reducer
-					// Tooltip: ""
+					/* Tooltip:
+						'''
+						Reduces graphical aspects of the mod in order to improve game performance.
+						0 - Disable anti lagg
+						1 - 50% of mod effects
+						2 - 25% of mod effects
+						3 - Disable mod effects
+						''' */
 				}
 
 				VanillaWeaponsChangesConf: {
 					// Label: Vanilla Weapons Changes Conf
-					// Tooltip: ""
+					/* Tooltip:
+						'''
+						Activate the balance changes of vanilla items
+						deactivate this if it generates incompatibility with some other mod
+						''' */
 				}
 
 				DropTombstomOnDeadtConf: {
 					// Label: Drop Tombstom On Deadt Conf
-					// Tooltip: ""
+					/* Tooltip:
+						'''
+						Defines if the player drops graves upon death
+						0- Disable all of the tombs
+						1 - 50% Chance to drop tombs
+						2 - 100% Chance to drop tombs
+						''' */
 				}
 
 				MaxItemStackConf: {
@@ -3315,7 +3332,7 @@ Mods: {
 
 				OverhaulMeleeManaCostConfig: {
 					// Label: Overhaul Melee Mana Cost Config
-					// Tooltip: ""
+					// Tooltip: Activate the mechanic of melee cost mana
 				}
 			}
 		}

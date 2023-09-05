@@ -192,6 +192,7 @@ namespace RemnantOfTheAncientsMod
             player.buffImmune[BuffType<Combat_infusion>()] = true;
             player.buffImmune[BuffType<Exploration_infusion>()] = true;
             player.buffImmune[BuffType<Poseidon_Infusion>()] = true;
+            player.biomeSight = true;
         }
     }
 }
