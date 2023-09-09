@@ -12,8 +12,7 @@ namespace RemnantOfTheAncientsMod.Prefix.CalamityPrefix
             return ModLoader.TryGetMod("CalamityMod", out mod);
         }
         public override string Name => "Shadow";
-        public Shadow() :
-            base(1.10f)
+        public Shadow() : base(1.10f)
         {
 
         }

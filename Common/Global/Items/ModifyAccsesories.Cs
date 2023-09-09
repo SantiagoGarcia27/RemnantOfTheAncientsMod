@@ -52,6 +52,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            FixDuplicatedPrefix(item,tooltips);
+
             if (item.type == ItemID.HandOfCreation)
             {
                 var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
@@ -62,7 +64,32 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
                 }
             }
+
             base.ModifyTooltips(item, tooltips);
         }
+        public void FixDuplicatedPrefix(Item item, List<TooltipLine> tooltips)
+        {
+            var tip = tooltips.FirstOrDefault(tip => tip.Mod != "a");
+           int index = GetTooltipIndex(tooltips);
+            if(index!= -1)
+            {
+                tooltips.RemoveAt(index);
+            }
+        }
+        public int GetTooltipIndex(List<TooltipLine> tooltips)
+        {
+            string line = "";
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                if (line != "" && line == tooltips[i].Text)
+                {
+                    return i;
+                }
+                line = tooltips[i].Text;
+            }
+            return -1;
+        }
+
+
     }
 }
