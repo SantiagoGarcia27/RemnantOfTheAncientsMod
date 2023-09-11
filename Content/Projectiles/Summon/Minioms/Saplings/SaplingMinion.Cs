@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings
 			shoot = ProjectileType<AcornLeaftShoot>();
 			shootSpeed = 9f;
 			shootCool = 100f;
-			viewDist = 100f;
+			ViewDistance = 100f;
 			if (RemnantOfTheAncientsMod.CalamityMod != null)
 			{
 				shootCool = 70f;

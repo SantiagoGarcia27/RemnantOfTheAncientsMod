@@ -1,13 +1,9 @@
-using CalamityMod.Projectiles.Ranged;
-using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -52,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            FixDuplicatedPrefix(item,tooltips);
+            FixDuplicatedPrefix(tooltips);
 
             if (item.type == ItemID.HandOfCreation)
             {
@@ -65,31 +61,64 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
             }
 
-            base.ModifyTooltips(item, tooltips);
+            //base.ModifyTooltips(item, tooltips);
         }
-        public void FixDuplicatedPrefix(Item item, List<TooltipLine> tooltips)
+        string tooltip = "";
+        public void FixDuplicatedPrefix(List<TooltipLine> tooltips)
         {
             var tip = tooltips.FirstOrDefault(tip => tip.Mod != "a");
-           int index = GetTooltipIndex(tooltips);
-            if(index!= -1)
+            int[] index = new int[2] { TextUtils.GetTooltipDuplicatedIndex(tooltips) ,0};
+            
+
+
+            if (index[0] != -1)
             {
-                tooltips.RemoveAt(index);
+                tooltips.RemoveAt(index[0]);
             }
-        }
-        public int GetTooltipIndex(List<TooltipLine> tooltips)
-        {
-            string line = "";
-            for (int i = 0; i < tooltips.Count; i++)
+            else
             {
-                if (line != "" && line == tooltips[i].Text)
+                for (int a = 0; a < tooltips.Count(); a++)
                 {
-                    return i;
+                    string tooltipt = tooltips[a].Text;
+                    if (tooltips[a].Text.Contains("\n"))
+                    {
+                        int l = TextUtils.SeparateSringOnList(tooltipt).Count;
+                        for (int i = 0; i < l - 1; i++)
+                        {
+                            if (i > 0)
+                            {
+                                if (TextUtils.SeparateSringOnList(tooltipt)[i] != TextUtils.SeparateSringOnList(tooltipt)[i - 1])
+                                {
+                                    if (TextUtils.SeparateSringOnList(tooltipt)[i] != TextUtils.SeparateSringOnList(tooltipt)[l - 1])
+                                    {
+                                        tooltip += TextUtils.SeparateSringOnList(tooltipt)[i] + "\n";
+                                    }
+                                }           
+                            }
+                            else
+                            {
+                                tooltip += TextUtils.SeparateSringOnList(tooltipt)[i] + "\n";
+                            }
+                        }
+                        if (l - 2 >= 0)
+                        {
+                            tooltip += TextUtils.SeparateSringOnList(tooltipt)[l - 1];
+                        }
+                        else
+                        {
+                            tooltip += TextUtils.SeparateSringOnList(tooltips[l - 1].Text);
+                        }
+
+                        index[1] = TextUtils.GetTooltipIndexWithaWord(tooltips, tooltip);
+                        if (index[1] != -1)
+                        {
+                            tooltips[index[1]].Text = tooltip;
+                        }
+                        tooltip = "";
+                    }
                 }
-                line = tooltips[i].Text;
-            }
-            return -1;
+            }  
         }
-
-
+        public override bool InstancePerEntity => true;
     }
 }

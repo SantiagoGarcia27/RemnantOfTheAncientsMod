@@ -671,6 +671,7 @@ Mods: {
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxManaBy@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
 					'''
 			}
 

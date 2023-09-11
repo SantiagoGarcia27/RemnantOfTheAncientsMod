@@ -20,7 +20,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		}
         public int IncreasedMinionDamage = 4;
         public int IncreasesMaxMana = 5;
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMinionDamage, IncreasesMaxMana);
+        public int MovmentSpeedBonus = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMinionDamage, IncreasesMaxMana, MovmentSpeedBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;
@@ -38,6 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
         {
             player.GetDamage(DamageClass.Summon) *= 1.04f;
             player.statManaMax2 += 5;
+            player.moveSpeed += 0.05f;
         }
         public override void AddRecipes()
 		{

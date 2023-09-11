@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
-using rail;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
 using RemnantOfTheAncientsMod.Prefixe;
 using RemnantOfTheAncientsMod.World;
@@ -83,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             Color? color = Color.Red;
             Color valueOrDefault = color.Value;
             string text = (color.HasValue ? Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.RightClickSaberHabilitie") : "");
-            TooltipLine item2 = new TooltipLine(Mod, "Saber Habilitie", text)
+            TooltipLine item2 = new TooltipLine(Mod, "SaberSecondClick", text)
             {
                 OverrideColor = valueOrDefault
             };
@@ -94,7 +92,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             Color? color = Color.Red;
             Color valueOrDefault = color.Value;
             string text = (color.HasValue ? Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.RightClickSecondHabilitie") : "");
-            TooltipLine item2 = new TooltipLine(Mod, "Second Habilitie", text)
+            TooltipLine item2 = new TooltipLine(Mod, "SecondClickHabilitie", text)
             {
                 OverrideColor = valueOrDefault
             };

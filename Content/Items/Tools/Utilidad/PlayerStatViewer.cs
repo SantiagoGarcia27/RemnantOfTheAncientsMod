@@ -1,15 +1,11 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
-using System.Text;
 using Terraria.GameContent.Creative;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
-    public class PlayerStatViewer : ModItem
+	public class PlayerStatViewer : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -26,10 +22,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 			Item.height = 32;
 			Item.value = 5000000;
 			Item.rare = ItemRarityID.Yellow;
-		}
-		public override void ModifyTooltips(List<TooltipLine> list)
-		{
-			
 		}
         public override void UpdateInventory(Player player)
         {

@@ -9,11 +9,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 	{
 		protected float idleAccel = 0.05f;
 		protected float spacingMult = 1f;
-		protected float viewDist = 50f;
+		protected float ViewDistance = 20f;
 		protected float chaseDist = 200f;
 		protected float chaseAccel = 6f;
 		protected float inertia = 40f;
-		protected float shootCool = 80f;
+		protected float shootCool = 90f;
 		protected float shootSpeed;
 		protected int shoot;
 
@@ -101,7 +101,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
                 }
             }
             targetPos = Projectile.position;
-            float targetDist = viewDist;
+            float targetDist = ViewDistance;
             target = false;
             Projectile.tileCollide = true;
             if (player.HasMinionAttackTargetNPC)
