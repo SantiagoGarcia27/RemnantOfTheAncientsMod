@@ -72,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
                 target.AddBuff(BuffID.ShadowFlame, 100);
             }
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
            
         }

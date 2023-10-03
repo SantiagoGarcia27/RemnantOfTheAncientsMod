@@ -29,10 +29,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 
         }
 
-        public override void Kill(int timeLeft)
-        {
-            base.Kill(timeLeft);
-        }
+        //public override void Kill(int timeLeft)
+        //{
+        //    base.Kill(timeLeft);
+        //}
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (Main.rand.NextFloat() <= new RemnantOfTheAncientsMod().ParticleMeter(4) / 4)
@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             }
             else
             {
-                base.Kill(1);
+                //base.Kill(1);
                 return true;
             }
         }

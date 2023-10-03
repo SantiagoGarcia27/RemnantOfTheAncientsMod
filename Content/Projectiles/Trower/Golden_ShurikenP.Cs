@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
             Projectile.CloneDefaults(ProjectileID.Shuriken);
             AIType = ProjectileID.Shuriken;
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
 
 

@@ -122,7 +122,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 		}
 
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			SoundEngine.PlaySound(SoundID.Item27, Projectile.Center);
 			Vector2 usePos = Projectile.position;

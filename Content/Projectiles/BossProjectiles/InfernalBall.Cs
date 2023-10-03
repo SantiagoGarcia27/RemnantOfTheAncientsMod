@@ -157,7 +157,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
             AIType = ProjectileID.TerraBeam;
             Main.projFrames[Projectile.type] = 4;
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             short dust = Strong ? DustID.IceTorch : DustID.Torch;
             const int NUM_DUSTS = 20;

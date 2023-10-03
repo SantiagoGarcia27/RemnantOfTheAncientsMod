@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         }
 
         public override bool MinionContactDamage() => true;
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
         }
     }
@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             else Projectile.Kill();
         }
         public override bool MinionContactDamage() => true;
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
 
         }
@@ -97,7 +97,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             
         }
         public override bool MinionContactDamage() => true;
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
 
         }

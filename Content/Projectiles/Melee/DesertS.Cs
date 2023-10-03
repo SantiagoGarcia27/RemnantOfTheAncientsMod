@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                 Main.dust[dust5].velocity = Projectile.velocity;
             }
         }
-        public override void Kill(int timeLeft) 
+        public override void OnKill(int timeLeft) 
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
             for (int i = 0; i < GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(20); i++)

@@ -107,7 +107,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
             Vector2 usePos = Projectile.position;

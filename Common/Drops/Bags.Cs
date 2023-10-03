@@ -13,6 +13,7 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Drops
 {
@@ -128,6 +129,20 @@ namespace RemnantOfTheAncientsMod.Drops
                     break;
                 case ItemID.MoonLordBossBag:
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxLunarBoss, 7));
+                    break;
+
+                case ItemID.JungleFishingCrate:
+                    itemLoot.Add(ItemDropRule.Common(ItemType<JungleBar>(), 4,1,3));
+                    break;
+                case ItemID.JungleFishingCrateHard:
+                    itemLoot.Add(ItemDropRule.Common(ItemType<JungleBar>(), 4, 2, 5));
+                    break;
+
+                case ItemID.DungeonFishingCrate:
+                    itemLoot.Add(ItemDropRule.Common(ItemType<BoneBar>(), 2, 1, 3));
+                    break;
+                case ItemID.DungeonFishingCrateHard:
+                    itemLoot.Add(ItemDropRule.Common(ItemType<BoneBar>(), 2, 2, 5));
                     break;
             }
         }
