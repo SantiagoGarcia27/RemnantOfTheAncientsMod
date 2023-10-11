@@ -2,13 +2,12 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.Global;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools
 {
-	public class night_pickaxe : ModItem
+    public class night_pickaxe : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -16,7 +15,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pioche de nuit");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pico de la noche");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+        }
 
 		public override void SetDefaults()
 		{

@@ -113,5 +113,13 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
         }
+        public static bool ExistTile(Vector2 pos)
+        {
+            return Main.tile[(int)pos.X/16,(int)pos.Y/16].HasTile;
+        }
+        public static bool ExistTile(int x,int y)
+        {
+            return Main.tile[x/16, y/ 16].HasTile;
+        }
     }
 }

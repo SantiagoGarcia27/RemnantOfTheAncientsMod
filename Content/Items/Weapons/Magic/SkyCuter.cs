@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true; //Channel so that you can hold the weapon [Important]
 			Item.mana = 5;
-			Item.rare = ItemRarityID.Lime;
+			Item.rare = ItemRarityID.Yellow;
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 20;
@@ -86,7 +86,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			CreateRecipe()
 			.AddIngredient(ItemID.SkyFracture, 1)
 			.AddIngredient(ItemID.SpectreStaff, 1)
-			.AddTile(TileID.MythrilAnvil)
+            .AddIngredient(ItemID.Ectoplasm, 5)
+            .AddTile(TileID.MythrilAnvil)
 			.Register();
 		}
 	}

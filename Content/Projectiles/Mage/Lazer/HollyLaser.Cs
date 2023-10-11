@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Dusts;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -196,14 +197,14 @@ if (Main.rand.NextBool(5))
 		{
 			Vector2 target = new Vector2(Main.mouseX, Main.mouseY - (40 * 16)); //Main.screenPosition +
 
-			for (Distance = 1f; Distance <= 1200f; Distance += 5f)//7200
+			for (Distance = 1f; Distance <= (40 * 16); Distance += 5f)//7200
 			{
 				var start = Projectile.Center + Projectile.velocity * Distance;//player
-				if (!Collision.CanHit(target, 1, 1, start, 1, 1))
-				{
-					Distance -= 1f;
-					break;
-				}
+				//if (!Collision.CanHit(target, 1, 1, start, 1, 1))
+				//{
+				//	Distance -= 1f;
+				//	break;
+				//}
 			}
 		}
 
@@ -229,10 +230,10 @@ if (Main.rand.NextBool(5))
 				for (int k = 0; k < chargeFact + 1; k++)
 				{
 					Vector2 spawn = spawnPos + ((float)Main.rand.NextDouble() * 6.28f).ToRotationVector2() * (12f - chargeFact * 2);
-					Dust dust = Main.dust[Dust.NewDust(pos, 20, 20, DustID.Electric, Projectile.velocity.X / 2f, Projectile.velocity.Y / 2f)];
+					Dust dust = Main.dust[Dust.NewDust(pos, 20, 20, DustType<HollyBurn_P>(), Projectile.velocity.X / 2f, Projectile.velocity.Y / 2f)];
 					dust.velocity = Vector2.Normalize(spawnPos - spawn) * 1.5f * (10f - chargeFact * 2f) / 10f;
 					dust.noGravity = true;
-					dust.scale = Main.rand.Next(10, 20) * 0.05f;
+					dust.scale = Main.rand.Next(15, 20) * 0.2f;//0.05f;
 				}
 			}
 		}
@@ -241,9 +242,28 @@ if (Main.rand.NextBool(5))
 		{
 			if (Projectile.owner == Main.myPlayer)
 			{
-				Vector2 diff = Main.MouseWorld - player.Center;
-				diff.Normalize();
-				Projectile.velocity = diff;
+				Vector2 position = Projectile.position;
+                Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+                position = player.Center + new Vector2((-Main.rand.Next(0, 0) * player.direction), -600f);
+                position.Y -= 100;
+
+                Vector2 heading = target - position;
+                if (heading.Y < 0f)
+                {
+                    heading.Y *= -1f;
+                }
+                if (heading.Y < 20f)
+                {
+                    heading.Y = 20f;
+                }
+                heading.Normalize();
+                heading *= new Vector2(Projectile.velocity.X, Projectile.velocity.Y).Length();
+                heading.Normalize();
+
+    //            Vector2 diff = Main.MouseWorld - player.Center;
+				//diff.Normalize();
+
+				Projectile.velocity = heading;
 				Projectile.direction = Main.MouseWorld.X > player.position.X ? 1 : -1; // 1: -1
 				Projectile.netUpdate = true;
 			}

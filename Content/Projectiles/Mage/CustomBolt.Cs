@@ -35,11 +35,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Projectile.timeLeft = 120;
             Projectile.penetrate = -1;
             AIType = ProjId;
+            //Projectile.aiStyle = 9;
         }
         public override void AI()
         {
             float maxDetectRadius = 400f; 
             float projSpeed = 7f; //5
+
+           
             GenerateParticle(color);
             
             NPC closestNPC = FindClosestNPC(maxDetectRadius);
@@ -60,14 +63,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             if (ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(4) != 0)
             {
                 int dust5 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustId, 0f, 0f, 100, color, 3f);
-                Main.dust[dust5].velocity = Projectile.velocity;
+                Main.dust[dust5].velocity = Vector2.Zero/* Projectile.velocity*/;
 
                 const int NUM_DUSTS = 1;//50
                 for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); i++)
                 {
                     int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustId, 0f, 0f, 100, color, 3f);
-                    Main.dust[p1].velocity = Projectile.velocity;
+                    Main.dust[p1].velocity = Vector2.Zero /*Projectile.velocity * 0f*/;
                     Main.dust[p1].noGravity = true;
+                    
                 }
             }
         }

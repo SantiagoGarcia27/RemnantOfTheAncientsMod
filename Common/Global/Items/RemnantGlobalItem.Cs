@@ -2,17 +2,17 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Prefixe;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
-	public class RemnantGlobalItem : GlobalItem
+    public class RemnantGlobalItem : GlobalItem
 	{
 		public List<int> SpearsList = new List<int>();
 		public int[] lanceId = new int[]
@@ -44,13 +44,26 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.GoldCoin,
 			ItemID.PlatinumCoin
 		};
-		public override void SetDefaults(Item item)
+		public override void SetStaticDefaults()
+		{
+			//if (SecondClickWeapons.Contains(item.type))
+			//{
+   //             ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
+   //         }
+		}
+
+        public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 
 			if (WeaponConf)
 			{
-				if (item.type == ItemID.DaedalusStormbow)
+                if (SecondClickWeapons.Contains(item.type))
+                {
+                    ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
+                }
+
+                if (item.type == ItemID.DaedalusStormbow)
 				{
 					item.damage = 35;
 					item.useTime = 24;
@@ -101,6 +114,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					item.defense = 3;
 				}
+                if (item.type == ItemID.WeatherPain)
+				{
+					item.knockBack = 5;
+				}
+				if(item.type == ItemID.BookofSkulls)
+				{
+					item.mana = 15;
+					item.damage += 5;
+				}
+				if(item.type == ItemID.InfernoFork)
+				{
+					item.crit = 76; // da 80 en el juego (valor buscado - 4)
+				}
 				if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -108,6 +134,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 						item.maxStack = (int)ModContent.GetInstance<ConfigServer>().MaxItemStackConf;
 					}
 				}
+				
 				//if (ItemID.Sets.BossBag[item.type]) 
 				//{
 				//	AddValueToTreasureBags(item);
@@ -123,6 +150,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					item.GetGlobalItem<CustomTooltip>().Saber = true;
 				}
+				if (SecondClickWeapons.Contains(item.type))
+				{
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                }
 			}
 		}
 		//public void AddValueToTreasureBags(Item item)
@@ -143,24 +174,87 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 			else base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
-        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-			if(item.type == ItemID.PearlwoodBow)
+		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+		{
+			if (item.type == ItemID.PearlwoodBow)
 			{
-                return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
-            }
+				return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
+			}
 			if (item.type == ItemID.BabyBirdStaff)
 			{
-                var a = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
-                Main.projectile[a].minionSlots = 0.5f;
-                var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2,Main.myPlayer, 0, 0, 0);
+				var a = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
+				Main.projectile[a].minionSlots = 0.5f;
+				var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2, Main.myPlayer, 0, 0, 0);
 				Main.projectile[p].minionSlots = 0.5f;
 				Main.projectile[p].alpha = 200;
 				return false;
-            }
-            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+			}
+			if (item.type == ItemID.BookofSkulls)
+			{
+				float PlayerManaDiscounMultpier = player.statManaMax2 / 20;
+				int Shootproj = ModContent.ProjectileType<BookOfSkullHeldProj>();
+				if (player.altFunctionUse == 2)
+				{
+					item.mana = player.statManaMax2;
+					if (player.ownedProjectileCounts[Shootproj] <= 0)
+					{
+						Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, PlayerManaDiscounMultpier);
+					}
+					return false;
+				}
+				else
+				{
+					item.mana = 15;
+					return true;
+				}
+			}
+			if (item.type == ItemID.FrostStaff)
+			{
+				double ecuacionhonda = Utils1.GenerateWave(3f * 16, player.position.X, counter);
+				if (counter % 2 == 0)
+				{
+					var p = Projectile.NewProjectile(source, player.position - new Vector2(0, (float)ecuacionhonda - 2 * 16f), velocity, 174, damage / 4, knockback, Main.myPlayer);
+					Main.projectile[p].stepSpeed /= 2;
+				}
+				Projectile.NewProjectile(source, player.position + new Vector2(0, 2 * 16f), velocity, type, damage, knockback, Main.myPlayer);
+				counter++;
+				return false;
+			}
+			if (item.type == ItemID.FlowerofFire || item.type == ItemID.FlowerofFrost)
+			{
+				if (player.altFunctionUse != 2)
+				{
+					item.useTime = item.type == ItemID.FlowerofFire? 16:12;
+					item.useAnimation = item.type == ItemID.FlowerofFire ? 16 : 12;
+					item.mana = item.type == ItemID.FlowerofFire ? 12 : 11;
+                    item.useStyle = ItemUseStyleID.Swing;
+					item.shootSpeed = item.type == ItemID.FlowerofFire ? 7.5f : 9f;
+					item.autoReuse = true;
+				}
+				else
+				{
 
-        }
+					item.useTime = 6;
+					item.useAnimation = 6;
+					item.useStyle = ItemUseStyleID.Shoot;
+                    item.shootSpeed = item.type == ItemID.FlowerofFire ? 1f : 2f;
+                    item.channel = true;
+					item.mana = 3;
+                    item.autoReuse = true;
+                    int p = Projectile.NewProjectile(source, position, velocity, ProjectileID.Flames, damage / 2, knockback, player.whoAmI,item.type == ItemID.FlowerofFire ? 2:1);
+					Main.projectile[p].DamageType = DamageClass.Magic;
+					if (player.ownedProjectileCounts[ModContent.ProjectileType<FlowerHeldProj>()] <= 0)
+					{
+						Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FlowerHeldProj>(), 0, 0, player.whoAmI, item.type == ItemID.FlowerofFire? 1:2);
+					}
+					return false;
+
+                }
+
+			}
+			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+		}
+		
 
         public void AddToDashWeaponsLists(Item item)
 		{
@@ -223,13 +317,26 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			if (!list.Contains(Content)) list.Add(Content);
 		}
+
+		public List<int> SecondClickWeapons = new List<int>()
+		{
+			ItemID.BookofSkulls,
+			ItemID.FlowerofFire,
+			ItemID.FlowerofFrost
+		};
 		public override bool AltFunctionUse(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-			if (WeaponConf && item.damage > 0 && item.axe < 1 && item.pick < 1)
+
+			
+			if (WeaponConf && item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee)
 			{
 				return true;
 			}
+			else if(SecondClickWeapons.Contains(item.type))
+			{
+                return true;
+            }
 			else
 			{
 				return base.AltFunctionUse(item, player);
@@ -346,6 +453,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
             //  return base.CanBurnInLava(item);	
         }
+		float counter;
         public override void UpdateInventory(Item item, Player player)
 		{
 			if (Reaper.ReaperMode)
@@ -353,7 +461,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				ReaperGlobalItem.ReaperConsumable(item);
 				ReaperGlobalItem.ReaperSetDefaut(item);
 			}
-		}
+			
+			
+
+        }
 
 		
 		public override bool InstancePerEntity => true;

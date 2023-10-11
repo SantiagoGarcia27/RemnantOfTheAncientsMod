@@ -43,6 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 npc.lifeMax *= 2;
                 npc.defense += 10;
             }
+			
 			//if (npc.boss) 
 			//{
 			//	GetItemForTreasureBag(npc.type);
@@ -86,8 +87,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 				{
 					damage = 6;
 				}
-			}
+			}	
 		}
+        int timer = 0;
+        public void setDebuffs(NPC NPC)
+		{
+			int damage = 0;
+			
+            if (NPC.HasBuff(BuffID.Electrified))
+            {
+                if (NPC.lifeRegen > 0)
+                {
+                    NPC.lifeRegen = 0;
+                }
+                NPC.lifeRegen -= 16;
+				damage = 1;
+				if(timer++ % 6 == 0)
+                NPC.SimpleStrikeNPC(damage, Main.player[Main.myPlayer].direction, false, 0f, DamageClass.Generic, false, 0, false);
+            }
+			
+            
+        }
         public void GetItemForTreasureBag(int npcId)
         {
             List<IItemDropRule> rulesForNPCID = Main.ItemDropsDB.GetRulesForItemID(npcId);
@@ -97,6 +117,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             {
                 item3.ReportDroprates(list, ratesInfo);
             }
+        }
+        public override void AI(NPC npc)
+        {
+			setDebuffs(npc);
+            base.AI(npc);
         }
         //public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hit.HitDirection, ref bool crit)
         //{

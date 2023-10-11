@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using Terraria.DataStructures;
 using System;
+using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
+using RemnantOfTheAncientsMod.Common.Global;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
@@ -20,6 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Rayo de sombra");
             Item.staff[Item.type] = true;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
 
         public override void SetDefaults()
@@ -40,44 +43,70 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.shoot = ProjectileID.AmethystBolt;
             Item.value = Item.sellPrice(silver: 30);
             Item.autoReuse = true;
-
+            Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 Item.damage = 26;
                 Item.useTime = 15;
             }
         }
+        public override bool AltFunctionUse(Player player) => true;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float numberProjectiles = 3;
-            float rotation = MathHelper.ToRadians(5);
+            int Shootproj = ModContent.ProjectileType<CorruptRayHeldProj>();
 
-            position += Vector2.Normalize(velocity) * 1f;
-            if (Main.rand.NextFloat() <= (float)2 / 10)
+            if (player.altFunctionUse == 2)
             {
-                for (int i = 0; i < numberProjectiles; i++)
-                {
-                    Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                    int p = Projectile.NewProjectile(source, position, perturbedSpeed * 10, ModContent.ProjectileType<CorruptBolt>(), damage, knockback, player.whoAmI);
-                    Main.projectile[p].stepSpeed = 7f;
-                    Main.projectile[p].GetAlpha(Color.Violet);
-                }
-                const int NUM_DUSTS = 150;
-                for (int j = 0; j < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); j++)
-                {
-                    Vector2 Position = Main.rand.NextVector2CircularEdge(player.width + 100, player.height + 100) + player.position;
-                    Vector2 Velocity = Position.DirectionTo(position) * 1f;
+                Vector2 vector2 = velocity;
 
-                    var a = Dust.NewDustPerfect(Position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
-                    a.noGravity = true;
-                    var m = Dust.NewDustPerfect(Main.rand.NextVector2Square(player.width + 200, player.height + 200) + player.position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
-                    m.noGravity = true;
-                    var o = Dust.NewDustPerfect(Main.rand.NextVector2Square(player.width - 200, player.height - 200) + player.position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
-                    o.noGravity = true;
+                float attackSpeedBonus = player.GetAttackSpeed(DamageClass.Generic);
+                Item.useTime = (int)(65 / attackSpeedBonus);
+                Item.useAnimation = (int)(65 / attackSpeedBonus);
+                Item.mana = 30;
+
+                if (player.ownedProjectileCounts[Shootproj] <= 0)
+                {
+                    for (int proj = 0; proj <= Main.maxProjectiles; proj++)
+                    {
+                        if (Main.projectile[proj].type == Shootproj && Main.projectile[proj].owner == player.whoAmI)
+                        {
+                            Main.projectile[proj].Kill();
+                        }
+                    }
                 }
+
+                if (player.ownedProjectileCounts[Shootproj] <= 0)
+                {
+                    Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y,attackSpeedBonus);
+                }
+
+                return false;
             }
-            //Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
-            return true;
+            else
+            {
+                Item.mana = 9;
+                Item.useAnimation = 49;
+                Item.useTime = RemnantOfTheAncientsMod.CalamityMod != null ? 15 : 23;
+
+                return true;
+            }
+
+        }
+        public void SpawnParticles(Player player, Vector2 position)
+        {
+            const int NUM_DUSTS = 150;
+            for (int j = 0; j < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); j++)
+            {
+                Vector2 Position = Main.rand.NextVector2CircularEdge(player.width + 100, player.height + 100) + player.position;
+                Vector2 Velocity = Position.DirectionTo(position) * 1f;
+
+                var a = Dust.NewDustPerfect(Position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
+                a.noGravity = true;
+                var m = Dust.NewDustPerfect(Main.rand.NextVector2Square(player.width + 200, player.height + 200) + player.position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
+                m.noGravity = true;
+                var o = Dust.NewDustPerfect(Main.rand.NextVector2Square(player.width - 200, player.height - 200) + player.position, DustID.CorruptTorch, Velocity, 100, Color.Purple, 3f);
+                o.noGravity = true;
+            }
         }
         public override void AddRecipes()
         {

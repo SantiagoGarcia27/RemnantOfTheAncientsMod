@@ -15,11 +15,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("The Spiker");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
+            // //DisplayName.SetDefault("The Spiker");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le Spiker");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La punzante");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
+
         public static int counter = 0;
         public static int counter2 = 0;
         public bool spike;
@@ -118,8 +120,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             return false;
         }
 
-        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) 
-        { 
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
             target.defDefense = target.defDefense / 2;
             target.defense = target.defDefense;
         }

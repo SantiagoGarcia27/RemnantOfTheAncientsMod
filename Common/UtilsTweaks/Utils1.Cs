@@ -193,7 +193,23 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Main.player[Main.myPlayer].inventory.Any(item => !item.IsAir && item.type == type);
         }
+        public static bool NumberBetweenExact(float value, float min, float max)
+        {
+            if((value > min && value < max))
+            {
+                return true;
+            }
+            else if(value == min || value == max)
+            {
+                return true;
+            }
 
+            return false;
+        }
+        public static double GenerateWave(float A,float t,float x)
+        {
+            return A * Math.Sin(2 * Math.PI * (((double)t / 10) + (double)x / 5));
+        }
         //public static bool debug (NPC npc)
         //{
         //    bool r = Reaper.ReaperMode;

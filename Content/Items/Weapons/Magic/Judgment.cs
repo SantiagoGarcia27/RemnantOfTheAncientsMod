@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 				heading *= new Vector2(velocity.X, velocity.Y).Length();
 				velocity.X = heading.X;
 				velocity.Y = heading.Y + Main.rand.Next(-40, 41) * 0.02f;
-				Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<HollyLaser>(), damage, knockback, player.whoAmI, 0f, ceilingLimit);
+				Projectile.NewProjectile(source, position.X, position.Y, heading.X,heading.Y/*velocity.X, velocity.Y*/, ModContent.ProjectileType<HollyLaser>(), damage, knockback, player.whoAmI, ceilingLimit);
 			}
 			return false;
 		}

@@ -1729,7 +1729,7 @@ Mods: {
 			}
 
 			EndlesGoldC.DisplayName: Endless Gold Coin
-			EndlesIchor.DisplayName: "Endless Ichor Pouch "
+			EndlesIchor.DisplayName: Endless Ichor Pouch
 
 			EndlesLuminite_Bullet: {
 				DisplayName: Endless Luminite Pouch
@@ -2729,7 +2729,7 @@ Mods: {
 			}
 
 			Endless_Ichor_Pouch: {
-				DisplayName: Endless_ Ichor_ Pouch
+				DisplayName: Endless Ichor Pouch
 				Tooltip: ""
 			}
 
@@ -2942,6 +2942,31 @@ Mods: {
 				DisplayName: Endless Biome Sight Potion
 				Tooltip: ""
 			}
+
+			InfernalStaff: {
+				DisplayName: Fire Rift
+				Tooltip: ""
+			}
+
+			FireRift: {
+				DisplayName: Fire Rift
+				Tooltip: ""
+			}
+
+			InfernalRift: {
+				DisplayName: Infernal Rift
+				Tooltip: ""
+			}
+
+			GelatinousGlove: {
+				DisplayName: Gelatinous Glove
+				Tooltip: ""
+			}
+
+			ExplosionStaff: {
+				DisplayName: Explosion Staff
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3125,6 +3150,11 @@ Mods: {
 			MoltenGrassSwordLeaft.DisplayName: Molten Grass Sword Leaft
 			DesertEdgeSwordSwingProgectile.DisplayName: Desert Edge Sword Swing Progectile
 			NailSlash.DisplayName: Nail Slash
+			CustomFlameTrowerProj.DisplayName: Custom Flame Trower Proj
+			BloodRayHeldProj.DisplayName: Blood Ray Held Proj
+			CorruptRayHeldProj.DisplayName: Corrupt Ray Held Proj
+			BookOfSkullHeldProj.DisplayName: Book Of Skull Held Proj
+			FlowerHeldProj.DisplayName: Flower Held Proj
 		}
 
 		Tiles: {

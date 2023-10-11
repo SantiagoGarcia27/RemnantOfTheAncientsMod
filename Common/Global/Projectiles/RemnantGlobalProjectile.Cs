@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
@@ -30,6 +31,18 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     target.AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 5));
                 }
             }
+            if(projectile.type == 85 && projectile.ai[0] == 2)
+            {
+                target.AddBuff(BuffID.CursedInferno, 1200);
+            }
+            if(projectile.type == ProjectileID.ThunderStaffShot)
+            {
+                target.AddBuff(BuffID.Electrified, 1200);
+            }
+            if(projectile.type == ProjectileID.SpiritFlame)
+            {
+                target.AddBuff(BuffID.ShadowFlame, 1200);
+            }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
         public override void OnSpawn(Projectile projectile, IEntitySource source)
@@ -41,6 +54,22 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 projectile.scale *= 2.5f;
             }
         }
-       
+        public override void AI(Projectile projectile)
+        {
+            if (projectile.type == 85 && projectile.ai[0] == 2)
+            {
+                GetAlpha(projectile, Color.Green);
+            }
+            base.AI(projectile);
+        }
+        public override Color? GetAlpha(Projectile projectile, Color lightColor)
+        {
+            if (projectile.type == 85 && projectile.ai[0] == 2)
+            {
+                return Color.Green;
+            }
+            return lightColor;
+        }
+
     }
 }

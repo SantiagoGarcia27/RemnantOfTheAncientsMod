@@ -75,7 +75,8 @@ namespace RemnantOfTheAncientsMod.Drops
            
             switch (item.type)
             {         
-                case ItemID.KingSlimeBossBag: 
+                case ItemID.KingSlimeBossBag:
+                    itemLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<GelatinousGlove>()));
                     itemLoot.Add(ItemDropRule.Common(ItemID.MusicBoxBoss1, 7));
                     break;
                 case ItemID.EyeOfCthulhuBossBag:       

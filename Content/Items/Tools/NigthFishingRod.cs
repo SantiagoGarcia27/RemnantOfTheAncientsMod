@@ -18,10 +18,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caña de pescar nocturna");
 			//Tooltip.SetDefault("");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
-			/*// //DisplayName.AddTranslation(GameCulture.Russian, "Туксонитовый топор");
+            ItemID.Sets.CanFishInLava[Type] = true;
+            /*// //DisplayName.AddTranslation(GameCulture.Russian, "Туксонитовый топор");
 			//DisplayName.AddTranslation(GameCulture.Chinese, "毒x斧");*/
-		}
+        }
 
 		public override void SetDefaults()
 		{
@@ -37,8 +37,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			Item.shoot = ModContent.ProjectileType<NigthBobber>();
 			Item.value = Item.buyPrice(0, 1, 0, 0);
 		}
-
-		public override void AddRecipes()
+        public override void HoldItem(Player player)
+        {
+            player.accFishingLine = true;
+        }
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddRecipeGroup("CorruptCaña")
