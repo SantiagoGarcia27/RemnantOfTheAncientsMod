@@ -1003,7 +1003,11 @@ namespace RemnantOfTheAncientsMod
             {
                 Recipe recipe = Main.recipe[i];
 
-
+                if (recipe.TryGetResult(ItemID.HandOfCreation, out _))
+                {
+                    recipe.RemoveIngredient(ItemID.AncientChisel);
+                    recipe.AddIngredient(ModContent.ItemType<Spectre_Chisel>(), 1);
+                }
                 if (recipe.TryGetResult(ItemID.JungleHat, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);

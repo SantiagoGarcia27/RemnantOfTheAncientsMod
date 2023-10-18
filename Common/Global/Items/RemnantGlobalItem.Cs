@@ -9,11 +9,14 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
+using Terraria.UI;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
     public class RemnantGlobalItem : GlobalItem
 	{
+		public bool IsACoin = false;
+		public bool IsAmmo = false;
 		public List<int> SpearsList = new List<int>();
 		public int[] lanceId = new int[]
 		{
@@ -44,7 +47,31 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.GoldCoin,
 			ItemID.PlatinumCoin
 		};
-		public override void SetStaticDefaults()
+        public List<int> SecondClickWeapons = new List<int>()
+        {
+            ItemID.BookofSkulls,
+            ItemID.FlowerofFire,
+            ItemID.FlowerofFrost,
+			ItemID.SharpTears,
+            ItemID.AmethystStaff,
+            ItemID.TopazStaff,
+            ItemID.SapphireStaff,
+            ItemID.EmeraldStaff,
+            ItemID.RubyStaff,
+            ItemID.DiamondStaff,
+            ItemID.AmberStaff
+        };
+		public List<int> GemStaffs = new List<int>()
+		{
+			ItemID.AmethystStaff,
+			ItemID.TopazStaff,
+			ItemID.SapphireStaff,
+			ItemID.EmeraldStaff,
+			ItemID.RubyStaff,
+			ItemID.DiamondStaff,
+			ItemID.AmberStaff
+        };
+        public override void SetStaticDefaults()
 		{
 			//if (SecondClickWeapons.Contains(item.type))
 			//{
@@ -127,7 +154,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					item.crit = 76; // da 80 en el juego (valor buscado - 4)
 				}
-				if (item.maxStack > 1 && item.maxStack < 9999)
+                if (item.type == ItemID.ClingerStaff)
+                {
+                    item.mana = 10;
+                }
+                if (item.type == ItemID.ToxicFlask)
+                {
+					item.useAnimation = 25;
+					item.useTime = 7;
+                    item.mana += 10;
+					item.reuseDelay = 40;
+                }
+				if(item.type == ItemID.MagicDagger)
+				{
+					item.damage -= 3;
+					item.mana = 4;
+				}
+                if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
 					{
@@ -252,7 +295,125 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
 
 			}
-			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+            if (item.type == ItemID.SharpTears)
+            { 
+                int Shootproj = ModContent.ProjectileType<BloodThornHeldProj>();
+                if (player.altFunctionUse == 2)
+                {
+                    item.mana = 90;
+                    if (player.ownedProjectileCounts[Shootproj] <= 0)
+                    {
+                        Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y);
+                    }
+                    return false;
+                }
+                else
+                {
+                    item.mana = 20;
+                    return true;
+                }
+            }
+			if (item.type == ItemID.CrystalVileShard)
+			{
+                float numberProjectiles = 2;
+                float rotation = MathHelper.ToRadians(10);
+
+                position += Vector2.Normalize(velocity) * 1f;
+
+                for (int i = 0; i < numberProjectiles; i++)
+                {
+                    Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+                    int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, 491, damage, knockback, player.whoAmI,0,0);
+                    Main.projectile[p].stepSpeed = 1f;
+                    Main.projectile[p].DamageType = DamageClass.Magic;
+                }
+            }
+            if (item.type == ItemID.NettleBurst)
+            {
+                float numberProjectiles = 2;
+                float rotation = MathHelper.ToRadians(10);
+
+                position += Vector2.Normalize(velocity) * 1f;
+				if (new Random().Next(4) == 1)
+				{
+					for (int i = 0; i < numberProjectiles; i++)
+					{
+						Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+						int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, 277, damage, knockback, player.whoAmI, 0, 0);
+						Main.projectile[p].stepSpeed = 1f;
+						Main.projectile[p].friendly = true;
+						Main.projectile[p].hostile = false;
+						Main.projectile[p].DamageType = DamageClass.Magic;
+					}
+				}
+            }
+			if (item.type == ItemID.ShadowbeamStaff)
+			{
+				float numberProjectiles = 2;
+				float rotation = MathHelper.ToRadians(10);
+
+				position += Vector2.Normalize(velocity) * 1f;
+
+				for (int i = 0; i < numberProjectiles; i++)
+				{
+					Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+					int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, type, damage, knockback, player.whoAmI);
+					Main.projectile[p].stepSpeed = 1f;
+					Main.projectile[p].friendly = true;
+					Main.projectile[p].hostile = false;
+					Main.projectile[p].DamageType = DamageClass.Magic;
+				}
+
+			}
+			else if (GemStaffs.Contains(item.type)) 
+			{
+				if (player.altFunctionUse == 2)
+				{
+					int ColorBase = 0;
+					if (item.type == ItemID.TopazStaff)
+					{
+						ColorBase = 1;
+
+					}
+					else if (item.type == ItemID.AmethystStaff)
+					{
+						ColorBase = 0;
+
+					}
+					else if (item.type == ItemID.EmeraldStaff)
+					{
+						ColorBase = 2;
+
+					}
+					else if (item.type == ItemID.SapphireStaff)
+					{
+						ColorBase = 3;
+
+					}
+					else if (item.type == ItemID.RubyStaff)
+					{
+						ColorBase = 4;
+
+					}
+					else if (item.type == ItemID.DiamondStaff)
+					{
+						ColorBase = 5;
+
+					}
+					else if (item.type == ItemID.AmberStaff)
+					{
+						ColorBase = 6;
+
+					}
+
+					if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0)
+					{
+						Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, Main.myPlayer, type, ColorBase);
+					}
+                    return false;
+                }
+            }
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 		
 
@@ -318,12 +479,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			if (!list.Contains(Content)) list.Add(Content);
 		}
 
-		public List<int> SecondClickWeapons = new List<int>()
-		{
-			ItemID.BookofSkulls,
-			ItemID.FlowerofFire,
-			ItemID.FlowerofFrost
-		};
+	
 		public override bool AltFunctionUse(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -418,8 +574,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
         public override void Load()
         {
-           On_Item.CheckLavaDeath += On_Item_CheckLavaDeath;
-           base.Load();
+			On_Item.CheckLavaDeath += On_Item_CheckLavaDeath;
+			On_ItemSlot.PickItemMovementAction += AllowCoinAndAmmoPlacement;
+			base.Load();
         }
 
         private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
@@ -461,12 +618,40 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				ReaperGlobalItem.ReaperConsumable(item);
 				ReaperGlobalItem.ReaperSetDefaut(item);
 			}
-			
-			
+        }
+        public override void HoldItem(Item item, Player player)
+        {
+			int Shootproj;
 
+            if (item.type == ItemID.LeafBlower)
+			{
+				Shootproj = 226;
+
+                if (player.ownedProjectileCounts[Shootproj] <= 0)
+                {
+					player.AddBuff(BuffID.LeafCrystal, 200, false);
+                    Projectile.NewProjectile(Projectile.GetSource_None(), player.position + new Vector2(0,-2 * 16f), Vector2.Zero, Shootproj, 15, 0, Main.myPlayer,1);
+                }
+            }
+            base.HoldItem(item, player);
         }
 
-		
-		public override bool InstancePerEntity => true;
+        private int AllowCoinAndAmmoPlacement(On_ItemSlot.orig_PickItemMovementAction orig, Item[] inv, int context, int slot, Item checkItem)
+        {
+            if (context == 1 && IsACoin) //Money Collector in coin slot
+            {
+                return 0;
+            }
+            if (context == 2) //All unlimited coins in ammo slot
+            {
+                if (IsAmmo)
+                {
+                    return 0;
+                }
+            }
+            return orig(inv, context, slot, checkItem);
+        }
+
+        public override bool InstancePerEntity => true;
 	}
 }

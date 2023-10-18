@@ -29,6 +29,8 @@ namespace RemnantOfTheAncientsMod.Common.Drops
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
+            
+
             PajarosLoot(npc, npcLoot);
             ArmoredZombiesLoot(npc, npcLoot);
             BossLoot(npc, npcLoot);
@@ -157,7 +159,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             }
             if (npc.type == NPCType<CobaltZombie>()) ZombieOreLoot(npcLoot, ItemID.CobaltOre, ItemID.CobaltBar);
             if (npc.type == NPCType<PaladiumZombie>()) ZombieOreLoot(npcLoot, ItemID.PalladiumOre, ItemID.PalladiumBar);
-            
+            if (npc.type == NPCType<MythrilZombie>()) ZombieOreLoot(npcLoot, ItemID.MythrilOre, ItemID.MythrilBar);
+            if (npc.type == NPCType<OrichalcumZombie>()) ZombieOreLoot(npcLoot, ItemID.OrichalcumOre, ItemID.OrichalcumBar);
+            if (npc.type == NPCType<AdamantiteZombie>()) ZombieOreLoot(npcLoot, ItemID.AdamantiteOre, ItemID.AdamantiteBar);
+            if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
         }
         public override void OnKill(NPC npc)
         {

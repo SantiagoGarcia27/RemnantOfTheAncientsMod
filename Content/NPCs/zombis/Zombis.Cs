@@ -11,6 +11,7 @@ using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using static RemnantOfTheAncientsMod.Content.NPCs.zombis.Shadowzombie;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {
@@ -19,9 +20,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         public override void SetStaticDefaults()
         {
 
-           // //DisplayName.SetDefault("weak zombie");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "zombie débil");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie faible");
+            // //DisplayName.SetDefault("weak zombie");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "zombie débil");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie faible");
             Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Zombie];
         }
 
@@ -62,23 +63,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.CopperChainmail).defense;
         static int Greaves = new Item(ItemID.CopperGreaves).defense;
         static int AttackBonus = 1;
-        static int CritBonus = 0;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -104,24 +94,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.TinChainmail).defense;
         static int Greaves = new Item(ItemID.TinGreaves).defense;
         static int AttackBonus = 1;
-        static int CritBonus = 0;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
 
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -147,24 +126,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.LeadChainmail).defense;
         static int Greaves = new Item(ItemID.LeadGreaves).defense;
         static int AttackBonus = 1;
-        static int CritBonus = 0;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
 
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -191,25 +159,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.IronChainmail).defense;
         static int Greaves = new Item(ItemID.IronGreaves).defense;
         static int AttackBonus = 1;
-        static int CritBonus = 0;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
 
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
-
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -235,23 +191,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.SilverChainmail).defense;
         static int Greaves = new Item(ItemID.SilverGreaves).defense;
         static int AttackBonus = 1;
-        static int CritBonus = 0;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -278,23 +223,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.TungstenChainmail).defense;
         static int Greaves = new Item(ItemID.TungstenGreaves).defense;
         static int AttackBonus = 1;
-        static int CritBonus = 0;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -321,24 +255,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.GoldChainmail).defense;
         static int Greaves = new Item(ItemID.GoldGreaves).defense;
         static int AttackBonus = 1;
-        static int CritBonus = 0;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
+            base.SetDefaults();
             NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
-
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -371,17 +294,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
 
@@ -408,25 +323,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
     public class ReinforcedIronZombie : BaseZombie
     {
         static int DefenseSetBonus => 2;
-        static int Helmet => ContentSamples.ItemsByType[ModContent.ItemType<Reforced_iron_Helmet>()].defense;
-        static int Chestplate => ContentSamples.ItemsByType[ModContent.ItemType<Reforced_iron_chesplate>()].defense;
-        static int Greaves => ContentSamples.ItemsByType[ModContent.ItemType<Reforced_Iron_Greaves>()].defense;
-        int Defense => DefenseSetBonus + Helmet + Chestplate + Greaves;
         static float AttackBonus => 1.02f;
         static int CritBonus = 0;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
-            NPC.defense += 0;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
@@ -452,6 +354,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnSpawn(IEntitySource source)
         {
+            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<Reforced_iron_Helmet>()].defense;
+            int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<Reforced_iron_chesplate>()].defense;
+            int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<Reforced_Iron_Greaves>()].defense;
+            int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
             NPC.defense += Defense;
         }
     }
@@ -460,25 +366,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
     public class Tuxonitezombie : BaseZombie
     {
         static int DefenseSetBonus = 0;
-        static int Helmet => ContentSamples.ItemsByType[ModContent.ItemType<TuxoniteHelmet>()].defense;
-        static int Chestplate => ContentSamples.ItemsByType[ModContent.ItemType<Tuxonite_chesplate>()].defense;
-        static int Greaves => ContentSamples.ItemsByType[ModContent.ItemType<Tuxonite_Legging>()].defense;
-        int Defense => DefenseSetBonus + Helmet + Chestplate + Greaves;
         static float AttackBonus = 1.00f;
         static int CritBonus = 5;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
-            NPC.defense += 0;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
+           
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
@@ -491,6 +385,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnSpawn(IEntitySource source)
         {
+            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<TuxoniteHelmet>()].defense;
+            int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<Tuxonite_chesplate>()].defense;
+            int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<Tuxonite_Legging>()].defense;
+            int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
             NPC.defense += Defense;
         }
 
@@ -508,17 +406,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
         }
@@ -559,22 +449,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         static int Chestplate = new Item(ItemID.CrimsonScalemail).defense;
         static int Greaves = new Item(ItemID.CrimsonGreaves).defense;
         int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
-        int CritBonus = 0;
+
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
             NPC.lifeRegen = 100;
             NPC.lifeRegenCount = 2000;
         }
@@ -618,17 +498,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         int CritBonus = 7;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
             NPC.buffImmune[BuffID.OnFire] = true;
@@ -649,26 +521,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
     }
     public class NightZombie : BaseZombie
     {
-        static int DefenseSetBonus = 5;
-        static int Helmet => ContentSamples.ItemsByType[ModContent.ItemType<NightHelmetMe>()].defense;
-        static int Chestplate => ContentSamples.ItemsByType[ModContent.ItemType<Nightchesplate>()].defense;
-        static int Greaves => ContentSamples.ItemsByType[ModContent.ItemType<NightLeggings>()].defense;
-        int Defense => DefenseSetBonus + Helmet + Chestplate + Greaves;
+        static int DefenseSetBonus = 5;   
         static float AttackBonus = 1.19f;
         static int CritBonus = 0;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
+            base.SetDefaults();
             NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax + 50;
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
-            NPC.defense += 0;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
             NPC.buffImmune[BuffID.BrokenArmor] = true;
@@ -696,6 +556,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnSpawn(IEntitySource source)
         {
+            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<NightHelmetMe>()].defense;
+            int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<Nightchesplate>()].defense;
+            int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<NightLeggings>()].defense;
+            int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
             NPC.defense += Defense;
         }
     }
@@ -711,17 +575,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         int CritBonus = 5;
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
             NPC.buffImmune[BuffID.OnFire] = true;
@@ -758,20 +614,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 
         public override void SetDefaults()
         {
-            NPC.CloneDefaults(NPCID.Zombie);
-            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            base.SetDefaults();
             NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
             NPC.defense += Defense;
-            NPC.value += 60f;
-            NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
-            AIType = NPCID.Zombie;
-            AnimationType = NPCID.Zombie;
-            Banner = Item.NPCtoBanner(NPCID.Zombie);
-            BannerItem = Item.BannerToItem(Banner);
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
             NPC.buffImmune[BuffID.OnFire] = true;
+
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -785,7 +634,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         int RegenCounter = 0;
         public override void AI()
         {
-
             if (NPC.localAI[1] == 1)
             {
                 if (NPC.life < NPC.lifeMax)
@@ -802,26 +650,197 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
                     }
                 }
             }
-            else
-            {
-
-            }
         }
         public override void ModifyHitPlayer(Player target, ref Player.HurtModifiers modifiers)
         {
             NPC.localAI[1] = 1;
         }
     }
+
+    public class MythrilZombie : BaseZombie
+    {
+        static int DefenseSetBonus = 0;
+        static int Helmet = new Item(ItemID.MythrilHelmet).defense;
+        static int Chestplate = new Item(ItemID.MythrilChainmail).defense;
+        static int Greaves = new Item(ItemID.MythrilGreaves).defense;
+        static float AttackBonus = 1.17f;
+        static int CritBonus = 28;//15
+        int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
+            NPC.defense += Defense;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (Main.hardMode)
+            {
+                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+            }
+            else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+        }
+        public override void AI()
+        {
+            NPC.TargetClosest(true);
+        }  
+    }
+    public class OrichalcumZombie : BaseZombie
+    {
+        static int DefenseSetBonus = 0;
+        static int Helmet = new Item(ItemID.OrichalcumHelmet).defense;
+        static int Chestplate = new Item(ItemID.OrichalcumBreastplate).defense;
+        static int Greaves = new Item(ItemID.OrichalcumLeggings).defense;
+        static float AttackBonus = 1.19f;
+        static int CritBonus = 6;//15
+        int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
+            NPC.defense += Defense;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (Main.hardMode)
+            {
+                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+            }
+            else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+        }
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            Vector2 pos = target.position - new Vector2(Main.rand.Next(-10,10) * 16, -100 * 16);
+            int p = Projectile.NewProjectile(Projectile.GetSource_None(),pos, (target.position - pos)/4,ProjectileID.FlowerPetal,NPC.damage,0,target.whoAmI);
+            Main.projectile[p].hostile = true;
+            Main.projectile[p].friendly = false;
+            base.OnHitPlayer(target, hurtInfo);
+        }
+        public override void AI()
+        {
+            NPC.TargetClosest(true);
+            Vector2 targetPosition = Main.player[NPC.target].position;
+            if (NPC.velocity.Y == 0)
+            {
+                NPC.velocity.X += targetPosition.X < NPC.position.X ? -0.18f : 0.18f;
+            }
+        }
+    }
+    public class AdamantiteZombie : BaseZombie
+    {
+        static int DefenseSetBonus = 0;
+        static int Helmet = new Item(ItemID.AdamantiteHelmet).defense;
+        static int Chestplate = new Item(ItemID.AdamantiteBreastplate).defense;
+        static int Greaves = new Item(ItemID.AdamantiteLeggings).defense;
+        static float AttackBonus = 1.22f;
+        static int CritBonus = 14;//15
+        int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
+            NPC.defense += Defense;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (Main.hardMode)
+            {
+                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+            }
+            else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+        }
+        public override void AI()
+        {
+            NPC.TargetClosest(true);
+            Vector2 targetPosition = Main.player[NPC.target].position;
+            if (NPC.velocity.Y == 0)
+            {
+                NPC.velocity.X += targetPosition.X < NPC.position.X ? -0.25f : 0.25f;
+            }
+        }
+    }
+    public class TitaniumZombie : BaseZombie
+    {
+        static int DefenseSetBonus = 0;
+        static int Helmet = new Item(ItemID.TitaniumHelmet).defense;
+        static int Chestplate = new Item(ItemID.TitaniumBreastplate).defense;
+        static int Greaves = new Item(ItemID.TitaniumLeggings).defense;
+        static float AttackBonus = 1.16f;
+        static int CritBonus = 18;//15
+        int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
+            NPC.defense += Defense;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (Main.hardMode)
+            {
+                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+            }
+            else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+        }
+        public override void AI()
+        {
+            NPC.TargetClosest(true);
+            Vector2 targetPosition = Main.player[NPC.target].position;
+            if (NPC.velocity.Y == 0)
+            {
+                NPC.velocity.X += targetPosition.X < NPC.position.X ? -0.06f : 0.06f;
+            }
+        }
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            NPC.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTime(0, 0, 0, 6));
+            var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 50, 0, NPC.whoAmI);
+            Main.projectile[p].hostile = true;
+            Main.projectile[p].friendly = false;
+            target.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTime(0, 0, 0, 6));
+            base.OnHitPlayer(target, hurtInfo);
+        }
+    }
+
     public abstract class BaseZombie : ModNPC
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Armored Zombie");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+            // //DisplayName.SetDefault("Armored Zombie");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
         }
-       
+        public override void SetDefaults()
+        {
+            NPC.CloneDefaults(NPCID.Zombie);
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Zombie].lifeMax;
+            NPC.value += 60f;
+            NPC.knockBackResist = 0;
+            NPC.aiStyle = 3;
+            AIType = NPCID.Zombie;
+            AnimationType = NPCID.Zombie;
+            Banner = Item.NPCtoBanner(NPCID.Zombie);
+            BannerItem = Item.BannerToItem(Banner);
+        }
+
+
         public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 10; i++)

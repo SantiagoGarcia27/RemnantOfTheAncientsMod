@@ -3051,6 +3051,10 @@ Mods: {
 			Tungstenzombie.DisplayName: Zombie blindé
 			Tuxonitezombie.DisplayName: Zombie blindé
 			// DesertTyphoonParry.DisplayName: Desert Typhoon Parry
+			// AdamantiteZombie.DisplayName: Adamantite Zombie
+			// MythrilZombie.DisplayName: Mythril Zombie
+			// OrichalcumZombie.DisplayName: Orichalcum Zombie
+			// TitaniumZombie.DisplayName: Titanium Zombie
 		}
 
 		Projectiles: {
@@ -3150,6 +3154,9 @@ Mods: {
 			// CorruptRayHeldProj.DisplayName: Corrupt Ray Held Proj
 			// BookOfSkullHeldProj.DisplayName: Book Of Skull Held Proj
 			// FlowerHeldProj.DisplayName: Flower Held Proj
+			// BloodFlowerHeldProj.DisplayName: Blood Flower Held Proj
+			// BloodThornHeldProj.DisplayName: Blood Thorn Held Proj
+			// GemStaffHeldProj.DisplayName: Gem Staff Held Proj
 		}
 
 		Tiles: {

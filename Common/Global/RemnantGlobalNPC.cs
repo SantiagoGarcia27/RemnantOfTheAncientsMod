@@ -105,8 +105,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 				if(timer++ % 6 == 0)
                 NPC.SimpleStrikeNPC(damage, Main.player[Main.myPlayer].direction, false, 0f, DamageClass.Generic, false, 0, false);
             }
-			
-            
+			if (NPC.HasBuff(BuffID.Stoned))
+			{
+				NPC.velocity = Vector2.Zero;
+			}
+            if (NPC.HasBuff(BuffID.TitaniumStorm))
+            {
+                //NPC.velocity = Vector2.Zero;
+
+            }
+
         }
         public void GetItemForTreasureBag(int npcId)
         {

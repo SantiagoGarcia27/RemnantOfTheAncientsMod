@@ -6,6 +6,7 @@ using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Tiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Items
 {
@@ -38,7 +39,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
             Item.consumable = true;
             Item.createTile = TileType<TerracoinB>();
             Item.noMelee = true;
-        }
+            ModContent.GetInstance<RemnantGlobalItem>().IsACoin = true;
+        } 
         public override bool CanShoot(Player player)
         {
             return false;

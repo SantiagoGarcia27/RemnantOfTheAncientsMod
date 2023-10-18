@@ -193,7 +193,7 @@ public class ReaperPlayer : ModPlayer
     }
     public override bool FreeDodge(Player.HurtInfo info)
     {
-        if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
+        if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul && Reaper.ReaperMode)
         {
             if (Main.rand.NextBool(6))
             {

@@ -19,7 +19,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
         private static readonly Color rarityColorTwo = Utils1.GetReaperColor(2);
 
         public int MinionSlotBonus = 1;
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MinionSlotBonus);
+        public int ManaBoost = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MinionSlotBonus, ManaBoost);
 
         public override void SetStaticDefaults()
         {
