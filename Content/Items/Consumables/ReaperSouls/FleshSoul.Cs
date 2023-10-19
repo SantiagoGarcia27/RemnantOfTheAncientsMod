@@ -2,9 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader.IO;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
@@ -26,8 +24,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
-
-		public override void SetDefaults()
+        int DamageBoost = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBoost);
+        public override void SetDefaults()
 		{
 			Item.width = 26; 
 			Item.height = 26;

@@ -13,6 +13,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
         //public override void SetStaticDefaults() =>// //DisplayName.SetDefault("DebuggToggle");
         public override bool IsLoadingEnabled(Mod mod)
         {
+            return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
+        }
+        public override bool IsLoadingEnabled(Mod mod)
+        {
             return Main.LocalPlayer.name == "a";
         }
         public override void SetDefaults()

@@ -10,6 +10,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class Exotic_Amulet : ModItem
     {
+        int ManaBoost = 20;
+        int ArmorPenetration = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ManaBoost, ArmorPenetration);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Exotic Amulet");

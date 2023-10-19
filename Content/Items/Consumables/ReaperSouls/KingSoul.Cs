@@ -25,8 +25,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
-
-		public override void SetDefaults()
+        int SpeedBoost = 30;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBoost);
+        public override void SetDefaults()
 		{
 			Item.width = 26;
 			Item.height = 26;

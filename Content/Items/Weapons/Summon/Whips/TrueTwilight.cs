@@ -10,7 +10,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
 {
     public class TrueTwilight : ModItem
 	{
-		public override void SetStaticDefaults() 
+        int tagDamage = 13;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(tagDamage);
+        public override void SetStaticDefaults() 
         {
            // //DisplayName.SetDefault("True Twilight");
             //Tooltip.SetDefault("13 summon tag damage" +

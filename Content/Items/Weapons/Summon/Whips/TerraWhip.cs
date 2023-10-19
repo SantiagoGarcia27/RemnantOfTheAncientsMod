@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
 using Terraria;
 using Terraria.DataStructures;
@@ -12,7 +11,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
 {
     public class TerraWhip : ModItem
 	{
-		public override void SetStaticDefaults() 
+        int tagDamage = 18;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(tagDamage);
+        public override void SetStaticDefaults() 
         {
            // //DisplayName.SetDefault("Terra Whip");
             //Tooltip.SetDefault("18 summon tag damage" +

@@ -481,9 +481,9 @@ Mods: {
 				DisplayName: Ankh Amulet
 				Tooltip:
 					'''
-					Increases maximum mana by 20,
+					{$CommonItemTooltip.IncreasesMaxManaBy} 
 					mana regeneration rate
-					and armor penetration by 5.
+					{$CommonItemTooltip.ArmorPenetration@1}.
 					provide immunity to lava and fire blocks
 					you have the effect of Sweetheart Necklace, Charm of Myths,
 					Arctic Diving Gear and Star Veil
@@ -532,9 +532,9 @@ Mods: {
 				DisplayName: Exotic Amulet
 				Tooltip:
 					'''
-					Increases maximum mana by 20,
+					{$CommonItemTooltip.IncreasesMaxManaBy} 
 					mana regeneration rate
-					and armor penetration by 5.
+					{$CommonItemTooltip.ArmorPenetration@1}.
 					provide immunity to lava and fire blocks
 					you have the effect of Sweetheart Necklace, Charm of Myths,
 					Arctic Diving Gear and Star Veil
@@ -1297,7 +1297,7 @@ Mods: {
 
 			DestroyerEnergyCell: {
 				DisplayName: Destroyer Energy Cell
-				Tooltip: Increases mining speed by 35%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
 			EmpressSoul: {
@@ -1307,7 +1307,7 @@ Mods: {
 
 			EyeSoul: {
 				DisplayName: Eye Soul
-				Tooltip: Permanently increases maximum life by 10
+				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
 
 			FishSoul: {
@@ -1317,7 +1317,7 @@ Mods: {
 
 			FleshSoul: {
 				DisplayName: Wall of Flesh Soul
-				Tooltip: Increased all damage by 10%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
 			FrozenSoul: {
@@ -1334,14 +1334,14 @@ Mods: {
 				DisplayName: Infernal Tyrant Soul
 				Tooltip:
 					'''
-					Increased all damage by 10%
+					"{$CommonItemTooltip.PercentIncreasedDamage}"
 					Grants immunity lava and fire blocks
 					'''
 			}
 
 			KingSoul: {
 				DisplayName: King Slime Soul
-				Tooltip: 30% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			MoonSoul: {
@@ -1353,14 +1353,14 @@ Mods: {
 				DisplayName: Plantera Soul
 				Tooltip:
 					'''
-					Permanently increases maximum life by 10
+					"{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 					Summons spores over time that will damage enemies
 					'''
 			}
 
 			QueenSoul: {
 				DisplayName: Queen Slime Soul
-				Tooltip: Permanently increases maximum life by 15
+				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
 
 			RetinazorEnergyCell: {
@@ -2533,8 +2533,8 @@ Mods: {
 				DisplayName: Fire Storm
 				Tooltip:
 					'''
-					8 summon tag damage
-					Your summons will focus struck enemies
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
 					Strike enemies inflict Fire debuff
 					'''
 			}
@@ -2543,9 +2543,9 @@ Mods: {
 				DisplayName: Intestine
 				Tooltip:
 					'''
-					5 summon tag damage
-					Your summons will focus struck enemies
-					Heal 1hp per hit
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
+					Heal 2 hp per hit
 					'''
 			}
 
@@ -2553,7 +2553,7 @@ Mods: {
 				DisplayName: Soul Harvester
 				Tooltip:
 					'''
-					Your summons will focus struck enemies
+					{$CommonItemTooltip.Whips}
 					Has a chance to increase attack speed by 10%
 					'''
 			}
@@ -2562,8 +2562,8 @@ Mods: {
 				DisplayName: Terra Whip
 				Tooltip:
 					'''
-					18 summon tag damage
-					Your summons will focus struck enemies
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
 					'''
 			}
 
@@ -2571,8 +2571,8 @@ Mods: {
 				DisplayName: True Durendal
 				Tooltip:
 					'''
-					14 summon tag damage
-					Your summons will focus struck enemies
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
 					Strike enemies to gain attack speed and summon a friendly Excalibur
 					'''
 			}
@@ -2581,8 +2581,8 @@ Mods: {
 				DisplayName: True Twilight
 				Tooltip:
 					'''
-					13 summon tag damage
-					Your summons will focus struck enemies
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
 					Performs better against multiple targets than most whips
 					Strike enemies to gain 7 of defense to all players
 					'''
@@ -2592,8 +2592,8 @@ Mods: {
 				DisplayName: Twilight
 				Tooltip:
 					'''
-					9 summon tag damage
-					Your summons will focus struck enemies
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
 					Performs better against multiple targets than most whips
 					Strike enemies to gain 5 of defense
 					'''
@@ -2890,12 +2890,12 @@ Mods: {
 			}
 
 			GarritasDoG: {
-				DisplayName: Dod Slayer Claws
+				DisplayName: God Slayer Claws
 				Tooltip: ""
 			}
 
 			ultratiburonDOG: {
-				DisplayName: ultratiburon D O G
+				DisplayName: Punisher Of Gods
 				Tooltip: ""
 			}
 

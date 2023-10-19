@@ -1,5 +1,4 @@
-﻿using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
+﻿using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -9,8 +8,10 @@ using Terraria.ModLoader;
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
 {
     public class TrueDurendal : ModItem
-	{
-		public override void SetStaticDefaults() 
+    {
+        int tagDamage = 14;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(tagDamage);
+        public override void SetStaticDefaults() 
         {
            // //DisplayName.SetDefault("True Durendal");
             //Tooltip.SetDefault("14 summon tag damage" +

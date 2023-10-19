@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ModLoader.IO;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using CalamityMod.Projectiles.Magic;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
@@ -25,8 +26,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
 		}
+		int MiningBoost = 35;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MiningBoost);
 
-		public override void SetDefaults()
+        public override void SetDefaults()
 		{
 			Item.width = 26; 
 			Item.height = 20;

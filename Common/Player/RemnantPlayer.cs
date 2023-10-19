@@ -365,7 +365,7 @@ namespace RemnantOfTheAncientsMod
 			//item.GetGlobalItem<FchangesItem>().ReaperSize(item);
 			if (hit.DamageType == DamageClass.Melee)// item.noMelee && !item.noUseGraphic)
 			{
-				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
+				if (hasInfernal_core) target.AddBuff(BuffID.OnFire3, 300);
 				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
 				if (MeleeKit) target.AddBuff(BuffID.Ichor, 300);
 			}

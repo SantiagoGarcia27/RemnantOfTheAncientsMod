@@ -9,6 +9,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
 {
     public class FireStorm : ModItem
     {
+        int tagDamage = 8;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(tagDamage);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Fire Storm");

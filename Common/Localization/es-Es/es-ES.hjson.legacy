@@ -2,78 +2,84 @@ Mods: {
 	RemnantOfTheAncientsMod: {
 		ChatMessage.CalamityReforgeConfig:
 			'''
-			Warning, the mod's cutom reforge are disabled by a calamity config.
-			To fix it please disable the "{0}" option in calamity settings.
+			Advertencia
+			Los reforges custom del mod fueron deshabilitados por una configuaración del Calamity Mod.
+			Para solucionarlo por favor desactive la opción "{0}" en la configuración del calamity
 			'''
 
 		SetBonus: {
 			Tuxonite:
 				'''
-				Randomly puts you in stealth, 
-				increasing ranged ability and reducing chance for enemies to target you
+				Puedes entrar en sigilo de manera aleatoria
+				Aumenta las habilidades a distancia 
+				Reduce la posibilidad de que los enemigos te detecten
 				'''
 			Daylight:
 				'''
-				During the day, doubles the health regeneration.
-				At night increases max mana by 20.
-				Bright Daisy no cost mana.
+				Durante el día, duplica la regeneración de vida.
+				Por la noche, incrementementa le maná máximo en 20.
+				La margarita brillante no consume maná.
 				'''
 		}
 
 		TownNPCMood: {
 			Time_Wizard: {
-				DisplayName: Time wizard
-				Content: I feel pretty fine right now.
-				NoHome: I would very much like a house, all the colorful monsters scare me.
-				LoveSpace: I love how there is so much space here to practice magic!
-				FarFromHome: Could you please get me back to my house?
-				DislikeCrowded: There are too many people around, it makes it hard for me to focus on my studies.
-				HateCrowded: I can't test my spells with so many people around!
-				LikeBiome: "{BiomeName} is a very nice place to live."
-				LoveBiome: I love {BiomeName}.
-				DislikeBiome: It's way too cold in {BiomeName}, I'm freezing!
-				HateBiome: Its kind of hard to view the sky while being attacked by monsters in {BiomeName}.
-				LikeNPC: I can respect {NPCName} as a fellow guide and educator!
-				LoveNPC: Do you think {NPCName} notices me?
-				DislikeNPC: I honestly don't like {NPCName} very much.
-				HateNPC: I hate all the loud noises caused by {NPCName} and his explosives! I just want peace and quiet.
+				DisplayName: Mago temporal
+				Content: Me siento muy bien ahora mismo.
+				NoHome: Me gustaria mucho una casa, los monstruos coloridos me asustan.
+				LoveSpace: Amo este lugar, tengo mucho espacio para practicar magia!
+				FarFromHome: Podrias llevarme a mi hogar?
+				DislikeCrowded: Hay demasiadas personas alrededor, me cuesta concentrarme en mis estudios.
+				HateCrowded: No puedo probar mis hechizos con tantas personas cerca!
+				LikeBiome: "{BiomeName} es un gran lugar para vivir"
+				LoveBiome: Me encanta {BiomeName}.
+				DislikeBiome: Hace demasiado frío en la {BiomeName}, Me estoy congelando!
+				HateBiome: Es dificil poder observar el cielo mientras soy atacado por mounstros en {BiomeName}.
+				LikeNPC: Puedo respetar a {NPCName} como una fuente de aprendizaje!
+				LoveNPC: Crees que {NPCName} me notó?
+				DislikeNPC: Honestamente no me caé bien {NPCName}.
+				HateNPC: Detesto totalmente a{NPCName}, no puedo ni verlo.
 			}
 		}
 
 		Dialogue: {
 			Time_Wizard: {
-				WizardDialogue: "{0}?, He is a great friend of mine, I remember when we studied at the school of witchcraft."
+				WizardDialogue: ¿{0}?, Él es un gran amigo mio, recuerdo cuando estudiamos en la escuela de hechizeria.
 				ClotierDialogue:
 					'''
 					Oh? You're approaching me? Instead of running away, you're coming right to me?
 					Even Though your clothier, {0}, told you the secret of The World, *dead {0} pics*
 					like an exam student scrambling to finish the problems on an exam until the last moments before the chime?
 					'''
-				DayDialogue1: It's a beautiful day today, it would be a shame if someone changed it
-				DayDialogue2: Oh hi {0}, hope you have a nice day.
-				NightDialogue1: It's a beautiful nigth today, it would be a shame if someone changed it.
-				NightDialogue2: Oh hi {0}, hope you have a nice night.
-				JudmnetDialogue1: What an interesting weapon, did you try aiming at your feet?
-				NoBeeDefeatedDialogue1: Since the bees bother me, could you remove them?
-				GenericDialog1: Nice cloak
+				DayDialogue1:
+					'''
+					Es un bello día alla afuera, los pajaros cantan, las flores florecen...
+					Sería una pena que se hiciera de noche de repente no?.
+					'''
+				DayDialogue2: Oh hola {0}, ¿como está tu día?.
+				NightDialogue1: Es una hermosa noche, ¿que dirian los vecinos si lo hacemos de día?.
+				NightDialogue2: Oh hola {0}, ¿como estás en esta noche?.
+				JudmnetDialogue1: Es un arma interesante,permite que el juicio de un ser determinado caiga sobre tus enemigos.
+				NoBeeDefeatedDialogue1: !Que moletisa estas abejas¡ ¿podrias encargarte de estas?
+				GenericDialog1: Lindo reloj.
 				ErrorDialgog: Error en la realidad, algo salió mal, si ves este mensaje avisale a la tortuga ;)
 			}
 
 			MinerSoul: {
-				CommonDialogue1: Hello, could you bring an simple pickaxe?
+				CommonDialogue1: Hola, podrias darme una picota simple?
 				CommonDialogue2:
 					'''
-					I remember those days when I was looking for gold in these parts.
-					But now I've run out of a iron pick, could you get me one?
+					Recuerdo esos días en los que podía picar oro por todos lados.
+					Pero ahora perdi mi pico de hierro, ¿Podrias conseguirme uno?
 					'''
-				ThanksDialogue1: Many thanks....
-				UpgradeItem: I upgrade your item...
+				ThanksDialogue1: Muchas gracias .....
+				UpgradeItem: Eh mejorado tu objeto...
 			}
 		}
 
 		UI: {
 			Buttoms: {
-				DeliverPickaxe: Deliver pickaxe
+				DeliverPickaxe: Entregar pico
 				UpgradeItem: Upgrade {0}
 				SkipDay: Skip day
 			}
@@ -81,44 +87,44 @@ Mods: {
 
 		Prefix: {
 			Description: {
-				Life: +{0} max life
-				Defense: +{0} defense
-				Speed: +{0}% movment speed
-				CritChance: +{0}% critical strike chance
-				Damage: +{0}% damage
-				MeleeSpeed: +{0}% melee speed
-				LifeRegeneration: +{0} life regeneration
-				DamageReduction: +{0}% damage reduction
+				Life: +{0} vida máxima
+				Defense: +{0} defensa
+				Speed: +{0}% velocidad de movimiento
+				CritChance: +{0}% probabilidad de ataque crítico
+				Damage: +{0}% daño
+				MeleeSpeed: +{0}% velocidad cuerpo a cuerpo
+				LifeRegeneration: +{0} regeneración de vida
+				DamageReduction: +{0}% redución de daño recivido
 			}
 		}
 
 		Prefixes: {
-			Acurate.DisplayName: Accurate
-			Atletic.DisplayName: Athletic
-			Berserk.DisplayName: Berserk
-			Gigant.DisplayName: Giant
-			Healer.DisplayName: Healer
-			Healthy.DisplayName: Healthy
-			Impenetrable.DisplayName: Impenetrable
-			Regenerative.DisplayName: Regenerative
-			Relic.DisplayName: Relic
-			Sharp.DisplayName: Sharp
-			Supersonic.DisplayName: Supersonic
-			Titanic.DisplayName: Titanic
-			Uncontrolled.DisplayName: Uncontrolled
-			Veteran.DisplayName: Veteran
-			Exquisite.DisplayName: Exquisite
-			Shadow.DisplayName: Shadow
+			Acurate.DisplayName: (Preciso)
+			Atletic.DisplayName: (Atlético)
+			Berserk.DisplayName: (Berserker)
+			Gigant.DisplayName: (Gigante)
+			Healer.DisplayName: (Sanador)
+			Healthy.DisplayName: (Saludable)
+			Impenetrable.DisplayName: (Impenetrable)
+			Regenerative.DisplayName: (Regenerativo)
+			Relic.DisplayName: (Reliquia)
+			Sharp.DisplayName: (Afilado)
+			Supersonic.DisplayName: (Supersónico)
+			Titanic.DisplayName: (Titánico)
+			Uncontrolled.DisplayName: (Incontrolable)
+			Veteran.DisplayName: (Veterano)
+			Exquisite.DisplayName: (Exquisito)
+			Shadow.DisplayName: (Sombrio)
 		}
 
 		Generic: {
-			RightClickSaberHabilitie: Right click to use dash
+			RightClickSaberHabilitie: Click derecho para embestir
 			RightClickSecondHabilitie: Right click to use the scondary hability
-			MusicBoxCredit: by {0}
-			ReaperTooltip: Reaper Item
-			LegendaryTooltip: Legendary Drop
-			CompletistTooltip: Completist Item
-			NotConsumableTooltip: Not Consumable
+			MusicBoxCredit: Creditos para {0}
+			ReaperTooltip: Objeto de Segador
+			LegendaryTooltip: Objeto Legendario
+			CompletistTooltip: Objeto de Completista
+			NotConsumableTooltip: No consumible
 		}
 
 		CommonTooltip: {
@@ -138,18 +144,18 @@ Mods: {
 
 		Buffs: {
 			CentryBuff: {
-				DisplayName: Comander Potion
-				Description: Increased max number of sentries
+				DisplayName: Poción de comandante
+				Description: Incrementa el número máximo de centinelas
 			}
 
 			CombatAdrenalineBuff: {
-				DisplayName: Combat Adrenaline
-				Description: You gain a 200% attack speed bonus
+				DisplayName: Adrenalina de combate
+				Description: Aumenta un 200% la velocidad de ataque
 			}
 
 			FishBuff: {
-				DisplayName: Fish
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.FishBuff.Description
+				DisplayName: Pez
+				Description: Puedes respirar bajo el agua y nadar
 			}
 
 			GravityControlBuff: {
@@ -316,18 +322,19 @@ Mods: {
 				DisplayName: Twitch
 				Description:
 					'''
-					Many thanks to -febo1apolo - eltonyhelou - Jormanas_gt 
-					 -LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
-					 -RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
+					Muchas gracias a
+					-febo1apolo - eltonyhelou - Jormanas_gt 
+					-LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
+					-RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
 					-Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606 
-					 -gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo 
-					 -Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
+					-gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo 
+					-Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
 					-Rockerheadd -mateoamii -JuanitoLive -DDS0210 -charlestwi -zakzar01 -Wuchang234 
-					 -WHYonex -zun32 -bickelo -sakarok4 -Mr_D2D2 -Brunix_117 -kire -LixFTO -tuamigojoker1234 
-					 -Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
+					-WHYonex -zun32 -bickelo -sakarok4 -Mr_D2D2 -Brunix_117 -kire -LixFTO -tuamigojoker1234 
+					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
-					 -LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					 for being the first to give this mod a chance
+					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
+					Por darle una oportunidad al mod en sus inicios
 					'''
 			}
 
@@ -337,18 +344,18 @@ Mods: {
 			}
 
 			ReaperBuff: {
-				DisplayName: Reaper mode
-				Description: You feel hollow
+				DisplayName: Modo Segador
+				Description: Te sientes vacio
 			}
 
 			Sand_Weapons: {
-				DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]"
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Sand_Weapons.Description
+				DisplayName: "[c/48E16F:Heramienta imbuida: Arena caliente]"
+				Description: Los ataques cuerpo a cuerpo queman a los enemigos
 			}
 
 			Bee: {
-				DisplayName: Queen Bee
-				Description: The bees give you their power
+				DisplayName: Reina abeja
+				Description: La abejas te entregan su poder
 			}
 
 			BrainOfChutuluScrollBuff: {
@@ -464,7 +471,7 @@ Mods: {
 
 		Items: {
 			BirdWings: {
-				DisplayName: Bird Wings
+				DisplayName: Alas de Ave
 				Tooltip:
 					'''
 					{$CommonItemTooltip.FlightAndSlowfall}
@@ -473,86 +480,91 @@ Mods: {
 			}
 
 			LuminiteWings: {
-				DisplayName: Luminite Wings
+				DisplayName: Alas de Luminita
 				Tooltip: "{$CommonItemTooltip.FlightAndSlowfall}"
 			}
 
 			Ankh_Amulet: {
-				DisplayName: Ankh Amulet
+				DisplayName: Amuleto de Cruz Anzata
 				Tooltip:
 					'''
-					Increases maximum mana by 20,
-					mana regeneration rate
-					and armor penetration by 5.
-					provide immunity to lava and fire blocks
-					you have the effect of Sweetheart Necklace, Charm of Myths,
-					Arctic Diving Gear and Star Veil
-					Grants immunity to most debuffs
+					{$CommonItemTooltip.IncreasesMaxManaBy} 
+					Aumenta la regeneración de maná
+					{$CommonItemTooltip.ArmorPenetration@1}.
+					Otorga inmunidad a los bloques de fuego
+					Obtienes los efectos del Collar de pánico,
+					Talizman de mitos,Equipo de buceo ártico
+					y Velo de estrellas.
+					Obtienes inmunidad a la mayoria de efectos negativos.
 					'''
 			}
 
 			Boot: {
-				DisplayName: Boot
-				Tooltip: Increases fall acceleration
+				DisplayName: Bota
+				Tooltip: Aumenta la velocidad de capída
 			}
 
 			Desert_Core: {
-				DisplayName: Desert Annihilator Core
+				DisplayName: Núcleo del Aniquilador del desierto
 				Tooltip:
 					'''
-					{$CommonItemTooltip.IncreasesMaxMinionsBy} 
-					while you are in desert biome
-					increase life regeneration and {$CommonItemTooltip.PercentIncreasedDamage@1} 
-					while you are in sandstorms
+					{$CommonItemTooltip.IncreasesMaxMinionsBy}.
+					Mientras estas en el desierto
+					aumenta la regeneración de vida y {$CommonItemTooltip.PercentIncreasedDamage@1}.
+					Mientras estas en una tormenta de arena
 					{$CommonItemTooltip.IncreasesMaxLifeBy@2} 
 					'''
 			}
 
 			Frost_core: {
-				DisplayName: Frozen Assaulter Core
+				DisplayName: Núcleo del Asaltante congelado
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
-					Movement speed increases and you become immune to frozen and chilled debuffs while in snow
+					Aumenta la velocidad de movimiento.
+					Obtienes inmunidad a los estados de congelado y enfriado cuando estas en la nieve.
 					'''
 			}
 
 			Infernal_core: {
-				DisplayName: Infernal Tyrant Core
+				DisplayName: Núcleo del Tirano infernal
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
 					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
-					Inflict Hellfire on attack
-					You become immune to fire blocks and On Fire debuffs
+					Inflije Fuego infernal al golpear.
+					Obtienes inmunidad a los bloques de fuego.
+					Obtienes inmunidad a el estado de en llamas.
 					'''
 			}
 
 			Exotic_Amulet: {
-				DisplayName: Exotic Amulet
+				DisplayName: Amuleto Exótico
 				Tooltip:
 					'''
-					Increases maximum mana by 20,
-					mana regeneration rate
-					and armor penetration by 5.
-					provide immunity to lava and fire blocks
-					you have the effect of Sweetheart Necklace, Charm of Myths,
-					Arctic Diving Gear and Star Veil
+					{$CommonItemTooltip.IncreasesMaxManaBy} 
+					Aumenta la regeneración de maná
+					{$CommonItemTooltip.ArmorPenetration@1}.
+					Otorga inmunidad a los bloques de fuego
+					Obtienes los efectos del Collar de pánico,
+					Talizman de mitos,Equipo de buceo ártico
+					y Velo de estrellas.
+					Obtienes inmunidad a la mayoria de efectos negativos.
 					'''
 			}
 
 			IronBand: {
-				DisplayName: Iron Band
-				Tooltip: 2% Increased damage reduction
+				DisplayName: Banda dehierro
+				Tooltip: Reduce un 2% el daño recibido
 			}
 
 			magic_stick: {
-				DisplayName: Magic Stick
+				DisplayName: Palo mágico
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 			}
 
 			magic_wand: {
-				DisplayName: Magic Wand
+				DisplayName: Vara mágica
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
@@ -561,13 +573,14 @@ Mods: {
 			}
 
 			ManaO: {
-				DisplayName: Mana Overcharger
+				DisplayName: Sobrecargador de maná
 				Tooltip:
 					'''
-					Increases mana regeneration
+					Incrementa la regeneración de maná
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
 					{$CommonItemTooltip.PercentReducedManaCost@1}
-					Automatically use mana potions when needed
+					Utiliza pociones de maná automáticamente cuando es necesario.
+					Aumenta el rango de recogida de las estrellas de maná
 					increases pickup range for mana stars
 					you are immune to Mana Sickness
 					'''
@@ -589,10 +602,10 @@ Mods: {
 			}
 
 			ReaperChalice: {
-				DisplayName: Chalice of souls
+				DisplayName: Chalice of Alma dels
 				Tooltip:
 					'''
-					You can store the souls of defeated bosses in this chalice to gain their power.
+					You can store the Alma dels of defeated bosses in this chalice to gain their power.
 					(only works in reaper)
 					'''
 			}
@@ -1271,134 +1284,134 @@ Mods: {
 			}
 
 			BeeSoul: {
-				DisplayName: Queen Bee Soul
-				Tooltip: Releases bees when damaged
+				DisplayName: Alma de Reina abeja
+				Tooltip: Suelta abejas cuando te golpean
 			}
 
 			CorruptSoul: {
-				DisplayName: Corrupt Soul
-				Tooltip: increases life regen
+				DisplayName: Alma de corrupta
+				Tooltip: Aumenta la regeneración de vida
 			}
 
 			CultistSoul: {
-				DisplayName: Cultist Soul
-				Tooltip: A Ice Mist will protect you
+				DisplayName: Alma del Cultista
+				Tooltip: Invoca una niebla de hielo para protegerte
 			}
 
 			DeerclopsSoul: {
-				DisplayName: Deerclops Soul
-				Tooltip: Gives you the ability to summon shadow hands to attack your enemies with 1/4 of your dps
+				DisplayName: Alma del Cierviclope
+				Tooltip: Ganas la hablilidad de invocar manos de sombra para atacar a los enemigos con un daño de 1/4 de tu dps.
 			}
 
 			DesertSoul: {
-				DisplayName: Desert Annihilator Soul
-				Tooltip: Reduces respawn time
+				DisplayName: Alma del Aniquilador del desierto
+				Tooltip: Reduce el tiempo de reaparición
 			}
 
 			DestroyerEnergyCell: {
-				DisplayName: Destroyer Energy Cell
-				Tooltip: Increases mining speed by 35%
+				DisplayName: Célula de energia del destructor
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
 			EmpressSoul: {
-				DisplayName: Empress of Light Soul
-				Tooltip: Grants infinite wing and rocket boot flight
+				DisplayName: Alma de la Emperatiz de la luz
+				Tooltip: Otorga un vuelo infinito con alas y botas cohete
 			}
 
 			EyeSoul: {
-				DisplayName: Eye Soul
-				Tooltip: Permanently increases maximum life by 10
+				DisplayName: Alma de Ojo
+				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
 
 			FishSoul: {
-				DisplayName: Duke Fishron Soul
-				Tooltip: A Sharknado will protect you
+				DisplayName: Alma del Duke Fishron
+				Tooltip: Invoca un tornado de tiburones para protegerte
 			}
 
 			FleshSoul: {
-				DisplayName: Wall of Flesh Soul
-				Tooltip: Increased all damage by 10%
+				DisplayName: Alma del Muro carnoso
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
 			FrozenSoul: {
-				DisplayName: Frozen Assaulter Soul
-				Tooltip: Grants immunity to Frozen, Chilled and Frostburn
+				DisplayName: Alma del Asaltante congelado
+				Tooltip: Otorga inmunidad a los efectos de congelado,helado y quemadura helada
 			}
 
 			GolemSoul: {
-				DisplayName: Golem Soul
-				Tooltip: Increases defense by 10
+				DisplayName: Alma del Golem
+				Tooltip: Aumenta la defensa en 10 puntos
 			}
 
 			InfernalSoul: {
-				DisplayName: Infernal Tyrant Soul
+				DisplayName: Alma del Tirano infernal
 				Tooltip:
 					'''
-					Increased all damage by 10%
-					Grants immunity lava and fire blocks
+					"{$CommonItemTooltip.PercentIncreasedDamage}"
+					Otorga inmunidad a la lava y a los bloques de fuego
 					'''
 			}
 
 			KingSoul: {
-				DisplayName: King Slime Soul
-				Tooltip: 30% increased movement speed
+				DisplayName: Alma del Rey slime
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			MoonSoul: {
-				DisplayName: Moon Lord Soul
-				Tooltip: Reduces respawn time
+				DisplayName: Alma del Señor de la luna
+				Tooltip: Reduce el tiempo de reaparición
 			}
 
 			PlantSoul: {
-				DisplayName: Plantera Soul
+				DisplayName: Alma de Plantera
 				Tooltip:
 					'''
-					Permanently increases maximum life by 10
-					Summons spores over time that will damage enemies
+					"{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
+					Invoca esporas alrededor del jugador que pueden dañar a los enemigos.
 					'''
 			}
 
 			QueenSoul: {
-				DisplayName: Queen Slime Soul
-				Tooltip: Permanently increases maximum life by 15
+				DisplayName: Alma de la Reina slime
+				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
 
 			RetinazorEnergyCell: {
-				DisplayName: Retinazor Energy Cell
-				Tooltip: Removes restriction on wings of Reaper Mode
+				DisplayName: Célula de energia de Retinazor
+				Tooltip: Remueve las restricciones  de vuelo del modo segador
 			}
 
 			SkeletonSoul: {
-				DisplayName: Skeleton Soul
-				Tooltip: Increases defense by 5
+				DisplayName: Alma del esqueleto
+				Tooltip: Aumenta la defensa en 5 puntos
 			}
 
 			SkeletronPrimeEnergyCell: {
-				DisplayName: Skeletron Prime Energy Cell
+				DisplayName: Célula de energia del Esqueleto Mayor
 				Tooltip:
 					'''
-					Increase jump height drastically 
-					Allows to see the minerals
+					Aumenta el salto drásticamente
+					Permite ver minerales
 					'''
 			}
 
 			SpazmatismEnergyCell: {
-				DisplayName: Spazmatism Energy Cell
-				Tooltip: Grants immunity to all fire debuffs
+				DisplayName: Célula de energia del Espasmatizador
+				Tooltip: Otorga inmunidad a todos los efectos de quemadura
 			}
 
 			desertBag: {
-				DisplayName: Treasure Bag
+				DisplayName: Bolsa del tesoro
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			frostBag: {
-				DisplayName: Treasure Bag
+				DisplayName: Bolsa del tesoro
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			infernalBag: {
-				DisplayName: Treasure Bag
+				DisplayName: Bolsa del tesoro
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
@@ -1408,82 +1421,82 @@ Mods: {
 			}
 
 			AncientT: {
-				DisplayName: Ancient tablet
+				DisplayName: Tableta antigua
 				Tooltip: ""
 			}
 
 			BoneBar: {
-				DisplayName: Bone Bar
+				DisplayName: Lingote de hueso
 				Tooltip: ""
 			}
 
 			CelestialAmalgamate: {
-				DisplayName: Celestial Amalgam
+				DisplayName: Amalgama celestial
 				Tooltip: ""
 			}
 
 			JungleBar: {
-				DisplayName: Jungle Bar
+				DisplayName: Lingote selvático
 				Tooltip: ""
 			}
 
 			LuminiteFeathers: {
-				DisplayName: Luminite Feathers
+				DisplayName: Pluma de Luminita
 				Tooltip: ""
 			}
 
 			Neutrum_Fragment: {
-				DisplayName: Neutrum Fragment
+				DisplayName: Fragmento de Neutrum
 				Tooltip: ""
 			}
 
 			NightBar: {
-				DisplayName: Night Bar
+				DisplayName: Lingote de la noche
 				Tooltip: ""
 			}
 
 			Reinforced_iron_ore: {
-				DisplayName: Reinforced iron ore
+				DisplayName: Mineral de hierro reforzado
 				Tooltip: ""
 			}
 
 			Reinforced_ironBar: {
-				DisplayName: Reinforced iron Bar
+				DisplayName: Lingote de hierro reforzado
 				Tooltip: ""
 			}
 
 			Sand_escense: {
-				DisplayName: Sand Essence
+				DisplayName: Essencia de arena
 				Tooltip: ""
 			}
 
 			SharkTooth: {
-				DisplayName: Shark Tooth
+				DisplayName: Colmillo de tiburón
 				Tooltip: ""
 			}
 
 			Terracoin: {
-				DisplayName: Terra Coin
+				DisplayName: Moneda Terra 
 				Tooltip: ""
 			}
 
 			TuxoniteBar: {
-				DisplayName: Tuxonite Bar
+				DisplayName: Lingote de tusonita
 				Tooltip: ""
 			}
 
 			TuxoniteOre: {
-				DisplayName: Tuxonite Ore
+				DisplayName: Mineral de tusonita
 				Tooltip: ""
 			}
 
 			Magic_Sword: {
-				DisplayName: Magic Sword
-				Tooltip: Summons a traveling sword.
+				DisplayName: Espada Mágica
+				Tooltip: Invoca una espada de transporte.
 			}
 
 			TortugaPet: {
-				DisplayName: Magic Lettuce
+				DisplayName: Lechuga Mágica
 				Tooltip: ""
 			}
 
@@ -1493,7 +1506,7 @@ Mods: {
 			}
 
 			Yt: {
-				DisplayName: Yt
+				DisplayName: Sub
 				Tooltip: ""
 			}
 
@@ -1503,192 +1516,192 @@ Mods: {
 			}
 
 			ArmoredzombieBanner: {
-				DisplayName: Armored Zombie Banner
+				DisplayName: Zombi blindado Banner
 				Tooltip: ""
 			}
 
 			TuxoniteChair: {
-				DisplayName: Tuxonite Chair
+				DisplayName: Silla de tusonita
 				Tooltip: ""
 			}
 
 			TuxoniteDoor: {
-				DisplayName: Tuxonite Door
+				DisplayName: Puerta de tusonita
 				Tooltip: ""
 			}
 
 			TuxoniteTable: {
-				DisplayName: Tuxonite Table
+				DisplayName: Mesa de tusonita
 				Tooltip: ""
 			}
 
 			TuxoniteToilet: {
-				DisplayName: Tuxonite Toilet
-				Tooltip: A rare gift for a big fan
+				DisplayName: Retrete de tusonita
+				Tooltip: Un regalo extraño para un gran fan
 			}
 
 			DesertMusicBox: {
-				DisplayName: Music Box (Desert Annihilator)
+				DisplayName: Caja de música (Aniquilador del desierto)
 				Tooltip: ""
 			}
 
 			FrozenMusicBox: {
-				DisplayName: Music Box (Frozen Assaulter)
+				DisplayName: Caja de música (Asaltante Congelado)
 				Tooltip: ""
 			}
 
 			Frozenp2MusicBox: {
-				DisplayName: Music Box (Frozen Assaulter p2)
+				DisplayName: Caja de música (Asaltante Congelado p2)
 				Tooltip: ""
 			}
 
 			InfernalMusicBox: {
-				DisplayName: Music Box (Infernal Tyrant)
+				DisplayName: Caja de música (Tirano Infernal)
 				Tooltip: ""
 			}
 
 			Desert_Relic: {
-				DisplayName: Desert Annihilator relic
+				DisplayName: Reliquia del Aniquilador del desierto
 				Tooltip: ""
 			}
 
 			Frozen_Relic: {
-				DisplayName: Frozen Assaulter relic
+				DisplayName: Reliquia del Asaltante Congelado
 				Tooltip: ""
 			}
 
 			Tyrant_Relic: {
-				DisplayName: Infernal Tyrant relic
+				DisplayName: Reliquia del Tirano Infernal
 				Tooltip: ""
 			}
 
 			DesertTrophy: {
-				DisplayName: Desert Annihilator Trophy
+				DisplayName: Trofeo del Aniquilador del desierto
 				Tooltip: ""
 			}
 
 			FrostTrophy: {
-				DisplayName: Frozen Assaulter Trophy
+				DisplayName:  Trofeo del Asaltante Congelado
 				Tooltip: ""
 			}
 
 			InfernalTrophy: {
-				DisplayName: Infernal Tyrant Trophy
+				DisplayName: Trofeo del Tirano Infernal
 				Tooltip: ""
 			}
 
 			destrosamundos: {
-				DisplayName: World Crusher
+				DisplayName: Triturador de mundos
 				Tooltip: ""
 			}
 
 			Ghost_Pickaxe: {
-				DisplayName: Ghost Pickaxe
+				DisplayName: Pico fantasmal
 				Tooltip: ""
 			}
 
 			Granite_axe: {
-				DisplayName: Granite Axe
+				DisplayName: Hacha de granito
 				Tooltip: ""
 			}
 
 			Granite_Pickaxe: {
-				DisplayName: Granite Pickaxe
+				DisplayName: Pico de granito
 				Tooltip: ""
 			}
 
 			ironstonepickaxe: {
-				DisplayName: Ironstone Pickaxe
+				DisplayName: Pico de hierro petrificado
 				Tooltip: ""
 			}
 
 			Marble_axe: {
-				DisplayName: Marble Axe
+				DisplayName: Hacha de mármol
 				Tooltip: ""
 			}
 
 			Marble_Pickaxe: {
-				DisplayName: Marble Pickaxe
+				DisplayName: Pico de mármol
 				Tooltip: ""
 			}
 
 			night_pickaxe: {
-				DisplayName: Night Pickaxe
+				DisplayName: Pico de la noche
 				Tooltip: ""
 			}
 
 			NigthFishingRod: {
-				DisplayName: Night Fishing Rod
+				DisplayName: Linea nocturna
 				Tooltip: ""
 			}
 
 			Tuxonite_axe: {
-				DisplayName: Tuxonite Axe
+				DisplayName: Hacha de tusonita
 				Tooltip: ""
 			}
 
 			Tuxonite_hammer: {
-				DisplayName: Tuxonite Hammer
+				DisplayName: Martillo de tusonita
 				Tooltip: ""
 			}
 
 			Tuxonite_pickaxe: {
-				DisplayName: Tuxonite Pickaxe
+				DisplayName: Pico de tusonita
 				Tooltip: ""
 			}
 
 			TuxoniteFishingPole: {
-				DisplayName: Tuxonite Fishing Pole
+				DisplayName: Caña de tusonita
 				Tooltip: ""
 			}
 
 			DayToken: {
-				DisplayName: Day Token
-				Tooltip: Summons the sun
+				DisplayName: Ficha solar
+				Tooltip: Hace de día
 			}
 
 			MoonManipulator: {
-				DisplayName: Moon Manipulator
-				Tooltip: Summons the moon
+				DisplayName: Manipulador lunar
+				Tooltip: Hace de noche
 			}
 
 			NightToken: {
-				DisplayName: Night Token
-				Tooltip: Summons the moon
+				DisplayName: Ficha lunar
+				Tooltip: Hace de noche
 			}
 
 			PlayerStatViewer: {
-				DisplayName: Player stat meter
-				Tooltip: Shows most of the player's stats
+				DisplayName: Medidor de estadísticas de jugador
+				Tooltip: Muestra varias estadisticas del jugador
 			}
 
 			RainToken: {
-				DisplayName: Rain Token
-				Tooltip: Summons the rain
+				DisplayName: Ficha de lluvia
+				Tooltip: Inicia la lluvia
 			}
 
 			SandstormToken: {
-				DisplayName: Sandstorm Token
-				Tooltip: Summons the sandstorm
+				DisplayName: Ficha de tormentosa
+				Tooltip: Inicia la tormenta de arena
 			}
 
 			SunManipulator: {
-				DisplayName: Sun Manipulator
-				Tooltip: Summons the sun
+				DisplayName: Manipulador solar
+				Tooltip: Hace de día
 			}
 
 			SuperDummy: {
-				DisplayName: Advanced Dummy
-				Tooltip: Right click to change mode
+				DisplayName: Muñeco de pruebas de alta tecnologia
+				Tooltip: Click derecho para cambiar de modo
 			}
 
 			TimeManipulator3000: {
-				DisplayName: Time Manipulator 3000
-				Tooltip: Summons the moon and de sun
+				DisplayName: Manipulador temporal
+				Tooltip: Alterna entre el día y la noche
 			}
 
 			DesertArrow: {
-				DisplayName: Desert Arrow
+				DisplayName: Flecha desértica
 				Tooltip: ""
 			}
 
@@ -1862,191 +1875,191 @@ Mods: {
 			}
 
 			FireBullet: {
-				DisplayName: Flaming Bullet
+				DisplayName: Balla incendiaria
 				Tooltip: ""
 			}
 
 			ice_bullet: {
-				DisplayName: Frozen Bullet
+				DisplayName: Bala congelada
 				Tooltip: ""
 			}
 
 			Tomb_bullet: {
-				DisplayName: Grave Bullet
+				DisplayName: Bala de tumba
 				Tooltip: ""
 			}
 
 			WrathSlimeBullet: {
-				DisplayName: Wrath Slime Bullet
+				DisplayName: Bala gelatinosa
 				Tooltip: ""
 			}
 
 			Bee_worm: {
-				DisplayName: Bee Worm
+				DisplayName: El Panal
 				Tooltip: ""
 			}
 
 			Bloodtray: {
-				DisplayName: Blood Ray
+				DisplayName: Rayo sangriento
 				Tooltip: ""
 			}
 
 			BombTome: {
-				DisplayName: Bomb Tome
+				DisplayName: Tomo explosivo
 				Tooltip: ""
 			}
 
 			BrightDaisy: {
-				DisplayName: Bright Daisy
-				Tooltip: A daisy with the power of luminous skies
+				DisplayName: Margarita brillante
+				Tooltip: Una margarita con el poder de los cielos luminosos
 			}
 
 			CorrupedRay: {
-				DisplayName: Shadow Ray
+				DisplayName: Rayo sombrio
 				Tooltip: ""
 			}
 
 			CurcedFlower: {
-				DisplayName: Flower of Cursed Flame
+				DisplayName: Flor de llama maldita
 				Tooltip: ""
 			}
 
 			DesertTome: {
-				DisplayName: Desert Tome
+				DisplayName: Tmod desértico
 				Tooltip: ""
 			}
 
 			frozen_staff: {
-				DisplayName: Frozen Staff
+				DisplayName: Báculo congelado
 				Tooltip: ""
 			}
 
 			Judgment: {
-				DisplayName: Judgment
+				DisplayName: Juicio
 				Tooltip: ""
 			}
 
 			JudgmentII: {
-				DisplayName: Judgment II
+				DisplayName: Juicio II
 				Tooltip: ""
 			}
 
 			JudgmentIII: {
-				DisplayName: Judgment III
+				DisplayName: Juicio III
 				Tooltip: ""
 			}
 
 			LaserMachineGun: {
 				DisplayName: L.M.G
-				Tooltip: Legendary Drop
+				Tooltip: ""
 			}
 
 			RazorpineV2: {
-				DisplayName: Pine Fury
+				DisplayName: Furia de pino
 				Tooltip: ""
 			}
 
 			SkyCuter: {
-				DisplayName: SkyCutter
+				DisplayName: Cortador estelar
 				Tooltip: ""
 			}
 
 			StarStormTome: {
-				DisplayName: Star Storm Tome
+				DisplayName: Tomo de lluvia estelar
 				Tooltip: ""
 			}
 
 			StarTome: {
-				DisplayName: Star Tome
+				DisplayName: Tomo de estrellas
 				Tooltip: ""
 			}
 
 			True_Demoncicle: {
-				DisplayName: True Demon Scythe
+				DisplayName: Verdadera guadaña demoníaca
 				Tooltip: ""
 			}
 
 			Tyran_Blast: {
-				DisplayName: Tyrant blast
+				DisplayName: Explocion tirana
 				Tooltip: ""
 			}
 
 			ArmaSlimeV2: {
-				DisplayName: SlimeGun V2
+				DisplayName: Pistola de baba Mk2
 				Tooltip: ""
 			}
 
 			BurningJungle: {
-				DisplayName: Burning Jungle
-				Tooltip: Inflict poison and fire on enemies
+				DisplayName: Jungla Ardiente
+				Tooltip: Inflije fuego y veneno a los enemigos
 			}
 
 			DesertEdge: {
-				DisplayName: Desert Edge
+				DisplayName: Filo del desierto
 				Tooltip: ""
 			}
 
 			Garritas: {
-				DisplayName: Solar Claws
+				DisplayName: Garras solares
 				Tooltip: ""
 			}
 
 			Amethyst_Sword: {
-				DisplayName: Amethyst Sword
+				DisplayName: Espada de amatista
 				Tooltip: ""
 			}
 
 			Diamond_Sword: {
-				DisplayName: Diamond Sword
-				Tooltip: Wrong game
+				DisplayName: Espada de diamante
+				Tooltip: Juego equivocado
 			}
 
 			Emerald_Sword: {
-				DisplayName: Emerald Sword
+				DisplayName: Espada de esmeralda
 				Tooltip: ""
 			}
 
 			The_Geode: {
-				DisplayName: The Geode
+				DisplayName: La Geoda
 				Tooltip: ""
 			}
 
 			The_Geode_Blue: {
-				DisplayName: The Geode
+				DisplayName: La Geoda
 				Tooltip:
 					'''
-					Inflict Slow on enemies
-					Shoot a sapphire sword that fragments on hit
+					Inflige  lentitud a los enemigos
+					Dispara una espada de safiro que se fragmenta al impactar
 					'''
 			}
 
 			The_Geode_Green: {
-				DisplayName: The Geode
-				Tooltip: 50% chance to heal player 5hp per hit
+				DisplayName: La Geoda
+				Tooltip: Te cura 5 de via al golpear con un 50% de provabilidad
 			}
 
 			The_Geode_Red: {
-				DisplayName: The Geode
+				DisplayName: La Geoda
 				Tooltip:
 					'''
-					Inflict fire on enemies
-					 Create explosions on hit
+					Inflige quemaduras a los enemigos
+					Crea explociones al golpear
 					'''
 			}
 
 			The_Geode_Vi: {
-				DisplayName: The Geode
-				Tooltip: Inflict Confused on enemies
+				DisplayName: La Geoda
+				Tooltip: Inflige confución a los enemigos
 			}
 
 			The_Geode_White: {
-				DisplayName: The Geode
+				DisplayName: La Geoda
 				Tooltip: ""
 			}
 
 			The_Geode_Yellow: {
-				DisplayName: The Geode
-				Tooltip: Inflict Ichor on enemies
+				DisplayName: La Geoda
+				Tooltip: Inflige ichor a los enemigos
 			}
 
 			Ruby_Sword: {
@@ -2065,18 +2078,18 @@ Mods: {
 			}
 
 			Granite_Broadsword: {
-				DisplayName: Granite Broadsword
-				Tooltip: Doubles its stats while in the granite biome.
+				DisplayName: Espada de granito
+				Tooltip: Duplica sus estadísticas al entrar en un bioma de granito.
 			}
 
 			Legendary_Great_Sword: {
-				DisplayName: Legendary Great Sword
-				Tooltip: Inflict fire,ichor,venom,hellfire and poison on enemies
+				DisplayName: Gran Espada Legendaria 
+				Tooltip: Inflige quemaduras,ichor,veneno y fuego infernal a los enemigos
 			}
 
 			Marble_Broadsword: {
-				DisplayName: Marble Broadsword
-				Tooltip: Decrease enemy defense by 2.
+				DisplayName: Espada de marmól
+				Tooltip: Reduce la defensa del enemigo en 2 puntos.
 			}
 
 			Permafrost: {
@@ -2472,7 +2485,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a Sunflowr to protect you, 
-					nearby players can gain a happiness buff,5 of defense and heal if they are in its radius
+					Los jugadores cercanos ganan el efecto de felicidad y 5 de defensa
 					'''
 			}
 
@@ -2521,155 +2534,155 @@ Mods: {
 			}
 
 			SunflowerStaff: {
-				DisplayName: Sunflower Staff
+				DisplayName: Báculo de girasol
 				Tooltip:
 					'''
-					Summons a Sunflowr to protect you, 
-					nearby players can gain a happiness buff and heal if they are in its radius
+					Invoca un girasol para protegerte, 
+					Los jugadores cercanos son curados y reciven el efecto de felicidad
 					'''
 			}
 
 			FireStorm: {
-				DisplayName: Fire Storm
+				DisplayName: Tormenta Ignea
 				Tooltip:
 					'''
-					8 summon tag damage
-					Your summons will focus struck enemies
-					Strike enemies inflict Fire debuff
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
+					Inflije fuego al golpear
 					'''
 			}
 
 			Intestine: {
-				DisplayName: Intestine
+				DisplayName: Intestino
 				Tooltip:
 					'''
-					5 summon tag damage
-					Your summons will focus struck enemies
-					Heal 1hp per hit
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
+					Cura 2 de vida por golpe
 					'''
 			}
 
 			SoulHarvester: {
-				DisplayName: Soul Harvester
+				DisplayName: Cosechador de almas
 				Tooltip:
 					'''
-					Your summons will focus struck enemies
-					Has a chance to increase attack speed by 10%
+					{$CommonItemTooltip.Whips}
+					Tiene un 10% de probabilidad de aumentar la velocidad de ataque
 					'''
 			}
 
 			TerraWhip: {
-				DisplayName: Terra Whip
+				DisplayName: Látigo Terra
 				Tooltip:
 					'''
-					18 summon tag damage
-					Your summons will focus struck enemies
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
 					'''
 			}
 
 			TrueDurendal: {
-				DisplayName: True Durendal
+				DisplayName: Durendal Verdadero
 				Tooltip:
 					'''
-					14 summon tag damage
-					Your summons will focus struck enemies
-					Strike enemies to gain attack speed and summon a friendly Excalibur
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
+					Golpear enemigos para ganar un aumento de velocidad deataque e invocar a una Excalibur amistosa.
 					'''
 			}
 
 			TrueTwilight: {
-				DisplayName: True Twilight
+				DisplayName: Crepúsculo Verdadero
 				Tooltip:
 					'''
-					13 summon tag damage
-					Your summons will focus struck enemies
-					Performs better against multiple targets than most whips
-					Strike enemies to gain 7 of defense to all players
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
+					Funciona mejor contra múltiples objetivos que la mayoría de los látigos.
+					Golpear enemigos da un aumento temporal de 7 de defensa
 					'''
 			}
 
 			Twilight: {
-				DisplayName: Twilight
+				DisplayName: Crepúsculo
 				Tooltip:
 					'''
-					9 summon tag damage
-					Your summons will focus struck enemies
-					Performs better against multiple targets than most whips
-					Strike enemies to gain 5 of defense
+					{$CommonItemTooltip.SummonTagDamage}
+					{$CommonItemTooltip.Whips}
+					Funciona mejor contra múltiples objetivos que la mayoría de los látigos.
+					Golpear enemigos da un aumento temporal de 5 de defensa
 					'''
 			}
 
 			YggdrasilStaff: {
-				DisplayName: Yggdrasil Staff
+				DisplayName: Báculo de Yggdrasil
 				Tooltip:
 					'''
-					Summons a Yggdrasil to protect you, 
-					nearby players can gain a happiness buff,15 of defense,10% damage,5% damage reduction and heal if they are in its radius
+					LLama al Yggdrasil para protegerte, 
+					Los jugadores cercanos ganan el efecto de felicidad, 15 de defensa, 10% daño y 5% redución de daño
 					'''
 			}
 
 			DesertFury: {
-				DisplayName: Desert Fury
-				Tooltip: The power of the earth will indulge in this weapon.
+				DisplayName: Furia desertica
+				Tooltip: El poder de las dunas fluye por su mango.
 			}
 
 			Golden_Shuriken: {
-				DisplayName: Golden Shuriken
+				DisplayName: Shuriken Dorado
 				Tooltip: ""
 			}
 
 			Restaurated_Chisel: {
-				DisplayName: Restaurated Chisel
+				DisplayName: Cincel Restaurado
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
 			Spectre_Chisel: {
-				DisplayName: Spectre Chisel
+				DisplayName: Cincel Espectral
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
 			Sangar_Body: {
-				DisplayName: Sangar Body
+				DisplayName: Cuerpo de Sangar
 				Tooltip: ""
 			}
 
 			Sangar_Head: {
-				DisplayName: Sangar Head
+				DisplayName: Máscara de Sangar
 				Tooltip: ""
 			}
 
 			Sangar_Legs: {
-				DisplayName: Sangar Legs
+				DisplayName: Pantalones de Sangar
 				Tooltip: ""
 			}
 
 			Ttim_Body: {
-				DisplayName: Ttim Body
+				DisplayName: Cuerpo de TTIM
 				Tooltip: ""
 			}
 
 			Ttim_Head: {
-				DisplayName: Ttim Head
+				DisplayName: Máscara de TTIM
 				Tooltip: ""
 			}
 
 			Ttim_Legs: {
-				DisplayName: Ttim Legs
+				DisplayName: Pantalones de TTIM
 				Tooltip: ""
 			}
 
 			Desert_herald_chesplate: {
-				DisplayName: Desert herald chesplate
+				DisplayName: Coraza del heraldo del desierto
 				Tooltip: "{$CommonItemTooltip.IncreasesMaxMinionsBy}"
 			}
 
 			Desert_herald_Greaves: {
-				DisplayName: Desert herald  Greaves
+				DisplayName: Grevas del heraldo del desierto
 				Tooltip: "{$CommonItemTooltip.IncreasesMaxMinionsBy}"
 			}
 
 			Desert_herald_Helmet: {
-				DisplayName: Desert herald Helmet
+				DisplayName: Casco del heraldo del desierto
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
@@ -2678,18 +2691,19 @@ Mods: {
 			}
 
 			Reaper_Hood: {
-				DisplayName: Reaper Hood
+				DisplayName: Verdadera Capucha De segador
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedDamage}
-					Luck increased in 2
-					Not moving puts you in stealth,
-					Increasing ranged ability and reducing chance for enemies to target you
+					Aumenta la suerte en 2
+					Entras en sigilo al quedarte quieto
+					Aumenta el daño a distancia 
+					Te hace menos de visible para los enemigos
 					'''
 			}
 
 			Reaper_Pants: {
-				DisplayName: Reaper Pants
+				DisplayName: Verdadero Pantalon De segador
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
@@ -2699,7 +2713,7 @@ Mods: {
 			}
 
 			Reaper_Robe: {
-				DisplayName: Reaper Robe
+				DisplayName: Verdadera Tunica De segador
 				Tooltip:
 					'''
 					{$CommonItemTooltip.ReducesDamageTakenByPercent}
@@ -2890,17 +2904,17 @@ Mods: {
 			}
 
 			GarritasDoG: {
-				DisplayName: Dod Slayer Claws
+				DisplayName: Garras del asesino de dioses
 				Tooltip: ""
 			}
 
 			ultratiburonDOG: {
-				DisplayName: ultratiburon D O G
+				DisplayName: Castigadora De Dioses
 				Tooltip: ""
 			}
 
 			Corrupt_Heart: {
-				DisplayName: Corrupt Heart
+				DisplayName: Corazon Corrupto
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxLifeBy}
@@ -2910,32 +2924,32 @@ Mods: {
 			}
 
 			Flower_Defender_Helmet: {
-				DisplayName: Flower Defender Helmet
+				DisplayName: Casco del defensor floral
 				Tooltip: ""
 			}
 
 			Flower_Defender_Body: {
-				DisplayName: Flower Defender Body
+				DisplayName: Pechera del defensor floral
 				Tooltip: ""
 			}
 
 			Flower_Defender_Legs: {
-				DisplayName: Flower Defender Legs
+				DisplayName: Pantalones del defensor floral
 				Tooltip: ""
 			}
 
 			Amber_Sword: {
-				DisplayName: Amber Sword
+				DisplayName: Espada de ambar
 				Tooltip: ""
 			}
 
 			The_Geode_Brown: {
-				DisplayName: The Geode
+				DisplayName: La Geoda
 				Tooltip: ""
 			}
 
 			PalidNail: {
-				DisplayName: Palid Nail
+				DisplayName: Aguijon Pálido
 				Tooltip: ""
 			}
 
@@ -2945,74 +2959,74 @@ Mods: {
 			}
 
 			InfernalStaff: {
-				DisplayName: Fire Rift
-				Tooltip: ""
+				// DisplayName: Fire Rift
+				// Tooltip: ""
 			}
 
 			FireRift: {
-				DisplayName: Fire Rift
+				DisplayName: Grieta Ignea
 				Tooltip: ""
 			}
 
 			InfernalRift: {
-				DisplayName: Infernal Rift
+				DisplayName: Grieta Infernal
 				Tooltip: ""
 			}
 
 			GelatinousGlove: {
-				DisplayName: Gelatinous Glove
+				DisplayName: Guante Viscoso
 				Tooltip: ""
 			}
 
 			ExplosionStaff: {
-				DisplayName: Explosion Staff
+				DisplayName: Bastón Explosivo
 				Tooltip: ""
 			}
 		}
 
 		NPCs: {
 			AntlionD.DisplayName: Antlion
-			ArmoredSlime.DisplayName: Armored Slime
+			ArmoredSlime.DisplayName: Baba blindada
 
 			DesertAniquilator: {
-				DisplayName: Desert Annihilator
+				DisplayName: Aniquilador Del Desierto
 
 				BossChecklistIntegration: {
-					EntryName: Desert Annihilator
-					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertChest] in the desert
+					EntryName: Aniquilador Del Desierto
+					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertChest] en el desierto
 					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 			}
 
 			FrozenAssaulter: {
-				DisplayName: Frozen Assaulter
+				DisplayName: Asaltante Congelado
 
 				BossChecklistIntegration: {
-					EntryName: Frozen Assaulter
-					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
+					EntryName: Asaltante Congelado
+					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
 					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
 
-			InfernalTyrantBody.DisplayName: Infernal Tyrant
+			InfernalTyrantBody.DisplayName: Tirano Infernal
 
 			InfernalTyrantHead: {
-				DisplayName: Infernal Tyrant
+				DisplayName: Tirano Infernal
 
 				BossChecklistIntegration: {
-					EntryName: Infernal Tyrant
-					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
+					EntryName: Tirano Infernal
+					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
 					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
 
-			InfernalTyrantTail.DisplayName: Infernal Tyrant
+			InfernalTyrantTail.DisplayName: Tirano Infernal
 			DesertScorpionD.DisplayName: Sand Poacher
 			DSlime.DisplayName: Servant of Desert Annihilator
 			FlyingAntlionD.DisplayName: Antlion Swarmer
 			IGolem.DisplayName: Ice Golem
-			MinerSoul.DisplayName: Miner Soul
-			MiniDuke.DisplayName: Fishron specter
+			MinerSoul.DisplayName: Alma minera
+			MiniDuke.DisplayName: Espectro Fishron
 			SuperDummyNPC.DisplayName: Super Dummy
 
 			Time_Wizard: {
@@ -3039,28 +3053,28 @@ Mods: {
 
 			VultureD.DisplayName: Vulture
 			WalkingAntlionD.DisplayName: Antlion Charger
-			CobaltZombie.DisplayName: Armored Zombie
-			Copperzombie.DisplayName: Armored Zombie
-			Crimsonzombi.DisplayName: Armored Zombie
+			CobaltZombie.DisplayName: Zombi blindado
+			Copperzombie.DisplayName: Zombi blindado
+			Crimsonzombi.DisplayName: Zombi blindado
 			Fastzombie.DisplayName: weak zombie
-			Goldzombie.DisplayName: Armored Zombie
-			Ironzombie.DisplayName: Armored Zombie
-			Leadzombie.DisplayName: Armored Zombie
-			MoltenZombie.DisplayName: Armored Zombie
-			NightZombie.DisplayName: Armored Zombie
-			PaladiumZombie.DisplayName: Armored Zombie
-			Platinumzombie.DisplayName: Armored Zombie
-			ReinforcedIronZombie.DisplayName: Armored Zombie
-			Shadowzombie.DisplayName: Armored Zombie
-			Silverzombie.DisplayName: Armored Zombie
-			Tinzombie.DisplayName: Armored Zombie
-			Tungstenzombie.DisplayName: Armored Zombie
-			Tuxonitezombie.DisplayName: Armored Zombie
-			DesertTyphoonParry.DisplayName: Desert Typhoon Parry
-			AdamantiteZombie.DisplayName: Adamantite Zombie
-			MythrilZombie.DisplayName: Mythril Zombie
-			OrichalcumZombie.DisplayName: Orichalcum Zombie
-			TitaniumZombie.DisplayName: Titanium Zombie
+			Goldzombie.DisplayName: Zombi blindado
+			Ironzombie.DisplayName: Zombi blindado
+			Leadzombie.DisplayName: Zombi blindado
+			MoltenZombie.DisplayName: Zombi blindado
+			NightZombie.DisplayName: Zombi blindado
+			PaladiumZombie.DisplayName: Zombi blindado
+			Platinumzombie.DisplayName: Zombi blindado
+			ReinforcedIronZombie.DisplayName: Zombi blindado
+			Shadowzombie.DisplayName: Zombi blindado
+			Silverzombie.DisplayName: Zombi blindado
+			Tinzombie.DisplayName: Zombi blindado
+			Tungstenzombie.DisplayName: Zombi blindado
+			Tuxonitezombie.DisplayName: Zombi blindado
+			DesertTyphoonParry.DisplayName: ""
+			AdamantiteZombie.DisplayName: Zombi blindado
+			MythrilZombie.DisplayName: Zombi blindado
+			OrichalcumZombie.DisplayName: Zombi blindado
+			TitaniumZombie.DisplayName: Zombi blindado
 		}
 
 		Projectiles: {
@@ -3099,7 +3113,7 @@ Mods: {
 			DesertS.DisplayName: DesertS
 			GodClaws.DisplayName: God Slayer Slash
 			GrassSwordLeaft.DisplayName: Sharp Leaf
-			LegendaryGreatSwordSwingProgectile.DisplayName: Legendary Great Sword
+			LegendaryGreatSwordSwingProgectile.DisplayName: Gran Espada Legendaria
 			PermafrostRain.DisplayName: SkyCutterS
 			SlimeV2.DisplayName: Slime V2
 			SolarangP.DisplayName: SolarangP
@@ -3143,7 +3157,7 @@ Mods: {
 			BloodyWhipProjectile.DisplayName: Bloody Whip Projectile
 			FireStormProjectile.DisplayName: Fire Storm Projectile
 			NightWhipProjectile.DisplayName: Night Whip Projectile
-			SoulHarvesterProjectile.DisplayName: Soul Harvester Projectile
+			SoulHarvesterProjectile.DisplayName: Alma del Harvester Projectile
 			TerraWhipProjectile.DisplayName: Terra Whip Projectile
 			TrueDurendalProjectile.DisplayName: True Durendal Projectile
 			TrueTwilightProjectile.DisplayName: True Twilight Projectile
@@ -3194,7 +3208,7 @@ Mods: {
 
 				Headers: {
 					PotionEffects: Potion Effects Header
-					ReaperSouls: Reaper Souls Header
+					ReaperSouls: Reaper Alma dels Header
 				}
 
 				KitsFeatherFall: {
@@ -3223,107 +3237,107 @@ Mods: {
 				}
 
 				ToggleKingSlimeSoul: {
-					Label: Toggle King Slime Soul
+					Label: Toggle King Slime Alma del
 					Tooltip: ""
 				}
 
 				ToggleEyeOfChutuluSoul: {
-					Label: Toggle Eye Of Chutulu Soul
+					Label: Toggle Eye Of Chutulu Alma del
 					Tooltip: ""
 				}
 
 				ToggleCorruptSoul: {
-					Label: Toggle Corrupt Soul
+					Label: Toggle Corrupt Alma del
 					Tooltip: ""
 				}
 
 				ToggleQueenBeeSoul: {
-					Label: Toggle Queen Bee Soul
+					Label: Toggle Queen Bee Alma del
 					Tooltip: ""
 				}
 
 				ToggleSkeletronSoul: {
-					Label: Toggle Skeletron Soul
+					Label: Toggle Skeletron Alma del
 					Tooltip: ""
 				}
 
 				ToggleDearclopsSoul: {
-					Label: Toggle Dearclops Soul
+					Label: Toggle Dearclops Alma del
 					Tooltip: ""
 				}
 
 				ToggleDesertAnhilatorSoul: {
-					Label: Toggle Desert Anhilator Soul
+					Label: Toggle Desert Anhilator Alma del
 					Tooltip: ""
 				}
 
 				ToggleWallOfFleshSoul: {
-					Label: Toggle Wall Of Flesh Soul
+					Label: Toggle Wall Of Flesh Alma del
 					Tooltip: ""
 				}
 
 				ToggleFrozenAssaulterSoul: {
-					Label: Toggle Frozen Assaulter Soul
+					Label: Toggle Frozen Assaulter Alma del
 					Tooltip: ""
 				}
 
 				ToggleQueenSlimeSoul: {
-					Label: Toggle Queen Slime Soul
+					Label: Toggle Queen Slime Alma del
 					Tooltip: ""
 				}
 
 				ToggleDestroyerSoul: {
-					Label: Toggle Destroyer Soul
+					Label: Toggle Destroyer Alma del
 					Tooltip: ""
 				}
 
 				ToggleSpazmatismSoul: {
-					Label: Toggle Spazmatism Soul
+					Label: Toggle Spazmatism Alma del
 					Tooltip: ""
 				}
 
 				ToggleRetinazorSoul: {
-					Label: Toggle Retinazor Soul
+					Label: Toggle Retinazor Alma del
 					Tooltip: ""
 				}
 
 				ToggleSkeletronPrimeSoul: {
-					Label: Toggle Skeletron Prime Soul
+					Label: Toggle Skeletron Prime Alma del
 					Tooltip: ""
 				}
 
 				ToggleEmpressOfLightSoul: {
-					Label: Toggle Empress Of Light Soul
+					Label: Toggle Empress Of Light Alma del
 					Tooltip: ""
 				}
 
 				TogglePlanteraSoul: {
-					Label: Toggle Plantera Soul
+					Label: Toggle Plantera Alma del
 					Tooltip: ""
 				}
 
 				ToggleInfernalTyrantSoul: {
-					Label: Toggle Infernal Tyrant Soul
+					Label: Toggle Infernal Tyrant Alma del
 					Tooltip: ""
 				}
 
 				ToggleGolemSoul: {
-					Label: Toggle Golem Soul
+					Label: Toggle Golem Alma del
 					Tooltip: ""
 				}
 
 				ToggleDukeFishronSoul: {
-					Label: Toggle Duke Fishron Soul
+					Label: Toggle Duke Fishron Alma del
 					Tooltip: ""
 				}
 
 				ToggleLunaticCultistSoul: {
-					Label: Toggle Lunatic Cultist Soul
+					Label: Toggle Lunatic Cultist Alma del
 					Tooltip: ""
 				}
 
 				ToggleMoonlordSoul: {
-					Label: Toggle Moonlord Soul
+					Label: Toggle Moonlord Alma del
 					Tooltip: ""
 				}
 			}
@@ -3332,51 +3346,51 @@ Mods: {
 				DisplayName: Config Server
 
 				Headers: {
-					Performance: Performance
+					Performance: Rendimiento
 					TerrariaOverhaul: Terraria Overhaul
 					TerrariaOverhaulHeader: Terraria Overhaul
 				}
 
 				LagReducer: {
-					Label: Lag Reducer
+					Label: Reductor de Lag
 					Tooltip:
 						'''
-						Reduces graphical aspects of the mod in order to improve game performance.
-						0 - Disable anti lagg
-						1 - 50% of mod effects
-						2 - 25% of mod effects
-						3 - Disable mod effects
+						Reduce los aspectos gráficos del mod para mejorar el rendimiento.
+						0 - Desactivado
+						1 - 50% de particulas
+						2 - 25% de particulas
+						3 - Particulas desactivadas
 						'''
 				}
 
 				VanillaWeaponsChangesConf: {
-					Label: Vanilla Weapons Changes Conf
+					Label: Cambios a armas vanilla
 					Tooltip:
 						'''
-						Activate the balance changes of vanilla items
-						deactivate this if it generates incompatibility with some other mod
+						Activa los cambios de balance a los objetos del juego base
+						Desactive esta opción si genera incompativilidad con otro mod.
 						'''
 				}
 
 				DropTombstomOnDeadtConf: {
-					Label: Drop Tombstom On Deadt Conf
+					Label: Dejar tumbas al morir
 					Tooltip:
 						'''
-						Defines if the player drops graves upon death
-						0- Disable all of the tombs
-						1 - 50% Chance to drop tombs
-						2 - 100% Chance to drop tombs
+						Define si el jugador suelta tumbas al morit
+						0- Desactiva todas las tumbas
+						1 - 50% de soltar tumbas
+						2 - 100% de soltar tumbas
 						'''
 				}
 
 				MaxItemStackConf: {
-					Label: Max Item Stack Conf
+					Label: Tamaño de stack de objetos
 					Tooltip: ""
 				}
 
 				OverhaulMeleeManaCostConfig: {
-					Label: Overhaul Melee Mana Cost Config
-					Tooltip: Activate the mechanic of melee cost mana
+					Label: Armas cuerpo a cuerpo gastan maná con Terraria Overhaul
+					Tooltip: Desactiva la mecanica de coste de maná en las armas cuerpo a cuerpo con proyectil
 				}
 			}
 		}

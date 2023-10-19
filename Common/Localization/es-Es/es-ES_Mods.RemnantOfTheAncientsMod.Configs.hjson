@@ -1,182 +1,182 @@
 Configs: {
 	ConfigClient: {
-		DisplayName: Config Client
+		// DisplayName: Config Client
 
 		Headers: {
-			PotionEffects: Potion Effects Header
-			ReaperSouls: Reaper Souls Header
+			// PotionEffects: Potion Effects Header
+			// ReaperSouls: Reaper Souls Header
 		}
 
 		KitsFeatherFall: {
-			Label: Kits Feather Fall
-			Tooltip: ""
+			// Label: Kits Feather Fall
+			// Tooltip: ""
 		}
 
 		KitsInvis: {
-			Label: Kits Invis
-			Tooltip: ""
+			// Label: Kits Invis
+			// Tooltip: ""
 		}
 
 		KitsGrav: {
-			Label: Kits Grav
-			Tooltip: ""
+			// Label: Kits Grav
+			// Tooltip: ""
 		}
 
 		KitsInferno: {
-			Label: Kits Inferno
-			Tooltip: ""
+			// Label: Kits Inferno
+			// Tooltip: ""
 		}
 
 		KitsGills: {
-			Label: Kits Gills
-			Tooltip: ""
+			// Label: Kits Gills
+			// Tooltip: ""
 		}
 
 		ToggleKingSlimeSoul: {
-			Label: Toggle King Slime Soul
-			Tooltip: ""
+			// Label: Toggle King Slime Soul
+			// Tooltip: ""
 		}
 
 		ToggleEyeOfChutuluSoul: {
-			Label: Toggle Eye Of Chutulu Soul
-			Tooltip: ""
+			// Label: Toggle Eye Of Chutulu Soul
+			// Tooltip: ""
 		}
 
 		ToggleCorruptSoul: {
-			Label: Toggle Corrupt Soul
-			Tooltip: ""
+			// Label: Toggle Corrupt Soul
+			// Tooltip: ""
 		}
 
 		ToggleQueenBeeSoul: {
-			Label: Toggle Queen Bee Soul
-			Tooltip: ""
+			// Label: Toggle Queen Bee Soul
+			// Tooltip: ""
 		}
 
 		ToggleSkeletronSoul: {
-			Label: Toggle Skeletron Soul
-			Tooltip: ""
+			// Label: Toggle Skeletron Soul
+			// Tooltip: ""
 		}
 
 		ToggleDearclopsSoul: {
-			Label: Toggle Dearclops Soul
-			Tooltip: ""
+			// Label: Toggle Dearclops Soul
+			// Tooltip: ""
 		}
 
 		ToggleDesertAnhilatorSoul: {
-			Label: Toggle Desert Anhilator Soul
-			Tooltip: ""
+			// Label: Toggle Desert Anhilator Soul
+			// Tooltip: ""
 		}
 
 		ToggleWallOfFleshSoul: {
-			Label: Toggle Wall Of Flesh Soul
-			Tooltip: ""
+			// Label: Toggle Wall Of Flesh Soul
+			// Tooltip: ""
 		}
 
 		ToggleFrozenAssaulterSoul: {
-			Label: Toggle Frozen Assaulter Soul
-			Tooltip: ""
+			// Label: Toggle Frozen Assaulter Soul
+			// Tooltip: ""
 		}
 
 		ToggleQueenSlimeSoul: {
-			Label: Toggle Queen Slime Soul
-			Tooltip: ""
+			// Label: Toggle Queen Slime Soul
+			// Tooltip: ""
 		}
 
 		ToggleDestroyerSoul: {
-			Label: Toggle Destroyer Soul
-			Tooltip: ""
+			// Label: Toggle Destroyer Soul
+			// Tooltip: ""
 		}
 
 		ToggleSpazmatismSoul: {
-			Label: Toggle Spazmatism Soul
-			Tooltip: ""
+			// Label: Toggle Spazmatism Soul
+			// Tooltip: ""
 		}
 
 		ToggleRetinazorSoul: {
-			Label: Toggle Retinazor Soul
-			Tooltip: ""
+			// Label: Toggle Retinazor Soul
+			// Tooltip: ""
 		}
 
 		ToggleSkeletronPrimeSoul: {
-			Label: Toggle Skeletron Prime Soul
-			Tooltip: ""
+			// Label: Toggle Skeletron Prime Soul
+			// Tooltip: ""
 		}
 
 		ToggleEmpressOfLightSoul: {
-			Label: Toggle Empress Of Light Soul
-			Tooltip: ""
+			// Label: Toggle Empress Of Light Soul
+			// Tooltip: ""
 		}
 
 		TogglePlanteraSoul: {
-			Label: Toggle Plantera Soul
-			Tooltip: ""
+			// Label: Toggle Plantera Soul
+			// Tooltip: ""
 		}
 
 		ToggleInfernalTyrantSoul: {
-			Label: Toggle Infernal Tyrant Soul
-			Tooltip: ""
+			// Label: Toggle Infernal Tyrant Soul
+			// Tooltip: ""
 		}
 
 		ToggleGolemSoul: {
-			Label: Toggle Golem Soul
-			Tooltip: ""
+			// Label: Toggle Golem Soul
+			// Tooltip: ""
 		}
 
 		ToggleDukeFishronSoul: {
-			Label: Toggle Duke Fishron Soul
-			Tooltip: ""
+			// Label: Toggle Duke Fishron Soul
+			// Tooltip: ""
 		}
 
 		ToggleLunaticCultistSoul: {
-			Label: Toggle Lunatic Cultist Soul
-			Tooltip: ""
+			// Label: Toggle Lunatic Cultist Soul
+			// Tooltip: ""
 		}
 
 		ToggleMoonlordSoul: {
-			Label: Toggle Moonlord Soul
-			Tooltip: ""
+			// Label: Toggle Moonlord Soul
+			// Tooltip: ""
 		}
 	}
 
 	ConfigServer: {
-		DisplayName: Config Server
+		// DisplayName: Config Server
 
 		Headers: {
-			Performance: Performance Header
-			TerrariaOverhaul: Terraria Overhaul Header
-			TerrariaOverhaulHeader: Terraria Overhaul Header Header
+			// Performance: Performance Header
+			// TerrariaOverhaul: Terraria Overhaul Header
+			// TerrariaOverhaulHeader: Terraria Overhaul Header Header
 		}
 
 		LagReducer: {
-			Label: Lag Reducer
-			Tooltip:
+			// Label: Lag Reducer
+			/* Tooltip:
 				'''
 				Reduces graphical aspects of the mod in order to improve game performance.
 				0 - Disable anti lagg
 				1 - 50% of mod effects
 				2 - 25% of mod effects
 				3 - Disable mod effects
-				'''
+				''' */
 		}
 
 		VanillaWeaponsChangesConf: {
-			Label: Vanilla Weapons Changes Conf
-			Tooltip: ""
+			// Label: Vanilla Weapons Changes Conf
+			// Tooltip: ""
 		}
 
 		DropTombstomOnDeadtConf: {
-			Label: Drop Tombstom On Deadt Conf
-			Tooltip: ""
+			// Label: Drop Tombstom On Deadt Conf
+			// Tooltip: ""
 		}
 
 		MaxItemStackConf: {
-			Label: Max Item Stack Conf
-			Tooltip: ""
+			// Label: Max Item Stack Conf
+			// Tooltip: ""
 		}
 
 		OverhaulMeleeManaCostConfig: {
-			Label: Overhaul Melee Mana Cost Config
-			Tooltip: ""
+			// Label: Overhaul Melee Mana Cost Config
+			// Tooltip: ""
 		}
 	}
 }

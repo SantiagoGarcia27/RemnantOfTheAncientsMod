@@ -10,7 +10,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
 {
     public class Intestine : ModItem
 	{
-		public override void SetStaticDefaults() 
+        int tagDamage = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(tagDamage);
+        public override void SetStaticDefaults() 
         {
            // //DisplayName.SetDefault("Intestine");
            // //Tooltip.SetDefault("5 summon tag damage" +

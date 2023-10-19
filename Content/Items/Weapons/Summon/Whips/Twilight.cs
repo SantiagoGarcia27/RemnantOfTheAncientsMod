@@ -1,4 +1,5 @@
-﻿using RemnantOfTheAncientsMod.Content.Items.Items;
+﻿using CalamityMod.Projectiles.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -10,7 +11,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
 {
     public class Twilight : ModItem
 	{
-		public override void SetStaticDefaults() 
+        int tagDamage = 9;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(tagDamage);
+        public override void SetStaticDefaults() 
         {
            // //DisplayName.SetDefault("Twilight");
             //Tooltip.SetDefault("9 summon tag damage" +

@@ -8,6 +8,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class Ankh_Amulet : ModItem
     {
+        int ManaBoost = 20;
+        int ArmorPenetration = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ManaBoost, ArmorPenetration);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Ankh Amulet");
