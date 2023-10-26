@@ -10,7 +10,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 	[AutoloadEquip(EquipType.Head)]
 	public class NightHelmet : ModItem
 	{
-		public override void SetStaticDefaults()
+		int MagicDamageBonus = 13;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
+        public override void SetStaticDefaults()
 		{
 
 			//DisplayName.SetDefault("Night Headgear");

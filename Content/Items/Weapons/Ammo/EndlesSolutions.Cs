@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 {
@@ -78,6 +79,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             Item.consumable = false;
             Item.value += Item.sellPrice(0, 1, 0, 0);
             Item.rare += 1;
+            Item.GetGlobalItem<RemnantGlobalItem>().ItemBase = ItemBase;
         }
         public string GetTextureFromItem(Item item)
         {

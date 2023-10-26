@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.Localization;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
@@ -13,7 +15,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
        // public abstract ModTranslation ItemName { get; }
       // public abstract ModTranslation ItemDescription { get; }
         public override string Texture => GetTextureFromItem(ItemBase);
-       // public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemBase.ToolTip.GetLine(0));
+        // public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemBase.ToolTip.GetLine(0));
+
         public override void SetStaticDefaults()
         {
            /*// //DisplayName.SetDefault($"ModelEndless {ItemName.GetDefault()}");
@@ -31,7 +34,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             Item.maxStack = 1;
             Item.consumable = false;
             Item.buffTime = Utils1.FormatTime(7, 0, 0, 0);
-        }
+            Item.GetGlobalItem<RemnantGlobalItem>().ItemBase = ItemBase;
+        } 
         public string GetTextureFromItem(Item item)
         {
             string Texture = item.type < ItemID.Count ? "Terraria/Images/Item_" + item : ItemLoader.GetItem(item.type).Texture;

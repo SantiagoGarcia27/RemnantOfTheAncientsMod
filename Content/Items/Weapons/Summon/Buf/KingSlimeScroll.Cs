@@ -10,7 +10,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 {
 	public class KingSlimeScroll : ModItem
 	{
-		public override void SetStaticDefaults()
+        int MovmentSpeedBonus = 50;
+        int MinionDamage = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus, MinionDamage);
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Royal Scroll");
 			//Tooltip.SetDefault("Increases you movement speed by 50% and increases your minion damage by 5%");

@@ -46,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
              .Register();
         }
     }
-    public class Endless_Supe_Sense_Potion : ModelEndless
+    public class Endless_Supe_Sense_Potion :  ModelEndless
     {
         public override Item ItemBase => new(ItemType<Supe_Sense_Potion>());
         public override void SetStaticDefaults()

@@ -65,8 +65,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 		{
 			Color BaseColor = GetColor();
 			Player player = Main.player[Main.myPlayer];
-			var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/HeldItem/BloodRayHeldProjArea_1");
-            var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/HeldItem/BloodRayHeldProjArea_2");
+            var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_3");
+            var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1");
             Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
             Vector2 origin2 = new Vector2(texture2.Width() * 0.5f, texture2.Height() * 0.5f);//0.5
 

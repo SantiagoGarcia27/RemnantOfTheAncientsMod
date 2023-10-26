@@ -14,6 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Poción de gravedad eterna");
         }
     }
+
     public class EndlessHeaRtreach : BasePotions
     {
         public override Item ItemBase => new(ItemID.HeartreachPotion);

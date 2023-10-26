@@ -10,7 +10,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 	[AutoloadEquip(EquipType.Legs)]
 	public class NightLeggings : ModItem
 	{
-		public override void SetStaticDefaults()
+        int MovmentSpeedBonus = 15;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus);
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Night Greaves");
 			//Tooltip.SetDefault("15% increased movement speed");

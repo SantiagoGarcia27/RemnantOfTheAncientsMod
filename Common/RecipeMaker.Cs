@@ -10,6 +10,11 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips;
 using RemnantOfTheAncientsMod.Content.Items.Tools;
+using CalamityMod.Items.Accessories;
+using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -41,6 +46,7 @@ namespace RemnantOfTheAncientsMod
             BossSummon();
             HardmodeItems();
             CraftingItems();
+            Bait();
         }
         private static void CraftingItems()
         {
@@ -52,6 +58,33 @@ namespace RemnantOfTheAncientsMod
              .AddRecipeGroup("IronOre")
              .AddTile(TileID.Anvils)
              .Register();
+        }
+        private static void Bait()
+        {
+            Recipe.Create(ItemID.ApprenticeBait)
+                .AddRecipeGroup("-15%bait")
+                .AddTile(TileID.Solidifier)
+                .Register();
+            Recipe.Create(ItemID.ApprenticeBait,2)
+                .AddIngredient(ItemID.Worm, 1)
+                .AddTile(TileID.Solidifier)
+                .Register();
+            Recipe.Create(ItemID.JourneymanBait, 1)
+                .AddIngredient(ItemID.EnchantedNightcrawler, 1)
+                .AddTile(TileID.Solidifier)
+                .Register();
+            Recipe.Create(ItemID.JourneymanBait, 1)
+                .AddIngredient(ItemID.ApprenticeBait, 4)
+                .AddTile(TileID.Solidifier)
+                .Register();
+            Recipe.Create(ItemID.MasterBait, 1)
+              .AddIngredient(ItemID.JourneymanBait, 4)
+              .AddTile(TileID.Solidifier)
+              .Register();
+            Recipe.Create(ItemID.MasterBait, 1)
+            .AddIngredient(ItemID.GoldWorm, 1)
+            .AddTile(TileID.Solidifier)
+            .Register();
         }
         private static void HardmodeItems()
         {
@@ -840,6 +873,31 @@ namespace RemnantOfTheAncientsMod
 
         public override void AddRecipeGroups()
         {
+            List<int> lowFood = new();
+            List<int> mediumFood = new();
+            List<int> hightFood = new();
+
+            List<int> lowBait = new();
+            List<int> mediumBait = new();
+            List<int> hightBait = new();
+
+            // Enumerate from 0 to ItemCount - 1,
+            // Filter deprecated items,
+            // Then get the Item sample
+            foreach (Item item in Enumerable.Range(0, ItemLoader.ItemCount).Where(i => !ItemID.Sets.Deprecated[i]).Select(i => ContentSamples.ItemsByType[i]))
+            {
+                if (item.buffType == BuffID.WellFed) lowFood.Add(item.type);
+                if (item.buffType == BuffID.WellFed2) mediumFood.Add(item.type);
+                if (item.buffType == BuffID.WellFed3) hightFood.Add(item.type);
+
+                if (item.bait <= 15) lowBait.Add(item.type);
+                if (item.bait > 15 && item.bait <= 30) mediumBait.Add(item.type);
+                if (item.bait > 30) hightBait.Add(item.type);
+                // Check the values on "sample" and then add it to the appropriate List<int>
+            }
+
+
+
             RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Tombstone", new int[]
             {
                 ItemID.Tombstone,
@@ -969,24 +1027,22 @@ namespace RemnantOfTheAncientsMod
                 ItemID.Sake
             });
             RecipeGroup.RegisterGroup("anyBeer", group);
+                    
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Marshmallow", lowFood.ToArray());
+            RecipeGroup.RegisterGroup("anyLowFood", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "PumpkinPie", new int[]
-            {
-                ItemID.PumpkinPie,
-                ItemID.BowlofSoup,
-                ItemID.CookedMarshmallow,
-                ItemID.ChristmasPudding,
-                ItemID.SugarCookie,
-                ItemID.GingerbreadCookie,
-                ItemID.PadThai,
-                ItemID.Pho,
-                ItemID.CookedFish,
-                ItemID.CookedShrimp,
-                ItemID.Sashimi,
-                ItemID.GrubSoup,
-                ItemID.Bacon
-            });
-            RecipeGroup.RegisterGroup("anyFood", group);
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "SeafoodDinner", mediumFood.ToArray());
+            RecipeGroup.RegisterGroup("anyMediumFood", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "GoldenDelight", hightFood.ToArray());
+            RecipeGroup.RegisterGroup("anyHightFood", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ApprenticeBait", mediumFood.ToArray());
+            RecipeGroup.RegisterGroup("-15%bait", group);
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "JourneymanBait", mediumFood.ToArray());
+            RecipeGroup.RegisterGroup("15-30%bait", group);
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "MasterBait", mediumFood.ToArray());
+            RecipeGroup.RegisterGroup("+30%bait", group);
 
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Intestine", new int[]
             {

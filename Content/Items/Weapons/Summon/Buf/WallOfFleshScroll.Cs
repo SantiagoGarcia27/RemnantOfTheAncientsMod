@@ -10,7 +10,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 {
 	public class WallOfFleshScroll : ModItem
 	{
-		public override void SetStaticDefaults()
+        int ExtraDamage = 10;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtraDamage);
+
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Infernal Scroll");
 			//Tooltip.SetDefault("You gain 10% of damage and an infernal power covers you");

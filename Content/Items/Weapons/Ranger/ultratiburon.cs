@@ -12,6 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
     public class ultratiburon : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(70);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Ultrashark");

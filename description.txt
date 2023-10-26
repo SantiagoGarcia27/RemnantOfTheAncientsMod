@@ -9,23 +9,24 @@
                   
 	Items:
 	- 3 bosses
-    - 27 enemies
+    - 31 enemies
     - 2 town NPCs
     - 31 accsesories
-    - 122 weapons
-    - 6 Armor sets
+    - 127 weapons 
+    - 5 Armor sets
     - 3 Vanity armor sets
-    - 92 potions
+    - 93 potions
     - 52 Ammos
     - 14 blocks
-    - 3 pets
+    - 4 pets
     - 12 new materials
     - 4 pieces of furniture
     - 5 ores (non world generation)
     - 1 new difficulty
-    - 86 new recipes for vanilla items
-    - 18 tweaks and improvements to vanilla items
-    - 3 Language translation (English,Spanish and French) (no completed)
+    - +86 new recipes for vanilla items
+    - +18 tweaks and improvements to vanilla items 
+    - +15 new reforges
+    - 2 Language translation (English and Spanish) (no completed)
     - Cross-mod support for the Calamity Mod,Thorium,BossChecklist,Terraria Overhaul and Census
     - Separated mod balanced for CalamityMod (it is activated automatically when having the mod activated)
                   

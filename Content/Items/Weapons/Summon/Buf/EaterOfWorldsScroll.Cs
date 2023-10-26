@@ -10,7 +10,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 {
 	public class EaterOfWorldsScroll : ModItem
 	{
-		public override void SetStaticDefaults()
+        int DamageReduction = 10;
+        int CritBonus = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageReduction, CritBonus);
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Putrid Scroll");
 			//Tooltip.SetDefault("Reduces damage taken by 10% and increases critical damage by 5%");

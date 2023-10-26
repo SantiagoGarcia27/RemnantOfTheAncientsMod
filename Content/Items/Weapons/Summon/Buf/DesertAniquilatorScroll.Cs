@@ -11,6 +11,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 {
     public class DesertAniquilatorScroll : ModItem
     {
+        int MovmentSpeedBonus = 50;
+        int MinionDamage = 5;
+        int ExtraMinions = 1;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus,MinionDamage,ExtraMinions);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Desert Scroll");

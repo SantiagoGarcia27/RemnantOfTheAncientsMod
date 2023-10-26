@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.height = 30;
 			Item.useTime = 9;
 			Item.UseSound = SoundID.Item16;
-			Item.useStyle = 5;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 9;
 			Item.shoot = ProjectileID.Bee;

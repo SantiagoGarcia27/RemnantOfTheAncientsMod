@@ -7,7 +7,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Humanizer.In;
 
 namespace RemnantOfTheAncientsMod.Common.Global
 {
@@ -38,28 +37,61 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            Player player = Main.player[projectile.owner];
             if (WeaponConf)
             {
                 if (Main.rand.NextBool(4) && projectile.type == ProjectileID.FlinxMinion)
                 {
                     target.AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 5));
                 }
-            }
-            if(projectile.type == 85 && projectile.ai[0] == 2)
-            {
-                target.AddBuff(BuffID.CursedInferno, 1200);
-            }
-            if(projectile.type == ProjectileID.ThunderStaffShot)
-            {
-                target.AddBuff(BuffID.Electrified, 1200);
-            }
-            if(projectile.type == ProjectileID.SpiritFlame)
-            {
-                target.AddBuff(BuffID.ShadowFlame, 1200);
-            }
-            if(projectile.type == ProjectileID.MedusaHeadRay && target.life <= 100)
-            {
-                target.AddBuff(BuffID.Stoned, 1200);
+                if (projectile.type == ProjectileID.ThunderStaffShot)
+                {
+                    target.AddBuff(BuffID.Electrified, 1200);
+                }
+                if (projectile.type == ProjectileID.SpiritFlame)
+                {
+                    target.AddBuff(BuffID.ShadowFlame, 1200);
+                }
+                if (projectile.type == ProjectileID.MedusaHeadRay && target.life <= 100)
+                {
+                    target.AddBuff(BuffID.Stoned, 1200);
+                }
+                if (projectile.type == ProjectileID.SoulDrain)
+                {
+                    if (player.statLife <= player.statLifeMax2)
+                    {
+                        player.statLife++;
+                        if (target.life >= 0)
+                        {
+                            target.value *= 2;
+                        }
+                    }
+                }
+                if (projectile.type == 85 && projectile.ai[0] == 2)
+                {
+                    target.AddBuff(BuffID.CursedInferno, 1200);
+                }
+                if (projectile.type == ProjectileID.SpiderEgg)
+                {
+                    target.AddBuff(BuffID.Venom, 1200);
+                }
+                if(projectile.type == ProjectileID.BoulderStaffOfEarth)
+                {
+                    if (target.type != NPCID.TargetDummy)
+                    {
+                        projectile.knockBack = target.knockBackResist + 3;
+                        target.velocity.X -= target.velocity.X > 0 ? 1 * 16 : -1 * 16;
+                    }
+                }
+                if (projectile.type == ProjectileID.OneEyedPirate
+                || projectile.type == ProjectileID.SoulscourgePirate
+                || projectile.type == ProjectileID.PirateCaptain)
+                {
+                        if (target.life >= 0)
+                        {
+                            target.value *= 2;
+                        }      
+                }
             }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
@@ -73,8 +105,12 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
         }
         int fireballTimmer = Utils1.FormatTime(0, 0, 0, 10);
+
+
+        public int HydraMissileCounter = 0;
         public override void AI(Projectile projectile)
         {
+           
             if (projectile.type == 85 && projectile.ai[0] == 2)
             {
                 GetAlpha(projectile, Color.Green);
@@ -114,7 +150,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
                     projectile.rotation += (float)Math.PI / 200f;
                     AI_GetMyGroupIndexAndFillBlackList(null, out var index, out var totalIndexesInGroup);
-                    float f = (index / (float)totalIndexesInGroup + miscCounterNormalized * 6f) * ((float)Math.PI * 2f);
+                    float f = (index / totalIndexesInGroup + miscCounterNormalized * 6f) * ((float)Math.PI * 2f);
                     float num = 24f + totalIndexesInGroup * 6f;
                     Vector2 vector = npc.position - npc.oldPosition;
                     projectile.Center += vector;
@@ -126,6 +162,22 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 else
                 {
                     base.AI(projectile);
+                }
+
+            }
+            if (projectile.type == ProjectileID.FrostHydra)
+            {
+                if (projectile.ai[0] > 0)
+                {
+                    if (HydraMissileCounter >= Utils1.FormatTime(0, 0, 0, 5))
+                    {
+                        Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(0, -3), ProjectileID.ClusterSnowmanRocketI, projectile.damage, 1, projectile.owner);
+                        HydraMissileCounter = 0;
+                    }
+                    else
+                    {
+                        HydraMissileCounter++;
+                    }
                 }
             }
             if (projectile.scale > 1)
@@ -158,8 +210,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     OverrideParticles(projectile, DustID.GemAmber);
                 }
-            }
-
+            } 
+            
             Update();
             base.AI(projectile);
         }
@@ -171,6 +223,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             return lightColor;
         }
+        public bool DeleteVanilla = false;
         public override void OnKill(Projectile projectile, int timeLeft)
         {
             if(projectile.type == ProjectileID.CrystalStorm)
@@ -181,7 +234,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     Projectile.NewProjectileDirect(Projectile.GetSource_None(), projectile.Center + (velocity/2)*16, velocity, ProjectileID.CrystalShard, projectile.damage, 0,projectile.owner);
                 }
             }
-            base.OnKill(projectile, timeLeft);
+            if (!DeleteVanilla)
+            {
+                base.OnKill(projectile, timeLeft);
+            }
         }
         public void HommingProjectile(float Range,float speed, Projectile projectile)
         {   
@@ -242,5 +298,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             UpdateMiscCounter();
         }
+        
     }
 }

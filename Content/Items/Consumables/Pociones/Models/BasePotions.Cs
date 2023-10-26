@@ -11,9 +11,26 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         public abstract Item ItemBase { get; }
         public override string Texture => GetTextureFromItem(ItemBase);
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemBase.ToolTip.GetLine(0));
+
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs(ReturnLanguage(ItemBase.Name));
         public override void SetStaticDefaults() 
         {       
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+          
+        }
+        public string ReturnLanguage(string baseName)
+        {
+            switch (Language.ActiveCulture.LegacyId)
+            {
+                case 1:
+                    return "Endless "+ baseName;
+                case 4:
+                    return baseName + " sans fin";
+                case 5:
+                    return baseName + " Eterno";
+                default:
+                    return "Endless " + baseName;
+            }
         }
         public override void SetDefaults()
         {

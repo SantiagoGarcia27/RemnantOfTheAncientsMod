@@ -11,6 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
     public class Commander_Potion : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(1);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Comander Potions");

@@ -9,6 +9,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
     public class SuperShark : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(40);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Supershark");

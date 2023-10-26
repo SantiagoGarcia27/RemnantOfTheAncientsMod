@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -34,8 +35,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         }
         public override void AI()           //this make that the projectile will face the corect way
         {                                                           // |
-           Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-           Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(190f);
+          // Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+           
 
 
             if (Projectile.ai[1] >= 80)
@@ -123,5 +124,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         {
             Projectile.Kill();
         }
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(190f);
+            base.OnSpawn(source);
+        }
+
     }
 }

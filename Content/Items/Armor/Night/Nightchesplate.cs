@@ -10,7 +10,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 	[AutoloadEquip(EquipType.Body)]
 	public class Nightchesplate : ModItem
 	{
-		public override void SetStaticDefaults()
+		int manaBonus = 20;
+		int lifeBonus = 50;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(manaBonus,lifeBonus);
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Night Breastplate");
 			//Tooltip.SetDefault(""

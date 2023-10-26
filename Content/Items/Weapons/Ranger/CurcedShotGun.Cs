@@ -11,7 +11,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
 	public class CurcedShotGun : ModItem
 	{
-		public override void SetStaticDefaults()
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(5);
+        public override void SetStaticDefaults()
 		{
 //DisplayName.SetDefault("Cursed Shotgun");
 //Tooltip.SetDefault("5% chance of not spending ammo");

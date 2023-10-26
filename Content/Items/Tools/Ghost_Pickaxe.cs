@@ -40,8 +40,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
 			Item.useTurn = true;
 		}
-
-		public override void MeleeEffects(Player player, Rectangle hitbox)
+        public override void UpdateInventory(Player player)
+        {
+			if (NPC.downedBoss2)
+			{
+                Item.useTime = 15;
+				Item.useAnimation = 17;
+            }
+			else
+			{
+                Item.useTime = 65;
+                Item.useAnimation = 67;
+            }
+            base.UpdateInventory(player);
+        }
+        public override void MeleeEffects(Player player, Rectangle hitbox)
 		{
 			if (Main.rand.Next(10) == 0)
 			{

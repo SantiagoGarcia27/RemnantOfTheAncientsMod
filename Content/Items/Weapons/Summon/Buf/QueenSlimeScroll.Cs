@@ -4,11 +4,17 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 {
     public class QueenSlimeScroll : ModItem
     {
+        int MovmentSpeedBonus = 50;
+        int MinionDamage = 5;
+        int ExtraMinions = 1;
+        int LifeBonus = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus, MinionDamage, ExtraMinions,LifeBonus);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Queen Scroll");

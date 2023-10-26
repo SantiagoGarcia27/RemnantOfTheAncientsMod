@@ -10,6 +10,9 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using Terraria.UI;
+using Terraria.ModLoader.Config;
+using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -17,8 +20,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 	{
 		public bool IsACoin = false;
 		public bool IsAmmo = false;
+		public Item ItemBase = null;
 		public List<int> SpearsList = new List<int>();
-		public int[] lanceId = new int[]
+       
+        public int[] lanceId = new int[]
 		{
 			ItemID.Spear,
 			ItemID.Trident,
@@ -38,7 +43,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.NorthPole,
 			ItemID.JoustingLance,
 			ItemID.HallowJoustingLance,
-			ItemID.ShadowJoustingLance
+			ItemID.ShadowJoustingLance,
+			ItemID.UnholyTrident
 		};
 		public List<int> CoinsId = new List<int>()
 		{
@@ -59,7 +65,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             ItemID.EmeraldStaff,
             ItemID.RubyStaff,
             ItemID.DiamondStaff,
-            ItemID.AmberStaff
+            ItemID.AmberStaff,
+            ItemID.BubbleGun
         };
 		public List<int> GemStaffs = new List<int>()
 		{
@@ -71,19 +78,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.DiamondStaff,
 			ItemID.AmberStaff
         };
+		public List<int> LowFood = new List<int>();
+        public List<int> MediumFood = new List<int>();
+        public List<int> HightFood = new List<int>();
+        public List<int> LowBait = new List<int>();
+        public List<int> MediumBait = new List<int>();
+        public List<int> HightBait = new List<int>();
         public override void SetStaticDefaults()
 		{
-			//if (SecondClickWeapons.Contains(item.type))
-			//{
-   //             ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
-   //         }
-		}
+            
+        }
 
         public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 
-			if (WeaponConf)
+            if (WeaponConf)
 			{
                 if (SecondClickWeapons.Contains(item.type))
                 {
@@ -170,6 +180,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					item.damage -= 3;
 					item.mana = 4;
 				}
+                if (item.type == ItemID.ZapinatorGray)
+                {
+                    item.damage = 25;
+                    item.useAnimation = 16;
+                    item.useTime = 14;
+                }
+                if (item.type == ItemID.ZapinatorOrange)
+                {
+                    item.damage = 60;
+                    item.useAnimation = 16;
+                    item.useTime = 14;
+                }
                 if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -365,7 +387,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 
 			}
-			else if (GemStaffs.Contains(item.type)) 
+			else if (GemStaffs.Contains(item.type))
 			{
 				if (player.altFunctionUse == 2)
 				{
@@ -408,11 +430,49 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 					if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0)
 					{
-						Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, Main.myPlayer, type, ColorBase);
+						Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, ColorBase);
 					}
-                    return false;
-                }
-            }
+					return false;
+				}
+			}
+			else if (item.type == ItemID.UnholyTrident)
+			{
+				if (player.altFunctionUse == 2)
+				{
+					item.mana = 0;
+					return false;
+				}
+				else
+				{
+					item.mana = 18;
+					item.useStyle = ItemUseStyleID.Shoot;
+				}
+			}
+			else if (item.type == ItemID.BubbleGun)
+			{
+				if (player.altFunctionUse == 2)
+				{
+					item.reuseDelay = 70;
+					int p = Projectile.NewProjectile(source, position, velocity + new Vector2(0, 5), ModContent.ProjectileType<SharknadoBoltClone>(), item.damage * 2, 0, player.whoAmI);
+					Main.projectile[p].friendly = true;
+					Main.projectile[p].hostile = !Main.projectile[p].friendly;
+					return false;
+				}
+				else
+				{
+					item.reuseDelay = 0;
+				}
+			}
+			else if (item.type == ItemID.PygmyStaff)
+			{
+				if(Main.rand.NextBool(2))
+				{
+					player.AddBuff(BuffID.Pygmies, 10);
+					Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<PygmyMelee>(), damage, knockback, player.whoAmI);
+					return false;
+				}
+
+			}
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 		
@@ -443,7 +503,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			AddSecureToList(SpearsList, ItemID.JoustingLance);
 			AddSecureToList(SpearsList, ItemID.HallowJoustingLance);
 			AddSecureToList(SpearsList, ItemID.ShadowJoustingLance);
-		}
+
+            AddSecureToList(SpearsList, ItemID.UnholyTrident);
+        }
 
 		public void AddModedSpearGeneric(Item item)
 		{
@@ -489,7 +551,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				return true;
 			}
-			else if(SecondClickWeapons.Contains(item.type))
+			else if(SecondClickWeapons.Contains(item.type) || item.type == ItemID.UnholyTrident)
 			{
                 return true;
             }
@@ -551,7 +613,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					{
 						for (int j = 0; j < RemnantOfTheAncientsMod.MaxRarity; j++)
 						{
-							if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2), 0f);
+							if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2) /** player.direction*/, 0f);
 						}
 					}
 					return true;
@@ -650,6 +712,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
             }
             return orig(inv, context, slot, checkItem);
+
+
         }
 
         public override bool InstancePerEntity => true;

@@ -21,6 +21,7 @@ using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.GameContent.Personalities;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -37,7 +38,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             LegendaryLoot(npc,npcLoot);
             CommonLoot(npc,npcLoot);
             PilarEnemiyLoot(npc, npcLoot);
-            if(npc.value > 0f)
+            HallowBiomeLoot(npc, npcLoot);
+            CorruptBiomeLoot(npc, npcLoot);
+            CrimsomBiomeLoot(npc,npcLoot);
+            if (npc.value > 0f)
             {
                 if (npc.lifeMax > 100000)
                 {
@@ -59,6 +63,26 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCID.DungeonGuardian) npcLoot.Add(ItemDropRule.Common(ItemType<TortugaPet>(), 10 / dificultyDrop(2), 1, 1));
             if (npc.type == NPCID.BigMimicCorruption) npcLoot.Add(ItemDropRule.ByCondition(new DownedPlantera(), ItemID.ScourgeoftheCorruptor, 4, 1, 1));
             if (npc.type == NPCID.BigMimicCrimson) npcLoot.Add(ItemDropRule.ByCondition(new DownedPlantera(), ItemID.VampireKnives, 4, 1, 1));
+        }
+        public void HallowBiomeLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if(npc.type == NPCID.IlluminantBat) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 50, 1,1));
+            if (npc.type == NPCID.ChaosElemental) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 50, 1, 1));
+            if (npc.type == NPCID.EnchantedSword) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 50, 1, 1));
+            if (npc.type == NPCID.PigronHallow) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 10, 1, 1));
+        }
+        public void CorruptBiomeLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (npc.type == NPCID.CursedHammer) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
+            if (npc.type == NPCID.PigronCorruption) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 10, 1, 1));
+            if (npc.type == NPCID.Clinger) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
+        }
+        public void CrimsomBiomeLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (npc.type == NPCID.CrimsonAxe) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 100, 1, 1));
+            if (npc.type == NPCID.PigronCrimson) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 10, 1, 1));
+            if (npc.type == NPCID.FloatyGross) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
+            if (npc.type == NPCID.IchorSticker) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
         }
         public void PilarEnemiyLoot(NPC npc ,NPCLoot npcLoot)
         {

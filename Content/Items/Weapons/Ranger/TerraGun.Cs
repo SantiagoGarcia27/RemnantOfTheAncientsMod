@@ -12,6 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
     public class TerraGun : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(50);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("TerraGun1");

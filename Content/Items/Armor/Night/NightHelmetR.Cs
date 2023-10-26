@@ -10,7 +10,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 	[AutoloadEquip(EquipType.Head)]
 	public class NightHelmetR : ModItem
 	{
-		public override void SetStaticDefaults()
+        int RangedDamageBonus = 13;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus);
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Night Mask");
 			//Tooltip.SetDefault("Ranged damage increased by 13%");

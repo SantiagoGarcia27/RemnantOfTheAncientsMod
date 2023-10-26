@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 {
@@ -24,6 +26,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             .AddTile(TileID.CrystalBall)
             .Register();
         }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            return false;
+        }
     }
     public class EndlesSilverCoin : EndlessBase
     {
@@ -31,6 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
+
            // //DisplayName.SetDefault("ModelEndless Silver Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'argent sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Moneda de plata infinita");
@@ -42,6 +49,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             .AddIngredient(ItemID.GoldCoin, 40)
             .AddTile(TileID.CrystalBall)
             .Register();
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            return false;
         }
     }
     public class EndlesGoldCoin : EndlessBase
@@ -63,6 +74,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             .Register();
 
         }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            return false;
+        }
     }
     public class EndlesPlatinumCoin : EndlessBase
     {
@@ -73,6 +88,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
            // //DisplayName.SetDefault("ModelEndless Gold Coin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pièce d'or sans fin");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Monedas de oro infinitas");
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            return false;
         }
         public override void AddRecipes()
         {

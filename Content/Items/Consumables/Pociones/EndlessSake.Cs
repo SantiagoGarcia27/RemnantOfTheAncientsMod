@@ -3,34 +3,19 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
-    public class EndlessSake : ModItem
+    public class EndlessSake : BasePotions
     {
-
+        public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Consumables/Pociones/EndlessSake";
+        public override Item ItemBase => new(ItemID.Sake);
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("ModelEndless Sake");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sake eterno");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(new Item(ItemID.Sake).ToolTip.GetLine(0));
-        public override void SetDefaults()
-        {
-            Item.width = 20;
-            Item.height = 26;
-            Item.useStyle = ItemUseStyleID.EatFood;
-            Item.useAnimation = 15;
-            Item.useTime = 15;
-            Item.useTurn = true;
-            Item.UseSound = SoundID.Item3;
-            Item.maxStack = 1;
-            Item.consumable = false;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.buyPrice(gold: 1);
-            Item.buffType = BuffID.Tipsy;
-            Item.buffTime = 15400;
         }
         public override void AddRecipes()
         {

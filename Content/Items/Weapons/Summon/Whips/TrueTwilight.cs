@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
                 .AddIngredient<Twilight>(1)
                 .AddIngredient(ItemID.SoulofMight,30)
                 .AddIngredient(ItemID.SoulofFright, 30)
-                 .AddIngredient(ItemID.SoulofSight, 30)
+                .AddIngredient(ItemID.SoulofSight, 30)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

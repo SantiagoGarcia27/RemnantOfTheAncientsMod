@@ -73,8 +73,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 		{
 			
 			Player player = Main.player[Main.myPlayer];
-			var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/HeldItem/BloodRayHeldProjArea_1");
-            var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/HeldItem/BloodRayHeldProjArea_2");
+            var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_7");
+            var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_2");
             Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
             Vector2 origin2 = new Vector2(texture2.Width() * 0.5f, texture2.Height() * 0.5f);//0.5
 
@@ -84,7 +84,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 				Color color = new Color(colorBase.R, colorBase.G, colorBase.B, 20);
 				Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, color, rotation, origin, 1.2f, SpriteEffects.None, 0f);
 
-                Main.spriteBatch.Draw((Texture2D)texture2, player.Center - Main.screenPosition, null, color, -rotation, origin2, 1.2f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw((Texture2D)texture2, player.Center - Main.screenPosition, null, color, -rotation, origin2, 1.9f, SpriteEffects.None, 0f);
             }
 
 			return true;

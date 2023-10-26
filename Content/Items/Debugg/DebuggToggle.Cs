@@ -15,10 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
         {
             return ModLoader.TryGetMod("OpswordsIIDebugMod", out mod);
         }
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return Main.LocalPlayer.name == "a";
-        }
         public override void SetDefaults()
         {
             Item.width = 20;

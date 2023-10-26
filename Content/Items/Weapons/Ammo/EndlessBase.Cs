@@ -23,7 +23,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             Item.consumable = false;
             Item.value += Item.sellPrice(0, 1, 0, 0);
             Item.rare += 1;
-            if(ItemBase.shoot > ProjectileID.None)
+            Item.GetGlobalItem<RemnantGlobalItem>().ItemBase = ItemBase;
+            if (ItemBase.shoot > ProjectileID.None)
             {
                 ModContent.GetInstance<RemnantGlobalItem>().IsAmmo = true;
             }

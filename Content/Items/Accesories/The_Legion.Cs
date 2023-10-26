@@ -24,6 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             "DinoZers",
             "scorpion17907"
         };
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25,5);
         public override void SetStaticDefaults()
         {
             // //DisplayName.SetDefault("The Legion");

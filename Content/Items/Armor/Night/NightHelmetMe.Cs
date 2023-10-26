@@ -10,7 +10,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 	[AutoloadEquip(EquipType.Head)]
 	public class NightHelmetMe : ModItem
 	{
-		public override void SetStaticDefaults()
+        int MeleeDamageBonus = 13;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
+        public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Night Helmet");
 			//Tooltip.SetDefault("Increase melee damage by 13%");

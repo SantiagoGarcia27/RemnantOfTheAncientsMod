@@ -136,6 +136,13 @@ Mods: {
 			IncreasedPickSpeed: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 		}
 
+		EditVanilla: {
+			IncreasedMoneyDrop: Increases the money dropped for enemies
+			LavaFishing: Can fish in lava.
+			StrongFishString: The fishing line never snaps.
+			FishMultipleLine: Fires {0} lines at once.
+		}
+
 		Buffs: {
 			CentryBuff: {
 				DisplayName: Comander Potion
@@ -460,6 +467,11 @@ Mods: {
 				DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueTwiligtDebuff
 				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueTwiligtDebuff
 			}
+
+			DakoVanityBuff: {
+				DisplayName: Dako Vanity Buff
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.DakoVanityBuff.Description
+			}
 		}
 
 		Items: {
@@ -622,8 +634,8 @@ Mods: {
 				DisplayName: The Legion
 				Tooltip:
 					'''
-					Increases the summon damage by 25% 
-					+5 minions
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
 					Many thanks to:
 					 S-Pladison   -NKSHV  -perrogalan
 					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
@@ -704,20 +716,15 @@ Mods: {
 				DisplayName: Night Breastplate
 				Tooltip:
 					'''
-
-					Increase maximum Mana by 20 
-					Increase maximum life by 50 
+					{$CommonItemTooltip.IncreasesMaxManaBy}
+					{$CommonItemTooltip.IncreasesMaxLifeBy@1}
 					Immune to glow effect, fire and broken armor
 					'''
 			}
 
 			NightHelmet: {
 				DisplayName: Night Headgear
-				Tooltip:
-					'''
-
-					Increases magic damage by 13%
-					'''
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
 			}
 
 			NightHelmetL: {
@@ -727,26 +734,22 @@ Mods: {
 
 			NightHelmetMe: {
 				DisplayName: Night Helmet
-				Tooltip: Increase melee damage by 13%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
 			}
 
 			NightHelmetR: {
 				DisplayName: Night Mask
-				Tooltip: Ranged damage increased by 13%
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
 			NightHelmetS: {
 				DisplayName: Night Hat
-				Tooltip:
-					'''
-
-					Summon damage increased by 13%
-					'''
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 			}
 
 			NightLeggings: {
 				DisplayName: Night Greaves
-				Tooltip: 15% increased movement speed
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Reforced_iron_chesplate: {
@@ -837,12 +840,12 @@ Mods: {
 
 			Commander_Potion: {
 				DisplayName: Comander Potions
-				Tooltip: Increases your max number of centries by 1
+				Tooltip: "{$CommonItemTooltip.IncreasesMaxSentriesBy}"
 			}
 
 			Endless_Basic_Potion_Kit: {
-				DisplayName: Endless Basic Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Advanced_Potion_Kit: {
@@ -851,28 +854,28 @@ Mods: {
 			}
 
 			Endless_Advanced_Potion_Kit: {
-				DisplayName: Endless Advanced Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Exploration_Potion_Kit: {
-				DisplayName: Endless Exploration Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Fisher_Potion_Kit: {
-				DisplayName: Endless Fisher Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Poseidon_Potion_Kit: {
-				DisplayName: Endless Poseidon Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Ultimate_Potion_Kit: {
-				DisplayName: Endless Ultimate Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Exploration_Potion_Kit: {
@@ -896,312 +899,312 @@ Mods: {
 			}
 
 			Endless_Combat_Potion_Kit: {
-				DisplayName: Endless Combat Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Commander_Porion: {
-				DisplayName: Endless Comander Potions
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Fish_Potion: {
-				DisplayName: Endless Fish Potions
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Gravitation_Control_Potion: {
-				DisplayName: Endless Gravity Control Potions
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Magic_Potion_Kit: {
-				DisplayName: Endless Magic Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Melee_Potion_Kit: {
-				DisplayName: Unlimited Melee Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Mining_Potion_Kit: {
-				DisplayName: Endless Mining Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Money_Collector_Potion: {
-				DisplayName: Endless Money Collector Potions
-				Tooltip: Transport the money from your inventory to the piggy bank
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Ranger_Potion_Kit: {
-				DisplayName: Unlimited Ranger Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Sand_Flask: {
-				DisplayName: Endless Sand Flask
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Summon_Potion_Kit: {
-				DisplayName: Endless Summoner Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Supe_Sense_Potion: {
-				DisplayName: Endless Super Sense Potions
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			Endless_Tank_Potion_Kit: {
-				DisplayName: Endless Tank Potions Kit
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessAmmoReservation: {
-				DisplayName: Endless Ammo Reservation Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessArchery: {
-				DisplayName: Endless Archery Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessBattle: {
-				DisplayName: Endless Battle Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessBuilder: {
-				DisplayName: Endless Builder Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessCalming: {
-				DisplayName: Endless Calming Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessCrate: {
-				DisplayName: Endless Crate Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessCurcedFlask: {
-				DisplayName: Endless Cursed Flames Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessDangersense: {
-				DisplayName: Endless Dangersense Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessEndurance: {
-				DisplayName: Endless Endurance Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessFeather: {
-				DisplayName: Endless Featherfall Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessFireFlask: {
-				DisplayName: Endless Fire Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessFishing: {
-				DisplayName: Endless Fishing Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessFlipper: {
-				DisplayName: Endless Flipper Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessGills: {
-				DisplayName: Endless Gills Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessGoldFlask: {
-				DisplayName: Endless Gold Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessGravitation: {
-				DisplayName: Endless Gravitation Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessGreaterLuck: {
-				DisplayName: Endless Greater Luck Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessHeaRtreach: {
-				DisplayName: Endless Heartreach Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessHunter: {
-				DisplayName: Endless Hunter Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessIchorFlask: {
-				DisplayName: Endless Ichor Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessInferno: {
-				DisplayName: Endless Inferno Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessInvisibility: {
-				DisplayName: Endless Invisibility Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessIronSkin: {
-				DisplayName: Endless Ironskin Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessLeasserLuck: {
-				DisplayName: Endless Lesser Luck Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessLifeForce: {
-				DisplayName: Endless Lifeforce Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessLuck: {
-				DisplayName: Endless Luck Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessManaPower: {
-				DisplayName: Endless Magic Power Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessManaRegeneration: {
-				DisplayName: Endless Magic Regeneration Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessMining: {
-				DisplayName: Endless Mining Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessNaniteFlask: {
-				DisplayName: Endless Nanites Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessNecroticRestauration: {
-				DisplayName: Endless Necrotic Restauration Potion
-				Tooltip: Teleports you to your last death-
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessNightOwl: {
-				DisplayName: Endless Night Owl Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessObsidian: {
-				DisplayName: Endless Obsidian Skin Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessPartyFlask: {
-				DisplayName: Endless Party Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessPoisonFlask: {
-				DisplayName: Endless Poison Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessRage: {
-				DisplayName: Endless Rage Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessRegeneration: {
-				DisplayName: Endless Regeneration Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessSake: {
-				DisplayName: Endless Sake
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessShine: {
-				DisplayName: Endless Shine Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessSonar: {
-				DisplayName: Endless Sonar Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessSpelunker: {
-				DisplayName: Endless Spelunker Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessSummoning: {
-				DisplayName: Endless Summoning Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessSwiftness: {
-				DisplayName: Endless Swiftness Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessThorns: {
-				DisplayName: Endless Thorns Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessTitan: {
-				DisplayName: Endless Titan Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessVenomFlask: {
-				DisplayName: Endless Venom Flask
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessWarmth: {
-				DisplayName: Endless Warmth Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessWaterWalking: {
-				DisplayName: Endless Water Walking Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
 			EndlessWrath: {
-				DisplayName: Endless Wrath Potion
+				DisplayName: "{0}"
 				Tooltip: "{0}"
 			}
 
@@ -1584,7 +1587,7 @@ Mods: {
 
 			Ghost_Pickaxe: {
 				DisplayName: Ghost Pickaxe
-				Tooltip: ""
+				Tooltip: Unlocks his power once the corrupted boss is defeated
 			}
 
 			Granite_axe: {
@@ -1619,7 +1622,11 @@ Mods: {
 
 			NigthFishingRod: {
 				DisplayName: Night Fishing Rod
-				Tooltip: ""
+				Tooltip:
+					'''
+					{EditVanilla.LavaFishing}
+					{EditVanilla.StrongFishString}
+					'''
 			}
 
 			Tuxonite_axe: {
@@ -1693,172 +1700,172 @@ Mods: {
 			}
 
 			Endles_High_Velocity_Bullet: {
-				DisplayName: Endless High Velocity Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesChlorophyte: {
-				DisplayName: Endless Chlorophyte Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
-			EndlesCoper.DisplayName: Endless Copper Coin
+			EndlesCoper.DisplayName: "{0}"
 
 			EndlesCrystal: {
-				DisplayName: Endless Crystal Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesCursed: {
-				DisplayName: Endless Cursed Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesExplosive: {
-				DisplayName: Endless Exploding Bullet Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesFlare: {
-				DisplayName: Endless Flare
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesGold: {
-				DisplayName: Endless Gold Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
-			EndlesGoldC.DisplayName: Endless Gold Coin
-			EndlesIchor.DisplayName: Endless Ichor Pouch
+			EndlesGoldC.DisplayName: "{0}"
+			EndlesIchor.DisplayName: "{0}"
 
 			EndlesLuminite_Bullet: {
-				DisplayName: Endless Luminite Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesMeteorite: {
-				DisplayName: Endless Meteorite Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesNail: {
-				DisplayName: Endless Nail
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesNano_Bullet: {
-				DisplayName: Endless Nano Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesParty_Bullet: {
-				DisplayName: Endless Party Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
-			EndlesPlatinumC.DisplayName: Endless Platinum Coin
+			EndlesPlatinumC.DisplayName: "{0}"
 
 			Endless_Tomb_bullet: {
-				DisplayName: Endless Grave Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessBone: {
-				DisplayName: Endless Bone Arrow Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessChlorophyte: {
-				DisplayName: Endless Chlorophyte Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessCurced: {
-				DisplayName: Endless Cursed Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessDesert: {
-				DisplayName: Endless Desert Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessFire: {
-				DisplayName: Endless Flaming Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessFlaming: {
-				DisplayName: Endless Flaming Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessFrostburn: {
-				DisplayName: Endless Frostburn Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessHell: {
-				DisplayName: Endless Hellfire Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessHoly: {
-				DisplayName: Endless Holy Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessIce: {
-				DisplayName: Endless Frozen Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessIchor: {
-				DisplayName: Endless Ichor Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesSilver: {
-				DisplayName: Endless Silver Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
-			EndlesSilverC.DisplayName: Endless Silver Coin
+			EndlesSilverC.DisplayName: "{0}"
 
 			EndlessJest: {
-				DisplayName: Endless Jester's Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessLuminite: {
-				DisplayName: Endless Luminite Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesStar: {
-				DisplayName: Endless Star
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessUnholy: {
-				DisplayName: Endless Unholy Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessVenom: {
-				DisplayName: Endless Venom Quiver
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessWrathSlimeBullet: {
-				DisplayName: Endless Angry Slime Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesVenom_Bullet: {
-				DisplayName: Endless Venom Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			FireBullet: {
@@ -1882,7 +1889,7 @@ Mods: {
 			}
 
 			Bee_worm: {
-				DisplayName: Bee Worm
+				DisplayName: The Hive
 				Tooltip: ""
 			}
 
@@ -2270,7 +2277,7 @@ Mods: {
 
 			CurcedShotGun: {
 				DisplayName: Cursed Shotgun
-				Tooltip: 5% chance of not spending ammo
+				Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 			}
 
 			flaremachinegun: {
@@ -2370,7 +2377,7 @@ Mods: {
 
 			SuperShark: {
 				DisplayName: Supershark
-				Tooltip: 40% chance of not spending ammo
+				Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 			}
 
 			TerraGun: {
@@ -2378,7 +2385,7 @@ Mods: {
 				Tooltip:
 					'''
 					A weapon fit for a legend
-					50% chance of not spending ammo
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
 					Musquet bullets turn into terra bullet
 					'''
 			}
@@ -2388,28 +2395,41 @@ Mods: {
 				Tooltip:
 					'''
 					the older sister of the 4
-					70% chance of not spending ammo 
+					"{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 					'''
 			}
 
 			VampireGun: {
 				DisplayName: Vampire Gun
-				Tooltip: healing gun.
+				Tooltip: Shoot a healing knife.
 			}
 
 			BrainOfCthulhuScroll: {
 				DisplayName: Psychic Scroll
-				Tooltip: You become invunerable for 4s
+				Tooltip:
+					'''
+					You become invunerable for 4s
+					But you cant use items for 8s
+					'''
 			}
 
 			DesertAniquilatorScroll: {
 				DisplayName: Desert Scroll
-				Tooltip: 50% increases movement speed and minion damage by 5% and increase your max number of minions by 1
+				Tooltip:
+					'''
+					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
+					"{$CommonItemTooltip.IncreasesMaxMinionsBy@2}"
+					'''
 			}
 
 			EaterOfWorldsScroll: {
 				DisplayName: Putrid Scroll
-				Tooltip: Reduces damage taken by 10% and increases critical damage by 5%
+				Tooltip:
+					'''
+					"{$CommonItemTooltip.ReducesDamageTakenByPercent}"
+					"{$CommonItemTooltip.PercentIncreasedCritChance@1}"
+					'''
 			}
 
 			EyeOfCthulhuScroll: {
@@ -2419,7 +2439,11 @@ Mods: {
 
 			KingSlimeScroll: {
 				DisplayName: Royal Scroll
-				Tooltip: Increases you movement speed by 50% and increases your minion damage by 5%
+				Tooltip:
+					'''
+					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
+					'''
 			}
 
 			QueenBeeScroll: {
@@ -2434,7 +2458,13 @@ Mods: {
 
 			QueenSlimeScroll: {
 				DisplayName: Queen Scroll
-				Tooltip: 50% increases movement speed and minion damage by 5%, increase your max number of minions by 1 and increases your max life by 20%
+				Tooltip:
+					'''
+					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
+					"{$CommonItemTooltip.IncreasesMaxMinionsBy@2}"
+					"{$CommonItemTooltip.IncreasesMaxLifeByPercent@3}"
+					'''
 			}
 
 			SkeletronScroll: {
@@ -2449,7 +2479,11 @@ Mods: {
 
 			WallOfFleshScroll: {
 				DisplayName: Infernal Scroll
-				Tooltip: You gain 10% of damage and an infernal power covers you
+				Tooltip:
+					'''
+					"{$CommonItemTooltip.PercentIncreasedDamage}"
+					and an infernal power covers you
+					'''
 			}
 
 			DesertStaff: {
@@ -2710,18 +2744,18 @@ Mods: {
 			}
 
 			EndlessLove: {
-				DisplayName: Endless Love
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessStink: {
-				DisplayName: Endless Stink
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlessWormHole: {
-				DisplayName: Endless Worm Hole
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			StarChunk: {
@@ -2730,163 +2764,163 @@ Mods: {
 			}
 
 			Endless_Ichor_Pouch: {
-				DisplayName: Endless Ichor Pouch
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesBlueFlare: {
-				DisplayName: Endles Blue Flare
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesBlueSolution: {
-				DisplayName: Endles Blue Solution
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesCoperCoin: {
-				DisplayName: Endles Coper Coin
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesDarkBlueSolution: {
-				DisplayName: Endles Dark Blue Solution
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesGel: {
-				DisplayName: Endles Gel
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesGoldCoin: {
-				DisplayName: Endles Gold Coin
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesGreenSolution: {
-				DisplayName: Endles Green Solution
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesPlatinumCoin: {
-				DisplayName: Endles Platinum Coin
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesPurpleSolution: {
-				DisplayName: Endles Purple Solution
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesRedSolution: {
-				DisplayName: Endles Red Solution
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesSilverCoin: {
-				DisplayName: Endles Silver Coin
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesSnowBall: {
-				DisplayName: Endles Snow Ball
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesStake: {
-				DisplayName: Endles Stake
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesAccelerationRound: {
-				DisplayName: Endles Acceleration Round
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesAcidRound: {
-				DisplayName: Endles Acid Round
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesArcticArrow: {
-				DisplayName: Endles Arctic Arrow
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesBloodfireArrow: {
-				DisplayName: Endles Bloodfire Arrow
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesBloodfireBullet: {
-				DisplayName: Endles Bloodfire Bullet
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesElysianArrow: {
-				DisplayName: Endles Elysian Arrow
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesEnhancedNanoRound: {
-				DisplayName: Endles Enhanced Nano Round
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesGodSlayerSlug: {
-				DisplayName: Endles God Slayer Slug
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesHolyFireBullet: {
-				DisplayName: Endles Holy Fire Bullet
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesHyperiusBullet: {
-				DisplayName: Endles Hyperius Bullet
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesIcicleArrow: {
-				DisplayName: Endles Icicle Arrow
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesIcyBullet: {
-				DisplayName: Endles Icy Bullet
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesNapalmArrow: {
-				DisplayName: Endles Napalm Arrow
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesTerraArrow: {
-				DisplayName: Endles Terra Arrow
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesTerraBullet: {
-				DisplayName: Endles Terra Bullet
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndleSuperballBullet: {
-				DisplayName: Endle Superball Bullet
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesVanquisherArrow: {
-				DisplayName: Endles Vanquisher Arrow
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			EndlesVeriumBullet: {
-				DisplayName: Endles Verium Bullet
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			GarritasDoG: {
@@ -2940,8 +2974,8 @@ Mods: {
 			}
 
 			EndlessBiomeSightPotion: {
-				DisplayName: Endless Biome Sight Potion
-				Tooltip: ""
+				DisplayName: "{0}"
+				Tooltip: "{0}"
 			}
 
 			InfernalStaff: {
@@ -2966,6 +3000,131 @@ Mods: {
 
 			ExplosionStaff: {
 				DisplayName: Explosion Staff
+				Tooltip: ""
+			}
+
+			EndlessAnechoicCoating: {
+				DisplayName: Endless Anechoic Coating
+				Tooltip: ""
+			}
+
+			EndlessAstralInjection: {
+				DisplayName: Endless Astral Injection
+				Tooltip: ""
+			}
+
+			EndlessBoundingPotion: {
+				DisplayName: Endless Bounding Potion
+				Tooltip: ""
+			}
+
+			EndlessCalciumPotion: {
+				DisplayName: Endless Calcium Potion
+				Tooltip: ""
+			}
+
+			EndlessCeaselessHungerPotion: {
+				DisplayName: Endless Ceaseless Hunger Potion
+				Tooltip: ""
+			}
+
+			EndlessFlaskOfBrimstone: {
+				DisplayName: Endless Flask Of Brimstone
+				Tooltip: ""
+			}
+
+			EndlessFlaskOfCrumbling: {
+				DisplayName: Endless Flask Of Crumbling
+				Tooltip: ""
+			}
+
+			EndlessFlaskOfHolyFlames: {
+				DisplayName: Endless Flask Of Holy Flames
+				Tooltip: ""
+			}
+
+			EndlessGravityNormalizerPotion: {
+				DisplayName: Endless Gravity Normalizer Potion
+				Tooltip: ""
+			}
+
+			EndlessPhotosynthesisPotion: {
+				DisplayName: Endless Photosynthesis Potion
+				Tooltip: ""
+			}
+
+			EndlessPotionofOmniscience: {
+				DisplayName: Endless Potionof Omniscience
+				Tooltip: ""
+			}
+
+			EndlessSoaringPotion: {
+				DisplayName: Endless Soaring Potion
+				Tooltip: ""
+			}
+
+			EndlessTeslaPotion: {
+				DisplayName: Endless Tesla Potion
+				Tooltip: ""
+			}
+
+			EndlessZenPotion: {
+				DisplayName: Endless Zen Potion
+				Tooltip: ""
+			}
+
+			EndlessZergPotion: {
+				DisplayName: Endless Zerg Potion
+				Tooltip: ""
+			}
+
+			SacredFishingRod: {
+				DisplayName: Sacred Fishing Rod
+				Tooltip: ""
+			}
+
+			TerraRod: {
+				DisplayName: Terra Rod
+				Tooltip:
+					'''
+					{$EditVanilla.LavaFishing}
+					{$EditVanilla.StrongFishString}
+					{$EditVanilla.FishMultipleLine}
+					'''
+			}
+
+			TrueNigthFishingRod: {
+				DisplayName: True Nigth Fishing Rod
+				Tooltip:
+					'''
+					{$EditVanilla.LavaFishing}
+					{$EditVanilla.StrongFishString}
+					{$EditVanilla.FishMultipleLine}
+					'''
+			}
+
+			TrueSacredFishingRod: {
+				DisplayName: True Sacred Fishing Rod
+				Tooltip: "{$EditVanilla.FishMultipleLine}"
+			}
+
+			EyeRing: {
+				DisplayName: Eye Ring
+				Tooltip: ""
+			}
+
+			Endeless_Hight_Food: {
+				DisplayName: Endeless_ Hight_ Food
+				Tooltip: ""
+			}
+
+			Endeless_Low_Food: {
+				DisplayName: Endeless_ Low_ Food
+				Tooltip: ""
+			}
+
+			Endeless_Medium_Food: {
+				DisplayName: Endeless_ Medium_ Food
 				Tooltip: ""
 			}
 		}
@@ -3163,6 +3322,15 @@ Mods: {
 			BloodFlowerHeldProj.DisplayName: Blood Flower Held Proj
 			BloodThornHeldProj.DisplayName: Blood Thorn Held Proj
 			GemStaffHeldProj.DisplayName: Gem Staff Held Proj
+			SharknadoClone.DisplayName: Sharknado Clone
+			SharknadoShootClone.DisplayName: Sharknado Shoot Clone
+			SharknadoBoltClone.DisplayName: Sharknado Bolt Clone
+			PygmyMelee.DisplayName: Pygmy Melee
+			TrueNigthBobber.DisplayName: True Nigth Bobber
+			SacredBobber.DisplayName: Sacred Bobber
+			TerraBobber.DisplayName: Terra Bobber
+			TrueSacredBobber.DisplayName: True Sacred Bobber
+			DakoPetProjectile.DisplayName: Dako Pet Projectile
 		}
 
 		Tiles: {

@@ -6,7 +6,7 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Arrows
 {
 	public class DesertArrow : ModItem
 	{

@@ -139,7 +139,24 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static int FormatTime(int Day, int Hour, int Minute, int Second)
         {
-            return Second * 60 + Minute * 60 * 60 + Hour * 60 * 60 * 60 + Day * 60 * 60 * 60 * 60;
+            int sec = Second;
+            int min = 0;
+            int hour = 0;
+            int day = 0;
+            if (Minute > 0)
+            {
+                min = Minute * 60;
+            }
+            if (Hour > 0)
+            {
+                hour = Hour * 60 * 60;
+            }
+            if (Day > 0)
+            {
+                day = Day * 60 * 60 * 24;
+            }
+
+            return day + hour + min + sec;
         }
         public static float FormatTime(float Day, float Hour, float Minute, float Second)
         {
