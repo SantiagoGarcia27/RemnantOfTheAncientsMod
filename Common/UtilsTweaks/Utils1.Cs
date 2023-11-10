@@ -158,7 +158,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
             return day + hour + min + sec;
         }
-        public static float FormatTime(float Day, float Hour, float Minute, float Second)
+        public static float FormatTimeToTick(float Day, float Hour, float Minute, float Second)
         {
             return Second * 60 + Minute * 60 * 60 + Hour * 60 * 60 * 60 + Day * 60 * 60 * 60 * 60;
         }

@@ -247,7 +247,96 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     tip2.Text = text;
                 }
             }
-
+            else if (item.type == ItemID.JungleRose)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("CommonItemTooltip.PercentIncreasedCritChance", 5);
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.CritterShampoo)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("CommonItemTooltip.IncreasesMaxLifeBy", Reaper.ReaperMode ? 10 : 30);
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.LuckyHorseshoe)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedLuck", Reaper.ReaperMode ? 0.4f : 0.2f);
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.HermesBoots)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedFallSpeed");
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.SpectreBoots)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedFallSpeed");
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.LightningBoots)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedFallSpeed");
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.FrostsparkBoots)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedFallSpeed");
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.TerrasparkBoots)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedFallSpeed");
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
+            else if (item.type == ItemID.FlurryBoots)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedBootSpeedInBlock", new Item(ItemID.SnowBlock).Name);
+                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    tip.Text = text;
+                }
+            }
             if (baseItem != null)
             {
                 int baseType = GetBaseType(baseItem);
@@ -285,6 +374,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 //};
                 //Tooltips.Insert(3,item2);
             } 
+
         }
         public int GetIndexForText(TooltipLine tip,string text) 
         {

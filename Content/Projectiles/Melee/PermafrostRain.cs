@@ -46,12 +46,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             {
                 NPC target = Main.npc[i];
                 //If the NPC is hostile
-                if (!target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
+                if (!target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal && target.damage >= 0)
                 {
                     //Get the shoot trajectory from the projectile and target
                     float shootToX = target.position.X + (float)target.width * 0.5f - Projectile.Center.X;
                     float shootToY = target.position.Y - Projectile.Center.Y;
-                    float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+                    float distance = (float)Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
 
                     //If the distance between the live targeted NPC and the projectile is less than 480 pixels
                     if (distance < 480f && !target.friendly && target.active)

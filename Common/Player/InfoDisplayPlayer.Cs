@@ -2,6 +2,7 @@ using Terraria.ModLoader;
 using Terraria;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using System.Linq;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 public class InfoDisplayPlayer : ModPlayer
 {
@@ -20,9 +21,12 @@ public class InfoDisplayPlayer : ModPlayer
     public bool showDamageBonus = false;
     public bool showCritBonus = false;
 
+
+
+
     public override void PreUpdate()
     {
-        bool n = Main.LocalPlayer.inventory.Any(item => item.type == ModContent.ItemType<PlayerStatViewer>())? true: false;
+        bool n = Main.LocalPlayer.inventory.Any(item => RemnantGlobalItem.Phones.Contains(item.type) || item .type == ModContent.ItemType<PlayerStatViewer>())? true: false;
 
         showMaxMinion = n;
         showMaxSentry = n;

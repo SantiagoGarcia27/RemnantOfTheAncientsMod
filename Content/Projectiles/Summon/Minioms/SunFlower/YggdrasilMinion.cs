@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             return true;
         }
         public int RangeMax = 35;
-        public int HealTimmer = Utils1.FormatTime(0, 0, 0, 7);
+        public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
         public override void AI()
         {
             Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width *1f, TextureAssets.Projectile[Projectile.type].Value.Height /3.1f);
@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             Projectile.velocity = new Vector2(0, 7f);
             if(HealTimmer == 0)
             {
-                HealTimmer = Utils1.FormatTime(0, 0, 0, 7);
+                HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
             }
             else
             {
@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
                 {
                     if (Projectile.Distance(Main.player[p].Center) <= RangeMax * 16)
                     {
-                        Main.player[p].AddBuff(BuffID.Sunflower, Utils1.FormatTime(0, 0, 0, 10));
+                        Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
                         Main.player[p].statDefense += 15;
                         Main.player[p].GetDamage(DamageClass.Generic) *= 1.1f;
                         Main.player[p].endurance += 0.05f;
@@ -86,7 +86,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             {
                 if (Projectile.Distance(player.Center) <= RangeMax *16)
                 {
-                    player.AddBuff(BuffID.Sunflower, Utils1.FormatTime(0, 0, 0, 10));
+                    player.AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
                     player.statDefense += 15;
                     player.GetDamage(DamageClass.Generic) *= 1.1f;
                     player.endurance += 0.05f;

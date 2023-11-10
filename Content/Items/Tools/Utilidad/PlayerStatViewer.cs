@@ -26,7 +26,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
         public override void UpdateInventory(Player player)
         {
             player.GetModPlayer<InfoDisplayPlayer>().showMaxMinion = true;
-			//Main.NewText(player.HeldItem.type);
             base.UpdateInventory(player);
         }
   //      private string CreateStatMeterTooltip(Player player, RemnantPlayer modPlayer)

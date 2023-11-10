@@ -97,7 +97,7 @@ public class ReaperGlobalNpc : GlobalNPC
                 }
                 else
                 {
-                    Main.player[npc.target].AddBuff(BuffID.Hunger, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Hunger, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
                 }
                 // Main.dontStarveWorld = true;
             }
@@ -246,9 +246,9 @@ public class ReaperGlobalNpc : GlobalNPC
                 }
                 else
                 {
-                    Main.player[npc.target].AddBuff(BuffID.Hunger, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.Darkness, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Hunger, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Darkness, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
                     Main.player[npc.target].dontStarveShader = true;
                 }
             }
@@ -262,9 +262,9 @@ public class ReaperGlobalNpc : GlobalNPC
                 }
                 else
                 {
-                    Main.player[npc.target].AddBuff(BuffID.WindPushed, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.VortexDebuff, Utils1.FormatTime(0, 0, 0, 30));
-                    Main.player[npc.target].AddBuff(BuffID.QueenSlimeMount, Utils1.FormatTime(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.WindPushed, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.VortexDebuff, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                    Main.player[npc.target].AddBuff(BuffID.QueenSlimeMount, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
                    
                 }
             }
@@ -506,14 +506,14 @@ public class ReaperGlobalNpc : GlobalNPC
                 }
                 else
                 {
-                    Main.player[npc.target].AddBuff(BuffID.Horrified, Utils1.FormatTime(0, 0, 0, 1));
-                    Main.player[npc.target].AddBuff(BuffID.Weak, Utils1.FormatTime(0, 0, 0, 1));
-                    Main.player[npc.target].AddBuff(BuffID.Blackout, Utils1.FormatTime(0, 0, 0, 1));
-                    Main.player[npc.target].AddBuff(BuffID.ChaosState, Utils1.FormatTime(0, 0, 0, 1));
-                    Main.player[npc.target].AddBuff(BuffID.NoBuilding, Utils1.FormatTime(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.Horrified, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.Weak, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.ChaosState, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    Main.player[npc.target].AddBuff(BuffID.NoBuilding, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
                     if (NPC.AnyNPCs(NPCID.Dryad))
                     {
-                        Main.player[npc.target].AddBuff(BuffID.DryadsWard, Utils1.FormatTime(0, 0, 0, 30));
+                        Main.player[npc.target].AddBuff(BuffID.DryadsWard, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
                     }
                 }
                 if (attackCounter == 110)
@@ -774,13 +774,13 @@ public class ReaperGlobalNpc : GlobalNPC
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
-                            Main.player[Main.myPlayer].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
-                            Main.player[Main.myPlayer].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                            Main.player[Main.myPlayer].AddBuff(BuffID.Confused, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
+                            Main.player[Main.myPlayer].AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
                         }
                         else
                         {
-                            Main.player[npc.target].AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 4));
-                            Main.player[npc.target].AddBuff(BuffID.Slow, Utils1.FormatTime(0, 0, 0, 2));
+                            Main.player[npc.target].AddBuff(BuffID.Confused, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
+                            Main.player[npc.target].AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
                         }
                     }
                 }

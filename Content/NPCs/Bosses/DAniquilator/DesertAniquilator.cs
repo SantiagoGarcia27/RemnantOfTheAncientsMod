@@ -78,7 +78,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         private int currentPhase;
         private bool BossIsInRage = false;
         Point NpcFloor; 
-        int tpParticleTimer = Utils1.FormatTime(0,0,0,5);
+        int tpParticleTimer = (int)Utils1.FormatTimeToTick(0,0,0,5);
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(attackCounter);
@@ -143,7 +143,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     for (int j = 0; j < AttackValue[i].Length; j++)
                     {
-                        AttackValue[i][j] -= Utils1.FormatTime(0, 0, 0, 2);
+                        AttackValue[i][j] -= (int)Utils1.FormatTimeToTick(0, 0, 0, 2);
                     }
                 }
             }
@@ -153,7 +153,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     for (int j = 0; j < AttackValue[i].Length; j++)
                     {
-                        AttackValue[i][j] -= Utils1.FormatTime(0, 0, 0, 4);
+                        AttackValue[i][j] -= (int)Utils1.FormatTimeToTick(0, 0, 0, 4);
                     }
                 }
             }
@@ -264,7 +264,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
             if (tornadoCounter == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, 3))
             {
-                tornadoCounter = Utils1.FormatTime(0, 0, 0, 5);
+                tornadoCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
             }
             else if (tornadoCounter > 0)
             {
@@ -281,7 +281,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position, Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
                 }
-                else if (tornadoCounter == Utils1.FormatTime(0, 0, 0, 4))
+                else if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
                 {
                     Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, 30, 1, Main.myPlayer);
                 }           
@@ -296,7 +296,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                         mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position + new Vector2(a * 16 * distanceBetweenTornados * Main.player[NPC.target].direction, 0), Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
                     }
                 }
-                else if (tornadoCounter == Utils1.FormatTime(0, 0, 0, 4))
+                else if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
                 {
                     Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, 40, 1, Main.myPlayer);
                 }
@@ -331,18 +331,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
             if (!Main.expertMode && !Main.masterMode)
             {
-                MaxCounter[0] = Utils1.FormatTime(0, 0, 0, 15);
-                MaxCounter[1] = Utils1.FormatTime(0, 0, 0, 14);
+                MaxCounter[0] = (int)Utils1.FormatTimeToTick(0, 0, 0, 15);
+                MaxCounter[1] = (int)Utils1.FormatTimeToTick(0, 0, 0, 14);
             }
             else if (Main.expertMode && !Main.masterMode)
             {
-                MaxCounter[0] = Utils1.FormatTime(0, 0, 0, 13);
-                MaxCounter[1] = Utils1.FormatTime(0, 0, 0, 13);
+                MaxCounter[0] = (int)Utils1.FormatTimeToTick(0, 0, 0, 13);
+                MaxCounter[1] = (int)Utils1.FormatTimeToTick(0, 0, 0, 13);
             }
             else if (Main.expertMode && Main.masterMode)
             {
-                MaxCounter[0] = Utils1.FormatTime(0, 0, 0, 10);
-                MaxCounter[1] = Utils1.FormatTime(0, 0, 0, 8);
+                MaxCounter[0] = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
+                MaxCounter[1] = (int)Utils1.FormatTimeToTick(0, 0, 0, 8);
             }
             for (int i = 0; i < AttackCounter.Length; i++)
             {
@@ -438,7 +438,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     break;
 
             }
-            tpParticleTimer = Utils1.FormatTime(0, 0, 0, 5);
+            tpParticleTimer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
         }
         public void GenerateTpParticles()
         {

@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod
 		{
 			DashEquipped = false;
 			if (Player.controlDown && Player.releaseDown && Player.doubleTapCardinalTimer[DashDown] < 15) DashDir = DashDown;
-			else if (Player.controlUp && Player.releaseUp && Player.doubleTapCardinalTimer[DashUp] < 15) DashDir = DashUp;
+			else if (Player.controlUp && Player.releaseUp && Player.doubleTapCardinalTimer[DashUp] < 15 && Main.tile[(int)(Player.Center.X / 16), (int)((Player.Center.Y + (2 * 16)) / 16)].HasTile == true) DashDir = DashUp;
 			else if (Player.controlRight && Player.releaseRight && Player.doubleTapCardinalTimer[DashRight] < 15) DashDir = DashRight;
 			else if (Player.controlLeft && Player.releaseLeft && Player.doubleTapCardinalTimer[DashLeft] < 15) DashDir = DashLeft;
 			else DashDir = -1;

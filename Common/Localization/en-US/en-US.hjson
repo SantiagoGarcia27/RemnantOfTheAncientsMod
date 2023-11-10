@@ -141,6 +141,9 @@ Mods: {
 			LavaFishing: Can fish in lava.
 			StrongFishString: The fishing line never snaps.
 			FishMultipleLine: Fires {0} lines at once.
+			IncreasedLuck: Increase luck by {0}
+			IncreasedBootSpeedInBlock: ", and even faster on {0}"
+			IncreasedFallSpeed: Increases fall acceleration
 		}
 
 		Buffs: {
@@ -469,8 +472,8 @@ Mods: {
 			}
 
 			DakoVanityBuff: {
-				DisplayName: Dako Vanity Buff
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.DakoVanityBuff.Description
+				DisplayName: Dako Pet
+				Description: ""
 			}
 		}
 
@@ -505,7 +508,7 @@ Mods: {
 
 			Boot: {
 				DisplayName: Boot
-				Tooltip: Increases fall acceleration
+				Tooltip: "{$EditVanilla.IncreasedFallSpeed}"
 			}
 
 			Desert_Core: {
@@ -2588,7 +2591,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.Whips}
-					Has a chance to increase attack speed by 10%
+					Has a 10% chance to increase attack speed by 200%
 					'''
 			}
 
@@ -3114,18 +3117,33 @@ Mods: {
 			}
 
 			Endeless_Hight_Food: {
-				DisplayName: Endeless_ Hight_ Food
-				Tooltip: ""
+				DisplayName: Endless great banquet
+				Tooltip: "{$CommonItemTooltip.MajorStats}"
 			}
 
 			Endeless_Low_Food: {
-				DisplayName: Endeless_ Low_ Food
-				Tooltip: ""
+				DisplayName: Eternal appetizer
+				Tooltip: "{$CommonItemTooltip.MinorStats}"
 			}
 
 			Endeless_Medium_Food: {
-				DisplayName: Endeless_ Medium_ Food
-				Tooltip: ""
+				DisplayName: Eternal lunch
+				Tooltip: "{$CommonItemTooltip.MediumStats}"
+			}
+
+			InstaPlataform: {
+				DisplayName: Instant Plataform
+				Tooltip: Generates a platform of 200 blocks
+			}
+
+			AdaptiveInstaPlataform: {
+				DisplayName: Adaptive Instant Plataform
+				Tooltip: Generates a platform of 200 blocks that change according to the biome
+			}
+
+			UnlimitedAdaptiveInstaPlataform: {
+				DisplayName: Unlimited Adaptive Instant Plataform
+				Tooltip: Generates a platform of 200 blocks that change according to the biome
 			}
 		}
 

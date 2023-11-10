@@ -31,5 +31,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.pets
 				player.AddBuff(Item.buffType, 3600);
 			}
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.EyeOfCthulhuPetItem, 1)
+            .AddIngredient(ItemID.BandofStarpower, 1)
+            .AddTile(TileID.Anvils)
+            .Register();
+        }
+    }
 }

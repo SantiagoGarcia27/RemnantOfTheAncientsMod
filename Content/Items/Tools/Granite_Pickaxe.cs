@@ -40,8 +40,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.Granite, 12)
-			.AddIngredient(ItemID.Wood, 4)
-			.AddTile(TileID.Anvils)
+            .AddRecipeGroup("Wood", 4)
+            .AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

@@ -638,7 +638,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             {
                 if (NPC.life < NPC.lifeMax)
                 {
-                    if (RegenCounter < Utils1.FormatTime(0, 0, 0, 4))
+                    if (RegenCounter < (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
                     {
                         if (Main.rand.NextBool(2)) NPC.life++;
                         RegenCounter++;
@@ -809,11 +809,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            NPC.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTime(0, 0, 0, 6));
+            NPC.AddBuff(BuffID.TitaniumStorm, (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
             var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 50, 0, NPC.whoAmI);
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
-            target.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTime(0, 0, 0, 6));
+            target.AddBuff(BuffID.TitaniumStorm, (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
             base.OnHitPlayer(target, hurtInfo);
         }
     }

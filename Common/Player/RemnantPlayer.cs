@@ -406,7 +406,9 @@ namespace RemnantOfTheAncientsMod
 		}
 		public void AddScrollBuff()
 		{
-			ScrollsBuff.Add(BuffType<Slim>());
+			ScrollsBuff.Clear();
+
+            ScrollsBuff.Add(BuffType<Slim>());
 			ScrollsBuff.Add(BuffType<Eye>());
 			ScrollsBuff.Add(BuffType<BrainOfChutuluScrollBuff>());
 			ScrollsBuff.Add(BuffType<Putrid>());
@@ -418,12 +420,40 @@ namespace RemnantOfTheAncientsMod
 		}
 		public void ScrollInmunity(int buff)
 		{
-			for (int i = 0; i < ScrollsBuff.Count; i++)
+			AddScrollBuff();
+
+            for (int i = 0; i < ScrollsBuff.Count; i++)
 			{
 				Player.buffImmune[ScrollsBuff[i]] = true;
+				//Player.ClearBuff(ScrollsBuff[i]);
 			}
+			
 			Player.buffImmune[buff] = false;
+            //Player.AddBuff(buff, Utils1.FormatTime(1, 0, 0, 0));
+        }
+		public bool PlayerHaveScroll()
+		{
+			AddScrollBuff();
+
+            for (int i = 0; i < ScrollsBuff.Count; i++)
+			{
+				int n = ScrollsBuff[i];
+				Player Player = Main.player[Main.myPlayer];
+				bool playerHasBuff = Player.HasBuff(n);
+
+                if (playerHasBuff) return true;
+			}
+			return false;
 		}
+		public int SearchCurrenScrollEffect()
+		{
+            for (int i = 0; i < ScrollsBuff.Count; i++)
+            {
+                Player Player = Main.player[Main.myPlayer];
+                if (Player.HasBuff(ScrollsBuff[i])) return ScrollsBuff[i];
+            }
+            return -1;
+        }
 		public void ExoticA(int l, int m, int m2, int p, Item item)
 		{
 			Player.lifeRegen += l;

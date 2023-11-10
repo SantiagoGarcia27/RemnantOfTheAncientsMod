@@ -1,3 +1,4 @@
+using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -86,10 +87,15 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
         }
+        public static int GetPlayerFlour(Player player)
+        {
+            return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].TileType;
+        }
         public static bool ProjectileTouchFlour(Projectile projectile)
         {
             return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].HasTile;
         }
+       
         public static bool ProjectileTouchWall(Projectile projectile)
         {
             Vector2 coordenate;
@@ -98,7 +104,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             coordenate.Y = projectile.Center.Y / 16;
 
             return Main.tile[(int)coordenate.X, (int)coordenate.Y].HasTile;
-        }
+        }    
         public static bool ProjectileTouchWall(Projectile projectile, int high)
         {
             List<bool> bloques = new List<bool>();

@@ -78,7 +78,17 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.DiamondStaff,
 			ItemID.AmberStaff
         };
-		public List<int> LowFood = new List<int>();
+        public static List<int> Phones = new List<int>()
+        {
+            ItemID.CellPhone,
+            ItemID.Shellphone,
+            ItemID.ShellphoneDummy,
+            ItemID.ShellphoneHell,
+            ItemID.ShellphoneOcean,
+            ItemID.ShellphoneSpawn,
+            ItemID.ShellPileBlock
+        };
+        public List<int> LowFood = new List<int>();
         public List<int> MediumFood = new List<int>();
         public List<int> HightFood = new List<int>();
         public List<int> LowBait = new List<int>();
@@ -546,20 +556,30 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 
-			
-			if (WeaponConf && item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee)
+			if (WeaponConf)
 			{
-				return true;
-			}
-			else if(SecondClickWeapons.Contains(item.type) || item.type == ItemID.UnholyTrident)
-			{
-                return true;
+				if (item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee)
+				{
+					return true;
+				}
+				else if (SecondClickWeapons.Contains(item.type) || item.type == ItemID.UnholyTrident)
+				{
+					return true;
+				}
+				else if (item.GetGlobalItem<CustomTooltip>().Lance)
+				{
+					return true;
+				}
+                else
+                {
+                    return base.AltFunctionUse(item, player);
+                }
             }
-			else
-			{
-				return base.AltFunctionUse(item, player);
-			}
-		}
+            else
+            {
+                return base.AltFunctionUse(item, player);
+            }
+        }
 		public override bool? UseItem(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -680,6 +700,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				ReaperGlobalItem.ReaperConsumable(item);
 				ReaperGlobalItem.ReaperSetDefaut(item);
 			}
+            ReaperGlobalItem.ReaperConsumable(item);
+
+
+			if(Phones.Contains(item.type))
+			{
+                player.GetModPlayer<InfoDisplayPlayer>().showMaxMinion = true;
+            }
         }
         public override void HoldItem(Item item, Player player)
         {

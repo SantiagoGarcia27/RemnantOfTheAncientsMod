@@ -50,13 +50,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 			if (RemnantPlayer.tuxoniteStealthCounter == 0)
 			{
 				player.shroomiteStealth = true;
-				if (RemnantPlayer.tuxoniteStealthDuration < Utils1.FormatTime(0, 0, 0, 10))
+				if (RemnantPlayer.tuxoniteStealthDuration < Utils1.FormatTimeToTick(0, 0, 0, 10))
 				{
 					RemnantPlayer.tuxoniteStealthDuration++;
 				}
 				else
 				{
-					RemnantPlayer.tuxoniteStealthCounter = (int)Main.rand.NextFloat(Utils1.FormatTime(0, 0, 0, 30));
+					RemnantPlayer.tuxoniteStealthCounter = (int)Main.rand.NextFloat(Utils1.FormatTimeToTick(0, 0, 0, 30));
 					RemnantPlayer.tuxoniteStealthDuration = 0;
 				}
 			}

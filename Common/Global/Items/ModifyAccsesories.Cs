@@ -1,4 +1,5 @@
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -39,9 +40,54 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
+            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
             if (item.type == ItemID.HandOfCreation)
             {
                 player.pickSpeed -= 0.45f;
+            }
+
+            if (WeaponConf)
+            {
+                if (item.type == ItemID.JungleRose)
+                {
+                    player.GetCritChance(DamageClass.Generic) += 5;
+                }
+                if (item.type == ItemID.CritterShampoo)
+                {
+                    player.statLifeMax2 += Reaper.ReaperMode ? 10 : 30;
+                }
+                if (item.type == ItemID.LuckyHorseshoe)
+                {
+                    player.luck += Reaper.ReaperMode ? 0.2f : 0.4f;
+                    player.luckMaximumCap = 2;
+                }
+                if (item.type == ItemID.FlurryBoots)
+                {
+                    if (DistanceUtils.GetPlayerFlour(player) == TileID.SnowBlock)
+                    {
+                        player.moveSpeed += 2f;
+                    }
+                }
+                if (item.type == ItemID.HermesBoots)
+                {
+                    player.maxFallSpeed *= 2f;
+                }
+                if (item.type == ItemID.SpectreBoots)
+                {
+                    player.maxFallSpeed *= 2f;
+                }
+                if (item.type == ItemID.LightningBoots)
+                {
+                    player.maxFallSpeed *= 2f;
+                }
+                if (item.type == ItemID.FrostsparkBoots)
+                {
+                    player.maxFallSpeed *= 2f;
+                }
+                if (item.type == ItemID.TerrasparkBoots)
+                {
+                    player.maxFallSpeed *= 2f;
+                }
             }
             base.UpdateAccessory(item, player, hideVisual);
         }
@@ -60,6 +106,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
                 }
             }
+           
 
             //base.ModifyTooltips(item, tooltips);
         }

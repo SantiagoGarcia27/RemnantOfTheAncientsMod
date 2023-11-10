@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
 {
@@ -30,6 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             player.GetArmorPenetration(DamageClass.Generic) = 15;
             int Buff = BuffType<Bee>();
             player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
+           
         }
     }
 }

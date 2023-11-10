@@ -147,6 +147,9 @@ Mods: {
 			LavaFishing: Puede pescar en lava.
 			StrongFishString: El hilo nunca se rompe.
 			FishMultipleLine: Dispara {0} lineas a la vez.
+			IncreasedLuck: Aumenta la suerte en {0}
+			IncreasedBootSpeedInBlock: ", y mas rápido caminando en {0}"
+			IncreasedFallSpeed: Aumenta la velocidad de capída
 		}
 
 		Buffs: {
@@ -474,6 +477,11 @@ Mods: {
 				DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueTwiligtDebuff
 				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueTwiligtDebuff
 			}
+
+			DakoVanityBuff: {
+				DisplayName: Dako
+				Description: ""
+			}
 		}
 
 		Items: {
@@ -508,7 +516,7 @@ Mods: {
 
 			Boot: {
 				DisplayName: Bota
-				Tooltip: Aumenta la velocidad de capída
+				Tooltip: "{$EditVanilla.IncreasedFallSpeed}"
 			}
 
 			Desert_Core: {
@@ -1632,8 +1640,8 @@ Mods: {
 				DisplayName: Linea nocturna
 				Tooltip:
 					'''
-					Mods.RemnantOfTheAncientsMod.EditVanilla.LavaFishing
-					Mods.RemnantOfTheAncientsMod.EditVanilla.StrongFishString
+					{$EditVanilla.LavaFishing}
+					{$EditVanilla.StrongFishString}
 					'''
 			}
 
@@ -2604,7 +2612,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.Whips}
-					Tiene un 10% de probabilidad de aumentar la velocidad de ataque
+					Tiene un 10% de probabilidad de aumentar la velocidad de ataque en un 200%
 					'''
 			}
 
@@ -3124,6 +3132,41 @@ Mods: {
 				DisplayName: True Sacred Fishing Rod
 				Tooltip: "{$EditVanilla.FishMultipleLine}"
 			}
+
+			EyeRing: {
+				DisplayName: Anillo ocular
+				Tooltip: ""
+			}
+
+			Endeless_Hight_Food: {
+				DisplayName: Gran banquete eterno
+				// Tooltip: "{$CommonItemTooltip.MajorStats}"
+			}
+
+			Endeless_Low_Food: {
+				DisplayName: Aperitivo eterno
+				// Tooltip: "{$CommonItemTooltip.MinorStats}"
+			}
+
+			Endeless_Medium_Food: {
+				DisplayName: Almuerzo eterno
+				// Tooltip: "{$CommonItemTooltip.MediumStats}"
+			}
+
+			InstaPlataform: {
+				DisplayName: Plataforma instantanea
+				Tooltip: Genera una plataforma automáticamente
+			}
+
+			AdaptiveInstaPlataform: {
+				DisplayName: Plataforma instantanea adaptable
+				Tooltip: Genera una plataforma automáticamente que cambia según el bioma
+			}
+
+			UnlimitedAdaptiveInstaPlataform: {
+				DisplayName: Plataforma instantanea adaptable eterna
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3327,6 +3370,7 @@ Mods: {
 			// SacredBobber.DisplayName: Sacred Bobber
 			// TerraBobber.DisplayName: Terra Bobber
 			// TrueSacredBobber.DisplayName: True Sacred Bobber
+			// DakoPetProjectile.DisplayName: Dako Pet Projectile
 		}
 
 		Tiles: {

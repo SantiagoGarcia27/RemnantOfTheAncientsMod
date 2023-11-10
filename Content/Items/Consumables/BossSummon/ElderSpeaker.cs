@@ -40,13 +40,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
         public override bool? UseItem(Player player)
         {
             SoundEngine.PlaySound(SoundID.Roar, player.position);
+
+            int type = Main.dayTime ? NPCID.DungeonGuardian : NPCID.SkeletronHead;
             if (Main.netMode != 1)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, NPCID.SkeletronHead);
+                
+                NPC.SpawnOnPlayer(player.whoAmI, type);
             }
             else
             {
-                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, NPCID.SkeletronHead, 0f, 0f, 0, 0, 0);
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, type, 0f, 0f, 0, 0, 0);
             }
             return true;
         }

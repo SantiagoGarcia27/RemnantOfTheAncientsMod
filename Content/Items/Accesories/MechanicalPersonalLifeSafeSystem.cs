@@ -31,27 +31,26 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             player.GetModPlayer<RemnantPlayer>().HealingDrone = true;
             player.GetModPlayer<RemnantPlayer>().InterceptionDrone = true;
             // player.GetModPlayer<RemnantPlayer>().SpawnMinionItem(player);
-            for (int i = 0; i < Main.maxProjectiles; i++)
+
+            if(player.ownedProjectileCounts[ModContent.ProjectileType<InterceptionDrone>()] < 2)
             {
-                if (Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && (Main.projectile[i].type == ModContent.ProjectileType<InterceptionDrone>() || Main.projectile[i].type == ModContent.ProjectileType<HealingDrone>()))
-                {
-                    return;
-                }
-                else
-                {
-                    for (int e = 0; e < 2; e++)
-                    {
-                        if (player.ownedProjectileCounts[ModContent.ProjectileType<InterceptionDrone>()] < 2)
-                        {
-                            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(),1,0, Main.myPlayer, 1*e * 10);
-                        }
-                        if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingDrone>()] < 2)
-                        {
-                            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(),1,0, Main.myPlayer,1 *e * 10);
-                        }
-                    }
-                }
+                Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(), 1, 0, Main.myPlayer, 1 * 10);
+                Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(), 1, 0, Main.myPlayer, 2 * 10);
             }
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingDrone>()] < 2)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, Main.myPlayer, 1 * 1 * 10);
+                Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, Main.myPlayer, 1 * 2 * 10);
+            }
+
+            //for (int i = 0; i < Main.maxProjectiles; i++)
+            //{
+            //    if (Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && (Main.projectile[i].type == ModContent.ProjectileType<InterceptionDrone>() || Main.projectile[i].type == ModContent.ProjectileType<HealingDrone>()))
+            //    {
+            //        return;
+            //    }
+               
+            //}
         }
         public override void SetDefaults()
         {

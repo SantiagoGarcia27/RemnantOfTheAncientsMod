@@ -46,9 +46,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.StoneBlock, 30)
-			.AddIngredient(ItemID.IronBar, 5)
-			.AddIngredient(ItemID.Wood, 15)
-			.AddTile(TileID.Anvils)
+            .AddRecipeGroup("IronBar", 5)
+            .AddRecipeGroup("Wood", 15)
+            .AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

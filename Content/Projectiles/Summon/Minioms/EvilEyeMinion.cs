@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             return false;
         }
         public int RangeMax = 8;
-        public static int AttackTimmer = (int)Utils1.FormatTime(0f, 0f, 0f, 0.5f);
+        public static int AttackTimmer = (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.5f);
         public static int shootCounter = 0;
         public NPC target;
         public override void AI()
@@ -63,11 +63,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             GeneralBehavior(player, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition);
             SearchForTargets(player, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
             Movement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);      
-            setCounters();
+            //setCounters();
 
-            if (shootCounter == Utils1.FormatTime(0,0,0,5) -1 && target != null)
+            shootCounter = CounterUpdate(shootCounter, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+            AttackTimmer = CounterUpdate(AttackTimmer, (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.4f));
+
+            float TimmerMax = Utils1.FormatTimeToTick(0, 0, 0, 5) - 60;
+            if (shootCounter == TimmerMax /*&& target != null*/)
             {
-                Shoot();
+                Shoot(targetCenter);
             }
             if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
             {
@@ -78,10 +82,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         
         private void setCounters()
         {
-            shootCounter = CounterUpdate(shootCounter, Utils1.FormatTime(0, 0, 0, 5));
-            AttackTimmer = CounterUpdate(AttackTimmer, (int)Utils1.FormatTime(0f, 0f, 0f, 0.4f));
+            shootCounter = CounterUpdate(shootCounter, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+            AttackTimmer = CounterUpdate(AttackTimmer, (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.4f));
         }
-        private void Shoot()
+        private void Shoot(Vector2 targetCenter)
         {
             float rotation;
             if (Projectile.OwnerMinionAttackTargetNPC != null)
@@ -93,8 +97,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 rotation = 0;
             }
             Vector2 direction;
-            direction.X = (float)(Math.Cos(rotation) * 4f * -1);
-            direction.Y = (float)(Math.Sin(rotation) * 4f * -1);
+            direction = targetCenter - Projectile.Center;
+            //direction.X = (float)(Math.Cos(rotation) * 4f * -1);
+            //direction.Y = (float)(Math.Sin(rotation) * 4f * -1);
             Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,  direction, ProjectileID.InfernoFriendlyBolt, Projectile.damage, 0, Projectile.owner, 0, 0);
         }
 
@@ -105,7 +110,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             {
                 if (Projectile.Distance(Main.npc[i].Center) <= RangeMax * 16)
                 {
-                    Main.npc[i].AddBuff(BuffType<Hell_Fire>(), Utils1.FormatTime(0, 0, 0, 2));
+                    Main.npc[i].AddBuff(BuffType<Hell_Fire>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (AttackTimmer == 1)
                     {            
                         Main.npc[i].SimpleStrikeNPC(Projectile.damage, 0, Main.rand.NextBool(6),0, DamageClass.Summon);
@@ -188,6 +193,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             distanceFromTarget = 60 * 16f;
             targetCenter = Projectile.position;
             foundTarget = false;
+            target = null;
 
             // This code is required if your minion weapon has the targeting feature
             if (owner.HasMinionAttackTargetNPC)
@@ -200,12 +206,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 {
                     distanceFromTarget = between;
                     targetCenter = npc.Center;
+                    target = npc;
                     foundTarget = true;
                 }
             }
             else
             {
-                if (IsAttack == true && AnimationCounter >= Utils1.FormatTime(0, 0, 0, 1))
+                if (IsAttack == true && AnimationCounter >= (int)Utils1.FormatTimeToTick(0, 0, 0, 1))
                 {
                     IsAttack = false;
                     AnimationCounter = 0;
@@ -237,6 +244,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                         {
                             distanceFromTarget = between;
                             targetCenter = npc.Center;
+                            target = npc;
                             foundTarget = true;
                         }
                     }

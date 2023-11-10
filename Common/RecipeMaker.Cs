@@ -15,6 +15,7 @@ using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using System.Collections.Generic;
 using System.Linq;
+using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -82,9 +83,9 @@ namespace RemnantOfTheAncientsMod
               .AddTile(TileID.Solidifier)
               .Register();
             Recipe.Create(ItemID.MasterBait, 1)
-            .AddIngredient(ItemID.GoldWorm, 1)
-            .AddTile(TileID.Solidifier)
-            .Register();
+                .AddIngredient(ItemID.GoldWorm, 1)
+                .AddTile(TileID.Solidifier)
+                .Register();
         }
         private static void HardmodeItems()
         {
@@ -180,9 +181,37 @@ namespace RemnantOfTheAncientsMod
 
         private static void PreHardmodeMeleeWeapons()
         {
-            Recipe.Create(ItemID.WoodenBoomerang).AddRecipeGroup("IronBar", 2).AddIngredient(ItemID.Wood, 10).AddTile(TileID.WorkBenches).Register();
-            Recipe.Create(ItemID.Spear).AddRecipeGroup("IronBar", 2).AddRecipeGroup("GoldBar", 1).AddTile(TileID.Anvils).Register();
-            Recipe.Create(ItemID.EnchantedSword).AddRecipeGroup("EspH", 1).AddIngredient(ItemID.FallenStar, 10).AddIngredient(ItemID.SoulofLight, 10).AddIngredient(ItemID.LightShard, 1).AddTile(TileID.MythrilAnvil).Register();
+            Recipe.Create(ItemID.WoodenBoomerang)
+                .AddRecipeGroup("IronBar", 2)
+                .AddIngredient(ItemID.Wood, 10)
+                .AddTile(TileID.WorkBenches)
+                .Register();
+
+            Recipe.Create(ItemID.Spear)
+                .AddRecipeGroup("IronBar", 2)
+                .AddRecipeGroup("GoldBar", 1)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.EnchantedSword)
+                .AddRecipeGroup("EspH", 1)
+                .AddIngredient(ItemID.FallenStar, 10)
+                .AddIngredient(ItemID.SoulofLight, 10)
+                .AddIngredient(ItemID.LightShard, 1)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+
+            Recipe.Create(ItemID.BallOHurt)
+                .AddIngredient(ItemID.DemoniteBar, 10)
+                .AddIngredient(ItemID.ShadowScale, 5)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.Mace)
+               .AddRecipeGroup("IronBar", 10)
+               .AddIngredient(ItemID.Chain, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
 
             NightEdgeCraft();
         }
@@ -508,6 +537,7 @@ namespace RemnantOfTheAncientsMod
             UnderworldAccesories();
             CorruptAccesories();
             TravelingMerchantAccesories();
+            FisherManAccesories();
             SkyAccesories();
         }
 
@@ -518,8 +548,33 @@ namespace RemnantOfTheAncientsMod
             .AddIngredient(ItemID.Cloud, 10)
             .AddTile(TileID.SkyMill)
             .Register();
-        }
 
+            Recipe.Create(ItemID.LuckyHorseshoe)
+              .AddRecipeGroup("GoldBar", 10)
+              .AddTile(TileID.SkyMill)
+              .Register();
+
+        }
+        private static void FisherManAccesories()
+        {
+            Recipe.Create(ItemID.Sextant)
+              .AddRecipeGroup("GoldBar", 5)
+              .AddTile(TileID.Anvils)
+              .Register();
+
+            Recipe.Create(ItemID.FishermansGuide)
+              .AddRecipeGroup(RecipeGroupID.FishForDinner, 2)
+              .AddIngredient(ItemID.Book)
+              .AddTile(TileID.Bookcases)
+              .Register();
+
+            Recipe.Create(ItemID.WeatherRadio)
+                .AddRecipeGroup("IronBar", 5)
+                .AddIngredient(ItemID.WeatherPain)
+                .AddIngredient(ItemID.Wire,6)
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
+        }
         private static void TravelingMerchantAccesories()
         {
             Recipe.Create(ItemID.CelestialMagnet)
@@ -528,6 +583,19 @@ namespace RemnantOfTheAncientsMod
                .AddRecipeGroup("GoldBar", 5)
                .AddTile(TileID.Anvils)
                .Register();
+
+            Recipe.Create(ItemID.Stopwatch)
+               .AddRecipeGroup("IronBar", 5)
+               .AddIngredient(ItemID.Timer5Second, 1)
+               .AddIngredient(ItemID.Wire, 5)
+               .AddTile(TileID.TinkerersWorkbench)
+               .Register();
+
+            Recipe.Create(ItemID.DPSMeter)
+             .AddRecipeGroup("IronBar", 3)
+             .AddIngredient(ItemID.Wire, 20)
+             .AddTile(TileID.TinkerersWorkbench)
+             .Register();
         }
 
         private static void DungeonAccesories()
@@ -536,6 +604,13 @@ namespace RemnantOfTheAncientsMod
                .AddIngredient(ItemID.CobaltBar, 5)
                .AddTile(TileID.MythrilAnvil)
                .Register();
+
+            Recipe.Create(ItemID.TallyCounter)
+             .AddRecipeGroup("IronBar", 5)
+             .AddIngredient(ItemID.Bone,10)
+             .AddIngredient(ItemID.Wire, 6)
+             .AddTile(TileID.TinkerersWorkbench)
+             .Register();
         }
 
         private static void CavernAccesories()
@@ -547,18 +622,6 @@ namespace RemnantOfTheAncientsMod
                .AddIngredient(ItemID.Glass, 3)
                .AddTile(TileID.Anvils)
                .Register();
-
-            Recipe.Create(ItemID.DPSMeter)
-               .AddRecipeGroup("IronBar", 3)
-               .AddIngredient(ItemID.Wire, 20)
-               .AddTile(TileID.TinkerersWorkbench)
-               .Register();
-
-            Recipe.Create(ItemID.LuckyHorseshoe)
-               .AddRecipeGroup("GoldBar", 10)
-               .AddTile(TileID.SkyMill)
-               .Register();
-
 
             Recipe.Create(ItemID.LifeformAnalyzer)
                 .AddRecipeGroup("IronBar", 3)
@@ -575,6 +638,19 @@ namespace RemnantOfTheAncientsMod
                 .AddIngredient(ItemID.Wire, 20)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
+
+            Recipe.Create(ItemID.DepthMeter)
+                .AddRecipeGroup("IronBar", 6)
+                .AddIngredient(ItemID.Wire, 20)
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
+
+            Recipe.Create(ItemID.Compass)
+               .AddRecipeGroup("GoldBar", 3)
+               .AddIngredient(ItemID.Wire, 20)
+               .AddTile(TileID.TinkerersWorkbench)
+               .Register();
+
             Recipe.Create(ItemID.BandofRegeneration)
                .AddIngredient(ModContent.ItemType<IronBand>(), 1)
                .AddIngredient(ItemID.LifeCrystal, 1)
@@ -1098,6 +1174,10 @@ namespace RemnantOfTheAncientsMod
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
                     recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 23);
+                }
+                if (recipe.TryGetResult(ItemID.CellPhone, out _))
+                { 
+                    recipe.AddIngredient(ModContent.ItemType<PlayerStatViewer>(), 1);
                 }
 
                 if (RemnantOfTheAncientsMod.CalamityMod != null)

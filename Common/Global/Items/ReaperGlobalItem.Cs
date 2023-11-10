@@ -20,11 +20,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			ReaperPlayer modPlayer = player.GetModPlayer<ReaperPlayer>();
 
-			if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && !item.noMelee && item.active)
+			if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && item.CountsAsClass(DamageClass.Melee) && item.active)
 			{
 				scale *= 2.5f;
 			}
-		}
+			base.ModifyItemScale(item, player,ref scale);
+
+        }
 		public static void ReaperSetDefaut(Item item)
 		{
 			if (item.type == ModContent.ItemType<ReaperChalice>())
@@ -51,8 +53,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				if (BossSummons.Contains(item.type))
 				{
-					item.consumable = false;
-				}
+					item.consumable = !Reaper.ReaperMode;
+                    item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
+                }
 			}
 		}
         public override void OnConsumeItem(Item item, Player player)

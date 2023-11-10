@@ -5,6 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 {
@@ -42,9 +43,29 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
 			Item.buffType = BuffType<Infernal>();
-			Item.buffTime = 9999999;
+			//Item.buffTime = 0;
 			Item.expert = true;
 
 		}
-	}
+        public override bool? UseItem(Player player)
+        {
+            if (GetInstance<RemnantPlayer>().PlayerHaveScroll())
+            {
+                int currentScrollId = GetInstance<RemnantPlayer>().SearchCurrenScrollEffect();
+
+                if (currentScrollId != -1)
+                {
+                    player.ClearBuff(currentScrollId);
+                    player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
+                    return false;
+                }
+            }
+            else
+            {
+                player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
+                return false;
+            }
+            return base.UseItem(player);
+        }
+    }
 }

@@ -14,9 +14,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
     {
         public override bool InstancePerEntity => true;
         public int miscCounter;
+        public static DamageClass ProjdamageClass = null;
         public float miscCounterNormalized => miscCounter / 300f;
 
         bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+        public List<int> MeleeProjFix = new List<int>()
+        {
+            ProjectileID.NightsEdge,
+            ProjectileID.TrueNightsEdge,
+            ProjectileID.Excalibur,
+            ProjectileID.TrueExcalibur
+        };
         public override void SetDefaults(Projectile projectile)
         {  
             if (WeaponConf)
@@ -26,7 +34,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     projectile.minionSlots = 0.5f;
                 }
             }
+            
+            
         }
+
         public void UpdateMiscCounter()
         {
             miscCounter++;
@@ -42,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 if (Main.rand.NextBool(4) && projectile.type == ProjectileID.FlinxMinion)
                 {
-                    target.AddBuff(BuffID.Confused, Utils1.FormatTime(0, 0, 0, 5));
+                    target.AddBuff(BuffID.Confused, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
                 }
                 if (projectile.type == ProjectileID.ThunderStaffShot)
                 {
@@ -97,14 +108,22 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (Reaper.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly)
+            ReaperPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
+            if (Reaper.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly && modPlayer.ChaliceOn)
             {
                 projectile.width *= (int)1.5f;
                 projectile.height *= (int)1.5f;
                 projectile.scale *= 2.5f;
+
+                //if (MeleeProjFix.Contains(projectile.type))
+                //{
+                //    projectile.ai[2] *= 2.5f;
+                //}
             }
+            
+            
         }
-        int fireballTimmer = Utils1.FormatTime(0, 0, 0, 10);
+        int fireballTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
 
 
         public int HydraMissileCounter = 0;
@@ -122,7 +141,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             if (projectile.type == ProjectileID.ClingerStaff)
             {
                 
-                if(fireballTimmer++ >= Utils1.FormatTime(0, 0, 0, 2))
+                if(fireballTimmer++ >= (int)Utils1.FormatTimeToTick(0, 0, 0, 2))
                 {
                     fireballTimmer = 0;
                 }
@@ -169,7 +188,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 if (projectile.ai[0] > 0)
                 {
-                    if (HydraMissileCounter >= Utils1.FormatTime(0, 0, 0, 5))
+                    float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+                    if (HydraMissileCounter >= maxTimer)
                     {
                         Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(0, -3), ProjectileID.ClusterSnowmanRocketI, projectile.damage, 1, projectile.owner);
                         HydraMissileCounter = 0;
