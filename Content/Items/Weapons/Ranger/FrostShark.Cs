@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -42,8 +43,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.damage = 26;
 
 		}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             .AddIngredient(ItemID.Minishark, 1)
+             .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
+             .AddTile(TileID.Anvils)
+             .Register();
+        }
 
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			if (Main.rand.NextFloat() <= (float)1 / 5)
 				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<ice_bulletP>(), damage, 1, player.whoAmI);

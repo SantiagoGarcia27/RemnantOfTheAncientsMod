@@ -21,6 +21,11 @@ using System.Linq;
 using Terraria.Chat;
 using Terraria.Localization;
 using CalamityMod;
+using CalamityMod.Projectiles.Melee;
+using Terraria.UI;
+using RemnantOfTheAncientsMod.Content.NPCs;
+using ExampleMod.Common.Systems;
+using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -47,6 +52,7 @@ namespace RemnantOfTheAncientsMod
 		public bool Marble_Erosion;
 		#endregion
 		public bool Hell_Fire;
+		public bool sunFire;
 		public bool hasInfernal_core;
 		public bool SandWeapons;
 		public bool MeleeKit;
@@ -73,7 +79,8 @@ namespace RemnantOfTheAncientsMod
 		public override void ResetEffects()
 		{
 			Burn_Sand = false;
-			hBurn = false;
+			sunFire = false;
+            hBurn = false;
 			Hell_Fire = false;
 			Marble_Erosion = false;
 			healHurt = 0;
@@ -193,10 +200,12 @@ namespace RemnantOfTheAncientsMod
 		{
 			Burn_Sand = false;
 			Hell_Fire = false;
-			hBurn = false;
+			sunFire = false;
+            hBurn = false;
 			MeleeKit = false;
 			MoneyCollector = false;
 			Marble_Erosion = false;
+
 
 			int selection = chanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
 			if (selection != 0)
@@ -248,7 +257,9 @@ namespace RemnantOfTheAncientsMod
 			{ 
 				WormHoleEffect(Player);
 			}
-		}
+			SpawnMimics(Player);
+
+        }
         public override bool FreeDodge(Player.HurtInfo info)
         {
 			if(BrainDogde)
@@ -368,7 +379,8 @@ namespace RemnantOfTheAncientsMod
 				if (hasInfernal_core) target.AddBuff(BuffID.OnFire3, 300);
 				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
 				if (MeleeKit) target.AddBuff(BuffID.Ichor, 300);
-			}
+				if(sunFire) target.AddBuff(BuffID.Daybreak, 300);
+            }
 		}
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) //This is the same as the one in OnHitNPC, but for melee projectiles.
 		{
@@ -550,8 +562,42 @@ namespace RemnantOfTheAncientsMod
             }
 			base.OnHitByProjectile(proj, hurtInfo);
 		}
-	
+		
+		public static int lastChest = -1;
+        public void SpawnMimics(Player player)
+		{
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {	
+                if (player.chest == -1 && lastChest >= 0 && Main.chest[lastChest] != null)
+                {
+                    int x = Main.chest[lastChest].x;
+                    int y2 = Main.chest[lastChest].y;
+                    RemnantGlobalNPC.BigMimicSummonCheck(x, y2, player);
+                }
+                if (lastChest != player.chest && player.chest >= 0 && Main.chest[player.chest] != null)
+                {
+                    int x2 = Main.chest[player.chest].x;
+                    int y3 = Main.chest[player.chest].y;
+                    Projectile.GasTrapCheck(x2, y3, player);
+                    ItemSlot.forceClearGlowsOnChest = true;
+                }
+                lastChest = player.chest;
+            }
+        }
 	}
+    public class RemnantKeybindPlayer : ModPlayer
+    {
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (KeybindSystem.TogleReaperInterface.JustPressed)
+            {
+				ReaperSoulsUISystem ReaperUI = GetInstance<ReaperSoulsUISystem>();
+
+				if (ReaperUI.IsVisible()) ReaperUI.HideMyUI();             
+				else ReaperUI.ShowMyUI();	
+            }
+        }
+    }
 }
 
 		

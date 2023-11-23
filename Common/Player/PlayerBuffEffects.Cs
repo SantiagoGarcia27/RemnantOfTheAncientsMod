@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Kits;
+using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -135,10 +136,10 @@ namespace RemnantOfTheAncientsMod
         public static void SuperSenseBuff(Player player)
         {
             player.detectCreature = true;
-            player.findTreasure = true;
+            player.dangerSense = true;
 
-            player.buffImmune[111] = true;
-            player.buffImmune[17] = true;
+            player.buffImmune[BuffID.Dangersense] = true;
+            player.buffImmune[BuffID.Hunter] = true;
         }
 
         public static void ExplorationInfusion(Player player)

@@ -54,6 +54,15 @@ public class ReaperPlayer : ModPlayer
         false,false,false,false,
         false
     };
+    public List<float> SoulsUpgradesActive = new List<float>()
+    {
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0
+    };
     public override void ResetEffects()
     {
         ReaperSoulBoost = false;
@@ -155,6 +164,100 @@ public class ReaperPlayer : ModPlayer
         SoulsUpgrades[19] = tag.Get<bool>("CultistReaperUpgrade");
         SoulsUpgrades[20] = tag.Get<bool>("MoonReaperUpgrade");
     }
+    public void LoadSoulsToggle()
+    {
+        SoulsUpgradesActive[0] = GetInstance<ConfigClient>().ToggleKingSlimeSoul;
+        SoulsUpgradesActive[1] = GetInstance<ConfigClient>().ToggleEyeOfChutuluSoul.ToInt();
+        SoulsUpgradesActive[2] = GetInstance<ConfigClient>().ToggleCorruptSoul.ToInt();
+        SoulsUpgradesActive[3] = GetInstance<ConfigClient>().ToggleQueenBeeSoul.ToInt();
+        SoulsUpgradesActive[4] = GetInstance<ConfigClient>().ToggleSkeletronSoul.ToInt();
+        SoulsUpgradesActive[5] = GetInstance<ConfigClient>().ToggleDearclopsSoul.ToInt();
+        SoulsUpgradesActive[6] = GetInstance<ConfigClient>().ToggleDesertAnhilatorSoul.ToInt();
+        SoulsUpgradesActive[7] = GetInstance<ConfigClient>().ToggleWallOfFleshSoul.ToInt();
+        SoulsUpgradesActive[8] = GetInstance<ConfigClient>().ToggleFrozenAssaulterSoul.ToInt();
+        SoulsUpgradesActive[9] = GetInstance<ConfigClient>().ToggleQueenSlimeSoul.ToInt();
+        SoulsUpgradesActive[10] = GetInstance<ConfigClient>().ToggleSpazmatismSoul.ToInt();
+        SoulsUpgradesActive[11] = GetInstance<ConfigClient>().ToggleRetinazorSoul.ToInt();
+        SoulsUpgradesActive[12] = GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
+        SoulsUpgradesActive[13] = GetInstance<ConfigClient>().ToggleDestroyerSoul.ToInt();
+        SoulsUpgradesActive[14] = GetInstance<ConfigClient>().TogglePlanteraSoul.ToInt();
+        SoulsUpgradesActive[15] = GetInstance<ConfigClient>().ToggleInfernalTyrantSoul.ToInt();
+        SoulsUpgradesActive[16] = GetInstance<ConfigClient>().ToggleGolemSoul.ToInt();
+        SoulsUpgradesActive[17] = GetInstance<ConfigClient>().ToggleEmpressOfLightSoul.ToInt();
+        SoulsUpgradesActive[18] = GetInstance<ConfigClient>().ToggleDukeFishronSoul.ToInt();
+        SoulsUpgradesActive[19] = GetInstance<ConfigClient>().ToggleLunaticCultistSoul.ToInt();
+        SoulsUpgradesActive[20] = GetInstance<ConfigClient>().ToggleMoonlordSoul .ToInt();
+    }
+    public void SetSoulsToggle(int i,float value)
+    {
+        switch (i)
+        {
+            case 0:
+                GetInstance<ConfigClient>().ToggleKingSlimeSoul = value;
+                break;
+            case 1:
+                GetInstance<ConfigClient>().ToggleEyeOfChutuluSoul = (int)value == 1;
+                break;
+            case 2:
+                GetInstance<ConfigClient>().ToggleCorruptSoul = (int)value == 1;
+                break;
+            case 3:
+                GetInstance<ConfigClient>().ToggleQueenBeeSoul = (int)value == 1;
+                break;
+            case 4:
+                GetInstance<ConfigClient>().ToggleSkeletronSoul = (int)value == 1;
+                break;
+            case 5:
+                GetInstance<ConfigClient>().ToggleDearclopsSoul = (int)value == 1;
+                break;
+            case 6:
+                GetInstance<ConfigClient>().ToggleDesertAnhilatorSoul = (int)value == 1;
+                break;
+            case 7:
+                GetInstance<ConfigClient>().ToggleWallOfFleshSoul = (int)value == 1;
+                break;
+            case 8:
+                GetInstance<ConfigClient>().ToggleFrozenAssaulterSoul = (int)value == 1;
+                break;
+            case 9:
+                GetInstance<ConfigClient>().ToggleQueenSlimeSoul = (int)value == 1;
+                break;
+            case 10:
+                GetInstance<ConfigClient>().ToggleSpazmatismSoul = (int)value == 1;
+                break;
+            case 11:
+                GetInstance<ConfigClient>().ToggleRetinazorSoul = (int)value == 1;
+                break;
+            case 12:
+                GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul = value;
+                break;
+            case 13:
+                GetInstance<ConfigClient>().ToggleDestroyerSoul = (int)value == 1;
+                break;
+            case 14:
+                GetInstance<ConfigClient>().TogglePlanteraSoul = (int)value == 1;
+                break;
+            case 15:
+                GetInstance<ConfigClient>().ToggleInfernalTyrantSoul = (int)value == 1;
+                break;
+            case 16:
+                GetInstance<ConfigClient>().ToggleGolemSoul = (int)value == 1;
+                break;
+            case 17:
+                GetInstance<ConfigClient>().ToggleEmpressOfLightSoul = (int)value == 1;
+                break;
+            case 18:
+                GetInstance<ConfigClient>().ToggleDukeFishronSoul = (int)value == 1;
+                break;
+            case 19:
+                GetInstance<ConfigClient>().ToggleLunaticCultistSoul = (int)value == 1;
+                break;
+            case 20:
+                GetInstance<ConfigClient>().ToggleMoonlordSoul = (int)value == 1;
+                break;
+        }
+        LoadSoulsToggle();
+    }
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
     {
         float respawnMult = RespawnCalculator();
@@ -176,9 +279,9 @@ public class ReaperPlayer : ModPlayer
     }
     private float RespawnCalculator()
     {
-        bool DesertAnhilatorActivated = (GetInstance<ConfigClient>().ToggleDesertAnhilatorSoul && SoulsUpgrades[6]) ? true : false;
+        bool DesertAnhilatorActivated = (SoulsUpgradesActive[6] == 1 && SoulsUpgrades[6]) ? true : false;
 
-        bool MoonlordRespawnActivated = (GetInstance<ConfigClient>().ToggleMoonlordSoul && SoulsUpgrades[20]) ? true : false;
+        bool MoonlordRespawnActivated = (SoulsUpgradesActive[20] == 1 && SoulsUpgrades[20]) ? true : false;
 
         if (Reaper.ReaperMode)
         {
@@ -252,23 +355,25 @@ public class ReaperPlayer : ModPlayer
     public void ReaperSoulsBoost()
     {
         //UpdateSoulsList();
+        LoadSoulsToggle();
+
         float OgPlayerSpeed = Player.moveSpeed;
         if (Reaper.ReaperMode && ChaliceOn)
         {
             if (SoulsUpgrades[0])
             {
-                float speedForce = (GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul / 100) + 1;
+                float speedForce = (SoulsUpgradesActive[0] / 100) + 1;
                 Player.moveSpeed = ReaperSoulBoost ? OgPlayerSpeed + speedForce * 1.2f : OgPlayerSpeed + speedForce;
             }
-            if (SoulsUpgrades[1] && GetInstance<ConfigClient>().ToggleEyeOfChutuluSoul)
+            if (SoulsUpgrades[1] && SoulsUpgradesActive[1] == 1)
             {
                 Player.statLifeMax2 += ReaperSoulBoost ? 20 : 10;
             }
-            if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
+            if (SoulsUpgrades[2] && SoulsUpgradesActive[2] == 1)
             {
                 Player.lifeRegen += ReaperSoulBoost ? 10 : 5;
             }
-            if (SoulsUpgrades[3] && GetInstance<ConfigClient>().ToggleQueenBeeSoul)
+            if (SoulsUpgrades[3] && SoulsUpgradesActive[3] == 1)
             {
                 Player.honey = true;
                 Player.strongBees = true;
@@ -281,21 +386,21 @@ public class ReaperPlayer : ModPlayer
                     Player.beeDamage(20);
                 }
             }
-            if (SoulsUpgrades[4] && GetInstance<ConfigClient>().ToggleSkeletronSoul)
+            if (SoulsUpgrades[4] && SoulsUpgradesActive[4] == 1)
             {
                 Player.statDefense += ReaperSoulBoost ? 10 : 5;
             }
-            if (SoulsUpgrades[7] && GetInstance<ConfigClient>().ToggleWallOfFleshSoul)
+            if (SoulsUpgrades[7] && SoulsUpgradesActive[7] == 1)
             {
                 Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
             }
-            if (SoulsUpgrades[8] && GetInstance<ConfigClient>().ToggleFrozenAssaulterSoul) Player.GetModPlayer<RemnantPlayer>().FrostInmune();
-            if (SoulsUpgrades[9] && GetInstance<ConfigClient>().ToggleQueenSlimeSoul) Player.statLifeMax2 += ReaperSoulBoost ? 30 : 15;
-            if (SoulsUpgrades[13] && GetInstance<ConfigClient>().ToggleDestroyerSoul) Player.pickSpeed -= ReaperSoulBoost ? 0.7f : 0.35f;
-            if (SoulsUpgrades[10]) Player.GetModPlayer<RemnantPlayer>().FirenInmune();
+            if (SoulsUpgrades[8] && SoulsUpgradesActive[8] == 1) Player.GetModPlayer<RemnantPlayer>().FrostInmune();
+            if (SoulsUpgrades[9] && SoulsUpgradesActive[9] == 1) Player.statLifeMax2 += ReaperSoulBoost ? 30 : 15;
+            if (SoulsUpgrades[13] && SoulsUpgradesActive[13] == 1) Player.pickSpeed -= ReaperSoulBoost ? 0.7f : 0.35f;
+            if (SoulsUpgrades[10] && SoulsUpgradesActive[10] == 1) Player.GetModPlayer<RemnantPlayer>().FirenInmune();
             if (SoulsUpgrades[12])
             {
-                float JumpForce = GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
+                float JumpForce = SoulsUpgradesActive[12];
                 Player.findTreasure = true;
                 if (ReaperSoulBoost)
                 {
@@ -303,7 +408,7 @@ public class ReaperPlayer : ModPlayer
                 }
                 Player.jumpSpeedBoost += ReaperSoulBoost ? JumpForce * 2 : JumpForce;
             }
-            if (SoulsUpgrades[17] && GetInstance<ConfigClient>().ToggleEmpressOfLightSoul)
+            if (SoulsUpgrades[17] && SoulsUpgradesActive[17] == 1)
             {
                 Player.empressBrooch = true;
                 if (ReaperSoulBoost)
@@ -312,15 +417,15 @@ public class ReaperPlayer : ModPlayer
                 }
             }
 
-            if (SoulsUpgrades[15] && GetInstance<ConfigClient>().ToggleInfernalTyrantSoul)
+            if (SoulsUpgrades[15] && SoulsUpgradesActive[15] == 1)
             {
                 Player.fireWalk = true;
                 Player.lavaImmune = true;
                 Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
             }
-            if (SoulsUpgrades[16] && GetInstance<ConfigClient>().ToggleGolemSoul) Player.statDefense += ReaperSoulBoost ? 15 : 10;
+            if (SoulsUpgrades[16] && SoulsUpgradesActive[16] == 1) Player.statDefense += ReaperSoulBoost ? 15 : 10;
 
-            if (Reaper.ReaperMode && SoulsUpgrades[18] && GetInstance<ConfigClient>().ToggleDukeFishronSoul)
+            if (Reaper.ReaperMode && SoulsUpgrades[18] && SoulsUpgradesActive[18] == 1)
             {
                 if (ReaperSoulBoost)
                 {
@@ -333,7 +438,7 @@ public class ReaperPlayer : ModPlayer
                     Player.aggro -= 400;
                 }
             }
-            if (SoulsUpgrades[19] && GetInstance<ConfigClient>().ToggleLunaticCultistSoul)
+            if (SoulsUpgrades[19] && SoulsUpgradesActive[19] == 1)
             {
                 if (ReaperSoulBoost)
                 {
@@ -351,18 +456,18 @@ public class ReaperPlayer : ModPlayer
     {
         if (Reaper.ReaperMode && ChaliceOn)
         {
-            if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
+            if (SoulsUpgrades[2] && SoulsUpgradesActive[2] == 1)
             {
 
                 Player.brainOfConfusionItem = item;
             }
-            if (SoulsUpgrades[14] && GetInstance<ConfigClient>().TogglePlanteraSoul)
+            if (SoulsUpgrades[14] && SoulsUpgradesActive[14] == 1)
             {
                 Player.sporeSac = true;
                 Player.SporeSac(item);
                 Player.statLifeMax2 += ReaperSoulBoost ? 15 : 10;
             }
-            if (SoulsUpgrades[5] && GetInstance<ConfigClient>().ToggleDearclopsSoul)
+            if (SoulsUpgrades[5] && SoulsUpgradesActive[5] == 1)
             {
                 SpawnHallucination(item);
                 if (ReaperSoulBoost)

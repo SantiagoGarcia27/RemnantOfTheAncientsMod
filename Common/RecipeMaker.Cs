@@ -563,14 +563,14 @@ namespace RemnantOfTheAncientsMod
               .Register();
 
             Recipe.Create(ItemID.FishermansGuide)
-              .AddRecipeGroup(RecipeGroupID.FishForDinner, 2)
+              .AddIngredient(ItemID.Bass)
               .AddIngredient(ItemID.Book)
               .AddTile(TileID.Bookcases)
               .Register();
 
             Recipe.Create(ItemID.WeatherRadio)
                 .AddRecipeGroup("IronBar", 5)
-                .AddIngredient(ItemID.WeatherPain)
+                .AddIngredient(ItemID.WeatherVane)
                 .AddIngredient(ItemID.Wire,6)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
@@ -688,12 +688,19 @@ namespace RemnantOfTheAncientsMod
                .AddIngredient(ItemID.AncientCloth, 5)
                .AddTile(TileID.Loom)
                .Register();
+
+            Recipe.Create(ItemID.AncientChisel)
+              .AddIngredient(ItemID.SandBlock, 15)
+              .AddRecipeGroup("IronBar", 10)
+              .AddIngredient(ItemID.Wood, 15)
+              .AddTile(TileID.Anvils)
+              .Register();
         }
 
         private static void SurfaceAccesories()
         {
             Recipe.Create(ItemID.Shackle)
-               .AddIngredient(ItemID.IronBar, 1)
+               .AddRecipeGroup("IronBar", 2)
                .AddTile(TileID.Anvils)
                .Register();
 

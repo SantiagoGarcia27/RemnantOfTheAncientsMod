@@ -77,6 +77,8 @@ Mods: {
 				UpgradeItem: Upgrade {0}
 				SkipDay: Skip day
 			}
+
+			ReaperTitle: Souls
 		}
 
 		Prefix: {
@@ -2420,9 +2422,9 @@ Mods: {
 				DisplayName: Desert Scroll
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
-					"{$CommonItemTooltip.IncreasesMaxMinionsBy@2}"
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@2}
 					'''
 			}
 
@@ -2430,8 +2432,8 @@ Mods: {
 				DisplayName: Putrid Scroll
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.ReducesDamageTakenByPercent}"
-					"{$CommonItemTooltip.PercentIncreasedCritChance@1}"
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					{$CommonItemTooltip.PercentIncreasedCritChance@1}
 					'''
 			}
 
@@ -2444,8 +2446,8 @@ Mods: {
 				DisplayName: Royal Scroll
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
 					'''
 			}
 
@@ -2463,10 +2465,10 @@ Mods: {
 				DisplayName: Queen Scroll
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
-					"{$CommonItemTooltip.IncreasesMaxMinionsBy@2}"
-					"{$CommonItemTooltip.IncreasesMaxLifeByPercent@3}"
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@2}
+					{$CommonItemTooltip.IncreasesMaxLifeByPercent@3}
 					'''
 			}
 
@@ -2484,7 +2486,7 @@ Mods: {
 				DisplayName: Infernal Scroll
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedDamage}"
+					{$CommonItemTooltip.PercentIncreasedDamage}
 					and an infernal power covers you
 					'''
 			}
@@ -3145,6 +3147,38 @@ Mods: {
 				DisplayName: Unlimited Adaptive Instant Plataform
 				Tooltip: Generates a platform of 200 blocks that change according to the biome
 			}
+
+			SolarGlove: {
+				DisplayName: Solar Gaunlet
+				Tooltip:
+					'''
+					Increases melee knockback and melee attacks inflict fire damage
+					14% increased melee damage and speed
+					Enables auto swing for melee weapons
+					Increases the size of melee weapons
+					During daytime, grants minor increase to damage,
+					melee speed, critical strike chance, life regeneration,
+					defense, mining speed, and minion knockback
+					'''
+			}
+
+			Ice_escense: {
+				DisplayName: Ice_escense
+				Tooltip: ""
+			}
+
+			Fake_The_Legion: {
+				DisplayName: The Legion
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					Many thanks to:
+					 S-Pladison   -NKSHV  -perrogalan
+					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
+					It's cardboard
+					'''
+			}
 		}
 
 		NPCs: {
@@ -3568,5 +3602,6 @@ Mods: {
 		}
 
 		ConfigServer.Headers.Performance: Lag Reducer Header
+		Keybinds.ReaperModeInterface.DisplayName: Reaper Mode Interface
 	}
 }

@@ -246,7 +246,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
         public void FrozenPhase3()
         {
-            Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/Frozen_Assaulter_p2");
+            Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Frozen_Assaulter_p2");
 
 
             switch (invincibilityTimer)

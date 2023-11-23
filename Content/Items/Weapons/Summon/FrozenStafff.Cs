@@ -8,6 +8,8 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 {
@@ -57,5 +59,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 			player.AddBuff(Item.buffType, 2);
 			position = Main.MouseWorld;
 		}
-	}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             .AddIngredient(ModContent.ItemType<ForestStaff>(), 1)
+             .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
+             .AddTile(TileID.Anvils)
+             .Register();
+        }
+    }
 }

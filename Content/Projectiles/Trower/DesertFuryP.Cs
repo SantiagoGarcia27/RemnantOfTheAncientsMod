@@ -99,6 +99,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
 			Projectile.netUpdate = true; // netUpdate this javelin
 			target.AddBuff(BuffType<Javalina>(), 900);
 			target.AddBuff(BuffType<Burning_Sand>(), 300);
+			if(Projectile.CritChance > 100) { Projectile.CritChance = 100; }
+			target.SimpleStrikeNPC(Projectile.damage, Projectile.direction, Main.rand.NextBool(101 - Projectile.CritChance), Projectile.knockBack, DamageClass.Throwing);
 			Projectile.damage = 0; // Makes sure the sticking javelins do not deal damage anymore
 
 			// It is recommended to split your code into separate methods to keep code clean and clear

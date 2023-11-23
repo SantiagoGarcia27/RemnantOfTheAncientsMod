@@ -1,15 +1,20 @@
-/*using Terraria;
+using Terraria;
 using Terraria.ModLoader;
 
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.Global;
+using Terraria.ID;
+using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
 
     public class Fake_The_Legion : ModItem
     {
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25, 5);
         private static readonly Color ColorOne = new Color(255, 0, 0);
         private static readonly Color ColorTwo = new Color(0, 0, 255);
         public override void SetStaticDefaults()
@@ -28,25 +33,33 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
            Item.width = 10;
            Item.height = 14;
            Item.value = Item.buyPrice(0, 0, 0, 0);
-            Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
+           Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
            Item.accessory = true;
-                        Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
+           Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (player.name == "S-Pladison" || player.name == "NKSHV" || player.name == "perrogalan" || player.name == "Banmei" || player.name == "Scratch Lunin" || player.name == "DinoZers" || player.name == "scorpion17907")
             {
                 player.GetDamage(DamageClass.Summon) *= 0f;
-                player.maxMinions -= 8;
-                player.moveSpeed *= 99999999f;
+                player.maxMinions = 0;
+                //player.moveSpeed *= 99999999f;
             }
             else
             {
                 player.GetDamage(DamageClass.Summon) *= 0f;
-                player.maxMinions -= 5;
-                player.moveSpeed *= 99999999f;
+                player.maxMinions = 0;
+               // player.moveSpeed *= 99999999f;
             }
         }
+        public override void AddRecipes()  //How to craft this item
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.Sign, 1)
+            .AddIngredient(ItemID.DirtWall, 1)
+            .AddTile(TileID.WorkBenches)  //at work bench
+            .Register();
+        }
     }
-}*/
+}
 

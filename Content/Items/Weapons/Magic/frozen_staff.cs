@@ -5,6 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
@@ -39,5 +40,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.value = Item.sellPrice(gold: 3);
 			Item.autoReuse = true;
 		}
-	}
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             .AddIngredient(ItemID.AmethystStaff, 1)
+             .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
+             .AddTile(TileID.Anvils)
+             .Register();
+        }
+    }
 }

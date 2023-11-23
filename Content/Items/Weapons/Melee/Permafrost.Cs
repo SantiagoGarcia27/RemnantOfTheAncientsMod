@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -45,6 +46,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             else Item.shoot = ProjectileType<FrostBeamF>();
             Item.shootSpeed = 7f;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+             .AddIngredient(ItemID.TitaniumSword, 1)
+             .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
+             .AddTile(TileID.Anvils)
+             .Register();
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)

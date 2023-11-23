@@ -83,6 +83,8 @@ Mods: {
 				UpgradeItem: Upgrade {0}
 				SkipDay: Skip day
 			}
+
+			ReaperTitle: Almas
 		}
 
 		Prefix: {
@@ -2433,9 +2435,9 @@ Mods: {
 				DisplayName: Pergamino desértico
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
-					"{$CommonItemTooltip.IncreasesMaxMinionsBy@2}"
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@2}
 					'''
 			}
 
@@ -2443,8 +2445,8 @@ Mods: {
 				DisplayName: Pergamino Pútrido
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.ReducesDamageTakenByPercent}"
-					"{$CommonItemTooltip.PercentIncreasedCritChance@1}"
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					{$CommonItemTooltip.PercentIncreasedCritChance@1}
 					'''
 			}
 
@@ -2462,8 +2464,8 @@ Mods: {
 				DisplayName: Pergamino Real
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
 					'''
 			}
 
@@ -2483,10 +2485,10 @@ Mods: {
 				DisplayName: Pergamino de la reina
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-					"{$CommonItemTooltip.PercentIncreasedSummonDamage@1}"
-					"{$CommonItemTooltip.IncreasesMaxMinionsBy@2}"
-					"{$CommonItemTooltip.IncreasesMaxLifeByPercent@3}"
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@2}
+					{$CommonItemTooltip.IncreasesMaxLifeByPercent@3}
 					'''
 			}
 
@@ -2505,7 +2507,7 @@ Mods: {
 				DisplayName: Pergamino Infernal
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedDamage}"
+					{$CommonItemTooltip.PercentIncreasedDamage}
 					Ganas un circulo de fuego rodeándote
 					'''
 			}
@@ -3165,7 +3167,39 @@ Mods: {
 
 			UnlimitedAdaptiveInstaPlataform: {
 				DisplayName: Plataforma instantanea adaptable eterna
+				Tooltip: Genera una plataforma automáticamente que cambia según el bioma
+			}
+
+			SolarGlove: {
+				DisplayName: Guantelete solar
+				Tooltip:
+					'''
+					Aumenta el retroceso del cuerpo a cuerpo y los ataques cuerpo a cuerpo infligen daño de fuego y quemadura solar
+					Aumenta un 14% la velocidad y el daño del cuerpo a cuerpo
+					Activa el ataque automático de las armas cuerpo a cuerpo
+					Aumenta el tamaño de las armas cuerpo a cuerpo
+					De día otorga un aumento menor del daño,
+					velocidad del cuerpo a cuerpo, probabilidad de impacto crítico, regeneración de vida,
+					defensa, velocidad de minería y retroceso de los súbditos
+					'''
+			}
+
+			Ice_escense: {
+				// DisplayName: Ice_escense
 				// Tooltip: ""
+			}
+
+			Fake_The_Legion: {
+				DisplayName: La Legión
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
+					Muchas gracias a:
+					 S-Pladison   -NKSHV  -perrogalan
+					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
+					Es de cartón
+					'''
 			}
 		}
 
@@ -3590,5 +3624,6 @@ Mods: {
 		}
 
 		ConfigServer.Headers.Performance: Lag Reducer Header
+		// Keybinds.ReaperModeInterface.DisplayName: Reaper Mode Interface
 	}
 }

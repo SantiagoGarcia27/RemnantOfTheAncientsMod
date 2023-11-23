@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using RemnantOfTheAncientsMod.World;
 using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Terraria;
@@ -137,6 +140,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return intitialNumber * 100 / total;
         }
+        public static int GetSign(float number)
+        {
+            return number < 0 ? -1 : 1;
+        }
         public static int FormatTime(int Day, int Hour, int Minute, int Second)
         {
             int sec = Second;
@@ -226,15 +233,6 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static double GenerateWave(float A,float t,float x)
         {
             return A * Math.Sin(2 * Math.PI * (((double)t / 10) + (double)x / 5));
-        }
-        //public static bool debug (NPC npc)
-        //{
-        //    bool r = Reaper.ReaperMode;
-        //    bool b = npc.boss;
-        //    bool f = Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1;
-        //    bool j = npc.type == NPCID.BrainofCthulhu;
-
-        //    return r && b && f || j;
-        //}
+        }   
     }
 }

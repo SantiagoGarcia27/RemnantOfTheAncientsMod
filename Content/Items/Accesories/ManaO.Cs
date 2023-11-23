@@ -49,8 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             CreateRecipe()
             .AddIngredient(ItemID.LihzahrdBrick, 10)
             .AddIngredient(ItemID.ManaRegenerationBand, 1)
-            .AddIngredient(ItemID.ManaFlower, 1)
-            .AddIngredient(ItemID.CelestialMagnet, 1)
+            .AddIngredient(ItemID.MagnetFlower, 1)
             .AddIngredient(ItemID.ManaCrystal, 10)  //you need 10 Wood
             .AddTile(TileID.LihzahrdFurnace)  //at work bench
             .Register();

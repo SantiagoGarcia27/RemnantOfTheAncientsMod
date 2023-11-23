@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             //+ "\nMany thanks to:"
             //+ "\n S-Pladison   -NKSHV  -perrogalan"
             //+ "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(9, 8));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(9, 9));
         }
         //public string //Tooltip()
         //{
