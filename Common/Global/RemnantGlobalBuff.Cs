@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using System.Collections.Generic;
 using Terraria;
@@ -14,6 +15,8 @@ public class RemnantGlobalBuff : GlobalBuff
         ProjectileID.Pygmy4,
         ModContent.ProjectileType<PygmyMelee>()
    };
+
+
     public override void Update(int type, Player player, ref int buffIndex)
     {
         if (type == BuffID.Pygmies)
@@ -32,6 +35,19 @@ public class RemnantGlobalBuff : GlobalBuff
         else
         {
             base.Update(type, player, ref buffIndex);
+        }
+
+        if (player.buffTime[buffIndex] > Utils1.FormatTimeToTick(5, 0, 0, 0))
+        {
+           // player.buffTime[buffIndex] += player.buffTime[buffIndex] < (int)Utils1.FormatTimeToTick(14, 0, 0, 0) ? player.buffTime[buffIndex]++:0;
+            Main.persistentBuff[type] = true;
+            Main.buffNoTimeDisplay[type] = true;
+        }
+        else
+        {
+            Main.persistentBuff[type] = false;
+            Main.buffNoTimeDisplay[type] = false;
+            
         }
     }
 

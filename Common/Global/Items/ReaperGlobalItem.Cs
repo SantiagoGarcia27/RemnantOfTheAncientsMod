@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
@@ -20,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			ReaperPlayer modPlayer = player.GetModPlayer<ReaperPlayer>();
 
-			if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && item.CountsAsClass(DamageClass.Melee) && item.active)
+			if (modPlayer.ChaliceOn && DificultyUtils.ReaperMode && !item.IsAir && item.damage > 0 && item.CountsAsClass(DamageClass.Melee) && item.active)
 			{
 				scale *= 2.5f;
 			}
@@ -31,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			if (item.type == ModContent.ItemType<ReaperChalice>())
 			{
-				item.accessory = Reaper.ReaperMode;
+				item.accessory = DificultyUtils.ReaperMode;
 			}
 		}
 		static List<int> BossSummons = new List<int>();
@@ -45,22 +46,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{			
 				if (BossSummons.Contains(item.type))
 				{
-					item.consumable = !Reaper.ReaperMode;
-					item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
+					item.consumable = !DificultyUtils.ReaperMode;
+					item.GetGlobalItem<CustomTooltip>().BossSummon = DificultyUtils.ReaperMode;
 				}
 			}
 			else
 			{
 				if (BossSummons.Contains(item.type))
 				{
-					item.consumable = !Reaper.ReaperMode;
-                    item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
+					item.consumable = !DificultyUtils.ReaperMode;
+                    item.GetGlobalItem<CustomTooltip>().BossSummon = DificultyUtils.ReaperMode;
                 }
 			}
 		}
         public override void OnConsumeItem(Item item, Player player)
         {
-            if (Reaper.ReaperMode)
+            if (DificultyUtils.ReaperMode)
             {
                 if (item.type == ItemID.LihzahrdPowerCell)
                 {
@@ -124,7 +125,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public static void ReaperWingsNerf(Player player)
 		{
 			int OgWingTime;
-			if (Reaper.ReaperMode)
+			if (DificultyUtils.ReaperMode)
 			{
 				if (player.wingTimeMax >= 4)
 				{

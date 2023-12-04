@@ -11,6 +11,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 public class ReaperGlobalNpc : GlobalNPC
 {
@@ -22,7 +23,7 @@ public class ReaperGlobalNpc : GlobalNPC
             ModifyBossStats(npc, ref npc.damage, npc.lifeMax);
         }
 
-        if (Reaper.ReaperMode)
+        if (DificultyUtils.ReaperMode)
         {
             if (destroyer.Contains(npc.type))
             {
@@ -80,7 +81,7 @@ public class ReaperGlobalNpc : GlobalNPC
     }
     public override void OnSpawn(NPC npc, IEntitySource source)
     {
-        if (Reaper.ReaperMode)
+        if (DificultyUtils.ReaperMode)
         {
             if (npc.type == NPCID.SkeletronHead)
             {
@@ -168,7 +169,7 @@ public class ReaperGlobalNpc : GlobalNPC
             NPCID.PrimeVice
         };
 
-        if (Reaper.ReaperMode && ReaperAffectedNPCs.Contains(npc.type))
+        if (DificultyUtils.ReaperMode && ReaperAffectedNPCs.Contains(npc.type))
         {
             if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
             {
@@ -743,7 +744,7 @@ public class ReaperGlobalNpc : GlobalNPC
         };
 
         base.HitEffect(npc, hit);
-        if (Reaper.ReaperMode)
+        if (DificultyUtils.ReaperMode)
         {
             if (npc.type == NPCID.KingSlime)
             {
@@ -860,7 +861,7 @@ public class ReaperGlobalNpc : GlobalNPC
     public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone)
     {
         base.OnHitByProjectile(npc, projectile, hit, damageDone);
-        if (Reaper.ReaperMode)
+        if (DificultyUtils.ReaperMode)
         {
             if(npc.type == NPCID.Creeper)
             {

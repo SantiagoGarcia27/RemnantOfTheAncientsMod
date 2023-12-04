@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -75,6 +77,11 @@ namespace RemnantOfTheAncientsMod
                 return (int)(npc.lifeMax * Revenge);
             else 
                 return (int)(npc.lifeMax * Normal);
+        }
+
+        public static float Convert01To010(float value)
+        {
+            return (float)Math.Sin((float)Math.PI * MathHelper.Clamp(value, 0f, 1f));
         }
         //public static void SetCalamityInmunities(NPC npc,bool[] effect)
         //{

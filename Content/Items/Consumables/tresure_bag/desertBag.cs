@@ -17,6 +17,7 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {
@@ -139,7 +140,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
     public class DesertReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[6] && Reaper.ReaperMode;
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[6] && DificultyUtils.ReaperMode;
         public bool CanShowItemDropInUI() => true;
         public string GetConditionDescription() => null;
     }

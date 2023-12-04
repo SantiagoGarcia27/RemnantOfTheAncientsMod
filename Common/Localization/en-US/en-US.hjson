@@ -81,6 +81,47 @@ Mods: {
 			ReaperTitle: Souls
 		}
 
+		IntroScreen: {
+			DesertAnhilatorIntroScreen: {
+				TextToDisplay:
+					'''
+					Fallen Guardian Of The Dunes
+					Desert Aniquilator
+					'''
+				JokeTextToDisplay:
+					'''
+					The ultimate Fried egg
+					Desert Aniquilator
+					'''
+			}
+
+			FrozenAssaulterIntroScreen: {
+				TextToDisplay:
+					'''
+					Weakened Frost Guardian
+					Frozen Assaulter
+					'''
+				JokeTextToDisplay:
+					'''
+					The most powerful fan
+					Frozen Assaulter
+					'''
+			}
+
+			InfernalTyrantIntroScreen: {
+				TextToDisplay:
+					'''
+					Ruler of the underworld
+					Infernal Tyrant
+					'''
+				JokeTextToDisplay:
+					'''
+					Ruler of the underworld
+					Infernal Tyrant
+					'''
+			}
+		}
+
 		Prefix: {
 			Description: {
 				Life: +{0} max life
@@ -3163,7 +3204,7 @@ Mods: {
 			}
 
 			Ice_escense: {
-				DisplayName: Ice_escense
+				DisplayName: Ice Escense
 				Tooltip: ""
 			}
 
@@ -3178,6 +3219,21 @@ Mods: {
 					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
 					It's cardboard
 					'''
+			}
+
+			Desert_Relic_Infernum: {
+				DisplayName: Infernal Desert Annihilator relic
+				Tooltip: ""
+			}
+
+			Frozen_Relic_Infernum: {
+				DisplayName: Infernal Frozen Assaulter relic
+				Tooltip: ""
+			}
+
+			Tyrant_Relic_Infernum: {
+				DisplayName: Infernal Infernal Tyrant relic
+				Tooltip: ""
 			}
 		}
 
@@ -3272,6 +3328,8 @@ Mods: {
 			MythrilZombie.DisplayName: Mythril Zombie
 			OrichalcumZombie.DisplayName: Orichalcum Zombie
 			TitaniumZombie.DisplayName: Titanium Zombie
+			DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
+			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
 		}
 
 		Projectiles: {
@@ -3383,6 +3441,7 @@ Mods: {
 			TerraBobber.DisplayName: Terra Bobber
 			TrueSacredBobber.DisplayName: True Sacred Bobber
 			DakoPetProjectile.DisplayName: Dako Pet Projectile
+			FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
 		}
 
 		Tiles: {

@@ -56,13 +56,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
                 if (currentScrollId != -1)
                 {
                     player.ClearBuff(currentScrollId);
-                    player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
+                    player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(14, 0, 0, 0));
                     return false;
                 }
             }
             else
             {
-                player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
+                player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(14, 0, 0, 0));
                 return false;
             }
             return base.UseItem(player);

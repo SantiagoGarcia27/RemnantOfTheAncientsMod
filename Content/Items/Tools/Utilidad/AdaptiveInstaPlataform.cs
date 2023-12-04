@@ -103,6 +103,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
             {
                 return new int[] { 25, 16 };
             }
+            else if (player.ZoneUnderworldHeight)
+            {
+                return new int[] { 13, 7 };
+            }
             return new int[] { 0, 12 };
         }
 

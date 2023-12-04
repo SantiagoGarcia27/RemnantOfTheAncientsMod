@@ -24,17 +24,20 @@ using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent.Bestiary;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
     [AutoloadBossHead]
     public class FrozenAssaulter : ModNPC
     {
-        int invincibilityTimer = 0;
-        bool healAnimation = false;
-        int currentPhase = 1;
-        int MaxPlayers = RemnantOfTheAncientsMod.MaxPlayerOnline() / 2;
-        int TpDelay = 20;
+        public int invincibilityTimer = 0;
+        public bool healAnimation = false;
+        public int currentPhase = 1;
+        public int MaxPlayers = RemnantOfTheAncientsMod.MaxPlayerOnline() / 2;
+        public int TpDelay = 20;
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Frozen Assaulter");
@@ -65,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Frozen_Assaulter_p1");
             NPC.netAlways = true;  
         }
-        private int attackCounter;
+        public int attackCounter;
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
@@ -101,9 +104,33 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             {
                 NPC.TargetClosest(true);
             }
-            shootAi(target, Reaper.ReaperMode);
-            summonAi(Reaper.ReaperMode);
-            CheckDistance(distance);
+
+            if (RemnantOfTheAncientsMod.InfernumMod != null)
+            {
+                if (DificultyUtils.InfernumMode)
+                {
+                    //FrozenAssaulterInfernum Fai = ModContent.GetInstance<FrozenAssaulterInfernum>();
+                    FrozenAssaulterInfernum.InfernumAi(target, distance,NPC,currentPhase, attackCounter);
+                    checkPhase();
+                    CheckDistance(distance, NPC);
+                }
+                else
+                {
+                    BaseAi(target, distance);
+                }
+
+            }
+            else
+            {
+                BaseAi(target, distance);
+            }  
+        }
+        
+        public void BaseAi(Player target, float distance)
+        {
+            shootAi(target, DificultyUtils.ReaperMode);
+            summonAi(DificultyUtils.ReaperMode);
+            CheckDistance(distance, NPC);
 
             if (Main.expertMode)
             {
@@ -112,7 +139,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     shootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                 }
             }
-            if (Main.expertMode)
+            if (Main.expertMode )
             {
                 checkPhase();
             }
@@ -181,10 +208,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                             {
                                 for (int j = 0; j < 3; j++)
                                 {
-                                    shootIa(10, ProjectileType<Frozenp>(), target, 7f, 360f + grades);//70
-                                    shootIa(10, ProjectileType<Frozenp>(), target, 7f, -120f + grades);
-                                    shootIa(10, ProjectileType<Frozenp>(), target, 7f, 120f + grades);
-                                    shootIa(10, ProjectileType<Frozenp>(), target, 7f, -360f + grades);
+                                    shootIa(10, ProjectileType<Frozenp>(),7f, 360f + grades,0);//70
+                                    shootIa(10, ProjectileType<Frozenp>(),7f, -120f + grades,0);
+                                    shootIa(10, ProjectileType<Frozenp>(),7f, 120f + grades,0);
+                                    shootIa(10, ProjectileType<Frozenp>(),7f, -360f + grades,0);
                                 }
                                 grades = (grades <= 360) ? (grades + 0.01f) : 0;
                                 delay = 0;
@@ -194,6 +221,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     break;
             }
         }
+
+       
         private void setAttackCounter(Player target)
         {
             if (attackCounter > 0)
@@ -205,12 +234,21 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 attackCounter = 900;
                 NPC.netUpdate = true;
             }
+
+            if (DificultyUtils.InfernumMode)
+            {
+                if (attackCounter <= 0)
+                {
+                    attackCounter = 900;
+                    NPC.netUpdate = true;
+                }
+            }
         }
-        private void checkPhase()
+        public void checkPhase()
         {
             if (currentPhase == 3)
             {
-                FrozenPhase3();
+               FrozenPhase3();
             }
             if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
             {
@@ -218,7 +256,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             }
         }
 
-        public void CheckDistance(float distance)
+        public void CheckDistance(float distance, NPC NPC)
         {
             if(distance <= 60)
             {
@@ -234,16 +272,21 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             direction.Y = (float)((Math.Sin(rotation) * speed) * -1);
             int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, damage, 0f, 0);
             Main.projectile[i].timeLeft = 200;
+            Main.projectile[i].hostile = true;
+            Main.projectile[i].friendly = false;
         }
-
-        public void shootIa(int damage, int type, Player player, float speed, float grades)
+        public void shootIa(int damage, int type, float speed, float grades, float Orotation)
         {
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             Vector2 direction = Vector2.UnitX * speed;
             direction = direction.RotatedBy(grades);
             int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, damage, 0f, Main.myPlayer);
             Main.projectile[i].timeLeft = 200;
+            Main.projectile[i].hostile = true;
+            Main.projectile[i].friendly = false;
+            Main.projectile[i].rotation += Orotation;
         }
+       
         public void FrozenPhase3()
         {
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Frozen_Assaulter_p2");
@@ -262,7 +305,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 case 3 :
                     if (!healAnimation)
                     {
-                        if (Reaper.ReaperMode)
+                        if (DificultyUtils.ReaperMode)
                         {
                             NPC.life = NPC.lifeMax / 2;
                         }
@@ -305,6 +348,34 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood,hit.HitDirection, -1f);
                 }
+
+                if(RemnantOfTheAncientsMod.InfernumMod != null)
+                {
+                    if(DificultyUtils.InfernumMode) 
+                    {
+                        int numberOfPoints = 6;
+                        float radius = 9 *16;
+                        for (int i = 0; i < numberOfPoints; i++)
+                        {
+                            float angle = (float)(2 * Math.PI * i / numberOfPoints);
+                            float x = (float)(NPC.Center.X + radius * Math.Cos(angle));
+                            float y = (float)(NPC.Center.Y + radius * Math.Sin(angle));
+
+                            FrozenAssaulterInfernum.shootIceCubeIa(10, ModContent.ProjectileType<FrozenHommingIceBlock>(), 30f, i * 10, 0, NPC.target,NPC,x,y);
+                        }
+
+                        numberOfPoints = 8;
+                        radius = 15 * 16;
+                        for (int i = 0; i < numberOfPoints; i++)
+                        {
+                            float angle = (float)(2 * Math.PI * i / numberOfPoints);
+                            float x = (float)(NPC.Center.X + radius * Math.Cos(angle));
+                            float y = (float)(NPC.Center.Y + radius * Math.Sin(angle));
+
+                            FrozenAssaulterInfernum.shootIceCubeIa(10, ModContent.ProjectileType<FrozenHommingIceBlock>(), 30f, i * 10, 0, NPC.target,NPC, x, y);
+                        }
+                    }
+                }
             }
             PhaseChanger();
         }
@@ -338,6 +409,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             RemnantDownedBossSystem.downedFrozen = true;
             potionType = ItemID.GreaterHealingPotion;
             Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.IceBlock, 50);
+
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
@@ -347,6 +419,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenStafff>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<frozen_staff>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenMask>(), 7, 999999999));
+            npcLoot.Add(ItemDropRule.Common(ItemType<Sand_escense>(), 1, 5, 20));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.FrostCore, 5, 3));
             npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
             npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));

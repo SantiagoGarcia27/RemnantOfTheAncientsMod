@@ -19,14 +19,13 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 	{
 		public DragableUIPanel CoinCounterPanel;
 		public UIPanel SoulTogglePanel;
-		public UISoulDisplay MoneyDisplay;
+        public UISoulDisplay SoulsDisplay;
 		public static List<UIHoverImageButton> Buttons = new List<UIHoverImageButton>()
 		{
 			null,null,null,null,null,null,null,null,null,null,
 			null,null,null,null,null,null,null,null,null,null,null
 		};
-
-		public override void OnInitialize()
+        public override void OnInitialize()
 		{
 			float baseLefthPosition = 80f;
 			float baseTopPosition = 20f;
@@ -52,7 +51,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 			for (int i = 0; i <= 20; i++)
 			{
 				Buttons[i] = UIUtils.CreateButtom($"RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_{i}", baseLefthPosition, baseTopPosition, 22f, 22f, "", new MouseEvent(SetSoulClicked), false, i, true);
-				SoulTogglePanel.Append(Buttons[i]);
+				 
+
+                SoulTogglePanel.Append(Buttons[i]);
 				if (i == 5)
 				{
 					baseLefthPosition += baseLefthPositionIncrement + 20;
@@ -76,9 +77,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 					baseLefthPosition += baseLefthPositionIncrement;
 				}
 			}
-			MoneyDisplay = new UISoulDisplay();
-			UIUtils.SetRectangle(MoneyDisplay, 15f, 20f, 100f, 40f);
-			CoinCounterPanel.Append(MoneyDisplay);
+			SoulsDisplay = new UISoulDisplay();
+			UIUtils.SetRectangle(SoulsDisplay, 15f, 20f, 100f, 40f);
+			CoinCounterPanel.Append(SoulsDisplay);
 
 			Append(CoinCounterPanel);
 		}
@@ -100,15 +101,32 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 			string Texture = $"RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_{i}";
 			Asset<Texture2D> TextureBase = ModContent.Request<Texture2D>(Texture);
 			Asset<Texture2D> TextureGray = ModContent.Request<Texture2D>(Texture + "_Blocked");
+            Asset<Texture2D> TextureSelected = ModContent.Request<Texture2D>(Texture + "_Glow");
 
-			if (player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[i])
+            if (player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[i])
 			{
-				ReaperSoulsUIState.Buttons[i].SetImage(TextureBase);
+				if (player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[i] > 0)
+				{
+                    ReaperSoulsUIState.Buttons[i].SetImage(TextureSelected);
+                }
+				else
+				{
+					ReaperSoulsUIState.Buttons[i].SetImage(TextureBase);
+				}
 			}
 			else
 			{
 				ReaperSoulsUIState.Buttons[i].SetImage(TextureGray);
 			}
+
+			if (player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[i] > 0)
+			{
+				
+            }
+			else
+			{
+                ReaperSoulsUIState.Buttons[i].PaddingBottom = 0;
+            }
 		}
 
 		protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -117,7 +135,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 			float shopx = innerDimensions.X;
 			float shopy = innerDimensions.Y;
 
-			Vector2 titlePos = new(shopx + (float)(24 * 7), shopy + 25f);
+			Vector2 titlePos = new(shopx + 24 * 7, shopy + 25f);
 			Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, Language.GetTextValue("Mods.RemnantOfTheAncientsMod.UI.ReaperTitle"), titlePos.X, titlePos.Y, Color.White, Color.Black, new Vector2(0.3f), 3.75f);
 			DrawTitle(spriteBatch, titlePos);
 		}

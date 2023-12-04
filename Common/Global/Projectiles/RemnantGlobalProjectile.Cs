@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.World;
 using System;
@@ -109,7 +110,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
             ReaperPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
-            if (Reaper.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly && modPlayer.ChaliceOn)
+            if (DificultyUtils.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly && modPlayer.ChaliceOn)
             {
                 projectile.width *= (int)1.5f;
                 projectile.height *= (int)1.5f;

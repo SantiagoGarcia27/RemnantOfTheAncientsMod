@@ -1,6 +1,9 @@
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -21,6 +24,9 @@ namespace RemnantOfTheAncientsMod.World
 			SpawnTimeWithard = false;
 			TimeDilocated = false;
 			RemnantOfTheAncientsMod.MaxRarity = RemnantOfTheAncientsMod.GetMaxRarity();
+
+            ModifyAccsesories.UpdateFallSpeedList();
+
 
         }
 		public override void OnWorldUnload()

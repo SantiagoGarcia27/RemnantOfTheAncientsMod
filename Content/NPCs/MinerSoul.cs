@@ -9,7 +9,6 @@ using Terraria.ModLoader.Utilities;
 using System.Linq;
 using Terraria.Utilities;
 using RemnantOfTheAncientsMod.Content.Items.Tools;
-using RemnantOfTheAncientsMod.Content.NPCs;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {

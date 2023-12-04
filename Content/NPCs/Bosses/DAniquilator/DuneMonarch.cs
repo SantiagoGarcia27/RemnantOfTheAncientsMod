@@ -132,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.DAniquilator
         }
         public void SummoningIa(Player player, float distance)
         {
-            int n; //DSlime
+            int n; //DesertAnnihilatorServant
             int n2; //TombCrawler
             int n3; //FlyingAntlion
             int n4; //WalkingAntlion
@@ -175,7 +175,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.DAniquilator
                 n6 = 180;
             }
           
-            if (EnemyCounter % n == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+            if (EnemyCounter % n == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DesertAnnihilatorServant>());
             if (EnemyCounter % n2 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.TombCrawlerHead);
             if (EnemyCounter % n3 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
             if (EnemyCounter % n4 == 0) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());

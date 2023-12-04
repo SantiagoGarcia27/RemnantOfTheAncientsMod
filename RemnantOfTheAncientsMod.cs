@@ -3,14 +3,11 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent;
 using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System.Collections.Generic;
-using Terraria.GameContent.ItemDropRules;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -20,8 +17,10 @@ namespace RemnantOfTheAncientsMod
         public static Mod BossChecklist;
         public static Mod ThoriumMod;
         public static Mod TerrariaOverhaul;
+        public static Mod InfernumMod;
         public static Mod Census;
         public static Mod RemnantOfTheAncients;
+        public static Mod FargosSoulMod;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static int MaxRarity = GetMaxRarity();
@@ -46,7 +45,10 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("BossChecklist", out BossChecklist);
             ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
             ModLoader.TryGetMod("Census", out Census);
+            ModLoader.TryGetMod("InfernumMode", out InfernumMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncients);
+            ModLoader.TryGetMod("FargowiltasSouls", out FargosSoulMod);
+            
 
             if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
             {
@@ -54,7 +56,10 @@ namespace RemnantOfTheAncientsMod
             }
             // LocalizationHelper.ForceLoadModHJsonLocalization(this);
 
-
+            if(InfernumMod != null)
+            {
+                IntroScreenManager.Load();
+            }
             BackgroundTextureLoader.AddBackgroundTexture(this, "RemnantOfTheAncientsMod/Common/Menu/PlaceHolder");
         }
 
@@ -94,6 +99,8 @@ namespace RemnantOfTheAncientsMod
         }
         public override void PostSetupContent()
         {
+
+           
         }
 
 

@@ -26,6 +26,7 @@ using Terraria.UI;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using ExampleMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -215,6 +216,11 @@ namespace RemnantOfTheAncientsMod
 					RemanntWorld.KillTombstom();
 				}
 			}
+
+			//for(int i = 0; i < ModifyAccsesories.FastFall.Count; i++) 
+			//{
+			//	Main.NewText(new Item(ModifyAccsesories.FastFall[i]).Name);
+			//}
 		}
 		public void checkInventory(Player player)
 		{

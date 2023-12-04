@@ -87,6 +87,47 @@ Mods: {
 			ReaperTitle: Almas
 		}
 
+		IntroScreen: {
+			DesertAnhilatorIntroScreen: {
+				TextToDisplay:
+					'''
+					Guardián caído de las dunas
+					Aniquilador Del Desierto
+					'''
+				JokeTextToDisplay:
+					'''
+					Huevo frito definitivo
+					Aniquilador Del Desierto
+					'''
+			}
+
+			FrozenAssaulterIntroScreen: {
+				TextToDisplay:
+					'''
+					Guardiánde helado mermado
+					Asaltante Congelado
+					'''
+				JokeTextToDisplay:
+					'''
+					El ventilador mas fuerte
+					Asaltante Congelado
+					'''
+			}
+
+			InfernalTyrantIntroScreen: {
+				TextToDisplay:
+					'''
+					Regente del inframundo
+					Tirano infernal
+					'''
+				JokeTextToDisplay:
+					'''
+					Regente del inframundo
+					Tirano infernal
+					'''
+			}
+		}
+
 		Prefix: {
 			Description: {
 				Life: +{0} vida máxima
@@ -151,7 +192,7 @@ Mods: {
 			FishMultipleLine: Dispara {0} lineas a la vez.
 			IncreasedLuck: Aumenta la suerte en {0}
 			IncreasedBootSpeedInBlock: ", y mas rápido caminando en {0}"
-			IncreasedFallSpeed: Aumenta la velocidad de capída
+			IncreasedFallSpeed: Aumenta la velocidad de caída
 		}
 
 		Buffs: {
@@ -2140,8 +2181,8 @@ Mods: {
 			}
 
 			Enchanted_saber: {
-				DisplayName: Enchanted Saber
-				Tooltip: Shoot an enchanted sword beam
+				DisplayName: Sable encantado
+				Tooltip: Dispara un rayo encantado
 			}
 
 			Fire_saber: {
@@ -3185,8 +3226,8 @@ Mods: {
 			}
 
 			Ice_escense: {
-				// DisplayName: Ice_escense
-				// Tooltip: ""
+				DisplayName: Esencia de hielo
+				Tooltip: ""
 			}
 
 			Fake_The_Legion: {
@@ -3200,6 +3241,21 @@ Mods: {
 					-Banmei   -Scratch Lunin  -DinoZers -scorpion17907
 					Es de cartón
 					'''
+			}
+
+			Desert_Relic_Infernum: {
+				DisplayName: Reliquia del Aniquilador del desierto infernal
+				Tooltip: ""
+			}
+
+			Frozen_Relic_Infernum: {
+				DisplayName: Reliquia del Asaltante Congelado Infernal
+				Tooltip: ""
+			}
+
+			Tyrant_Relic_Infernum: {
+				DisplayName: Reliquia del Tirano Infernal Infernal
+				Tooltip: ""
 			}
 		}
 
@@ -3294,6 +3350,8 @@ Mods: {
 			MythrilZombie.DisplayName: Zombi blindado
 			OrichalcumZombie.DisplayName: Zombi blindado
 			TitaniumZombie.DisplayName: Zombi blindado
+			DesertAnnihilatorGuard.DisplayName: Escolta desético
+			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
 		}
 
 		Projectiles: {
@@ -3405,6 +3463,7 @@ Mods: {
 			// TerraBobber.DisplayName: Terra Bobber
 			// TrueSacredBobber.DisplayName: True Sacred Bobber
 			// DakoPetProjectile.DisplayName: Dako Pet Projectile
+			// FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
 		}
 
 		Tiles: {

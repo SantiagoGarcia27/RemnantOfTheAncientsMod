@@ -1,4 +1,5 @@
-﻿using RemnantOfTheAncientsMod.World;
+﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 
@@ -14,29 +15,29 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
     public class IsReaperMode : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => Reaper.ReaperMode;
+        public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode;
 
-        public bool CanShowItemDropInUI() => Reaper.ReaperMode;
+        public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode;
 
         public string GetConditionDescription() => null;
     }
     public class IsReaperAndNormal : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => Reaper.ReaperMode ? (!Main.expertMode && !Main.masterMode) : false;
-        public bool CanShowItemDropInUI() => Reaper.ReaperMode ? (!Main.expertMode && !Main.masterMode) : false;
+        public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode ? (!Main.expertMode && !Main.masterMode) : false;
+        public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode ? (!Main.expertMode && !Main.masterMode) : false;
         public string GetConditionDescription() => null;
     }
     public class IsReaperAndExpert : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => Reaper.ReaperMode ? (Main.expertMode && !Main.masterMode) : false; 
-        public bool CanShowItemDropInUI() => Reaper.ReaperMode ? (Main.expertMode && !Main.masterMode) : false;
+        public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode ? (Main.expertMode && !Main.masterMode) : false; 
+        public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode ? (Main.expertMode && !Main.masterMode) : false;
         public string GetConditionDescription() => null;
     }
 
     public class IsReaperAndMaster : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => Reaper.ReaperMode ? (!Main.expertMode && Main.masterMode) : false;
-        public bool CanShowItemDropInUI() => Reaper.ReaperMode ? (!Main.expertMode && Main.masterMode) : false;
+        public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode ? (!Main.expertMode && Main.masterMode) : false;
+        public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode ? (!Main.expertMode && Main.masterMode) : false;
         public string GetConditionDescription() => null;
     }
     public class IsDay : IItemDropRuleCondition, IProvideItemConditionDescription

@@ -8,6 +8,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Chat;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
 {
@@ -81,9 +82,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
            
             if (!Utils1.IsAnyBossAlive())
             {
-                if (!Reaper.ReaperMode)
+                if (!DificultyUtils.ReaperMode)
                 {
-                    Reaper.ReaperMode = true;
+                    DificultyUtils.ReaperMode = true;
                     Item.buffTime = 1;
                     Color gray = Color.DarkSlateGray;
                     ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Welcome to hell, now you're a reaper."), gray);
@@ -96,7 +97,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                 }
                 else
                 {
-                    Reaper.ReaperMode = false;
+                    DificultyUtils.ReaperMode = false;
                     Color gray = Color.DarkSlateGray;
 
                     ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Well your soul is free... for now."), gray);

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.World;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -55,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return false;
         }
-        public static bool IsItemOnPlayerInventory(int id,Player player)
+        public static bool IsItemOnPlayerInventory(int id, Player player)
         {
             return player.inventory.Any(item => !item.IsAir && item.type == id);
         }
@@ -104,7 +106,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static int GetReaperNumber(int common, int reaper)
         {
-            if (Reaper.ReaperMode)
+            if (DificultyUtils.ReaperMode)
             {
                 return reaper;
             }
@@ -178,7 +180,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static float FormatToPositive(float imput)
         {
-            if(imput >= 0) return imput;
+            if (imput >= 0) return imput;
             return -imput;
         }
 
@@ -189,7 +191,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static int ReaperDropScaler(int i)
         {
             int a = i;
-            if (Reaper.ReaperMode) a = i * 5;
+            if (DificultyUtils.ReaperMode) a = i * 5;
             return a;
         }
         public static DamageClass GetClassForHeldItem(Player player)
@@ -200,7 +202,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return new Point((int)vector2.X, (int)vector2.Y);
         }
-        public static bool NumberBetween(float min,float max,float number)
+        public static bool NumberBetween(float min, float max, float number)
         {
             return (number - min) * (max - number) >= 0;
         }
@@ -219,20 +221,45 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static bool NumberBetweenExact(float value, float min, float max)
         {
-            if((value > min && value < max))
+            if ((value > min && value < max))
             {
                 return true;
             }
-            else if(value == min || value == max)
+            else if (value == min || value == max)
             {
                 return true;
             }
 
             return false;
         }
-        public static double GenerateWave(float A,float t,float x)
+        public static double GenerateWave(float A, float t, float x)
         {
             return A * Math.Sin(2 * Math.PI * (((double)t / 10) + (double)x / 5));
-        }   
+        }
+        public static bool IsAprilFoolDay()
+        {
+            return DateTime.Now.Month == 4 && DateTime.Now.Day == 1;
+        }
+        public static bool IsDate(int day)
+        {
+            return DateTime.Now.Day == day;
+        }
+        public static bool IsDate(int day, int month)
+        {
+            return DateTime.Now.Day == day && DateTime.Now.Month == month;
+        }
+        public static bool IsDate(int day, int month, int year)
+        {
+            return DateTime.Now.Day == day && DateTime.Now.Month == month && DateTime.Now.Year == year;
+        }
+
+        public static void AddSecure(List<int> list, int p)
+        {
+            if (!list.Contains(p)) list.Add(p);
+        }
+        public static void AddSecure(List<string> list, string p)
+        {
+            if (!list.Contains(p)) list.Add(p);
+        }
     }
 }

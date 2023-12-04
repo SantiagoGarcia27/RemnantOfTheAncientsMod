@@ -14,6 +14,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod.Drops
 {
@@ -33,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Drops
                     break;
                 case ItemID.EaterOfWorldsBossBag:
                     Utils1.DroppItem(player, item, ItemType<EaterOfWorldsScroll>(), 1, commonScroll);
-                    if (!Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[2] && Reaper.ReaperMode) 
+                    if (!Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[2] && DificultyUtils.ReaperMode) 
                     {
                         Utils1.DroppItem(player, item, ItemType<CorruptSoul>(), 1, 1);
                     }

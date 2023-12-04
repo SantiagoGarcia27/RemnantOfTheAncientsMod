@@ -1,4 +1,5 @@
-﻿using RemnantOfTheAncientsMod.Content.Items.Accesories;
+﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ModLoader;
@@ -36,7 +37,7 @@ namespace RemnantOfTheAncientsMod
 		}
 		public override bool IsEnabled()
 		{
-			if (Reaper.ReaperMode) return true;
+			if (DificultyUtils.ReaperMode) return true;
 			else return false;
 		}
 

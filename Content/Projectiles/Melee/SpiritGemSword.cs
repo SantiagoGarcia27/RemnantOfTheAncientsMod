@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.Audio;
@@ -62,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         {
             if(Projectile.ai[0] == 2)
             {
-                Projectile.scale *= Reaper.ReaperMode ? 2.5f: 1f;
+                Projectile.scale *= DificultyUtils.ReaperMode ? 2.5f: 1f;
                 Projectile.damage /= 4;
                 Projectile.ai[1] = 2;
             }

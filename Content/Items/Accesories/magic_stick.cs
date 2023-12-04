@@ -11,18 +11,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Magic Stick");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton magique");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Palo Mágico");
-
-            //Tooltip.SetDefault(//Tooltip());
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(10, DamageClass.Magic);
-        //}
+       
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(10);
         public override void SetDefaults()
         {

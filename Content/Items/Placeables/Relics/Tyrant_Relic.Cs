@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Content.Tiles.Master_Relic;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Relics
 {
+
     internal class Tyrant_Relic : ModItem
     {
         public override void SetDefaults()

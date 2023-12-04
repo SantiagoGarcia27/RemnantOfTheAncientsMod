@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -12,14 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Desert Chest");
-            //Tooltip.SetDefault("Summons the Desert Annihilator");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Coffre du désert");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquer l'aniquilateur du désert");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cofre del desierto");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al aniquilador del desierto");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
@@ -33,8 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.consumable = true;
-            if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.consumable = false;
+            Item.consumable = RemnantOfTheAncientsMod.CalamityMod == null;
         }
         public override bool CanUseItem(Player player)
         {
@@ -58,6 +48,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
                 }
             }
             return true;
+        }
+        public override bool ConsumeItem(Player player)
+        {
+            return RemnantOfTheAncientsMod.CalamityMod == null;
         }
         public override void AddRecipes()
         {

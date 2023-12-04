@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
              player.manaRegenBonus = 700;
              player.manaFlower = true;
              player.manaMagnet = true;
-             player.manaCost = 0.9f;
+             player.manaCost -= 0.1f;
              player.buffImmune[BuffID.ManaSickness] = true;
 
         }

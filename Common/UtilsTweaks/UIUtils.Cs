@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
 using System.Configuration;
 using System.Drawing;
 using Terraria;
+using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 using static Terraria.UI.UIElement;
@@ -32,13 +33,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             Asset<Texture2D> TextureBase = ModContent.Request<Texture2D>(Texture);
             Asset<Texture2D> TextureGray = ModContent.Request<Texture2D>(Texture + "_Blocked");
-            Player player = Main.player[Main.myPlayer];
             UIHoverImageButton button = new UIHoverImageButton(TextureBase, text,i,true);
-
-            //if(i != -1 && Reaper)
-            //{
-            //    Condition = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[i];
-            //}
             SetButtonActive(button, Condition, TextureBase, TextureGray);
             UIUtils.SetRectangle(button, left, top, width, height);
             button.OnLeftClick += mouseEvent;

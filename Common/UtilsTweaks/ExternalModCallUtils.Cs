@@ -8,13 +8,17 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return mod.Find<ModItem>(item).Type;
         }
+        public static int GetProjectileFromMod(Mod mod, string projectile)
+        {
+            return mod.Find<ModProjectile>(projectile).Type;
+        }
         public static int GetTileFromMod(Mod mod, string tile)
         {
             return mod.Find<ModTile>(tile).Type;
         }
         public static int GetNpcFromMod(Mod mod, string npc)
         {
-            return mod.Find<ModTile>(npc).Type;
+            return mod.Find<ModNPC>(npc).Type;
         }
         public static DamageClass GetDamageClassFromMod(Mod mod, string damageClass)
         {
@@ -31,6 +35,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static int GetPrefixFromMod(Mod mod, string prefix)
         {
             return mod.Find<ModPrefix>(prefix).Type;
+        }
+        public static int GetRarityFromMod(Mod mod, string rarity)
+        {
+            return mod.Find<ModRarity>(rarity).Type;
         }
         public static int GetModPrefix(Mod mod, string name)
         {

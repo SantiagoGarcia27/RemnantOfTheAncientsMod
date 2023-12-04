@@ -18,5 +18,11 @@
     <Reference Include="CalamityMod">
       <HintPath>..\..\ModReader\CalamityMod\CalamityMod.dll</HintPath>
     </Reference>
+    <Reference Include="FargowiltasSouls">
+      <HintPath>..\..\ModReader\FargowiltasSouls\FargowiltasSouls.dll</HintPath>
+    </Reference>
+    <Reference Include="InfernumMode">
+      <HintPath>..\..\ModReader\InfernumMode\InfernumMode.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

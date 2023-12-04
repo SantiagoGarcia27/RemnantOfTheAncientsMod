@@ -6,6 +6,9 @@ using RemnantOfTheAncientsMod.Content.Dusts;
 using Terraria.ID;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.DataStructures;
+using CalamityMod.Buffs.StatBuffs;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
@@ -283,7 +286,34 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 				base.ModifyNPCLoot(npc, npcLoot);
             }
 		}
-
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (npc.boss)
+            {
+                if(RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    if (Main.netMode != 2 && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
+                    {
+                        Main.player[Main.myPlayer].AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod,"BossEffects"), 2);
+                    }   
+                }
+            }
+            base.OnSpawn(npc, source);
+        }
+        public override bool PreAI(NPC npc)
+        {
+            if (npc.boss)
+            {
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    if (Main.netMode != 2 && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
+                    {
+                        Main.player[Main.myPlayer].AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                    }
+                }
+            }
+            return base.PreAI(npc);
+        }
     }
 }
 

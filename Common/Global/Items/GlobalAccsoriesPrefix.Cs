@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Prefixe;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
@@ -12,27 +13,27 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             if (item.prefix == ModContent.PrefixType<Healthy>())
             {
                 PrefixUpdate(player, 5, 0, 1);
-                CustomTooltip.HealthyReforgeValue = Reaper.ReaperMode ? 1 : 5;
+                CustomTooltip.HealthyReforgeValue = DificultyUtils.ReaperMode ? 1 : 5;
             }
             if (item.prefix == ModContent.PrefixType<Healer>())
             {
                 PrefixUpdate(player, 10, 0, 2);
-                CustomTooltip.HealerReforgeValue = Reaper.ReaperMode ? 2 : 10;
+                CustomTooltip.HealerReforgeValue = DificultyUtils.ReaperMode ? 2 : 10;
             }
             if (item.prefix == ModContent.PrefixType<Atletic>())
             {
                 PrefixUpdate(player, 15, 0, 3);
-                CustomTooltip.AtleticReforgeValue = Reaper.ReaperMode ? 3 : 15;
+                CustomTooltip.AtleticReforgeValue = DificultyUtils.ReaperMode ? 3 : 15;
             }
             if (item.prefix == ModContent.PrefixType<Gigant>())
             {
                 PrefixUpdate(player, 20, 0, 5);
-                CustomTooltip.GigantReforgeValue = Reaper.ReaperMode ? 5 : 20;
+                CustomTooltip.GigantReforgeValue = DificultyUtils.ReaperMode ? 5 : 20;
             }
             if (item.prefix == ModContent.PrefixType<Titanic>())
             {
                 PrefixUpdate(player, 40, 0, 10);
-                CustomTooltip.TitanicReforgeValue = Reaper.ReaperMode ? 10 : 40;
+                CustomTooltip.TitanicReforgeValue = DificultyUtils.ReaperMode ? 10 : 40;
             }
             if (item.prefix == ModContent.PrefixType<Impenetrable>())
             {
@@ -137,7 +138,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             if (stat == 0)
             {
-                player.statLifeMax2 += Reaper.ReaperMode ? (int)reaperValue : (int)value;
+                player.statLifeMax2 += DificultyUtils.ReaperMode ? (int)reaperValue : (int)value;
             }
         }
         public override bool InstancePerEntity => true;

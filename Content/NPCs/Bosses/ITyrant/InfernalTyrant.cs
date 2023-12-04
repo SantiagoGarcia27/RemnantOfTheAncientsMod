@@ -25,6 +25,8 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using CalamityMod.NPCs.Signus;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -54,11 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Infernal Tyrant");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tirano infernal");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tyran infernal");
-
-            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            var drawModifier = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = "RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrantHead_Bestiary", 
                 Position = new Vector2(40f, 24f),
@@ -133,6 +131,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
 
         private int attackCounter;
+        private int attackCounterMaxValue = 800;
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(attackCounter);
@@ -186,7 +185,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
             if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
             {
-                attackCounter = 700;
+                attackCounterMaxValue = !Main.expertMode ? 700 : 800;
+                attackCounter = attackCounterMaxValue;
                 NPC.netUpdate = true;
             }
             if (RemnantOfTheAncientsMod.CalamityMod != null)
@@ -204,6 +204,26 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
                     }
                 }
+                if(RemnantOfTheAncientsMod.InfernumMod != null)
+                {
+                    if (DificultyUtils.InfernumMode)
+                    {
+                        if (attackCounter % 4 == 0)
+                        {
+                            for (int i = -3; i <= 3; i++)
+                            {
+                                Vector2 FlameVelocity = NPC.velocity * 1.25f;
+                                FlameVelocity.RotatedBy(i * 20);
+                                int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Utils1.GetSign(i));
+                                Main.projectile[projectile].timeLeft = 30;
+                                Main.projectile[projectile].tileCollide = false;
+                                Main.projectile[projectile].friendly = false;
+                                Main.projectile[projectile].hostile = true;
+                            }
+                        }
+                    }
+                }
+
             }
 
            
@@ -239,6 +259,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(30), ModContent.ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
                     break;
                 case 700:
+                    if (RemnantOfTheAncientsMod.InfernumMod != null)
+                    {
+                        if (DificultyUtils.InfernumMode)
+                        {
+                            for (int i = 0; i <= 10; i++)
+                            {
+                                TornadoIa((int)NpcChanges1.ExpertDamageScale(70), ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
+                            }
+                           // FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
+                        }
+                    }
                     SummonIa(NPCID.RedDevil);
                     break;
             }
@@ -280,7 +311,26 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction * 12, type, damage, 0f, 0);
             Main.projectile[projectile].timeLeft = 300;
         }
+        public void TornadoIa(int damage, int type, Player player, int i)
+        {
+            Vector2 spawn = DistanceUtils.SearchLiquidCoordenates(LiquidID.Lava, 10, player);
+            bool m = false;
+            Vector2 fixedSpawn = new Vector2(spawn.X, DistanceUtils.checkHigh(spawn));
+          
+            
 
+            // player.position = spawn;
+            Vector2 ppos = player.position;
+
+            Vector2 position =  new Vector2(player.Center.X + (40 *16f), fixedSpawn.Y -i *16 *4);
+           
+
+            // int type = ProjectileType<InfernalBallF>();
+            SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
+            //float rotation = (float)Math.Atan2(vector8.Y - (Main.player[NPC.target].position.Y + (Main.player[NPC.target].height * 0.5f)), vector8.X - (Main.player[NPC.target].position.X + (Main.player[NPC.target].width * 0.5f)));
+            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), position, Vector2.Zero, type, damage, 0f, player.whoAmI,1);
+            Main.projectile[projectile].timeLeft = 1300;
+        }
         public void SpikeIa(int damage, bool isStrong, int cordx, int cordy)
         {
             int type = isStrong ? ModContent.ProjectileType<InfernalSpikeF>() : ModContent.ProjectileType<InfernalSpike>();
@@ -299,7 +349,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 if (!AllPlayersDead())
                 {
-                    if (GetLifePorcenage() < 5f && Reaper.ReaperMode)
+                    if (GetLifePorcenage() < 5f && DificultyUtils.ReaperMode)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
@@ -681,7 +731,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 {
                     i /= 3;
                 }
-                else if (npc.life > npc.life / 15 && Reaper.ReaperMode)
+                else if (npc.life > npc.life / 15 && DificultyUtils.ReaperMode)
                 {
                     i = 0;
                 }

@@ -15,6 +15,7 @@ using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 public class ReaperPlayer : ModPlayer
 {
@@ -275,7 +276,7 @@ public class ReaperPlayer : ModPlayer
     }
     public override void PreUpdateBuffs()
     {
-        if (Reaper.ReaperMode) Player.AddBuff(BuffType<ReaperBuff>(), 1);
+        if (DificultyUtils.ReaperMode) Player.AddBuff(BuffType<ReaperBuff>(), 1);
     }
     private float RespawnCalculator()
     {
@@ -283,7 +284,7 @@ public class ReaperPlayer : ModPlayer
 
         bool MoonlordRespawnActivated = (SoulsUpgradesActive[20] == 1 && SoulsUpgrades[20]) ? true : false;
 
-        if (Reaper.ReaperMode)
+        if (DificultyUtils.ReaperMode)
         {
             if (DesertAnhilatorActivated && !MoonlordRespawnActivated) 
                 return ReaperSoulBoost ? 0.7f : 0.8f;
@@ -296,7 +297,7 @@ public class ReaperPlayer : ModPlayer
     }
     public override bool FreeDodge(Player.HurtInfo info)
     {
-        if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul && Reaper.ReaperMode)
+        if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul && DificultyUtils.ReaperMode)
         {
             if (Main.rand.NextBool(6))
             {
@@ -358,7 +359,7 @@ public class ReaperPlayer : ModPlayer
         LoadSoulsToggle();
 
         float OgPlayerSpeed = Player.moveSpeed;
-        if (Reaper.ReaperMode && ChaliceOn)
+        if (DificultyUtils.ReaperMode && ChaliceOn)
         {
             if (SoulsUpgrades[0])
             {
@@ -425,7 +426,7 @@ public class ReaperPlayer : ModPlayer
             }
             if (SoulsUpgrades[16] && SoulsUpgradesActive[16] == 1) Player.statDefense += ReaperSoulBoost ? 15 : 10;
 
-            if (Reaper.ReaperMode && SoulsUpgrades[18] && SoulsUpgradesActive[18] == 1)
+            if (DificultyUtils.ReaperMode && SoulsUpgrades[18] && SoulsUpgradesActive[18] == 1)
             {
                 if (ReaperSoulBoost)
                 {
@@ -454,7 +455,7 @@ public class ReaperPlayer : ModPlayer
     }
     public void ReaperSoulsBoost(Item item)
     {
-        if (Reaper.ReaperMode && ChaliceOn)
+        if (DificultyUtils.ReaperMode && ChaliceOn)
         {
             if (SoulsUpgrades[2] && SoulsUpgradesActive[2] == 1)
             {

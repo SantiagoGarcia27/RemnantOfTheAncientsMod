@@ -13,6 +13,7 @@ using Terraria.UI;
 using Terraria.ModLoader.Config;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -102,6 +103,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public override void SetDefaults(Item item)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+			bool Calamity = RemnantOfTheAncientsMod.CalamityMod != null;
+
 
             if (WeaponConf)
 			{
@@ -201,6 +204,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.damage = 60;
                     item.useAnimation = 16;
                     item.useTime = 14;
+                }
+                if (item.type == ItemID.PsychoKnife && Calamity)
+                {
+                    item.damage = 300;
+                   
                 }
                 if (item.maxStack > 1 && item.maxStack < 9999)
 				{
@@ -664,7 +672,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
         {
 		
-			if (Reaper.ReaperMode)
+			if (DificultyUtils.ReaperMode)
 			{
 				if (Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>().AllSoulsAreActive())
 				{
@@ -695,7 +703,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		float counter;
         public override void UpdateInventory(Item item, Player player)
 		{
-			if (Reaper.ReaperMode)
+			if (DificultyUtils.ReaperMode)
 			{
 				ReaperGlobalItem.ReaperConsumable(item);
 				ReaperGlobalItem.ReaperSetDefaut(item);

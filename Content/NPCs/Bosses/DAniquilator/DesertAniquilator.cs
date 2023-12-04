@@ -24,6 +24,13 @@ using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent.Bestiary;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using Terraria.DataStructures;
+using FargowiltasSouls.Content.Projectiles;
+using FargowiltasSouls.Core.Globals;
+using FargowiltasSouls.Core.Systems;
+using FargowiltasSouls;
+using Terraria.Audio;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -70,6 +77,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 //new FlavorTextBestiaryInfoElement("A great and dreaded worm rules the underworld with an iron fist and his flames, powerful and majestic in equal parts, maintain the order and warmth of the underworld.")
             });
         }
+        public bool InfernumMode = DificultyUtils.InfernumMode;
 
         private int attackCounter;
         private int tornadoCounter;
@@ -89,47 +97,73 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             attackCounter = reader.ReadInt32();
             summonCounter = reader.ReadInt32();
         } 
+
+        public static float ScreenAnimationTimer = Utils1.FormatTimeToTick(0,0,0,5);
+        public static bool NoAI = RemnantOfTheAncientsMod.InfernumMod != null;
         public override void AI()
         {
-            Player player = Main.player[NPC.target];
 
-            NPC.ai[0] = 10;
+            if (RemnantOfTheAncientsMod.InfernumMod != null)
+            {
+                if (ScreenAnimationTimer > 0)
+                {
+                    NPC.velocity = Vector2.Zero;
+                    ScreenAnimationTimer--;
+                    return;
+                }
+                if(ScreenAnimationTimer <= 0)
+                {
+                    NoAI = false;
+                }
+            }
+            Player player = Main.player[NPC.target];
+            if (NoAI == false)
+            {
+                NPC.ai[0] = 10;
             NPC.ai[1] = (NPC.ai[1] + 1) % 800;
             NPC.ai[2]++;
            
-            BossIsInRage = CheckRage(player);
-            NPC.scale = LifeSize(NPC);
-            float distance = NPC.Distance(player.Center);
-            if (distance >= 110 * 16 && !player.dead && !Reaper.ReaperMode)
-            {
-                GenerateTpParticles();
-                DesertTp();
-            }
-
-            NpcFloor = Utils.ToTileCoordinates(NPC.Center);
-            Point PlayerFloor = Utils.ToTileCoordinates(Main.player[NPC.target].Center);
-       
-            if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0)
-            {
-                if (Main.tile[PlayerFloor.X, PlayerFloor.Y + 1].LiquidAmount == 0)
+                BossIsInRage = CheckRage(player);
+                NPC.scale = LifeSize(NPC);
+                float distance = NPC.Distance(player.Center);
+                if (distance >= 110 * 16 && !player.dead && !DificultyUtils.ReaperMode)
                 {
                     GenerateTpParticles();
                     DesertTp();
                 }
-            }
-            if (player.dead || NPC.target < 0 || NPC.target == 255 || !player.active)
-            {
-                NPC.TargetClosest(true);
-            }
-            setCurrentPhase(NPC);
-            AttackIA(player);
-           
-            if (player.dead)
-            {
-                NPC.EncourageDespawn(7);
-                DespawnBoss();
+
+                NpcFloor = Utils.ToTileCoordinates(NPC.Center);
+                Point PlayerFloor = Utils.ToTileCoordinates(Main.player[NPC.target].Center);
+
+                if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0)
+                {
+                    if (Main.tile[PlayerFloor.X, PlayerFloor.Y + 1].LiquidAmount == 0)
+                    {
+                        GenerateTpParticles();
+                        DesertTp();
+                    }
+                }
+                if (player.dead || NPC.target < 0 || NPC.target == 255 || !player.active)
+                {
+                    NPC.TargetClosest(true);
+                }
+                setCurrentPhase(NPC);
+                AttackIA(player);
+
+                if (player.dead)
+                {
+                    NPC.EncourageDespawn(7);
+                    DespawnBoss();
+                }
+
+
+                if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+                {
+                    EthernityIa(player);
+                }
             }
         }
+
         public static bool CheckRage(Player player) => !player.dead && player.active && !player.ZoneDesert && !player.ZoneUndergroundDesert;
         private void AttackIA(Player target)
         {
@@ -137,7 +171,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             List<int[]> AttackValue = setAttackCounter();
             UpdateCounters(AttackValue);
 
-            if (Reaper.ReaperMode)
+            if (DificultyUtils.ReaperMode)
             {
                 for (int i = 1; i <= 2; i++)
                 {
@@ -147,7 +181,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     }
                 }
             }
-            if (BossIsInRage)
+            if (BossIsInRage || InfernumMode)
             {
                 for (int i = 1; i <= 2; i++)
                 {
@@ -177,31 +211,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public void ShootAI(List<int[]> AttackValue, Player target)
         {
-            int type = Reaper.ReaperMode? ModContent.NPCType<DesertTyphoonParry>(): ModContent.ProjectileType<DesertTyphoon>();
-            bool proj = !Reaper.ReaperMode;
-            if (attackCounter == AttackValue[1][0])
+            int type = DificultyUtils.ReaperMode? ModContent.NPCType<DesertTyphoonParry>(): ModContent.ProjectileType<DesertTyphoon>();
+            bool proj = !DificultyUtils.ReaperMode;
+
+            for(int i = 0; i < 4; i++) 
             {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, 0.5f, 0.5f, proj);
-            }
-            if (attackCounter == AttackValue[1][1])
-            {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, 0.5f, -0.5f, proj);
-            }
-            if (attackCounter == AttackValue[1][2])
-            {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -0.5f, -0.5f, proj);
-            }
-            if (attackCounter == AttackValue[1][3])
-            {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -0.5f, -0.5f, proj);
-            }
-            if (attackCounter == AttackValue[1][4])
-            {
-                ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -0.5f, -0.5f, proj);
-            }
+                if (attackCounter == AttackValue[1][i])
+                {
+                    ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, 0.5f * Utils1.GetSign(Main.rand.Next(-4,4)), 0.5f * Utils1.GetSign(Main.rand.Next(-4, 4)), proj);
+                }
+            }  
             if (attackCounter == AttackValue[1][5])
             {
-                if (BossIsInRage)
+                if (BossIsInRage || InfernumMode)
                 {
                     for (int i = 0; i <= 7; i++)
                     {
@@ -210,7 +232,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 }
                 else
                 {
-                    int n = Reaper.ReaperMode ? 2 : 0;
+                    int n = DificultyUtils.ReaperMode ? 2 : 0;
 
                     for (float i = 0f; i < n; i += 0.5f)
                     {
@@ -221,13 +243,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public void SummonAI(List<int[]> AttackValue)
         {
+
             if (summonCounter == AttackValue[2][0] || summonCounter == AttackValue[2][1])
             {
                 int NumberOfNPCs = BossIsInRage ? 4 : 0;
 
                 for (int i = 0; i <= NumberOfNPCs; i++)
                 {
-                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DesertAnnihilatorServant>());
                 }
             }
 
@@ -262,7 +285,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         public void TornadoAI(int mark)
         {
 
-            if (tornadoCounter == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, 3))
+            if (tornadoCounter == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, SetFinalStagePorcentage()))
             {
                 tornadoCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
             }
@@ -275,7 +298,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 tornadoCounter = 0;
             }
 
-            if (!Reaper.ReaperMode)
+            if (!DificultyUtils.ReaperMode)
             {
                 if (tornadoCounter == 0)
                 {
@@ -303,13 +326,68 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             }
 
         }
+        public void EthernityIa(Player player)
+        {
+            if (DificultyUtils.MasochistMode || DificultyUtils.EternityMode)
+            {
+                if (attackCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 7))
+                {
+
+                    NPC.netUpdate = true;
+
+                    //EModeNPCBehaviour.NetSync(NPC);
+                    if (FargoSoulsUtil.HostCheck)
+                    {
+                        Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<GlowRing>(), 0, 0f, Main.myPlayer, NPC.whoAmI, -19);
+                    }
+                    if (NPC.HasValidTarget)
+                    {
+                        SoundEngine.PlaySound(in SoundID.ForceRoarPitched, Main.player[NPC.target].Center);
+                    }
+                }
+                if (attackCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 7) - 10)
+                {
+                    Vector2 start = new Vector2(player.position.X + (-100 * 16),  (player.position.Y - 100*16));
+                    Vector2 end = new Vector2(player.position.X + (100 *16), (player.position.Y - 100*16));
+
+                    int numberOfProjectiles = DificultyUtils.MasochistMode ? 40: 80;
+
+                    List<Vector2> points = GeneratePoints(start, end, numberOfProjectiles);
+
+                    foreach (var point in points)
+                    {
+                        //Center.X += (i + spacing) * 16 / numberOfProjectiles * Utils1.GetSign(i);
+                        var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(point.X,point.Y +(100f *16)), Vector2.Zero, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
+                        Main.projectile[p].scale = 0.5f;
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), point, Vector2.Zero, ProjectileID.RollingCactus, 100, 0f, Main.myPlayer);
+                    }
+
+
+
+                    static List<Vector2> GeneratePoints(Vector2 start, Vector2 end, int pointCount)
+                    {
+                        List<Vector2> points = new List<Vector2>();
+
+                        for (int i = 0; i < pointCount; i++)
+                        {
+                            float t = i / (float)(pointCount - 1);
+                            Vector2 point = Vector2.Lerp(start, end, t);
+                            points.Add(point);
+                        }
+
+                        return points;
+                    }
+                }
+            }
+        }
+        public static bool spawnGuardians = true;
         public override void HitEffect(NPC.HitInfo hit)
         {
             int choice = Main.rand.Next(2, 8);
-            if (Reaper.ReaperMode || BossIsInRage) choice *= 2;
+            if (DificultyUtils.ReaperMode || BossIsInRage) choice *= 2;
             for (int i = 0; i < choice; i++)
             {
-                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DSlime>());
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<DesertAnnihilatorServant>());
             }
             if (NPC.life <= 0)
             {
@@ -322,6 +400,24 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sandstorm,hit.HitDirection, -1f);
                 }
             }
+            if (spawnGuardians && InfernumMode)
+            {
+                int m = -1;
+                for (int i = 0; i < 2; i++)
+                {
+                 
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X + 10 * m, (int)NPC.position.Y, NPCType<DesertAnnihilatorGuard>());
+                    m *= -1;
+                }
+                spawnGuardians = false;
+            }
+        }
+
+        public int SetFinalStagePorcentage()
+        {
+            if (DificultyUtils.MasochistMode) return 10;
+            else if (DificultyUtils.EternityMode || DificultyUtils.InfernumMode) return 5;
+            return 3;
         }
         public List<int[]> setAttackCounter()
         {
@@ -420,7 +516,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public int AttackCounterScale(int Num, Player player) 
         {
-            return (!Reaper.ReaperMode) ? Num : Num - 100;
+            return (!DificultyUtils.ReaperMode) ? Num : Num - 100;
         }
         public void DesertTp()
         {    
@@ -459,10 +555,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         private float LifeSize(NPC npc)
         {
             float porcentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
-
-            if (CalamityUtils.IsDificultyActive("death")) return applyLifeSize(porcentage, 2f);
-            else if (CalamityUtils.IsDificultyActive("revengeance") || Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
-            else if (Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
+            if (DificultyUtils.MasochistMode) return applyLifeSize(porcentage, 4f);
+            else if (DificultyUtils.EternityMode) return applyLifeSize(porcentage, 2.5f);
+            else if (DificultyUtils.InfernumMode) return applyLifeSize(porcentage, 2.3f);
+            else if (DificultyUtils.Death) return applyLifeSize(porcentage, 2f);
+            else if (DificultyUtils.Revengeance || DificultyUtils.ReaperMode) return applyLifeSize(porcentage, 1.5f);
             else if (Main.masterMode) return applyLifeSize(porcentage, 1.35f);
             else if (Main.expertMode) return applyLifeSize(porcentage, 1.3f);
             else return applyLifeSize(porcentage, 1.25f);
@@ -533,12 +630,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             NPC.EncourageDespawn(7);
             return;
         }
+        
         public override bool? CanFallThroughPlatforms() => false;
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.rand.NextBool(3)) target.AddBuff(BuffType<Burning_Sand>(), 100, true);	
 		}
+        public override void OnSpawn(IEntitySource source)
+        {
+            ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+            spawnGuardians = true;
+            base.OnSpawn(source);
+        }
         public override void BossLoot(ref string name, ref int potionType)
         {
             RemnantDownedBossSystem.downedDesert = true;

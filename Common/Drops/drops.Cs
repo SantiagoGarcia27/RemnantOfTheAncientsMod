@@ -22,6 +22,10 @@ using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent.Personalities;
+using CalamityMod.NPCs.DesertScourge;
+using CalamityMod;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -41,6 +45,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             HallowBiomeLoot(npc, npcLoot);
             CorruptBiomeLoot(npc, npcLoot);
             CrimsomBiomeLoot(npc,npcLoot);
+            if (RemnantOfTheAncientsMod.InfernumMod != null)
+            {
+                InfernumLoot(npc, npcLoot);
+            }
             if (npc.value > 0f)
             {
                 if (npc.lifeMax > 100000)
@@ -136,6 +144,18 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         public void PajarosLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCID.BirdRed || npc.type == NPCID.BirdBlue || npc.type == NPCID.Bird) npcLoot.Add(ItemDropRule.Common(ItemType<BirdWings>(), 100/ dificultyDrop(1), 1, 1)); //dificultyDrop(1)/500
+        }
+        [JITWhenModsEnabled("InfernumMode")]
+        public void InfernumLoot(NPC npc,NPCLoot npcLoot)
+        {
+            bool Infernum = DificultyUtils.InfernumMode;
+
+            if (npc.type == ModContent.NPCType<DesertAniquilator>())
+                npcLoot.AddIf(() => DificultyUtils.InfernumMode, ModContent.ItemType<Desert_Relic_Infernum>());
+            else if (npc.type == ModContent.NPCType<FrozenAssaulter>())
+                npcLoot.AddIf(() => DificultyUtils.InfernumMode, ModContent.ItemType<Frozen_Relic_Infernum>());
+            else if (npc.type == ModContent.NPCType<InfernalTyrantHead>())
+                npcLoot.AddIf(() => DificultyUtils.InfernumMode, ModContent.ItemType<Tyrant_Relic_Infernum>());
         }
         public void ArmoredZombiesLoot(NPC npc,NPCLoot npcLoot)
         {
@@ -315,7 +335,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         public int dificultyDrop(int i)
         {
             int a = i;
-            if (Reaper.ReaperMode) a = i * 5;
+            if (DificultyUtils.ReaperMode) a = i * 5;
             return a;
         }
      

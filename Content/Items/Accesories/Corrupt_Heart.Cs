@@ -5,6 +5,7 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.World;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -37,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
         }
-        public int LifeMaxBonus = Reaper.ReaperMode ? 10 : 60;
+        public int LifeMaxBonus = DificultyUtils.ReaperMode ? 10 : 60;
         public int DamageReduction = 12;
         Item ItemDoge = new Item(ItemID.BrainOfConfusion);
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeMaxBonus, DamageReduction);//, ItemDoge.ToolTip);
@@ -68,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             player.GetModPlayer<RemnantPlayer>().BrainDogde = true;
             player.endurance += 0.12f;
-            player.statLifeMax2 += Reaper.ReaperMode? 10:60;
+            player.statLifeMax2 += DificultyUtils.ReaperMode? 10:60;
         }
     }
 }

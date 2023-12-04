@@ -36,8 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.consumable = true;
-            if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.consumable = false;
+            Item.consumable = RemnantOfTheAncientsMod.CalamityMod == null;
         }
         public override bool CanUseItem(Player player)
         {
@@ -62,6 +61,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
             }
 
             return true;
+        }
+        public override bool ConsumeItem(Player player)
+        {
+            return RemnantOfTheAncientsMod.CalamityMod == null;
         }
         public override void AddRecipes()
         {

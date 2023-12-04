@@ -1,4 +1,6 @@
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
     public class ModifyAccsesories : GlobalItem
     {
+        static Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
         public override void SetDefaults(Item item)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -36,8 +39,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.defense += 2;
                 }
+
+              
             }
         }
+
+        public static List<int> FastFall = new List<int>()
+        {
+            //ItemID.HermesBoots,
+            //ItemID.FlurryBoots,
+            //ItemID.SpectreBoots,
+            //ItemID.FairyBoots,
+            //ItemID.HellfireTreads,
+            //ItemID.LightningBoots,
+            //ItemID.FrostsparkBoots,
+            //ItemID.TerrasparkBoots
+        };
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -54,11 +71,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
                 if (item.type == ItemID.CritterShampoo)
                 {
-                    player.statLifeMax2 += Reaper.ReaperMode ? 10 : 30;
+                    player.statLifeMax2 += DificultyUtils.ReaperMode ? 10 : 30;
                 }
                 if (item.type == ItemID.LuckyHorseshoe)
                 {
-                    player.luck += Reaper.ReaperMode ? 0.2f : 0.4f;
+                    player.luck += DificultyUtils.ReaperMode ? 0.2f : 0.4f;
                     player.luckMaximumCap = 2;
                 }
                 if (item.type == ItemID.FlurryBoots)
@@ -68,28 +85,30 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                         player.moveSpeed += 2f;
                     }
                 }
-                if (item.type == ItemID.HermesBoots)
+               
+                if (FastFall.Contains(item.type))
                 {
-                    player.maxFallSpeed *= 2f;
-                }
-                if (item.type == ItemID.SpectreBoots)
-                {
-                    player.maxFallSpeed *= 2f;
-                }
-                if (item.type == ItemID.LightningBoots)
-                {
-                    player.maxFallSpeed *= 2f;
-                }
-                if (item.type == ItemID.FrostsparkBoots)
-                {
-                    player.maxFallSpeed *= 2f;
-                }
-                if (item.type == ItemID.TerrasparkBoots)
-                {
+                   // string ResultItemName = new Item(item.type).Name;
                     player.maxFallSpeed *= 2f;
                 }
             }
             base.UpdateAccessory(item, player, hideVisual);
+        }
+
+
+      
+
+        public static void UpdateFallSpeedList()
+        {
+            RecipeUtils.GetUpgradeTree(ModContent.ItemType<Boot>(),FastFall);
+        }
+
+        public static void ModifyCalamity()
+        {
+            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "AngelTreads"));
+            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "TracersCelestial"));
+            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "TracersElysian"));
+            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "TracersSeraph"));
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
