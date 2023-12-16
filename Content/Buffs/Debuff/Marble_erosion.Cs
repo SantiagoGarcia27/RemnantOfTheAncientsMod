@@ -2,6 +2,7 @@ using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 {

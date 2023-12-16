@@ -85,6 +85,7 @@ Mods: {
 			}
 
 			ReaperTitle: Almas
+			// Couldowns.CouldownBar: "{0}s"
 		}
 
 		IntroScreen: {
@@ -162,12 +163,13 @@ Mods: {
 
 		Generic: {
 			RightClickSaberHabilitie: Click derecho para embestir
-			RightClickSecondHabilitie: Right click to use the scondary hability
+			RightClickSecondHabilitie: Click derecho para utilizar la hablilidad secundaria
 			MusicBoxCredit: Creditos para {0}
 			ReaperTooltip: Objeto de Segador
 			LegendaryTooltip: Objeto Legendario
 			CompletistTooltip: Objeto de Completista
 			NotConsumableTooltip: No consumible
+			Eternity: Eternity
 		}
 
 		CommonTooltip: {
@@ -468,7 +470,7 @@ Mods: {
 
 			Burning_Sand: {
 				DisplayName: Burning Sand
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Burning_Sand.Description
+				Description: Estás perdiendo vida
 			}
 
 			FireStormDebuff: {
@@ -478,17 +480,17 @@ Mods: {
 
 			Hell_Fire: {
 				DisplayName: Hell Fire
-				Description: ...
+				Description: Estás perdiendo vida
 			}
 
 			HollyBurn: {
 				DisplayName: Holly Burn
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn
+				Description: Estás perdiendo vida
 			}
 
 			HolyCouldownDebuff: {
 				DisplayName: Holy Couldown
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HolyCouldownDebuff
+				Description: ...
 			}
 
 			Javalina: {
@@ -498,7 +500,7 @@ Mods: {
 
 			Marble_erosion: {
 				DisplayName: Marble rosion
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion
+				Description: Pierdes 2 de defensa
 			}
 
 			NightWhipDebuff: {
@@ -524,6 +526,11 @@ Mods: {
 			DakoVanityBuff: {
 				DisplayName: Dako
 				Description: ""
+			}
+
+			FrostBarrierCouldown: {
+				DisplayName: Recarga de Barrera Hélida
+				Description: ...
 			}
 		}
 
@@ -811,27 +818,19 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			Reforced_iron_chesplate: {
-				DisplayName: Coraza de hierro reforzado
-				Tooltip:
-					'''
-					{$CommonItemTooltip.ReducesDamageTakenByPercent}
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
-					'''
+			Reinforced_iron_chesplate: {
+				// DisplayName: Reinforced_iron_chesplate
+				// Tooltip: ""
 			}
 
-			Reforced_Iron_Greaves: {
-				DisplayName: Perneras de hierro reforzado
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+			Reinforced_Iron_Greaves: {
+				// DisplayName: Reinforced_ Iron_ Greaves
+				// Tooltip: ""
 			}
 
-			Reforced_iron_Helmet: {
-				DisplayName: Casco de hierro reforzado
-				Tooltip:
-					'''
-					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
-					'''
+			Reinforced_iron_Helmet: {
+				// DisplayName: Reinforced_iron_ Helmet
+				// Tooltip: ""
 			}
 
 			Tuxonite_chesplate: {
@@ -1309,7 +1308,7 @@ Mods: {
 
 			Sand_Flask: {
 				DisplayName: Frasco de arena
-				Tooltip: Ataques cuerpo a cuerpo provocan arena caliente
+				Tooltip: Ataques cuerpo a cuerpo provocan arena ardiente
 			}
 
 			Summon_Potion_Kit: {
@@ -2156,27 +2155,27 @@ Mods: {
 			}
 
 			Adamantite_saber: {
-				DisplayName: Adamantite Saber
+				DisplayName: Sable de Adamantita
 				Tooltip: ""
 			}
 
 			Cobalt_saber: {
-				DisplayName: Cobalt Saber
+				DisplayName: Sable de Cobalto
 				Tooltip: ""
 			}
 
 			Copper_saber: {
-				DisplayName: Copper Saber
+				DisplayName: Sable de Cobre
 				Tooltip: ""
 			}
 
 			Corrupted_saber: {
-				DisplayName: Light´s Saber
+				DisplayName: Sable de la luz
 				Tooltip: ""
 			}
 
 			Crimson_saber: {
-				DisplayName: Blood Saber
+				DisplayName: Sable Carnicero
 				Tooltip: ""
 			}
 
@@ -3183,17 +3182,17 @@ Mods: {
 
 			Endeless_Hight_Food: {
 				DisplayName: Gran banquete eterno
-				// Tooltip: "{$CommonItemTooltip.MajorStats}"
+				Tooltip: "{$CommonItemTooltip.MajorStats}"
 			}
 
 			Endeless_Low_Food: {
 				DisplayName: Aperitivo eterno
-				// Tooltip: "{$CommonItemTooltip.MinorStats}"
+				Tooltip: "{$CommonItemTooltip.MinorStats}"
 			}
 
 			Endeless_Medium_Food: {
 				DisplayName: Almuerzo eterno
-				// Tooltip: "{$CommonItemTooltip.MediumStats}"
+				Tooltip: "{$CommonItemTooltip.MediumStats}"
 			}
 
 			InstaPlataform: {
@@ -3255,6 +3254,83 @@ Mods: {
 
 			Tyrant_Relic_Infernum: {
 				DisplayName: Reliquia del Tirano Infernal Infernal
+				Tooltip: ""
+			}
+
+			Frost_Barrier: {
+				// DisplayName: Frost Barrier
+				// Tooltip: Press {0} to activate a frost shield for {1}s that reflect all hostile projectiles
+			}
+
+			DesertMedalion: {
+				DisplayName: Medallón Desértico
+				Tooltip:
+					'''
+					Las armas disparan proyectiles únicos según el tipo de daño que tienen.
+					Las armas de invocación infligen arena ardiente.
+					Algunas armas no pueden recibir este bono.
+					'''
+			}
+
+			FrostBarrier: {
+				DisplayName: Barrera Hélida
+				Tooltip: Pulsa {0} para activar un escudo de escarcha durante {1}s que reflejará todos los proyectiles hostiles.
+			}
+
+			JungleKey: {
+				DisplayName: LLave selvática
+				Tooltip: ""
+			}
+
+			TyrantsMark: {
+				DisplayName: Tyrants Mark
+				Tooltip:
+					'''
+					Los proyectiles enemigos sufren una disminución de velocidad en un {1}% y de tamaño en un {0}%.				
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					'''
+			}
+
+			GuardiansShield: {
+				DisplayName: Escudo del guardíán
+				Tooltip:
+					'''
+					Otorga inmunidad a [I:RemnantOfTheAncientsMod/DesertMedalion] Arena ardiente
+					[I:RemnantOfTheAncientsMod/FrostBarrier]  Pulsa &0 para activar un escudo de escarcha durante &1s que reflejará todos los proyectiles hostiles.
+					[I:RemnantOfTheAncientsMod/TyrantsMark] Los proyectiles enemigos sufren una disminución de velocidad en un {1}% y de tamaño en un {0}%.
+					[I:RemnantOfTheAncientsMod/DesertMedalion] Las armas disparan proyectiles únicos según el tipo de daño que tienen.
+					Algunas armas no pueden recibir este bono
+					[I:RemnantOfTheAncientsMod/DesertMedalion] Las armas de invocación infligen arena ardiente.
+					[I:RemnantOfTheAncientsMod/TyrantsMark] {$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					'''
+			}
+
+			NightEnchant: {
+				// DisplayName: Night Enchantment
+				Tooltip:
+					'''
+					Cuando anochece, te camuflas en las sombras haciendo que sea menos probable que los enemigos te detecten,
+					además puedes presionar <&0> para realizar teletransportación nocturna.
+					'''
+			}
+
+			ReinforcedIronEnchant: {
+				// DisplayName: Reinforced Iron Enchantment
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.ReducesDamageTakenByPercent@1}
+					Invoca una ballesta rodante
+					'''
+			}
+
+			SandHeraldEnchant: {
+				DisplayName: Sand Herald Enchantment
+				Tooltip: ""
+			}
+
+			TuxoniteEnchant: {
+				DisplayName: Tuxonite Enchantment
 				Tooltip: ""
 			}
 		}
@@ -3454,16 +3530,17 @@ Mods: {
 			BloodFlowerHeldProj.DisplayName: Blood Flower Held Proj
 			BloodThornHeldProj.DisplayName: Blood Thorn Held Proj
 			GemStaffHeldProj.DisplayName: Gem Staff Held Proj
-			// SharknadoClone.DisplayName: Sharknado Clone
+			SharknadoClone.DisplayName: Sharknado
 			// SharknadoShootClone.DisplayName: Sharknado Shoot Clone
 			// SharknadoBoltClone.DisplayName: Sharknado Bolt Clone
-			// PygmyMelee.DisplayName: Pygmy Melee
+			PygmyMelee.DisplayName: Pygmy Melee
 			// TrueNigthBobber.DisplayName: True Nigth Bobber
 			// SacredBobber.DisplayName: Sacred Bobber
 			// TerraBobber.DisplayName: Terra Bobber
 			// TrueSacredBobber.DisplayName: True Sacred Bobber
-			// DakoPetProjectile.DisplayName: Dako Pet Projectile
-			// FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
+			DakoPetProjectile.DisplayName: Dako
+			FrozenHommingIceBlock.DisplayName: Bloque de Hielo
+			FrostBarrier.DisplayName: Barrera Hélida
 		}
 
 		Tiles: {
@@ -3683,6 +3760,11 @@ Mods: {
 		}
 
 		ConfigServer.Headers.Performance: Lag Reducer Header
-		// Keybinds.ReaperModeInterface.DisplayName: Reaper Mode Interface
+
+		Keybinds: {
+			ReaperModeInterface.DisplayName: Reaper Mode Interface
+			FrostBarrier.DisplayName: Barrera Hélida
+			// ToggNightTp.DisplayName: Togg Night Tp
+		}
 	}
 }

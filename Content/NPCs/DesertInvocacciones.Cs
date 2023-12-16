@@ -21,13 +21,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
         public override void SetDefaults()
         {
-
+            NPC.CloneDefaults(NPCID.Antlion);
+            NPC.lifeMax = ContentSamples.NpcsByNetId[NPCID.Antlion].lifeMax /2;
+            NPC.damage = ContentSamples.NpcsByNetId[NPCID.Antlion].damage / 2;
+            //NPC.value += 60f;
+            //NPC.knockBackResist = 0;
             NPC.aiStyle = 19;
             AIType = NPCID.Antlion;
             AnimationType = NPCID.Antlion;
-            NPC.CloneDefaults(NPCID.Antlion);
-            NPC.value = Item.buyPrice(0, 0, 0, 0);
-            NPC.lifeMax = 50;
+            Banner = Item.NPCtoBanner(NPCID.Antlion);
+            BannerItem = Item.BannerToItem(Banner);
+
+            //NPC.aiStyle = 19;
+            //AIType = NPCID.Antlion;
+            //AnimationType = NPCID.Antlion;
+            //NPC.CloneDefaults(NPCID.Antlion);
+            //NPC.value = Item.buyPrice(0, 0, 0, 0);
+            //NPC.lifeMax = 50;
         }
     }
 
@@ -138,7 +148,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
     }
     [JITWhenModsEnabled("CalamityMod")]
     public class DesertAnnihilatorGuard : ModNPC
-    { 
+    {
+
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+
+            return ModLoader.TryGetMod("InfernumMode", out Mod InfernumMode);
+        }
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.SandSlime];

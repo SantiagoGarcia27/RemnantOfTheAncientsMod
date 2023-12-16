@@ -1,7 +1,7 @@
 using RemnantOfTheAncientsMod.World;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Common.Global
+namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
     public class NpcChanges1 : GlobalNPC
     {
@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public static double ExpertLifeScale(double i)
         { 
-            return Reaper.ReaperMode? i*2 : i;
+            return Reaper.ReaperMode? i * 2 : i;
         }
         public static int DefenseCalculator(int defensa) => defensa + 6;
         public static int DamageCalculator(double damagebonus) => (int)(28 * damagebonus);

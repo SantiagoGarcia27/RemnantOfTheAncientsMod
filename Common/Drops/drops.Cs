@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.NPCs.zombis;
 using RemnantOfTheAncientsMod.Content.NPCs;
-using RemnantOfTheAncientsMod.World;
 using Terraria.GameContent.ItemDropRules;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Alas;
@@ -13,19 +12,18 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.pets;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;  
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using Terraria.GameContent.Personalities;
-using CalamityMod.NPCs.DesertScourge;
-using CalamityMod;
+//using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
+using CalamityMod;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -49,6 +47,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             {
                 InfernumLoot(npc, npcLoot);
             }
+            if(RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+                FargosLoot(npc, npcLoot);
+            }
             if (npc.value > 0f)
             {
                 if (npc.lifeMax > 100000)
@@ -69,8 +71,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCID.Shark) npcLoot.Add (ItemDropRule.Common(ItemType<SharkTooth>(), 10/ dificultyDrop(1), 1, 5 ));
             if (npc.type == NPCID.Tim) npcLoot.Add(ItemDropRule.Common(ItemType<magic_stick>(), 50/ dificultyDrop(5), 1, 1));
             if (npc.type == NPCID.DungeonGuardian) npcLoot.Add(ItemDropRule.Common(ItemType<TortugaPet>(), 10 / dificultyDrop(2), 1, 1));
-            if (npc.type == NPCID.BigMimicCorruption) npcLoot.Add(ItemDropRule.ByCondition(new DownedPlantera(), ItemID.ScourgeoftheCorruptor, 4, 1, 1));
-            if (npc.type == NPCID.BigMimicCrimson) npcLoot.Add(ItemDropRule.ByCondition(new DownedPlantera(), ItemID.VampireKnives, 4, 1, 1));
+            if (npc.type == NPCID.BigMimicCorruption) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.ScourgeoftheCorruptor, 4, 1, 1));
+            if (npc.type == NPCID.BigMimicCrimson) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.VampireKnives, 4, 1, 1));
+            if (npc.type == NPCID.BigMimicHallow) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.RainbowGun, 4, 1, 1));
+            if (npc.type == NPCID.BigMimicJungle) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.PiranhaGun, 4, 1, 1));
         }
         public void HallowBiomeLoot(NPC npc, NPCLoot npcLoot)
         {
@@ -133,8 +137,8 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCID.CultistBoss) npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));
             if (npc.type == NPCID.HallowBoss)
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new IsDay(), ModContent.ItemType<StarChunk>(), 1, 3, 5));
-                npcLoot.Add(ItemDropRule.ByCondition(new IsNight(), ItemType<StarChunk>(), 1, 1, 2));
+                npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsDay(), ModContent.ItemType<StarChunk>(), 1, 3, 5));
+                npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsNight(), ItemType<StarChunk>(), 1, 1, 2));
             }
             if (npc.type == NPCID.Plantera)
             {
@@ -156,6 +160,18 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 npcLoot.AddIf(() => DificultyUtils.InfernumMode, ModContent.ItemType<Frozen_Relic_Infernum>());
             else if (npc.type == ModContent.NPCType<InfernalTyrantHead>())
                 npcLoot.AddIf(() => DificultyUtils.InfernumMode, ModContent.ItemType<Tyrant_Relic_Infernum>());
+        }
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public void FargosLoot(NPC npc, NPCLoot npcLoot)
+        {
+            if (npc.type == ModContent.NPCType<DesertAniquilator>())
+            {
+                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive(new() { new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist() }, ModContent.ItemType<DesertMedalion>()));
+            }
+            if (npc.type == ModContent.NPCType<FrozenAssaulter>())
+            {
+                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive(new() { new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist() }, ModContent.ItemType<FrostBarrier>()));
+            }
         }
         public void ArmoredZombiesLoot(NPC npc,NPCLoot npcLoot)
         {
@@ -219,58 +235,58 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 switch (npc.type)
                 {
                     case NPCID.KingSlime:
-                        npcLoot.Add(ItemDropRule.ByCondition(new SlimeReaperSoulRule(), ItemType<KingSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SlimeReaperSoulRule(), ItemType<KingSoul>()));
                         break;
                     case NPCID.EyeofCthulhu:
-                        npcLoot.Add(ItemDropRule.ByCondition(new EyeOfChutuluReaperSoulRule(), ItemType<EyeSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.EyeOfChutuluReaperSoulRule(),ItemType<EyeSoul>(),1));
                         break;
                     case NPCID.BrainofCthulhu:
-                        npcLoot.Add(ItemDropRule.ByCondition(new CorruptReaperSoulRule(), ItemType<CorruptSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.CorruptReaperSoulRule(), ItemType<CorruptSoul>()));
                         break;
                     case NPCID.QueenBee:
-                        npcLoot.Add(ItemDropRule.ByCondition(new QueenBeeReaperSoulRule(), ItemType<BeeSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.QueenBeeReaperSoulRule(), ItemType<BeeSoul>()));
                         break;
                     case NPCID.SkeletronHead:
-                        npcLoot.Add(ItemDropRule.ByCondition(new SkeletronReaperSoulRule(), ItemType<SkeletonSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SkeletronReaperSoulRule(), ItemType<SkeletonSoul>()));
                         break;
                     case NPCID.Deerclops:
-                        npcLoot.Add(ItemDropRule.ByCondition(new DeerclopsReaperSoulRule(), ItemType<DeerclopsSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DeerclopsReaperSoulRule(), ItemType<DeerclopsSoul>()));
                         break;
                     case NPCID.WallofFlesh:
-                        npcLoot.Add(ItemDropRule.ByCondition(new WallOfFLeshReaperSoulRule(), ItemType<FleshSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.WallOfFLeshReaperSoulRule(), ItemType<FleshSoul>()));
                         break;
                     case NPCID.QueenSlimeBoss:
-                        npcLoot.Add(ItemDropRule.ByCondition(new QueenSlimeReaperSoulRule(), ItemType<QueenSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.QueenSlimeReaperSoulRule(), ItemType<QueenSoul>()));
                         break;
                     case NPCID.Retinazer:
-                        npcLoot.Add(ItemDropRule.ByCondition(new RetinazorReaperSoulRule(), ItemType<RetinazorEnergyCell>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.RetinazorReaperSoulRule(), ItemType<RetinazorEnergyCell>()));
                         break;
                     case NPCID.Spazmatism:
-                        npcLoot.Add(ItemDropRule.ByCondition(new SpazmatismReaperSoulRule(), ItemType<SpazmatismEnergyCell>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SpazmatismReaperSoulRule(), ItemType<SpazmatismEnergyCell>()));
                         break;
                     case NPCID.SkeletronPrime:
-                        npcLoot.Add(ItemDropRule.ByCondition(new SkeletronPrimeReaperSoulRule(), ItemType<SkeletronPrimeEnergyCell>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SkeletronPrimeReaperSoulRule(), ItemType<SkeletronPrimeEnergyCell>()));
                         break;
                     case NPCID.TheDestroyer:
-                        npcLoot.Add(ItemDropRule.ByCondition(new DestroyerReaperSoulRule(), ItemType<DestroyerEnergyCell>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DestroyerReaperSoulRule(), ItemType<DestroyerEnergyCell>()));
                         break;
                     case NPCID.Plantera:
-                        npcLoot.Add(ItemDropRule.ByCondition(new PlanteraReaperSoulRule(), ItemType<PlantSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.PlanteraReaperSoulRule(), ItemType<PlantSoul>()));
                         break;
                     case NPCID.HallowBoss:             
-                        npcLoot.Add(ItemDropRule.ByCondition(new EmpressOfLightReaperSoulRule(), ItemType<EmpressSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.EmpressOfLightReaperSoulRule(), ItemType<EmpressSoul>()));
                         break;
                     case NPCID.Golem:
-                        npcLoot.Add(ItemDropRule.ByCondition(new GolemReaperSoulRule(), ItemType<GolemSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.GolemReaperSoulRule(), ItemType<GolemSoul>()));
                         break;
                     case NPCID.DukeFishron:
-                        npcLoot.Add(ItemDropRule.ByCondition(new DukeFishronReaperSoulRule(), ItemType<FishSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DukeFishronReaperSoulRule(), ItemType<FishSoul>()));
                         break;
                     case NPCID.CultistBoss:
-                        npcLoot.Add(ItemDropRule.ByCondition(new LunaticCultistReaperSoulRule(), ItemType<CultistSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.LunaticCultistReaperSoulRule(), ItemType<CultistSoul>()));
                         break;
                     case NPCID.MoonLordCore:
-                        npcLoot.Add(ItemDropRule.ByCondition(new MoonLordReaperSoulRule(), ItemType<MoonSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.MoonLordReaperSoulRule(), ItemType<MoonSoul>()));
                         break;
                 }
                 //if (npc.boss && System.Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1 )
@@ -281,15 +297,15 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                // }
                 if(npc.type == NPCType<DesertAniquilator>())
                 {
-                    npcLoot.Add(ItemDropRule.ByCondition(new DesertAnhilatorReaperSoulRule(), ItemType<DesertSoul>()));
+                    npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DesertAnhilatorReaperSoulRule(), ItemType<DesertSoul>()));
                 }
                 if (npc.type == NPCType<FrozenAssaulter>())
                 {
-                    npcLoot.Add(ItemDropRule.ByCondition(new FrozenAssaulterReaperSoulRule(), ItemType<FrozenSoul>()));
+                    npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.FrozenAssaulterReaperSoulRule(), ItemType<FrozenSoul>()));
                 }
                 if (npc.type == NPCType<InfernalTyrantHead>())
                 {
-                    npcLoot.Add(ItemDropRule.ByCondition(new InfernalTyrantReaperSoulRule(), ItemType<InfernalSoul>()));
+                    npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.InfernalTyrantReaperSoulRule(), ItemType<InfernalSoul>()));
                 }
 
                 //if (npc.type == NPCID.Skeleton && !Main.LocalPlayer.GetModPlayer<SkeletonReaperSoulPlayer>().SkeletonReaperUpgrade) ItemDropRule.Common(ItemType<SkeletonSoul>(), 1, 1, 1);

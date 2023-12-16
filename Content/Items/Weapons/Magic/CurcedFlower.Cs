@@ -68,20 +68,23 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             }
             else
             {
-                Item.damage = RemnantOfTheAncientsMod.CalamityMod != null ? 40 : 35;
-                Item.useTime = 6;
-                Item.useAnimation = 6;
-                Item.useStyle = 5;
-				Item.shoot = ProjectileID.Flames;
-                //Item.shoot = ModContent.ProjectileType<CustomFlameTrowerProj>();
-                Item.shootSpeed = 2f;
-                Item.channel = true;
-				Item.mana = 3;
-				int p = Projectile.NewProjectile(source, position, velocity, type, damage, knockback,player.whoAmI,2,3000);
-				Main.projectile[p].DamageType = DamageClass.Magic;
-				if (player.ownedProjectileCounts[ModContent.ProjectileType<FlowerHeldProj>()] <= 0)
+				if (player.whoAmI == Main.myPlayer)
 				{
-					Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FlowerHeldProj>(), 0, 0, player.whoAmI, 3);
+					Item.damage = RemnantOfTheAncientsMod.CalamityMod != null ? 40 : 35;
+					Item.useTime = 6;
+					Item.useAnimation = 6;
+					Item.useStyle = 5;
+					Item.shoot = ProjectileID.Flames;
+					//Item.shoot = ModContent.ProjectileType<CustomFlameTrowerProj>();
+					Item.shootSpeed = 2f;
+					Item.channel = true;
+					Item.mana = 3;
+					int p = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, 2, 3000);
+					Main.projectile[p].DamageType = DamageClass.Magic;
+					if (player.ownedProjectileCounts[ModContent.ProjectileType<FlowerHeldProj>()] <= 0)
+					{
+						Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FlowerHeldProj>(), 0, 0, player.whoAmI, 3);
+					}
 				}
                 return false;
             }

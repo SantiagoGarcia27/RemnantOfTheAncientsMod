@@ -30,23 +30,23 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			int item = 0;
-			switch (frameX / 54)
-			{
-				case 0:
-					item = ItemType<FrostTrophy>();
-					break;
-				case 1:
-					item = ItemType<DesertTrophy>();
-					break;
-				case 2:
-					item = ItemType<InfernalTrophy>();
-					break;
-			}
-			if (item > 0)
-			{
-				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, item);
-			}
+			//int item = 0;
+			//switch (frameX / 54)
+			//{
+			//	case 0:
+			//		item = ItemType<FrostTrophy>();
+			//		break;
+			//	case 1:
+			//		item = ItemType<DesertTrophy>();
+			//		break;
+			//	case 2:
+			//		item = ItemType<InfernalTrophy>();
+			//		break;
+			//}
+			//if (item > 0)
+			//{
+			//	Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, item);
+			//}
 		}
 	}
 }

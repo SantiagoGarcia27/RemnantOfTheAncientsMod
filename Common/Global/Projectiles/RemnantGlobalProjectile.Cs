@@ -104,13 +104,28 @@ namespace RemnantOfTheAncientsMod.Common.Global
                             target.value *= 2;
                         }      
                 }
+
+
+                if(projectile.minion && projectile.owner == Main.myPlayer) 
+                { 
+                    List<int> list = player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict;
+
+                    if (list.Count > 0)
+                    {
+                        foreach (int debuff in list)
+                        {
+                            target.AddBuff(debuff, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
+                        }
+                    }
+                }
             }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            ReaperPlayer modPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
-            if (DificultyUtils.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly && modPlayer.ChaliceOn)
+            ReaperPlayer ReaperPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
+            RemnantPlayer RemnantPlayer = Main.player[Main.myPlayer].GetModPlayer<RemnantPlayer>();
+            if (DificultyUtils.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly && ReaperPlayer.ChaliceOn)
             {
                 projectile.width *= (int)1.5f;
                 projectile.height *= (int)1.5f;
@@ -120,6 +135,20 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 //{
                 //    projectile.ai[2] *= 2.5f;
                 //}
+            }
+            if (projectile.hostile)
+            {
+                if (RemnantPlayer.EnemyProjectilesScaleBouns != 1)
+                {
+                    if (RemnantPlayer.EnemyProjectilesScaleBouns <= 0) RemnantPlayer.EnemyProjectilesScaleBouns = 0.1f;
+                    projectile.scale *= RemnantPlayer.EnemyProjectilesScaleBouns;
+                }
+                if (RemnantPlayer.EnemyProjectilesSpeedScaleBouns != 1)
+                {
+                    if (RemnantPlayer.EnemyProjectilesSpeedScaleBouns < 0) RemnantPlayer.EnemyProjectilesSpeedScaleBouns = 0.01f;
+                    projectile.velocity *= RemnantPlayer.EnemyProjectilesSpeedScaleBouns;
+                }
+               
             }
             
             

@@ -261,5 +261,34 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             if (!list.Contains(p)) list.Add(p);
         }
+        public static string TooltipHotkeyString(ModKeybind imput)
+        {
+            try
+            {
+                return imput.GetAssignedKeys()[0];
+            }
+            catch
+            {
+                return "[...]";
+            }
+        }
+        public static void FindAndReplaceTooltip(List<TooltipLine> tooltips,string target, string replace)
+        {
+            var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+            if (tip != null)
+            {
+                var text = tip.Text.Replace(target, replace);
+                tip.Text = text;
+            }
+        }
+        public static void FindAndReplaceTooltip(List<TooltipLine> tooltips, string target, string replace,string TooltipName)
+        {
+            var tip = tooltips.FirstOrDefault(tip => tip.Name == TooltipName && tip.Mod == "Terraria");
+            if (tip != null)
+            {
+                var text = tip.Text.Replace(target, replace);
+                tip.Text = text;
+            }
+        }
     }
 }

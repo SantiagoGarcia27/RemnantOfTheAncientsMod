@@ -13,20 +13,20 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using Terraria.GameContent.ItemDropRules;
 using RemnantOfTheAncientsMod.Common.Systems;
-using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using System.IO;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent.Bestiary;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
+
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
@@ -153,6 +153,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<IGolem>());
             }
         }
+
+        private Vector2 ExplosionPosition;
         private void shootAi(Player target, bool isReaper)
         {
             switch (attackCounter)
@@ -180,7 +182,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     }
                     break;
                 case >= 0:
-                    if (currentPhase != 3)
+                    if (currentPhase != 3 && !DificultyUtils.EternityMode && !DificultyUtils.MasochistMode)
                     {
                         if (!isReaper)
                         {
@@ -208,10 +210,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                             {
                                 for (int j = 0; j < 3; j++)
                                 {
-                                    shootIa(10, ProjectileType<Frozenp>(),7f, 360f + grades,0);//70
-                                    shootIa(10, ProjectileType<Frozenp>(),7f, -120f + grades,0);
-                                    shootIa(10, ProjectileType<Frozenp>(),7f, 120f + grades,0);
-                                    shootIa(10, ProjectileType<Frozenp>(),7f, -360f + grades,0);
+                                    shootIa(10, ProjectileType<Frozenp>(), 7f, 360f + grades, 0);//70
+                                    shootIa(10, ProjectileType<Frozenp>(), 7f, -120f + grades, 0);
+                                    shootIa(10, ProjectileType<Frozenp>(), 7f, 120f + grades, 0);
+                                    shootIa(10, ProjectileType<Frozenp>(), 7f, -360f + grades, 0);
                                 }
                                 grades = (grades <= 360) ? (grades + 0.01f) : 0;
                                 delay = 0;
@@ -219,6 +221,148 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                         }
                     }
                     break;
+            }
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+                //setAttackCounter(Main.player[NPC.target]);
+                if (DificultyUtils.EternityMode)
+                {
+                    if(attackCounter % 8 == 0)
+                    {
+                        EthernityCommonShoot(target);
+                    }
+
+                    if (currentPhase > 4)
+                    {
+                        EthernityExplosionIA(500);
+                    }
+                    if (currentPhase > 2)
+                    {
+                        EthernityExplosionIA(400);
+                        EthernityExplosionIA(300);
+                    }
+                    if (currentPhase == 3)
+                    {
+                        for (int i = 8; i > 0; i--)
+                        {
+                            EthernityExplosionIA(i * 10);
+                        }
+                    }
+                    if (currentPhase == 4)
+                    {
+                        EthernityExplosionIA(200);
+                    }
+                }
+                else if (DificultyUtils.MasochistMode)
+                {
+                    if(attackCounter % 4 == 0)
+                    {
+                        EthernityCommonShoot(target);
+                    }
+                    if (currentPhase > 4)
+                    {
+
+                        EthernityExplosionIA(500);
+                        EthernityExplosionIA(400);
+                        EthernityExplosionIA(300);
+                    }
+                    if (currentPhase > 2)
+                    {
+                        for (int i = 5; i > 0; i--)
+                        {
+                            EthernityExplosionIA(i * 10);
+                        }
+                    }
+                    if (currentPhase == 3)
+                    {
+                        for (int i = 8; i > 0; i--)
+                        {
+                            EthernityExplosionIA(i * 10);
+                        }
+                    }
+                    if (currentPhase == 4)
+                    {
+                        for (int i = 100; i > 0; i-=5)
+                        {
+                            EthernityExplosionIA(i);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void EthernityExplosionIA(int count)
+        {
+            int X;
+            int Y;
+            if (attackCounter == count + 120 && attackCounter > 0)
+            {
+                X = Main.rand.Next((int)(Main.player[NPC.target].position.X - 50 * 16f), (int)(Main.player[NPC.target].position.X + 50 * 16f));
+                Y = Main.rand.Next((int)(Main.player[NPC.target].position.Y - 50 * 16f), (int)(Main.player[NPC.target].position.Y + 50 * 16f));
+                ExplosionPosition = new Vector2(X, Y);
+                var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Vector2.Zero, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
+            }
+            if (attackCounter == count && attackCounter > 0)
+            {
+                int numProjectiles = 5;
+
+                for (int i = 0; i < numProjectiles; i++)
+                {
+                    Vector2 Velocity = new Vector2(2, 2).RotatedBy(i * 10);
+
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Velocity, ProjectileID.FrostWave, 30, 1, Main.myPlayer);
+                }
+            }
+        }
+        public void EthernityCommonShoot(Player target)
+        {
+            if (!DificultyUtils.ReaperMode)
+            {
+
+                if (currentPhase > 2)
+                {
+                    shootIa(10, ProjectileID.FrostBeam, target, -10f, 0.5, 1.5);
+                    shootIa(10, ProjectileID.FrostBeam, target, 10f, 0.5,-1.5);
+
+                    if (DificultyUtils.MasochistMode)
+                    {
+                        shootIa(10, ProjectileID.FrostBeam, target, -30f, -1.5, 1.5);
+                        shootIa(10, ProjectileID.FrostBeam, target, 30f, 1.5, -1.5);
+                        shootIa(10, ProjectileID.FrostBeam, target, 40, 0, 1.5);
+                        shootIa(10, ProjectileID.FrostBeam, target, 10, -1.5, -1.5);
+                    }
+                }
+                for (int i = -1; i < MaxPlayers; i++)
+                {
+                    int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
+                    shootIa(10, ProjectileID.FrostBeam, Main.player[a], 20f, 0.5, 0.5);
+                    shootIa(10, ProjectileID.FrostBeam, target, -20f, 0.5, 0.5);
+                }
+            }
+            else
+            {
+                int framerate;
+                if (Main.frameRate >= 60)
+                {
+                    framerate = 60;
+                }
+                else
+                {
+                    framerate = Main.frameRate;
+                }
+                float diferencia = Utils1.FormatToPositive(55 - framerate);
+                if (++delay >= diferencia)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        shootIa(10, ProjectileID.FrostBeam, 7f, 360f + grades, 0);//70
+                        shootIa(10, ProjectileID.FrostBeam, 7f, -120f + grades, 0);
+                        shootIa(10, ProjectileID.FrostBeam, 7f, 120f + grades, 0);
+                        shootIa(10, ProjectileID.FrostBeam, 7f, -360f + grades, 0);
+                    }
+                    grades = (grades <= 360) ? (grades + 0.01f) : 0;
+                    delay = 0;
+                }
             }
         }
 
@@ -408,6 +552,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             RemnantOfTheAncientsMod.MaxPlayers = 0;
             RemnantDownedBossSystem.downedFrozen = true;
             potionType = ItemID.GreaterHealingPotion;
+            Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<Ice_escense>(), 10);
             Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemID.IceBlock, 50);
 
         }
@@ -419,7 +564,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenStafff>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<frozen_staff>(), 4, 999999999));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenMask>(), 7, 999999999));
-            npcLoot.Add(ItemDropRule.Common(ItemType<Sand_escense>(), 1, 5, 20));
+            npcLoot.Add(ItemDropRule.Common(ItemType<Ice_escense>(), 1, 5, 20));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.FrostCore, 5, 3));
             npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
             npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));

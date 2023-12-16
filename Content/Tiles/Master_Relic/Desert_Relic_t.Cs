@@ -75,7 +75,6 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic
                     break;
 
             }
-
             if (itemType > 0)
             {
 

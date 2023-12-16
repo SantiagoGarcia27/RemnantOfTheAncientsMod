@@ -79,6 +79,7 @@ Mods: {
 			}
 
 			ReaperTitle: Souls
+			Couldowns.CouldownBar: "{0}s"
 		}
 
 		IntroScreen: {
@@ -162,6 +163,7 @@ Mods: {
 			LegendaryTooltip: Legendary Drop
 			CompletistTooltip: Completist Item
 			NotConsumableTooltip: Not Consumable
+			Eternity: Eternity
 		}
 
 		CommonTooltip: {
@@ -518,6 +520,11 @@ Mods: {
 				DisplayName: Dako Pet
 				Description: ""
 			}
+
+			FrostBarrierCouldown: {
+				DisplayName: Frost Barrier Couldown
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.FrostBarrierCouldown.Description
+			}
 		}
 
 		Items: {
@@ -798,27 +805,19 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			Reforced_iron_chesplate: {
-				DisplayName: Reinforced Iron Breastplate
-				Tooltip:
-					'''
-					{$CommonItemTooltip.ReducesDamageTakenByPercent}
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
-					'''
+			Reinforced_iron_chesplate: {
+				DisplayName: Reinforced_iron_chesplate
+				Tooltip: ""
 			}
 
-			Reforced_Iron_Greaves: {
-				DisplayName: Reinforced Iron Greaves
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+			Reinforced_Iron_Greaves: {
+				DisplayName: Reinforced_ Iron_ Greaves
+				Tooltip: ""
 			}
 
-			Reforced_iron_Helmet: {
-				DisplayName: Reinforced Iron Helmet
-				Tooltip:
-					'''
-					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
-					'''
+			Reinforced_iron_Helmet: {
+				DisplayName: Reinforced_iron_ Helmet
+				Tooltip: ""
 			}
 
 			Tuxonite_chesplate: {
@@ -3235,6 +3234,85 @@ Mods: {
 				DisplayName: Infernal Infernal Tyrant relic
 				Tooltip: ""
 			}
+
+			Frost_Barrier: {
+				DisplayName: Frost Barrier
+				Tooltip: Press {0} to activate a frost shield for {1}s that reflect all hostile projectiles
+			}
+
+			DesertMedalion: {
+				DisplayName: Desert Medalion
+				Tooltip:
+					'''
+					Weapons fire unique projectiles based on the damage type they have
+					Summon weapons inflict burning sand
+					Some weapons are unable to receive this bonus
+					'''
+			}
+
+			FrostBarrier: {
+				DisplayName: Frost Barrier
+				Tooltip: Press {0} key to activate a Frost shield that repel all hostile projectiles for {1}s.
+			}
+
+			JungleKey: {
+				DisplayName: Jungle Key
+				Tooltip: ""
+			}
+
+			TyrantsMark: {
+				DisplayName: Tyrant's Mark
+				Tooltip:
+					'''
+					Hostile projectiles size decreased By {0}%
+					Hostile projectiles speed decreased By {1}%
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					'''
+			}
+
+			GuardiansShield: {
+				DisplayName: Guardian's Shield
+				Tooltip:
+					'''
+					Grants inmunity to [I:RemnantOfTheAncientsMod/DesertMedalion] burning sand
+					[I:RemnantOfTheAncientsMod/FrostBarrier] Press &0 key to activate a Frost shield that repel all hostile projectiles for &1s.
+					[I:RemnantOfTheAncientsMod/TyrantsMark] Hostile projectiles size decreased By {0}%
+					[I:RemnantOfTheAncientsMod/TyrantsMark] Hostile projectiles speed decreased By {1}%
+					[I:RemnantOfTheAncientsMod/DesertMedalion] Weapons fire unique projectiles based on the damage type they have
+					Some weapons are unable to receive this bonus
+					[I:RemnantOfTheAncientsMod/DesertMedalion] Summon weapons inflict burning sand
+					[I:RemnantOfTheAncientsMod/TyrantsMark] {$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					'''
+			}
+
+			NightEnchant: {
+				DisplayName: Night Enchantment
+				Tooltip:
+					'''
+					When night falls, you camouflage yourself in the shadows making enemies less likely to detect you,
+					and you can also press <&0> to perform night teleportation.
+					'''
+			}
+
+			ReinforcedIronEnchant: {
+				DisplayName: Reinforced Iron Enchantment
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.ReducesDamageTakenByPercent@1}
+					Summon a rolling ballista
+					'''
+			}
+
+			SandHeraldEnchant: {
+				DisplayName: Sand Herald Enchantment
+				Tooltip: ""
+			}
+
+			TuxoniteEnchant: {
+				DisplayName: Tuxonite Enchantment
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3442,6 +3520,7 @@ Mods: {
 			TrueSacredBobber.DisplayName: True Sacred Bobber
 			DakoPetProjectile.DisplayName: Dako Pet Projectile
 			FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
+			FrostBarrier.DisplayName: Frost Barrier
 		}
 
 		Tiles: {
@@ -3661,6 +3740,11 @@ Mods: {
 		}
 
 		ConfigServer.Headers.Performance: Lag Reducer Header
-		Keybinds.ReaperModeInterface.DisplayName: Reaper Mode Interface
+
+		Keybinds: {
+			ReaperModeInterface.DisplayName: Reaper Mode Interface
+			FrostBarrier.DisplayName: Frost Barrier
+			ToggNightTp.DisplayName: Togg Night Tp
+		}
 	}
 }

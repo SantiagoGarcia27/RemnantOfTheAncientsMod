@@ -3,16 +3,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.ItemDropRules;
-using static RemnantOfTheAncientsMod.Common.Drops.DropRules.RemnantConditionDropRules;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
-using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
-using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 

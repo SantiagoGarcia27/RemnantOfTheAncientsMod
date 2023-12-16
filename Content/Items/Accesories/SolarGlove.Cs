@@ -50,7 +50,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             player.GetAttackSpeed(DamageClass.Melee) += 0.14f;
             player.magmaStone = true;
             player.skyStoneEffects = true;
-            ModContent.GetInstance<RemnantPlayer>().sunFire = true;
+            ModContent.GetInstance<RemnantPlayer>().MeleeBuffInflict.Add(BuffID.Daybreak);
 
             /*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
             if (CalamityMod != null)

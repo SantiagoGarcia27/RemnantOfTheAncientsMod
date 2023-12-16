@@ -9,22 +9,13 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
 	[AutoloadEquip(EquipType.Head)]
-	public class Reforced_iron_Helmet : ModItem
+	public class Reinforced_iron_Helmet : ModItem
 	{
 		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Reinforced Iron Helmet");		       
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque en fer renforc�");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco de hierro reforzado");
-            //Tooltip.SetDefault(//Tooltip());
-
+		{	
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		//    public static string //Tooltip()
-		//    {
-		//        return LocalizationHelper.IncreasedDamageBy//Tooltip(5, DamageClass.Melee)
-		//+"\n"+ LocalizationHelper.IncreasedMovmentSpeed//Tooltip(-25);
-		//    }
+		
 		public int MeleeDamageBonus = 5;
         public int MovmentSpeedBonus = -25;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus,MovmentSpeedBonus);
@@ -44,14 +35,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == ModContent.ItemType<Reforced_iron_chesplate>() && legs.type == ModContent.ItemType<Reforced_Iron_Greaves>();
+			return body.type == ModContent.ItemType<Reinforced_iron_chesplate>() && legs.type == ModContent.ItemType<Reinforced_Iron_Greaves>();
 		}
 
 		public override void UpdateArmorSet(Player player)
-		{
-			//player.setBonus = " + 2 defense"
-				//+ "\n" + LocalizationHelper.IncreasedDamageBy//Tooltip(2, DamageClass.Generic)
-				//+ "\n" + LocalizationHelper.IncreasedMovmentSpeed//Tooltip(15);
+		{	
 			player.GetDamage(DamageClass.Generic) *= 1.02f;
 			player.statDefense += 2;
 			player.moveSpeed += 0.15f;

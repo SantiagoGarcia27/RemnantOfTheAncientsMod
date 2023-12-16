@@ -60,22 +60,28 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
                 val.ResetToType(0);
             }
         }
-        public override void HoldItem(Player player)
-        {
-           
-			for (int i = 0; i <= Range; i++)
-			{
-				int x = Player.tileTargetX + (i * player.direction);
-				int y = Player.tileTargetY;
 
-				if (!Main.tile[x, y].HasTile)
+
+
+		public override void HoldItem(Player player)
+		{
+			if (player.whoAmI == Main.myPlayer)
+			{
+				for (int i = 0; i <= Range; i++)
 				{
-					int d = Dust.NewDust(new Vector2(x, y)*16, 10, 10, DustID.WoodFurniture, 0, 0, 0, default, 1);
-					Main.dust[d].noGravity = true ;
+					int x = Player.tileTargetX + (i * player.direction);
+					int y = Player.tileTargetY;
+
+					if (!Main.tile[x, y].HasTile)
+					{
+						int d = Dust.NewDust(new Vector2(x, y) * 16, 10, 10, DustID.WoodFurniture, 0, 0, 0, default, 1);
+						Main.dust[d].noGravity = true;
+					}
 				}
 			}
-                base.HoldItem(player);
-        }
+			base.HoldItem(player);
+		}
+    
         public override void AddRecipes()
 		{
 			CreateRecipe()

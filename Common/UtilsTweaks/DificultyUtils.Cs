@@ -1,4 +1,5 @@
 using RemnantOfTheAncientsMod.World;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
@@ -11,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
         public static bool EternityMode = false;
         public static bool MasochistMode = false;
         public static bool ReaperMode = false;
-
+        public static bool LegendaryMode = false;
         public override void PostSetupContent()
         {
         }
@@ -36,6 +37,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
             }
 
             ReaperMode = DificultyUtils.ReaperMode;
+            LegendaryMode = Main.masterMode && Main.getGoodWorld;
         }
 
         [JITWhenModsEnabled("CalamityMod")]

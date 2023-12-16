@@ -29,9 +29,9 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 			//name.SetDefault("Table");
 			AddMapEntry(new Color(190, 124, 43), name);//13,88,130
 		}
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ItemType<AncientT>());
-		}
+		//public override void KillMultiTile(int i, int j, int frameX, int frameY)
+		//{
+		//	Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ItemType<AncientT>());
+		//}
 	}
 }

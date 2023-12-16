@@ -10,12 +10,11 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips;
 using RemnantOfTheAncientsMod.Content.Items.Tools;
-using CalamityMod.Items.Accessories;
-using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Common.Global.Items;
 using System.Collections.Generic;
 using System.Linq;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -1183,7 +1182,7 @@ namespace RemnantOfTheAncientsMod
                     recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 23);
                 }
                 if (recipe.TryGetResult(ItemID.CellPhone, out _))
-                { 
+                {
                     recipe.AddIngredient(ModContent.ItemType<PlayerStatViewer>(), 1);
                 }
 
@@ -1203,6 +1202,13 @@ namespace RemnantOfTheAncientsMod
                     {
                         recipe.RemoveTile(TileID.MythrilAnvil);
                         recipe.AddTile(TileID.Anvils);
+                    }
+                }
+                if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+                {
+                    if(recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"), out _))
+                    {
+                        recipe.AddIngredient(ModContent.ItemType<GuardiansShield>());
                     }
                 }
             }

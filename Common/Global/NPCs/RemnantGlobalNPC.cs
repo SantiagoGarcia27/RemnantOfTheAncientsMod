@@ -9,8 +9,9 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
 using CalamityMod.Buffs.StatBuffs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs
+namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
 	public class RemnantGlobalNPC : GlobalNPC
 	{
@@ -131,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 return false;
             }
             int num2 = 0;
-            //int num3 = 0;
+            int KeyId = 0;
             int num4 = 0;
             for (int i = 0; i < 40; i++)
             {
@@ -142,6 +143,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                     if (Main.chest[num].item[i].type == ItemID.GoldenKey)
                     {
                         num2 += Main.chest[num].item[i].stack;
+                        KeyId = ItemID.GoldenKey;
+                    }
+                    if (Main.chest[num].item[i].type == ModContent.ItemType<JungleKey>())
+                    {
+                        num2 += Main.chest[num].item[i].stack;
+                        KeyId = ModContent.ItemType<JungleKey>();
                     }
                     //else if (Main.chest[num].item[i].type == 3091)
                     //{
@@ -155,10 +162,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             if (num4 == 0 && num2 == 1)
             {
-                if (num2 != 1)
-                {
+                //if (num2[0] != 1)
+                //{
                     _ = 1;
-                }
+               // }
                 if (TileID.Sets.BasicChest[Main.tile[x, y].TileType])
                 {
                     if (Main.tile[x, y].TileFrameX % 36 != 0)
@@ -193,11 +200,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                     NetMessage.SendData(MessageID.ChestUpdates, -1, -1, null, number2, x, y, 0f, number);
                     NetMessage.SendTileSquare(-1, x, y, 3);
                 }
-                int npcId = NPCID.Mimic;
-                if (user.ZoneSnow)
-                {
-                    npcId = NPCID.IceMimic;
-                }
+                int npcId = GetMimicId(KeyId,user); 
                 int num8 = NPC.NewNPC(user.GetSource_TileInteraction(x, y), x * 16 + 16, y * 16 + 32, npcId);
                 Main.npc[num8].whoAmI = num8;
                 NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, num8);
@@ -205,6 +208,20 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             return false;
         }
+        public static int GetMimicId(int KeyId,Player user)
+        {
+            if(KeyId == ItemID.GoldenKey)
+            {
+                return user.ZoneSnow ? NPCID.IceMimic:NPCID.Mimic;
+            }
+            else if (KeyId == ModContent.ItemType<JungleKey>())
+            {
+                return NPCID.BigMimicJungle;
+            }
+            return NPCID.Mimic;
+        }
+
+
         public void GetItemForTreasureBag(int npcId)
         {
             List<IItemDropRule> rulesForNPCID = Main.ItemDropsDB.GetRulesForItemID(npcId);
@@ -240,7 +257,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			{
 				if((int)Main.rand.NextFloat(100) <= CritChance) 
 				{
-					npc.damage *= 2;
+                    modifiers.FinalDamage *= 2;                    
+					//npc.damage *= 2;
 				}
 			}
         }

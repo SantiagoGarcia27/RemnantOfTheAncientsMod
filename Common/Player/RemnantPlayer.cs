@@ -17,21 +17,19 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
-using System.Linq;
 using Terraria.Chat;
 using Terraria.Localization;
-using CalamityMod;
-using CalamityMod.Projectiles.Melee;
 using Terraria.UI;
-using RemnantOfTheAncientsMod.Content.NPCs;
-using ExampleMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
-using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using RemnantOfTheAncientsMod.Common;
+using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
+using CalamityMod;
 
 namespace RemnantOfTheAncientsMod
 {
 
-	public class RemnantPlayer : ModPlayer
+    public class RemnantPlayer : ModPlayer
 	{
 
 		#region Minions
@@ -53,10 +51,6 @@ namespace RemnantOfTheAncientsMod
 		public bool Marble_Erosion;
 		#endregion
 		public bool Hell_Fire;
-		public bool sunFire;
-		public bool hasInfernal_core;
-		public bool SandWeapons;
-		public bool MeleeKit;
 		public int healHurt;
 		public bool TortugaPet;
 		public bool TwitchPet;
@@ -75,12 +69,32 @@ namespace RemnantOfTheAncientsMod
 		public bool HealingDrone;
 		public bool InterceptionDrone;
 		public bool DesertHeraldSetBonus;
-		public bool BrainDogde;
+		public bool BrainDogde;	
+		public float EnemyProjectilesScaleBouns = 1;
+        public float EnemyProjectilesSpeedScaleBouns = 1;
+        public List<int> MinionsBuffInflict = new List<int> { };
+        public List<int> MeleeBuffInflict = new List<int> { };
+        public List<int> MageBuffInflict = new List<int> { };
+        public List<int> RangerBuffInflict = new List<int> { };
+        public List<int> TrowerBuffInflict = new List<int> { };
+        public List<int> AllClassBuffInflict = new List<int> { };
 
-		public override void ResetEffects()
+        #region Fargos
+        public bool IronBallistaEnchantment;
+        public bool FrostBarrier;
+        public static int FrostBarrierCounter;
+        public bool DesertMedalion;
+		
+		
+		public bool NightTp;
+		public static int NightTpCouldown { get; set; }
+		public static int NightTpCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
+        #endregion
+
+
+        public override void ResetEffects()
 		{
 			Burn_Sand = false;
-			sunFire = false;
             hBurn = false;
 			Hell_Fire = false;
 			Marble_Erosion = false;
@@ -96,10 +110,7 @@ namespace RemnantOfTheAncientsMod
 			SaplingTungstenMinion = false;
 			StardustMinion = false;
 			StardustDragonV2Minion = false;
-			TyrantMinion = false;
-			hasInfernal_core = false;
-			SandWeapons = false;
-			MeleeKit = false;
+			TyrantMinion = false;	
 			MoneyCollector = false;
 			SunflowerSentry = false;
 			tuxoniteStealth = false;
@@ -109,9 +120,19 @@ namespace RemnantOfTheAncientsMod
 			DesertHeraldSetBonus = false;
 			CanWormHole = false;
 			BrainDogde = false;
-
-			//tuxoniteStealthCounter = 1;
-		}
+            FrostBarrier = false;
+			DesertMedalion = false;
+			EnemyProjectilesScaleBouns = 1;
+			EnemyProjectilesSpeedScaleBouns = 1;
+			IronBallistaEnchantment = false;
+			NightTp = false;
+            if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
+            if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
+            if (MageBuffInflict.Count > 0) MageBuffInflict.Clear();
+            if (RangerBuffInflict.Count > 0) RangerBuffInflict.Clear();
+            if (TrowerBuffInflict.Count > 0) TrowerBuffInflict.Clear();
+            if (AllClassBuffInflict.Count > 0) AllClassBuffInflict.Clear();
+        }
 
 		public override void Load()
 		{
@@ -122,78 +143,49 @@ namespace RemnantOfTheAncientsMod
 		private void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
 		{
 			//TryGettingPatreonOrDevArmor(source, this);
+			Dictionary<int, List<int>> Suits = new Dictionary<int, List<int>>()
+			{
+				{ 0, new List<int>() { 666, 667, 668, 665 }},
+				{ 1, new List<int>() { 1554, 1555, 1556, 1586}},
+				{ 2, new List<int>()  { 1554, 1587, 1588, 1586 }},
+				{ 3, new List<int>() { 1557, 1558, 1559, 1585 }},
+				{ 4, new List<int>()  { 1560, 1561, 1562, 1584 }},
+				{ 5, new List<int>() { 1563, 1564, 1565, 3582 }},
+				{ 6, new List<int>() { 1566, 1567, 1568}},
+				{ 7, new List<int>() { 1580, 1581, 1582, 1583 }},
+				{ 8, new List<int>()  { 3226, 3227, 3228, 3288 }},
+				{ 9, new List<int>() { 3583, 3581, 3578, 3579 }},
+				{ 10, new List<int>() { 3585, 3586, 3587, 3588 }},
+				{ 11, new List<int>() { 3589, 3590, 3591, 3592 }},
+				{ 12, new List<int>() { 3368, 3921, 3922, 3923 }},
+				{ 13, new List<int>() { 3925, 3926, 3927, 3928 }},
+				{ 14, new List<int>() { 4732, 4733, 4734, 4730 }},
+				{ 15, new List<int>() { 4747, 4748, 4749, 4746 }},
+				{ 16, new List<int>() { 4751, 4752, 4753, 4750 }},
+				{ 17, new List<int>() { 4755, 4756, 4757, 4754 }},
+				{ 18, new List<int>() { ItemType<Sangar_Head>(), ItemType<Sangar_Body>(), ItemType<Sangar_Legs>() }},
+				{ 19, new List<int>() { ItemType<Ttim_Head>(), ItemType<Ttim_Body>(), ItemType<Ttim_Legs>() }}
+
+			};
+
+
 			if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : 20))
 			{
-				switch (Main.rand.Next(20))
+				int selection = Main.rand.Next(Suits.Count);
+
+
+				if (Suits.ContainsKey(selection))
 				{
-					case 0:
-						SpawnSuit(player, source, new List<int>() { 666, 667, 668, 665 });
-						break;
-					case 1:
-						SpawnSuit(player, source, new List<int>() { 1554, 1555, 1556, 1586 });
-						break;
-					case 2:
-						SpawnSuit(player, source, new List<int>() { 1554, 1587, 1588, 1586 });
-						break;
-					case 3:
-						SpawnSuit(player, source, new List<int>() { 1557, 1558, 1559, 1585 });
-						break;
-					case 4:
-						SpawnSuit(player, source, new List<int>() { 1560, 1561, 1562, 1584 });
-						break;
-					case 5:
-						SpawnSuit(player, source, new List<int>() { 1563, 1564, 1565, 3582 });
-						break;
-					case 6:
-                        SpawnSuit(player, source, new List<int>() { 1566, 1567, 1568});
-						break;
-					case 7:
-						SpawnSuit(player, source, new List<int>() { 1580, 1581, 1582, 1583 });
-						break;
-					case 8:
-						SpawnSuit(player, source, new List<int>() { 3226, 3227, 3228, 3288 });
-						break;
-					case 9:
-						SpawnSuit(player, source, new List<int>() { 3583, 3581, 3578, 3579 });
-						break;
-					case 10:
-						SpawnSuit(player, source, new List<int>() { 3585, 3586, 3587, 3588 });
-						break;
-					case 11:
-						SpawnSuit(player, source, new List<int>() { 3589, 3590, 3591, 3592 });
-						break;
-					case 12:
-						SpawnSuit(player, source, new List<int>() { 3368, 3921, 3922, 3923 });
-						break;
-					case 13:
-						SpawnSuit(player, source, new List<int>() { 3925, 3926, 3927, 3928 });
-						break;
-					case 14:
-						SpawnSuit(player, source, new List<int>() { 4732, 4733, 4734, 4730 });
-						break;
-					case 15:
-						SpawnSuit(player, source, new List<int>() { 4747, 4748, 4749, 4746 });
-						break;
-					case 16:
-                        SpawnSuit(player, source, new List<int>() { 4751, 4752, 4753, 4750 });
-                        break;
-					case 17:	
-						SpawnSuit(player, source, new List<int>() { 4755, 4756, 4757, 4754 });
-						break;
-					case 18:
-                        SpawnSuit(player, source, new List<int>() { ItemType<Sangar_Head>(), ItemType<Sangar_Body>(), ItemType<Sangar_Legs>() });
-                        break;
-					case 19:
-						SpawnSuit(player, source, new List<int>() { ItemType<Ttim_Head>(), ItemType<Ttim_Body>(), ItemType<Ttim_Legs>() });
-						break;
+					SpawnSuit(player, source, Suits[selection]);
+
 				}
 			}
 		}
 		public void SpawnSuit(Player player,IEntitySource source, List<int> suitParts) 
 		{ 
-			for(int a = 0; a < suitParts.Count; a++)
+			foreach(var suitPart in suitParts)
 			{
-				player.QuickSpawnItem(source, suitParts[a]);
+                player.QuickSpawnItem(source, suitPart);
             }
 		}
 
@@ -201,9 +193,7 @@ namespace RemnantOfTheAncientsMod
 		{
 			Burn_Sand = false;
 			Hell_Fire = false;
-			sunFire = false;
             hBurn = false;
-			MeleeKit = false;
 			MoneyCollector = false;
 			Marble_Erosion = false;
 
@@ -216,11 +206,6 @@ namespace RemnantOfTheAncientsMod
 					RemanntWorld.KillTombstom();
 				}
 			}
-
-			//for(int i = 0; i < ModifyAccsesories.FastFall.Count; i++) 
-			//{
-			//	Main.NewText(new Item(ModifyAccsesories.FastFall[i]).Name);
-			//}
 		}
 		public void checkInventory(Player player)
 		{
@@ -229,23 +214,13 @@ namespace RemnantOfTheAncientsMod
 
 		private int chanceTomb(float config)
 		{
-			switch (config)
-			{
-				case 0:
-					return 1;
-				case 1:
-					return 2;
-				case 2:
-					return 0;
-				default:
-					return 0;
-			}
+			if(config == 0 || config == 1) return (int)config++;
+			return 0;     
 		}
 		public override void UpdateBadLifeRegen()
 		{
 			if (Burn_Sand || Hell_Fire || hBurn)
 			{
-
 				if (Player.lifeRegen > 0) Player.lifeRegen = 0;
 				Player.lifeRegenTime = 0;
 				Player.lifeRegen -= 16;
@@ -253,13 +228,23 @@ namespace RemnantOfTheAncientsMod
 		}
 		public override void PostUpdate()
 		{
+			Player.opacityForAnimation = 1;
+
+            if (NightTp)
+			{
+                Player.opacityForAnimation = RemnantPlayer.NightTpCouldown == 0 ? 0.5f : 1;
+                if (NightTpCouldown > 0) 
+				{
+					NightTpCouldown--;
+                }
+			}
 			if (MoneyCollector)
 			{
 				MoneyColectorBuff.UpdateCoins(Player);
 			}
 			checkInventory(Player);
 
-			if (Utils1.IsItemOnPlayerInventory(ModContent.ItemType<EndlessWormHole>())) 
+			if (Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>())) 
 			{ 
 				WormHoleEffect(Player);
 			}
@@ -279,20 +264,16 @@ namespace RemnantOfTheAncientsMod
                 }
             }
             return base.FreeDodge(info);
-        }
-        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
-        {
-            base.ModifyHurt(ref modifiers);
-        }
+        } 
         public override void OnEnterWorld()
 		{
 			AddScrollBuff();
-			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod) && RemnantOfTheAncientsMod.CalamityMod != null) CalamityMessage();
+			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod)) CalamityMessage();
 		}
 		[JITWhenModsEnabled("CalamityMod")]
 		public void CalamityMessage()
 		{
-			if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod) && GetInstance<CalamityConfig>().RemoveReforgeRNG)
+			if (GetInstance<CalamityConfig>().RemoveReforgeRNG)
 			{
 				ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Configs.CalamityConfig.RemoveReforgeRNG.Label"))), Color.Red);
 			}
@@ -304,13 +285,12 @@ namespace RemnantOfTheAncientsMod
                 for (int k = 0; k < 255; k++)
                 {
                     if (Main.player[k].active && !Main.player[k].dead && k != Main.myPlayer && player.team == Main.player[k].team)
-                    {
-                        float mapFullscreenScale = Main.mapFullscreenScale;
+                    {     
                         Vector2 mouse = new Vector2(PlayerInput.MouseX, PlayerInput.MouseY);
-                        float num2 = DistanceUtils.ToTilePosition(Main.player[k].position.X + Main.player[k].width / 2) * mapFullscreenScale;
-                        float num7 = DistanceUtils.ToTilePosition(Main.player[k].position.Y + Main.player[k].gfxOffY + Main.player[k].height / 2) * mapFullscreenScale;
-                        num2 +=  -Main.mapFullscreenPos.X * mapFullscreenScale + Main.screenWidth / 2 - 6f;
-                        float num8 = num7 + (0f - Main.mapFullscreenPos.Y * mapFullscreenScale + Main.screenHeight / 2 - 4f - mapFullscreenScale / 5f * 2f);
+                        float num2 = DistanceUtils.ToTilePosition(Main.player[k].position.X + Main.player[k].width / 2) * Main.mapFullscreenScale;
+                        float num7 = DistanceUtils.ToTilePosition(Main.player[k].position.Y + Main.player[k].gfxOffY + Main.player[k].height / 2) * Main.mapFullscreenScale;
+                        num2 +=  -Main.mapFullscreenPos.X * Main.mapFullscreenScale + Main.screenWidth / 2 - 6f;
+                        float num8 = num7 + (0f - Main.mapFullscreenPos.Y * Main.mapFullscreenScale + Main.screenHeight / 2 - 4f - Main.mapFullscreenScale / 5f * 2f);
                         float num3 = num2 + 4f - 14f * Main.UIScale;
                         float num4 = num8 + 2f - 14f * Main.UIScale;
                         float num5 = num3 + 28f * Main.UIScale;
@@ -349,54 +329,86 @@ namespace RemnantOfTheAncientsMod
 	
 		public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
 		{
-			if (Burn_Sand && Main.rand.NextBool(4) && drawInfo.shadow == 0f)
+			if (drawInfo.shadow == 0f && Main.rand.NextBool(4))
 			{
-				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<QuemaduraA>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
-				Main.dust[dust].noGravity = true;
-				Main.dust[dust].velocity *= 1.8f;
-				Main.dust[dust].velocity.Y -= 0.5f;
-				drawInfo.DustCache.Add(dust);
+				if (Burn_Sand)
+				{
+					SpawnDust(DustType<QuemaduraA>());
+				}
+				if (Hell_Fire)
+				{
+					SpawnDust(DustType<Hell_Fire_P>());
+				}
+				if (hBurn)
+				{
+					SpawnDust(DustType<HollyBurn_P>());
+				}
 			}
-			if (Hell_Fire && Main.rand.NextBool(4) && drawInfo.shadow == 0f)
-			{
 
-				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<Hell_Fire_P>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
-				Main.dust[dust].noGravity = true;
-				Main.dust[dust].velocity *= 1.8f;
-				Main.dust[dust].velocity.Y -= 0.5f;
-				drawInfo.DustCache.Add(dust);
-
-			}
-			if (hBurn && Main.rand.NextBool(4) && drawInfo.shadow == 0f)
+			void SpawnDust(int id)
 			{
-				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, DustType<HollyBurn_P>(), Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
-				Main.dust[dust].noGravity = true;
-				Main.dust[dust].velocity *= 1.8f;
-				Main.dust[dust].velocity.Y -= 0.5f;
-				drawInfo.DustCache.Add(dust);
-			}
+                int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, id, Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].velocity *= 1.8f;
+                Main.dust[dust].velocity.Y -= 0.5f;
+                drawInfo.DustCache.Add(dust);
+            }
 		}
-      
+		
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//item.GetGlobalItem<FchangesItem>().ReaperSize(item);
 			if (hit.DamageType == DamageClass.Melee)// item.noMelee && !item.noUseGraphic)
 			{
-				if (hasInfernal_core) target.AddBuff(BuffID.OnFire3, 300);
-				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
-				if (MeleeKit) target.AddBuff(BuffID.Ichor, 300);
-				if(sunFire) target.AddBuff(BuffID.Daybreak, 300);
+                foreach (int b in MeleeBuffInflict)
+                {
+                    target.AddBuff(b, 300);
+                }      
             }
 		}
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) //This is the same as the one in OnHitNPC, but for melee projectiles.
 		{
-			//  ReaperGlobalItem.ReaperSize(p);
-			if (proj.CountsAsClass(DamageClass.Melee) || proj.CountsAsClass(DamageClass.SummonMeleeSpeed)|| proj.CountsAsClass(DamageClass.Throwing))
+			if (proj.CountsAsClass(DamageClass.Melee) || proj.CountsAsClass(DamageClass.SummonMeleeSpeed))
 			{
-				if (hasInfernal_core) target.AddBuff(BuffType<Hell_Fire>(), 300);
-				if (SandWeapons) target.AddBuff(BuffType<Burning_Sand>(), 300);
+				foreach(int b in MeleeBuffInflict)
+				{
+					target.AddBuff(b, 300);
+                }
 			}
-		}
+            if (proj.CountsAsClass(DamageClass.Magic))
+            {
+                foreach (int b in MageBuffInflict)
+                {
+                    target.AddBuff(b, 300);
+                }
+            }
+            if (proj.CountsAsClass(DamageClass.Ranged))
+            {
+                foreach (int b in RangerBuffInflict)
+                {
+                    target.AddBuff(b, 300);
+                }
+            }
+            if (proj.CountsAsClass(DamageClass.Summon))
+            {
+                foreach (int b in MinionsBuffInflict)
+                {
+                    target.AddBuff(b, 300);
+                }
+            }
+            if (proj.CountsAsClass(DamageClass.Throwing))
+            {
+                foreach (int b in TrowerBuffInflict)
+                {
+                    target.AddBuff(b, 300);
+                }
+            }
+            foreach (int b in AllClassBuffInflict)
+            {
+                target.AddBuff(b, 300);
+            }
+        }
 		public void UndeadInmunity()
 		{
 			Player.buffImmune[BuffID.Blackout] = true;
@@ -439,36 +451,27 @@ namespace RemnantOfTheAncientsMod
 		public void ScrollInmunity(int buff)
 		{
 			AddScrollBuff();
-
-            for (int i = 0; i < ScrollsBuff.Count; i++)
+			foreach (int Scrollbuff in ScrollsBuff)
 			{
-				Player.buffImmune[ScrollsBuff[i]] = true;
-				//Player.ClearBuff(ScrollsBuff[i]);
+				Player.buffImmune[Scrollbuff] = true;
 			}
-			
 			Player.buffImmune[buff] = false;
-            //Player.AddBuff(buff, Utils1.FormatTime(1, 0, 0, 0));
         }
-		public bool PlayerHaveScroll()
+        public bool PlayerHaveScroll()
 		{
 			AddScrollBuff();
-
-            for (int i = 0; i < ScrollsBuff.Count; i++)
-			{
-				int n = ScrollsBuff[i];
-				Player Player = Main.player[Main.myPlayer];
-				bool playerHasBuff = Player.HasBuff(n);
-
-                if (playerHasBuff) return true;
+			foreach (int Scrollbuff in ScrollsBuff)
+			{	
+				return Player.HasBuff(Scrollbuff);
 			}
 			return false;
 		}
 		public int SearchCurrenScrollEffect()
 		{
-            for (int i = 0; i < ScrollsBuff.Count; i++)
-            {
-                Player Player = Main.player[Main.myPlayer];
-                if (Player.HasBuff(ScrollsBuff[i])) return ScrollsBuff[i];
+			foreach(int Scrollbuff in ScrollsBuff)
+			{        
+                if (Player.HasBuff(Scrollbuff))
+					return Scrollbuff;
             }
             return -1;
         }
@@ -508,7 +511,7 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.Frostburn] = true;
 			Player.buffImmune[BuffID.Chilled] = true;
 		}
-		public void FirenInmune()
+		public void FireInmune()
 		{
 			Player.buffImmune[BuffID.OnFire] = true;
 			Player.buffImmune[BuffID.Frostburn] = true;
@@ -516,13 +519,14 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.Burning] = true;
 			Player.buffImmune[BuffID.ShadowFlame] = true;
 		}
-		public void SpawnMinionItem(Player player)
+
+        public void SpawnMinionItem(Player player)
 		{
            if(InterceptionDrone) SpawnHelper(player.Center,Vector2.Zero,ProjectileType<InterceptionDrone>(), 1, 0,Main.myPlayer);
            if (HealingDrone) SpawnHelper(player.Center,new Vector2(7f,2f), ProjectileType<InterceptionDrone>(), 1, 0,Main.myPlayer);
 		   
         }
-		public void SpawnHelper(Vector2 center, Vector2 velocity, int type, int damage, int knockback, int owner, float Ai0, float Ai1)
+		public void SpawnHelper(Vector2 center, Vector2 velocity, int type, int damage, int knockback, int owner, float Ai0 = 0, float Ai1 = 0)
 		{
 			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[type] < 1 && Player.whoAmI == Main.myPlayer)
 			{
@@ -530,15 +534,6 @@ namespace RemnantOfTheAncientsMod
 				projectile.originalDamage = damage;
 			}
 		}
-		public void SpawnHelper(Vector2 center, Vector2 velocity, int type, int damage, int knockback, int owner)
-		{
-			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[type] < 1 && Player.whoAmI == Main.myPlayer)
-			{
-				var projectile = Projectile.NewProjectileDirect(Player.GetSource_FromAI(), center, velocity, type, damage, knockback, owner);
-				projectile.originalDamage = damage;
-			}
-        }
-
 		public void AddMinion(int proj, int damage, float knockback)
 		{
 			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[proj] < 1 && Player.whoAmI == Main.myPlayer)
@@ -601,6 +596,37 @@ namespace RemnantOfTheAncientsMod
 
 				if (ReaperUI.IsVisible()) ReaperUI.HideMyUI();             
 				else ReaperUI.ShowMyUI();	
+            }
+			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+			{
+				if (FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0)
+				{
+					Projectile.NewProjectile(Projectile.GetSource_None(), Player.position, Vector2.Zero, ModContent.ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);
+				}
+				if (FargosKeybindSystem.ToggNightTp.JustPressed)
+				{
+					if (Player.GetModPlayer<RemnantPlayer>().NightTp)
+					{
+						if (RemnantPlayer.NightTpCouldown == 0)
+						{
+							int x = Player.tileTargetX * 16;
+							int y = Player.tileTargetY * 16;
+							Vector2 pos = new Vector2(x, y);
+							for (int i = 0; i < 55; i++)
+							{
+								Dust.NewDustDirect(Player.position * 16, 10, 10, DustID.Corruption);
+							}
+
+							Player.position = pos;
+
+							for (int i = 0; i < 55; i++)
+							{
+								Dust.NewDustDirect(pos, 10, 10, DustID.Corruption);
+							}
+							RemnantPlayer.NightTpCouldown = RemnantPlayer.NightTpCouldownMax;
+						}
+					}
+				}
             }
         }
     }

@@ -42,35 +42,36 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         Vector2 SubVelocity = new Vector2(0, 0);
         public override void AI()
 		{
-            Player player = Main.player[Main.myPlayer];
-           
-            if (Projectile.velocity.X != 0 || Projectile.velocity.X != 0)
+            Player player = Main.player[Projectile.owner];
+            if (player.whoAmI == Main.myPlayer)
             {
-                SubVelocity = Projectile.velocity;
-            }
-            Projectile.velocity = Vector2.Zero;
-
-            if (++speed >= 10)
-			{
-                if (rotation++ >= 360)
+                if (Projectile.velocity.X != 0 || Projectile.velocity.X != 0)
                 {
-                    rotation = 0;
+                    SubVelocity = Projectile.velocity;
                 }
-                speed = 0;
-			}
-            Charge++;
-            //Main.NewText(Charge);
-            if (Charge >= 180)
-            {
-                int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.position, SubVelocity *2, (int)Projectile.ai[0], (int)(player.HeldItem.damage * 4f), player.HeldItem.knockBack, player.whoAmI);
-                Main.projectile[p].Size *= 2f;
-                Main.projectile[p].scale = 3f;
-                Main.projectile[p].stepSpeed = 10f;
-                // Main.NewText("Fuego");
+                Projectile.velocity = Vector2.Zero;
 
-                Projectile.Kill();
+                if (++speed >= 10)
+                {
+                    if (rotation++ >= 360)
+                    {
+                        rotation = 0;
+                    }
+                    speed = 0;
+                }
+                Charge++;
+                //Main.NewText(Charge);
+                if (Charge >= 180)
+                {
+                    int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.position, SubVelocity * 2, (int)Projectile.ai[0], (int)(player.HeldItem.damage * 4f), player.HeldItem.knockBack, player.whoAmI);
+                    Main.projectile[p].Size *= 2f;
+                    Main.projectile[p].scale = 3f;
+                    Main.projectile[p].stepSpeed = 10f;
+                    // Main.NewText("Fuego");
+
+                    Projectile.Kill();
+                }
             }
-           
 
                 base.AI();
         }
@@ -79,26 +80,29 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
         }
         public override bool PreDraw(ref Color lightColor)
-		{
-			
-			Player player = Main.player[Main.myPlayer];
-            var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_5");
-            var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1");
-            Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
-            Vector2 origin2 = new Vector2(texture2.Width() * 0.5f, texture2.Height() * 0.5f);//0.5
+        {
 
-            if (Projectile.ai[0] <= 170)
-			{
-                Color BaseColor = GetColor();
+            Player player = Main.player[Projectile.owner];
+            if (player.whoAmI == Main.myPlayer)
+            {
+                var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_5");
+                var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1");
+                Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+                Vector2 origin2 = new Vector2(texture2.Width() * 0.5f, texture2.Height() * 0.5f);//0.5
 
-                Color color = new Color(BaseColor.R, BaseColor.G, BaseColor.B, 20) * fade;
-				Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, color, rotation, origin, 1.2f, SpriteEffects.None, 0f);
+                if (Projectile.ai[0] <= 170)
+                {
+                    Color BaseColor = GetColor();
 
-                Main.spriteBatch.Draw((Texture2D)texture2, player.Center - Main.screenPosition, null, color, -rotation, origin2, 1.2f, SpriteEffects.None, 0f);
+                    Color color = new Color(BaseColor.R, BaseColor.G, BaseColor.B, 20) * fade;
+                    Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, color, rotation, origin, 1.2f, SpriteEffects.None, 0f);
+
+                    Main.spriteBatch.Draw((Texture2D)texture2, player.Center - Main.screenPosition, null, color, -rotation, origin2, 1.2f, SpriteEffects.None, 0f);
+                }
+                return true;
             }
-
-			return true;
-		}
+            return false;
+        }
         public Color GetColor()
         {
             switch (Projectile.ai[1])

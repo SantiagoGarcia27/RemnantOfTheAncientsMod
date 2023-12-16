@@ -57,31 +57,33 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 
             if (player.altFunctionUse == 2)
             {
-                Vector2 vector2 = velocity;
-
-                //if (Charge++ >= 240) // after 120 ticks (== 2 seconds) in inventory, reset the attack pattern
-                //    Charge = 0;
-                float attackSpeedBonus = player.GetAttackSpeed(DamageClass.Generic);
-                Item.useTime = (int)(65 / attackSpeedBonus);
-                Item.useAnimation = (int)(65 / attackSpeedBonus);
-                Item.mana = 30;
-
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<BloodRayHeldProj>()] <= 0)
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    for (int proj = 0; proj <= Main.maxProjectiles; proj++)
+                    Vector2 vector2 = velocity;
+
+                    //if (Charge++ >= 240) // after 120 ticks (== 2 seconds) in inventory, reset the attack pattern
+                    //    Charge = 0;
+                    float attackSpeedBonus = player.GetAttackSpeed(DamageClass.Generic);
+                    Item.useTime = (int)(65 / attackSpeedBonus);
+                    Item.useAnimation = (int)(65 / attackSpeedBonus);
+                    Item.mana = 30;
+
+                    if (player.ownedProjectileCounts[ModContent.ProjectileType<BloodRayHeldProj>()] <= 0)
                     {
-                        if (Main.projectile[proj].type == ModContent.ProjectileType<BloodRayHeldProj>() && Main.projectile[proj].owner == player.whoAmI)
+                        for (int proj = 0; proj <= Main.maxProjectiles; proj++)
                         {
-                            Main.projectile[proj].Kill();
+                            if (Main.projectile[proj].type == ModContent.ProjectileType<BloodRayHeldProj>() && Main.projectile[proj].owner == player.whoAmI)
+                            {
+                                Main.projectile[proj].Kill();
+                            }
                         }
                     }
-                }
 
-                if (player.ownedProjectileCounts[ModContent.ProjectileType<BloodRayHeldProj>()] <= 0)
-                {
-                    Projectile.NewProjectile(source, player.position, Vector2.Zero, ModContent.ProjectileType<BloodRayHeldProj>(), 0, 0, Main.myPlayer, velocity.X, velocity.Y, attackSpeedBonus); 
+                    if (player.ownedProjectileCounts[ModContent.ProjectileType<BloodRayHeldProj>()] <= 0)
+                    {
+                        Projectile.NewProjectile(source, player.position, Vector2.Zero, ModContent.ProjectileType<BloodRayHeldProj>(), 0, 0, Main.myPlayer, velocity.X, velocity.Y, attackSpeedBonus);
+                    }
                 }
-
                 return false;
             }
             else

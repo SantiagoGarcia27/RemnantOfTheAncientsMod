@@ -13,12 +13,10 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
 using RemnantOfTheAncientsMod.Common.Systems;
-using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using System.IO;
-using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using System.Collections.Generic;
@@ -27,10 +25,9 @@ using Terraria.GameContent.Bestiary;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Terraria.DataStructures;
 using FargowiltasSouls.Content.Projectiles;
-using FargowiltasSouls.Core.Globals;
-using FargowiltasSouls.Core.Systems;
 using FargowiltasSouls;
 using Terraria.Audio;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -326,6 +323,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             }
 
         }
+        [JITWhenModsEnabled("FargowiltasSouls")]
         public void EthernityIa(Player player)
         {
             if (DificultyUtils.MasochistMode || DificultyUtils.EternityMode)
@@ -662,7 +660,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             npcLoot.Add(ItemDropRule.Common(ItemType<Sand_escense>(), 1,5,20));
             npcLoot.Add(ItemDropRule.Common(ItemID.SandBlock, 1,1,50));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.Amber, 6, 1));
-            npcLoot.Add(ItemDropRule.ByCondition(new IsHardModeRule(), ItemID.AncientBattleArmorMaterial, 5, 1,1, Utils1.ReaperDropScaler(1)));
+            npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsHardModeRule(), ItemID.AncientBattleArmorMaterial, 5, 1,1, Utils1.ReaperDropScaler(1)));
 
             npcLoot.Add(ItemDropRule.Common(ItemType<DesertAMask>(), 7));
             npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));

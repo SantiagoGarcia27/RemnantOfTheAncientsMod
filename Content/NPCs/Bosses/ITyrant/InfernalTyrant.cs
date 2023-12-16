@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
@@ -9,7 +8,6 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
-using RemnantOfTheAncientsMod.World;
 using System;
 using System.IO;
 using Terraria;
@@ -26,7 +24,7 @@ using CalamityMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using CalamityMod.NPCs.Signus;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -66,6 +64,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
         }
    
         public bool head;
@@ -132,20 +131,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
         private int attackCounter;
         private int attackCounterMaxValue = 800;
+        private int DashCounter;
+        private int DashCounterMaxValue = 1000;
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(attackCounter);
+            writer.Write(DashCounter);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             attackCounter = reader.ReadInt32();
+            DashCounter = reader.ReadInt32();
         }
         private int MaxSegmentCount(int MinSegmentLength) 
         {
             int scale = 0;
-            if (CalamityUtils.IsDificultyActive("death")) scale = 20;
-            else if (CalamityUtils.IsDificultyActive("death")) scale = 10;
+            if (DificultyUtils.MasochistMode) scale = 30;
+            else if (DificultyUtils.EternityMode) scale = 25;
+            else if (DificultyUtils.InfernumMode) scale = 25;
+            else if (DificultyUtils.Death) scale = 20;
+            else if (DificultyUtils.Revengeance) scale = 10;
             else if (Main.masterMode) scale = 5;
             else if (Main.expertMode) scale = 2;
             return MinSegmentLength + scale;
@@ -155,10 +161,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
            // NPC.active = false;
           
             GenericVariables gv = new GenericVariables();
-            if (attackCounter > 0)
-            {
-                attackCounter--;
-            }
+           
             if (!GenericVariables.SizeChanged[0])
             {
                 try
@@ -176,19 +179,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
 
             Player target = Main.player[NPC.target];
-            /*if (Main.netMode != NetmodeID.MultiplayerClient)
-            {*/
-            
+          
+            UpdateCounters(target);
             DespawnSafeCheck(target, this);
-           // }
             DoAttacks(target);
 
-            if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
-            {
-                attackCounterMaxValue = !Main.expertMode ? 700 : 800;
-                attackCounter = attackCounterMaxValue;
-                NPC.netUpdate = true;
-            }
+            
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
@@ -223,10 +219,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         }
                     }
                 }
-
+            }
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+                DashIa(target, this.MoveSpeed);
             }
 
-           
             LifeSpeed(this);
         }
         public override void OnSpawn(IEntitySource source)
@@ -274,6 +272,37 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     break;
             }
         }
+        public void UpdateCounters(Player target)
+        {
+
+            if (Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
+            {
+                if (attackCounter <= 0)
+                {
+                    attackCounterMaxValue = !Main.expertMode ? 700 : 800;
+                    attackCounter = attackCounterMaxValue;
+                    NPC.netUpdate = true;
+                }
+                if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+                {
+                    if (DashCounter <= 0)
+                    {
+                        DashCounter = !DificultyUtils.MasochistMode ? 700 : 800;
+                        DashCounter = DashCounterMaxValue;
+                        NPC.netUpdate = true;
+                    }
+                }
+            }
+            if (attackCounter > 0)
+            {
+                attackCounter--;
+            }
+            if (DashCounter > 0)
+            {
+                DashCounter--;
+            }
+        }
+
         public void FindTarget()
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead)
@@ -339,6 +368,41 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(),spawnPosition, Vector2.Zero, type, damage, 0f, Main.myPlayer);
             Main.projectile[projectile].timeLeft = 1500;
         }
+        public void DashIa(Player target,float speed)
+        {
+            if (DificultyUtils.MasochistMode || DificultyUtils.EternityMode)
+            {
+                if (DashCounter >= 550 && DashCounter < 600)
+                {
+                    NPC.velocity = new Vector2(1,-10 * (speed * 0.1f));
+                }
+                else if(DashCounter >= 450 && DashCounter < 550)
+                {
+                    NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
+                }
+                if (DashCounter >= 350 && DashCounter < 450)
+                {
+                    NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
+                }
+                else if (DashCounter >= 250 && DashCounter < 350)
+                {
+                    NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
+                }
+
+                if (DificultyUtils.MasochistMode)
+                {
+                    if (DashCounter >= 200 && DashCounter < 250)
+                    {
+                        NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
+                    }
+                    else if (DashCounter >= 150 && DashCounter < 200)
+                    {
+                        NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
+                    }
+                }
+            }
+        }
+
         public void SummonIa(int Npc) => NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, Npc);
         float moveSpeed = 30f;
         public void LifeSpeed(Worm worm)
@@ -485,6 +549,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
         }
 
         public override void SetDefaults()
@@ -610,6 +675,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
         }
 
         public override void SetDefaults()

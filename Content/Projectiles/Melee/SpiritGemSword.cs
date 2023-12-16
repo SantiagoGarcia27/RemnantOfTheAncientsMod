@@ -1,10 +1,12 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -39,6 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         {
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
+            //GetAlpha(Color.Wheat);
         }
          public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -87,6 +90,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         private static readonly Color GeodeColorTwo = GetRGeodeColor(2);
         public override Color? GetAlpha(Color lightColor)
         {
+
             switch (Projectile.ai[1])
             {
                 case 0:
@@ -109,6 +113,20 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                   return Color.Black;
                     
             }
+        }
+        public override void PostDraw(Color lightColor)
+        { 
+            Color color = (GetAlpha(Color.Black) != null) ? (Color)GetAlpha(Color.Black) : Color.White;
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+            Main.spriteBatch.Draw(texture, Projectile.position, color);
+            //base.PostDraw(lightColor);
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Color color = (GetAlpha(Color.Black) != null) ? (Color)GetAlpha(Color.Black) : Color.White;
+            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
+            Main.spriteBatch.Draw(texture, Projectile.position, color);
+            return true;
         }
         public static Color GetRGeodeColor(int x)
         {

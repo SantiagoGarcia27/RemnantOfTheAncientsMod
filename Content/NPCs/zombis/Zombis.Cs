@@ -12,6 +12,7 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using static RemnantOfTheAncientsMod.Content.NPCs.zombis.Shadowzombie;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {
@@ -354,9 +355,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnSpawn(IEntitySource source)
         {
-            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<Reforced_iron_Helmet>()].defense;
-            int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<Reforced_iron_chesplate>()].defense;
-            int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<Reforced_Iron_Greaves>()].defense;
+            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<Reinforced_iron_Helmet>()].defense;
+            int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<Reinforced_iron_chesplate>()].defense;
+            int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<Reinforced_Iron_Greaves>()].defense;
             int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
             NPC.defense += Defense;
         }

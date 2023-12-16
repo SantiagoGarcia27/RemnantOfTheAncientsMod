@@ -398,7 +398,7 @@ public class ReaperPlayer : ModPlayer
             if (SoulsUpgrades[8] && SoulsUpgradesActive[8] == 1) Player.GetModPlayer<RemnantPlayer>().FrostInmune();
             if (SoulsUpgrades[9] && SoulsUpgradesActive[9] == 1) Player.statLifeMax2 += ReaperSoulBoost ? 30 : 15;
             if (SoulsUpgrades[13] && SoulsUpgradesActive[13] == 1) Player.pickSpeed -= ReaperSoulBoost ? 0.7f : 0.35f;
-            if (SoulsUpgrades[10] && SoulsUpgradesActive[10] == 1) Player.GetModPlayer<RemnantPlayer>().FirenInmune();
+            if (SoulsUpgrades[10] && SoulsUpgradesActive[10] == 1) Player.GetModPlayer<RemnantPlayer>().FireInmune();
             if (SoulsUpgrades[12])
             {
                 float JumpForce = SoulsUpgradesActive[12];

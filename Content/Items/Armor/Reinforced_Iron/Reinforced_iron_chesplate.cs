@@ -9,21 +9,13 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
 	[AutoloadEquip(EquipType.Body)]
-	public class Reforced_iron_chesplate : ModItem
+	public class Reinforced_iron_chesplate : ModItem
 	{
 		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Reinforced Iron Breastplate");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cuirasse en fer renforcé");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Corasa de hierro reforzada");
-			//Tooltip.SetDefault(//Tooltip());
+		{		
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageReduction//Tooltip(10)
-        //        //+ "\n" + LocalizationHelper.IncreasedMovmentSpeed//Tooltip(-25);
-        //}
+        
         public int DamageReduction = 8;
         public int MovmentSpeedBonus = -25;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageReduction, MovmentSpeedBonus);

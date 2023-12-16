@@ -40,44 +40,48 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         public int Charge = 0;
         public override void AI()
 		{
-            Player player = Main.player[Main.myPlayer];
+            
             Vector2 SubVelocity = new Vector2(Projectile.ai[0], Projectile.ai[1]);
-
-            if (++speed >= 10)
+            Player player = Main.player[Main.myPlayer];
+            if (player.whoAmI == Main.myPlayer)
 			{
-                if (rotation++ >= 360)
-                {
-                    rotation = 0;
-                }
-                speed = 0;
-			}
-            Charge++;
-            //Main.NewText(Charge);
-            //if (Charge >= 180 / Projectile.ai[2])
-            //{
-            //    Projectile.Kill();
-            //}
-           
+				if (++speed >= 10)
+				{
+					if (rotation++ >= 360)
+					{
+						rotation = 0;
+					}
+					speed = 0;
+				}
+				Charge++;
+				//Main.NewText(Charge);
+				//if (Charge >= 180 / Projectile.ai[2])
+				//{
+				//    Projectile.Kill();
+				//}
 
+			}
                 base.AI();
         }
         public override bool PreDraw(ref Color lightColor)
 		{
 			Color BaseColor = GetColor();
-			Player player = Main.player[Main.myPlayer];
-            var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_3");
-            var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1");
-            Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
-            Vector2 origin2 = new Vector2(texture2.Width() * 0.5f, texture2.Height() * 0.5f);//0.5
-
-            if (Projectile.ai[0] <= 170)
+            Player player = Main.player[Main.myPlayer];
+			if (player.whoAmI == Main.myPlayer)
 			{
-				Color color = new Color(BaseColor.R, BaseColor.G, BaseColor.B, 20) * fade;
-				Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, color, rotation, origin, 1.2f, SpriteEffects.None, 0f);
+				var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_3");
+				var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1");
+				Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+				Vector2 origin2 = new Vector2(texture2.Width() * 0.5f, texture2.Height() * 0.5f);//0.5
 
-                Main.spriteBatch.Draw((Texture2D)texture2, player.Center - Main.screenPosition, null, color, -rotation, origin2, 1.2f, SpriteEffects.None, 0f);
-            }
+				if (Projectile.ai[0] <= 170)
+				{
+					Color color = new Color(BaseColor.R, BaseColor.G, BaseColor.B, 20) * fade;
+					Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, color, rotation, origin, 1.2f, SpriteEffects.None, 0f);
 
+					Main.spriteBatch.Draw((Texture2D)texture2, player.Center - Main.screenPosition, null, color, -rotation, origin2, 1.2f, SpriteEffects.None, 0f);
+				}
+			}
 			return true;
 		}
 		public Color GetColor()

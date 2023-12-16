@@ -16,7 +16,6 @@ namespace RemnantOfTheAncientsMod.World
 		public static bool SpawnTimeWithard;
 		public static bool TimeDilocated;
 		public static int TimeWizardTimeAcelerationCouldown;
-		public bool SandWeapons;
 
 		public override void OnWorldLoad()
 		{

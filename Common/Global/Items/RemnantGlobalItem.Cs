@@ -14,6 +14,7 @@ using Terraria.ModLoader.Config;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -259,7 +260,33 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (item.type == ItemID.PearlwoodBow)
+            if (player.GetModPlayer<RemnantPlayer>().DesertMedalion)
+            {
+                if (item.DamageType == DamageClass.Magic)
+                {
+                   int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity * 2, ProjectileID.SandnadoFriendly, damage / 2, knockback, player.whoAmI);
+                   Main.projectile[p].timeLeft = 50;
+                }
+                if (item.DamageType == DamageClass.Melee)
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
+                }
+                if (item.DamageType == DamageClass.Ranged)
+                {
+                    int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileID.RollingCactusSpike, damage / 2, knockback, player.whoAmI);
+                    Main.projectile[p].friendly = true;
+                }
+                if (item.DamageType == DamageClass.Throwing)
+				{
+                    int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
+                    Main.projectile[p].friendly = true;
+                    Main.projectile[p].hostile = false;
+                }
+            }
+
+
+
+            if (item.type == ItemID.PearlwoodBow)
 			{
 				return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
 			}
@@ -274,21 +301,24 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 			if (item.type == ItemID.BookofSkulls)
 			{
-				float PlayerManaDiscounMultpier = player.statManaMax2 / 20;
-				int Shootproj = ModContent.ProjectileType<BookOfSkullHeldProj>();
-				if (player.altFunctionUse == 2)
+				if (player.whoAmI == Main.myPlayer)
 				{
-					item.mana = player.statManaMax2;
-					if (player.ownedProjectileCounts[Shootproj] <= 0)
+					float PlayerManaDiscounMultpier = player.statManaMax2 / 20;
+					int Shootproj = ModContent.ProjectileType<BookOfSkullHeldProj>();
+					if (player.altFunctionUse == 2)
 					{
-						Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, PlayerManaDiscounMultpier);
+						item.mana = player.statManaMax2;
+						if (player.ownedProjectileCounts[Shootproj] <= 0)
+						{
+							Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, PlayerManaDiscounMultpier);
+						}
+						return false;
 					}
-					return false;
-				}
-				else
-				{
-					item.mana = 15;
-					return true;
+					else
+					{
+						item.mana = 15;
+						return true;
+					}
 				}
 			}
 			if (item.type == ItemID.FrostStaff)
@@ -448,7 +478,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 					if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0)
 					{
-						Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, ColorBase);
+						if (player.whoAmI == Main.myPlayer)
+						{
+							Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, ColorBase);
+						}
 					}
 					return false;
 				}
@@ -491,6 +524,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 
 			}
+
+
+			
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 		

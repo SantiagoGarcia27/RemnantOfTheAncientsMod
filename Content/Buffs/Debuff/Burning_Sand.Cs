@@ -1,11 +1,11 @@
-using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 {
-	public class Burning_Sand : ModBuff
+    public class Burning_Sand : ModBuff
 	{
 		public override void SetStaticDefaults()
 		{

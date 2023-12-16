@@ -1,11 +1,14 @@
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
@@ -92,6 +95,25 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     player.maxFallSpeed *= 2f;
                 }
             }
+            if(RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+                {
+                    int ProjectileSizeBonus = 50;
+                    int ProjectileSpeedBonus = 10;
+                    int MovmentSpeedBonusBonus = 10;
+
+                    player.GetModPlayer<RemnantPlayer>().EnemyProjectilesScaleBouns -= ProjectileSizeBonus / 100;
+                    player.GetModPlayer<RemnantPlayer>().EnemyProjectilesSpeedScaleBouns -= ProjectileSpeedBonus / 100f;
+                    player.moveSpeed *= 1f + MovmentSpeedBonusBonus / 100;
+
+                    player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(ModContent.BuffType<Burning_Sand>());
+                    player.buffImmune[ModContent.BuffType<Burning_Sand>()] = true;
+                    player.GetModPlayer<RemnantPlayer>().DesertMedalion = true;
+
+                    player.GetModPlayer<RemnantPlayer>().FrostBarrier = true;
+                }
+            }
             base.UpdateAccessory(item, player, hideVisual);
         }
 
@@ -122,8 +144,29 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     var text = tip.Text.Replace("25", "45");
                     tip.Text = text;
-
                 }
+            }
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+                if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+                {
+                    int ProjectileSizeBonus = 50;
+                    int ProjectileSpeedBonus = 10;
+                    int MovmentSpeedBonusBonus = 10;
+                    int DurationSeconds = 10;
+
+
+                    var t = tooltips;
+                    var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip15" && tip.Mod == "Terraria");
+                    if (tip != null)
+                    {
+                        var text = tip.Text.Insert(tip.Text.LastIndexOf(tip.Text), Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Items.GuardiansShield.Tooltip", ProjectileSizeBonus, ProjectileSpeedBonus, MovmentSpeedBonusBonus) + "\n"); //tip.Text.Replace("25", "45");
+                        tip.Text = text;
+                    }
+                    Utils1.FindAndReplaceTooltip(tooltips, "&0", Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier));
+                    Utils1.FindAndReplaceTooltip(tooltips, "&1", DurationSeconds.ToString());
+                }
+
             }
            
 

@@ -8,20 +8,13 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public class Reforced_Iron_Greaves : ModItem
+	public class Reinforced_Iron_Greaves : ModItem
 	{
 		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Reinforced Iron Greaves");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Perneras de hierro reforzado");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jambières en fer renforcées");
-            //Tooltip.SetDefault(//Tooltip());
+		{	
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedMovmentSpeed//Tooltip(-25);
-        //}
+       
         public int MovmentSpeedBonus = -25;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus);
         public override void SetDefaults()

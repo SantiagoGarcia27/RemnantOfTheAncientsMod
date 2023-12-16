@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
 {
@@ -42,8 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Melee) += 0.10f;
-            RemnantPlayer player1 = player.GetModPlayer<RemnantPlayer>();
-            player1.hasInfernal_core = true;
+            player.GetModPlayer<RemnantPlayer>().MeleeBuffInflict.Add(ModContent.BuffType<Hell_Fire>());
             player.moveSpeed += MoveSpeedBonus/100f;
             player.buffImmune[BuffID.OnFire] = true;
         }

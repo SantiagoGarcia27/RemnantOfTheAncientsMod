@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod
         }
         public static void MeleeInfusion(Player player)
         {
-            new RemnantPlayer().MeleeKit = true;
+            player.GetModPlayer<RemnantPlayer>().MeleeBuffInflict.Add(BuffID.Ichor);  
             if (player.inventory[player.selectedItem].CountsAsClass(DamageClass.Melee)) player.statDefense -= 4;
             player.GetCritChance(DamageClass.Melee) += 2f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.1f;

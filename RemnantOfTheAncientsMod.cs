@@ -21,6 +21,7 @@ namespace RemnantOfTheAncientsMod
         public static Mod Census;
         public static Mod RemnantOfTheAncients;
         public static Mod FargosSoulMod;
+        public static Mod FargowiltasMod;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static int MaxRarity = GetMaxRarity();
@@ -48,6 +49,7 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("InfernumMode", out InfernumMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncients);
             ModLoader.TryGetMod("FargowiltasSouls", out FargosSoulMod);
+            ModLoader.TryGetMod("Fargowiltas", out FargowiltasMod);
             
 
             if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
