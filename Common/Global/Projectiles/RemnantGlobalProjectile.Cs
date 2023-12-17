@@ -119,6 +119,23 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
                 }
             }
+
+            if (projectile.minion || projectile.CountsAsClass(DamageClass.Summon))
+            {
+                if (projectile.owner == Main.myPlayer)
+                {
+                    int critChance = 100 - player.GetModPlayer<RemnantPlayer>().MinionCritChance;
+                    if(critChance <= 0) critChance = 1;
+                    if (critChance > 0 && critChance < 100)
+                    {    
+                        if (Main.rand.NextBool(critChance))
+                        {     
+                            hit.Crit = true;
+                            damageDone *= 2;        
+                        }
+                    }
+                }
+            }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
         public override void OnSpawn(Projectile projectile, IEntitySource source)

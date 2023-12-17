@@ -3326,12 +3326,21 @@ Mods: {
 
 			SandHeraldEnchant: {
 				DisplayName: Sand Herald Enchantment
-				Tooltip: ""
+				Tooltip:
+					'''
+					Aparece una piedra de cactus en tu cursor que daña a los enemigos
+					Las armas aplican el efecto de electrificado	
+					'''
 			}
 
 			TuxoniteEnchant: {
 				DisplayName: Tuxonite Enchantment
-				Tooltip: ""
+				Tooltip: Aumenta el critico en {0}% de forma aleatoria
+			}
+
+			DaylightEnchant: {
+				// DisplayName: Daylight Enchant
+				// Tooltip: ""
 			}
 		}
 
@@ -3541,6 +3550,7 @@ Mods: {
 			DakoPetProjectile.DisplayName: Dako
 			FrozenHommingIceBlock.DisplayName: Bloque de Hielo
 			FrostBarrier.DisplayName: Barrera Hélida
+			// FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
 		}
 
 		Tiles: {

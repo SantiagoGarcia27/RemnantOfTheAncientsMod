@@ -2,15 +2,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
 {
-    public class SunFlowerMinion : ModProjectile
+    public class FloatingSunFlowerMinion : ModProjectile
     {  
         public override void SetStaticDefaults()
         {
@@ -25,8 +26,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         {        
             Projectile.width = 30;
             Projectile.height = 60;
-            Projectile.sentry = true;
-            Projectile.minionSlots = 1;
+            Projectile.sentry = false;
+            Projectile.minionSlots = 0;
             Projectile.penetrate = -1;
             Projectile.alpha = 100;
             Projectile.manualDirectionChange = true;
@@ -43,25 +44,28 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             return true;
         }
         public int RangeMax = 20 * 16;
-        public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
+        public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
         public int Heal = 5;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
             CheckActive(player);
-            Projectile.velocity = new Vector2(0, 7f);
-            if(HealTimmer == 0)
+            Projectile.Center = player.Center + new Vector2(0, -4) * 16;
+
+            if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
             {
-                HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
+                AnimateTexture();
+            }
+
+            if (HealTimmer == 0)
+            {
+                HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
             }
             else
             {
                 HealTimmer--;
             }
-            if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
-            {
-                AnimateTexture();
-            }
+
             for (int p = 0; p < Main.maxPlayers; p++)
             {
                 bool playerAvalible = Main.player[p].active && !Main.player[p].dead;
@@ -73,7 +77,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
                     if (HealTimmer == 1)
                     {
                         Main.player[p].HealEffect(Heal);
-                        Main.player[p].statLife += Heal;        
+                        Main.player[p].statLife += Heal;
                         SpawnParticles();
                     }
                 }
@@ -101,7 +105,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         }
         public void CheckActive(Player player)
         {    
-            if (player.HasBuff(BuffType<SunflowerMinionBuff>()))
+            if (player.GetModPlayer<RemnantPlayer>().DaylightEnchantment)
             {
                 Projectile.timeLeft = 2; 
             }
@@ -118,7 +122,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             }
             return true;
         }
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.immune[Projectile.owner] = 2;
         }

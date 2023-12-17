@@ -125,7 +125,7 @@ namespace RemnantOfTheAncientsMod
         private static void Mirrors()
         {
             Recipe.Create(ItemID.MagicMirror)
-               .AddRecipeGroup("IronBar", 5)
+               .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                .AddIngredient(ItemID.Glass, 3)
                .AddIngredient(ItemID.FallenStar, 3)
                .AddIngredient(ItemID.RecallPotion, 5)
@@ -164,7 +164,7 @@ namespace RemnantOfTheAncientsMod
         private static void HardmodeRangerWeapon()
         {
             Recipe.Create(ItemID.Flamethrower)
-            .AddRecipeGroup("IronBar", 10)
+            .AddRecipeGroup(RecipeGroupID.IronBar, 10)
             .AddIngredient(ItemID.IllegalGunParts)
             .AddIngredient(ItemID.SoulofNight, 30)
             .AddTile(TileID.MythrilAnvil)
@@ -181,13 +181,13 @@ namespace RemnantOfTheAncientsMod
         private static void PreHardmodeMeleeWeapons()
         {
             Recipe.Create(ItemID.WoodenBoomerang)
-                .AddRecipeGroup("IronBar", 2)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 2)
                 .AddIngredient(ItemID.Wood, 10)
                 .AddTile(TileID.WorkBenches)
                 .Register();
 
             Recipe.Create(ItemID.Spear)
-                .AddRecipeGroup("IronBar", 2)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 2)
                 .AddRecipeGroup("GoldBar", 1)
                 .AddTile(TileID.Anvils)
                 .Register();
@@ -207,7 +207,7 @@ namespace RemnantOfTheAncientsMod
                 .Register();
 
             Recipe.Create(ItemID.Mace)
-               .AddRecipeGroup("IronBar", 10)
+               .AddRecipeGroup(RecipeGroupID.IronBar, 10)
                .AddIngredient(ItemID.Chain, 1)
                .AddTile(TileID.Anvils)
                .Register();
@@ -275,13 +275,13 @@ namespace RemnantOfTheAncientsMod
         {
 
             Recipe.Create(ItemID.Shuriken, 50)
-               .AddRecipeGroup("IronBar")
+               .AddRecipeGroup(RecipeGroupID.IronBar)
                .AddTile(TileID.Anvils)
                .Register();
 
 
             Recipe.Create(ItemID.ThrowingKnife, 50)
-               .AddRecipeGroup("IronBar")
+               .AddRecipeGroup(RecipeGroupID.IronBar)
                .AddTile(TileID.Anvils)
                .Register();
 
@@ -520,7 +520,7 @@ namespace RemnantOfTheAncientsMod
         {
             Recipe.Create(ItemID.BoneWelder)
                 .AddIngredient(ItemID.Bone, 20)
-                .AddRecipeGroup("IronBar", 4)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 4)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -568,7 +568,7 @@ namespace RemnantOfTheAncientsMod
               .Register();
 
             Recipe.Create(ItemID.WeatherRadio)
-                .AddRecipeGroup("IronBar", 5)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                 .AddIngredient(ItemID.WeatherVane)
                 .AddIngredient(ItemID.Wire,6)
                 .AddTile(TileID.TinkerersWorkbench)
@@ -584,14 +584,14 @@ namespace RemnantOfTheAncientsMod
                .Register();
 
             Recipe.Create(ItemID.Stopwatch)
-               .AddRecipeGroup("IronBar", 5)
+               .AddRecipeGroup(RecipeGroupID.IronBar, 5)
                .AddIngredient(ItemID.Timer5Second, 1)
                .AddIngredient(ItemID.Wire, 5)
                .AddTile(TileID.TinkerersWorkbench)
                .Register();
 
             Recipe.Create(ItemID.DPSMeter)
-             .AddRecipeGroup("IronBar", 3)
+             .AddRecipeGroup(RecipeGroupID.IronBar, 3)
              .AddIngredient(ItemID.Wire, 20)
              .AddTile(TileID.TinkerersWorkbench)
              .Register();
@@ -605,7 +605,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
 
             Recipe.Create(ItemID.TallyCounter)
-             .AddRecipeGroup("IronBar", 5)
+             .AddRecipeGroup(RecipeGroupID.IronBar, 5)
              .AddIngredient(ItemID.Bone,10)
              .AddIngredient(ItemID.Wire, 6)
              .AddTile(TileID.TinkerersWorkbench)
@@ -623,7 +623,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
 
             Recipe.Create(ItemID.LifeformAnalyzer)
-                .AddRecipeGroup("IronBar", 3)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 3)
                 .AddIngredient(ItemID.Wire, 20)
                 .AddIngredient(ItemID.Gel, 2)
                 .AddIngredient(ItemID.Feather, 2)
@@ -632,14 +632,14 @@ namespace RemnantOfTheAncientsMod
                 .Register();
 
             Recipe.Create(ItemID.MetalDetector)
-                .AddRecipeGroup("IronBar", 3)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 3)
                 .AddRecipeGroup("GoldBar", 3)
                 .AddIngredient(ItemID.Wire, 20)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
 
             Recipe.Create(ItemID.DepthMeter)
-                .AddRecipeGroup("IronBar", 6)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 6)
                 .AddIngredient(ItemID.Wire, 20)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
@@ -666,7 +666,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
 
             Recipe.Create(ItemID.DivingHelmet)
-                .AddRecipeGroup("IronBar", 10)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 10)
                 .AddIngredient(ItemID.Glass, 3)
                 .AddIngredient(ItemID.SharkFin, 3)
                 .AddTile(TileID.Anvils)
@@ -690,7 +690,7 @@ namespace RemnantOfTheAncientsMod
 
             Recipe.Create(ItemID.AncientChisel)
               .AddIngredient(ItemID.SandBlock, 15)
-              .AddRecipeGroup("IronBar", 10)
+              .AddRecipeGroup(RecipeGroupID.IronBar, 10)
               .AddIngredient(ItemID.Wood, 15)
               .AddTile(TileID.Anvils)
               .Register();
@@ -699,17 +699,17 @@ namespace RemnantOfTheAncientsMod
         private static void SurfaceAccesories()
         {
             Recipe.Create(ItemID.Shackle)
-               .AddRecipeGroup("IronBar", 2)
+               .AddRecipeGroup(RecipeGroupID.IronBar, 2)
                .AddTile(TileID.Anvils)
                .Register();
 
             Recipe.Create(ItemID.Aglet)
-               .AddRecipeGroup("IronBar", 2)
+               .AddRecipeGroup(RecipeGroupID.IronBar, 2)
                .AddTile(TileID.Anvils)
                .Register();
 
             Recipe.Create(ItemID.Radar)
-                .AddRecipeGroup("IronBar", 3)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 3)
                 .AddIngredient(ItemID.Wire, 20)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();

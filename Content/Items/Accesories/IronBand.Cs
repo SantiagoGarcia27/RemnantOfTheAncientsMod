@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddRecipeGroup("IronBar", 2)
+			.AddRecipeGroup(RecipeGroupID.IronBar, 2)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Desert;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
@@ -26,15 +27,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 			Item.value = Item.buyPrice(0, 0, 2, 72);  
 			Item.rare = 3;
 			Item.accessory = true;
-			Item.defense = 1;
 		}
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.endurance += 0.02f;
-
 			player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(BuffID.Electrified);
-			
-		}
+            player.GetModPlayer<RemnantPlayer>().AllClassBuffInflict.Add(BuffID.Electrified);
+			player.GetModPlayer<RemnantPlayer>().SpawnProjectileOnMouse(ProjectileID.RollingCactus);
+        }
 
 		public override void AddRecipes()
 		{

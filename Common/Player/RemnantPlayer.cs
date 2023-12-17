@@ -25,6 +25,7 @@ using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
 using CalamityMod;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -49,21 +50,23 @@ namespace RemnantOfTheAncientsMod
 		public bool Burn_Sand;
 		public bool hBurn;
 		public bool Marble_Erosion;
-		#endregion
-		public bool Hell_Fire;
+        #endregion
+
+        #region pets
+        public bool TortugaPet;
+        public bool TwitchPet;
+        public bool YtPet;
+        #endregion
+        public bool Hell_Fire;
 		public int healHurt;
-		public bool TortugaPet;
-		public bool TwitchPet;
-		public bool YtPet;
-		public bool ModPlayer = true;
+	
 		public bool anyBossIsAlive;
 		public bool MoneyCollector;
         public List<int> ScrollsBuff = new List<int>();
 		public static int DummyMode = 0;
-		public bool CouwldownHolySaber;
-		public static bool tuxoniteStealth;
-		public static int tuxoniteStealthDuration = 0;
-		public static float tuxoniteStealthCounter = 0;
+		
+		
+
 		public static bool DaylightArmorSetBonus;
 		public static bool CanWormHole;
 		public bool HealingDrone;
@@ -72,14 +75,34 @@ namespace RemnantOfTheAncientsMod
 		public bool BrainDogde;	
 		public float EnemyProjectilesScaleBouns = 1;
         public float EnemyProjectilesSpeedScaleBouns = 1;
+
+        #region tuxonite
+        public static bool tuxoniteStealth;
+        public static int tuxoniteStealthDuration = 0;
+        public static float tuxoniteStealthCounter = 0;
+
+        public static bool tuxoniteEnchantCrit;
+        public static int tuxoniteEnchantCritDuration = 0;
+        public static float tuxoniteEnchantCritCounter = 0;
+        #endregion
+
+
+
         public List<int> MinionsBuffInflict = new List<int> { };
         public List<int> MeleeBuffInflict = new List<int> { };
         public List<int> MageBuffInflict = new List<int> { };
         public List<int> RangerBuffInflict = new List<int> { };
         public List<int> TrowerBuffInflict = new List<int> { };
         public List<int> AllClassBuffInflict = new List<int> { };
+		public int MinionCritChance = 0;
+
+        #region Couldowns
+        public bool CouwldownHolySaber;
+        #endregion
 
         #region Fargos
+        public bool DaylightEnchantment;
+
         public bool IronBallistaEnchantment;
         public bool FrostBarrier;
         public static int FrostBarrierCounter;
@@ -114,6 +137,7 @@ namespace RemnantOfTheAncientsMod
 			MoneyCollector = false;
 			SunflowerSentry = false;
 			tuxoniteStealth = false;
+			tuxoniteEnchantCrit = false;
 			DaylightArmorSetBonus = false;
 			HealingDrone = false;
 			InterceptionDrone = false;
@@ -126,6 +150,8 @@ namespace RemnantOfTheAncientsMod
 			EnemyProjectilesSpeedScaleBouns = 1;
 			IronBallistaEnchantment = false;
 			NightTp = false;
+			MinionCritChance = 0;
+			DaylightEnchantment = false;
             if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
             if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
             if (MageBuffInflict.Count > 0) MageBuffInflict.Clear();
@@ -168,11 +194,9 @@ namespace RemnantOfTheAncientsMod
 
 			};
 
-
-			if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : 20))
+			if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : DificultyUtils.ReaperMode ? 2:20) )
 			{
 				int selection = Main.rand.Next(Suits.Count);
-
 
 				if (Suits.ContainsKey(selection))
 				{
@@ -584,6 +608,21 @@ namespace RemnantOfTheAncientsMod
                 }
                 lastChest = player.chest;
             }
+        }
+		static Projectile proj;
+		public void SpawnProjectileOnMouse(int id)
+		{
+            Vector2 MousePosition = new Vector2(Player.tileTargetX * 16, (Player.tileTargetY - 1) * 16);
+            int CountOfProj = Player.ownedProjectileCounts[id];
+
+            if (CountOfProj <= 0)
+            {
+                proj = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ProjectileID.RollingCactus, 10, 0, Player.whoAmI);
+                proj.friendly = true;
+                proj.hostile = false;
+                proj.tileCollide = false;
+            }
+            proj.position = MousePosition;
         }
 	}
     public class RemnantKeybindPlayer : ModPlayer

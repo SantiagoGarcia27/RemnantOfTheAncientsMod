@@ -43,8 +43,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         {
             return true;
         }
-        public int RangeMax = 35;
+        public int RangeMax = 35 * 16;
         public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
+        public int Heal = 30;
+        public int DefenseBonus = 15;
+        public float DamageBonus = 1.05f;
+        public float DamageReductionBonus = 0.05f;
         public override void AI()
         {
             Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width *1f, TextureAssets.Projectile[Projectile.type].Value.Height /3.1f);
@@ -63,36 +67,21 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             {
                 AnimateTexture();
             }
+            for (int p = 0; p < Main.maxPlayers; p++)
+            {
+                bool playerAvalible = Main.player[p].active && !Main.player[p].dead;
+                bool playerOnRange = Projectile.WithinRange(Main.player[p].Center, RangeMax);
 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                for (int p = 0; p < RemnantOfTheAncientsMod.MaxPlayers; p++)
+                if (playerAvalible && playerOnRange)
                 {
-                    if (Projectile.Distance(Main.player[p].Center) <= RangeMax * 16)
-                    {
-                        Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
-                        Main.player[p].statDefense += 15;
-                        Main.player[p].GetDamage(DamageClass.Generic) *= 1.1f;
-                        Main.player[p].endurance += 0.05f;
-                        if (HealTimmer == 1)
-                        {
-                            Main.player[p].HealEffect(30);
-                            SpawnParticles();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (Projectile.Distance(player.Center) <= RangeMax *16)
-                {
-                    player.AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
-                    player.statDefense += 15;
-                    player.GetDamage(DamageClass.Generic) *= 1.1f;
-                    player.endurance += 0.05f;
+                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (HealTimmer == 1)
                     {
-                        player.HealEffect(30);
+                        Main.player[p].HealEffect(Heal);
+                        Main.player[p].statLife += Heal;
+                        Main.player[p].statDefense += DefenseBonus;
+                        Main.player[p].GetDamage(DamageClass.Generic) *= DamageBonus;
+                        Main.player[p].endurance += DamageReductionBonus;
                         SpawnParticles();
                     }
                 }

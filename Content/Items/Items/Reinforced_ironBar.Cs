@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 			.Register();
 
             CreateRecipe()
-            .AddRecipeGroup("IronBar", 2)
+            .AddRecipeGroup(RecipeGroupID.IronBar, 2)
             .AddTile(TileID.Furnaces)
             .Register();
         }

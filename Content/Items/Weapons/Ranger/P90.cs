@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         {
             CreateRecipe()
             .AddIngredient(ItemID.MechanicalWheelPiece, 1)
-            .AddRecipeGroup("IronBar", 20)
+            .AddRecipeGroup(RecipeGroupID.IronBar, 20)
             .AddIngredient(ItemID.SoulofMight, 5)
             .AddIngredient(ItemID.HallowedBar, 10)
             .AddTile(TileID.MythrilAnvil)

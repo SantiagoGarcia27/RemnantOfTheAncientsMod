@@ -3306,11 +3306,20 @@ Mods: {
 
 			SandHeraldEnchant: {
 				DisplayName: Sand Herald Enchantment
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summon a friendly cactus boulder on you mouse that hurt the enemies
+					Weapons inflict Electrified
+					'''
 			}
 
 			TuxoniteEnchant: {
 				DisplayName: Tuxonite Enchantment
+				Tooltip: Increases critical chance by {0}% randomly
+			}
+
+			DaylightEnchant: {
+				DisplayName: Daylight Enchant
 				Tooltip: ""
 			}
 		}
@@ -3521,6 +3530,7 @@ Mods: {
 			DakoPetProjectile.DisplayName: Dako Pet Projectile
 			FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
 			FrostBarrier.DisplayName: Frost Barrier
+			FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
 		}
 
 		Tiles: {

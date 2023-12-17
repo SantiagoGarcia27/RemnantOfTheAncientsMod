@@ -85,7 +85,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddRecipeGroup("Wood", 100)
+			.AddRecipeGroup(RecipeGroupID.Wood, 100)
 			.AddIngredient(ItemID.Torch, 10)
 			.AddTile(TileID.WorkBenches)
 			.Register();
