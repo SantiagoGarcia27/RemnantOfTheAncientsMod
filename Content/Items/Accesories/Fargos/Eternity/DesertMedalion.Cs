@@ -66,9 +66,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(ModContent.BuffType<Burning_Sand>());
-            player.buffImmune[ModContent.BuffType<Burning_Sand>()] = true;
-            player.GetModPlayer<RemnantPlayer>().DesertMedalion = true;
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
         }
         //public override void ModifyTooltips(List<TooltipLine> tooltips)
         //{

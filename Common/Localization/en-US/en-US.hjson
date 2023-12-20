@@ -191,6 +191,24 @@ Mods: {
 			IncreasedFallSpeed: Increases fall acceleration
 		}
 
+		Toggler: {
+			ForceOfRemantsHeader: "[i:RemnantOfTheAncientsMod/ForceOfRemants] Force Of Remnants"
+			NightEnchantTeleportConfig: "[i:RemnantOfTheAncientsMod/NightEnchant] Shadow Teleport"
+			DesertHeraldEnchantmentCactusConfig: "[i:RemnantOfTheAncientsMod/SandHeraldEnchant] Cactus Cursor"
+			ReinforcedIronEnchantmentBallistaConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Ballista Minion"
+			ReinforcedIronEnchantmentDamageReductionPlusSlowConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Heavy Armor"
+			DaylightEnchantmentSunflowerConfig: "[i:RemnantOfTheAncientsMod/DaylightEnchant] Sunflower Turret"
+			TuxoniteEnchantmentCritBonusConfig: "[i:RemnantOfTheAncientsMod/TuxoniteEnchant] Crit Time"
+			GuardiansShieldHeader: "[i:RemnantOfTheAncientsMod/GuardiansShield] Guardian´s Shield"
+			DesertMedalionExtraProjectileConfig: "[i:RemnantOfTheAncientsMod/DesertMedalion] Desert Projectiles"
+			FrostBarrierEffectConfig: "[i:RemnantOfTheAncientsMod/FrostBarrier] Frost Barrier"
+			TyrantMarkEnemyProjectileSizeConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles size decreased"
+			TyrantMarkEnemyProjectileSpeedConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles speed decreased"
+			SoulOfDivinityHeader: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Soul Of Divinity"
+			DivineAuraConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] DivineAura"
+			InmortalityConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Immortality"
+		}
+
 		Buffs: {
 			CentryBuff: {
 				DisplayName: Comander Potion
@@ -3320,7 +3338,29 @@ Mods: {
 
 			DaylightEnchant: {
 				DisplayName: Daylight Enchant
-				Tooltip: ""
+				Tooltip:
+					'''
+					Durning the day player spawn a floating sunflower turret,
+					durning the night mana cost reduced by 5%
+					'''
+			}
+
+			ForceOfRemants: {
+				DisplayName: Force Of Remants
+				Tooltip:
+					'''
+					[I:RemnantOfTheAncientsMod/NightEnchant] Grants teleport and stealth during  the night
+					[I:RemnantOfTheAncientsMod/SandHeraldEnchant] A cactus boulder appear on your cursor and the attacks inflict electrified
+					[I:RemnantOfTheAncientsMod/ReinforcedIronEnchant] {$CommonItemTooltip.ReducesDamageTakenByPercent@1} but {$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					[I:RemnantOfTheAncientsMod/DaylightEnchant] Summon a floating support sunflower during the day and decreased mana cost during the night
+					[I:RemnantOfTheAncientsMod/TuxoniteEnchant] Increase the critical chance temporarily by {2}% randomly
+					'A shard of a strange land'
+					'''
+			}
+
+			SoulOfDivinity: {
+				DisplayName: Soul Of Divinity
+				Tooltip: After a long journey you have completely reclaimed your divinity
 			}
 		}
 
@@ -3531,6 +3571,7 @@ Mods: {
 			FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
 			FrostBarrier.DisplayName: Frost Barrier
 			FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
+			GodZone.DisplayName: God Zone
 		}
 
 		Tiles: {

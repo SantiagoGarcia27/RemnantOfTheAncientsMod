@@ -2,8 +2,8 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
-using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -97,21 +97,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if(RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"))
                 {
-                    int ProjectileSizeBonus = 50;
-                    int ProjectileSpeedBonus = 10;
-                    int MovmentSpeedBonusBonus = 10;
-
-                    player.GetModPlayer<RemnantPlayer>().EnemyProjectilesScaleBouns -= ProjectileSizeBonus / 100;
-                    player.GetModPlayer<RemnantPlayer>().EnemyProjectilesSpeedScaleBouns -= ProjectileSpeedBonus / 100f;
-                    player.moveSpeed *= 1f + MovmentSpeedBonusBonus / 100;
-
-                    player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(ModContent.BuffType<Burning_Sand>());
-                    player.buffImmune[ModContent.BuffType<Burning_Sand>()] = true;
-                    player.GetModPlayer<RemnantPlayer>().DesertMedalion = true;
-
-                    player.GetModPlayer<RemnantPlayer>().FrostBarrier = true;
+                    ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
+                }
+                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"))
+                {
+                    ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
+                }
+                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+                {
+                    ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
+                    ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
                 }
             }
             base.UpdateAccessory(item, player, hideVisual);

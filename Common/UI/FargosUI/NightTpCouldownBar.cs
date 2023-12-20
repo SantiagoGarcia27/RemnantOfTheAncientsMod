@@ -12,6 +12,7 @@ using RemnantOfTheAncientsMod.World;
 namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 {
     // This custom UI will show whenever the player is holding the ExampleCustomResourceWeapon item and will display the player's custom resource amounts that are tracked in ExampleResourcePlayer
+    [ExtendsFromMod("FargowiltasSouls")]
     internal class NightTpCouldownBar : UIState
 	{
 		// For this bar we'll be using a frame texture and then a gradient inside bar, as it's one of the more simpler approaches while still looking decent.
@@ -53,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 
 		public override void Draw(SpriteBatch spriteBatch) {
 			// This prevents drawing unless we are using an ExampleCustomResourceWeapon
-			if (!Main.LocalPlayer.GetModPlayer<RemnantPlayer>().NightTp || RemnantPlayer.NightTpCouldown == 0)
+			if (!Main.LocalPlayer.GetModPlayer<RemnantFargosSoulsPlayer>().NightTp || RemnantFargosSoulsPlayer.NightTpCouldown == 0)
 				return;
 
 			base.Draw(spriteBatch);
@@ -65,7 +66,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 
 			//var modPlayer = Main.LocalPlayer.GetModPlayer<ExampleResourcePlayer>();
 			// Calculate quotient
-			float quotient = (float)RemnantPlayer.NightTpCouldown / RemnantPlayer.NightTpCouldownMax; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
+			float quotient = (float)RemnantFargosSoulsPlayer.NightTpCouldown / RemnantFargosSoulsPlayer.NightTpCouldownMax; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
 			quotient = Utils.Clamp(quotient, 0f, 1f); // Clamping it to 0-1f so it doesn't go over that.
 
 			// Here we get the screen dimensions of the barFrame element, then tweak the resulting rectangle to arrive at a rectangle within the barFrame texture that we will draw the gradient. These values were measured in a drawing program.
@@ -87,18 +88,16 @@ namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 		}
 
 		public override void Update(GameTime gameTime) {
-            if (!Main.LocalPlayer.GetModPlayer<RemnantPlayer>().NightTp)
+            if (!Main.LocalPlayer.GetModPlayer<RemnantFargosSoulsPlayer>().NightTp)
                 return;
-
-			var modPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
-			// Setting the text per tick to update and show our resource values.
-			text.SetText(NightCouldownUISystem.Text.Format(RemnantPlayer.NightTpCouldown/60,"s"));
+			text.SetText(NightCouldownUISystem.Text.Format(RemnantFargosSoulsPlayer.NightTpCouldown/60,"s"));
 			base.Update(gameTime);
 		}
 	}
 
-	// This class will only be autoloaded/registered if we're not loading on a server
-	[Autoload(Side = ModSide.Client)]
+    // This class will only be autoloaded/registered if we're not loading on a server
+    [ExtendsFromMod("FargowiltasSouls")]
+    [Autoload(Side = ModSide.Client)]
 	internal class NightCouldownUISystem : ModSystem
 	{
 		private UserInterface BarUserInterface;

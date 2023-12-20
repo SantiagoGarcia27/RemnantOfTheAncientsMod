@@ -395,7 +395,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 owner.ClearBuff(BuffType<IronBallistaBuff>());
                 return false;
             }
-            if (owner.HasBuff(BuffType<IronBallistaBuff>()) || owner.GetModPlayer<RemnantPlayer>().IronBallistaEnchantment)
+            if (owner.HasBuff(BuffType<IronBallistaBuff>()) || owner.GetModPlayer<RemnantFargosSoulsPlayer>().IronBallistaEnchantment)
             {
                 Projectile.timeLeft = 4;
             }

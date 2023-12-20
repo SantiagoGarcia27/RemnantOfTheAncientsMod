@@ -197,6 +197,24 @@ Mods: {
 			IncreasedFallSpeed: Aumenta la velocidad de caída
 		}
 
+		Toggler: {
+			// ForceOfRemantsHeader: "[i:RemnantOfTheAncientsMod/ForceOfRemants] Force Of Remnants"
+			// NightEnchantTeleportConfig: "[i:RemnantOfTheAncientsMod/NightEnchant] Shadow Teleport"
+			// DesertHeraldEnchantmentCactusConfig: "[i:RemnantOfTheAncientsMod/SandHeraldEnchant] Cactus Cursor"
+			// ReinforcedIronEnchantmentBallistaConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Ballista Minion"
+			// ReinforcedIronEnchantmentDamageReductionPlusSlowConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Heavy Armor"
+			// DaylightEnchantmentSunflowerConfig: "[i:RemnantOfTheAncientsMod/DaylightEnchant] Sunflower Turret"
+			// TuxoniteEnchantmentCritBonusConfig: "[i:RemnantOfTheAncientsMod/TuxoniteEnchant] Crit Time"
+			// GuardiansShieldHeader: "[i:RemnantOfTheAncientsMod/GuardiansShield] Guardian´s Shield"
+			// DesertMedalionExtraProjectileConfig: "[i:RemnantOfTheAncientsMod/DesertMedalion] Desert Projectiles"
+			// FrostBarrierEffectConfig: "[i:RemnantOfTheAncientsMod/FrostBarrier] Frost Barrier"
+			// TyrantMarkEnemyProjectileSizeConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles size decreased"
+			// TyrantMarkEnemyProjectileSpeedConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles speed decreased"
+			// SoulOfDivinityHeader: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Soul Of Divinity"
+			// DivineAuraConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] DivineAura"
+			// InmortalityConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Immortality"
+		}
+
 		Buffs: {
 			CentryBuff: {
 				DisplayName: Poción de comandante
@@ -3340,7 +3358,29 @@ Mods: {
 
 			DaylightEnchant: {
 				// DisplayName: Daylight Enchant
-				// Tooltip: ""
+				Tooltip:
+					'''
+					Durante el día generas una torreta de girasol, 
+					mientras que durante la noche el coste de maná se reduce un 5%
+					'''
+			}
+
+			ForceOfRemants: {
+				// DisplayName: Force Of Remants
+				Tooltip:
+					'''
+					[I:RemnantOfTheAncientsMod/NightEnchant] Otorga un teletransportación y sigilo durante la noche
+					[I:RemnantOfTheAncientsMod/SandHeraldEnchant] Genera un cactus en el mouse y los ataques inflingen electrificado
+					[I:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Reduce el dañor recivido en {1}% pero reduce la velocidad de movimiento en {0}%
+					[I:RemnantOfTheAncientsMod/DaylightEnchant] Genera un girasol flotante de apollo durante el día y reduce el consumo de maná durante la noche
+					[I:RemnantOfTheAncientsMod/TuxoniteEnchant] Aumenta el porcentaje de crítico en un {2}% de forma aleatoria
+					'Fragmento de un lugar extraño'
+					'''
+			}
+
+			SoulOfDivinity: {
+				// DisplayName: Soul Of Divinity
+				// Tooltip: After a long journey you have completely reclaimed your divinity
 			}
 		}
 
@@ -3551,6 +3591,7 @@ Mods: {
 			FrozenHommingIceBlock.DisplayName: Bloque de Hielo
 			FrostBarrier.DisplayName: Barrera Hélida
 			// FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
+			// GodZone.DisplayName: God Zone
 		}
 
 		Tiles: {

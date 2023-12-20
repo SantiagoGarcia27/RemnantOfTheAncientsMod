@@ -34,9 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantPlayer>().EnemyProjectilesScaleBouns -= ProjectileSizeBonus / 100;
-            player.GetModPlayer<RemnantPlayer>().EnemyProjectilesSpeedScaleBouns -= ProjectileSpeedBonus / 100f;
-            player.moveSpeed *= 1f + MovmentSpeedBonusBonus / 100;
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().TyrantMarkEffect(player, MovmentSpeedBonusBonus, ProjectileSizeBonus, ProjectileSizeBonus);
         }   
     }
 }

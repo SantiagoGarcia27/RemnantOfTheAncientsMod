@@ -8,6 +8,11 @@ using Terraria.ID;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
+using FargowiltasSouls.Core.Toggler;
+using FargowiltasSouls;
+using Terraria.Localization;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -62,9 +67,27 @@ namespace RemnantOfTheAncientsMod
             {
                 IntroScreenManager.Load();
             }
+           
             BackgroundTextureLoader.AddBackgroundTexture(this, "RemnantOfTheAncientsMod/Common/Menu/PlaceHolder");
         }
-
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public static void LoadTogglesFromType(Type type)
+        {
+            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod))
+            {
+                var a = Activator.CreateInstance(type);
+                ToggleCollection toggles = (ToggleCollection)a;
+                if (!toggles.Active)
+                {
+                    return;
+                }
+                ModContent.GetInstance<RemnantOfTheAncientsMod>().Logger.Info("ToggleCollection found: type");
+                foreach (Toggle item in toggles.Load())
+                {
+                    ToggleLoader.RegisterToggle(item);
+                }
+            }
+        }
         public static int GetMaxRarity()
         {
             int max = 0;
@@ -101,9 +124,13 @@ namespace RemnantOfTheAncientsMod
         }
         public override void PostSetupContent()
         {
+            //if (FargosSoulMod != null)
+            //{
+            //    AddFargosLocalization();
+            //}
 
-           
         }
+     
 
 
         public int ParticleMeter(int i)
@@ -157,6 +184,16 @@ namespace RemnantOfTheAncientsMod
                 }   
             }
             return MaxPlayers -1;
+        }
+
+        public void AddFargosLocalization()
+        {
+            //FargosOverride fargosOverride = ModContent.GetInstance<FargosOverride>();
+            //Mod mod = this;
+
+            //fargosOverride.AddToggle(mod, "NightEnchantmentTpConfig", "NightEnchant", "b56c64");
+            //fargosOverride.AddToggle(mod, "DesertHeraldEnchantmentCactus", "DesertHeraldEnchantment", "b56c64");
+
         }
     }
 }

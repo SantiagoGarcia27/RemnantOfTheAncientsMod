@@ -33,24 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (RemnantPlayer.tuxoniteEnchantCritCounter == 0)
-            {
-                Dust.NewDustDirect(player.Center, 3, 10, DustID.MushroomSpray);
-                player.GetCritChance(DamageClass.Generic) += CritBonus;
-                if (RemnantPlayer.tuxoniteEnchantCritDuration < Utils1.FormatTimeToTick(0, 0, 0, 10))
-                {
-                    RemnantPlayer.tuxoniteEnchantCritDuration++;
-                }
-                else
-                {
-                    RemnantPlayer.tuxoniteEnchantCritCounter = (int)Main.rand.NextFloat(Utils1.FormatTimeToTick(0, 0, 0, 30));
-                    RemnantPlayer.tuxoniteEnchantCritDuration = 0;
-                }
-            }
-            else
-            {
-                RemnantPlayer.tuxoniteEnchantCritCounter--;
-            }
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().TuxoniteEnchant(player, CritBonus);
         }
 
         public override void AddRecipes()

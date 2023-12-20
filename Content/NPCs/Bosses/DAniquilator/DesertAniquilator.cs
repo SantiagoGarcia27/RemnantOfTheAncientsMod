@@ -24,8 +24,6 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent.Bestiary;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Terraria.DataStructures;
-using FargowiltasSouls.Content.Projectiles;
-using FargowiltasSouls;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 
@@ -334,9 +332,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     NPC.netUpdate = true;
 
                     //EModeNPCBehaviour.NetSync(NPC);
-                    if (FargoSoulsUtil.HostCheck)
+                    if (FargowiltasSouls.FargoSoulsUtil.HostCheck)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<GlowRing>(), 0, 0f, Main.myPlayer, NPC.whoAmI, -19);
+                        Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero,ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargowiltasMod,"GlowRing"), 0, 0f, Main.myPlayer, NPC.whoAmI, -19);
                     }
                     if (NPC.HasValidTarget)
                     {

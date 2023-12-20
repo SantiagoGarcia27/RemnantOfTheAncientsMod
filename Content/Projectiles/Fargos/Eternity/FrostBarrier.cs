@@ -72,9 +72,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
             }
 
          
-            if(RemnantPlayer.FrostBarrierCounter > 0)
+            if(RemnantFargosSoulsPlayer.FrostBarrierCounter > 0)
             {
-                RemnantPlayer.FrostBarrierCounter--;
+                RemnantFargosSoulsPlayer.FrostBarrierCounter--;
             }
 
         }
@@ -108,7 +108,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
 
         public void CheckActive(Player player)
         {
-            if (player.HasBuff<FrostBarrierCouldown>() || RemnantPlayer.FrostBarrierCounter == 0)
+            if (player.HasBuff<FrostBarrierCouldown>() || RemnantFargosSoulsPlayer.FrostBarrierCounter == 0)
             {
                 Projectile.Kill();
             }
@@ -124,7 +124,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
         public override void OnSpawn(IEntitySource source)
         {
             Main.player[Projectile.owner].opacityForAnimation = 0;
-            RemnantPlayer.FrostBarrierCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
+            RemnantFargosSoulsPlayer.FrostBarrierCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
             base.OnSpawn(source);
         }
         public float fade = 2.6f;

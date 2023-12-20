@@ -1,10 +1,8 @@
-using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
-using RemnantOfTheAncientsMod.Content.Items.Tools;
-using RemnantOfTheAncientsMod.Content.Projectiles.Fargos;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Daylight;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -38,24 +36,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 		{
 			380
         };
-		Projectile p;
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            RemnantPlayer.DaylightArmorSetBonus = true;
-            player.GetModPlayer<RemnantPlayer>().DaylightEnchantment = true;
-            if (Main.dayTime)
-			{
-				if (player.ownedProjectileCounts[ModContent.ProjectileType<FloatingSunFlowerMinion>()] <= 0)
-				p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<FloatingSunFlowerMinion>(), 0, 0, Main.myPlayer);
-            }
-			else
-			{
-                if (p != null)
-				{
-					p.Kill();
-				}
-				player.manaCost -= 0.05f;
-            }
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchant(player);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
@@ -66,11 +49,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient<NightHelmetMe>()
-            .AddIngredient<Nightchesplate>()
-            .AddIngredient<NightLeggings>()
-            .AddIngredient<night_pickaxe>()
-            .AddIngredient<EndlessInvisibility>()
+			.AddIngredient<DaylightHat>()
+            .AddIngredient<Daylight_chesplate>()
+            .AddIngredient<Daylight_Legging>()
+            .AddIngredient<BrightDaisy>()
+            .AddIngredient<SunflowerStaff>()
             .AddTile(TileID.DemonAltar)
 			.Register();
 		}

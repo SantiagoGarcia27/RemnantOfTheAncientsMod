@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Override.Fargos
 {
-    [JITWhenModsEnabled("FargowiltasSouls")]
+    [ExtendsFromMod("FargowiltasSouls")]
     public class OverrideFargosProjectile : GlobalProjectile
     {
         public override bool IsLoadingEnabled(Mod mod)

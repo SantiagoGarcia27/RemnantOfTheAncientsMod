@@ -105,7 +105,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
         }
         public void CheckActive(Player player)
         {    
-            if (player.GetModPlayer<RemnantPlayer>().DaylightEnchantment)
+            if (player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchantment)
             {
                 Projectile.timeLeft = 2; 
             }

@@ -8,6 +8,8 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common;
 using System.Collections.Generic;
 using Terraria.ID;
+using CalamityMod.Items.Accessories;
+using FargowiltasSouls.Core.Toggler;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
@@ -40,15 +42,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantPlayer>().EnemyProjectilesScaleBouns -= ProjectileSizeBonus / 100;
-            player.GetModPlayer<RemnantPlayer>().EnemyProjectilesSpeedScaleBouns -= ProjectileSpeedBonus / 100f;
-            player.moveSpeed *= 1f + MovmentSpeedBonusBonus / 100;
-
-            player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(ModContent.BuffType<Burning_Sand>());
-            player.buffImmune[ModContent.BuffType<Burning_Sand>()] = true;
-            player.GetModPlayer<RemnantPlayer>().DesertMedalion = true;
-
-            player.GetModPlayer<RemnantPlayer>().FrostBarrier = true;
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrierEffect(player, hideVisual);
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().TyrantMarkEffect(player, MovmentSpeedBonusBonus, ProjectileSizeBonus, ProjectileSizeBonus);
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

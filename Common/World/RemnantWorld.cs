@@ -1,5 +1,8 @@
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -25,10 +28,29 @@ namespace RemnantOfTheAncientsMod.World
 			RemnantOfTheAncientsMod.MaxRarity = RemnantOfTheAncientsMod.GetMaxRarity();
 
             ModifyAccsesories.UpdateFallSpeedList();
-
+           
 
         }
-		public override void OnWorldUnload()
+        
+        public override void Load()
+        {
+			if (ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod))
+			{
+				LoadFargos();
+
+            }
+                base.Load();
+        }
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public void LoadFargos()
+		{
+            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod))
+            {
+                Type t = typeof(FargosToggles);
+                RemnantOfTheAncientsMod.LoadTogglesFromType(t);
+            }
+        }
+        public override void OnWorldUnload()
 		{
 			TimeWizardTimeAcelerationCouldown = 0;
 			SpawnTimeWithard = false;
@@ -93,6 +115,16 @@ namespace RemnantOfTheAncientsMod.World
 				}
 			}
 		}
-	}
+        public override void SetupContent()
+        {
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+               ModContent.GetInstance<RemnantOfTheAncientsMod>().AddFargosLocalization();
+            }
+            base.SetupContent();
+        }
+
+
+    }
 }
 

@@ -30,9 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 		}
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(BuffID.Electrified);
-            player.GetModPlayer<RemnantPlayer>().AllClassBuffInflict.Add(BuffID.Electrified);
-			player.GetModPlayer<RemnantPlayer>().SpawnProjectileOnMouse(ProjectileID.RollingCactus);
+			player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertEnchant(player);
         }
 
 		public override void AddRecipes()
@@ -44,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 			.AddIngredient(ItemID.ThunderSpear)
             .AddIngredient(ItemID.Cactus,20)
             .AddIngredient<AncientT>()
-            .AddTile(TileID.Anvils)
+            .AddTile(TileID.DemonAltar)
 			.Register();
 		}
 	}
