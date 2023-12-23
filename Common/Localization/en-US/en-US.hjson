@@ -3362,6 +3362,12 @@ Mods: {
 				DisplayName: Soul Of Divinity
 				Tooltip: After a long journey you have completely reclaimed your divinity
 			}
+
+			Lore: {
+				LoreDesertAniquilator.DisplayName: Lore Desert Aniquilator
+				LoreFrozen.DisplayName: Lore Frozen
+				LoreInfernalTyrant.DisplayName: Lore Infernal Tyrant
+			}
 		}
 
 		NPCs: {

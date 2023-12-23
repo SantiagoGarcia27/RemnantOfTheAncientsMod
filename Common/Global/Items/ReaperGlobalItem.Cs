@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				if (BossSummons.Contains(item.type))
 				{
-					item.consumable = !DificultyUtils.ReaperMode;
+					item.consumable = false;
                     item.GetGlobalItem<CustomTooltip>().BossSummon = DificultyUtils.ReaperMode;
                 }
 			}

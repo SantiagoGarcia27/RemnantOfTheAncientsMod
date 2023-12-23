@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
 
         public override bool CaresAboutBossEffectCondition => true;
 
-        public override bool ShouldBeActive() => NPC.AnyNPCs(ModContent.NPCType<FrozenAssaulter>());
+        public override bool ShouldBeActive() => NPC.AnyNPCs(ModContent.NPCType<FrozenAssaulter>()) && DificultyUtils.InfernumMode;
 
         public override SoundStyle? SoundToPlayWithTextCreation => null;
     }

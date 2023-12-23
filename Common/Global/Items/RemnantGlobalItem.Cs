@@ -260,28 +260,30 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-            if (player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalion)
-            {
-                if (item.DamageType == DamageClass.Magic)
-                {
-                   int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity * 2, ProjectileID.SandnadoFriendly, damage / 2, knockback, player.whoAmI);
-                   Main.projectile[p].timeLeft = 50;
-                }
-                if (item.DamageType == DamageClass.Melee)
-                {
-                    Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
-                }
-                if (item.DamageType == DamageClass.Ranged)
-                {
-                    int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileID.RollingCactusSpike, damage / 2, knockback, player.whoAmI);
-                    Main.projectile[p].friendly = true;
-                }
-                if (item.DamageType == DamageClass.Throwing)
+			if(RemnantOfTheAncientsMod.FargosSoulMod != null) {
+				if (player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalion)
 				{
-                    int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
-                    Main.projectile[p].friendly = true;
-                    Main.projectile[p].hostile = false;
-                }
+					if (item.DamageType == DamageClass.Magic)
+					{
+						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity * 2, ProjectileID.SandnadoFriendly, damage / 2, knockback, player.whoAmI);
+						Main.projectile[p].timeLeft = 50;
+					}
+					if (item.DamageType == DamageClass.Melee)
+					{
+						Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
+					}
+					if (item.DamageType == DamageClass.Ranged)
+					{
+						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileID.RollingCactusSpike, damage / 2, knockback, player.whoAmI);
+						Main.projectile[p].friendly = true;
+					}
+					if (item.DamageType == DamageClass.Throwing)
+					{
+						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
+						Main.projectile[p].friendly = true;
+						Main.projectile[p].hostile = false;
+					}
+				}
             }
 
 

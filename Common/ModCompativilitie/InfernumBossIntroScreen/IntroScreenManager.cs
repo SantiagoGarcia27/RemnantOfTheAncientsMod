@@ -31,9 +31,21 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
 
         internal static void Load()
         {
-            IntroScreens = new List<BaseIntroScreenTitle>();
-            foreach (Type introScreen in RemnantOfTheAncientsMod.RemnantOfTheAncients.Code.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(BaseIntroScreenTitle))))
-                IntroScreens.Add(FormatterServices.GetUninitializedObject(introScreen) as BaseIntroScreenTitle);
+            try
+            {
+                IntroScreens = new List<BaseIntroScreenTitle>();
+                Type introScreenType = typeof(BaseIntroScreenTitle);
+                var a = RemnantOfTheAncientsMod.RemnantOfTheAncients.Code.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(introScreenType));
+                foreach (Type introScreen in a)
+                    IntroScreens.Add(FormatterServices.GetUninitializedObject(introScreen) as BaseIntroScreenTitle);
+            }
+            catch 
+            {
+
+                IntroScreens.Add(FormatterServices.GetUninitializedObject(typeof(DesertAnhilatorIntroScreen)) as BaseIntroScreenTitle);
+                IntroScreens.Add(FormatterServices.GetUninitializedObject(typeof(FrozenAssaulterIntroScreen)) as BaseIntroScreenTitle);
+                IntroScreens.Add(FormatterServices.GetUninitializedObject(typeof(InfernalTyrantIntroScreen)) as BaseIntroScreenTitle);
+            }
         }
 
         internal static void Unload()

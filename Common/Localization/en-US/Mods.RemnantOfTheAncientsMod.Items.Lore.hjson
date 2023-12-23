@@ -1,0 +1,30 @@
+ShortTooltip:
+	'''
+	[c/E3AF40:Whispers from on high dance in your ears...]
+	[c/BEBEBE:Press "Left Shift" to listen closer]
+	'''
+LoreDesertAniquilator.Lore:
+	'''
+	During my explorations in the desert I encountered a strange creature.
+	The sand began to gather together until it formed a kind of sand slime.
+	As I approached I was attacked by the surrounding creatures and with a strong storm it disappeared.
+	I'll have to investigate further...
+	'''
+LoreFrozen.Lore:
+	'''
+	This strange creature seems to come from ancient times.
+	We don't know its origin, but permafrost has found ancient paintings in ice caverns.
+	These illustrated several ancient and powerful beings, we assume that this living mass of ice is what remains of one of them.
+	We will have to continue investigating....
+	'''
+
+LoreTyrant: {
+	DisplayName: Infernal Tyrant
+	Lore:
+		'''
+		Our investigations led us to locate another of the ancient beings in the depths of the world
+		Upon arrival we were greeted by an army of demons, but we managed to make our way through the hordes.
+		After hours of searching we managed to find him in his infernal cavern.
+		The battle was intense, but when he was about to capture it, the creature fled at an unimaginable speed.
+		'''
+}

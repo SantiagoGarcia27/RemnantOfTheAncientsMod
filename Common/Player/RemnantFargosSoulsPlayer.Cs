@@ -6,7 +6,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using FargowiltasSouls.Core.Toggler;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod

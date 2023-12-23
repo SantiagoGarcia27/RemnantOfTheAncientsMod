@@ -32,10 +32,11 @@ namespace RemnantOfTheAncientsMod.Common
         public static ModKeybind ToggNightTp { get; private set; }
         public override void Load()
         {
-            TogleFrostBarrier = KeybindLoader.RegisterKeybind(Mod, "FrostBarrier", "F");
-            ToggNightTp = KeybindLoader.RegisterKeybind(Mod, "ToggNightTp", "L");
-
-
+            if (ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod))
+            {
+                TogleFrostBarrier = KeybindLoader.RegisterKeybind(Mod, "FrostBarrier", "F");
+                ToggNightTp = KeybindLoader.RegisterKeybind(Mod, "ToggNightTp", "L");
+            }
         }
 
         // Please see ExampleMod.cs' Unload() method for a detailed explanation of the unloading process.

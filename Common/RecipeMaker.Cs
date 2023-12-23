@@ -15,6 +15,7 @@ using System.Linq;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -1209,6 +1210,10 @@ namespace RemnantOfTheAncientsMod
                     if(recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"), out _))
                     {
                         recipe.AddIngredient(ModContent.ItemType<GuardiansShield>());
+                    }
+                    if (recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"), out _))
+                    {
+                        recipe.AddIngredient(ModContent.ItemType<ForceOfRemants>());
                     }
                 }
             }

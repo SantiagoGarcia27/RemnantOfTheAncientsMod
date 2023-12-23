@@ -87,62 +87,65 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
 
         public virtual void Draw(SpriteBatch sb)
         {
-            bool notInvolvedWithBoss = !Main.LocalPlayer.HasBuff(ModContent.BuffType<BossEffects>());
-            if (!CalamityConfig.Instance.BossZen || !CaresAboutBossEffectCondition)
-                notInvolvedWithBoss = false;
-
-            if (AnimationTimer >= AnimationTime - 1f)
+            if (DificultyUtils.InfernumMode)
             {
-                CachedText = string.Empty;
-                DoCompletionEffects();
-            }
+                bool notInvolvedWithBoss = !Main.LocalPlayer.HasBuff(ModContent.BuffType<BossEffects>());
+                if (!CalamityConfig.Instance.BossZen || !CaresAboutBossEffectCondition)
+                    notInvolvedWithBoss = false;
 
-            if (Main.netMode == NetmodeID.Server || AnimationTimer <= 0 || AnimationTimer >= AnimationTime || notInvolvedWithBoss)
-            {
-                if (AnimationTimer < AnimationTime)
-                    AnimationTimer = 0;
-                return;
-            }
-
-            // Draw the screen cover if it's enabled.
-            if (ShouldCoverScreen)
-            {
-                bool isBright = ScreenCoverColor.ToVector3().Length() / 1.414f > 0.8f;
-                if (isBright)
+                if (AnimationTimer >= AnimationTime - 1f)
                 {
-                    Main.spriteBatch.End();
-                    Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+                    CachedText = string.Empty;
+                    DoCompletionEffects();
                 }
 
-                Texture2D greyscaleTexture = ModContent.Request<Texture2D>("CalamityMod/NPCs/ExoMechs/Thanatos/THanosAura").Value;
-                float coverScaleFactor = Utils.GetLerpValue(0f, 0.5f, AnimationCompletion, true) * 12.5f;
-                coverScaleFactor *= Utils.GetLerpValue(1f, 0.84f, AnimationCompletion, true);
+                if (Main.netMode == NetmodeID.Server || AnimationTimer <= 0 || AnimationTimer >= AnimationTime || notInvolvedWithBoss)
+                {
+                    if (AnimationTimer < AnimationTime)
+                        AnimationTimer = 0;
+                    return;
+                }
 
-                Vector2 coverCenter = new(Main.screenWidth * 0.5f, Main.screenHeight * 0.32f);
+                // Draw the screen cover if it's enabled.
+                if (ShouldCoverScreen)
+                {
+                    bool isBright = ScreenCoverColor.ToVector3().Length() / 1.414f > 0.8f;
+                    if (isBright)
+                    {
+                        Main.spriteBatch.End();
+                        Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+                    }
 
-                for (int i = 0; i < 2; i++)
-                    sb.Draw(greyscaleTexture, coverCenter, null, ScreenCoverColor, 0f, greyscaleTexture.Size() * 0.5f, coverScaleFactor, 0, 0);
+                    Texture2D greyscaleTexture = ModContent.Request<Texture2D>("CalamityMod/NPCs/ExoMechs/Thanatos/THanosAura").Value;
+                    float coverScaleFactor = Utils.GetLerpValue(0f, 0.5f, AnimationCompletion, true) * 12.5f;
+                    coverScaleFactor *= Utils.GetLerpValue(1f, 0.84f, AnimationCompletion, true);
 
-                if (isBright)
+                    Vector2 coverCenter = new(Main.screenWidth * 0.5f, Main.screenHeight * 0.32f);
+
+                    for (int i = 0; i < 2; i++)
+                        sb.Draw(greyscaleTexture, coverCenter, null, ScreenCoverColor, 0f, greyscaleTexture.Size() * 0.5f, coverScaleFactor, 0, 0);
+
+                    if (isBright)
+                    {
+                        Main.spriteBatch.End();
+                        Main.spriteBatch.Begin(SpriteSortMode.Deferred, null);
+                    }
+                }
+
+                // Prepare the sprite batch for the shader, if one is applied.
+                if (ShaderToApplyToLetters != null)
+                {
+                    Main.spriteBatch.End();
+                    Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer);
+                }
+
+                DrawText(sb);
+
+                if (ShaderToApplyToLetters != null)
                 {
                     Main.spriteBatch.End();
                     Main.spriteBatch.Begin(SpriteSortMode.Deferred, null);
                 }
-            }
-
-            // Prepare the sprite batch for the shader, if one is applied.
-            if (ShaderToApplyToLetters != null)
-            {
-                Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer);
-            }
-
-            DrawText(sb);
-
-            if (ShaderToApplyToLetters != null)
-            {
-                Main.spriteBatch.End();
-                Main.spriteBatch.Begin(SpriteSortMode.Deferred, null);
             }
         }
 

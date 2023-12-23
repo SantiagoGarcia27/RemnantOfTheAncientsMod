@@ -26,6 +26,7 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Terraria.DataStructures;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -40,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-        }
+        }  
         public override void SetDefaults()
         {
             NPC.aiStyle = NPCID.BlueSlime;
@@ -334,7 +335,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     //EModeNPCBehaviour.NetSync(NPC);
                     if (FargowiltasSouls.FargoSoulsUtil.HostCheck)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero,ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargowiltasMod,"GlowRing"), 0, 0f, Main.myPlayer, NPC.whoAmI, -19);
+                        Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero,ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod,"GlowRing"), 0, 0f, Main.myPlayer, NPC.whoAmI, -19);
                     }
                     if (NPC.HasValidTarget)
                     {
@@ -633,6 +634,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         {
             if (Main.rand.NextBool(3)) target.AddBuff(BuffType<Burning_Sand>(), 100, true);	
 		}
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
+            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY +(3 *16)), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f),1,SpriteEffects.None,0);
+            return false;
+        }
         public override void OnSpawn(IEntitySource source)
         {
             ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);

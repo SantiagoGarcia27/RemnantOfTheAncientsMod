@@ -158,8 +158,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void AI()
         {
-           // NPC.active = false;
-          
+            // NPC.active = false;
+            NPC.buffImmune[BuffID.OnFire] = true;
             GenericVariables gv = new GenericVariables();
            
             if (!GenericVariables.SizeChanged[0])
@@ -372,33 +372,41 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             if (DificultyUtils.MasochistMode || DificultyUtils.EternityMode)
             {
-                if (DashCounter >= 550 && DashCounter < 600)
+                float limit = (Main.maxTilesY -10) * 16;
+                if (NPC.position.Y <= limit )
                 {
-                    NPC.velocity = new Vector2(1,-10 * (speed * 0.1f));
-                }
-                else if(DashCounter >= 450 && DashCounter < 550)
-                {
-                    NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
-                }
-                if (DashCounter >= 350 && DashCounter < 450)
-                {
-                    NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
-                }
-                else if (DashCounter >= 250 && DashCounter < 350)
-                {
-                    NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
-                }
-
-                if (DificultyUtils.MasochistMode)
-                {
-                    if (DashCounter >= 200 && DashCounter < 250)
+                    if (DashCounter >= 550 && DashCounter < 600)
                     {
                         NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
                     }
-                    else if (DashCounter >= 150 && DashCounter < 200)
+                    else if (DashCounter >= 450 && DashCounter < 550)
                     {
                         NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
                     }
+                    if (DashCounter >= 350 && DashCounter < 450)
+                    {
+                        NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
+                    }
+                    else if (DashCounter >= 250 && DashCounter < 350)
+                    {
+                        NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
+                    }
+
+                    if (DificultyUtils.MasochistMode)
+                    {
+                        if (DashCounter >= 200 && DashCounter < 250)
+                        {
+                            NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
+                        }
+                        else if (DashCounter >= 150 && DashCounter < 200)
+                        {
+                            NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
+                        }
+                    }
+                }
+                else
+                {
+                    NPC.velocity = new Vector2(0, 10 * (speed * -0.1f));
                 }
             }
         }
@@ -497,6 +505,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             RemnantDownedBossSystem.downedTyrant = true;
             potionType = ItemID.GreaterHealingPotion;
         }
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
+            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), 1, SpriteEffects.None, 0);
+            return false;
+        }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
            // TyranStats.DrawGlow(NPC, "InfernalTyrantHead");
@@ -586,6 +601,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             NPC.DR_NERD(normal, revenge, death, bossrush);
            // CalamityUtils.SetDamageReduction(NPC,normal,revenge, death, bossrush);
         }
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
+            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), 1, SpriteEffects.None, 0);
+            return false;
+        }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             TyranStats.DrawGlow(NPC, "InfernalTyrantBody");
@@ -622,6 +644,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void AI()
         {
+            NPC.buffImmune[BuffID.OnFire] = true;
             GenericVariables gv = new GenericVariables();
             if (!GenericVariables.SizeChanged[1])
             {
@@ -664,6 +687,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
     internal class InfernalTyrantTail : WormTail
     {
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
+            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), 1, SpriteEffects.None, 0);
+            return false;
+        }
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Infernal Tyrant");
@@ -676,6 +706,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
             NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
+            
         }
 
         public override void SetDefaults()
@@ -714,6 +745,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void AI()
         {
+            NPC.buffImmune[BuffID.OnFire] = true;
             GenericVariables gv = new GenericVariables();
             //bool ñ = GenericVariables.SizeChanged[2];
             if (!GenericVariables.SizeChanged[2])

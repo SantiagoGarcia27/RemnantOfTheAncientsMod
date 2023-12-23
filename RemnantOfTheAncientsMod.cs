@@ -9,10 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
 using FargowiltasSouls.Core.Toggler;
-using FargowiltasSouls;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
 
 namespace RemnantOfTheAncientsMod
 {
