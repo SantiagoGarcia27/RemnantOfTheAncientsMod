@@ -7,4 +7,4 @@ hideResources = false
 includeSource = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 includePDB = true
-weakReferences = CalamityMod@2.0,InfernumMode@1.9.33,Fargowiltas@3.2.1,FargowiltasSouls@1.6.1.2
+weakReferences = CalamityMod@2.0,InfernumMode,Fargowiltas@3.2.1,FargowiltasSouls@1.6.1.2
