@@ -2458,7 +2458,7 @@ Mods: {
 				Tooltip:
 					'''
 					the older sister of the 4
-					"{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
 					'''
 			}
 
@@ -3368,6 +3368,16 @@ Mods: {
 				LoreFrozen.DisplayName: Lore Frozen
 				LoreInfernalTyrant.DisplayName: Lore Infernal Tyrant
 			}
+
+			Genesis: {
+				DisplayName: Genesis
+				Tooltip: ""
+			}
+
+			Horizon: {
+				DisplayName: Horizon
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3578,6 +3588,7 @@ Mods: {
 			FrostBarrier.DisplayName: Frost Barrier
 			FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
 			GodZone.DisplayName: God Zone
+			HorizonHeldProj.DisplayName: Horizon Held Proj
 		}
 
 		Tiles: {

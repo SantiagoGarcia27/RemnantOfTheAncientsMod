@@ -19,29 +19,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Item Base = new Item(ItemID.FieryGreatsword);
-            Item.damage = Base.damage + 6;
+            Item.damage = Base.damage + 3;
             Item.DamageType = DamageClass.Melee;
             Item.width = 130;
             Item.height = 160;
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.useTime = 47;
+            Item.useAnimation = 47;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = Base.knockBack;
             Item.rare = Base.rare;
-            Item.scale = Base.scale + 0.50f;
+            Item.scale = Base.scale + 0.30f;
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
             Item.value = Base.value;
-           // Item.shoot = ProjectileID.BladeOfGrass;
-            Item.shoot = ModContent.ProjectileType<MoltenGrassSwordLeaft>();
-            //Item.shoot = ModContent.ProjectileType<GrassSwordLeaft>();
-            //Item.shootSpeed= 20f;
-
-            /*if(RemnantOfTheAncientsMod.CalamityMod != null)
-{
-                Item.damage = 50;
-                Item.scale = 1.70f;
-            }*/
+            Item.shoot = ModContent.ProjectileType<MoltenGrassSwordLeaft>();          
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

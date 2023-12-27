@@ -20,9 +20,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.Flamarang);
-			Item.damage = 140;
-			Item.useTime = 10;
-			Item.useAnimation = 10;
+			Item.damage = 130;
+			Item.useTime = 15;
+			Item.useAnimation = 15;
 			Item.autoReuse = true;
 			Item.shoot = ModContent.ProjectileType<SolarangP>();
 		}

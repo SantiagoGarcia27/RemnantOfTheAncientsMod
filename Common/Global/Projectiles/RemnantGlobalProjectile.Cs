@@ -1,6 +1,9 @@
+using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
+using Mono.Cecil;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
@@ -104,9 +107,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
                             target.value *= 2;
                         }      
                 }
+                if (projectile.type == 619 && projectile.localAI[2] == 27)
+                {
+                    target.AddBuff(BuffID.Ichor, 500);
+                    target.AddBuff(BuffID.CursedInferno, 500);
+                }
 
 
-                if(projectile.minion && projectile.owner == Main.myPlayer) 
+                if (projectile.minion && projectile.owner == Main.myPlayer) 
                 { 
                     List<int> list = player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict;
 
@@ -118,6 +126,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         }
                     }
                 }
+                
             }
 
             if (projectile.minion || projectile.CountsAsClass(DamageClass.Summon))
@@ -167,7 +176,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
                
             }
-            
+           
             
         }
         int fireballTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
@@ -299,6 +308,21 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     Vector2 velocity = new Vector2(new Random().Next(-2, 2),new Random().Next(-2, 2));
                     Projectile.NewProjectileDirect(Projectile.GetSource_None(), projectile.Center + (velocity/2)*16, velocity, ProjectileID.CrystalShard, projectile.damage, 0,projectile.owner);
+                }
+            }
+            if(projectile.type == ProjectileID.Spark)
+            {
+                if (projectile.localAI[2] == 27)
+                {
+                    float numberProjectiles = 5;
+                    float rotation = MathHelper.ToRadians(4);
+                    projectile.position += Vector2.Normalize(projectile.velocity) * 45f;
+                    for (int i = 0; i < numberProjectiles; i++)
+                    {
+                        Vector2 perturbedSpeed = projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+                        Projectile.NewProjectileDirect(projectile.GetSource_Death(), projectile.position, perturbedSpeed * 5, ModContent.ProjectileType<LeafFriendlyClone>(), projectile.damage + 10, projectile.knockBack, projectile.owner);
+
+                    }
                 }
             }
             if (!DeleteVanilla)

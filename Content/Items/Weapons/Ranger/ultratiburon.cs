@@ -29,11 +29,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         }
         public override void SetDefaults()
         {
-            Item.damage = 130;
+            Item.damage = 120;
             Item.DamageType = DamageClass.Ranged;
             Item.width = 86;
             Item.height = 34;
-            Item.useTime = 5;
+            Item.useTime = 6;
             Item.useAnimation = 10;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
