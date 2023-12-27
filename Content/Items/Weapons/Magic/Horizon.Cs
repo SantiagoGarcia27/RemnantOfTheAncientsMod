@@ -132,11 +132,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.SoulofMight, 3)
-			.AddIngredient(ItemID.SoulofSight, 3)
-			.AddIngredient(ItemID.SoulofFright, 3)
-			.AddIngredient(ItemID.DemonScythe, 1)
-			.AddTile(TileID.Bookcases)
+			.AddIngredient(ItemID.WandofSparking, 1)
+            .AddIngredient(ItemID.LaserMachinegun, 1)
+            .AddIngredient(ItemID.RazorbladeTyphoon, 1)
+            .AddIngredient(ItemID.NebulaArcanum, 1)
+            .AddIngredient<RazorpineV2>()
+            .AddIngredient(ItemID.LastPrism, 1)
+			.AddTile(TileID.LunarCraftingStation)
 			.Register();
 		}
 	}
