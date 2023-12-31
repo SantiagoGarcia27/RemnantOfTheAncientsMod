@@ -145,7 +145,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                     {
                         imput = imput - ToCoordenatePosition(new Vector2(0, 1));
                         var a = Main.tile[ToTilePosition(imput).ToPoint()];
-                        Dust.QuickDust(ToTilePosition(imput).ToPoint().X, ToTilePosition(imput).ToPoint().Y, Color.Red);
+                       // Dust.QuickDust(ToTilePosition(imput).ToPoint().X, ToTilePosition(imput).ToPoint().Y, Color.Red);
                     }
                     while (ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))));
 
@@ -155,7 +155,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                         {
                             imput = imput + ToCoordenatePosition(new Vector2(0, 1));
                             var a = Main.tile[ToTilePosition(imput).ToPoint()];
-                            Dust.QuickDust(ToTilePosition(imput).ToPoint().X, ToTilePosition(imput).ToPoint().Y, Color.Blue);
+                           // Dust.QuickDust(ToTilePosition(imput).ToPoint().X, ToTilePosition(imput).ToPoint().Y, Color.Blue);
                         }
                         while (ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))));
                     }

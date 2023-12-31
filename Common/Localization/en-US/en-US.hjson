@@ -3378,6 +3378,16 @@ Mods: {
 				DisplayName: Horizon
 				Tooltip: ""
 			}
+
+			Graveyard: {
+				DisplayName: Graveyard
+				Tooltip: ""
+			}
+
+			Graveyard_sigil: {
+				DisplayName: Graveyard_sigil
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3589,6 +3599,9 @@ Mods: {
 			FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
 			GodZone.DisplayName: God Zone
 			HorizonHeldProj.DisplayName: Horizon Held Proj
+			NebulaTyphoon.DisplayName: Nebula Typhoon
+			NebulaTyphoon_Strong.DisplayName: Nebula Typhoon_ Strong
+			Graveyard_proj.DisplayName: Graveyard_proj
 		}
 
 		Tiles: {

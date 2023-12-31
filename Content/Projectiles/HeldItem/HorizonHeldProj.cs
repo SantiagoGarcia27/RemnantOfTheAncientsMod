@@ -35,10 +35,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
 
 		}
-		public int speed = 0;
+		public static int[] speed = new[] { 0, 0, 0, 0 };
+        public static int[] speedMax = new[] { 8, 10, 15, 10 };
         public float fade = 1.6f;
-        public float rotation = 0;
-        public int Charge = 0;
+        public static float[] rotation = new[] { 0f, 0f, 0f, 0f };
         public override void AI()
 		{
             
@@ -46,23 +46,23 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Player player = Main.player[Main.myPlayer];
             if (player.whoAmI == Main.myPlayer)
 			{
-				if (++speed >= 10)
+				for (int i = 0; i < speedMax.Length; i++)
 				{
-					if (rotation++ >= 360)
-					{
-						rotation = 0;
-					}
-					speed = 0;
-				}
-				Charge++;
-				//Main.NewText(Charge);
-				//if (Charge >= 180 / Projectile.ai[2])
-				//{
-				//    Projectile.Kill();
-				//}
-
-			}
+                    UpdateRotation(i, speedMax[i]);
+                }
+            }
                 base.AI();
+        }
+		public static void UpdateRotation(int index,int speedValue)
+		{
+            if (++speed[index] >= speedValue)
+            {
+                if (rotation[index]++ >= 360)
+                {
+					rotation[index] = 0;
+                }
+                speed[index] = 0;
+            }
         }
         public override bool PreDraw(ref Color lightColor)
 		{
@@ -74,15 +74,17 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 				{
 					ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_3"),
 					ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1"),
-					ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_2")
-				};
+					ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_2"),
+                    ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1")
+                };
 
 				Vector2[] origin = new[]
 				{
 					new Vector2(textures[0].Width(), textures[0].Height()) * 0.5f,
 					new Vector2(textures[1].Width(), textures[1].Height()) * 0.5f,
-					new Vector2(textures[2].Width(), textures[2].Height()) * 0.5f
-				};
+					new Vector2(textures[2].Width(), textures[2].Height()) * 0.5f,
+                    new Vector2(textures[3].Width(), textures[3].Height()) * 0.5f
+                };
 
 				//var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_3");
 				//var texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_1");
@@ -92,11 +94,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 				if (Projectile.ai[0] <= 170)
 				{
 					Color color = new Color(BaseColor.R, BaseColor.G, BaseColor.B, 20) * fade;
-					Main.spriteBatch.Draw((Texture2D)textures[0], player.Center - Main.screenPosition, null, color, rotation, origin[0], 1.2f, SpriteEffects.None, 0f);
+					Main.spriteBatch.Draw((Texture2D)textures[0], player.Center - Main.screenPosition, null, color, rotation[0], origin[0], 1.2f, SpriteEffects.None, 0f);
 
-					Main.spriteBatch.Draw((Texture2D)textures[1], player.Center - Main.screenPosition, null, color, -rotation, origin[1], 1.4f, SpriteEffects.None, 0f);
+					Main.spriteBatch.Draw((Texture2D)textures[1], player.Center - Main.screenPosition, null, color, -rotation[1], origin[1], 1.2f, SpriteEffects.None, 0f);
 
-                    Main.spriteBatch.Draw((Texture2D)textures[2], player.Center - Main.screenPosition, null, color, rotation, origin[2], 2.4f, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw((Texture2D)textures[2], player.Center - Main.screenPosition, null, color, rotation[2], origin[2], 2.1f, SpriteEffects.None, 0f);
+
+                    Main.spriteBatch.Draw((Texture2D)textures[3], player.Center - Main.screenPosition, null, color, -rotation[3], origin[3], 2.1f, SpriteEffects.None, 0f);
                 }
 			}
 			return true;

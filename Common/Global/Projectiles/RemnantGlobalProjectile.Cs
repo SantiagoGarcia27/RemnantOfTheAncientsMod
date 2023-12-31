@@ -107,11 +107,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
                             target.value *= 2;
                         }      
                 }
-                if (projectile.type == 619 && projectile.localAI[2] == 27)
-                {
-                    target.AddBuff(BuffID.Ichor, 500);
-                    target.AddBuff(BuffID.CursedInferno, 500);
-                }
 
 
                 if (projectile.minion && projectile.owner == Main.myPlayer) 
@@ -320,8 +315,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     for (int i = 0; i < numberProjectiles; i++)
                     {
                         Vector2 perturbedSpeed = projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                        Projectile.NewProjectileDirect(projectile.GetSource_Death(), projectile.position, perturbedSpeed * 5, ModContent.ProjectileType<LeafFriendlyClone>(), projectile.damage + 10, projectile.knockBack, projectile.owner);
-
+                       var p = Projectile.NewProjectileDirect(projectile.GetSource_Death(), projectile.position, perturbedSpeed * 5, ModContent.ProjectileType<LeafFriendlyClone>(), projectile.damage + 10, projectile.knockBack, projectile.owner);
+                        p.tileCollide = false;
+                        p.timeLeft = 300;
                     }
                 }
             }

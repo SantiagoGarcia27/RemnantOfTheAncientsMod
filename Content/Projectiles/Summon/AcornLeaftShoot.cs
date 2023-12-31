@@ -111,18 +111,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
             Vector2 usePos = Projectile.position;
-            Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
-            usePos += rotVector * 16f;
-
+           
             RemnantOfTheAncientsMod r = ModContent.GetInstance<RemnantOfTheAncientsMod>();
             for (int i = 0; i < r.ParticleMeter(20); i++)
             {
-                Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, DustID.Tin);
+                Dust dust = Dust.NewDustDirect(usePos, 1, 1, DustID.Grass);
                 dust.position = (dust.position + Projectile.Center) / 2f;
-                dust.velocity += rotVector * 2f;
-                dust.velocity *= 0.5f;
-                dust.noGravity = true;
-                usePos -= rotVector * 8f;
+                dust.noGravity = true;            
             }
         }
          public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
