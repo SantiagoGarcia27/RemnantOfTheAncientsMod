@@ -3408,6 +3408,11 @@ Mods: {
 				// DisplayName: Graveyard_sigil
 				// Tooltip: ""
 			}
+
+			Graveyard_glyph: {
+				// DisplayName: Graveyard_glyph
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

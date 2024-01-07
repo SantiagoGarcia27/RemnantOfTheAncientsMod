@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 		{
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
-            Item.staff[Item.type] = true;
+          //  Item.staff[Item.type] = true;
         }
 
 		public override void SetDefaults()
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.height = 34;
 			Item.useTime = 19;
 			Item.UseSound = SoundID.Item34;
-			Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 6f;
 			Item.useAnimation = 19;
 			Item.shoot = ModContent.ProjectileType<NebulaTyphoon>();
@@ -40,15 +40,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.autoReuse = true;
 			Item.reuseDelay = 0;
             Item.knockBack = 0.1f;
+            Item.scale = 0.5f;
 		}
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+    
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
             if (player.altFunctionUse != 2)
             {
                 Item.damage = 150;
                 Item.useAnimation = 10;//10
                 Item.useTime = Item.useAnimation;
-                Item.noUseGraphic = true;
+                //Item.noUseGraphic = true;
                 Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, velocity, ProjectileID.LastPrism, damage, knockback);
                 Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, velocity, ProjectileID.LaserMachinegun, damage, knockback);
                 return false;
