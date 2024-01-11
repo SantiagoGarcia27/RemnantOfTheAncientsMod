@@ -3399,19 +3399,14 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			Graveyard: {
-				// DisplayName: Graveyard
-				// Tooltip: ""
-			}
-
-			Graveyard_sigil: {
-				// DisplayName: Graveyard_sigil
-				// Tooltip: ""
-			}
-
 			Graveyard_glyph: {
-				// DisplayName: Graveyard_glyph
+				DisplayName: Glifo de cementerio
 				// Tooltip: ""
+			}
+
+			HalfHellevator: {
+				DisplayName: Perforador infernal medio
+				Tooltip: crea un gran hueco en el mapa
 			}
 		}
 

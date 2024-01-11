@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 
 		public int Range = 200;
 		public override bool? UseItem(Player player)
-		{	
+		{
 			for (int i = 0; i <= Range; i++)
 			{
 				int x = Player.tileTargetX + (i * player.direction);
@@ -36,49 +36,23 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 
 				if (!Main.tile[x, y].HasTile)
 				{
-					
+
 					WorldGen.PlaceTile(x, y, TileID.Platforms, false, false, -1, 0);
 
-                    if (i % 10 == 0)
-                    {
-                        TileSafe(x, y - 1);
-                        WorldGen.PlaceTile(x, y - 1, TileID.Torches, false, false, -1, 0);
-
-                    }
-                }
-			}
-
-				
-				Netcode.SyncWorld();
-			return true;
-		}
-        public static void TileSafe(int x, int y)
-        {
-            if (Main.tile[x, y] == null)
-            {
-                Tile val = Main.tile[x, y];
-                val.ResetToType(0);
-            }
-        }
-
-
-
-		public override void HoldItem(Player player)
-		{
-			if (player.whoAmI == Main.myPlayer)
-			{
-				for (int i = 0; i <= Range; i++)
-				{
-					int x = Player.tileTargetX + (i * player.direction);
-					int y = Player.tileTargetY;
-
-					if (!Main.tile[x, y].HasTile)
+					if (i % 10 == 0)
 					{
-						int d = Dust.NewDust(new Vector2(x, y) * 16, 10, 10, DustID.WoodFurniture, 0, 0, 0, default, 1);
-						Main.dust[d].noGravity = true;
+						PlataformModel.TileSafe(x, y - 1);
+						WorldGen.PlaceTile(x, y - 1, TileID.Torches, false, false, -1, 0);
+
 					}
 				}
 			}
+			Netcode.SyncWorld();
+			return true;
+		}
+		public override void HoldItem(Player player)
+		{
+			PlataformModel.HoldItem(player, Range);
 			base.HoldItem(player);
 		}
     

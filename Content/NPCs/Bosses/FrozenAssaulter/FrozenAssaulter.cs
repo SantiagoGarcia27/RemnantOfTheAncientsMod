@@ -49,13 +49,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
         public override void SetDefaults()
         {
+            NPC.Size = new Vector2(150, 150);
             NPC.aiStyle = 5;
             NPC.lifeMax = 18500;//(int)NpcChanges1.ExpertLifeScale(18500); //* (int)ModContent.GetInstance<ConfigClient1>().xdlevel; 
             NPC.damage = 90;// (int)NpcChanges1.ExpertDamageScale(90); 
             NPC.defense = 15;
             NPC.knockBackResist = 0f;
-            NPC.width = 100;
-            NPC.height = 100;
             NPC.value = Item.buyPrice(0, 5, 75, 45);
             NPC.npcSlots = 10f;
             NPC.boss = true;
@@ -638,6 +637,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 }
             }
         }
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
+            Main.EntitySpriteDraw(Texture, (NPC.position - Main.screenPosition) + new Vector2((0 * 16), NPC.gfxOffY - (0 * 16)), NPC.frame, drawColor, 0, new Vector2(Texture.Width * 0f, Texture.Height * 0f), NPC.scale, SpriteEffects.None, 0);
+            return false;
+        }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.defDefense == 9999)
@@ -648,12 +654,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     effects = SpriteEffects.FlipHorizontally;
                 }
                 Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
-                Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0, -45));
+                Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0, -65));
                 var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/FrozenAssaulter/FrozenAssaulter_Shield");
                 position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
                 position += vectorFrame + new Vector2(0f, 4f + NPC.gfxOffY);
                 Color color = new Color(147, 219, 252,150);
-                Main.spriteBatch.Draw((Texture2D)a, position, null, color, NPC.rotation, vectorFrame, 1f, effects, 0f);    
+                Main.spriteBatch.Draw((Texture2D)a, position, null, color, 0, vectorFrame, 1f, effects, 0f);    
             }
         }
         public void ChoiseFrame(int frame, int frameHeight)

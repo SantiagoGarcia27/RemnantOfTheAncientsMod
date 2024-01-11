@@ -3390,8 +3390,13 @@ Mods: {
 			}
 
 			Graveyard_glyph: {
-				DisplayName: Graveyard_glyph
+				DisplayName: Graveyard Glyph
 				Tooltip: ""
+			}
+
+			HalfHellevator: {
+				DisplayName: Middle Hellevator
+				Tooltip: Make a instant hole on the world
 			}
 		}
 
