@@ -16,6 +16,7 @@ using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -29,8 +30,7 @@ namespace RemnantOfTheAncientsMod
             RecipeGroup1 = null;
         }
 
-
-#pragma warning disable CS0114 // 'RecipeMaker.AddRecipes()' hides inherited member 'ModSystem.AddRecipes()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
+        #region New recipes
         public static void AddRecipes()
         {
             Uncrafting();
@@ -953,7 +953,7 @@ namespace RemnantOfTheAncientsMod
               .Register();
         }
         #endregion
-
+        #endregion
         public override void AddRecipeGroups()
         {
             List<int> lowFood = new();
@@ -1203,6 +1203,10 @@ namespace RemnantOfTheAncientsMod
                     {
                         recipe.RemoveTile(TileID.MythrilAnvil);
                         recipe.AddTile(TileID.Anvils);
+                    }
+                    if (recipe.TryGetResult(ModContent.ItemType<Horizon>(), out _))
+                    {
+                        recipe.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"),5);
                     }
                 }
                 if (RemnantOfTheAncientsMod.FargosSoulMod != null)

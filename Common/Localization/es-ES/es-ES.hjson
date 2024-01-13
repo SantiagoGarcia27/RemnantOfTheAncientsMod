@@ -3399,6 +3399,16 @@ Mods: {
 				// Tooltip: ""
 			}
 
+			Graveyard: {
+				// DisplayName: Graveyard
+				// Tooltip: ""
+			}
+
+			Graveyard_sigil: {
+				// DisplayName: Graveyard_sigil
+				// Tooltip: ""
+			}
+
 			Graveyard_glyph: {
 				DisplayName: Glifo de cementerio
 				// Tooltip: ""
