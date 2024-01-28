@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
@@ -131,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static bool ExistTileSolid(Vector2 pos)
         {
             Tile tile = Main.tile[(int)pos.X / 16, (int)pos.Y / 16];
-            return tile.HasTile && Main.tileSolid[tile.TileType];
+            return tile.HasTile && Main.tileSolid[tile.TileType] && !tile.IsActuated;
         }
         public static Vector2 setPositionOnSolidFloor(Vector2 imput)
         {

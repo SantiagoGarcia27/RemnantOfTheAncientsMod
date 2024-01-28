@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using Terraria;
@@ -66,6 +68,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                 }
             }
             base.OnKill(timeLeft);
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            string fargos = Projectile.ai[2] != 27 ? $"{this.Mod.Name}/Content/Items/Weapons/Magic/Graveyard_glyph" : $"Terraria/Images/Item_{ItemID.Tombstone}";
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
+            Main.EntitySpriteDraw(Texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), Projectile.scale, SpriteEffects.None, 0);
+            return false;
         }
     }
 }
