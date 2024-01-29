@@ -3632,6 +3632,8 @@ Mods: {
 			// NebulaTyphoon.DisplayName: Nebula Typhoon
 			// NebulaTyphoon_Strong.DisplayName: Nebula Typhoon_ Strong
 			// Graveyard_proj.DisplayName: Graveyard_proj
+			// Judment_Lasser.DisplayName: Judment_ Lasser
+			// Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
 		}
 
 		Tiles: {

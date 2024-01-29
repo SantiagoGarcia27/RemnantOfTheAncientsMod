@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Common.Menu
 
         public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>($"{menuAssetPath}/Logo");
 
-        public override Asset<Texture2D> SunTexture => ModContent.Request<Texture2D>($"{menuAssetPath}/PlaceHolder");
+        public override Asset<Texture2D> SunTexture => ModContent.Request<Texture2D>(RemnantOfTheAncientsMod.PlaceHolderPath);
 
-        public override Asset<Texture2D> MoonTexture => ModContent.Request<Texture2D>($"{menuAssetPath}/PlaceHolder");
+        public override Asset<Texture2D> MoonTexture => ModContent.Request<Texture2D>(RemnantOfTheAncientsMod.PlaceHolderPath);
 
      //  public override int Music => MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Menu");
 

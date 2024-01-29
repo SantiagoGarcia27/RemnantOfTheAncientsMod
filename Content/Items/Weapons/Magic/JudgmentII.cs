@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 20;
             Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
-            Item.shoot = ProjectileType<HollyLaser>(); //Laser
+            Item.shoot = ProjectileType<Judment_Lasser_Shooter>(); //Laser
 			Item.value = Item.sellPrice(silver: 50);
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -44,25 +44,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             float ceilingLimit = target.Y;
             for (int i = 0; i < 1; i++)
             {
-                position = player.Center + new Vector2((-Main.rand.Next(0, 0) * player.direction), -600f);
+                position = target - new Vector2(Main.rand.Next(-8, 8) * 16, 600f);
                 position.Y -= (100 * i);
-                Vector2 heading = target - position;
-                if (heading.Y < 0f)
-                {
-                    heading.Y *= -1f;
-                }
-                if (heading.Y < 20f)
-                {
-                    heading.Y = 20f;
-                }
+                Vector2 heading;
+                heading = new Vector2(0, 20);
                 heading.Normalize();
-                heading *= new Vector2(velocity.X, velocity.Y).Length();
-                velocity.X = heading.X;
-                velocity.Y = heading.Y + Main.rand.Next(-40, 41) * 0.02f;
-                Projectile.NewProjectile(source, position.X, position.Y, heading.X, heading.Y/*velocity.X, velocity.Y*/, ModContent.ProjectileType<HollyLaser>(), damage, knockback, player.whoAmI, ceilingLimit);
+                int p = Projectile.NewProjectile(source, position.X, position.Y, heading.X, heading.Y, type, damage, knockback, player.whoAmI, 0, ceilingLimit);
+                Main.projectile[p].scale = 3;
             }
-			return false;
-		}
+            return false;
+        }
+    
 		public override void AddRecipes()
 		{
 			CreateRecipe()

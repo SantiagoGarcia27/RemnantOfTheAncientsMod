@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
 
     public class FrostBarrier : ModProjectile
     {
-        public override string Texture => "RemnantOfTheAncientsMod/Assets/PlaceHolder";
+        public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath;
         public override void SetStaticDefaults()
         {
             //DisplayName.SetDefault("Curecedball"); //projectile name

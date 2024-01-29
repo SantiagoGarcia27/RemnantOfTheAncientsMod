@@ -5,7 +5,7 @@ namespace RemnantOfTheAncientsMod.Common.Menu;
 
 internal class MenuBackground : ModSurfaceBackgroundStyle
 {
-	private static readonly string TexPath = "Common/Menu/PlaceHolder";
+	private static readonly string TexPath = RemnantOfTheAncientsMod.PlaceHolderPath;
 
 	public override void ModifyFarFades(float[] fades, float transitionSpeed)
 	{

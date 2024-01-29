@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
     public class BloodRayHeldProj : ModProjectile
 	{
-        public override string Texture => "RemnantOfTheAncientsMod/Content/Projectiles/HeldItem/PlaceHolder";
+        public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath;
         public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Curecedball"); //projectile name

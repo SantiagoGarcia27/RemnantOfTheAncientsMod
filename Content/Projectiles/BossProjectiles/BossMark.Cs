@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 		{
 			if (texture != "")
 			{
-				return "RemnantOfTheAncientsMod/Content/Projectiles/Textures/PlaceHolder";
+				return RemnantOfTheAncientsMod.PlaceHolderPath;
 			}
 			else
 			{

@@ -27,6 +27,8 @@ namespace RemnantOfTheAncientsMod
         public static int CustomCurrencyId;
         public static int MaxRarity = GetMaxRarity();
         public static int MaxPlayers = 0;
+
+        public static string PlaceHolderPath = "RemnantOfTheAncientsMod/Assets/PlaceHolder";
         public RemnantOfTheAncientsMod()
         {
 
@@ -64,7 +66,7 @@ namespace RemnantOfTheAncientsMod
                 IntroScreenManager.Load();
             }
            
-            BackgroundTextureLoader.AddBackgroundTexture(this, "RemnantOfTheAncientsMod/Common/Menu/PlaceHolder");
+            BackgroundTextureLoader.AddBackgroundTexture(this, RemnantOfTheAncientsMod.PlaceHolderPath);
         }
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void LoadTogglesFromType(Type type)
