@@ -84,7 +84,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
                 {
                     player.bank.item[i].active = true;
                 }
-                if (/*player.bank.item[i].IsAir &&*/ player.bank.item[i].DamageType == DamageClass.Ranged)
+                if (player.bank.item[i].DamageType == DamageClass.Ranged)
                 {
                     if (player.bank.item[i].type == ItemID.CopperCoin)
                     {

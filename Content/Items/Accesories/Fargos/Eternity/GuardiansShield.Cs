@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using Terraria.ID;
 using CalamityMod.Items.Accessories;
 using FargowiltasSouls.Core.Toggler;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Content.Items.Accessories.Souls;
+using CalamityMod.Items.SummonItems;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
@@ -39,12 +42,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             Item.defense = 5;
             Item.GetGlobalItem<CustomTooltip>().EternityItem = true;
         }
-
+        [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrierEffect(player, hideVisual);
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().TyrantMarkEffect(player, MovmentSpeedBonusBonus, ProjectileSizeBonus, ProjectileSizeBonus);
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
+            // player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrierEffect(player, hideVisual);       
+            // player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
+            // ModContent.GetInstance<DesertMedallion>().UpdateAccessory(player, hideVisual);
+
+            RemnantFargosSoulsPlayer.ProjectileSpeedBonus = ProjectileSpeedBonus;
+            RemnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
+            player.AddEffect<DesertMedalionEffect>(base.Item);
+            player.AddEffect<FrostBarrierEffect>(base.Item);
+            player.AddEffect<TyrantMarkEnemyProjectileSizeEffect>(base.Item);
+            player.AddEffect<TyrantMarkEnemyProjectileSpeedEffect>(base.Item);
+            TyrantsMark.AddEffects(player, MovmentSpeedBonusBonus);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

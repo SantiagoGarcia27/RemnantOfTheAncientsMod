@@ -10,94 +10,95 @@ using Terraria.DataStructures;
 using CalamityMod.Buffs.StatBuffs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using System;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
-	public class RemnantGlobalNPC : GlobalNPC
-	{
-		public override bool InstancePerEntity => true;
+    public class RemnantGlobalNPC : GlobalNPC
+    {
+        public override bool InstancePerEntity => true;
 
-		public bool Burn_Sand;
-		public bool Hell_Fire;
-		public bool Javalina;
-		public bool hBurn;
-		public bool Marble_Erosion;
-		public bool Can_Marble;
-		public bool CanMakeCrit;
-		public int CritChance;
-		public bool CanDrop = true;
-		public override void ResetEffects(NPC NPC)
-		{
-			Burn_Sand = false;
-			Javalina = false;
-			Hell_Fire = false;
-			hBurn = false;
-			Marble_Erosion = false;
-		}
+        public bool Burn_Sand;
+        public bool Hell_Fire;
+        public bool Javalina;
+        public bool hBurn;
+        public bool Marble_Erosion;
+        public bool Can_Marble;
+        public bool CanMakeCrit;
+        public int CritChance;
+        public bool CanDrop = true;
+        public override void ResetEffects(NPC NPC)
+        {
+            Burn_Sand = false;
+            Javalina = false;
+            Hell_Fire = false;
+            hBurn = false;
+            Marble_Erosion = false;
+        }
 
-		public override void SetDefaults(NPC npc)
-		{
-			if (npc.type == NPCID.BigMimicCrimson)
-			{
-				npc.lifeMax *= 2;
-				npc.defense += 10;
-			}
+        public override void SetDefaults(NPC npc)
+        {
+            if (npc.type == NPCID.BigMimicCrimson)
+            {
+                npc.lifeMax *= 2;
+                npc.defense += 10;
+            }
             if (npc.type == NPCID.BigMimicCorruption)
             {
                 npc.lifeMax *= 2;
                 npc.defense += 10;
             }
-			
-			//if (npc.boss) 
-			//{
-			//	GetItemForTreasureBag(npc.type);
-			//}
+
+            //if (npc.boss) 
+            //{
+            //	GetItemForTreasureBag(npc.type);
+            //}
         }
 
-		public override void UpdateLifeRegen(NPC NPC, ref int damage)
-		{
-			if (Burn_Sand)
-			{
-				if (NPC.lifeRegen > 0)
-				{
-					NPC.lifeRegen = 0;
-				}
-				NPC.lifeRegen -= 16;
-				if (damage < 4)
-				{
-					damage = 4;
-				}
-			}
-			if (hBurn)
-			{
-				if (NPC.lifeRegen > 0)
-				{
-					NPC.lifeRegen = 0;
-				}
-				NPC.lifeRegen -= 16;
-				if (damage < 4)
-				{
-					damage = 4;
-				}
-			}
-			if (Hell_Fire)
-			{
-				if (NPC.lifeRegen > 0)
-				{
-					NPC.lifeRegen = 0;
-				}
-				NPC.lifeRegen -= 16;
-				if (damage < 6)
-				{
-					damage = 6;
-				}
-			}	
-		}
+        public override void UpdateLifeRegen(NPC NPC, ref int damage)
+        {
+            if (Burn_Sand)
+            {
+                if (NPC.lifeRegen > 0)
+                {
+                    NPC.lifeRegen = 0;
+                }
+                NPC.lifeRegen -= 16;
+                if (damage < 4)
+                {
+                    damage = 4;
+                }
+            }
+            if (hBurn)
+            {
+                if (NPC.lifeRegen > 0)
+                {
+                    NPC.lifeRegen = 0;
+                }
+                NPC.lifeRegen -= 16;
+                if (damage < 4)
+                {
+                    damage = 4;
+                }
+            }
+            if (Hell_Fire)
+            {
+                if (NPC.lifeRegen > 0)
+                {
+                    NPC.lifeRegen = 0;
+                }
+                NPC.lifeRegen -= 16;
+                if (damage < 6)
+                {
+                    damage = 6;
+                }
+            }
+        }
         int timer = 0;
         public void setDebuffs(NPC NPC)
-		{
-			int damage = 0;
-			
+        {
+            int damage = 0;
+
             if (NPC.HasBuff(BuffID.Electrified))
             {
                 if (NPC.lifeRegen > 0)
@@ -105,14 +106,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     NPC.lifeRegen = 0;
                 }
                 NPC.lifeRegen -= 16;
-				damage = 1;
-				if(timer++ % 6 == 0)
-                NPC.SimpleStrikeNPC(damage, Main.player[Main.myPlayer].direction, false, 0f, DamageClass.Generic, false, 0, false);
+                damage = 1;
+                if (timer++ % 6 == 0)
+                    NPC.SimpleStrikeNPC(damage, Main.player[Main.myPlayer].direction, false, 0f, DamageClass.Generic, false, 0, false);
             }
-			if (NPC.HasBuff(BuffID.Stoned))
-			{
-				NPC.velocity = Vector2.Zero;
-			}
+            if (NPC.HasBuff(BuffID.Stoned))
+            {
+                NPC.velocity = Vector2.Zero;
+            }
             if (NPC.HasBuff(BuffID.TitaniumStorm))
             {
                 //NPC.velocity = Vector2.Zero;
@@ -164,8 +165,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 //if (num2[0] != 1)
                 //{
-                    _ = 1;
-               // }
+                _ = 1;
+                // }
                 if (TileID.Sets.BasicChest[Main.tile[x, y].TileType])
                 {
                     if (Main.tile[x, y].TileFrameX % 36 != 0)
@@ -200,7 +201,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     NetMessage.SendData(MessageID.ChestUpdates, -1, -1, null, number2, x, y, 0f, number);
                     NetMessage.SendTileSquare(-1, x, y, 3);
                 }
-                int npcId = GetMimicId(KeyId,user); 
+                int npcId = GetMimicId(KeyId, user);
                 int num8 = NPC.NewNPC(user.GetSource_TileInteraction(x, y), x * 16 + 16, y * 16 + 32, npcId);
                 Main.npc[num8].whoAmI = num8;
                 NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, num8);
@@ -208,11 +209,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             return false;
         }
-        public static int GetMimicId(int KeyId,Player user)
+        public static int GetMimicId(int KeyId, Player user)
         {
-            if(KeyId == ItemID.GoldenKey)
+            if (KeyId == ItemID.GoldenKey)
             {
-                return user.ZoneSnow ? NPCID.IceMimic:NPCID.Mimic;
+                return user.ZoneSnow ? NPCID.IceMimic : NPCID.Mimic;
             }
             else if (KeyId == ModContent.ItemType<JungleKey>())
             {
@@ -234,7 +235,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public override void AI(NPC npc)
         {
-			setDebuffs(npc);
+            setDebuffs(npc);
             base.AI(npc);
         }
         //public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hit.HitDirection, ref bool crit)
@@ -253,32 +254,32 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
-			if (CanMakeCrit)
-			{
-				if((int)Main.rand.NextFloat(100) <= CritChance) 
-				{
-                    modifiers.FinalDamage *= 2;                    
-					//npc.damage *= 2;
-				}
-			}
+            if (CanMakeCrit)
+            {
+                if ((int)Main.rand.NextFloat(100) <= CritChance)
+                {
+                    modifiers.FinalDamage *= 2;
+                    //npc.damage *= 2;
+                }
+            }
         }
 
         public override void DrawEffects(NPC NPC, ref Color drawColor)
-		{
-			int type = DustType<PlaceHolder>();
-			int torchColor = 0;
-			if (Burn_Sand)
-			{
-				type = DustType<QuemaduraA>();
-				torchColor = TorchID.Desert;
+        {
+            int type = DustType<PlaceHolder>();
+            int torchColor = 0;
+            if (Burn_Sand)
+            {
+                type = DustType<QuemaduraA>();
+                torchColor = TorchID.Desert;
             }
-			if (Hell_Fire)
-			{
+            if (Hell_Fire)
+            {
                 type = DustType<Hell_Fire_P>();
                 torchColor = TorchID.Torch;
             }
-			if (hBurn)
-			{
+            if (hBurn)
+            {
                 type = DustType<HollyBurn_P>();
                 torchColor = TorchID.White;
             }
@@ -295,25 +296,25 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.dust[dust].scale *= 0.5f;
                 }
                 Lighting.AddLight(NPC.position, torchColor);
-            }      
+            }
         }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-		{
-			if (CanDrop)
-			{
-				base.ModifyNPCLoot(npc, npcLoot);
+        {
+            if (CanDrop)
+            {
+                base.ModifyNPCLoot(npc, npcLoot);
             }
-		}
+        }
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
             if (npc.boss)
             {
-                if(RemnantOfTheAncientsMod.CalamityMod != null)
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
                     if (Main.netMode != 2 && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
                     {
-                        Main.player[Main.myPlayer].AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod,"BossEffects"), 2);
-                    }   
+                        Main.player[Main.myPlayer].AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                    }
                 }
             }
             base.OnSpawn(npc, source);
@@ -332,8 +333,26 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             return base.PreAI(npc);
         }
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
+        {
+            foreach (Item item in items)
+            {
+                if (item is not null)
+                {
+                    float test = Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat/100f;
+                    float test2 = 1f - test;
+                    decimal test3 = (decimal)(1f - (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat / 100f));
+
+                    decimal discount = Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat != 0 ? (decimal)(1f - (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat / 100f)) : 1;
+                    discount = (float)discount > 0.1f ? discount : (decimal)0.1;
+              
+                    item.shopCustomPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);  
+                }
+            }
+        }
     }
 }
+
 
 	
 

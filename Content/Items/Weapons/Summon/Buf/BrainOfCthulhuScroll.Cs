@@ -47,9 +47,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		//public override bool? UseItem(Player player)
 		//{
 		//	bool active = false;
-		//	if (GetInstance<RemnantPlayer>().PlayerHaveScroll())
+		//	if (player.GetModPlayer<RemnantPlayer>().PlayerHaveScroll())
 		//	{
-		//		int currentScrollId = GetInstance<RemnantPlayer>().SearchCurrenScrollEffect();
+		//		int currentScrollId = player.GetModPlayer<RemnantPlayer>().SearchCurrenScrollEffect();
 
 		//		if (currentScrollId != -1)
 		//		{
@@ -74,9 +74,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		//}
 		public override void OnConsumeMana(Player player, int manaConsumed)
 		{
-			if (GetInstance<RemnantPlayer>().PlayerHaveScroll())
+			if (player.GetModPlayer<RemnantPlayer>().PlayerHaveScroll())
 			{
-				int currentScrollId = GetInstance<RemnantPlayer>().SearchCurrenScrollEffect();
+				int currentScrollId = player.GetModPlayer<RemnantPlayer>().SearchCurrenScrollEffect();
 
 				if (currentScrollId != -1)
 				{

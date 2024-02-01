@@ -50,7 +50,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
                 heading = new Vector2(0, 20);
                 heading.Normalize();
                 int p = Projectile.NewProjectile(source, position.X, position.Y, heading.X, heading.Y, type, damage, knockback, player.whoAmI, 0, ceilingLimit);
-                Main.projectile[p].scale = 3;
+                Main.projectile[p].scale = 2;
             }
             return false;
         }

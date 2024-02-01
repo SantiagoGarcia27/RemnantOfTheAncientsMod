@@ -76,6 +76,7 @@ namespace RemnantOfTheAncientsMod
 		public float EnemyProjectilesScaleBouns = 1;
 		public float EnemyProjectilesSpeedScaleBouns = 1;
 
+		public int StyleStat = 0;
 		#region tuxonite
 		public static bool tuxoniteStealth;
 		public static int tuxoniteStealthDuration = 0;
@@ -98,7 +99,28 @@ namespace RemnantOfTheAncientsMod
 		public bool CouwldownHolySaber;
 		#endregion
 
-		
+		public static List<int> DevSuits = new List<int>()
+		{
+            666, 667, 668, 665,
+            1554, 1555, 1556, 1586,
+			1554, 1587, 1588, 1586,
+			1557, 1558, 1559, 1585,
+			1560, 1561, 1562, 1584,
+			1563, 1564, 1565, 3582,
+			1566, 1567, 1568,
+			1580, 1581, 1582, 1583,
+			3226, 3227, 3228, 3288,
+			3583, 3581, 3578, 3579,
+			3585, 3586, 3587, 3588,
+			3589, 3590, 3591, 3592,
+			3368, 3921, 3922, 3923,
+			3925, 3926, 3927, 3928,
+			4732, 4733, 4734, 4730,
+			4747, 4748, 4749, 4746,
+			4751, 4752, 4753, 4750,
+			4755, 4756, 4757, 4754,
+			
+        };
 
 		
 
@@ -137,8 +159,9 @@ namespace RemnantOfTheAncientsMod
 			EnemyProjectilesSpeedScaleBouns = 1;
 		
 			MinionCritChance = 0;
-		
-			if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
+            StyleStat = 0;
+
+            if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
 			if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
 			if (MageBuffInflict.Count > 0) MageBuffInflict.Clear();
 			if (RangerBuffInflict.Count > 0) RangerBuffInflict.Clear();
@@ -474,11 +497,22 @@ namespace RemnantOfTheAncientsMod
 		public bool PlayerHaveScroll()
 		{
 			AddScrollBuff();
-			foreach (int Scrollbuff in ScrollsBuff)
+			try
 			{
-				return Player.HasBuff(Scrollbuff);
-			}
-			return false;
+				foreach (int Scrollbuff in ScrollsBuff)
+				{
+					if (Player.HasBuff(Scrollbuff))
+					{
+						return true;
+					}
+				}
+                return false;
+            }
+			catch
+			{
+                return false;
+            }
+		
 		}
 		public int SearchCurrenScrollEffect()
 		{

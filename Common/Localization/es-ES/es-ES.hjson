@@ -85,7 +85,7 @@ Mods: {
 			}
 
 			ReaperTitle: Almas
-			// Couldowns.CouldownBar: "{0}s"
+			Couldowns.CouldownBar: "{0}s"
 		}
 
 		IntroScreen: {
@@ -170,6 +170,7 @@ Mods: {
 			CompletistTooltip: Objeto de Completista
 			NotConsumableTooltip: No consumible
 			Eternity: Eternity
+			StyleStat: "{0} estilo"
 		}
 
 		CommonTooltip: {
@@ -198,21 +199,21 @@ Mods: {
 		}
 
 		Toggler: {
-			// ForceOfRemantsHeader: "[i:RemnantOfTheAncientsMod/ForceOfRemants] Force Of Remnants"
-			// NightEnchantTeleportConfig: "[i:RemnantOfTheAncientsMod/NightEnchant] Shadow Teleport"
-			// DesertHeraldEnchantmentCactusConfig: "[i:RemnantOfTheAncientsMod/SandHeraldEnchant] Cactus Cursor"
-			// ReinforcedIronEnchantmentBallistaConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Ballista Minion"
-			// ReinforcedIronEnchantmentDamageReductionPlusSlowConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Heavy Armor"
-			// DaylightEnchantmentSunflowerConfig: "[i:RemnantOfTheAncientsMod/DaylightEnchant] Sunflower Turret"
-			// TuxoniteEnchantmentCritBonusConfig: "[i:RemnantOfTheAncientsMod/TuxoniteEnchant] Crit Time"
-			// GuardiansShieldHeader: "[i:RemnantOfTheAncientsMod/GuardiansShield] Guardian´s Shield"
-			// DesertMedalionExtraProjectileConfig: "[i:RemnantOfTheAncientsMod/DesertMedalion] Desert Projectiles"
-			// FrostBarrierEffectConfig: "[i:RemnantOfTheAncientsMod/FrostBarrier] Frost Barrier"
-			// TyrantMarkEnemyProjectileSizeConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles size decreased"
-			// TyrantMarkEnemyProjectileSpeedConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles speed decreased"
-			// SoulOfDivinityHeader: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Soul Of Divinity"
-			// DivineAuraConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] DivineAura"
-			// InmortalityConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Immortality"
+			// ForceOfRemantsHeader: Force Of Remnants
+			// NightEffect: Shadow Teleport
+			// SandHeraldEffect: Cactus Cursor
+			// ReinforcedIronBallistaEffect: Ballista Minion
+			// ReinforcedIronDREffect: Heavy Armor
+			// DaylightEffect: Sunflower Turret
+			// TuxoniteEffect: Crit Time
+			// GuardiansShieldHeader: Guardian´s Shield
+			// DesertMedalionEffect: Desert Projectiles
+			// FrostBarrierEffect: Frost Barrier
+			// TyrantMarkEnemyProjectileSizeEffect: Enemy projectiles size decreased
+			// TyrantMarkEnemyProjectileSpeedEffect: Enemy projectiles speed decreased
+			// SoulOfDivinityHeader: Soul Of Divinity
+			// DivineAuraEffect: DivineAura
+			// GodModeEffect: Immortality
 		}
 
 		Buffs: {
@@ -233,7 +234,7 @@ Mods: {
 
 			GravityControlBuff: {
 				DisplayName: Gravity control
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.GravityControlBuff.Description
+				Description: Puedes controlar la gravedad y caer lentamente
 			}
 
 			Advanced_Infusion: {
@@ -293,12 +294,12 @@ Mods: {
 
 			Tank_Infusion: {
 				DisplayName: Tank infusion
-				Description: Combination of all vanilla defensive effects
+				Description: Combinación de todos los efectos defensivos de vainilla.
 			}
 
 			Ultimate_Infusion: {
 				DisplayName: Ultimate infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Ultimate_Infusion.Description
+				Description: La infusión definitiva
 			}
 
 			GoldenAcornBuff: {
@@ -837,18 +838,18 @@ Mods: {
 			}
 
 			Reinforced_iron_chesplate: {
-				// DisplayName: Reinforced_iron_chesplate
-				// Tooltip: ""
+				DisplayName: Coraza de hierro reforzado
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Reinforced_Iron_Greaves: {
-				// DisplayName: Reinforced_ Iron_ Greaves
-				// Tooltip: ""
+				DisplayName: Perneras de hierro reforzado
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Reinforced_iron_Helmet: {
-				// DisplayName: Reinforced_iron_ Helmet
-				// Tooltip: ""
+				DisplayName: Casco de hierro reforzado
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Tuxonite_chesplate: {
@@ -3395,17 +3396,7 @@ Mods: {
 			}
 
 			Horizon: {
-				// DisplayName: Horizon
-				// Tooltip: ""
-			}
-
-			Graveyard: {
-				// DisplayName: Graveyard
-				// Tooltip: ""
-			}
-
-			Graveyard_sigil: {
-				// DisplayName: Graveyard_sigil
+				DisplayName: Horizonte
 				// Tooltip: ""
 			}
 
@@ -3417,6 +3408,31 @@ Mods: {
 			HalfHellevator: {
 				DisplayName: Perforador infernal medio
 				Tooltip: crea un gran hueco en el mapa
+			}
+
+			TestSword: {
+				// Tooltip: ""
+				// DisplayName: Test Sword
+			}
+
+			SoulReset: {
+				// Tooltip: ""
+				// DisplayName: Soul Reset
+			}
+
+			NpcKiller: {
+				// Tooltip: ""
+				// DisplayName: Npc Killer
+			}
+
+			HardmodeToggler: {
+				// Tooltip: ""
+				// DisplayName: Hardmode Toggler
+			}
+
+			ExpertToggler: {
+				// Tooltip: ""
+				// DisplayName: Expert Toggler
 			}
 		}
 
@@ -3857,7 +3873,7 @@ Mods: {
 		Keybinds: {
 			ReaperModeInterface.DisplayName: Reaper Mode Interface
 			FrostBarrier.DisplayName: Barrera Hélida
-			// ToggNightTp.DisplayName: Togg Night Tp
+			ToggNightTp.DisplayName: Teletransporte nocturno
 		}
 	}
 }

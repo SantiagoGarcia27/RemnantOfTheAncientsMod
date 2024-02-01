@@ -38,7 +38,7 @@ A more detailed breakdown of the content available in the mod:
 [*] +86 new recipes for vanilla items
 [*] +18 tweaks and improvements to vanilla items
 [*] 2 Language translation (English and Spanish) (no completed)
-[*] Cross-mod support for the Calamity Mod,Thorium,BossChecklist,Terraria Overhaul and Census
+[*] Cross-mod support for the Calamity Mod,Infernum Mod,Fargos soul,Fargowitas,Thorium,BossChecklist,Terraria Overhaul and Census
 [*] Separated mod balanced for CalamityMod (it is activated automatically when having the mod activated)
 
 Patch notes:

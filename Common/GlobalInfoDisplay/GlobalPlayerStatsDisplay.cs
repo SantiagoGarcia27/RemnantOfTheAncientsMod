@@ -121,4 +121,12 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
             return $"{(Main.LocalPlayer.moveSpeed * 100f) - 100f}% Movment speed bonus";
         }
     }
+    public class StyleStatBonusDisplay : InfoDisplay
+    {
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showStyleStatBonus;
+        public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)/* tModPorter Suggestion: Set displayColor to InactiveInfoTextColor if your display value is "zero"/shows no valuable information */
+        {
+            return $"{Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat} Style bonus";
+        }
+    }
 }

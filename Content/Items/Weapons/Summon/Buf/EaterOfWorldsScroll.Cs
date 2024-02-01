@@ -47,10 +47,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		}
         public override bool? UseItem(Player player)
         {
-			bool playerHaveScroll = ModContent.GetInstance<RemnantPlayer>().PlayerHaveScroll();
+			bool playerHaveScroll = player.GetModPlayer<RemnantPlayer>().PlayerHaveScroll();
             if (playerHaveScroll)
             {
-                int currentScrollId = ModContent.GetInstance<RemnantPlayer>().SearchCurrenScrollEffect();
+                int currentScrollId = player.GetModPlayer<RemnantPlayer>().SearchCurrenScrollEffect();
 
                 if (currentScrollId != -1)
                 {

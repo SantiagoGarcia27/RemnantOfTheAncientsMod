@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos
 
         public override string SortCategory => "Enchantments";
 
-        public override int Priority => 1;
+        public override float Priority => 1f;
 
         public override bool Active => true;
 

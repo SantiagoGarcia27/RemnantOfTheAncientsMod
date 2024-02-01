@@ -27,6 +27,6 @@
     - +18 tweaks and improvements to vanilla items 
     - +15 new reforges
     - 2 Language translation (English and Spanish) (no completed)
-    - Cross-mod support for the Calamity Mod,Thorium,BossChecklist,Terraria Overhaul and Census
+    - Cross-mod support for the Calamity Mod,Infernum Mod,Fargos soul,Fargowitas,Thorium,BossChecklist,Terraria Overhaul and Census
     - Separated mod balanced for CalamityMod (it is activated automatically when having the mod activated)
                   

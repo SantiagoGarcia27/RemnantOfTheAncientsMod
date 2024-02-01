@@ -164,6 +164,7 @@ Mods: {
 			CompletistTooltip: Completist Item
 			NotConsumableTooltip: Not Consumable
 			Eternity: Eternity
+			StyleStat: "{0} style"
 		}
 
 		CommonTooltip: {
@@ -192,21 +193,21 @@ Mods: {
 		}
 
 		Toggler: {
-			ForceOfRemantsHeader: "[i:RemnantOfTheAncientsMod/ForceOfRemants] Force Of Remnants"
-			NightEnchantTeleportConfig: "[i:RemnantOfTheAncientsMod/NightEnchant] Shadow Teleport"
-			DesertHeraldEnchantmentCactusConfig: "[i:RemnantOfTheAncientsMod/SandHeraldEnchant] Cactus Cursor"
-			ReinforcedIronEnchantmentBallistaConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Ballista Minion"
-			ReinforcedIronEnchantmentDamageReductionPlusSlowConfig: "[i:RemnantOfTheAncientsMod/ReinforcedIronEnchant] Heavy Armor"
-			DaylightEnchantmentSunflowerConfig: "[i:RemnantOfTheAncientsMod/DaylightEnchant] Sunflower Turret"
-			TuxoniteEnchantmentCritBonusConfig: "[i:RemnantOfTheAncientsMod/TuxoniteEnchant] Crit Time"
-			GuardiansShieldHeader: "[i:RemnantOfTheAncientsMod/GuardiansShield] Guardian´s Shield"
-			DesertMedalionExtraProjectileConfig: "[i:RemnantOfTheAncientsMod/DesertMedalion] Desert Projectiles"
-			FrostBarrierEffectConfig: "[i:RemnantOfTheAncientsMod/FrostBarrier] Frost Barrier"
-			TyrantMarkEnemyProjectileSizeConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles size decreased"
-			TyrantMarkEnemyProjectileSpeedConfig: "[i:RemnantOfTheAncientsMod/TyrantsMark] Enemy projectiles speed decreased"
-			SoulOfDivinityHeader: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Soul Of Divinity"
-			DivineAuraConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] DivineAura"
-			InmortalityConfig: "[i:RemnantOfTheAncientsMod/SoulOfDivinity] Immortality"
+			ForceOfRemantsHeader: Force Of Remnants
+			NightEffect: Shadow Teleport
+			SandHeraldEffect: Cactus Cursor
+			ReinforcedIronBallistaEffect: Ballista Minion
+			ReinforcedIronDREffect: Heavy Armor
+			DaylightEffect: Sunflower Turret
+			TuxoniteEffect: Crit Time
+			GuardiansShieldHeader: Guardian´s Shield
+			DesertMedalionEffect: Desert Projectiles
+			FrostBarrierEffect: Frost Barrier
+			TyrantMarkEnemyProjectileSizeEffect: Enemy projectiles size decreased
+			TyrantMarkEnemyProjectileSpeedEffect: Enemy projectiles speed decreased
+			SoulOfDivinityHeader: Soul Of Divinity
+			DivineAuraEffect: DivineAura
+			GodModeEffect: Immortality
 		}
 
 		Buffs: {
@@ -222,12 +223,12 @@ Mods: {
 
 			FishBuff: {
 				DisplayName: Fish
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.FishBuff.Description
+				Description: You feel like a fish in water
 			}
 
 			GravityControlBuff: {
 				DisplayName: Gravity control
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.GravityControlBuff.Description
+				Description: You can control gravity and fall slowly
 			}
 
 			Advanced_Infusion: {
@@ -292,7 +293,7 @@ Mods: {
 
 			Ultimate_Infusion: {
 				DisplayName: Ultimate infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Ultimate_Infusion.Description
+				Description: The definitive infusion
 			}
 
 			GoldenAcornBuff: {
@@ -824,18 +825,18 @@ Mods: {
 			}
 
 			Reinforced_iron_chesplate: {
-				DisplayName: Reinforced_iron_chesplate
-				Tooltip: ""
+				DisplayName: Reinforced Iron Chesplate
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Reinforced_Iron_Greaves: {
-				DisplayName: Reinforced_ Iron_ Greaves
-				Tooltip: ""
+				DisplayName: Reinforced Iron Greaves
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Reinforced_iron_Helmet: {
-				DisplayName: Reinforced_iron_ Helmet
-				Tooltip: ""
+				DisplayName: Reinforced Iron Helmet
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Tuxonite_chesplate: {
@@ -3378,7 +3379,7 @@ Mods: {
 				DisplayName: Horizon
 				Tooltip: ""
 			}
-	
+
 			Graveyard_glyph: {
 				DisplayName: Graveyard Glyph
 				Tooltip: ""
@@ -3387,6 +3388,31 @@ Mods: {
 			HalfHellevator: {
 				DisplayName: Middle Hellevator
 				Tooltip: Make a instant hole on the world
+			}
+
+			TestSword: {
+				Tooltip: ""
+				DisplayName: Test Sword
+			}
+
+			SoulReset: {
+				Tooltip: ""
+				DisplayName: Soul Reset
+			}
+
+			NpcKiller: {
+				Tooltip: ""
+				DisplayName: Npc Killer
+			}
+
+			HardmodeToggler: {
+				Tooltip: ""
+				DisplayName: Hardmode Toggler
+			}
+
+			ExpertToggler: {
+				Tooltip: ""
+				DisplayName: Expert Toggler
 			}
 		}
 

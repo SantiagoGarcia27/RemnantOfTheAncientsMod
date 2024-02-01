@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using FargowiltasSouls.Common.Graphics.Shaders;
 using FargowiltasSouls.Content.Items.Accessories.Masomode;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
 using Terraria.DataStructures;
@@ -89,7 +91,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 			Item.useTime = 180;
 			Item.useAnimation = 180;
 			Item.UseSound = SoundID.Item6;
-		}
+            Item.GetGlobalItem<CustomTooltip>().EternityItem = true;
+        }
 
 		public override void UseItemFrame(Player player)
 		{
@@ -161,16 +164,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
 			return true;
 		}
-    
 
-    public override void UpdateAccessory(Player player, bool hideVisual)
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
             ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
             ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
             ModContent.GetInstance<EternitySoul>().UpdateAccessory(player, hideVisual);
-			player.GetModPlayer<RemnantFargosSoulsPlayer>().SoulOfDiviniy(player);
-            player.GetModPlayer<RemnantPlayer>().Inmortal = true;
-           // WingUpdate(player, true);
+            player.AddEffect<DivineAuraEffect>(base.Item);
+            player.AddEffect<GodModeEffect>(base.Item);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().SoulOfDiviniy(player);
+            // player.GetModPlayer<RemnantPlayer>().Inmortal = true;
+            // WingUpdate(player, true);
 
         }
 

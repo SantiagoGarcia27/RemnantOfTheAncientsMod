@@ -17,6 +17,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public static float originalsize = 1;
 		public float newsize = 0;
 
+
 		public override void ModifyItemScale(Item item, Player player, ref float scale)
 		{
 			ReaperPlayer modPlayer = player.GetModPlayer<ReaperPlayer>();

@@ -34,17 +34,17 @@ internal class MenuBackground : ModSurfaceBackgroundStyle
 	{
 		BackgroundTextureLoader.AddBackgroundTexture(Mod, TexPath);
 
-        return BackgroundTextureLoader.GetBackgroundSlot(Mod,TexPath);
+        return BackgroundTextureLoader.GetBackgroundSlot(Mod,RemnantOfTheAncientsMod.PlaceHolderWithoutModPath);
 	}
 
 	public override int ChooseFarTexture()
 	{
-		return BackgroundTextureLoader.GetBackgroundSlot(Mod,TexPath);
+		return BackgroundTextureLoader.GetBackgroundSlot(Mod, RemnantOfTheAncientsMod.PlaceHolderWithoutModPath);
 	}
 
 	public override int ChooseMiddleTexture()
 	{
-		return BackgroundTextureLoader.GetBackgroundSlot(Mod, TexPath);
+		return BackgroundTextureLoader.GetBackgroundSlot(Mod, RemnantOfTheAncientsMod.PlaceHolderWithoutModPath);
 	}
 
 	public override bool PreDrawCloseBackground(SpriteBatch spriteBatch)

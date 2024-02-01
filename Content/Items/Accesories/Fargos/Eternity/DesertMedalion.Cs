@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
@@ -63,10 +64,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         //   .AddTile(TileID.MythrilAnvil)
         //   .Register();
         //}
-
+        [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
+            player.AddEffect<DesertMedalionEffect>(base.Item);
+           // player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
         }
         //public override void ModifyTooltips(List<TooltipLine> tooltips)
         //{

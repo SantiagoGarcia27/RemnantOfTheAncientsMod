@@ -1,3 +1,4 @@
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
@@ -31,9 +32,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             Item.rare = 1;
             Item.accessory = true;
         }
+        [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().TuxoniteEnchant(player, CritBonus);
+            player.AddEffect<TuxoniteEffect>(base.Item);
+           // player.GetModPlayer<RemnantFargosSoulsPlayer>().TuxoniteEnchant(player, CritBonus);
         }
 
         public override void AddRecipes()

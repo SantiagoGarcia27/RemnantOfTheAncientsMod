@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
@@ -37,10 +37,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 		{
 			380
         };
-
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().NightEnchant(player);
+            player.AddEffect<NightEffect>(base.Item);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().NightEnchant(player);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

@@ -25,6 +25,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -41,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
         private static int SetMaxLife(int life)
         {
-            return (int)NpcChanges1.ExpertLifeScale(life);
+            return Reaper.ReaperMode? life * 2: life;
         }
         
     }
@@ -98,7 +99,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         public void CalamityLifeScale(int life)
         {
-            life = (int)NpcChanges1.ExpertLifeScale(life);
+            life = Reaper.ReaperMode? life * 2: life;
             CalamityUtils.SetLifeBonus(NPC, life,1.5f,1.7f,1.8f);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -591,7 +592,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         public void CalamityLifeScale(int life)
         {
-            life = (int)NpcChanges1.ExpertLifeScale(life);
+            life = Reaper.ReaperMode? life * 2: life;
             //CalamityUtils.SetLifeBonus(NPC, life, 1.5f, 1.7f, 1.8f);
             NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
         }
@@ -733,7 +734,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         public void CalamityLifeScale(int life)
         {
-            life = (int)NpcChanges1.ExpertLifeScale(life);
+            life = Reaper.ReaperMode? life * 2: life;
             NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
            // CalamityUtils.SetLifeBonus(NPC, life, 1.5f, 1.7f, 1.8f);
         }

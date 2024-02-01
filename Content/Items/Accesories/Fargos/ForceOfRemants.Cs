@@ -1,3 +1,4 @@
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
@@ -36,15 +37,23 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         int CritBonus = 50;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBonus, DamageReduction, CritBonus);
+        [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertEnchant(player);
+            player.AddEffect<DaylightEffect>(base.Item);
+            player.AddEffect<TuxoniteEffect>(base.Item);
+            player.AddEffect<NightEffect>(base.Item);
+            player.AddEffect<ReinforcedIronDREffect>(base.Item);
+            player.AddEffect<ReinforcedIronBallistaEffect>(base.Item);
+            player.AddEffect<SandHeraldEffect>(base.Item);
+
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertEnchant(player);
             player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(BuffID.Electrified);
             player.GetModPlayer<RemnantPlayer>().AllClassBuffInflict.Add(BuffID.Electrified); 
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().TuxoniteEnchant(player,CritBonus);
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().NightEnchant(player);
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchant(player);
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().ReinforcedIronEnchant(player, SpeedBonus, DamageReduction);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().TuxoniteEnchant(player,CritBonus);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().NightEnchant(player);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchant(player);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().ReinforcedIronEnchant(player, SpeedBonus, DamageReduction);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

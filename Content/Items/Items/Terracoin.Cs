@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
             Item.consumable = true;
             Item.createTile = TileType<TerracoinB>();
             Item.noMelee = true;
-            ModContent.GetInstance<RemnantGlobalItem>().IsACoin = true;
+            Item.GetGlobalItem<RemnantGlobalItem>().IsCoin = true;
         } 
         public override bool CanShoot(Player player)
         {

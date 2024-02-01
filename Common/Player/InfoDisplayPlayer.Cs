@@ -20,6 +20,7 @@ public class InfoDisplayPlayer : ModPlayer
     public bool showLuck = false;
     public bool showDamageBonus = false;
     public bool showCritBonus = false;
+    public bool showStyleStatBonus = false;
 
 
 
@@ -41,6 +42,7 @@ public class InfoDisplayPlayer : ModPlayer
         showDamageBonus = n;
         showCritBonus= n;
         showMovmentSpeedBonus = n;
+        showStyleStatBonus= n;
 
         base.PostUpdate();
     }

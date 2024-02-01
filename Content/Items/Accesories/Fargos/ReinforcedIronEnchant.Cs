@@ -1,3 +1,4 @@
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using Terraria;
@@ -33,9 +34,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 			Item.accessory = true;
 			Item.defense = 3;
 		}
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().ReinforcedIronEnchant(player, SpeedBonus, DamageReduction);
+            player.AddEffect<ReinforcedIronBallistaEffect>(base.Item);
+            player.AddEffect<ReinforcedIronDREffect>(base.Item);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().ReinforcedIronEnchant(player, SpeedBonus, DamageReduction);
         }
 
 		public override void AddRecipes()

@@ -1,3 +1,5 @@
+using FargowiltasSouls.Content.Items.Accessories.Enchantments;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Daylight;
@@ -36,9 +38,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 		{
 			380
         };
+		[JITWhenModsEnabled("FargowiltasSouls")]
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchant(player);
+            player.AddEffect<DaylightEffect>(base.Item);
+            //player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchant(player);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

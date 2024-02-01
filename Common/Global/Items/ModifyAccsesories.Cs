@@ -4,6 +4,8 @@ using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -42,8 +44,31 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.defense += 2;
                 }
-
-              
+                if (item.type == ItemID.RedCape || item.type == ItemID.MysteriousCape || item.type == ItemID.PrinceCape || item.type == ItemID.WinterCape)
+                {
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
+                }
+                if(item.type == ModContent.ItemType<Sangar_Head>() || item.type == ModContent.ItemType<Sangar_Body>() || item.type == ModContent.ItemType<Sangar_Legs>() 
+                || item.type == ModContent.ItemType<Ttim_Head>() || item.type == ModContent.ItemType<Ttim_Body>() || item.type == ModContent.ItemType<Ttim_Legs>())
+                {
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 10;
+                }
+                item.GetGlobalItem<RemnantGlobalItem>().fillMusicBox();
+                if (item.GetGlobalItem<RemnantGlobalItem>().MusicBox.Contains(item.type))
+                {     
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 4;
+                }
+                if (item.vanity)
+                {
+                    if (RemnantPlayer.DevSuits.Contains(item.type))
+                    {
+                        item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
+                    }
+                    if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat == 0)
+                    {
+                        item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 5;
+                    }    
+                }     
             }
         }
 
@@ -65,7 +90,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 player.pickSpeed -= 0.45f;
             }
-
+            if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
+            {
+                player.GetModPlayer<RemnantPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;     
+            }
             if (WeaponConf)
             {
                 if (item.type == ItemID.JungleRose)
@@ -114,8 +142,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             base.UpdateAccessory(item, player, hideVisual);
         }
 
+        public override void UpdateEquip(Item item, Player player)
+        {
+            if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
+            {
+                player.GetModPlayer<RemnantPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;
+            }
+            base.UpdateEquip(item, player);
+        }
 
-      
 
         public static void UpdateFallSpeedList()
         {

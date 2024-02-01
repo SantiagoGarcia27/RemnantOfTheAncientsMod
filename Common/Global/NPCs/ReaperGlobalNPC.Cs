@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (npc.boss)
             {
-                ModifyBossStats(npc, ref npc.damage, npc.lifeMax);
+                ModifyBossStats(npc);
             }
 
             if (DificultyUtils.ReaperMode)
@@ -76,10 +76,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             NPCID.TheDestroyerBody,
             NPCID.TheDestroyerTail
         };
-        public static void ModifyBossStats(NPC npc, ref int damage, int lifeMax)
+        public static void ModifyBossStats(NPC npc)
         {
-            npc.lifeMax = (int)NpcChanges1.ExpertLifeScale(lifeMax);
-            npc.damage = (int)NpcChanges1.ExpertDamageScale(damage);
+            npc.lifeMax *= Reaper.ReaperMode? 2 : 1;
+            npc.damage *= Reaper.ReaperMode ? 2 : 1;
         }
         public override void OnSpawn(NPC npc, IEntitySource source)
         {

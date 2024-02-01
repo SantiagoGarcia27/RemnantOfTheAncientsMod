@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
@@ -66,10 +67,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         //   .AddTile(TileID.MythrilAnvil)
         //   .Register();
         //}
-
+        [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrierEffect(player, hideVisual);
+            player.AddEffect<FrostBarrierEffect>(base.Item);
+           // player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrierEffect(player, hideVisual);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

@@ -28,7 +28,8 @@ namespace RemnantOfTheAncientsMod
         public static int MaxRarity = GetMaxRarity();
         public static int MaxPlayers = 0;
 
-        public static string PlaceHolderPath = "RemnantOfTheAncientsMod/Assets/PlaceHolder";
+        public static string PlaceHolderPath = $"RemnantOfTheAncientsMod/Assets/PlaceHolder";
+        public static string PlaceHolderWithoutModPath = $"Assets/PlaceHolder";
         public RemnantOfTheAncientsMod()
         {
 
@@ -66,7 +67,7 @@ namespace RemnantOfTheAncientsMod
                 IntroScreenManager.Load();
             }
            
-            BackgroundTextureLoader.AddBackgroundTexture(this, RemnantOfTheAncientsMod.PlaceHolderPath);
+            BackgroundTextureLoader.AddBackgroundTexture(this,PlaceHolderPath);
         }
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void LoadTogglesFromType(Type type)

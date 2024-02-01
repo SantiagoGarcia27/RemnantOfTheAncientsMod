@@ -85,6 +85,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                 if (!DificultyUtils.ReaperMode)
                 {
                     DificultyUtils.ReaperMode = true;
+                    Reaper.ReaperMode = true;
                     Item.buffTime = 1;
                     Color gray = Color.DarkSlateGray;
                     ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Welcome to hell, now you're a reaper."), gray);
@@ -98,6 +99,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                 else
                 {
                     DificultyUtils.ReaperMode = false;
+                    Reaper.ReaperMode = false;
                     Color gray = Color.DarkSlateGray;
 
                     ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Well your soul is free... for now."), gray);

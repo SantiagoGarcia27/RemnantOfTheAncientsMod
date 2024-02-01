@@ -82,11 +82,15 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 color = Utils1.CompletistRarityColor;
                 SetTooltipCustom(Tooltips,"[" + Language.GetTextValue(GenericPath + "CompletistTooltip") + "]", color, $"{Mod.Name}:CompletistTooltip", color.GetValueOrDefault(Utils1.ReaperRarityColor));
             }
+            if(item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
+            {
+                SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "StyleStat", item.GetGlobalItem<RemnantGlobalItem>().StyleStat), Color.Pink, $"{Mod.Name}:StyleStat", Color.Pink);
+            }
             if(ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod))
             {
                 if (EternityItem)
                 {
-                    SetTooltipCustom(Tooltips, Language.GetTextValue("Mods.FargowiltasSouls.Message.EternityItem"), Color.White, EternityItem, "FargowiltasSouls:Eternity", Color.White);
+                    SetTooltipCustom(Tooltips, Language.GetTextValue("Mods.FargowiltasSouls.Items.Extra.EternityItem"), Color.White, EternityItem, "FargowiltasSouls:Eternity", Color.White);
                 }
             }
             FixLocalizations(item, Tooltips);

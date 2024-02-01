@@ -1,3 +1,4 @@
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Desert;
 using RemnantOfTheAncientsMod.Content.Items.Items;
@@ -28,9 +29,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 			Item.rare = 3;
 			Item.accessory = true;
 		}
-		public override void UpdateAccessory(Player player, bool hideVisual)
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertEnchant(player);
+            player.AddEffect<SandHeraldEffect>(base.Item);
+           // player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertEnchant(player);
         }
 
 		public override void AddRecipes()

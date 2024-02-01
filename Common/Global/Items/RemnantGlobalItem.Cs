@@ -15,16 +15,21 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using System.Linq;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
     public class RemnantGlobalItem : GlobalItem
 	{
-		public bool IsACoin = false;
-		public bool IsAmmo = false;
-		public Item ItemBase = null;
+		public bool IsCoin;
+		public bool IsAmmo;
+        public int StyleStat = 0;
+        public Item ItemBase = null;
 		public List<int> SpearsList = new List<int>();
-       
+
+        public override bool InstancePerEntity => true;
         public int[] lanceId = new int[]
 		{
 			ItemID.Spear,
@@ -96,9 +101,70 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public List<int> LowBait = new List<int>();
         public List<int> MediumBait = new List<int>();
         public List<int> HightBait = new List<int>();
-        public override void SetStaticDefaults()
+
+		public List<int> MusicBox = new List<int>()
+		{
+
+		};
+		public override void SetStaticDefaults()
 		{
             
+        }
+
+		public void fillMusicBox()
+		{
+			for (int i = 562; i <= 574; i++)
+			{
+                Utils1.AddSecure(MusicBox, i);
+            }
+			Utils1.AddSecure(MusicBox, 576);
+            for (int i = 1596; i <= 1610; i++)
+            {
+                Utils1.AddSecure(MusicBox, i);
+            }
+            for (int i = 1963; i <= 1965; i++)
+            {
+                Utils1.AddSecure(MusicBox, i);
+            }
+            Utils1.AddSecure(MusicBox, 2742);
+            Utils1.AddSecure(MusicBox, 3044);
+            for (int i = 3235; i <= 3237; i++)
+            {
+                Utils1.AddSecure(MusicBox, i);
+            }
+            Utils1.AddSecure(MusicBox, 3370);
+            Utils1.AddSecure(MusicBox, 3371);
+            Utils1.AddSecure(MusicBox, 3796);
+            Utils1.AddSecure(MusicBox, 3869);
+            for (int i = 4077; i <= 4082; i++)
+            {
+                Utils1.AddSecure(MusicBox, i);
+            }
+            Utils1.AddSecure(MusicBox, 4237);
+            for (int i = 4356; i <= 4358; i++)
+            {
+                Utils1.AddSecure(MusicBox, i);
+            }
+            Utils1.AddSecure(MusicBox, 4421);
+            Utils1.AddSecure(MusicBox, 4606);
+            Utils1.AddSecure(MusicBox, 4979);
+            Utils1.AddSecure(MusicBox, 4985);
+            for (int i = 4990; i <= 4992; i++)
+            {
+                Utils1.AddSecure(MusicBox, i);
+            }
+            Utils1.AddSecure(MusicBox, 5006);
+            for (int i = 5014; i <= 5040; i++)
+            {
+                Utils1.AddSecure(MusicBox, i);
+            }
+            Utils1.AddSecure(MusicBox, 5044);
+            Utils1.AddSecure(MusicBox, 5112);
+            Utils1.AddSecure(MusicBox, 5362);
+            Utils1.AddSecure(MusicBox, ModContent.ItemType<DesertMusicBox>());
+            Utils1.AddSecure(MusicBox, ModContent.ItemType<FrozenMusicBox>());
+            Utils1.AddSecure(MusicBox, ModContent.ItemType<Frozenp2MusicBox>());      
+            Utils1.AddSecure(MusicBox, ModContent.ItemType<InfernalMusicBox>());
         }
 
         public override void SetDefaults(Item item)
@@ -109,6 +175,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
             if (WeaponConf)
 			{
+				fillMusicBox();
                 if (SecondClickWeapons.Contains(item.type))
                 {
                     ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
@@ -205,12 +272,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.damage = 60;
                     item.useAnimation = 16;
                     item.useTime = 14;
-                }
+                }  
                 if (item.type == ItemID.PsychoKnife && Calamity)
                 {
                     item.damage = 300;
-                   
                 }
+
                 if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -629,62 +696,59 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public override bool? UseItem(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-			if (WeaponConf)
+
+			if (player.altFunctionUse == 2 && WeaponConf)
 			{
-				if (player.altFunctionUse == 2)
+				if (item.type == ItemID.ChlorophyteSaber)
 				{
-					if (item.type == ItemID.ChlorophyteSaber)
+					bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
+					int projectileCount = 32;
+					float projectileDistance = 10f;
+
+
+					if (PlayerTouchFlour)
 					{
-						bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
-						int projectileCount = 32;
-						float projectileDistance = 10f;
-
-
-						if (PlayerTouchFlour)
+						WeaponDash(player, 1f, 0.75f);
+						for (int i = 0; i < projectileCount; i++)
 						{
-							WeaponDash(player, 1f, 0.75f);
-							for (int i = 0; i < projectileCount; i++)
-							{
-								float angle = MathHelper.ToRadians(360f / projectileCount * i);
-								Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
-								Vector2 position = player.Center + velocity;
+							float angle = MathHelper.ToRadians(360f / projectileCount * i);
+							Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
+							Vector2 position = player.Center + velocity;
 
-								var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, item.shoot, item.damage, 2f, Main.myPlayer);
-								Main.projectile[p].timeLeft = 100;
-							}
+							var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, item.shoot, item.damage, 2f, Main.myPlayer);
+							Main.projectile[p].timeLeft = 100;
 						}
-						return false;
 					}
-					else
+					return false;
+				}
+				else
+				{
+					if (Utils1.NameHasWord(item.Name, "Saber") && item.ModItem.Mod.Name != "RemnantOfTheAncientsMod")
 					{
-						if (Utils1.NameHasWord(item.Name, "Saber") && item.ModItem.Mod.Name != "RemnantOfTheAncientsMod")
+						for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
 						{
-							for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
+							if (item.rare == j)
 							{
-								if (item.rare == j)
+								if (j > 10)
 								{
-									if (j > 10)
-									{
-										WeaponDash(player, (float)Math.Log(j - Math.Log(j)), 1.7f);
-									}
-									else
-									{
-										WeaponDash(player, (float)Math.Log(j), (float)Math.Log(j));
-									}
+									WeaponDash(player, (float)Math.Log(j - Math.Log(j)), 1.7f);
+								}
+								else
+								{
+									WeaponDash(player, (float)Math.Log(j), (float)Math.Log(j));
 								}
 							}
 						}
 					}
-					if (SpearsList.Contains(item.type))
-					{
-						for (int j = 0; j < RemnantOfTheAncientsMod.MaxRarity; j++)
-						{
-							if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2) /** player.direction*/, 0f);
-						}
-					}
-					return true;
 				}
-				else return base.UseItem(item, player);
+				if (SpearsList.Contains(item.type))
+				{
+					for (int j = 0; j < RemnantOfTheAncientsMod.MaxRarity; j++)
+					{
+						if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2) /** player.direction*/, 0f);
+					}
+				}
+				return true;
 			}
 			else return base.UseItem(item, player);
 		}
@@ -773,22 +837,24 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
         private int AllowCoinAndAmmoPlacement(On_ItemSlot.orig_PickItemMovementAction orig, Item[] inv, int context, int slot, Item checkItem)
         {
-            if (context == 1 && IsACoin) //Money Collector in coin slot
+            if (context == 1 && (IsCoin || FixCoin(checkItem))) 
             {
                 return 0;
             }
-            if (context == 2) //All unlimited coins in ammo slot
-            {
-                if (IsAmmo)
-                {
-                    return 0;
-                }
+            if (context == 2 && IsAmmo)
+            {      
+                return 0;         
             }
             return orig(inv, context, slot, checkItem);
-
-
-        }
-
-        public override bool InstancePerEntity => true;
+        } 
+		public bool FixCoin(Item item)
+		{
+			List<int> coins = new List<int>() { ModContent.ItemType<Terracoin>()};
+			if (coins.Contains(item.type))
+			{
+				return true;
+			}
+			return false;
+		}
 	}
 }

@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             Item.GetGlobalItem<RemnantGlobalItem>().ItemBase = ItemBase;
             if (ItemBase.shoot > ProjectileID.None)
             {
-                ModContent.GetInstance<RemnantGlobalItem>().IsAmmo = true;
+                Item.GetGlobalItem<RemnantGlobalItem>().IsAmmo = true;
             }
         }
         public string GetTextureFromItem(Item item)

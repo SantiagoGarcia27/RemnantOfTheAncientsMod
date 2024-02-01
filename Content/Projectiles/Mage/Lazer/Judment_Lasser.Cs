@@ -1,8 +1,10 @@
+using Humanizer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Dusts;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -75,11 +77,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			DrawLaser(TextureAssets.Projectile[Projectile.type].Value, Projectile.Center, Projectile.velocity, 10, Projectile.damage, -1.57f, Projectile.scale, 1000f, Color.White, 1);
+			DrawLaser(TextureAssets.Projectile[Projectile.type].Value, Projectile.Center, Projectile.velocity, 10, -1.57f, Projectile.scale, 1);
 			return false;
 		}
 
-		public void DrawLaser(Texture2D texture, Vector2 start, Vector2 unit, float step, int damage, float rotation = 0f, float scale = 2f, float maxDist = 2000f, Color color = default(Color), int transDist = 50)
+		public float floor;
+		public void DrawLaser(Texture2D texture, Vector2 start, Vector2 unit, float step, float rotation = 0f, float scale = 2f, int transDist = 50)
 		{
 			float r = unit.ToRotation() + rotation;
 			for (float i = transDist; i <= Distance; i += step)
@@ -88,16 +91,35 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 
 				if (DistanceUtils.ExistTileSolid(new Vector2(start.X,start.Y + i)))
 				{
-					i = Distance -1;
-                    Main.EntitySpriteDraw(texture, start + (Distance + step) * unit - Main.screenPosition, new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
-                }
+					
+                    //Main.EntitySpriteDraw(texture, origin + (Distance + step) * unit - Main.screenPosition, new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
+                    var dust = Dust.NewDust(new Vector2(start.X - 2 *16, start.Y + i), Projectile.width *2, 25, ModContent.DustType<HollyBurn_P>(), 0, 0, 0, default, 1 + Projectile.scale * 2f);
+                    Main.EntitySpriteDraw(texture, origin - Main.screenPosition, new Rectangle(0, 57, 26, 22), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale *2, 0, 0); //new Vector2(start.X - 2 * 16, start.Y + i)
+                    Main.dust[dust].noGravity = true;
+					floor = i;
+                    i = Distance - 1;
+                }		             
 				else
 				{
-					Main.EntitySpriteDraw(texture, origin - Main.screenPosition, new Rectangle(0, 26, 28, 26), i < transDist ? Color.Transparent : Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
+					float mult = HaveBlockMultiplier(start.X, start.Y + i);
+
+                    Main.EntitySpriteDraw(texture, origin - Main.screenPosition, new Rectangle(0, 26, 28, 26), i < transDist ? Color.Transparent : Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale * mult, 0, 0);
 				}
             }
 		}
+		public float HaveBlockMultiplier(float x, float y)
+		{
+			float a = 1;
+			for (int i = 0; i < 10; i++)
+			{
+				if (DistanceUtils.ExistTileSolid(new Vector2(x, y + i * 10)))
+				{
+					return a += i / 100;
+				}
+			}
 
+			return a;
+		}
 
 		public override void OnKill(int timeLeft)
 		{
@@ -110,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
 		{
 			float point = 0f;
-			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + Projectile.velocity * Distance, 22, ref point);//player.Center
+			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size()* Projectile.scale, Projectile.Center, Projectile.Center + Projectile.velocity * Distance, 22, ref point);//player.Center
 		}
 
 		 public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -140,7 +162,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 		private void CastLights()
 		{
 			DelegateMethods.v3_1 = new Vector3(0.8f, 0.8f, 1f);
-			Utils.PlotTileLine(Projectile.Center, Projectile.Center + Projectile.velocity * (Distance - 1f), 26, DelegateMethods.CastLight);
+			Utils.PlotTileLine(Projectile.Center, Projectile.Center + Projectile.velocity * (floor/*Distance*/ - 1f), 26, DelegateMethods.CastLight);
 		}
 
 		public override bool ShouldUpdatePosition() => false;
