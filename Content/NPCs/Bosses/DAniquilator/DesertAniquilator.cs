@@ -59,7 +59,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             NPC.noTileCollide = false;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
-            NPC.buffImmune[24] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Desert_Aniquilator");
             NPC.netAlways = true;
             AnimationType = NPCID.BlueSlime;
@@ -214,7 +214,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             {
                 if (attackCounter == AttackValue[1][i])
                 {
-                    ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, 0.5f * Utils1.GetSign(Main.rand.Next(-4,4)), 0.5f * Utils1.GetSign(Main.rand.Next(-4, 4)), proj);
+                    int damage = (int)NpcChanges1.ExpertDamageScale(20);
+                    ShootHelper(damage, type, target, 12f, 0.5f * Utils1.GetSign(Main.rand.Next(-4,4)), 0.5f * Utils1.GetSign(Main.rand.Next(-4, 4)), proj);
                 }
             }  
             if (attackCounter == AttackValue[1][5])

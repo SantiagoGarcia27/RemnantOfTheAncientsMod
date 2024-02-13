@@ -839,7 +839,11 @@ Mods: {
 
 			Reinforced_iron_chesplate: {
 				DisplayName: Coraza de hierro reforzado
-				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					''' */
 			}
 
 			Reinforced_Iron_Greaves: {

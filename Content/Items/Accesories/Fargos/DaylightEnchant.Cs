@@ -42,7 +42,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
             player.AddEffect<DaylightEffect>(base.Item);
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchant(player);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

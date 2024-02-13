@@ -19,11 +19,9 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
-//using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
-using CalamityMod;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -235,7 +233,8 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 switch (npc.type)
                 {
                     case NPCID.KingSlime:
-                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SlimeReaperSoulRule(), ItemType<KingSoul>()));
+                        npcLoot.AddIf(() => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0] && DificultyUtils.ReaperMode, ItemType<KingSoul>());
+                        //npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SlimeReaperSoulRule(), ItemType<KingSoul>()));
                         break;
                     case NPCID.EyeofCthulhu:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.EyeOfChutuluReaperSoulRule(),ItemType<EyeSoul>(),1));

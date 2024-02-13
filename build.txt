@@ -1,5 +1,5 @@
 author = Sangar & TTIM
-version = 2.2.4
+version = 2.2.4.3
 displayName = [i:3454][c/fcf1d4:R][c/F4DC8C:e][c/ecac4c:m][c/d4945c:n][c/ac7c44:a][c/9c6c3c:n][c/6c441c:t] [c/1cecf1:O][c/44c2f0:f] [c/2cbcdc:T][c/5390e7:h][c/4245ad:e] [c/fcfc84:A][c/ecdc20:n][c/ffb404:c][c/ecb424:i][c/fc2404:e][c/fc2404:n][c/840404:t][c/540404:s][i:3454] [Beta]
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 hideCode = true

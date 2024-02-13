@@ -112,6 +112,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     FrozenAssaulterInfernum.InfernumAi(target, distance,NPC,currentPhase, attackCounter);
                     checkPhase();
                     CheckDistance(distance, NPC);
+                    if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+                    {
+                        EternityIA(target);
+                    }
                 }
                 else
                 {
@@ -223,70 +227,59 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             }
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                //setAttackCounter(Main.player[NPC.target]);
-                if (DificultyUtils.EternityMode)
+                EternityIA(target);
+            }
+        }
+        public void EternityIA(Player target)
+        {
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+                if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode)
                 {
-                    if(attackCounter % 8 == 0)
+                    int MainShootRate = ((DificultyUtils.MasochistMode ? 4 : 8) * (!DificultyUtils.InfernumMode ? 1 : 2));
+                    if (attackCounter % MainShootRate == 0)
                     {
                         EthernityCommonShoot(target);
                     }
-
-                    if (currentPhase > 4)
-                    {
-                        EthernityExplosionIA(500);
-                    }
                     if (currentPhase > 2)
                     {
-                        EthernityExplosionIA(400);
-                        EthernityExplosionIA(300);
-                    }
-                    if (currentPhase == 3)
-                    {
-                        for (int i = 8; i > 0; i--)
+                        for (int i = DificultyUtils.MasochistMode ? 5 : 4; i > (DificultyUtils.MasochistMode ? 0 : 3); i--)
                         {
                             EthernityExplosionIA(i * 10);
                         }
-                    }
-                    if (currentPhase == 4)
-                    {
-                        EthernityExplosionIA(200);
-                    }
-                }
-                else if (DificultyUtils.MasochistMode)
-                {
-                    if(attackCounter % 4 == 0)
-                    {
-                        EthernityCommonShoot(target);
-                    }
-                    if (currentPhase > 4)
-                    {
-
-                        EthernityExplosionIA(500);
-                        EthernityExplosionIA(400);
-                        EthernityExplosionIA(300);
-                    }
-                    if (currentPhase > 2)
-                    {
-                        for (int i = 5; i > 0; i--)
+                        if (currentPhase == 3)
                         {
-                            EthernityExplosionIA(i * 10);
+                            for (int i = 8; i > 0; i--)
+                            {
+                                EthernityExplosionIA(i * 10);
+                            }
+                        }
+                        if (currentPhase >= 4)
+                        {
+                            if (!DificultyUtils.MasochistMode)
+                            {
+                                EthernityExplosionIA(currentPhase == 4 ? 200 : 500);
+                            }
+                            else
+                            {
+                                if (currentPhase == 4)
+                                {
+                                    for (int i = 100; i > 0; i -= 5)
+                                    {
+                                        EthernityExplosionIA(i);
+                                    }
+                                }
+                                else if (currentPhase > 4)
+                                {
+                                    for (int i = 300; i >= 500; i += 100)
+                                    {
+                                        EthernityExplosionIA(i);
+                                    }
+                                }
+                            }
                         }
                     }
-                    if (currentPhase == 3)
-                    {
-                        for (int i = 8; i > 0; i--)
-                        {
-                            EthernityExplosionIA(i * 10);
-                        }
-                    }
-                    if (currentPhase == 4)
-                    {
-                        for (int i = 100; i > 0; i-=5)
-                        {
-                            EthernityExplosionIA(i);
-                        }
-                    }
-                }
+                }  
             }
         }
 
@@ -325,8 +318,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
                     if (DificultyUtils.MasochistMode)
                     {
-                        shootIa(10, ProjectileID.FrostBeam, target, -30f, -1.5, 1.5);
-                        shootIa(10, ProjectileID.FrostBeam, target, 30f, 1.5, -1.5);
+                        if (!DificultyUtils.InfernumMode)
+                        {
+                            shootIa(10, ProjectileID.FrostBeam, target, -30f, -1.5, 1.5);
+                            shootIa(10, ProjectileID.FrostBeam, target, 30f, 1.5, -1.5);
+                        }
                         shootIa(10, ProjectileID.FrostBeam, target, 40, 0, 1.5);
                         shootIa(10, ProjectileID.FrostBeam, target, 10, -1.5, -1.5);
                     }
@@ -354,8 +350,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        shootIa(10, ProjectileID.FrostBeam, 7f, 360f + grades, 0);//70
-                        shootIa(10, ProjectileID.FrostBeam, 7f, -120f + grades, 0);
+                        if (!DificultyUtils.InfernumMode)
+                        {
+                            shootIa(10, ProjectileID.FrostBeam, 7f, 360f + grades, 0);//70
+                            shootIa(10, ProjectileID.FrostBeam, 7f, -120f + grades, 0);
+                        }
                         shootIa(10, ProjectileID.FrostBeam, 7f, 120f + grades, 0);
                         shootIa(10, ProjectileID.FrostBeam, 7f, -360f + grades, 0);
                     }

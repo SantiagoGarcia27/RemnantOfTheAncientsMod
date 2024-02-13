@@ -1,12 +1,11 @@
-﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.World;
+﻿using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 {
-    public class RemnantDropRules : ItemDropRule
+    public static class RemnantDropRules
     {
         public static IItemDropRule ReaperModeCommonDrop(int itemId, int chanceDenominator = 1, int minimumDropped = 1, int maximumDropped = 1, int chanceNumerator = 1)
         {
@@ -14,19 +13,24 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         }
         public static IItemDropRule ReaperModeCommonDropOnAllPlayers(int itemId, int chanceDenominator = 1)
         {
-            return new DropBasedOnMasterMode(DropNothing(), new DropPerPlayerOnThePlayer(itemId, chanceDenominator, 1, 1, new RemnantConditions.IsReaperMode()));
+            return new DropBasedOnMasterMode(ItemDropRule.DropNothing(), new DropPerPlayerOnThePlayer(itemId, chanceDenominator, 1, 1, new RemnantConditions.IsReaperMode()));
         }
         public static IItemDropRule ReaperModeCommonDropOnAllPlayersWithConditions(IItemDropRuleCondition conditions, int itemId, int chanceDenominator = 1)
         {
-            return new DropBasedOnMasterMode(DropNothing(), new DropPerPlayerOnThePlayerWithMultipleConditions(itemId, chanceDenominator, 1, 1,new List<IItemDropRuleCondition>() { conditions, new RemnantConditions.IsReaperMode() }));
+            IItemDropRule drop = new DropPerPlayerOnThePlayerWithMultipleConditions(itemId, chanceDenominator, 1, 1, new List<IItemDropRuleCondition>() { conditions, new RemnantConditions.IsReaperMode() });
+            return new DropBasedOnMasterMode(drop, drop);
         }
         public static IItemDropRule CommonDropOnAllPlayersWithConditions(List<IItemDropRuleCondition> conditions, int itemId, int chanceDenominator = 1)
         {
-            return new DropBasedOnMasterMode(DropNothing(), new DropPerPlayerOnThePlayerWithMultipleConditions(itemId, chanceDenominator, 1, 1, conditions));
+            return new DropBasedOnMasterMode(ItemDropRule.DropNothing(), new DropPerPlayerOnThePlayerWithMultipleConditions(itemId, chanceDenominator, 1, 1, conditions));
         }
         public static IItemDropRule CommonDropOnAllPlayersWithConditionsNoAllActive(List<IItemDropRuleCondition> conditions, int itemId, int chanceDenominator = 1)
         {
-            return new DropBasedOnMasterMode(DropNothing(), new DropPerPlayerOnThePlayerWithMultipleConditions(itemId, chanceDenominator, 1, 1, conditions));
+            return new DropBasedOnMasterMode(ItemDropRule.DropNothing(), new DropPerPlayerOnThePlayerWithMultipleConditions(itemId, chanceDenominator, 1, 1, conditions));
+        }
+        public static IItemDropRule AddIf(this ILoot loot, Func<bool> lambda, int itemID, int dropRateInt = 1, int minQuantity = 1, int maxQuantity = 1, bool ui = true, string desc = null)
+        {
+            return loot.Add(ItemDropRule.ByCondition(DropUtils.If(lambda, ui, desc), itemID, dropRateInt, minQuantity, maxQuantity));
         }
     }
 
@@ -44,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         {
             if (conditions != null)
             {
-                foreach(IItemDropRuleCondition condition in conditions) 
+                foreach (IItemDropRuleCondition condition in conditions)
                 {
                     if (!condition.CanDrop(info)) return false;
                 }
@@ -89,6 +93,100 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
             ItemDropAttemptResult result = default(ItemDropAttemptResult);
             result.State = ItemDropAttemptResultState.Success;
             return result;
+        }
+    }
+
+
+    public class LambdaDropRuleCondition : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        private readonly Func<DropAttemptInfo, bool> conditionLambda;
+
+        private readonly bool visibleInUI;
+
+        private readonly string description;
+
+        internal LambdaDropRuleCondition(Func<DropAttemptInfo, bool> lambda, bool ui = true, string desc = null)
+        {
+            conditionLambda = lambda;
+            visibleInUI = ui;
+            description = desc;
+        }
+
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            return conditionLambda(info);
+        }
+
+        public bool CanShowItemDropInUI()
+        {
+            return visibleInUI;
+        }
+
+        public string GetConditionDescription()
+        {
+            return description;
+        }
+    }
+
+    internal class LambdaDropRuleCondition2 : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        private readonly Func<DropAttemptInfo, bool> conditionLambda;
+
+        private readonly Func<bool> visibleInUI;
+
+        private readonly string description;
+
+        internal LambdaDropRuleCondition2(Func<DropAttemptInfo, bool> lambda, Func<bool> ui, string desc = null)
+        {
+            conditionLambda = lambda;
+            visibleInUI = ui;
+            description = desc;
+        }
+
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            return conditionLambda(info);
+        }
+
+        public bool CanShowItemDropInUI()
+        {
+            return visibleInUI();
+        }
+
+        public string GetConditionDescription()
+        {
+            return description;
+        }
+    }
+
+    internal class LambdaDropRuleCondition3 : IItemDropRuleCondition, IProvideItemConditionDescription
+    {
+        private readonly Func<DropAttemptInfo, bool> conditionLambda;
+
+        private readonly Func<bool> visibleInUI;
+
+        private readonly Func<string> description;
+
+        internal LambdaDropRuleCondition3(Func<DropAttemptInfo, bool> lambda, Func<bool> ui, Func<string> desc)
+        {
+            conditionLambda = lambda;
+            visibleInUI = ui;
+            description = desc;
+        }
+
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            return conditionLambda(info);
+        }
+
+        public bool CanShowItemDropInUI()
+        {
+            return visibleInUI();
+        }
+
+        public string GetConditionDescription()
+        {
+            return description();
         }
     }
     //public class IsReaperMode : IItemDropRuleCondition, IProvideItemConditionDescription

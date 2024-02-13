@@ -87,12 +87,12 @@ Mods: {
 				TextToDisplay:
 					'''
 					Fallen Guardian Of The Dunes
-					Desert Aniquilator
+					Desert Annihilator
 					'''
 				JokeTextToDisplay:
 					'''
 					The ultimate Fried egg
-					Desert Aniquilator
+					Desert Annihilator
 					'''
 			}
 
@@ -322,7 +322,7 @@ Mods: {
 			}
 
 			DesertMinionBuff: {
-				DisplayName: Baby Desert Aniquilator
+				DisplayName: Baby Desert Annihilator
 				Description: The Baby Desert will fight for you
 			}
 
@@ -826,7 +826,11 @@ Mods: {
 
 			Reinforced_iron_chesplate: {
 				DisplayName: Reinforced Iron Chesplate
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					'''
 			}
 
 			Reinforced_Iron_Greaves: {
@@ -3574,7 +3578,7 @@ Mods: {
 			TerraBulletP.DisplayName: Terra Bullet
 			TerracoinP.DisplayName: Terracoin P
 			Tomb_BulletP.DisplayName: Tomb_BulletP
-			DesertMinion.DisplayName: Baby Desert Aniquilator Minion
+			DesertMinion.DisplayName: Baby Desert Annihilator Minion
 			EvilEyeMinion.DisplayName: Evil Eye Minion
 			FrozenMinion.DisplayName: Baby Frozen Assaulter Minion
 			IronBallistMinion.DisplayName: Assault Ballista Minion

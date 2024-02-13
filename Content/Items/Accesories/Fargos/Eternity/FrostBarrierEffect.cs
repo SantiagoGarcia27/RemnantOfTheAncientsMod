@@ -16,6 +16,6 @@ public class FrostBarrierEffect : AccessoryEffect
     public override void PostUpdateEquips(Player player)
     {
         ModContent.GetInstance<RemnantFargosSoulsPlayer>().FrostBarrier = true;
-    }
+    }   
 }
 

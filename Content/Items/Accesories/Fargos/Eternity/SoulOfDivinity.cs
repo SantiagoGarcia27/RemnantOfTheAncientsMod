@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 		{
 			return ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
 		}
-		protected override bool HasSupersonicSpeed => true;
+		public override bool HasSupersonicSpeed => true;
 
 		//public override bool Eternity => true;
 

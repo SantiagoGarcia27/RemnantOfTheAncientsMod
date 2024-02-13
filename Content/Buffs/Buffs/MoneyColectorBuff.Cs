@@ -61,26 +61,12 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
             if (currentslot < slots)
             {
                 return;
-            }
-            for (int j = 50; j < 54; j++)
-            {
-                Item item = player.inventory[j];
-                if (item.type >= ItemID.CopperCoin && item.type <= ItemID.PlatinumCoin || item.type == ModContent.ItemType<Terracoin>())
-                {
-                    player.inventory[j].TurnToAir();
-                }
-            }
-            for (int k = 0; k < 40; k++)
-            {
-                Item item = player.bank.item[k];
-                if (item.type >= ItemID.CopperCoin && item.type <= ItemID.PlatinumCoin || item.type == ModContent.ItemType<Terracoin>())
-                {
-                    //player.bank.item[k].TurnToAir();
-                }
-            }
+            } 
+            CheckCoinsOnInventory(player);
+         
             for (int i = 0; i <= player.bank.item.Length - 1; i++)
             {
-                if (!player.bank.item[i].IsAir)
+                if (!player.bank.item[i].IsAir && player.bank.item[i].netID != 0)
                 {
                     player.bank.item[i].active = true;
                 }
@@ -98,12 +84,13 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
                             else if (player.bank.item[i].stack + copper == 100)
                             {
                                 copper = 0;
+                                player.bank.item[i].TurnToAir();
                                 silver += 1;
                             }
                             else if (player.bank.item[i].stack + copper >= 100)
                             {
                                 silver += copper / 100;
-                                copper = copper % 100;
+                                copper %= 100;
                                 
                             }
                         }
@@ -120,12 +107,13 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
                             else if (player.bank.item[i].stack + silver == 100)
                             {
                                 silver = 0;
+                                player.bank.item[i].TurnToAir();
                                 gold += 1;
                             }
                             else if (player.bank.item[i].stack + silver >= 100)
                             {
                                 gold += silver / 100;
-                                silver = silver % 100;
+                                silver %= 100;
                                 
                             }
                         }
@@ -142,12 +130,13 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
                             else if (player.bank.item[i].stack + gold == 100)
                             {
                                 gold = 0;
+                                player.bank.item[i].TurnToAir();
                                 platinum += 1;
                             }
                             else if (player.bank.item[i].stack + gold >= 100)
                             {
                                 platinum += gold / 100;
-                                gold = gold % 100;
+                                gold %= 100;
                                 
                             }
                         }
@@ -164,12 +153,13 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
                             else if (player.bank.item[i].stack + platinum == 100)
                             {
                                 platinum = 0;
+                                player.bank.item[i].TurnToAir();
                                 terra += 1;
                             }
                             else if (player.bank.item[i].stack + platinum >= 100)
                             {
                                 terra += platinum / 100;
-                                platinum = platinum % 100;
+                                platinum %= 100;
                                
                             }
                         }
@@ -185,7 +175,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
                 }
                 else
                 {
-                    if (player.bank.item[i].IsAir)
+                    if (player.bank.item[i].IsAir || player.bank.item[i].netID == 0)
                     {
                         player.bank.item[i] = new Item();
 
@@ -222,10 +212,32 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
                     }
                 }
             }
+           
             if (Main.playerInventory)
             {
                 Recipe.FindRecipes(false);
             }
+        }
+
+        private static void CheckCoinsOnInventory(Player player)
+        {
+            for (int j = 50; j < 54; j++)
+            {
+                Item item = player.inventory[j];
+                if (item.type >= ItemID.CopperCoin && item.type <= ItemID.PlatinumCoin || item.type == ModContent.ItemType<Terracoin>())
+                {
+                    player.inventory[j].TurnToAir();
+                }
+            }
+        }
+      
+        public static int GetItemSlotIndex(Player player,int id) 
+        {
+            for (int i = 0; i <= player.bank.item.Length; i++)
+            {
+                if (player.bank.item[i].type == id) return i;
+            }
+            return -1;
         }
 
         public static List<int> CoinsList = new List<int>()

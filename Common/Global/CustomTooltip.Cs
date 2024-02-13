@@ -1,4 +1,3 @@
-using CalamityMod.Items.PermanentBoosters;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;

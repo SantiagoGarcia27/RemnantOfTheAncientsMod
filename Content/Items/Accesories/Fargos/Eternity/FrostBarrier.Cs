@@ -71,6 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.AddEffect<FrostBarrierEffect>(base.Item);
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier = true;
            // player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrierEffect(player, hideVisual);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)

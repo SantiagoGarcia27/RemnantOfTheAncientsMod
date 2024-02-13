@@ -48,8 +48,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			
-				
+
+			Main.NewText(player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier);
 			
 		}
 	}

@@ -681,7 +681,16 @@ namespace RemnantOfTheAncientsMod
             }
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
 			{
-				if (FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0)
+				List<bool> test =  new List<bool>() 
+				{ 
+					Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0 ,
+					Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier,
+					FargosKeybindSystem.TogleFrostBarrier.JustPressed,
+					!Player.HasBuff<FrostBarrierCouldown>()
+                };
+
+
+                if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0)
 				{
 					Projectile.NewProjectile(Projectile.GetSource_None(), Player.position, Vector2.Zero, ModContent.ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);
 				}

@@ -204,6 +204,12 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public class IsEternity : IItemDropRuleCondition, IProvideItemConditionDescription
         {
+            public bool CanDrop(DropAttemptInfo info) => DificultyUtils.EternityMode || DificultyUtils.MasochistMode;
+            public bool CanShowItemDropInUI() => DificultyUtils.EternityMode || DificultyUtils.MasochistMode;
+            public string GetConditionDescription() => null;
+        }
+        public class IsOnlyEternity : IItemDropRuleCondition, IProvideItemConditionDescription
+        {
             public bool CanDrop(DropAttemptInfo info) => DificultyUtils.EternityMode;
             public bool CanShowItemDropInUI() => DificultyUtils.EternityMode;
             public string GetConditionDescription() => null;

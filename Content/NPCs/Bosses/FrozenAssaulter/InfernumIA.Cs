@@ -6,6 +6,7 @@ using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
@@ -53,18 +54,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 phaseChange[1] = false;
                 if (attackCounter % 20 == 0)
                 {
-                    int numberOfPoints = 20;
-                    float radius = 1 * 16;
-                    for (int i = 0; i < numberOfPoints; i++)
-                    {
-                        float angle = (float)(2 * Math.PI * i / numberOfPoints);
-                        float x = (float)(npc.Center.X + radius * Math.Cos(angle));
-                        float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
+                    ShootMainAttackAi(npc,20, intercalate >= 10, new int[] { 0, intercalate++ });
 
-                        shootIceCubeIa(DificultyUtils.ReaperMode? 5: 20, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast"), 30f, angle + (intercalate * 10), 0, npc.target,npc, x, y);
+                   
 
-                    }
-                    intercalate = intercalate >= 10 ? 0 : intercalate++;
+
+                      
+                    //intercalate = intercalate >= 10 ? 0 : intercalate++;
                 }
             }
         }
@@ -74,14 +70,21 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
            
             if (attackCounter % n1 == 0)
             {
+                ShootMainAttackAi(npc, numberOfPoints, intercalate == 0, new int[]{ 1, 0 });
                 float radius = 1 * 16;
                 for (int i = 0; i < numberOfPoints; i++)
                 {
                     float angle = (float)(2 * Math.PI * i / numberOfPoints);
                     float x = (float)(npc.Center.X + radius * Math.Cos(angle));
                     float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
+                    int proj = ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
 
-                    shootIceCubeIa(DificultyUtils.ReaperMode ? 5 : 20, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast"), 30f, angle + (intercalate * 50), 0, npc.target,npc, x, y);
+                    if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
+                    {
+                        proj = ProjectileID.FrostBeam;
+                    }
+
+                    shootIceCubeIa(DificultyUtils.ReaperMode ? 5 : 20, proj, 30f, angle + (intercalate * 50), 0, npc.target,npc, x, y);
 
                 }
                 intercalate = intercalate == 0 ? 1 : 0;
@@ -91,6 +94,31 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 shootIceCubeIa(DificultyUtils.ReaperMode ? 10 : 40, ModContent.ProjectileType<FrozenHommingIceBlock>(), 30f, 0, 90, npc.target,npc);
             }
         }
+        public static void ShootMainAttackAi(NPC npc, int numberOfPoints, bool intercalateConditiion, int[] intercalateValues)
+        {
+            float radius = 1 * 16;
+            for (int i = 0; i < numberOfPoints; i++)
+            {
+                float angle = (float)(2 * Math.PI * i / numberOfPoints);
+                float x = (float)(npc.Center.X + radius * Math.Cos(angle));
+                float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
+
+                int proj = ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+
+                if ((DificultyUtils.EternityMode || DificultyUtils.MasochistMode) && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
+                {
+                    proj = ProjectileID.FrostBeam;
+                }
+                else
+                {
+                    proj = ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                }
+                shootIceCubeIa(DificultyUtils.ReaperMode ? 5 : 20, proj, 30f, angle + (intercalate * 10), 0, npc.target, npc, x, y);
+
+            }
+            intercalate = intercalateConditiion ? intercalateValues[0] : intercalateValues[1];
+        }
+
         public static void shootIceCubeIa(int damage, int type, float speed, float grades, float Orotation, int target,NPC npc, float x = 0, float y = 0)
         {
             x = x != 0 ? x : npc.position.X;
