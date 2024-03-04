@@ -1,27 +1,25 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
-    public class Endeless_Low_Food : ModItem
+    public class Endeless_Low_Food : ModelEndless
     {
-      //  public override string Texture => "Terraria/Images/Item_" + ItemID.Marshmallow;
-        public override void SetStaticDefaults()
-        {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
+        //  public override string Texture => "Terraria/Images/Item_" + ItemID.Marshmallow;
+
+        public override Item ItemBase => new(ItemID.Marshmallow);
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.BuilderPotion);
-            Item.value = Item.buyPrice(silver: 1);
-            Item.buffType = BuffID.WellFed;
+            ItemID.Sets.IsFood[Item.type] = true;
+            Item.DefaultToFood(22, 22, BuffID.WellFed, 28800);
             Item.consumable = false;
-            Item.buffTime = Utils1.FormatTime(6,0,0,0);
+            Item.rare += 1;
+            Item.maxStack = 1;
+            Item.consumable = false;
+            Item.buffTime = (int)Utils1.FormatTimeToTick(14, 0, 0, 0);
         }
         public override void AddRecipes()
         {
@@ -31,20 +29,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             .Register();
         }
     }
-    public class Endeless_Medium_Food : ModItem
-    {
-       // public override string Texture => "Terraria/Images/Item_" + ItemID.SeafoodDinner;
-        public override void SetStaticDefaults()
-        {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
+    public class Endeless_Medium_Food : ModelEndless
+    {   
+        public override Item ItemBase => new(ItemID.PumpkinPie);
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.BuilderPotion);
-            Item.value = Item.buyPrice(silver: 50);
-            Item.buffType = BuffID.WellFed2;
+            ItemID.Sets.IsFood[Item.type] = true;
+            Item.DefaultToFood(22, 22, BuffID.WellFed2, 28800);
             Item.consumable = false;
-            Item.buffTime = Utils1.FormatTime(6, 0, 0, 0);
+            Item.rare += 1;
+            Item.maxStack = 1;
+            Item.consumable = false;
+            Item.buffTime = (int)Utils1.FormatTimeToTick(14, 0, 0, 0);
         }
         public override void AddRecipes()
         {
@@ -55,20 +51,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             .Register();
         }
     }
-    public class Endeless_Hight_Food : ModItem
+    public class Endeless_Hight_Food : ModelEndless
     {
-      //  public override string Texture => "Terraria/Images/Item_" + ItemID.GoldenDelight;
-        public override void SetStaticDefaults()
-        {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
+        public override Item ItemBase => new(ItemID.GoldenDelight);
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.BuilderPotion);
-            Item.value = Item.buyPrice(gold: 3);
-            Item.buffType = BuffID.WellFed3;
+            ItemID.Sets.IsFood[Item.type] = true;
+            Item.DefaultToFood(22, 22, BuffID.WellFed3, 28800);
             Item.consumable = false;
-            Item.buffTime = Utils1.FormatTime(6, 0, 0, 0);
+            Item.rare += 1;
+            Item.maxStack = 1;
+            Item.consumable = false;
+            Item.buffTime = (int)Utils1.FormatTimeToTick(14, 0, 0, 0);
         }
         public override void AddRecipes()
         {

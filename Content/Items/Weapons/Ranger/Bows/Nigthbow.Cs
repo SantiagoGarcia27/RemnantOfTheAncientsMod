@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
 {
@@ -11,10 +12,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Night Bow");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Łuk nocny");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Arc de nuit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arco de la Noche");
+            // //DisplayName.SetDefault("Night Bow");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Łuk nocny");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Arc de nuit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arco de la Noche");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -51,11 +52,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
         }
 
         public override void AddRecipes()
-		{
-CreateRecipe()
-.AddIngredient(ModContent.ItemType<NightBar>(),10)
-.AddTile(TileID.DemonAltar)
-.Register();
-		}
-	}
+        {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                CreateRecipe()
+                .AddIngredient(ModContent.ItemType<NightBar>(), 10)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ModContent.ItemType<NightBar>(), 10)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
+        }
+    }
 }

@@ -312,7 +312,7 @@ namespace RemnantOfTheAncientsMod
 		{
 			if (GetInstance<CalamityConfig>().RemoveReforgeRNG)
 			{
-				ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Configs.CalamityConfig.RemoveReforgeRNG.Label"))), Color.Red);
+				ChatHelper.BroadcastChatMessage(NetworkText.From(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Configs.CalamityConfig.RemoveReforgeRNG.Label"))), Color.Red);
 			}
 		}
 		public static void WormHoleEffect(Player player)

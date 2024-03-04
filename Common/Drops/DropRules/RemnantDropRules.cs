@@ -32,6 +32,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         {
             return loot.Add(ItemDropRule.ByCondition(DropUtils.If(lambda, ui, desc), itemID, dropRateInt, minQuantity, maxQuantity));
         }
+        public static IItemDropRule InfernumModeCommonDrop(int itemId, int chanceDenominator = 1, int minimumDropped = 1, int maximumDropped = 1, int chanceNumerator = 1)
+        {
+            return new ItemDropWithConditionRule(itemId, chanceDenominator, minimumDropped, maximumDropped, new RemnantConditions.IsInfernum(), chanceNumerator);
+        }
     }
 
     public class DropPerPlayerOnThePlayerWithMultipleConditions : CommonDrop

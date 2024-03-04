@@ -15,9 +15,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 
         public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs(ReturnLanguage(ItemBase.Name));
         public override void SetStaticDefaults() 
-        {       
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-          
+        {
+            Main.RegisterItemAnimation(Item.type, Main.itemAnimations[ItemBase.type]);
+            ItemID.Sets.AnimatesAsSoul[base.Type] = ItemID.Sets.AnimatesAsSoul[ItemBase.type];
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;       
         }
         public string ReturnLanguage(string baseName)
         {

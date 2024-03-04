@@ -26,6 +26,9 @@ using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.World;
+using CalamityMod.NPCs;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -35,6 +38,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public static int TimeInmune = 200;
         public static bool IsSpawned = false;
         public static List<bool> SizeChanged = new List<bool>() {false,false,false};
+
+        [JITWhenModsEnabled("CalamityMod")]
+        public static void SetNpcDamageReductionCalamity(NPC npc,float normal, float revenge, float death, float bossrush, float infernum)
+        {
+            if (DificultyUtils.InfernumMode)
+            {
+                npc.GetGlobalNPC<CalamityGlobalNPC>().DR = infernum;
+            }
+            else npc.DR_NERD(normal, revenge, death, bossrush);
+            // CalamityUtils.SetDamageReduction(NPC, normal, revenge, death, bossrush);
+        }
     }
     public static class BaseStats 
     {
@@ -47,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         
     }
     [AutoloadBossHead]
-    internal class InfernalTyrantHead : WormHead
+    public class InfernalTyrantHead : WormHead
     {
         public override int BodyType => ModContent.NPCType<InfernalTyrantBody>();
 
@@ -93,7 +107,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
-            SetNpcDamageReductionCalamity(0.02f,0.22f,0.29f,0.3f);
+            GenericVariables.SetNpcDamageReductionCalamity(NPC,0.02f,0.22f,0.29f,0.3f,0.5f);
             CalamityLifeScale(BaseStats.LifeMax);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -102,12 +116,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             life = Reaper.ReaperMode? life * 2: life;
             CalamityUtils.SetLifeBonus(NPC, life,1.5f,1.7f,1.8f);
         }
-        [JITWhenModsEnabled("CalamityMod")]
-        public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
-        {
-            NPC.DR_NERD(normal, revenge, death, bossrush);
-            // CalamityUtils.SetDamageReduction(NPC, normal, revenge, death, bossrush);
-        }
+       
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
@@ -198,7 +207,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     if (!GenericVariables.IsSpawned)
                     {
                         GenericVariables.SpawnCounter++;
-                        SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                        GenericVariables.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
                     }
                 }
                 if(RemnantOfTheAncientsMod.InfernumMod != null)
@@ -541,7 +550,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalMask>(), 10));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<infernalBag>()));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
+            if(RemnantOfTheAncientsMod.InfernumMod != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
+            else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
 
             if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
         }
@@ -586,7 +596,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
-            SetNpcDamageReductionCalamity(0.2f, 0.42f, 0.59f, 0.6f);
+            GenericVariables.SetNpcDamageReductionCalamity(NPC,0.2f, 0.42f, 0.59f, 0.6f,0.6f);
             CalamityLifeScale(BaseStats.LifeMax);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -595,12 +605,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             life = Reaper.ReaperMode? life * 2: life;
             //CalamityUtils.SetLifeBonus(NPC, life, 1.5f, 1.7f, 1.8f);
             NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
-        }
-        [JITWhenModsEnabled("CalamityMod")]
-        public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
-        {
-            NPC.DR_NERD(normal, revenge, death, bossrush);
-           // CalamityUtils.SetDamageReduction(NPC,normal,revenge, death, bossrush);
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -671,7 +675,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 else
                 {
                     //  GenericVariables.SpawnCounter++;
-                    if (RemnantOfTheAncientsMod.CalamityMod != null) SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                    if (RemnantOfTheAncientsMod.CalamityMod != null) GenericVariables.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
                 }
             }
         }
@@ -728,7 +732,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
-            SetNpcDamageReductionCalamity(0.01f, 0.12f, 0.19f, 0.2f);
+            GenericVariables.SetNpcDamageReductionCalamity(NPC,0.01f, 0.12f, 0.19f, 0.2f, 0.2f);
             CalamityLifeScale(BaseStats.LifeMax);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -738,12 +742,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             NPC.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
            // CalamityUtils.SetLifeBonus(NPC, life, 1.5f, 1.7f, 1.8f);
         }
-        [JITWhenModsEnabled("CalamityMod")]
-        public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
-        {
-           // CalamityUtils.SetDamageReduction(NPC, normal, revenge, death, bossrush);
-            NPC.DR_NERD(normal, revenge, death, bossrush);
-        }
+        //[JITWhenModsEnabled("CalamityMod")]
+        //public void SetNpcDamageReductionCalamity(float normal, float revenge, float death, float bossrush)
+        //{
+        //   // CalamityUtils.SetDamageReduction(NPC, normal, revenge, death, bossrush);
+        //    NPC.DR_NERD(normal, revenge, death, bossrush);
+        //}
         public override void AI()
         {
             NPC.buffImmune[BuffID.OnFire] = true;
@@ -773,7 +777,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 else
                 {
                     // GenericVariables.SpawnCounter++;
-                    SetNpcDamageReductionCalamity(1f, 1f, 1f, 1f);
+                    GenericVariables.SetNpcDamageReductionCalamity(NPC, 1f, 1f, 1f, 1f, 1f);
                 }
             }
         }

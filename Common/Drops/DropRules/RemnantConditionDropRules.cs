@@ -220,6 +220,12 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
             public bool CanShowItemDropInUI() => DificultyUtils.MasochistMode;
             public string GetConditionDescription() => null;
         }
+        public class IsInfernum : IItemDropRuleCondition, IProvideItemConditionDescription
+        {
+            public bool CanDrop(DropAttemptInfo info) => DificultyUtils.InfernumMode;
+            public bool CanShowItemDropInUI() => DificultyUtils.InfernumMode;
+            public string GetConditionDescription() => null;
+        }
     }
 
         

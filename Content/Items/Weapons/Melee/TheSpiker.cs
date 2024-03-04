@@ -1,8 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;

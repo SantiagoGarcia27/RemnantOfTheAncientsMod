@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
 using Terraria;
 using Terraria.DataStructures;
@@ -53,12 +54,25 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.BrokenHeroSword, 1)
-                .AddIngredient(ModContent.ItemType<TrueTwilight>(), 1)
-                .AddIngredient(ModContent.ItemType<TrueDurendal>(), 1)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                CreateRecipe()
+                    .AddIngredient(ItemID.BrokenHeroSword, 1)
+                    .AddIngredient(ModContent.ItemType<TrueTwilight>(), 1)
+                    .AddIngredient(ModContent.ItemType<TrueDurendal>(), 1)
+                    .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "LivingShard"), 12)
+                    .AddTile(TileID.MythrilAnvil)
+                    .Register();
+            }
+            else
+            {
+                CreateRecipe()
+                    .AddIngredient(ItemID.BrokenHeroSword, 1)
+                    .AddIngredient(ModContent.ItemType<TrueTwilight>(), 1)
+                    .AddIngredient(ModContent.ItemType<TrueDurendal>(), 1)
+                    .AddTile(TileID.MythrilAnvil)
+                    .Register();
+            }
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

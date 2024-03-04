@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools
 {
@@ -54,11 +55,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 		}
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<NightBar>(), 16)
-			.AddTile(TileID.DemonAltar)
-			.Register();
-
-		}
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                CreateRecipe()
+                .AddIngredient(ModContent.ItemType<NightBar>(), 16)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ModContent.ItemType<NightBar>(), 16)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
+        }
 	}
 }

@@ -1,3 +1,4 @@
+using FargowiltasSouls.Content.NPCs.EternityModeNPCs.VanillaEnemies.Snow;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -33,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 phase1Model(npc, BasicShootTimmer, CubeShootTimmer, attackCounter, numberOfPoints);
             }
 
-            if(currentPhase == 2)
+            if (currentPhase == 2)
             {
                 if (!phaseChange[1])
                 {
@@ -49,18 +50,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     phaseChange[1] = true;
                 }
             }
-            if (currentPhase == 3)
+            else if (currentPhase == 3)
             {
                 phaseChange[1] = false;
                 if (attackCounter % 20 == 0)
                 {
-                    ShootMainAttackAi(npc,20, intercalate >= 10, new int[] { 0, intercalate++ });
-
-                   
-
-
-                      
+                    ShootMainAttackAi(npc, 20, intercalate >= 10, new int[] { 0, intercalate++ });
                     //intercalate = intercalate >= 10 ? 0 : intercalate++;
+                }
+                phaseChange[2] = false;
+            }
+            else if (currentPhase == 4)
+            {
+                if (!phaseChange[2])
+                {
+                    phaseChange[2] = true;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int npcid = ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
+                        int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, npcid, 0, 0);
+                        Main.npc[a].lifeMax *= 3;
+                        Main.npc[a].life *= 3;
+                        Main.npc[a].Opacity /= 3;
+                        Main.npc[a].damage += 30;
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        int npcid = ModContent.NPCType<IGolem>();
+                        int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X +(i *10 *16), (int)npc.position.Y, npcid, 0, 0);
+                        Main.npc[a].Opacity /= 3;
+                    }
                 }
             }
         }

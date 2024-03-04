@@ -4,11 +4,10 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
-	[AutoloadEquip(EquipType.Head)]
+    [AutoloadEquip(EquipType.Head)]
 	public class Reinforced_iron_Helmet : ModItem
 	{
 		public override void SetStaticDefaults()

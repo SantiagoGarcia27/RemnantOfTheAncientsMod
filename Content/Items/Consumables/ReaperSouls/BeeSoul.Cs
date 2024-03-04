@@ -1,62 +1,106 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using Terraria.Localization;
-using Microsoft.Xna.Framework;
-using Terraria.ModLoader.IO;
-using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
-    //este es un comentario de prueba no es necesario para nada y un XD
-    public class BeeSoul : ModItem
-	{
-		private static readonly Color rarityColorOne = new Color(46, 45, 45);
-
-		private static readonly Color rarityColorTwo = new Color(191, 187, 187);
-		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Queen Bee Soul");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Âme de la reine des abeilles");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alma de la Reina Abeja");
-			//Tooltip.SetDefault("Releases bees when damaged");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous relâchez les abeilles quand elles vous font du mal");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Liberas abejas cuando te dañan");
-
-			/*Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 4));//5,4
-			ItemID.Sets.AnimatesAsSoul[Item.type] = true;*/
-			ItemID.Sets.ItemIconPulse[Item.type] = true;
-			ItemID.Sets.ItemNoGravity[Item.type] = true;
-		}
-
-		public override void SetDefaults()
-		{
-			Item.width = 26; 
-			Item.height = 26;
-			Item.maxStack = 1; 
-			Item.value = 0; 
-			Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Reaper;
-			Item.useAnimation = 20;
-			Item.useTime = 20;
-			Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.maxStack = 1;
-			Item.UseSound = SoundID.Item60;
-			Item.consumable = true;
-		}
-		public override bool CanUseItem(Player player)
-		{
-			return !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[3];
-		}
-		public override bool? UseItem(Player player)
-		{
-			player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[3] = true;
-			return true;
-		}
-		internal static Color GetRarityColor()
-		{
-			return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
-		}
-	}
+    public class KingSoul : SoulModel
+    {
+        int SpeedBoost = 30;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBoost);
+        public override int SoulID => 0;
+    }
+    public class EyeSoul : SoulModel
+    {
+        int LifeBoost = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
+        public override int SoulID => 1;
+    }
+    public class CorruptSoul : SoulModel
+    {
+        public override int SoulID => 2;
+    }
+    public class BeeSoul : SoulModel
+    {
+        public override int SoulID => 3;
+    }
+    public class SkeletonSoul : SoulModel
+    {
+        public override int SoulID => 4;
+    }
+    public class DeerclopsSoul : SoulModel
+    {
+        public override int SoulID => 5;
+    }
+    public class DesertSoul : SoulModel
+    {
+        public override int SoulID => 6;
+    }
+   
+    public class FleshSoul : SoulModel
+    {
+        int DamageBoost = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBoost);
+        public override int SoulID => 7;
+    }
+    public class FrozenSoul : SoulModel
+    {
+        public override int SoulID => 8;
+    }
+    public class QueenSoul : SoulModel
+    {
+        int LifeBoost = 15;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
+        public override int SoulID => 9;
+    }
+    public class SpazmatismEnergyCell : SoulModel
+    {
+        public override int SoulID => 10;
+    }
+    public class RetinazorEnergyCell : SoulModel
+    {
+        public override int SoulID => 11;
+    }
+    public class SkeletronPrimeEnergyCell : SoulModel
+    {
+        public override int SoulID => 12;
+    }
+    public class DestroyerEnergyCell : SoulModel
+    {
+        int MiningBoost = 35;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MiningBoost);
+        public override int SoulID => 13;
+    }
+    public class PlantSoul : SoulModel
+    {
+        int LifeBoost = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
+        public override int SoulID => 14;
+    }
+    public class InfernalSoul : SoulModel
+    {
+        int DamageBoost = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBoost);
+        public override int SoulID => 15;
+    }
+    public class GolemSoul : SoulModel
+    {
+        public override int SoulID => 16;
+    }
+    public class EmpressSoul : SoulModel
+    {
+        public override int SoulID => 17;
+    }
+    public class FishSoul : SoulModel
+    {
+        public override int SoulID => 18;
+    }
+    public class CultistSoul : SoulModel
+    {
+        public override int SoulID => 19;
+    }
+    public class MoonSoul : SoulModel
+    {
+        public override int SoulID => 20;
+    }
 }
 

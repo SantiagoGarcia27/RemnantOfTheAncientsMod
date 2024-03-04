@@ -24,6 +24,16 @@ namespace RemnantOfTheAncientsMod.Common.Menu
 
         public override string DisplayName => "Remnant Of The Ancients Style";
 
+        public override int Music => SetMusic();
+
+        private static int SetMusic()
+        {
+            int result;
+            if (RemnantOfTheAncientsMod.RemnantOfTheAncientsMusic != null)
+                result = MusicLoader.GetMusicSlot(RemnantOfTheAncientsMod.RemnantOfTheAncientsMusic, "Content/Music/Menu");
+            else result =  MusicID.MenuMusic;
+            return result; 
+        }
         public override void OnSelected()
         {
             SoundEngine.PlaySound(SoundID.Chat); // Plays a thunder sound when this ModMenu is selected

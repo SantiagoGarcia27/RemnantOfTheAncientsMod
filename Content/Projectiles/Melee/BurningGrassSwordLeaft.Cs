@@ -21,12 +21,16 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         {
             Projectile.CloneDefaults(ProjectileID.BladeOfGrass);
             AIType = ProjectileID.BladeOfGrass;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, (int)(Projectile.damage * 0.5f), 0);
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, (int)(Projectile.damage * 0.5f), 0);
+                Main.projectile[p].usesLocalNPCImmunity = true;
+                Main.projectile[p].localNPCHitCooldown = 5;//23
             }
             target.AddBuff(BuffID.OnFire, 120);
         }

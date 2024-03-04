@@ -19,20 +19,35 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 1;
-			Item.width = 40;
-			Item.height = 80;
-			Item.useTime = 20;
-			Item.useAnimation = 20;
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 8;
-			Item.value = Item.sellPrice(silver: 27);
-			Item.rare = ItemRarityID.White;
-			Item.accessory = true;
-			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
-			Item.shoot = ModContent.ProjectileType<InterceptionDrone>();
-			Item.shootSpeed = 5f;
+            //Item.damage = 1;
+            //Item.width = 40;
+            //Item.height = 80;
+            //Item.useTime = 20;
+            //Item.useAnimation = 20;
+            //Item.useStyle = ItemUseStyleID.Swing;
+            //Item.knockBack = 8;
+            //Item.value = Item.sellPrice(silver: 27);
+            //Item.rare = ItemRarityID.White;
+            //Item.accessory = true;
+            //Item.UseSound = SoundID.Item1;
+            //Item.autoReuse = false;
+            //Item.shoot = ModContent.ProjectileType<InterceptionDrone>();
+            //Item.shootSpeed = 5f;
+
+            Item.damage = 91;
+            Item.DamageType = DamageClass.Melee;
+            Item.width = 600;
+            Item.height = 600;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
+            Item.useStyle = 1;
+            Item.knockBack = 3;
+            Item.value = 25700;
+            Item.rare = 5;
+            Item.UseSound = SoundID.Item1;
+            Item.autoReuse = true;
+            Item.shoot = ProjectileID.EnchantedBeam;
+            Item.shootSpeed = 10;
 
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

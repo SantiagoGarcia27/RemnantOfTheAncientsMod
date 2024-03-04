@@ -9,7 +9,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles.Music_Box
 {
-	internal class Frozenp2MusicBoxT : ModTile
+	public class Frozenp2MusicBoxT : ModTile
 	{
 		public override void SetStaticDefaults()
 		{

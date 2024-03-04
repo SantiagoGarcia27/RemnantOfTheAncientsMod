@@ -75,11 +75,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
                     if (HealTimmer == 1)
                     {
                         Main.player[p].HealEffect(Heal);
-                        Main.player[p].statLife += Heal;
-                        Main.player[p].statDefense += DefenseBonus;
-                        Main.player[p].GetDamage(DamageClass.Generic) *= DamageBonus;
+                        Main.player[p].statLife += Heal;     
                         SpawnParticles();
                     }
+                    Main.player[p].statDefense += DefenseBonus;
+                    Main.player[p].GetDamage(DamageClass.Generic) *= DamageBonus;
                 }
             }
         }

@@ -86,6 +86,11 @@ namespace RemnantOfTheAncientsMod
                 .AddIngredient(ItemID.GoldWorm, 1)
                 .AddTile(TileID.Solidifier)
                 .Register();
+            Recipe.Create(ItemID.ChumBucket, 1)
+                .AddIngredient(ItemID.EmptyBucket, 1)
+                .AddIngredient(ItemID.Worm, 2)
+                .AddTile(TileID.WorkBenches)
+                .Register();
         }
         private static void HardmodeItems()
         {
@@ -148,6 +153,7 @@ namespace RemnantOfTheAncientsMod
         {
             PreHardmodeWeapons();
             HardmodeWeapons();
+            EndgameWeapons();
         }
         private static void PreHardmodeWeapons()
         {
@@ -160,6 +166,10 @@ namespace RemnantOfTheAncientsMod
         private static void HardmodeWeapons()
         {
             HardmodeRangerWeapon();
+        }
+        private static void EndgameWeapons()
+        {
+            EndgameMeleeWeapon();
         }
 
         private static void HardmodeRangerWeapon()
@@ -215,29 +225,99 @@ namespace RemnantOfTheAncientsMod
 
             NightEdgeCraft();
         }
-
-        private static void NightEdgeCraft()
+        private static void EndgameMeleeWeapon()
         {
-
-            Recipe.Create(ItemID.NightsEdge)
-               .AddIngredient(ModContent.ItemType<NightBar>(), 10)
-               .AddTile(TileID.DemonAltar)
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Recipe.Create(ItemID.Zenith)
+               .AddIngredient(ModContent.ItemType<ultrablade>())
+               .AddIngredient(ItemID.StarWrath)
+               .AddIngredient(ItemID.TheHorsemansBlade)
+               .AddIngredient(ItemID.Seedler)
+               .AddIngredient(ItemID.Starfury)
+               .AddIngredient(ItemID.BeeKeeper)
+               .AddRecipeGroup("anyEnchantedSword")
+               .AddIngredient(ItemID.CopperShortsword)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"),5)
+               .AddTile(TileID.MythrilAnvil)
                .Register();
 
-            Recipe.Create(ItemID.NightsEdge)
-            .AddIngredient(ModContent.ItemType<BurningJungle>())
-            .AddIngredient(ItemID.Muramasa)
-            .AddRecipeGroup("anyCorruptSwords")
-            .AddTile(TileID.DemonAltar)
-            .Register();
+              Recipe.Create(ItemID.Zenith)
+              .AddIngredient(ModContent.ItemType<ultrablade>())
+              .AddIngredient(ItemID.TheHorsemansBlade)
+              .AddIngredient(ItemID.Seedler)
+              .AddIngredient(ItemID.BeeKeeper)
+              .AddRecipeGroup("anyEnchantedSword")
+              .AddIngredient(ItemID.CopperShortsword)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TrueArkoftheAncients"), 1)
+              .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"), 5)
+              .AddTile(TileID.MythrilAnvil)
+              .Register();
+            }
+            else
+            {
+                Recipe.Create(ItemID.Zenith)
+               .AddIngredient(ModContent.ItemType<ultrablade>())
+               .AddIngredient(ItemID.StarWrath)
+               .AddIngredient(ItemID.TheHorsemansBlade)
+               .AddIngredient(ItemID.Seedler)
+               .AddIngredient(ItemID.Starfury)
+               .AddIngredient(ItemID.BeeKeeper)
+               .AddRecipeGroup("anyEnchantedSword")
+               .AddIngredient(ItemID.CopperShortsword)
+               .AddTile(TileID.MythrilAnvil)
+               .Register();
+            }
+        }
+        private static void NightEdgeCraft()
+        {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Recipe.Create(ItemID.NightsEdge)
+                .AddIngredient(ModContent.ItemType<NightBar>(), 10)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
 
-            Recipe.Create(ItemID.NightsEdge)
-            .AddRecipeGroup("anyCorruptSwords")
-            .AddIngredient(ItemID.Muramasa)
-            .AddIngredient(ItemID.BladeofGrass)
-            .AddIngredient(ItemID.FieryGreatsword)
-            .AddTile(TileID.DemonAltar)
-            .Register();
+                Recipe.Create(ItemID.NightsEdge)
+                .AddIngredient(ModContent.ItemType<BurningJungle>())
+                .AddIngredient(ItemID.Muramasa)
+                .AddRecipeGroup("anyCorruptSwords")
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+                Recipe.Create(ItemID.NightsEdge)
+                .AddRecipeGroup("anyCorruptSwords")
+                .AddIngredient(ItemID.Muramasa)
+                .AddIngredient(ItemID.BladeofGrass)
+                .AddIngredient(ItemID.FieryGreatsword)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
+            else
+            {
+                Recipe.Create(ItemID.NightsEdge)
+                .AddIngredient(ModContent.ItemType<NightBar>(), 10)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+                Recipe.Create(ItemID.NightsEdge)
+                .AddIngredient(ModContent.ItemType<BurningJungle>())
+                .AddIngredient(ItemID.Muramasa)
+                .AddRecipeGroup("anyCorruptSwords")
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+                Recipe.Create(ItemID.NightsEdge)
+                .AddRecipeGroup("anyCorruptSwords")
+                .AddIngredient(ItemID.Muramasa)
+                .AddIngredient(ItemID.BladeofGrass)
+                .AddIngredient(ItemID.FieryGreatsword)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
         }
 
 
@@ -264,13 +344,7 @@ namespace RemnantOfTheAncientsMod
         }
         private static void PreHardmodeSummonerWeapons()
         {
-            Recipe.Create(ModContent.ItemType<Twilight>())
-               .AddIngredient(ItemID.ThornWhip, 1)
-               .AddIngredient(ItemID.BoneWhip, 1)
-               .AddIngredient(ModContent.ItemType<FireStorm>())
-               .AddRecipeGroup("anyCorruptWhip")
-               .AddTile(TileID.DemonAltar)
-               .Register();
+          
         }
         private static void PreHardmodeThrowerWeapons()
         {
@@ -1035,7 +1109,7 @@ namespace RemnantOfTheAncientsMod
                 ItemID.LeadOre
             });
             RecipeGroup.RegisterGroup("IronOre", group);
-            
+
 
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " DemoniteBar", new int[]
             {
@@ -1110,7 +1184,7 @@ namespace RemnantOfTheAncientsMod
                 ItemID.Sake
             });
             RecipeGroup.RegisterGroup("anyBeer", group);
-                    
+
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Marshmallow", lowFood.ToArray());
             RecipeGroup.RegisterGroup("anyLowFood", group);
 
@@ -1134,6 +1208,36 @@ namespace RemnantOfTheAncientsMod
             });
             RecipeGroup.RegisterGroup("anyCorruptWhip", group);
 
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowHelmet", new int[]
+            {
+                ItemID.ShadowHelmet,
+                ItemID.CrimsonHelmet,
+                ItemID.AncientShadowHelmet
+            });
+            RecipeGroup.RegisterGroup("anyCorruptHelmet", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowScalemail", new int[]
+            {
+                ItemID.ShadowScalemail, 
+                ItemID.CrimsonScalemail,
+                ItemID.AncientShadowScalemail
+            });
+            RecipeGroup.RegisterGroup("anyCorruptChestplate", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowGreaves", new int[]
+            {
+                ItemID.ShadowGreaves,
+                ItemID.CrimsonGreaves,
+                ItemID.AncientShadowGreaves
+            });
+            RecipeGroup.RegisterGroup("anyCorruptGreaves", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " EnchantedSword", new int[]
+            {
+                ItemID.EnchantedSword,
+                ModContent.ItemType<Enchanted_saber>()
+            });
+            RecipeGroup.RegisterGroup("anyEnchantedSword", group);
         }
 
         public override void PostAddRecipes()
@@ -1189,39 +1293,65 @@ namespace RemnantOfTheAncientsMod
 
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (recipe.TryGetResult(ModContent.ItemType<CurcedShotGun>(), out _))
-                    {
-                        recipe.RemoveTile(TileID.MythrilAnvil);
-                        recipe.AddTile(TileID.Anvils);
-                    }
-                    if (recipe.TryGetResult(ModContent.ItemType<Paintshotgun>(), out _))
-                    {
-                        recipe.RemoveTile(TileID.MythrilAnvil);
-                        recipe.AddTile(TileID.Anvils);
-                    }
-                    if (recipe.TryGetResult(ModContent.ItemType<Ichor_asault_rifle>(), out _))
-                    {
-                        recipe.RemoveTile(TileID.MythrilAnvil);
-                        recipe.AddTile(TileID.Anvils);
-                    }
-                    if (recipe.TryGetResult(ModContent.ItemType<Horizon>(), out _))
-                    {
-                        recipe.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"),5);
-                    }
+                    ModifyCalamityRecipe(recipe);
                 }
                 if (RemnantOfTheAncientsMod.FargosSoulMod != null)
                 {
-                    if(recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"), out _))
-                    {
-                        recipe.AddIngredient(ModContent.ItemType<GuardiansShield>());
-                    }
-                    if (recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"), out _))
-                    {
-                        recipe.AddIngredient(ModContent.ItemType<ForceOfRemants>());
-                    }
+                    ModifyFargosRecipe(recipe);
                 }
             }
         }
+        public void ModifyCalamityRecipe(Recipe recipe)
+        {
+            if (recipe.TryGetResult(ModContent.ItemType<CurcedShotGun>(), out _))
+            {
+                recipe.RemoveTile(TileID.MythrilAnvil);
+                recipe.AddTile(TileID.Anvils);
+            }
+            if (recipe.TryGetResult(ModContent.ItemType<Paintshotgun>(), out _))
+            {
+                recipe.RemoveTile(TileID.MythrilAnvil);
+                recipe.AddTile(TileID.Anvils);
+            }
+            if (recipe.TryGetResult(ModContent.ItemType<Ichor_asault_rifle>(), out _))
+            {
+                recipe.RemoveTile(TileID.MythrilAnvil);
+                recipe.AddTile(TileID.Anvils);
+            }
+            if (recipe.TryGetResult(ModContent.ItemType<Horizon>(), out _))
+            {
+                recipe.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"), 5);
+            }
+            if (recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElementalGauntlet"), out _))
+            {
+                recipe.RemoveIngredient(ItemID.FireGauntlet);
+                recipe.AddIngredient(ModContent.ItemType<SolarGlove>());
+            }
+            if (recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"), out _))
+            {
+                recipe.RemoveRecipeGroup(Utils1.GetRecipeGroupId("AnyManaFlower"));
+                recipe.RemoveIngredient(ItemID.ManaFlower);
+                recipe.AddIngredient(ModContent.ItemType<ManaO>());
+            }
+            if (recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeHealingPotion"), out _))
+            {
+                recipe.RemoveIngredient(ItemID.SuperHealingPotion);
+                recipe.AddIngredient(ModContent.ItemType<UltraHealtingPotion>());
+            }
+        } 
+
+        public void ModifyFargosRecipe(Recipe recipe)
+        {
+            if (recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"), out _))
+            {
+                recipe.AddIngredient(ModContent.ItemType<GuardiansShield>());
+            }
+            if (recipe.TryGetResult(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"), out _))
+            {
+                recipe.AddIngredient(ModContent.ItemType<ForceOfRemants>());
+            }
+        }
+
     }
 }
 	

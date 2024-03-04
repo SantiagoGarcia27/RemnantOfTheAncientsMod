@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 			Item.maxStack = 999;
 			Item.consumable = true;
 			Item.rare = ItemRarityID.Cyan;
-			Item.healLife = 300;
+			Item.healLife = RemnantOfTheAncientsMod.CalamityMod != null? 220 : 300;
 			Item.potion = true;
 			Item.value = Item.buyPrice(gold: 10);
 		}

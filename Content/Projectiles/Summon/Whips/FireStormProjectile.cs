@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.localNPCHitCooldown = -1;
             Projectile.WhipSettings.Segments = 11;
             Projectile.light = 0.5f;
-            Projectile.WhipSettings.RangeMultiplier = 1.3f;
+            Projectile.WhipSettings.RangeMultiplier = 1.2f;
         }
 
         private float Timer

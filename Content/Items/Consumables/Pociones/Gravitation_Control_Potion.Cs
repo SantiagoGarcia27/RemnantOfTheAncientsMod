@@ -6,6 +6,8 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using CalamityMod.Items.Potions;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -27,11 +29,31 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void AddRecipes()
         {
-             CreateRecipe(2)
-             .AddIngredient(ItemID.GravitationPotion, 1)
-             .AddIngredient(ItemID.FeatherfallPotion, 1)
-             .AddTile(TileID.Bottles)
-             .Register();
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Calamity();
+            }
+            else
+            {
+                CreateRecipe(2)
+                .AddIngredient(ItemID.GravitationPotion, 1)
+                .AddIngredient(ItemID.FeatherfallPotion, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
+            [JITWhenModsEnabled("CalamityMod")]
+            void Calamity()
+            {
+                CreateRecipe(2)
+               .AddIngredient(ItemID.GravitationPotion, 1)
+               .AddIngredient(ItemID.FeatherfallPotion, 1)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumPotion"), 1)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerPotion"), 1)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoaringPotion"), 1)
+               .AddTile(TileID.Bottles)
+               .Register();
+            }
         }
     }
     public class Endless_Gravitation_Control_Potion : ModelEndless
@@ -39,24 +61,53 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemType<Gravitation_Control_Potion>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Gravity Control Potions");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de contrôle de la gravité sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de control gravitacional eterna");
+            // //DisplayName.SetDefault("ModelEndless Gravity Control Potions");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Potion de contrôle de la gravité sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pocion de control gravitacional eterna");
         }
         public override void AddRecipes()
         {
             base.AddRecipes();
-            CreateRecipe()
-            .AddIngredient(ItemID.GravitationPotion, 30)
-            .AddIngredient(ItemID.FeatherfallPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
 
-            CreateRecipe()
-            .AddIngredient(ItemType<EndlessGravitation>(), 1)
-            .AddIngredient(ItemType<EndlessFeather>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Calamity();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.GravitationPotion, 30)
+                .AddIngredient(ItemID.FeatherfallPotion, 30)
+                .AddTile(TileID.Bottles)
+                .Register();
+
+                CreateRecipe()
+                .AddIngredient(ItemType<EndlessGravitation>(), 1)
+                .AddIngredient(ItemType<EndlessFeather>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
+            [JITWhenModsEnabled("CalamityMod")]
+            void Calamity()
+            {
+                CreateRecipe()
+               .AddIngredient(ItemID.GravitationPotion, 30)
+               .AddIngredient(ItemID.FeatherfallPotion, 30)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumPotion"), 30)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerPotion"), 30)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoaringPotion"), 30)
+               .AddTile(TileID.Bottles)
+               .Register();
+
+                CreateRecipe()
+                .AddIngredient(ItemType<EndlessGravitation>(), 1)
+                .AddIngredient(ItemType<EndlessFeather>(), 1)
+                .AddIngredient(ItemType<EndlessCalciumPotion>(), 1)
+                .AddIngredient(ItemType<EndlessGravityNormalizerPotion>(), 1)
+                .AddIngredient(ItemType<EndlessSoaringPotion>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
     }
 }

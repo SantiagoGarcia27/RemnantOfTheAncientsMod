@@ -24,27 +24,7 @@ public class ReaperPlayer : ModPlayer
     public static bool ReaperFirstTime;
     private static List<NPC> _hallucinationCandidates = new List<NPC>();
     public bool ReaperSoulBoost;
-    //public bool SlimeReaperUpgrade = false;
-    //public bool EyeReaperUpgrade = false;
-    //public bool CorruptReaperUpgrade = false;
-    //public bool BeeReaperUpgrade = false;
-    //public bool SkeletonReaperUpgrade = false;
-    //public bool DeerclopsReaperUpgrade = false;
-    //public bool DesertReaperUpgrade = false;
-    //public bool FleshReaperUpgrade = false;
-    //public bool FrozenReaperUpgrade = false;
-    //public bool QueenReaperUpgrade = false;
-    //public bool SpazmatismReaperUpgrade = false;
-    //public bool RetinazorReaperUpgrade = false;
-    //public bool SkeletronPrimeReaperUpgrade = false;
-    //public bool DestroyerReaperUpgrade = false;
-    //public bool PlantReaperUpgrade = false;
-    //public bool InfernalReaperUpgrade = false;
-    //public bool GolemReaperUpgrade = false;
-    //public bool EmpressReaperUpgrade = false;
-    //public bool DukeReaperUpgrade = false;
-    //public bool CultistReaperUpgrade = false;
-    //public bool MoonReaperUpgrade = false;
+   
 
     public List<bool> SoulsUpgrades = new List<bool>()
     {
@@ -55,7 +35,25 @@ public class ReaperPlayer : ModPlayer
         false,false,false,false,
         false
     };
+    public List<bool> SoulsUpgradesCalamity = new List<bool>()
+    {
+        false,false,false,false,
+        false,false,false,false,
+        false,false,false,false,
+        false,false,false,false,
+        false,false,false,false,
+        false
+    };
     public List<float> SoulsUpgradesActive = new List<float>()
+    {
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0,0,0,0,
+        0
+    };
+    public List<float> SoulsUpgradesActiveCalamity = new List<float>()
     {
         0,0,0,0,
         0,0,0,0,
@@ -187,7 +185,7 @@ public class ReaperPlayer : ModPlayer
         SoulsUpgradesActive[17] = GetInstance<ConfigClient>().ToggleEmpressOfLightSoul.ToInt();
         SoulsUpgradesActive[18] = GetInstance<ConfigClient>().ToggleDukeFishronSoul.ToInt();
         SoulsUpgradesActive[19] = GetInstance<ConfigClient>().ToggleLunaticCultistSoul.ToInt();
-        SoulsUpgradesActive[20] = GetInstance<ConfigClient>().ToggleMoonlordSoul .ToInt();
+        SoulsUpgradesActive[20] = GetInstance<ConfigClient>().ToggleMoonlordSoul.ToInt();
     }
     public void SetSoulsToggle(int i,float value)
     {

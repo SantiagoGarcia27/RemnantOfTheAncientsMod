@@ -26,7 +26,7 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
-
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
@@ -540,9 +540,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
         public void PhaseChanger()
         {
-            if (NPC.life >= (NPC.lifeMax / 2)) currentPhase = 1;
+            if (NPC.life >= (NPC.lifeMax / 2))
+            {
+                currentPhase = 1;
+                NPC.localAI[2] = 0;
+            }
             else if (NPC.life <= (NPC.lifeMax / 4) && healAnimation) currentPhase = 4;
-            else if (NPC.life <= (NPC.lifeMax / 4) && !healAnimation) currentPhase = 3;
+            else if (NPC.life <= (NPC.lifeMax / 4) && !healAnimation)
+            {
+                currentPhase = 3;
+                NPC.localAI[2] = 1;
+            }
             else if (NPC.life <= (NPC.lifeMax / 2)) currentPhase = 2;
         }
         public override void BossLoot(ref string name, ref int potionType)
@@ -566,7 +574,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.FrostCore, 5, 3));
             npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
             npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Frozen_Relic>()));
+            if (RemnantOfTheAncientsMod.InfernumMod != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Frozen_Relic>()));
+            else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Frozen_Relic>()));
 
             if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
         }

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 {
@@ -15,26 +16,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(manaBonus,lifeBonus);
         public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Night Breastplate");
-			//Tooltip.SetDefault(""
-			//+ "\nIncrease maximum Mana by 20 "
-			//+ "\nIncrease maximum life by 50 "
-			//+ "\nImmune to glow effect, fire and broken armor");
-
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Coraza de la Noche");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-					   //+ "\nAumenta el Maná maxima en 20 "
-					   //+ "\nAumenta la vida maxima en 50 puntos"
-					   //+ "\nEres immune a los efectos de brillo, fuego y armadura rota");
-
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cuirasse de Nuit");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-					  //+ "\n Augmente le maximum de mana de 20"
-					  //+ "\n Augmente le maximum de life de 20"
-					  //+ "\n Immunité aux effets de lueur, au feu et à l'armure brisée");
-
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -57,10 +38,38 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<NightBar>(), 20)
-			.AddTile(TileID.DemonAltar)
-			.Register();
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+                CreateRecipe()
+                 .AddRecipeGroup("anyCorruptChestplate")
+                 .AddIngredient(ItemID.JungleShirt)
+                 .AddIngredient(ItemID.NecroGreaves)
+                 .AddIngredient(ItemID.MoltenBreastplate)
+                 .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                 .AddTile(TileID.DemonAltar)
+                 .Register();
+
+                CreateRecipe()
+				.AddIngredient(ModContent.ItemType<NightBar>(), 20)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+				.AddTile(TileID.DemonAltar)
+                .Register();
+            }
+			else
+			{
+                CreateRecipe()
+                .AddRecipeGroup("anyCorruptChestplate")
+				.AddIngredient(ItemID.JungleShirt)
+				.AddIngredient(ItemID.NecroGreaves)
+				.AddIngredient(ItemID.MoltenBreastplate)	
+				.AddTile(TileID.DemonAltar)
+				.Register();
+
+				CreateRecipe()
+				.AddIngredient(ModContent.ItemType<NightBar>(), 20)
+				.AddTile(TileID.DemonAltar)
+				.Register();
+			}
 		}
 	}
 }

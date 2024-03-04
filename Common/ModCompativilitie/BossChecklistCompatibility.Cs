@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 "LogBoss",
                 Mod,
                 "DesertAniquilator",    
-                6.8f,
+                6.7f,
                 () => RemnantDownedBossSystem.downedDesert,
                 ModContent.NPCType<DesertAniquilator>(),
                 new Dictionary<string, object>()

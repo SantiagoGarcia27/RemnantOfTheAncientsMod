@@ -11,6 +11,7 @@ using System.Text;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Exceptions;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
@@ -171,6 +172,17 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Second * 60 + Minute * 60 * 60 + Hour * 60 * 60 * 60 + Day * 60 * 60 * 60 * 60;
         }
+        public static int FormatMoney(int Terra,int Platinum, int Gold, int Silver, int Copper)
+        {
+            int _Copper = 1;
+            int _Silver = 100;
+            int _Gold = 10000;
+            int _Platinum = 1000000;
+            int _Terra = 100000000;
+            int value = (Terra * _Terra) + (Platinum * _Platinum) + (Gold * _Gold) + (Silver * _Silver) + (Copper * _Copper);
+
+            return value;
+        }
         public static Vector2 FormatToPositive(Vector2 imput)
         {
             Vector2 Output;
@@ -261,6 +273,29 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             if (!list.Contains(p)) list.Add(p);
         }
+        public static bool OnlyOneValue(List<bool> list, bool a)
+        {
+            List<bool> result = new List<bool>();
+            foreach(bool e in list)
+            {
+                if(e == a) result.Add(e);
+            }
+
+            return result.Count == 1;
+        }
+        public static bool OnlyOneValue(List<bool> list, bool a,int index)
+        {
+            if(list[index] != a) return false;
+            List<bool> result = new List<bool>();
+            for(int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == a)
+                    result.Add(list[i]);
+            }
+            
+
+            return result.Count == 1;
+        }
         public static string TooltipHotkeyString(ModKeybind imput)
         {
             try
@@ -289,6 +324,16 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 var text = tip.Text.Replace(target, replace);
                 tip.Text = text;
             }
+        }
+
+        public static int GetRecipeGroupId(string name)
+        {
+            if (!RecipeGroup.recipeGroupIDs.ContainsKey(name))
+            {
+                throw new RecipeException("A recipe group with the name " + name + " does not exist.");
+            }
+            int num = RecipeGroup.recipeGroupIDs[name];
+            return num;
         }
     }
 }

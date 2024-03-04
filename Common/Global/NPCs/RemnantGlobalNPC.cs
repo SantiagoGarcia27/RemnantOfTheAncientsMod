@@ -7,10 +7,15 @@ using Terraria.ID;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.DataStructures;
-using CalamityMod.Buffs.StatBuffs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
+using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_Basic_Potion_Kit;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -238,19 +243,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             setDebuffs(npc);
             base.AI(npc);
         }
-        //public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hit.HitDirection, ref bool crit)
-        //{
-        //	if (Marble_Erosion)
-        //	{
-        //		npc.defense = npc.defDefense - 2;
-        //		Can_Marble = true;
-        //	}
-        //	else
-        //	{
-        //		npc.defense = npc.defDefense;
-        //	}
-        //	return base.StrikeNPC(npc, ref damage, defense, ref knockback,hit.HitDirection, ref crit);
-        //}
 
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
@@ -333,25 +325,120 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             return base.PreAI(npc);
         }
+
         public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
         {
             foreach (Item item in items)
             {
                 if (item is not null)
                 {
-                    float test = Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat/100f;
-                    float test2 = 1f - test;
-                    decimal test3 = (decimal)(1f - (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat / 100f));
-
                     decimal discount = Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat != 0 ? (decimal)(1f - (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat / 100f)) : 1;
                     discount = (float)discount > 0.1f ? discount : (decimal)0.1;
-              
-                    item.shopCustomPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);  
+
+                    item.shopCustomPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);
                 }
             }
         }
+
+        public override void ModifyShop(NPCShop shop)
+        {
+            if (RemnantOfTheAncientsMod.AlchemistNPCMod != null)
+            {
+                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Brewer"))
+                {
+                    string SHOP_4 = "MorePotions/Atheria";
+                    if (shop.Name == SHOP_4)
+                    {
+                        shop.Add(new Item(ItemType<Money_Collector_Potion>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 50, 0) })
+                        .Add(new Item(ItemType<Commander_Potion>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 50, 0) }, Condition.DownedEowOrBoc);
+                    }
+                }
+                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Alchemist"))
+                {
+                    string BaseShop = "BaseShop";
+                    if (shop.Name == BaseShop)
+                    {
+                        shop.Add(new Item(ItemType<NecroticRestauration>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 50, 0) }, Condition.DownedSkeletron);
+                    }
+                }
+                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Musician"))
+                {
+                    string Sh5 = "Sh5";
+                    if (shop.Name == Sh5)
+                    {
+                        shop.Add(new Item(ItemType<DesertMusicBox>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert", () => RemnantDownedBossSystem.downedDesert))
+                            .Add(new Item(ItemType<FrozenMusicBox>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedFrozen", () => RemnantDownedBossSystem.downedFrozen))
+                               .Add(new Item(ItemType<Frozenp2MusicBox>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedFrozen", () => RemnantDownedBossSystem.downedFrozen))
+                            .Add(new Item(ItemType<InfernalMusicBox>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedTyrant", () => RemnantDownedBossSystem.downedTyrant));
+                    }
+                }
+                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Tinkerer"))
+                {
+                    string Shop1 = "MovementMisc";
+                    string Shop2 = "Combat";
+                    if (shop.Name == Shop1)
+                    {
+                        shop.Add(new Item(ItemType<Boot>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 5, 0, 0) });
+                    }
+                    if (shop.Name == Shop2)
+                    {
+                        shop.Add(new Item(ItemType<magic_stick>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 20, 0, 0) }, Condition.DownedEyeOfCthulhu);
+                    }
+                }
+                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "YoungBrewer"))
+                {
+                    string Shop1 = "Combinations";
+                    string Shop2 = "Flasks";
+                    if (shop.Name == Shop1)
+                    {
+                        shop.Add(new Item(ItemType<Ranger_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 5, 0, 0) })
+                            .Add(new Item(ItemType<Summon_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 4, 0, 0) })
+                            .Add(new Item(ItemType<Melee_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 3, 0, 0) })
+                            .Add(new Item(ItemType<Mage_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 4, 0, 0) })
+                            .Add(new Item(ItemType<Advanced_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 4, 0, 0) })
+                            .Add(new Item(ItemType<Tank_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 8, 0, 0) })
+                            .Add(new Item(ItemType<Exploration_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 15, 0, 0) })
+                            .Add(new Item(ItemType<Ultimate_Potion_Kit>()) { shopCustomPrice = Utils1.FormatMoney(0, 1, 0, 0, 0) }, Condition.DownedMoonLord);
+                    }
+                    if (shop.Name == Shop2)
+                    {
+                        shop.Add(new Item(ItemType<Sand_Flask>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert", () => RemnantDownedBossSystem.downedDesert));
+                    }
+                }
+                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Operator"))
+                {
+                    string MaterialShop = "Materials";
+                    string ModMaterialShop = "ModMaterials";
+                    string Bags1Shop = "ModBags1";
+                    string Bags2Shop = "ModBags2";
+                    if (shop.Name == MaterialShop)
+                    {
+                        shop.Add(new Item(ItemID.Cobweb) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 50, 0) });
+                    }
+                    if (shop.Name == ModMaterialShop)
+                    {
+                        shop.Add(new Item(ItemType<Sand_escense>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 5, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert", () => RemnantDownedBossSystem.downedDesert))
+                            .Add(new Item(ItemType<Ice_escense>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 50, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedFrozen", () => RemnantDownedBossSystem.downedFrozen))
+                            .Add(new Item(ItemType<Neutrum_Fragment>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, Condition.DownedMoonLord)
+                            .Add(new Item(ItemType<CelestialAmalgamate>()) { shopCustomPrice = Utils1.FormatMoney(0, 40, 0, 0, 0) }, Condition.DownedMoonLord);
+                    }
+                    if (shop.Name == Bags1Shop)
+                    {
+                        shop.Add(new Item(ItemType<desertBag>()) { shopCustomPrice = Utils1.FormatMoney(0, 1, 50, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert", () => RemnantDownedBossSystem.downedDesert));
+
+                    }
+                    if (shop.Name == Bags2Shop)
+                    {
+                        shop.Add(new Item(ItemType<frostBag>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 50, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedFrozen", () => RemnantDownedBossSystem.downedFrozen))
+                            .Add(new Item(ItemType<infernalBag>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 50, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedTyrant", () => RemnantDownedBossSystem.downedTyrant));
+                    }
+                }
+            }
+            base.ModifyShop(shop);
+        }
     }
 }
+
 
 
 	

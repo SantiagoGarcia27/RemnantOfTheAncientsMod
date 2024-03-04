@@ -69,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             AttackTimmer = CounterUpdate(AttackTimmer, (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.4f));
 
             float TimmerMax = Utils1.FormatTimeToTick(0, 0, 0, 5) - 60;
-            if (shootCounter == TimmerMax /*&& target != null*/)
+            if (shootCounter == TimmerMax && foundTarget /*&& target != null*/)
             {
                 Shoot(targetCenter);
             }
@@ -80,11 +80,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             AreaEffect();
         }
         
-        private void setCounters()
-        {
-            shootCounter = CounterUpdate(shootCounter, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
-            AttackTimmer = CounterUpdate(AttackTimmer, (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.4f));
-        }
         private void Shoot(Vector2 targetCenter)
         {
             float rotation;
@@ -108,13 +103,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         {
             for (int i = 0; i < Main.maxNPCs;i++)
             {
-                if (Projectile.Distance(Main.npc[i].Center) <= RangeMax * 16)
+                NPC target = Main.npc[i];
+                if (Projectile.Distance(target.Center) <= RangeMax * 16 && !target.friendly && target.active)
                 {
-                    Main.npc[i].AddBuff(BuffType<Hell_Fire>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
+                    target.AddBuff(BuffType<Hell_Fire>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (AttackTimmer == 1)
-                    {            
-                        Main.npc[i].SimpleStrikeNPC(Projectile.damage, 0, Main.rand.NextBool(6),0, DamageClass.Summon);
-                        if (Main.npc[i].type != 679)
+                    {
+                        target.SimpleStrikeNPC(Projectile.damage, 0, Main.rand.NextBool(6),0, DamageClass.Summon);
+                        if (target.type != 679)
                         {
                             IsAttack = true;
                         }
@@ -236,8 +232,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                         bool closest = Vector2.Distance(Projectile.Center, targetCenter) > between;
                         bool inRange = between < distanceFromTarget;
                         bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
-                        // Additional check for this specific minion behavior, otherwise it will stop attacking once it dashed through an enemy while flying though tiles afterwards
-                        // The number depends on various parameters seen in the movement code below. Test different ones out until it works alright
                         bool closeThroughWall = between < 100f;
 
                         if (((!closest && inRange) /*|| !foundTarget*/) && (lineOfSight || closeThroughWall))
@@ -250,24 +244,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                     }
                 }
             }
-            
-
-            // friendly needs to be set to true so the minion can deal contact damage
-            // friendly needs to be set to false so it doesn't damage things like target dummies while idling
-            // Both things depend on if it has a target or not, so it's just one assignment here
-            // You don't need this assignment if your minion is shooting things instead of dealing contact damage
             Projectile.friendly = foundTarget;
         }
 
         private void Movement(bool foundTarget, float distanceFromTarget, Vector2 targetCenter, float distanceToIdlePosition, Vector2 vectorToIdlePosition)
-        {
-            // Default movement parameters (here for attacking)
+        {   
             float speed = 15f;//8
             float inertia = 20f;
 
             if (foundTarget)
             {
-                // Minion has a target: attack (here, fly towards the enemy)
                 if (distanceFromTarget > 40f)
                 {
                     // The immediate range around the target (so it doesn't latch onto it when close)

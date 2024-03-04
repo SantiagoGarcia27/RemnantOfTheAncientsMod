@@ -171,6 +171,7 @@ Mods: {
 			NotConsumableTooltip: No consumible
 			Eternity: Eternity
 			StyleStat: "{0} estilo"
+			InmuneTo: Ganas inmunidad a {0}
 		}
 
 		CommonTooltip: {
@@ -593,10 +594,8 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxMinionsBy}.
-					Mientras estas en el desierto
-					aumenta la regeneración de vida y {$CommonItemTooltip.PercentIncreasedDamage@1}.
-					Mientras estas en una tormenta de arena
-					{$CommonItemTooltip.IncreasesMaxLifeBy@2} 
+					Aumenta la regeneración de vida y {$CommonItemTooltip.PercentIncreasedDamage@1} mientras estas en el desierto.
+					{$CommonItemTooltip.IncreasesMaxLifeBy@2} mientras estas en una tormenta de arena
 					'''
 			}
 
@@ -638,7 +637,7 @@ Mods: {
 			}
 
 			IronBand: {
-				DisplayName: Banda dehierro
+				DisplayName: Banda de hierro
 				Tooltip: Reduce un 2% el daño recibido
 			}
 
@@ -666,7 +665,7 @@ Mods: {
 					Utiliza pociones de maná automáticamente cuando es necesario.
 					Aumenta el rango de recogida de las estrellas de maná
 					increases pickup range for mana stars
-					you are immune to Mana Sickness
+					grants immunity to to Mana Sickness
 					'''
 			}
 
@@ -841,8 +840,8 @@ Mods: {
 				DisplayName: Coraza de hierro reforzado
 				/* Tooltip:
 					'''
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
 					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
 					''' */
 			}
 
@@ -853,7 +852,11 @@ Mods: {
 
 			Reinforced_iron_Helmet: {
 				DisplayName: Casco de hierro reforzado
-				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					''' */
 			}
 
 			Tuxonite_chesplate: {
@@ -1418,7 +1421,7 @@ Mods: {
 				DisplayName: Alma del Tirano infernal
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedDamage}"
+					{$CommonItemTooltip.PercentIncreasedDamage}
 					Otorga inmunidad a la lava y a los bloques de fuego
 					'''
 			}
@@ -1437,7 +1440,7 @@ Mods: {
 				DisplayName: Alma de Plantera
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
+					{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}
 					Invoca esporas alrededor del jugador que pueden dañar a los enemigos.
 					'''
 			}
@@ -3438,6 +3441,16 @@ Mods: {
 				// Tooltip: ""
 				// DisplayName: Expert Toggler
 			}
+
+			EndlessSulphurskinPotion: {
+				// DisplayName: Endless Sulphurskin Potion
+				// Tooltip: ""
+			}
+
+			TuxoniteBrick: {
+				DisplayName: Ladrillo de tusonita
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3505,6 +3518,8 @@ Mods: {
 					LikeNPC_Princess: I like {NPCName}.
 					Princess_LovesNPC: I like {NPCName}.
 				}
+
+				// Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
 			}
 
 			VultureD.DisplayName: Vulture
@@ -3670,13 +3685,23 @@ Mods: {
 		}
 
 		Conditions: {
-			OpositeOreGeneration: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration
-			IsHardmode: Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode
-			KingSlimeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated
-			IsRaining: Mods.RemnantOfTheAncientsMod.Conditions.IsRaining
-			IsSandstorm: Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm
-			QueenBeeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated
-			TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
+			OpositeOreGeneration: En un mundo con
+			TinkererAlive: Cuando el duende chapuzero está vivo
+			OpositeOreGenerationTin: En un mundo con estaño
+			OpositeOreGenerationCopper: En un mundo con cobre
+			OpositeOreGenerationLead: En un mundo con plomo
+			OpositeOreGenerationIron: En un mundo con hierra
+			OpositeOreGenerationSilver: En un mundo con plata
+			OpositeOreGenerationTungsten: En un mundo con tungsteno
+			OpositeOreGenerationPlatinum: En un mundo con platino
+			OpositeOreGenerationGold: En un mundo con oro
+			OpositeOreGenerationPalladium: En un mundo con paladio
+			OpositeOreGenerationCobalt: En un mundo con cobalto
+			OpositeOreGenerationOrichalcum: En un mundo con orichalco
+			OpositeOreGenerationMythril: En un mundo con mythril
+			DownedDesert: Cuando el Aniquilador del desierto ah sido derrotado
+			DownedFrozen: Cuando el Asaltante congelado ah sido derrotado
+			DownedTyrant: Cuando el Tirano infernal ah sido derrotado
 		}
 
 		Configs: {

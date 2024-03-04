@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -73,6 +74,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void AddRecipes()
         {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                CreateRecipe(3)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodOrb"), 10)
+                .AddIngredient(ItemID.BottledWater, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
             CreateRecipe()
             .AddIngredient(ModContent.ItemType<NecroticRestauration>(), 30)
             .AddTile(TileID.Bottles)

@@ -1,6 +1,6 @@
+using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
@@ -18,6 +18,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
     public class ModifyAccsesories : GlobalItem
     {
         static Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
+
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
         public override void SetDefaults(Item item)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -74,14 +79,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
         public static List<int> FastFall = new List<int>()
         {
-            //ItemID.HermesBoots,
-            //ItemID.FlurryBoots,
-            //ItemID.SpectreBoots,
-            //ItemID.FairyBoots,
-            //ItemID.HellfireTreads,
-            //ItemID.LightningBoots,
-            //ItemID.FrostsparkBoots,
-            //ItemID.TerrasparkBoots
         };
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -125,21 +122,44 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if(RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"))
-                {
-                    ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
-                }
-                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"))
-                {
-                    ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
-                }
-                if(item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
-                {
-                    ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
-                    ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
-                }
+                UpdateAccessoryFargosSoulMod(item, player, hideVisual);
             }
             base.UpdateAccessory(item, player, hideVisual);
+        }
+
+        [JITWhenModsEnabled("CalamityMod")]
+        public void UpdateAccessoryCalamityMod(Item item, Player player, bool hideVisual)
+        {
+            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            {
+                player.buffImmune[BuffID.ManaSickness] = true;
+                player.Calamity().eTalisman = true;
+                player.manaMagnet = true;
+                if (!hideVisual)
+                {
+                    player.manaFlower = true;
+                }
+                player.statManaMax2 += 150;
+                player.GetDamage<MagicDamageClass>() += 0.10f;
+                player.manaCost *= 0.85f;
+                player.GetCritChance<MagicDamageClass>() += 5f;
+            }
+        }
+        public void UpdateAccessoryFargosSoulMod(Item item, Player player, bool hideVisual)
+        {
+            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"))
+            {
+                ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
+            }
+            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"))
+            {
+                ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
+            }
+            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+            {
+                ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
+                ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
+            }
         }
 
         public override void UpdateEquip(Item item, Player player)
@@ -180,31 +200,49 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
-                {
-                    int ProjectileSizeBonus = 50;
-                    int ProjectileSpeedBonus = 10;
-                    int MovmentSpeedBonusBonus = 10;
-                    int DurationSeconds = 10;
-
-
-                    var t = tooltips;
-                    var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip15" && tip.Mod == "Terraria");
-                    if (tip != null)
-                    {
-                        var text = tip.Text.Insert(tip.Text.LastIndexOf(tip.Text), Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Items.GuardiansShield.Tooltip", ProjectileSizeBonus, ProjectileSpeedBonus, MovmentSpeedBonusBonus) + "\n"); //tip.Text.Replace("25", "45");
-                        tip.Text = text;
-                    }
-                    Utils1.FindAndReplaceTooltip(tooltips, "&0", Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier));
-                    Utils1.FindAndReplaceTooltip(tooltips, "&1", DurationSeconds.ToString());
-                }
-
+                ModifyTooltipsFargosSoulMod(item, tooltips);
             }
-           
-
-            //base.ModifyTooltips(item, tooltips);
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                ModifyTooltipsCalamityMod(item, tooltips);
+            }
         }
-        string tooltip = "";
+        public void ModifyTooltipsFargosSoulMod(Item item, List<TooltipLine> tooltips)
+        {
+            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+            {
+                int ProjectileSizeBonus = 50;
+                int ProjectileSpeedBonus = 10;
+                int MovmentSpeedBonusBonus = 10;
+                int DurationSeconds = 10;
+
+
+                var t = tooltips;
+                var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip15" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    var text = tip.Text.Insert(tip.Text.LastIndexOf(tip.Text), Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Items.GuardiansShield.Tooltip", ProjectileSizeBonus, ProjectileSpeedBonus, MovmentSpeedBonusBonus) + "\n"); //tip.Text.Replace("25", "45");
+                    tip.Text = text;
+                }
+                Utils1.FindAndReplaceTooltip(tooltips, "&0", Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier));
+                Utils1.FindAndReplaceTooltip(tooltips, "&1", DurationSeconds.ToString());
+            }
+        }
+        public void ModifyTooltipsCalamityMod(Item item, List<TooltipLine> tooltips)
+        {
+            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            {
+                var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    tip.Text = tip.Text.Replace("15", "10");
+
+                    tip.Text = tip.Text.Replace("d 10", "d 15");
+                }
+            }
+        }
+
+            string tooltip = "";
         public void FixDuplicatedPrefix(List<TooltipLine> tooltips)
         {
             var tip = tooltips.FirstOrDefault(tip => tip.Mod != "a");

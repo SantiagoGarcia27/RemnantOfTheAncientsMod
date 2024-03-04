@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
 			Item.maxStack = 9999;
 			Item.consumable = true;
 			Item.knockBack = 3.5f;
-			Item.value = 30;
+			Item.value = 0;
 			Item.rare = ItemRarityID.Blue;
 			Item.shoot = ModContent.ProjectileType<Tomb_BulletP>();
 			Item.shootSpeed = 5f;

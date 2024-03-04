@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks

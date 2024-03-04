@@ -674,7 +674,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));
 
             npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Desert_Relic>()));
+            if (RemnantOfTheAncientsMod.InfernumMod != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ItemType<Desert_Relic>()));
+            else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Desert_Relic>()));
            
         }	
     }

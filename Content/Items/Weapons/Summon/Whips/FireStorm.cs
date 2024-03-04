@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
         }
         public override void SetDefaults()
         {
-            Item.damage = 40;
+            Item.damage = 38;
             Item.knockBack = 2;
             Item.DamageType = DamageClass.SummonMeleeSpeed;
             Item.rare = ItemRarityID.Orange;
@@ -40,8 +40,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
             Item.shootSpeed = 4;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.value = new Item(ItemID.FieryGreatsword).value;
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.useTime = 35;
+            Item.useAnimation = 35;
             Item.UseSound = SoundID.Item152;
             Item.channel = false; // This is used for the charging functionality. Remove it if your whip shouldn't be chargeable.
             Item.noMelee = true;

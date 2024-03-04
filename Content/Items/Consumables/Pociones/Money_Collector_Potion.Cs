@@ -6,6 +6,7 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -36,6 +37,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
              .AddIngredient(ItemID.BottledWater, 1)
              .AddTile(TileID.Bottles)
              .Register();
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                CreateRecipe()
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodOrb"), 10)
+                .AddIngredient(ItemID.BottledWater, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
     }
     public class Endless_Money_Collector_Potion : ModelEndless

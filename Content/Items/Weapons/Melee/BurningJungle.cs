@@ -2,11 +2,10 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -19,12 +18,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Item Base = new Item(ItemID.FieryGreatsword);
-            Item.damage = Base.damage + 3;
+            Item.damage = Base.damage + 5;
             Item.DamageType = DamageClass.Melee;
             Item.width = 130;
             Item.height = 160;
-            Item.useTime = 47;
-            Item.useAnimation = 47;
+            Item.useTime = Base.useTime;
+            Item.useAnimation = Base.useTime;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = Base.knockBack;
             Item.rare = Base.rare;
@@ -59,6 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             CreateRecipe()
             .AddIngredient(ItemID.FieryGreatsword, 1)
             .AddIngredient(ItemID.BladeofGrass, 1)
+            .AddIngredient<BoneBar>(2)
             .AddTile(TileID.Hellforge)
             .Register();
         }

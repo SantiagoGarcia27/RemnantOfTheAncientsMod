@@ -7,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_Basic_Potion_Kit;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Kits;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -15,9 +16,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Combat Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate");
+            // //DisplayName.SetDefault("Combat Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -46,21 +47,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemType<Combat_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Combat Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate eterno");
+            // //DisplayName.SetDefault("ModelEndless Combat Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de combat sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de combate eterno");
         }
         public override void AddRecipes()
         {
             base.AddRecipes();
 
             CreateRecipe()
-            .AddIngredient(ItemType<Tank_Potion_Kit>(),30)
-            .AddIngredient(ItemType<Ranger_Potion_Kit>(),30)
-            .AddIngredient(ItemType<Summon_Potion_Kit>(),30)
-            .AddIngredient(ItemType<Mage_Potion_Kit>(),30)
-            .AddIngredient(ItemType<Advanced_Potion_Kit>(),30)
-            .AddIngredient(ItemType<Melee_Potion_Kit>(),30)
+            .AddIngredient(ItemType<Tank_Potion_Kit>(), 30)
+            .AddIngredient(ItemType<Ranger_Potion_Kit>(), 30)
+            .AddIngredient(ItemType<Summon_Potion_Kit>(), 30)
+            .AddIngredient(ItemType<Mage_Potion_Kit>(), 30)
+            .AddIngredient(ItemType<Advanced_Potion_Kit>(), 30)
+            .AddIngredient(ItemType<Melee_Potion_Kit>(), 30)
             .AddTile(TileID.Bottles)
             .Register();
 
@@ -71,7 +72,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             .AddIngredient(ItemType<Endless_Summon_Potion_Kit>())
             .AddIngredient(ItemType<Endless_Magic_Potion_Kit>())
             .AddIngredient(ItemType<Endless_Advanced_Potion_Kit>())
-            .AddIngredient(ItemType<Endless_Melee_Potion_Kit>())
             .AddTile(TileID.Bottles)
             .Register();
         }
@@ -83,9 +83,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Mining Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
+            // //DisplayName.SetDefault("Mining Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -110,9 +110,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemType<Mining_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Mining Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria eterno");
+            // //DisplayName.SetDefault("ModelEndless Mining Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions minières sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mineria eterno");
         }
         public override void AddRecipes()
         {
@@ -142,9 +142,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Summoner Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador");
+            // //DisplayName.SetDefault("Summoner Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -154,12 +154,30 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-            .AddIngredient(ItemID.SummoningPotion, 1)
-            .AddIngredient(ItemID.InfernoPotion, 1)
-            .AddIngredient(ItemType<Commander_Potion>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Calamity();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.SummoningPotion, 1)
+                .AddIngredient(ItemID.InfernoPotion, 1)
+                .AddIngredient(ItemType<Commander_Potion>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
+            [JITWhenModsEnabled("CalamityMod")]
+            void Calamity()
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.SummoningPotion, 1)
+                .AddIngredient(ItemID.InfernoPotion, 1)
+                .AddIngredient(ItemType<Commander_Potion>(), 1)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
     }
     public class Endless_Summon_Potion_Kit : ModelEndless
@@ -167,28 +185,54 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemType<Summon_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Summoner Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador eterno");
+            // //DisplayName.SetDefault("ModelEndless Summoner Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador eterno");
         }
 
         public override void AddRecipes()
         {
             base.AddRecipes();
 
-            CreateRecipe()
-            .AddIngredient(ItemID.SummoningPotion, 30)
-            .AddIngredient(ItemID.InfernoPotion, 30)
-            .AddIngredient(ItemType<Commander_Potion>(), 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Calamity();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.SummoningPotion, 30)
+                .AddIngredient(ItemID.InfernoPotion, 30)
+                .AddIngredient(ItemType<Commander_Potion>(), 30)
+                .AddTile(TileID.Bottles)
+                .Register();
 
-            CreateRecipe()
-           .AddIngredient(ItemType<EndlessSummoning>(), 1)
-           .AddIngredient(ItemType<EndlessInferno>(), 1)
-           .AddIngredient(ItemType<Endless_Commander_Porion>(), 1)
-           .AddTile(TileID.Bottles)
-           .Register();
+                CreateRecipe()
+               .AddIngredient(ItemType<EndlessSummoning>(), 1)
+               .AddIngredient(ItemType<EndlessInferno>(), 1)
+               .AddIngredient(ItemType<Endless_Commander_Porion>(), 1)
+               .AddTile(TileID.Bottles)
+               .Register();
+            }
+            [JITWhenModsEnabled("CalamityMod")]
+            void Calamity()
+            {
+                CreateRecipe()
+               .AddIngredient(ItemID.SummoningPotion, 30)
+               .AddIngredient(ItemID.InfernoPotion, 30)
+               .AddIngredient(ItemType<Commander_Potion>(), 30)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 30)
+               .AddTile(TileID.Bottles)
+               .Register();
+
+                CreateRecipe()
+               .AddIngredient(ItemType<EndlessSummoning>(), 1)
+               .AddIngredient(ItemType<EndlessInferno>(), 1)
+               .AddIngredient(ItemType<Endless_Commander_Porion>(), 1)
+               .AddIngredient(ItemType<EndlessTeslaPotion>(), 1)
+               .AddTile(TileID.Bottles)
+               .Register();
+            }
         }
     }
     #endregion
@@ -198,9 +242,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Melee Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero");
+            // //DisplayName.SetDefault("Melee Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -223,9 +267,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Unlimited Melee Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero eterno");
+            // //DisplayName.SetDefault("Unlimited Melee Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de mêlée sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de guerrero eterno");
         }
         public override Item ItemBase => new(ItemType<Melee_Potion_Kit>());
         public override void AddRecipes()
@@ -254,9 +298,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Magic Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago");
+            // //DisplayName.SetDefault("Magic Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -268,7 +312,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         {
             CreateRecipe()
             .AddIngredient(ItemID.MagicPowerPotion, 1)
-            .AddIngredient(ItemID.ManaRegenerationPotion, 1)    
+            .AddIngredient(ItemID.ManaRegenerationPotion, 1)
             .AddTile(TileID.Bottles)
             .Register();
         }
@@ -277,9 +321,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Magic Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago eterno");
+            // //DisplayName.SetDefault("ModelEndless Magic Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions magiques sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de mago eterno");
         }
         public override Item ItemBase => new(ItemType<Mage_Potion_Kit>());
         public override void AddRecipes()
@@ -306,9 +350,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Tank Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin");
+            // //DisplayName.SetDefault("Tank Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -333,9 +377,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemType<Tank_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Tank Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin eterno");
+            // //DisplayName.SetDefault("ModelEndless Tank Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de réservoir sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de paladin eterno");
         }
 
         public override void AddRecipes()
@@ -368,9 +412,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Ranger Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador");
+            // //DisplayName.SetDefault("Ranger Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -393,9 +437,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Unlimited Ranger Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador eterno");
+            // //DisplayName.SetDefault("Unlimited Ranger Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Ranger sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de tirador eterno");
         }
         public override void AddRecipes()
         {
@@ -421,9 +465,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Basic Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico");
+            // //DisplayName.SetDefault("Basic Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
         }
         public override void SetDefaults()
@@ -446,9 +490,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemType<Basic_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Basic Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico eterno");
+            // //DisplayName.SetDefault("ModelEndless Basic Potions Kit");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de base sans fin");
+            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones basico eterno");
 
         }
         public override void AddRecipes()
@@ -472,295 +516,338 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         #endregion
 
     #region fisher
-    public class Fisher_Potion_Kit : ModItem
-    {
-        public override void SetStaticDefaults()
+        public class Fisher_Potion_Kit : ModItem
         {
-           // //DisplayName.SetDefault("Fisher Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de pêche");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de pescador");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("Fisher Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de pêche");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de pescador");
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            }
+            public override void SetDefaults()
+            {
+                Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+                Item.buffType = BuffType<Fishing_Infusion>();
+            }
+            public override void AddRecipes()
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.CalmingPotion, 1)
+                .AddIngredient(ItemID.FishingPotion, 1)
+                .AddIngredient(ItemID.SonarPotion, 1)
+                .AddIngredient(ItemID.CratePotion, 1)
+                .AddIngredient(ItemID.LuckPotionGreater, 1)
+                .AddIngredient(ItemID.InvisibilityPotion, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
-        public override void SetDefaults()
+        public class Endless_Fisher_Potion_Kit : ModelEndless
         {
-            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
-            Item.buffType = BuffType<Fishing_Infusion>();
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.CalmingPotion, 1)
-            .AddIngredient(ItemID.FishingPotion, 1)
-            .AddIngredient(ItemID.SonarPotion, 1)
-            .AddIngredient(ItemID.CratePotion, 1)
-            .AddIngredient(ItemID.LuckPotionGreater, 1)
-            .AddIngredient(ItemID.InvisibilityPotion, 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-    }
-    public class Endless_Fisher_Potion_Kit : ModelEndless
-    {
-        public override Item ItemBase => new(ItemType<Fisher_Potion_Kit>());
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Fisher Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions de pêche sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de pescador eterno");
-        }
-        public override void AddRecipes()
-        {
-            base.AddRecipes();
+            public override Item ItemBase => new(ItemType<Fisher_Potion_Kit>());
+            public override void SetStaticDefaults()
+            {
+            }
+            public override void AddRecipes()
+            {
 
-            CreateRecipe()
-            .AddIngredient(ItemID.CalmingPotion, 30)
-            .AddIngredient(ItemID.FishingPotion, 30)
-            .AddIngredient(ItemID.SonarPotion, 30)
-            .AddIngredient(ItemID.CratePotion, 30)
-            .AddIngredient(ItemID.LuckPotionGreater, 30)
-            .AddIngredient(ItemID.InvisibilityPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+                base.AddRecipes();
 
-            CreateRecipe()
-            .AddIngredient(ItemType<EndlessCalming>(), 1)
-            .AddIngredient(ItemType<EndlessFishing>(), 1)
-            .AddIngredient(ItemType<EndlessSonar>(), 1)
-            .AddIngredient(ItemType<EndlessCrate>(), 1)
-            .AddIngredient(ItemType<EndlessInvisibility>(), 1)
-            .AddIngredient(ItemType<EndlessGreaterLuck>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+                CreateRecipe()
+                .AddIngredient(ItemID.CalmingPotion, 30)
+                .AddIngredient(ItemID.FishingPotion, 30)
+                .AddIngredient(ItemID.SonarPotion, 30)
+                .AddIngredient(ItemID.CratePotion, 30)
+                .AddIngredient(ItemID.LuckPotionGreater, 30)
+                .AddIngredient(ItemID.InvisibilityPotion, 30)
+                .AddTile(TileID.Bottles)
+                .Register();
+
+                CreateRecipe()
+                .AddIngredient(ItemType<EndlessCalming>(), 1)
+                .AddIngredient(ItemType<EndlessFishing>(), 1)
+                .AddIngredient(ItemType<EndlessSonar>(), 1)
+                .AddIngredient(ItemType<EndlessCrate>(), 1)
+                .AddIngredient(ItemType<EndlessInvisibility>(), 1)
+                .AddIngredient(ItemType<EndlessGreaterLuck>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+
+            }
         }
-    }
-    #endregion
+        #endregion
 
     #region advanced
-    public class Advanced_Potion_Kit : ModItem
-    {
-        public override void SetStaticDefaults()
+        public class Advanced_Potion_Kit : ModItem
         {
-           // //DisplayName.SetDefault("Advanced Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("Advanced Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado");
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            }
+            public override void SetDefaults()
+            {
+                Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+                Item.buffType = BuffType<Advanced_Infusion>();
+            }
+            public override void AddRecipes()
+            {
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    Calamity();
+                }
+                else
+                {
+                    CreateRecipe()
+                    .AddIngredient(ItemType<Basic_Potion_Kit>(), 1)
+                    .AddIngredient(ItemID.WrathPotion, 1)
+                    .AddIngredient(ItemID.RagePotion, 1)
+                    .AddTile(TileID.Bottles)
+                    .Register();
+                }
+                [JITWhenModsEnabled("CalamityMod")]
+                void Calamity()
+                {
+                    CreateRecipe()
+                   .AddIngredient(ItemType<Basic_Potion_Kit>(), 1)
+                   .AddIngredient(ItemID.WrathPotion, 1)
+                   .AddIngredient(ItemID.RagePotion, 1)
+                   .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BoundingPotion"), 1)
+                   .AddTile(TileID.Bottles)
+                   .Register();
+                }
+            }
         }
-        public override void SetDefaults()
+        public class Endless_Advanced_Potion_Kit : ModelEndless
         {
-            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
-            Item.buffType = BuffType<Advanced_Infusion>();
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemType<Basic_Potion_Kit>(), 1)
-            .AddIngredient(ItemID.WrathPotion, 1)
-            .AddIngredient(ItemID.RagePotion, 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-    }
-    public class Endless_Advanced_Potion_Kit : ModelEndless
-    {
-        public override Item ItemBase => new(ItemType<Advanced_Potion_Kit>());
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Advanced Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado eterno");
-        }
-        public override void AddRecipes()
-        {
-            base.AddRecipes();
-            CreateRecipe()
-            .AddIngredient(ItemType<Basic_Potion_Kit>(), 30)
-            .AddIngredient(ItemID.WrathPotion, 30)
-            .AddIngredient(ItemID.RagePotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            public override Item ItemBase => new(ItemType<Advanced_Potion_Kit>());
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("ModelEndless Advanced Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions avancées sans fin");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones avanzado eterno");
+            }
+            public override void AddRecipes()
+            {
+                base.AddRecipes();
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    Calamity();
+                }
+                else
+                {
+                    CreateRecipe()
+                    .AddIngredient(ItemType<Basic_Potion_Kit>(), 30)
+                    .AddIngredient(ItemID.WrathPotion, 30)
+                    .AddIngredient(ItemID.RagePotion, 30)
+                    .AddTile(TileID.Bottles)
+                    .Register();
 
-            CreateRecipe()
-            .AddIngredient(ItemType<Endless_Basic_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<EndlessRage>(), 1)
-            .AddIngredient(ItemType<EndlessWrath>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+                    CreateRecipe()
+                    .AddIngredient(ItemType<Endless_Basic_Potion_Kit>(), 1)
+                    .AddIngredient(ItemType<EndlessRage>(), 1)
+                    .AddIngredient(ItemType<EndlessWrath>(), 1)
+                    .AddTile(TileID.Bottles)
+                    .Register();
+                }
+                [JITWhenModsEnabled("CalamityMod")]
+                void Calamity()
+                {
+                    CreateRecipe()
+                   .AddIngredient(ItemType<Basic_Potion_Kit>(), 30)
+                   .AddIngredient(ItemID.WrathPotion, 30)
+                   .AddIngredient(ItemID.RagePotion, 30)
+                   .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BoundingPotion"), 30)
+                   .AddTile(TileID.Bottles)
+                   .Register();
+
+                    CreateRecipe()
+                   .AddIngredient(ItemType<Endless_Basic_Potion_Kit>(), 1)
+                   .AddIngredient(ItemType<EndlessRage>(), 1)
+                   .AddIngredient(ItemType<EndlessWrath>(), 1)
+                   .AddIngredient(ItemType<EndlessBoundingPotion>(), 1)
+                   .AddTile(TileID.Bottles)
+                   .Register();
+                }
+            }
         }
-    }
-    #endregion
+        #endregion
 
     #region exploration
-    public class Exploration_Potion_Kit : ModItem
-    {
-        public override void SetStaticDefaults()
+        public class Exploration_Potion_Kit : ModItem
         {
-           // //DisplayName.SetDefault("Exploration Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("Exploration Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración");
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            }
+            public override void SetDefaults()
+            {
+                Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+                Item.buffType = BuffType<Exploration_infusion>();
+            }
+            public override void AddRecipes()
+            {
+                CreateRecipe()
+                .AddIngredient(ItemType<Mining_Potion_Kit>(), 1)
+                .AddIngredient(ItemType<Supe_Sense_Potion>(), 1)
+                .AddIngredient(ItemType<Gravitation_Control_Potion>(), 1)
+                .AddIngredient(ItemID.ObsidianSkinPotion, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
-        public override void SetDefaults()
+        public class Endless_Exploration_Potion_Kit : ModelEndless
         {
-            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
-            Item.buffType = BuffType<Exploration_infusion>();
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemType<Mining_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Supe_Sense_Potion>(), 1)
-            .AddIngredient(ItemType<Gravitation_Control_Potion>(), 1)
-            .AddIngredient(ItemID.ObsidianSkinPotion, 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-    }
-    public class Endless_Exploration_Potion_Kit : ModelEndless
-    {
-        public override Item ItemBase => new(ItemType<Exploration_Potion_Kit>());
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Exploration Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration sasn fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración eterno");
-        }
-        public override void AddRecipes()
-        {
-            base.AddRecipes();
-            CreateRecipe()
-            .AddIngredient(ItemType<Mining_Potion_Kit>(), 30)
-            .AddIngredient(ItemType<Supe_Sense_Potion>(), 30)
-            .AddIngredient(ItemType<Gravitation_Control_Potion>(), 30)
-            .AddIngredient(ItemID.ObsidianSkinPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            public override Item ItemBase => new(ItemType<Exploration_Potion_Kit>());
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("ModelEndless Exploration Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'exploration sasn fin");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de exploración eterno");
+            }
+            public override void AddRecipes()
+            {
+                base.AddRecipes();
+                CreateRecipe()
+                .AddIngredient(ItemType<Mining_Potion_Kit>(), 30)
+                .AddIngredient(ItemType<Supe_Sense_Potion>(), 30)
+                .AddIngredient(ItemType<Gravitation_Control_Potion>(), 30)
+                .AddIngredient(ItemID.ObsidianSkinPotion, 30)
+                .AddTile(TileID.Bottles)
+                .Register();
 
-            CreateRecipe()
-            .AddIngredient(ItemType<Endless_Mining_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<EndlessObsidian>(), 1)
-            .AddIngredient(ItemType<Endless_Supe_Sense_Potion>(), 1)
-            .AddIngredient(ItemType<Endless_Gravitation_Control_Potion>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+                CreateRecipe()
+                .AddIngredient(ItemType<Endless_Mining_Potion_Kit>(), 1)
+                .AddIngredient(ItemType<EndlessObsidian>(), 1)
+                .AddIngredient(ItemType<Endless_Supe_Sense_Potion>(), 1)
+                .AddIngredient(ItemType<Endless_Gravitation_Control_Potion>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
-    }
-    #endregion
+        #endregion
 
     #region poseidon
-    public class Poseidon_Potion_Kit : ModItem
-    {
-        public override void SetStaticDefaults()
+        public class Poseidon_Potion_Kit : ModItem
         {
-           // //DisplayName.SetDefault("Poseidon Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("Poseidon Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón");
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            }
+            public override void SetDefaults()
+            {
+                Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
+                Item.buffType = BuffType<Poseidon_Infusion>();
+            }
+            public override void AddRecipes()
+            {
+                CreateRecipe()
+                .AddIngredient(ItemType<Fisher_Potion_Kit>(), 1)
+                .AddIngredient(ItemType<Fish_Potion>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
-        public override void SetDefaults()
+        public class Endless_Poseidon_Potion_Kit : ModelEndless
         {
-            Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
-            Item.buffType = BuffType<Poseidon_Infusion>();
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemType<Fisher_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Fish_Potion>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-    }
-    public class Endless_Poseidon_Potion_Kit : ModelEndless
-    {
-        public override Item ItemBase => new(ItemType<Poseidon_Potion_Kit>());
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Poseidon Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón eterno");
-        }
-        public override void AddRecipes()
-        {
-            base.AddRecipes();
-            CreateRecipe()
-            .AddIngredient(ItemType<Fisher_Potion_Kit>(), 30)
-            .AddIngredient(ItemType<Fish_Potion>(), 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            public override Item ItemBase => new(ItemType<Poseidon_Potion_Kit>());
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("ModelEndless Poseidon Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions Poséidon sans fin");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit Poseídón eterno");
+            }
+            public override void AddRecipes()
+            {
+                base.AddRecipes();
+                CreateRecipe()
+                .AddIngredient(ItemType<Fisher_Potion_Kit>(), 30)
+                .AddIngredient(ItemType<Fish_Potion>(), 30)
+                .AddTile(TileID.Bottles)
+                .Register();
 
-            CreateRecipe()
-            .AddIngredient(ItemType<Endless_Fisher_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Fish_Potion>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+                CreateRecipe()
+                .AddIngredient(ItemType<Endless_Fisher_Potion_Kit>(), 1)
+                .AddIngredient(ItemType<Endless_Fish_Potion>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
-    }
-    #endregion
+        #endregion
 
     #region ultimate
-    public class Ultimate_Potion_Kit : ModItem
-    {
-        public override void SetStaticDefaults()
+        public class Ultimate_Potion_Kit : ModItem
         {
-           // //DisplayName.SetDefault("Ultimate Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("Ultimate Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo");
+                CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+            }
+            public override void SetDefaults()
+            {
+                Item.CloneDefaults(ItemID.BuilderPotion);
+                Item.value = Item.buyPrice(gold: 1);
+                Item.rare = 8;
+                Item.buffType = BuffType<Ultimate_Infusion>();
+                Item.buffTime = 25400;
+            }
+            public override void AddRecipes()
+            {
+                CreateRecipe()
+                .AddIngredient(ItemType<Combat_Potion_Kit>())
+                .AddIngredient(ItemType<Poseidon_Potion_Kit>())
+                .AddIngredient(ItemType<Exploration_Potion_Kit>())
+                .AddIngredient(ItemType<Money_Collector_Potion>())
+                .AddIngredient(ItemID.BiomeSightPotion)
+                .AddIngredient(ItemID.BuilderPotion)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
-        public override void SetDefaults()
+        public class Endless_Ultimate_Potion_Kit : ModelEndless
         {
-            Item.CloneDefaults(ItemID.BuilderPotion);
-            Item.value = Item.buyPrice(gold: 1);
-            Item.rare = 8;
-            Item.buffType = BuffType<Ultimate_Infusion>();
-            Item.buffTime = 25400;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemType<Combat_Potion_Kit>())
-            .AddIngredient(ItemType<Poseidon_Potion_Kit>())
-            .AddIngredient(ItemType<Exploration_Potion_Kit>())
-            .AddIngredient(ItemType<Money_Collector_Potion>())
-            .AddIngredient(ItemID.BiomeSightPotion)
-            .AddIngredient(ItemID.BuilderPotion)
-            .AddTile(TileID.Bottles)
-            .Register();
-        }
-    }
-    public class Endless_Ultimate_Potion_Kit : ModelEndless
-    {
-        public override Item ItemBase => new(ItemType<Ultimate_Potion_Kit>());
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Ultimate Potions Kit");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo eterno");
-        }
-        public override void AddRecipes()
-        {
-            base.AddRecipes();
-            CreateRecipe()
-            .AddIngredient(ItemType<Combat_Potion_Kit>(),30)
-            .AddIngredient(ItemType<Poseidon_Potion_Kit>(), 30)
-            .AddIngredient(ItemType<Exploration_Potion_Kit>(), 30)
-            .AddIngredient(ItemType<Money_Collector_Potion>(), 30)
-            .AddIngredient(ItemID.BuilderPotion,30)
-            .AddIngredient(ItemID.BiomeSightPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
+            public override Item ItemBase => new(ItemType<Ultimate_Potion_Kit>());
+            public override void SetStaticDefaults()
+            {
+                // //DisplayName.SetDefault("ModelEndless Ultimate Potions Kit");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions ultimes sans fin");
+                // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones definitivo eterno");
+            }
+            public override void AddRecipes()
+            {
+                base.AddRecipes();
+                CreateRecipe()
+                .AddIngredient(ItemType<Combat_Potion_Kit>(), 30)
+                .AddIngredient(ItemType<Poseidon_Potion_Kit>(), 30)
+                .AddIngredient(ItemType<Exploration_Potion_Kit>(), 30)
+                .AddIngredient(ItemType<Money_Collector_Potion>(), 30)
+                .AddIngredient(ItemID.BuilderPotion, 30)
+                .AddIngredient(ItemID.BiomeSightPotion, 30)
+                .AddTile(TileID.Bottles)
+                .Register();
 
-            CreateRecipe()
-            .AddIngredient(ItemType<Endless_Combat_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Poseidon_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Endless_Exploration_Potion_Kit>(), 1)
-            .AddIngredient(ItemType<Money_Collector_Potion>(), 1)
-            .AddIngredient(ItemType<EndlessBuilder>(), 1)
-            .AddIngredient(ItemType<EndlessBiomeSightPotion>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+                CreateRecipe()
+                .AddIngredient(ItemType<Endless_Combat_Potion_Kit>(), 1)
+                .AddIngredient(ItemType<Endless_Poseidon_Potion_Kit>(), 1)
+                .AddIngredient(ItemType<Endless_Exploration_Potion_Kit>(), 1)
+                .AddIngredient(ItemType<Money_Collector_Potion>(), 1)
+                .AddIngredient(ItemType<EndlessBuilder>(), 1)
+                .AddIngredient(ItemType<EndlessBiomeSightPotion>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
-    }
-    #endregion
+        #endregion
     }
 }

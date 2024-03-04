@@ -19,6 +19,7 @@ using RemnantOfTheAncientsMod.World;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 {
@@ -256,13 +257,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 		public override void AddShops()
 		{
 			var npcShop = new NPCShop(Type, ShopName);
-			npcShop.Add(new Item(ItemType<DayToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) })
-			.Add(new Item(ItemType<NightToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) })
-			.Add(new Item(ItemType<RainToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.IsRaining", () => Main.raining))
-			.Add(new Item(ItemType<SandstormToken>()) { shopCustomPrice = Item.buyPrice(0, 1, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm", () => Sandstorm.Happening))
-			.Add(new Item(ItemType<Judgment>()) { shopCustomPrice = Item.buyPrice(0, 2, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated", () => NPC.downedQueenBee))
-			.Add(new Item(ItemType<PlayerStatViewer>()) { shopCustomPrice = Item.buyPrice(0, 40, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive", () => NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0))
-			.Add(new Item(ItemID.Sundial) { shopCustomPrice = Item.buyPrice(0, 20, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode", () => Main.hardMode))
+			npcShop.Add(new Item(ItemType<DayToken>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) })
+			.Add(new Item(ItemType<NightToken>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) })
+			.Add(new Item(ItemType<RainToken>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) },Condition.InRain)
+			.Add(new Item(ItemType<SandstormToken>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) },Condition.InSandstorm)
+			.Add(new Item(ItemType<Judgment>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, Condition.DownedQueenBee)
+			.Add(new Item(ItemType<PlayerStatViewer>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 40, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive", () => NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0))
+			.Add(new Item(ItemID.Sundial) { shopCustomPrice = Utils1.FormatMoney(0, 0, 20, 0, 0) },Condition.Hardmode)
 			.Register();
 		}
 

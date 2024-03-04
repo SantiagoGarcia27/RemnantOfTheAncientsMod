@@ -745,12 +745,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					for (int j = 0; j < RemnantOfTheAncientsMod.MaxRarity; j++)
 					{
-						if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2) /** player.direction*/, 0f);
+						if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2) * 0.75f /** player.direction*/, 0f);
 					}
 				}
 				return true;
 			}
-			else return base.UseItem(item, player);
+			else
+			{
+                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig && item.CountsAsClass(DamageClass.Melee))
+                {
+                    item.mana = 0;
+                }
+                return base.UseItem(item, player);
+			}
 		}
 
 		public void WeaponDash(Player player, float StrengX, float StrengY)
@@ -803,6 +810,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             //  return base.CanBurnInLava(item);	
         }
 		float counter;
+
+		public List<Mod> ModsWith30Endless = new List<Mod>()
+		{
+			RemnantOfTheAncientsMod.FargowiltasMod
+		};
         public override void UpdateInventory(Item item, Player player)
 		{
 			if (DificultyUtils.ReaperMode)
@@ -817,6 +829,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
                 player.GetModPlayer<InfoDisplayPlayer>().showMaxMinion = true;
             }
+
+			foreach (Mod mod in ModsWith30Endless)
+			{
+				if (mod != null) 
+				{
+					AddEndlessEffectOnInventory(item, player);
+				}
+			}
         }
         public override void HoldItem(Item item, Player player)
         {
@@ -856,5 +876,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 			return false;
 		}
+
+		public void AddEndlessEffectOnInventory(Item item, Player player)
+		{
+			if (item.IsAir) 
+				return;
+			
+
+			if (item.buffTime >= (int)Utils1.FormatTimeToTick(14, 0, 0, 0) && item.buffType != 0)
+			{
+				player.AddBuff(item.buffType, 2);
+			}
+                
+        }
 	}
 }

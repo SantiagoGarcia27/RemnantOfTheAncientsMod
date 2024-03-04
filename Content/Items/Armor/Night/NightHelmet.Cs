@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 {
@@ -14,19 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MagicDamageBonus);
         public override void SetStaticDefaults()
 		{
-
-			//DisplayName.SetDefault("Night Headgear");
-			//Tooltip.SetDefault(""
-			//+ "\nIncreases magic damage by 13%");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tocado de la Noche");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-					   //+ "\nAumenta un 13% de daño magico");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Couvre-chef de Nuit");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-					  //+ "\nAugmente les dégâts magiques de 13%");
-
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -58,10 +46,38 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<NightBar>(), 15)
-			.AddTile(TileID.DemonAltar)
-			.Register();
-		}
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                CreateRecipe()
+                 .AddRecipeGroup("anyCorruptHelmet")
+                 .AddIngredient(ItemID.JungleHat)
+                 .AddIngredient(ItemID.NecroHelmet)
+                 .AddIngredient(ItemID.MoltenHelmet)
+                 .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                 .AddTile(TileID.DemonAltar)
+                 .Register();
+
+                CreateRecipe()
+                .AddIngredient(ModContent.ItemType<NightBar>(), 15)
+                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddRecipeGroup("anyCorruptHelmet")
+                 .AddIngredient(ItemID.JungleHat)
+                 .AddIngredient(ItemID.NecroHelmet)
+                 .AddIngredient(ItemID.MoltenHelmet)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+                CreateRecipe()
+                .AddIngredient(ModContent.ItemType<NightBar>(), 15)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            }
+        }
 	}
 }

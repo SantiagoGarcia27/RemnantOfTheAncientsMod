@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
 using RemnantOfTheAncientsMod.Prefixe;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -29,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public bool Saber;
         public bool Lance;
         public bool SecondHabilitie;
-        public bool EternityItem; 
+        public bool EternityItem;
 
         public static float HealthyReforgeValue { get; set; } = 5f;
         public static float HealerReforgeValue { get; set; } = 10f;
@@ -87,15 +88,30 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             if(ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod))
             {
-                if (EternityItem)
-                {
-                    SetTooltipCustom(Tooltips, Language.GetTextValue("Mods.FargowiltasSouls.Items.Extra.EternityItem"), Color.White, EternityItem, "FargowiltasSouls:Eternity", Color.White);
-                }
+                ModifyTooltipsFargowiltasSouls(item, Tooltips);
+            }
+            if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod))
+            {
+                ModifyTooltipsCalamityMod(item, Tooltips);
             }
             FixLocalizations(item, Tooltips);
             AplyReforgeTooltip(item, Tooltips);
         }
 
+        public void ModifyTooltipsFargowiltasSouls(Item item, List<TooltipLine> Tooltips)
+        {
+            if (EternityItem)
+            {
+                SetTooltipCustom(Tooltips, Language.GetTextValue("Mods.FargowiltasSouls.Items.Extra.EternityItem"), Color.White, EternityItem, "FargowiltasSouls:Eternity", Color.White);
+            }
+        }
+        public void ModifyTooltipsCalamityMod(Item item, List<TooltipLine> Tooltips)
+        {
+            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            {
+                SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "InmuneTo", Lang.GetBuffName(BuffID.ManaSickness)), Color.White, $"ToolTip4", Color.White);
+            }
+        }
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 

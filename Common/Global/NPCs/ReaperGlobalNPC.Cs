@@ -118,58 +118,60 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.dayTime = true;
                     Main.time = 5000.0;
                     Netcode.SyncWorld();
-                }
-                //if(npc.type == NPCID.MoonLordCore)
-                //{
-                //    for (int i = 0; i < 2; i++)
-                //    {
-                //      int a =  NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.MoonLordHand);
-                //        Main.npc[a].velocity *= 2;
-                //        NpcList.Add(Main.npc[a]);
-                //    }
-                //}
+                } 
                 base.OnSpawn(npc, source);
             }
         }
         int attackCounter = 0;
         List<NPC> NpcList = new List<NPC>();
+
+        public override bool PreAI(NPC npc)
+        {
+            if (DificultyUtils.ReaperMode && DificultyUtils.InfernumMode)
+            {
+                if (destroyer.Contains(npc.type))
+                {
+                    npc.scale *= 2f;
+                }
+                AI(npc);
+            }
+            return base.PreAI(npc);
+        }
         public override void AI(NPC npc)
         {
-            base.AI(npc);
-
-            List<int> ReaperAffectedNPCs = new List<int>()
-        {
-            NPCID.BrainofCthulhu,
-            NPCID.Creeper,
-            NPCID.QueenBee,
-            NPCID.SkeletronHead,
-            NPCID.SkeletronHand,
-            NPCID.Deerclops,
-            NPCID.WallofFlesh,
-            NPCID.WallofFleshEye,
-            NPCID.Spazmatism,
-            NPCID.Retinazer,
-            NPCID.SkeletronPrime,
-            NPCID.PrimeCannon,
-            NPCID.PrimeLaser,
-            NPCID.PrimeSaw,
-            NPCID.PrimeVice,
-            NPCID.QueenSlimeBoss,
-            NPCID.Plantera,
-            NPCID.Golem,
-            NPCID.DukeFishron,
-            NPCID.HallowBoss,
-            NPCID.CultistBoss,
-            NPCID.MoonLordCore
-        };
+             List<int> ReaperAffectedNPCs = new List<int>()
+            {
+                NPCID.BrainofCthulhu,
+                NPCID.Creeper,
+                NPCID.QueenBee,
+                NPCID.SkeletronHead,
+                NPCID.SkeletronHand,
+                NPCID.Deerclops,
+                NPCID.WallofFlesh,
+                NPCID.WallofFleshEye,
+                NPCID.Spazmatism,
+                NPCID.Retinazer,
+                NPCID.SkeletronPrime,
+                NPCID.PrimeCannon,
+                NPCID.PrimeLaser,
+                NPCID.PrimeSaw,
+                NPCID.PrimeVice,
+                NPCID.QueenSlimeBoss,
+                NPCID.Plantera,
+                NPCID.Golem,
+                NPCID.DukeFishron,
+                NPCID.HallowBoss,
+                NPCID.CultistBoss,
+                NPCID.MoonLordCore
+            };
 
             List<int> SkeletronPrimeHands = new List<int>()
-        {
-            NPCID.PrimeCannon,
-            NPCID.PrimeLaser,
-            NPCID.PrimeSaw,
-            NPCID.PrimeVice
-        };
+            {
+                NPCID.PrimeCannon,
+                NPCID.PrimeLaser,
+                NPCID.PrimeSaw,
+                NPCID.PrimeVice
+            };
 
             if (DificultyUtils.ReaperMode && ReaperAffectedNPCs.Contains(npc.type))
             {
@@ -239,20 +241,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
                     Main.StartRain();
                     Main.SyncRain();
-
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    if (!DearclopsDead)
                     {
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Darkness, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
-                        player.dontStarveShader = true;
-                    }
-                    else
-                    {
-                        Main.player[npc.target].AddBuff(BuffID.Hunger, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                        Main.player[npc.target].AddBuff(BuffID.Darkness, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                        Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                        Main.player[npc.target].dontStarveShader = true;
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Darkness, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
+                            player.dontStarveShader = true;
+                        }
+                        else
+                        {
+                            Main.player[npc.target].AddBuff(BuffID.Hunger, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                            Main.player[npc.target].AddBuff(BuffID.Darkness, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                            Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                            Main.player[npc.target].dontStarveShader = true;
+                        }
                     }
                 }
                 if (npc.type == NPCID.QueenSlimeBoss)
@@ -541,6 +545,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     attackCounter = 0;
                 }
             }
+            base.AI(npc);
         }
 
         private Projectile SearchTargetWallOfFlesh(NPC npc)
@@ -711,10 +716,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             Main.projectile[p].friendly = false;
             return p;
         }
-
-        public override void HitEffect(NPC npc, NPC.HitInfo hit)
-        {
-            List<int> SlimesList = new List<int>()
+        public List<int> SlimesList = new List<int>()
         {
             -25,
             -26,
@@ -745,6 +747,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             537
         };
 
+        public override void HitEffect(NPC npc, NPC.HitInfo hit)
+        {
             base.HitEffect(npc, hit);
             if (DificultyUtils.ReaperMode)
             {
@@ -753,6 +757,45 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     int choice = Main.rand.Next(SlimesList.Count);
                     var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, SlimesList[choice]);
                     Main.npc[p].GetGlobalNPC<RemnantGlobalNPC>().CanDrop = false;
+
+
+                    if(RemnantOfTheAncientsMod.CalamityMod != null)
+                    {
+                        Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
+                        Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
+                        if (CalamityUtils.IsBossDefeated("HiveMind") || CalamityUtils.IsBossDefeated("PerforatorHive"))
+                        {
+                            Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
+                        }
+                        if (Main.hardMode)
+                        {
+                            Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
+                            if (CalamityUtils.IsBossDefeated("Cryogen") && NPC.downedMechBossAny)
+                            {
+                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
+                            }
+                            if (NPC.downedPlantBoss)
+                            {
+                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
+                            }
+                            if (NPC.downedGolemBoss)
+                            {
+                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
+                            }
+                            if (CalamityUtils.IsBossDefeated("AstrumDeus"))
+                            {
+                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
+                            }
+                            if (NPC.downedMoonlord)
+                            {
+                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
+                                if (CalamityUtils.IsBossDefeated("Providence"))
+                                {
+                                    Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
+                                }
+                            }
+                        }
+                    }
                 }
                 if (npc.type == NPCID.EaterofWorldsHead && npc.life <= 0)
                 {
@@ -799,6 +842,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
             }
         }
+
+        bool DearclopsDead = false;
         public override bool CheckDead(NPC npc)
         {
             if (npc.type == NPCID.MoonLordCore)
@@ -825,15 +870,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             if (npc.type == NPCID.Deerclops)
             {
-                if (npc.life <= 1)
+                if (npc.life <= 1 || (DificultyUtils.InfernumMode))
                 {
+                    DearclopsDead = true;
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
                         RemnantPlayer.ClearBuffToAllPlayers(BuffID.Darkness);
                     }
                     else
-                    {
+                    {               
                         Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
                         Main.player[Main.myPlayer].ClearBuff(BuffID.Darkness);
                     }

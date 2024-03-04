@@ -30,6 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             Projectile.penetrate = -1;
             Projectile.alpha = 100;
             AIType = ProjectileID.StardustDragon1;
+            Projectile.usesLocalNPCImmunity = true;
         }
         public override bool? CanCutTiles()
         {

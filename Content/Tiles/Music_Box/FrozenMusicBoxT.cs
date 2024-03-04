@@ -1,16 +1,14 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles.Music_Box
 {
-	internal class FrozenMusicBoxT : ModTile
+    public class FrozenMusicBoxT : ModTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -25,11 +23,6 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Music_Box
 			//name.SetDefault("Music Box");
 			AddMapEntry(new Color(200, 200, 200), name);
 		}
-
-		//public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		//{
-		//	Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ItemType<FrozenMusicBox>());
-		//}
 
 		public override void MouseOver(int i, int j)
 		{

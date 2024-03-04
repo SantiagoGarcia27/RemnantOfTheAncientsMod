@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 {
@@ -14,15 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus);
         public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Night Greaves");
-			//Tooltip.SetDefault("15% increased movement speed");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Perneras De La Noche");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 15% la velocidad de movimiento");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves de Nuit");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "15% D'augmentation de la Vitesse de Déplacement");
-
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -42,10 +34,38 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 
 		public override void AddRecipes()
 		{
-			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<NightBar>(), 13)
-			.AddTile(TileID.DemonAltar)
-			.Register();
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+				CreateRecipe()
+				 .AddRecipeGroup("anyCorruptGreaves")
+				 .AddIngredient(ItemID.JunglePants)
+				 .AddIngredient(ItemID.NecroGreaves)
+				 .AddIngredient(ItemID.MoltenGreaves)
+				 .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+				 .AddTile(TileID.DemonAltar)
+				 .Register();
+
+				CreateRecipe()
+				.AddIngredient(ModContent.ItemType<NightBar>(), 13)
+				.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+				.AddTile(TileID.DemonAltar)
+				.Register();
+			}
+			else
+			{
+                CreateRecipe()
+                .AddRecipeGroup("anyCorruptGreaves")
+				.AddIngredient(ItemID.JunglePants)
+                .AddIngredient(ItemID.NecroGreaves)
+                .AddIngredient(ItemID.MoltenGreaves)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+                CreateRecipe()
+				.AddIngredient(ModContent.ItemType<NightBar>(), 13)
+				.AddTile(TileID.DemonAltar)
+				.Register();
+			}
 		}
 	}
 }

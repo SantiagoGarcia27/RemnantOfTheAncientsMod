@@ -165,6 +165,7 @@ Mods: {
 			NotConsumableTooltip: Not Consumable
 			Eternity: Eternity
 			StyleStat: "{0} style"
+			InmuneTo: Grants immunity to {0}
 		}
 
 		CommonTooltip: {
@@ -584,11 +585,9 @@ Mods: {
 				DisplayName: Desert Annihilator Core
 				Tooltip:
 					'''
-					{$CommonItemTooltip.IncreasesMaxMinionsBy} 
-					while you are in desert biome
-					increase life regeneration and {$CommonItemTooltip.PercentIncreasedDamage@1} 
-					while you are in sandstorms
-					{$CommonItemTooltip.IncreasesMaxLifeBy@2} 
+					{$CommonItemTooltip.IncreasesMaxMinionsBy}.
+					Increase life regeneration and {$CommonItemTooltip.PercentIncreasedDamage@1} while you are in desert biome.
+					{$CommonItemTooltip.IncreasesMaxLifeBy@2} while you are in sandstorms
 					'''
 			}
 
@@ -828,8 +827,8 @@ Mods: {
 				DisplayName: Reinforced Iron Chesplate
 				Tooltip:
 					'''
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed}
 					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
 					'''
 			}
 
@@ -840,7 +839,11 @@ Mods: {
 
 			Reinforced_iron_Helmet: {
 				DisplayName: Reinforced Iron Helmet
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					'''
 			}
 
 			Tuxonite_chesplate: {
@@ -1405,7 +1408,7 @@ Mods: {
 				DisplayName: Infernal Tyrant Soul
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PercentIncreasedDamage}"
+					{$CommonItemTooltip.PercentIncreasedDamage}
 					Grants immunity lava and fire blocks
 					'''
 			}
@@ -1424,7 +1427,7 @@ Mods: {
 				DisplayName: Plantera Soul
 				Tooltip:
 					'''
-					"{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
+					{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}
 					Summons spores over time that will damage enemies
 					'''
 			}
@@ -3418,6 +3421,16 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Expert Toggler
 			}
+
+			EndlessSulphurskinPotion: {
+				DisplayName: Endless Sulphurskin Potion
+				Tooltip: ""
+			}
+
+			TuxoniteBrick: {
+				DisplayName: Tuxonite Brick
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3485,6 +3498,8 @@ Mods: {
 					LikeNPC_Princess: I like {NPCName}.
 					Princess_LovesNPC: I like {NPCName}.
 				}
+
+				Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
 			}
 
 			VultureD.DisplayName: Vulture
@@ -3650,13 +3665,23 @@ Mods: {
 		}
 
 		Conditions: {
-			OpositeOreGeneration: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGeneration
-			IsHardmode: Mods.RemnantOfTheAncientsMod.Conditions.IsHardmode
-			KingSlimeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.KingSlimeDefeated
-			IsRaining: Mods.RemnantOfTheAncientsMod.Conditions.IsRaining
-			IsSandstorm: Mods.RemnantOfTheAncientsMod.Conditions.IsSandstorm
-			QueenBeeDefeated: Mods.RemnantOfTheAncientsMod.Conditions.QueenBeeDefeated
-			TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
+			OpositeOreGeneration: When world have
+			TinkererAlive: When Goblim Tinkerer is alive
+			OpositeOreGenerationTin: When world have tin
+			OpositeOreGenerationCopper: When world have Copper
+			OpositeOreGenerationLead: When world have Lead
+			OpositeOreGenerationIron: When world have Iron
+			OpositeOreGenerationSilver: When world have Silver
+			OpositeOreGenerationTungsten: When world have Tungsten
+			OpositeOreGenerationPlatinum: When world have Platinum
+			OpositeOreGenerationGold: When world have Gold
+			OpositeOreGenerationPalladium: When world have Palladium
+			OpositeOreGenerationCobalt: When world have Cobalt
+			OpositeOreGenerationOrichalcum: When world have Orichalcum
+			OpositeOreGenerationMythril: When world have Mythril
+			DownedDesert: When Desert Anhilator has been defeated
+			DownedFrozen: When Frozen Assaulter has been defeated
+			DownedTyrant: When Infernal Tyrant has been defeated
 		}
 
 		Configs: {

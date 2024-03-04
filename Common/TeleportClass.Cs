@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod
 
 		private static void SyncTeleport(int teleportType = 0)
 		{
-			/*ModPacket packet = ((Mod)AlchemistNPC.instance).GetPacket(256);
+			/*ModPacket packet = ((Mod)AlchemistNPCMod.instance).GetPacket(256);
 			((BinaryWriter)(object)packet).Write((byte)1);
 			((BinaryWriter)(object)packet).Write(teleportType);
 			packet.Send(-1, -1);*/
@@ -298,7 +298,7 @@ if (vector != position)
 
 		/*private static void HandleBeaconTeleport(Player player, bool syncData = false)
 		{
-Mod mod = ModLoader.GetMod("AlchemistNPC");
+Mod mod = ModLoader.GetMod("AlchemistNPCMod");
 Vector2 position = player.position;
 Vector2 vector = position;
 for (int i = 0; i < Main.tile.GetLength(0); i++)

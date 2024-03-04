@@ -23,6 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
             Item.Size = new(30,30);
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Cyan;
+            Item.vanity = true;
             Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
         }
         public override void AddRecipes()

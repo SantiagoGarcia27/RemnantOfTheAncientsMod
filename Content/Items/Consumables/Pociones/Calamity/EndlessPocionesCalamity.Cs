@@ -85,4 +85,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessHungerPotion"));
     }
+
+    public class EndlessSulphurskinPotion : BasePotions
+    {
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
+        public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinPotion"));
+    }
 }

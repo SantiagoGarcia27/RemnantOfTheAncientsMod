@@ -6,6 +6,9 @@ using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
+using CalamityMod.Items.Potions;
+using System.Runtime.InteropServices;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -27,12 +30,32 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-            .AddIngredient(ItemID.WaterWalkingPotion, 1)
-            .AddIngredient(ItemID.FlipperPotion, 1)
-            .AddIngredient(ItemID.GillsPotion, 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Calamity();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.WaterWalkingPotion, 1)
+                .AddIngredient(ItemID.FlipperPotion, 1)
+                .AddIngredient(ItemID.GillsPotion, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
+
+            [JITWhenModsEnabled("CalamityMod")]
+            void Calamity()
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.WaterWalkingPotion, 1)
+                .AddIngredient(ItemID.FlipperPotion, 1)
+                .AddIngredient(ItemID.GillsPotion, 1)
+                .AddIngredient(ItemType<EndlessAnechoicCoating>())
+                .AddIngredient(ItemType<SulphurskinPotion>())
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
         }
     }
     public class Endless_Fish_Potion : ModelEndless
@@ -47,19 +70,50 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override void AddRecipes()
         {
             base.AddRecipes();
-            CreateRecipe()
-            .AddIngredient(ItemID.WaterWalkingPotion, 30)
-            .AddIngredient(ItemID.FlipperPotion, 30)
-            .AddIngredient(ItemID.GillsPotion, 30)
-            .AddTile(TileID.Bottles)
-            .Register();
 
-            CreateRecipe()
-            .AddIngredient(ItemType<EndlessGills>(), 1)
-            .AddIngredient(ItemType<EndlessWaterWalking>(), 1)
-            .AddIngredient(ItemType<EndlessFlipper>(), 1)
-            .AddTile(TileID.Bottles)
-            .Register();
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                Calamity();
+            }
+            else
+            {
+                CreateRecipe()
+                .AddIngredient(ItemID.WaterWalkingPotion, 30)
+                .AddIngredient(ItemID.FlipperPotion, 30)
+                .AddIngredient(ItemID.GillsPotion, 30)
+                .AddTile(TileID.Bottles)
+                .Register();
+
+                CreateRecipe()
+                .AddIngredient(ItemType<EndlessGills>(), 1)
+                .AddIngredient(ItemType<EndlessWaterWalking>(), 1)
+                .AddIngredient(ItemType<EndlessFlipper>(), 1)
+                .AddTile(TileID.Bottles)
+                .Register();
+            }
+
+            [JITWhenModsEnabled("CalamityMod")]
+            void Calamity()
+            {
+                CreateRecipe()
+               .AddIngredient(ItemID.WaterWalkingPotion, 30)
+               .AddIngredient(ItemID.FlipperPotion, 30)
+               .AddIngredient(ItemID.GillsPotion, 30)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoating"), 30)
+               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinPotion"), 30)
+               .AddTile(TileID.Bottles)
+               .Register();
+
+                CreateRecipe()
+               .AddIngredient(ItemType<EndlessGills>(), 1)
+               .AddIngredient(ItemType<EndlessWaterWalking>(), 1)
+               .AddIngredient(ItemType<EndlessFlipper>(), 1)
+               .AddIngredient(ItemType<EndlessAnechoicCoating>(), 1)
+               .AddIngredient(ItemType<EndlessSulphurskinPotion>(), 1)
+               .AddTile(TileID.Bottles)
+               .Register();
+            }
         }
     }
 }

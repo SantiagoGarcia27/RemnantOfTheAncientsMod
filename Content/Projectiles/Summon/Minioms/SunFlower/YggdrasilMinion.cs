@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
         public int Heal = 30;
         public int DefenseBonus = 15;
-        public float DamageBonus = 1.05f;
+        public float DamageBonus = 1.10f;
         public float DamageReductionBonus = 0.05f;
         public override void AI()
         {
@@ -79,11 +79,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
                     {
                         Main.player[p].HealEffect(Heal);
                         Main.player[p].statLife += Heal;
-                        Main.player[p].statDefense += DefenseBonus;
-                        Main.player[p].GetDamage(DamageClass.Generic) *= DamageBonus;
-                        Main.player[p].endurance += DamageReductionBonus;
                         SpawnParticles();
                     }
+                    Main.player[p].statDefense += DefenseBonus;
+                    Main.player[p].GetDamage(DamageClass.Generic) *= DamageBonus;
+                    Main.player[p].endurance += DamageReductionBonus;
                 }
             } 
         }

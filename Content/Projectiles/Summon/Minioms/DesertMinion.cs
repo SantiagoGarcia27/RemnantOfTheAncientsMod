@@ -17,14 +17,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Baby Desert Aniquilator Minion");
             Main.projFrames[Projectile.type] = 6;
 
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
-            //ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
-            //AIType = ProjectileID.BabySlime;
         }
 
         public sealed override void SetDefaults()
@@ -43,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             AIType = 266;
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 7;//23
+            Projectile.localNPCHitCooldown = 10;//23
         }
 
 
@@ -56,24 +53,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         {
             return true;
         }
-
-        /*	public override void AI()
-            {
-                Player player = Main.player[Projectile.owner];
-
-                #region Active check
-                // This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
-                if (player.dead || !player.active)
-                {
-                    player.ClearBuff(BuffType<DesertMinionBuff>());
-                }
-                if (player.HasBuff(BuffType<DesertMinionBuff>()))
-                {
-                    Projectile.timeLeft = 2;
-                }
-                #endregion
-            }*/
-
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             fallThrough = false;
@@ -82,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();
+            RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();   
             if (!CheckActive(player)) return;
             if (dust == 0f)
             {
