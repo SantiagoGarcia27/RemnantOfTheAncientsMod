@@ -83,6 +83,20 @@ namespace RemnantOfTheAncientsMod
         {
             return (float)Math.Sin((float)Math.PI * MathHelper.Clamp(value, 0f, 1f));
         }
+
+        public static int MechBossDefeatedTierRework() 
+        {
+            if (!NPC.downedMechBossAny)
+            {
+                return 2;
+            }
+            if ((!NPC.downedMechBoss1 && !NPC.downedMechBoss2) || (!NPC.downedMechBoss2 && !NPC.downedMechBoss3) || (!NPC.downedMechBoss3 && !NPC.downedMechBoss1))
+            {
+                return 3;
+            }
+            return 4;
+        }
+
         //public static void SetCalamityInmunities(NPC npc,bool[] effect)
         //{
         //    if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod))

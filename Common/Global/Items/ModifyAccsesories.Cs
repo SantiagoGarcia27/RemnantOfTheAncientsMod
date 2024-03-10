@@ -49,15 +49,24 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.defense += 2;
                 }
-                if (item.type == ItemID.RedCape || item.type == ItemID.MysteriousCape || item.type == ItemID.PrinceCape || item.type == ItemID.WinterCape)
+                if (item.type == ItemID.RedCape || item.type == ItemID.MysteriousCape || item.type == ItemID.PrinceCape || item.type == ItemID.WinterCape || item.type == ItemID.CrimsonCloak)
                 {
                     item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
                 }
-                if(item.type == ModContent.ItemType<Sangar_Head>() || item.type == ModContent.ItemType<Sangar_Body>() || item.type == ModContent.ItemType<Sangar_Legs>() 
+                if (item.type == ItemID.DiamondRing)
+                {
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 7;
+                }
+                if (item.type == ItemID.DiamondRing)
+                {
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
+                }
+                if (item.type == ModContent.ItemType<Sangar_Head>() || item.type == ModContent.ItemType<Sangar_Body>() || item.type == ModContent.ItemType<Sangar_Legs>() 
                 || item.type == ModContent.ItemType<Ttim_Head>() || item.type == ModContent.ItemType<Ttim_Body>() || item.type == ModContent.ItemType<Ttim_Legs>())
                 {
                     item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 10;
                 }
+                
                 item.GetGlobalItem<RemnantGlobalItem>().fillMusicBox();
                 if (item.GetGlobalItem<RemnantGlobalItem>().MusicBox.Contains(item.type))
                 {     
@@ -195,6 +204,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 if (tip != null)
                 {
                     var text = tip.Text.Replace("25", "45");
+                    tip.Text = text;
+                }
+            }
+            if (item.type == ModContent.ItemType<TrowerEmblem>()|| item.type == ModContent.ItemType<TrowerEmblemV2>())
+            {
+                var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    var text = tip.Text.Replace("throwing", "rogue");
                     tip.Text = text;
                 }
             }

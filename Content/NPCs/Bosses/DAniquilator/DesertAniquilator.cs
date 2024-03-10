@@ -27,6 +27,8 @@ using Terraria.DataStructures;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using Microsoft.Xna.Framework.Graphics;
+using CalamityMod;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -64,6 +66,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             NPC.netAlways = true;
             AnimationType = NPCID.BlueSlime;
             NPC.stepSpeed = 8f;
+            if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public void SetDefautsCalamity()
+        {
+            NPC.Calamity().canBreakPlayerDefense = true;
+            RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC, 0.02f, 0.22f, 0.3f, 0.4f, 0.4f);   
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
@@ -116,8 +125,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             if (NoAI == false)
             {
                 NPC.ai[0] = 10;
-            NPC.ai[1] = (NPC.ai[1] + 1) % 800;
-            NPC.ai[2]++;
+                NPC.ai[1] = (NPC.ai[1] + 1) % 800;
+                NPC.ai[2]++;
            
                 BossIsInRage = CheckRage(player);
                 NPC.scale = LifeSize(NPC);
@@ -413,9 +422,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
         public int SetFinalStagePorcentage()
         {
-            if (DificultyUtils.MasochistMode) return 10;
-            else if (DificultyUtils.EternityMode || DificultyUtils.InfernumMode) return 5;
-            return 3;
+            if (DificultyUtils.MasochistMode) return 15;
+            else if (DificultyUtils.EternityMode || DificultyUtils.InfernumMode) return 10;
+            return 5;
         }
         public List<int[]> setAttackCounter()
         {
@@ -478,7 +487,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         {
             Vector2 newPos;
 
-            if (!CoordHasTile(pos))
+            if (!CoordHasTile(pos) && !CoordHasLiquid(pos))
             {
                 return pos;
             }
@@ -488,7 +497,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     blockIncrement++;
                     newPos = new(pos.X, pos.Y - blockIncrement * 16);
-                } while (CoordHasTile(newPos));
+                } while (CoordHasTile(newPos) && CoordHasLiquid(newPos));
 
                 blockIncrement = 0;
                 return newPos;
@@ -506,6 +515,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             }
 
         }
+        public bool CoordHasLiquid(Vector2 pos)
+        {
+            if (Collision.LavaCollision(pos, 6 * 16, 6 * 16) || Collision.WetCollision(pos, 6 * 16, 6 * 16))
+            {
+                return true;
+            }
+            else if (Main.tile[(new Point((int)pos.X / 16, (int)(pos.Y - 5 * 16)/16))].LiquidAmount > 0)
+            {
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+        }
         public void setCurrentPhase(NPC NPC)
         {
             if (NPC.life <= NPC.lifeMax / 4) currentPhase = 3;
@@ -517,18 +543,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             return (!DificultyUtils.ReaperMode) ? Num : Num - 100;
         }
         public void DesertTp()
-        {    
-            tpDirection = new Random().Next(1,2);
+        {
+            tpDirection = Main.rand.Next(1, 100);
 
-            switch (tpDirection)
+            int dir = tpDirection <= 50 ? 1 : 2;
+            switch (dir)
             {
                 case 1:
-                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(30 * 16,0));
+                    tpParticleTimer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
+                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(30 * 16,-5 *16));
+                    GenerateTpParticles();
                     break;
                // case 2:
                     //NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(0, -20 * 16));
                 case 2:
-                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(-30 * 16, 0));
+                    tpParticleTimer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
+                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(-30 * 16, -5 * 16));
+                    GenerateTpParticles();
                     break;
 
             }

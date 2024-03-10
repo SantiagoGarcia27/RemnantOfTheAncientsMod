@@ -13,6 +13,8 @@ using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using static RemnantOfTheAncientsMod.Content.NPCs.zombis.Shadowzombie;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using CalamityMod;
+using Terraria.Chat;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {
@@ -678,11 +680,37 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+               return SpawnChanceCalamity(spawnInfo);
+            }
+            else
+            {
+                if (Main.hardMode)
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
+                else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+            }
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public static float SpawnChanceCalamity(NPCSpawnInfo spawnInfo)
+        {
             if (Main.hardMode)
             {
-                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
-                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
-            }
+                if (ModContent.GetInstance<CalamityConfig>().EarlyHardmodeProgressionRework)
+                {
+                    if (CalamityUtils.MechBossDefeatedTierRework() > 2) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else if (CalamityUtils.MechBossDefeatedTierRework() == 2) return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                }
+                else
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
+            }    
             else return SpawnCondition.OverworldNightMonster.Chance * 0f;
         }
         public override void AI()
@@ -710,10 +738,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                return SpawnChanceCalamity(spawnInfo);
+            }
+            else
+            {
+                if (Main.hardMode)
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
+                else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+            }
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public static float SpawnChanceCalamity(NPCSpawnInfo spawnInfo)
+        {
             if (Main.hardMode)
             {
-                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
-                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                if (ModContent.GetInstance<CalamityConfig>().EarlyHardmodeProgressionRework)
+                {
+                    if (CalamityUtils.MechBossDefeatedTierRework() > 2) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else if (CalamityUtils.MechBossDefeatedTierRework() == 2) return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                }
+                else
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
             }
             else return SpawnCondition.OverworldNightMonster.Chance * 0f;
         }
@@ -755,10 +809,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                return SpawnChanceCalamity(spawnInfo);
+            }
+            else
+            {
+                if (Main.hardMode)
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
+                else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+            }
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public static float SpawnChanceCalamity(NPCSpawnInfo spawnInfo)
+        {
             if (Main.hardMode)
             {
-                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
-                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                if (ModContent.GetInstance<CalamityConfig>().EarlyHardmodeProgressionRework)
+                {
+                    if (CalamityUtils.MechBossDefeatedTierRework() > 3) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else if (CalamityUtils.MechBossDefeatedTierRework() == 3) return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                }
+                else
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
             }
             else return SpawnCondition.OverworldNightMonster.Chance * 0f;
         }
@@ -792,10 +872,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                return SpawnChanceCalamity(spawnInfo);
+            }
+            else
+            {
+                if (Main.hardMode)
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
+                else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+            }
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public static float SpawnChanceCalamity(NPCSpawnInfo spawnInfo)
+        {
             if (Main.hardMode)
             {
-                if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
-                else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                if (ModContent.GetInstance<CalamityConfig>().EarlyHardmodeProgressionRework)
+                {
+                    if (CalamityUtils.MechBossDefeatedTierRework() > 3) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else if (CalamityUtils.MechBossDefeatedTierRework() == 3) return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                }
+                else
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
             }
             else return SpawnCondition.OverworldNightMonster.Chance * 0f;
         }
@@ -818,7 +924,77 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             base.OnHitPlayer(target, hurtInfo);
         }
     }
+    public class HallowedZombie : BaseZombie
+    {
+        static int DefenseSetBonus = 0;
+        static int Helmet = new Item(ItemID.HallowedMask).defense;
+        static int Chestplate = new Item(ItemID.HallowedPlateMail).defense;
+        static int Greaves = new Item(ItemID.HallowedGreaves).defense;
+        static float AttackBonus = 1.17f;
+        static int CritBonus = 17;//15
+        static float MovmentSpeedBonus = 10;
+        int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
 
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
+            NPC.defense += Defense;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                return SpawnChanceCalamity(spawnInfo);
+            }
+            else
+            {
+                if (Main.hardMode)
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
+                else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+            }
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public static float SpawnChanceCalamity(NPCSpawnInfo spawnInfo)
+        {
+            if (Main.hardMode)
+            {
+                if (ModContent.GetInstance<CalamityConfig>().EarlyHardmodeProgressionRework)
+                {
+                    if (CalamityUtils.MechBossDefeatedTierRework() > 3) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else if (CalamityUtils.MechBossDefeatedTierRework() == 3) return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+                }
+                else
+                {
+                    if (RemnantDownedBossSystem.downedFrozen) return SpawnCondition.OverworldNightMonster.Chance * 0.16f;
+                    else return SpawnCondition.OverworldNightMonster.Chance * 0.2f;
+                }
+            }
+            else return SpawnCondition.OverworldNightMonster.Chance * 0f;
+        }
+        public override void AI()
+        {
+            NPC.TargetClosest(true);
+            Vector2 targetPosition = Main.player[NPC.target].position;
+            if (NPC.velocity.Y == 0)
+            {
+                NPC.velocity.X += targetPosition.X < NPC.position.X ? -MovmentSpeedBonus/100f : MovmentSpeedBonus / 100f;
+            }
+            ModContent.GetInstance<RemnantGlobalNPC>().onHitDodge = true;
+        }
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            NPC.AddBuff(BuffID.ShadowDodge, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+          
+            base.OnHitPlayer(target, hurtInfo);
+        }
+    }
     public abstract class BaseZombie : ModNPC
     {
         public override void SetStaticDefaults()
@@ -841,7 +1017,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             BannerItem = Item.BannerToItem(Banner);
         }
 
-
         public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 10; i++)
@@ -851,5 +1026,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
                 dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
             }
         }
+       
     }
 }

@@ -48,6 +48,7 @@ namespace RemnantOfTheAncientsMod
             HardmodeItems();
             CraftingItems();
             Bait();
+            Shimmer();
         }
         private static void CraftingItems()
         {
@@ -174,13 +175,6 @@ namespace RemnantOfTheAncientsMod
 
         private static void HardmodeRangerWeapon()
         {
-            Recipe.Create(ItemID.Flamethrower)
-            .AddRecipeGroup(RecipeGroupID.IronBar, 10)
-            .AddIngredient(ItemID.IllegalGunParts)
-            .AddIngredient(ItemID.SoulofNight, 30)
-            .AddTile(TileID.MythrilAnvil)
-            .Register();
-
             Recipe.Create(ItemID.TacticalShotgun)
             .AddIngredient(ItemID.Shotgun)
             .AddIngredient(ItemID.RifleScope)
@@ -677,7 +671,49 @@ namespace RemnantOfTheAncientsMod
             Recipe.Create(ItemID.CobaltShield)
                .AddIngredient(ItemID.CobaltBar, 5)
                .AddTile(TileID.MythrilAnvil)
+               .AddCustomShimmerResult(ItemID.Muramasa)
                .Register();
+
+            Recipe.Create(ItemID.CobaltShield)
+              .AddIngredient<BoneBar>(5)
+              .AddTile(TileID.BoneWelder)
+              .AddCustomShimmerResult(ItemID.Muramasa)
+              .Register();
+
+            Recipe.Create(ItemID.Muramasa, 1)
+                .AddIngredient(ItemID.Katana, 1)
+                .AddIngredient<BoneBar>(5)
+                .AddTile(TileID.BoneWelder)
+                .AddCustomShimmerResult(ItemID.Handgun, 1)
+                .Register();
+
+            Recipe.Create(ItemID.Handgun, 1)
+                .AddIngredient(ItemID.FlintlockPistol, 1)
+                .AddIngredient<BoneBar>(5)
+                .AddTile(TileID.BoneWelder)
+                .AddCustomShimmerResult(ItemID.MagicMissile, 1)
+                .Register();
+
+            Recipe.Create(ItemID.MagicMissile, 1)
+                .AddIngredient(ItemID.DiamondStaff, 1)
+                .AddIngredient<BoneBar>(5)
+                .AddTile(TileID.BoneWelder)
+                .AddCustomShimmerResult(ItemID.AquaScepter, 1)      
+                .Register();
+
+            Recipe.Create(ItemID.AquaScepter, 1)
+                .AddIngredient(ItemID.SlimeGun, 1)
+                .AddIngredient<BoneBar>(5)
+                .AddTile(TileID.BoneWelder)
+                .AddCustomShimmerResult(ItemID.BlueMoon, 1)
+                .Register();
+
+            Recipe.Create(ItemID.BlueMoon, 1)
+                .AddIngredient(ItemID.Mace, 1)
+                .AddIngredient<BoneBar>(5)
+                .AddTile(TileID.BoneWelder)
+                .AddCustomShimmerResult(ItemID.CobaltShield, 1)
+                .Register();
 
             Recipe.Create(ItemID.TallyCounter)
              .AddRecipeGroup(RecipeGroupID.IronBar, 5)
@@ -1028,6 +1064,13 @@ namespace RemnantOfTheAncientsMod
         }
         #endregion
         #endregion
+        public static void Shimmer()
+        {
+           
+
+           
+        }
+
         public override void AddRecipeGroups()
         {
             List<int> lowFood = new();
@@ -1352,6 +1395,7 @@ namespace RemnantOfTheAncientsMod
             }
         }
 
+       
     }
 }
 	

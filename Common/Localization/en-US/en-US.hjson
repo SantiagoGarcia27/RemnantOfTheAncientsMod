@@ -127,7 +127,7 @@ Mods: {
 			Description: {
 				Life: +{0} max life
 				Defense: +{0} defense
-				Speed: +{0}% movment speed
+				Speed: +{0}% movement speed
 				CritChance: +{0}% critical strike chance
 				Damage: +{0}% damage
 				MeleeSpeed: +{0}% melee speed
@@ -156,8 +156,8 @@ Mods: {
 		}
 
 		Generic: {
-			RightClickSaberHabilitie: Right click to use dash
-			RightClickSecondHabilitie: Right click to use the scondary hability
+			RightClickSaberHabilitie: Right click to use the dash
+			RightClickSecondHabilitie: Right click to use the secondary ability.
 			MusicBoxCredit: by {0}
 			ReaperTooltip: Reaper Item
 			LegendaryTooltip: Legendary Drop
@@ -408,7 +408,12 @@ Mods: {
 
 			YtBuff: {
 				DisplayName: Yt
-				Description: ...
+				Description:
+					'''
+					Many thanks to
+					-TerraOne1 -SoyEnaid
+					for give this mod a chance
+					'''
 			}
 
 			ReaperBuff: {
@@ -418,7 +423,7 @@ Mods: {
 
 			Sand_Weapons: {
 				DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]"
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Sand_Weapons.Description
+				Description: You are losing life
 			}
 
 			Bee: {
@@ -567,10 +572,10 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxManaBy} 
-					mana regeneration rate
-					{$CommonItemTooltip.ArmorPenetration@1}.
-					provide immunity to lava and fire blocks
-					you have the effect of Sweetheart Necklace, Charm of Myths,
+					Increases mana regeneration rate
+					{$CommonItemTooltip.ArmorPenetration@1}
+					Provide immunity to lava and fire blocks
+					Grants the effect of Sweetheart Necklace, Charm of Myths,
 					Arctic Diving Gear and Star Veil
 					Grants immunity to most debuffs
 					'''
@@ -616,10 +621,10 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxManaBy} 
-					mana regeneration rate
-					{$CommonItemTooltip.ArmorPenetration@1}.
-					provide immunity to lava and fire blocks
-					you have the effect of Sweetheart Necklace, Charm of Myths,
+					Increases mana regeneration rate
+					{$CommonItemTooltip.ArmorPenetration@1}
+					Provide immunity to lava and fire blocks
+					Grants the effect of Sweetheart Necklace, Charm of Myths,
 					Arctic Diving Gear and Star Veil
 					'''
 			}
@@ -657,7 +662,7 @@ Mods: {
 			}
 
 			MechanicalPersonalLifeSafeSystem: {
-				DisplayName: Mechanical Personal Life Safe System
+				DisplayName: Mechanical Personal Safty
 				Tooltip:
 					'''
 					Summon two probes to protect you
@@ -668,7 +673,7 @@ Mods: {
 
 			Ranger_EmblemV2: {
 				DisplayName: Ranger Emblem V2
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
 			ReaperChalice: {
@@ -885,8 +890,8 @@ Mods: {
 				DisplayName: Reaper
 				Tooltip:
 					'''
-					Active the Reaper mode
-					You natural max hp set in 1
+					Active Reaper mode
+					You natural max hp is set in 1
 					Increase all damage by 50%
 					Melee weapons size are increased by 150%
 					{$CommonItemTooltip.IncreasesMaxMinionsBy} 
@@ -1185,8 +1190,8 @@ Mods: {
 			}
 
 			EndlessNecroticRestauration: {
-				DisplayName: "{0}"
-				Tooltip: "{0}"
+				DisplayName: Endeless Necrotic Restauration Potion
+				Tooltip: Teleports you to your last death
 			}
 
 			EndlessNightOwl: {
@@ -1351,12 +1356,12 @@ Mods: {
 
 			CorruptSoul: {
 				DisplayName: Corrupt Soul
-				Tooltip: increases life regen
+				Tooltip: Increases life regen
 			}
 
 			CultistSoul: {
 				DisplayName: Cultist Soul
-				Tooltip: A Ice Mist will protect you
+				Tooltip: An Ice Mist will protect you
 			}
 
 			DeerclopsSoul: {
@@ -1439,7 +1444,7 @@ Mods: {
 
 			RetinazorEnergyCell: {
 				DisplayName: Retinazor Energy Cell
-				Tooltip: Removes restriction on wings of Reaper Mode
+				Tooltip: Removes wings restriction of Reaper Mode
 			}
 
 			SkeletonSoul: {
@@ -2427,7 +2432,7 @@ Mods: {
 			}
 
 			Tyrant_repeater: {
-				DisplayName: Tyrant repeater
+				DisplayName: Tyrant Repeater
 				Tooltip: ""
 			}
 
@@ -2583,7 +2588,7 @@ Mods: {
 
 			IronBallistaStaff: {
 				DisplayName: Iron Ballista Staff
-				Tooltip: Summons a Baby Frozen Assaulter to fight for you
+				Tooltip: Summons a rolling ballista to fight for you.
 			}
 
 			SacredFlowerStaff: {
@@ -3528,6 +3533,7 @@ Mods: {
 			TitaniumZombie.DisplayName: Titanium Zombie
 			DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
 			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
+			HallowedZombie.DisplayName: Hallowed Zombie
 		}
 
 		Projectiles: {

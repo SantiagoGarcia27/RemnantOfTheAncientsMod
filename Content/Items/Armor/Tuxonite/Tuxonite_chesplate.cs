@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 {
@@ -37,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 30)//35
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.GoldChainmail, ItemID.GoldBar))//30 35
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

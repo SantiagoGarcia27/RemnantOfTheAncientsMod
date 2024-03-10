@@ -35,6 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.aiStyle = -1;
             NPC.damage = 0;
             NPC.friendly = true;
+            NPC.rarity = 4;
             NPC.dontTakeDamageFromHostiles = true;
             AnimationType = NPCID.Wraith;
         }
@@ -94,7 +95,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             else
             {
-                if (player.inventory.Any(item => !item.IsAir && item.pick < 70 && item.pick > 0))
+                if (player.HasItem(ItemID.Terragrim) && Main.hardMode)
+                {
+                    UpgradeItem(player, ItemID.Terragrim, 1, ItemID.Arkhalis, 1, ItemID.GoldCoin, 100);
+                }
+                else if (player.HasItem(ItemID.EnchantedSword))
+                {
+                    UpgradeItem(player, ItemID.EnchantedSword, 1, ItemID.Terragrim, 1, ItemID.GoldCoin, 50);
+                }
+                else if (player.inventory.Any(item => !item.IsAir && item.pick < 70 && item.pick > 0))
                 {
                     Item item = player.inventory.FirstOrDefault(item => !item.IsAir && item.pick < 70 && item.pick > 0);
                     Main.npcChatText = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.MinerSoul.ThanksDialogue1");
@@ -104,14 +113,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                     player.QuickSpawnItem(NPC.GetSource_Loot(), ItemID.GoldCoin, 10);
                     player.ApplyDamageToNPC(NPC, Main.DamageVar(500), 5f, player.direction, true);
                     return;
-                }
-
-
-                if (player.HasItem(ItemID.EnchantedSword)) UpgradeItem(player, ItemID.EnchantedSword, 1, ItemID.Terragrim, 1, ItemID.GoldCoin, 50);
-
-                if (Main.hardMode)
-                {
-                    if (player.HasItem(ItemID.Terragrim)) UpgradeItem(player, ItemID.Terragrim, 1, ItemID.Arkhalis, 1, ItemID.GoldCoin, 100);
                 }
             }
         }

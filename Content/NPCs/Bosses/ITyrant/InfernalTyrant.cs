@@ -38,17 +38,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public static int TimeInmune = 200;
         public static bool IsSpawned = false;
         public static List<bool> SizeChanged = new List<bool>() {false,false,false};
-
-        [JITWhenModsEnabled("CalamityMod")]
-        public static void SetNpcDamageReductionCalamity(NPC npc,float normal, float revenge, float death, float bossrush, float infernum)
-        {
-            if (DificultyUtils.InfernumMode)
-            {
-                npc.GetGlobalNPC<CalamityGlobalNPC>().DR = infernum;
-            }
-            else npc.DR_NERD(normal, revenge, death, bossrush);
-            // CalamityUtils.SetDamageReduction(NPC, normal, revenge, death, bossrush);
-        }
     }
     public static class BaseStats 
     {
@@ -107,7 +96,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
-            GenericVariables.SetNpcDamageReductionCalamity(NPC,0.02f,0.22f,0.29f,0.3f,0.5f);
+            RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,0.02f,0.22f,0.29f,0.3f,0.5f);
             CalamityLifeScale(BaseStats.LifeMax);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -207,7 +196,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     if (!GenericVariables.IsSpawned)
                     {
                         GenericVariables.SpawnCounter++;
-                        GenericVariables.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
+                        RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
                     }
                 }
                 if(RemnantOfTheAncientsMod.InfernumMod != null)
@@ -596,7 +585,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
-            GenericVariables.SetNpcDamageReductionCalamity(NPC,0.2f, 0.42f, 0.59f, 0.6f,0.6f);
+            RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,0.2f, 0.42f, 0.59f, 0.6f,0.6f);
             CalamityLifeScale(BaseStats.LifeMax);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -675,7 +664,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 else
                 {
                     //  GenericVariables.SpawnCounter++;
-                    if (RemnantOfTheAncientsMod.CalamityMod != null) GenericVariables.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
+                    if (RemnantOfTheAncientsMod.CalamityMod != null) RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
                 }
             }
         }
@@ -699,6 +688,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
         }
+
+        [Obsolete]
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("Infernal Tyrant");
@@ -732,7 +723,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
-            GenericVariables.SetNpcDamageReductionCalamity(NPC,0.01f, 0.12f, 0.19f, 0.2f, 0.2f);
+            RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,0.01f, 0.12f, 0.19f, 0.2f, 0.2f);
             CalamityLifeScale(BaseStats.LifeMax);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -777,7 +768,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 else
                 {
                     // GenericVariables.SpawnCounter++;
-                    GenericVariables.SetNpcDamageReductionCalamity(NPC, 1f, 1f, 1f, 1f, 1f);
+                    RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC, 1f, 1f, 1f, 1f, 1f);
                 }
             }
         }

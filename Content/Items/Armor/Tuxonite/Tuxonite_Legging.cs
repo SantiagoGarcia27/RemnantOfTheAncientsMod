@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), 25)//30
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.GoldGreaves, ItemID.GoldBar))//25  30
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

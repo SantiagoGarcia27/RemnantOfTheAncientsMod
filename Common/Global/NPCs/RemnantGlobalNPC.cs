@@ -16,6 +16,9 @@ using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_Basic_Potion_Kit;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using CalamityMod.NPCs;
+using CalamityMod;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -32,6 +35,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public bool CanMakeCrit;
         public int CritChance;
         public bool CanDrop = true;
+
+        #region shadowDodge 
+        public bool shadowDodge;
+
+        public float shadowDodgeCount;
+        public int shadowDodgeTimer;
+        public bool onHitDodge;
+        #endregion
         public override void ResetEffects(NPC NPC)
         {
             Burn_Sand = false;
@@ -435,6 +446,40 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 }
             }
             base.ModifyShop(shop);
+        }
+        public void ShadowDodge()
+        {
+            SetImmuneTimeForAllTypes(longInvince ? 120 : 80);
+            if (whoAmI != Main.myPlayer)
+            {
+                return;
+            }
+            for (int i = 0; i < maxBuffs; i++)
+            {
+                if (buffTime[i] > 0 && buffType[i] == 59)
+                {
+                    DelBuff(i);
+                }
+            }
+            PutHallowedArmorSetBonusOnCooldown();
+            NetMessage.SendData(62, -1, -1, null, whoAmI, 2f);
+        }
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
+        {
+            if (onHitDodge && shadowDodgeTimer == 0)
+            {
+                npc.AddBuff(59, 1800);
+            }
+            base.OnHitPlayer(npc, target, hurtInfo);
+        }
+        [JITWhenModsEnabled("CalamityMod")]
+        public static void SetNpcDamageReductionCalamity(NPC npc, float normal, float revenge, float death, float bossrush, float infernum)
+        {
+            if (DificultyUtils.InfernumMode)
+            {
+                npc.GetGlobalNPC<CalamityGlobalNPC>().DR = infernum;
+            }
+            else npc.DR_NERD(normal, revenge, death, bossrush);  
         }
     }
 }

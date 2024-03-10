@@ -7,7 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Terraria.Localization;
 
-namespace RemnantOfTheAncientsMusicMod.Content.Tiles.Music_Box
+namespace RemnantOfTheAncientsMod.Content.Tiles.Music_Box
 {
     public class InfernalMusicBoxT : ModTile
 	{

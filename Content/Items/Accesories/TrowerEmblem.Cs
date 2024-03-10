@@ -13,7 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void SetStaticDefaults()
         {
             string TextUs = ModLoader.TryGetMod("CalamityMod", out _) ? "rogue" : "throwing";
-            string TextFr = ModLoader.TryGetMod("CalamityMod", out _) ? "voyou" : "lancer";
             string TextEs = ModLoader.TryGetMod("CalamityMod", out _) ? "de picaro" : "lanzable";
 
            // //DisplayName.SetDefault("Thrower Emblem");

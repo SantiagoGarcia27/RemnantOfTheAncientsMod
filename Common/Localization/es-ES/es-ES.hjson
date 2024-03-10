@@ -380,7 +380,7 @@ Mods: {
 
 			MoneyColectorBuff: {
 				DisplayName: Money Collector
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.MoneyColectorBuff.Description
+				Description: Transpota el dinero de tu inventario a la hucha
 			}
 
 			Night_Bleasing_Buff: {
@@ -415,7 +415,12 @@ Mods: {
 
 			YtBuff: {
 				DisplayName: Yt
-				Description: ...
+				Description:
+					'''
+					Muchas gracias a 
+					-TerraOne1 -SoyEnaid
+					Por darle una oportunidad al mod
+					'''
 			}
 
 			ReaperBuff: {
@@ -575,7 +580,7 @@ Mods: {
 					'''
 					{$CommonItemTooltip.IncreasesMaxManaBy} 
 					Aumenta la regeneración de maná
-					{$CommonItemTooltip.ArmorPenetration@1}.
+					{$CommonItemTooltip.ArmorPenetration@1}
 					Otorga inmunidad a los bloques de fuego
 					Obtienes los efectos del Collar de pánico,
 					Talizman de mitos,Equipo de buceo ártico
@@ -681,7 +686,7 @@ Mods: {
 
 			Ranger_EmblemV2: {
 				DisplayName: Emblema del guardian ascendido
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
 			ReaperChalice: {
@@ -727,7 +732,7 @@ Mods: {
 			}
 
 			TrowerEmblem: {
-				DisplayName: Emblema del hechicero
+				DisplayName: Emblema del lanzador
 				Tooltip: 15% Increased throwing damage
 			}
 
@@ -1198,8 +1203,8 @@ Mods: {
 			}
 
 			EndlessNecroticRestauration: {
-				DisplayName: "{0}"
-				Tooltip: "{0}"
+				DisplayName: Poción de restauración necrótica eterna
+				Tooltip: Te teletransporta a tu última muerte.
 			}
 
 			EndlessNightOwl: {
@@ -3548,6 +3553,7 @@ Mods: {
 			TitaniumZombie.DisplayName: Zombi blindado
 			DesertAnnihilatorGuard.DisplayName: Escolta desético
 			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
+			// HallowedZombie.DisplayName: Hallowed Zombie
 		}
 
 		Projectiles: {

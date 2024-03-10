@@ -1,5 +1,7 @@
+using rail;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 
@@ -44,5 +46,66 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 }
             }
         }
+        public static Recipe SearchRecipe(int Id)
+        {
+            for (int i = 0; i < Recipe.numRecipes; i++)
+            {
+                Recipe recipe = Main.recipe[i];
+
+                if (recipe.TryGetResult(Id, out _))
+                {
+                    return recipe;
+                }
+            }
+            return null;
+        }
+        public static List<int> SearchRecipeMaterials(int Id)
+        {
+            Recipe recipe = SearchRecipe(Id);
+                List<int> results = new List<int>();
+            //    if (recipe != null)
+            //    {
+            //        foreach (Item item in Main.item)
+            //        {
+            //            recipe.TryGetIngredient(item.type, out Item material);
+            //            if(material != null)
+            //            {
+            //                Utils1.AddSecure(results, material.type);
+            //            }
+            //        }
+            //    }
+            //    return results;
+            //}
+            foreach(Item item in recipe.requiredItem)
+            {
+                Utils1.AddSecure(results, item.type);
+            }
+            return results;
+        }
+        public static List<int> SearchRecipeTile(int Id)
+        {
+            Recipe recipe = SearchRecipe(Id);
+            
+            return recipe.requiredTile;
+        }
+        public static int SearchAmmountRecipe(int ResultID,int searchItemId)
+        {
+            for (int i = 0; i < Recipe.numRecipes; i++)
+            {
+                Recipe recipe = Main.recipe[i];
+
+                if (recipe.TryGetResult(ResultID, out _))
+                {
+                    Item _searchItemId;
+                    recipe.TryGetIngredient(searchItemId, out _searchItemId);
+                    if (_searchItemId != null && _searchItemId.type == searchItemId)
+                    {
+                        return _searchItemId.stack;
+                    }
+                }
+            }
+            return 0;
+        }
+
     }
 }

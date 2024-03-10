@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 {
@@ -47,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), 4)
+			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.IronHelmet, ItemID.IronBar))
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

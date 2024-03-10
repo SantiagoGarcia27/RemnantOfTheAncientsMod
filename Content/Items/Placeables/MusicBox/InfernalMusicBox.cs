@@ -3,7 +3,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMusicMod.Content.Tiles.Music_Box;
+using RemnantOfTheAncientsMod.Content.Tiles.Music_Box;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox
 {

@@ -1,5 +1,4 @@
-﻿using RemnantOfTheAncientsMod.World;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
@@ -10,13 +9,11 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using Terraria.UI;
-using Terraria.ModLoader.Config;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using System.Linq;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
@@ -102,13 +99,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public List<int> MediumBait = new List<int>();
         public List<int> HightBait = new List<int>();
 
-		public List<int> MusicBox = new List<int>()
-		{
-
-		};
+		public List<int> MusicBox = new List<int>();
 		public override void SetStaticDefaults()
 		{
-            
         }
 
 		public void fillMusicBox()
@@ -889,5 +882,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
                 
         }
-	}
+        
+    }
 }
