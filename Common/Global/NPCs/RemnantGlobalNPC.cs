@@ -19,6 +19,9 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using CalamityMod.NPCs;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using Microsoft.Xna.Framework.Graphics;
+using CalamityMod.Graphics.Renderers;
+using Terraria.Graphics;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -43,6 +46,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public int shadowDodgeTimer;
         public bool onHitDodge;
         #endregion
+
+        #region inmune
+        public bool immune;
+        public bool immuneNoBlink;
+
+        public int immuneTime;
+
+        public int immuneAlphaDirection;
+
+        public int immuneAlpha;
+
+        #endregion
+
+        public bool longInvince;
+        public int[] hurtCooldowns = new int[5];
+
         public override void ResetEffects(NPC NPC)
         {
             Burn_Sand = false;
@@ -251,10 +270,38 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public override void AI(NPC npc)
         {
+            UpdateImmunity();
             setDebuffs(npc);
+
+            if (npc.HasBuff(BuffID.ShadowDodge))
+            {
+                shadowDodge = true;
+            }
             base.AI(npc);
         }
-
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
+        {
+            if (shadowDodge)
+            {
+                ShadowDodge(npc);
+                modifiers.FinalDamage.Flat = 0;
+            }
+            base.ModifyHitByItem(npc, player, item, ref modifiers);
+        }
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if (shadowDodge)
+            {
+                ShadowDodge(npc);
+                modifiers.FinalDamage.Flat = 0;
+            }
+            base.ModifyHitByProjectile(npc, projectile, ref modifiers);
+        }
+        public override void HitEffect(NPC npc, NPC.HitInfo hit)
+        {
+            
+            base.HitEffect(npc, hit);
+        }
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
         {
             if (CanMakeCrit)
@@ -350,7 +397,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 }
             }
         }
-
+    
         public override void ModifyShop(NPCShop shop)
         {
             if (RemnantOfTheAncientsMod.AlchemistNPCMod != null)
@@ -447,30 +494,125 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             base.ModifyShop(shop);
         }
-        public void ShadowDodge()
+        public void SetImmuneTimeForAllTypes(int time)
+        {
+
+            immune = true;
+            immuneTime = time;
+            for (int i = 0; i < hurtCooldowns.Length; i++)
+            {
+                hurtCooldowns[i] = time;
+            }
+        }
+        public void ShadowDodge(NPC npc)
         {
             SetImmuneTimeForAllTypes(longInvince ? 120 : 80);
-            if (whoAmI != Main.myPlayer)
-            {
-                return;
+
+            if (npc.HasBuff(BuffID.ShadowDodge))
+            { 
+                npc.RequestBuffRemoval(BuffID.ShadowDodge);
             }
-            for (int i = 0; i < maxBuffs; i++)
+           
+            PutHallowedArmorSetBonusOnCooldown();    
+        }
+        private void PutHallowedArmorSetBonusOnCooldown()
+        {
+            shadowDodgeTimer = 1800;
+        }
+        public void UpdateImmunity()
+        {
+            if (immune)
             {
-                if (buffTime[i] > 0 && buffType[i] == 59)
+                immuneTime--;
+                if (immuneTime <= 0)
                 {
-                    DelBuff(i);
+                    immune = false;
+                    immuneNoBlink = false;
+                }
+                if (immuneNoBlink)
+                {
+                    immuneAlpha = 0;
+                }
+                else
+                {
+                    immuneAlpha += immuneAlphaDirection * 50;
+                    if (immuneAlpha <= 50)
+                    {
+                        immuneAlphaDirection = 1;
+                    }
+                    else if (immuneAlpha >= 205)
+                    {
+                        immuneAlphaDirection = -1;
+                    }
                 }
             }
-            PutHallowedArmorSetBonusOnCooldown();
-            NetMessage.SendData(62, -1, -1, null, whoAmI, 2f);
+            else
+            {
+                immuneAlpha = 0;
+            }
+            for (int i = 0; i < hurtCooldowns.Length; i++)
+            {
+                if (hurtCooldowns[i] > 0)
+                {
+                    hurtCooldowns[i]--;
+                }
+            }
+        }
+        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (shadowDodge)
+            {
+                shadowDodgeCount += 1f;
+                if (shadowDodgeCount > 30f)
+                {
+                    shadowDodgeCount = 30f;
+                }
+            }
+            else
+            {
+                shadowDodgeCount -= 1f;
+                if (shadowDodgeCount < 0f)
+                {
+                    shadowDodgeCount = 0f;
+                }
+            }
+            if (shadowDodgeCount > 0f)
+            {
+                string _texture = npc.type < NPCID.Count ? "Terraria/Images/NPC_" + npc.type : NPCLoader.GetNPC(npc.type).Texture;
+                var Texture = ModContent.Request<Texture2D>(_texture);
+
+                Vector2 pos = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
+
+                SpriteEffects rotation = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+
+                Main.EntitySpriteDraw((Texture2D)Texture, pos - new Vector2(3 * 16, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
+                Main.EntitySpriteDraw((Texture2D)Texture, pos + new Vector2(1.5f * 16f, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
+            }
+            base.PostDraw(npc, spriteBatch, screenPos, drawColor);
         }
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             if (onHitDodge && shadowDodgeTimer == 0)
             {
-                npc.AddBuff(59, 1800);
+                npc.AddBuff(BuffID.ShadowDodge, 1800);
             }
             base.OnHitPlayer(npc, target, hurtInfo);
+        }
+        public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
+        {
+            if (immune)
+            {
+                return false;
+            }
+            return base.CanBeHitByItem(npc, player, item);
+        }
+        public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
+        {
+            if (immune)
+            {
+                return false;
+            }
+            return base.CanBeHitByProjectile(npc, projectile);
         }
         [JITWhenModsEnabled("CalamityMod")]
         public static void SetNpcDamageReductionCalamity(NPC npc, float normal, float revenge, float death, float bossrush, float infernum)

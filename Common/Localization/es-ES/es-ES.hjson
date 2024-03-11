@@ -3460,7 +3460,7 @@ Mods: {
 
 		NPCs: {
 			AntlionD.DisplayName: Antlion
-			ArmoredSlime.DisplayName: Baba blindada
+			ArmoredSlime.DisplayName: Slime blindada
 
 			DesertAniquilator: {
 				DisplayName: Aniquilador Del Desierto
@@ -3532,7 +3532,7 @@ Mods: {
 			CobaltZombie.DisplayName: Zombi blindado
 			Copperzombie.DisplayName: Zombi blindado
 			Crimsonzombi.DisplayName: Zombi blindado
-			Fastzombie.DisplayName: weak zombie
+			Fastzombie.DisplayName: Zombie debil
 			Goldzombie.DisplayName: Zombi blindado
 			Ironzombie.DisplayName: Zombi blindado
 			Leadzombie.DisplayName: Zombi blindado
@@ -3553,7 +3553,7 @@ Mods: {
 			TitaniumZombie.DisplayName: Zombi blindado
 			DesertAnnihilatorGuard.DisplayName: Escolta desético
 			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
-			// HallowedZombie.DisplayName: Hallowed Zombie
+			HallowedZombie.DisplayName: Zombi blindado
 		}
 
 		Projectiles: {

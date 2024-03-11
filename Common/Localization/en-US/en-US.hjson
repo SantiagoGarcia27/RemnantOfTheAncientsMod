@@ -3533,7 +3533,7 @@ Mods: {
 			TitaniumZombie.DisplayName: Titanium Zombie
 			DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
 			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
-			HallowedZombie.DisplayName: Hallowed Zombie
+			HallowedZombie.DisplayName: Armored Zombie
 		}
 
 		Projectiles: {

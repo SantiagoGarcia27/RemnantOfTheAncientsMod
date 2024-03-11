@@ -22,6 +22,8 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
+using System.Runtime.InteropServices;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -221,6 +223,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCType<OrichalcumZombie>()) ZombieOreLoot(npcLoot, ItemID.OrichalcumOre, ItemID.OrichalcumBar);
             if (npc.type == NPCType<AdamantiteZombie>()) ZombieOreLoot(npcLoot, ItemID.AdamantiteOre, ItemID.AdamantiteBar);
             if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
+            if (npc.type == NPCType<HallowedZombie>()) ZombieOreLoot(npcLoot, RemnantOfTheAncientsMod.CalamityMod !=null? ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre"):null, ItemID.HallowedBar,1, RemnantOfTheAncientsMod.CalamityMod != null ? 1:25);
         }
         public override void OnKill(NPC npc)
         {
@@ -341,6 +344,16 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         {
             npcLoot.Add(ItemDropRule.Common(ore, 1/ dificultyDrop(1), 1, 4));
             npcLoot.Add(ItemDropRule.Common(bar, 50/ dificultyDrop(1), 1, 1));
+        }
+        public void ZombieOreLoot(NPCLoot npcLoot, int? ore, int? bar)
+        {
+           if(ore != null) npcLoot.Add(ItemDropRule.Common((int)ore, 1 / dificultyDrop(1), 1, 4));
+            if (bar != null) npcLoot.Add(ItemDropRule.Common((int)bar, 50 / dificultyDrop(1), 1, 1));
+        }
+        public void ZombieOreLoot(NPCLoot npcLoot, int? ore, int? bar,int chanceOre,int chanceBar)
+        {
+            if (ore != null) npcLoot.Add(ItemDropRule.Common((int)ore, 1 /  chanceOre, 1, 4));
+            if (bar != null) npcLoot.Add(ItemDropRule.Common((int)bar, 50 / chanceBar, 1, 1));
         }
         public void BossTrpoyMask(int Tropy, int Mask, NPCLoot npcLoot)
         {

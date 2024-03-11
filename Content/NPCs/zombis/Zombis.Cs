@@ -773,10 +773,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            Vector2 pos = target.position - new Vector2(Main.rand.Next(-10,10) * 16, -100 * 16);
-            int p = Projectile.NewProjectile(Projectile.GetSource_None(),pos, (target.position - pos)/4,ProjectileID.FlowerPetal,NPC.damage,0,target.whoAmI);
+            Vector2 pos = target.position + new Vector2(100 * 16 *NPC.direction, Main.rand.Next(-10, 10) * 16);
+            int p = Projectile.NewProjectile(Projectile.GetSource_None(),pos, (target.position - pos)*0.005f,ProjectileID.FlowerPetal,NPC.damage/4,0,target.whoAmI);
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
+            Main.projectile[p].timeLeft *= 2;
+            Main.projectile[p].localNPCHitCooldown = 0;
             base.OnHitPlayer(target, hurtInfo);
         }
         public override void AI()
