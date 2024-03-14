@@ -28,7 +28,6 @@ using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -43,6 +42,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                //CustomTexturePath = "RemnantOfTheAncientsMod/Content/NPCs/Bosses/DAniquilator/DesertAniquilator",
+                Position = new Vector2(40f, 24f),
+                PortraitPositionXOverride = 0f,
+                PortraitPositionYOverride = 12f,
+                Frame = 0,
+                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }  
         public override void SetDefaults()
         {
@@ -592,16 +601,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             else if (Main.masterMode) return applyLifeSize(porcentage, 1.35f);
             else if (Main.expertMode) return applyLifeSize(porcentage, 1.3f);
             else return applyLifeSize(porcentage, 1.25f);
-
-            //else if (porcentage < 100 && porcentage >= 85) return 1.2f;
-            //else if (porcentage < 85 && porcentage >= 55) return 1.15f;
-            //else if (porcentage < 55 && porcentage >= 40) return 1.1f;
-            //else if (porcentage < 40 && porcentage >= 30) return 1.0f;
-            //else if (porcentage < 30 && porcentage >= 20) return 0.8f;
-            //else if (porcentage < 20 && porcentage >= 10) return 0.7f;
-            //else if (porcentage < 10 && porcentage >= 5) return 0.6f;
-            //else if (porcentage < 5) return 0.5f;
-            //return 1f;
         }
         private float applyLifeSize(float porcentage, float MaxValue)
         {
@@ -620,17 +619,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             }
             return Utils1.GetValueFromPorcentage(MaxValue, 30);
         }
-            //if(porcentage == 100) return Utils1.GetValueFromPorcentage(MaxValue,100);
-            //else if (porcentage == 99) return Utils1.GetValueFromPorcentage(MaxValue, 99);
-            //else if (porcentage < 85 && porcentage >= 55) return 1.15f;
-            //else if (porcentage < 55 && porcentage >= 40) return 1.1f;
-            //else if (porcentage < 40 && porcentage >= 30) return 1.0f;
-            //else if (porcentage < 30 && porcentage >= 20) return 0.8f;
-            //else if (porcentage < 20 && porcentage >= 10) return 0.7f;
-            //else if (porcentage < 10 && porcentage >= 5) return 0.6f;
-            //else if (porcentage < 5) return 0.5f;
-           // return 1f;
-        
         
         public void ShootHelper(int dammage, int type, Player player, float Speed, double x, double y,bool proj)
         {

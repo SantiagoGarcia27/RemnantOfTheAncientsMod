@@ -1,4 +1,7 @@
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,14 +16,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espectro fishron");
            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Spectre de poissonron");
             Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.DukeFishron];
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             NPC.spriteDirection = NPC.direction;
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = NPCID.DukeFishron;
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,         
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
+        }
         public override void SetDefaults()
         {
             NPC.CloneDefaults(NPCID.DukeFishron);

@@ -1,4 +1,8 @@
-﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+﻿using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -14,6 +18,11 @@ namespace RemnantOfTheAncientsMod.World
         {
             ReaperMode = false;
             DificultyUtils.ReaperMode = false;
+            List<int> spears = RemnantGlobalItem.SpearsList;
+            foreach (int id in spears)
+            {
+                Utils1.AddSecure(RemnantGlobalProjectile.Spears, new Item(id).shoot);
+            }
         }
         public override void OnWorldUnload()
         {

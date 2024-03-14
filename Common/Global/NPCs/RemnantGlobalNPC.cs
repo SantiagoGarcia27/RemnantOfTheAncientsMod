@@ -22,6 +22,7 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod.Graphics.Renderers;
 using Terraria.Graphics;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -181,7 +182,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         num2 += Main.chest[num].item[i].stack;
                         KeyId = ItemID.GoldenKey;
                     }
-                    if (Main.chest[num].item[i].type == ModContent.ItemType<JungleKey>())
+                    else if (Main.chest[num].item[i].type == ModContent.ItemType<JungleKey>())
                     {
                         num2 += Main.chest[num].item[i].stack;
                         KeyId = ModContent.ItemType<JungleKey>();
@@ -200,7 +201,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 //if (num2[0] != 1)
                 //{
-                _ = 1;
+                //_ = 1;
                 // }
                 if (TileID.Sets.BasicChest[Main.tile[x, y].TileType])
                 {
@@ -397,7 +398,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 }
             }
         }
-    
+        public override void SetupTravelShop(int[] shop, ref int nextSlot)
+        {
+            shop[nextSlot] = ModContent.ItemType<Strawberry_Hairpin>();
+            nextSlot++;
+            base.SetupTravelShop(shop, ref nextSlot);
+        }
+
         public override void ModifyShop(NPCShop shop)
         {
             if (RemnantOfTheAncientsMod.AlchemistNPCMod != null)

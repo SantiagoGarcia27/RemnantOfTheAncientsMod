@@ -3436,6 +3436,11 @@ Mods: {
 				DisplayName: Tuxonite Brick
 				Tooltip: ""
 			}
+
+			Strawberry_Hairpin: {
+				DisplayName: Strawberry Hairpin
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {

@@ -10,6 +10,9 @@ using System.Linq;
 using Terraria.Utilities;
 using RemnantOfTheAncientsMod.Content.Items.Tools;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.GameContent.Bestiary;
+using Humanizer;
+using Microsoft.CodeAnalysis.Operations;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 { 
@@ -24,7 +27,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
         public override void SetStaticDefaults()
         {         
+
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Wraith];
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
 
         public override void SetDefaults()
@@ -38,6 +47,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.rarity = 4;
             NPC.dontTakeDamageFromHostiles = true;
             AnimationType = NPCID.Wraith;
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {    
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+			
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+
+                // Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("A wandering soul looking to leave its regrets behind"),
+            });
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

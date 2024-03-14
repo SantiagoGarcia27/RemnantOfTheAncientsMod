@@ -5,6 +5,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.Utilities;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using Terraria.GameContent.Bestiary;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
@@ -16,12 +17,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Slime blindado");
 			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Slime blindé");
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BlueSlime];
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-			{ // Influences how the NPC looks in the Bestiary
-				Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
-			};
-			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-			NPC.spriteDirection = NPC.direction;
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                // Influences how the NPC looks in the Bestiary
+                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+            NPC.spriteDirection = NPC.direction;
 		}
 
 		public override void SetDefaults()
@@ -41,7 +43,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			Banner = Item.NPCtoBanner(NPCID.BlueSlime); ;
 			BannerItem = Item.BannerToItem(Banner);
 		}
-		public override void ModifyNPCLoot(NPCLoot NPCLoot)
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("A fearless slime with a stolen helmet"),
+            });
+        }
+        public override void ModifyNPCLoot(NPCLoot NPCLoot)
 		{
 			NPCLoot.Add(ItemDropRule.Common(ItemID.Gel, 1));
 			NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<Reinforced_iron_ore>()));

@@ -135,6 +135,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 }
                 AI(npc);
             }
+            AI(npc);
             return base.PreAI(npc);
         }
         public override void AI(NPC npc)

@@ -79,7 +79,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-			BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+			BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow,
 			new FlavorTextBestiaryInfoElement("A ancient wizard that study the secrets of the time manipulation"),
 			});
 		}

@@ -1,8 +1,11 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,8 +16,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.Antlion;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Antlion");
-
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Antlion];
         }
 
@@ -39,6 +45,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             //NPC.value = Item.buyPrice(0, 0, 0, 0);
             //NPC.lifeMax = 50;
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
+
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
+        }
     }
 
     public class VultureD : ModNPC
@@ -46,8 +64,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.Vulture;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Vulture");
-
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Vulture];
         }
 
@@ -62,14 +83,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.value = Item.buyPrice(0, 0, 0, 0);
             NPC.lifeMax = 40;
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
+
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
+        }
     }
     public class WalkingAntlionD : ModNPC
     {
         public override string Texture => "Terraria/Images/NPC_" + NPCID.WalkingAntlion;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Antlion Charger");
-
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.WalkingAntlion];
         }
 
@@ -84,14 +120,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.value = Item.buyPrice(0, 0, 0, 0);
             base.NPC.lifeMax -= 90;
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
+
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
+        }
     }
     public class DesertScorpionD : ModNPC
     {
         public override string Texture => "Terraria/Images/NPC_" + NPCID.DesertScorpionWalk;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Sand Poacher");
-
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.DesertScorpionWalk];
         }
 
@@ -107,12 +158,28 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.damage = 66;
             NPC.defense = 12;
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
+
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
+        }
     }
     public class DesertAnnihilatorServant : ModNPC
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Servant of Desert Annihilator");
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.SandSlime];
         }
         public override void SetDefaults()
@@ -124,14 +191,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.lifeMax = 50;
             NPC.damage = 22;
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
+
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
+        }
     }
     public class FlyingAntlionD : ModNPC
     {
         public override string Texture => "Terraria/Images/NPC_" + NPCID.FlyingAntlion;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Antlion Swarmer");
-
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.FlyingAntlion];
         }
 
@@ -145,6 +227,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.value = Item.buyPrice(0, 0, 0, 0);
             NPC.lifeMax = 100;
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
+
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
+        }
     }
     [JITWhenModsEnabled("CalamityMod")]
     public class DesertAnnihilatorGuard : ModNPC
@@ -157,6 +251,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         public override void SetStaticDefaults()
         {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.SandSlime];
         }
         public override void SetDefaults()
@@ -168,6 +267,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.lifeMax = 2000;
             NPC.damage = 22;
             NPC.scale = 1;
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
+            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
+
+            bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
+                // Plain black background
+				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+            });
         }
         public override void AI()
         {

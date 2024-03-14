@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using CalamityMod;
 using CalamityMod.Buffs.Potions;
 using FargowiltasSouls.Content.Buffs.Masomode;
+using CalamityMod.CalPlayer;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -173,8 +174,9 @@ namespace RemnantOfTheAncientsMod
             [JITWhenModsEnabled("CalamityMod")]
             void Calamity()
             {
-                player.buffImmune[ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff")] = true;
-                player.Calamity().tesla = true;
+                //player.buffImmune[ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff")] = true;
+                player.AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
+                player.GetModPlayer<CalamityPlayer>().tesla = true;
             }
         }
         public static void SuperSenseBuff(Player player)

@@ -15,6 +15,7 @@ using static RemnantOfTheAncientsMod.Content.NPCs.zombis.Shadowzombie;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using CalamityMod;
 using Terraria.Chat;
+using Terraria.GameContent.Bestiary;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {
@@ -26,7 +27,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             // //DisplayName.SetDefault("weak zombie");
             // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "zombie débil");
             // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie faible");
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                // Influences how the NPC looks in the Bestiary
+                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Zombie];
+
         }
 
         public override void SetDefaults()
@@ -39,6 +47,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.knockBackResist = 1.2f;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
+
+
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
+
+				// Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("A weak enemy"),
+            });
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot) => Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ItemID.Gel);
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -1004,6 +1025,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             // //DisplayName.SetDefault("Armored Zombie");
             // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Zombi blindado");
             // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Zombie blindé");
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                // Influences how the NPC looks in the Bestiary
+                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
         }
         public override void SetDefaults()
@@ -1018,7 +1045,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             Banner = Item.NPCtoBanner(NPCID.Zombie);
             BannerItem = Item.BannerToItem(Banner);
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+				// Sets the spawning conditions of this NPC that is listed in the bestiary.
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
 
+				// Sets the description of this NPC that is listed in the bestiary.
+				new FlavorTextBestiaryInfoElement("A heavily armored enemy"),
+            });
+        }
         public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 10; i++)

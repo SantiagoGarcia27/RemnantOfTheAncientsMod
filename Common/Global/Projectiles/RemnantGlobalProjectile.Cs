@@ -29,6 +29,20 @@ namespace RemnantOfTheAncientsMod.Common.Global
             ProjectileID.Excalibur,
             ProjectileID.TrueExcalibur
         };
+        public static List<int> Spears = new List<int>()
+        {
+            ProjectileID.Spear,
+            ProjectileID.AdamantiteGlaive,
+            ProjectileID.CobaltNaginata,
+            ProjectileID.MythrilHalberd,
+            ProjectileID.OrichalcumHalberd,
+            ProjectileID.PalladiumPike,
+            ProjectileID.TitaniumTrident,
+            ProjectileID.Trident,
+            ProjectileID.ObsidianSwordfish,
+            ProjectileID.Swordfish,
+            ProjectileID.ChlorophytePartisan
+        };
         public override void SetDefaults(Projectile projectile)
         {  
             if (WeaponConf)
@@ -37,6 +51,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     projectile.minionSlots = 0.5f;
                 }
+          
             }
             
             
@@ -151,7 +166,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 projectile.width *= (int)1.5f;
                 projectile.height *= (int)1.5f;
                 projectile.scale *= 2.5f;
-
+                if (Spears.Contains(projectile.type))
+                {
+                    projectile.velocity *= 3;
+                }
                 //if (MeleeProjFix.Contains(projectile.type))
                 //{
                 //    projectile.ai[2] *= 2.5f;

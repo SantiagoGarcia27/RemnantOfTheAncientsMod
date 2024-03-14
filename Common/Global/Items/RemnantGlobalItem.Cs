@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool IsAmmo;
         public int StyleStat = 0;
         public Item ItemBase = null;
-		public List<int> SpearsList = new List<int>();
+		public static List<int> SpearsList = new List<int>();
 
         public override bool InstancePerEntity => true;
         public int[] lanceId = new int[]
@@ -597,6 +597,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			AddVanilaSpear();
 			AddModedSpearGeneric(item);
+			
 		}
 		public void AddVanilaSpear()
 		{

@@ -44,4 +44,7 @@ A more detailed breakdown of the content available in the mod:
 
 Patch notes:
 https://docs.google.com/document/d/1SjHv7QnOTsFYEbybGiapBTX3jB74eZen8GjYSnC93ks/edit?usp=sharing
+
+-Special thanks-
+Many thanks to SoyEnaid for help with localizations
 [/olist]

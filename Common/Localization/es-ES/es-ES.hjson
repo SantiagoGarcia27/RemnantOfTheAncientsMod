@@ -3456,6 +3456,11 @@ Mods: {
 				DisplayName: Ladrillo de tusonita
 				// Tooltip: ""
 			}
+
+			Strawberry_Hairpin: {
+				DisplayName: Horquilla de fresa
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
