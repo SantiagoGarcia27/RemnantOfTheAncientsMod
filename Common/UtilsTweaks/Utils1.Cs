@@ -269,6 +269,14 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             if (!list.Contains(p)) list.Add(p);
         }
+        public static void AddSecure(List<Type> list, Type p)
+        {
+            if (!list.Contains(p)) list.Add(p);
+        }
+        public static void AddSecure(List<Asset<Texture2D>> list, Asset<Texture2D> p, bool a = false)
+        {
+            if (!list.Contains(p)) list.Add(p);
+        }
         public static void AddSecure(List<string> list, string p)
         {
             if (!list.Contains(p)) list.Add(p);
@@ -334,6 +342,34 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             int num = RecipeGroup.recipeGroupIDs[name];
             return num;
+        }
+
+        public static NPC SearchNPC(int Id)
+        {
+            foreach (NPC npc in Main.npc)
+            {
+                if(npc.type == Id)
+                {
+                    return npc;
+                }
+            }
+            return null;
+        }
+        public static NPC SearchNPC(int Id,bool Shimered = false)
+        {
+            foreach (NPC npc in Main.npc)
+            {
+                if (npc.type == Id && npc.IsShimmerVariant == Shimered)
+                {
+                    return npc;
+                }
+            }
+            return null;
+        }
+
+        public static bool PlayerIsUnderWather(Player player)
+        {
+           return Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
         }
     }
 }

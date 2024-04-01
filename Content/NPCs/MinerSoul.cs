@@ -11,11 +11,10 @@ using Terraria.Utilities;
 using RemnantOfTheAncientsMod.Content.Items.Tools;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent.Bestiary;
-using Humanizer;
-using Microsoft.CodeAnalysis.Operations;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
-{ 
+{
     public class MinerSoul : Hover
     {
         public const string ShopName = "Shop";
@@ -53,14 +52,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 			
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
-
-                // Sets the description of this NPC that is listed in the bestiary.
 				new FlavorTextBestiaryInfoElement("A wandering soul looking to leave its regrets behind"),
             });
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Cavern.Chance * 0.09f;//0.0009
+            float spawn = NPC.CountNPCS(this.Type) > 1 ? 0 : 0.09f;
+            if (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().SpectralLantern) spawn = 0;
+            return SpawnCondition.Cavern.Chance * spawn;//0.0009
         }
         public override bool? CanBeHitByItem(Player player, Item item)
         {
@@ -164,7 +163,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         {
             var npcShop = new NPCShop(Type, ShopName);
 
-            npcShop.Add(new Item(ItemType<ironstonepickaxe>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 3, 0, 0) })
+            npcShop.Add(new Item(ItemType<ironstonepickaxe>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) })
+            .Add(new Item(ModContent.ItemType<SpectralLantern>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 5, 20, 0) }, Condition.DownedEyeOfCthulhu)
             .Add(new Item(ItemID.Torch) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 30, 0) })
             .Add(new Item(ItemID.Wood) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 20, 0) })
             .Add(new Item(ItemID.DirtBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 2) })

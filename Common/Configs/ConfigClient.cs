@@ -32,10 +32,15 @@ namespace RemnantOfTheAncientsMod
         [DefaultValue(true)]
         // //[//Tooltip("Activate the inferno effect of potion kits")]
         public bool KitsGills { get; set; }
+
+
+        [DefaultValue(true)]
+        // //[//Tooltip("Activate the inferno effect of potion kits")]
+        public bool AprilFoolsDay { get; set; }
         #endregion
 
         #region ReaperSouls
-      
+
         [Header("ReaperSouls")]
 
         //[Label("Toggle King Slime soul")]

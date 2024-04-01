@@ -43,7 +43,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
             Item.scale = 1;
-                       Item.GetGlobalItem<CustomTooltip>().Saber = true;
+			Item.noMelee = false;
+			Item.channel = false;
+            Item.GetGlobalItem<CustomTooltip>().Saber = true;
    //         if (RemnantOfTheAncientsMod.CalamityMod != null)
 			//{
 			//	Item.damage = 16;

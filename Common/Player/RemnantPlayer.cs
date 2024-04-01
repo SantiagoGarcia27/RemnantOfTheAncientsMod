@@ -26,6 +26,10 @@ using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using ReLogic.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -95,8 +99,10 @@ namespace RemnantOfTheAncientsMod
 		public List<int> AllClassBuffInflict = new List<int> { };
 		public int MinionCritChance = 0;
 
-		#region Couldowns
-		public bool CouwldownHolySaber;
+		public bool SpectralLantern;
+
+        #region Couldowns
+        public bool CouwldownHolySaber;
 		#endregion
 
 		public static List<int> DevSuits = new List<int>()
@@ -155,6 +161,7 @@ namespace RemnantOfTheAncientsMod
 			CanWormHole = false;
 			BrainDogde = false;
 			Inmortal = false;
+			SpectralLantern = false;
             EnemyProjectilesScaleBouns = 1;
 			EnemyProjectilesSpeedScaleBouns = 1;
 		
@@ -306,7 +313,13 @@ namespace RemnantOfTheAncientsMod
 		{
 			AddScrollBuff();
 			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod)) CalamityMessage();
-		}
+			foreach(Asset<Texture2D> asset in TextureAssets.Item)
+			{
+				RemnantGlobalItem.oldTexture.Add(asset);
+			}
+
+
+        }
 		[JITWhenModsEnabled("CalamityMod")]
 		public void CalamityMessage()
 		{

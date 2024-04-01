@@ -1,15 +1,11 @@
 using System;
-using System.Diagnostics.Metrics;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static System.Formats.Asn1.AsnWriter;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 {
-
     public class TerracoinP : ModProjectile
     {
         public override void SetDefaults()

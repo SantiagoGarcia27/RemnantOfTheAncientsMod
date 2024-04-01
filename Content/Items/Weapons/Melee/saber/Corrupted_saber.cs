@@ -38,7 +38,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             Item.scale = 1;
             Item.shootSpeed = 1f;
             Item.shoot = ProjectileID.LightsBane;
-            
+            Item.noMelee = false;
+            Item.channel = false;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override bool AltFunctionUse(Player player) => true;

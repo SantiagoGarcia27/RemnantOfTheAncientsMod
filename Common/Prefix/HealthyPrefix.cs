@@ -107,7 +107,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         }
         public override float RollChance(Item item)
         {
-            return new ChanceRoll().HighTierReforgeChance;
+            return 0/*new ChanceRoll().HighTierReforgeChance*/;
         }
        
 

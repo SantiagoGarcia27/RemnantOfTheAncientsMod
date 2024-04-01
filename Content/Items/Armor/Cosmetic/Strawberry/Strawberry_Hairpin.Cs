@@ -2,12 +2,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Daylight;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry

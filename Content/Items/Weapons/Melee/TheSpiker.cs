@@ -41,6 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.scale = 2.0f;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
+            Item.noMelee = RemnantOfTheAncientsMod.MeleeWeaponEffects != null;
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
@@ -82,6 +83,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                     strong = true;
                 }
             }
+            Item.noMelee = RemnantOfTheAncientsMod.MeleeWeaponEffects != null;
             return base.CanUseItem(player);
         }
         public void ModifyWeapon(bool strong, int proj, float speed)

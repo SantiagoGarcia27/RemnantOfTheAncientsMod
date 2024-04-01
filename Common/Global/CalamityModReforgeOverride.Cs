@@ -46,13 +46,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
                 return prefix;
             }
-            if (!CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG || Main.gameMenu || storedPrefix == -1)
-            {
-                var damageClass = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
-                if (item.CountsAsClass(damageClass)) return prefix;
-                else return -1;
-            }
-            return GetReworkedReforge(item, rand, storedPrefix);
+            //if (!CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG || Main.gameMenu || storedPrefix == -1)
+            //{
+            //    var damageClass = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
+            //    if (item.CountsAsClass(damageClass)) return prefix;
+            //    else return -1;
+            //}
+            return CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG? GetReworkedReforge(item, rand, storedPrefix): base.ChoosePrefix(item, rand) ;
         }
         public static Mod calamityMod = RemnantOfTheAncientsMod.CalamityMod;
         public static Mod RemnantOfTheAncient = RemnantOfTheAncientsMod.RemnantOfTheAncients;
@@ -99,10 +99,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     int[][] terrarianReforgeTiers = new int[4][]
                     {
-                    new int[3] { 36, 38, 54 },
-                    new int[3] { 53, 57, 61 },
-                    new int[3] { 37, 60, 59 },
-                    new int[1] { 84 }
+                        new int[3] { 36, 38, 54 },
+                        new int[3] { 53, 57, 61 },
+                        new int[3] { 37, 60, 59 },
+                        new int[1] { 84 }
                     };
                     prefix = IteratePrefix(rand, terrarianReforgeTiers, currentPrefix);
                 }

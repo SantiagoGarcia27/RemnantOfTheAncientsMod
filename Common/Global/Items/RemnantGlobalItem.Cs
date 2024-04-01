@@ -15,6 +15,9 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
+using ReLogic.Content;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -769,9 +772,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
 			On_Item.CheckLavaDeath += On_Item_CheckLavaDeath;
 			On_ItemSlot.PickItemMovementAction += AllowCoinAndAmmoPlacement;
-			base.Load();
+			
+			
+            base.Load();
         }
-
+		
         private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
         {
 		
@@ -883,6 +888,81 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
                 
         }
-        
+
+		public static List<Asset<Texture2D>> oldTexture = new List<Asset<Texture2D>>();
+        public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+			if (Utils1.IsAprilFoolDay() && ModContent.GetInstance<ConfigClient>().AprilFoolsDay)
+			{
+				int texture = 0;
+
+				if (item.pick > 0)
+				{
+					texture = 3509;
+				}
+				else if (item.axe > 0)
+				{
+					texture = 3506;
+				}
+				else if (item.hammer > 0)
+				{
+					texture = 3505;
+				}
+				else if (item.DamageType == DamageClass.Magic)
+				{
+					texture = 3069;
+				}
+				else if (item.DamageType == DamageClass.Ranged)
+				{
+					texture = item.ammo > 0 ? 40 : 39;
+				}
+				else if (item.DamageType == DamageClass.Summon)
+				{
+					texture = 1309;
+				}
+				else if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed)
+				{
+					texture = 24;
+				}
+				else if (item.DamageType == DamageClass.SummonMeleeSpeed)
+				{
+					texture = 4672;
+				}
+				else if (item.accessory)
+				{
+					texture = 3068;
+				}
+				else if (item.defense > 0)
+				{
+					texture = 728;
+				}
+				else if (item.buffType > 0)
+				{
+					texture = 28;
+				}
+				else
+				{
+					texture = 2;
+				}
+
+				TextureAssets.Item[item.type] = ModContent.Request<Texture2D>("Terraria/Images/Item_" + texture);
+				spriteBatch.Draw((Texture2D)ModContent.Request<Texture2D>("Terraria/Images/Item_" + texture), new Vector2(0, 0), default);
+			}
+			else
+			{
+				if (oldTexture.Count > 0)
+				{
+					try
+					{
+						TextureAssets.Item[item.type] = oldTexture[item.type];
+					}
+					catch (Exception e) 
+					{
+						Main.NewText(item.type);
+					}
+				}
+                base.PostDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+			}
+        }
     }
 }

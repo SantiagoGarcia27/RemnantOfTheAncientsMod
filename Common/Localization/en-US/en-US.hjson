@@ -3441,6 +3441,17 @@ Mods: {
 				DisplayName: Strawberry Hairpin
 				Tooltip: ""
 			}
+
+			SpectralLantern: {
+				DisplayName: Spectral Lantern
+				Tooltip:
+					'''
+					Emits a faint spectral light
+					Reduces vision, but allows minerals to be identified
+					It gives you schizophrenia
+					Prevents mining souls from appearing
+					'''
+			}
 		}
 
 		NPCs: {
@@ -3831,6 +3842,11 @@ Mods: {
 
 				ToggleMoonlordSoul: {
 					Label: Toggle Moonlord Soul
+					Tooltip: ""
+				}
+
+				AprilFoolsDay: {
+					Label: April Fools Day
 					Tooltip: ""
 				}
 			}

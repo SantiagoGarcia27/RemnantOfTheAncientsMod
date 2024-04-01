@@ -107,7 +107,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             return false; // still charging
         }
 
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<NightWhipDebuff>(), 240);
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;

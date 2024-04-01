@@ -11,7 +11,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static int GetProjectileFromMod(Mod mod, string projectile)
         {
-            return mod.Find<ModProjectile>(projectile).Type;
+            ModProjectile Projectile;
+            mod.TryFind(projectile, out Projectile);
+            return Projectile.Type;
         }
         public static int GetTileFromMod(Mod mod, string tile)
         {
@@ -44,6 +46,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static int GetModPrefix(Mod mod, string name)
         {
             return mod.TryFind<ModPrefix>(name, out var ret) ? ret.Type : 0;
+        }
+        public static ModPlayer GetPlayerFromMod(Mod mod, string player)
+        {
+            return mod.Find<ModPlayer>(player);
         }
         //public static bool GetInstanceFromMod(Mod mod, string config, bool expectedValue)
         //{

@@ -25,6 +25,7 @@ namespace RemnantOfTheAncientsMod
         public static Mod FargowiltasMod;
         public static Mod AlchemistNPCMod;
         public static Mod RemnantOfTheAncientsMusic;
+        public static Mod MeleeWeaponEffects;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static int MaxRarity = GetMaxRarity();
@@ -58,12 +59,12 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("Fargowiltas", out FargowiltasMod);
             ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMusicMod", out RemnantOfTheAncientsMusic);
+            ModLoader.TryGetMod("MeleeWeaponEffects", out MeleeWeaponEffects);
 
-            if (ModContent.GetInstance<Terracoin>() != null) // Verifica si el tipo no es nulo.
+            if (ModContent.GetInstance<Terracoin>() != null) 
             {
-                ModContent.GetInstance<Terracoin>(); // Crea una instancia del tipo para registrar tu moneda personalizada.
+                ModContent.GetInstance<Terracoin>(); 
             }
-            // LocalizationHelper.ForceLoadModHJsonLocalization(this);
 
             if(InfernumMod != null)
             {
@@ -71,6 +72,9 @@ namespace RemnantOfTheAncientsMod
             }
            
             BackgroundTextureLoader.AddBackgroundTexture(this,PlaceHolderPath);
+
+
+            
         }
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void LoadTogglesFromType(Type type)

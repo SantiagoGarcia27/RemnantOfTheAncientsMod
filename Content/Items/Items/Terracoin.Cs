@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
         {
             Item.height = 14;
             Item.maxStack = 999;
-            Item.value = Item.sellPrice(platinum: 100);
+            Item.value = Item.sellPrice(gold: 10);
             Item.ammo = AmmoID.Coin;
             Item.notAmmo = true;
             Item.damage = 400;
@@ -47,9 +47,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
-            .AddIngredient(ItemID.PlatinumCoin, 100)
-            .Register();
+            //CreateRecipe()
+            //.AddIngredient(ItemID.PlatinumCoin, 100)
+            //.Register();
         }
     }
 }

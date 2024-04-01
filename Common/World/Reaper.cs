@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.World
 
         public override void SaveWorldData(TagCompound tag)
         {
-            if (ReaperMode) tag["ReaperMode"] = true;
+            if (ReaperMode && DificultyUtils.ReaperMode) tag["ReaperMode"] = true;
         }
 
         public override void LoadWorldData(TagCompound tag)

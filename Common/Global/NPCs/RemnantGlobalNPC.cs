@@ -300,7 +300,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public override void HitEffect(NPC npc, NPC.HitInfo hit)
         {
-            
+
             base.HitEffect(npc, hit);
         }
         public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
@@ -499,6 +499,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
+            if (shop.NpcType == NPCID.GoblinTinkerer)
+            {
+                shop.Add(new Item(ItemType<Terracoin>()) { shopCustomPrice = Utils1.FormatMoney(0, 5, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode);
+            }
             base.ModifyShop(shop);
         }
         public void SetImmuneTimeForAllTypes(int time)
@@ -516,11 +520,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             SetImmuneTimeForAllTypes(longInvince ? 120 : 80);
 
             if (npc.HasBuff(BuffID.ShadowDodge))
-            { 
+            {
                 npc.RequestBuffRemoval(BuffID.ShadowDodge);
             }
-           
-            PutHallowedArmorSetBonusOnCooldown();    
+
+            PutHallowedArmorSetBonusOnCooldown();
         }
         private void PutHallowedArmorSetBonusOnCooldown()
         {
@@ -628,7 +632,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 npc.GetGlobalNPC<CalamityGlobalNPC>().DR = infernum;
             }
-            else npc.DR_NERD(normal, revenge, death, bossrush);  
+            else npc.DR_NERD(normal, revenge, death, bossrush);
         }
     }
 }

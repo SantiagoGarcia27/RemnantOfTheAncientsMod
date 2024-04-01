@@ -453,7 +453,7 @@ namespace RemnantOfTheAncientsMod
             UncraftBone();
 
             Recipe.Create(ModContent.ItemType<JungleBar>(), 6).AddIngredient(ItemID.BladeofGrass, 1).AddTile(TileID.Anvils).Register();
-            Recipe.Create(ItemID.PlatinumCoin, 100).AddIngredient(ModContent.ItemType<Terracoin>(), 1).Register();
+            //Recipe.Create(ItemID.PlatinumCoin, 100).AddIngredient(ModContent.ItemType<Terracoin>(), 1).Register();
             Recipe.Create(ItemID.EnchantedSword, 1).AddIngredient(ModContent.ItemType<Enchanted_saber>(), 1).AddTile(TileID.Anvils).Register();
         }
 

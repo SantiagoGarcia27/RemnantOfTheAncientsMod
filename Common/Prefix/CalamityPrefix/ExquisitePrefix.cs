@@ -1,4 +1,5 @@
 using CalamityMod.Prefixes;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Prefix.CalamityPrefix
@@ -12,6 +13,10 @@ namespace RemnantOfTheAncientsMod.Prefix.CalamityPrefix
             base(1.20f, 0.8f, 10, 1.2f, 1.20f)
         {
 
+        }
+        public override float RollChance(Item item)
+        {
+            return 0;
         }
     }
 }

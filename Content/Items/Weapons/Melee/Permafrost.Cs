@@ -93,9 +93,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 Item.useTime = 85;
                 Item.useAnimation = 85;
                 Item.useStyle = ItemUseStyleID.Shoot;
+                Item.channel = true;
                 Item.staff[Item.type] = true;
-                Item.autoReuse = true;
             }
+            Item.channel = RemnantOfTheAncientsMod.MeleeWeaponEffects != null && player.altFunctionUse == 2;
             return base.CanUseItem(player);
         }
 

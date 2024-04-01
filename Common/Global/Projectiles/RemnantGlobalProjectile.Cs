@@ -43,6 +43,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
             ProjectileID.Swordfish,
             ProjectileID.ChlorophytePartisan
         };
+        public static List<int> MeleeWeaponEffectsProjectiles = new List<int>()
+        {
+            
+        };
         public override void SetDefaults(Projectile projectile)
         {  
             if (WeaponConf)
@@ -54,9 +58,25 @@ namespace RemnantOfTheAncientsMod.Common.Global
           
             }
             
+            if(RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
+            {
+                FiilMeleeWeaponEffectsList();
+                if (MeleeWeaponEffectsProjectiles.Contains(projectile.type))
+                {
+                    //projectile.DamageType = DamageClass.Melee;
+                    projectile.friendly = true;
+                }
+            }
             
         }
-
+        public void FiilMeleeWeaponEffectsList()
+        {
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlash2"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlashMethod"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashWeapon"));
+        }
         public void UpdateMiscCounter()
         {
             miscCounter++;
@@ -161,7 +181,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             ReaperPlayer ReaperPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
             RemnantPlayer RemnantPlayer = Main.player[Main.myPlayer].GetModPlayer<RemnantPlayer>();
-            if (DificultyUtils.ReaperMode && projectile.CountsAsClass(DamageClass.Melee) && projectile.friendly && ReaperPlayer.ChaliceOn)
+            if (DificultyUtils.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn )
             {
                 projectile.width *= (int)1.5f;
                 projectile.height *= (int)1.5f;
@@ -169,6 +189,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 if (Spears.Contains(projectile.type))
                 {
                     projectile.velocity *= 3;
+                }
+                if (RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
+                {
+                    if (MeleeWeaponEffectsProjectiles.Contains(projectile.type))
+                    {
+                        projectile.localAI[0] = Main.player[projectile.owner].GetWeaponDamage(Main.player[projectile.owner].HeldItem);
+                        projectile.localAI[1] = Main.player[projectile.owner].HeldItem.scale;
+                    }
                 }
                 //if (MeleeProjFix.Contains(projectile.type))
                 //{

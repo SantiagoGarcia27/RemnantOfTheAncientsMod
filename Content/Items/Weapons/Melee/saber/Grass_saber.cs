@@ -5,15 +5,11 @@ using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
 using Terraria.DataStructures;
-using Mono.Cecil;
-using static Terraria.ModLoader.PlayerDrawLayer;
-using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System.Diagnostics.Metrics;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
-	public class Grass_saber : ModItem
+    public class Grass_saber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -41,6 +37,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
             Item.scale = 1;
+            Item.noMelee = false;
+            Item.channel = false;
             Item.GetGlobalItem<CustomTooltip>().Saber = true;
         }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)

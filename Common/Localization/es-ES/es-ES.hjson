@@ -3461,6 +3461,17 @@ Mods: {
 				DisplayName: Horquilla de fresa
 				// Tooltip: ""
 			}
+
+			SpectralLantern: {
+				DisplayName: Farol espectral
+				Tooltip:
+					'''
+					Emite una leve luz espectral
+					Reduce la visión, pero permite identificar minerales
+					Te da ezquizofrenia
+					Previene que las almas mineras aparezcan
+					'''
+			}
 		}
 
 		NPCs: {
@@ -3852,6 +3863,11 @@ Mods: {
 				ToggleMoonlordSoul: {
 					Label: Activar alma del señor de la luna
 					Tooltip: ""
+				}
+
+				AprilFoolsDay: {
+					// Label: April Fools Day
+					// Tooltip: ""
 				}
 			}
 

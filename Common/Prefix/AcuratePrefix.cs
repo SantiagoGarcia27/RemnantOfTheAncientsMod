@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         // Note: if you use PrefixCategory.Custom, actually use ModItem.ChoosePrefix instead.
         public override float RollChance(Item item)
         {
-            return new ChanceRoll().HighTierReforgeChance;//5
+            return 0;// return 0/*new ChanceRoll().HighTierReforgeChance*/;;//5
         }
 
         // Determines if it can roll at all.

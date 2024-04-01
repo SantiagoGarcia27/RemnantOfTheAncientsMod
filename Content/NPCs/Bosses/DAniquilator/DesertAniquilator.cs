@@ -366,7 +366,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     Vector2 start = new Vector2(player.position.X + (-100 * 16),  (player.position.Y - 100*16));
                     Vector2 end = new Vector2(player.position.X + (100 *16), (player.position.Y - 100*16));
 
-                    int numberOfProjectiles = DificultyUtils.MasochistMode ? 40: 80;
+                    int numberOfProjectiles = DificultyUtils.EternityMode ? 40: 80;
 
                     List<Vector2> points = GeneratePoints(start, end, numberOfProjectiles);
 
