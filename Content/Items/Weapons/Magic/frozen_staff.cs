@@ -4,12 +4,12 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
-	public class frozen_staff : ModItem
+    public class frozen_staff : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

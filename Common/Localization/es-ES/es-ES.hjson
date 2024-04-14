@@ -1556,7 +1556,11 @@ Mods: {
 
 			Terracoin: {
 				DisplayName: Moneda Terra
-				Tooltip: ""
+				Tooltip:
+					'''
+					Puede utilizarse para obtener reforjas avanzadas en el duende chapucero
+					(Solo funciona si tu objeto está en su mejor reforja)
+					'''
 			}
 
 			TuxoniteBar: {
@@ -3472,6 +3476,21 @@ Mods: {
 					Previene que las almas mineras aparezcan
 					'''
 			}
+
+			JungleBricks: {
+				 DisplayName: Ladrillo de jungla
+				// Tooltip: ""
+			}
+
+			NightBricks: {
+				 DisplayName: Ladrillo de la noche
+				// Tooltip: ""
+			}
+
+			ReinforcedironBricks: {
+				 DisplayName: Ladrillo de hierro reforzado
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3691,6 +3710,8 @@ Mods: {
 			// Graveyard_proj.DisplayName: Graveyard_proj
 			// Judment_Lasser.DisplayName: Judment_ Lasser
 			// Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
+			// BigGemBolt.DisplayName: Big Gem Bolt
+			// FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
 		}
 
 		Tiles: {

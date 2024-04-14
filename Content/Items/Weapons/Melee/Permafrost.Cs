@@ -119,8 +119,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             if (ceilingLimit > player.Center.Y - 200f)
             {
                 ceilingLimit = player.Center.Y - 200f;
-            }
-            // Loop these functions 3 times.
+            }     
             for (int i = 0; i < 3; i++)
             {
                 position = player.Center - new Vector2(Main.rand.NextFloat(401) * player.direction, 600f);

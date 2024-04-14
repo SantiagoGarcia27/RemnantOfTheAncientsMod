@@ -99,11 +99,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
             .AddIngredient(ItemBase.type, 600)
             .AddTile(TileID.CrystalBall)
             .Register();
-
-            CreateRecipe()
-           .AddIngredient(ModContent.ItemType<Terracoin>(), 6)
-           .AddTile(TileID.CrystalBall)
-           .Register();
         }
     }
 }

@@ -33,16 +33,20 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
            // storedPrefix = item.prefix;
             if (Reforges.ContainsKey(storedPrefix) && Main.LocalPlayer.HasItem(ModContent.ItemType<Terracoin>()))
             {
-                if (NPC.CountNPCS(NPCID.GoblinTinkerer) > 0 && Utils1.SearchNPC(NPCID.GoblinTinkerer,true).active)
+                if (Utils1.SearchNPC(NPCID.GoblinTinkerer, true) != null)
                 {
-                    AcendedPrefixSelected = Reforges[storedPrefix];
-                    
-                    return AcendedPrefixSelected;
+                    if (NPC.CountNPCS(NPCID.GoblinTinkerer) > 0 && Utils1.SearchNPC(NPCID.GoblinTinkerer, true).active)
+                    {
+                        AcendedPrefixSelected = Reforges[storedPrefix];
+
+                        return AcendedPrefixSelected;
+                    }
+                    else
+                    {
+                        return base.ChoosePrefix(item, rand);
+                    }
                 }
-                else
-                {
-                    return base.ChoosePrefix(item, rand);
-                }
+                return base.ChoosePrefix(item, rand);
             }
             else
             {

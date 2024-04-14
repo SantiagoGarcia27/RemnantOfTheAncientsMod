@@ -15,7 +15,6 @@ using Terraria.GameContent.ItemDropRules;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using System.IO;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.DataStructures;
@@ -27,6 +26,8 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using System.Collections.Generic;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
@@ -134,6 +135,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             shootAi(target, DificultyUtils.ReaperMode);
             summonAi(DificultyUtils.ReaperMode);
             CheckDistance(distance, NPC);
+            dogdeAi(target);
+
 
             if (Main.expertMode)
             {
@@ -147,6 +150,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 checkPhase();
             }
         }
+        private void dogdeAi(Player target)
+        {
+            float DistancePlayer;
+            List<Projectile> projectiles;
+            if (DogdeCouldown == 0)
+            {
+                DistancePlayer = Vector2.Distance(NPC.Center, target.Center);
+                if (DistancePlayer <= 250)
+                {
+                    Dogde(target);
+                }
+
+                projectiles = Utils1.SearchProjectiles(true, NPC, 250);
+                if (projectiles.Count > 0)
+                {
+                    Dogde(projectiles[0]);
+                }
+            } 
+            else
+            {
+                if (DogdeCouldown >= 0)
+                {
+                    DogdeCouldown--;
+                }
+                else
+                {
+                    DogdeCouldown = 0;
+                }
+            }
+        }
         private void summonAi(bool isReaper)
         {  
             int conter1 = isReaper? 150 : 300;
@@ -156,12 +189,34 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<IGolem>());
             }
         }
-
+        float DogdeCouldown =0;
+        public void Dogde(Player player)
+        {
+            NPC.velocity = -Vector2.Normalize(player.Center - NPC.Center) * 12;
+            NPC.velocity.Y +=  5 * (Main.rand.NextBool(2)? 1:-1);
+            DogdeCouldown = 360;
+        }
+        public void Dogde(Projectile proj)
+        {
+            NPC.velocity = -Vector2.Normalize(proj.Center - NPC.Center) * 12;
+            NPC.velocity.Y += 3 * (Main.rand.NextBool(2) ? 1 : -1);
+            DogdeCouldown = 360;
+        }
         private Vector2 ExplosionPosition;
         private void shootAi(Player target, bool isReaper)
         {
             switch (attackCounter)
             {
+                case 500:
+                case 200:
+                    if (currentPhase == 3 )
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            shootSwordIa(target, 50, ModContent.ProjectileType<FrozenPermafrostRain>(), 4f);
+                        }
+                    }
+                    break;
                 case 400:
                     if (isReaper)
                     {
@@ -230,6 +285,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 EternityIA(target);
             }
         }
+        #region Eternity
         public void EternityIA(Player target)
         {
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
@@ -237,7 +293,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode)
                 {
                     int MainShootRate = ((DificultyUtils.MasochistMode ? 4 : 8) * (!DificultyUtils.InfernumMode ? 1 : 2));
-                    if (attackCounter % MainShootRate == 0)
+                    if (attackCounter % MainShootRate == 0 && currentPhase != 2)
                     {
                         EthernityCommonShoot(target);
                     }
@@ -363,16 +419,20 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 }
             }
         }
+        #endregion
 
-       
         private void setAttackCounter(Player target)
         {
             if (attackCounter > 0)
             {
                 attackCounter--;
             }
-            if (attackCounter <= 0 && Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
+            float Distance = Vector2.Distance(NPC.Center, target.Center);
+            bool IsOnDistance = Distance < 600;
+            bool CanHit = Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1);
+            if (attackCounter <= 0 && IsOnDistance && CanHit)
             {
+
                 attackCounter = 900;
                 NPC.netUpdate = true;
             }
@@ -427,6 +487,39 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             Main.projectile[i].hostile = true;
             Main.projectile[i].friendly = false;
             Main.projectile[i].rotation += Orotation;
+        }
+        public void shootSwordIa(Player target,int Damage,int type,float speed)
+        {
+            // Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+            Vector2 position = target.position;
+            float ceilingLimit = position.Y;
+            if (ceilingLimit > target.Center.Y - 200f)
+            {
+                ceilingLimit = target.Center.Y - 200f;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                position = target.Center - new Vector2(Main.rand.NextFloat(401) * NPC.direction, 600f);
+                position.Y -= 100 * i;
+                Vector2 heading = position- NPC.position /*- position*/;
+
+                if (heading.Y < 0f)
+                {
+                    heading.Y *= -1f;
+                }
+
+                if (heading.Y < 20f)
+                {
+                    heading.Y = 20f;
+                }
+                Vector2 velocity = Vector2.UnitX * speed;
+                velocity = velocity.RotatedBy(grades);
+                heading.Normalize();
+                heading *= velocity.Length();
+                heading.Y += Main.rand.Next(-40, 41) * 0.02f;
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, type, Damage, 1, target.whoAmI, 0f, ceilingLimit);
+                Main.projectile[p].stepSpeed = speed;
+            }
         }
        
         public void FrozenPhase3()
@@ -545,13 +638,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 currentPhase = 1;
                 NPC.localAI[2] = 0;
             }
-            else if (NPC.life <= (NPC.lifeMax / 4) && healAnimation) currentPhase = 4;
-            else if (NPC.life <= (NPC.lifeMax / 4) && !healAnimation)
+            else if (NPC.life <= (NPC.lifeMax / 4))
             {
-                currentPhase = 3;
-                NPC.localAI[2] = 1;
+                if (healAnimation)
+                {
+                    currentPhase = 4;
+                }
+                else
+                {
+                    currentPhase = 3;
+                    NPC.localAI[2] = 1;
+                }
             }
-            else if (NPC.life <= (NPC.lifeMax / 2)) currentPhase = 2;
+            else if (NPC.life <= (NPC.lifeMax / 2) && currentPhase < 3) currentPhase = 2;
         }
         public override void BossLoot(ref string name, ref int potionType)
         {

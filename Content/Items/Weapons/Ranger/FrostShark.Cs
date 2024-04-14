@@ -6,13 +6,13 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
-	public class FrostShark : ModItem
+    public class FrostShark : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

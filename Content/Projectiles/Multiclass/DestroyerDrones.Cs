@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
@@ -41,10 +42,38 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Projectile.position = orbitPosition - new Vector2(Projectile.width / 2, Projectile.height / 2);
 
             Projectile.ai[0] += orbitSpeed;
+            FixOverlap();
         }
         private void updateRotation(Player player)
         {
             Projectile.rotation = (Projectile.Center - player.Center).ToRotation();
+        }
+        private void FixOverlap()
+        {
+            float overlapVelocity = 0.04f;
+            foreach (var other in Main.ActiveProjectiles)
+            {
+                if (other.whoAmI != Projectile.whoAmI && other.owner == Projectile.owner && Math.Abs(Projectile.position.X - other.position.X) + Math.Abs(Projectile.position.Y - other.position.Y) < Projectile.width)
+                {
+                    if (Projectile.position.X < other.position.X)
+                    {
+                        Projectile.velocity.X -= overlapVelocity;
+                    }
+                    else
+                    {
+                        Projectile.velocity.X += overlapVelocity;
+                    }
+
+                    if (Projectile.position.Y < other.position.Y)
+                    {
+                        Projectile.velocity.Y -= overlapVelocity;
+                    }
+                    else
+                    {
+                        Projectile.velocity.Y += overlapVelocity;
+                    }
+                }
+            }
         }
 
         private void checkActive(Player player)

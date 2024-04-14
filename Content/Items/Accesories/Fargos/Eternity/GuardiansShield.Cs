@@ -72,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             .AddIngredient(ModContent.ItemType<FrostBarrier>(), 1)
             .AddIngredient(ModContent.ItemType<TyrantsMark>(), 1)
             .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "DeviatingEnergy"), 5)
-            .AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
+            .AddTile(TileID.Mythril)
             .Register();
         }
     }

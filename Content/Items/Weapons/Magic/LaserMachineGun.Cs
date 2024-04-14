@@ -43,12 +43,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			float numberProjectiles = 5 + Main.rand.Next(4);
-			float rotation = MathHelper.ToRadians(4);
-			position += Vector2.Normalize(velocity) * 45f;
+			float numberProjectiles = 5 + Main.rand.Next(4); //set the numer of projectiles
+			float rotation = MathHelper.ToRadians(4); // establishes the deviation of the projectiles (in this case 4 degrees between projectile and projectile)
+            position += Vector2.Normalize(velocity) * 45f; // fix the velocity to make more stable
 			for (int i = 0; i < numberProjectiles; i++)
 			{
-				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
+				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Apply all on the new Velocity
 				Projectile.NewProjectile(source, position, perturbedSpeed, ProjectileID.LaserMachinegunLaser, 40, knockback, player.whoAmI);
 			}
 			return false;

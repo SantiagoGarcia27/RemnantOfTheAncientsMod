@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Prefixe;
 using System;
 using System.Collections.Generic;
@@ -293,6 +294,25 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     string text1 = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedBootSpeedInBlock", new Item(ItemID.SnowBlock).Name);
                     var text = tip.Text.Insert(tip.Text.Count(), text1);
                     tip.Text = text;
+                }
+            }
+            else if (item.type == ModContent.ItemType<Terracoin>())
+            {
+                string[] atributes = new string[5]
+                {
+                    "Damage",
+                    "CritChance",
+                    "Speed",
+                    "Knockback",
+                    "Placeable"
+                }; 
+                foreach (string a in atributes)
+                {
+                    var tip = Tooltips.FirstOrDefault(tip => (tip.Name == a) && tip.Mod == "Terraria");
+                    if (tip != null)
+                    {
+                        tip.Text = "";
+                    }
                 }
             }
             if (baseItem != null)

@@ -122,88 +122,40 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public abstract void Init();
     }
 
-    /// <summary>
-    /// The base class for head segment NPCs of Worm enemies
-    /// </summary>
     public abstract class WormHead : Worm
     {
         public sealed override WormSegmentType SegmentType => WormSegmentType.Head;
-
-        /// <summary>
-        /// The NPCID or ModContent.NPCType for the body segment NPCs.<br/>
-        /// This property is only used if <see cref="HasCustomBodySegments"/> returns <see langword="false"/>.
-        /// </summary>
         public abstract int BodyType { get; }
 
-        /// <summary>
-        /// The NPCID or ModContent.NPCType for the tail segment NPC.<br/>
-        /// This property is only used if <see cref="HasCustomBodySegments"/> returns <see langword="false"/>.
-        /// </summary>
         public abstract int TailType { get; }
 
-        /// <summary>
-        /// The minimum amount of segments expected, including the head and tail segments
-        /// </summary>
         public int MinSegmentLength { get; set; }
 
-        /// <summary>
-        /// The maximum amount of segments expected, including the head and tail segments
-        /// </summary>
         public int MaxSegmentLength { get; set; }
 
-        /// <summary>
-        /// Whether the NPC ignores tile collision when attempting to "dig" through tiles, like how Wyverns work.
-        /// </summary>
         public bool CanFly { get; set; }
 
-        /// <summary>
-        /// The maximum distance in <b>pixels</b> within which the NPC will use tile collision, if <see cref="CanFly"/> returns <see langword="false"/>.<br/>
-        /// Defaults to 1000 pixels, which is equivalent to 62.5 tiles.
-        /// </summary>
         public virtual int MaxDistanceForUsingTileCollision => 1000;
 
-        /// <summary>
-        /// Whether the NPC uses 
-        /// </summary>
         public virtual bool HasCustomBodySegments => false;
 
-        /// <summary>
-        /// If not <see langword="null"/>, this NPC will target the given world position instead of its player target
-        /// </summary>
         public Vector2? ForcedTargetPosition { get; set; }
 
-        /// <summary>
-        /// Override this method to use custom body-spawning code.<br/>
-        /// This method only runs if <see cref="HasCustomBodySegments"/> returns <see langword="true"/>.
-        /// </summary>
-        /// <param name="segmentCount">How many body segements are expected to be spawned</param>
-        /// <returns>The whoAmI of the most-recently spawned NPC, which is the result of calling <see cref="NPC.NewNPC(Terraria.DataStructures.IEntitySource, int, int, int, int, float, float, float, float, int)"/></returns>
         public virtual int SpawnBodySegments(int segmentCount)
         {
-            // Defaults to just returning this NPC's whoAmI, since the tail segment uses the return value as its "following" NPC index
             return NPC.whoAmI;
         }
 
-        /// <summary>
-        /// Spawns a body or tail segment of the worm.
-        /// </summary>
-        /// <param name="source">The spawn source</param>
-        /// <param name="type">The ID of the segment NPC to spawn</param>
-        /// <param name="latestNPC">The whoAmI of the most-recently spawned segment NPC in the worm, including the head</param>
-        /// <returns></returns>
+
         protected int SpawnSegment(IEntitySource source, int type, int latestNPC)
         {
-            // We spawn a new NPC, setting latestNPC to the newer NPC, whilst also using that same variable
-            // to set the parent of this new NPC. The parent of the new NPC (may it be a tail or body part)
-            // will determine the movement of this new NPC.
-            // Under there, we also set the realLife value of the new NPC, because of what is explained above.
             int oldLatest = latestNPC;
             latestNPC = NPC.NewNPC(source, (int)NPC.Center.X, (int)NPC.Center.Y, type, NPC.whoAmI, 0, latestNPC);
 
             Main.npc[oldLatest].ai[0] = latestNPC;
 
             NPC latest = Main.npc[latestNPC];
-            // NPC.realLife is the whoAmI of the NPC that the spawned NPC will share its health with
+
             latest.realLife = NPC.whoAmI;
 
             return latestNPC;
@@ -222,80 +174,67 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
         private void HeadAI_SpawnSegments()
         {
-            //if (Main.netMode != NetmodeID.MultiplayerClient)
-            //{
-                // So, we start the AI off by checking if NPC.ai[0] (the following NPC's whoAmI) is 0.
-                // This is practically ALWAYS the case with a freshly spawned NPC, so this means this is the first update.
-                // Since this is the first update, we can safely assume we need to spawn the rest of the worm (bodies + tail).
-                bool hasFollower = NPC.ai[0] > 0;
-                if (!hasFollower)
+
+            bool hasFollower = NPC.ai[0] > 0;
+            if (!hasFollower)
+            {
+
+                NPC.realLife = NPC.whoAmI;
+
+                int latestNPC = NPC.whoAmI;
+
+
+                int randomWormLength = Main.rand.Next(MinSegmentLength, MaxSegmentLength + 1);
+
+                int distance = randomWormLength - 2;
+
+                IEntitySource source = NPC.GetSource_FromAI();
+
+                if (HasCustomBodySegments)
                 {
-                    // So, here we assign the NPC.realLife value.
-                    // The NPC.realLife value is mainly used to determine which NPC loses life when we hit this NPC.
-                    // We don't want every single piece of the worm to have its own HP pool, so this is a neat way to fix that.
-                    NPC.realLife = NPC.whoAmI;
-                    // latestNPC is going to be used in SpawnSegment() and I'll explain it there.
-                    int latestNPC = NPC.whoAmI;
+                    latestNPC = SpawnBodySegments(distance);
+                }
+                else
+                {
 
-                    // Here we determine the length of the worm.
-                    int randomWormLength = Main.rand.Next(MinSegmentLength, MaxSegmentLength + 1);
-
-                    int distance = randomWormLength - 2;
-
-                    IEntitySource source = NPC.GetSource_FromAI();
-
-                    if (HasCustomBodySegments)
+                    while (distance > 0)
                     {
-                        // Call the method that'll handle spawning the body segments
-                        latestNPC = SpawnBodySegments(distance);
+                        latestNPC = SpawnSegment(source, BodyType, latestNPC);
+                        distance--;
                     }
-                    else
+                }
+                SpawnSegment(source, TailType, latestNPC);
+
+                NPC.netUpdate = true;
+
+                int count = 0;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC n = Main.npc[i];
+
+                    if (n.active && (n.type == Type || n.type == BodyType || n.type == TailType) && n.realLife == NPC.whoAmI)
                     {
-                        // Spawn the body segments like usual
-                        while (distance > 0)
-                        {
-                            latestNPC = SpawnSegment(source, BodyType, latestNPC);
-                            distance--;
-                        }
+                        count++;
                     }
+                }
 
-                    // Spawn the tail segment
-                    SpawnSegment(source, TailType, latestNPC);
-
-                    NPC.netUpdate = true;
-
-                    // Ensure that all of the segments could spawn.  If they could not, despawn the worm entirely
-                    int count = 0;
+                if (count != randomWormLength)
+                {
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
                         NPC n = Main.npc[i];
 
                         if (n.active && (n.type == Type || n.type == BodyType || n.type == TailType) && n.realLife == NPC.whoAmI)
                         {
-                            count++;
+                            n.active = false;
+                            n.netUpdate = true;
                         }
                     }
-
-                    if (count != randomWormLength)
-                    {
-                        // Unable to spawn all of the segments... kill the worm
-                        for (int i = 0; i < Main.maxNPCs; i++)
-                        {
-                            NPC n = Main.npc[i];
-
-                            if (n.active && (n.type == Type || n.type == BodyType || n.type == TailType) && n.realLife == NPC.whoAmI)
-                            {
-                                n.active = false;
-                                n.netUpdate = true;
-                            }
-                        }
-                    }
-
-                    // Set the player target for good measure
-                    NPC.TargetClosest(true);
                 }
-           // }
+            }
+            NPC.TargetClosest(true);
         }
+    
 
         private bool HeadAI_CheckCollisionForDustSpawns()
         {

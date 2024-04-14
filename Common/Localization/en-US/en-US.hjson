@@ -1543,7 +1543,11 @@ Mods: {
 
 			Terracoin: {
 				DisplayName: Terra Coin
-				Tooltip: ""
+				Tooltip:
+					'''
+					Can be used to obtain ascended reforgings on the Tinkerer Goblin 
+					(Only works if your item is at its best reforge)
+					'''
 			}
 
 			TuxoniteBar: {
@@ -3452,6 +3456,21 @@ Mods: {
 					Prevents mining souls from appearing
 					'''
 			}
+
+			JungleBricks: {
+				DisplayName: Jungle Bricks
+				Tooltip: ""
+			}
+
+			NightBricks: {
+				DisplayName: Night Bricks
+				Tooltip: ""
+			}
+
+			ReinforcedironBricks: {
+				DisplayName: Reinforcediron Bricks
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3671,6 +3690,8 @@ Mods: {
 			Graveyard_proj.DisplayName: Graveyard_proj
 			Judment_Lasser.DisplayName: Judment_ Lasser
 			Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
+			BigGemBolt.DisplayName: Big Gem Bolt
+			FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
 		}
 
 		Tiles: {

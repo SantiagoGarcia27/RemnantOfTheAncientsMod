@@ -216,7 +216,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static bool NumberBetween(float min, float max, float number)
         {
-            return (number - min) * (max - number) >= 0;
+            return number <= max && number >= min;
         }
 
         public static bool CanDevourerOfWorldsDrop(NPC npc)
@@ -366,7 +366,36 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return null;
         }
-
+        public static List<Projectile> SearchProjectiles(bool friendly, Vector2 center, float range)
+        {
+            List<Projectile> l = new List<Projectile>();
+            foreach (Projectile p in Main.projectile)
+            {
+                if(Vector2.Distance(center, p.Center) <= range)
+                {
+                    if(p.friendly == friendly && p.hostile == !friendly)
+                    {
+                        l.Add(p);
+                    }
+                }
+            }
+            return l;
+        }
+        public static List<Projectile> SearchProjectiles(bool friendly, NPC center, float range)
+        {
+            List<Projectile> l = new List<Projectile>();
+            foreach (Projectile p in Main.projectile)
+            {
+                if (Vector2.Distance(center.Center, p.Center) <= range)
+                {
+                    if (p.friendly == friendly && p.hostile == !friendly) 
+                    {
+                        l.Add(p);
+                    }
+                }
+            }
+            return l;
+        }
         public static bool PlayerIsUnderWather(Player player)
         {
            return Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);

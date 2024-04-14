@@ -1,10 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
-using System;
 using Terraria;
-using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
@@ -63,10 +61,43 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                 //Main.NewText(Charge);
                 if (Charge >= 180)
                 {
-                    int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.position, SubVelocity * 2, (int)Projectile.ai[0], (int)(player.HeldItem.damage * 4f), player.HeldItem.knockBack, player.whoAmI);
+                    int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.position - new Vector2(0f,1.5f)*16, SubVelocity * 2, ModContent.ProjectileType<BigGemBolt>(), (int)(player.HeldItem.damage * 4f), player.HeldItem.knockBack, player.whoAmI);
                     Main.projectile[p].Size *= 2f;
                     Main.projectile[p].scale = 3f;
                     Main.projectile[p].stepSpeed = 10f;
+
+                    switch (Projectile.ai[0])
+                    {
+                        case ProjectileID.AmethystBolt:
+                            Main.projectile[p].localAI[0] = ItemID.LargeAmethyst;
+                            Main.projectile[p].localAI[1] = DustID.GemAmethyst;
+                            break;
+                        case ProjectileID.TopazBolt:
+                            Main.projectile[p].localAI[0] = ItemID.LargeTopaz;
+                            Main.projectile[p].localAI[1] = DustID.GemTopaz;
+                            break;
+                        case ProjectileID.EmeraldBolt:
+                            Main.projectile[p].localAI[0] = ItemID.LargeEmerald;
+                            Main.projectile[p].localAI[1] = DustID.GemEmerald;
+                            break;
+                        case ProjectileID.SapphireBolt:
+                            Main.projectile[p].localAI[0] = ItemID.LargeSapphire;
+                            Main.projectile[p].localAI[1] = DustID.GemSapphire;
+                            break;
+                        case ProjectileID.RubyBolt:
+                            Main.projectile[p].localAI[0] = ItemID.LargeRuby;
+                            Main.projectile[p].localAI[1] = DustID.GemRuby;
+                            break;
+                        case ProjectileID.DiamondBolt:
+                            Main.projectile[p].localAI[0] = ItemID.LargeDiamond;
+                            Main.projectile[p].localAI[1] = DustID.GemDiamond;
+                            break;
+                        case ProjectileID.AmberBolt:
+                            Main.projectile[p].localAI[0] = ItemID.LargeAmber;
+                            Main.projectile[p].localAI[1] = DustID.GemAmber;
+                            break;
+                    }
+
                     // Main.NewText("Fuego");
 
                     Projectile.Kill();
@@ -90,7 +121,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                 Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
                 Vector2 origin2 = new Vector2(texture2.Width() * 0.5f, texture2.Height() * 0.5f);//0.5
 
-                if (Projectile.ai[0] <= 170)
+                if (Projectile.ai[0] <= 170 || Projectile.ai[0] <= ProjectileID.AmberBolt)
                 {
                     Color BaseColor = GetColor();
 

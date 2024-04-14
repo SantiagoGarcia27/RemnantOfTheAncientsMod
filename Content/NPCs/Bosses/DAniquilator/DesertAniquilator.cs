@@ -28,6 +28,9 @@ using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod;
+using CalamityMod.NPCs.TownNPCs;
+using FargowiltasSouls.Content.Projectiles.Minions;
+using Microsoft.Xna.Framework.Graphics.PackedVector;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -55,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }  
         public override void SetDefaults()
         {
-            NPC.aiStyle = NPCID.BlueSlime;
+            NPC.aiStyle = -1;
             NPC.lifeMax = 3500;// (int)NpcChanges1.ExpertLifeScale(3500);
             NPC.damage = 30;// (int)NpcChanges1.ExpertDamageScale(30);
             NPC.defense = 10;
@@ -125,18 +128,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     ScreenAnimationTimer--;
                     return;
                 }
-                if(ScreenAnimationTimer <= 0)
+                else
                 {
                     NoAI = false;
                 }
             }
             Player player = Main.player[NPC.target];
-            if (NoAI == false)
+            if (!NoAI)
             {
                 NPC.ai[0] = 10;
                 NPC.ai[1] = (NPC.ai[1] + 1) % 800;
-                NPC.ai[2]++;
-           
+               // NPC.ai[2]++;
+
                 BossIsInRage = CheckRage(player);
                 NPC.scale = LifeSize(NPC);
                 float distance = NPC.Distance(player.Center);
@@ -145,7 +148,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     GenerateTpParticles();
                     DesertTp();
                 }
-
+                //if(InfernumMode != null)
+                //{     
+                movmentAi();
+                //}
                 NpcFloor = Utils.ToTileCoordinates(NPC.Center);
                 Point PlayerFloor = Utils.ToTileCoordinates(Main.player[NPC.target].Center);
 
@@ -164,6 +170,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 setCurrentPhase(NPC);
                 AttackIA(player);
 
+                //Main.NewText(NPC.velocity);
+
                 if (player.dead)
                 {
                     NPC.EncourageDespawn(7);
@@ -177,7 +185,268 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 }
             }
         }
+        #region Movment
+        public void movmentAi()
+        {
+            // Reset NPC.ai[1] if it falls within a certain range
+            if (NPC.ai[1] >= 1f && NPC.ai[1] <= 3f)
+            {
+                NPC.ai[1] = -1f;
+            }
 
+            // Handle special behavior for ai[1] == 75f
+            if (NPC.ai[1] == 75f)
+            {
+                HandleSpecialBehavior();
+            }
+
+            // Handle resetting ai[1] and other behavior
+            HandleResetBehavior();
+
+            // Reset NPC frame and rotation if ai[0] is -999f
+            if (NPC.ai[0] == -999f)
+            {
+                ResetNPCFrameAndRotation();
+                return;
+            }
+
+            // Check if NPC should be aggressive
+            bool isAggressive = ShouldBeAggressive();
+
+            // Handle behavior when NPC is wet
+            if (NPC.wet)
+            {
+                HandleWetBehavior(isAggressive);
+            }
+
+            // Reset aiAction and set ai[0] and ai[2] if ai[2] is 0f
+            HandleResetAiAction();
+
+            // Handle movement when NPC velocity.Y is 0f
+            if (NPC.velocity.Y == 0f)
+            {
+                bool flag = !Main.dayTime || NPC.life != NPC.lifeMax || NPC.position.Y > Main.worldSurface * 16.0 || Main.slimeRain;
+
+                if (NPC.collideY && NPC.oldVelocity.Y != 0f && Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
+                {
+                    NPC.position.X -= NPC.velocity.X + NPC.direction;
+                }
+
+                if (NPC.ai[3] == NPC.position.X)
+                {
+                    NPC.direction *= -1;
+                    NPC.ai[2] = 200f;
+                }
+
+                NPC.ai[3] = 0f;
+                NPC.velocity.X *= 0.8f;
+
+                if (Math.Abs(NPC.velocity.X) < 0.1)
+                {
+                    NPC.velocity.X = 0f;
+                }
+
+                if (flag)
+                {
+                    NPC.ai[0] += 1f;
+                }
+
+                NPC.ai[0] += 1f;
+
+                float intervalo = -1000f;
+                int num34 = 0;
+
+                if (NPC.ai[0] >= intervalo)
+                {
+                    num34 = 1;
+                }
+
+                else if (NPC.ai[0] >= intervalo * 2f)
+                {
+                    num34 = 3;
+                }
+                else if (NPC.ai[0] >= intervalo * 0.5f)
+                {
+                    num34 = 2;
+                }
+
+                if (num34 > 0)
+                {
+                    HandleNum34Behavior(num34, flag, intervalo);
+                }
+                else if (NPC.ai[0] >= -30f)
+                {
+                    NPC.aiAction = 1;
+                }
+            }
+            else if (NPC.target < 255 && ((NPC.direction == 1 && NPC.velocity.X < 3f) || (NPC.direction == -1 && NPC.velocity.X > -3f)))
+            {
+                HandleXMovement();
+            }
+        }
+
+        // Handles special behavior for ai[1] == 75f
+        private void HandleSpecialBehavior()
+        {
+            float num = 0.3f;
+            Lighting.AddLight((int)(NPC.Center.X / 16f), (int)(NPC.Center.Y / 16f), 0.8f * num, 0.7f * num, 0.1f * num);
+            if (Main.rand.NextBool(12))
+            {
+                CreateDustEffect();
+            }
+        }
+
+        // Handles creating a dust effect
+        private void CreateDustEffect()
+        {
+            Dust dust = Dust.NewDustPerfect(NPC.Center + new Vector2(0f, (float)NPC.height * 0.2f) + Main.rand.NextVector2CircularEdge(NPC.width, (float)NPC.height * 0.6f) * (0.3f + Main.rand.NextFloat() * 0.5f), 228, new Vector2(0f, (0f - Main.rand.NextFloat()) * 0.3f - 1.5f), 127);
+            dust.scale = 0.5f;
+            dust.fadeIn = 1.1f;
+            dust.noGravity = true;
+            dust.noLight = true;
+        }
+
+        // Handles resetting ai[1] and other behavior
+        private void HandleResetBehavior()
+        {
+            if (NPC.ai[1] == 0f && Main.netMode != NetmodeID.MultiplayerClient && NPC.value > 0f)
+            {
+                ResetAiAndNetUpdate();
+            }
+
+            // Additional conditions...
+        }
+
+        // Handles resetting ai[1] and setting netUpdate to true
+        private void ResetAiAndNetUpdate()
+        {
+            NPC.ai[1] = -1f;
+            if (Main.remixWorld && NPC.ai[0] != -999f && Main.rand.NextBool(3))
+            {
+                NPC.ai[1] = 75f;
+                NPC.netUpdate = true;
+            }
+        }
+
+        // Handles resetting NPC frame and rotation
+        private void ResetNPCFrameAndRotation()
+        {
+            NPC.frame.Y = 0;
+            NPC.frameCounter = 0.0;
+            NPC.rotation = 0f;
+        }
+
+        // Checks if NPC should be aggressive
+        private bool ShouldBeAggressive()
+        {
+            bool flag = !Main.dayTime || NPC.life != NPC.lifeMax || NPC.position.Y > Main.worldSurface * 16.0 || Main.slimeRain;
+            return flag;
+        }
+
+        // Handles behavior when NPC is wet
+        private void HandleWetBehavior(bool isAggressive)
+        {
+            if (NPC.collideY)
+            {
+                NPC.velocity.Y = -2f;
+            }
+            if (NPC.velocity.Y < 0f && NPC.ai[3] == NPC.position.X)
+            {
+                NPC.direction *= -1;
+                NPC.ai[2] = 200f;
+            }
+            if (NPC.velocity.Y > 0f)
+            {
+                NPC.ai[3] = NPC.position.X;
+            }
+            if (NPC.velocity.Y > 2f)
+            {
+                NPC.velocity.Y *= 0.9f;
+            }
+            NPC.velocity.Y -= 0.5f;
+            if (NPC.velocity.Y < -4f)
+            {
+                NPC.velocity.Y = -4f;
+            }
+
+            if (NPC.ai[2] == 1f && isAggressive)
+            {
+                NPC.TargetClosest();
+            }
+        }
+
+        // Handles resetting aiAction and setting ai[0] and ai[2]
+        private void HandleResetAiAction()
+        {
+            NPC.aiAction = 0;
+            if (NPC.ai[2] == 0f)
+            {
+                NPC.ai[0] = -100f;
+                NPC.ai[2] = 1f;
+                NPC.TargetClosest();
+            }
+        }
+
+        // Handles behavior based on the value of num34
+        private void HandleNum34Behavior(int num34, bool isAggressive, float intervalo)
+        {
+            NPC.netUpdate = true;
+
+            if (isAggressive && NPC.ai[2] == 1f)
+            {
+                NPC.TargetClosest();
+            }
+
+            if (num34 == 3)
+            {
+                NPC.velocity.Y = -8f;
+                NPC.velocity.X += 3 * NPC.direction;
+                NPC.ai[0] = -200f;
+                NPC.ai[3] = NPC.position.X;
+            }
+            else
+            {
+                NPC.velocity.Y = -6f;
+                NPC.velocity.X += 2 * NPC.direction;
+                NPC.ai[0] = -120f;
+
+                if (num34 == 1)
+                {
+                    NPC.ai[0] += intervalo;
+                }
+                else
+                {
+                    NPC.ai[0] += intervalo * 2f;
+                }
+            }
+        }
+
+        // Handles X movement logic
+        private void HandleXMovement()
+        {
+            if (NPC.collideX && Math.Abs(NPC.velocity.X) == 0.2f)
+            {
+                NPC.position.X -= 1.4f * NPC.direction;//1.4
+            }
+
+            if (NPC.collideY && NPC.oldVelocity.Y != 0f && Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
+            {
+                NPC.position.X -= NPC.velocity.X + NPC.direction;
+            }
+
+            float acceleration = 1.4f * Main.player[NPC.target].maxRunSpeed;//0.2
+            float deceleration = 0.93f;
+
+            if ((NPC.direction == -1 && NPC.velocity.X < 0.01f) || (NPC.direction == 1 && NPC.velocity.X > -0.01f))
+            {
+                NPC.velocity.X += acceleration * NPC.direction;
+            }
+            else
+            {
+                NPC.velocity.X *= deceleration;
+            }
+        }
+        #endregion
         public static bool CheckRage(Player player) => !player.dead && player.active && !player.ZoneDesert && !player.ZoneUndergroundDesert;
         private void AttackIA(Player target)
         {
@@ -208,19 +477,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             SummonAI(AttackValue);
             if (Main.expertMode)
             {
-                ShootAI(AttackValue,target);
+                ShootAI(AttackValue, target);
                 TornadoAI(mark);
             }
             if (attackCounter == 500)
             {
                 DesertTp();
             }
-            if (attackCounter < 560)
+            if (Utils1.NumberBetween(500, 560, attackCounter))
             {
-                if (attackCounter > 500)
-                {
-                    GenerateTpParticles();
-                }
+                GenerateTpParticles();
             }
         }
         public void ShootAI(List<int[]> AttackValue, Player target)
@@ -247,9 +513,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 }
                 else
                 {
-                    int n = DificultyUtils.ReaperMode ? 2 : 0;
-
-                    for (float i = 0f; i < n; i += 0.5f)
+                    for (float i = 0f; i < (DificultyUtils.ReaperMode ? 2 : 0); i += 0.5f)
                     {
                         ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -3.5f + i, 3.5f - i, proj);
                     }
@@ -299,7 +563,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public void TornadoAI(int mark)
         {
-
+            int damage = 30;
             if (tornadoCounter == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, SetFinalStagePorcentage()))
             {
                 tornadoCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
@@ -319,10 +583,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position, Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
                 }
-                else if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
-                {
-                    Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, 30, 1, Main.myPlayer);
-                }           
+                damage = 30;           
             }
             else
             {
@@ -333,11 +594,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     {
                         mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position + new Vector2(a * 16 * distanceBetweenTornados * Main.player[NPC.target].direction, 0), Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
                     }
-                }
-                else if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
-                {
-                    Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, 40, 1, Main.myPlayer);
-                }
+                    damage = 40;
+                }           
+            }
+            if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
+            {
+                Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, damage, 1, Main.myPlayer);
             }
 
         }
@@ -411,7 +673,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("DesertAniquilatorGore").Type, NPC.scale);         
                 }
-                for (int j = 0; j <new RemnantOfTheAncientsMod().ParticleMeter(1000); j++)
+                for (int j = 0; j < new RemnantOfTheAncientsMod().ParticleMeter(1000); j++)
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sandstorm,hit.HitDirection, -1f);
                 }
@@ -420,8 +682,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             {
                 int m = -1;
                 for (int i = 0; i < 2; i++)
-                {
-                 
+                { 
                     NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X + 10 * m, (int)NPC.position.Y, NPCType<DesertAnnihilatorGuard>());
                     m *= -1;
                 }
@@ -481,13 +742,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             if (summonCounter <= 0)
             {
                 var a = ListCounter[0][1];
-                summonCounter = ListCounter[0][1]; // Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
+                summonCounter = ListCounter[0][1];
                 NPC.netUpdate = true;
             }
 
             if (attackCounter <= 0)
             {
-                attackCounter = ListCounter[0][0];// Main.masterMode ? masterAttackCounterScale : Main.expertMode ? expertAttackCounterScale : normalAttackCounterScale;
+                attackCounter = ListCounter[0][0];
                 NPC.netUpdate = true;
             }
         }
@@ -512,18 +773,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 return newPos;
             }
         }
-        public bool CoordHasTile(Vector2 pos)
-        {
-            if (Collision.SolidCollision(pos, 6 * 16, 6 * 16))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
+        public bool CoordHasTile(Vector2 pos) => Collision.SolidCollision(pos, 6 * 16, 6 * 16);
         public bool CoordHasLiquid(Vector2 pos)
         {
             if (Collision.LavaCollision(pos, 6 * 16, 6 * 16) || Collision.WetCollision(pos, 6 * 16, 6 * 16))
@@ -536,7 +786,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             }
             else
             {
-
                 return false;
             }
 
@@ -555,23 +804,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         {
             tpDirection = Main.rand.Next(1, 100);
 
-            int dir = tpDirection <= 50 ? 1 : 2;
-            switch (dir)
-            {
-                case 1:
-                    tpParticleTimer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
-                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(30 * 16,-5 *16));
-                    GenerateTpParticles();
-                    break;
-               // case 2:
-                    //NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(0, -20 * 16));
-                case 2:
-                    tpParticleTimer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
-                    NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(-30 * 16, -5 * 16));
-                    GenerateTpParticles();
-                    break;
+            int dir = tpDirection <= 50 ? -1 : 1;
 
-            }
+            tpParticleTimer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
+            NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(dir * 30 * 16, -5 * 16));
+            GenerateTpParticles();
             tpParticleTimer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
         }
         public void GenerateTpParticles()
@@ -581,7 +818,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 tpParticleTimer--;
                 for (int i = 0; i < 25; i++)
                 {
-
                     Vector2 dustPosition = NPC.position + new Vector2(Main.rand.Next(NPC.width), Main.rand.Next(NPC.height));
                     Dust dust = Dust.NewDustDirect(dustPosition, NPC.width, NPC.height, DustID.Sand,0,0,100,default,3f);
                     dust.velocity = NPC.velocity * 0.2f; 

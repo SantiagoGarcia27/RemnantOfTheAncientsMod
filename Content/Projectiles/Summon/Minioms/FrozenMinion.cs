@@ -1,9 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {

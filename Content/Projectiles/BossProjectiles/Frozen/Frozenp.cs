@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
+namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
 {
     public class Frozenp : BaseFrozenP
     {
@@ -56,7 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
         }
         public override void AI()
         {
-          
+
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
             Lighting.AddLight(Projectile.velocity, TorchID.Ice);
@@ -68,13 +68,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
             Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
             usePos += rotVector * 16f;
 
-            
+
             for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(5); i++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0f, 0f, 100, default(Color), 1.5f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0f, 0f, 100, default, 1.5f);
             }
         }
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.immune[Projectile.owner] = 0;
         }

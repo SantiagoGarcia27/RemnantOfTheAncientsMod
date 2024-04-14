@@ -22,6 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
         }
         public override void SetDefaults()
         {
+            
             Item.height = 14;
             Item.maxStack = 999;
             Item.value = Item.sellPrice(gold: 10);
