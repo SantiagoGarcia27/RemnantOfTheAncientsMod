@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using FargowiltasSouls.Common.Graphics.Shaders;
 using FargowiltasSouls.Content.Items.Accessories.Masomode;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
@@ -45,19 +44,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
 		public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
 		{
-			if (line.Mod == "Terraria" && line.Name == "ItemName")
-			{
-				Main.spriteBatch.End();
-				Main.spriteBatch.Begin((SpriteSortMode)1, null, null, null, null, null, Main.UIScaleMatrix);
-				ShaderManager.GetShaderIfExists("Text").SetMainColor(new Color(42, 42, 99)).SetSecondaryColor(FargowiltasSouls.FargowiltasSouls.EModeColor())
-				.Apply(setCommonParams: true, "PulseUpwards");
-				Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2((float)line.X, (float)line.Y), Color.White);
-				Main.spriteBatch.End();
-				Main.spriteBatch.Begin(0, null, null, null, null, null, Main.UIScaleMatrix);
-				return false;
-			}
-			return true;
-		}
+			return ModContent.GetInstance<EternitySoul>().PreDrawTooltipLine(line,ref yOffset);
+    //        if ((line.Mod == "Terraria" && line.Name == "ItemName") || line.Name == "FlavorText")
+    //        {
+    //            Main.spriteBatch.End(); //end and begin main.spritebatch to apply a shader
+    //            Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Main.UIScaleMatrix);
+				//ManagedShader shader = ShaderManager.GetShader("FargowiltasSouls.Text");
+    //            shader.TrySetParameter("mainColor", new Color(42, 42, 99));
+    //            shader.TrySetParameter("secondaryColor", FargowiltasSouls.FargowiltasSouls.EModeColor());
+    //            shader.Apply("PulseUpwards");
+    //            Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2(line.X, line.Y), Color.White, 1); //draw the tooltip manually
+    //            Main.spriteBatch.End(); //then end and begin again to make remaining tooltip lines draw in the default way
+    //            Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
+    //            return false;
+    //        }
+    //        return true;
+        }
         //public override bool WingUpdate(Player player, bool inUse)
         //{
         //    int WingTicks = (!inUse) ? 8 : 5;

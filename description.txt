@@ -17,7 +17,7 @@
     - 3 Vanity armor sets
     - 93 potions
     - 52 Ammos
-    - 15 blocks
+    - 18 blocks
     - 4 pets
     - 12 new materials
     - 4 pieces of furniture

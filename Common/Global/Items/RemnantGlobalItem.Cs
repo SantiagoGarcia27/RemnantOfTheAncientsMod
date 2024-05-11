@@ -18,6 +18,9 @@ using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ReLogic.Content;
+using ExampleMod.Content.DamageClasses;
+using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
+using static Humanizer.In;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -28,6 +31,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public int StyleStat = 0;
         public Item ItemBase = null;
 		public static List<int> SpearsList = new List<int>();
+
+		Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
 
         public override bool InstancePerEntity => true;
         public int[] lanceId = new int[]
@@ -273,6 +278,46 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.damage = 300;
                 }
+				if(item.type == ItemID.PurpleClubberfish)
+				{
+					item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.ReaverShark)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.Rockfish)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.SawtoothShark)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.FrostDaggerfish)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.Swordfish)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.Toxikarp)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.Bladetongue)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.CrystalSerpent)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
+                if (item.type == ItemID.ObsidianSwordfish)
+                {
+                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                }
 
                 if (item.maxStack > 1 && item.maxStack < 9999)
 				{
@@ -287,8 +332,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				//	AddValueToTreasureBags(item);
 				//}
 				AddToDashWeaponsLists(item);
+				SetFishClass(item);
 
-				if (SpearsList.Contains(item.type))
+
+
+                if (SpearsList.Contains(item.type))
 				{
 					item.GetGlobalItem<CustomTooltip>().Lance = true;
 				}
@@ -308,6 +356,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		//	Main.ItemDropsDB.GetRulesForItemID(item.type);// .GetRulesForItemID(item.type);
   //      }
 		
+		public void SetFishClass(Item item)
+		{
+            if (item.fishingPole > 0)
+            {
+                item.damage = item.fishingPole - 1;
+                item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+            }
+        }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -589,7 +645,49 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 
 			}
-
+			if(Calamity != null)
+			{
+				if(item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "TheDevourerofCods"))
+				{
+                    for (int index = 0; index < 10; index++)
+                    {
+                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
+                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
+                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
+                    }
+                    return false;
+                }
+				else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "RiftReeler"))
+                {
+                    for (int index = 0; index < Main.rand.Next(3, 6); index++)
+                    {
+                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
+                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
+                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
+                    }
+                    return false;
+                }
+                else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "FeralDoubleRod"))
+                {
+                    for (int index = 0; index < 2; index++)
+                    {
+                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
+                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
+                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
+                    }
+                    return false;
+                }
+                else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "EarlyBloomRod"))
+                {
+                    for (int index = 0; index < 6; index++)
+                    {
+                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
+                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
+                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
+                    }
+                    return false;
+                }
+            }
 
 			
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);

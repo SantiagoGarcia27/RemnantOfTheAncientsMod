@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             Projectile.timeLeft = 3000;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             //Vector2 launchVelocity = new Vector2(-4, 0); // Create a velocity moving the left.
             //for (int i = 0; i < 4; i++)

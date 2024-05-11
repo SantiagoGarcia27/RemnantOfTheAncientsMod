@@ -1,6 +1,7 @@
 using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Mono.Cecil;
+using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles;
@@ -57,8 +58,16 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
           
             }
-            
-            if(RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
+            if (projectile.bobber)
+            {
+                projectile.penetrate = (Main.LocalPlayer.HeldItem.rare + 2);
+                projectile.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                projectile.damage = Main.LocalPlayer.HeldItem.damage + Main.LocalPlayer.fishingSkill;
+                projectile.friendly = true;
+                projectile.hostile = !projectile.friendly;
+            }
+
+            if (RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
             {
                 FiilMeleeWeaponEffectsList();
                 if (MeleeWeaponEffectsProjectiles.Contains(projectile.type))
@@ -175,7 +184,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
                 }
             }
+            if (projectile.bobber)
+            {
+                UpdateBobers(projectile);
+            }
+
             base.OnHitNPC(projectile, target, hit, damageDone);
+        }
+
+        public void UpdateBobers(Projectile projectile)
+        {
+           // projectile.penetrate = (Main.LocalPlayer.HeldItem.rare + 2);
         }
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {

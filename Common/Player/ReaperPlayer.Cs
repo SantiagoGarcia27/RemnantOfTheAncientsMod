@@ -308,52 +308,8 @@ public class ReaperPlayer : ModPlayer
         }
         return base.FreeDodge(info);
     }
-    //public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hit.HitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
-    //{
-    //    if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
-    //    {
-    //        if (Main.rand.NextBool(4))
-    //        {
-    //            Player.SetImmuneTimeForAllTypes(120);
-    //          //  Player.shadowDodge = true;
-    //            Player.BrainOfConfusionDodge();
-    //            Dust.QuickDust(Player.position, Color.Gray);
-
-    //            return false;
-    //        }
-    //        else
-    //        {
-    //            return base.PreHurt(pvp, quiet, ref damage, ref hit.HitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource, ref cooldownCounter);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        return base.PreHurt(pvp, quiet, ref damage, refhit.HitDirection, ref crit, ref customDamage, ref playSound, ref genGore, ref damageSource, ref cooldownCounter);
-    //    }
-    //}
-    //public override void Hurt(bool pvp, bool quiet, double damage, inthit.HitDirection, bool crit, int cooldownCounter)
-    //{
-    //    if (SoulsUpgrades[2] && GetInstance<ConfigClient>().ToggleCorruptSoul)
-    //    {
-    //        if (Main.rand.NextBool(1))
-    //        {
-    //            Player.SetImmuneTimeForAllTypes(120);
-    //            Player.shadowDodge= true;
-    //            Player.BrainOfConfusionDodge();
-    //            Dust.QuickDust(Player.position, Color.Gray);
-
-    //            return;
-    //        }
-    //        else
-    //        {
-    //            base.Hurt(pvp, quiet, damage,hit.HitDirection, crit, cooldownCounter);
-    //        }
-    //    }
-
-    //}
     public void ReaperSoulsBoost()
     {
-        //UpdateSoulsList();
         LoadSoulsToggle();
 
         float OgPlayerSpeed = Player.moveSpeed;
@@ -448,7 +404,6 @@ public class ReaperPlayer : ModPlayer
                     Player.GetModPlayer<RemnantPlayer>().AddMinion(ProjectileType<IceMistF>(), 680, 10f);
                 }
             }
-
         }
     }
     public void ReaperSoulsBoost(Item item)

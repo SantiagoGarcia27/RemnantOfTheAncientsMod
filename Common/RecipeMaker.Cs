@@ -9,7 +9,6 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips;
-using RemnantOfTheAncientsMod.Content.Items.Tools;
 using System.Collections.Generic;
 using System.Linq;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
@@ -17,6 +16,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Tools.FishingRods;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -1394,15 +1394,5 @@ namespace RemnantOfTheAncientsMod
                 recipe.AddIngredient(ModContent.ItemType<ForceOfRemants>());
             }
         }
-
-       
     }
 }
-	
-
-
-
-
-
-		
-	

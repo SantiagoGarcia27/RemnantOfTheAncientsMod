@@ -3932,5 +3932,27 @@ Mods: {
 			FrostBarrier.DisplayName: Frost Barrier
 			ToggNightTp.DisplayName: Togg Night Tp
 		}
+
+		DamageClasses: {
+			ExampleDamageClass.DisplayName: Example Damage Class
+			FisherDamageClass.DisplayName: Fisher Damage Class
+		}
+
+		InfoDisplays: {
+			ArmorPenetrationBonusDisplay.DisplayName: Armor Penetration Bonus Display
+			CritBonusDisplay.DisplayName: Crit Bonus Display
+			DamageBonusDisplay.DisplayName: Damage Bonus Display
+			DamageReductionDisplay.DisplayName: Damage Reduction Display
+			FlyTimeBonusDisplay.DisplayName: Fly Time Bonus Display
+			LifeRegenBonusDisplay.DisplayName: Life Regen Bonus Display
+			LuckBonusDisplay.DisplayName: Luck Bonus Display
+			ManaRegenBonusDisplay.DisplayName: Mana Regen Bonus Display
+			MaxMinionsDisplay.DisplayName: Max Minions Display
+			MaxSentryDisplay.DisplayName: Max Sentry Display
+			MeleeAttackspeedBonusDisplay.DisplayName: Melee Attackspeed Bonus Display
+			MiningSpeedBonusDisplay.DisplayName: Mining Speed Bonus Display
+			MovmentSpeedBonusDisplay.DisplayName: Movment Speed Bonus Display
+			StyleStatBonusDisplay.DisplayName: Style Stat Bonus Display
+		}
 	}
 }

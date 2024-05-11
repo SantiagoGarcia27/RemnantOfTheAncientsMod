@@ -265,9 +265,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             var tip = tooltips.FirstOrDefault(tip => tip.Mod != "a");
             int[] index = new int[2] { TextUtils.GetTooltipDuplicatedIndex(tooltips) ,0};
-            
-
-
+           
             if (index[0] != -1)
             {
                 tooltips.RemoveAt(index[0]);
