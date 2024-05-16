@@ -11,16 +11,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Grave Bullet");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Poważna kula");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Balle grave");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bala de tumba");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.damage = 5;
+			Item.damage = 3;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 8;
 			Item.height = 8;
@@ -30,14 +26,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Bullet
 			Item.value = 0;
 			Item.rare = ItemRarityID.Blue;
 			Item.shoot = ModContent.ProjectileType<Tomb_BulletP>();
-			Item.shootSpeed = 5f;
+			Item.shootSpeed = 3f;
 			Item.ammo = AmmoID.Bullet;
 		}
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(100)
+			CreateRecipe(50)
 			.AddRecipeGroup("Tumbas")
+			.AddCondition(Condition.InGraveyard)
 			.Register();
 		}
 	}

@@ -190,16 +190,6 @@ namespace RemnantOfTheAncientsMod
                 }   
             }
             return MaxPlayers -1;
-        }
-
-        public void AddFargosLocalization()
-        {
-            //FargosOverride fargosOverride = ModContent.GetInstance<FargosOverride>();
-            //Mod mod = this;
-
-            //fargosOverride.AddToggle(mod, "NightEnchantmentTpConfig", "NightEnchant", "b56c64");
-            //fargosOverride.AddToggle(mod, "DesertHeraldEnchantmentCactus", "DesertHeraldEnchantment", "b56c64");
-
-        }
+        } 
     }
 }

@@ -6,14 +6,22 @@ namespace RemnantOfTheAncientsMod.Prefix.CalamityPrefix
 {
     [JITWhenModsEnabled("CalamityMod")]
     [ExtendsFromMod("CalamityMod")]
+
+
+    [LegacyName(["ExquisitePrefix"])]
+
     public class Exquisite : RogueWeaponPrefix
     {
         public override string Name => "Exquisite";
-        public Exquisite() :
-            base(1.20f, 0.8f, 10, 1.2f, 1.20f)
-        {
+        public override float damageMult => 1.20f;
 
-        }
+        public override float useTimeMult => 0.8f;
+
+        public override int critBonus => 10;
+
+        public override float shootSpeedMult => 1.2f;
+
+        public override float stealthDmgMult => 1.20f; 
         public override float RollChance(Item item)
         {
             return 0;

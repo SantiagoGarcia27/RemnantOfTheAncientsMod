@@ -4,12 +4,12 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
 {
-    public class EndlesAccelerationRound : EndlessAmmo
-    {
-        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AccelerationRound"));
-        public override string TexturePath => null;
-    }
+    //public class EndlesAccelerationRound : EndlessAmmo
+    //{
+    //    public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
+    //    public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AccelerationRound"));
+    //    public override string TexturePath => null;
+    //}
     public class EndlesAcidRound : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
@@ -22,12 +22,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodfireBullet"));
         public override string TexturePath => null; 
     }
-    public class EndlesEnhancedNanoRound : EndlessAmmo
-    {
-        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EnhancedNanoRound"));
-        public override string TexturePath => null; 
-    }
+    //public class EndlesEnhancedNanoRound : EndlessAmmo
+    //{
+    //    public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
+    //    public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EnhancedNanoRound"));
+    //    public override string TexturePath => null; 
+    //}
     public class EndlesGodSlayerSlug : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
@@ -58,12 +58,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "VeriumBullet"));
         public override string TexturePath => null;
     }
-    public class EndleSuperballBullet : EndlessAmmo
-    {
-        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SuperballBullet"));
-        public override string TexturePath => null;
-    }
+    //public class EndleSuperballBullet : EndlessAmmo
+    //{
+    //    public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
+    //    public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SuperballBullet"));
+    //    public override string TexturePath => null;
+    //}
     public class EndlesTerraBullet : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);

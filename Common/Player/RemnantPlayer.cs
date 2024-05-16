@@ -54,10 +54,11 @@ namespace RemnantOfTheAncientsMod
 		public bool Burn_Sand;
 		public bool hBurn;
 		public bool Marble_Erosion;
-		#endregion
+		public bool CursedMark;
+        #endregion
 
-		#region pets
-		public bool TortugaPet;
+        #region pets
+        public bool TortugaPet;
 		public bool TwitchPet;
 		public bool YtPet;
 		#endregion
@@ -137,7 +138,9 @@ namespace RemnantOfTheAncientsMod
 			hBurn = false;
 			Hell_Fire = false;
 			Marble_Erosion = false;
-			healHurt = 0;
+			CursedMark = false;
+
+            healHurt = 0;
 			TortugaPet = false;
 			TwitchPet = false;
 			YtPet = false;
@@ -193,10 +196,10 @@ namespace RemnantOfTheAncientsMod
             }
             return true;
         }
-        private void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
+        private static void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
 		{
 			//TryGettingPatreonOrDevArmor(source, this);
-			Dictionary<int, List<int>> Suits = new Dictionary<int, List<int>>()
+			Dictionary<int, List<int>> Suits = new()
 			{
 				{ 0, new List<int>() { 666, 667, 668, 665 }},
 				{ 1, new List<int>() { 1554, 1555, 1556, 1586}},
@@ -225,14 +228,13 @@ namespace RemnantOfTheAncientsMod
 			{
 				int selection = Main.rand.Next(Suits.Count);
 
-				if (Suits.ContainsKey(selection))
+				if (Suits.TryGetValue(selection, out List<int> value))
 				{
-					SpawnSuit(player, source, Suits[selection]);
-
+                    SpawnSuit(player, source, value);
 				}
 			}
 		}
-		public void SpawnSuit(Player player, IEntitySource source, List<int> suitParts)
+		public static void SpawnSuit(Player player, IEntitySource source, List<int> suitParts)
 		{
 			foreach (var suitPart in suitParts)
 			{
@@ -247,9 +249,10 @@ namespace RemnantOfTheAncientsMod
 			hBurn = false;
 			MoneyCollector = false;
 			Marble_Erosion = false;
+			CursedMark = false;
 
 
-			int selection = chanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
+            int selection = ChanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
 			if (selection != 0)
 			{
 				if (Main.rand.NextBool(selection))
@@ -258,12 +261,12 @@ namespace RemnantOfTheAncientsMod
 				}
 			}
 		}
-		public void checkInventory(Player player)
+		public static void CheckInventory(Player player)
 		{
 			CanWormHole = Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>(), player);
 		}
 
-		private int chanceTomb(float config)
+		private static int ChanceTomb(float config)
 		{
 			if (config == 0 || config == 1) return (int)config++;
 			return 0;
@@ -286,7 +289,7 @@ namespace RemnantOfTheAncientsMod
 			{
 				MoneyColectorBuff.UpdateCoins(Player);
 			}
-			checkInventory(Player);
+            CheckInventory(Player);
 
 			if (Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>()))
 			{
@@ -321,7 +324,7 @@ namespace RemnantOfTheAncientsMod
 
         }
 		[JITWhenModsEnabled("CalamityMod")]
-		public void CalamityMessage()
+		public static void CalamityMessage()
 		{
 			if (GetInstance<CalamityConfig>().RemoveReforgeRNG)
 			{
@@ -605,13 +608,17 @@ namespace RemnantOfTheAncientsMod
 			}
 		}
 
-		public void KillMinion(int proj) => Main.projectile[proj].Kill();
+		public static void KillMinion(int proj) => Main.projectile[proj].Kill();
 
 		public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
 		{
 			if (DesertHeraldSetBonus)
 			{
 				Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
+			}
+			if (CursedMark)
+			{
+				hurtInfo.Damage *= 2;
 			}
 			base.OnHitByNPC(npc, hurtInfo);
 		}
@@ -626,7 +633,7 @@ namespace RemnantOfTheAncientsMod
 		}
 
 		public static int lastChest = -1;
-		public void SpawnMimics(Player player)
+		public static void SpawnMimics(Player player)
 		{
 			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
@@ -694,15 +701,6 @@ namespace RemnantOfTheAncientsMod
             }
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
 			{
-				List<bool> test =  new List<bool>() 
-				{ 
-					Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0 ,
-					Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier,
-					FargosKeybindSystem.TogleFrostBarrier.JustPressed,
-					!Player.HasBuff<FrostBarrierCouldown>()
-                };
-
-
                 if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0)
 				{
 					Projectile.NewProjectile(Projectile.GetSource_None(), Player.position, Vector2.Zero, ModContent.ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);

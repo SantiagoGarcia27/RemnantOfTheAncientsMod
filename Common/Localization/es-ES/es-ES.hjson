@@ -86,6 +86,19 @@ Mods: {
 
 			ReaperTitle: Almas
 			Couldowns.CouldownBar: "{0}s"
+			// AscendedReforgesTitle: Ascended Reforges
+			/* AscendedReforgesText:
+				'''
+				In order for a reforge to advance to a higher level you must meet the following requirements:
+
+				A tinkerer imbued with the brilliant power of radiance
+
+				A weapon reforged with a maximum level reforge (example: Legendary)
+
+				And finally, a currency to pay for the work, this must be a terra coin
+
+				Once you have everything, your next reforge can ascend
+				''' */
 		}
 
 		IntroScreen: {
@@ -159,6 +172,8 @@ Mods: {
 			Veteran.DisplayName: (Veterano)
 			Exquisite.DisplayName: (Exquisito)
 			Shadow.DisplayName: (Sombrio)
+			// Weapon.Exquisite.DisplayName: Exquisite
+			// Accessory.Shadow.DisplayName: Shadow
 		}
 
 		Generic: {
@@ -479,8 +494,8 @@ Mods: {
 			}
 
 			SuperSenseBuff: {
-				DisplayName: Super Sense
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.SuperSenseBuff.Description
+				DisplayName: Super sentido
+				Description: Resalta todos los peligros, como bloques peligrosos, enemigos y objetos como trampas.
 			}
 
 			SwordMount: {
@@ -556,6 +571,11 @@ Mods: {
 			FrostBarrierCouldown: {
 				DisplayName: Recarga de Barrera Hélida
 				Description: ...
+			}
+
+			CurseMarkBuff: {
+				DisplayName: Marca Maldita
+				Description: Recives mas daño
 			}
 		}
 
@@ -1973,7 +1993,7 @@ Mods: {
 
 			Tomb_bullet: {
 				DisplayName: Bala de tumba
-				Tooltip: ""
+				Tooltip: Causa Marca malidta en los enemigos
 			}
 
 			WrathSlimeBullet: {
@@ -2395,7 +2415,11 @@ Mods: {
 
 			P90: {
 				DisplayName: P90
-				Tooltip: Rápida y furiosa
+				Tooltip:
+					'''
+						Rápida y furiosa
+						{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					'''
 			}
 
 			Paintshotgun: {
@@ -3491,6 +3515,21 @@ Mods: {
 				DisplayName: Ladrillo de hierro reforzado
 				// Tooltip: ""
 			}
+
+			AReforge_Guide: {
+				DisplayName: Manual de reforja ascendida (Wip)
+				Tooltip: Una simple guia para la reforja avanzada
+			}
+
+			Ultratiburon: {
+				// DisplayName: Ultratiburon
+				// Tooltip: ""
+			}
+
+			SnowBallBazooka: {
+				// DisplayName: Snow Ball Bazooka
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3954,8 +3993,8 @@ Mods: {
 		}
 
 		DamageClasses: {
+			FisherDamageClass.DisplayName: Daño de pescador
 			// ExampleDamageClass.DisplayName: Example Damage Class
-			// FisherDamageClass.DisplayName: Fisher Damage Class
 		}
 
 		InfoDisplays: {

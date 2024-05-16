@@ -1,39 +1,48 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 {
-	// This DragableUIPanel class inherits from UIPanel
-	// Inheriting is a great tool for UI design. By inheriting, we get the background drawing for free from UIPanel
-	// We've added some code to allow the panel to be dragged around
-	// We've also added some code to ensure that the panel will bounce back into bounds if it is dragged outside or the screen resizes
-	// UIPanel does not prevent the player from using items when the mouse is clicked, so we've added that as well
 	public class DragableUIPanel : UIPanel
 	{
-		// Stores the offset from the top left of the UIPanel while dragging
-		private Vector2 offset;
-		// A flag that checks if the panel is currently being dragged
-		private bool dragging;
 
-		public override void LeftMouseDown(UIMouseEvent evt) {
-			// When you override UIElement methods, don't forget call the base method
-			// This helps to keep the basic behavior of the UIElement
+		private Vector2 offset;
+        private int _cornerSize = 12;
+        private int _barSize = 4;
+        private bool dragging;
+
+        public Asset<Texture2D> _borderTexture;
+        public Asset<Texture2D> _backgroundTexture;
+
+        public new Color BorderColor = Color.White;
+        public new Color BackgroundColor = Color.White;
+        public override void LeftMouseDown(UIMouseEvent evt) {
 			base.LeftMouseDown(evt);
-			// When the mouse button is down, then we start dragging
 			DragStart(evt);
 		}
+        public DragableUIPanel(Asset<Texture2D> backgroundTexture, Asset<Texture2D> borderTexture = null)
+        {
+            SetPadding(_cornerSize);
+            _needsTextureLoading = true;
+            _borderTexture = borderTexture;
+            _backgroundTexture = backgroundTexture;
+        }
 
-		public override void LeftMouseUp(UIMouseEvent evt) {
+        public DragableUIPanel()
+        {
+            SetPadding(_cornerSize);
+            _needsTextureLoading = true;
+        }
+        public override void LeftMouseUp(UIMouseEvent evt) {
 			base.LeftMouseUp(evt);
-			// When the mouse button is up, then we stop dragging
 			DragEnd(evt);
 		}
 
 		private void DragStart(UIMouseEvent evt) {
-			// The offset variable helps to remember the position of the panel relative to the mouse position
-			// So no matter where you start dragging the panel, it will move smoothly
 			offset = new Vector2(evt.MousePosition.X - Left.Pixels, evt.MousePosition.Y - Top.Pixels);
 			dragging = true;
 		}
@@ -47,32 +56,64 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
 			Recalculate();
 		}
-
-		public override void Update(GameTime gameTime) {
+        private bool _needsTextureLoading;
+        public override void Update(GameTime gameTime) {
 			base.Update(gameTime);
 
-			// Checking ContainsPoint and then setting mouseInterface to true is very common
-			// This causes clicks on this UIElement to not cause the player to use current items
 			if (ContainsPoint(Main.MouseScreen)) {
 				Main.LocalPlayer.mouseInterface = true;
 			}
 
 			if (dragging) {
-				Left.Set(Main.mouseX - offset.X, 0f); // Main.MouseScreen.X and Main.mouseX are the same
+				Left.Set(Main.mouseX - offset.X, 0f); 
 				Top.Set(Main.mouseY - offset.Y, 0f);
 				Recalculate();
 			}
-
-			// Here we check if the DragableUIPanel is outside the Parent UIElement rectangle
-			// (In our example, the parent would be ExampleCoinsUI, a UIState. This means that we are checking that the DragableUIPanel is outside the whole screen)
-			// By doing this and some simple math, we can snap the panel back on screen if the user resizes his window or otherwise changes resolution
 			var parentSpace = Parent.GetDimensions().ToRectangle();
 			if (!GetDimensions().ToRectangle().Intersects(parentSpace)) {
 				Left.Pixels = Utils.Clamp(Left.Pixels, 0, parentSpace.Right - Width.Pixels);
 				Top.Pixels = Utils.Clamp(Top.Pixels, 0, parentSpace.Bottom - Height.Pixels);
-				// Recalculate forces the UI system to do the positioning math again.
 				Recalculate();
 			}
 		}
-	}
+        protected override void DrawSelf(SpriteBatch spriteBatch)
+        {
+            if (_needsTextureLoading)
+            {
+                _needsTextureLoading = false;
+                LoadTextures();
+            }
+
+            if (_backgroundTexture != null)
+                DrawPanel(spriteBatch, _backgroundTexture.Value, BackgroundColor);
+
+            if (_borderTexture != null)
+                DrawPanel(spriteBatch, _borderTexture.Value, BorderColor);
+        }
+        private void LoadTextures()
+        {
+            if (_borderTexture == null)
+                _borderTexture = Main.Assets.Request<Texture2D>("Images/UI/PanelBorder");
+
+            if (_backgroundTexture == null)
+                _backgroundTexture = Main.Assets.Request<Texture2D>("Images/UI/PanelBackground");
+        }
+        private void DrawPanel(SpriteBatch spriteBatch, Texture2D texture, Color color)
+        {
+            CalculatedStyle dimensions = GetDimensions();
+            Point point = new Point((int)dimensions.X, (int)dimensions.Y);
+            Point point2 = new Point(point.X + (int)dimensions.Width - _cornerSize, point.Y + (int)dimensions.Height - _cornerSize);
+            int width = point2.X - point.X - _cornerSize;
+            int height = point2.Y - point.Y - _cornerSize;
+            spriteBatch.Draw(texture, new Rectangle(point.X, point.Y, _cornerSize, _cornerSize), new Rectangle(0, 0, _cornerSize, _cornerSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point2.X, point.Y, _cornerSize, _cornerSize), new Rectangle(_cornerSize + _barSize, 0, _cornerSize, _cornerSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point.X, point2.Y, _cornerSize, _cornerSize), new Rectangle(0, _cornerSize + _barSize, _cornerSize, _cornerSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point2.X, point2.Y, _cornerSize, _cornerSize), new Rectangle(_cornerSize + _barSize, _cornerSize + _barSize, _cornerSize, _cornerSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point.X + _cornerSize, point.Y, width, _cornerSize), new Rectangle(_cornerSize, 0, _barSize, _cornerSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point.X + _cornerSize, point2.Y, width, _cornerSize), new Rectangle(_cornerSize, _cornerSize + _barSize, _barSize, _cornerSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point.X, point.Y + _cornerSize, _cornerSize, height), new Rectangle(0, _cornerSize, _cornerSize, _barSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point2.X, point.Y + _cornerSize, _cornerSize, height), new Rectangle(_cornerSize + _barSize, _cornerSize, _cornerSize, _barSize), color);
+            spriteBatch.Draw(texture, new Rectangle(point.X + _cornerSize, point.Y + _cornerSize, width, height), new Rectangle(_cornerSize, _cornerSize, _barSize, _barSize), color);
+        }
+    }
 }

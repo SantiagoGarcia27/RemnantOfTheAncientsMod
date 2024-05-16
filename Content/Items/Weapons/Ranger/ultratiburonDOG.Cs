@@ -74,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			{
 				Recipe recipe = CreateRecipe()
 
-				.AddIngredient(ItemType<ultratiburon>());
+				.AddIngredient(ItemType<Ultratiburon>());
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("Phantoplasm"), 5);
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);

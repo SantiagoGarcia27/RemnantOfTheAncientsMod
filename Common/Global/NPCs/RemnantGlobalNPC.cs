@@ -20,9 +20,8 @@ using CalamityMod.NPCs;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Microsoft.Xna.Framework.Graphics;
-using CalamityMod.Graphics.Renderers;
-using Terraria.Graphics;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
+using Terraria.GameContent;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -34,6 +33,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public bool Hell_Fire;
         public bool Javalina;
         public bool hBurn;
+        public bool CursedMark;
         public bool Marble_Erosion;
         public bool Can_Marble;
         public bool CanMakeCrit;
@@ -70,6 +70,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             Hell_Fire = false;
             hBurn = false;
             Marble_Erosion = false;
+            CursedMark = false;
         }
 
         public override void SetDefaults(NPC npc)
@@ -287,6 +288,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 ShadowDodge(npc);
                 modifiers.FinalDamage.Flat = 0;
             }
+            if (CursedMark)
+            {
+                modifiers.SetCrit();
+            }
             base.ModifyHitByItem(npc, player, item, ref modifiers);
         }
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
@@ -295,6 +300,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 ShadowDodge(npc);
                 modifiers.FinalDamage.Flat = 0;
+            }
+            if (CursedMark)
+            {
+                modifiers.SetCrit();
             }
             base.ModifyHitByProjectile(npc, projectile, ref modifiers);
         }
@@ -347,7 +356,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.dust[dust].scale *= 0.5f;
                 }
                 Lighting.AddLight(NPC.position, torchColor);
-            }
+            } 
         }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
@@ -587,19 +596,34 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     shadowDodgeCount = 0f;
                 }
             }
-            if (shadowDodgeCount > 0f)
-            {
-                string _texture = npc.type < NPCID.Count ? "Terraria/Images/NPC_" + npc.type : NPCLoader.GetNPC(npc.type).Texture;
-                var Texture = ModContent.Request<Texture2D>(_texture);
+            //if (shadowDodgeCount > 0f)
+            //{
+            //    string _texture = npc.type < NPCID.Count ? "Terraria/Images/NPC_" + npc.type : NPCLoader.GetNPC(npc.type).Texture;
+            //    var Texture = ModContent.Request<Texture2D>(_texture);
 
-                Vector2 pos = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
+            //    Vector2 pos = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
 
-                SpriteEffects rotation = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            //    SpriteEffects rotation = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-                Main.EntitySpriteDraw((Texture2D)Texture, pos - new Vector2(3 * 16, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
-                Main.EntitySpriteDraw((Texture2D)Texture, pos + new Vector2(1.5f * 16f, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
-            }
+            //    Main.EntitySpriteDraw((Texture2D)Texture, pos - new Vector2(3 * 16, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
+            //    Main.EntitySpriteDraw((Texture2D)Texture, pos + new Vector2(1.5f * 16f, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
+            //}
+           
             base.PostDraw(npc, spriteBatch, screenPos, drawColor);
+        }
+        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (CursedMark)
+            {
+                SpriteEffects effects = SpriteEffects.None;
+                Vector2 vectorFrame = new(1, 1);/*new(TextureAssets.Npc[npc.type].Value.Width / 2, TextureAssets.Npc[npc.type].Value.Height / Main.npcFrameCount[npc.type] / 2);*/
+                Vector2 position = new Vector2(npc.position.X + 1.5f * 16f, npc.position.Y - 2 * 16) - Main.screenPosition;
+                var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/Effect/CurseMarkEffect");
+                position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[npc.type]) /*/ 2f*/;
+                position += vectorFrame * 1f + new Vector2(0f, 4f + npc.gfxOffY);
+                Main.spriteBatch.Draw((Texture2D)a, position, null/*npc.frame*/, new Color(Color.White.R, Color.White.G, Color.White.B, 100), 0/*npc.rotation*/, vectorFrame, npc.scale, effects, 0f);
+            }
+            return base.PreDraw(npc, spriteBatch, screenPos, drawColor);
         }
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {

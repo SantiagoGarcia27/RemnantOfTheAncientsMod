@@ -80,6 +80,19 @@ Mods: {
 
 			ReaperTitle: Souls
 			Couldowns.CouldownBar: "{0}s"
+			AscendedReforgesTitle: Ascended Reforges
+			AscendedReforgesText:
+				'''
+				In order for a reforge to advance to a higher level you must meet the following requirements:
+
+				A tinkerer imbued with the brilliant power of radiance
+
+				A weapon reforged with a maximum level reforge (example: Legendary)
+
+				And finally, a currency to pay for the work, this must be a terra coin
+
+				Once you have everything, your next reforge can ascend
+				'''
 		}
 
 		IntroScreen: {
@@ -153,6 +166,8 @@ Mods: {
 			Veteran.DisplayName: Veteran
 			Exquisite.DisplayName: Exquisite
 			Shadow.DisplayName: Shadow
+			Weapon.Exquisite.DisplayName: Exquisite
+			Accessory.Shadow.DisplayName: Shadow
 		}
 
 		Generic: {
@@ -473,7 +488,7 @@ Mods: {
 
 			SuperSenseBuff: {
 				DisplayName: Super Sense
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.SuperSenseBuff.Description
+				Description: Highlights all dangers like hazardous blocks, enemies and objects like traps.
 			}
 
 			SwordMount: {
@@ -488,7 +503,7 @@ Mods: {
 
 			Burning_Sand: {
 				DisplayName: Burning Sand
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Burning_Sand.Description
+				Description: Slowly losing life
 			}
 
 			FireStormDebuff: {
@@ -549,6 +564,11 @@ Mods: {
 			FrostBarrierCouldown: {
 				DisplayName: Frost Barrier Couldown
 				Description: Mods.RemnantOfTheAncientsMod.Buffs.FrostBarrierCouldown.Description
+			}
+
+			CurseMarkBuff: {
+				DisplayName: Cursed Mark
+				Description: You take more damage
 			}
 		}
 
@@ -1960,7 +1980,7 @@ Mods: {
 
 			Tomb_bullet: {
 				DisplayName: Grave Bullet
-				Tooltip: ""
+				Tooltip: Inflicts target with Cursed mark
 			}
 
 			WrathSlimeBullet: {
@@ -2382,7 +2402,11 @@ Mods: {
 
 			P90: {
 				DisplayName: P90
-				Tooltip: Fast and effective
+				Tooltip:
+					'''
+						Fast and effective
+						{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					'''
 			}
 
 			Paintshotgun: {
@@ -3471,6 +3495,21 @@ Mods: {
 				DisplayName: Reinforcediron Bricks
 				Tooltip: ""
 			}
+
+			AReforge_Guide: {
+				DisplayName: Acsended Reforge Manual (Wip)
+				Tooltip: A simple guide to advanced reforging
+			}
+
+			Ultratiburon: {
+				DisplayName: Ultratiburon
+				Tooltip: ""
+			}
+
+			SnowBallBazooka: {
+				DisplayName: Snow Ball Bazooka
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3934,8 +3973,8 @@ Mods: {
 		}
 
 		DamageClasses: {
+			FisherDamageClass.DisplayName: Fisher Damage
 			ExampleDamageClass.DisplayName: Example Damage Class
-			FisherDamageClass.DisplayName: Fisher Damage Class
 		}
 
 		InfoDisplays: {
