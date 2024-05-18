@@ -18,9 +18,7 @@ using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ReLogic.Content;
-using ExampleMod.Content.DamageClasses;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
-using static Humanizer.In;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -29,15 +27,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool IsCoin;
 		public bool IsAmmo;
         public int StyleStat = 0;
+		public bool IsRepeater;
         public Item ItemBase = null;
-		public static List<int> SpearsList = new List<int>();
+		public static List<int> SpearsList = [];
 
 		Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
 
         public override bool InstancePerEntity => true;
-        public int[] lanceId = new int[]
-		{
-			ItemID.Spear,
+        public int[] lanceId =
+        [
+            ItemID.Spear,
 			ItemID.Trident,
 			ItemID.DarkLance,
 			ItemID.TheRottedFork,
@@ -57,16 +56,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.HallowJoustingLance,
 			ItemID.ShadowJoustingLance,
 			ItemID.UnholyTrident
-		};
-		public List<int> CoinsId = new List<int>()
-		{
-			ItemID.CopperCoin,
+		];
+		public List<int> CoinsId =
+        [
+            ItemID.CopperCoin,
 			ItemID.SilverCoin,
 			ItemID.GoldCoin,
 			ItemID.PlatinumCoin
-		};
-        public List<int> SecondClickWeapons = new List<int>()
-        {
+		];
+        public List<int> SecondClickWeapons =
+        [
             ItemID.BookofSkulls,
             ItemID.FlowerofFire,
             ItemID.FlowerofFrost,
@@ -79,19 +78,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             ItemID.DiamondStaff,
             ItemID.AmberStaff,
             ItemID.BubbleGun
-        };
-		public List<int> GemStaffs = new List<int>()
-		{
-			ItemID.AmethystStaff,
+        ];
+		public List<int> GemStaffs =
+        [
+            ItemID.AmethystStaff,
 			ItemID.TopazStaff,
 			ItemID.SapphireStaff,
 			ItemID.EmeraldStaff,
 			ItemID.RubyStaff,
 			ItemID.DiamondStaff,
 			ItemID.AmberStaff
-        };
-        public static List<int> Phones = new List<int>()
-        {
+        ];
+        public static List<int> Phones =
+        [
             ItemID.CellPhone,
             ItemID.Shellphone,
             ItemID.ShellphoneDummy,
@@ -99,20 +98,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             ItemID.ShellphoneOcean,
             ItemID.ShellphoneSpawn,
             ItemID.ShellPileBlock
-        };
-        public List<int> LowFood = new List<int>();
-        public List<int> MediumFood = new List<int>();
-        public List<int> HightFood = new List<int>();
-        public List<int> LowBait = new List<int>();
-        public List<int> MediumBait = new List<int>();
-        public List<int> HightBait = new List<int>();
-
-		public List<int> MusicBox = new List<int>();
+        ];
+        public List<int> LowFood = [];
+        public List<int> MediumFood = [];
+        public List<int> HightFood = [];
+        public List<int> LowBait = [];
+        public List<int> MediumBait = [];
+        public List<int> HightBait = [];
+		public List<int> MusicBox = [];
 		public override void SetStaticDefaults()
 		{
         }
 
-		public void fillMusicBox()
+		public void FillMusicBox()
 		{
 			for (int i = 562; i <= 574; i++)
 			{
@@ -176,7 +174,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
             if (WeaponConf)
 			{
-				fillMusicBox();
+				FillMusicBox();
                 if (SecondClickWeapons.Contains(item.type))
                 {
                     ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
@@ -184,9 +182,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
                 if (item.type == ItemID.DaedalusStormbow)
 				{
-					item.damage = 35;
-					item.useTime = 24;
-					item.useAnimation = 24;
+					item.DefaultToRangedWeapon(item.shoot, item.ammo, 24, item.shootSpeed);
+					item.SetWeaponValues(35, item.knockBack);	
 				}
 				if (item.type == ItemID.FetidBaghnakhs)
 				{
@@ -326,11 +323,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 						item.maxStack = (int)ModContent.GetInstance<ConfigServer>().MaxItemStackConf;
 					}
 				}
-				
-				//if (ItemID.Sets.BossBag[item.type]) 
-				//{
-				//	AddValueToTreasureBags(item);
-				//}
 				AddToDashWeaponsLists(item);
 				SetFishClass(item);
 
@@ -345,17 +337,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					item.GetGlobalItem<CustomTooltip>().Saber = true;
 				}
-				if (SecondClickWeapons.Contains(item.type))
+                if (Utils1.NameHasWord(item.Name, "Repeater")|| item.type == ItemID.ChlorophyteShotbow)
+                {
+					item.useAnimation += 5;
+					item.useTime += 5;
+                    item.GetGlobalItem<RemnantGlobalItem>().IsRepeater = true;
+					item.channel = true;
+                }
+                
+
+                if (SecondClickWeapons.Contains(item.type))
 				{
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                 }
 			}
 		}
-		//public void AddValueToTreasureBags(Item item)
-		//{
-		//	Main.ItemDropsDB.GetRulesForItemID(item.type);// .GetRulesForItemID(item.type);
-  //      }
-		
+	
 		public void SetFishClass(Item item)
 		{
             if (item.fishingPole > 0)
@@ -374,7 +371,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					type = ProjectileID.JestersArrow;
 					base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
 				}
+				if (IsRepeater)
+				{
+                    velocity = velocity.RotatedByRandom(MathHelper.ToRadians(1+(UseTimeReduction * 20)));
+                }
 			}
+
 			else base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -702,34 +704,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public void AddVanilaSpear()
 		{
-			AddSecureToList(SpearsList, ItemID.Spear);
-			AddSecureToList(SpearsList, ItemID.Trident);
-			AddSecureToList(SpearsList, ItemID.DarkLance);
-			AddSecureToList(SpearsList, ItemID.TheRottedFork);
-			AddSecureToList(SpearsList, ItemID.ThunderSpear);
-			AddSecureToList(SpearsList, ItemID.Swordfish);
-			AddSecureToList(SpearsList, ItemID.CobaltNaginata);
-			AddSecureToList(SpearsList, ItemID.PalladiumPike);
-			AddSecureToList(SpearsList, ItemID.MythrilHalberd);
-			AddSecureToList(SpearsList, ItemID.OrichalcumHalberd);
-			AddSecureToList(SpearsList, ItemID.AdamantiteGlaive);
-			AddSecureToList(SpearsList, ItemID.TitaniumTrident);
-			AddSecureToList(SpearsList, ItemID.ChlorophytePartisan);
-			AddSecureToList(SpearsList, ItemID.MushroomSpear);
-			AddSecureToList(SpearsList, ItemID.ObsidianSwordfish);
-			AddSecureToList(SpearsList, ItemID.NorthPole);
-			AddSecureToList(SpearsList, ItemID.JoustingLance);
-			AddSecureToList(SpearsList, ItemID.HallowJoustingLance);
-			AddSecureToList(SpearsList, ItemID.ShadowJoustingLance);
-
-            AddSecureToList(SpearsList, ItemID.UnholyTrident);
+            Utils1.AddSecure(SpearsList, lanceId);
         }
 
 		public void AddModedSpearGeneric(Item item)
 		{
-			string[] LanceNames = new string[]
-			{
-				"Spear",
+			string[] LanceNames =
+            [
+                "Spear",
 				"Lance",
 				"Trient",
 				"Partisan",
@@ -737,7 +719,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				"Pike",
 				"Halberd",
 				"Naginata"
-			};
+			];
 
 			if (item.DamageType == DamageClass.Melee)
 			{
@@ -745,21 +727,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					if (Utils1.NameHasWord(item.Name, LanceNames[i]))
 					{
-						AddSecureToList(SpearsList, item.type);
+						Utils1.AddSecure(SpearsList, item.type);
 					}
 				}
 			}
 		}
-        public override void UpdateEquip(Item item, Player player)
-        {
-            base.UpdateEquip(item, player);
-        }
-        public void AddSecureToList(List<int> list, int Content)
-		{
-			if (!list.Contains(Content)) list.Add(Content);
-		}
-
-	
 		public override bool AltFunctionUse(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -870,8 +842,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
 			On_Item.CheckLavaDeath += On_Item_CheckLavaDeath;
 			On_ItemSlot.PickItemMovementAction += AllowCoinAndAmmoPlacement;
-			
-			
             base.Load();
         }
 		
@@ -893,25 +863,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					if (item.type == ItemID.NecroGreaves)
 					{
 						Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Pants>(), 1);
-						item.rare = 0;
+						item.rare = ItemRarityID.White;
 					}
 				}
-				if(item.type == ItemID.GuideVoodooDoll && item.rare == 0)
+				if(item.type == ItemID.GuideVoodooDoll && item.rare == ItemRarityID.White)
 				{
                   int a = Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ItemID.GuideVoodooDoll, 1);
-                  Main.item[a].rare = 1;
+                  Main.item[a].rare = ItemRarityID.Blue;
 				}
             }
             orig(item, i);
-
-            //  return base.CanBurnInLava(item);	
         }
 		float counter;
 
-		public List<Mod> ModsWith30Endless = new List<Mod>()
-		{
-			RemnantOfTheAncientsMod.FargowiltasMod
-		};
+		public List<Mod> ModsWith30Endless =
+        [
+            RemnantOfTheAncientsMod.FargowiltasMod
+		];
         public override void UpdateInventory(Item item, Player player)
 		{
 			if (DificultyUtils.ReaperMode)
@@ -931,10 +899,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				if (mod != null) 
 				{
-					AddEndlessEffectOnInventory(item, player);
+                    AddEndlessEffectOnInventory(item, player);
 				}
 			}
         }
+        float Timmer = 0;
+        float UseTimeReduction = 0;
         public override void HoldItem(Item item, Player player)
         {
 			int Shootproj;
@@ -949,9 +919,32 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     Projectile.NewProjectile(Projectile.GetSource_None(), player.position + new Vector2(0,-2 * 16f), Vector2.Zero, Shootproj, 15, 0, Main.myPlayer,1);
                 }
             }
+			if (IsRepeater)
+			{
+                if (player.channel)
+                {
+                    if (Timmer <= item.useTime * 16f)
+                    {
+                        Timmer++;
+                        UseTimeReduction = Timmer / (item.useTime * 32f);
+                    }
+                }
+                else if (Main.mouseLeftRelease)
+                {
+                    Timmer = UseTimeReduction = 0;
+                }
+            }
             base.HoldItem(item, player);
         }
-
+        public override float UseTimeMultiplier(Item item, Player player)
+        {
+            if (IsRepeater)
+            {
+				//Main.NewText(1f - UseTimeReduction);
+                return 1f - UseTimeReduction;
+            }
+            return base.UseTimeMultiplier(item, player);
+        }
         private int AllowCoinAndAmmoPlacement(On_ItemSlot.orig_PickItemMovementAction orig, Item[] inv, int context, int slot, Item checkItem)
         {
             if (context == 1 && (IsCoin || FixCoin(checkItem))) 
@@ -964,9 +957,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             return orig(inv, context, slot, checkItem);
         } 
-		public bool FixCoin(Item item)
+		public static bool FixCoin(Item item)
 		{
-			List<int> coins = new List<int>() { ModContent.ItemType<Terracoin>()};
+			List<int> coins = [ModContent.ItemType<Terracoin>()];
 			if (coins.Contains(item.type))
 			{
 				return true;
@@ -974,16 +967,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			return false;
 		}
 
-		public void AddEndlessEffectOnInventory(Item item, Player player)
+		public static void AddEndlessEffectOnInventory(Item item, Player player)
 		{
 			if (item.IsAir) 
 				return;
 			
-
-			if (item.buffTime >= (int)Utils1.FormatTimeToTick(14, 0, 0, 0) && item.buffType != 0)
-			{
+			if (item.buffTime >= (int)Utils1.FormatTimeToTick(14, 0, 0, 0) && item.buffType != 0)	
 				player.AddBuff(item.buffType, 2);
-			}
+			
                 
         }
 
@@ -992,9 +983,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
 			if (Utils1.IsAprilFoolDay() && ModContent.GetInstance<ConfigClient>().AprilFoolsDay)
 			{
-				int texture = 0;
-
-				if (item.pick > 0)
+                int texture;
+                if (item.pick > 0)
 				{
 					texture = 3509;
 				}
@@ -1050,12 +1040,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				if (oldTexture.Count > 0)
 				{
-					try
-					{
+                    try
+                    {
 						TextureAssets.Item[item.type] = oldTexture[item.type];
 					}
-					catch (Exception e) 
-					{
+					catch (Exception)
+                    {
 						Main.NewText(item.type);
 					}
 				}

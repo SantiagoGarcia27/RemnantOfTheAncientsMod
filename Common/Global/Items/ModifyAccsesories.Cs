@@ -67,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 10;
                 }
                 
-                item.GetGlobalItem<RemnantGlobalItem>().fillMusicBox();
+                item.GetGlobalItem<RemnantGlobalItem>().FillMusicBox();
                 if (item.GetGlobalItem<RemnantGlobalItem>().MusicBox.Contains(item.type))
                 {     
                     item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 4;

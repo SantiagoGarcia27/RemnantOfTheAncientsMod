@@ -2,12 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
     public static class Utils1
     {
-        internal static readonly Color ReaperRarityColor = new Color(48, 48, 48); // 
-        internal static readonly Color LegendaryRarityColor = new Color(0, 255, 200);
-        internal static readonly Color CompletistRarityColor = new Color(242, 231, 15);
+        internal static readonly Color ReaperRarityColor = new(48, 48, 48);
+        internal static readonly Color LegendaryRarityColor = new(0, 255, 200);
+        internal static readonly Color CompletistRarityColor = new(242, 231, 15);
 
         internal static bool IsABoss()
         {
@@ -48,56 +45,51 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         public static bool IsAnyBossAlive()
         {
-            for (int i = 0; i < Main.maxNPCs; i++)
+            int i = 0;
+            while(!Main.npc[i].active && !Main.npc[i].boss && i == Main.maxNPCs)
             {
-                if (Main.npc[i].active && Main.npc[i].boss)
-                {
-                    NPC test = Main.npc[i];
-                    return true;
-                }
+                i++;
             }
-            return false;
+            return i < Main.maxNPCs;        
         }
         public static bool IsItemOnPlayerInventory(int id, Player player)
         {
             return player.inventory.Any(item => !item.IsAir && item.type == id);
         }
-        public static string ColorMessage(string msg, Color color)
-        {
+        //public static string ColorMessage(string msg, Color color)
+        //{
 
-            StringBuilder stringBuilder;
-            if (!msg.Contains("\n"))
-            {
-                stringBuilder = new StringBuilder(msg.Length + 12);
-                stringBuilder.Append("[c/").Append(Utils.Hex3(color)).Append(':')
-                    .Append(msg)
-                    .Append(']');
-            }
-            else
-            {
-                stringBuilder = new StringBuilder();
-                string[] array = msg.Split('\n');
-                foreach (string value in array)
-                {
-                    stringBuilder.Append("[c/").Append(Utils.Hex3(color)).Append(':')
-            .Append(value)
-            .Append(']')
-            .Append('\n');
-                }
-            }
-            return stringBuilder.ToString();
-        }
+        //    StringBuilder stringBuilder;
+        //    if (!msg.Contains('\n'))
+        //    {
+        //        stringBuilder = new StringBuilder(msg.Length + 12);
+        //        stringBuilder.Append("[c/").Append(Utils.Hex3(color)).Append(':')
+        //            .Append(msg)
+        //            .Append(']');
+        //    }
+        //    else
+        //    {
+        //        stringBuilder = new StringBuilder();
+        //        string[] array = msg.Split('\n');
+        //        foreach (string value in array)
+        //        {
+        //            stringBuilder.Append("[c/").Append(Utils.Hex3(color)).Append(':')
+        //            .Append(value)
+        //            .Append(']')
+        //            .Append('\n');
+        //        }
+        //    }
+        //    return stringBuilder.ToString();
+        //}
         internal static Color GetRarityColor(Color rarityColorOne, Color rarityColorTwo)
         {
             return ColorSwap(rarityColorOne, rarityColorTwo, 3f);
         }
         public static Color GetReaperColor(int x)
         {
-            //Color color;// = new Color(100, 100, 100);
             if (x == 1) return new Color(46, 45, 45);
-            else if (x == 2) return new Color(212, 210, 210);//191,187,187
+            else if (x == 2) return new Color(212, 210, 210);
             else return new Color(255, 255, 255);
-            //return color;
         }
         public static void DroppItem(Player player, Item item, int drop, int numerator, int denominator)
         {
@@ -198,18 +190,14 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         public static bool NameHasWord(string word, string SeachedWord)
         {
-            return word.Contains(SeachedWord) ? true : false;
+            return word.Contains(SeachedWord);
         }
         public static int ReaperDropScaler(int i)
         {
             int a = i;
             if (DificultyUtils.ReaperMode) a = i * 5;
             return a;
-        }
-        public static DamageClass GetClassForHeldItem(Player player)
-        {
-            return player.HeldItem.DamageType;
-        }
+        }  
         public static Point ToPoint(Vector2 vector2)
         {
             return new Point((int)vector2.X, (int)vector2.Y);
@@ -221,7 +209,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         public static bool CanDevourerOfWorldsDrop(NPC npc)
         {
-            return npc.boss && Array.IndexOf(new int[] { NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail }, npc.type) > -1;
+            return npc.boss && Array.IndexOf([NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail], npc.type) > -1;
         }
         public static bool CanDropCorruptBoss(NPC npc)
         {
@@ -269,11 +257,25 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             if (!list.Contains(p)) list.Add(p);
         }
+        public static void AddSecure(List<int> list, List<int> p)
+        {
+            foreach (int i in p)
+            {
+                if (!list.Contains(i)) list.Add(i);
+            }
+        }
+        public static void AddSecure(List<int> list, int[] p)
+        {
+            foreach (int i in p)
+            {
+                if (!list.Contains(i)) list.Add(i);
+            }
+        }
         public static void AddSecure(List<Type> list, Type p)
         {
             if (!list.Contains(p)) list.Add(p);
         }
-        public static void AddSecure(List<Asset<Texture2D>> list, Asset<Texture2D> p, bool a = false)
+        public static void AddSecure(List<Asset<Texture2D>> list, Asset<Texture2D> p)
         {
             if (!list.Contains(p)) list.Add(p);
         }
@@ -283,7 +285,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static bool OnlyOneValue(List<bool> list, bool a)
         {
-            List<bool> result = new List<bool>();
+            List<bool> result = [];
             foreach(bool e in list)
             {
                 if(e == a) result.Add(e);
@@ -294,7 +296,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static bool OnlyOneValue(List<bool> list, bool a,int index)
         {
             if(list[index] != a) return false;
-            List<bool> result = new List<bool>();
+            List<bool> result = [];
             for(int i = 0; i < list.Count; i++)
             {
                 if (list[i] == a)
@@ -336,12 +338,11 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         public static int GetRecipeGroupId(string name)
         {
-            if (!RecipeGroup.recipeGroupIDs.ContainsKey(name))
+            if (!RecipeGroup.recipeGroupIDs.TryGetValue(name, out int value))
             {
                 throw new RecipeException("A recipe group with the name " + name + " does not exist.");
             }
-            int num = RecipeGroup.recipeGroupIDs[name];
-            return num;
+            return value;
         }
 
         public static NPC SearchNPC(int Id)
@@ -368,7 +369,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static List<Projectile> SearchProjectiles(bool friendly, Vector2 center, float range)
         {
-            List<Projectile> l = new List<Projectile>();
+            List<Projectile> l = [];
             foreach (Projectile p in Main.projectile)
             {
                 if(Vector2.Distance(center, p.Center) <= range)
@@ -383,7 +384,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static List<Projectile> SearchProjectiles(bool friendly, NPC center, float range)
         {
-            List<Projectile> l = new List<Projectile>();
+            List<Projectile> l = [];
             foreach (Projectile p in Main.projectile)
             {
                 if (Vector2.Distance(center.Center, p.Center) <= range)

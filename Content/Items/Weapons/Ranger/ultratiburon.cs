@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         }
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            return Main.rand.NextFloat() >= NotConsumeAmmoChance;
+            return Main.rand.NextFloat() >= NotConsumeAmmoChance/100f;
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {

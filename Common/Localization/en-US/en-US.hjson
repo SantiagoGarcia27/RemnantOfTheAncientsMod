@@ -2404,8 +2404,8 @@ Mods: {
 				DisplayName: P90
 				Tooltip:
 					'''
-						Fast and effective
-						{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					Fast and effective
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
 					'''
 			}
 
@@ -2414,12 +2414,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			copper_repeter: {
+			CopperRepeater: {
 				DisplayName: Copper Repeater
 				Tooltip: ""
 			}
 
-			gold_repeter: {
+			GoldRepeater: {
 				DisplayName: Gold Repeater
 				Tooltip: ""
 			}
@@ -3508,6 +3508,11 @@ Mods: {
 
 			SnowBallBazooka: {
 				DisplayName: Snow Ball Bazooka
+				Tooltip: ""
+			}
+
+			CopperRepeter: {
+				DisplayName: Copper Repeter
 				Tooltip: ""
 			}
 		}

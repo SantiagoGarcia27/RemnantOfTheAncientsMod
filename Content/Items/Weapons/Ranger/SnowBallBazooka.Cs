@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -10,18 +9,14 @@ using System;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
-	public class SnowBallBazooka : ModItem
+    public class SnowBallBazooka : ModItem
 	{
 		public int Timmer = 0;
 		public int TimmerMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 6);
-		private bool canShoot = false;
 		public int TimmerDust = 0;
 		public int TimmerDustMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 2);
 		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Corruptor Musket");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Mousquet de corruption");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mosquete corruptor");
+		{	
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -30,13 +25,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 2;
 			Item.height = 2;
-			Item.useTime = 2;
-			Item.useAnimation = 2;
+			Item.useTime = 40;
+			Item.useAnimation = 40;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.noMelee = true;
 			Item.knockBack = 15;
 			Item.value = 20000;
-			Item.rare = ItemRarityID.LightRed;
+			Item.rare = ItemRarityID.Orange;
 			Item.UseSound = SoundID.Item38;
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.PurificationPowder;
@@ -47,25 +42,24 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		{
 			var a = Projectile.NewProjectileDirect(source, position, velocity, type, damage, 1, player.whoAmI);
 			a.scale = 2.0f;
+			a.penetrate = 2;
 			return false;
 		}
         public override bool CanShoot(Player player)
         {
-			if (Timmer < TimmerMax)
-			{
-				canShoot = false;
+			TimmerMax = (int)Utils1.FormatTimeToTick(0, 0, 0, (Item.useTime/10));
+			TimmerDustMax = TimmerMax / 3;
+            if (Timmer < TimmerMax)
+			{			
 				Timmer++;
 				SpawnDust(player);
-
-
             }
 			else
 			{
-				canShoot = true;
 				Timmer = 0;
 
             }
-            return canShoot;
+            return Timmer >= TimmerMax;
         }
 
 		public void SpawnDust(Player player)
@@ -87,12 +81,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			{
 				TimmerDust++;
             }
-        }
-        public int Damegscale(int damage)
-		{
-			if (RemnantOfTheAncientsMod.CalamityMod != null) return damage * 2;
-			else return damage;
-		}
+        }    
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-10, 0);
@@ -106,9 +95,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.Musket, 1)
-			.AddIngredient(ItemID.ScourgeoftheCorruptor, 1)
-			.AddTile(TileID.MythrilAnvil)
+			.AddIngredient(ItemID.SnowballCannon, 1)
+            .AddIngredient(ItemID.HellstoneBar, 6)
+            .AddIngredient(ItemID.Bone, 5)
+            .AddIngredient(ItemID.IllegalGunParts, 1)
+			.AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

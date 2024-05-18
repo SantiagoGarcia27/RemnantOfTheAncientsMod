@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             Projectile.width = 13;
             Projectile.height = 2;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = DamageClass.Ranged;
             Projectile.tileCollide = true;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 2000;
@@ -54,17 +54,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             for (int i = 0; i < 10; i++)
             {
                 Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(i * -18)).ToRotationVector2();
-                //usePos += rotVector * 16f;
-               
-
                 Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, DustID.Shadowflame);
                 dust.position = (dust.position + Projectile.Center) / 2f;
-                //  Main.LocalPlayer.position = dust.position;
                 dust.velocity = Projectile.velocity * 0.5f;
-                //dust.velocity += rotVector * 2f;
-                //dust.velocity *= 0.5f;
                 dust.noGravity = true;
-                usePos -= rotVector * 2;// * 8f;
+                usePos -= rotVector * 2;
 
             }
         }

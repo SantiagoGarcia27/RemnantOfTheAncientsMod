@@ -47,7 +47,6 @@ namespace RemnantOfTheAncientsMod
 
         public override void Load()
         {
-
             ModLoader.TryGetMod("CalamityMod", out CalamityMod);
             ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
             ModLoader.TryGetMod("BossChecklist", out BossChecklist);
@@ -128,17 +127,7 @@ namespace RemnantOfTheAncientsMod
         {
             return Lighting.GetColor((int)(position.X / 16f), (int)(position.Y / 16f));
         }
-        public override void PostSetupContent()
-        {
-            //if (FargosSoulMod != null)
-            //{
-            //    AddFargosLocalization();
-            //}
-
-        }
-     
-
-
+      
         public int ParticleMeter(int i)
         {
             float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;

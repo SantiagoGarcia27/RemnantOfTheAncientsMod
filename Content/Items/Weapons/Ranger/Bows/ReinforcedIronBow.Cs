@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 0;
             Item.value = 12000;
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.White;
             Item.UseSound = SoundID.Item5;
             Item.noMelee = true;
             Item.shoot = ProjectileID.WoodenArrowFriendly;

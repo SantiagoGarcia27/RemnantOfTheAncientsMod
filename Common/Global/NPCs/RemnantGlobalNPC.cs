@@ -617,7 +617,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 SpriteEffects effects = SpriteEffects.None;
                 Vector2 vectorFrame = new(1, 1);/*new(TextureAssets.Npc[npc.type].Value.Width / 2, TextureAssets.Npc[npc.type].Value.Height / Main.npcFrameCount[npc.type] / 2);*/
-                Vector2 position = new Vector2(npc.position.X + 1.5f * 16f, npc.position.Y - 2 * 16) - Main.screenPosition;
+                Vector2 position = new Vector2(npc.Center.X + 0.5f * 16, npc.Center.Y - (TextureAssets.Npc[npc.type].Value.Height / Main.npcFrameCount[npc.type])) - Main.screenPosition;
                 var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/Effect/CurseMarkEffect");
                 position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[npc.type]) /*/ 2f*/;
                 position += vectorFrame * 1f + new Vector2(0f, 4f + npc.gfxOffY);
