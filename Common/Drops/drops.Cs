@@ -347,7 +347,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 }
                 else
                 {
-                    Dictionary<int, Func<bool>> npcConditions = new Dictionary<int, Func<bool>>()
+                    Dictionary<int, Func<bool>> npcConditions = new()
                     {
                         { NPCID.KingSlime, () => !NPC.downedSlimeKing },
                         { NPCID.EyeofCthulhu, () => !NPC.downedBoss1 },

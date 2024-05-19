@@ -7,6 +7,8 @@ using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -44,21 +46,25 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 10f;
             Item.useAmmo = AmmoID.Bullet;
+            Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+            Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+            Item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
+            Item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(4, ModContent.ProjectileType<TerraBulletP>(),5);
         }
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            if (type == ProjectileID.Bullet) type = ModContent.ProjectileType<TerraBulletP>();
+        //public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        //{
+            //if (type == ProjectileID.Bullet) type = ModContent.ProjectileType<TerraBulletP>();
 
-            const int NumProjectiles = 4;
-            for (int i = 0; i < NumProjectiles; i++)
-            {
-                Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
-                newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-                Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
-            }
+            //const int NumProjectiles = 4;
+            //for (int i = 0; i < NumProjectiles; i++)
+            //{
+            //    Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
+            //    newVelocity *= 1f - Main.rand.NextFloat(0.3f);
+            //    Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
+            //}
 
-            return false;
-        }
+            //return false;
+        //}
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-10, 0);

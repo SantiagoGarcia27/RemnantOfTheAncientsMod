@@ -67,10 +67,10 @@ namespace RemnantOfTheAncientsMod
 
 		public bool anyBossIsAlive;
 		public bool MoneyCollector;
-		public List<int> ScrollsBuff = new List<int>();
+		public List<int> ScrollsBuff = [];
 		public static int DummyMode = 0;
 		public bool Inmortal;
-
+	
 
 		public static bool DaylightArmorSetBonus;
 		public static bool CanWormHole;
@@ -87,17 +87,19 @@ namespace RemnantOfTheAncientsMod
 		public static int tuxoniteStealthDuration = 0;
 		public static float tuxoniteStealthCounter = 0;
 
-	
-		#endregion
+
+        #endregion
+
+        public static float GenericChargeCouldown { get; set; }
+        public static float GenericChargeCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
 
 
-
-		public List<int> MinionsBuffInflict = new List<int> { };
-		public List<int> MeleeBuffInflict = new List<int> { };
-		public List<int> MageBuffInflict = new List<int> { };
-		public List<int> RangerBuffInflict = new List<int> { };
-		public List<int> TrowerBuffInflict = new List<int> { };
-		public List<int> AllClassBuffInflict = new List<int> { };
+        public List<int> MinionsBuffInflict = [];
+		public List<int> MeleeBuffInflict = [];
+		public List<int> MageBuffInflict = [];
+		public List<int> RangerBuffInflict = [];
+		public List<int> TrowerBuffInflict = [];
+		public List<int> AllClassBuffInflict = [];
 		public int MinionCritChance = 0;
 
 		public bool SpectralLantern;
@@ -106,8 +108,8 @@ namespace RemnantOfTheAncientsMod
         public bool CouwldownHolySaber;
 		#endregion
 
-		public static List<int> DevSuits = new List<int>()
-		{
+		public static List<int> DevSuits =
+        [
             666, 667, 668, 665,
             1554, 1555, 1556, 1586,
 			1554, 1587, 1588, 1586,
@@ -127,7 +129,7 @@ namespace RemnantOfTheAncientsMod
 			4751, 4752, 4753, 4750,
 			4755, 4756, 4757, 4754,
 			
-        };
+        ];
 
 		
 
@@ -185,7 +187,6 @@ namespace RemnantOfTheAncientsMod
 			base.Load();
 		}
 
-       
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (Inmortal)
@@ -296,8 +297,11 @@ namespace RemnantOfTheAncientsMod
 				WormHoleEffect(Player);
 			}
 			SpawnMimics(Player);
-
-		}
+            if (Player.HeldItem.maxStack > 0 && Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax > 0)
+            {
+                GenericChargeCouldownMax = (int)Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
+            }
+        }
 		public override bool FreeDodge(Player.HurtInfo info)
 		{
 			if (BrainDogde)

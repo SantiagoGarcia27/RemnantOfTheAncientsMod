@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -36,8 +37,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.PurificationPowder;
 			Item.shootSpeed = 20f;
-			Item.useAmmo = AmmoID.Snowball;	
-		}
+			Item.useAmmo = AmmoID.Snowball;
+            Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+        }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			var a = Projectile.NewProjectileDirect(source, position, velocity, type, damage, 1, player.whoAmI);
@@ -49,6 +51,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         {
 			TimmerMax = (int)Utils1.FormatTimeToTick(0, 0, 0, (Item.useTime/10));
 			TimmerDustMax = TimmerMax / 3;
+            RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax/10;
+            RemnantPlayer.GenericChargeCouldown = (int)Timmer/10;
             if (Timmer < TimmerMax)
 			{			
 				Timmer++;
@@ -66,13 +70,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		{
 			if (TimmerDust >= TimmerDustMax)
 			{
-				for (int i = 0; i < 360; i += 36) // Ajusta el ángulo para la densidad del círculo
+				for (int i = 0; i < 360; i += 36) 
 				{
 					double angle = MathHelper.ToRadians(i);
-					Vector2 position = player.Center + new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 50; // Ajusta el radio del círculo
-					Vector2 direction = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)); // Vector de dirección
+					Vector2 position = player.Center + new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 50; 
+					Vector2 direction = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
 
-					Dust d = Dust.NewDustPerfect(position, DustID.Snow, direction * 2f, 0, Color.White, 1f); // Reemplaza "TuModDust" con el nombre de tu clase de polvo}
+					Dust d = Dust.NewDustPerfect(position, DustID.Snow, direction * 2f, 0, Color.White, 1f);
 					d.noGravity = true;
 				}
 				TimmerDust = 0;

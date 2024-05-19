@@ -32,26 +32,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep
         {   
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
-        public override void HoldItem(Player player)
-        {
-            if (player.channel)
-            {
-                if (Timmer <= Item.useTime * 16f)
-                {
-                    Timmer++;
-                    UseTimeReduction = Timmer / (Item.useTime * 32f);
-                }
-            }
-            else if(Main.mouseLeftRelease) 
-            {
-                Timmer = UseTimeReduction = 0;
-            } 
-            base.HoldItem(player);
-        }
-        public override float UseTimeMultiplier(Player player)
-        {
-            return 1f - UseTimeReduction;
-        }
         public override void AddRecipes()
         {
             CreateRecipe()

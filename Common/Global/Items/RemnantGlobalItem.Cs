@@ -19,6 +19,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
+using Terraria.Audio;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -26,17 +27,24 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 	{
 		public bool IsCoin;
 		public bool IsAmmo;
-        public int StyleStat = 0;
+		public int StyleStat = 0;
 		public bool IsRepeater;
-        public Item ItemBase = null;
+
+		public bool IsShotgun = false;
+		public Vector3 ShotgunBulletStat = new(0,-1,0);
+
+		public Item ItemBase = null;
+		public float ChargeMax = 0;
 		public static List<int> SpearsList = [];
+		public bool CanCharge = false;
+
 
 		Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
 
-        public override bool InstancePerEntity => true;
-        public int[] lanceId =
-        [
-            ItemID.Spear,
+		public override bool InstancePerEntity => true;
+		public int[] lanceId =
+		[
+			ItemID.Spear,
 			ItemID.Trident,
 			ItemID.DarkLance,
 			ItemID.TheRottedFork,
@@ -58,37 +66,37 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.UnholyTrident
 		];
 		public List<int> CoinsId =
-        [
-            ItemID.CopperCoin,
+		[
+			ItemID.CopperCoin,
 			ItemID.SilverCoin,
 			ItemID.GoldCoin,
 			ItemID.PlatinumCoin
 		];
-        public List<int> SecondClickWeapons =
-        [
-            ItemID.BookofSkulls,
-            ItemID.FlowerofFire,
-            ItemID.FlowerofFrost,
+		public List<int> SecondClickWeapons =
+		[
+			ItemID.BookofSkulls,
+			ItemID.FlowerofFire,
+			ItemID.FlowerofFrost,
 			ItemID.SharpTears,
-            ItemID.AmethystStaff,
-            ItemID.TopazStaff,
-            ItemID.SapphireStaff,
-            ItemID.EmeraldStaff,
-            ItemID.RubyStaff,
-            ItemID.DiamondStaff,
-            ItemID.AmberStaff,
-            ItemID.BubbleGun
-        ];
-		public List<int> GemStaffs =
-        [
-            ItemID.AmethystStaff,
+			ItemID.AmethystStaff,
 			ItemID.TopazStaff,
 			ItemID.SapphireStaff,
 			ItemID.EmeraldStaff,
 			ItemID.RubyStaff,
 			ItemID.DiamondStaff,
-			ItemID.AmberStaff
-        ];
+			ItemID.AmberStaff,
+			ItemID.BubbleGun
+		];
+		public Dictionary<int, int> GemStaffs = new()
+		{
+			{ ItemID.AmethystStaff,0},
+			{ ItemID.TopazStaff ,1},
+			{ ItemID.EmeraldStaff,2 },
+			{ ItemID.SapphireStaff,3 },
+			{ ItemID.RubyStaff,4 },
+            { ItemID.DiamondStaff,5 },
+			{ ItemID.AmberStaff,6 }
+        };
         public static List<int> Phones =
         [
             ItemID.CellPhone,
@@ -107,7 +115,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public List<int> HightBait = [];
 		public List<int> MusicBox = [];
 		public override void SetStaticDefaults()
-		{
+		{	
         }
 
 		public void FillMusicBox()
@@ -315,7 +323,41 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.DamageType = ModContent.GetInstance<FisherDamageClass>();
                 }
-
+                if (item.type == ItemID.Boomstick)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(3, -1, 3);
+                }
+                if (item.type == ItemID.QuadBarrelShotgun)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(7, -1, 45);
+                }
+                if (item.type == ItemID.Shotgun)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(3, -1, 5);
+                }
+                if (item.type == ItemID.OnyxBlaster)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(4, -1, 5);
+                }
+                if (item.type == ItemID.TacticalShotgun)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(6, -1, 10);
+                }            
                 if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -344,8 +386,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.GetGlobalItem<RemnantGlobalItem>().IsRepeater = true;
 					item.channel = true;
                 }
-                
-
+				
+                if (CanCharge)
+				{
+					item.channel = true;
+					ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
+				}
                 if (SecondClickWeapons.Contains(item.type))
 				{
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
@@ -558,53 +604,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 
 			}
-			else if (GemStaffs.Contains(item.type))
+			else if (GemStaffs.TryGetValue(item.type, out int value))
 			{
 				if (player.altFunctionUse == 2)
 				{
-					int ColorBase = 0;
-					if (item.type == ItemID.TopazStaff)
+					if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0 && player.whoAmI == Main.myPlayer)
 					{
-						ColorBase = 1;
-
-					}
-					else if (item.type == ItemID.AmethystStaff)
-					{
-						ColorBase = 0;
-
-					}
-					else if (item.type == ItemID.EmeraldStaff)
-					{
-						ColorBase = 2;
-
-					}
-					else if (item.type == ItemID.SapphireStaff)
-					{
-						ColorBase = 3;
-
-					}
-					else if (item.type == ItemID.RubyStaff)
-					{
-						ColorBase = 4;
-
-					}
-					else if (item.type == ItemID.DiamondStaff)
-					{
-						ColorBase = 5;
-
-					}
-					else if (item.type == ItemID.AmberStaff)
-					{
-						ColorBase = 6;
-
-					}
-
-					if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0)
-					{
-						if (player.whoAmI == Main.myPlayer)
-						{
-							Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, ColorBase);
-						}
+						Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, value);
 					}
 					return false;
 				}
@@ -639,7 +645,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 			else if (item.type == ItemID.PygmyStaff)
 			{
-				if(Main.rand.NextBool(2))
+				if (Main.rand.NextBool(2))
 				{
 					player.AddBuff(BuffID.Pygmies, 10);
 					Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<PygmyMelee>(), damage, knockback, player.whoAmI);
@@ -651,51 +657,87 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				if(item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "TheDevourerofCods"))
 				{
-                    for (int index = 0; index < 10; index++)
-                    {
-                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
-                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
-                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
-                    }
+					FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 10);  
                     return false;
                 }
 				else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "RiftReeler"))
                 {
-                    for (int index = 0; index < Main.rand.Next(3, 6); index++)
-                    {
-                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
-                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
-                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
-                    }
+                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, new Vector2(3,6));
                     return false;
                 }
                 else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "FeralDoubleRod"))
                 {
-                    for (int index = 0; index < 2; index++)
-                    {
-                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
-                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
-                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
-                    }
+                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 2);
                     return false;
                 }
                 else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "EarlyBloomRod"))
                 {
-                    for (int index = 0; index < 6; index++)
-                    {
-                        float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
-                        float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
-                        Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player.whoAmI);
-                    }
+                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 6);
                     return false;
                 }
             }
+			if (IsShotgun && ShotgunBulletStat.X > 0)
+			{
+                if (Main.mouseRight && Main.mouseLeft)
+                {
+                    SoundEngine.PlaySound(SoundID.Item36);
+					if (Timmer > 0)
+					{
+						shoot((int)ShotgunBulletStat.X + (int)Timmer, (int)ShotgunBulletStat.Z, (int)ShotgunBulletStat.Y);
+						if(item.type == ItemID.OnyxBlaster) shoot(1 + (int)Timmer/5, 45, ProjectileID.BlackBolt);
+                        player.velocity = -velocity * (int)Timmer * 0.05f;
+						Timmer = 0;
+					}
+                    return false;
+                }
+                else if (Main.mouseRight && !Main.mouseLeft)
+                {
+                    item.useStyle = ItemUseStyleID.EatFood;
+                    return false;
+                }
+                else if (player.altFunctionUse == 0 && !Main.mouseRight)
+                {
+					shoot((int)ShotgunBulletStat.X, (int)ShotgunBulletStat.Z, (int)ShotgunBulletStat.Y);
+                }
 
+				void shoot(int ShotgunBulletAmmount,int Unacurency, int type2 = -1)
+				{
+					int type3;
+					if (type2 != -1 && type == ProjectileID.Bullet) type3 = type2;
+					else type3 = type;
+                    item.useStyle = ItemUseStyleID.Shoot;
+                    SoundEngine.PlaySound(SoundID.Item36);
+                    for (int i = 0; i < ShotgunBulletAmmount; i++)
+                    {
+                        Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(Unacurency));
+                        newVelocity *= 1f - Main.rand.NextFloat(0.3f);
+                       var a = Projectile.NewProjectileDirect(source, position, newVelocity, type3, damage, knockback, player.whoAmI);
+                    }
+                }
+				
+            }
 			
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 		
-
+		public static void FixModRodsBobers(IEntitySource source, Vector2 velocity,Vector2 position,int type,int damage,float knockback,int player,int BoberAmount)
+		{
+            for (int index = 0; index < BoberAmount; index++)
+            {
+                float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
+                float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
+                Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player);
+            }
+        }
+        public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, Vector2 BoberAmount)
+        {
+            for (int index = 0; index < Main.rand.Next((int)BoberAmount.X, (int)BoberAmount.Y); index++)
+            {
+                float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
+                float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
+                Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player);
+            }
+        }
         public void AddToDashWeaponsLists(Item item)
 		{
 			AddVanilaSpear();
@@ -735,7 +777,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public override bool AltFunctionUse(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-
+			if (item.GetGlobalItem<CustomTooltip>().SecondHabilitie) return true;
 			if (WeaponConf)
 			{
 				if (item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee)
@@ -904,6 +946,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
         }
         float Timmer = 0;
+		float TimmerMax = 0;
         float UseTimeReduction = 0;
         public override void HoldItem(Item item, Player player)
         {
@@ -932,6 +975,24 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 else if (Main.mouseLeftRelease)
                 {
                     Timmer = UseTimeReduction = 0;
+                }
+            }
+			if (IsShotgun ) 
+			{
+                TimmerMax = item.useTime / 4;
+
+                RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax;
+                RemnantPlayer.GenericChargeCouldown = (int)Timmer;
+                if (player.channel && player.altFunctionUse == 2)
+                {
+                    if (Timmer < TimmerMax)
+                    {
+                        Timmer += 0.5f;
+                    }
+                }
+                else if (Main.mouseRightRelease)
+                {
+                    Timmer = 0;
                 }
             }
             base.HoldItem(item, player);
