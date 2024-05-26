@@ -218,7 +218,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                DashIa(target, this.MoveSpeed);
+                DashIa(this.MoveSpeed);
             }
 
             LifeSpeed(this);
@@ -341,14 +341,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             Vector2 spawn = DistanceUtils.SearchLiquidCoordenates(LiquidID.Lava, 10, player);
             bool m = false;
-            Vector2 fixedSpawn = new Vector2(spawn.X, DistanceUtils.checkHigh(spawn));
+            Vector2 fixedSpawn = new(spawn.X, DistanceUtils.CheckHigh(spawn));
           
             
 
             // player.position = spawn;
             Vector2 ppos = player.position;
 
-            Vector2 position =  new Vector2(player.Center.X + (40 *16f), fixedSpawn.Y -i *16 *4);
+            Vector2 position =  new(player.Center.X + (40 *16f), fixedSpawn.Y -i *16 *4);
            
 
             // int type = ProjectileType<InfernalBallF>();
@@ -365,28 +365,28 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(),spawnPosition, Vector2.Zero, type, damage, 0f, Main.myPlayer);
             Main.projectile[projectile].timeLeft = 1500;
         }
-        public void DashIa(Player target,float speed)
+        public void DashIa(float speed)
         {
             if (DificultyUtils.MasochistMode || DificultyUtils.EternityMode)
             {
                 float limit = (Main.maxTilesY -10) * 16;
                 if (NPC.position.Y <= limit )
                 {
-                    if (DashCounter >= 550 && DashCounter < 600)
-                    {
-                        NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
-                    }
-                    else if (DashCounter >= 450 && DashCounter < 550)
-                    {
-                        NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
-                    }
-                    if (DashCounter >= 350 && DashCounter < 450)
-                    {
-                        NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
-                    }
-                    else if (DashCounter >= 250 && DashCounter < 350)
+                    //if ((DashCounter >= 550 && DashCounter < 600) || (DashCounter >= 350 && DashCounter < 450))
+                    //{
+                    //    NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
+                    //}
+                    //else if ((DashCounter >= 450 && DashCounter < 550) || (DashCounter >= 250 && DashCounter < 350))
+                    //{
+                    //    NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
+                    //}
+                    if ((DashCounter >= 350 && DashCounter < 450) || (DashCounter >= 250 && DashCounter < 350))
                     {
                         NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
+                    }
+                    else
+                    {
+                        NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
                     }
 
                     if (DificultyUtils.MasochistMode)
@@ -409,56 +409,44 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
 
         public void SummonIa(int Npc) => NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, Npc);
-        float moveSpeed = 30f;
         public void LifeSpeed(Worm worm)
         {
-            int maxLife = NPC.lifeMax;
-            NPC.defense = TyranStats.TyrantArmor(999, NPC);//ModContent.GetModNPC(ModContent.NPCType<InfernalTyrantHead>()).NPC);
-            if (!Main.player[Main.myPlayer].HasBuff(BuffID.Stinky))
-            {
-                if (!AllPlayersDead())
-                {
-                    if (GetLifePorcenage() < 5f && DificultyUtils.ReaperMode)
-                    {
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                        {
-                            worm.Acceleration = 1.4f;
-                        }
-                        else
-                        {
-                            worm.Acceleration = 1.2f;
-                        }
+            float lifePercentage = GetLifePorcenage();
+            bool isReaperMode = DificultyUtils.ReaperMode;
 
-                    }
-                    else if (GetLifePorcenage() < 10f)
-                    {
-                        worm.Acceleration = 1.1f;
-                    }
-                    else
-                    {
-                        worm.Acceleration = 0.15f;
-
-                        if (GetLifePorcenage() < 25f)
-                        {
-                            moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 70f : 60f;
-                        }
-                        else if (GetLifePorcenage() < 50f)
-                        {
-                            moveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 50f : 40f;
-                        }
-                        worm.MoveSpeed = moveSpeed;
-                    }
-                }
-                else
-                {
-                    worm.MoveSpeed = 10f;
-                    worm.Acceleration = 1f;
-                }
-            }
-            else
+            if (Main.player[Main.myPlayer].HasBuff(BuffID.Stinky))
             {
                 worm.MoveSpeed = 1f;
                 worm.Acceleration = 0.1f;
+            }
+            else if (AllPlayersDead())
+            {
+                worm.MoveSpeed = 10f;
+                worm.Acceleration = 1f;
+            }
+            else
+            {
+                if (lifePercentage < 5f && isReaperMode)
+                {
+                    worm.Acceleration = Main.netMode != NetmodeID.MultiplayerClient ? 1.4f : 1.2f;
+                }
+                else if (lifePercentage < 10f)
+                {
+                    worm.Acceleration = 1.1f;
+                }
+                else
+                {
+                    worm.Acceleration = 0.15f;
+
+                    if (lifePercentage < 25f)
+                    {
+                        worm.MoveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 70f : 60f;
+                    }
+                    else if (lifePercentage < 50f)
+                    {
+                        worm.MoveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 50f : 40f;
+                    }
+                }
             }
         }
         public float GetLifePorcenage()
@@ -466,10 +454,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             float i = (int)Math.Round((double)(100 * NPC.life) / NPC.lifeMax);//(NPC.lifeMax / NPC.life) * 100;
             return i;
         }
-        public bool AllPlayersDead()
+        public static bool AllPlayersDead()
         {
             bool allPlayersDead = true;
-
             foreach (Player player in Main.player)
             {
                 if (!player.dead)
@@ -512,13 +499,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
        
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999, new[] 
-            { 
+            npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999,
+            [
                 ModContent.ItemType<Spike_saber>(), 
-                ModContent.ItemType<Tyrant_repeater>(), 
+                ModContent.ItemType<TyrantRepeater>(), 
                 ModContent.ItemType<Tyran_Blast>(), 
                 ModContent.ItemType<EvilEyeStaff>() 
-            }));
+            ]));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalMask>(), 10));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<infernalBag>()));
@@ -536,9 +523,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
     internal class InfernalTyrantBody : WormBody
     {
+        [Obsolete]
         public override void SetStaticDefaults()
         { 
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new(0)
             {
                 Hide = true
             };
@@ -647,7 +635,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             return false;
         }
 
-      
+        
+        
         public override void SetStaticDefaults()
         {
 

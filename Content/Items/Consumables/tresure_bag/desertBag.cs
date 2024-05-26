@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>())); ;
             itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));
-            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<desertbow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<DesertBow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
             itemLoot.Add(ItemDropRule.ByCondition(new DesertReaperSoul(), ItemType<DesertSoul>()));
         }
         //public override int BossBagNPC => NPCType<DesertAniquilator>();

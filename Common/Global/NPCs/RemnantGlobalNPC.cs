@@ -279,6 +279,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 shadowDodge = true;
             }
+            if (npc.HasBuff(BuffID.Slow))
+            {
+                npc.velocity.X /= 2;
+            }
             base.AI(npc);
         }
         public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)

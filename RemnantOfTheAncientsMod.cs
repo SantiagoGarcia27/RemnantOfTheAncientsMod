@@ -139,7 +139,25 @@ namespace RemnantOfTheAncientsMod
 
             return (int)(i / Math.Pow(2, (int)lagLevel));
         }
-        public int ParticleMeter(int i,bool increment)
+        public static bool ParticleMeterChoice()
+        {
+            float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
+
+            if (lagLevel == 3f)
+            {
+                return false;
+            }
+            if (lagLevel == 0)
+            {
+                return true;
+            }
+            if (lagLevel == 1) 
+            {
+                return Main.rand.NextBool(3, 4);
+            }
+            return Main.rand.NextBool(2, 4);
+        }
+        public static int ParticleMeter(int i,bool increment)
         {
             float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
 

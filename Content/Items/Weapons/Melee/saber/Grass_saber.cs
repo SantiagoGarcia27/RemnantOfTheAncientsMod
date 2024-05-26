@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         {
 			if (player.altFunctionUse == 2)
 			{
-				if (DistanceUtils.PlayerTouchFlour(player))
+				if (DistanceUtils.TouchFlour(player))
 				{
 					Projectile.NewProjectile(source, position + (new Vector2(3 * 16, 0) * player.direction), velocity, type, (int)(damage * 0.25f), knockback, Main.myPlayer, -0.07f * player.direction, 0, 0);
 				}

@@ -2359,7 +2359,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			desertbow: {
+			DesertBow: {
 				DisplayName: Arco desértico
 				Tooltip: Transforma las flechas de madera en flechas desérticas.
 			}
@@ -2393,11 +2393,6 @@ Mods: {
 					'''
 			}
 
-			flaremachinegun: {
-				DisplayName: Ametralladora de bengalas
-				Tooltip: ""
-			}
-
 			FrostShark: {
 				DisplayName: Tiburón congelado
 				Tooltip: ""
@@ -2405,7 +2400,7 @@ Mods: {
 
 			Ichor_asault_rifle: {
 				DisplayName: Rifle de asalto de Ichor
-				Tooltip: Transforma las balas de mosquete en balas de ichor.
+				Tooltip: Dispara las balas de ichor pesadas.
 			}
 
 			minigun: {
@@ -2428,58 +2423,58 @@ Mods: {
 			}
 
 			CopperRepeater: {
-				// DisplayName: Copper Repeater
+				DisplayName: Repetidor de cobre
 				// Tooltip: ""
 			}
 
 			GoldRepeater: {
-				// DisplayName: Gold Repeater
+				DisplayName: Repetidor de oro
 				// Tooltip: ""
 			}
 
-			iron_repeter: {
-				DisplayName: Iron Repeater
-				Tooltip: ""
+			IronRepeater: {
+				DisplayName: Repetidor de hierro
+				// Tooltip: ""
 			}
 
-			lead_repeter: {
-				DisplayName: Lead Repeater
-				Tooltip: ""
+			LeadRepeater: {
+				DisplayName: Repetidor de plomo
+				// Tooltip: ""
 			}
 
-			platinum_repeter: {
-				DisplayName: Platinum Repeater
-				Tooltip: ""
+			PlatinumRepeater: {
+				DisplayName: Repetidor de platno
+				// Tooltip: ""
 			}
 
 			Silver_Repeater: {
-				DisplayName: Silver Repeater
+				DisplayName: Repetidor de plata
+				// Tooltip: ""
+			}
+
+			TinRepeater: {
+				DisplayName: Repetidor de estaño
+				// Tooltip: ""
+			}
+
+			TungstenRepeater: {
+				DisplayName: Repetidor de tungsteno
+				// Tooltip: ""
+			}
+
+			TuxoniteRepeater: {
+				DisplayName: Repetidor de tusonita
+				// Tooltip: ""
+			}
+
+			TyrantRepeater: {
+				DisplayName: Repetidor tiránico
 				Tooltip: ""
 			}
 
-			tin_repeter: {
-				DisplayName: Tin Repeater
-				Tooltip: ""
-			}
-
-			tungsten_repeter: {
-				DisplayName: Tungsten Repeater
-				Tooltip: ""
-			}
-
-			Tuxonite_repeter: {
-				DisplayName: Tuxonite Repeater
-				Tooltip: ""
-			}
-
-			Tyrant_repeater: {
-				DisplayName: Tyrant repeater
-				Tooltip: ""
-			}
-
-			wooden_repeter: {
-				DisplayName: Wooden Repeater
-				Tooltip: ""
+			WoodenRepeater: {
+				DisplayName: Repetidor de madera
+				// Tooltip: ""
 			}
 
 			StarCannonV2: {
@@ -3398,7 +3393,7 @@ Mods: {
 			}
 
 			DaylightEnchant: {
-				// DisplayName: Daylight Enchant
+				DisplayName: Daylight Enchant
 				Tooltip:
 					'''
 					Durante el día generas una torreta de girasol, 
@@ -3527,13 +3522,33 @@ Mods: {
 			}
 
 			SnowBallBazooka: {
-				// DisplayName: Snow Ball Bazooka
+				DisplayName: Bazuka de bolas de nieve
 				// Tooltip: ""
 			}
 
 			CopperRepeter: {
-				// DisplayName: Copper Repeter
+				DisplayName: Repetidor de cobre
 				// Tooltip: ""
+			}
+
+			FrozenNova: {
+				DisplayName: Nova Congelada
+				// Tooltip: ""
+			}
+
+			WoodenRepeter: {
+				// DisplayName: Wooden Repeter
+				// Tooltip: ""
+			}
+
+			SilverRepeater: {
+				// DisplayName: Silver Repeater
+				// Tooltip: ""
+			}
+
+			Flaremachinegun: {
+				DisplayName: Ametralladora de bengalas
+				// Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 			}
 		}
 
@@ -3756,6 +3771,8 @@ Mods: {
 			// Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
 			// BigGemBolt.DisplayName: Big Gem Bolt
 			// FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
+			// HeavyIchorBullet.DisplayName: Heavy Ichor Bullet
+			// FrozenNovaExplosion.DisplayName: Frozen Nova Explosion
 		}
 
 		Tiles: {

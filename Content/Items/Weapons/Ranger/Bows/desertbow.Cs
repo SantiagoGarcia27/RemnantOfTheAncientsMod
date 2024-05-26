@@ -10,21 +10,10 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
 {
-    public class desertbow : ModItem
+    public class DesertBow : ModItem
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Desert Bow");
-            //Tooltip.SetDefault(""
-            //+ "\nTransform normal arrows in desert arrows");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Arc du désert");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-            //+ "\nTransformez les flèches normales en flèches du désert");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arco Desertico");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-            //+ "\nTransforma flechas normales en flechas del deserticas");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -39,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2;
             Item.value = 12000;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item5;
             Item.noMelee = true;
             Item.shoot = ProjectileID.WoodenArrowFriendly;

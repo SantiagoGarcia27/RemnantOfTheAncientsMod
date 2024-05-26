@@ -2346,7 +2346,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			desertbow: {
+			DesertBow: {
 				DisplayName: Desert Bow
 				Tooltip:
 					'''
@@ -2380,11 +2380,6 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 			}
 
-			flaremachinegun: {
-				DisplayName: Flare Machine Gun
-				Tooltip: ""
-			}
-
 			FrostShark: {
 				DisplayName: Frozen Shark
 				Tooltip: ""
@@ -2392,7 +2387,7 @@ Mods: {
 
 			Ichor_asault_rifle: {
 				DisplayName: Ichor Assault Rifle
-				Tooltip: Transform musket bullets into ichor bullets
+				Tooltip: Shoot heavy ichor bullets
 			}
 
 			minigun: {
@@ -2424,17 +2419,17 @@ Mods: {
 				Tooltip: ""
 			}
 
-			iron_repeter: {
+			IronRepeater: {
 				DisplayName: Iron Repeater
 				Tooltip: ""
 			}
 
-			lead_repeter: {
+			LeadRepeater: {
 				DisplayName: Lead Repeater
 				Tooltip: ""
 			}
 
-			platinum_repeter: {
+			PlatinumRepeater: {
 				DisplayName: Platinum Repeater
 				Tooltip: ""
 			}
@@ -2444,27 +2439,27 @@ Mods: {
 				Tooltip: ""
 			}
 
-			tin_repeter: {
+			TinRepeater: {
 				DisplayName: Tin Repeater
 				Tooltip: ""
 			}
 
-			tungsten_repeter: {
+			TungstenRepeater: {
 				DisplayName: Tungsten Repeater
 				Tooltip: ""
 			}
 
-			Tuxonite_repeter: {
+			TuxoniteRepeater: {
 				DisplayName: Tuxonite Repeater
 				Tooltip: ""
 			}
 
-			Tyrant_repeater: {
+			TyrantRepeater: {
 				DisplayName: Tyrant Repeater
 				Tooltip: ""
 			}
 
-			wooden_repeter: {
+			WoodenRepeater: {
 				DisplayName: Wooden Repeater
 				Tooltip: ""
 			}
@@ -3515,6 +3510,26 @@ Mods: {
 				DisplayName: Copper Repeter
 				Tooltip: ""
 			}
+
+			FrozenNova: {
+				DisplayName: Frozen Nova
+				Tooltip: ""
+			}
+
+			WoodenRepeter: {
+				DisplayName: Wooden Repeter
+				Tooltip: ""
+			}
+
+			SilverRepeater: {
+				DisplayName: Silver Repeater
+				Tooltip: ""
+			}
+
+			Flaremachinegun: {
+				DisplayName: Flare Chain Gun
+				Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+			}
 		}
 
 		NPCs: {
@@ -3736,6 +3751,8 @@ Mods: {
 			Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
 			BigGemBolt.DisplayName: Big Gem Bolt
 			FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
+			HeavyIchorBullet.DisplayName: Heavy Ichor Bullet
+			FrozenNovaExplosion.DisplayName: Frozen Nova Explosion
 		}
 
 		Tiles: {

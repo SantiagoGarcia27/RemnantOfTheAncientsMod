@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
-            int choice = (int)Math.Pow(new RemnantOfTheAncientsMod().ParticleMeter(3, true),2);
+            int choice = (int)Math.Pow(RemnantOfTheAncientsMod.ParticleMeter(3, true),2);
             if (choice > 0)
             {
                 if (Main.rand.NextBool(choice))

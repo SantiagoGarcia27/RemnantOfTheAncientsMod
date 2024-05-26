@@ -62,20 +62,8 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static List<int> SearchRecipeMaterials(int Id)
         {
             Recipe recipe = SearchRecipe(Id);
-                List<int> results = new List<int>();
-            //    if (recipe != null)
-            //    {
-            //        foreach (Item item in Main.item)
-            //        {
-            //            recipe.TryGetIngredient(item.type, out Item material);
-            //            if(material != null)
-            //            {
-            //                Utils1.AddSecure(results, material.type);
-            //            }
-            //        }
-            //    }
-            //    return results;
-            //}
+                List<int> results = [];
+          
             foreach(Item item in recipe.requiredItem)
             {
                 Utils1.AddSecure(results, item.type);

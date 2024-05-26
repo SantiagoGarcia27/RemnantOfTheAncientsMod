@@ -199,7 +199,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 Projectile.tileCollide = false;
                 Jump(4f);
             }
-            if (DistanceUtils.ProjectileTouchFlourLiquid(Projectile) && player.waterWalk)
+            if (DistanceUtils.TouchFlourLiquid(Projectile) && player.waterWalk)
             {
                 Jump(1f);
             }
@@ -233,7 +233,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 }
                 else
                 {
-                    if (DistanceUtils.PlayerTouchFlour(player))
+                    if (DistanceUtils.TouchFlour(player))
                     {
                         Projectile.velocity = Projectile.position.DirectionTo(player.position) * speed;
                         Projectile.tileCollide = false;
@@ -272,7 +272,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             //            }
             //            else
             //            {
-            //                if (DistanceUtils.PlayerTouchFlour(player) || DistanceUtils.PlayerTouchFlourLiquid(player))
+            //                if (DistanceUtils.TouchFlour(player) || DistanceUtils.TouchFlourLiquid(player))
             //                {
             //                    Projectile.velocity = (player.Center - Projectile.Center);// * speed;
             //                    Projectile.tileCollide = false;
@@ -313,7 +313,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             //if (distance.X <= range && distance.Y <= range)
             //{
             int dist = 10 * 16;
-            bool touchFlour = DistanceUtils.ProjectileTouchFlour(Projectile);
+            bool touchFlour = DistanceUtils.TouchFlour(Projectile);
 
 
             if (Projectile.DistanceSQ(target.Center) > dist * dist && touchFlour)

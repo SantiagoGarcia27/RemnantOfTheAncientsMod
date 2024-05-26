@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -12,11 +11,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override string Texture => "Terraria/Images/NPC_" + NPCID.DukeFishron;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Fishron specter");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espectro fishron");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Spectre de poissonron");
             Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.DukeFishron];
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new()
             {
                 Velocity = 1f
             };

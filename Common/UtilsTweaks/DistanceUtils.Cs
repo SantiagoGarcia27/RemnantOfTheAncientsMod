@@ -80,24 +80,30 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return NpcPosition * 16;
         }
-        public static bool PlayerTouchFlour(Player player)
+        public static bool TouchFlour(Player player)
         {
             return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
         }
-        public static bool PlayerTouchFlourLiquid(Player player)
+        public static bool TouchFlour(Projectile projectile)
+        {
+            return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].HasTile;
+        }
+        public static bool TouchFlourLiquid(Player player)
         {
             return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
         }
+        public static bool TouchFlourLiquid(Projectile projectile)
+        {
+            return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
+        }
+
         public static int GetPlayerFlour(Player player)
         {
             return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].TileType;
         }
-        public static bool ProjectileTouchFlour(Projectile projectile)
-        {
-            return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].HasTile;
-        }
+       
 
-        public static bool ProjectileTouchWall(Projectile projectile)
+        public static bool TouchWall(Projectile projectile)
         {
             Vector2 coordenate;
             int orientacion = 1 * 16 * projectile.direction;
@@ -106,9 +112,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
             return Main.tile[(int)coordenate.X, (int)coordenate.Y].HasTile;
         }
-        public static bool ProjectileTouchWall(Projectile projectile, int high)
+        public static bool TouchWall(Projectile projectile, int high)
         {
-            List<bool> bloques = new List<bool>();
+            List<bool> bloques = [];
             bloques.Clear();
             for (int a = 0; a < high; a++)
             {
@@ -117,10 +123,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return true;
         }
-        public static bool ProjectileTouchFlourLiquid(Projectile projectile)
-        {
-            return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
-        }
+        
         public static bool ExistTile(Vector2 pos)
         {
             return Main.tile[(int)pos.X / 16, (int)pos.Y / 16].HasTile;
@@ -134,54 +137,66 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             Tile tile = Main.tile[(int)pos.X / 16, (int)pos.Y / 16];
             return tile.HasTile && Main.tileSolid[tile.TileType] && !tile.IsActuated;
         }
-        public static Vector2 setPositionOnSolidFloor(Vector2 imput)
+        public static bool ExistFluid(Vector2 pos) 
         {
-            Vector2 output;
-
-            if (ExistTileSolid(imput))
+            return Main.tile[(new Point((int)pos.X / 16, (int)(pos.Y) / 16))].LiquidAmount > 0;
+        }
+        public static bool ExistFluid(Vector2 pos, int liquidId)
+        {
+            Tile tile = Main.tile[(new Point((int)pos.X / 16, (int)(pos.Y) / 16))];
+            return tile.LiquidAmount > 0 && tile.LiquidType == liquidId;
+        }
+        public static Vector2 SetPositionOnSolidFloor(Vector2 imput)
+        {
+            if (ExistTileSolid(imput) && ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))))
             {
-                if (ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))))
+                do
+                {
+                    imput -= ToCoordenatePosition(new Vector2(0, 1));
+                }
+                while (ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))));
+
+                if (!ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))))
                 {
                     do
                     {
-                        imput = imput - ToCoordenatePosition(new Vector2(0, 1));
-                        var a = Main.tile[ToTilePosition(imput).ToPoint()];
-                       // Dust.QuickDust(ToTilePosition(imput).ToPoint().X, ToTilePosition(imput).ToPoint().Y, Color.Red);
+                        imput += ToCoordenatePosition(new Vector2(0, 1));
                     }
-                    while (ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))));
-
-                    if (!ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))))
-                    {
-                        do
-                        {
-                            imput = imput + ToCoordenatePosition(new Vector2(0, 1));
-                            var a = Main.tile[ToTilePosition(imput).ToPoint()];
-                           // Dust.QuickDust(ToTilePosition(imput).ToPoint().X, ToTilePosition(imput).ToPoint().Y, Color.Blue);
-                        }
-                        while (ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))));
-                    }
+                    while (ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))));
                 }
-                output = imput;
             }
-            else
-            {
-                output = imput;
-            }
-            return output;
+            return imput;
         }
-        public static Tile? SearchLiquid(int liquid, float range)
+        public static Tile? SearchLiquid(int liquid, int range)
         {
-            for (int i = (int)-range; i < range; i++)
+            int i, j;
+            
+            i = j = -range;
+
+            while (Main.tile[i, j].LiquidAmount > 0 && Main.tile[i, j].LiquidType == liquid && i < range)
             {
-                for (int j = (int)-range; j < range; j++)
+                if (j >= range)
                 {
-                    if (Main.tile[i, j].LiquidAmount > 0 && Main.tile[i, j].LiquidType == liquid)
-                    {
-                        return Main.tile[i, j];
-                    }
+                    i++;
+                    j = 0;
+                }
+                else
+                {
+                    j++;
                 }
             }
-            return null;
+
+            //for (int i = (int)-range; i < range; i++)
+            //{
+            //    for (int j = (int)-range; j < range; j++)
+            //    {
+            //        if (Main.tile[i, j].LiquidAmount > 0 && Main.tile[i, j].LiquidType == liquid)
+            //        {
+            return i >= range && i >= range ? null : Main.tile[i, j];
+            //    }
+            //}
+       // }
+           // return null;
         }
         public static Vector2 SearchLiquidCoordenates(int liquid, float range, Player center)
         {
@@ -189,31 +204,24 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             {
                 for (int j = (int)-range; j < range; j++)
                 {
-                    float LiquidAmount = Main.tile[(int)ToTilePosition(center.Center.X + i), (int)ToTilePosition(center.Center.Y + j)].LiquidAmount;
-                    if (LiquidAmount > 0)
+                    Tile tile = Main.tile[(int)ToTilePosition(center.Center.X + i), (int)ToTilePosition(center.Center.Y + j)];
+                    if (tile.LiquidAmount > 0 && tile.LiquidType == liquid)
                     {
-                        if (Main.tile[(int)ToTilePosition(center.Center.X + i), (int)ToTilePosition(center.Center.Y + j)].LiquidType == liquid)
-                        {
-                            return new(center.Center.X + i, center.Center.Y + j);
-                        }
+                        return new(center.Center.X + i, center.Center.Y + j);
                     }
                 }
             }
             return center.Center - new Vector2(5 * 16, 5 * 16);
         }
-        public static int checkHigh(Vector2 imput)
+        public static int CheckHigh(Vector2 imput)
         {
-            Tile t = Main.tile[(int)ToTilePosition(imput).X, (int)ToTilePosition(imput).Y];
-            bool TileHasBlock = t.HasTile;
-            bool TileHasLiquid = t.LiquidAmount > 0;
-            if( TileHasBlock || TileHasLiquid ) 
-            {
-                return (int)imput.Y;
-            }
+            Tile t = Main.tile[(int)ToTilePosition(imput).X, (int)ToTilePosition(imput).Y];  
+            if(t.HasTile || t.LiquidAmount > 0) 
+                return (int)imput.Y;         
             else
             {
                 imput.Y += 1;
-                checkHigh(imput);
+                CheckHigh(imput);
             }
             return (int)imput.Y;
         }

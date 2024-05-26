@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 		{
 			if (player.altFunctionUse == 2)
 			{
-				if (DistanceUtils.PlayerTouchFlour(player))
+				if (DistanceUtils.TouchFlour(player))
 				{
 					float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
 					Projectile.NewProjectile(Projectile.GetSource_None(), player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, Item.damage + 10, Item.knockBack, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + 0.7f);

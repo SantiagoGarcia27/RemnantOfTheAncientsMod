@@ -46,11 +46,11 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static bool IsAnyBossAlive()
         {
             int i = 0;
-            while(!Main.npc[i].active && !Main.npc[i].boss && i == Main.maxNPCs)
+            while(!Main.npc[i].boss && i != Main.maxNPCs)
             {
                 i++;
             }
-            return i < Main.maxNPCs;        
+            return Main.npc[i].active &&  i < Main.maxNPCs;        
         }
         public static bool IsItemOnPlayerInventory(int id, Player player)
         {

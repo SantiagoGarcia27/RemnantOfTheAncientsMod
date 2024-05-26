@@ -58,8 +58,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                     {
                         Vector2 pos1 = player.position + new Vector2((i + 2 * i) * 16, 3 * 16);
                         Vector2 pos2 = player.position - new Vector2((i + 2 * i) * 16, -3 * 16);
-                        pos1 = DistanceUtils.setPositionOnSolidFloor(pos1);
-                        pos2 = DistanceUtils.setPositionOnSolidFloor(pos2);
+                        pos1 = DistanceUtils.SetPositionOnSolidFloor(pos1);
+                        pos2 = DistanceUtils.SetPositionOnSolidFloor(pos2);
                         Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos1, new Vector2(0, -10f), ProjectileID.SharpTears, player.HeldItem.damage, player.HeldItem.knockBack, player.whoAmI, 1, 1);
                         Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos2, new Vector2(0, -10f), ProjectileID.SharpTears, player.HeldItem.damage, player.HeldItem.knockBack, player.whoAmI, 1, 1);
                     }

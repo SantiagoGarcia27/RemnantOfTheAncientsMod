@@ -4,7 +4,9 @@ using Mono.Cecil;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Projectiles;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
@@ -78,7 +80,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             
         }
-        public void FiilMeleeWeaponEffectsList()
+        public static void FiilMeleeWeaponEffectsList()
         {
             Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
             Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
@@ -134,7 +136,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     target.AddBuff(BuffID.Venom, 1200);
                 }
-                if(projectile.type == ProjectileID.BoulderStaffOfEarth)
+                if (projectile.type == ProjectileID.BoulderStaffOfEarth)
                 {
                     if (target.type != NPCID.TargetDummy)
                     {
@@ -146,15 +148,15 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 || projectile.type == ProjectileID.SoulscourgePirate
                 || projectile.type == ProjectileID.PirateCaptain)
                 {
-                        if (target.life >= 0)
-                        {
-                            target.value *= 2;
-                        }      
+                    if (target.life >= 0)
+                    {
+                        target.value *= 2;
+                    }
                 }
 
 
-                if (projectile.minion && projectile.owner == Main.myPlayer) 
-                { 
+                if (projectile.minion && projectile.owner == Main.myPlayer)
+                {
                     List<int> list = player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict;
 
                     if (list.Count > 0)
@@ -165,7 +167,75 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         }
                     }
                 }
-                
+                if (projectile.type == ProjectileID.Seed)
+                {
+                    if (player.HeldItem.type == ItemID.Blowgun)
+                    {
+                        target.AddBuff(BuffID.Poisoned, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                    }
+                }
+
+                if (projectile.type == ProjectileID.PewMaticHornShot)
+                {
+                    int MaxProj = 5;
+                    projectile.penetrate = 1;
+                    if (projectile.ai[1] == 2)
+                    {
+                        for (int i = 0; i < 360; i += 360/ MaxProj)
+                        {
+                            double angle = MathHelper.ToRadians(i);
+                            Vector2 position = target.Center + new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 50;
+                            Vector2 direction = -projectile.velocity.RotatedByRandom(angle);
+                            Projectile a = Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, direction, ProjectileID.CopperCoin, projectile.damage / MaxProj, 1);
+                            a.timeLeft = 10;
+                        }
+                    }
+                    else if(projectile.ai[1] == 3)
+                    {
+                        target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                    }
+                    else if (projectile.ai[1] == 6)
+                    {
+                        player.Heal(1);        
+                    }
+                    else if (projectile.ai[1] == 17)
+                    {
+                        target.AddBuff(BuffID.Confused, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
+                    }
+                    else if (projectile.ai[1] == 18)
+                    {
+                        target.AddBuff(BuffID.Ichor, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    }
+                    else if (projectile.ai[1] == 19)
+                    {
+                        player.Heal(3);
+                    }
+                    else if (projectile.ai[1] == 20)
+                    {
+                        target.AddBuff(BuffID.OnFire, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    }
+                    else if (projectile.ai[1] == 21)
+                    {
+                        target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    }
+                    else if (projectile.ai[1] == 22)
+                    {
+                        projectile.damage *= 2; 
+                    }
+                    else if (projectile.ai[1] == 23)
+                    {
+                        for (int i = 0; i < 360; i += 360 / MaxProj)
+                        {
+                            double angle = MathHelper.ToRadians(i);
+                            Vector2 position = target.Center + new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 50;
+                            Vector2 direction = -projectile.velocity.RotatedByRandom(angle);
+                            Projectile a = Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, direction, ProjectileID.AmberBolt, projectile.damage / (MaxProj /2), 1);
+                            a.timeLeft = 10;
+                        }
+                    }
+                    if (projectile.ai[1] > 0) 
+                    projectile.ai[1] = 0;
+                }
             }
 
             if (projectile.minion || projectile.CountsAsClass(DamageClass.Summon))
@@ -235,9 +305,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     projectile.velocity *= RemnantPlayer.EnemyProjectilesSpeedScaleBouns;
                 }
                
-            }
-           
-            
+            }          
         }
         int fireballTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
 
@@ -384,6 +452,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         p.tileCollide = false;
                         p.timeLeft = 300;
                     }
+                }
+            }
+            if(projectile.type == ProjectileID.SnowBallFriendly)
+            {
+                if (projectile.ai[2] > 0)
+                {
+                    var a = Projectile.NewProjectile(projectile.GetSource_Death(), projectile.Center, Vector2.Zero, ModContent.ProjectileType<FrozenNovaExplosion>(), projectile.damage / 4, 40, projectile.owner);
+                    Main.projectile[a].scale = projectile.ai[2] -1;
+                    Main.projectile[a].width *= (int)projectile.ai[2];
+                    Main.projectile[a].height *= (int)projectile.ai[2];
+                    Main.projectile[a].ai[2] = (int)projectile.ai[1];
                 }
             }
             if (!DeleteVanilla)

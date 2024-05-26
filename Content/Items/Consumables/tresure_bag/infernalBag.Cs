@@ -46,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>()));
-            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<Tyrant_repeater>(), ItemType<Spike_saber>(), ItemType<Tyran_Blast>(), ItemType<EvilEyeStaff>()));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<TyrantRepeater>(), ItemType<Spike_saber>(), ItemType<Tyran_Blast>(), ItemType<EvilEyeStaff>()));
             itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalSoul>()));
         }
         //public override int BossBagNPC => NPCType<InfernalTyrantHead>();

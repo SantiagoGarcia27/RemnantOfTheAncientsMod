@@ -799,7 +799,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
             Main.projectile[p].timeLeft *= 2;
-            Main.projectile[p].localNPCHitCooldown = 0;
+            Main.projectile[p].usesLocalNPCImmunity = true;
+            Main.projectile[p].localNPCHitCooldown = 2;
             base.OnHitPlayer(target, hurtInfo);
         }
         public override void AI()

@@ -60,8 +60,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                 {
                     Vector2 pos1 = Projectile.position + new Vector2((i + 2 * i) * 16, 3 - 1 * 16);
                     Vector2 pos2 = Projectile.position - new Vector2((i + 2 * i) * 16, -3 + 1 * 16);
-                    pos1 = DistanceUtils.setPositionOnSolidFloor(pos1);
-                    pos2 = DistanceUtils.setPositionOnSolidFloor(pos2);
+                    pos1 = DistanceUtils.SetPositionOnSolidFloor(pos1);
+                    pos2 = DistanceUtils.SetPositionOnSolidFloor(pos2);
                     
                     Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos1, Vector2.Zero, ModContent.ProjectileType<Graveyard_proj>(), Projectile.damage, Projectile.knockBack, player.whoAmI, 0, 0,27);
                     Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos2, Vector2.Zero, ModContent.ProjectileType<Graveyard_proj>(), Projectile.damage, Projectile.knockBack, player.whoAmI, 0, 0,27);

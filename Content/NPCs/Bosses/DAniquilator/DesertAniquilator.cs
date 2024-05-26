@@ -38,21 +38,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
     public class DesertAniquilator : ModNPC
     {
         public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("Desert Annihilator");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aniquilador del desierto");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Aniquilateur du désert");
+        { 
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
-                //CustomTexturePath = "RemnantOfTheAncientsMod/Content/NPCs/Bosses/DAniquilator/DesertAniquilator",
                 Position = new Vector2(40f, 24f),
                 PortraitPositionXOverride = 0f,
                 PortraitPositionYOverride = 12f,
                 Frame = 0,
-                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+                Velocity = 1f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }  
@@ -88,11 +84,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]
-            {
+            bestiaryEntry.Info.AddRange(
+            [
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
                 //new FlavorTextBestiaryInfoElement("A great and dreaded worm rules the underworld with an iron fist and his flames, powerful and majestic in equal parts, maintain the order and warmth of the underworld.")
-            });
+            ]);
         }
         public bool InfernumMode = DificultyUtils.InfernumMode;
 
@@ -138,8 +134,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             {
                 NPC.ai[0] = 10;
                 NPC.ai[1] = (NPC.ai[1] + 1) % 800;
-               // NPC.ai[2]++;
-
                 BossIsInRage = CheckRage(player);
                 NPC.scale = LifeSize(NPC);
                 float distance = NPC.Distance(player.Center);
@@ -148,10 +142,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     GenerateTpParticles();
                     DesertTp();
                 }
-                //if(InfernumMode != null)
-                //{     
                 movmentAi();
-                //}
                 NpcFloor = Utils.ToTileCoordinates(NPC.Center);
                 Point PlayerFloor = Utils.ToTileCoordinates(Main.player[NPC.target].Center);
 
@@ -170,7 +161,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 setCurrentPhase(NPC);
                 AttackIA(player);
 
-                //Main.NewText(NPC.velocity);
 
                 if (player.dead)
                 {
@@ -544,8 +534,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             }
             if (summonCounter == AttackValue[2][3])
             {
-                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<FlyingAntlionD>());
-                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCType<WalkingAntlionD>());
+                int a = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y,NPCID.FlyingAntlion);
+                Main.npc[a].lifeMax /= 2;
+                Main.npc[a].damage *= 2;
+                Main.npc[a].value = 0;
+                a = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.WalkingAntlion);
+                Main.npc[a].lifeMax /= 2;
+                Main.npc[a].damage *= 2;
+                Main.npc[a].value = 0;
             }
             if (summonCounter == AttackValue[2][4])
             {
@@ -563,15 +559,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public void TornadoAI(int mark)
         {
-            int damage = 30;
-            if (tornadoCounter == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, SetFinalStagePorcentage()))
+            if (tornadoCounter-- == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, SetFinalStagePorcentage()))
             {
                 tornadoCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
-            }
-            else if (tornadoCounter > 0)
-            {
-                tornadoCounter--;
-            }
+            }  
             else
             {
                 tornadoCounter = 0;
@@ -582,8 +573,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 if (tornadoCounter == 0)
                 {
                     mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position, Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
-                }
-                damage = 30;           
+                }          
             }
             else
             {
@@ -594,12 +584,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                     {
                         mark = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position + new Vector2(a * 16 * distanceBetweenTornados * Main.player[NPC.target].direction, 0), Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
                     }
-                    damage = 40;
                 }           
             }
             if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, damage, 1, Main.myPlayer);
+                Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, !DificultyUtils.ReaperMode? 30:40, 1, Main.myPlayer);
             }
 
         }
@@ -610,10 +599,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             {
                 if (attackCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 7))
                 {
-
                     NPC.netUpdate = true;
-
-                    //EModeNPCBehaviour.NetSync(NPC);
                     if (FargowiltasSouls.FargoSoulsUtil.HostCheck)
                     {
                         Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero,ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod,"GlowRing"), 0, 0f, Main.myPlayer, NPC.whoAmI, -19);
@@ -625,8 +611,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 }
                 if (attackCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 7) - 10)
                 {
-                    Vector2 start = new Vector2(player.position.X + (-100 * 16),  (player.position.Y - 100*16));
-                    Vector2 end = new Vector2(player.position.X + (100 *16), (player.position.Y - 100*16));
+
+                    Vector2 start = new(player.position.X + (-100 * 16),  (player.position.Y - 100*16));
+                    Vector2 end = new(player.position.X + (100 *16), (player.position.Y - 100*16));
 
                     int numberOfProjectiles = DificultyUtils.EternityMode ? 40: 80;
 
@@ -634,17 +621,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
                     foreach (var point in points)
                     {
-                        //Center.X += (i + spacing) * 16 / numberOfProjectiles * Utils1.GetSign(i);
                         var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(point.X,point.Y +(100f *16)), Vector2.Zero, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
                         Main.projectile[p].scale = 0.5f;
                         Projectile.NewProjectile(NPC.GetSource_FromAI(), point, Vector2.Zero, ProjectileID.RollingCactus, 100, 0f, Main.myPlayer);
                     }
-
-
-
                     static List<Vector2> GeneratePoints(Vector2 start, Vector2 end, int pointCount)
                     {
-                        List<Vector2> points = new List<Vector2>();
+                        List<Vector2> points = [];
 
                         for (int i = 0; i < pointCount; i++)
                         {
@@ -698,9 +681,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public List<int[]> setAttackCounter()
         {
-            int[] MaxCounter = new int[2] { 0, 0 };
-            int[] AttackCounter = new int[6] { 0, 0, 0, 0, 0, 0 };
-            int[] SummonCounter = new int[5] { 0, 0, 0, 0, 0};
+            int[] MaxCounter = [0, 0];
+            int[] AttackCounter = [0, 0, 0, 0, 0, 0];
+            int[] SummonCounter = [0, 0, 0, 0, 0];
 
             if (!Main.expertMode && !Main.masterMode)
             {
@@ -726,12 +709,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 SummonCounter[l] = (MaxCounter[1] / SummonCounter.Length) * l;
             }
 
-            List<int[]> ListCounter = new List<int[]>()
-            {
+            List<int[]> ListCounter =
+            [
                 MaxCounter,
                 AttackCounter,
                 SummonCounter
-            };
+            ];
             return ListCounter;
         }
         public void UpdateCounters(List<int[]> ListCounter)
@@ -741,16 +724,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
             if (summonCounter <= 0)
             {
-                var a = ListCounter[0][1];
                 summonCounter = ListCounter[0][1];
-                NPC.netUpdate = true;
             }
-
             if (attackCounter <= 0)
             {
                 attackCounter = ListCounter[0][0];
-                NPC.netUpdate = true;
             }
+            NPC.netUpdate = true;
         }
         int blockIncrement = 0;
         public Vector2 GetSecurePosition(Vector2 pos)
@@ -765,16 +745,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             {
                 do
                 {
-                    blockIncrement++;
-                    newPos = new(pos.X, pos.Y - blockIncrement * 16);
+                    newPos = new(pos.X, pos.Y - blockIncrement++ * 16);
                 } while (CoordHasTile(newPos) && CoordHasLiquid(newPos));
 
                 blockIncrement = 0;
                 return newPos;
             }
         }
-        public bool CoordHasTile(Vector2 pos) => Collision.SolidCollision(pos, 6 * 16, 6 * 16);
-        public bool CoordHasLiquid(Vector2 pos)
+        public static bool CoordHasTile(Vector2 pos) => Collision.SolidCollision(pos, 6 * 16, 6 * 16);
+        public static bool CoordHasLiquid(Vector2 pos)
         {
             if (Collision.LavaCollision(pos, 6 * 16, 6 * 16) || Collision.WetCollision(pos, 6 * 16, 6 * 16))
             {
@@ -913,13 +892,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999, new[]
-            {
-                ItemType<desertbow>(),
+            npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999,
+            [
+                ItemType<DesertBow>(),
                 ItemType<DesertEdge>(),
                 ItemType<DesertStaff>(),
                 ItemType<DesertTome>()
-            }));
+            ]));
             npcLoot.Add(ItemDropRule.Common(ItemType<Sand_escense>(), 1,5,20));
             npcLoot.Add(ItemDropRule.Common(ItemID.SandBlock, 1,1,50));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.Amber, 6, 1));

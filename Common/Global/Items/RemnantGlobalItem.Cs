@@ -386,6 +386,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.GetGlobalItem<RemnantGlobalItem>().IsRepeater = true;
 					item.channel = true;
                 }
+				if(item.type == ItemID.Blowpipe || item.type == ItemID.Blowgun)
+				{
+                    item.GetGlobalItem<RemnantGlobalItem>().IsRepeater = true;
+                    item.channel = true;
+                }
 				
                 if (CanCharge)
 				{
@@ -964,12 +969,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
 			if (IsRepeater)
 			{
+				float multiplier = 32f;
+					if(item.type == ItemID.Blowpipe)
+						multiplier = 32f;
+					else if (item.type == ItemID.Blowgun)
+						multiplier = 26f;
+
                 if (player.channel)
                 {
                     if (Timmer <= item.useTime * 16f)
                     {
                         Timmer++;
-                        UseTimeReduction = Timmer / (item.useTime * 32f);
+                        UseTimeReduction = Timmer / (item.useTime * multiplier);
                     }
                 }
                 else if (Main.mouseLeftRelease)
@@ -1001,7 +1012,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             if (IsRepeater)
             {
-				//Main.NewText(1f - UseTimeReduction);
+				Main.NewText(1f - UseTimeReduction);
                 return 1f - UseTimeReduction;
             }
             return base.UseTimeMultiplier(item, player);
@@ -1112,6 +1123,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
                 base.PostDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
 			}
+        }
+        public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
+        {
+			if(IsShotgun)
+			{
+				if(Main.mouseRight && !Main.mouseLeft)
+				{
+					return false;
+				}
+                return base.CanConsumeAmmo(weapon, ammo, player);
+            }
+            return base.CanConsumeAmmo(weapon, ammo, player);
+        }
+        public override bool CanUseItem(Item item, Player player)
+        {	
+            return base.CanUseItem(item, player);
         }
     }
 }
