@@ -46,41 +46,16 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static bool IsAnyBossAlive()
         {
             int i = 0;
-            while(!Main.npc[i].boss && i != Main.maxNPCs)
+            while (!Main.npc[i].boss && i != Main.maxNPCs)
             {
                 i++;
             }
-            return Main.npc[i].active &&  i < Main.maxNPCs;        
+            return Main.npc[i].active && i < Main.maxNPCs;
         }
         public static bool IsItemOnPlayerInventory(int id, Player player)
         {
             return player.inventory.Any(item => !item.IsAir && item.type == id);
         }
-        //public static string ColorMessage(string msg, Color color)
-        //{
-
-        //    StringBuilder stringBuilder;
-        //    if (!msg.Contains('\n'))
-        //    {
-        //        stringBuilder = new StringBuilder(msg.Length + 12);
-        //        stringBuilder.Append("[c/").Append(Utils.Hex3(color)).Append(':')
-        //            .Append(msg)
-        //            .Append(']');
-        //    }
-        //    else
-        //    {
-        //        stringBuilder = new StringBuilder();
-        //        string[] array = msg.Split('\n');
-        //        foreach (string value in array)
-        //        {
-        //            stringBuilder.Append("[c/").Append(Utils.Hex3(color)).Append(':')
-        //            .Append(value)
-        //            .Append(']')
-        //            .Append('\n');
-        //        }
-        //    }
-        //    return stringBuilder.ToString();
-        //}
         internal static Color GetRarityColor(Color rarityColorOne, Color rarityColorTwo)
         {
             return ColorSwap(rarityColorOne, rarityColorTwo, 3f);
@@ -164,7 +139,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Second * 60 + Minute * 60 * 60 + Hour * 60 * 60 * 60 + Day * 60 * 60 * 60 * 60;
         }
-        public static int FormatMoney(int Terra,int Platinum, int Gold, int Silver, int Copper)
+        public static int FormatMoney(int Terra, int Platinum, int Gold, int Silver, int Copper)
         {
             int _Copper = 1;
             int _Silver = 100;
@@ -197,7 +172,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             int a = i;
             if (DificultyUtils.ReaperMode) a = i * 5;
             return a;
-        }  
+        }
         public static Point ToPoint(Vector2 vector2)
         {
             return new Point((int)vector2.X, (int)vector2.Y);
@@ -286,23 +261,23 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static bool OnlyOneValue(List<bool> list, bool a)
         {
             List<bool> result = [];
-            foreach(bool e in list)
+            foreach (bool e in list)
             {
-                if(e == a) result.Add(e);
+                if (e == a) result.Add(e);
             }
 
             return result.Count == 1;
         }
-        public static bool OnlyOneValue(List<bool> list, bool a,int index)
+        public static bool OnlyOneValue(List<bool> list, bool a, int index)
         {
-            if(list[index] != a) return false;
+            if (list[index] != a) return false;
             List<bool> result = [];
-            for(int i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 if (list[i] == a)
                     result.Add(list[i]);
             }
-            
+
 
             return result.Count == 1;
         }
@@ -317,7 +292,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 return "[...]";
             }
         }
-        public static void FindAndReplaceTooltip(List<TooltipLine> tooltips,string target, string replace)
+        public static void FindAndReplaceTooltip(List<TooltipLine> tooltips, string target, string replace)
         {
             var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
             if (tip != null)
@@ -326,7 +301,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 tip.Text = text;
             }
         }
-        public static void FindAndReplaceTooltip(List<TooltipLine> tooltips, string target, string replace,string TooltipName)
+        public static void FindAndReplaceTooltip(List<TooltipLine> tooltips, string target, string replace, string TooltipName)
         {
             var tip = tooltips.FirstOrDefault(tip => tip.Name == TooltipName && tip.Mod == "Terraria");
             if (tip != null)
@@ -349,14 +324,14 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             foreach (NPC npc in Main.npc)
             {
-                if(npc.type == Id)
+                if (npc.type == Id)
                 {
                     return npc;
                 }
             }
             return null;
         }
-        public static NPC SearchNPC(int Id,bool Shimered = false)
+        public static NPC SearchNPC(int Id, bool Shimered = false)
         {
             foreach (NPC npc in Main.npc)
             {
@@ -372,9 +347,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             List<Projectile> l = [];
             foreach (Projectile p in Main.projectile)
             {
-                if(Vector2.Distance(center, p.Center) <= range)
+                if (Vector2.Distance(center, p.Center) <= range)
                 {
-                    if(p.friendly == friendly && p.hostile == !friendly)
+                    if (p.friendly == friendly && p.hostile == !friendly)
                     {
                         l.Add(p);
                     }
@@ -389,7 +364,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             {
                 if (Vector2.Distance(center.Center, p.Center) <= range)
                 {
-                    if (p.friendly == friendly && p.hostile == !friendly) 
+                    if (p.friendly == friendly && p.hostile == !friendly)
                     {
                         l.Add(p);
                     }
@@ -399,7 +374,35 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static bool PlayerIsUnderWather(Player player)
         {
-           return Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
+            return Collision.DrownCollision(player.position, player.width, player.height, player.gravDir);
+        }
+
+        public static int SearchPlayerAmmoSlot(Player player, int UseAmmo, ref Item Item)
+        {
+            int i = 54;
+            while (player.inventory[i].ammo != UseAmmo)
+            {
+                i++;
+            }
+            if (i < 58)
+            {
+                Item = player.inventory[i];
+                return i;
+            }
+            else
+            {
+                i = 0;
+                while (player.inventory[i].ammo != UseAmmo && i <= 50)
+                {
+                    i++;
+                }
+                if (i < 58)
+                {
+                    Item = player.inventory[i];
+                    return i;
+                }
+            }
+            return -1;
         }
     }
 }

@@ -85,7 +85,12 @@ Mods: {
 			}
 
 			ReaperTitle: Almas
-			Couldowns.CouldownBar: "{0}s"
+
+			Couldowns: {
+				CouldownBar: "{0}s"
+				AmmoBar: "{0}"
+			}
+
 			// AscendedReforgesTitle: Ascended Reforges
 			/* AscendedReforgesText:
 				'''
@@ -3549,6 +3554,11 @@ Mods: {
 			Flaremachinegun: {
 				DisplayName: Ametralladora de bengalas
 				// Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+			}
+
+			QuickDraw: {
+				// DisplayName: Quick Draw
+				// Tooltip: ""
 			}
 		}
 

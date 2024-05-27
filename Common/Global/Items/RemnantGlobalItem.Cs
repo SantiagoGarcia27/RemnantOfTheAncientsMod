@@ -39,7 +39,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool CanCharge = false;
 
 
-		Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
+        public float CurrentAmmo = 0;
+        public float CurrentAmmoMax = 0;
+        public float ReloadCounter = 0;
+        public float ReloadCounterMax = 0;
+
+        Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
 
 		public override bool InstancePerEntity => true;
 		public int[] lanceId =
@@ -115,8 +120,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public List<int> HightBait = [];
 		public List<int> MusicBox = [];
 		public override void SetStaticDefaults()
-		{	
-        }
+		{
+            CurrentAmmo = 0;
+			CurrentAmmoMax = 0;
+		}
 
 		public void FillMusicBox()
 		{

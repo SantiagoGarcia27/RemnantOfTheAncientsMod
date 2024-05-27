@@ -93,6 +93,8 @@ namespace RemnantOfTheAncientsMod
         public static float GenericChargeCouldown { get; set; }
         public static float GenericChargeCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
 
+		public static float GenericAmmoAmmount {  get; set; }
+		public static float GenericAmmoAmmountMax = 0;
 
         public List<int> MinionsBuffInflict = [];
 		public List<int> MeleeBuffInflict = [];
@@ -171,8 +173,7 @@ namespace RemnantOfTheAncientsMod
 			EnemyProjectilesSpeedScaleBouns = 1;
 		
 			MinionCritChance = 0;
-            StyleStat = 0;
-
+            StyleStat = 0;	
             if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
 			if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
 			if (MageBuffInflict.Count > 0) MageBuffInflict.Clear();
@@ -285,23 +286,28 @@ namespace RemnantOfTheAncientsMod
 		{
 			Player.opacityForAnimation = 1;
 
-			
+
 			if (MoneyCollector)
 			{
 				MoneyColectorBuff.UpdateCoins(Player);
 			}
-            CheckInventory(Player);
+			CheckInventory(Player);
 
 			if (Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>()))
 			{
 				WormHoleEffect(Player);
 			}
 			SpawnMimics(Player);
-            if (Player.HeldItem.maxStack > 0 && Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax > 0)
-            {
-                GenericChargeCouldownMax = (int)Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
+			if (Player.HeldItem.maxStack > 0 && Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax > 0)
+			{
+				GenericChargeCouldownMax = (int)Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
+			}
+			if (Player.HeldItem.maxStack > 0)
+			{
+				GenericAmmoAmmount = Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo;
+                GenericAmmoAmmountMax = Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax;
             }
-        }
+		}
 		public override bool FreeDodge(Player.HurtInfo info)
 		{
 			if (BrainDogde)

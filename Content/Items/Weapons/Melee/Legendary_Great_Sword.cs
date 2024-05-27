@@ -16,15 +16,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public int comboExpireTimer = 0; // we want the attack pattern to reset if the weapon is not used for certain period of time
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Legendary Great Sword");
-            //Tooltip.SetDefault("Inflict fire,ichor,venom,hellfire and poison on enemies");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grande épée légendaire");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Inflige le feu aux ennemis");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Gran espada legendaria");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Inflije fuego,ichor,ponsoña,fuego infernal y veneno a los enemigos");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

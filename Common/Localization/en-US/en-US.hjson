@@ -79,7 +79,12 @@ Mods: {
 			}
 
 			ReaperTitle: Souls
-			Couldowns.CouldownBar: "{0}s"
+
+			Couldowns: {
+				CouldownBar: "{0}s"
+				AmmoBar: "{0}"
+			}
+
 			AscendedReforgesTitle: Ascended Reforges
 			AscendedReforgesText:
 				'''
@@ -3529,6 +3534,11 @@ Mods: {
 			Flaremachinegun: {
 				DisplayName: Flare Chain Gun
 				Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
+			}
+
+			QuickDraw: {
+				DisplayName: Quick Draw
+				Tooltip: ""
 			}
 		}
 

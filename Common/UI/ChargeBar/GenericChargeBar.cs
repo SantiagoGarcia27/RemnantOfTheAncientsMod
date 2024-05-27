@@ -7,10 +7,8 @@ using Terraria.UI;
 using Terraria.GameContent;
 using System.Collections.Generic;
 using Terraria.Localization;
-using FargowiltasSouls.Core.ModPlayers;
-using static Terraria.GameContent.Animations.IL_Actions.Sprites;
-using System.Security.Cryptography;
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 {
@@ -63,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 
         // Here we draw our UI
         protected override void DrawSelf(SpriteBatch spriteBatch) {
-            base.DrawSelf(spriteBatch);
+           // base.DrawSelf(spriteBatch);
 
             //var modPlayer = Main.LocalPlayer.GetModPlayer<ExampleResourcePlayer>();
             // Calculate quotient
@@ -84,21 +82,23 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 			for (int i = 0; i < steps; i += 1) {
 				// float percent = (float)i / steps; // Alternate Gradient Approach
 				float percent = (float)i / (right - left);
-				spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(left + i, hitbox.Y, 1, hitbox.Height), Color.Lerp(gradientA, gradientB, percent));
-			}
+				Texture2D texture = TextureAssets.MagicPixel.Value;
+
+                spriteBatch.Draw(texture, new Rectangle(left + i, hitbox.Y, 1, hitbox.Height), Color.Lerp(gradientA, gradientB, percent));//TextureAssets.MagicPixel.Value
+            }
 		}
 
 		public override void Update(GameTime gameTime) {
-            if (RemnantPlayer.GenericChargeCouldownMax <= 0)
+            if (RemnantPlayer.GenericChargeCouldownMax <= 0 || RemnantPlayer.GenericChargeCouldown <= 0)
                 return;
-			text.SetText(NightCouldownUISystem.Text.Format(RemnantPlayer.GenericChargeCouldownMax - RemnantPlayer.GenericChargeCouldown,"s"));
+			text.SetText(GenericChargeUISystem.Text.Format(RemnantPlayer.GenericChargeCouldownMax - RemnantPlayer.GenericChargeCouldown,"s"));
 			base.Update(gameTime);
 		}
 	}
 
     // This class will only be autoloaded/registered if we're not loading on a server
     [Autoload(Side = ModSide.Client)]
-	internal class NightCouldownUISystem : ModSystem
+	internal class GenericChargeUISystem : ModSystem
 	{
 		private UserInterface BarUserInterface;
 
