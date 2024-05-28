@@ -127,58 +127,39 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 		public void FillMusicBox()
 		{
-			for (int i = 562; i <= 574; i++)
-			{
+			List<int> musicBox =
+            [
+                576,2742,2742,3044,3370,3371,3869,4237,
+                4421,4606,4979,4985,5006,5044,5112,5362,
+                ModContent.ItemType<DesertMusicBox>(),
+                ModContent.ItemType<FrozenMusicBox>(),
+                ModContent.ItemType<Frozenp2MusicBox>(),
+                ModContent.ItemType<InfernalMusicBox>()
+            ];
+            Utils1.AddSecure(MusicBox, musicBox);
+            for (int i = 562; i <= 574; i++)
                 Utils1.AddSecure(MusicBox, i);
-            }
-			Utils1.AddSecure(MusicBox, 576);
+            	
             for (int i = 1596; i <= 1610; i++)
-            {
                 Utils1.AddSecure(MusicBox, i);
-            }
+
             for (int i = 1963; i <= 1965; i++)
-            {
-                Utils1.AddSecure(MusicBox, i);
-            }
-            Utils1.AddSecure(MusicBox, 2742);
-            Utils1.AddSecure(MusicBox, 3044);
+                Utils1.AddSecure(MusicBox, i);  
+			
             for (int i = 3235; i <= 3237; i++)
-            {
                 Utils1.AddSecure(MusicBox, i);
-            }
-            Utils1.AddSecure(MusicBox, 3370);
-            Utils1.AddSecure(MusicBox, 3371);
-            Utils1.AddSecure(MusicBox, 3796);
-            Utils1.AddSecure(MusicBox, 3869);
+
             for (int i = 4077; i <= 4082; i++)
-            {
                 Utils1.AddSecure(MusicBox, i);
-            }
-            Utils1.AddSecure(MusicBox, 4237);
+
             for (int i = 4356; i <= 4358; i++)
-            {
                 Utils1.AddSecure(MusicBox, i);
-            }
-            Utils1.AddSecure(MusicBox, 4421);
-            Utils1.AddSecure(MusicBox, 4606);
-            Utils1.AddSecure(MusicBox, 4979);
-            Utils1.AddSecure(MusicBox, 4985);
+
             for (int i = 4990; i <= 4992; i++)
-            {
                 Utils1.AddSecure(MusicBox, i);
-            }
-            Utils1.AddSecure(MusicBox, 5006);
+
             for (int i = 5014; i <= 5040; i++)
-            {
-                Utils1.AddSecure(MusicBox, i);
-            }
-            Utils1.AddSecure(MusicBox, 5044);
-            Utils1.AddSecure(MusicBox, 5112);
-            Utils1.AddSecure(MusicBox, 5362);
-            Utils1.AddSecure(MusicBox, ModContent.ItemType<DesertMusicBox>());
-            Utils1.AddSecure(MusicBox, ModContent.ItemType<FrozenMusicBox>());
-            Utils1.AddSecure(MusicBox, ModContent.ItemType<Frozenp2MusicBox>());      
-            Utils1.AddSecure(MusicBox, ModContent.ItemType<InfernalMusicBox>());
+                Utils1.AddSecure(MusicBox, i);       
         }
 
         public override void SetDefaults(Item item)
@@ -373,7 +354,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					}
 				}
 				AddToDashWeaponsLists(item);
-				SetFishClass(item);
+                SetFishClass(item);
 
 
 
@@ -411,7 +392,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 		}
 	
-		public void SetFishClass(Item item)
+		public static void SetFishClass(Item item)
 		{
             if (item.fishingPole > 0)
             {
@@ -527,7 +508,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 				else
 				{
-
 					item.useTime = 6;
 					item.useAnimation = 6;
 					item.useStyle = ItemUseStyleID.Shoot;
@@ -663,7 +643,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<PygmyMelee>(), damage, knockback, player.whoAmI);
 					return false;
 				}
-
 			}
 			if(Calamity != null)
 			{

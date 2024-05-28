@@ -89,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             if(ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod))
             {
-                ModifyTooltipsFargowiltasSouls(item, Tooltips);
+                ModifyTooltipsFargowiltasSouls(Tooltips);
             }
             if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod))
             {
@@ -99,7 +99,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             AplyReforgeTooltip(item, Tooltips);
         }
 
-        public void ModifyTooltipsFargowiltasSouls(Item item, List<TooltipLine> Tooltips)
+        public void ModifyTooltipsFargowiltasSouls(List<TooltipLine> Tooltips)
         {
             if (EternityItem)
             {
@@ -133,20 +133,20 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             if (color == null) color = ColorOverride;
             string text = (color.HasValue ? tooltip : "");
-            TooltipLine item2 = new TooltipLine(Mod, tooltipLineName, text)
+            TooltipLine item2 = new(Mod, tooltipLineName, text)
             {
                 OverrideColor = color
             };
             Tooltips.Add(item2);
         }
 
-        public List<int> ReaperItems = new List<int>
-        {
+        public List<int> ReaperItems =
+        [
            ModContent.ItemType<Ftoggler>(),
            ModContent.ItemType<Reaper_Hood>(),
            ModContent.ItemType<Reaper_Robe>(),
            ModContent.ItemType<Reaper_Pants>()
-        };
+        ];
 
         private void ApplyRarityColor(Item item, TooltipLine nameLine)
         {
@@ -173,60 +173,61 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
         }
   
+
         private void AplyReforgeTooltip(Item item, IList<TooltipLine> Tooltips)
         {
             if (item.prefix == ModContent.PrefixType<Healthy>())
             {
-                RegorgeTooltip(item, Tooltips, (int)HealthyReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeTooltip(Tooltips, (int)HealthyReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Healer>())
             {
-                RegorgeTooltip(item, Tooltips, (int)HealerReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeTooltip(Tooltips, (int)HealerReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Atletic>())
             {
-                RegorgeTooltip(item, Tooltips, (int)AtleticReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeTooltip(Tooltips, (int)AtleticReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Gigant>())
             {
-                RegorgeTooltip(item, Tooltips, (int)GigantReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeTooltip(Tooltips, (int)GigantReforgeValue, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Titanic>())
             {
-                RegorgeTooltip(item, Tooltips, (int)TitanicReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
+                RegorgeTooltip(Tooltips, (int)TitanicReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Life");
             }
             if (item.prefix == ModContent.PrefixType<Impenetrable>())
             {
-                RegorgeTooltip(item, Tooltips, UnpenetrableReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Defense");
+                RegorgeTooltip(Tooltips, UnpenetrableReforgeValue, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Defense");
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
-                    RegorgeTooltip(item, Tooltips, (int)2, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.DamageReduction");
+                    RegorgeTooltip(Tooltips, 2, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.DamageReduction");
             }
             if (item.prefix == ModContent.PrefixType<Supersonic>())
             {
-                RegorgeTooltip(item, Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Speed");
+                RegorgeTooltip(Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Speed");
             }
             if (item.prefix == ModContent.PrefixType<Acurate>())
             {
-                RegorgeTooltip(item, Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.CritChance");
+                RegorgeTooltip(Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.CritChance");
             }
             if (item.prefix == ModContent.PrefixType<Uncontrolled>())
             {
-                RegorgeTooltip(item, Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.MeleeSpeed");
+                RegorgeTooltip(Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.MeleeSpeed");
             }
             if (item.prefix == ModContent.PrefixType<Sharp>())
             {
-                RegorgeTooltip(item, Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Damage");
+                RegorgeTooltip(Tooltips, 8, new Color(92, Main.DiscoColor.G, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.Damage");
             }
             if (item.prefix == ModContent.PrefixType<Regenerative>())
             {
-                RegorgeTooltip(item, Tooltips, 2, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.LifeRegeneration");
+                RegorgeTooltip(Tooltips, 2, new Color(92, 145, 94, 255), "Mods.RemnantOfTheAncientsMod.Prefix.Description.LifeRegeneration");
             }
         }
 
-        public void RegorgeTooltip(Item item, IList<TooltipLine> Tooltips, int quantity, Color color, string textString)
+        public void RegorgeTooltip(IList<TooltipLine> Tooltips, int quantity, Color color, string textString)
         {
             string text = Language.GetTextValue(textString, quantity);
-            TooltipLine item2 = new TooltipLine(Mod, "Reforge", text)
+            TooltipLine item2 = new(Mod, "Reforge", text)
             {
                 OverrideColor = color
             };
@@ -242,7 +243,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 if (tip2 != null)
                 {
                     string text1 = "\n"+Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedMoneyDrop");
-                    var text = tip2.Text.Insert(tip2.Text.Count(), text1);
+                    var text = tip2.Text.Insert(tip2.Text.Length, text1);
                     tip2.Text = text;
                 }
             }
@@ -252,7 +253,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 if (tip != null)
                 {
                     string text1 = "\n" + Language.GetTextValue("CommonItemTooltip.PercentIncreasedCritChance", 5);
-                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    var text = tip.Text.Insert(tip.Text.Length, text1);
                     tip.Text = text;
                 }
             }
@@ -262,7 +263,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 if (tip != null)
                 {
                     string text1 = "\n" + Language.GetTextValue("CommonItemTooltip.IncreasesMaxLifeBy", DificultyUtils.ReaperMode ? 10 : 30);
-                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    var text = tip.Text.Insert(tip.Text.Length, text1);
                     tip.Text = text;
                 }
             }
@@ -272,7 +273,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 if (tip != null)
                 {
                     string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedLuck", DificultyUtils.ReaperMode ? 0.4f : 0.2f);
-                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    var text = tip.Text.Insert(tip.Text.Length, text1);
                     tip.Text = text;
                 }
             }
@@ -282,7 +283,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 if (tip != null)
                 {
                     string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedFallSpeed");
-                    var text = tip.Text.Insert(tip.Text.Count(), text1);
+                    var text = tip.Text.Insert(tip.Text.Length, text1);
                     tip.Text = text;
                 }
             } 
@@ -298,14 +299,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             else if (item.type == ModContent.ItemType<Terracoin>())
             {
-                string[] atributes = new string[5]
-                {
+                string[] atributes =
+                [
                     "Damage",
                     "CritChance",
                     "Speed",
                     "Knockback",
                     "Placeable"
-                }; 
+                ]; 
                 foreach (string a in atributes)
                 {
                     var tip = Tooltips.FirstOrDefault(tip => (tip.Name == a) && tip.Mod == "Terraria");
@@ -344,9 +345,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
             } 
         }
-        public int GetIndexForText(TooltipLine tip,string text) 
+        public static int GetIndexForText(TooltipLine tip,string text) 
         {
-            for (int i = 0; i < tip.Text.LongCount(); i++)
+            for (int i = 0; i < tip.Text.Length; i++)
             {
                 string texto = tip.Text.ToString();
                 if (texto == text)
@@ -356,7 +357,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             return -1;
         }
-        public string ReturnLanguage(string baseName,int baseType)
+        public static string ReturnLanguage(string baseName,int baseType)
         {
             switch (Language.ActiveCulture.LegacyId)
             {

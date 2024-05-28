@@ -86,9 +86,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
         }
 
-        public static List<int> FastFall = new List<int>()
-        {
-        };
+        public static List<int> FastFall = [];
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;

@@ -11,29 +11,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Music Box (Infernal Tyrant)");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Boîte à musique (Tyran infernal)");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Caja de música (Tirano infernal)");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            ItemID.Sets.CanGetPrefixes[Type] = false;
+            ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.MusicBox;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 			MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Infernal_Tyrant"), ItemType<InfernalMusicBox>(), TileType<InfernalMusicBoxT>());
 		}
 
 		public override void SetDefaults()
 		{
-			Item.useStyle = ItemUseStyleID.Swing;
-			Item.useTurn = true;
-			Item.useAnimation = 15;
-			Item.useTime = 10;
-			Item.autoReuse = true;
-			Item.consumable = true;
-			Item.createTile = TileType<InfernalMusicBoxT>();
-			Item.width = 24;
-			Item.height = 24;
-			Item.rare = ItemRarityID.LightRed;
-			Item.value = 100000;
-			Item.accessory = true;
+            Item.DefaultToMusicBox(TileType<InfernalMusicBoxT>(), 0);
 			Item.GetGlobalItem<CustomTooltip>().MusicBox = true;
-
 		}
 	}
 }

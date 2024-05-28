@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace RemnantOfTheAncientsMod.World
 {
@@ -125,6 +126,14 @@ namespace RemnantOfTheAncientsMod.World
         }
 
 
+
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+   //         int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: SmartCursor");
+			//if (preferredIndex >= 1)
+			//	Main.NewText("A");
+   //             //layers[preferredIndex] = layer;
+        }
     }
 }
 

@@ -18,14 +18,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
 		public float CurrentAmunation, MaxAmunation,ReloadCounter,ReloadCounterMax;
 
+		int Usetime = 30;
 		public override void SetDefaults()
 		{
-			Item.damage = 30;
+			Usetime = 30;
+
+            Item.damage = 15;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 2;
 			Item.height = 2;
-			Item.useTime = 25;
-			Item.useAnimation = 25;
+			Item.useTime = Usetime;
+			Item.useAnimation = 20;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.noMelee = true;
 			Item.scale = 0.68f;
@@ -84,7 +87,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 				Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter = 0;
             }
         }
-		int timmer;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {			    
 			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo--;
@@ -107,11 +109,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			{
 				if (Main.mouseRight)
 				{
-					Item.useAnimation = (int)(Item.useTime * Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo);
+					Item.useTime = Usetime / 3;
+
+                    Item.useAnimation = (int)(Item.useTime * Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo);
 				}
 				else if (Main.mouseLeft)
 				{
-					Item.useAnimation = Item.useTime;
+					Item.useTime = Usetime;
+                    Item.useAnimation = Item.useTime;
 				}
 				return true;
 			}
