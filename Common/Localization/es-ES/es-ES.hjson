@@ -3560,6 +3560,21 @@ Mods: {
 				// DisplayName: Quick Draw
 				// Tooltip: ""
 			}
+
+			BionicProsthesis: {
+				// DisplayName: Bionic Prosthesis
+				// Tooltip: ""
+			}
+
+			MechanicalProsthesis: {
+				DisplayName: Protesis mecánica
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					Aumenta la velocidad de carga de las armas de rango
+					Permite cargar los arcos automáticamente
+					'''
+			}
 		}
 
 		NPCs: {
@@ -4012,6 +4027,16 @@ Mods: {
 				OverhaulMeleeManaCostConfig: {
 					Label: Armas cuerpo a cuerpo gastan maná con Terraria Overhaul
 					Tooltip: Desactiva la mecanica de coste de maná en las armas cuerpo a cuerpo con proyectil
+				}
+
+				BoowReworkConf: {
+					// Label: Boow Rework Conf
+					// Tooltip: ""
+				}
+
+				BowReworkConf: {
+					// Label: Bow Rework Conf
+					// Tooltip: ""
 				}
 			}
 		}

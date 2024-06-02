@@ -153,6 +153,12 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
             public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode;
             public string GetConditionDescription() => null; 
         }
+        public class IsNotReaperMode : IItemDropRuleCondition, IProvideItemConditionDescription
+        {
+            public bool CanDrop(DropAttemptInfo info) => !DificultyUtils.ReaperMode;
+            public bool CanShowItemDropInUI() => !DificultyUtils.ReaperMode;
+            public string GetConditionDescription() => null;
+        }
         public class IsJurneyRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
             public bool CanDrop(DropAttemptInfo info) => false;

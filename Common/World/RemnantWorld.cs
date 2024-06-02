@@ -129,11 +129,11 @@ namespace RemnantOfTheAncientsMod.World
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-   //         int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: SmartCursor");
+			//int preferredIndex = layers.FindIndex(l => l.Name == "Vanilla: SmartCursor");
 			//if (preferredIndex >= 1)
 			//	Main.NewText("A");
-   //             //layers[preferredIndex] = layer;
-        }
+			//             //layers[preferredIndex] = layer;
+		}
     }
 }
 

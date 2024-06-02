@@ -25,8 +25,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
             Item.width = 12;
             Item.height = 38;
             Item.maxStack = 1;
-            Item.useTime = 4;
-            Item.useAnimation = 12;
+            Item.useTime = 8;
+            Item.useAnimation = 24;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.knockBack = 2;
             Item.value = 12000;

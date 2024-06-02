@@ -11,26 +11,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     internal class MechanicalPersonalLifeSafeSystem : ModItem
     {
         public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("Mechanical Personal Life Safe System");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Système mécanique de sécurité personnelle");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sistema mecanizado de seguridad personal");
-            //Tooltip.SetDefault("Summon two probes to protect you"+
-                //"\nGreen shoots a green laser towards the player which will heal them"+
-                //"\nWhile blue will intercept enemy projectiles from time to time");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoquez deux drones pour vous protéger" +
-                //"\nVert tire un laser vert vers le joueur qui le soignera" +
-                //"\nTandis que le bleu interceptera de temps en temps les projectiles ennemis");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca dos sondas para protegerte" +
-                //"\nLa verde dispara lasers curativos hacia el jugador" +
-                //"\nMientras que la azul dispara un rayo que intercepta los proyectiles enemigos de vez en cuando");
+        {        
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<RemnantPlayer>().HealingDrone = true;
             player.GetModPlayer<RemnantPlayer>().InterceptionDrone = true;
-            // player.GetModPlayer<RemnantPlayer>().SpawnMinionItem(player);
 
             if(player.ownedProjectileCounts[ModContent.ProjectileType<InterceptionDrone>()] < 2)
             {
@@ -42,15 +29,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
                 Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, Main.myPlayer, 1 * 1 * 10);
                 Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, Main.myPlayer, 1 * 2 * 10);
             }
-
-            //for (int i = 0; i < Main.maxProjectiles; i++)
-            //{
-            //    if (Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && (Main.projectile[i].type == ModContent.ProjectileType<InterceptionDrone>() || Main.projectile[i].type == ModContent.ProjectileType<HealingDrone>()))
-            //    {
-            //        return;
-            //    }
-               
-            //}
         }
         public override void SetDefaults()
         {

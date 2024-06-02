@@ -20,6 +20,7 @@ using Terraria.GameContent;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using Terraria.Audio;
+using RemnantOfTheAncientsMod.Common.WeaponsRework;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -29,6 +30,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool IsAmmo;
 		public int StyleStat = 0;
 		public bool IsRepeater;
+		
 
 		public bool IsShotgun = false;
 		public Vector3 ShotgunBulletStat = new(0,-1,0);
@@ -44,9 +46,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public float ReloadCounter = 0;
         public float ReloadCounterMax = 0;
 
-        Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
+        readonly Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
 
-		public override bool InstancePerEntity => true;
+		public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+		public bool BowReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
+
+        public override bool InstancePerEntity => true;
 		public int[] lanceId =
 		[
 			ItemID.Spear,
@@ -163,8 +168,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
 
         public override void SetDefaults(Item item)
-		{
-			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+		{			
 			bool Calamity = RemnantOfTheAncientsMod.CalamityMod != null;
 
 
@@ -345,7 +349,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
                     item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
                     item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(6, -1, 10);
-                }            
+                }  
+				
                 if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -391,8 +396,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
 			}
 		}
-	
-		public static void SetFishClass(Item item)
+        public static void SetFishClass(Item item)
 		{
             if (item.fishingPole > 0)
             {
@@ -402,7 +406,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+            WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 			if (WeaponConf)
 			{
 				if (item.type == ItemID.PearlwoodBow)
@@ -413,11 +417,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				if (IsRepeater)
 				{
                     velocity = velocity.RotatedByRandom(MathHelper.ToRadians(1+(UseTimeReduction * 20)));
-                }
+                }		
 			}
 
 			else base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
+
+		
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			if(RemnantOfTheAncientsMod.FargosSoulMod != null) {
@@ -702,13 +708,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     {
                         Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(Unacurency));
                         newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-                       var a = Projectile.NewProjectileDirect(source, position, newVelocity, type3, damage, knockback, player.whoAmI);
+                        Projectile.NewProjectile(source, position, newVelocity, type3, damage, knockback, player.whoAmI);
                     }
-                }
-				
+                }	
             }
-			
-            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+
+			List<int> BannedBows = BowsChargeRework.BannedBows;
+
+            if (BowReworkConfig && !BannedBows.Contains(item.type))
+			{
+				if (item.useAmmo == AmmoID.Arrow && !IsRepeater)
+				{
+					bool Canshoot = item.GetGlobalItem<BowsChargeRework>().Canshoot;
+					return Canshoot && base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+				}
+			}
+			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 		
 		public static void FixModRodsBobers(IEntitySource source, Vector2 velocity,Vector2 position,int type,int damage,float knockback,int player,int BoberAmount)
@@ -766,8 +781,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 		}
 		public override bool AltFunctionUse(Item item, Player player)
-		{
-			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+		{		
 			if (item.GetGlobalItem<CustomTooltip>().SecondHabilitie) return true;
 			if (WeaponConf)
 			{
@@ -808,7 +822,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 					if (PlayerTouchFlour)
 					{
-						WeaponDash(player, 1f, 0.75f);
+                        WeaponDash(player, 1f, 0.75f);
 						for (int i = 0; i < projectileCount; i++)
 						{
 							float angle = MathHelper.ToRadians(360f / projectileCount * i);
@@ -831,11 +845,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 							{
 								if (j > 10)
 								{
-									WeaponDash(player, (float)Math.Log(j - Math.Log(j)), 1.7f);
+                                    WeaponDash(player, (float)Math.Log(j - Math.Log(j)), 1.7f);
 								}
 								else
 								{
-									WeaponDash(player, (float)Math.Log(j), (float)Math.Log(j));
+                                    WeaponDash(player, (float)Math.Log(j), (float)Math.Log(j));
 								}
 							}
 						}
@@ -860,7 +874,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 		}
 
-		public void WeaponDash(Player player, float StrengX, float StrengY)
+		public static void WeaponDash(Player player, float StrengX, float StrengY)
 		{
 			bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
 			if (player.altFunctionUse == 2)
@@ -936,8 +950,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 			}
         }
-        float Timmer = 0;
-		float TimmerMax = 0;
+        public float Timmer = 0;
+		public float TimmerMax = 0;
         float UseTimeReduction = 0;
         public override void HoldItem(Item item, Player player)
         {
@@ -974,17 +988,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     Timmer = UseTimeReduction = 0;
                 }
             }
-			if (IsShotgun ) 
+			if (IsShotgun) 
 			{
                 TimmerMax = item.useTime / 4;
-
-                RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax;
-                RemnantPlayer.GenericChargeCouldown = (int)Timmer;
+    
                 if (player.channel && player.altFunctionUse == 2)
                 {
                     if (Timmer < TimmerMax)
                     {
-                        Timmer += 0.5f;
+                        Timmer += 0.5f * player.GetModPlayer<RemnantPlayer>().ChargeBonus;
                     }
                 }
                 else if (Main.mouseRightRelease)
@@ -992,13 +1004,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     Timmer = 0;
                 }
             }
+			
+			if (CanCharge)
+			{
+                RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax;
+                RemnantPlayer.GenericChargeCouldown = (int)Timmer;
+            }
             base.HoldItem(item, player);
         }
         public override float UseTimeMultiplier(Item item, Player player)
         {
             if (IsRepeater)
             {
-				Main.NewText(1f - UseTimeReduction);
+				//Main.NewText(1f - UseTimeReduction);
                 return 1f - UseTimeReduction;
             }
             return base.UseTimeMultiplier(item, player);
@@ -1036,7 +1054,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 
         }
 
-		public static List<Asset<Texture2D>> oldTexture = new List<Asset<Texture2D>>();
+		public static List<Asset<Texture2D>> oldTexture = [];
         public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
 			if (Utils1.IsAprilFoolDay() && ModContent.GetInstance<ConfigClient>().AprilFoolsDay)
@@ -1122,9 +1140,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             return base.CanConsumeAmmo(weapon, ammo, player);
         }
+      
         public override bool CanUseItem(Item item, Player player)
-        {	
+        {
+			WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+			BowReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
             return base.CanUseItem(item, player);
         }
+
     }
 }

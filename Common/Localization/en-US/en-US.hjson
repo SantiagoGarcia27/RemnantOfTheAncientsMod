@@ -3540,6 +3540,21 @@ Mods: {
 				DisplayName: Quick Draw
 				Tooltip: ""
 			}
+
+			BionicProsthesis: {
+				DisplayName: Bionic Prosthesis
+				Tooltip: ""
+			}
+
+			MechanicalProsthesis: {
+				DisplayName: Mechanical Prosthesis
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					Increase ranged weapons the charge speed
+					Allow automatic bows charge
+					'''
+			}
 		}
 
 		NPCs: {
@@ -3992,6 +4007,16 @@ Mods: {
 				OverhaulMeleeManaCostConfig: {
 					Label: Overhaul Melee Mana Cost Config
 					Tooltip: Activate the mechanic of melee cost mana
+				}
+
+				BoowReworkConf: {
+					Label: Boow Rework Conf
+					Tooltip: ""
+				}
+
+				BowReworkConf: {
+					Label: Bow Rework Conf
+					Tooltip: ""
 				}
 			}
 		}

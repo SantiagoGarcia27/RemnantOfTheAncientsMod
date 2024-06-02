@@ -27,24 +27,18 @@ namespace RemnantOfTheAncientsMod
         #endregion
 
         #region VanillaChanges
-      //  [Header("Vanilla Changes")]
 
-       //[Label("Vanilla Weapons Changes")]
         [DefaultValue(true)]
-        //[//Tooltip("Activate the balance changes of vanilla items"
-        //+ "\n(deactivate this if it generates incompatibility with some other mod)")]
         public bool VanillaWeaponsChangesConf { get; set; }
 
-       //[Label("Drop tombs on death")]
+        [DefaultValue(true)]
+        public bool BowReworkConf { get; set; }
+
         [SliderColor(11, 181, 176, 29)]
         [Range(0f, 2f)]
         [Increment(1f)]
         [DrawTicks]
         [DefaultValue(2f)]
-       // [//Tooltip("Defines if the player drops graves upon death" +
-       /* "\n 0- Disable all of the tombs" +
-        "\n 1 - 50% Chance to drop tombs" +
-        "\n 2 - 100% Chance to drop tombs")]*/
         public float DropTombstomOnDeadtConf { get; set; }
 
        //[Label("Max stack for items")]

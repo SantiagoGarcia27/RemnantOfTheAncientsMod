@@ -96,6 +96,9 @@ namespace RemnantOfTheAncientsMod
 		public static float GenericAmmoAmmount {  get; set; }
 		public static float GenericAmmoAmmountMax = 0;
 
+		public float ChargeBonus = 1;
+		public bool AutoCharge = false;
+
         public List<int> MinionsBuffInflict = [];
 		public List<int> MeleeBuffInflict = [];
 		public List<int> MageBuffInflict = [];
@@ -173,7 +176,11 @@ namespace RemnantOfTheAncientsMod
 			EnemyProjectilesSpeedScaleBouns = 1;
 		
 			MinionCritChance = 0;
-            StyleStat = 0;	
+            StyleStat = 0;
+
+            ChargeBonus = 1;
+            AutoCharge = false;
+
             if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
 			if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
 			if (MageBuffInflict.Count > 0) MageBuffInflict.Clear();

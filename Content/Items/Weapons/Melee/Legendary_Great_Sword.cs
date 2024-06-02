@@ -29,6 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 20;
             Item.scale = 1.80f;
+            Item.rare = ItemRarityID.Lime;
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
             Item.value = Item.sellPrice(gold: 35);
