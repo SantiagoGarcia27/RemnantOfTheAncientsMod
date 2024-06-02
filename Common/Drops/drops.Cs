@@ -35,10 +35,8 @@ namespace RemnantOfTheAncientsMod.Common.Drops
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            PajarosLoot(npc, npcLoot);
             ArmoredZombiesLoot(npc, npcLoot);
             BossLoot(npc, npcLoot);
-            LegendaryLoot(npc, npcLoot);
             CommonLoot(npc, npcLoot);
             PilarEnemiyLoot(npc, npcLoot);
             HallowBiomeLoot(npc, npcLoot);
@@ -51,132 +49,110 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
                 FargosLoot(npc, npcLoot);
-            }
-           // TerracoinDrop(npc, npcLoot);
+            }     
             if (npc.value > 0f)
             {
                 if (npc.lifeMax > 100000)
                 {
-                    npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 100000 / dificultyDrop(1), 1, 1));
+                    npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<The_Legion>(), 100000, ReaperDrop(100000)));
                 }
                 else
                 {
-                    npcLoot.Add(ItemDropRule.Common(ItemType<The_Legion>(), 500000 / dificultyDrop(1), 1, 1));
+                    npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<The_Legion>(), 500000, ReaperDrop(500000)));
                 }
             }
             //  npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fake_The_Legion>(), 1 / dificultyDrop(1), 1, 1));
-            SoulLoot(npc, npcLoot, new Player());
+            //SoulLoot(npc, npcLoot, new Player());
         }
         public void CommonLoot(NPC npc, NPCLoot npcLoot)
         {
 
-            if (npc.type == NPCID.Shark) npcLoot.Add(ItemDropRule.Common(ItemType<SharkTooth>(), 10 / dificultyDrop(1), 1, 5));
-            if (npc.type == NPCID.Tim) npcLoot.Add(ItemDropRule.Common(ItemType<magic_stick>(), 50 / dificultyDrop(5), 1, 1));
-            if (npc.type == NPCID.DungeonGuardian) npcLoot.Add(ItemDropRule.Common(ItemType<TortugaPet>(), 10 / dificultyDrop(2), 1, 1));
+            if (npc.type == NPCID.Shark) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<SharkTooth>(), 10, ReaperDrop(10),1,5));
+            if (npc.type == NPCID.Tim) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<magic_stick>(), 2, ReaperDrop(2)));
+            if (npc.type == NPCID.DungeonGuardian) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<TortugaPet>(), 2, ReaperDrop(2)));
             if (npc.type == NPCID.BigMimicCorruption) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.ScourgeoftheCorruptor, 4, 1, 1));
             if (npc.type == NPCID.BigMimicCrimson) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.VampireKnives, 4, 1, 1));
             if (npc.type == NPCID.BigMimicHallow) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.RainbowGun, 4, 1, 1));
             if (npc.type == NPCID.BigMimicJungle) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.PiranhaGun, 4, 1, 1));
+            if (npc.type == NPCID.BirdRed || npc.type == NPCID.BirdBlue || npc.type == NPCID.Bird) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<BirdWings>(), 100, ReaperDrop(100)));
         }
-        public void HallowBiomeLoot(NPC npc, NPCLoot npcLoot)
+        public static void HallowBiomeLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCID.IlluminantBat) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 50, 1, 1));
             if (npc.type == NPCID.ChaosElemental) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 50, 1, 1));
             if (npc.type == NPCID.EnchantedSword) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 50, 1, 1));
             if (npc.type == NPCID.PigronHallow) npcLoot.Add(ItemDropRule.Common(ItemID.LightShard, 10, 1, 1));
         }
-        public void CorruptBiomeLoot(NPC npc, NPCLoot npcLoot)
+        public static void CorruptBiomeLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCID.CursedHammer) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
             if (npc.type == NPCID.PigronCorruption) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 10, 1, 1));
             if (npc.type == NPCID.Clinger) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
         }
-        public void CrimsomBiomeLoot(NPC npc, NPCLoot npcLoot)
+        public static void CrimsomBiomeLoot(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCID.CrimsonAxe) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 100, 1, 1));
             if (npc.type == NPCID.PigronCrimson) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 10, 1, 1));
             if (npc.type == NPCID.FloatyGross) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
             if (npc.type == NPCID.IchorSticker) npcLoot.Add(ItemDropRule.Common(ItemID.DarkShard, 50, 1, 1));
         }
+        public List<int> PilarEnemy =
+        [
+            NPCID.SolarDrakomireRider, NPCID.SolarSolenian, NPCID.SolarDrakomire, NPCID.SolarCrawltipedeHead, NPCID.SolarCorite,
+            NPCID.VortexHornet, NPCID.VortexHornetQueen, NPCID.VortexLarva, NPCID.VortexRifleman, NPCID.VortexSoldier,
+            NPCID.StardustCellBig, NPCID.StardustJellyfishBig, NPCID.StardustSoldier, NPCID.StardustSpiderBig, NPCID.StardustWormHead,
+            NPCID.NebulaBeast, NPCID.NebulaBrain, NPCID.NebulaHeadcrab, NPCID.NebulaSoldier
+        ];
+        public List<int> CelestialTower =
+        [
+            NPCID.LunarTowerSolar,
+            NPCID.LunarTowerVortex,
+            NPCID.LunarTowerStardust,
+            NPCID.LunarTowerNebula
+        ];
         public void PilarEnemiyLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCID.SolarDrakomireRider) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.SolarSolenian) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.SolarDrakomire) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.SolarCrawltipedeHead) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.SolarCorite) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.LunarTowerSolar) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 10));
-            if (npc.type == NPCID.VortexHornet) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.VortexHornetQueen) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.VortexLarva) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.VortexRifleman) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.VortexSoldier) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.LunarTowerVortex) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.StardustCellBig) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.StardustJellyfishBig) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.StardustSoldier) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.StardustSpiderBig) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.StardustWormHead) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.LunarTowerStardust) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.NebulaBeast) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.NebulaBrain) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.NebulaHeadcrab) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.NebulaSoldier) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.LunarTowerNebula) npcLoot.Add(ItemDropRule.Common(ItemType<Neutrum_Fragment>(), 3 / dificultyDrop(1), 1, 1));
-        }
-        public void LegendaryLoot(NPC npc, NPCLoot npcLoot)
-        {
-            if (npc.type == NPCID.MoonLordCore) npcLoot.Add(ItemDropRule.Common(ItemType<LaserMachineGun>(), 100 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCType<InfernalTyrantHead>()) npcLoot.Add(ItemDropRule.Common(ItemType<TheSpiker>(), 200 / dificultyDrop(1), 1, 1));
-            if (npc.type == NPCID.Golem) npcLoot.Add(ItemDropRule.Common(ItemType<Legendary_Great_Sword>(), (800 / dificultyDrop(1)), 1, 1));
-        }
-        public void BossLoot(NPC npc, NPCLoot npcLoot)
-        {
-            if (npc.type == NPCType<DesertAniquilator>()) BossTrpoyMask(ItemType<DesertTrophy>(), ItemType<DesertAMask>(), npcLoot);
-            if (npc.type == NPCType<FrozenAssaulter>()) BossTrpoyMask(ItemType<FrostTrophy>(), ItemType<FrozenMask>(), npcLoot);
-            if (npc.type == NPCType<InfernalTyrantHead>()) BossTrpoyMask(ItemType<InfernalTrophy>(), ItemType<InfernalMask>(), npcLoot);
-            if (npc.type == NPCID.WallofFlesh) npcLoot.Add(ItemDropRule.Common(ItemType<TrowerEmblem>(), (3 / dificultyDrop(1)), 1, 1));
-            if (npc.type == NPCID.CultistBoss) npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));
-            if (npc.type == NPCID.HallowBoss)
+            if (PilarEnemy.Contains(npc.type))
             {
-                npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsDay(), ItemType<StarChunk>(), 1, 3, 5));
-                npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsNight(), ItemType<StarChunk>(), 1, 1, 2));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<Neutrum_Fragment>(), 3, 1));
             }
-            if (npc.type == NPCID.Plantera)
+            if (CelestialTower.Contains(npc.type))
             {
-                npcLoot.Add(ItemDropRule.Common(ItemID.StrangePlant1, 1, dificultyDrop(1), dificultyDrop(1)));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<Neutrum_Fragment>(), 3, 1, 1, 10));
             }
         }
-        public void PajarosLoot(NPC npc, NPCLoot npcLoot)
-        {
-            if (npc.type == NPCID.BirdRed || npc.type == NPCID.BirdBlue || npc.type == NPCID.Bird) npcLoot.Add(ItemDropRule.Common(ItemType<BirdWings>(), 100 / dificultyDrop(1), 1, 1)); //dificultyDrop(1)/500
-        }
+        //public void LegendaryLoot(NPC npc, NPCLoot npcLoot)
+        //{
+        //    if (npc.type == NPCID.MoonLordCore) npcLoot.Add(ItemDropRule.Common(ItemType<LaserMachineGun>(), 100 / dificultyDrop(1), 1, 1));
+        //    if (npc.type == NPCType<InfernalTyrantHead>()) npcLoot.Add(ItemDropRule.Common(ItemType<TheSpiker>(), 200 / dificultyDrop(1), 1, 1));
+        //    if (npc.type == NPCID.Golem) npcLoot.Add(ItemDropRule.Common(ItemType<Legendary_Great_Sword>(), (800 / dificultyDrop(1)), 1, 1));
+        //}
         [JITWhenModsEnabled("InfernumMode")]
-        public void InfernumLoot(NPC npc, NPCLoot npcLoot)
+        public static void InfernumLoot(NPC npc, NPCLoot npcLoot)
         {
             bool Infernum = DificultyUtils.InfernumMode;
 
-            if (npc.type == ModContent.NPCType<DesertAniquilator>())
-                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ModContent.ItemType<Desert_Relic_Infernum>());
-            else if (npc.type == ModContent.NPCType<FrozenAssaulter>())
-                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ModContent.ItemType<Frozen_Relic_Infernum>());
-            else if (npc.type == ModContent.NPCType<InfernalTyrantHead>())
-                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ModContent.ItemType<Tyrant_Relic_Infernum>());
+            if (npc.type == NPCType<DesertAniquilator>())
+                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ItemType<Desert_Relic_Infernum>());
+            else if (npc.type == NPCType<FrozenAssaulter>())
+                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ItemType<Frozen_Relic_Infernum>());
+            else if (npc.type == NPCType<InfernalTyrantHead>())
+                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ItemType<Tyrant_Relic_Infernum>());
         }
         [JITWhenModsEnabled("FargowiltasSouls")]
-        public void FargosLoot(NPC npc, NPCLoot npcLoot)
+        public static void FargosLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == ModContent.NPCType<DesertAniquilator>())
+            if (npc.type == NPCType<DesertAniquilator>())
             {
-                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive(new() { new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist() }, ModContent.ItemType<DesertMedalion>()));
+                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive([new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist()], ItemType<DesertMedalion>()));
             }
-            if (npc.type == ModContent.NPCType<FrozenAssaulter>())
+            if (npc.type == NPCType<FrozenAssaulter>())
             {
-                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive(new() { new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist() }, ModContent.ItemType<FrostBarrier>()));
+                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive([new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist()], ItemType<FrostBarrier>()));
             }
-            if (npc.type == ModContent.NPCType<InfernalTyrantHead>())
+            if (npc.type == NPCType<InfernalTyrantHead>())
             {
-                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive(new() { new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist() }, ModContent.ItemType<TyrantsMark>()));
+                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive([new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist()], ItemType<TyrantsMark>()));
             }
         }
         public void ArmoredZombiesLoot(NPC npc, NPCLoot npcLoot)
@@ -207,16 +183,15 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCType<MoltenZombie>()) ZombieOreLoot(npcLoot, ItemID.Hellstone, ItemID.HellstoneBar);
             if (npc.type == NPCType<NightZombie>())
             {
-                npcLoot.Add(ItemDropRule.Common(ItemID.JungleSpores, 8 / dificultyDrop(1), 1, 5));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 5));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Obsidian, 8 / dificultyDrop(1), 1, 5));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Hellstone, 8 / dificultyDrop(1), 1, 5));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Bone, 8 / dificultyDrop(1), 1, 5));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Cobweb, 8 / dificultyDrop(1), 1, 5));
-                npcLoot.Add(ItemDropRule.Common(ItemID.Stinger, 8 / dificultyDrop(1), 1, 5));
-                int corruptOre = WorldGen.crimson ? ItemID.DemoniteOre : ItemID.CrimtaneOre;
-                npcLoot.Add(ItemDropRule.Common(corruptOre, 8 / dificultyDrop(1), 1, 5));
-                npcLoot.Add(ItemDropRule.Common(ItemType<NightBar>(), 50 / dificultyDrop(1), 1, 5));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.JungleSpores, 8, ReaperDrop(8),1,5,1,7));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Stinger, 8, ReaperDrop(8), 1, 5, 1, 7));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Obsidian, 8, ReaperDrop(8), 1, 5, 1, 7));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Hellstone, 8, ReaperDrop(8), 1, 5, 1, 7));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Bone, 8, ReaperDrop(8), 1, 5, 1, 7));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Cobweb, 8, ReaperDrop(8), 1, 5, 1, 7));     
+                RemnantDropRules.ReaperModeVsNormal(ItemID.CrimtaneOre, 16, ReaperDrop(16), 1, 5, 1, 7);
+                RemnantDropRules.ReaperModeVsNormal(ItemID.DemoniteOre, 16, ReaperDrop(16), 1, 5, 1, 7);
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<NightBar>(), 50, ReaperDrop(50), 1, 5, 1, 7));
             }
             if (npc.type == NPCType<ArmoredSlime>())
             {
@@ -229,9 +204,13 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCType<OrichalcumZombie>()) ZombieOreLoot(npcLoot, ItemID.OrichalcumOre, ItemID.OrichalcumBar);
             if (npc.type == NPCType<AdamantiteZombie>()) ZombieOreLoot(npcLoot, ItemID.AdamantiteOre, ItemID.AdamantiteBar);
             if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
-            if (npc.type == NPCType<HallowedZombie>()) ZombieOreLoot(npcLoot, RemnantOfTheAncientsMod.CalamityMod != null ? ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null, ItemID.HallowedBar, 1, RemnantOfTheAncientsMod.CalamityMod != null ? 1 : 25);
+            if (npc.type == NPCType<HallowedZombie>())
+            {
+                int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
+                ZombieOreLoot(npcLoot,ore, ItemID.HallowedBar);
+            }
         }     
-        public void BossLoot(NPC npc, NPCLoot npcLoot, Player player)
+        public static void BossLoot(NPC npc, NPCLoot npcLoot)
         {
 
             if (npc.boss)
@@ -285,9 +264,12 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         break;
                     case NPCID.Plantera:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.PlanteraReaperSoulRule(), ItemType<PlantSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<SkeletronScroll>(), 1, ReaperDrop(1),1,2,1,5));
                         break;
                     case NPCID.HallowBoss:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.EmpressOfLightReaperSoulRule(), ItemType<EmpressSoul>()));
+                        npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsDay(), ItemType<StarChunk>(), 1, 3, 5));
+                        npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsNight(), ItemType<StarChunk>(), 1, 1, 2));
                         break;
                     case NPCID.Golem:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.GolemReaperSoulRule(), ItemType<GolemSoul>()));
@@ -298,6 +280,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         break;
                     case NPCID.CultistBoss:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.LunaticCultistReaperSoulRule(), ItemType<CultistSoul>()));
+                        npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));
                         break;
                     case NPCID.MoonLordCore:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.MoonLordReaperSoulRule(), ItemType<MoonSoul>()));
@@ -307,44 +290,40 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 if (npc.type == NPCType<DesertAniquilator>())
                 {
                     npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DesertAnhilatorReaperSoulRule(), ItemType<DesertSoul>()));
+                    BossTrpoyMask(ItemType<DesertTrophy>(), ItemType<DesertAMask>(), npcLoot);
                 }
                 if (npc.type == NPCType<FrozenAssaulter>())
                 {
                     npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.FrozenAssaulterReaperSoulRule(), ItemType<FrozenSoul>()));
+                    BossTrpoyMask(ItemType<FrostTrophy>(), ItemType<FrozenMask>(), npcLoot);
                 }
                 if (npc.type == NPCType<InfernalTyrantHead>())
                 {
                     npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.InfernalTyrantReaperSoulRule(), ItemType<InfernalSoul>()));
                     npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<TheSpiker>(), 200, 200 / 5));
+                    BossTrpoyMask(ItemType<InfernalTrophy>(), ItemType<InfernalMask>(), npcLoot);
                 }
             }
         }
 
-        public void ZombieOreLoot(NPCLoot npcLoot, int ore, int bar)
+        public static void ZombieOreLoot(NPCLoot npcLoot, int ore, int bar)
         {
-            npcLoot.Add(ItemDropRule.Common(ore, 1 / dificultyDrop(1), 1, 4));
-            npcLoot.Add(ItemDropRule.Common(bar, 50 / dificultyDrop(1), 1, 1));
+            npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ore,1,1,1,4,2,8));
+            npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(bar,50, 25,1,1));
         }
-        public void ZombieOreLoot(NPCLoot npcLoot, int? ore, int? bar)
+        public static void ZombieOreLoot(NPCLoot npcLoot, int? ore, int? bar)
         {
-            if (ore != null) npcLoot.Add(ItemDropRule.Common((int)ore, 1 / dificultyDrop(1), 1, 4));
-            if (bar != null) npcLoot.Add(ItemDropRule.Common((int)bar, 50 / dificultyDrop(1), 1, 1));
+            if (ore != null) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal((int)ore, 1, ReaperDrop(1), 1, 4, 2, 8));
+            if (bar != null) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal((int)bar, 50, ReaperDrop(5), 1, 1));
+        }  
+        public static void BossTrpoyMask(int Tropy, int Mask, NPCLoot npcLoot)
+        {
+            npcLoot.Add(new CommonDrop(Tropy, 10, 1, 1, 1));
+            npcLoot.Add(new CommonDrop(Mask, 7, 1, 1, 1));
         }
-        public void ZombieOreLoot(NPCLoot npcLoot, int? ore, int? bar, int chanceOre, int chanceBar)
+        public static int ReaperDrop(int i)
         {
-            if (ore != null) npcLoot.Add(ItemDropRule.Common((int)ore, 1 / chanceOre, 1, 4));
-            if (bar != null) npcLoot.Add(ItemDropRule.Common((int)bar, 50 / chanceBar, 1, 1));
-        }
-        public void BossTrpoyMask(int Tropy, int Mask, NPCLoot npcLoot)
-        {
-            npcLoot.Add(new CommonDrop(Tropy, 10, 1, 1, dificultyDrop(1)));
-            npcLoot.Add(new CommonDrop(Mask, 7, 1, 1, dificultyDrop(1)));
-        }
-        public int dificultyDrop(int i)
-        {
-            int a = i;
-            if (DificultyUtils.ReaperMode) a = i * 5;
-            return a;
+            return i <= 1? i : i/5 <= 1? 1:i/5;
         }
 
         public override void OnKill(NPC npc)/* TerracoinDrop(NPC npc, NPCLoot npcLoot)*/
@@ -355,7 +334,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 {
                     if (Main.rand.NextBool(50))
                     {
-                        Item.NewItem(Item.GetSource_None(), npc.position, npc.Size, ModContent.ItemType<Terracoin>(), 1, false, 0, false, false);
+                        Item.NewItem(Item.GetSource_None(), npc.position, npc.Size, ItemType<Terracoin>(), 1, false, 0, false, false);
                     } 
                 }
                 else
@@ -388,7 +367,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                     }      
                     if (condition)
                     {
-                        Item.NewItem(Item.GetSource_None(), npc.position, npc.Size, ModContent.ItemType<Terracoin>(), 1, false, 0, false, false);
+                        Item.NewItem(Item.GetSource_None(), npc.position, npc.Size, ItemType<Terracoin>(), 1, false, 0, false, false);
                     }
                 }
             }

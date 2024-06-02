@@ -15,6 +15,18 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         {
             return new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal), ItemDropRule.Common(itemId, chanceDenominatorInReaper));
         }
+        public static IItemDropRule ReaperModeVsNormal(int? itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper)
+        {
+            return new DropBasedOnReaperMode(ItemDropRule.Common((int)itemId, chanceDenominatorInNormal), ItemDropRule.Common((int)itemId, chanceDenominatorInReaper));
+        }
+        public static IItemDropRule ReaperModeVsNormal(int itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper,int minimumDropped,int maximumDropped)
+        {
+            return new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal, minimumDropped, maximumDropped), ItemDropRule.Common(itemId, chanceDenominatorInReaper, minimumDropped, maximumDropped));
+        }
+        public static IItemDropRule ReaperModeVsNormal(int itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper, int minimumDropped, int maximumDropped, int minimumDroppedReaper, int maximumDroppedReaper)
+        {
+            return new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal, minimumDropped, maximumDropped), ItemDropRule.Common(itemId, chanceDenominatorInReaper, minimumDroppedReaper, maximumDroppedReaper));
+        }
         public static IItemDropRule ReaperModeCommonDropOnAllPlayers(int itemId, int chanceDenominator = 1)
         {
             return new DropBasedOnMasterMode(ItemDropRule.DropNothing(), new DropPerPlayerOnThePlayer(itemId, chanceDenominator, 1, 1, new RemnantConditions.IsReaperMode()));
