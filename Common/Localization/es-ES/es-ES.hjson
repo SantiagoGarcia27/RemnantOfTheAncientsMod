@@ -3575,6 +3575,11 @@ Mods: {
 					Permite cargar los arcos automáticamente
 					'''
 			}
+
+			Ultrablade: {
+				// DisplayName: Ultrablade
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3798,6 +3803,9 @@ Mods: {
 			// FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
 			// HeavyIchorBullet.DisplayName: Heavy Ichor Bullet
 			// FrozenNovaExplosion.DisplayName: Frozen Nova Explosion
+			// UltrabladeSwingProgectile.DisplayName: Ultrablade Swing Progectile
+			// UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
+			// UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
 		}
 
 		Tiles: {

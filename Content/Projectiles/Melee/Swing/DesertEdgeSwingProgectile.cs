@@ -8,20 +8,20 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 {
     // Shortsword projectiles are handled in a special way with how they draw and damage things
     // The "hitbox" itself is closer to the player, the sprite is centered on it
     // However the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
     // Values chosen mostly correspond to Iron Shortword
-    public class LegendaryGreatSwordSwingProgectile : ModProjectile
+    public class DesertEdgeSwordSwingProgectile : ModProjectile
     {
         private const float SWINGRANGE = 1.67f * (float)Math.PI; // The angle a swing attack covers (300 deg)
         private const float FIRSTHALFSWING = 0.45f; // How much of the swing happens before it reaches the target angle (in relation to swingRange)
         private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
         private const float WINDUP = 0.15f; // How far back the player's hand goes when winding their attack (in relation to swingRange)
         private const float UNWIND = 0.4f; // When should the sword start disappearing
-        private const float SPINTIME = 2.5f; // How much longer a spin is than a swing
+        private float SPINTIME = 2.5f; // How much longer a spin is than a swing
 
         private enum AttackType // Which attack is being performed
         {
@@ -69,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         private float execTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
         private float hideTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
 
-        public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Melee/Legendary_Great_Sword"; // Use texture of item as projectile texture
+        public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Melee/DesertEdge"; // Use texture of item as projectile texture
         private Player Owner => Main.player[Projectile.owner];
 
         public override void SetStaticDefaults()
@@ -89,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             Projectile.localNPCHitCooldown = -1; // We set this to -1 to make sure the projectile doesn't hit twice
             Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
             Projectile.DamageType = DamageClass.Melee; // Projectile is a melee projectile
-            Projectile.scale *= 2;
+            Projectile.scale = 1.1f;
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -198,7 +198,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             Vector2 start = Owner.MountedCenter;
-            Vector2 end = start + Projectile.rotation.ToRotationVector2() * ((Projectile.Size.Length()) * Projectile.scale);
+            Vector2 end = start + Projectile.rotation.ToRotationVector2() * (Projectile.Size.Length() * Projectile.scale);
             float collisionPoint = 0f;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), start, end, 15f * Projectile.scale, ref collisionPoint);
         }
@@ -292,7 +292,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         {
             if (CurrentAttack == AttackType.Swing)
             {
-                Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) + UNWIND * Timer / hideTime);
+                Progress = MathHelper.SmoothStep(0, SWINGRANGE, 1f - UNWIND + UNWIND * Timer / hideTime);
                 Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime); // Make sword slowly decrease in size as we end the swing to make a smooth hiding animation
 
                 if (Timer >= hideTime)
@@ -302,7 +302,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             }
             else
             {
-                Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) + UNWIND / 2 * Timer / (hideTime * SPINTIME / 2));
+                Progress = MathHelper.SmoothStep(0, SPINRANGE, 1f - UNWIND / 2 + UNWIND / 2 * Timer / (hideTime * SPINTIME / 2));
                 Size = 1f - MathHelper.SmoothStep(0, 1, Timer / (hideTime * SPINTIME / 2));
 
                 if (Timer >= hideTime * SPINTIME / 2)

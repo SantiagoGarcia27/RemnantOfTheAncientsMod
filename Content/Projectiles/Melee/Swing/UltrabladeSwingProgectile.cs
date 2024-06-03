@@ -8,20 +8,20 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 {
     // Shortsword projectiles are handled in a special way with how they draw and damage things
     // The "hitbox" itself is closer to the player, the sprite is centered on it
     // However the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
     // Values chosen mostly correspond to Iron Shortword
-    public class DesertEdgeSwordSwingProgectile : ModProjectile
+    public class UltrabladeSwingProgectile : ModProjectile
     {
         private const float SWINGRANGE = 1.67f * (float)Math.PI; // The angle a swing attack covers (300 deg)
         private const float FIRSTHALFSWING = 0.45f; // How much of the swing happens before it reaches the target angle (in relation to swingRange)
-        private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
-        private const float WINDUP = 0.15f; // How far back the player's hand goes when winding their attack (in relation to swingRange)
+                                                    // private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
+        private const float WINDUP = 0.005f; // How far back the player's hand goes when winding their attack (in relation to swingRange)
         private const float UNWIND = 0.4f; // When should the sword start disappearing
-        private float SPINTIME = 2.5f; // How much longer a spin is than a swing
+        //private float SPINTIME = 2.5f; // How much longer a spin is than a swing
 
         private enum AttackType // Which attack is being performed
         {
@@ -41,11 +41,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         }
 
         // These properties wrap the usual ai and localAI arrays for cleaner and easier to understand code.
-        private AttackType CurrentAttack
-        {
-            get => (AttackType)Projectile.ai[0];
-            set => Projectile.ai[0] = (float)value;
-        }
+        //private AttackType CurrentAttack
+        //{
+        //    get => (AttackType)Projectile.ai[0];
+        //    set => Projectile.ai[0] = (float)value;
+        //}
 
         private AttackStage CurrentStage
         {
@@ -69,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         private float execTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
         private float hideTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
 
-        public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Melee/DesertEdge"; // Use texture of item as projectile texture
+        public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Melee/Ultrablade"; // Use texture of item as projectile texture
         private Player Owner => Main.player[Projectile.owner];
 
         public override void SetStaticDefaults()
@@ -96,30 +96,24 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         {
             Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
             float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
-
-            if (CurrentAttack == AttackType.Spin)
+   
+            if (Projectile.spriteDirection == 1)
             {
-                InitialAngle = (float)(-Math.PI / 2 - Math.PI * 1 / 3 * Projectile.spriteDirection); // For the spin, starting angle is designated based on direction of hit
+                // However, we limit the rangle of possible directions so it does not look too ridiculous
+                targetAngle = MathHelper.Clamp(targetAngle, (float)-Math.PI * 1 / 3, (float)Math.PI * 1 / 6);
             }
             else
             {
-                if (Projectile.spriteDirection == 1)
+                if (targetAngle < 0)
                 {
-                    // However, we limit the rangle of possible directions so it does not look too ridiculous
-                    targetAngle = MathHelper.Clamp(targetAngle, (float)-Math.PI * 1 / 3, (float)Math.PI * 1 / 6);
-                }
-                else
-                {
-                    if (targetAngle < 0)
-                    {
-                        targetAngle += 2 * (float)Math.PI; // This makes the range continuous for easier operations
-                    }
-
-                    targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
+                    targetAngle += 2 * (float)Math.PI; // This makes the range continuous for easier operations
                 }
 
-                InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // Otherwise, we calculate the angle
+                targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
             }
+
+            InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // Otherwise, we calculate the angle
+                                                                                                   // }
         }
 
         public override void SendExtraAI(BinaryWriter writer)
@@ -198,7 +192,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             Vector2 start = Owner.MountedCenter;
-            Vector2 end = start + Projectile.rotation.ToRotationVector2() * ((Projectile.Size.Length()) * Projectile.scale);
+            Vector2 end = start + Projectile.rotation.ToRotationVector2() * (Projectile.Size.Length() * Projectile.scale);
             float collisionPoint = 0f;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), start, end, 15f * Projectile.scale, ref collisionPoint);
         }
@@ -223,10 +217,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         {
             // Make knockback go away from player
             modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
-
-            // If the NPC is hit by the spin attack, increase knockback slightly
-            if (CurrentAttack == AttackType.Spin)
-                modifiers.Knockback += 1;
         }
 
         // Function to easily set projectile and arm position
@@ -248,6 +238,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         // Function facilitating the taking out of the sword
         private void PrepareStrike()
         {
+
             Progress = WINDUP * SWINGRANGE * (1f - Timer / prepTime); // Calculates rotation from initial angle
             Size = MathHelper.SmoothStep(0, 1, Timer / prepTime); // Make sword slowly increase in size as we prepare to strike until it reaches max
 
@@ -261,54 +252,25 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         // Function facilitating the first half of the swing
         private void ExecuteStrike()
         {
-            if (CurrentAttack == AttackType.Swing)
+
+            Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) * Timer / execTime);
+
+            if (Timer >= execTime)
             {
-                Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) * Timer / execTime);
-
-                if (Timer >= execTime)
-                {
-                    CurrentStage = AttackStage.Unwind;
-                }
-            }
-            else
-            {
-                Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) * Timer / (execTime * SPINTIME));
-
-                if (Timer == (int)(execTime * SPINTIME * 3 / 4))
-                {
-                    SoundEngine.PlaySound(SoundID.Item1); // Play sword sound again
-                    Projectile.ResetLocalNPCHitImmunity(); // Reset the local npc hit immunity for second half of spin
-                }
-
-                if (Timer >= execTime * SPINTIME)
-                {
-                    CurrentStage = AttackStage.Unwind;
-                }
+                CurrentStage = AttackStage.Unwind;
             }
         }
 
         // Function facilitating the latter half of the swing where the sword disappears
         private void UnwindStrike()
         {
-            if (CurrentAttack == AttackType.Swing)
-            {
-                Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) + UNWIND * Timer / hideTime);
-                Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime); // Make sword slowly decrease in size as we end the swing to make a smooth hiding animation
 
-                if (Timer >= hideTime)
-                {
-                    Projectile.Kill();
-                }
-            }
-            else
-            {
-                Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) + UNWIND / 2 * Timer / (hideTime * SPINTIME / 2));
-                Size = 1f - MathHelper.SmoothStep(0, 1, Timer / (hideTime * SPINTIME / 2));
+            Progress = MathHelper.SmoothStep(0, SWINGRANGE, 1f - UNWIND + UNWIND * Timer / hideTime);
+            Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime); // Make sword slowly decrease in size as we end the swing to make a smooth hiding animation
 
-                if (Timer >= hideTime * SPINTIME / 2)
-                {
-                    Projectile.Kill();
-                }
+            if (Timer >= hideTime)
+            {
+                Projectile.Kill();
             }
         }
     }

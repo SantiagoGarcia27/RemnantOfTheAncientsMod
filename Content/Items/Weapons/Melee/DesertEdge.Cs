@@ -9,6 +9,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {

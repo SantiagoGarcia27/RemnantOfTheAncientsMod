@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
@@ -19,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         {
             return new DropBasedOnReaperMode(ItemDropRule.Common((int)itemId, chanceDenominatorInNormal), ItemDropRule.Common((int)itemId, chanceDenominatorInReaper));
         }
-        public static IItemDropRule ReaperModeVsNormal(int itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper,int minimumDropped,int maximumDropped)
+        public static IItemDropRule ReaperModeVsNormal(int itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper, int minimumDropped, int maximumDropped)
         {
             return new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal, minimumDropped, maximumDropped), ItemDropRule.Common(itemId, chanceDenominatorInReaper, minimumDropped, maximumDropped));
         }
@@ -39,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public static IItemDropRule NormalvsExpert(int itemId, int chanceDenominatorInNormal, int chanceDenominatorInExpert)
         {
-            return  new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal), ItemDropRule.Common(itemId, chanceDenominatorInExpert));
+            return new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal), ItemDropRule.Common(itemId, chanceDenominatorInExpert));
         }
 
         public static IItemDropRule CommonDropOnAllPlayersWithConditions(List<IItemDropRuleCondition> conditions, int itemId, int chanceDenominator = 1)
@@ -267,136 +268,53 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         }
     }
     public class DropBasedOnExpertMode : IItemDropRule, INestedItemDropRule
-{
-	public IItemDropRule ruleForNormalMode;
-	public IItemDropRule ruleForExpertMode;
+    {
+        public IItemDropRule ruleForNormalMode;
+        public IItemDropRule ruleForExpertMode;
 
-	public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
+        public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
 
-	public DropBasedOnExpertMode(IItemDropRule ruleForNormalMode, IItemDropRule ruleForExpertMode)
-	{
-		this.ruleForNormalMode = ruleForNormalMode;
-		this.ruleForExpertMode = ruleForExpertMode;
-		ChainedRules = new List<IItemDropRuleChainAttempt>();
-	}
+        public DropBasedOnExpertMode(IItemDropRule ruleForNormalMode, IItemDropRule ruleForExpertMode)
+        {
+            this.ruleForNormalMode = ruleForNormalMode;
+            this.ruleForExpertMode = ruleForExpertMode;
+            ChainedRules = new List<IItemDropRuleChainAttempt>();
+        }
 
-	public bool CanDrop(DropAttemptInfo info)
-	{
-		if (info.IsExpertMode)
-			return ruleForExpertMode.CanDrop(info);
+        public bool CanDrop(DropAttemptInfo info)
+        {
+            if (info.IsExpertMode)
+                return ruleForExpertMode.CanDrop(info);
 
-		return ruleForNormalMode.CanDrop(info);
-	}
+            return ruleForNormalMode.CanDrop(info);
+        }
 
-	public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
-	{
-		ItemDropAttemptResult result = default(ItemDropAttemptResult);
-		result.State = ItemDropAttemptResultState.DidNotRunCode;
-		return result;
-	}
+        public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
+        {
+            ItemDropAttemptResult result = default(ItemDropAttemptResult);
+            result.State = ItemDropAttemptResultState.DidNotRunCode;
+            return result;
+        }
 
-	public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info, ItemDropRuleResolveAction resolveAction)
-	{
-		if (info.IsExpertMode)
-			return resolveAction(ruleForExpertMode, info);
+        public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info, ItemDropRuleResolveAction resolveAction)
+        {
+            if (info.IsExpertMode)
+                return resolveAction(ruleForExpertMode, info);
 
-		return resolveAction(ruleForNormalMode, info);
-	}
+            return resolveAction(ruleForNormalMode, info);
+        }
 
-	public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
-	{
-		DropRateInfoChainFeed ratesInfo2 = ratesInfo.With(1f);
-		ratesInfo2.AddCondition(new Conditions.IsExpert());
-		ruleForExpertMode.ReportDroprates(drops, ratesInfo2);
-		DropRateInfoChainFeed ratesInfo3 = ratesInfo.With(1f);
-		ratesInfo3.AddCondition(new Conditions.NotExpert());
-		ruleForNormalMode.ReportDroprates(drops, ratesInfo3);
-		Chains.ReportDroprates(ChainedRules, 1f, drops, ratesInfo);
-	}
-}
-
-    //public class IsReaperMode : IItemDropRuleCondition, IProvideItemConditionDescription
-    //{
-    //    public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode;
-
-    //    public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode;
-
-    //    public string GetConditionDescription() => null;
-    //}
-    //public class IsReaperAndNormal : IItemDropRuleCondition, IProvideItemConditionDescription
-    //{
-    //    public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode ? (!Main.expertMode && !Main.masterMode) : false;
-    //    public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode ? (!Main.expertMode && !Main.masterMode) : false;
-    //    public string GetConditionDescription() => null;
-    //}
-    //public class IsReaperAndExpert : IItemDropRuleCondition, IProvideItemConditionDescription
-    //{
-    //    public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode ? (Main.expertMode && !Main.masterMode) : false; 
-    //    public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode ? (Main.expertMode && !Main.masterMode) : false;
-    //    public string GetConditionDescription() => null;
-    //}
-
-    //public class IsReaperAndMaster : IItemDropRuleCondition, IProvideItemConditionDescription
-    //{
-    //    public bool CanDrop(DropAttemptInfo info) => DificultyUtils.ReaperMode ? (!Main.expertMode && Main.masterMode) : false;
-    //    public bool CanShowItemDropInUI() => DificultyUtils.ReaperMode ? (!Main.expertMode && Main.masterMode) : false;
-    //    public string GetConditionDescription() => null;
-    //}
-
-
-    //public class DropBasedOnReaperNormalMode : IItemDropRule, INestedItemDropRule
-    //{
-    //    public IItemDropRule ruleForNormalMode;
-
-    //    public IItemDropRule ruleForReaperMode;
-
-    //    public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
-
-    //    public DropBasedOnReaperNormalMode(IItemDropRule ruleForNormalMode, IItemDropRule ruleForReaperMode)
-    //    {
-    //        this.ruleForNormalMode = ruleForNormalMode;
-    //        this.ruleForReaperMode = ruleForReaperMode;
-    //        ChainedRules = new List<IItemDropRuleChainAttempt>();
-    //    }
-
-    //    public bool CanDrop(DropAttemptInfo info)
-    //    {
-    //        if (info.IsReaperMode)
-    //        {
-    //            return ruleForReaperMode.CanDrop(info);
-    //        }
-
-    //        return ruleForNormalMode.CanDrop(info);
-    //    }
-
-    //    public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
-    //    {
-    //        ItemDropAttemptResult result = default;
-    //        result.State = ItemDropAttemptResultState.DidNotRunCode;
-    //        return result;
-    //    }
-
-    //    public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info, ItemDropRuleResolveAction resolveAction)
-    //    {
-    //        if (info.IsReaperMode)
-    //        {
-    //            return resolveAction(ruleForReaperMode, info);
-    //        }
-
-    //        return resolveAction(ruleForNormalMode, info);
-    //    }
-
-    //    public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
-    //    {
-    //        DropRateInfoChainFeed ratesInfo2 = ratesInfo.With(1f);
-    //        ratesInfo2.AddCondition(new Conditions.IsExpert());
-    //        ruleForReaperMode.ReportDroprates(drops, ratesInfo2);
-    //        DropRateInfoChainFeed ratesInfo3 = ratesInfo.With(1f);
-    //        ratesInfo3.AddCondition(new Conditions.NotExpert());
-    //        ruleForNormalMode.ReportDroprates(drops, ratesInfo3);
-    //        Chains.ReportDroprates(ChainedRules, 1f, drops, ratesInfo);
-    //    }
-    //}
+        public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
+        {
+            DropRateInfoChainFeed ratesInfo2 = ratesInfo.With(1f);
+            ratesInfo2.AddCondition(new Conditions.IsExpert());
+            ruleForExpertMode.ReportDroprates(drops, ratesInfo2);
+            DropRateInfoChainFeed ratesInfo3 = ratesInfo.With(1f);
+            ratesInfo3.AddCondition(new Conditions.NotExpert());
+            ruleForNormalMode.ReportDroprates(drops, ratesInfo3);
+            Chains.ReportDroprates(ChainedRules, 1f, drops, ratesInfo);
+        }
+    }
 
     public class DropBasedOnReaperMode(IItemDropRule ruleForNormalMode, IItemDropRule ruleForReaperMode) : IItemDropRule, INestedItemDropRule
     {
@@ -407,7 +325,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public bool CanDrop(DropAttemptInfo info)
         {
-            if (info.IsExpertMode)
+            if (DificultyUtils.ReaperMode)
                 return ruleForReaperMode.CanDrop(info);
 
             return ruleForNormalMode.CanDrop(info);
@@ -422,7 +340,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info, ItemDropRuleResolveAction resolveAction)
         {
-            if (info.IsExpertMode)
+            if (DificultyUtils.ReaperMode)
                 return resolveAction(ruleForReaperMode, info);
 
             return resolveAction(ruleForNormalMode, info);

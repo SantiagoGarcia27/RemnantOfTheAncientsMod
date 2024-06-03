@@ -224,7 +224,7 @@ namespace RemnantOfTheAncientsMod
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 Recipe.Create(ItemID.Zenith)
-               .AddIngredient(ModContent.ItemType<ultrablade>())
+               .AddIngredient(ModContent.ItemType<Ultrablade>())
                .AddIngredient(ItemID.StarWrath)
                .AddIngredient(ItemID.TheHorsemansBlade)
                .AddIngredient(ItemID.Seedler)
@@ -237,7 +237,7 @@ namespace RemnantOfTheAncientsMod
                .Register();
 
               Recipe.Create(ItemID.Zenith)
-              .AddIngredient(ModContent.ItemType<ultrablade>())
+              .AddIngredient(ModContent.ItemType<Ultrablade>())
               .AddIngredient(ItemID.TheHorsemansBlade)
               .AddIngredient(ItemID.Seedler)
               .AddIngredient(ItemID.BeeKeeper)
@@ -251,7 +251,7 @@ namespace RemnantOfTheAncientsMod
             else
             {
                 Recipe.Create(ItemID.Zenith)
-               .AddIngredient(ModContent.ItemType<ultrablade>())
+               .AddIngredient(ModContent.ItemType<Ultrablade>())
                .AddIngredient(ItemID.StarWrath)
                .AddIngredient(ItemID.TheHorsemansBlade)
                .AddIngredient(ItemID.Seedler)

@@ -5,8 +5,8 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {

@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
 {
     public class ModGlobalNPC : GlobalNPC
     {
-
+        public override bool InstancePerEntity => true;
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             ArmoredZombiesLoot(npc, npcLoot);
