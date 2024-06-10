@@ -11,9 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("mini/gun");
-			//Tooltip.SetDefault("A small pistol");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una pistola pequeña");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -35,12 +32,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.shoot = ProjectileID.PurificationPowder;
 			Item.shootSpeed = 20f;
 			Item.useAmmo = AmmoID.Bullet;
-
-			//if (ModLoader.TryGetMod("OmniSwing", out Mod mod)) Item.damage = 28;
-			if (RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-				Item.autoReuse = true;
-			}
 		}
 		public override Vector2? HoldoutOffset()
 		{
@@ -50,7 +41,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.FlintlockPistol, 2)
-			.AddTile(TileID.Anvils)
+            .AddIngredient(ItemID.IllegalGunParts, 1)
+            .AddTile(TileID.Anvils)
 			.Register();
 		}
 	}

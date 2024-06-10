@@ -44,44 +44,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
 		public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
 		{
-			return ModContent.GetInstance<EternitySoul>().PreDrawTooltipLine(line,ref yOffset);
-    //        if ((line.Mod == "Terraria" && line.Name == "ItemName") || line.Name == "FlavorText")
-    //        {
-    //            Main.spriteBatch.End(); //end and begin main.spritebatch to apply a shader
-    //            Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, Main.UIScaleMatrix);
-				//ManagedShader shader = ShaderManager.GetShader("FargowiltasSouls.Text");
-    //            shader.TrySetParameter("mainColor", new Color(42, 42, 99));
-    //            shader.TrySetParameter("secondaryColor", FargowiltasSouls.FargowiltasSouls.EModeColor());
-    //            shader.Apply("PulseUpwards");
-    //            Utils.DrawBorderString(Main.spriteBatch, line.Text, new Vector2(line.X, line.Y), Color.White, 1); //draw the tooltip manually
-    //            Main.spriteBatch.End(); //then end and begin again to make remaining tooltip lines draw in the default way
-    //            Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Main.UIScaleMatrix);
-    //            return false;
-    //        }
-    //        return true;
+			return ModContent.GetInstance<EternitySoul>().PreDrawTooltipLine(line,ref yOffset);   
         }
-        //public override bool WingUpdate(Player player, bool inUse)
-        //{
-        //    int WingTicks = (!inUse) ? 8 : 5;
-        //    if (player.velocity.Y != 0f)
-        //    {
-        //        player.wingFrameCounter++;
-        //        if (player.wingFrameCounter > WingTicks)
-        //        {
-        //            player.wingFrameCounter = 0;
-        //            if (player.wingFrame++ >= 5)
-        //            {
-        //                player.wingFrame = 0;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        player.wingFrame = 5;
-        //    }
-        //    return true;
-        //}
-
         public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -117,15 +81,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 		}
        
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-		{
-			// Draw the periodic glow effect behind the item when dropped in the world (hence PreDrawInWorld)
+		{			
 			Texture2D texture = TextureAssets.Item[Item.type].Value;
 
 			Rectangle frame;
 
 			if (Main.itemAnimations[Item.type] != null)
 			{
-				// In case this item is animated, this picks the correct frame
 				frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
 			}
 			else
@@ -173,12 +135,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
             ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
             ModContent.GetInstance<EternitySoul>().UpdateAccessory(player, hideVisual);
-            player.AddEffect<DivineAuraEffect>(base.Item);
-            player.AddEffect<GodModeEffect>(base.Item);
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().SoulOfDiviniy(player);
-            // player.GetModPlayer<RemnantPlayer>().Inmortal = true;
-            // WingUpdate(player, true);
-
+            player.AddEffect<DivineAuraEffect>(Item);
+            player.AddEffect<GodModeEffect>(Item);
         }
 
 		public override void AddRecipes()

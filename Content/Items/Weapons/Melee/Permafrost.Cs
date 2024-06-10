@@ -55,7 +55,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
              .AddTile(TileID.Anvils)
              .Register();
         }
-        public override bool AltFunctionUse(Player player) => true;
+        public override bool AltFunctionUse(Player player)
+        {
+           return true;
+        }
+        
         public override bool CanUseItem(Player player)
         {
             var source = Projectile.GetSource_None();
@@ -69,7 +73,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 
                 if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
                 {
-                    Projectile.NewProjectile(source, position, velocity, ProjectileType<FrostBeamF>(), damage, knockback, player.whoAmI);
+                    var p = Projectile.NewProjectile(source, position, velocity, ProjectileType<FrostBeamF>(), damage, knockback, player.whoAmI);
+                    Main.projectile[p].DamageType = DamageClass.Melee;
                 }
                 else
                 {
@@ -99,12 +104,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.channel = RemnantOfTheAncientsMod.MeleeWeaponEffects != null && player.altFunctionUse == 2;
             return base.CanUseItem(player);
         }
-
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             if (player.altFunctionUse != 2)
             {
-                int projectileID = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
             }
             else
             {

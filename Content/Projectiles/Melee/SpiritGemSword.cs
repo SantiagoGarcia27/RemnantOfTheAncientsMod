@@ -90,42 +90,27 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         private static readonly Color GeodeColorTwo = GetRGeodeColor(2);
         public override Color? GetAlpha(Color lightColor)
         {
-
-            switch (Projectile.ai[1])
-            {
-                case 0:
-                    return Color.Yellow;  
-                case 1:
-                    return Color.Violet;
-                case 2:
-                    return Color.Blue;
-                case 3:
-                    return Color.Green;
-                case 4:
-                    return Color.Red;
-                case 5:
-                    return Color.White;
-                case 6:
-                    return new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B);
-                case 7:
-                    return Color.SandyBrown;
-                default: 
-                  return Color.Black;
-                    
-            }
+            return base.GetAlpha(lightColor);
         }
         public override void PostDraw(Color lightColor)
-        { 
-            Color color = (GetAlpha(Color.Black) != null) ? (Color)GetAlpha(Color.Black) : Color.White;
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-            Main.spriteBatch.Draw(texture, Projectile.position, color);
-            //base.PostDraw(lightColor);
+        {
+            lightColor = Color.Blue;
+            base.PostDraw(lightColor);
         }
         public override bool PreDraw(ref Color lightColor)
-        {
-            Color color = (GetAlpha(Color.Black) != null) ? (Color)GetAlpha(Color.Black) : Color.White;
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(Texture);
-            Main.spriteBatch.Draw(texture, Projectile.position, color);
+        {        
+            lightColor = Projectile.ai[1] switch
+            {
+                0 => Color.Yellow,
+                1 => Color.Violet,
+                2 => Color.Blue,
+                3 => Color.Green,
+                4 => Color.Red,
+                5 => Color.White,
+                6 => new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B),
+                7 => Color.SandyBrown,
+                _ => Color.Black,
+            };
             return true;
         }
         public static Color GetRGeodeColor(int x)

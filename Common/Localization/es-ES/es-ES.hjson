@@ -80,7 +80,7 @@ Mods: {
 		UI: {
 			Buttoms: {
 				DeliverPickaxe: Entregar pico
-				UpgradeItem: Upgrade {0}
+				UpgradeItem: Mejorar {0}
 				SkipDay: Skip day
 			}
 
@@ -91,19 +91,19 @@ Mods: {
 				AmmoBar: "{0}"
 			}
 
-			// AscendedReforgesTitle: Ascended Reforges
-			/* AscendedReforgesText:
+			AscendedReforgesTitle: Reforges Ascendidos
+			AscendedReforgesText:
 				'''
-				In order for a reforge to advance to a higher level you must meet the following requirements:
+				Para que un reforge ascienda a un nivel superior debes cumplir con los siguientes requisitos:
 
-				A tinkerer imbued with the brilliant power of radiance
+				-Un Duende chapucero imbuido del brillante poder del fulgor.
 
-				A weapon reforged with a maximum level reforge (example: Legendary)
+				-Un arma reforjada con un nivel máximo de reforja (ejemplo: Legendario)
 
-				And finally, a currency to pay for the work, this must be a terra coin
+				-Y por ultimo una moneda para pagar el trabajo, esta debe ser una moneda terra
 
-				Once you have everything, your next reforge can ascend
-				''' */
+				Una vez que lo tengas todo, tu próxima reforja podrá ascender.
+				'''
 		}
 
 		IntroScreen: {
@@ -217,6 +217,7 @@ Mods: {
 			IncreasedLuck: Aumenta la suerte en {0}
 			IncreasedBootSpeedInBlock: ", y mas rápido caminando en {0}"
 			IncreasedFallSpeed: Aumenta la velocidad de caída
+			NanoBulletDrone: Genera nano drones cuando golpeas a los enemigos.
 		}
 
 		Toggler: {
@@ -2507,15 +2508,6 @@ Mods: {
 					'''
 			}
 
-			ultratiburon: {
-				DisplayName: Ultratiburón
-				Tooltip:
-					'''
-					La hermana mayor de las 4
-					"{$CommonItemTooltip.PercentChanceToSaveAmmo}"
-					'''
-			}
-
 			VampireGun: {
 				DisplayName: Pistola Vampírica
 				Tooltip: Dispara cuchillas que curan al jugador.
@@ -3522,8 +3514,12 @@ Mods: {
 			}
 
 			Ultratiburon: {
-				// DisplayName: Ultratiburon
-				// Tooltip: ""
+				// DisplayName: Ultrashark
+				/* Tooltip:
+					'''
+					the older sister of the 4
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					''' */
 			}
 
 			SnowBallBazooka: {
@@ -3547,7 +3543,7 @@ Mods: {
 			}
 
 			SilverRepeater: {
-				// DisplayName: Silver Repeater
+				DisplayName: Repetidor de plata
 				// Tooltip: ""
 			}
 
@@ -3806,6 +3802,7 @@ Mods: {
 			// UltrabladeSwingProgectile.DisplayName: Ultrablade Swing Progectile
 			// UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
 			// UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
+			// NanoDrone.DisplayName: Nano Drone
 		}
 
 		Tiles: {

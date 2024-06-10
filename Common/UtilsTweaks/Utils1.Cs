@@ -357,6 +357,19 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return l;
         }
+        public static Projectile SearchFirstProjectile(int id, bool friendly = false, bool hostile = false)
+        {
+            foreach (Projectile p in Main.projectile)
+            {
+                if (p.friendly == friendly && p.hostile == hostile && p.type == id)
+                {
+                     return p;
+                }
+            }
+            return null;
+
+
+        }
         public static List<Projectile> SearchProjectiles(bool friendly, NPC center, float range)
         {
             List<Projectile> l = [];

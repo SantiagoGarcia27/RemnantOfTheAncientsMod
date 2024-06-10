@@ -14,38 +14,22 @@ public class DivineAuraEffect : AccessoryEffect
 {
     public override Header ToggleHeader => Header.GetHeader<SoulOfDivinityHeader>();
     public override int ToggleItemType => ModContent.ItemType<SoulOfDivinity>();
-    Projectile GodZoneproj = null;
+    int GodZoneproj = 0;
     public override void PostUpdateEquips(Player player)
     {
-       
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] <= 0)
-                GodZoneproj = Projectile.NewProjectileDirect(Projectile.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<GodZone>(), 0, 0, player.whoAmI);
-       
-        else
+
+        if (player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] <= 0)
         {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] > 0)
-            {
-                foreach (var p in Main.projectile)
-                {
-                    if (p != null && p.owner == player.whoAmI && p.type == ModContent.ProjectileType<GodZone>())
-                    {
-                        p.Kill();
-                    }
-                }
-            }
-            if (GodZoneproj != null)
-            {
-                GodZoneproj.Kill();
-                GodZoneproj = null;
-            }
+            GodZoneproj = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<GodZone>(), 0, 0, player.whoAmI);
+            Main.projectile[GodZoneproj].timeLeft = 1000;
         }
+       
     }
 }
 
 [ExtendsFromMod("FargowiltasSouls")]
 public class GodModeEffect : AccessoryEffect
 {
-    int ProjectileSpeedBonus = 10;
     public override Header ToggleHeader => Header.GetHeader<SoulOfDivinityHeader>();
     public override int ToggleItemType => ModContent.ItemType<SoulOfDivinity>();
 

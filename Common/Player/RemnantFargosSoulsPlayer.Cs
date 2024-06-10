@@ -7,6 +7,8 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -50,6 +52,7 @@ namespace RemnantOfTheAncientsMod
 
         public override void PostUpdate()
         {
+            bool togle = false;
             if (NightTp)
             {
                 Player.opacityForAnimation = NightTpCouldown == 0 ? 0.5f : 1;
@@ -58,6 +61,23 @@ namespace RemnantOfTheAncientsMod
                     NightTpCouldown--;
                 }
             }
+            togle = Player.GetToggleValue<DivineAuraEffect>();
+            if (!togle)
+            {
+
+                if (Player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] > 0)
+                {
+                    Projectile proj = Utils1.SearchFirstProjectile(ModContent.ProjectileType<GodZone>(),false,false);
+
+                    if (proj != null && proj.owner == Player.whoAmI && proj.type == ModContent.ProjectileType<GodZone>())
+                    {
+                        proj.Kill();
+                    }
+
+
+                }
+            }
         }
+
     }
 }

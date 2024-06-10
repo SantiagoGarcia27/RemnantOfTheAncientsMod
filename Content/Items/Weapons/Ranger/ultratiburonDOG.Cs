@@ -10,6 +10,7 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using CalamityMod.Rarities;
+using CalamityMod.Items.Materials;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -22,21 +23,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Punisher of Gods");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Punisher of Gods");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Castigadora de Dioses");
-
-			//Tooltip.SetDefault(""
-			//+ "\n90% chance of not spending ammo ");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			//+ "\n90% de chances de ne pas dépenser de munitions ");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-			//+ "\nProbabilidad del 90% de no gastar munición ");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 110;//155
+			Item.damage = 210;//155
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 80;
 			Item.height = 40;
@@ -64,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(source, position, velocity / 4, ProjectileType<MisilDevourer>(), damage * 2, 1, player.whoAmI,0,8);
+            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(source, position, velocity / 4, ProjectileType<MisilDevourer>(), damage * 2, 1, player.whoAmI,0,8); 
             return true;
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -76,12 +67,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 
 				.AddIngredient(ItemType<Ultratiburon>());
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("Phantoplasm"), 5);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("GalacticaSingularity"), 15);
-				recipe.AddIngredient(ItemType<CelestialAmalgamate>(), 3);
-                recipe.AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
+				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("ShadowspecBar"), 5);
+                recipe.AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "DraedonsForge"));
                 recipe.Register();
 			}
 		}

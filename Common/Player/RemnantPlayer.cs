@@ -305,15 +305,24 @@ namespace RemnantOfTheAncientsMod
 				WormHoleEffect(Player);
 			}
 			SpawnMimics(Player);
-			if (Player.HeldItem.maxStack > 0 && Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax > 0)
+
+			Item heldItem = Player.HeldItem;
+
+			if (heldItem != null && heldItem.type > ItemID.None)
 			{
-				GenericChargeCouldownMax = (int)Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
+                float ChargeMax = heldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
+				//Main.NewText(ChargeMax);
+
+				if (heldItem.maxStack > 0 && ChargeMax > 0)
+				{
+					GenericChargeCouldownMax = (int)ChargeMax;
+				}
+				if (heldItem.maxStack > 0)
+				{
+					GenericAmmoAmmount = heldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo;
+					GenericAmmoAmmountMax = heldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax;
+				}
 			}
-			if (Player.HeldItem.maxStack > 0)
-			{
-				GenericAmmoAmmount = Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo;
-                GenericAmmoAmmountMax = Player.HeldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax;
-            }
 		}
 		public override bool FreeDodge(Player.HurtInfo info)
 		{

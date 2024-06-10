@@ -9,13 +9,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 	{
 		protected float idleAccel = 0.05f;
 		protected float spacingMult = 1f;
-		protected float viewDist = 400f;
 		protected float chaseDist = 200f;
 		protected float chaseAccel = 6f;
 		protected float inertia = 40f;
 		protected float shootCool = 90f;
 		protected float shootSpeed;
-		protected int shoot;
+        protected float range;
+        protected int shoot;
 
 		public override void Behavior()
 		{
@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 				}
 			}
 			Vector2 targetPos = Projectile.position;
-			float targetDist = viewDist;
+			float targetDist = range;
 			bool target = false;
 			Projectile.tileCollide = true;
 			if (player.HasMinionAttackTargetNPC)
@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 				NPC npc = Main.npc[player.MinionAttackTargetNPC];
 				if (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height))
 				{
-					targetDist = Vector2.Distance(Projectile.Center, targetPos);
+                    //targetDist = Vector2.Distance(Projectile.Center, targetPos);
 					targetPos = npc.Center;
 					target = true;
 				}
@@ -63,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 					}
 				}
 			}
-			if (Vector2.Distance(player.Center, Projectile.Center) > (target ? 1000f : 500f))
+			if (Vector2.Distance(player.Center, Projectile.Center) > (target ? 1000f : 500f))// 1000f 500f
 			{
 				Projectile.ai[0] = 1f;
 				Projectile.netUpdate = true;
@@ -139,24 +139,35 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 				{
 					if ((targetPos - Projectile.Center).X > 0f) Projectile.spriteDirection = Projectile.direction = -1;
 					else if ((targetPos - Projectile.Center).X < 0f) Projectile.spriteDirection = Projectile.direction = 1;
-					if (Projectile.ai[1] == 0f)
+					float Distance = Vector2.Distance(Projectile.Center, targetPos);
+
+                    if (Distance <= range * 16)
 					{
-						Projectile.ai[1] = 1f;
-						if (Main.myPlayer == Projectile.owner)
+						if (Projectile.ai[1] == 0f)
 						{
-							Vector2 shootVel = targetPos - Projectile.Center;
-							if (shootVel == Vector2.Zero) shootVel = new Vector2(0f, 1f);
-							shootVel.Normalize();
-							shootVel *= shootSpeed;
-							int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, shootVel.X, shootVel.Y, shoot, Projectile.damage, Projectile.knockBack, Main.myPlayer, 0f, 0f);
-							Main.projectile[proj].timeLeft = 300;
-							Main.projectile[proj].netUpdate = true;
-							Projectile.netUpdate = true;
+							Projectile.ai[1] = 1f;
+
+
+							if (Main.myPlayer == Projectile.owner)
+							{
+								Shoot(targetPos);
+							}
 						}
 					}
 				}
 			}
 		}
+		public override void Shoot(Vector2 targetPos)
+		{
+            Vector2 shootVel = targetPos - Projectile.Center;
+            if (shootVel == Vector2.Zero) shootVel = new Vector2(0f, 1f);
+            shootVel.Normalize();
+            shootVel *= shootSpeed;
+            int proj = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center.X, Projectile.Center.Y, shootVel.X, shootVel.Y, shoot, Projectile.damage, Projectile.knockBack, Main.myPlayer, 0f, 0f);
+            Main.projectile[proj].timeLeft = 300;
+            Main.projectile[proj].netUpdate = true;
+            Projectile.netUpdate = true;
+        }
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 a)
 		{
 			fallThrough = true;

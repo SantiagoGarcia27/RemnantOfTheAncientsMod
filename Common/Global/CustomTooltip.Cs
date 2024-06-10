@@ -277,6 +277,16 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     tip.Text = text;
                 }
             }
+            else if (item.type == ItemID.NanoBullet)
+            {
+                var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+                if (tip != null)
+                {
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.NanoBulletDrone");
+                    var text = tip.Text.Insert(tip.Text.Length, text1);
+                    tip.Text = text;
+                }
+            }
             if (ModifyAccsesories.FastFall.Contains(item.type))
             {
                 var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");

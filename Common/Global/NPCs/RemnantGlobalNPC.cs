@@ -22,6 +22,8 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Content.Items.Items.Guides;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -132,10 +134,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
         }
         int timer = 0;
-        public void setDebuffs(NPC NPC)
+        public void SetDebuffs(NPC NPC)
         {
-            int damage = 0;
-
             if (NPC.HasBuff(BuffID.Electrified))
             {
                 if (NPC.lifeRegen > 0)
@@ -143,7 +143,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     NPC.lifeRegen = 0;
                 }
                 NPC.lifeRegen -= 16;
-                damage = 1;
+                int damage = 1;
                 if (timer++ % 6 == 0)
                     NPC.SimpleStrikeNPC(damage, Main.player[Main.myPlayer].direction, false, 0f, DamageClass.Generic, false, 0, false);
             }
@@ -160,7 +160,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public static bool BigMimicSummonCheck(int x, int y, Player user)
         {
-            if (Main.netMode == 1 || !Main.hardMode)
+            if (Main.netMode == NetmodeID.MultiplayerClient || !Main.hardMode)
             {
                 return false;
             }
@@ -183,7 +183,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         num2 += Main.chest[num].item[i].stack;
                         KeyId = ItemID.GoldenKey;
                     }
-                    else if (Main.chest[num].item[i].type == ModContent.ItemType<JungleKey>())
+                    else if (Main.chest[num].item[i].type == ItemType<JungleKey>())
                     {
                         num2 += Main.chest[num].item[i].stack;
                         KeyId = ModContent.ItemType<JungleKey>();
@@ -273,7 +273,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public override void AI(NPC npc)
         {
             UpdateImmunity();
-            setDebuffs(npc);
+            SetDebuffs(npc);
 
             if (npc.HasBuff(BuffID.ShadowDodge))
             {
@@ -515,8 +515,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if (shop.NpcType == NPCID.GoblinTinkerer)
             {
                 shop.Add(new Item(ItemType<Terracoin>()) { shopCustomPrice = Utils1.FormatMoney(0, 5, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode);
+                shop.Add(new Item(ItemType<AReforge_Guide>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, Condition.IsNpcShimmered);
             }
-            base.ModifyShop(shop);
+            if (shop.NpcType == NPCID.ArmsDealer)
+            {
+                shop.Add(new Item(ItemType<QuickDraw>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) });
+            }
+                base.ModifyShop(shop);
         }
         public void SetImmuneTimeForAllTypes(int time)
         {

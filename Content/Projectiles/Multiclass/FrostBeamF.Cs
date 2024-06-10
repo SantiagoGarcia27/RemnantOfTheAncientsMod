@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Projectile.width = 136;       //projectile width
             Projectile.height = 10;  //projectile height
             Projectile.friendly = true;      //make that the projectile will not damage you
-            Projectile.DamageType = DamageClass.Melee;          // 
+            Projectile.DamageType = DamageClass.Generic;          // 
             Projectile.tileCollide = true;   //make that the projectile will be destroed if it hits the terrain
             Projectile.penetrate = 5;      //how many NPC will penetrate
             Projectile.timeLeft = 20000;   //how many time this projectile has before disepire
@@ -61,12 +62,17 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                 usePos -= rotVector * 8f;
             }
         }
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Main.rand.NextBool())
             {
                 target.AddBuff(BuffID.Frozen, 300);
             }
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.DamageType = Main.LocalPlayer.HeldItem.DamageType;
+            base.OnSpawn(source);
         }
     }
 }

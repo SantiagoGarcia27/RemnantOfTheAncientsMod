@@ -9,9 +9,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
     public abstract class SoulModel : ModItem
     {
-        private static readonly Color rarityColorOne = new Color(46, 45, 45);
+        private static readonly Color rarityColorOne = new(46, 45, 45);
 
-        private static readonly Color rarityColorTwo = new Color(191, 187, 187);
+        private static readonly Color rarityColorTwo = new(191, 187, 187);
         public abstract int SoulID { get; }
         public override void SetStaticDefaults()
         {
@@ -39,7 +39,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         }
         public override bool? UseItem(Player player)
         {
-            player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[SoulID] = true;
+            ReaperPlayer rp = player.GetModPlayer<ReaperPlayer>();
+            rp.SoulsUpgrades[SoulID] = true;
             return true;
         }
         internal static Color GetRarityColor()

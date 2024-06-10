@@ -90,11 +90,11 @@ Mods: {
 				'''
 				In order for a reforge to advance to a higher level you must meet the following requirements:
 
-				A tinkerer imbued with the brilliant power of radiance
+				-A tinkerer imbued with the brilliant power of radiance
 
-				A weapon reforged with a maximum level reforge (example: Legendary)
+				-A weapon reforged with a maximum level reforge (example: Legendary)
 
-				And finally, a currency to pay for the work, this must be a terra coin
+				-And finally, a currency to pay for the work, this must be a terra coin
 
 				Once you have everything, your next reforge can ascend
 				'''
@@ -211,6 +211,7 @@ Mods: {
 			IncreasedLuck: Increase luck by {0}
 			IncreasedBootSpeedInBlock: ", and even faster on {0}"
 			IncreasedFallSpeed: Increases fall acceleration
+			NanoBulletDrone: Spawn nano drones when hit enemies.
 		}
 
 		Toggler: {
@@ -2494,15 +2495,6 @@ Mods: {
 					'''
 			}
 
-			ultratiburon: {
-				DisplayName: Ultrashark
-				Tooltip:
-					'''
-					the older sister of the 4
-					{$CommonItemTooltip.PercentChanceToSaveAmmo}
-					'''
-			}
-
 			VampireGun: {
 				DisplayName: Vampire Gun
 				Tooltip: Shoot a healing knife.
@@ -3502,8 +3494,12 @@ Mods: {
 			}
 
 			Ultratiburon: {
-				DisplayName: Ultratiburon
-				Tooltip: ""
+				DisplayName: Ultrashark
+				Tooltip:
+					'''
+					the older sister of the 4
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					'''
 			}
 
 			SnowBallBazooka: {
@@ -3786,6 +3782,7 @@ Mods: {
 			UltrabladeSwingProgectile.DisplayName: Ultrablade Swing Progectile
 			UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
 			UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
+			NanoDrone.DisplayName: Nano Drone
 		}
 
 		Tiles: {

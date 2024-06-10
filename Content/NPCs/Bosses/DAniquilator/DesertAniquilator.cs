@@ -28,9 +28,6 @@ using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod;
-using CalamityMod.NPCs.TownNPCs;
-using FargowiltasSouls.Content.Projectiles.Minions;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -559,13 +556,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         }
         public void TornadoAI(int mark)
         {
-            if (tornadoCounter-- == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, SetFinalStagePorcentage()))
+            if (tornadoCounter == 0 && NPC.life > Utils1.GetValueFromPorcentage(NPC.lifeMax, SetFinalStagePorcentage()))
             {
                 tornadoCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
             }  
             else
             {
-                tornadoCounter = 0;
+                tornadoCounter--;
             }
 
             if (!DificultyUtils.ReaperMode)

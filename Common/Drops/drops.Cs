@@ -243,10 +243,11 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                     case NPCID.WallofFlesh:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.WallOfFLeshReaperSoulRule(), ItemType<FleshSoul>()));
                         npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<TrowerEmblem>(),3,1));
-                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<SkeletronScroll>(), 5, 1));
+                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<WallOfFleshScroll>(), 5, 1));
                         break;
                     case NPCID.QueenSlimeBoss:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.QueenSlimeReaperSoulRule(), ItemType<QueenSoul>()));
+                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<QueenBeeScroll>(), 5, 1));
                         break;
                     case NPCID.Retinazer:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.RetinazorReaperSoulRule(), ItemType<RetinazorEnergyCell>()));

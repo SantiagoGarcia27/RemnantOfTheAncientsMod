@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
@@ -21,5 +22,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 		public virtual void CreateDust()
 		{
 		}
+		public virtual void Shoot(Vector2 targetPos) { }
 	}
 }

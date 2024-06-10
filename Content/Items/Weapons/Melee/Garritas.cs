@@ -1,13 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
-	public class Garritas : ModItem
+    public class Garritas : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -18,7 +17,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		}
 		public override void SetDefaults()
 		{
-
 			Item.damage = 800;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 10;
@@ -26,12 +24,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.useTime = 10;
 			Item.useAnimation = 10;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = 60;
+			Item.knockBack = 20;
 			Item.value = Item.sellPrice(gold: 10);
 			Item.rare = ItemRarityID.Purple;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
-
 		}
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {

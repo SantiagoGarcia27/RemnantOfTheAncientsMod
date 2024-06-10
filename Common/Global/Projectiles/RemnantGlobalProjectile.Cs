@@ -174,7 +174,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         target.AddBuff(BuffID.Poisoned, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
                     }
                 }
-
+                if(projectile.type == ProjectileID.NanoBullet)
+                {
+                    if (player.ownedProjectileCounts[ModContent.ProjectileType<NanoDrone>()] <= 2)
+                    {
+                        Projectile.NewProjectile(Projectile.GetSource_None(), player.position, new Vector2(0, 2), ModContent.ProjectileType<NanoDrone>(), projectile.damage, 1, projectile.owner);
+                        projectile.Kill();
+                    }
+                }
                 if (projectile.type == ProjectileID.PewMaticHornShot)
                 {
                     int MaxProj = 5;

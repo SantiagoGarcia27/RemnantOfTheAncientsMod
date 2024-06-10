@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -37,9 +38,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             Vector2 launchVelocity = new Vector2(-4, 0); // Create a velocity moving the left.            
             for (int i = 0; i < Projectile.ai[1]; i++)
             {
+
                 launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
                 Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleDevourer>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0, 1);
             }
+            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5, 1) * 16, Main.rand.Next(-1, 5) * 16), launchVelocity, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ApotheosisWorm"), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
         }
         public override void AI()           //this make that the projectile will face the corect way
         {                                                           // |

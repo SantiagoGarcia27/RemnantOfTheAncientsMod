@@ -22,12 +22,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodfireBullet"));
         public override string TexturePath => null; 
     }
-    //public class EndlesEnhancedNanoRound : EndlessAmmo
-    //{
-    //    public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-    //    public override Item ItemBase => new(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EnhancedNanoRound"));
-    //    public override string TexturePath => null; 
-    //}
     public class EndlesGodSlayerSlug : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
