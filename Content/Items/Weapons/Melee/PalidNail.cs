@@ -10,7 +10,7 @@
 //using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 //using System.Linq;
 
-//namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
+//namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee //arkimedeez' push test
 //{
 //	public class PalidNail : ModItem
 //	{
@@ -68,7 +68,7 @@
 
 //			float angle = player.AngleTo(Main.MouseWorld);
 
-//            Main.NewText(angle+"°");
+//            Main.NewText(angle+"Â°");
 
 //			//abajo: 2,69 _ 1
 //			//arriva : -2,69 _ -1
