@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-
+//github push test
 namespace opswordsII.Items.accesorios
 {
     [AutoloadEquip(EquipType.Shoes)]
