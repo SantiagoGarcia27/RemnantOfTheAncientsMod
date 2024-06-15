@@ -1,4 +1,5 @@
 using CalamityMod.Prefixes;
+using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -25,6 +26,10 @@ namespace RemnantOfTheAncientsMod.Prefix.CalamityPrefix
         public override float RollChance(Item item)
         {
             return 0;
+        }
+        public override void ModifyValue(ref float valueMult)
+        {
+            valueMult *= 1f + 0.10f;
         }
     }
 }

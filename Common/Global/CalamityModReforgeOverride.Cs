@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             //    if (item.CountsAsClass(damageClass)) return prefix;
             //    else return -1;
             //}
-            return CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG? GetReworkedReforge(item, rand, storedPrefix): base.ChoosePrefix(item, rand) ;
+            return /*CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG? GetReworkedReforge(item, rand, storedPrefix):*/ base.ChoosePrefix(item, rand) ;
         }
         public static Mod calamityMod = RemnantOfTheAncientsMod.CalamityMod;
         public static Mod RemnantOfTheAncient = RemnantOfTheAncientsMod.RemnantOfTheAncients;
@@ -65,23 +65,23 @@ namespace RemnantOfTheAncientsMod.Common.Global
             if (item.accessory)
             {
                 int[][] array = new int[5][];
-                int[] obj = new int[6] { 62, 69, 73, 77, 0, 0 };
+                int[] obj = [62, 69, 73, 77, 0, 0];
                 obj[4] = ExternalModCallUtils.GetModPrefix(calamityMod, "Quiet");
                 obj[5] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Healthy");
                 array[0] = obj;
-                int[] obj2 = new int[7] { 63, 70, 67, 74, 78, 0, 0 };
+                int[] obj2 = [63, 70, 67, 74, 78, 0, 0];
                 obj2[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Cloaked");
                 obj2[6] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Healer");
                 array[1] = obj2;
-                int[] obj3 = new int[7] { 64, 71, 75, 79, 66, 0, 0 };
+                int[] obj3 = [64, 71, 75, 79, 66, 0, 0];
                 obj3[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Camouflaged");
                 obj3[6] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Atletic");
                 array[2] = obj3;
-                int[] obj4 = new int[7] { 65, 72, 68, 76, 80, 0, 0 };
+                int[] obj4 = [65, 72, 68, 76, 80, 0, 0];
                 obj4[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Silent");
                 obj4[6] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Gigant");
                 array[3] = obj4;
-                int[] obj5 = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
+                int[] obj5 = [0, 0, 0, 0, 0, 0, 0];
                 obj4[0] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Impenetrable");
                 obj4[1] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Uncontrolled");
                 obj4[2] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic");
@@ -97,124 +97,124 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 if (item.type == ItemID.Terrarian)
                 {
-                    int[][] terrarianReforgeTiers = new int[4][]
-                    {
-                        new int[3] { 36, 38, 54 },
-                        new int[3] { 53, 57, 61 },
-                        new int[3] { 37, 60, 59 },
-                        new int[1] { 84 }
-                    };
+                    int[][] terrarianReforgeTiers =
+                    [
+                        [36, 38, 54],
+                        [53, 57, 61],
+                        [37, 60, 59],
+                        [84]
+                    ];
                     prefix = IteratePrefix(rand, terrarianReforgeTiers, currentPrefix);
                 }
                 else if ((item.channel || item.noMelee) && item.type != ItemID.Zenith && item.useStyle != ItemUseStyleID.Rapier && !item.CountsAsClass<SummonMeleeSpeedDamageClass>())
                 {
-                    int[][] meleeNoSpeedReforgeTiers = new int[4][]
-                    {
-                    new int[3] { 36, 38, 54 },
-                    new int[3] { 53, 57, 61 },
-                    new int[2] { 37, 60 },
-                    new int[1] { 59 }
-                    };
+                    int[][] meleeNoSpeedReforgeTiers =
+                    [
+                        [36, 38, 54],
+                        [53, 57, 61],
+                        [37, 60],
+                        [59]
+                    ];
                     prefix = IteratePrefix(rand, meleeNoSpeedReforgeTiers, currentPrefix);
                 }
                 else
                 {
-                    int[][] meleeReforgeTiers = new int[6][]
-                    {
-                    new int[8] { 36, 45, 51, 15, 14, 15, 38, 54 },
-                    new int[6] { 53, 57, 61, 42, 6, 12 },
-                    new int[5] { 46, 44, 1, 3, 5 },
-                    new int[4] { 2, 55, 4, 37 },
-                    new int[3] { 60, 43, 59 },
-                    new int[1] { 81 }
-                    };
-                    int[][] toolReforgeTiers = new int[6][]
-                    {
-                    new int[7] { 36, 45, 51, 14, 15, 38, 54 },
-                    new int[6] { 53, 57, 61, 42, 6, 12 },
-                    new int[5] { 46, 44, 1, 3, 5 },
-                    new int[4] { 2, 55, 4, 37 },
-                    new int[3] { 60, 43, 59 },
-                    new int[2] { 81, 15 }
-                    };
+                    int[][] meleeReforgeTiers =
+                    [
+                        [36, 45, 51, 15, 14, 15, 38, 54],
+                        [53, 57, 61, 42, 6, 12],
+                        [46, 44, 1, 3, 5],
+                        [2, 55, 4, 37],
+                        [60, 43, 59],
+                        [81]
+                    ];
+                    int[][] toolReforgeTiers =
+                    [
+                        [36, 45, 51, 14, 15, 38, 54],
+                        [53, 57, 61, 42, 6, 12],
+                        [46, 44, 1, 3, 5],
+                        [2, 55, 4, 37],
+                        [60, 43, 59],
+                        [81, 15]
+                    ];
                     int[][] tierListToUse = ((item.pick > 0 || item.axe > 0 || item.hammer > 0) ? toolReforgeTiers : meleeReforgeTiers);
                     prefix = IteratePrefix(rand, tierListToUse, currentPrefix);
                 }
             }
             else if (item.CountsAsClass<RangedDamageClass>())
             {
-                int[][] rangedReforgeTiers = new int[6][]
-                {
-                new int[6] { 36, 45, 51, 25, 38, 54 },
-                new int[5] { 53, 57, 61, 42, 19 },
-                new int[5] { 46, 44, 18, 21, 55 },
-                new int[3] { 37, 60, 16 },
-                new int[4] { 59, 17, 20, 43 },
-                new int[1] { 82 }
-                };
+                int[][] rangedReforgeTiers =
+                [
+                    [36, 45, 51, 25, 38, 54],
+                    [53, 57, 61, 42, 19],
+                    [46, 44, 18, 21, 55],
+                    [37, 60, 16],
+                    [59, 17, 20, 43],
+                    [82]
+                ];
                 prefix = IteratePrefix(rand, rangedReforgeTiers, currentPrefix);
             }
             else if (item.CountsAsClass<MagicDamageClass>() || item.CountsAsClass<MagicSummonHybridDamageClass>())
             {
-                int[][] magicReforgeTiers = new int[6][]
-                {
-                new int[6] { 36, 45, 51, 35, 38, 54 },
-                new int[6] { 53, 57, 61, 42, 33, 52 },
-                new int[5] { 46, 44, 27, 34, 55 },
-                new int[3] { 37, 60, 26 },
-                new int[3] { 59, 28, 43 },
-                new int[1] { 83 }
-                };
+                int[][] magicReforgeTiers =
+                [
+                    [36, 45, 51, 35, 38, 54],
+                    [53, 57, 61, 42, 33, 52],
+                    [46, 44, 27, 34, 55],
+                    [37, 60, 26],
+                    [59, 28, 43],
+                    [83]
+                ];
                 prefix = IteratePrefix(rand, magicReforgeTiers, currentPrefix);
             }
             else if (item.CountsAsClass<SummonDamageClass>())
             {
-                int[][] summonReforgeTiers = new int[6][]
-                {
-                new int[2] { 45, 35 },
-                new int[5] { 38, 54, 42, 33, 52 },
-                new int[3] { 53, 27, 34 },
-                new int[4] { 37, 60, 26, 43 },
-                new int[2] { 28, 59 },
-                new int[2] { 83, 57 }
-                };
+                int[][] summonReforgeTiers =
+                [
+                    [45, 35],
+                    [38, 54, 42, 33, 52],
+                    [53, 27, 34],
+                    [37, 60, 26, 43],
+                    [28, 59],
+                    [83, 57]
+                ];
                 prefix = IteratePrefix(rand, summonReforgeTiers, currentPrefix);
             }
             else if (item.CountsAsClass<ThrowingDamageClass>())
             {
                 int[][] array2 = new int[6][];
-                int[] obj5 = new int[7] { 36, 45, 51, 38, 54, 0, 0 };
+                int[] obj5 = [36, 45, 51, 38, 54, 0, 0];
                 obj5[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Radical");
                 obj5[6] = ExternalModCallUtils.GetModPrefix(calamityMod, "Pointy");
                 array2[0] = obj5;
-                int[] obj6 = new int[6] { 53, 57, 61, 42, 0, 0 };
+                int[] obj6 = [53, 57, 61, 42, 0, 0];
                 obj6[4] = ExternalModCallUtils.GetModPrefix(calamityMod, "Sharp");
                 obj6[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Glorious");
                 array2[1] = obj6;
-                int[] obj7 = new int[6] { 46, 44, 55, 0, 0, 0 };
+                int[] obj7 = [46, 44, 55, 0, 0, 0];
                 obj7[3] = ExternalModCallUtils.GetModPrefix(calamityMod, "Feathered");
                 obj7[4] = ExternalModCallUtils.GetModPrefix(calamityMod, "Sleek");
                 obj7[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Hefty");
                 array2[2] = obj7;
-                array2[3] = new int[4]
-                {
+                array2[3] =
+                [
                     37,
                     60,
                     ExternalModCallUtils.GetModPrefix(calamityMod,"Mighty"),
                     ExternalModCallUtils.GetModPrefix(calamityMod,"Serrated")
-                };
-                array2[4] = new int[4]
-                {
+                ];
+                array2[4] =
+                [
                     59,
                     43,
                     ExternalModCallUtils.GetModPrefix(calamityMod, "Vicious"),
                     ExternalModCallUtils.GetModPrefix(calamityMod,"Lethal")
-                };
-                array2[5] = new int[2]
-                {
+                ];
+                array2[5] =
+                [
                     ExternalModCallUtils.GetModPrefix(calamityMod, "Flawless"),
                     ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite")
-                };
+                ];
                 int[][] rogueReforgeTiers = array2;
                 prefix = IteratePrefix(rand, rogueReforgeTiers, currentPrefix);
             }
@@ -249,13 +249,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public static int RandomRoguePrefix()
         {
             UnifiedRandom rand = Main.rand;
-            int[] obj = new int[40]
-            {
+            int[] obj =
+            [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 36, 37, 38,
             39, 40, 53, 54, 55, 56, 57, 59, 60, 61,
             42, 43, 44, 45, 46, 47, 48, 49, 50, 51
-            };
+            ];
             obj[0] = ExternalModCallUtils.GetModPrefix(calamityMod, "Radical");
             obj[1] = ExternalModCallUtils.GetModPrefix(calamityMod, "Pointy");
             obj[2] = ExternalModCallUtils.GetModPrefix(calamityMod, "Sharp");
