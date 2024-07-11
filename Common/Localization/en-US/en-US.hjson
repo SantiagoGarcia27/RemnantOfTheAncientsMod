@@ -827,26 +827,64 @@ Mods: {
 			NightHelmet: {
 				DisplayName: Night Headgear
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedMagicDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
 			}
 
 			NightHelmetL: {
 				DisplayName: Night Hood
 				Tooltip: Increases Throwing damage by 13%.
+				SetBonus:
+					'''
+					{0} Defense
+					{1}% increased throw damage
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
+				SetBonusCalamity:
+					'''
+					{0} Defense
+					{1}% increased rogue damage
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Increased max stealth by {3}
+					'''
 			}
 
 			NightHelmetMe: {
 				DisplayName: Night Helmet
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
 			}
 
 			NightHelmetR: {
 				DisplayName: Night Mask
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedRangedDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
 			}
 
 			NightHelmetS: {
 				DisplayName: Night Hat
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@3}
+					'''
 			}
 
 			NightLeggings: {
@@ -874,6 +912,12 @@ Mods: {
 					'''
 					{$CommonItemTooltip.PercentIncreasedDamage}
 					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					'''
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					+{2} Defense
 					'''
 			}
 
@@ -2805,6 +2849,7 @@ Mods: {
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
 					'''
+				SetBonus: Summons a sandnado when hit
 			}
 
 			Reaper_Hood: {
@@ -2815,6 +2860,12 @@ Mods: {
 					Luck increased in 2
 					Not moving puts you in stealth,
 					Increasing ranged ability and reducing chance for enemies to target you
+					'''
+				SetBonus:
+					'''
+						"{$CommonItemTooltip.IncreasesMaxLifeBy}"
+						"{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}"
+						"Soul effects are boosted"
 					'''
 			}
 
@@ -3556,6 +3607,14 @@ Mods: {
 				DisplayName: Ultrablade
 				Tooltip: ""
 			}
+
+			SolverHand: {
+				DisplayName: Drone Arm
+				Tooltip: "A very powerful tool extracted of copper 9"
+				Move: Move mode
+				BlackHole: Black Hole mode
+				Break: Break mode
+			}
 		}
 
 		NPCs: {
@@ -3783,6 +3842,7 @@ Mods: {
 			UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
 			UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
 			NanoDrone.DisplayName: Nano Drone
+			SolverCursor.DisplayName: Solver Cursor
 		}
 
 		Tiles: {

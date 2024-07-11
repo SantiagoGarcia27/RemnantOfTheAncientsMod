@@ -265,7 +265,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         break;
                     case NPCID.Plantera:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.PlanteraReaperSoulRule(), ItemType<PlantSoul>()));
-                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<SkeletronScroll>(), 1, ReaperDrop(1),1,2,1,5));
+                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.StrangePlant1, 1, ReaperDrop(1),1,2,1,5));
                         break;
                     case NPCID.HallowBoss:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.EmpressOfLightReaperSoulRule(), ItemType<EmpressSoul>()));

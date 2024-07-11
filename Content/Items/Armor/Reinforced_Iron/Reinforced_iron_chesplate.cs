@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
         
         public int DamageReduction = 8;
         public int MovmentSpeedBonus = -25;
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus,DamageReduction);
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageReduction, MovmentSpeedBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;

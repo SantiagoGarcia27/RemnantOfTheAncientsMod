@@ -312,7 +312,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     projectile.velocity *= RemnantPlayer.EnemyProjectilesSpeedScaleBouns;
                 }
                
-            }          
+            }         
         }
         int fireballTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
 

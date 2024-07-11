@@ -417,5 +417,65 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return -1;
         }
+        public static int GetBlockPickPower(Tile tile, int j)
+        {
+            int result = 0;
+            if (Main.tileNoFail[tile.TileType])
+            {
+                return result;
+            }
+
+            ModTile tile_ = TileLoader.GetTile(tile.TileType);
+            if (tile_ != null)
+            {
+                result = tile_.MinPick;
+            }
+            else
+            {
+                result = GetVainllaPickPower(tile,  j);
+            }
+
+            if (Main.tileDungeon[tile.TileType] && j > Main.worldSurface)
+            {
+                result = 100;
+            }
+
+            return result;
+        }
+
+        private static int GetVainllaPickPower(Tile tile,int j)
+        {
+            if (tile.TileType == 211)
+               return 200;
+            else if (tile.TileType == 25 || tile.TileType == 58 || tile.TileType == 117 || tile.TileType == 203)
+               return 65;
+            else if (tile.TileType == 56)
+               return 55;
+            else if (tile.TileType == 37)
+               return 50;
+            else if (tile.TileType == 204 && j > Main.worldSurface)
+               return 55;
+            else if (tile.TileType == 226 || tile.TileType == 237)
+               return 210;
+            else if (tile.TileType == 107 || tile.TileType == 221)
+               return 100;
+            else if (tile.TileType == 108 || tile.TileType == 222)
+               return 110;
+            else if (tile.TileType == 111 || tile.TileType == 223)
+               return 150;
+            return 0;
+        }
+        public static int GetBestPickPower(Player player)
+        {
+            int num = 35;
+            foreach (Item item in player.inventory)
+            {
+                if (item.pick > 0 && item.pick > num)
+                {
+                    num = item.pick;
+                }
+            }  
+            return num;
+        }
     }
 }

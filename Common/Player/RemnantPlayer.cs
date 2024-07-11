@@ -69,6 +69,12 @@ namespace RemnantOfTheAncientsMod
 		public bool MoneyCollector;
 		public List<int> ScrollsBuff = [];
 		public static int DummyMode = 0;
+		public static int SolverMode = 0;
+		/*
+			0 = Move,
+			1 = BlackHole,
+			2 = Break
+		*/
 		public bool Inmortal;
 	
 
@@ -108,6 +114,7 @@ namespace RemnantOfTheAncientsMod
 		public int MinionCritChance = 0;
 
 		public bool SpectralLantern;
+
 
         #region Couldowns
         public bool CouwldownHolySaber;

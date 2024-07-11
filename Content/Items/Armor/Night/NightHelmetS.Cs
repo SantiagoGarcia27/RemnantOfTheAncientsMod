@@ -48,16 +48,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		{
 			return body.type == ModContent.ItemType<Nightchesplate>() && legs.type == ModContent.ItemType<NightLeggings>();
 		}
-
-		public override void UpdateArmorSet(Player player)
-		{
-			player.setBonus = "+5 defense, Summon damage increased 6%, Movement speed increased +2 minions";
-			player.GetDamage(DamageClass.Summon) += 0.06f;
-			player.maxMinions += 2;
-			player.statDefense += 5;
-			player.moveSpeed += 0.05f;
-		}
-
+        int DefenseBonus = 5;
+        int SummonDamageSetBonus = 6;
+        int SpeedBonus = 5;
+        int MaxMinionBonus = 2;
+        public override void UpdateArmorSet(Player player)
+        {
+            player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, SummonDamageSetBonus, SpeedBonus, MaxMinionBonus).Value;// "+5 Defense, Increase Melee Damage 6%, Increase Movement Speed";
+            player.GetDamage(DamageClass.Ranged) += SummonDamageSetBonus / 100f;
+            player.statDefense += DefenseBonus;
+            player.moveSpeed += SpeedBonus / 100f;
+            player.maxMinions += MaxMinionBonus;
+        }
 		public override void AddRecipes()
 		{
             if (RemnantOfTheAncientsMod.CalamityMod != null)

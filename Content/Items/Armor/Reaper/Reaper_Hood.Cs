@@ -67,12 +67,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		{
 			return body.type == ModContent.ItemType<Reaper_Robe>() && legs.type == ModContent.ItemType<Reaper_Pants>();
 		}
-
+		int LifeMaxBonus = 100;
+		int GlobalDamageSetBonus = 20;
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+100 life, + 20% damage, Soul effects are boosted";
-			player.statLifeMax2 += 100;
-			player.GetDamage(DamageClass.Generic) *= 1.2f;
+			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(LifeMaxBonus, GlobalDamageSetBonus).Value;//"+100 life, + 20% damage, Soul effects are boosted";
+            player.statLifeMax2 += LifeMaxBonus;
+			player.GetDamage(DamageClass.Generic) *= 1f + (GlobalDamageSetBonus / 100f) ;
             player.GetModPlayer<ReaperPlayer>().ReaperSoulBoost = true;
             player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost(Item);
             player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost();

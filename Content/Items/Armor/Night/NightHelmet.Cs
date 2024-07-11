@@ -36,12 +36,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 			return body.type == ModContent.ItemType<Nightchesplate>() && legs.type == ModContent.ItemType<NightLeggings>();
 		}
 
+        int DefenseBonus = 5;
+        int MagicDamageSetBonus = 6;
+        int SpeedBonus = 5;
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "+5 Defense, Increase Magic Damage 6%, Increase Movement Speed";
-			player.GetDamage(DamageClass.Magic) += 0.06f;
-			player.statDefense += 5;
-			player.moveSpeed += 0.05f;
+			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, MagicDamageSetBonus, SpeedBonus).Value;
+            player.GetDamage(DamageClass.Magic) += MagicDamageSetBonus / 100f;
+			player.statDefense += DefenseBonus;
+			player.moveSpeed += SpeedBonus/100f;
 		}
 
 		public override void AddRecipes()

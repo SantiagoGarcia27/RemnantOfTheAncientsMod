@@ -29,20 +29,24 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Melee) *= 1.05f;
-            player.moveSpeed -= 0.25f;
+			player.GetDamage(DamageClass.Melee) *= 1f + (MeleeDamageBonus/100f);
+            player.moveSpeed += MovmentSpeedBonus/100f;
         }
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
 			return body.type == ModContent.ItemType<Reinforced_iron_chesplate>() && legs.type == ModContent.ItemType<Reinforced_Iron_Greaves>();
 		}
+		int DamageSetBonus = 2;
+		int DefenseSetBonus = 2;
+		int MovmentSpeedSetBonus = 15;
 
 		public override void UpdateArmorSet(Player player)
-		{	
-			player.GetDamage(DamageClass.Generic) *= 1.02f;
-			player.statDefense += 2;
-			player.moveSpeed += 0.15f;
+		{
+            player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DamageSetBonus, MovmentSpeedSetBonus, DefenseSetBonus).Value;
+            player.GetDamage(DamageClass.Generic) *= 1f + (DamageSetBonus/100f);
+			player.statDefense += DefenseSetBonus;
+			player.moveSpeed += MovmentSpeedSetBonus / 100f;
 		}
 
 		public override void AddRecipes()

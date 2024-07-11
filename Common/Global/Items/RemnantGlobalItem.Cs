@@ -442,7 +442,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					{
 						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileID.RollingCactusSpike, damage / 2, knockback, player.whoAmI);
 						Main.projectile[p].friendly = true;
-					}
+                        Main.projectile[p].hostile = false;
+                        Main.projectile[p].velocity *= 2;
+                    }
 					if (item.DamageType == DamageClass.Throwing)
 					{
 						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);

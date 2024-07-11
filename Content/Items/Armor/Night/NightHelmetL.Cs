@@ -35,19 +35,24 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		{
 			return body.type == ModContent.ItemType<Nightchesplate>() && legs.type == ModContent.ItemType<NightLeggings>();
 		}
-
+        int DefenseBonus = 5;
+        int ThrowerDamageSetBonus = 6;
+        int SpeedBonus = 5;
+		int StealthBonus = 80;
 		public override void UpdateArmorSet(Player player)
 		{
+
+			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus).Value;
+			player.setBonus = RemnantOfTheAncientsMod.CalamityMod != null? 
+				this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus).Value : 
+				this.GetLocalization("SetBonusCalamity").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus, StealthBonus).Value;  // "+5 Defense, Increases throwable damage by 6%, Increases movement speed";
+            player.GetDamage(DamageClass.Throwing) += ThrowerDamageSetBonus/100f;
+			player.statDefense += DefenseBonus;
+			player.moveSpeed += SpeedBonus/100f;
+
 			if (RemnantOfTheAncientsMod.CalamityMod != null)
 			{
 				ArmorSetCalamity(player);
-			}
-			else
-			{
-				player.setBonus = "+5 Defense, Increases throwable damage by 6%, Increases movement speed";
-				player.GetDamage(DamageClass.Throwing) += 0.06f;
-				player.statDefense += 5;
-				player.moveSpeed += 0.05f;
 			}
 		}
 		[JITWhenModsEnabled("CalamityMod")]
@@ -56,15 +61,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 			if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod))
 			{
                 CalamityPlayer calamityPlayer = player.Calamity();
-				// calamityMod.Call("SetSetBonus", "umbraphile",true);
-				// calamityMod.Call("AddMaxStealth", 0.8f);
 				calamityPlayer.umbraphileSet = true;
-				calamityPlayer.rogueStealthMax += 0.8f;
-				player.setBonus = "+5 Defense, Increases throwable damage by 6%, Increases movement speed and +80 maximum stealth";
+				calamityPlayer.rogueStealthMax += StealthBonus / 100f;
+				//player.setBonus = "+5 Defense, Increases throwable damage by 6%, Increases movement speed and +80 maximum stealth";
 				player.Calamity().wearingRogueArmor = true;
-				player.GetDamage(DamageClass.Throwing) += 0.06f;
-				player.statDefense += 5;
-				player.moveSpeed += 0.05f;
 			}
 		}
 

@@ -840,26 +840,64 @@ Mods: {
 			NightHelmet: {
 				DisplayName: Sombrero de la noche
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				SetBonus:
+					'''
+					{0} de defensa
+					{$CommonItemTooltip.PercentIncreasedMagicDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
 			}
 
 			NightHelmetL: {
 				DisplayName: Capucha de la noche
-				Tooltip: Increases Throwing damage by 13%.
+				Tooltip: Aumenta el daño de lanzador en 13%.
+				SetBonus:
+					'''
+					{0} Defensa
+					Aumenta un {1}% el daño de lanzador
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
+				SetBonusCalamity:
+					'''
+					{0} Defense"
+					Aumenta un {1}% el daño de picaro
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Aumenta el sigilo en {3}
+					'''
 			}
 
 			NightHelmetMe: {
 				DisplayName: Casco de la noche
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				SetBonus:
+					'''
+					{0} Defensa
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
 			}
 
 			NightHelmetR: {
 				DisplayName: Máscara de la noche
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				SetBonus:
+					'''
+					{0} Defensa
+					{$CommonItemTooltip.PercentIncreasedRangedDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					'''
 			}
 
 			NightHelmetS: {
 				DisplayName: Gorro de la noche
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				SetBonus:
+					'''
+					{0} Defensa"
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@3}
+					'''
 			}
 
 			NightLeggings: {
@@ -888,6 +926,12 @@ Mods: {
 					{$CommonItemTooltip.PercentIncreasedDamage}
 					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
 					''' */
+				SetBonus:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					{2} Defensa
+					'''
 			}
 
 			Tuxonite_chesplate: {
@@ -2211,7 +2255,7 @@ Mods: {
 			}
 
 			Reinforced_Iron_Broadsword: {
-				DisplayName: Reinforced Iron Broadsword
+				DisplayName: Espada larga de hierro reforzado
 				Tooltip: ""
 			}
 
@@ -2826,6 +2870,7 @@ Mods: {
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
 					{$CommonItemTooltip.IncreasesMaxMinionsBy@1}
 					'''
+				SetBonus: Al ser golpeado invocaras un tornado de arena
 			}
 
 			Reaper_Hood: {
@@ -2837,6 +2882,12 @@ Mods: {
 					Entras en sigilo al quedarte quieto
 					Aumenta el daño a distancia 
 					Te hace menos de visible para los enemigos
+					'''
+				SetBonus:
+					'''
+					{$CommonItemTooltip.IncreasesMaxLifeBy}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					El efecto de las almas se potencia
 					'''
 			}
 
@@ -3573,8 +3624,16 @@ Mods: {
 			}
 
 			Ultrablade: {
-				// DisplayName: Ultrablade
+				DisplayName: Ultrafilo
 				// Tooltip: ""
+			}
+
+			SolverHand: {
+				DisplayName: Brazo de dron
+				Tooltip: "Una herramienta tecnologíca muy poderosa extraída del cobre 9"
+				Move: Modo de movimiento
+				BlackHole: Modo de nulificación
+				Break: Modo de descontrucción
 			}
 		}
 
@@ -3803,6 +3862,7 @@ Mods: {
 			// UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
 			// UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
 			// NanoDrone.DisplayName: Nano Drone
+			// SolverCursor.DisplayName: Solver Cursor
 		}
 
 		Tiles: {

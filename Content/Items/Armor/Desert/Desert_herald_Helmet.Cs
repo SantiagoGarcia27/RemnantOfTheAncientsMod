@@ -48,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Summons a sand tornado when hit";
+			player.setBonus = this.GetLocalization("SetBonus").Value;
 			player.GetModPlayer<RemnantPlayer>().DesertHeraldSetBonus = true;
 		}
 

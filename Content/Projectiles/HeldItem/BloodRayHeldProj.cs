@@ -100,4 +100,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 			return true;
 		}
 	}
+
+    
 }
