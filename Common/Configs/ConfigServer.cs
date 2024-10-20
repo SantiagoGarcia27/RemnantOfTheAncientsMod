@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod
         [DefaultValue(true)]
         public bool VanillaWeaponsChangesConf { get; set; }
 
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool BowReworkConf { get; set; }
 
         [SliderColor(11, 181, 176, 29)]

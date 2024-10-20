@@ -261,18 +261,15 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
                 }
             }
-            if (projectile.bobber)
+            if(projectile.bobber)
             {
-                UpdateBobers(projectile);
+                projectile.usesLocalNPCImmunity = true;
+                projectile.localNPCHitCooldown = 10;
             }
 
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
 
-        public void UpdateBobers(Projectile projectile)
-        {
-           // projectile.penetrate = (Main.LocalPlayer.HeldItem.rare + 2);
-        }
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
             ReaperPlayer ReaperPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
@@ -294,10 +291,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         projectile.localAI[1] = Main.player[projectile.owner].HeldItem.scale;
                     }
                 }
-                //if (MeleeProjFix.Contains(projectile.type))
-                //{
-                //    projectile.ai[2] *= 2.5f;
-                //}
             }
             if (projectile.hostile)
             {
@@ -312,7 +305,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     projectile.velocity *= RemnantPlayer.EnemyProjectilesSpeedScaleBouns;
                 }
                
-            }         
+            }
+            if(projectile.bobber) 
+            {
+                if (projectile.damage <= 0)
+                {
+                    projectile.damage = new Item(Main.LocalPlayer.HeldItem.type).damage;
+                }
+            }
         }
         int fireballTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
 

@@ -336,7 +336,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                     if (Main.rand.NextBool(50))
                     {
                         Item.NewItem(Item.GetSource_None(), npc.position, npc.Size, ItemType<Terracoin>(), 1, false, 0, false, false);
-                    } 
+                    }   
                 }
                 else
                 {

@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             Projectile.alpha = 100;
             Projectile.manualDirectionChange = true;
             Projectile.netImportant = true;
-            Projectile.timeLeft = 2000;
+            Projectile.timeLeft = 36000;
 
         }
         public override bool? CanCutTiles()

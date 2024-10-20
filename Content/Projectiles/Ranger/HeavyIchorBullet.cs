@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(BuffID.Ichor, (int)Utils1.FormatTimeToTick(0, 0, 0, 40));
+            target.AddBuff(BuffID.Ichor, (int)Utils1.FormatTimeToTick(0, 0, 0, 20));
             base.OnHitNPC(target, hit, damageDone);
         }
     }

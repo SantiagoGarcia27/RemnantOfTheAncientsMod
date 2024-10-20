@@ -15,8 +15,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 		}
 		public override void SetDefaults()
 		{
-			Projectile.width = 200;       //projectile width
-			Projectile.height = 200;  //projectile height
+			Projectile.width = 100;       //projectile width
+			Projectile.height = 150;  //projectile height
 			Projectile.friendly = true;      //make that the projectile will not damage you
 			Projectile.DamageType = DamageClass.Melee;          // 
 			Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain

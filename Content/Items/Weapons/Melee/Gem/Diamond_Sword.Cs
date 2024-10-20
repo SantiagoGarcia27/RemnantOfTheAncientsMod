@@ -1,10 +1,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
@@ -13,12 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Diamond Sword");	
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Diamentowy miecz");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "épée de diamant");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Diamante");
-            //Tooltip.SetDefault("Wrong game");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Juego equivocado");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -44,15 +36,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
-            Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
-            Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, 5);
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<SpiritGemSword>()] <= 4)
+            {
+                Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
+                Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
+                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, 5);
+            }
         }
         public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.PlatinumBar, 8)
-                        .AddIngredient(ItemID.Diamond, 10)
+            .AddIngredient(ItemID.Diamond, 10)
             .AddTile(TileID.Anvils)
             .Register();
         }

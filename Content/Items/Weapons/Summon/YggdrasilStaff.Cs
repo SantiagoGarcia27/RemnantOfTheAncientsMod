@@ -15,17 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Yggdrasil Staff");
-			//Tooltip.SetDefault("Summons a Yggdrasil to protect you, " +
-   //            "\nnearby players can gain a happiness buff,15 of defense,10% damage,5% damage reduction and heal if they are in its radius");
-
-   //        // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton de Yggdrasil");
-			////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque Yggdrasil pour vous protéger" +
-   //             "\nles joueurs à proximité peuvent gagner un buff de bonheur, 15 de défense, 10% de dégâts, 5% de réduction des dégâts et soigner s'ils se trouvent dans son rayon");
-
-   //        // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo de Yggdrasil");
-   //         //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Yggdrasil para protegerte" +
-   //             "\nlos jugadores cercanos del obtienen un beneficio de Felicidad,15 de defensa,10% de daño,5%  reducción de daño y pueden curarse si están en su radio");
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

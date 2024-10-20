@@ -10,12 +10,6 @@ namespace  RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Illuminated Sunflower");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tournesol illuminé");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Girasol iluminado");
-            ////Description.SetDefault("The sunflower will protect you");
-            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Le tournesol te protégera");
-            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El girasol te protegerá");
             Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
             Main.persistentBuff[Type] = true;

@@ -108,7 +108,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static float GetPorcentage(float intitialNumber, float total)
         {
-            return intitialNumber * 100 / total;
+            return (intitialNumber * 100) / total;
         }
         public static int GetSign(float number)
         {
@@ -416,6 +416,81 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 }
             }
             return -1;
+        }
+        public static void ConsumeItem(Player player, Item[] inventory, int index)
+        {
+            if (index <= inventory.Length)
+            {
+                if (inventory[index].stack > 0)
+                    inventory[index].stack--;
+                else
+                {
+                    inventory[index].active = false;
+                    inventory[index].TurnToAir();
+                }
+            }
+        }
+        public static Item ChooseAmmo(Item weapon,int ammoID)
+        {
+            var sItem = weapon;
+            Item item = null;
+            bool flag = false;
+            Player player = Main.LocalPlayer;
+            /*
+            usedAmmoItemId = 0;
+            */
+            //bool canShoot = false; // Dummy.
+
+            if (ammoID == AmmoID.Coin)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    int num = 50 + i;
+
+                    /*
+                    if (inventory[num].ammo == sItem.useAmmo && inventory[num].stack > 0) {
+                    */
+                    if (player.inventory[num].stack > 0 && player.inventory[i].ammo == ammoID)
+                    {
+                        item = player.inventory[num];
+                        //canShoot = true;
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+
+            for (int j = 54; j < 58; j++)
+            {
+                /*
+                if (inventory[j].ammo == sItem.useAmmo && inventory[j].stack > 0) {
+                */
+                if (player.inventory[j].stack > 0 && player.inventory[j].ammo == ammoID)
+                {
+                    item = player.inventory[j];
+                    //canShoot = true;
+                    flag = true;
+                    break;
+                }
+            }
+
+            if (!flag)
+            {
+                for (int k = 0; k < 54; k++)
+                {
+                    /*
+                    if (inventory[k].ammo == sItem.useAmmo && inventory[k].stack > 0) {
+                    */
+                    if (player.inventory[k].stack > 0 && player.inventory[k].ammo == ammoID)
+                    {
+                        item = player.inventory[k];
+                        //canShoot = true;
+                        break;
+                    }
+                }
+            }
+
+            return item;
         }
         public static int GetBlockPickPower(Tile tile, int j)
         {

@@ -40,9 +40,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 		}
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
-			Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
-			Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(),Item.damage / 2, Main.myPlayer, player.whoAmI, 0, 3);
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<SpiritGemSword>()] <= 4)
+			{
+				Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
+				Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
+				Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), Item.damage / 2, Main.myPlayer, player.whoAmI, 0, 3);
+			}
 		}
 
 

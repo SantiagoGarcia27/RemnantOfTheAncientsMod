@@ -13,21 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(tagDamage);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Fire Storm");
-            //Tooltip.SetDefault("8 summon tag damage" +
-           //     "\nYour summons will focus struck enemies" +
-           //     "\nStrike enemies inflict Fire debuff");
-
-           //// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tempête de feu");
-           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "8 dégâts de balise d'invocation" +
-           //     "\nVos invocations concentreront les ennemis frappés" +
-           //     "\nLes ennemis frappés infligent un debuff de feu");
-
-           //// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tormenta ignea");
-           // //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "8 daño de etiqueta de invocación" +
-           //     "\nTu invocaciones se centrará en los enemigos golpeados." +
-           //     "\nQuema al enemigo al atacarlo");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

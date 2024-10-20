@@ -34,7 +34,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace RemnantOfTheAncientsMod
 {
 
-    public class RemnantPlayer : ModPlayer
+	public class RemnantPlayer : ModPlayer
 	{
 
 		#region Minions
@@ -55,10 +55,10 @@ namespace RemnantOfTheAncientsMod
 		public bool hBurn;
 		public bool Marble_Erosion;
 		public bool CursedMark;
-        #endregion
+		#endregion
 
-        #region pets
-        public bool TortugaPet;
+		#region pets
+		public bool TortugaPet;
 		public bool TwitchPet;
 		public bool YtPet;
 		#endregion
@@ -76,7 +76,7 @@ namespace RemnantOfTheAncientsMod
 			2 = Break
 		*/
 		public bool Inmortal;
-	
+
 
 		public static bool DaylightArmorSetBonus;
 		public static bool CanWormHole;
@@ -94,18 +94,18 @@ namespace RemnantOfTheAncientsMod
 		public static float tuxoniteStealthCounter = 0;
 
 
-        #endregion
+		#endregion
 
-        public static float GenericChargeCouldown { get; set; }
-        public static float GenericChargeCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
+		public static float GenericChargeCouldown { get; set; }
+		public static float GenericChargeCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
 
-		public static float GenericAmmoAmmount {  get; set; }
+		public static float GenericAmmoAmmount { get; set; }
 		public static float GenericAmmoAmmountMax = 0;
 
 		public float ChargeBonus = 1;
 		public bool AutoCharge = false;
 
-        public List<int> MinionsBuffInflict = [];
+		public List<int> MinionsBuffInflict = [];
 		public List<int> MeleeBuffInflict = [];
 		public List<int> MageBuffInflict = [];
 		public List<int> RangerBuffInflict = [];
@@ -116,14 +116,14 @@ namespace RemnantOfTheAncientsMod
 		public bool SpectralLantern;
 
 
-        #region Couldowns
-        public bool CouwldownHolySaber;
+		#region Couldowns
+		public bool CouwldownHolySaber;
 		#endregion
 
 		public static List<int> DevSuits =
-        [
-            666, 667, 668, 665,
-            1554, 1555, 1556, 1586,
+		[
+			666, 667, 668, 665,
+			1554, 1555, 1556, 1586,
 			1554, 1587, 1588, 1586,
 			1557, 1558, 1559, 1585,
 			1560, 1561, 1562, 1584,
@@ -140,10 +140,10 @@ namespace RemnantOfTheAncientsMod
 			4747, 4748, 4749, 4746,
 			4751, 4752, 4753, 4750,
 			4755, 4756, 4757, 4754,
-			
-        ];
 
-		
+		];
+
+
 
 
 		public override void ResetEffects()
@@ -154,7 +154,7 @@ namespace RemnantOfTheAncientsMod
 			Marble_Erosion = false;
 			CursedMark = false;
 
-            healHurt = 0;
+			healHurt = 0;
 			TortugaPet = false;
 			TwitchPet = false;
 			YtPet = false;
@@ -170,7 +170,7 @@ namespace RemnantOfTheAncientsMod
 			MoneyCollector = false;
 			SunflowerSentry = false;
 			tuxoniteStealth = false;
-			
+
 			DaylightArmorSetBonus = false;
 			HealingDrone = false;
 			InterceptionDrone = false;
@@ -179,16 +179,16 @@ namespace RemnantOfTheAncientsMod
 			BrainDogde = false;
 			Inmortal = false;
 			SpectralLantern = false;
-            EnemyProjectilesScaleBouns = 1;
+			EnemyProjectilesScaleBouns = 1;
 			EnemyProjectilesSpeedScaleBouns = 1;
-		
+
 			MinionCritChance = 0;
-            StyleStat = 0;
+			StyleStat = 0;
 
-            ChargeBonus = 1;
-            AutoCharge = false;
+			ChargeBonus = 1;
+			AutoCharge = false;
 
-            if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
+			if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
 			if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
 			if (MageBuffInflict.Count > 0) MageBuffInflict.Clear();
 			if (RangerBuffInflict.Count > 0) RangerBuffInflict.Clear();
@@ -202,17 +202,17 @@ namespace RemnantOfTheAncientsMod
 			base.Load();
 		}
 
-        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
-        {
-            if (Inmortal)
-            {
-                Player.statLife = Player.statLifeMax2;
-                Player.lifeRegen = 999;
-                return false;
-            }
-            return true;
-        }
-        private static void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
+		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+		{
+			if (Inmortal)
+			{
+				Player.statLife = Player.statLifeMax2;
+				Player.lifeRegen = 999;
+				return false;
+			}
+			return true;
+		}
+		private static void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
 		{
 			//TryGettingPatreonOrDevArmor(source, this);
 			Dictionary<int, List<int>> Suits = new()
@@ -246,7 +246,7 @@ namespace RemnantOfTheAncientsMod
 
 				if (Suits.TryGetValue(selection, out List<int> value))
 				{
-                    SpawnSuit(player, source, value);
+					SpawnSuit(player, source, value);
 				}
 			}
 		}
@@ -268,7 +268,7 @@ namespace RemnantOfTheAncientsMod
 			CursedMark = false;
 
 
-            int selection = ChanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
+			int selection = ChanceTomb(GetInstance<ConfigServer>().DropTombstomOnDeadtConf);
 			if (selection != 0)
 			{
 				if (Main.rand.NextBool(selection))
@@ -317,7 +317,7 @@ namespace RemnantOfTheAncientsMod
 
 			if (heldItem != null && heldItem.type > ItemID.None)
 			{
-                float ChargeMax = heldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
+				float ChargeMax = heldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
 				//Main.NewText(ChargeMax);
 
 				if (heldItem.maxStack > 0 && ChargeMax > 0)
@@ -326,7 +326,7 @@ namespace RemnantOfTheAncientsMod
 				}
 				if (heldItem.maxStack > 0)
 				{
-					GenericAmmoAmmount = heldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo;
+					GenericAmmoAmmount = heldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count;
 					GenericAmmoAmmountMax = heldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax;
 				}
 			}
@@ -349,13 +349,13 @@ namespace RemnantOfTheAncientsMod
 		{
 			AddScrollBuff();
 			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod)) CalamityMessage();
-			foreach(Asset<Texture2D> asset in TextureAssets.Item)
+			foreach (Asset<Texture2D> asset in TextureAssets.Item)
 			{
 				RemnantGlobalItem.oldTexture.Add(asset);
 			}
 
 
-        }
+		}
 		[JITWhenModsEnabled("CalamityMod")]
 		public static void CalamityMessage()
 		{
@@ -555,13 +555,13 @@ namespace RemnantOfTheAncientsMod
 						return true;
 					}
 				}
-                return false;
-            }
+				return false;
+			}
 			catch
 			{
-                return false;
-            }
-		
+				return false;
+			}
+
 		}
 		public int SearchCurrenScrollEffect()
 		{
@@ -701,26 +701,52 @@ namespace RemnantOfTheAncientsMod
 			}
 			proj.position = MousePosition;
 		}
-        public Projectile SpawnProjectileOnMouse(int id, Projectile p)
-        {
-            Vector2 MousePosition = new Vector2(Player.tileTargetX * 16, (Player.tileTargetY - 1) * 16);
-            int CountOfProj = Player.ownedProjectileCounts[id];
+		public Projectile SpawnProjectileOnMouse(int id, Projectile p)
+		{
+			Vector2 MousePosition = new Vector2(Player.tileTargetX * 16, (Player.tileTargetY - 1) * 16);
+			int CountOfProj = Player.ownedProjectileCounts[id];
 
-            if (CountOfProj <= 0)
-            {
-                p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ProjectileID.RollingCactus, 10, 0, Player.whoAmI);
-                p.friendly = true;
-                p.hostile = false;
-                p.tileCollide = false;
+			if (CountOfProj <= 0)
+			{
+				p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ProjectileID.RollingCactus, 10, 0, Player.whoAmI);
+				p.friendly = true;
+				p.hostile = false;
+				p.tileCollide = false;
 				p.timeLeft = 50;
-            }
+			}
 			if (p != null)
 			{
 				p.position = MousePosition;
 			}
 			return p;
-        }
-    }
+		}
+		public void UpdateMaxTurrets()
+		{
+			if (Main.myPlayer != Player.whoAmI)
+				return;
+
+			List<Projectile> list = [];
+			for (int i = 0; i < 1000; i++)
+			{
+				if (Main.projectile[i].WipableTurret)
+					list.Add(Main.projectile[i]);
+			}
+
+			int num = 0;
+			while (list.Count > Player.maxTurrets && ++num < 1000)
+			{
+				Projectile p = list[0];
+				for (int j = 0; j < list.Count; j++)
+				{
+					if (list[j].timeLeft < p.timeLeft)
+                        p = list[j];
+				}
+
+                p.Kill();
+				list.Remove(p);
+			}
+		}
+	}
     public class RemnantKeybindPlayer : ModPlayer
     {
         public override void ProcessTriggers(TriggersSet triggersSet)

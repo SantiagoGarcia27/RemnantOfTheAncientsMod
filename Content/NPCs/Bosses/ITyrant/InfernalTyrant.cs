@@ -128,7 +128,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
         private int attackCounter;
         private int attackCounterMaxValue = 800;
-        private int DashCounter;
+        private int DashCounter = -1;
         private int DashCounterMaxValue = 1000;
         public override void SendExtraAI(BinaryWriter writer)
         {
@@ -218,7 +218,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                DashIa(this.MoveSpeed);
+                if(DashCounter > -1)
+                    DashIa(this.MoveSpeed);
             }
 
             LifeSpeed(this);
@@ -271,31 +272,35 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void UpdateCounters(Player target)
         {
 
-            if (Vector2.Distance(NPC.Center, target.Center) < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
+            int distance = (int)Vector2.Distance(NPC.Center, target.Center);
+            if (DashCounter >= 0)
             {
-                if (attackCounter <= 0)
+                if (distance < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
                 {
-                    attackCounterMaxValue = !Main.expertMode ? 700 : 800;
-                    attackCounter = attackCounterMaxValue;
-                    NPC.netUpdate = true;
-                }
-                if (RemnantOfTheAncientsMod.FargosSoulMod != null)
-                {
-                    if (DashCounter <= 0)
+                    if (attackCounter <= 0)
                     {
-                        DashCounter = !DificultyUtils.MasochistMode ? 700 : 800;
-                        DashCounter = DashCounterMaxValue;
+                        attackCounterMaxValue = !Main.expertMode ? 700 : 800;
+                        attackCounter = attackCounterMaxValue;
                         NPC.netUpdate = true;
                     }
+                    if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+                    {
+                        if (DashCounter <= 0)
+                        {
+                            DashCounter = !DificultyUtils.MasochistMode ? 700 : 800;
+                            DashCounter = DashCounterMaxValue;
+                            NPC.netUpdate = true;
+                        }
+                    }
                 }
-            }
-            if (attackCounter > 0)
-            {
-                attackCounter--;
-            }
-            if (DashCounter > 0)
-            {
-                DashCounter--;
+                if (attackCounter > 0)
+                {
+                    attackCounter--;
+                }
+                if (DashCounter > 0)
+                {
+                    DashCounter--;
+                }
             }
         }
 
@@ -370,16 +375,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             if (DificultyUtils.MasochistMode || DificultyUtils.EternityMode)
             {
                 float limit = (Main.maxTilesY -10) * 16;
-                if (NPC.position.Y <= limit )
-                {
-                    //if ((DashCounter >= 550 && DashCounter < 600) || (DashCounter >= 350 && DashCounter < 450))
-                    //{
-                    //    NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
-                    //}
-                    //else if ((DashCounter >= 450 && DashCounter < 550) || (DashCounter >= 250 && DashCounter < 350))
-                    //{
-                    //    NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));
-                    //}
+                if (NPC.position.Y <= limit)
+                {     
                     if ((DashCounter >= 350 && DashCounter < 450) || (DashCounter >= 250 && DashCounter < 350))
                     {
                         NPC.velocity = new Vector2(1, 10 * (speed * 0.1f));

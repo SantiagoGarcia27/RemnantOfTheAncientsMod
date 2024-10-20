@@ -37,12 +37,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.rare = ItemRarityID.Blue;
 			Item.UseSound = SoundID.Item38;
 			Item.autoReuse = true;
-			Item.shoot = ProjectileID.PurificationPowder;
+			Item.shoot = ProjectileID.Bullet;
 			Item.shootSpeed = 20f;
-			Item.useAmmo = AmmoID.Bullet;
+			//Item.useAmmo = AmmoID.Bullet;
 			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax = 7;
-			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo = 7;
-			Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType = [14, 14, 14, 14];
+            Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
 			Item.autoReuse = true;
 			ReloadCounterMax = Utils1.FormatTimeToTick(0, 0, 0, 2);
 			ReloadCounter = 0;
@@ -57,61 +57,64 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
         public override void UpdateInventory(Player player)
         {
-			CurrentAmunation = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo;
+			CurrentAmunation = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count;
 			MaxAmunation = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax;
 			ReloadCounter = Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter;
+			
 
-
-            if (CurrentAmunation < MaxAmunation && Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter == ReloadCounterMax)
+            Item ammo = Utils1.ChooseAmmo(player.HeldItem,AmmoID.Bullet);
+			if (CurrentAmunation < MaxAmunation && ReloadCounter == ReloadCounterMax && ammo != null)
 			{
-                Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo++;
-                Item item = null;
-                int index = Utils1.SearchPlayerAmmoSlot(player, player.HeldItem.useAmmo, ref item);
-				if (item.consumable)
+				//Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo++;
+				int index = player.FindItem(ammo.type);
+
+				if (index != -1)
 				{
-					if(player.inventory[index].stack > 0)
-					player.inventory[index].stack--;
-					else
+					if(ammo.consumable) Utils1.ConsumeItem(player, player.inventory, index);
+					if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count < MaxAmunation)
 					{
-                        player.inventory[index].active = false;
-						player.inventory[index].TurnToAir();
-                    }
+						Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Add(ammo.shoot);
+                    }	
 				}
+				
+
 			}
-			if(Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter < ReloadCounterMax)
-			{
-				Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter++;
+            if (Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter < ReloadCounterMax)
+            {
+                Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter++;
             }
-			else
-			{
-				Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter = 0;
+            else
+            {
+                Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter = 0;
             }
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {			    
-			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo--;
+        {
+			int currentAmmo = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count-1;
+			Item.shoot = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType[currentAmmo];
+			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.RemoveAt(currentAmmo);
             return base.Shoot(player,source,position,velocity,type,damage,knockback);
         }
         public override bool CanShoot(Player player)
         {
-			if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo <= 0)
+			if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count <= 0)
 			{   
                 return false;
 			}
 			else
 			{	
-                return base.CanShoot(player);
+                return true;
 			}
         }
         public override bool CanUseItem(Player player)
         {
-			if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo > 0)
+			if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count > 0)
 			{
 				if (Main.mouseRight)
 				{
 					Item.useTime = Usetime / 3;
 
-                    Item.useAnimation = (int)(Item.useTime * Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo);
+                    Item.useAnimation = Item.useTime * Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count;
 				}
 				else if (Main.mouseLeft)
 				{

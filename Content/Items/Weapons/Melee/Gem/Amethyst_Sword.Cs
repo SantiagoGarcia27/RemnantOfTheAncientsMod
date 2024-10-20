@@ -11,10 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Amethyst Sword");
-            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Ametystowy miecz");
-            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée d'améthyste");
-            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Amatista");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -39,10 +35,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
         }       
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            //Projectile.NewProjectile(Projectile.GetSource_None(), new Vector2(target.position.X + 5*16, target.position.Y), (player.position - target.position)*0.25f, ProjectileID.AmethystBolt, damage, Main.myPlayer, player.whoAmI);
-            Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
-            Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
-            Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, 1);
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<SpiritGemSword>()] <= 4)
+            {
+                Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
+                Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
+                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, 1);
+            }
         }
         public override void AddRecipes()
         {

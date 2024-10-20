@@ -177,6 +177,7 @@ Mods: {
 
 		Generic: {
 			RightClickSaberHabilitie: Right click to use the dash
+			RightClickSecondMode: Right click to change mode
 			RightClickSecondHabilitie: Right click to use the secondary ability.
 			MusicBoxCredit: by {0}
 			ReaperTooltip: Reaper Item
@@ -255,12 +256,12 @@ Mods: {
 
 			Advanced_Infusion: {
 				DisplayName: Advanced infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Advanced_Infusion.Description
+				Description: A decent combination of potions
 			}
 
 			Basic_Infusion: {
 				DisplayName: Basic infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Basic_Infusion.Description
+				Description: A basic combination of potions
 			}
 
 			Combat_infusion: {
@@ -369,8 +370,8 @@ Mods: {
 			}
 
 			IronBallistaBuff: {
-				DisplayName: Iron Ballista
-				Description: The Baby Frozen will fight for you
+				DisplayName: Rolling Ballista
+				Description: The rolling ballista will fight for you
 			}
 
 			SacredFlowerMinionBuff: {
@@ -575,6 +576,11 @@ Mods: {
 			CurseMarkBuff: {
 				DisplayName: Cursed Mark
 				Description: You take more damage
+			}
+
+			DarksignBuff: {
+				DisplayName: Darksign Buff
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.DarksignBuff.Description
 			}
 		}
 
@@ -3610,10 +3616,175 @@ Mods: {
 
 			SolverHand: {
 				DisplayName: Drone Arm
-				Tooltip: "A very powerful tool extracted of copper 9"
+				Tooltip: A very powerful tool extracted of copper 9
 				Move: Move mode
 				BlackHole: Black Hole mode
 				Break: Break mode
+			}
+
+			EndlessBoneQuiver: {
+				DisplayName: Endless Bone Quiver
+				Tooltip: ""
+			}
+
+			EndlessChlorophyteQuiver: {
+				DisplayName: Endless Chlorophyte Quiver
+				Tooltip: ""
+			}
+
+			EndlessCurcedQuiver: {
+				DisplayName: Endless Curced Quiver
+				Tooltip: ""
+			}
+
+			EndlessDesertQuiver: {
+				DisplayName: Endless Desert Quiver
+				Tooltip: ""
+			}
+
+			EndlessFlamingQuiver: {
+				DisplayName: Endless Flaming Quiver
+				Tooltip: ""
+			}
+
+			EndlessFrostburnQuiver: {
+				DisplayName: Endless Frostburn Quiver
+				Tooltip: ""
+			}
+
+			EndlessHellQuiver: {
+				DisplayName: Endless Hell Quiver
+				Tooltip: ""
+			}
+
+			EndlessHolyQuiver: {
+				DisplayName: Endless Holy Quiver
+				Tooltip: ""
+			}
+
+			EndlessIchorQuiver: {
+				DisplayName: Endless Ichor Quiver
+				Tooltip: ""
+			}
+
+			EndlessJestQuiver: {
+				DisplayName: Endless Jest Quiver
+				Tooltip: ""
+			}
+
+			EndlessLuminiteQuiver: {
+				DisplayName: Endless Luminite Quiver
+				Tooltip: ""
+			}
+
+			EndlessUnholyQuiver: {
+				DisplayName: Endless Unholy Quiver
+				Tooltip: ""
+			}
+
+			EndlessVenomQuiver: {
+				DisplayName: Endless Venom Quiver
+				Tooltip: ""
+			}
+
+			EndlesChlorophytePouch: {
+				DisplayName: Endles Chlorophyte Pouch
+				Tooltip: ""
+			}
+
+			EndlesCrystalPouch: {
+				DisplayName: Endles Crystal Pouch
+				Tooltip: ""
+			}
+
+			EndlesCursedPouch: {
+				DisplayName: Endles Cursed Pouch
+				Tooltip: ""
+			}
+
+			EndlesExplosivePouch: {
+				DisplayName: Endles Explosive Pouch
+				Tooltip: ""
+			}
+
+			EndlesGoldPouch: {
+				DisplayName: Endles Gold Pouch
+				Tooltip: ""
+			}
+
+			EndlesHighVelocityPouch: {
+				DisplayName: Endles High Velocity Pouch
+				Tooltip: ""
+			}
+
+			EndlesLuminitePouch: {
+				DisplayName: Endles Luminite Pouch
+				Tooltip: ""
+			}
+
+			EndlesMeteoritePouch: {
+				DisplayName: Endles Meteorite Pouch
+				Tooltip: ""
+			}
+
+			EndlesNanoPouch: {
+				DisplayName: Endles Nano Pouch
+				Tooltip: ""
+			}
+
+			EndlesPartyPouch: {
+				DisplayName: Endles Party Pouch
+				Tooltip: ""
+			}
+
+			EndlessFirePouch: {
+				DisplayName: Endless Fire Pouch
+				Tooltip: ""
+			}
+
+			EndlessIcePouch: {
+				DisplayName: Endless Ice Pouch
+				Tooltip: ""
+			}
+
+			EndlessIchorPouch: {
+				DisplayName: Endless Ichor Pouch
+				Tooltip: ""
+			}
+
+			EndlesSilverPouch: {
+				DisplayName: Endles Silver Pouch
+				Tooltip: ""
+			}
+
+			EndlessTombPouch: {
+				DisplayName: Endless Tomb Pouch
+				Tooltip: ""
+			}
+
+			EndlessWrathSlimePouch: {
+				DisplayName: Endless Wrath Slime Pouch
+				Tooltip: ""
+			}
+
+			EndlesVenomPouch: {
+				DisplayName: Endles Venom Pouch
+				Tooltip: ""
+			}
+
+			DealersPeacemaker: {
+				DisplayName: Dealers Peacemaker
+				Tooltip: ""
+			}
+
+			Darksign: {
+				DisplayName: Darksign
+				Tooltip: ncreases your damage by {0}% at the cost of {1}% of your life;
+			}
+
+			Endless_Darksign: {
+				DisplayName: Endless Darksign
+				Tooltip: ""
 			}
 		}
 

@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         {
             //Main.NewText(Projectile.position);   
             Player player = Main.player[Projectile.owner];
-            UnfocusDistance = new Vector2(Main.screenWidth, Main.screenHeight);
+            UnfocusDistance = new Vector2(Main.screenWidth /2, Main.screenHeight/2);
 
             //Dust.NewDust(Projectile.Center - UnfocusDistance/2, (int)UnfocusDistance.X, (int)UnfocusDistance.Y, DustID.Torch, 0, 0, 1, default, 1);
             //Rectangle rec = new Rectangle((int)Projectile.Center.X, (int)Projectile.Center.Y, (int)UnfocusDistance.X, (int)UnfocusDistance.Y);
@@ -105,13 +105,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                     {
                         Shoot(target);
                     }
-                    if (playerDistance >= UnfocusDistance.X)
+                    if (playerDistance >= UnfocusDistance.X && DistanceUtils.TouchFlour(player))
                     {
                         Projectile.Center = player.Center;
                     }
                 }
             }
-            else if(playerDistance >= UnfocusDistance.X)
+            else if(playerDistance >= UnfocusDistance.X && DistanceUtils.TouchFlour(player))
             {
                 Projectile.Center = player.Center;
             }
@@ -186,15 +186,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             float speed = 5f;
             float Range = 300f * 16;
             bool TouchBlock = Collision.SolidCollision((Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f)), Projectile.width + 2, Projectile.height);
-            Tile tile = Main.tile[(int)(Projectile.Center.X / 16), (int)(Projectile.Center.Y / 16)];
+            Tile tile = Main.tile[(int)((Projectile.Center.X + (1 *16 * Projectile.direction)) / 16), (int)(Projectile.Center.Y / 16)];
             bool MinionStuck = tile.HasTile && Main.tileSolid[tile.TileType];
-         // int a =  Dust.NewDust(DistanceUtils.ToCoordenatePosition(new Vector2(Projectile.Center.X / 16, Projectile.Center.Y / 16)), 1, 1, DustID.AmberBolt,0,0,1,default,1);
-          //  Main.dust[a].noGravity = true;
-            if (TouchBlock)
+            // int a =  Dust.NewDust(DistanceUtils.ToCoordenatePosition(new Vector2(Projectile.Center.X / 16, Projectile.Center.Y / 16)), 1, 1, DustID.AmberBolt,0,0,1,default,1);
+            //  Main.dust[a].noGravity = true;
+            bool playerTouchFlour = DistanceUtils.TouchFlour(player);
+            if (TouchBlock && playerTouchFlour)
             {
                 Jump(2f);
             }
-            if (MinionStuck)
+            if (MinionStuck && playerTouchFlour)
             {
                 Projectile.tileCollide = false;
                 Jump(4f);
@@ -218,16 +219,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
         }
         public void MovmentToPlayer(Player player, float speed)
-        { 
+        {
             float playerDistanceFloat = Projectile.Distance(player.position);
-           
-         
+
+
             if (playerDistanceFloat < 2200 && !FoundTarget)
             {
                 Vector2 playerDistance = player.Center - Projectile.Center;
                 if (Utils1.FormatToPositive(playerDistance).Y < 20 * 16)
                 {
-                    Projectile.tileCollide = -playerDistance.Y < 5 * 16;
+                    Projectile.tileCollide = playerDistance.Y < 5 * 16;
                     Projectile.velocity.X = (Projectile.position.DirectionTo(player.position).X * (speed / 2));
                     ApplyGravity();
                 }
@@ -245,67 +246,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                         ApplyGravity();
                     }
                 }
-               
-
-
             }
-            //    if (TouchBlock)
-            //    {
-            //        Projectile.velocity.X = Projectile.position.DirectionTo(player.position).X * speed;
-            //        Projectile.velocity -= new Vector2(0, 2);
-            //        Projectile.tileCollide = Projectile.Center.DistanceSQ(player.Center) > UnfocusDistance.X ? false : true;
-            //    }
-            //    else
-            //    {
-     
-            //        List<Tile> positionsFloor = new List<Tile>
-            //        {
-            //            Main.tile[ProjectileFoor.X, (ProjectileFoor.Y + 1)],
-            //            Main.tile[ProjectileFoor.X , (ProjectileFoor.Y + 2)]
-            //        };
-
-            //        if (!positionsFloor[0].HasTile && !positionsFloor[1].HasTile)
-            //        {
-            //            if ((Projectile.Center.Y- player.Center.Y) < 10*16)
-            //            {
-            //                Projectile.velocity += new Vector2(0, 8);
-            //            }
-            //            else
-            //            {
-            //                if (DistanceUtils.TouchFlour(player) || DistanceUtils.TouchFlourLiquid(player))
-            //                {
-            //                    Projectile.velocity = (player.Center - Projectile.Center);// * speed;
-            //                    Projectile.tileCollide = false;
-            //                }
-            //            }
-
-            //        }
-            //        if (playerDistance.X / 16 > 10 && jumpCounter >= 20)
-            //        {
-            //            if (jumpCounter >= 20)
-            //            {
-            //                Projectile.velocity -= new Vector2(16, 0);
-            //                //Projectile.tileCollide = false;
-            //            }
-            //            if (jumpCounter == 10)
-            //            {
-            //                Projectile.velocity -= new Vector2(0, 2);
-            //               // Projectile.tileCollide = false;
-            //            }
-            //            jumpCounter = 0;
-            //        }
-            //        else
-            //        {
-            //            jumpCounter++;
-            //            Projectile.velocity.X = Projectile.Center.DirectionTo(player.Center).X * speed;
-            //            Projectile.tileCollide = true;
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    Projectile.Center = player.Center;
-            //}
         }
         public void MovmentToTarget(NPC target, float speed, float range)
         {
@@ -316,64 +257,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             bool touchFlour = DistanceUtils.TouchFlour(Projectile);
 
 
-            if (Projectile.DistanceSQ(target.Center) > dist * dist && touchFlour)
+            if (Projectile.DistanceSQ(target.Center) > dist * dist /*&& touchFlour*/)
             {
                 Projectile.velocity = Projectile.DirectionTo(target.Center) * speed;
-                
+
                 Projectile.velocity.Y -= 1f;
             }
-            else
+            else if (!DistanceUtils.TouchFlour(Main.player[Projectile.owner]) && target == null)
             {
-                //Jump(1);
+                Jump(1);
             }
 
-
-            //Projectile.velocity.X = Projectile.position.DirectionTo(target.position + new Vector2(10 * 16) *Projectile.direction).X  * speed;
-                ApplyGravity();
-                Projectile.tileCollide = true;
-          
-            //}
-            //else
-            //{
-            //    FindTarget(Main.player[Projectile.owner]);
-            //}
-            //if (targetDistance.X < 200)
-            //{
-            //    Projectile.velocity += new Vector2(0, 18);
-            //}
-            //else if (targetDistance.X < range)
-            //{
-
-            //    if (Projectile.velocity.Y > 0)
-            //    {
-            //        Projectile.velocity.Y = 0;
-            //    }
-            //    else
-            //    {
-            //        Projectile.velocity.X = Projectile.position.DirectionTo(target.position).X * speed;
-            //    }
-            //    if (Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width, Projectile.height))
-            //    {
-            //        Projectile.velocity -= new Vector2(0, 4);
-            //    }
-            //    else if (!Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f * Projectile.direction, 0f), Projectile.width, Projectile.height))
-            //    {
-            //        List<Tile> positionsFloor = new List<Tile>
-            //        {
-            //        Main.tile[ProjectileFoor.X, (ProjectileFoor.Y + 1)],
-            //        Main.tile[ProjectileFoor.X , (ProjectileFoor.Y + 2)]
-            //        };
-
-            //        if (!positionsFloor[0].HasTile && !positionsFloor[1].HasTile)
-            //        {
-            //            Projectile.velocity += new Vector2(0, 8);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    FoundTarget = false;
-            //}
+            ApplyGravity();
+            Projectile.tileCollide = touchFlour;
         }
 
         public void ApplyGravity()
@@ -383,6 +279,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public void Jump(float force)
         {
             Projectile.velocity.Y -= GravityForce + force;
+            Projectile.tileCollide = false;
         }
         private void FixSize()
         {
@@ -480,33 +377,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                         shootAnimation = false;
                         break;
                 }
-
-                //if (ShootFrameCounter == 0 ||)
-                //{
-                //    Projectile.frame = ShootFrames[0];
-                //    ShootFrameCounter++;
-                //}
-                //if (ShootFrameCounter == 2)
-                //{
-                //    Projectile.frame = ShootFrames[1];
-                //    ShootFrameCounter++;
-                //}
-
-                //if (ShootFrameCounter == 4)
-                //{
-                //    Projectile.frame = ShootFrames[2];
-                //    ShootFrameCounter++;
-                //}
-                //if (ShootFrameCounter == 6)
-                //{
-                //    Projectile.frame = ShootFrames[3];
-                //    ShootFrameCounter++;
-                //}
-                //if (ShootFrameCounter > 6)
-                //{
-                //    ShootFrameCounter = 0;
-                //    shootAnimation = false;
-                //}
             }
         }
     }

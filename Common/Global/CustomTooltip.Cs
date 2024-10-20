@@ -31,6 +31,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public bool Saber;
         public bool Lance;
         public bool SecondHabilitie;
+        public bool HaveSecondMode;
         public bool EternityItem;
 
         public static float HealthyReforgeValue { get; set; } = 5f;
@@ -54,7 +55,12 @@ namespace RemnantOfTheAncientsMod.Common.Global
             if (SecondHabilitie)
             {
                 color = Color.Red;
-                SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "RightClickSecondHabilitie"), color, $"{Mod.Name}:RightClickSecondHabilitie", color.Value);  
+                SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "RightClickSecondHabilitie"), color, $"{Mod.Name}:RightClickSecondHabilitie", color.Value);
+            }
+            if (HaveSecondMode)
+            {
+                color = Color.Red;           
+                SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "RightClickSecondMode"), color, $"{Mod.Name}:RightClickSecondMode", color.Value);
             }
 
             if (Saber || (Lance && ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf))
@@ -377,19 +383,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     else if(baseType == 3) return $"Endless {baseName} Depot";
                     else if(baseType == 3) return $"Endless {baseName} Box";
                     else return "Endless " + baseName;
-                case 4:
-                    if (baseType == 1) return $"Carquois de {baseName} sans fin";
-                    else if (baseType == 2) return $"Endless {baseName} Pouch";
-                    else if (baseType == 3) return $"Endless {baseName} Depot";
-                    else if (baseType == 3) return $"Endless {baseName} Box";
-                    else return baseName + " sans fin";
                 case 5:
                     if (baseType == 1) return $"Carcaj de {baseName} eterno";
                     else if (baseType == 2) return $"Petaca de {baseName} eterna";
                     else if (baseType == 3) return $" Depósito de {baseName} eterno";
                     else if (baseType == 4) return $"Caja {baseName} Eterna";
                     else if (baseType == 5) return baseName + " Eterna";
-                    else return baseName+" Eterno";
+                    else return baseName/*+" Eterno"*/;
                 default:
                     return "Endless " + baseName;
             }

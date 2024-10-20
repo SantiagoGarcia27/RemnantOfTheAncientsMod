@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         
         private void Shoot(Vector2 targetCenter)
         {
-            float rotation;
+           /* float rotation;
             if (Projectile.OwnerMinionAttackTargetNPC != null)
             {
                 rotation = (float)Math.Atan2(Projectile.Center.Y - (Projectile.OwnerMinionAttackTargetNPC.position.Y + Projectile.OwnerMinionAttackTargetNPC.height), Projectile.position.X - (Projectile.position.X + Projectile.width));
@@ -90,7 +90,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             else
             {
                 rotation = 0;
-            }
+            }*/
             Vector2 direction;
             direction = targetCenter - Projectile.Center;
             //direction.X = (float)(Math.Cos(rotation) * 4f * -1);
@@ -104,7 +104,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             for (int i = 0; i < Main.maxNPCs;i++)
             {
                 NPC target = Main.npc[i];
-                if (Projectile.Distance(target.Center) <= RangeMax * 16 && !target.friendly && target.active)
+                if (Projectile.Distance(target.Center) <= RangeMax * 16 && !target.immortal && !target.friendly && target.active && target.type != 549)
                 {
                     target.AddBuff(BuffType<Hell_Fire>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (AttackTimmer == 1)

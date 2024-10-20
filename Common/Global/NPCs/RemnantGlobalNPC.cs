@@ -366,6 +366,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (CanDrop)
             {
+                if(npc.type == NPCID.ArmsDealer)
+                {
+                    npcLoot.Add(ItemDropRule.Common(ItemType<DealersPeacemaker>(), 2,1, 1));
+                }
                 base.ModifyNPCLoot(npc, npcLoot);
             }
         }
@@ -520,6 +524,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if (shop.NpcType == NPCID.ArmsDealer)
             {
                 shop.Add(new Item(ItemType<QuickDraw>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) });
+            }
+            if(shop.NpcType == NPCID.SkeletonMerchant)
+            {
+                shop.Add(new Item(ItemType<Darksign>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 7, 0, 0) },Condition.DownedEyeOfCthulhu);
             }
                 base.ModifyShop(shop);
         }

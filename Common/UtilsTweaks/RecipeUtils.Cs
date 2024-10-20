@@ -1,9 +1,5 @@
-using rail;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
-using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
@@ -23,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         private static HashSet<Recipe> GetRecipeChain(int itemType)
         {
-            HashSet<Recipe> recipes = new();
+            HashSet<Recipe> recipes = [];
             foreach (var recipe in Main.recipe)
             {
                 if (!recipe.Disabled && recipe.HasIngredient(itemType))

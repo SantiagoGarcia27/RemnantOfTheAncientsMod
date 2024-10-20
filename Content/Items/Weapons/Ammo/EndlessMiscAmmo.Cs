@@ -11,9 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Flare");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Flare sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bengala Eterna");
         }
     }
     public class EndlesBlueFlare : EndlessBase
@@ -22,9 +19,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Blue Flare");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Fusée bleue sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bengala Azul Eterna");
         }
     }
     public class EndlesStar : EndlessBase
@@ -33,9 +27,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Star");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Étoile sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estrella Eterna");
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 8));
             Item.useAnimation = ItemID.FallenStar;
         }
@@ -46,9 +37,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Nail");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Clou sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Clavo Infinito");
         }
     }
     public class EndlesGel : EndlessBase
@@ -57,9 +45,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Gel");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Gel sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Gel infinito");
         }
     }
     public class EndlesStake : EndlessBase
@@ -68,9 +53,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Stake");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jeu sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Estaca eterna");
         }
     }
     public class EndlesSnowBall : EndlessBase
@@ -79,9 +61,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("ModelEndless Snow Ball");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Boule de neige sans fin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bola de nieve eterna");
         }
     }
 }

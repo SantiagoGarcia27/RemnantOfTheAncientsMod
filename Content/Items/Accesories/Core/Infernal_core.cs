@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) += 0.10f;
+            player.GetDamage(DamageClass.Melee) *= 1.10f;
             player.GetModPlayer<RemnantPlayer>().MeleeBuffInflict.Add(ModContent.BuffType<Hell_Fire>());
             player.moveSpeed += MoveSpeedBonus/100f;
             player.buffImmune[BuffID.OnFire] = true;

@@ -41,12 +41,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool CanCharge = false;
 
 
-        public float CurrentAmmo = 0;
+       // public float CurrentAmmo = 0;
         public float CurrentAmmoMax = 0;
+        public List<int> CurrentAmmoType = [];
         public float ReloadCounter = 0;
         public float ReloadCounterMax = 0;
-
-        readonly Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
 
 		public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 		public bool BowReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
@@ -126,7 +125,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public List<int> MusicBox = [];
 		public override void SetStaticDefaults()
 		{
-            CurrentAmmo = 0;
 			CurrentAmmoMax = 0;
 		}
 
@@ -275,46 +273,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.damage = 300;
                 }
-				if(item.type == ItemID.PurpleClubberfish)
-				{
-					item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.ReaverShark)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.Rockfish)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.SawtoothShark)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.FrostDaggerfish)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.Swordfish)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.Toxikarp)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.Bladetongue)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.CrystalSerpent)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
-                if (item.type == ItemID.ObsidianSwordfish)
-                {
-                    item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                }
+				
                 if (item.type == ItemID.Boomstick)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
@@ -359,7 +318,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					}
 				}
 				AddToDashWeaponsLists(item);
-                SetFishClass(item);
+             
 
 
 
@@ -396,14 +355,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
 			}
 		}
-        public static void SetFishClass(Item item)
-		{
-            if (item.fishingPole > 0)
-            {
-                item.damage = item.fishingPole - 1;
-                item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-            }
-        }
+     
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
@@ -652,29 +604,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					return false;
 				}
 			}
-			if(Calamity != null)
-			{
-				if(item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "TheDevourerofCods"))
-				{
-					FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 10);  
-                    return false;
-                }
-				else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "RiftReeler"))
-                {
-                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, new Vector2(3,6));
-                    return false;
-                }
-                else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "FeralDoubleRod"))
-                {
-                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 2);
-                    return false;
-                }
-                else if (item.type == ExternalModCallUtils.GetItemFromMod(Calamity, "EarlyBloomRod"))
-                {
-                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 6);
-                    return false;
-                }
-            }
+			
 			if (IsShotgun && ShotgunBulletStat.X > 0)
 			{
                 if (Main.mouseRight && Main.mouseLeft)
@@ -728,24 +658,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 		
-		public static void FixModRodsBobers(IEntitySource source, Vector2 velocity,Vector2 position,int type,int damage,float knockback,int player,int BoberAmount)
-		{
-            for (int index = 0; index < BoberAmount; index++)
-            {
-                float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
-                float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
-                Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player);
-            }
-        }
-        public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, Vector2 BoberAmount)
-        {
-            for (int index = 0; index < Main.rand.Next((int)BoberAmount.X, (int)BoberAmount.Y); index++)
-            {
-                float SpeedX = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
-                float SpeedY = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
-                Projectile.NewProjectile(source, position.X, position.Y, SpeedX, SpeedY, type, damage, knockback, player);
-            }
-        }
+		
         public void AddToDashWeaponsLists(Item item)
 		{
 			AddVanilaSpear();
@@ -784,7 +697,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public override bool AltFunctionUse(Item item, Player player)
 		{		
-			if (item.GetGlobalItem<CustomTooltip>().SecondHabilitie) return true;
+			if (item.GetGlobalItem<CustomTooltip>().SecondHabilitie || item.GetGlobalItem<CustomTooltip>().HaveSecondMode) return true;
 			if (WeaponConf)
 			{
 				if (item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee)

@@ -89,10 +89,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
                 return;
 			Player player = Main.LocalPlayer;
 
-            Item item = null;
-			int index = Utils1.SearchPlayerAmmoSlot(player, player.HeldItem.useAmmo,ref item);
-
-            textAmmo.SetText(GenericAmmoCouldownUISystem.Text.Format(RemnantPlayer.GenericAmmoAmmount + "/" + RemnantPlayer.GenericAmmoAmmountMax + $"[I:{item.type}]"));
+           
+            Item item = Utils1.ChooseAmmo(player.HeldItem, AmmoID.Bullet);
+            textAmmo.SetText(GenericAmmoCouldownUISystem.Text.Format(RemnantPlayer.GenericAmmoAmmount + "/" + RemnantPlayer.GenericAmmoAmmountMax + (item != null? $"[I:{item.type}]": "")));
             base.Update(gameTime);
 		}
 	}

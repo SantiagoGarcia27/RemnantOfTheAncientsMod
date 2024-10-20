@@ -51,7 +51,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			var p = Projectile.NewProjectile(source, player.position - new Vector2(((7 * 16) * -player.direction), ((1f * 16) * Item.scale)), velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, Main.myPlayer);
+			Vector2 pos = player.position;
+			pos.X += 17f * 16f * player.direction;
+			pos.Y -= 16f * Item.scale;
+
+            var p = Projectile.NewProjectile(source, pos, velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, Main.myPlayer);
 			Main.projectile[p].direction = player.direction;
 			return false;
 		}
@@ -60,9 +64,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 			{
 				Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
-				var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position - new Vector2(((7 * 16) * -player.direction), ((1f * 16) * Item.scale)), velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, Main.myPlayer);
+				Vector2 pos = player.position - new Vector2(7 * 16, 1f * 16 * Item.scale);
+				pos.X *= player.direction;
+
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(), pos, velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, Main.myPlayer);
 				Main.projectile[p].direction = player.direction;
-			}
+	
+
+            }
 			return !Main.projectile.Any((Projectile n) => n.active && n.owner == player.whoAmI && n.type == ProjectileType<GodClaws>() && (n.ai[0] != 1f || n.ai[1] != 1f));
 		}
 		[JITWhenModsEnabled("CalamityMod")]

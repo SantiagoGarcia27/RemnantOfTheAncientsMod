@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -16,9 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Frozen Shark");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Requin congelé");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tiburón Congelado");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

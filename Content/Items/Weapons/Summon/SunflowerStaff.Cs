@@ -15,15 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Sunflower Staff");
-			//Tooltip.SetDefault("Summons a Sunflowr to protect you, " +
-               // "\nnearby players can gain a happiness buff and heal if they are in its radius");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo de girasol");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca un girasol para protegerte"+
-               // "\nlos jugadores cercanos del obtienen un beneficio de Felicidad y pueden curarse si están en su radio");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton Tournesol");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque un tournesol pour vous protéger"+
-              //  "\nles joueurs à proximité peuvent gagner un buff de bonheur et se soigner s'ils se trouvent dans son rayon");
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
