@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
                     .AddIngredient(ItemID.BrokenHeroSword, 1)
                     .AddIngredient(ModContent.ItemType<TrueTwilight>(), 1)
                     .AddIngredient(ModContent.ItemType<TrueDurendal>(), 1)
-                    .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "LivingShard"), 12)
+                    .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "LivingShard"), 12)
                     .AddTile(TileID.MythrilAnvil)
                     .Register();
             }

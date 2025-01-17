@@ -19,14 +19,14 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.Systems;
 using System.Collections.Generic;
 using System;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
+using RemnantOfTheAncientsMod.World;
+
 
 namespace RemnantOfTheAncientsMod.Common.Drops
 {
@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             HallowBiomeLoot(npc, npcLoot);
             CorruptBiomeLoot(npc, npcLoot);
             CrimsomBiomeLoot(npc, npcLoot);
-            if (RemnantOfTheAncientsMod.InfernumMod != null)
+            if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
             {
                 InfernumLoot(npc, npcLoot);
             }
@@ -130,14 +130,14 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         [JITWhenModsEnabled("InfernumMode")]
         public static void InfernumLoot(NPC npc, NPCLoot npcLoot)
         {
-            bool Infernum = DificultyUtils.InfernumMode;
+            bool Infernum =SangarUtilities.Common.DificultyUtils.InfernumMode;
 
             if (npc.type == NPCType<DesertAniquilator>())
-                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ItemType<Desert_Relic_Infernum>());
+                npcLoot.AddIff(() =>SangarUtilities.Common.DificultyUtils.InfernumMode, ItemType<Desert_Relic_Infernum>());
             else if (npc.type == NPCType<FrozenAssaulter>())
-                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ItemType<Frozen_Relic_Infernum>());
+                npcLoot.AddIff(() =>SangarUtilities.Common.DificultyUtils.InfernumMode, ItemType<Frozen_Relic_Infernum>());
             else if (npc.type == NPCType<InfernalTyrantHead>())
-                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ItemType<Tyrant_Relic_Infernum>());
+                npcLoot.AddIff(() =>SangarUtilities.Common.DificultyUtils.InfernumMode, ItemType<Tyrant_Relic_Infernum>());
         }
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void FargosLoot(NPC npc, NPCLoot npcLoot)
@@ -206,7 +206,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
             if (npc.type == NPCType<HallowedZombie>())
             {
-                int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
+                int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
                 ZombieOreLoot(npcLoot,ore, ItemID.HallowedBar);
             }
         }     
@@ -218,7 +218,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 switch (npc.type)
                 {
                     case NPCID.KingSlime:
-                        npcLoot.AddIff(() => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0] && DificultyUtils.ReaperMode, ItemType<KingSoul>());
+                        npcLoot.AddIff(() => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][0] && Reaper.ReaperMode, ItemType<KingSoul>());
                         npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<KingSlimeScroll>(), 5, 1));
                         break;
                     case NPCID.EyeofCthulhu:

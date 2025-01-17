@@ -3,12 +3,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.World;
 using Terraria.GameContent.Creative;
 using Terraria.Chat;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
 {
@@ -49,15 +49,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
            
             if (!Utils1.IsAnyBossAlive())
             {
-                if (!DificultyUtils.ReaperMode)
+                if (!Reaper.ReaperMode)
                 {
-                    DificultyUtils.ReaperMode = true;
                     Reaper.ReaperMode = true;
                     Item.buffTime = 1;
                     Color gray = Color.DarkSlateGray;
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Welcome to hell, now you're a reaper."), gray);
+                    string text = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.Reaper.On");
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), gray);
                     var modPlayer = player.GetModPlayer<ReaperPlayer>();
-                    if (modPlayer.ChaliceOn != true)
+                    if (!modPlayer.ChaliceOn)
                     {
                         modPlayer.ReaperStarter();
                         ReaperPlayer.ReaperFirstTime = true;
@@ -65,11 +65,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                 }
                 else
                 {
-                    DificultyUtils.ReaperMode = false;
                     Reaper.ReaperMode = false;
                     Color gray = Color.DarkSlateGray;
-
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Well your soul is free... for now."), gray);
+                    string text = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.Reaper.Off");
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), gray);
                 } 
             }
 

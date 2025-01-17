@@ -4,7 +4,6 @@ using Terraria.Utilities;
 using Terraria.ID;
 using System.Collections.Generic;
 using CalamityMod.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Common.Global
@@ -38,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {
             int prefix = RandomRoguePrefix();
-            if (storedPrefix == -1 && item.CountsAsClass(ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass")) && item.Prefix(-3))
+            if (storedPrefix == -1 && item.CountsAsClass(SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass")) && item.Prefix(-3))
             {
                 if (NegativeRoguePrefix(prefix) && !Main.rand.NextBool(3))
                 {
@@ -48,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             //if (!CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG || Main.gameMenu || storedPrefix == -1)
             //{
-            //    var damageClass = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
+            //    var damageClass = SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
             //    if (item.CountsAsClass(damageClass)) return prefix;
             //    else return -1;
             //}
@@ -66,29 +65,29 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 int[][] array = new int[5][];
                 int[] obj = [62, 69, 73, 77, 0, 0];
-                obj[4] = ExternalModCallUtils.GetModPrefix(calamityMod, "Quiet");
-                obj[5] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Healthy");
+                obj[4] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Quiet");
+                obj[5] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Healthy");
                 array[0] = obj;
                 int[] obj2 = [63, 70, 67, 74, 78, 0, 0];
-                obj2[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Cloaked");
-                obj2[6] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Healer");
+                obj2[5] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Cloaked");
+                obj2[6] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Healer");
                 array[1] = obj2;
                 int[] obj3 = [64, 71, 75, 79, 66, 0, 0];
-                obj3[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Camouflaged");
-                obj3[6] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Atletic");
+                obj3[5] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Camouflaged");
+                obj3[6] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Atletic");
                 array[2] = obj3;
                 int[] obj4 = [65, 72, 68, 76, 80, 0, 0];
-                obj4[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Silent");
-                obj4[6] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Gigant");
+                obj4[5] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Silent");
+                obj4[6] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Gigant");
                 array[3] = obj4;
                 int[] obj5 = [0, 0, 0, 0, 0, 0, 0];
-                obj4[0] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Impenetrable");
-                obj4[1] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Uncontrolled");
-                obj4[2] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic");
-                obj4[3] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Sharp");
-                obj4[4] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Accurate");
-                obj4[5] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Shadow");
-                obj4[6] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Titanic");
+                obj4[0] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Impenetrable");
+                obj4[1] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Uncontrolled");
+                obj4[2] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic");
+                obj4[3] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Sharp");
+                obj4[4] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Accurate");
+                obj4[5] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Shadow");
+                obj4[6] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Titanic");
                 array[4] = obj5;
                 int[][] accessoryReforgeTiers = array;
                 prefix = IteratePrefix(rand, accessoryReforgeTiers, currentPrefix);
@@ -184,36 +183,36 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 int[][] array2 = new int[6][];
                 int[] obj5 = [36, 45, 51, 38, 54, 0, 0];
-                obj5[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Radical");
-                obj5[6] = ExternalModCallUtils.GetModPrefix(calamityMod, "Pointy");
+                obj5[5] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Radical");
+                obj5[6] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Pointy");
                 array2[0] = obj5;
                 int[] obj6 = [53, 57, 61, 42, 0, 0];
-                obj6[4] = ExternalModCallUtils.GetModPrefix(calamityMod, "Sharp");
-                obj6[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Glorious");
+                obj6[4] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Sharp");
+                obj6[5] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Glorious");
                 array2[1] = obj6;
                 int[] obj7 = [46, 44, 55, 0, 0, 0];
-                obj7[3] = ExternalModCallUtils.GetModPrefix(calamityMod, "Feathered");
-                obj7[4] = ExternalModCallUtils.GetModPrefix(calamityMod, "Sleek");
-                obj7[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Hefty");
+                obj7[3] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Feathered");
+                obj7[4] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Sleek");
+                obj7[5] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Hefty");
                 array2[2] = obj7;
                 array2[3] =
                 [
                     37,
                     60,
-                    ExternalModCallUtils.GetModPrefix(calamityMod,"Mighty"),
-                    ExternalModCallUtils.GetModPrefix(calamityMod,"Serrated")
+                    SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod,"Mighty"),
+                    SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod,"Serrated")
                 ];
                 array2[4] =
                 [
                     59,
                     43,
-                    ExternalModCallUtils.GetModPrefix(calamityMod, "Vicious"),
-                    ExternalModCallUtils.GetModPrefix(calamityMod,"Lethal")
+                    SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Vicious"),
+                    SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod,"Lethal")
                 ];
                 array2[5] =
                 [
-                    ExternalModCallUtils.GetModPrefix(calamityMod, "Flawless"),
-                    ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite")
+                    SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Flawless"),
+                    SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite")
                 ];
                 int[][] rogueReforgeTiers = array2;
                 prefix = IteratePrefix(rand, rogueReforgeTiers, currentPrefix);
@@ -256,23 +255,23 @@ namespace RemnantOfTheAncientsMod.Common.Global
             39, 40, 53, 54, 55, 56, 57, 59, 60, 61,
             42, 43, 44, 45, 46, 47, 48, 49, 50, 51
             ];
-            obj[0] = ExternalModCallUtils.GetModPrefix(calamityMod, "Radical");
-            obj[1] = ExternalModCallUtils.GetModPrefix(calamityMod, "Pointy");
-            obj[2] = ExternalModCallUtils.GetModPrefix(calamityMod, "Sharp");
-            obj[3] = ExternalModCallUtils.GetModPrefix(calamityMod, "Glorious");
-            obj[4] = ExternalModCallUtils.GetModPrefix(calamityMod, "Feathered");
-            obj[5] = ExternalModCallUtils.GetModPrefix(calamityMod, "Sleek");
-            obj[6] = ExternalModCallUtils.GetModPrefix(calamityMod, "Hefty");
-            obj[7] = ExternalModCallUtils.GetModPrefix(calamityMod, "Mighty");
-            obj[8] = ExternalModCallUtils.GetModPrefix(calamityMod, "Serrated");
-            obj[9] = ExternalModCallUtils.GetModPrefix(calamityMod, "Vicious");
-            obj[10] = ExternalModCallUtils.GetModPrefix(calamityMod, "Lethal");
-            obj[11] = ExternalModCallUtils.GetModPrefix(calamityMod, "Flawless");
-            obj[12] = ExternalModCallUtils.GetModPrefix(calamityMod, "Blunt");
-            obj[13] = ExternalModCallUtils.GetModPrefix(calamityMod, "Flimsy");
-            obj[14] = ExternalModCallUtils.GetModPrefix(calamityMod, "Unbalanced");
-            obj[16] = ExternalModCallUtils.GetModPrefix(calamityMod, "Atrocious");
-            obj[15] = ExternalModCallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite");
+            obj[0] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Radical");
+            obj[1] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Pointy");
+            obj[2] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Sharp");
+            obj[3] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Glorious");
+            obj[4] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Feathered");
+            obj[5] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Sleek");
+            obj[6] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Hefty");
+            obj[7] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Mighty");
+            obj[8] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Serrated");
+            obj[9] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Vicious");
+            obj[10] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Lethal");
+            obj[11] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Flawless");
+            obj[12] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Blunt");
+            obj[13] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Flimsy");
+            obj[14] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Unbalanced");
+            obj[16] = SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Atrocious");
+            obj[15] = SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite");
             return Utils.SelectRandom(rand, obj);
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -280,10 +279,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             return new List<int>
             {
-                ExternalModCallUtils.GetPrefixFromMod(calamityMod,"Blunt"),
-                ExternalModCallUtils.GetPrefixFromMod(calamityMod,"Flimsy"),
-                ExternalModCallUtils.GetPrefixFromMod(calamityMod,"Unbalanced"),
-                ExternalModCallUtils.GetPrefixFromMod(calamityMod,"Atrocious")
+               SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod,"Blunt"),
+               SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod,"Flimsy"),
+               SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod,"Unbalanced"),
+               SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod,"Atrocious")
             }.Contains(prefix);
         }
     }

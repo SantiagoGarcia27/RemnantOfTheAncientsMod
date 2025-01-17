@@ -10,6 +10,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
     public class DealersPeacemaker : ModItem
     {
+      //  public override bool IsLoadingEnabled(Mod mod) => false;
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -73,8 +74,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.altFunctionUse == 2) return false;
-                return true;
+            if (player.altFunctionUse != 2) 
+                Projectile.NewProjectile(source, position, velocity.RotatedByRandom(MathHelper.ToRadians(shootMode == 0 ? 0 : 15)), type, damage, knockback, player.whoAmI);
+            return false;
         }
         public override Vector2? HoldoutOffset()
         {
@@ -86,7 +88,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(shootMode == 0? 0:15));
+            //velocity = velocity.RotatedByRandom(MathHelper.ToRadians(shootMode == 0? 0:15));
         }
     }
 }

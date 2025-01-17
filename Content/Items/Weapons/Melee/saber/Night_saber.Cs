@@ -98,13 +98,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 				.AddIngredient(ItemType<Grass_saber>())
 				.AddIngredient(ItemID.Muramasa, 1)
 				.AddIngredient(ItemType<Fire_saber>())
-				.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+				.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
 				.AddTile(TileID.DemonAltar)
 				.Register();
 
 				Recipe.Create(ItemID.NightsEdge)
 				.AddIngredient(ModContent.ItemType<NightBar>(), 10)
-				.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+				.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
 				.AddTile(TileID.DemonAltar)
 				.Register();
 			}

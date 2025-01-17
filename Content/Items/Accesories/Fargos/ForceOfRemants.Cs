@@ -7,14 +7,20 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using static RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.DaylightEnchant;
+using static RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.NightEnchant;
+using static RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.ReinforcedIronEnchant;
+using static RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.SandHeraldEnchant;
+using static RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.TuxoniteEnchant;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 {
+    [ExtendsFromMod("FargowiltasSouls")]
     public class ForceOfRemants : ModItem
 	{
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
+            return ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod) != null;
         }
         public override void SetStaticDefaults()
 		{
@@ -27,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 			Item.height = 26;
 			Item.maxStack = 1; 
 			Item.value = Item.buyPrice(0, 1, 10, 72);  
-			Item.rare = 11;
+			Item.rare = ItemRarityID.Purple;
 			Item.accessory = true;
 			Item.defense = 3;
 		}
@@ -46,14 +52,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             player.AddEffect<ReinforcedIronDREffect>(base.Item);
             player.AddEffect<ReinforcedIronBallistaEffect>(base.Item);
             player.AddEffect<SandHeraldEffect>(base.Item);
-
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertEnchant(player);
             player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(BuffID.Electrified);
             player.GetModPlayer<RemnantPlayer>().AllClassBuffInflict.Add(BuffID.Electrified); 
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().TuxoniteEnchant(player,CritBonus);
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().NightEnchant(player);
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchant(player);
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().ReinforcedIronEnchant(player, SpeedBonus, DamageReduction);
+       
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
@@ -69,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             .AddIngredient<ReinforcedIronEnchant>()
             .AddIngredient<DaylightEnchant>()
             .AddIngredient<TuxoniteEnchant>()
-            .AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
+            .AddTile(SangarUtilities.Common.CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
             .Register();
 		}
 	}

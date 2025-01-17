@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod
 		}
 		public override bool IsEnabled()
 		{
-			if (DificultyUtils.ReaperMode) return true;
+			if (Reaper.ReaperMode) return true;
 			else return false;
 		}
 

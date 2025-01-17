@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			ReaperPlayer modPlayer = player.GetModPlayer<ReaperPlayer>();
 
-			if (modPlayer.ChaliceOn && DificultyUtils.ReaperMode && !item.IsAir && item.damage > 0 && item.CountsAsClass(DamageClass.Melee) && item.active)
+			if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && item.CountsAsClass(DamageClass.Melee) && item.active)
 			{
 				scale *= 2.5f;
 			}
@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			if (item.type == ModContent.ItemType<ReaperChalice>())
 			{
-				item.accessory = DificultyUtils.ReaperMode;
+				item.accessory = Reaper.ReaperMode;
 			}
 		}
 		static List<int> BossSummons = new List<int>();
@@ -47,8 +47,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{			
 				if (BossSummons.Contains(item.type))
 				{
-					item.consumable = !DificultyUtils.ReaperMode;
-					item.GetGlobalItem<CustomTooltip>().BossSummon = DificultyUtils.ReaperMode;
+					item.consumable = !Reaper.ReaperMode;
+					item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
 				}
 			}
 			else
@@ -56,13 +56,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				if (BossSummons.Contains(item.type))
 				{
 					item.consumable = false;
-                    item.GetGlobalItem<CustomTooltip>().BossSummon = DificultyUtils.ReaperMode;
+                    item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
                 }
 			}
 		}
         public override void OnConsumeItem(Item item, Player player)
         {
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
             {
                 if (item.type == ItemID.LihzahrdPowerCell)
                 {
@@ -110,14 +110,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		[JITWhenModsEnabled("ThoriumMod")]
 		public static void AddBossSummonThorium()
 		{
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StormFlare"));
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
-			SafeAddContentToList(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StormFlare"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
+			SafeAddContentToList(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
 		}
 		public static void SafeAddContentToList(int id)
 		{
@@ -126,12 +126,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public static void ReaperWingsNerf(Player player)
 		{
 			int OgWingTime;
-			if (DificultyUtils.ReaperMode)
+			if (Reaper.ReaperMode)
 			{
 				if (player.wingTimeMax >= 4)
 				{
 					OgWingTime = player.wingTimeMax;
-					if (!player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[11] || !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[17]) player.wingTimeMax = OgWingTime / 2;
+					if (!player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][11] || !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][17]) player.wingTimeMax = OgWingTime / 2;
 					else player.wingTimeMax = OgWingTime;
 				}
 			}

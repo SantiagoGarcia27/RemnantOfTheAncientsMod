@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
@@ -11,9 +12,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
     {      
         public abstract Item ItemBase { get; }
         public override string Texture => GetTextureFromItem(ItemBase);
+        public abstract char GramaticalCorrection { get;}
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemBase.ToolTip.GetLine(0));
 
-        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs(ItemBase.Name);
+        public override LocalizedText DisplayName => base.DisplayName.WithFormatArgs(FormatName(ItemBase));
         public override void SetStaticDefaults() 
         {
             Main.RegisterItemAnimation(Item.type, Main.itemAnimations[ItemBase.type]);
@@ -31,6 +33,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         {
             string Texture = item.type < ItemID.Count ? "Terraria/Images/Item_" + item.type : ItemLoader.GetItem(item.type).Texture;
             return Texture;
+        }
+        public string FormatName(Item item)
+        {
+            if(GramaticalCorrection == 'F')
+                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.EndlessF", item.Name);
+            if(GramaticalCorrection == 'M')
+                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.EndlessM", item.Name);
+            return item.Name;
         }
         public override void AddRecipes()
         {

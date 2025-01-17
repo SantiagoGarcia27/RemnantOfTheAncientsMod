@@ -1,5 +1,4 @@
 using Terraria.ID;
-using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ModLoader;
@@ -9,9 +8,16 @@ using System;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
-using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using SangarUtilities.Common;
+using System.Reflection.Metadata.Ecma335;
+using CalamityMod.NPCs.BrimstoneElemental;
+using FargowiltasSouls.Content.Bosses.MutantBoss;
+using Terraria.Audio;
+using CalamityMod;
+using CalamityMod.Events;
+using CalamityMod.NPCs.AstrumAureus;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -20,12 +26,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public override bool InstancePerEntity => true;
         public override void SetDefaults(NPC npc)
         {
+            if (RemnantOfTheAncientsMod.CalamityMod != null) 
+                FillList();
             if (npc.boss)
             {
                 ModifyBossStats(npc);
             }
 
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
             {
                 if (destroyer.Contains(npc.type))
                 {
@@ -68,14 +76,96 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     npc.scale = 0.8f;
                 }
-            }
+
+
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    if (desertScourge.Contains(npc.type))
+                    {
+                        npc.scale *= 1.5f;
+                    }
+                    if (desertNuisance.Contains(npc.type))
+                    {
+                        npc.scale *= 0.25f;
+                    }
+                    if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+                    {
+                        if (Reaper.ReaperMode) npc.lifeMax /= 2;
+                    }
+                    if (perforatorWormSamll.Contains(npc.type))
+                    {
+                        if (Reaper.ReaperMode)
+                        {
+                            for (int buff = 0; buff < BuffLoader.BuffCount; buff++)
+                                npc.buffImmune[buff] = true;
+                        }
+                    }
+
+                    if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"))
+                    {
+                        if (Reaper.ReaperMode)
+                        {
+                            npc.immortal = true;
+                            npc.dontTakeDamage = true;
+                        }
+                    }
+                    if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Leviathan"))
+                    {
+                        if (Reaper.ReaperMode)
+                        {
+                            npc.Size = new(650, 200);
+                            npc.scale = 1.5f;
+                        }
+                    }
+                }
+            }  
         }
-        public List<int> destroyer = new List<int>
+
+        private void FillList()
         {
+            desertScourge =
+            [
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeBody"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeTail")
+            ];
+            desertNuisance =
+            [
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHead"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceBody"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceTail")
+            ];
+            perforatorWormSamll =
+            [
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadSmall"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodySmall"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailSmall")
+            ];
+            perforatorWormMedium =
+            [
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadMedium"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyMedium"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailMedium")
+            ];
+            perforatorWormBig =
+            [
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadLarge"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailLarge")
+            ];
+        }
+        public List<int> destroyer =
+        [
             NPCID.TheDestroyer ,
             NPCID.TheDestroyerBody,
             NPCID.TheDestroyerTail
-        };
+        ];
+
+        public List<int> desertScourge = [];
+        public List<int> desertNuisance = [];
+        public List<int> perforatorWormSamll = [];
+        public List<int> perforatorWormMedium = [];
+        public List<int> perforatorWormBig = [];
         public static void ModifyBossStats(NPC npc)
         {
             npc.lifeMax *= Reaper.ReaperMode? 2 : 1;
@@ -83,8 +173,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
             {
+                if(RemnantOfTheAncientsMod.CalamityMod != null)
+                    OnSpawnCalamity(npc, source);
+
                 if (npc.type == NPCID.SkeletronHead)
                 {
                     for (int i = 0; i < 2; i++)
@@ -122,26 +215,82 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 base.OnSpawn(npc, source);
             }
         }
+
+        public void OnSpawnCalamity(NPC npc, IEntitySource source)
+        {
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
+            {
+                NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
+                NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
+            }
+
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "HiveMind"))
+            {
+                int ammount = 20;
+                for (int i = 0; i <= ammount; i++)
+                {
+                    GetPositionsAround(Main.player[npc.FindClosestPlayer()], 25 * 15f, ammount + 1, out List<Vector2> Postions);
+                    var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X *10, (int)Postions[i].Y *10, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
+                    NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
+                    NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));     
+                    Main.npc[p].aiStyle = -1;
+                }
+            }
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+            {
+                GetNPCList(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"), out List<NPC> CreepersList);
+                GetPositionsAround(Main.player[npc.FindClosestPlayer()], 25 * 15f, CreepersList.Count, out List<Vector2> Postions);
+
+                for (int a = 0; a < NPC.CountNPCS(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper")); a++)
+                {
+                     CreepersList[a].position = Postions[a];  
+                }
+            }
+        }
+
+
         int attackCounter = 0;
-        List<NPC> NpcList = new List<NPC>();
+        List<NPC> NpcList = [];
 
         public override bool PreAI(NPC npc)
         {
-            if (DificultyUtils.ReaperMode && DificultyUtils.InfernumMode)
+            if (Reaper.ReaperMode)
             {
-                if (destroyer.Contains(npc.type))
+                if (DificultyUtils.InfernumMode)
                 {
-                    npc.scale *= 2f;
+                    if (destroyer.Contains(npc.type))
+                    {
+                        npc.scale *= 2f;
+                    }
+                    AI(npc);
                 }
-                AI(npc);
+                if(RemnantOfTheAncientsMod.CalamityMod != null)
+                    return PreAiCalamity(npc);
             }
             AI(npc);
             return base.PreAI(npc);
         }
+
+        float ang = 0;
+        [JITWhenModsEnabled("CalamityMod")]
+        bool PreAiCalamity(NPC npc)
+        {
+            Player player = Main.player[npc.FindClosestPlayer()];
+
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+            {        
+                GetNPCList(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"), out List<NPC> CreepersList);
+                GetPositionsAround(Main.player[npc.FindClosestPlayer()], 25 * 15f, CreepersList.Count,ang, out List<Vector2> Postions);
+                npc.Center = Postions[CreepersList.IndexOf(npc)];
+                ang+=0.08f;
+                return false;
+            }
+            return base.PreAI(npc);
+        }
         public override void AI(NPC npc)
         {
-             List<int> ReaperAffectedNPCs = new List<int>()
-            {
+            List<int> ReaperAffectedNPCs =
+            [
                 NPCID.BrainofCthulhu,
                 NPCID.Creeper,
                 NPCID.QueenBee,
@@ -164,167 +313,102 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 NPCID.HallowBoss,
                 NPCID.CultistBoss,
                 NPCID.MoonLordCore
-            };
+            ];
 
-            List<int> SkeletronPrimeHands = new List<int>()
-            {
+            List<int> SkeletronPrimeHands =
+            [
                 NPCID.PrimeCannon,
                 NPCID.PrimeLaser,
                 NPCID.PrimeSaw,
                 NPCID.PrimeVice
-            };
+            ];
 
-            if (DificultyUtils.ReaperMode && ReaperAffectedNPCs.Contains(npc.type))
+            List<int> CalamityAffectedNPCs =
+            [
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Crabulon"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "HiveMind"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHive"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadSmall"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodySmall"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailSmall"),                   
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadMedium"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyMedium"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailMedium"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadLarge"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailLarge"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SlimeGodCore"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanPaladin"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianPaladin"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AquaticScourgeHead"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BrimstoneElemental"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalamitasClone"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cataclysm"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Catastrophe"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GreatSandShark"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Leviathan"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Anahita"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumAureus"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PlaguebringerGoliath"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerBody"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusHead"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianCommander"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianDefender"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianHealer"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck2"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Providence"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"), 
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Signus"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Polterghast"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "OldDuke"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsHead"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Apollo"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Artemis"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ThanatosHead"),
+                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeCalamitas")
+            ];
+
+            if (Reaper.ReaperMode)
             {
-                if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+                if(RemnantOfTheAncientsMod.CalamityMod != null && CalamityAffectedNPCs.Contains(npc.type))
                 {
-                    npc.TargetClosest();
+                    CalamityAi(npc);
                 }
-                Player player = Main.player[npc.target];
-                if (npc.type == NPCID.Creeper)
+                if (ReaperAffectedNPCs.Contains(npc.type))
                 {
-                    for (int i = 0; i < Main.maxNPCs; i++)
+                    if (npc.target < 0 || npc.target >= 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
                     {
-                        if (Main.npc[i].type == NPCID.BrainofCthulhu)
+                        npc.TargetClosest();
+                    }
+                    Player player = Main.player[npc.target];
+                    if (npc.type == NPCID.Creeper)
+                    {
+                        for (int i = 0; i < Main.maxNPCs; i++)
                         {
-                            List<Vector2> Postions = GetPositionsAroundNPC(Main.npc[i], 25 * 15f, GetEnemyCount(NPCID.Creeper));
-                            List<NPC> CreepersList = GetNPCList(NPCID.Creeper);
-
-                            for (int a = 0; a < GetEnemyCount(NPCID.Creeper); a++)
+                            if (Main.npc[i].type == NPCID.BrainofCthulhu)
                             {
-                                CreepersList[a].position = Postions[a];
+                                List<Vector2> Postions = GetPositionsAround(Main.npc[i], 25 * 15f,  NPC.CountNPCS(NPCID.Creeper));
+                                GetNPCList(NPCID.Creeper,out List<NPC> CreepersList);
+
+                                for (int a = 0; a < NPC.CountNPCS(NPCID.Creeper); a++)
+                                {
+                                    CreepersList[a].position = Postions[a];
+                                }
                             }
                         }
                     }
-                }
-                if (npc.type == NPCID.QueenBee)
-                {
-                    if (attackCounter < 300)
+                    if (npc.type == NPCID.QueenBee)
                     {
-                        attackCounter++;
-                    }
-                    else
-                    {
-                        attackCounter = 0;
-                    }
-
-                    if (attackCounter == 200)
-                    {
-                        NPC.NewNPC(NPC.GetSource_None(), (int)npc.Center.X, (int)npc.Center.Y, -57);
-                    }
-                    Point NpcFloor = Utils.ToTileCoordinates(npc.Center);
-                    if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0 && Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidType == LiquidID.Honey)
-                    {
-                        if (npc.life < npc.lifeMax - 5)
-                        {
-                            npc.life += 5;
-                            npc.HealEffect(5);
-                        }
-                    }
-                }
-                if (npc.type == NPCID.SkeletronHead)
-                {
-                    for (int i = 0; i < Main.maxNPCs; i++)
-                    {
-                        if (Main.npc[i].type == NPCID.SkeletronHand)
-                        {
-                            if (Main.npc[i].dontTakeDamage != true)
-                            {
-                                npc.dontTakeDamage = NPC.AnyNPCs(NPCID.SkeletronHand);
-                            }
-                        }
-                    }
-                }
-                if (npc.type == NPCID.Deerclops)
-                {
-                    Main.windSpeedCurrent = 2f;
-                    Main.screenMaximized = false;
-
-                    Main.StartRain();
-                    Main.SyncRain();
-                    if (!DearclopsDead)
-                    {
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
-                        {
-                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 0, 30);
-                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Darkness, 0, 0, 30);
-                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
-                            player.dontStarveShader = true;
-                        }
-                        else
-                        {
-                            Main.player[npc.target].AddBuff(BuffID.Hunger, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                            Main.player[npc.target].AddBuff(BuffID.Darkness, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                            Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                            Main.player[npc.target].dontStarveShader = true;
-                        }
-                    }
-                }
-                if (npc.type == NPCID.QueenSlimeBoss)
-                {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.WindPushed, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.VortexDebuff, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.QueenSlimeMount, 0, 0, 30);
-                    }
-                    else
-                    {
-                        Main.player[npc.target].AddBuff(BuffID.WindPushed, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                        Main.player[npc.target].AddBuff(BuffID.VortexDebuff, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                        Main.player[npc.target].AddBuff(BuffID.QueenSlimeMount, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-
-                    }
-                }
-                if (npc.type == NPCID.WallofFleshEye)
-                {
-                    if (attackCounter < 100)
-                    {
-                        attackCounter++;
-                    }
-                    else
-                    {
-                        attackCounter = 0;
-                    }
-                    if (attackCounter >= 50 && attackCounter <= 55)
-                    {
-                        targetProj = SearchTargetWallOfFlesh(npc);
-
-                        if (targetProj != null)
-                        {
-                            GeneralDataStorage.InterceptionDroneTarget = targetProj;
-                            if (targetProj.active)
-                            {
-                                Vector2 velocity = targetProj.position - npc.position;
-                                updateRotation(npc, true);
-                                var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, velocity, ModContent.ProjectileType<InterceptionBream>(), 0, 0, Main.myPlayer);
-                                Main.projectile[p].Size = new(60f, 60f);
-                                Main.projectile[p].hostile = true;
-                                Main.projectile[p].friendly = false;
-                                Main.projectile[p].velocity *= 3;
-                            }
-                        }
-                    }
-                }
-                if (npc.type == NPCID.Spazmatism)
-                {
-                    if (npc.localAI[2] >= 1f)
-                    {
-                        if (npc.ai[2] == 100f || npc.ai[2] == 50f || npc.ai[2] == 150f || npc.ai[2] == 0f || npc.ai[2] == 200f)
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                ShootIa(npc, npc.damage, ProjectileID.CursedFlameHostile, player, 10f + i, new(-0.5f + i, 0.5f + i), i * 10);
-                            }
-                        }
-                    }
-                }
-                if (npc.type == NPCID.Retinazer)
-                {
-
-                    if (NPC.AnyNPCs(NPCID.Spazmatism))
-                    {
-                        if (attackCounter < 200)
+                        if (attackCounter < 300)
                         {
                             attackCounter++;
                         }
@@ -333,56 +417,287 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                             attackCounter = 0;
                         }
 
-                        if (attackCounter == 100)
+                        if (attackCounter == 200)
                         {
-                            for (int i = 0; i < Main.maxNPCs; i++)
+                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.Center.X, (int)npc.Center.Y, -57);
+                        }
+                        Point NpcFloor = Utils.ToTileCoordinates(npc.Center);
+                        if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0 && Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidType == LiquidID.Honey)
+                        {
+                            if (npc.life < npc.lifeMax - 5)
                             {
-                                if (Main.npc[i].type == NPCID.Spazmatism)
+                                npc.life += 5;
+                                npc.HealEffect(5);
+                            }
+                        }
+                    }
+                    if (npc.type == NPCID.SkeletronHead)
+                    {
+                        for (int i = 0; i < Main.maxNPCs; i++)
+                        {
+                            if (Main.npc[i].type == NPCID.SkeletronHand)
+                            {
+                                if (Main.npc[i].dontTakeDamage != true)
                                 {
-                                    updateRotation(npc, false);
-                                    var p = ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<HealthBream>(), Main.npc[i], 10f);
-                                    Main.projectile[p].Size = new(60f, 60f);
+                                    npc.dontTakeDamage = NPC.AnyNPCs(NPCID.SkeletronHand);
                                 }
                             }
                         }
                     }
-                }
-
-                bool[] IsInmune = new bool[4];
-                if (npc.type == NPCID.SkeletronPrime)
-                {
-                    if (NPC.AnyNPCs(NPCID.PrimeCannon) || NPC.AnyNPCs(NPCID.PrimeLaser) || NPC.AnyNPCs(NPCID.PrimeSaw) || NPC.AnyNPCs(NPCID.PrimeVice))
+                    if (npc.type == NPCID.Deerclops)
                     {
-                        for (int a = 0; a < Main.maxNPCs; a++)
+                        Main.windSpeedCurrent = 2f;
+                        Main.screenMaximized = false;
+
+                        Main.StartRain();
+                        Main.SyncRain();
+                        if (!DearclopsDead)
                         {
-                            for (int i = 0; i < SkeletronPrimeHands.Count; i++)
+                            if (Main.netMode == NetmodeID.MultiplayerClient)
                             {
-                                if (SkeletronPrimeHands.Contains(Main.npc[a].type) && !Main.npc[a].dontTakeDamage)
+                                RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 0, 30);
+                                RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Darkness, 0, 0, 30);
+                                RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
+                                player.dontStarveShader = true;
+                            }
+                            else
+                            {
+                                Main.player[npc.target].AddBuff(BuffID.Hunger, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                                Main.player[npc.target].AddBuff(BuffID.Darkness, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                                Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                                Main.player[npc.target].dontStarveShader = true;
+                            }
+                        }
+                    }
+                    if (npc.type == NPCID.QueenSlimeBoss)
+                    {
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.WindPushed, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.VortexDebuff, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.QueenSlimeMount, 0, 0, 30);
+                        }
+                        else
+                        {
+                            Main.player[npc.target].AddBuff(BuffID.WindPushed, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                            Main.player[npc.target].AddBuff(BuffID.VortexDebuff, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+                            Main.player[npc.target].AddBuff(BuffID.QueenSlimeMount, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+
+                        }
+                    }
+                    if (npc.type == NPCID.WallofFleshEye)
+                    {
+                        if (attackCounter < 100)
+                        {
+                            attackCounter++;
+                        }
+                        else
+                        {
+                            attackCounter = 0;
+                        }
+                        if (attackCounter >= 50 && attackCounter <= 55)
+                        {
+                            targetProj = SearchTargetWallOfFlesh(npc);
+
+                            if (targetProj != null)
+                            {
+                                GeneralDataStorage.InterceptionDroneTarget = targetProj;
+                                if (targetProj.active)
                                 {
-                                    IsInmune[i] = true;
-                                }
-                                else
-                                {
-                                    IsInmune[i] = false;
+                                    Vector2 velocity = targetProj.position - npc.position;
+                                    updateRotation(npc, true);
+                                    var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, velocity, ModContent.ProjectileType<InterceptionBream>(), 0, 0, Main.myPlayer);
+                                    Main.projectile[p].Size = new(60f, 60f);
+                                    Main.projectile[p].hostile = true;
+                                    Main.projectile[p].friendly = false;
+                                    Main.projectile[p].velocity *= 3;
                                 }
                             }
                         }
-                        if (!IsInmune[0] && !IsInmune[1] && !IsInmune[2] && !IsInmune[3])
+                    }
+                    if (npc.type == NPCID.Spazmatism)
+                    {
+                        if (npc.localAI[2] >= 1f)
                         {
-                            npc.dontTakeDamage = true;
+                            if (npc.ai[2] == 100f || npc.ai[2] == 50f || npc.ai[2] == 150f || npc.ai[2] == 0f || npc.ai[2] == 200f)
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    ShootIa(npc, npc.damage, ProjectileID.CursedFlameHostile, player, 10f + i, new(-0.5f + i, 0.5f + i), i * 10);
+                                }
+                            }
+                        }
+                    }
+                    if (npc.type == NPCID.Retinazer)
+                    {
+
+                        if (NPC.AnyNPCs(NPCID.Spazmatism))
+                        {
+                            if (attackCounter < 200)
+                            {
+                                attackCounter++;
+                            }
+                            else
+                            {
+                                attackCounter = 0;
+                            }
+
+                            if (attackCounter == 100)
+                            {
+                                for (int i = 0; i < Main.maxNPCs; i++)
+                                {
+                                    if (Main.npc[i].type == NPCID.Spazmatism)
+                                    {
+                                        updateRotation(npc, false);
+                                        var p = ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<HealthBream>(), Main.npc[i], 10f);
+                                        Main.projectile[p].Size = new(60f, 60f);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    bool[] IsInmune = new bool[4];
+                    if (npc.type == NPCID.SkeletronPrime)
+                    {
+                        if (NPC.AnyNPCs(NPCID.PrimeCannon) || NPC.AnyNPCs(NPCID.PrimeLaser) || NPC.AnyNPCs(NPCID.PrimeSaw) || NPC.AnyNPCs(NPCID.PrimeVice))
+                        {
+                            for (int a = 0; a < Main.maxNPCs; a++)
+                            {
+                                for (int i = 0; i < SkeletronPrimeHands.Count; i++)
+                                {
+                                    if (SkeletronPrimeHands.Contains(Main.npc[a].type) && !Main.npc[a].dontTakeDamage)
+                                    {
+                                        IsInmune[i] = true;
+                                    }
+                                    else
+                                    {
+                                        IsInmune[i] = false;
+                                    }
+                                }
+                            }
+                            if (!IsInmune[0] && !IsInmune[1] && !IsInmune[2] && !IsInmune[3])
+                            {
+                                npc.dontTakeDamage = true;
+                            }
+                            else
+                            {
+                                npc.dontTakeDamage = false;
+                            }
                         }
                         else
                         {
                             npc.dontTakeDamage = false;
                         }
-                    }
-                    else
-                    {
-                        npc.dontTakeDamage = false;
-                    }
 
-                    if (!npc.dontTakeDamage)
+                        if (!npc.dontTakeDamage)
+                        {
+                            if (attackCounter < 200)
+                            {
+                                attackCounter++;
+                            }
+                            else
+                            {
+                                attackCounter = 0;
+                            }
+                            if (attackCounter == 180)
+                            {
+                                for (int i = -2; i < 5; i++)
+                                {
+                                    Vector2 pos = (player.Center - npc.Center).RotatedBy(i * 0.2f);
+                                    int proj = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, pos, ProjectileID.PinkLaser, 20, 1, Main.myPlayer);
+                                    Main.projectile[proj].velocity /= 2;
+                                }
+                            }
+                        }
+                    }
+                    if (npc.type == NPCID.Plantera)
                     {
+                        int maxHook = GetHootAmount(npc);
+                        if (NpcList.Count > maxHook)
+                        {
+                            NpcList[NpcList.Count - 1].dontTakeDamage = false;
+                            NpcList[NpcList.Count - 1].life = 0;
+                            NpcList[NpcList.Count - 1].scale = 5;
+                            NpcList.RemoveAt(NpcList.Count - 1);
+                        }
+                        else if (NpcList.Count == 0)
+                        {
+                            for (int i = 0; i < Main.maxNPCs; i++)
+                            {
+                                if (Main.npc[i].type == NPCID.PlanterasHook && Main.npc[i].active)
+                                {
+                                    NpcList.Add(Main.npc[i]);
+                                }
+                            }
+                        }
+
+                        if (NPC.AnyNPCs(NPCID.PlanterasHook))
+                        {
+                            for (int i = 0; i < Main.maxNPCs; i++)
+                            {
+                                if (Main.npc[i].type == NPCID.PlanterasHook)
+                                {
+                                    if (attackCounter == 100)
+                                    {
+                                        Main.npc[i].velocity = player.position + new Vector2(Main.rand.Next(-6, 6) * 16, Main.rand.Next(-6, 6) * 16) - npc.position;
+                                    }
+                                }
+                            }
+                        }
+                        if (attackCounter < 110)
+                        {
+                            attackCounter++;
+                        }
+                        else
+                        {
+                            attackCounter = 0;
+                        }
+                    }
+                    if (npc.type == NPCID.DukeFishron)
+                    {
+                        if (attackCounter < 400)
+                        {
+                            attackCounter++;
+                        }
+                        else
+                        {
+                            attackCounter = 0;
+                            if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 3)
+                            {
+                                int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
+                                Main.npc[n].lifeMax = 1000;
+                                Main.npc[n].life = 1000;
+                            }
+                        }
+                    }
+                    if (npc.type == NPCID.HallowBoss)
+                    {
+                        Main.dayTime = true;
+                        Main.time = 27000.0;
+                        Netcode.SyncWorld();
+                    }
+                    if (npc.type == NPCID.CultistBoss)
+                    {
+                        if (!npc.dontTakeDamage)
+                        {
+                            if (attackCounter == 100)
+                            {
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position + new Vector2(i * 50, 0), (Main.player[npc.target].position - npc.position).RotatedBy(i * 10), ProjectileID.CultistBossFireBall, 30, 0, 255);
+                                    Main.projectile[p].velocity /= 2;
+                                }
+                            }
+                            if (attackCounter == 110)
+                            {
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position + new Vector2(i * 50, 0), (Main.player[npc.target].position - npc.position).RotatedBy(i * 10), ProjectileID.CultistBossFireBallClone, 30, 0, 255);
+                                    Main.projectile[p].velocity /= 4;
+                                }
+                            }
+                        }
                         if (attackCounter < 200)
                         {
                             attackCounter++;
@@ -391,105 +706,47 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         {
                             attackCounter = 0;
                         }
-                        if (attackCounter == 180)
+                    }
+                    if (npc.type == NPCID.MoonLordCore)
+                    {
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
-                            for (int i = -2; i < 5; i++)
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Horrified, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Weak, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.ChaosState, 0, 0, 30);
+                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.NoBuilding, 0, 0, 30);
+                            if (NPC.AnyNPCs(NPCID.Dryad))
                             {
-                                Vector2 pos = (player.Center - npc.Center).RotatedBy(i * 0.2f);
-                                int proj = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, pos, ProjectileID.PinkLaser, 20, 1, Main.myPlayer);
-                                Main.projectile[proj].velocity /= 2;
+                                RemnantPlayer.ApplyBuffToAllPlayers(BuffID.DryadsWard, 0, 0, 30);
                             }
                         }
-                    }
-                }
-                if (npc.type == NPCID.Plantera)
-                {
-                    int maxHook = GetHootAmount(npc);
-                    if (NpcList.Count > maxHook)
-                    {
-                        NpcList[NpcList.Count - 1].dontTakeDamage = false;
-                        NpcList[NpcList.Count - 1].life = 0;
-                        NpcList[NpcList.Count - 1].scale = 5;
-                        NpcList.RemoveAt(NpcList.Count - 1);
-                    }
-                    else if (NpcList.Count == 0)
-                    {
-                        for (int i = 0; i < Main.maxNPCs; i++)
+                        else
                         {
-                            if (Main.npc[i].type == NPCID.PlanterasHook && Main.npc[i].active)
+                            Main.player[npc.target].AddBuff(BuffID.Horrified, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                            Main.player[npc.target].AddBuff(BuffID.Weak, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                            Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                            Main.player[npc.target].AddBuff(BuffID.ChaosState, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                            Main.player[npc.target].AddBuff(BuffID.NoBuilding, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                            if (NPC.AnyNPCs(NPCID.Dryad))
                             {
-                                NpcList.Add(Main.npc[i]);
-                            }
-                        }
-                    }
-
-                    if (NPC.AnyNPCs(NPCID.PlanterasHook))
-                    {
-                        for (int i = 0; i < Main.maxNPCs; i++)
-                        {
-                            if (Main.npc[i].type == NPCID.PlanterasHook)
-                            {
-                                if (attackCounter == 100)
-                                {
-                                    Main.npc[i].velocity = player.position + new Vector2(Main.rand.Next(-6, 6) * 16, Main.rand.Next(-6, 6) * 16) - npc.position;
-                                }
-                            }
-                        }
-                    }
-                    if (attackCounter < 110)
-                    {
-                        attackCounter++;
-                    }
-                    else
-                    {
-                        attackCounter = 0;
-                    }
-                }
-                if (npc.type == NPCID.DukeFishron)
-                {
-                    if (attackCounter < 400)
-                    {
-                        attackCounter++;
-                    }
-                    else
-                    {
-                        attackCounter = 0;
-                        if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 3)
-                        {
-                            int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
-                            Main.npc[n].lifeMax = 1000;
-                            Main.npc[n].life = 1000;
-                        }
-                    }
-                }
-                if (npc.type == NPCID.HallowBoss)
-                {
-                    Main.dayTime = true;
-                    Main.time = 27000.0;
-                    Netcode.SyncWorld();
-                }
-                if (npc.type == NPCID.CultistBoss)
-                {
-                    if (!npc.dontTakeDamage)
-                    {
-                        if (attackCounter == 100)
-                        {
-                            for (int i = 0; i < 5; i++)
-                            {
-                                int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position + new Vector2(i * 50, 0), (Main.player[npc.target].position - npc.position).RotatedBy(i * 10), ProjectileID.CultistBossFireBall, 30, 0, 255);
-                                Main.projectile[p].velocity /= 2;
+                                Main.player[npc.target].AddBuff(BuffID.DryadsWard, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
                             }
                         }
                         if (attackCounter == 110)
                         {
-                            for (int i = 0; i < 5; i++)
+                            for (int i = 0; i < 2; i++)
                             {
-                                int p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position + new Vector2(i * 50, 0), (Main.player[npc.target].position - npc.position).RotatedBy(i * 10), ProjectileID.CultistBossFireBallClone, 30, 0, 255);
-                                Main.projectile[p].velocity /= 4;
+                                int p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.SolarCrawltipedeHead);
+                                Main.npc[p].lifeMax = 100;
+                                Main.npc[p].life = 50;
+                                Main.npc[p].defDefense = 0;
+                                Main.npc[p].defense = 0;
+                                Main.npc[p].dontTakeDamage = false;
                             }
                         }
                     }
-                    if (attackCounter < 200)
+                    if (attackCounter < 800)
                     {
                         attackCounter++;
                     }
@@ -498,57 +755,192 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         attackCounter = 0;
                     }
                 }
-                if (npc.type == NPCID.MoonLordCore)
+            }
+
+            base.AI(npc);
+
+            
+            
+        }
+        bool spawnedDesertScourgeExtraGuardian = false;
+
+        [JITWhenModsEnabled("CalamityMod")]
+        public void CalamityAi(NPC npc)
+        {
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
+            {
+                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 70) && !spawnedDesertScourgeExtraGuardian)
                 {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Horrified, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Weak, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.ChaosState, 0, 0, 30);
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.NoBuilding, 0, 0, 30);
-                        if (NPC.AnyNPCs(NPCID.Dryad))
-                        {
-                            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.DryadsWard, 0, 0, 30);
-                        }
-                    }
-                    else
-                    {
-                        Main.player[npc.target].AddBuff(BuffID.Horrified, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
-                        Main.player[npc.target].AddBuff(BuffID.Weak, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
-                        Main.player[npc.target].AddBuff(BuffID.Blackout, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
-                        Main.player[npc.target].AddBuff(BuffID.ChaosState, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
-                        Main.player[npc.target].AddBuff(BuffID.NoBuilding, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
-                        if (NPC.AnyNPCs(NPCID.Dryad))
-                        {
-                            Main.player[npc.target].AddBuff(BuffID.DryadsWard, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
-                        }
-                    }
-                    if (attackCounter == 110)
-                    {
-                        for (int i = 0; i < 2; i++)
-                        {
-                            int p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.SolarCrawltipedeHead);
-                            Main.npc[p].lifeMax = 100;
-                            Main.npc[p].life = 50;
-                            Main.npc[p].defDefense = 0;
-                            Main.npc[p].defense = 0;
-                            Main.npc[p].dontTakeDamage = false;
-                        }
-                    }
+                    NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
+                    spawnedDesertScourgeExtraGuardian = true;
                 }
-                if (attackCounter < 800)
+            }
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Crabulon"))
+            {
+                if (attackCounter++ >= 200)
                 {
-                    attackCounter++;
+                    int maxProj = 4;
+                    for (int i = 0; i < maxProj / 2; i++)
+                    {
+                        Vector2 velocity = (Main.player[npc.target].Center - npc.Center).RotatedBy((360 / maxProj / 2) * i);
+                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
+                        Main.projectile[p].timeLeft = 60;
+                        Main.projectile[p].ignoreWater = true;
+                    }
+                    for (int i = 0; i < maxProj / 2; i++)
+                    {
+                        Vector2 velocity = (Main.player[npc.target].Center - npc.Center).RotatedBy((-360 / maxProj / 2) * i);
+                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
+                        Main.projectile[p].timeLeft = 60;
+                        Main.projectile[p].ignoreWater = true;
+                    }
+                    attackCounter = 0;
                 }
-                else
+                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 50) && !spawnedDesertScourgeExtraGuardian)
                 {
+                    for (int i = 0; i <= 2; i++)
+                    {
+                        NPC.SpawnOnPlayer(npc.FindClosestPlayer(), NPCID.GiantFungiBulb);
+                    }
+                    for (int i = 0; i < 5; i++)
+                    {
+                        NPC.SpawnOnPlayer(npc.FindClosestPlayer(), NPCID.ZombieMushroomHat);
+                        NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X + Main.rand.Next(-100, 100), (int)npc.Center.Y, NPCID.ZombieMushroomHat);
+                    }
+                    spawnedDesertScourgeExtraGuardian = true;
+                }
+            }
+            if (npc.type == perforatorWormMedium[1])
+            {
+                if (attackCounter++ >= 300)
+                {
+                    var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(5, 0).RotatedBy(npc.rotation), CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    Main.projectile[p].hostile = true;
+                    Main.projectile[p].friendly = false;
+                    p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(-5, 0).RotatedBy(npc.rotation), CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    Main.projectile[p].hostile = true;
+                    Main.projectile[p].friendly = false;
                     attackCounter = 0;
                 }
             }
-            base.AI(npc);
-        }
 
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"))
+            {
+                float lifeRatio = npc.life / (float)npc.lifeMax;
+                bool phase5 = lifeRatio < (DificultyUtils.Death ? 0.5f : DificultyUtils.Revengeance ? 0.45f : 0.3f);
+                if (phase5 && !spawnedDesertScourgeExtraGuardian && npc.boss)
+                {
+                    int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)Main.player[npc.target].Center.X + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), (int)Main.player[npc.target].Center.Y + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"));
+                    Main.npc[n].lifeMax = 1000;
+                    Main.npc[n].boss = false;
+                    Main.npc[n].life = 1000;
+                    Main.npc[n].alpha = 200;
+                    Main.npc[n].scale /= 2;
+                    spawnedDesertScourgeExtraGuardian = true;
+                }
+            }
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AquaticScourgeHead"))
+            {
+                Main.player[npc.target].AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "DoGExtremeGravity"), 1);
+                Main.player[npc.target].AddBuff(BuffID.Darkness, 1);
+                Main.player[npc.target].AddBuff(BuffID.Blackout, 1);
+                foreach (var p in Main.player)
+                {
+                    if (p != Main.player[npc.target] && p.Distance(npc.Center) < 2000)
+                        Main.player[npc.FindClosestPlayer()].AddBuff(BuffID.Confused, 1);
+                }
+            }
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BrimstoneElemental"))
+            {
+                BrimstoneElemental brimmy = npc.ModNPC<BrimstoneElemental>();
+                if (npc.ai[0] == 1f)
+                {
+                    // Avoid cheap bullshit
+                    npc.damage = 0;
+
+                    npc.chaseable = true;
+                    Vector2 position = new Vector2(npc.ai[1] * 16f - (npc.width / 2), npc.ai[2] * 16f - (npc.height / 2));
+                    for (int m = 0; m < 5; m++)
+                    {
+                        int dust = Dust.NewDust(position, npc.width, npc.height, DustID.LifeDrain, 0f, -1f, 90, default, 2f);
+                        Main.dust[dust].noGravity = true;
+                        Main.dust[dust].fadeIn = 1f;
+                    }
+                    npc.alpha += DificultyUtils.BossRush ? 15 : DificultyUtils.Death ? 5 : DificultyUtils.Revengeance ? 4 : Main.expertMode ? 3 : 2;
+                    if (npc.alpha >= 255)
+                    {
+                        int spawnType = brimmy.currentMode == 3 ? NPCID.AngryNimbus : ModContent.NPCType<Brimling>();
+                        int enemyCount = brimmy.currentMode == 3 ? 3 : 3; // 3 angry nimbi if cloud, otherwise 1 brimling
+                        if (Main.netMode != NetmodeID.MultiplayerClient && NPC.CountNPCS(spawnType) < (DificultyUtils.Death ? 1 : 2) && DificultyUtils.Revengeance && brimmy.currentMode != 2) // dont spawn anything if gfb rare sand
+                        {
+                            for (int i = 0; i < enemyCount; i++)
+                                NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, spawnType);
+                        }
+                        SoundEngine.PlaySound(SoundID.Item8, npc.Center);
+                        npc.alpha = 255;
+                        npc.position = position;
+                        for (int n = 0; n < 15; n++)
+                        {
+                            int warpDust = Dust.NewDust(npc.position, npc.width, npc.height, DustID.LifeDrain, 0f, -1f, 90, default, 3f);
+                            Main.dust[warpDust].noGravity = true;
+                        }
+                        npc.ai[0] = 2f;
+                        npc.netUpdate = true;
+                    }
+                }
+            }
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalamitasClone"))
+            {
+                int count = NPC.CountNPCS(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"));
+                float lifePercentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
+                int maxCount = (int)(7 + ((100 - lifePercentage) / 10));
+                if (count < maxCount)
+                {
+                    if (attackCounter++ >= 200 - ((100 - lifePercentage)))
+                    {
+                        NPC.SpawnOnPlayer(npc.target, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"));
+                        attackCounter = 0;
+                    }
+                }
+            }
+            if(npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GreatSandShark"))
+            {
+                if(attackCounter++ >= 200)
+                {
+                    Main.player[npc.target].velocity.X += -Main.player[npc.target].velocity.X * 2f;
+                    attackCounter = 0;
+                }
+            }
+            if(npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumAureus"))
+            {
+                if(npc.oldVelocity.Y > 3f &&  npc.velocity.Y <= 0f)
+                {
+                    int ammount = 3;
+                    for (int i = 0; i < ammount; i++)
+                    {
+                        var p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position + new Vector2(npc.width/ ammount * i, npc.scale), Vector2.Zero, ModContent.ProjectileType<FrozenNovaExplosion>(), 0, 0, Main.myPlayer);
+                        Main.projectile[p].ai[2] = 5;
+                        Main.projectile[p].hostile = true;
+                        Main.projectile[p].friendly = false;
+                        Main.projectile[p].Size = new(400,400);
+                        Main.projectile[p].scale = 6f;
+                        Main.projectile[p].GetAlpha(Color.Purple);
+                    }
+                }
+            }
+
+        }
+        
+
+        public override bool PreKill(NPC npc)
+        {
+            if(npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"))
+            {
+                if (!npc.boss)
+                    return false;
+            }
+            return base.PreKill(npc);
+        }
         private Projectile SearchTargetWallOfFlesh(NPC npc)
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
@@ -582,21 +974,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             else return 3;
         }
-        public int GetEnemyCount(int npcid)
+        private List<NPC> GetNPCList(int npcid, out List<NPC> CreepersList)
         {
-            int EnemyCount = 0;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].type == npcid)
-                {
-                    EnemyCount++;
-                }
-            }
-            return EnemyCount;
-        }
-        private List<NPC> GetNPCList(int npcid)
-        {
-            List<NPC> CreepersList = new List<NPC> { };
+            CreepersList = [];
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].type == npcid)
@@ -606,9 +986,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             return CreepersList;
         }
-        List<Vector2> GetPositionsAroundNPC(NPC npc, float radius, int numPositions)
+        List<Vector2> GetPositionsAround(NPC npc, float radius, int numPositions)
         {
-            List<Vector2> positions = new List<Vector2>();
+            List<Vector2> positions = [];
 
             float angleSpacing = MathHelper.TwoPi / numPositions;
 
@@ -626,7 +1006,46 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
             return positions;
         }
+        List<Vector2> GetPositionsAround(Player player, float radius, int numPositions, out List<Vector2> positions)
+        {
+            positions = [];
 
+            float angleSpacing = MathHelper.TwoPi / numPositions;
+
+            for (int i = 0; i < numPositions; i++)
+            {
+                float angle = angleSpacing * i;
+
+                float x = radius * MathF.Cos(angle);
+                float y = radius * MathF.Sin(angle);
+
+                Vector2 position = player.Center + new Vector2(x, y);
+
+                positions.Add(position);
+            }
+
+            return positions;
+        }
+        List<Vector2> GetPositionsAround(Player player, float radius, int numPositions, float angle, out List<Vector2> positions)
+        {
+            positions = [];
+
+            float angleSpacing = (MathHelper.TwoPi) / numPositions;
+
+            for (int i = 0; i < numPositions; i++)
+            {
+                float Angle = (angleSpacing  * i) + angle;
+
+                float x = radius * MathF.Cos(Angle);
+                float y = radius * MathF.Sin(Angle);
+
+                Vector2 position = player.Center + new Vector2(x, y);
+
+                positions.Add(position);
+            }
+
+            return positions;
+        }
 
         public static NPC target;
         public static Projectile targetProj;
@@ -655,7 +1074,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].friendly == npc.friendly && Main.npc[i].active && Main.npc[i].type != npc.type)
+                if (Main.npc[i].friendly == npc.friendly && Main.npc[i].active && Main.npc[i] != npc)
                 {
                     float distance = Vector2.Distance(npc.position, Main.npc[i].position);
                     if (distance < Range)
@@ -717,8 +1136,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             Main.projectile[p].friendly = false;
             return p;
         }
-        public List<int> SlimesList = new List<int>()
-        {
+        public List<int> SlimesList =
+        [
             -25,
             -26,
             -10,
@@ -746,12 +1165,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             302,
             535,
             537
-        };
+        ];
 
         public override void HitEffect(NPC npc, NPC.HitInfo hit)
         {
             base.HitEffect(npc, hit);
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
             {
                 if (npc.type == NPCID.KingSlime)
                 {
@@ -762,37 +1181,37 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
                     if(RemnantOfTheAncientsMod.CalamityMod != null)
                     {
-                        Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
-                        Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
+                        Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
+                        Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
                         if (CalamityUtils.IsBossDefeated("HiveMind") || CalamityUtils.IsBossDefeated("PerforatorHive"))
                         {
-                            Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
+                            Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
                         }
                         if (Main.hardMode)
                         {
-                            Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
+                            Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
                             if (CalamityUtils.IsBossDefeated("Cryogen") && NPC.downedMechBossAny)
                             {
-                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
+                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
                             }
                             if (NPC.downedPlantBoss)
                             {
-                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
+                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
                             }
                             if (NPC.downedGolemBoss)
                             {
-                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
+                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
                             }
                             if (CalamityUtils.IsBossDefeated("AstrumDeus"))
                             {
-                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
+                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
                             }
                             if (NPC.downedMoonlord)
                             {
-                                Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
+                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
                                 if (CalamityUtils.IsBossDefeated("Providence"))
                                 {
-                                    Utils1.AddSecure(SlimesList, ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
+                                    Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
                                 }
                             }
                         }
@@ -847,60 +1266,74 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         bool DearclopsDead = false;
         public override bool CheckDead(NPC npc)
         {
-            if (npc.type == NPCID.MoonLordCore)
+            if (Reaper.ReaperMode)
             {
-                if (npc.life <= 1)
+                if (npc.type == NPCID.MoonLordCore)
                 {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    if (npc.life <= 1)
                     {
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Weak);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.ChaosState);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.NoBuilding);
-                    }
-                    else
-                    {
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.Horrified);
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.Weak);
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.ChaosState);
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.NoBuilding);
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.Weak);
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.ChaosState);
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.NoBuilding);
+                        }
+                        else
+                        {
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.Horrified);
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.Weak);
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.ChaosState);
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.NoBuilding);
+                        }
                     }
                 }
-            }
-            if (npc.type == NPCID.Deerclops)
-            {
-                if (npc.life <= 1 || (DificultyUtils.InfernumMode))
+                if (npc.type == NPCID.Deerclops)
                 {
-                    DearclopsDead = true;
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    if (npc.life <= 1 || (DificultyUtils.InfernumMode))
                     {
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Darkness);
-                    }
-                    else
-                    {               
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.Darkness);
+                        DearclopsDead = true;
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.Darkness);
+                        }
+                        else
+                        {
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.Blackout);
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.Darkness);
+                        }
                     }
                 }
-            }
-            if (npc.type == NPCID.QueenSlimeBoss)
-            {
-                if (npc.life <= 1)
+                if (npc.type == NPCID.QueenSlimeBoss)
                 {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    if (npc.life <= 1)
                     {
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.WindPushed);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.VortexDebuff);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.QueenSlimeMount);
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.WindPushed);
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.VortexDebuff);
+                            RemnantPlayer.ClearBuffToAllPlayers(BuffID.QueenSlimeMount);
+                        }
+                        else
+                        {
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.WindPushed);
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.VortexDebuff);
+                            Main.player[Main.myPlayer].ClearBuff(BuffID.QueenSlimeMount);
+                        }
                     }
-                    else
+                }
+                if(RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    int idCrimulan = CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin");
+                    if (npc.type == idCrimulan || npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"))
                     {
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.WindPushed);
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.VortexDebuff);
-                        Main.player[Main.myPlayer].ClearBuff(BuffID.QueenSlimeMount);
+                        var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, NPCID.KingSlime);
+                        Main.npc[p].lifeMax = 500;
+                        Main.npc[p].life = 500;
+                        Main.npc[p].scale = 0.5f; 
                     }
                 }
             }
@@ -910,13 +1343,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone)
         {
             base.OnHitByProjectile(npc, projectile, hit, damageDone);
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
             {
                 if (npc.type == NPCID.Creeper)
                 {
                     projectile.penetrate = 1;
                 }
             }
-        }
+        }    
     }
 }

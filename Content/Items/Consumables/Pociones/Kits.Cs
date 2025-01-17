@@ -152,6 +152,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             Item.CloneDefaults(ItemType<Combat_Potion_Kit>());
             Item.buffType = BuffType<Summon_Infusion>();
         }
+        public override void OnConsumeItem(Player player)
+        {
+            player.AddBuff(SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
+            base.OnConsumeItem(player);
+        }
         public override void AddRecipes()
         {
             if (RemnantOfTheAncientsMod.CalamityMod != null)
@@ -174,7 +179,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                 .AddIngredient(ItemID.SummoningPotion, 1)
                 .AddIngredient(ItemID.InfernoPotion, 1)
                 .AddIngredient(ItemType<Commander_Potion>(), 1)
-                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
+                .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
                 .AddTile(TileID.Bottles)
                 .Register();
             }
@@ -189,7 +194,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur sans fin");
             // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador eterno");
         }
-
+        public override void OnConsumeItem(Player player)
+        {
+            player.AddBuff(SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
+            base.OnConsumeItem(player);
+        }
         public override void AddRecipes()
         {
             base.AddRecipes();
@@ -221,7 +230,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                .AddIngredient(ItemID.SummoningPotion, 30)
                .AddIngredient(ItemID.InfernoPotion, 30)
                .AddIngredient(ItemType<Commander_Potion>(), 30)
-               .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 30)
+               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 30)
                .AddTile(TileID.Bottles)
                .Register();
 
@@ -615,7 +624,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                    .AddIngredient(ItemType<Basic_Potion_Kit>(), 1)
                    .AddIngredient(ItemID.WrathPotion, 1)
                    .AddIngredient(ItemID.RagePotion, 1)
-                   .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BoundingPotion"), 1)
+                   .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BoundingPotion"), 1)
                    .AddTile(TileID.Bottles)
                    .Register();
                 }
@@ -660,7 +669,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                    .AddIngredient(ItemType<Basic_Potion_Kit>(), 30)
                    .AddIngredient(ItemID.WrathPotion, 30)
                    .AddIngredient(ItemID.RagePotion, 30)
-                   .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BoundingPotion"), 30)
+                   .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BoundingPotion"), 30)
                    .AddTile(TileID.Bottles)
                    .Register();
 

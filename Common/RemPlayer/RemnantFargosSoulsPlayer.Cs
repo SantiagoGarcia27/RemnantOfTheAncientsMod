@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod
 
         public bool NightTp;
         public static int NightTpCouldown { get; set; }
-        public static int NightTpCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
+        public static int NightTpCouldownMax { get; set; }
 
         public static bool tuxoniteEnchantCrit;
         public static int tuxoniteEnchantCritDuration = 0;
@@ -52,7 +52,6 @@ namespace RemnantOfTheAncientsMod
 
         public override void PostUpdate()
         {
-            bool togle = false;
             if (NightTp)
             {
                 Player.opacityForAnimation = NightTpCouldown == 0 ? 0.5f : 1;
@@ -61,7 +60,7 @@ namespace RemnantOfTheAncientsMod
                     NightTpCouldown--;
                 }
             }
-            togle = Player.GetToggleValue<DivineAuraEffect>();
+            bool togle = Player.GetToggleValue<DivineAuraEffect>();
             if (!togle)
             {
 

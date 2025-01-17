@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Buffs
                 base.Update(type, player, ref buffIndex);
             }
 
-            if (player.buffTime[buffIndex] > Utils1.FormatTimeToTick(5, 0, 0, 0))
+            if (player.buffTime[buffIndex] > Utils1.FormatTimeToTick(5, 0, 0, 0)|| player.buffTime[buffIndex] < Utils1.FormatTimeToTick(0, 0, 0, 1))
             {
                 // player.buffTime[buffIndex] += player.buffTime[buffIndex] < (int)Utils1.FormatTimeToTick(14, 0, 0, 0) ? player.buffTime[buffIndex]++:0;
                 Main.persistentBuff[type] = true;

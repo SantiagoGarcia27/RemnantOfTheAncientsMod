@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             {
                 int BasicShootTimmer = 30;
                 int CubeShootTimmer = 100;
-                int numberOfPoints = DificultyUtils.ReaperMode? 20 : 10;
+                int numberOfPoints = Reaper.ReaperMode? 20 : 10;
 
                 Phase1Model(npc, BasicShootTimmer, CubeShootTimmer, attackCounter, numberOfPoints);
             }
@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        int npcid = ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
+                        int npcid = SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
                         int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, npcid, 0, 0);
                         Main.npc[a].lifeMax *= 3;
                         Main.npc[a].life *= 3;
@@ -66,7 +66,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     phaseChange[2] = true;
                     for (int i = 0; i < 5; i++)
                     {
-                        int npcid = ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
+                        int npcid = SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
                         int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, npcid, 0, 0);
                         Main.npc[a].lifeMax *= 3;
                         Main.npc[a].life *= 3;
@@ -98,21 +98,21 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     float angle = (float)(2 * Math.PI * i / numberOfPoints);
                     float x = (float)(npc.Center.X + radius * Math.Cos(angle));
                     float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
-                    int proj = ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                    int proj = SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
 
-                    if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
+                    if (SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode && Main.rand.NextBool(SangarUtilities.Common.DificultyUtils.MasochistMode ? 2 : 5))
                     {
                         proj = ProjectileID.FrostBeam;
                     }
 
-                    ShootIceCubeIa(DificultyUtils.ReaperMode ? 5 : 20, proj, 30f, angle + (intercalate * 50), 0, npc.target,npc, x, y);
+                    ShootIceCubeIa(Reaper.ReaperMode ? 5 : 20, proj, 30f, angle + (intercalate * 50), 0, npc.target,npc, x, y);
 
                 }
                 intercalate = intercalate == 0 ? 1 : 0;
             }
             if (attackCounter % n2 == 0)
             {
-                ShootIceCubeIa(DificultyUtils.ReaperMode ? 10 : 40, ModContent.ProjectileType<FrozenHommingIceBlock>(), 30f, 0, 90, npc.target,npc);
+                ShootIceCubeIa(Reaper.ReaperMode ? 10 : 40, ModContent.ProjectileType<FrozenHommingIceBlock>(), 30f, 0, 90, npc.target,npc);
             }
         }
         public static void ShootMainAttackAi(NPC npc, int numberOfPoints, bool intercalateConditiion, int[] intercalateValues)
@@ -124,17 +124,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 float x = (float)(npc.Center.X + radius * Math.Cos(angle));
                 float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
 
-                int proj = ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                int proj = SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
 
-                if ((DificultyUtils.EternityMode || DificultyUtils.MasochistMode) && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
+                if ((SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode) && Main.rand.NextBool(SangarUtilities.Common.DificultyUtils.MasochistMode ? 2 : 5))
                 {
                     proj = ProjectileID.FrostBeam;
                 }
                 else
                 {
-                    proj = ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                    proj = SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
                 }
-                ShootIceCubeIa(DificultyUtils.ReaperMode ? 5 : 20, proj, 30f, angle + (intercalate * 10), 0, npc.target, npc, x, y);
+                ShootIceCubeIa(Reaper.ReaperMode ? 5 : 20, proj, 30f, angle + (intercalate * 10), 0, npc.target, npc, x, y);
 
             }
             intercalate = intercalateConditiion ? intercalateValues[0] : intercalateValues[1];

@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 {
@@ -20,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 		{
 			int lifeDecreased = (int)Utils1.GetValueFromPorcentage(player.statLifeMax2, 20);
 
-            if(!DificultyUtils.ReaperMode) player.statLifeMax2 -= lifeDecreased;
+            if(!Reaper.ReaperMode) player.statLifeMax2 -= lifeDecreased;
             player.GetDamage(DamageClass.Generic) *= 1.2f;
         }
 

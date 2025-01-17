@@ -6,6 +6,7 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Prefixe;
+using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,7 +115,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public void ModifyTooltipsCalamityMod(Item item, List<TooltipLine> Tooltips)
         {
-            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "InmuneTo", Lang.GetBuffName(BuffID.ManaSickness)), Color.White, $"ToolTip4", Color.White);
             }
@@ -268,7 +269,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
                 if (tip != null)
                 {
-                    string text1 = "\n" + Language.GetTextValue("CommonItemTooltip.IncreasesMaxLifeBy", DificultyUtils.ReaperMode ? 10 : 30);
+                    string text1 = "\n" + Language.GetTextValue("CommonItemTooltip.IncreasesMaxLifeBy", Reaper.ReaperMode ? 10 : 30);
                     var text = tip.Text.Insert(tip.Text.Length, text1);
                     tip.Text = text;
                 }
@@ -278,7 +279,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 var tip = Tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
                 if (tip != null)
                 {
-                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedLuck", DificultyUtils.ReaperMode ? 0.4f : 0.2f);
+                    string text1 = "\n" + Language.GetTextValue("Mods.RemnantOfTheAncientsMod.EditVanilla.IncreasedLuck", Reaper.ReaperMode ? 0.4f : 0.2f);
                     var text = tip.Text.Insert(tip.Text.Length, text1);
                     tip.Text = text;
                 }

@@ -59,7 +59,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
             {
                 CreateRecipe()
                 .AddIngredient(ModContent.ItemType<NightBar>(), 16)
-                .AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
+                .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             }

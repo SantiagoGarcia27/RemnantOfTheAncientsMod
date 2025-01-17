@@ -1,4 +1,4 @@
-using Terraria;
+/*using Terraria;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
@@ -73,6 +73,6 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                  PropertyInfo property => (T)property.GetValue(config),
                  _ => throw new Exception("The specified value is not a field or a property or does not exist")
              };
-         }*/
+         }
     }
-}
+}*/

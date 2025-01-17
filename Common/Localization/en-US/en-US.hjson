@@ -20,6 +20,13 @@ Mods: {
 				'''
 		}
 
+		Messages: {
+			Reaper: {
+				On: Welcome to hell, now you're a reaper.
+				Off: Well your soul is free... for now.
+			}
+		}
+
 		TownNPCMood: {
 			Time_Wizard: {
 				DisplayName: Time wizard
@@ -187,6 +194,8 @@ Mods: {
 			Eternity: Eternity
 			StyleStat: "{0} style"
 			InmuneTo: Grants immunity to {0}
+			EndlessF: Endless {0}
+			EndlessM: Endless {0}
 		}
 
 		CommonTooltip: {
@@ -271,12 +280,12 @@ Mods: {
 
 			Exploration_infusion: {
 				DisplayName: Exploration infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Exploration_infusion.Description
+				Description: Definitive exploration buff
 			}
 
 			Fishing_Infusion: {
 				DisplayName: Fishing infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Fishing_Infusion.Description
+				Description: Definitive fishing buff
 			}
 
 			Mage_Infusion: {
@@ -3786,6 +3795,11 @@ Mods: {
 				DisplayName: Endless Darksign
 				Tooltip: ""
 			}
+
+			DesertScourgeSoul: {
+				DisplayName: Desert Scourge Soul
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3795,20 +3809,28 @@ Mods: {
 			DesertAniquilator: {
 				DisplayName: Desert Annihilator
 
-				BossChecklistIntegration: {
-					EntryName: Desert Annihilator
-					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertChest] in the desert
-					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+				SangarUtilities: {
+					SangarUtilities: {
+						BossChecklistIntegration: {
+							EntryName: Desert Annihilator
+							SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertChest] in the desert
+							DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+						}
+					}
 				}
 			}
 
 			FrozenAssaulter: {
 				DisplayName: Frozen Assaulter
 
-				BossChecklistIntegration: {
-					EntryName: Frozen Assaulter
-					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
-					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+				SangarUtilities: {
+					SangarUtilities: {
+						BossChecklistIntegration: {
+							EntryName: Frozen Assaulter
+							SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
+							DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+						}
+					}
 				}
 			}
 
@@ -3817,10 +3839,14 @@ Mods: {
 			InfernalTyrantHead: {
 				DisplayName: Infernal Tyrant
 
-				BossChecklistIntegration: {
-					EntryName: Infernal Tyrant
-					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
-					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+				SangarUtilities: {
+					SangarUtilities: {
+						BossChecklistIntegration: {
+							EntryName: Infernal Tyrant
+							SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
+							DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+						}
+					}
 				}
 			}
 
@@ -4014,6 +4040,7 @@ Mods: {
 			UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
 			NanoDrone.DisplayName: Nano Drone
 			SolverCursor.DisplayName: Solver Cursor
+			HoldSaberCharge.DisplayName: Hold Saber Charge
 		}
 
 		Tiles: {

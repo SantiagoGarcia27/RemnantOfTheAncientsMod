@@ -6,6 +6,7 @@ using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
+using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -106,11 +107,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
                 if (item.type == ItemID.CritterShampoo)
                 {
-                    player.statLifeMax2 += DificultyUtils.ReaperMode ? 10 : 30;
+                    player.statLifeMax2 += Reaper.ReaperMode ? 10 : 30;
                 }
                 if (item.type == ItemID.LuckyHorseshoe)
                 {
-                    player.luck += DificultyUtils.ReaperMode ? 0.2f : 0.4f;
+                    player.luck += Reaper.ReaperMode ? 0.2f : 0.4f;
                     player.luckMaximumCap = 2;
                 }
                 if (item.type == ItemID.FlurryBoots)
@@ -137,7 +138,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         [JITWhenModsEnabled("CalamityMod")]
         public void UpdateAccessoryCalamityMod(Item item, Player player, bool hideVisual)
         {
-            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 player.buffImmune[BuffID.ManaSickness] = true;
                 player.Calamity().eTalisman = true;
@@ -154,15 +155,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public void UpdateAccessoryFargosSoulMod(Item item, Player player, bool hideVisual)
         {
-            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"))
+            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"))
             {
                 ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
             }
-            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"))
+            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"))
             {
                 ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
             }
-            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
             {
                 ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
                 ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
@@ -186,10 +187,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
         public static void ModifyCalamity()
         {
-            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "AngelTreads"));
-            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "TracersCelestial"));
-            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "TracersElysian"));
-            Utils1.AddSecure(FastFall, ExternalModCallUtils.GetItemFromMod(Calamity, "TracersSeraph"));
+            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "AngelTreads"));
+            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "TracersCelestial"));
+            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "TracersElysian"));
+            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "TracersSeraph"));
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -225,7 +226,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public void ModifyTooltipsFargosSoulMod(Item item, List<TooltipLine> tooltips)
         {
-            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
             {
                 int ProjectileSizeBonus = 50;
                 int ProjectileSpeedBonus = 10;
@@ -246,7 +247,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public void ModifyTooltipsCalamityMod(Item item, List<TooltipLine> tooltips)
         {
-            if (item.type == ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
                 if (tip != null)

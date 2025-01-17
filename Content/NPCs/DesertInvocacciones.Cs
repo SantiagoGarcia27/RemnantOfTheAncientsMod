@@ -89,10 +89,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.scale = LifeSize(NPC);
             int[] projectiles =
             [
-                ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMagic"),
-                ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMelee"),
-                ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRanged"),
-                ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRogue")
+                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMagic"),
+                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMelee"),
+                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRanged"),
+                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRogue")
             ];
             int proj = 0;
 

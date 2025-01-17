@@ -38,10 +38,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum
         [JITWhenModsEnabled("InfernumMode")]
         public override void SetDefaults()
         {
-            int rarity = 0;
+            int rarity;
             try
             {
-                rarity = ExternalModCallUtils.GetRarityFromMod(RemnantOfTheAncientsMod.InfernumMod, "InfernumRedRarity");
+                rarity = SangarUtilities.Common.CallUtils.GetRarityFromMod(RemnantOfTheAncientsMod.InfernumMod, "InfernumRedRarity");
             }
             catch
             {

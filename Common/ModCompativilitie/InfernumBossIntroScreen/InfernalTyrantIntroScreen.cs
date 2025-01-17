@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
 
         public override bool CaresAboutBossEffectCondition => true;
 
-        public override bool ShouldBeActive() => NPC.AnyNPCs(ModContent.NPCType<InfernalTyrantHead>()) && DificultyUtils.InfernumMode;
+        public override bool ShouldBeActive() => NPC.AnyNPCs(ModContent.NPCType<InfernalTyrantHead>()) &&SangarUtilities.Common.DificultyUtils.InfernumMode;
 
         public override SoundStyle? SoundToPlayWithTextCreation => null;
     }

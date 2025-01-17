@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
         [JITWhenModsEnabled("CalamityMod")]
         public void SetDefaultCalamity()
         {
-            Item.DamageType = ExternalModCallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
+            Item.DamageType = SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
         }
         [JITWhenModsEnabled("CalamityMod")]
         private void StealStrike(Player player, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

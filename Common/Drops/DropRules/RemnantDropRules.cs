@@ -1,4 +1,5 @@
 ﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
@@ -325,7 +326,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public bool CanDrop(DropAttemptInfo info)
         {
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
                 return ruleForReaperMode.CanDrop(info);
 
             return ruleForNormalMode.CanDrop(info);
@@ -340,7 +341,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info, ItemDropRuleResolveAction resolveAction)
         {
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
                 return resolveAction(ruleForReaperMode, info);
 
             return resolveAction(ruleForNormalMode, info);

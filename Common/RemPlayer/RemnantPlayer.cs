@@ -25,7 +25,6 @@ using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
 using CalamityMod;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using ReLogic.Content;
@@ -34,7 +33,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace RemnantOfTheAncientsMod
 {
 
-	public class RemnantPlayer : ModPlayer
+    public class RemnantPlayer : ModPlayer
 	{
 
 		#region Minions
@@ -142,7 +141,7 @@ namespace RemnantOfTheAncientsMod
 			4755, 4756, 4757, 4754,
 
 		];
-
+		public bool SummonerArea;
 
 
 
@@ -187,6 +186,7 @@ namespace RemnantOfTheAncientsMod
 
 			ChargeBonus = 1;
 			AutoCharge = false;
+			SummonerArea = false;
 
 			if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
 			if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
@@ -240,7 +240,7 @@ namespace RemnantOfTheAncientsMod
 
 			};
 
-			if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : DificultyUtils.ReaperMode ? 2 : 20))
+			if (Main.rand.NextBool(Main.tenthAnniversaryWorld ? 10 : Reaper.ReaperMode ? 2 : 20))
 			{
 				int selection = Main.rand.Next(Suits.Count);
 
@@ -411,8 +411,6 @@ namespace RemnantOfTheAncientsMod
 				Main.player[CurrentPlayer].ClearBuff(BuffId);
 			}
 		}
-
-
 		public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
 		{
 			if (drawInfo.shadow == 0f && Main.rand.NextBool(4))
@@ -430,7 +428,6 @@ namespace RemnantOfTheAncientsMod
 					SpawnDust(DustType<HollyBurn_P>());
 				}
 			}
-
 			void SpawnDust(int id)
 			{
 				int dust = Dust.NewDust(drawInfo.Position - new Vector2(2f, 2f), Player.width + 4, Player.height + 4, id, Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 100, default, 3f);
@@ -701,14 +698,14 @@ namespace RemnantOfTheAncientsMod
 			}
 			proj.position = MousePosition;
 		}
-		public Projectile SpawnProjectileOnMouse(int id, Projectile p)
+		public Projectile SpawnProjectileOnMouse(int id,int damage, Projectile p)
 		{
 			Vector2 MousePosition = new Vector2(Player.tileTargetX * 16, (Player.tileTargetY - 1) * 16);
 			int CountOfProj = Player.ownedProjectileCounts[id];
 
 			if (CountOfProj <= 0)
 			{
-				p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ProjectileID.RollingCactus, 10, 0, Player.whoAmI);
+				p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ProjectileID.RollingCactus, damage, 0, Player.whoAmI);
 				p.friendly = true;
 				p.hostile = false;
 				p.tileCollide = false;

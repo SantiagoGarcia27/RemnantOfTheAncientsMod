@@ -103,9 +103,12 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 			Asset<Texture2D> TextureGray = ModContent.Request<Texture2D>(Texture + "_Blocked");
             Asset<Texture2D> TextureSelected = ModContent.Request<Texture2D>(Texture + "_Glow");
 
-            if (player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[i])
+			bool[] SoulsUpgrades = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0];
+            if (SoulsUpgrades[i])
 			{
-				if (player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[i] > 0)
+				float[] SoulsUpgradesActive = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0];
+
+                if (SoulsUpgradesActive[i] > 0)
 				{
                     ReaperSoulsUIState.Buttons[i].SetImage(TextureSelected);
                 }
@@ -119,7 +122,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 				ReaperSoulsUIState.Buttons[i].SetImage(TextureGray);
 			}
 
-			if (player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[i] > 0)
+			if (player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[1][i] > 0)
 			{
 				
             }
@@ -156,8 +159,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 		public override void PostUpdate()
 		{
 			Player player = Main.player[Main.myPlayer];
+			int Lenght = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0].Length ;
 
-			for (int i = 0; i < player.GetModPlayer<ReaperPlayer>().SoulsUpgrades.Count; i++)
+            for (int i = 0; i < Lenght; i++)
 			{
 				UISoulDisplay.UpdateButtons(i);
 			}

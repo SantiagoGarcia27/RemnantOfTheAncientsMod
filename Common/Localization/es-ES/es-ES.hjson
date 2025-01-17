@@ -22,6 +22,13 @@ Mods: {
 				'''
 		}
 
+		Messages: {
+			Reaper: {
+				On: Bienvenido al infierno, ahora eres un segador.
+				Off: Tu alma es libre... por ahora.
+			}
+		}
+
 		TownNPCMood: {
 			Time_Wizard: {
 				DisplayName: Mago temporal
@@ -193,6 +200,8 @@ Mods: {
 			Eternity: Eternity
 			StyleStat: "{0} estilo"
 			InmuneTo: Ganas inmunidad a {0}
+			EndlessF: "{0} eterna"
+			EndlessM: "{0} eterno"
 		}
 
 		CommonTooltip: {
@@ -276,13 +285,13 @@ Mods: {
 			}
 
 			Exploration_infusion: {
-				DisplayName: Exploration infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Exploration_infusion.Description
+				DisplayName: Infusión de exploración
+				Description: La mezcla definitiva para explorar
 			}
 
 			Fishing_Infusion: {
-				DisplayName: Fishing infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Fishing_Infusion.Description
+				DisplayName: Infusión de pescador
+				Description: La mezcla definitiva para pescar
 			}
 
 			Mage_Infusion: {
@@ -3806,6 +3815,11 @@ Mods: {
 				DisplayName: Marca obscura eterna
 				// Tooltip: ""
 			}
+
+			DesertScourgeSoul: {
+				// DisplayName: Desert Scourge Soul
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -3815,20 +3829,28 @@ Mods: {
 			DesertAniquilator: {
 				DisplayName: Aniquilador Del Desierto
 
-				BossChecklistIntegration: {
-					EntryName: Aniquilador Del Desierto
-					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertChest] en el desierto
-					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+				SangarUtilities: {
+					SangarUtilities: {
+						BossChecklistIntegration: {
+							EntryName: Aniquilador Del Desierto
+							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertChest] en el desierto
+							DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+						}
+					}
 				}
 			}
 
 			FrozenAssaulter: {
 				DisplayName: Asaltante Congelado
 
-				BossChecklistIntegration: {
-					EntryName: Asaltante Congelado
-					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
-					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+				SangarUtilities: {
+					SangarUtilities: {
+						BossChecklistIntegration: {
+							EntryName: Asaltante Congelado
+							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
+							DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+						}
+					}
 				}
 			}
 
@@ -3837,10 +3859,14 @@ Mods: {
 			InfernalTyrantHead: {
 				DisplayName: Tirano Infernal
 
-				BossChecklistIntegration: {
-					EntryName: Tirano Infernal
-					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
-					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+				SangarUtilities: {
+					SangarUtilities: {
+						BossChecklistIntegration: {
+							EntryName: Tirano Infernal
+							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
+							DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+						}
+					}
 				}
 			}
 
@@ -4034,6 +4060,7 @@ Mods: {
 			// UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
 			// NanoDrone.DisplayName: Nano Drone
 			// SolverCursor.DisplayName: Solver Cursor
+			// HoldSaberCharge.DisplayName: Hold Saber Charge
 		}
 
 		Tiles: {

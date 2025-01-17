@@ -1,3 +1,5 @@
+using FargowiltasSouls;
+using FargowiltasSouls.Core.ModPlayers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -20,6 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
             ProjectileID.Sets.SentryShot[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
         }
+        public static int PowerLvl = UpdatePower();
         public sealed override void SetDefaults()
         {        
             Projectile.width = 30;
@@ -49,7 +52,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
             Player player = Main.player[Projectile.owner];
             CheckActive(player);
             Projectile.Center = player.Center + new Vector2(0, -4) * 16;
-
+            
+            PowerLvl = RemnantOfTheAncientsMod.FargosSoulMod != null? UpdatePower() : 0;
             if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
             {
                 AnimateTexture();
@@ -58,6 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
             if (HealTimmer == 0)
             {
                 HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
+                UpdtateStats();
             }
             else
             {
@@ -116,7 +121,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
             if (Main.myPlayer == Projectile.owner)
             {
                 Color color = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
-                Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 2.5f, SpriteEffects.None, 0f);
+                float scale = PowerLvl == 2 ? 4.5f: PowerLvl == 1 ? 3.8f : 2.5f;
+                Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, scale, SpriteEffects.None, 0f);
             }
             return true;
         }
@@ -128,6 +134,56 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
         {
             fallThrough = false;
             return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
+        }
+        [JITWhenModsEnabled("FargowiltasSouls")]
+        public static int UpdatePower()
+        {
+            FargoSoulsPlayer fargoSoulsPlayer = Main.LocalPlayer.FargoSouls();
+            if (fargoSoulsPlayer.Eternity) 
+                return 2;
+            if (Main.LocalPlayer.FargoSouls().WizardEnchantActive) 
+                return 1;
+            return 0;
+        }
+        public void UpdtateStats()
+        {
+            switch (PowerLvl)
+            {
+                case 2:
+                    RangeMax = 35 * 16;
+                    Heal = 30;
+                    break;
+                case 1:
+                    RangeMax = 30 * 16;
+                    Heal = 20;
+                    break;
+                default:
+                    RangeMax = 20 * 16;
+                    Heal = 5;
+                    break;
+            }
+        }
+        public override void PostDraw(Color lightColor)
+        {
+            var texture = Request<Texture2D>(GetTexture());
+            Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+            if (Main.myPlayer == Projectile.owner)
+            {
+                Color color = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
+                Rectangle rec = new Rectangle(0, texture.Height() / 3 * Projectile.frame, texture.Width(), texture.Height() / 3);
+                Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, rec, color, 0f, origin, 1f, SpriteEffects.None, 0f) ;
+            }
+            base.PostDraw(lightColor);
+        }
+        public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath; 
+        public string GetTexture()
+        {
+            return PowerLvl switch
+            {
+                2 => "RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/SunFlower/YggdrasilMinion",
+                1 => "RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/SunFlower/SacredFlowerMinion",
+                _ => "RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/SunFlower/SunFlowerMinion",
+            };
         }
     }
 }

@@ -379,9 +379,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Main.netMode != 2 && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
+                    if (Main.netMode != NetmodeID.Server && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
                     {
-                        Main.player[Main.myPlayer].AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                        Main.player[Main.myPlayer].AddBuff(SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
                     }
                 }
             }
@@ -393,9 +393,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Main.netMode != 2 && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
+                    if (Main.netMode != NetmodeID.Server && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
                     {
-                        Main.player[Main.myPlayer].AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                        Main.player[Main.myPlayer].AddBuff(SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
                     }
                 }
             }
@@ -426,7 +426,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (RemnantOfTheAncientsMod.AlchemistNPCMod != null)
             {
-                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Brewer"))
+                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Brewer"))
                 {
                     string SHOP_4 = "MorePotions/Atheria";
                     if (shop.Name == SHOP_4)
@@ -435,7 +435,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         .Add(new Item(ItemType<Commander_Potion>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 50, 0) }, Condition.DownedEowOrBoc);
                     }
                 }
-                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Alchemist"))
+                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Alchemist"))
                 {
                     string BaseShop = "BaseShop";
                     if (shop.Name == BaseShop)
@@ -443,7 +443,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         shop.Add(new Item(ItemType<NecroticRestauration>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 50, 0) }, Condition.DownedSkeletron);
                     }
                 }
-                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Musician"))
+                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Musician"))
                 {
                     string Sh5 = "Sh5";
                     if (shop.Name == Sh5)
@@ -454,7 +454,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                             .Add(new Item(ItemType<InfernalMusicBox>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedTyrant", () => RemnantDownedBossSystem.downedTyrant));
                     }
                 }
-                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Tinkerer"))
+                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Tinkerer"))
                 {
                     string Shop1 = "MovementMisc";
                     string Shop2 = "Combat";
@@ -467,7 +467,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         shop.Add(new Item(ItemType<magic_stick>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 20, 0, 0) }, Condition.DownedEyeOfCthulhu);
                     }
                 }
-                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "YoungBrewer"))
+                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "YoungBrewer"))
                 {
                     string Shop1 = "Combinations";
                     string Shop2 = "Flasks";
@@ -487,7 +487,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         shop.Add(new Item(ItemType<Sand_Flask>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert", () => RemnantDownedBossSystem.downedDesert));
                     }
                 }
-                if (shop.NpcType == ExternalModCallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Operator"))
+                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Operator"))
                 {
                     string MaterialShop = "Materials";
                     string ModMaterialShop = "ModMaterials";
@@ -669,7 +669,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         [JITWhenModsEnabled("CalamityMod")]
         public static void SetNpcDamageReductionCalamity(NPC npc, float normal, float revenge, float death, float bossrush, float infernum)
         {
-            if (DificultyUtils.InfernumMode)
+            if (SangarUtilities.Common.DificultyUtils.InfernumMode)
             {
                 npc.GetGlobalNPC<CalamityGlobalNPC>().DR = infernum;
             }

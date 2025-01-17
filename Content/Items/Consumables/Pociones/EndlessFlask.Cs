@@ -7,74 +7,42 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     public class EndlessGoldFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofGold);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Gold Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de oro eterno");
-        }
+        public override char GramaticalCorrection => 'M';  
     }
     public class EndlessIchorFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofIchor);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Ichor Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de icor eterno");
-        }
+        public override char GramaticalCorrection => 'M';
     }
     public class EndlessFireFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofFire);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Fire Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de fuego eterno");
-        }
+        public override char GramaticalCorrection => 'M';
     }
     public class EndlessCurcedFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofCursedFlames);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Cursed Flames Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de las llamas malditas eterno");
-        }
+        public override char GramaticalCorrection => 'M';
     }
     public class EndlessVenomFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofVenom);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Venom Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de ponzoña eterno");
-        }
+        public override char GramaticalCorrection => 'M';
     }
     public class EndlessPartyFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofParty);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Party Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco fiestero eterno");
-        }
+        public override char GramaticalCorrection => 'M';
     }
     public class EndlessPoisonFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofPoison);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Poison Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de veneno eterno");  
-        }
+        public override char GramaticalCorrection => 'M';
     }
     public class EndlessNaniteFlask : BasePotions
     {
         public override Item ItemBase => new(ItemID.FlaskofNanites);
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Nanites Flask");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Frasco de nanitos eterno");
-        }
+        public override char GramaticalCorrection => 'M';
     }
 
 }

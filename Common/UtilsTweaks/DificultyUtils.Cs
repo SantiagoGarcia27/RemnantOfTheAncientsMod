@@ -1,66 +1,67 @@
-using RemnantOfTheAncientsMod.World;
-using Terraria;
-using Terraria.ModLoader;
+//using RemnantOfTheAncientsMod.World;
+//using Terraria;
+//using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
-{
-    public class DificultyUtils : ModSystem
-    {
-        public static bool Revengeance = false;
-        public static bool Death = false;
-        public static bool InfernumMode = false;
-        public static bool EternityMode = false;
-        public static bool MasochistMode = false;
-        public static bool ReaperMode = false;
-        public static bool LegendaryMode = false;
-        public override void PostSetupContent()
-        {
-        }
-        public override void PostUpdateWorld()
-        {
-            CheckDificulty();
-            base.PostUpdateWorld();
-        }
-        public void CheckDificulty()
-        {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
-            {
-                CheckCalamity();
-                if (RemnantOfTheAncientsMod.InfernumMod != null)
-                {
-                    CheckInfernum();
-                }
-            }
-            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
-            {
-                CheckFargos();
-            }
+//namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
+//{
+//    public class DificultyUtils : ModSystem
+//    {
+//        public static bool Revengeance = false;
+//        public static bool Death = false;
+//        public static bool InfernumMode = false;
+//        public static bool EternityMode = false;
+//        public static bool MasochistMode = false;
+//        public static bool ReaperMode = false;
+//        public static bool LegendaryMode = false;
+//        public override void PostSetupContent()
+//        {
+//        }
+//        public override void PostUpdateWorld()
+//        {
+//            CheckDificulty();
+//            base.PostUpdateWorld();
+//        }
+//        public void CheckDificulty()
+//        {
+            
+//            if (RemnantOfTheAncientsMod.CalamityMod != null)
+//            {
+//                CheckCalamity();
+//                if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
+//                {
+//                    CheckInfernum();
+//                }
+//            }
+//            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+//            {
+//                CheckFargos();
+//            }
 
-            ReaperMode = DificultyUtils.ReaperMode;
-            LegendaryMode = Main.masterMode && Main.getGoodWorld;
-        }
+//            ReaperMode = Reaper.ReaperMode;
+//            LegendaryMode = Main.masterMode && Main.getGoodWorld;
+//        }
 
-        [JITWhenModsEnabled("CalamityMod")]
-        public void CheckCalamity()
-        {
-            if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod))
-            {
-                Revengeance = (bool)calamityMod.Call("GetDifficultyActive", "revengeance");
-                Death = (bool)calamityMod.Call("GetDifficultyActive", "death");
-            }
-        }
+//        [JITWhenModsEnabled("CalamityMod")]
+//        public void CheckCalamity()
+//        {
+//            if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod))
+//            {
+//                Revengeance = (bool)calamityMod.Call("GetDifficultyActive", "revengeance");
+//                Death = (bool)calamityMod.Call("GetDifficultyActive", "death");
+//            }
+//        }
 
-        [JITWhenModsEnabled("InfernumMode")]
-        public void CheckInfernum()
-        {
-            InfernumMode = (bool)RemnantOfTheAncientsMod.InfernumMod.Call("GetInfernumActive");
-        }
+//        [JITWhenModsEnabled("InfernumMode")]
+//        public void CheckInfernum()
+//        {
+//            InfernumMode = (bool)SangarUtilities.Common.DificultyUtils.InfernumMode.Call("GetInfernumActive");
+//        }
 
-        [JITWhenModsEnabled("FargowiltasSouls")]
-        public void CheckFargos()
-        {
-            EternityMode = FargowiltasSouls.Core.Systems.WorldSavingSystem.EternityMode;
-            MasochistMode = FargowiltasSouls.Core.Systems.WorldSavingSystem.MasochistModeReal;
-        }
-    }
-}
+//        [JITWhenModsEnabled("FargowiltasSouls")]
+//        public void CheckFargos()
+//        {
+//            EternityMode = FargowiltasSouls.Core.Systems.WorldSavingSystem.EternityMode;
+//            MasochistMode = FargowiltasSouls.Core.Systems.WorldSavingSystem.MasochistModeReal;
+//        }
+//    }
+//}

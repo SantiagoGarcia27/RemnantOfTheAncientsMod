@@ -142,7 +142,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
     public class FrozenReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[8] && DificultyUtils.ReaperMode;
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][8] && Reaper.ReaperMode;
         public bool CanShowItemDropInUI() => true;
         public string GetConditionDescription() => null;
     }

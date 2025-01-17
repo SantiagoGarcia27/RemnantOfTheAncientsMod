@@ -66,7 +66,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int proj = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ModContent.ProjectileType<SpiritGemSword>(), damage/4, knockBack, Main.myPlayer, 1, 2);
-            Main.projectile[proj].scale *= DificultyUtils.ReaperMode? 4.75f : 2.25f;
+            Main.projectile[proj].scale *= Reaper.ReaperMode? 4.75f : 2.25f;
             Main.projectile[proj].DamageType = DamageClass.Melee;
             Main.projectile[proj].tileCollide = true;
             return false;

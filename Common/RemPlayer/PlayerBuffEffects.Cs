@@ -6,6 +6,9 @@ using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Kits;
 using Terraria.ID;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using CalamityMod;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -33,7 +36,7 @@ namespace RemnantOfTheAncientsMod
         }
         public static void MeleeInfusion(Player player)
         {
-            player.GetModPlayer<RemnantPlayer>().MeleeBuffInflict.Add(BuffID.Ichor);  
+            player.GetModPlayer<RemnantPlayer>().MeleeBuffInflict.Add(BuffID.Ichor);
             if (player.inventory[player.selectedItem].CountsAsClass(DamageClass.Melee)) player.statDefense -= 4;
             player.GetCritChance(DamageClass.Melee) += 2f;
             player.GetAttackSpeed(DamageClass.Melee) += 0.1f;
@@ -71,9 +74,9 @@ namespace RemnantOfTheAncientsMod
         [JITWhenModsEnabled("CalamityMod")]
         public static void FishPotionCalamity(Player player)
         {
-            player.buffImmune[ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoatingBuff")] = true;
+            player.buffImmune[SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoatingBuff")] = true;
             player.Calamity().anechoicCoating = true;
-            player.buffImmune[ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinBuff")] = true;
+            player.buffImmune[SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinBuff")] = true;
             player.Calamity().sulphurskin = true;
         }
         public static void RangerInfusion(Player player)
@@ -97,17 +100,17 @@ namespace RemnantOfTheAncientsMod
             {
                 GravityControlPotionCalamity(player);
             }
-           
+
         }
         [JITWhenModsEnabled("CalamityMod")]
         public static void GravityControlPotionCalamity(Player player)
         {
-            player.buffImmune[ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumBuff")] = true;
-          player.Calamity().calcium = true;
-            player.buffImmune[ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerBuff")] = true;
-          player.Calamity().gravityNormalizer = true;
-            player.buffImmune[ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "Soaring")] = true;
-          player.Calamity().soaring = true;
+            player.buffImmune[SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumBuff")] = true;
+            player.Calamity().calcium = true;
+            player.buffImmune[SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerBuff")] = true;
+            player.Calamity().gravityNormalizer = true;
+            player.buffImmune[SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "Soaring")] = true;
+            player.Calamity().soaring = true;
         }
         public static void FishingInfusion(Player player)
         {
@@ -155,23 +158,21 @@ namespace RemnantOfTheAncientsMod
         {
             player.maxMinions++;
             player.maxTurrets++;
-            if (ModContent.GetInstance<ConfigClient>().KitsInferno) player.inferno = true;
-
+            if (ModContent.GetInstance<ConfigClient>().KitsInferno)
+            {
+                player.GetModPlayer<RemnantPlayer>().SummonerArea = true;
+            }
+          
             player.buffImmune[110] = true;
             player.buffImmune[116] = true;
             player.buffImmune[BuffType<CentryBuff>()] = true;
 
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
-                SummonInfusionCalamity(player);
+                player.buffImmune[SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff")] = true;
             }
         }
-        [JITWhenModsEnabled("CalamityMod")]
-        public static void SummonInfusionCalamity(Player player)
-        {
-            player.AddBuff(ExternalModCallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
-           player.Calamity().tesla = true;
-        }
+
         public static void SuperSenseBuff(Player player)
         {
             player.detectCreature = true;
@@ -234,5 +235,12 @@ namespace RemnantOfTheAncientsMod
             player.buffImmune[BuffType<Poseidon_Infusion>()] = true;
             player.biomeSight = true;
         }
+
+
+        public override void UpdateEquips()
+        {
+            base.PostUpdateBuffs();
+        }
     }
+
 }

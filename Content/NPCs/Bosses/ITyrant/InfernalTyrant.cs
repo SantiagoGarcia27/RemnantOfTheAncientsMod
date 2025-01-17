@@ -144,11 +144,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         private int MaxSegmentCount(int MinSegmentLength) 
         {
             int scale = 0;
-            if (DificultyUtils.MasochistMode) scale = 30;
-            else if (DificultyUtils.EternityMode) scale = 25;
-            else if (DificultyUtils.InfernumMode) scale = 25;
-            else if (DificultyUtils.Death) scale = 20;
-            else if (DificultyUtils.Revengeance) scale = 10;
+            if (SangarUtilities.Common.DificultyUtils.MasochistMode) scale = 30;
+            else if (SangarUtilities.Common.DificultyUtils.EternityMode) scale = 25;
+            else if (SangarUtilities.Common.DificultyUtils.InfernumMode) scale = 25;
+            else if (SangarUtilities.Common.DificultyUtils.Death) scale = 20;
+            else if (SangarUtilities.Common.DificultyUtils.Revengeance) scale = 10;
             else if (Main.masterMode) scale = 5;
             else if (Main.expertMode) scale = 2;
             return MinSegmentLength + scale;
@@ -196,9 +196,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
                     }
                 }
-                if(RemnantOfTheAncientsMod.InfernumMod != null)
+                if(SangarUtilities.Common.DificultyUtils.InfernumMode != null)
                 {
-                    if (DificultyUtils.InfernumMode)
+                    if (SangarUtilities.Common.DificultyUtils.InfernumMode)
                     {
                         if (attackCounter % 4 == 0)
                         {
@@ -254,15 +254,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(30), ModContent.ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
                     break;
                 case 700:
-                    if (RemnantOfTheAncientsMod.InfernumMod != null)
+                    if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
                     {
-                        if (DificultyUtils.InfernumMode)
+                        if (SangarUtilities.Common.DificultyUtils.InfernumMode)
                         {
                             for (int i = 0; i <= 10; i++)
                             {
-                                TornadoIa((int)NpcChanges1.ExpertDamageScale(70), ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
+                                TornadoIa((int)NpcChanges1.ExpertDamageScale(70), SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
                             }
-                           // FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
+                           // FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), SangarUtilities.Common.CallUtils.Get<ModProjectile>(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
                         }
                     }
                     SummonIa(NPCID.RedDevil);
@@ -287,7 +287,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     {
                         if (DashCounter <= 0)
                         {
-                            DashCounter = !DificultyUtils.MasochistMode ? 700 : 800;
+                            DashCounter = !SangarUtilities.Common.DificultyUtils.MasochistMode ? 700 : 800;
                             DashCounter = DashCounterMaxValue;
                             NPC.netUpdate = true;
                         }
@@ -372,7 +372,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public void DashIa(float speed)
         {
-            if (DificultyUtils.MasochistMode || DificultyUtils.EternityMode)
+            if (SangarUtilities.Common.DificultyUtils.MasochistMode || SangarUtilities.Common.DificultyUtils.EternityMode)
             {
                 float limit = (Main.maxTilesY -10) * 16;
                 if (NPC.position.Y <= limit)
@@ -386,7 +386,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         NPC.velocity = new Vector2(1, -10 * (speed * 0.1f));
                     }
 
-                    if (DificultyUtils.MasochistMode)
+                    if (SangarUtilities.Common.DificultyUtils.MasochistMode)
                     {
                         if (DashCounter >= 200 && DashCounter < 250)
                         {
@@ -409,7 +409,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void LifeSpeed(Worm worm)
         {
             float lifePercentage = GetLifePorcenage();
-            bool isReaperMode = DificultyUtils.ReaperMode;
+            bool isReaperMode = Reaper.ReaperMode;
 
             if (Main.player[Main.myPlayer].HasBuff(BuffID.Stinky))
             {
@@ -488,7 +488,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string fargos = SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
@@ -506,7 +506,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalMask>(), 10));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<infernalBag>()));
-            if(RemnantOfTheAncientsMod.InfernumMod != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
+            if(SangarUtilities.Common.DificultyUtils.InfernumMode != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
 
             if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
@@ -514,7 +514,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         private static void CalamityDrop(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofChaos"), 1, 5, Utils1.ReaperDropScaler(15)));
+            npcLoot.Add(ItemDropRule.Common(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofChaos"), 1, 5, Utils1.ReaperDropScaler(15)));
         }
     }
 
@@ -558,7 +558,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string fargos = SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
@@ -626,7 +626,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
     {
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string fargos = SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
@@ -736,7 +736,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 {
                     i /= 3;
                 }
-                else if (npc.life > npc.life / 15 && DificultyUtils.ReaperMode)
+                else if (npc.life > npc.life / 15 && Reaper.ReaperMode)
                 {
                     i = 0;
                 }

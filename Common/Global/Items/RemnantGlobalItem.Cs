@@ -21,6 +21,7 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.WeaponsRework;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -810,7 +811,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
         {
 		
-			if (DificultyUtils.ReaperMode)
+			if (Reaper.ReaperMode)
 			{
 				if (Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>().AllSoulsAreActive())
 				{
@@ -844,7 +845,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		];
         public override void UpdateInventory(Item item, Player player)
 		{
-			if (DificultyUtils.ReaperMode)
+			if (Reaper.ReaperMode)
 			{
 				ReaperGlobalItem.ReaperConsumable(item);
 				ReaperGlobalItem.ReaperSetDefaut(item);

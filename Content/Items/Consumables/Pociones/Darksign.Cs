@@ -11,6 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
     public class Darksign : ModItem
     {
+       // public override bool IsLoadingEnabled(Mod mod) => false;
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -27,6 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     }
     public class Endless_Darksign : ModelEndless
     {
+      //  public override bool IsLoadingEnabled(Mod mod) => false;
         public override Item ItemBase => new(ModContent.ItemType<Darksign>());
         public override void SetStaticDefaults()
         {

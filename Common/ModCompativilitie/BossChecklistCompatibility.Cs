@@ -14,46 +14,46 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
 {
-    public class BossChecklistCompatibility : ModSystem
+    public class  BossChecklistCompatibility : ModSystem
     {
         public override void PostSetupContent()
         {
-            DoBossChecklistIntegration();
+            BossChecklistIntegration();
         }
 
-        private void DoBossChecklistIntegration()
+        private void BossChecklistIntegration()
         {
-            if (!ModLoader.TryGetMod("BossChecklist", out Mod bossChecklistMod))
+            if (!ModLoader.TryGetMod("BossChecklist", out Mod BossChecklistMod))
             {
                 return;
             }
-            if (bossChecklistMod.Version < new Version(1, 6))
+            if (BossChecklistMod.Version < new Version(1, 6))
             {
                 return;
             }
-            AddBoses(bossChecklistMod);
+            AddBoses(BossChecklistMod);
             
 
         }
-        public void AddBoses(Mod bossChecklistMod)
+        public void AddBoses(Mod BossChecklistMod)
         {
-            AddDesert(bossChecklistMod);
-            AddFrozen(bossChecklistMod);
-            AddTyrant(bossChecklistMod);
+            AddDesert(BossChecklistMod);
+            AddFrozen(BossChecklistMod);
+            AddTyrant(BossChecklistMod);
         }
 
         List<int> collection;
         Action customPortrait;
-        public void AddDesert(Mod bossChecklistMod)
+        public void AddDesert(Mod BossChecklistMod)
         {
-            collection = new List<int>()
-                {
+            collection =
+                [
                 ModContent.ItemType<DesertTrophy>(),
                 ModContent.ItemType<DesertAMask>(),
                 ModContent.ItemType<DesertMusicBox>()
-                };
+                ];
 
-            bossChecklistMod.Call(
+                BossChecklistMod.Call(
                 "LogBoss",
                 Mod,
                 "DesertAniquilator",    
@@ -67,17 +67,17 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 }
             );
         }
-        public void AddFrozen(Mod bossChecklistMod)
+        public void AddFrozen(Mod BossChecklistMod)
         {
-            collection = new List<int>()
-            {
+            collection =
+            [
                 ModContent.ItemType<FrostTrophy>(),
                 ModContent.ItemType<FrozenMask>(),
                 ModContent.ItemType<FrozenMusicBox>(),
                 ModContent.ItemType<Frozenp2MusicBox>()
-            };
+            ];
 
-             bossChecklistMod.Call(
+                BossChecklistMod.Call(
                 "LogBoss",
                 Mod,
                 "FrozenAssaulter",    
@@ -93,15 +93,15 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
 
 
         }
-        public void AddTyrant(Mod bossChecklistMod)
+        public void AddTyrant(Mod BossChecklistMod)
         {
 
-            collection = new List<int>()
-            {
+            collection =
+            [
                 ModContent.ItemType<InfernalTrophy>(),
                 ModContent.ItemType<InfernalMask>(),
                 ModContent.ItemType<InfernalMusicBox>()
-            };
+            ];
 
             var customPortrait = (SpriteBatch sb, Rectangle rect, Color color) => {
                 Texture2D texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrant_BossChecklist").Value;
@@ -109,7 +109,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 sb.Draw(texture, centered, color);
             };
 
-            bossChecklistMod.Call(
+                BossChecklistMod.Call(
                 "LogBoss",
                 Mod,
                 "InfernalTyrantHead",       

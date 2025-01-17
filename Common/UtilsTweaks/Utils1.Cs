@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,7 +75,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static int GetReaperNumber(int common, int reaper)
         {
-            if (DificultyUtils.ReaperMode)
+            if (Reaper.ReaperMode)
             {
                 return reaper;
             }
@@ -170,7 +171,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static int ReaperDropScaler(int i)
         {
             int a = i;
-            if (DificultyUtils.ReaperMode) a = i * 5;
+            if (Reaper.ReaperMode) a = i * 5;
             return a;
         }
         public static Point ToPoint(Vector2 vector2)

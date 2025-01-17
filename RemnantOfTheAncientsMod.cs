@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod
         {
             ModLoader.TryGetMod("CalamityMod", out CalamityMod);
             ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
-            ModLoader.TryGetMod("BossChecklist", out BossChecklist);
+            ModLoader.TryGetMod(" RemnantOfTheAncientsMod.BossChecklist", out RemnantOfTheAncientsMod.BossChecklist);
             ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
             ModLoader.TryGetMod("Census", out Census);
             ModLoader.TryGetMod("InfernumMode", out InfernumMod);
@@ -65,7 +65,7 @@ namespace RemnantOfTheAncientsMod
                 ModContent.GetInstance<Terracoin>(); 
             }
 
-            if(InfernumMod != null)
+            if(RemnantOfTheAncientsMod.InfernumMod != null)
             {
                 IntroScreenManager.Load();
             }
@@ -105,7 +105,7 @@ namespace RemnantOfTheAncientsMod
 
         public override void Unload()
         {
-            BossChecklist = null;
+            RemnantOfTheAncientsMod.BossChecklist = null;
             Array.Resize(ref TextureAssets.GlowMask, GlowMaskID.Count);
         }
         public static short AddGlowMask(string texture)

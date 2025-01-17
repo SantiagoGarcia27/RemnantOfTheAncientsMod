@@ -61,25 +61,25 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         {
             Player player = Main.player[Main.myPlayer];
 
-            float value = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[_Val];
+            float value = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val];
 
             if (Reaper)
             {
                 if (_Val == 0)
                 {
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 30 : 0);
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[_Val] = ModContent.GetInstance<ConfigClient>().ToggleKingSlimeSoul;
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val] = ModContent.GetInstance<ConfigClient>().ToggleKingSlimeSoul;
                 }
                 else if (_Val == 12)
                 {
 
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[_Val] = ModContent.GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val] = ModContent.GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 10 : 0);
                 }
                 else
                 {
 
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[_Val] = value == 0 ? 1 : 0;
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val] = value == 0 ? 1 : 0;
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 1 : 0);
                 }
             }

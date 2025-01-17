@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.autoReuse = true;
 			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
 			{
-				if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<GodClaws>();
+				if (GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<GodClaws>();
 			}
 			else Item.shoot = ProjectileType<GodClaws>();
 			//Item.shootSpeed = 5f;
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		}
 		public override bool CanShoot(Player player)
 		{
-			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 			{
 				Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
 				Vector2 pos = player.position - new Vector2(7 * 16, 1f * 16 * Item.scale);
@@ -81,10 +81,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			{
 				Recipe recipe = CreateRecipe()
 				.AddIngredient(ItemType<Garritas>())
-				.AddIngredient(ExternalModCallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
+				.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
 				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
 				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
+				recipe.AddTile(SangarUtilities.Common.CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
 				recipe.Register();
 			}
 		}

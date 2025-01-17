@@ -82,11 +82,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public static void FiilMeleeWeaponEffectsList()
         {
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlash2"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlashMethod"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, ExternalModCallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashWeapon"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlash2"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlashMethod"));
+            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashWeapon"));
         }
         public void UpdateMiscCounter()
         {
@@ -274,7 +274,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             ReaperPlayer ReaperPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
             RemnantPlayer RemnantPlayer = Main.player[Main.myPlayer].GetModPlayer<RemnantPlayer>();
-            if (DificultyUtils.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn )
+            if (Reaper.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn )
             {
                 projectile.width *= (int)1.5f;
                 projectile.height *= (int)1.5f;

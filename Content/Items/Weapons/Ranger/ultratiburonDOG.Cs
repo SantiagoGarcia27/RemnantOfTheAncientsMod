@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 				.AddIngredient(ItemType<Ultratiburon>());
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("ShadowspecBar"), 5);
-                recipe.AddTile(ExternalModCallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "DraedonsForge"));
+                recipe.AddTile(SangarUtilities.Common.CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "DraedonsForge"));
                 recipe.Register();
 			}
 		}
