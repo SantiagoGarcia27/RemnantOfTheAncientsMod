@@ -27,6 +27,7 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using SangarUtilities.Common;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -234,35 +235,35 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             switch (attackCounter)
             {
                 case 200:
-                    SpikeIa((int)NpcChanges1.ExpertDamageScale(40), false, -3, -3);
+                    SpikeIa((int)(40 * RemnantGlobalNPC.DamageBonus), false, -3, -3);
                     break;
                 case 250:
-                    FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ModContent.ProjectileType<InfernalBallF>(), "*", 4, 3, target, 0f);
-                    FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), ModContent.ProjectileType<InfernalBallF>(), "/", 4, 3, target, 0f);
+                    FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBallF>(), "*", 4, 3, target, 0f);
+                    FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBallF>(), "/", 4, 3, target, 0f);
                     break;
                 case 300:
                     SummonIa(NPCID.Demon);
                     break;
                 case 400:
-                    SpikeIa((int)NpcChanges1.ExpertDamageScale(90), true, 3, -3);
+                    SpikeIa((int)(90 * RemnantGlobalNPC.DamageBonus), true, 3, -3);
                     break;
                 case 430:
-                    SpikeIa((int)NpcChanges1.ExpertDamageScale(40), false, 3, -3);
+                    SpikeIa((int)(40 * RemnantGlobalNPC.DamageBonus), false, 3, -3);
                     break;
                 case 600:
                     for (int i = -2; i <= 3; i++)
-                        FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(30), ModContent.ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
+                        FireBallIa(12f, (int)(30 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBall>(), "*", i - 1, i + 2, target, 0);
                     break;
                 case 700:
-                    if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
+                    if (RemnantOfTheAncientsMod.InfernumMod != null)
                     {
-                        if (SangarUtilities.Common.DificultyUtils.InfernumMode)
+                        if (DificultyUtils.InfernumMode)
                         {
                             for (int i = 0; i <= 10; i++)
                             {
-                                TornadoIa((int)NpcChanges1.ExpertDamageScale(70), SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
+                                TornadoIa((int)(70 * RemnantGlobalNPC.DamageBonus), SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
                             }
-                           // FireBallIa(12f, (int)NpcChanges1.ExpertDamageScale(70), SangarUtilities.Common.CallUtils.Get<ModProjectile>(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
+                           // FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), SangarUtilities.Common.CallUtils.Get<ModProjectile>(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
                         }
                     }
                     SummonIa(NPCID.RedDevil);

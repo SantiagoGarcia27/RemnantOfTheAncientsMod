@@ -132,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             {
                 if (attackCounter < 600 && attackCounter > 500 && currentPhase != 3)
                 {
-                    ShootIa((int)NpcChanges1.ExpertDamageScale(10), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                    ShootIa((int)(10 * RemnantGlobalNPC.DamageBonus), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                 }
             }
             if (Main.expertMode )

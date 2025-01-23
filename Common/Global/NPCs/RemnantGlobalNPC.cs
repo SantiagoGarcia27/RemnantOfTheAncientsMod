@@ -18,7 +18,6 @@ using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using CalamityMod.NPCs;
 using CalamityMod;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using Terraria.GameContent;
@@ -65,6 +64,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public bool longInvince;
         public int[] hurtCooldowns = new int[5];
 
+        public static float DamageBonus = 1f;
+        public static float LifeBonus = 1f;
+
         public override void ResetEffects(NPC NPC)
         {
             Burn_Sand = false;
@@ -73,8 +75,32 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             hBurn = false;
             Marble_Erosion = false;
             CursedMark = false;
+            //DamageBonus = 1f;
+            //LifeBonus = 1f;
         }
-
+        public static void setStatBonus(float DamageBonusMultiplier = 1f, float LifeBonusMultiplier = 1f,char type = '*')
+        {
+            switch (type)
+            {
+                case '*':
+                    DamageBonus *= DamageBonusMultiplier;
+                    LifeBonus *= LifeBonusMultiplier;
+                    break;
+                case '+':
+                    DamageBonus += DamageBonusMultiplier;
+                    LifeBonus += LifeBonusMultiplier;
+                    break;
+                case '-':
+                    DamageBonus -= DamageBonusMultiplier;
+                    LifeBonus -= LifeBonusMultiplier;
+                    break;
+                case '/':
+                    DamageBonus /= DamageBonusMultiplier;
+                    LifeBonus /= LifeBonusMultiplier;
+                    break;
+            }
+        }
+        
         public override void SetDefaults(NPC npc)
         {
             if (npc.type == NPCID.BigMimicCrimson)

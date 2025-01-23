@@ -22,14 +22,13 @@ using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.GameContent.Bestiary;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using Terraria.DataStructures;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod;
 using RemnantOfTheAncientsMod.World;
-using SangarUtilities;
+using SangarUtilities.Common;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 {
@@ -111,11 +110,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         } 
 
         public static float ScreenAnimationTimer = Utils1.FormatTimeToTick(0,0,0,5);
-        public static bool NoAI = SangarUtilities.Common.DificultyUtils.InfernumMode != null;
+        public static bool NoAI = DificultyUtils.InfernumMode != null;
         public override void AI()
         {
 
-            if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
+            if (DificultyUtils.InfernumMode != null)
             {
                 if (ScreenAnimationTimer > 0)
                 {
@@ -487,7 +486,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             {
                 if (attackCounter == AttackValue[1][i])
                 {
-                    int damage = (int)NpcChanges1.ExpertDamageScale(20);
+                    int damage =  (int)(20 * RemnantGlobalNPC.DamageBonus);
                     ShootHelper(damage, type, target, 12f, 0.5f * Utils1.GetSign(Main.rand.Next(-4,4)), 0.5f * Utils1.GetSign(Main.rand.Next(-4, 4)), proj);
                 }
             }  
@@ -497,14 +496,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     for (int i = 0; i <= 7; i++)
                     {
-                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f + i, -0.5f + i, 0.5f, proj);
+                        ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), type, target, 12f + i, -0.5f + i, 0.5f, proj);
                     }  
                 }
                 else
                 {
                     for (float i = 0f; i < (Reaper.ReaperMode ? 2 : 0); i += 0.5f)
                     {
-                        ShootHelper((int)NpcChanges1.ExpertDamageScale(20), type, target, 12f, -3.5f + i, 3.5f - i, proj);
+                        ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), type, target, 12f, -3.5f + i, 3.5f - i, proj);
                     }
                 }
             }
@@ -587,7 +586,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             }
             if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, !Reaper.ReaperMode? 30:40, 1, Main.myPlayer);
+                int damage = (int)(30 * RemnantGlobalNPC.DamageBonus);
+                Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[mark].position, Vector2.Zero, ProjectileID.SandnadoHostile, damage, 1, Main.myPlayer);
             }
 
         }
