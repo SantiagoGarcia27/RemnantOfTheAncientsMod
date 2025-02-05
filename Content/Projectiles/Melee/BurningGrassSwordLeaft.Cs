@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
             {
                 var p = Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, (int)(Projectile.damage * 0.5f), 0);
                 Main.projectile[p].usesLocalNPCImmunity = true;

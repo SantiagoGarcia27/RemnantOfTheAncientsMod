@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -11,6 +12,15 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 {
     public class DrawEffectPlayer : ModPlayer
     {
+        public bool FogOfVoidEffect;
+
+
+
+        public override void ResetEffects()
+        {
+            FogOfVoidEffect = false;
+        }
+
 
         float rotation;
         int Timmer1;
@@ -20,7 +30,6 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         {
             if (Player.GetModPlayer<RemnantPlayer>().SummonerArea)
             {
-
                 Asset<Texture2D> texture = ModContent.Request<Texture2D>(selectTexture());
                 Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                 Color color = selectColor();
@@ -51,6 +60,37 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                         }
                     }
                 }
+            }
+
+            if(FogOfVoidEffect)
+            {
+                string texturePath = "RemnantOfTheAncientsMod/Content/Effects/VoidFogBackground";
+                Color currentColor = new Color(0, 0, 53, 230);
+                //Background
+                Asset<Texture2D> texture = ModContent.Request<Texture2D>(texturePath + "_Background");
+                Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
+                Main.spriteBatch.Draw((Texture2D)texture, Main.LocalPlayer.Center - Main.screenPosition, null, new Color(255, 255, 255, 230), 0f, origin, 19f, SpriteEffects.None, 0f);
+                //Center
+                texture = ModContent.Request<Texture2D>(texturePath + "_Center");
+                origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
+                Main.spriteBatch.Draw((Texture2D)texture, Main.LocalPlayer.Center - Main.screenPosition, null, new Color(255, 255, 255, 230), rotation, origin, 19f, SpriteEffects.None, 0f);
+                //Extras
+                Vector2 positions;
+                if (Player.infernoCounter % RemnantOfTheAncientsMod.ParticleMeter(1, 2, 4, 35) == 0)
+                {
+                    positions = GenerateRandomPoints(Main.screenWidth, Main.screenHeight, 50, Main.LocalPlayer);
+                    var du = Dust.NewDust(positions, Main.rand.Next(5, 30), Main.rand.Next(5, 30), DustID.Stone, 0f, 0f, 0, currentColor, Main.rand.Next(1, 10));
+                    Main.dust[du].noGravity = true;
+                }
+                for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(10,5,2,0); i++)
+                {
+                    positions = GenerateRandomPoints(Main.screenWidth, Main.screenHeight, 50, Main.LocalPlayer);
+                    Dust.NewDust(positions, Main.rand.Next(5, 30), Main.rand.Next(5, 30), DustID.Shadowflame, 0f, 0f, 0, default, Main.rand.Next(1, 2));
+                }
+                //Lighting.AddLight(Player.RotatedRelativePoint(new Vector2(Main.LocalPlayer.Center.X - 16f + Main.LocalPlayer.velocity.X, Main.LocalPlayer.Center.Y - 14f)), currentColor.R, currentColor.G, currentColor.B);
+                /* texture = ModContent.Request<Texture2D>(texturePath + "_Extras");
+                origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
+                Main.spriteBatch.Draw((Texture2D)texture, Main.LocalPlayer.Center - Main.screenPosition, null, new Color(255, 255, 255, 230), 0f, origin, 12f, SpriteEffects.None, 0f);*/
             }
             base.DrawEffects(drawInfo, ref r, ref g, ref b, ref a, ref fullBright);
 
@@ -111,7 +151,20 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                 Rectangle sourceRect = sprite.Frame(3,6, Timmer2,Timmer1);
                 float opacity = 1f;     
                 Main.EntitySpriteDraw((Texture2D)sprite, player.Center - Main.screenPosition, sourceRect, drawColour * opacity,rotation, origin, 1f, SpriteEffects.None, 0);
+            }  
+        }
+        public Vector2 GenerateRandomPoints(float X,float Y, int radius, Player player)
+        {
+            float px, py;
+
+            do
+            {
+                px = player.Center.X + (Main.rand.Next(radius, (int)X) * (int)Math.Pow(-1, Main.rand.Next(2))); // Genera un número entre 0 y x
+                py = player.Center.Y + (Main.rand.Next(radius, (int)Y) * (int)Math.Pow(-1, Main.rand.Next(2)));
             }
+            while (player.Center.Distance(new Vector2(px, py)) < radius + 3); // Verifica si está dentro del círculo
+
+            return new(px, py);
         }
     }
 }

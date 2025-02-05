@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             {
                 Shoot(targetCenter);
             }
-            if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
+            if (RemnantOfTheAncientsMod.ParticleMeter(3) != 0)
             {
                 AnimateTexture();
             }
@@ -323,7 +323,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public void SpawnParticles()
         {
             Vector2 offset = new Vector2(Projectile.width / 2, Projectile.height / 2) + new Vector2(24, 24);//24
-            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(90); i++)
+            for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(90); i++)
             {
                 Vector2 dustPos = Projectile.position - new Vector2(24, 24) + offset + new Vector2(RangeMax * 16, 0).RotatedBy(MathHelper.ToRadians(18 * i));//60
                 var d = Dust.NewDustPerfect(dustPos, DustID.InfernoFork, Vector2.Zero);

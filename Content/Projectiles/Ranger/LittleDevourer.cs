@@ -75,7 +75,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
                 Projectile.ai[1]++;
             }
             // generateDust();
-            if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
+            if (RemnantOfTheAncientsMod.ParticleMeter(3) != 0)
             {
                 AnimateTexture();
             }
@@ -117,7 +117,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             // It is however recommended to define it outside method scope if used elswhere as well
             // They are useful to make numbers that don't change more descriptive
 
-            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(20); i++)
+            for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(20); i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height,SangarUtilities.Common.CallUtils.GetDustFromMod(RemnantOfTheAncientsMod.CalamityMod,"CosmiliteBarDust"), 0f, 0f, 100, default(Color), 1.5f);
             }

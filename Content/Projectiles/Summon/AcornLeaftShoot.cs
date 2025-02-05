@@ -110,12 +110,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-            Vector2 usePos = Projectile.position;
-           
-            RemnantOfTheAncientsMod r = ModContent.GetInstance<RemnantOfTheAncientsMod>();
-            for (int i = 0; i < r.ParticleMeter(20); i++)
+  
+            for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(20); i++)
             {
-                Dust dust = Dust.NewDustDirect(usePos, 1, 1, DustID.Grass);
+                Dust dust = Dust.NewDustDirect(Projectile.position, 1, 1, DustID.Grass);
                 dust.position = (dust.position + Projectile.Center) / 2f;
                 dust.noGravity = true;            
             }

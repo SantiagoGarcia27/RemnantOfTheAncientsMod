@@ -591,6 +591,11 @@ Mods: {
 				DisplayName: Darksign Buff
 				Description: Mods.RemnantOfTheAncientsMod.Buffs.DarksignBuff.Description
 			}
+
+			FogOfVoid: {
+				DisplayName: Fog Of Void
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.FogOfVoid.Description
+			}
 		}
 
 		Items: {

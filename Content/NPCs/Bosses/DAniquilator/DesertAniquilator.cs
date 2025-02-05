@@ -655,7 +655,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 {
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("DesertAniquilatorGore").Type, NPC.scale);         
                 }
-                for (int j = 0; j < new RemnantOfTheAncientsMod().ParticleMeter(1000); j++)
+                for (int j = 0; j <RemnantOfTheAncientsMod.ParticleMeter(1000); j++)
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Sandstorm,hit.HitDirection, -1f);
                 }

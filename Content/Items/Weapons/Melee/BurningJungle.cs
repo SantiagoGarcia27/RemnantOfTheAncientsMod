@@ -42,15 +42,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         {
             target.AddBuff(BuffID.OnFire, 40);
             target.AddBuff(BuffID.Poisoned, 40);
-            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
             {
                 Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.DaybreakExplosion, damageDone / 10, 0);
             }
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
-            if (Main.rand.NextBool(6 - new RemnantOfTheAncientsMod().ParticleMeter(5)) && new RemnantOfTheAncientsMod().ParticleMeter(5) != 0) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
-            if (Main.rand.NextBool(6 - new RemnantOfTheAncientsMod().ParticleMeter(5)) && new RemnantOfTheAncientsMod().ParticleMeter(5) != 0) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.GrassBlades);
+            if (Main.rand.NextBool(6 -RemnantOfTheAncientsMod.ParticleMeter(5)) &&RemnantOfTheAncientsMod.ParticleMeter(5) != 0) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
+            if (Main.rand.NextBool(6 -RemnantOfTheAncientsMod.ParticleMeter(5)) &&RemnantOfTheAncientsMod.ParticleMeter(5) != 0) Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.GrassBlades);
 
         }
         public override void AddRecipes()

@@ -69,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
             usePos += rotVector * 16f;
 
 
-            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(5); i++)
+            for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(5); i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Ice, 0f, 0f, 100, default, 1.5f);
             }

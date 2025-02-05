@@ -82,7 +82,7 @@
 //           // SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
 //            //const int NUM_DUSTS = 20;
-//            //for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(NUM_DUSTS); i++)
+//            //for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(NUM_DUSTS); i++)
 //            //{
 //            //    int p1 = Dust.NewDust(Projectile.position,Projectile.width, Projectile.height,DustID.GemTopaz,0f,0f,100,default(Color),3f);
 //            //    Main.dust[p1].velocity = Projectile.velocity;

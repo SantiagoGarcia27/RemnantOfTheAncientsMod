@@ -143,9 +143,7 @@ namespace RemnantOfTheAncientsMod
 		];
 		public bool SummonerArea;
 
-
-
-		public override void ResetEffects()
+        public override void ResetEffects()
 		{
 			Burn_Sand = false;
 			hBurn = false;

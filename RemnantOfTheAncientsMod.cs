@@ -128,7 +128,7 @@ namespace RemnantOfTheAncientsMod
             return Lighting.GetColor((int)(position.X / 16f), (int)(position.Y / 16f));
         }
       
-        public int ParticleMeter(int i)
+        public static int ParticleMeter(int i)
         {
             float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
 
@@ -138,6 +138,24 @@ namespace RemnantOfTheAncientsMod
             }
 
             return (int)(i / Math.Pow(2, (int)lagLevel));
+        }
+        public static int ParticleMeter(int total,int first, int second, int off)
+        {
+            float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
+
+            switch (lagLevel)
+            {
+                case 0:
+                    return total;
+                case 1:
+                    return first;
+                case 2:
+                    return second;
+                case 3:
+                    return off;
+                default:
+                    return off;
+            }      
         }
         public static bool ParticleMeterChoice()
         {

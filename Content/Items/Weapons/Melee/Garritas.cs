@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
 			target.AddBuff(BuffID.Daybreak, 240);
-			if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+			if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
 			{
 				Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, damageDone / 10, 0);
 			}

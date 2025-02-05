@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override bool? CanFallThroughPlatforms() => true;
         public void GenerateParticle()
         {
-            for (int i = 0; i < ModContent.GetInstance<RemnantOfTheAncientsMod>().ParticleMeter(5); i++)
+            for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(5); i++)
             {
                 if (NPC.alpha <= 100)
                 {

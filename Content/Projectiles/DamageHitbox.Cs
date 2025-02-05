@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
                     player.statDefense += 3;
 
                     Vector2 offset = new Vector2(player.width / 2, player.height / 2) + new Vector2(24, 24);
-                    for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(20); i++)
+                    for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(20); i++)
                     {
                         Vector2 dustPos = player.position - new Vector2(24, 24) + offset + new Vector2(60, 0).RotatedBy(MathHelper.ToRadians(18 * i));
                         var d = Dust.NewDustPerfect(dustPos, 172, Vector2.Zero);

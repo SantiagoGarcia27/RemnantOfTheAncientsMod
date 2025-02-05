@@ -67,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.OnFire, 80);
-            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
             {
                 Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, damageDone / 10, 0);  
             }

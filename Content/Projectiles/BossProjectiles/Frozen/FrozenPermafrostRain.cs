@@ -92,7 +92,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
         public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(10); i++)
+            for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(10); i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Glass);
             }

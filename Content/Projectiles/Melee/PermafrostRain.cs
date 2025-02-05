@@ -85,7 +85,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             // Declaring a constant in-line is fine as it will be optimized by the compiler
             // It is however recommended to define it outside method scope if used elswhere as well
             // They are useful to make numbers that don't change more descriptive
-            for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(10); i++)
+            for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(10); i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Glass);
             }

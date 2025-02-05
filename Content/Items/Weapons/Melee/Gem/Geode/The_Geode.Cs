@@ -122,7 +122,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
         {
             base.OnHitNPC(player, target, hit, damageDone);
             target.AddBuff(BuffID.OnFire, 240);
-            if (new RemnantOfTheAncientsMod().ParticleMeter(4) != 0)
+            if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
             {
                 Projectile.NewProjectile(Projectile.GetSource_None(), target.position - new Vector2(0, 2*16) + new Vector2(1 *16, 0), new Vector2(0f, 0f), ProjectileID.DD2ExplosiveTrapT2Explosion, damage, 0);
             }

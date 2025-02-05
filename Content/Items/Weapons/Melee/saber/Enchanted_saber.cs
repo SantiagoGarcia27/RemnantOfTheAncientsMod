@@ -74,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 						Main.projectile[p].scale = Item.scale;
 						Main.projectile[p].timeLeft = 100;
 
-						for (int i = 0; i < new RemnantOfTheAncientsMod().ParticleMeter(50); i++)
+						for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(50); i++)
 						{
 							Dust dust = Dust.NewDustDirect(player.position, player.width, player.height, DustID.EnchantedNightcrawler, 0f, 0f, 100, default, 2f);
 							dust.noGravity = true;

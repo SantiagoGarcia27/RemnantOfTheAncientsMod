@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
         }
         public override void AI()
         {
-			if (new RemnantOfTheAncientsMod().ParticleMeter(3) != 0)
+			if (RemnantOfTheAncientsMod.ParticleMeter(3) != 0)
 			{
 				var dust = Dust.NewDust(Projectile.position, 95, 95, ModContent.DustType<HollyBurn_P>(), 0, 0, 0, default, 8 + Projectile.scale * 1.5f);
 				Main.dust[dust].noGravity = true;

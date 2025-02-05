@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             }
 
 
-            int ParticleCount = new RemnantOfTheAncientsMod().ParticleMeter(6);
+            int ParticleCount =RemnantOfTheAncientsMod.ParticleMeter(6);
             if (ParticleCount > 0)
             {
                 for (int i = 0; i <= ParticleCount; i++)
