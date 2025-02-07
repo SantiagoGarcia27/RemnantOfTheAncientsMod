@@ -65,9 +65,9 @@ public class ReaperPlayer : ModPlayer
         }
         if(RemnantOfTheAncientsMod.RemnantOfTheAncientsMod.CalamityMod != null)
         {
-            for (int i = 0; i < SoulsUpgrades[1].Length; i++)
+            for (int i = 0; i < SoulsUpgrades[ModID.Calamity].Length; i++)
             {
-                packet.Write(SoulsUpgrades[1][i]);
+                packet.Write(SoulsUpgrades[ModID.Calamity][i]);
             }
         }
 
@@ -76,25 +76,33 @@ public class ReaperPlayer : ModPlayer
     {
         tag["SlimeReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.KingSlime];
         tag["EyeReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.EyeOfChutulu];
-        tag["CorruptReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.CorruptBoss];
-        tag["BeeReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.QueenBee];
-        tag["SkeletonReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Skeletron];
-        tag["DeerclopsReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Deerclops];
-        tag["DesertReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.DesertAnhilator];
-        tag["FleshReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.WallOfFlesh];
-        tag["FrozenReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.FrozenAssaulter];
-        tag["QueenReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.QueenSlime];
-        tag["SpazmatismReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Spazmatism];
-        tag["RetinazorReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Retinazor];
-        tag["SkeletronPrimeReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.SkeletronPrime];
-        tag["DestroyerReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Destroyer];
-        tag["PlantReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Plantera];
-        tag["InfernalReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.InfernalTyrant];
-        tag["GolemReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Golem];
-        tag["EmpressReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.EmpressOfLight];
-        tag["DukeReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.DukeFishron];
-        tag["CultistReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Cultist];
-        tag["MoonReaperUpgrade"] =SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.MoonLord];    
+        tag["CorruptReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.CorruptBoss];
+        tag["BeeReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.QueenBee];
+        tag["SkeletonReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Skeletron];
+        tag["DeerclopsReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Deerclops];
+        tag["DesertReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.DesertAnhilator];
+        tag["FleshReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.WallOfFlesh];
+        tag["FrozenReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.FrozenAssaulter];
+        tag["QueenReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.QueenSlime];
+        tag["SpazmatismReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Spazmatism];
+        tag["RetinazorReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Retinazor];
+        tag["SkeletronPrimeReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.SkeletronPrime];
+        tag["DestroyerReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Destroyer];
+        tag["PlantReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Plantera];
+        tag["InfernalReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.InfernalTyrant];
+        tag["GolemReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Golem];
+        tag["EmpressReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.EmpressOfLight];
+        tag["DukeReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.DukeFishron];
+        tag["CultistReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Cultist];
+        tag["MoonReaperUpgrade"] = SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.MoonLord];
+
+        if (RemnantOfTheAncientsMod.RemnantOfTheAncientsMod.CalamityMod != null)
+        {
+            tag["DesertScourgeUpgrade"] = SoulsUpgrades[ModID.Calamity][BossID.CalamityID.DesertScourge];
+            tag["CrabulonUpgrade"] = SoulsUpgrades[ModID.Calamity][BossID.CalamityID.Crabulon];
+            tag["CalCorruptBossUpgrade"] = SoulsUpgrades[ModID.Calamity][BossID.CalamityID.CalCorruptBoss];
+            tag["SlimeGodUpgrade"] = SoulsUpgrades[ModID.Calamity][BossID.CalamityID.SlimeGod];
+        }
     }
     public override void LoadData(TagCompound tag)
     {

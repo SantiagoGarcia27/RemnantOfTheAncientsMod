@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                     rotation += 0.003f;
 
                 if(RemnantOfTheAncientsMod.CalamityMod != null)
-                    animateEffects(Main.LocalPlayer, rotation, texture,color);
+                    animateEffects(Main.LocalPlayer,texture, 3,6,rotation,color,1f);
                 else
                     Main.spriteBatch.Draw((Texture2D)texture, Main.LocalPlayer.Center - Main.screenPosition, null, color, rotation, origin, 1f, SpriteEffects.None, 0f);
                 int damage = setDamage(10);
@@ -62,18 +62,28 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                 }
             }
 
-            if(FogOfVoidEffect)
+            if (FogOfVoidEffect)
             {
                 string texturePath = "RemnantOfTheAncientsMod/Content/Effects/VoidFogBackground";
                 Color currentColor = new Color(0, 0, 53, 230);
+
                 //Background
+                Color BackgroundColorOne = new(Color.White.R - 255, Color.White.G - 255, Color.White.B - 203, 255 - 10);
+                Color BackgroundColorTwo = new(Color.White.R - 255, Color.White.G - 255, Color.White.B - 213, 255 - 15);
+                Color BackgroundColor = Utils1.ColorSwap(BackgroundColorOne, BackgroundColorTwo, 2f);
                 Asset<Texture2D> texture = ModContent.Request<Texture2D>(texturePath + "_Background");
                 Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
-                Main.spriteBatch.Draw((Texture2D)texture, Main.LocalPlayer.Center - Main.screenPosition, null, new Color(255, 255, 255, 230), 0f, origin, 19f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw((Texture2D)texture, Main.LocalPlayer.Center - Main.screenPosition, null, BackgroundColor, 0f, origin, 18f, SpriteEffects.None, 0f);
+
                 //Center
-                texture = ModContent.Request<Texture2D>(texturePath + "_Center");
-                origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
-                Main.spriteBatch.Draw((Texture2D)texture, Main.LocalPlayer.Center - Main.screenPosition, null, new Color(255, 255, 255, 230), rotation, origin, 19f, SpriteEffects.None, 0f);
+                if (rotation >= 360)
+                    rotation = 0;
+                else
+                    rotation +=  0.003f;
+                texture = ModContent.Request<Texture2D>(texturePath + "_Center");     
+
+                animateEffects(Main.LocalPlayer, texture, 1, 7, rotation, new Color(255, 255, 255, 230),13f,4);
+                
                 //Extras
                 Vector2 positions;
                 if (Player.infernoCounter % RemnantOfTheAncientsMod.ParticleMeter(1, 2, 4, 35) == 0)
@@ -126,15 +136,15 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
             }
             
             
-            void animateEffects(Player player, float rotation, Asset<Texture2D> sprite,Color drawColour)
+            void animateEffects(Player player, Asset<Texture2D> sprite,int horizontalFrames,int verticalFrames, float rotation, Color drawColour,float scale = 1f,int speed = 1)
             {
-                Vector2 frames = new(3, 6);
+                Vector2 frames = new(horizontalFrames, verticalFrames);
                 Vector2 origin = new(sprite.Width() * 0.5f / frames.X, sprite.Height() * 0.5f / frames.Y);
 
-                //if(Main.LocalPlayer.infernoCounter % 2 == 0)
+                if(Main.LocalPlayer.infernoCounter % speed == 0)
                     frameCounter++;
                 
-                if (frameCounter > 3)
+                if (frameCounter > horizontalFrames)
                 {
                     Timmer1++;
                     frameCounter = 0;
@@ -148,9 +158,9 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                 if (Timmer2 >= frames.X)
                     Timmer2 = 0;
 
-                Rectangle sourceRect = sprite.Frame(3,6, Timmer2,Timmer1);
+                Rectangle sourceRect = sprite.Frame(horizontalFrames, verticalFrames, Timmer2,Timmer1);
                 float opacity = 1f;     
-                Main.EntitySpriteDraw((Texture2D)sprite, player.Center - Main.screenPosition, sourceRect, drawColour * opacity,rotation, origin, 1f, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw((Texture2D)sprite, player.Center - Main.screenPosition, sourceRect, drawColour * opacity,rotation, origin, scale, SpriteEffects.None, 0);
             }  
         }
         public Vector2 GenerateRandomPoints(float X,float Y, int radius, Player player)

@@ -3935,6 +3935,7 @@ Mods: {
 			DesertAnnihilatorGuard.DisplayName: Escolta desético
 			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
 			HallowedZombie.DisplayName: Zombi blindado
+			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 		}
 
 		Projectiles: {
@@ -4066,6 +4067,7 @@ Mods: {
 			// NanoDrone.DisplayName: Nano Drone
 			// SolverCursor.DisplayName: Solver Cursor
 			// HoldSaberCharge.DisplayName: Hold Saber Charge
+			// SignusMimic.DisplayName: Signus Mimic
 		}
 
 		Tiles: {

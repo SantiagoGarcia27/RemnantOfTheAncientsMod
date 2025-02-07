@@ -18,6 +18,9 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Calamity;
+using System.Linq;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -357,7 +360,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 npc.defDefense = 0;
                 npc.Calamity().DR = 0;
             }
-
         }
 
 
@@ -825,17 +827,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
 
         }
-        bool spawnedDesertScourgeExtraGuardian = false;
+        bool UniqueToggledFlag = false;
+        bool SecondUniqueToggledFlag = false;
 
         [JITWhenModsEnabled("CalamityMod")]
         public void CalamityAi(NPC npc)
         {
             if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
             {
-                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 70) && !spawnedDesertScourgeExtraGuardian)
+                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 70) && !UniqueToggledFlag)
                 {
                     NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
-                    spawnedDesertScourgeExtraGuardian = true;
+                    UniqueToggledFlag = true;
                 }
             }
             if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Crabulon"))
@@ -859,7 +862,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                     attackCounter = 0;
                 }
-                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 50) && !spawnedDesertScourgeExtraGuardian)
+                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 50) && !UniqueToggledFlag)
                 {
                     for (int i = 0; i <= 2; i++)
                     {
@@ -870,7 +873,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         NPC.SpawnOnPlayer(npc.FindClosestPlayer(), NPCID.ZombieMushroomHat);
                         NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X + Main.rand.Next(-100, 100), (int)npc.Center.Y, NPCID.ZombieMushroomHat);
                     }
-                    spawnedDesertScourgeExtraGuardian = true;
+                    UniqueToggledFlag = true;
                 }
             }
             if (npc.type == perforatorWormMedium[1])
@@ -891,7 +894,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 float lifeRatio = npc.life / (float)npc.lifeMax;
                 bool phase5 = lifeRatio < (DificultyUtils.Death ? 0.5f : DificultyUtils.Revengeance ? 0.45f : 0.3f);
-                if (phase5 && !spawnedDesertScourgeExtraGuardian && npc.boss)
+                if (phase5 && !UniqueToggledFlag && npc.boss)
                 {
                     int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)Main.player[npc.target].Center.X + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), (int)Main.player[npc.target].Center.Y + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"));
                     Main.npc[n].lifeMax = 1000;
@@ -899,7 +902,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.npc[n].life = 1000;
                     Main.npc[n].alpha = 200;
                     Main.npc[n].scale /= 2;
-                    spawnedDesertScourgeExtraGuardian = true;
+                    UniqueToggledFlag = true;
                 }
             }
             if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AquaticScourgeHead"))
@@ -1053,7 +1056,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.LocalPlayer.AddBuff(ModContent.BuffType<FogOfVoid>(), 120);
                 }
             }
-            else if(npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"))
+            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"))
             {
                 if (Main.LocalPlayer.infernoCounter % 20 == 0)
                 {
@@ -1062,11 +1065,198 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.projectile[a].hostile = true;
                 }
             }
+            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Signus"))
+            {
+                if (UniqueToggledFlag)
+                {
+                    if (Timmer1 < Utils1.FormatTimeToTick(0, 0, 0, 30))
+                    {
+                        npc.position = Main.player[npc.target].Center - new Vector2(10, 600);
+                        npc.alpha += npc.alpha < 255 ? 1 : 0;
+                        npc.dontTakeDamage = true;
+                        Timmer1++;
+
+                        if (attackCounter++ >= Utils1.FormatTimeToTick(0, 0, 0, 4))
+                        {
+
+                            Vector2 position1 = new(Main.player[npc.target].Center.X + 1200, Main.player[npc.target].Center.Y);
+                            Vector2 position2 = new(Main.player[npc.target].Center.X - 1200, Main.player[npc.target].Center.Y);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), position1, new Vector2(-10, 0), ModContent.ProjectileType<SignusMimic>(), 200, 0, Main.myPlayer);
+                            Projectile.NewProjectile(npc.GetSource_FromAI(), position2, new Vector2(10, 0), ModContent.ProjectileType<SignusMimic>(), 200, 0, Main.myPlayer);
+                            attackCounter = 0;
+                        }
+                    }
+                    else
+                    {
+                        npc.dontTakeDamage = false;
+                        npc.alpha = 10;
+                    }
+                }
+                if (!UniqueToggledFlag && npc.life <= npc.lifeMax / 2)
+                {
+                    UniqueToggledFlag = true;
+                }
+            }
+            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Polterghast"))
+            {
+                if (UniqueToggledFlag)
+                {
+                    if (!SecondUniqueToggledFlag && npc.life <= npc.lifeMax / 4)
+                    {
+                        SecondUniqueToggledFlag = true;
+                        for (int i = 0; i < 10; i++)
+                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                    }
+                }
+                else
+                {
+                    if (npc.life <= npc.lifeMax / 2)
+                    {
+                        UniqueToggledFlag = true;
+                        NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                    }
+                }
+            }
+            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "OldDuke"))
+            {
+                if (attackCounter < 400)
+                {
+                    attackCounter++;
+                }
+                else
+                {
+                    attackCounter = 0;
+                    if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 7)
+                    {
+                        int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
+                        Main.npc[n].lifeMax = 5000;
+                        Main.npc[n].life = 5000;
+                    }
+                }
+            }
+            else if (DevourerOFGods.Contains(npc.type))
+            {
+                if (!UniqueToggledFlag)
+                {
+                    foreach (NPC npc2 in Main.npc)
+                    {
+                        if (DevourerOFGods.Contains(npc2.type))
+                        {
+                            var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<DevourerOfGodsArmor>());
+                            Main.npc[a].netUpdate = true;
+                            Main.npc[a].localAI[2] = npc2.whoAmI;
+                        }
+                    }
+                    UniqueToggledFlag = true;
+
+                }
+            }
+            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"))
+            {
+                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 40) && !UniqueToggledFlag)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"));
+                        Main.npc[a].lifeMax /= 4;
+                        Main.npc[a].life /= 4;
+                    }
+                    UniqueToggledFlag = true;
+                }
+            }
+            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
+            {
+                if (npc.alpha < 255)
+                {
+                    electricShieldLifeMax = 50;
+                    if (!HasElectricShield)
+                    {
+                        if (attackCounter++ >= Utils1.FormatTimeToTick(0, 0, 0, 2))
+                        {
+                            HasElectricShield = true;
+                            electricShieldLife = electricShieldLifeMax;
+                            attackCounter = 0;
+                        }
+
+                    }
+
+                    if (HasElectricShield)
+                    {
+                        foreach (var proj in Main.projectile)
+                        {
+                            if (proj.active && !proj.hostile && proj.friendly)
+                            {
+                                float distance = npc.Distance(proj.Center);
+                                if (distance < 194f)
+                                {
+                                    proj.friendly = false;
+                                    proj.hostile = true;
+                                    proj.velocity *= -1;
+
+                                    if (electricShieldLife <= 0)
+                                    {
+                                        HasElectricShield = false;
+                                    }
+                                    else
+                                    {
+                                        electricShieldLife--;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Artemis"))
+            {
+                if (npc.alpha < 255)
+                {
+                    if (attackCounter++ >= Utils1.FormatTimeToTick(0, 0, 0, 30))
+                    {
+                        // Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + new Vector2(0, 50), new Vector2(10, 0) * npc.direction, ProjectileID.WoodenArrowHostile, 60, 0f, npc.whoAmI);
+                        // Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + new Vector2(0, -50), new Vector2(10,0) * npc.direction, ProjectileID.Bullet, 60,0f,npc.whoAmI);
+                        for (int i = 0; i < 5; i++)
+                        {
+                            var n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X + Main.rand.Next(-500, 500), (int)npc.Center.Y + Main.rand.Next(-500, 500), NPCID.Retinazer, npc.whoAmI);
+                            Main.npc[n].scale = 0.3f;
+                            Main.npc[n].lifeMax /= 6;
+                            Main.npc[n].life /= 6;
+                            Main.npc[n].boss = false;
+                        }
+                        attackCounter = 0;
+                    }
+                }
+            }
+            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeCalamitas"))
+            {
+                if (attackCounter >=  Utils1.FormatTimeToTick(0, 0, 0, 1))
+                {
+                    foreach (var proj in Main.projectile)
+                    {
+                        if (proj.active)
+                        {
+                            if (npc.Center.Distance(proj.Center) < 100 && proj.friendly && !proj.hostile)
+                            {
+                                if (Math.Abs(proj.velocity.Y) > Math.Abs(proj.velocity.X))
+                                    npc.velocity = proj.velocity - new Vector2(15, 0);
+                                else
+                                    npc.velocity = proj.velocity - new Vector2(0, 15);
+                                attackCounter = 0;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    attackCounter++;
+                }
+                
+            }
             if (AstrumDeus.Contains(npc.type))
             {
                 npc.alpha = 200;
             }
-        }  
+        } 
 
         public override bool PreKill(NPC npc)
         {
@@ -1077,6 +1267,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (!npc.boss)
                         return false;
                 }
+            }
+            if(npc.type == NPCID.Retinazer)
+            {
+                if (!npc.boss)
+                    return false;
             }
             return base.PreKill(npc);
         }
@@ -1518,6 +1713,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Green;
+                        animateEffects(npc, 1f, texture, color);
+                    }
+                }
+                else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
+                {
+                    if (HasElectricShield)
+                    {
+                        Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
+                        Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
+                        Color color = Color.Gray;
                         animateEffects(npc, 1f, texture, color);
                     }
                 }
