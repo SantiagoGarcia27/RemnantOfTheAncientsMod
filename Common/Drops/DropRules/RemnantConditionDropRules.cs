@@ -1,11 +1,16 @@
 ﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 {
@@ -15,127 +20,132 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         
         public class SlimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.KingSlime] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.KingSlime] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class EyeOfChutuluReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.EyeOfChutulu] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.EyeofCthulhu] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class CorruptReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !info.player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.CorruptBoss] && Reaper.ReaperMode && Utils1.CanDropCorruptBoss(info.npc);
+
+            public bool CanDrop(DropAttemptInfo info)
+            {
+               Dictionary<int , bool> Upgrade = info.player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients];
+               return !(Upgrade[NPCID.BrainofCthulhu] || Upgrade[NPCID.EaterofWorldsHead]) && Reaper.ReaperMode && Utils1.CanDropCorruptBoss(info.npc);
+            }
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class QueenBeeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.QueenBee] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.QueenBee] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class SkeletronReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Skeletron] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.Skeleton] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class DeerclopsReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Deerclops] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.Deerclops] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class DesertAnhilatorReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.DesertAnhilator] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][ModContent.NPCType<DesertAniquilator>()] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class WallOfFLeshReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.WallOfFlesh] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.WallofFlesh] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class FrozenAssaulterReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.FrozenAssaulter] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][ModContent.NPCType<FrozenAssaulter>()] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class QueenSlimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.QueenSlime] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.QueenSlimeBoss] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class RetinazorReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Retinazor] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.Retinazer] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class SpazmatismReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Spazmatism] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.Spazmatism] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class SkeletronPrimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.SkeletronPrime] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.SkeletronPrime] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class DestroyerReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Destroyer] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.TheDestroyer] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class PlanteraReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Plantera] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.Plantera] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class EmpressOfLightReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.EmpressOfLight] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.HallowBoss] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class InfernalTyrantReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.InfernalTyrant] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][ModContent.NPCType<InfernalTyrantHead>()] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class GolemReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Golem] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.Golem] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class DukeFishronReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.DukeFishron] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.DukeFishron] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class LunaticCultistReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.Cultist] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.CultistBoss] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
         public class MoonLordReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.RemnantOfTheAncients][BossID.VanillaID.MoonLord] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.MoonLordCore] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }

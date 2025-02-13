@@ -55,18 +55,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 
 		public void efects(Player player, bool n)
 		{
-			List<bool[]> a = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades;
-			int Length = a[0].Length -1;
-            for (int i = 0; i <= Length; i++)
-			{
-				player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][i] = n;
-            }
-			if(RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-                for (int i = 0; i < a[1].Length-1; i++)
-                {
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[1][i] = n;
-                }
+            foreach (Mod mod in SangarUtilities.Common.NpcList.BossList.Keys)
+            {
+				foreach (KeyValuePair<int, bool> npc in player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[mod])
+				{
+					player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[mod][npc.Key] = n;
+				}
             }
 			//Main.NewText(player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade);
 		}

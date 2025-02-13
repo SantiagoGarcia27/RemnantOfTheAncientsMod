@@ -50,7 +50,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-
             return ModLoader.TryGetMod("InfernumMode", out Mod InfernumMode);
         }
         public override void SetStaticDefaults()

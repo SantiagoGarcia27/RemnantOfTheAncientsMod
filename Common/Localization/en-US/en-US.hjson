@@ -2883,9 +2883,9 @@ Mods: {
 					'''
 				SetBonus:
 					'''
-						"{$CommonItemTooltip.IncreasesMaxLifeBy}"
-						"{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}"
-						"Soul effects are boosted"
+					{$CommonItemTooltip.IncreasesMaxLifeBy}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					Soul effects are boosted
 					'''
 			}
 
@@ -4117,6 +4117,15 @@ Mods: {
 					Tooltip: ""
 				}
 
+				AprilFoolsDay: {
+					Label: April Fools Day
+					Tooltip: ""
+				}
+			}
+
+			ConfigReaperSouls: {
+				DisplayName: Config Reaper
+
 				ToggleKingSlimeSoul: {
 					Label: Toggle King Slime Soul
 					Tooltip: ""
@@ -4222,10 +4231,7 @@ Mods: {
 					Tooltip: ""
 				}
 
-				AprilFoolsDay: {
-					Label: April Fools Day
-					Tooltip: ""
-				}
+				Headers.ReaperSouls: Reaper Souls Header
 			}
 
 			ConfigServer: {

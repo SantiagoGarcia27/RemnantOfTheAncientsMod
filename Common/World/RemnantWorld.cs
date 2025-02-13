@@ -29,8 +29,9 @@ namespace RemnantOfTheAncientsMod.World
 			RemnantOfTheAncientsMod.MaxRarity = RemnantOfTheAncientsMod.GetMaxRarity();
 
             ModifyAccsesories.UpdateFallSpeedList();
-           
 
+			ModLoader.TryGetMod("SangarUtilities", out Mod Terraria);
+            RemnantOfTheAncientsMod.Terraria = Terraria; 
         }
         
         public override void Load()

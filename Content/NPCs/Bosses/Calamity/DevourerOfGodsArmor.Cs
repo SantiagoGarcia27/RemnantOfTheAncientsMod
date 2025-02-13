@@ -2,17 +2,19 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using SangarUtilities.Common;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
+    [JITWhenModsEnabled("CalamityMod")]
     public class DevourerOfGodsArmor : ModNPC
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.TryGetMod("InfernumMode", out Mod InfernumMode);
+        }
         public override string Texture => GetTexturePath();
         public override void SetStaticDefaults()
         {

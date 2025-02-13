@@ -8,7 +8,6 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Drops
@@ -22,7 +21,8 @@ namespace RemnantOfTheAncientsMod.Drops
             {
                 case ItemID.EaterOfWorldsBossBag:
                     Utils1.DroppItem(player, item, ItemType<EaterOfWorldsScroll>(), 1, commonScroll);
-                    if (!Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][2] && Reaper.ReaperMode)
+                    bool haveSoul = Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.EaterofWorldsHead] || Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.RemnantOfTheAncients][NPCID.BrainofCthulhu];
+                    if (!haveSoul && Reaper.ReaperMode)
                     {
                         Utils1.DroppItem(player, item, ItemType<CorruptSoul>(), 1, 1);
                     }

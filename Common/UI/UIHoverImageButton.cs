@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.Configs;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -61,25 +62,25 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         {
             Player player = Main.player[Main.myPlayer];
 
-            float value = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val];
+            float value = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val];
 
             if (Reaper)
             {
                 if (_Val == 0)
                 {
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 30 : 0);
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val] = ModContent.GetInstance<ConfigClient>().ToggleKingSlimeSoul;
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
                 }
                 else if (_Val == 12)
                 {
 
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val] = ModContent.GetInstance<ConfigClient>().ToggleSkeletronPrimeSoul;
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 10 : 0);
                 }
                 else
                 {
 
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[0][_Val] = value == 0 ? 1 : 0;
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val] = value == 0 ? 1 : 0;
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 1 : 0);
                 }
             }

@@ -131,7 +131,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				if (player.wingTimeMax >= 4)
 				{
 					OgWingTime = player.wingTimeMax;
-					if (!player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][11] || !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[0][17]) player.wingTimeMax = OgWingTime / 2;
+					if (!player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.Terraria][NPCID.Retinazer] || !player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[RemnantOfTheAncientsMod.Terraria][NPCID.HallowBoss]) player.wingTimeMax = OgWingTime / 2;
 					else player.wingTimeMax = OgWingTime;
 				}
 			}

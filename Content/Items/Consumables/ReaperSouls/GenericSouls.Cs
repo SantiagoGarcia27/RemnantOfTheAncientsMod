@@ -1,132 +1,152 @@
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
+using SangarUtilities.Common;
+using Terraria.ID;
+using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
+
+    class GetVanillaMod
+    {
+        public static Mod Get(string name)
+        {
+            ModLoader.TryGetMod(name, out Mod Terraria);
+            return Terraria;
+        }
+    }
+
     public class KingSoul : SoulModel
     {
         int SpeedBoost = 30;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBoost);
-        public override int SoulID => BossID.VanillaID.KingSlime;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.KingSlime];
+       
+        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
+
+
     }
     public class EyeSoul : SoulModel
     {
         int LifeBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
-        public override int SoulID => BossID.VanillaID.EyeOfChutulu;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.EyeofCthulhu];
+        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class CorruptSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.CorruptBoss;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.BrainofCthulhu];
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class BeeSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.QueenBee;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.QueenBee];
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class SkeletonSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.Skeletron;
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.SkeletronHead];
 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class DeerclopsSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.Deerclops; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Deerclops]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class DesertSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.DesertAnhilator; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAniquilator>()]; 
+       public override Mod ItemMod => GetVanillaMod.Get("RemnantOfTheAncientsMod");
     }
    
     public class FleshSoul : SoulModel
     {
         int DamageBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBoost);
-        public override int SoulID => BossID.VanillaID.WallOfFlesh; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.WallofFlesh]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
 
 
     }
     public class FrozenSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.FrozenAssaulter; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[ModContent.NPCType<FrozenAssaulter>()]; 
+       public override Mod ItemMod => GetVanillaMod.Get("RemnantOfTheAncientsMod");
     }
     public class QueenSoul : SoulModel
     {
         int LifeBoost = 15;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
-        public override int SoulID => BossID.VanillaID.QueenSlime;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.QueenSlimeBoss];
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class SpazmatismEnergyCell : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.Spazmatism; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Spazmatism]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class RetinazorEnergyCell : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.Retinazor;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Retinazer];
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class SkeletronPrimeEnergyCell : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.SkeletronPrime;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.SkeletronPrime];
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class DestroyerEnergyCell : SoulModel
     {
         int MiningBoost = 35;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MiningBoost);
-        public override int SoulID => BossID.VanillaID.Destroyer;
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.TheDestroyer];
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class PlantSoul : SoulModel
     {
         int LifeBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
-        public override int SoulID => BossID.VanillaID.Plantera; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Plantera]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class InfernalSoul : SoulModel
     {
         int DamageBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBoost);
-        public override int SoulID => BossID.VanillaID.InfernalTyrant; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[ModContent.NPCType<InfernalTyrantHead>()];
+       public override Mod ItemMod => GetVanillaMod.Get("RemnantOfTheAncientsMod");
     }
     public class GolemSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.Golem; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Golem]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class EmpressSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.EmpressOfLight; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.HallowBoss]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class FishSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.DukeFishron; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.DukeFishron]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class CultistSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.Cultist; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.CultistBoss]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
     public class MoonSoul : SoulModel
     {
-        public override int SoulID => BossID.VanillaID.MoonLord; 
-        public override string ItemMod => "RemnantOfTheAncientsMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.MoonLordCore]; 
+       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
 }
 

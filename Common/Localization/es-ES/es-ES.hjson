@@ -2052,7 +2052,7 @@ Mods: {
 			}
 
 			FireBullet: {
-				DisplayName: Balla incendiaria
+				DisplayName: Bala incendiaria
 				Tooltip: ""
 			}
 
@@ -4137,6 +4137,15 @@ Mods: {
 					Tooltip: ""
 				}
 
+				AprilFoolsDay: {
+					Label: Día de los inocentes
+					// Tooltip: ""
+				}
+			}
+
+			ConfigReaperSouls: {
+				DisplayName: Configuración Segador
+
 				ToggleKingSlimeSoul: {
 					Label: Activar alma del rey slime
 					Tooltip: ""
@@ -4242,10 +4251,7 @@ Mods: {
 					Tooltip: ""
 				}
 
-				AprilFoolsDay: {
-					// Label: April Fools Day
-					// Tooltip: ""
-				}
+				// Headers.ReaperSouls: Reaper Souls Header
 			}
 
 			ConfigServer: {

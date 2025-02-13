@@ -39,6 +39,16 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             button.OnLeftClick += mouseEvent;
             return button;
         }
+        public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent, bool Condition = true, int i = -1, bool Reaper = false)
+        {
+            Asset<Texture2D> TextureBase = Texture;
+            Asset<Texture2D> TextureGray = ModContent.Request<Texture2D>(Texture + "_Blocked");
+            UIHoverImageButton button = new UIHoverImageButton(TextureBase, text, i, true);
+            SetButtonActive(button, Condition, TextureBase, TextureGray);
+            UIUtils.SetRectangle(button, left, top, width, height);
+            button.OnLeftClick += mouseEvent;
+            return button;
+        }
         public static void SetRectangle(UIElement uiElement, float left, float top, float width, float height)
         {
             uiElement.Left.Set(left, 0f);

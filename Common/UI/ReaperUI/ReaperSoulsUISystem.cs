@@ -15,8 +15,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         
 		// These two methods will set the state of our custom UI, causing it to show or hide
 		public void ShowMyUI() {
-			userInterface?.SetState(reaperSoulsUI);
-			Visible = true;
+			//userInterface?.SetState(reaperSoulsUI);
+			//Visible = true;
 		}
 		
 		public void HideMyUI() {

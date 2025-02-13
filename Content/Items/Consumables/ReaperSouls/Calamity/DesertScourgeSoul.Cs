@@ -1,5 +1,8 @@
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
+using SangarUtilities.Common;
+using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -10,8 +13,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls.Calamity
         public override bool IsLoadingEnabled(Mod mod) => false;
         int SpeedBoost = 30;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBoost);
-        public override int SoulID => BossID.CalamityID.DesertScourge;
-        public override string ItemMod => "CalamityMod";
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead")];
+        public override Mod ItemMod => RemnantOfTheAncientsMod.CalamityMod;
     }
   
 }

@@ -26,6 +26,7 @@ namespace RemnantOfTheAncientsMod
         public static Mod AlchemistNPCMod;
         public static Mod RemnantOfTheAncientsMusic;
         public static Mod MeleeWeaponEffects;
+        public static Mod Terraria;
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static int MaxRarity = GetMaxRarity();
@@ -49,7 +50,7 @@ namespace RemnantOfTheAncientsMod
         {
             ModLoader.TryGetMod("CalamityMod", out CalamityMod);
             ModLoader.TryGetMod("ThoriumMod", out ThoriumMod);
-            ModLoader.TryGetMod(" RemnantOfTheAncientsMod.BossChecklist", out RemnantOfTheAncientsMod.BossChecklist);
+            ModLoader.TryGetMod("BossChecklist", out BossChecklist);
             ModLoader.TryGetMod("TerrariaOverhaul", out TerrariaOverhaul);
             ModLoader.TryGetMod("Census", out Census);
             ModLoader.TryGetMod("InfernumMode", out InfernumMod);
@@ -59,13 +60,14 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMusicMod", out RemnantOfTheAncientsMusic);
             ModLoader.TryGetMod("MeleeWeaponEffects", out MeleeWeaponEffects);
+           // ModLoader.TryGetMod("SangarUtilities", out Terraria);
 
             if (ModContent.GetInstance<Terracoin>() != null) 
             {
                 ModContent.GetInstance<Terracoin>(); 
             }
 
-            if(RemnantOfTheAncientsMod.InfernumMod != null)
+            if(InfernumMod != null)
             {
                 IntroScreenManager.Load();
             }

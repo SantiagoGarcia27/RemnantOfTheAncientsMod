@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.Global;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common;
+using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
@@ -13,8 +13,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         private static readonly Color rarityColorOne = new(46, 45, 45);
 
         private static readonly Color rarityColorTwo = new(191, 187, 187);
-        public abstract string ItemMod { get; }
-        public abstract int SoulID { get; }
+        public abstract Mod ItemMod { get; }
+        public abstract NPC BaseNpc { get; }
 
         internal static Mod _mod;
         public override void SetStaticDefaults()
@@ -25,10 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            ModLoader.TryGetMod(ItemMod, out _mod);
-                if(_mod != null)
-                return true;
-            return false;
+            return ItemMod != null;
         }
         public override void SetDefaults()
         {
@@ -46,15 +43,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         }
         public override bool CanUseItem(Player player)
         {
-            ModLoader.TryGetMod(ItemMod, out _mod);
-            bool hasSoul = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ModID.GetModID(_mod)][SoulID];
+            Dictionary<int, bool> souls = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod];
+            bool hasSoul = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod][BaseNpc.type];
             return !hasSoul;
         }
         public override bool? UseItem(Player player)
         {
-            ModLoader.TryGetMod(ItemMod, out _mod);
             ReaperPlayer rp = player.GetModPlayer<ReaperPlayer>();
-            rp.SoulsUpgrades[ModID.GetModID(_mod)][SoulID] = true;
+            rp.SoulsUpgrades[ItemMod][BaseNpc.type] = true;
             return true;
         }
         internal static Color GetRarityColor()
