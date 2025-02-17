@@ -15,8 +15,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         
 		// These two methods will set the state of our custom UI, causing it to show or hide
 		public void ShowMyUI() {
-			//userInterface?.SetState(reaperSoulsUI);
-			//Visible = true;
+			userInterface?.SetState(reaperSoulsUI);
+			Visible = true;
 		}
 		
 		public void HideMyUI() {
@@ -27,9 +27,11 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 		public bool IsVisible() => Visible;
 
 		public override void Load() {
-			// Create custom interface which can swap between different UIStates
+            // Create custom interface which can swap between different UIStates
+            if (userInterface == null)
 			userInterface = new UserInterface();
-			// Creating custom UIState
+            // Creating custom UIState
+            if (reaperSoulsUI == null)
 			reaperSoulsUI = new ReaperSoulsUIState();
 
 			// Activate calls Initialize() on the UIState if not initialized, then calls OnActivate and then calls Activate on every child element

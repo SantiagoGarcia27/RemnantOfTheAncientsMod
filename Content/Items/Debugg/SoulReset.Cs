@@ -38,14 +38,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 		{
 			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
-				if (player.GetModPlayer<ReaperPlayer>().AllSoulsAreActive())
+				if (ReaperPlayer.AllSoulsAreActive())
 				{
-					efects(player, false);
+					SetSoulValue(player, false);
 					Main.NewText("Souls desactivadas");
 				}
 				else
 				{
-					efects(player, true);
+					SetSoulValue(player, true);
 					Main.NewText("Souls activadas");
 				}
 				Netcode.SyncWorld();
@@ -53,16 +53,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 			return true;
 		}
 
-		public void efects(Player player, bool n)
+		public void SetSoulValue(Player player, bool n)
 		{
-            foreach (Mod mod in SangarUtilities.Common.NpcList.BossList.Keys)
-            {
-				foreach (KeyValuePair<int, bool> npc in player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[mod])
-				{
-					player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[mod][npc.Key] = n;
-				}
-            }
-			//Main.NewText(player.GetModPlayer<EyeReaperSoulPlayer>().EyeeReaperUpgrade);
+			foreach (KeyValuePair<int, bool> npc in player.GetModPlayer<ReaperPlayer>().SoulsUpgrades)
+			{
+				player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[npc.Key] = n;
+			}
 		}
 
 	}

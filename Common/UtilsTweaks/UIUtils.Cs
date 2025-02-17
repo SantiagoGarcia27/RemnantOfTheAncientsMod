@@ -1,10 +1,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
-using System.Configuration;
 using System.Drawing;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 using static Terraria.UI.UIElement;
@@ -15,40 +13,51 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
     {
         public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture,Rectangle rec,string text, MouseEvent mouseEvent)
         {
-            UIHoverImageButton button = new UIHoverImageButton(Texture, text);
-            
-            UIUtils.SetRectangle(button, rec);
+            UIHoverImageButton button = new(Texture, text);
+
+            SetRectangle(button, rec);
             button.OnLeftClick += mouseEvent;
             return button;
         }
         public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent)
         {
-            UIHoverImageButton button = new UIHoverImageButton(Texture, text);
+            UIHoverImageButton button = new(Texture, text);
 
-            UIUtils.SetRectangle(button, left, top, width, height); 
+            SetRectangle(button, left, top, width, height); 
             button.OnLeftClick += mouseEvent;
             return button;
         }
-        public static UIHoverImageButton CreateButtom(string Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent,bool Condition = true, int i = -1,bool Reaper = false)
+        public static UIHoverImageButton CreateButtom(string Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent,bool Condition = true, NPC npc = null,bool Reaper = false)
         {
             Asset<Texture2D> TextureBase = ModContent.Request<Texture2D>(Texture);
             Asset<Texture2D> TextureGray = ModContent.Request<Texture2D>(Texture + "_Blocked");
-            UIHoverImageButton button = new UIHoverImageButton(TextureBase, text,i,true);
-            SetButtonActive(button, Condition, TextureBase, TextureGray);
+            UIHoverImageButton button = new(TextureBase, text,npc,true);
+            SetButtonActive(button, Condition, TextureBase, TextureGray,npc);
             UIUtils.SetRectangle(button, left, top, width, height);
             button.OnLeftClick += mouseEvent;
             return button;
         }
-        public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent, bool Condition = true, int i = -1, bool Reaper = false)
+        public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent, bool Condition = true, NPC npc = null, bool Reaper = false)
         {
             Asset<Texture2D> TextureBase = Texture;
             Asset<Texture2D> TextureGray = ModContent.Request<Texture2D>(Texture + "_Blocked");
-            UIHoverImageButton button = new UIHoverImageButton(TextureBase, text, i, true);
-            SetButtonActive(button, Condition, TextureBase, TextureGray);
-            UIUtils.SetRectangle(button, left, top, width, height);
+            UIHoverImageButton button = new(TextureBase, text, npc, true);
+            SetButtonActive(button, Condition, TextureBase, TextureGray, npc);
+            SetRectangle(button, left, top, width, height);
             button.OnLeftClick += mouseEvent;
             return button;
         }
+        public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture, Asset<Texture2D> TextureBlocked, float left, float top, float width, float height, string text, MouseEvent mouseEvent, bool Condition = true, NPC npc = null, bool Reaper = false)
+        {
+            Asset<Texture2D> TextureBase = Texture;
+            Asset<Texture2D> TextureGray = TextureBlocked;
+            UIHoverImageButton button = new(TextureBase, text, npc, true);
+            SetButtonActive(button, Condition, TextureBase, TextureGray, npc);
+            SetRectangle(button, left, top, width, height);
+            button.OnLeftClick += mouseEvent;
+            return button;
+        }
+
         public static void SetRectangle(UIElement uiElement, float left, float top, float width, float height)
         {
             uiElement.Left.Set(left, 0f);
@@ -63,17 +72,19 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             uiElement.Width.Set(rec.Width, 0f);
             uiElement.Height.Set(rec.Height, 0f);
         }
-        public static void SetButtonActive(UIHoverImageButton button,bool condition, Asset<Texture2D> Texture, Asset<Texture2D> TextureGray)
+        public static void SetButtonActive(UIHoverImageButton button,bool condition, Asset<Texture2D> Texture, Asset<Texture2D> TextureGray,NPC npc)
         {
             if (condition)
             {
                 button.SetImage(Texture);
                 button.Blocked(false);
+                button.Npc(npc);
             }
             else
             { 
                 button.SetImage(TextureGray);
                 button.Blocked(true);
+                button.Npc(npc);
             }
         }
 

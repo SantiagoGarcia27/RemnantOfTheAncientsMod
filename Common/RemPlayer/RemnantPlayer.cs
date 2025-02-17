@@ -744,14 +744,18 @@ namespace RemnantOfTheAncientsMod
 	}
     public class RemnantKeybindPlayer : ModPlayer
     {
+		ReaperSoulsUISystem ReaperUI = null;
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
             if (KeybindSystem.TogleReaperInterface.JustPressed)
             {
-				ReaperSoulsUISystem ReaperUI = GetInstance<ReaperSoulsUISystem>();
+				if (ReaperUI == null)			
+					ReaperUI = GetInstance<ReaperSoulsUISystem>();	
 
-				if (ReaperUI.IsVisible()) ReaperUI.HideMyUI();             
-				else ReaperUI.ShowMyUI();	
+				if (ReaperUI.IsVisible()) 
+					ReaperUI.HideMyUI();             
+				else 
+					ReaperUI.ShowMyUI();	
             }
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
 			{

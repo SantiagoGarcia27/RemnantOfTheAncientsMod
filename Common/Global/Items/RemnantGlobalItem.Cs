@@ -813,7 +813,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		
 			if (Reaper.ReaperMode)
 			{
-				if (Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>().AllSoulsAreActive())
+				if (ReaperPlayer.AllSoulsAreActive())
 				{
 					if (item.type == ItemID.ReaperHood)
 					{

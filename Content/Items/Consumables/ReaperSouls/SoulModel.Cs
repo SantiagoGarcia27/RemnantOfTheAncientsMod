@@ -43,14 +43,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         }
         public override bool CanUseItem(Player player)
         {
-            Dictionary<int, bool> souls = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod];
-            bool hasSoul = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod][BaseNpc.type];
+           // Dictionary<int, bool> souls = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod];
+            bool hasSoul = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[BaseNpc.type];
             return !hasSoul;
         }
         public override bool? UseItem(Player player)
         {
             ReaperPlayer rp = player.GetModPlayer<ReaperPlayer>();
-            rp.SoulsUpgrades[ItemMod][BaseNpc.type] = true;
+            rp.SoulsUpgrades[BaseNpc.type] = true;
             return true;
         }
         internal static Color GetRarityColor()

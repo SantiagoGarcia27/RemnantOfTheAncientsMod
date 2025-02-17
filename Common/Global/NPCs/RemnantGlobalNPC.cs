@@ -78,7 +78,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             //DamageBonus = 1f;
             //LifeBonus = 1f;
         }
-        public static void setStatBonus(float DamageBonusMultiplier = 1f, float LifeBonusMultiplier = 1f,char type = '*')
+        public static void setStatBonus(float DamageBonusMultiplier = 1f, float LifeBonusMultiplier = 1f, char type = '*')
         {
             switch (type)
             {
@@ -100,7 +100,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     break;
             }
         }
-        
+
         public override void SetDefaults(NPC npc)
         {
             if (npc.type == NPCID.BigMimicCrimson)
@@ -386,15 +386,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.dust[dust].scale *= 0.5f;
                 }
                 Lighting.AddLight(NPC.position, torchColor);
-            } 
+            }
         }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             if (CanDrop)
             {
-                if(npc.type == NPCID.ArmsDealer)
+                if (npc.type == NPCID.ArmsDealer)
                 {
-                    npcLoot.Add(ItemDropRule.Common(ItemType<DealersPeacemaker>(), 2,1, 1));
+                    npcLoot.Add(ItemDropRule.Common(ItemType<DealersPeacemaker>(), 2, 1, 1));
                 }
                 base.ModifyNPCLoot(npc, npcLoot);
             }
@@ -551,11 +551,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 shop.Add(new Item(ItemType<QuickDraw>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) });
             }
-            if(shop.NpcType == NPCID.SkeletonMerchant)
+            if (shop.NpcType == NPCID.SkeletonMerchant)
             {
-                shop.Add(new Item(ItemType<Darksign>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 7, 0, 0) },Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<Darksign>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 7, 0, 0) }, Condition.DownedEyeOfCthulhu);
             }
-                base.ModifyShop(shop);
+            base.ModifyShop(shop);
         }
         public void SetImmuneTimeForAllTypes(int time)
         {
@@ -651,7 +651,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             //    Main.EntitySpriteDraw((Texture2D)Texture, pos - new Vector2(3 * 16, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
             //    Main.EntitySpriteDraw((Texture2D)Texture, pos + new Vector2(1.5f * 16f, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
             //}
-           
+
             base.PostDraw(npc, spriteBatch, screenPos, drawColor);
         }
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -692,6 +692,68 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             return base.CanBeHitByProjectile(npc, projectile);
         }
+
+        public static Mod GetMod(NPC npc)
+        {
+            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
+            ModNPC ModNpc = npc.ModNPC;
+            Mod mod = TerrariaMod;
+            if (ModNpc == null)
+                mod = ModNpc.Mod;
+            return mod;
+        }
+        public static Mod GetMod(int type)
+        {
+            NPC npc = ContentSamples.NpcsByNetId[type];
+            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
+            ModNPC ModNpc = npc.ModNPC;
+            Mod mod = TerrariaMod;
+            if (ModNpc != null)
+                mod = ModNpc.Mod;
+            return mod;
+        }
+        public static int CountBoss(Mod mod)
+        {
+            int count = 0;
+            if (mod == null)
+                return 0;
+            foreach (NPC npc in SangarUtilities.Common.NpcList.BossList[mod])
+            {
+                count++;
+            }
+            return count;
+        }
+        public static int CountBoss(Mod mod,List<NPC> banned)
+        {
+            int count = 0;
+            if (mod == null)
+                return 0;
+            if (mod == RemnantOfTheAncientsMod.RemnantOfTheAncients)
+                return 3;
+            foreach (NPC npc in SangarUtilities.Common.NpcList.BossList[mod])
+            {
+                if (!banned.Contains(npc))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+        public static int CountBoss(Mod mod, List<int> banned)
+        {
+            int count = 0;
+            if (mod == RemnantOfTheAncientsMod.RemnantOfTheAncients)
+                return 3;
+            foreach (NPC npc in SangarUtilities.Common.NpcList.BossList[mod])
+            {
+                if (!banned.Contains(npc.type))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
         [JITWhenModsEnabled("CalamityMod")]
         public static void SetNpcDamageReductionCalamity(NPC npc, float normal, float revenge, float death, float bossrush, float infernum)
         {

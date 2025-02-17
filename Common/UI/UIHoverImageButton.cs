@@ -3,6 +3,7 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Configs;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -18,17 +19,17 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 		internal string hoverText;
 		internal static bool _Active = false;
 		internal static bool _Blocked = false;
-		public int _Val;
+        public NPC _Npc;
         public bool Reaper;
 
 
         public UIHoverImageButton(Asset<Texture2D> texture, string hoverText) : base(texture) {
             this.hoverText = hoverText;
 		}
-        public UIHoverImageButton(Asset<Texture2D> texture, string hoverText,int val,bool reaper) : base(texture)
+        public UIHoverImageButton(Asset<Texture2D> texture, string hoverText, NPC npc,bool reaper) : base(texture)
         {
             this.hoverText = hoverText;
-			_Val = val;
+            _Npc = npc;
             Reaper = reaper;
         }
 
@@ -50,38 +51,43 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         {
             _Active = b;
         }
-		public void Value(int v)
+		public void Npc(NPC npc)
 		{
-			_Val = v;
+			_Npc = npc;
 		}
-        public int Value()
+        public NPC Npc()
         {
-            return _Val;
+            return _Npc;
         }
         public override void LeftClick(UIMouseEvent evt)
         {
-            Player player = Main.player[Main.myPlayer];
+            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
 
-            float value = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val];
+            Player player = Main.player[Main.myPlayer];
+            ModNPC ModNpc = _Npc.ModNPC;
+            Mod mod;
+            if (ModNpc == null) mod = TerrariaMod;
+            else mod = _Npc.ModNPC.Mod;
+            NPC npc = _Npc;
+            mod ??= RemnantOfTheAncientsMod.Terraria;
+            float value = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type];
 
             if (Reaper)
             {
-                if (_Val == 0)
+                if (npc.type == NPCID.KingSlime)
                 {
-                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 30 : 0);
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
+                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0 ? 30 : 0);
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
                 }
-                else if (_Val == 12)
+                else if (npc.type == NPCID.SkeletronHead)
                 {
-
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
-                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 10 : 0);
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
+                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0 ? 10 : 0);
                 }
                 else
-                {
-
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[RemnantOfTheAncientsMod.Terraria][_Val] = value == 0 ? 1 : 0;
-                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(_Val, value == 0 ? 1 : 0);
+                { 
+                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = value == 0 ? 1 : 0;
+                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0);
                 }
             }
             base.LeftClick(evt);

@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                     var modPlayer = player.GetModPlayer<ReaperPlayer>();
                     if (!modPlayer.ChaliceOn)
                     {
-                        modPlayer.ReaperStarter();
+                        modPlayer.DropReaperStarterKit();
                         ReaperPlayer.ReaperFirstTime = true;
                     }
                 }
