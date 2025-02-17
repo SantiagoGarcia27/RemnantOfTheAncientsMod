@@ -79,7 +79,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0 ? 30 : 0);
                     player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
                 }
-                else if (npc.type == NPCID.SkeletronHead)
+                else if (npc.type == NPCID.SkeletronPrime)
                 {
                     player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
                     player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0 ? 10 : 0);
