@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
-            //DustType = ModContent.DustType<Sparkle>();
+            
             AdjTiles = new int[] { TileID.ClosedDoor };
             TileID.Sets.OpenDoorID[Type] = ModContent.TileType<TuxoniteDoorOpen>();
 

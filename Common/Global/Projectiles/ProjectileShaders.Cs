@@ -14,37 +14,26 @@ public class SimpleTrailGlobalProjectile : GlobalProjectile
 
     public override bool PreDraw(Projectile projectile, ref Color lightColor)
     {
-        //if (ProjectileTrailSettings.TryGetValue(projectile.type, out SimpleTrailSettings settings))
-        //{
+    //    if (ProjectileTrailSettings.TryGetValue(projectile.type, out SimpleTrailSettings settings))
+    //    {
+    //    Main.pixelShader.CurrentTechnique.Passes[0].Apply();
 
-   
+    //    Main.instance.LoadProjectile(projectile.type);
 
-        Main.pixelShader.CurrentTechnique.Passes[0].Apply();
-
-
-
-
-
-
-
-
-
-        Main.instance.LoadProjectile(projectile.type);
-
-            MiscShaderData miscShaderData = GameShaders.Misc["LightDisc"];
-            miscShaderData.UseSaturation(-2.8f);
-            miscShaderData.UseOpacity(2f);
-            miscShaderData.Apply();
+    //        MiscShaderData miscShaderData = GameShaders.Misc["LightDisc"];
+    //        miscShaderData.UseSaturation(-2.8f);
+    //        miscShaderData.UseOpacity(2f);
+    //        miscShaderData.Apply();
 
             
 
-            //vertexStrip.PrepareStripWithProceduralPadding(projectile.oldPos, projectile.oldRot, VertexStrip.StripColorFunction.Combine, settings.StripHalfWidthFunction, (projectile.Size / 2f) - Main.screenPosition);
-            vertexStrip.DrawTrail();
+    //        vertexStrip.PrepareStripWithProceduralPadding(projectile.oldPos, projectile.oldRot, VertexStrip.StripColorFunction.Combine, settings.StripHalfWidthFunction, (projectile.Size / 2f) - Main.screenPosition);
+    //        vertexStrip.DrawTrail();
 
      
 
-            Main.pixelShader.CurrentTechnique.Passes[0].Apply();
-      // }
+    //        Main.pixelShader.CurrentTechnique.Passes[0].Apply();
+    //    }
 
         return base.PreDraw(projectile, ref lightColor);
     }

@@ -70,7 +70,10 @@ public class ReaperPlayer : ModPlayer
             List<NPC> currentList = NpcList.BossList[m];
             foreach (NPC npc in currentList)
             {
-                 SoulsUpgrades.TryAdd(npc.type,false);
+                if(!SoulsUpgrades.ContainsKey(npc.type))
+                    SoulsUpgrades.TryAdd(npc.type, false);
+                else if (SoulsUpgrades[npc.type] != true)
+                    SoulsUpgrades.TryAdd(npc.type,false);
                  SoulsUpgradesActive.TryAdd(npc.type, 0f);
             }
         }
@@ -110,7 +113,7 @@ public class ReaperPlayer : ModPlayer
         {
             foreach (NPC npc in NpcList.BossList[mod])
             {
-                string name = mod == TerrariaMod ? npc.FullName.Replace(" ", "") : npc.ModNPC.GetType().Name;
+                string name = mod == TerrariaMod ? npc.type.ToString() : npc.ModNPC.GetType().Name;
                 tag[name + "ReaperUpgrade"] = SoulsUpgrades[npc.type];
             }
         }
@@ -128,7 +131,7 @@ public class ReaperPlayer : ModPlayer
         {
             foreach (NPC npc in NpcList.BossList[mod])
             {
-                string name = mod == TerrariaMod ? npc.FullName.Replace(" ", "") : npc.ModNPC.GetType().Name;
+                string name = mod == TerrariaMod ? npc.type.ToString() : npc.ModNPC.GetType().Name;
                 bool? value = tag.Get<bool>(name + "ReaperUpgrade");
                 value ??= false;
                 SoulsUpgrades[npc.type] = (bool)value;

@@ -426,20 +426,18 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             if (BackgroundPanel != null)
             {
                 Vector2 titlePos = new(shopx + BackgroundPanel.Width.Pixels / 4 /*130*/, shopy + 25f);
-                Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, Language.GetTextValue("Mods.RemnantOfTheAncientsMod.UI.ReaperTitle"), titlePos.X, titlePos.Y, Color.White, Color.Black, new Vector2(0.3f), 3.75f);
-                DrawTitle(spriteBatch, titlePos);
-            }
-        }
-        private void DrawTitle(SpriteBatch spriteBatch, Vector2 TitlePos)
-        {
-            for (int j = -1; j < 2; j += 2)
-            {
-                Main.instance.LoadItem(ModContent.ItemType<ReaperChalice>());
-                Texture2D texture = TextureAssets.Item[ModContent.ItemType<ReaperChalice>()].Value;
-                spriteBatch.Draw(texture, TitlePos + new Vector2((150 * Utils1.GetSign(j)) + 80, 0), null, Color.White, 0f, texture.Size() / 2f, 3.5f, SpriteEffects.None, 0f);
-            }
-        }
+                string path = "RemnantOfTheAncientsMod/Common/UI/ReaperUI/";
+                ModContent.RequestIfExists(path+ "TileBackground", out Asset<Texture2D> backgroundTexture);
+                string language = LanguageManager.Instance.ActiveCulture.Name;
+                ModContent.RequestIfExists(path + "SoulsText_"+language, out Asset<Texture2D> TitleTexture);
 
+             
+                spriteBatch.Draw((Texture2D)backgroundTexture, new(titlePos.X - 15 + BackgroundPanel.Width.Pixels / 4, titlePos.Y + 5), null, Color.White, 0f, backgroundTexture.Size() / 2f, 0.78f, SpriteEffects.None, 0f);
+                spriteBatch.Draw((Texture2D)TitleTexture, new(titlePos.X + 30 + BackgroundPanel.Width.Pixels / 2, titlePos.Y+ 30), null, Color.White, 0f, backgroundTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                //Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, Language.GetTextValue("Mods.RemnantOfTheAncientsMod.UI.ReaperTitle"), titlePos.X, titlePos.Y, Color.White, Color.Black, new Vector2(0.3f), 3.75f); 
+            }
+        }    
+        
     }
 
     public class CheckSouls : ModPlayer

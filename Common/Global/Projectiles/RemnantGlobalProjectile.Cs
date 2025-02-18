@@ -1,10 +1,7 @@
-using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
-using Mono.Cecil;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
+using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.World;
@@ -25,15 +22,15 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public float miscCounterNormalized => miscCounter / 300f;
 
         bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-        public List<int> MeleeProjFix = new List<int>()
-        {
+        public List<int> MeleeProjFix =
+        [
             ProjectileID.NightsEdge,
             ProjectileID.TrueNightsEdge,
             ProjectileID.Excalibur,
             ProjectileID.TrueExcalibur
-        };
-        public static List<int> Spears = new List<int>()
-        {
+        ];
+        public static List<int> Spears =
+        [
             ProjectileID.Spear,
             ProjectileID.AdamantiteGlaive,
             ProjectileID.CobaltNaginata,
@@ -45,11 +42,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
             ProjectileID.ObsidianSwordfish,
             ProjectileID.Swordfish,
             ProjectileID.ChlorophytePartisan
-        };
-        public static List<int> MeleeWeaponEffectsProjectiles = new List<int>()
-        {
-            
-        };
+        ];
+        public static List<int> MeleeWeaponEffectsProjectiles = []; 
         public override void SetDefaults(Projectile projectile)
         {  
             if (WeaponConf)
@@ -432,6 +426,10 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 return Color.Green;
             }
+            if (projectile.Opacity == 0)
+            {
+                lightColor = Color.Transparent;
+            }
             return lightColor;
         }
         public bool DeleteVanilla = false;
@@ -455,11 +453,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     for (int i = 0; i < numberProjectiles; i++)
                     {
                         Vector2 perturbedSpeed = projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                       var p = Projectile.NewProjectileDirect(projectile.GetSource_Death(), projectile.position, perturbedSpeed * 5, ModContent.ProjectileType<LeafFriendlyClone>(), projectile.damage + 10, projectile.knockBack, projectile.owner);
+                        var p = Projectile.NewProjectileDirect(projectile.GetSource_Death(), projectile.position, perturbedSpeed * 5, ModContent.ProjectileType<LeafFriendlyClone>(), projectile.damage + 10, projectile.knockBack, projectile.owner);
                         p.tileCollide = false;
                         p.timeLeft = 300;
                     }
-                }
+                } 
             }
             if(projectile.type == ProjectileID.SnowBallFriendly)
             {
@@ -525,6 +523,21 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         index++;
                     }
                     totalIndexesInGroup++;
+                }
+            }
+        }
+        public override void PostAI(Projectile projectile)
+        {
+            if (projectile.type != ProjectileID.PurificationPowder || Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return;
+            }
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && (Main.npc[i].type == NPCID.Wraith || Main.npc[i].type == NPCID.Ghost) && projectile.Hitbox.Intersects(Main.npc[i].Hitbox))
+                {
+                    Main.npc[i].Transform(ModContent.NPCType<MinerSoul>());
                 }
             }
         }

@@ -310,7 +310,7 @@ Mods: {
 
 			Ranger_Infusion: {
 				DisplayName: Ranger infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Ranger_Infusion.Description
+				Description: Increase bow damage and 20% chance to save ammo
 			}
 
 			Summon_Infusion: {
@@ -405,7 +405,7 @@ Mods: {
 
 			MoneyColectorBuff: {
 				DisplayName: Money Collector
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.MoneyColectorBuff.Description
+				Description: Transport the money from your inventory to the piggy bank
 			}
 
 			Night_Bleasing_Buff: {
@@ -423,17 +423,18 @@ Mods: {
 				Description:
 					'''
 					Many thanks to -febo1apolo - eltonyhelou - Jormanas_gt 
-					 -LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
-					 -RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
+					-LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
+					-RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
 					-Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606 
-					 -gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo 
-					 -Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
+					-gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo 
+					-Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
 					-Rockerheadd -mateoamii -JuanitoLive -DDS0210 -charlestwi -zakzar01 -Wuchang234 
-					 -WHYonex -zun32 -bickelo -sakarok4 -Mr_D2D2 -Brunix_117 -kire -LixFTO -tuamigojoker1234 
-					 -Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
+					-WHYonex -zun32 -bickelo -sakarok4 -Mr_D2D2 -Brunix_117 -kire -LixFTO -tuamigojoker1234 
+					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
-					 -LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					 for being the first to give this mod a chance
+					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
+					-moardiego
+					for being the first to give this mod a chance
 					'''
 			}
 
@@ -589,7 +590,7 @@ Mods: {
 
 			DarksignBuff: {
 				DisplayName: Darksign Buff
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.DarksignBuff.Description
+				Description: You feen empty
 			}
 
 			FogOfVoid: {
@@ -3793,7 +3794,7 @@ Mods: {
 
 			Darksign: {
 				DisplayName: Darksign
-				Tooltip: ncreases your damage by {0}% at the cost of {1}% of your life;
+				Tooltip: increases your damage by {0}% at the cost of {1}% of your life;
 			}
 
 			Endless_Darksign: {

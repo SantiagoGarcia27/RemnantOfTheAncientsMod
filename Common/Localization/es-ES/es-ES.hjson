@@ -315,8 +315,8 @@ Mods: {
 			}
 
 			Ranger_Infusion: {
-				DisplayName: Ranger infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Ranger_Infusion.Description
+				DisplayName: Infusión de tirador
+				Description: Aumenta el daño de los arcos y otorga un 20% de probabilidad de salvar munición
 			}
 
 			Summon_Infusion: {
@@ -440,6 +440,7 @@ Mods: {
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
+					-moardiego
 					Por darle una oportunidad al mod en sus inicios
 					'''
 			}
@@ -596,7 +597,7 @@ Mods: {
 
 			DarksignBuff: {
 				// DisplayName: Darksign Buff
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.DarksignBuff.Description
+				// Description: You feen empty
 			}
 
 			FogOfVoid: {

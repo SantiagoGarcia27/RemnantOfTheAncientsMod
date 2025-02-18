@@ -111,14 +111,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         {
             var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect");
             Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
-            if (Main.myPlayer == Projectile.owner)
-            {
-                Color color = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
-                Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 2.5f, SpriteEffects.None, 0f);
-            }
+
+            Color color = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
+            Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 2.5f, SpriteEffects.None, 0f);
+
             return true;
         }
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.immune[Projectile.owner] = 2;
         }

@@ -239,24 +239,4 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             return true;
         }
     }
-
-    public class PurificationPowder : GlobalProjectile
-    {
-        // Make purification powder transform wraiths into purified ghosts.
-        public override void PostAI(Projectile projectile)
-        {
-            if (projectile.type != ProjectileID.PurificationPowder || Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                return;
-            }
-
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active && (Main.npc[i].type == NPCID.Wraith || Main.npc[i].type == NPCID.Ghost) && projectile.Hitbox.Intersects(Main.npc[i].Hitbox))
-                {
-                    Main.npc[i].Transform(NPCType<MinerSoul>());
-                }
-            }
-        }
-    }
 }

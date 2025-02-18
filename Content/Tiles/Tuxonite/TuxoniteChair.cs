@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
 
-			//DustType = ModContent.DustType<Sparkle>();
+			
 			AdjTiles = new int[] { TileID.Chairs };
 
 			// Names

@@ -181,7 +181,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             DespawnSafeCheck(target, this);
             DoAttacks(target);
 
-            
+
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
@@ -194,28 +194,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     if (!GenericVariables.IsSpawned)
                     {
                         GenericVariables.SpawnCounter++;
-                        RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
+                        RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC, 1f, 1f, 1f, 1f, 1f);
                     }
                 }
-                if(SangarUtilities.Common.DificultyUtils.InfernumMode != null)
+
+                if (DificultyUtils.InfernumMode)
                 {
-                    if (SangarUtilities.Common.DificultyUtils.InfernumMode)
+                    if (attackCounter % 4 == 0)
                     {
-                        if (attackCounter % 4 == 0)
+                        for (int i = -3; i <= 3; i++)
                         {
-                            for (int i = -3; i <= 3; i++)
-                            {
-                                Vector2 FlameVelocity = NPC.velocity * 1.25f;
-                                FlameVelocity.RotatedBy(i * 20);
-                                int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Utils1.GetSign(i));
-                                Main.projectile[projectile].timeLeft = 30;
-                                Main.projectile[projectile].tileCollide = false;
-                                Main.projectile[projectile].friendly = false;
-                                Main.projectile[projectile].hostile = true;
-                            }
+                            Vector2 FlameVelocity = NPC.velocity * 1.25f;
+                            FlameVelocity.RotatedBy(i * 20);
+                            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Utils1.GetSign(i));
+                            Main.projectile[projectile].timeLeft = 30;
+                            Main.projectile[projectile].tileCollide = false;
+                            Main.projectile[projectile].friendly = false;
+                            Main.projectile[projectile].hostile = true;
                         }
                     }
                 }
+
             }
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
@@ -274,8 +273,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
 
             int distance = (int)Vector2.Distance(NPC.Center, target.Center);
-            if (DashCounter >= 0)
-            {
+            //if (DashCounter >= 0)
+            //{
                 if (distance < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
                 {
                     if (attackCounter <= 0)
@@ -288,7 +287,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     {
                         if (DashCounter <= 0)
                         {
-                            DashCounter = !SangarUtilities.Common.DificultyUtils.MasochistMode ? 700 : 800;
+                            DashCounter = !DificultyUtils.MasochistMode ? 700 : 800;
                             DashCounter = DashCounterMaxValue;
                             NPC.netUpdate = true;
                         }
@@ -302,7 +301,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 {
                     DashCounter--;
                 }
-            }
+            //}
         }
 
         public void FindTarget()

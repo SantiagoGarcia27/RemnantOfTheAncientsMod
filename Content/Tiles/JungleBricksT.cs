@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 			Main.tileMergeDirt[Type] = true;
 			Main.tileBlockLight[Type] = true;
 
-			//DustType = ModContent.DustType<Sparkle>();
+			
 
 			AddMapEntry(Color.GreenYellow);
 		}
