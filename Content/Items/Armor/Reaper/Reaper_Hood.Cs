@@ -74,9 +74,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(LifeMaxBonus, GlobalDamageSetBonus).Value;//"+100 life, + 20% damage, Soul effects are boosted";
             player.statLifeMax2 += LifeMaxBonus;
 			player.GetDamage(DamageClass.Generic) *= 1f + (GlobalDamageSetBonus / 100f) ;
-            player.GetModPlayer<ReaperPlayer>().ReaperSoulBoost = true;
-            player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost(Item);
-            player.GetModPlayer<ReaperPlayer>().ReaperSoulsBoost();
+            player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulBoost = true;
+            player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost(Item);
+            player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost();
         }
 	}
 }

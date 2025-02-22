@@ -3,12 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -17,98 +20,54 @@ using Terraria.UI;
 
 namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 {
-    internal class ReaperSoulsUIState : UIState
+    public class ReaperSoulsUIState : UIState
     {
         public static DragableUIPanel BackgroundPanel;
         public UIPanel VanillaSoulTogglePanel;
         public UIPanel RemanntsSoulTogglePanel;
         public UIPanel CalamitySoulTogglePanel;
-        public UISoulDisplay SoulsDisplay;
+        public static UISoulDisplay SoulsDisplay;
         public static Dictionary<Mod, Dictionary<int, UIHoverImageButton>> Buttons = [];
+        public static List<int> BannedIds = [];
 
-        public static List<int> BannedIds = [395, 548, 549, 551, 564, 565, 576, 577, 344, 345, 346, 491, 493, 507, 517, 422, 327, 325, 396, 397, 664];
+
         public override void OnInitialize()
         {
             ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
-            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
 
+            ReaperSoulUIExtras.OnInitialize();
+
+            BannedIds = ReaperSoulUIExtras.BannedIds;
+
+            Buttons = ReaperSoulUIExtras.Buttons;
             Buttons.TryAdd(TerrariaMod, []);
             Buttons.TryAdd(RemnantOfTheAncientsM, []);
 
 
-            if (CalamityMod != null)
-            {
-                Buttons.TryAdd(CalamityMod, []);
 
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHive"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadSmall"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodySmall"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailSmall"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadMedium"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyMedium"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailMedium"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadLarge"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyLarge"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailLarge"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusTail"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsTail"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeTail"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "SkeletronPrime2"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Cataclysm"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Catastrophe"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeTail"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverTail"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody1"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody2"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosTail"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Artemis"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Apollo"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresGaussNuke"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresLaserCannon"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresPlasmaFlamethrower"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresTeslaCannon"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Anahita"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "THELORDE"));
-
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmHead"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmTail"));
-            }
         }
         public static void VerifyButtomsIndex(Mod mod)
         {
-            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
-            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-           
+
+
+            NPC[] RemnantsNpc =
+            [
+                ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAniquilator>()],
+                ContentSamples.NpcsByNetId[ModContent.NPCType<FrozenAssaulter>()],
+                ContentSamples.NpcsByNetId[ModContent.NPCType<InfernalTyrantHead>()]
+            ];
+
+
+
+            GlobalUtils.AddSecure(ref NpcList.BossList, RemnantOfTheAncientsM, RemnantsNpc.ToList());
 
             if (mod != null)
-            {  
-                if (Buttons[mod].Count < RemnantGlobalNPC.CountBoss(mod,BannedIds))
+            {
+                int count = RemnantGlobalNPC.CountBoss(mod, BannedIds);
+                if (Buttons[mod].Count < count)
                 {
                     foreach (NPC npc in NpcList.BossList[mod])
                     {
@@ -117,15 +76,14 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 }
             }
         }
-     
+
         public override void OnActivate()
         {
             ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
-            float baseLefthPositionIncrement = 40;
-            float baseTopPositionIncrement = 40;
+
 
             if (BackgroundPanel == null)
             {
@@ -147,317 +105,295 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             {
                 int bottom = 110;
                 setModPanel(ref VanillaSoulTogglePanel, new Color(73, 94, 171), 10, bottom, TerrariaMod);
-                setButtonPosition(ref VanillaSoulTogglePanel, TerrariaMod);
+                setButtonPosition(TerrariaMod);
                 bottom += (40 * 2) + 50;
                 setModPanel(ref RemanntsSoulTogglePanel, new Color(166, 123, 5), 10, bottom, RemnantOfTheAncientsM);
-                setButtonPosition(ref RemanntsSoulTogglePanel, RemnantOfTheAncientsM);
+                setButtonPosition(RemnantOfTheAncientsM);
                 bottom += 40 + 50;
                 if (CalamityMod != null)
                 {
                     setModPanel(ref CalamitySoulTogglePanel, new Color(49, 32, 36, 216), 10, bottom, CalamityMod);
-                    setButtonPosition(ref CalamitySoulTogglePanel, CalamityMod);
+                    setButtonPosition(CalamityMod);
                 }
             }
 
             base.OnActivate();
+        }
+        public static void setModPanel(ref UIPanel panel, Color color, int left = 0, int top = 120, Mod mod = null)
+        {
+            float IconSizeHeight = 45f;
+            float IconSizeWeight = 40f;
 
-            void setModPanel(ref UIPanel panel, Color color, int left = 0, int top = 120, Mod mod = null)
+            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
+            ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
+            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+
+            ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
+            float iconAmmount = 0;
+
+            if (mod == CalamityMod)
             {
-
-                float IconSizeHeight = 45f;
-                float IconSizeWeight = 40f;
-
-                ReaperPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperPlayer>();
-                float iconAmmount = 0;
-                foreach (int id in reaperPlayer.SoulsUpgrades.Keys)
+                foreach (int id in reaperPlayer.SoulsUpgradesMaybeLoaded.Keys)
                 {
-                    NPC npc = ContentSamples.NpcsByNetId[id];
-
-
                     if (ContentSamples.NpcsByNetId[id].boss && !BannedIds.Contains(id) && RemnantGlobalNPC.GetMod(id) == mod)
                     {
                         iconAmmount++;
                     }
                 }
-
-                //float iconAmmount = reaperPlayer.SoulsUpgrades[mod].Count;
-                int maxButtoms = CalamityMod != null ? 12 : 10;
-                int column = (int)(iconAmmount / maxButtoms);
-                if (iconAmmount % maxButtoms != 0)
-                    column += 1;
-                float height = (IconSizeHeight * column) + 20;
-                float width = (IconSizeWeight * maxButtoms) + 40;
-                if (CalamityMod != null) width += 40;
-                panel = new UIPanel();
-                panel.SetPadding(0);
-
-                UIUtils.SetRectangle(panel, left, top, width, height);
-                panel.BackgroundColor = color;// new Color(73, 94, 171);
-                BackgroundPanel.Append(panel);
             }
-            void setButtonPosition(ref UIPanel panel, Mod mod)
+            else
             {
-                if (!Main.gameMenu)
+                iconAmmount = mod == RemnantOfTheAncientsM ? 3 : reaperPlayer.SoulsUpgradesLoaded.Length - 3;
+            }
+
+            int maxButtoms = CalamityMod != null ? 12 : 10;
+            int column = (int)(iconAmmount / maxButtoms);
+            if (iconAmmount % maxButtoms != 0)
+                column += 1;
+            float height = (IconSizeHeight * column) + 20;
+            float width = (IconSizeWeight * maxButtoms) + 40;
+            if (CalamityMod != null) width += 40;
+            panel = new UIPanel();
+            panel.SetPadding(0);
+
+            UIUtils.SetRectangle(panel, left, top, width, height);
+            panel.BackgroundColor = color;// new Color(73, 94, 171);
+            BackgroundPanel.Append(panel);
+        }
+        public void setButtonPosition(Mod mod)
+        {
+
+            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
+            ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
+            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+            if (!Main.gameMenu)
+            {
+                VerifyButtomsIndex(mod);
+                bool[] LoadedSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
+                Dictionary<int, bool> Souls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
+
+                int spaceLimit = 10;
+                float baseLefthPosition = 20f;
+                float baseTopPosition = 20f;
+
+                if (CalamityMod != null)
                 {
-                    VerifyButtomsIndex(mod);
-                    Player player = Main.player[Main.myPlayer];
-                    int i = 1;
+                    spaceLimit += 2;
+                }
+                int i = 1;
 
-                    Dictionary<int, bool> Souls = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades;
-                    Dictionary<Mod, int> SoulsCounter = new() { { TerrariaMod, 22 }, { RemnantOfTheAncientsM, 3 } };
-
-
-
-                    float baseLefthPosition = 20f;
-                    float baseTopPosition = 20f;
-                    int spaceLimit = 10;
-
-                    if (CalamityMod != null)
-                    {
-                        SoulsCounter.Add(CalamityMod, 24);
-                        spaceLimit += 2;
-                    }
-
-                    foreach (KeyValuePair<int, bool> soul in Souls)
-                    {
-                        NPC npc = ContentSamples.NpcsByNetId[soul.Key];
-                        if (!BannedIds.Contains(npc.type) && RemnantGlobalNPC.GetMod(npc.type) == mod)
-                        {
-                            string Id = mod == TerrariaMod ? npc.type.ToString() : npc.ModNPC.GetType().Name;
-                            string Texture = $"RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_" + Id;
-
-                            Asset<Texture2D> blockedTexture = ModContent.Request<Texture2D>(Texture + "_Blocked");
-                            Asset<Texture2D> baseTexture = GetBossHead(npc);
-
-                            Buttons[mod][npc.type] = UIUtils.CreateButtom(baseTexture, blockedTexture, baseLefthPosition, baseTopPosition, 22f, 22f, "", new MouseEvent(SetSoulClicked), false, npc, true);
-
-                            if (mod == RemnantOfTheAncientsMod.Terraria)
-                                VanillaSoulTogglePanel.Append(Buttons[mod][npc.type]);
-                            else if (mod == RemnantOfTheAncientsMod.RemnantOfTheAncients)
-                                RemanntsSoulTogglePanel.Append(Buttons[mod][npc.type]);
-                            else if (mod == RemnantOfTheAncientsMod.CalamityMod)
-                                CalamitySoulTogglePanel.Append(Buttons[mod][npc.type]);
-
-                            if (i % spaceLimit == 0)
-                            {
-                                baseLefthPosition = 20;
-                                baseTopPosition += baseTopPositionIncrement;
-                            }
-                            else if (checkCalamityMod())
-                            {
-
-                            }
-                            else
-                            {
-                                baseLefthPosition += baseLefthPositionIncrement;
-                            }
-                            bool checkCalamityMod()
-                            {
-                                if (CalamityMod != null)
-                                {
-                                    if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Providence"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 30;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "CeaselessVoid"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 30;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Cryogen"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 10;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeHead"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 10;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "HiveMind"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 20;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Crabulon"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 10;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Signus"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 10;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverHead"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement + 10;
-                                        return true;
-                                    }
-                                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsHead"))
-                                    {
-                                        baseLefthPosition += baseLefthPositionIncrement - 10;
-                                        return true;
-                                    }
-                                    else
-                                    {
-                                        return false;
-                                    }
-                                }
-                                return false;
-                            }
-
-                            if (i < RemnantGlobalNPC.CountBoss(mod,BannedIds) + 1)
-                                i++;
-                            else
-                                i = 1;
-
-                            SoulsDisplay = new UISoulDisplay();
-                            UIUtils.SetRectangle(SoulsDisplay, 15f, 20f, 100f, 40f);
-                            BackgroundPanel.Append(SoulsDisplay);
-
-                            Append(BackgroundPanel);
-                        }
-                    }
+                if (mod == TerrariaMod)
+                {
+                    PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, 0, LoadedSouls.Length - 3);
+                }
+                else if (mod == RemnantOfTheAncientsM)
+                {
+                    PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, LoadedSouls.Length - 3, LoadedSouls.Length);
+                }
+                else if (CalamityMod != null && mod == CalamityMod)
+                {
+                    PreDrawButtons(mod, spaceLimit, Souls, ref baseLefthPosition, ref baseTopPosition, ref i);
                 }
             }
         }
-        public static Asset<Texture2D> GetBossHead(NPC npc)
+
+        public void DrawButtons(Mod mod, int type, ref int i, int spaceLimit, ref float baseLefthPosition, ref float baseTopPosition)
         {
+
+
+            float baseLefthPositionIncrement = 40;
+            float baseTopPositionIncrement = 40;
+
             ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
-            if (npc.type == NPCID.Golem)
-                return TextureAssets.NpcHeadBoss[5];
-            else if (npc.type == NPCID.BrainofCthulhu)
-                return TextureAssets.NpcHeadBoss[2];
-            else if (npc.type == NPCID.MoonLordCore)
-                return TextureAssets.NpcHeadBoss[8];
-            else if (npc.type == NPCID.DukeFishron)
-                return TextureAssets.NpcHeadBoss[4];
 
-            ModNPC ModNpc = npc.ModNPC;
-            if (CalamityMod != null && ModNpc != null)
+
+            NPC npc = ContentSamples.NpcsByNetId[type];
+            if (!BannedIds.Contains(npc.type) && RemnantGlobalNPC.GetMod(npc.type) == mod)
             {
-                if (ModNpc.Mod == CalamityMod)
+                string Id = mod == TerrariaMod ? npc.type.ToString() : npc.ModNPC.GetType().Name;
+                string Texture = $"RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_" + Id;
+
+                Asset<Texture2D> blockedTexture = ModContent.Request<Texture2D>(Texture + "_Blocked");
+                Asset<Texture2D> baseTexture = ReaperSoulUIExtras.GetBossHead(npc);
+
+                Buttons[mod][npc.type] = UIUtils.CreateButtom(baseTexture, blockedTexture, baseLefthPosition, baseTopPosition, 22f, 22f, "", new MouseEvent(SetSoulClicked), false, npc, true);
+
+
+                int bottom = 110;
+                if (mod == TerrariaMod)
                 {
-                    string CalamityPath = "CalamityMod/NPCs/";
-
-                    if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverHead"))
-                        return ModContent.Request<Texture2D>(CalamityPath + "StormWeaver/StormWeaverHead_Head_Boss");
-                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsHead"))
-                        return ModContent.Request<Texture2D>(CalamityPath + "DevourerofGods/DevourerofGodsHead_Head_Boss");
-                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "SupremeCalamitas"))
-                        return ModContent.Request<Texture2D>(CalamityPath + "SupremeCalamitas/HoodedHeadIcon");
-                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Providence"))
-                        return ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_Providence");
+                    if (VanillaSoulTogglePanel == null)
+                        setModPanel(ref VanillaSoulTogglePanel, new Color(73, 94, 171), 10, bottom, TerrariaMod);
+                    VanillaSoulTogglePanel.Append(Buttons[mod][npc.type]);
+                    bottom += (40 * 2) + 50;
                 }
-            }
-            int idex = npc.GetBossHeadTextureIndex();
-            return TextureAssets.NpcHeadBoss[idex];
-        }
+                else if (mod == RemnantOfTheAncientsM)
+                {
+                    if (RemanntsSoulTogglePanel == null)
+                        setModPanel(ref RemanntsSoulTogglePanel, new Color(166, 123, 5), 10, bottom, RemnantOfTheAncientsM);
+                    RemanntsSoulTogglePanel.Append(Buttons[mod][npc.type]);
+                    bottom += 40 + 50;
+                }
+                else if (CalamityMod != null && mod == CalamityMod)
+                {
+                    if (CalamitySoulTogglePanel == null)
+                        setModPanel(ref CalamitySoulTogglePanel, new Color(49, 32, 36, 216), 10, bottom, CalamityMod);
+                    CalamitySoulTogglePanel.Append(Buttons[mod][npc.type]);
+                }
 
+                if (i % spaceLimit == 0)
+                {
+                    baseLefthPosition = 20;
+                    baseTopPosition += baseTopPositionIncrement;
+                }
+                else if (!ReaperSoulUIExtras.CheckCalamityMod(npc, CalamityMod, ref baseLefthPosition, ref baseLefthPositionIncrement))
+                {
+                    baseLefthPosition += baseLefthPositionIncrement;
+                }
+
+
+
+                if (i < RemnantGlobalNPC.CountBoss(mod, BannedIds) + 1)
+                    i++;
+                else
+                    i = 1;
+
+                SoulsDisplay = new UISoulDisplay();
+                UIUtils.SetRectangle(SoulsDisplay, 15f, 20f, 100f, 40f);
+                BackgroundPanel.Append(SoulsDisplay);
+
+                Append(BackgroundPanel);
+            }
+        }
+        public static void PreDrawButtons(Mod mod, int spaceLimit, Dictionary<int, bool> List, ref float baseLefthPosition, ref float baseTopPosition, ref int i)
+        {
+            i = 1;
+            baseLefthPosition = 20f;
+            baseTopPosition = 20f;
+            ReaperSoulsUIState reaperSoulsUIState = new();
+            foreach (KeyValuePair<int, bool> soul in List)
+            {
+                reaperSoulsUIState.DrawButtons(mod, soul.Key, ref i, spaceLimit, ref baseLefthPosition, ref baseTopPosition);
+            }
+        }
+        public static void PreDrawButtons(Mod mod, int spaceLimit, ref float baseLefthPosition, ref float baseTopPosition, ref int i, int min = 0, int max = 0)
+        {
+            i = 1;
+            baseLefthPosition = 20f;
+            baseTopPosition = 20f;
+            ReaperSoulsUIState reaperSoulsUIState = new();
+            for (int j = min; j < max; j++)
+            {
+                int type = ReaperSoulsPlayer.GetLoadedBossIdByIndex(j);
+                reaperSoulsUIState.DrawButtons(mod, type, ref i, spaceLimit, ref baseLefthPosition, ref baseTopPosition);
+            }
+        }
         public static void SetSoulClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            Player player = Main.player[Main.myPlayer];
             SoundEngine.PlaySound(SoundID.MenuOpen);
         }
-    }
 
-    public class UISoulDisplay : UIElement
-    {
-        public UISoulDisplay()
+
+
+        public class UISoulDisplay : UIElement
         {
-        }
-        public static void UpdateButtons(int npcId, Mod mod)
-        {
-            if (!Main.gameMenu)
+            public UISoulDisplay()
             {
-                if (!ReaperSoulsUIState.BannedIds.Contains(npcId))
+            }
+            public static void UpdateButtons(int npcId, Mod mod)
+            {
+                if (!Main.gameMenu)
                 {
-                    Player player = Main.player[Main.myPlayer];
-                    NPC npc = ContentSamples.NpcsByNetId[npcId];
-                    string Texture = $"RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_" + (mod == RemnantOfTheAncientsMod.Terraria ? npc.type.ToString() : npc.ModNPC.GetType().Name);
-
-                    var icon = ReaperSoulsUIState.GetBossHead(npc);
-                    Asset<Texture2D> TextureBase = icon;//ModContent.Request<Texture2D>(Texture);
-
-
-                    ModContent.RequestIfExists(Texture + "_Blocked", out Asset<Texture2D> TextureGray);
-                    ModContent.RequestIfExists(Texture + "_Glow", out Asset<Texture2D> TextureSelected);
-                    ReaperSoulsUIState.VerifyButtomsIndex(mod);
-
-
-                    Dictionary<int, bool> SoulsUpgrades = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades;
-
-                    if (ReaperSoulsUIState.Buttons[mod][npc.type] != null)
+                    if (!BannedIds.Contains(npcId))
                     {
-                        if (SoulsUpgrades[npc.type])
-                        {
-                            Dictionary<int, float> SoulsUpgradesActive = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive;
 
-                            if (SoulsUpgradesActive[npc.type] > 0)
+                        NPC npc = ContentSamples.NpcsByNetId[npcId];
+                        string Texture = $"RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_" + (mod == RemnantOfTheAncientsMod.Terraria ? npc.type.ToString() : npc.ModNPC.GetType().Name);
+
+                        Asset<Texture2D> TextureBase = ReaperSoulUIExtras.GetBossHead(npc);
+
+
+                        ModContent.RequestIfExists(Texture + "_Blocked", out Asset<Texture2D> TextureGray);
+                        ModContent.RequestIfExists(Texture + "_Glow", out Asset<Texture2D> TextureSelected);
+                        VerifyButtomsIndex(mod);
+
+
+                        bool SoulsUpgradesConditon = ReaperSoulUIExtras.SelectList(mod, npcId);
+                        float SoulsUpgradesActiveConditon = ReaperSoulUIExtras.SelectActiveList(mod, npcId);
+
+                        if (Buttons[mod][npc.type] != null)
+                        {
+                            if (SoulsUpgradesConditon)
                             {
-                                ReaperSoulsUIState.Buttons[mod][npc.type].SetImage(TextureSelected);
+                                Asset<Texture2D> TextureSpecial = SoulsUpgradesActiveConditon > 0 ? TextureSelected : TextureBase;
+                                Buttons[mod][npc.type].SetImage(TextureSpecial);
                             }
                             else
                             {
-                                ReaperSoulsUIState.Buttons[mod][npc.type].SetImage(TextureBase);
+                                Buttons[mod][npc.type].SetImage(TextureGray);
                             }
-                        }
-                        else
-                        {
-                            ReaperSoulsUIState.Buttons[mod][npc.type].SetImage(TextureGray);
                         }
                     }
                 }
             }
+            protected override void DrawSelf(SpriteBatch spriteBatch)
+            {
+                CalculatedStyle innerDimensions = GetInnerDimensions();
+                DragableUIPanel BackgroundPanel = ReaperSoulsUIState.BackgroundPanel;
+
+                if (BackgroundPanel != null)
+                {
+                    string language = LanguageManager.Instance.ActiveCulture.Name;
+                    string path = "RemnantOfTheAncientsMod/Common/UI/ReaperUI/";
+                    Vector2 titlePos = new(innerDimensions.X + BackgroundPanel.Width.Pixels / 4, innerDimensions.Y + 25f);
+
+                    ModContent.RequestIfExists(path + "TileBackground", out Asset<Texture2D> backgroundTexture);
+
+                    ModContent.RequestIfExists(path + "SoulsText_" + language, out Asset<Texture2D> TitleTexture);
+
+
+                    spriteBatch.Draw((Texture2D)backgroundTexture, new(titlePos.X - 15 + BackgroundPanel.Width.Pixels / 4, titlePos.Y + 5), null, Color.White, 0f, backgroundTexture.Size() / 2f, 0.78f, SpriteEffects.None, 0f);
+                    spriteBatch.Draw((Texture2D)TitleTexture, new(titlePos.X + 30 + BackgroundPanel.Width.Pixels / 2, titlePos.Y + 30), null, Color.White, 0f, backgroundTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                }
+            }
+
         }
 
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+        public class CheckSouls : ModPlayer
         {
-            CalculatedStyle innerDimensions = GetInnerDimensions();
-            float shopx = innerDimensions.X;
-            float shopy = innerDimensions.Y;
-            DragableUIPanel BackgroundPanel = ReaperSoulsUIState.BackgroundPanel;
-
-            if (BackgroundPanel != null)
+            public override void PostUpdate()
             {
-                Vector2 titlePos = new(shopx + BackgroundPanel.Width.Pixels / 4 /*130*/, shopy + 25f);
-                string path = "RemnantOfTheAncientsMod/Common/UI/ReaperUI/";
-                ModContent.RequestIfExists(path+ "TileBackground", out Asset<Texture2D> backgroundTexture);
-                string language = LanguageManager.Instance.ActiveCulture.Name;
-                ModContent.RequestIfExists(path + "SoulsText_"+language, out Asset<Texture2D> TitleTexture);
+                Player player = Main.player[Main.myPlayer];
+                bool[] LoadedSouls = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
+                Dictionary<int, bool> MaybeLoadedSouls = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
 
-             
-                spriteBatch.Draw((Texture2D)backgroundTexture, new(titlePos.X - 15 + BackgroundPanel.Width.Pixels / 4, titlePos.Y + 5), null, Color.White, 0f, backgroundTexture.Size() / 2f, 0.78f, SpriteEffects.None, 0f);
-                spriteBatch.Draw((Texture2D)TitleTexture, new(titlePos.X + 30 + BackgroundPanel.Width.Pixels / 2, titlePos.Y+ 30), null, Color.White, 0f, backgroundTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
-                //Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, Language.GetTextValue("Mods.RemnantOfTheAncientsMod.UI.ReaperTitle"), titlePos.X, titlePos.Y, Color.White, Color.Black, new Vector2(0.3f), 3.75f); 
-            }
-        }    
-        
-    }
-
-    public class CheckSouls : ModPlayer
-    {
-        public override void PostUpdate()
-        {
-            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
-            Player player = Main.player[Main.myPlayer];
-
-            foreach (KeyValuePair<int, bool> value in player.GetModPlayer<ReaperPlayer>().SoulsUpgrades)
-            {
-                NPC npc = ContentSamples.NpcsByNetId[value.Key];
-                ModNPC modNPC = npc.ModNPC;
+                ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
+                ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
+                ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
                 Mod mod = TerrariaMod;
-                if (modNPC != null)
-                    mod = modNPC.Mod;
 
-                UISoulDisplay.UpdateButtons(npc.type, mod);
+                for (int i = 0; i < LoadedSouls.Length; i++)
+                {
+                    int type = ReaperSoulsPlayer.GetLoadedBossIdByIndex(i);
+                    NPC npc = ContentSamples.NpcsByNetId[type];
+
+                    if (i >= LoadedSouls.Length - 3)
+                        mod = RemnantOfTheAncientsM;
+                    UISoulDisplay.UpdateButtons(npc.type, mod);
+                }
+                if (CalamityMod != null)
+                {
+                    foreach (int id in MaybeLoadedSouls.Keys)
+                    {
+                        NPC npc = ContentSamples.NpcsByNetId[id];
+                        UISoulDisplay.UpdateButtons(npc.type, CalamityMod);
+                    }
+                }
+                base.PostUpdate();
             }
-            base.PostUpdate();
         }
     }
 }

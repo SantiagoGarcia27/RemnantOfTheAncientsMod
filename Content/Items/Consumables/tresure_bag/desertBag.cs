@@ -140,7 +140,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
     public class DesertReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[NPCType<DesertAniquilator>()] && Reaper.ReaperMode;
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NPCType<DesertAniquilator>())] && Reaper.ReaperMode;
         public bool CanShowItemDropInUI() => true;
         public string GetConditionDescription() => null;
     }

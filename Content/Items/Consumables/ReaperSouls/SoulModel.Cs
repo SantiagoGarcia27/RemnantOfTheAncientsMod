@@ -43,14 +43,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         }
         public override bool CanUseItem(Player player)
         {
-           // Dictionary<int, bool> souls = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod];
-            bool hasSoul = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[BaseNpc.type];
+            // Dictionary<int, bool> souls = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod];
+            bool hasSoul = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)];
+            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod)
+                hasSoul = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[BaseNpc.type];
             return !hasSoul;
         }
         public override bool? UseItem(Player player)
-        {
-            ReaperPlayer rp = player.GetModPlayer<ReaperPlayer>();
-            rp.SoulsUpgrades[BaseNpc.type] = true;
+        {  
+            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod)
+                Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[BaseNpc.type] = true;
+            else
+                Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] = true;
+   
             return true;
         }
         internal static Color GetRarityColor()

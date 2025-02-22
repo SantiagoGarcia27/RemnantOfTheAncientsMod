@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 		{
 			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
-				if (ReaperPlayer.AllSoulsAreActive())
+				if (player.GetModPlayer<ReaperSoulsPlayer>().AllSoulsAreActive())
 				{
 					SetSoulValue(player, false);
 					Main.NewText("Souls desactivadas");
@@ -55,9 +55,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 
 		public void SetSoulValue(Player player, bool n)
 		{
-			foreach (KeyValuePair<int, bool> npc in player.GetModPlayer<ReaperPlayer>().SoulsUpgrades)
+			for(int i = 0; i < player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded.Length; i++)
 			{
-				player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[npc.Key] = n;
+				player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[i] = n;
+            }
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
+			{
+				foreach (KeyValuePair<int, bool> npc in player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded)
+				{
+					player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[npc.Key] = n;
+				}
 			}
 		}
 

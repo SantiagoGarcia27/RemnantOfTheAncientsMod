@@ -18,17 +18,47 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.Common.Configs;
 using SangarUtilities.Common;
+using System;
+using System.Linq;
+
 
 public class ReaperPlayer : ModPlayer
 {
     public bool ChaliceOn;
     public static bool FWeapons;
     public static bool ReaperFirstTime;
+    public override void ResetEffects()
+    {      
+        ChaliceOn = false;
+    }
+    public override void OnEnterWorld()
+    {
+        FWeapons = true;
+    }
+
+    public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
+    {
+        if (mediumCoreDeath) return [new Item(ItemType<Ftoggler>())];
+        return [new Item(ItemType<Ftoggler>())];
+    }
+    public void DropReaperStarterKit()
+    {
+        if (!ReaperFirstTime)
+        {
+            Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemID.ReaperHood);
+            Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemID.ReaperRobe);
+            Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemType<ReaperChalice>());
+        }
+    }
+}
+public class ReaperEffectsPlayer : ModPlayer
+{
+    
+  
     private static List<NPC> _hallucinationCandidates = [];
     public bool ReaperSoulBoost;
 
-    public Dictionary<int, bool> SoulsUpgrades = [];
-    public Dictionary<int, float> SoulsUpgradesActive = [];
+   
 
     public Mod TerrariaMod;
     public Mod RemnantOfTheAncientsM;
@@ -42,84 +72,21 @@ public class ReaperPlayer : ModPlayer
     public override void ResetEffects()
     {
         ReaperSoulBoost = false;
-        ChaliceOn = false;
     }
 
     public override void OnEnterWorld()
     {
-        FWeapons = true;
-
         ModLoader.TryGetMod("SangarUtilities", out TerrariaMod);
         ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncientsM);
         ModLoader.TryGetMod("CalamityMod", out CalamityMod);
     }
-
-    public void FillSoulList()
-    {
-        foreach (var m in NpcList.BossList.Keys)
-        {
-            if (m == RemnantOfTheAncientsM)
-            {
-                NpcList.BossList[m] =
-                [
-                    ContentSamples.NpcsByNetId[NPCType<DesertAniquilator>()],
-                    ContentSamples.NpcsByNetId[NPCType<FrozenAssaulter>()],
-                    ContentSamples.NpcsByNetId[NPCType<InfernalTyrantHead>()],
-                ];
-            }
-            List<NPC> currentList = NpcList.BossList[m];
-            foreach (NPC npc in currentList)
-            {
-                if(!SoulsUpgrades.ContainsKey(npc.type))
-                    SoulsUpgrades.TryAdd(npc.type, false);
-                else if (SoulsUpgrades[npc.type] != true)
-                    SoulsUpgrades.TryAdd(npc.type,false);
-                 SoulsUpgradesActive.TryAdd(npc.type, 0f);
-            }
-        }
-    }
-    public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
-    {
-        if (mediumCoreDeath) return [new Item(ItemType<Ftoggler>())];
-        return [new Item(ItemType<Ftoggler>())];
-    }
+   
     public override void UpdateEquips()
     {
         if (Player.wingTimeMax > 4) 
             ReaperGlobalItem.ReaperWingsNerf(Player);
     }
-
-    public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-    {
-        ModPacket packet = Mod.GetPacket();
-        foreach (var mod in NpcList.BossList.Keys)
-        {
-            for (int i = 0; i < SoulsUpgrades.Count; i++)
-            {
-                packet.Write(SoulsUpgrades[i]);
-            }
-        }
-        packet.Send(toWho, fromWho);
-    }
-    public override void SaveData(TagCompound tag)
-    {
-        ModLoader.TryGetMod("SangarUtilities", out TerrariaMod);
-        ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncientsM);
-        ModLoader.TryGetMod("CalamityMod", out CalamityMod);
-
-        FillSoulList();
-
-        foreach (Mod mod in ModLoader.Mods)
-        {
-            foreach (NPC npc in NpcList.BossList[mod])
-            {
-                string name = mod == TerrariaMod ? npc.type.ToString() : npc.ModNPC.GetType().Name;
-                tag[name + "ReaperUpgrade"] = SoulsUpgrades[npc.type];
-            }
-        }
-
-    }
-    public override void LoadData(TagCompound tag)
+   /* public override void LoadData(TagCompound tag)
     {
         ModLoader.TryGetMod("SangarUtilities", out TerrariaMod);
         ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncientsM);
@@ -138,40 +105,15 @@ public class ReaperPlayer : ModPlayer
             }
 
         }
-    }
+    }*/
         
-    public void LoadSoulsToggle()
-    {
-        SoulsUpgradesActive[NPCID.KingSlime] = GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
-        SoulsUpgradesActive[NPCID.EyeofCthulhu] = GetInstance<ConfigReaperSouls>().ToggleEyeOfChutuluSoul.ToInt();
-        SoulsUpgradesActive[NPCID.BrainofCthulhu] = GetInstance<ConfigReaperSouls>().ToggleCorruptSoul.ToInt();
-        SoulsUpgradesActive[NPCID.QueenBee] = GetInstance<ConfigReaperSouls>().ToggleQueenBeeSoul.ToInt();
-        SoulsUpgradesActive[NPCID.SkeletronHead] = GetInstance<ConfigReaperSouls>().ToggleSkeletronSoul.ToInt();
-        SoulsUpgradesActive[NPCID.Deerclops] = GetInstance<ConfigReaperSouls>().ToggleDearclopsSoul.ToInt();
-        SoulsUpgradesActive[NPCType<DesertAniquilator>()] = GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul.ToInt();
-        SoulsUpgradesActive[NPCID.WallofFlesh] = GetInstance<ConfigReaperSouls>().ToggleWallOfFleshSoul.ToInt();
-        SoulsUpgradesActive[NPCType<FrozenAssaulter>()] = GetInstance<ConfigReaperSouls>().ToggleFrozenAssaulterSoul.ToInt();
-        SoulsUpgradesActive[NPCID.QueenSlimeBoss] = GetInstance<ConfigReaperSouls>().ToggleQueenSlimeSoul.ToInt();
-        SoulsUpgradesActive[NPCID.Spazmatism] = GetInstance<ConfigReaperSouls>().ToggleSpazmatismSoul.ToInt();
-        SoulsUpgradesActive[NPCID.Retinazer] = GetInstance<ConfigReaperSouls>().ToggleRetinazorSoul.ToInt();
-        SoulsUpgradesActive[NPCID.SkeletronPrime] = GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
-        SoulsUpgradesActive[NPCID.TheDestroyer] = GetInstance<ConfigReaperSouls>().ToggleDestroyerSoul.ToInt();
-        SoulsUpgradesActive[NPCID.Plantera] = GetInstance<ConfigReaperSouls>().TogglePlanteraSoul.ToInt();
-        SoulsUpgradesActive[NPCType<InfernalTyrantHead>()] = GetInstance<ConfigReaperSouls>().ToggleInfernalTyrantSoul.ToInt();
-        SoulsUpgradesActive[NPCID.Golem] = GetInstance<ConfigReaperSouls>().ToggleGolemSoul.ToInt();
-        SoulsUpgradesActive[NPCID.HallowBoss] = GetInstance<ConfigReaperSouls>().ToggleEmpressOfLightSoul.ToInt();
-        SoulsUpgradesActive[NPCID.DukeFishron] = GetInstance<ConfigReaperSouls>().ToggleDukeFishronSoul.ToInt();
-        SoulsUpgradesActive[NPCID.CultistBoss] = GetInstance<ConfigReaperSouls>().ToggleLunaticCultistSoul.ToInt();
-        SoulsUpgradesActive[NPCID.MoonLordCore] = GetInstance<ConfigReaperSouls>().ToggleMoonlordSoul.ToInt();
-
-       
-    }
+   
 /// <summary>
 /// Set Reaper mode souls config values
 /// </summary>
 /// <param name="type"></param>
 /// <param name="value"></param>
-    public void SetSoulsToggle(int type,int value)
+    public static void SetSoulsToggle(int type,int value)
     {
         switch (type)
         {
@@ -182,14 +124,13 @@ public class ReaperPlayer : ModPlayer
                 GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul = value;
                 break;          
         }
-        LoadSoulsToggle();
     }
     /// <summary>
     /// Set Reaper mode souls config values
     /// </summary>
     /// <param name="type"></param>
     /// <param name="value"></param>
-    public void SetSoulsToggle(int type, bool value)
+    public static void SetSoulsToggle(int type, bool value)
     {
         if (type == NPCType<DesertAniquilator>())
             GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul = value;
@@ -251,7 +192,6 @@ public class ReaperPlayer : ModPlayer
                     break;
             }
         }
-        LoadSoulsToggle();
     }
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
     {
@@ -259,15 +199,7 @@ public class ReaperPlayer : ModPlayer
         float respawnTime = Player.respawnTimer * respawnMult;
         Player.respawnTimer = (int)respawnTime;  
     }
-    public void DropReaperStarterKit()
-    {
-        if (!ReaperFirstTime)
-        {
-            Item.NewItem(Player.GetSource_DropAsItem(),Player.position, ItemID.ReaperHood);
-            Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemID.ReaperRobe);
-            Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemType<ReaperChalice>());
-        }
-    }
+   
     public override void PostUpdateBuffs()
     {
         if (Reaper.ReaperMode)
@@ -276,9 +208,9 @@ public class ReaperPlayer : ModPlayer
     }   
     private float RespawnTimeCalculator()
     {
-        bool DesertAnhilatorActivated = SoulsUpgradesActive[NPCType<DesertAniquilator>()] == 1 && SoulsUpgrades[NPCType<DesertAniquilator>()];
+        bool DesertAnhilatorActivated = SoulIsEnabled(NPCType<DesertAniquilator>());
 
-        bool MoonlordRespawnActivated = SoulsUpgradesActive[NPCID.MoonLordCore] == 1 && SoulsUpgrades[NPCID.MoonLordCore];
+        bool MoonlordRespawnActivated = SoulIsEnabled(NPCID.MoonLordCore);
 
         if (Reaper.ReaperMode)
         {
@@ -293,7 +225,7 @@ public class ReaperPlayer : ModPlayer
     }
     public override bool FreeDodge(Player.HurtInfo info)
     {
-        if (SoulsUpgrades[NPCID.BrainofCthulhu] && SoulsUpgradesActive[NPCID.BrainofCthulhu] == 1 && Reaper.ReaperMode)
+        if (SoulIsEnabled(NPCID.BrainofCthulhu) && Reaper.ReaperMode)
         {
             if (Main.rand.NextBool(6))
             {
@@ -307,54 +239,53 @@ public class ReaperPlayer : ModPlayer
     }
     public void ReaperSoulsBoost()
     {
-        LoadSoulsToggle();
-
+        bool ChaliceOn = Player.GetModPlayer<ReaperPlayer>().ChaliceOn;
         float OgPlayerSpeed = Player.moveSpeed;
         if (Reaper.ReaperMode && ChaliceOn)
         {
-            if (SoulsUpgrades[NPCID.KingSlime] && SoulsUpgradesActive[NPCID.KingSlime] > 0)
+            if (SoulIsEnabled(NPCID.KingSlime))
             {
-                float speedForce = (SoulsUpgradesActive[NPCID.KingSlime] / 100) + 1;
+                float speedForce = (SoulsUpgradesLoadedActive(NPCID.KingSlime) / 100) + 1;
                 Player.moveSpeed = ReaperSoulBoost ? OgPlayerSpeed + speedForce * 1.2f : OgPlayerSpeed + speedForce;
             }
-            if (SoulsUpgrades[NPCID.EyeofCthulhu] && SoulsUpgradesActive[NPCID.EyeofCthulhu] == 1)
+            if (SoulIsEnabled(NPCID.EyeofCthulhu))
             {
                 Player.statLifeMax2 += ReaperSoulBoost ? 20 : 10;
             }
-            if ( SoulsUpgrades[NPCID.BrainofCthulhu] && SoulsUpgradesActive[NPCID.BrainofCthulhu] == 1)
+            if (SoulIsEnabled(NPCID.BrainofCthulhu))
             {
                 Player.lifeRegen += ReaperSoulBoost ? 10 : 5;
             }
-            if (SoulsUpgrades[NPCID.QueenBee] && SoulsUpgradesActive[NPCID.QueenBee] == 1)
+            if (SoulIsEnabled(NPCID.QueenBee))
             {
                 Player.honey = true;
                 Player.strongBees = true;         
                 Player.beeDamage(ReaperSoulBoost? 80:20);    
             }
-            if (SoulsUpgrades[NPCID.SkeletronHead] && SoulsUpgradesActive[NPCID.SkeletronHead] == 1)
+            if (SoulIsEnabled(NPCID.SkeletronHead))
             {
                 Player.statDefense += ReaperSoulBoost ? 10 : 5;
             }
-            if (SoulsUpgrades[NPCID.WallofFlesh] && SoulsUpgradesActive[NPCID.WallofFlesh] == 1)
+            if (SoulIsEnabled(NPCID.WallofFlesh))
             {
                 Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
             }
-            if (SoulsUpgrades[NPCType<FrozenAssaulter>()] && SoulsUpgradesActive[NPCType<FrozenAssaulter>()] == 1) 
+            if (SoulIsEnabled(NPCType<FrozenAssaulter>())) 
                 Player.GetModPlayer<RemnantPlayer>().FrostInmune();
-            if (SoulsUpgrades[NPCID.QueenSlimeBoss] && SoulsUpgradesActive[NPCID.QueenSlimeBoss] == 1) 
+            if (SoulIsEnabled(NPCID.QueenSlimeBoss)) 
                 Player.statLifeMax2 += ReaperSoulBoost ? 30 : 15;
-            if (SoulsUpgrades[NPCID.TheDestroyer] && SoulsUpgradesActive[NPCID.TheDestroyer] == 1) 
+            if (SoulIsEnabled(NPCID.TheDestroyer)) 
                 Player.pickSpeed -= ReaperSoulBoost ? 0.7f : 0.35f;
-            if (SoulsUpgrades[NPCID.Spazmatism] && SoulsUpgradesActive[NPCID.Spazmatism] == 1) 
+            if (SoulIsEnabled(NPCID.Spazmatism)) 
                 Player.GetModPlayer<RemnantPlayer>().FireInmune();
-            if (SoulsUpgrades[NPCID.SkeletronPrime])
+            if (SoulIsEnabled(NPCID.SkeletronPrime))
             {
-                float JumpForce = SoulsUpgradesActive[NPCID.SkeletronPrime];
+                float JumpForce = SoulsUpgradesLoadedActive(NPCID.SkeletronPrime);
                 Player.findTreasure = true;
                 Player.dangerSense = ReaperSoulBoost;
                 Player.jumpSpeedBoost += ReaperSoulBoost ? JumpForce * 2 : JumpForce;
             }
-            if (SoulsUpgrades[NPCID.HallowBoss] && SoulsUpgradesActive[NPCID.HallowBoss] == 1)
+            if (SoulIsEnabled(NPCID.HallowBoss))
             {
                 Player.empressBrooch = true;
                 if (ReaperSoulBoost)
@@ -363,21 +294,22 @@ public class ReaperPlayer : ModPlayer
                 }
             }
 
-            if (SoulsUpgrades[NPCType<InfernalTyrantHead>()] && SoulsUpgradesActive[NPCType<InfernalTyrantHead>()] == 1)
+            if (SoulIsEnabled(NPCType<InfernalTyrantHead>()))
             {
                 Player.fireWalk = true;
                 Player.lavaImmune = true;
                 Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
             }
-            if (SoulsUpgrades[NPCID.Golem] && SoulsUpgradesActive[NPCID.Golem] == 1) Player.statDefense += ReaperSoulBoost ? 15 : 10;
+            if (SoulIsEnabled(NPCID.Golem)) 
+                Player.statDefense += ReaperSoulBoost ? 15 : 10;
 
-            if (Reaper.ReaperMode &&SoulsUpgrades[NPCID.DukeFishron] && SoulsUpgradesActive[NPCID.DukeFishron] == 1)
+            if (Reaper.ReaperMode && SoulIsEnabled(NPCID.DukeFishron))
             {
                 int damage = ReaperSoulBoost ? 280 : 140;
                 Player.GetModPlayer<RemnantPlayer>().AddMinion(ProjectileType<TempestClone>(), damage, 10f);
                 Player.aggro -= ReaperSoulBoost? 2400 : 400;            
             }
-            if (SoulsUpgrades[NPCID.CultistBoss] && SoulsUpgradesActive[NPCID.CultistBoss] == 1)
+            if (SoulIsEnabled(NPCID.CultistBoss))
             {
                 int damage = ReaperSoulBoost ? 980 : 680;
                 Player.GetModPlayer<RemnantPlayer>().AddMinion(ProjectileType<IceMistF>(), damage, 10f); 
@@ -386,22 +318,21 @@ public class ReaperPlayer : ModPlayer
     }
     public void ReaperSoulsBoost(Item item)
     {
+        bool ChaliceOn = Player.GetModPlayer<ReaperPlayer>().ChaliceOn;
+        //float OgPlayerSpeed = Player.moveSpeed;
         if (Reaper.ReaperMode && ChaliceOn)
         {
-            ModLoader.TryGetMod("SangarUtilities", out TerrariaMod);
-            Dictionary<int, bool> soulVanilla = SoulsUpgrades;
-            Dictionary<int, float> soulVanillaActive = SoulsUpgradesActive;
-            if (soulVanilla[NPCID.BrainofCthulhu] && soulVanillaActive[NPCID.BrainofCthulhu] == 1)
+            if (SoulIsEnabled(NPCID.BrainofCthulhu))
             {
                 Player.brainOfConfusionItem = item;
             }
-            if (soulVanilla[NPCID.Plantera] && soulVanillaActive[NPCID.Plantera] == 1)
+            if (SoulIsEnabled(NPCID.Plantera))
             {
                 Player.sporeSac = true;
                 Player.SporeSac(item);
                 Player.statLifeMax2 += ReaperSoulBoost ? 15 : 10;
             }
-            if (soulVanilla[NPCID.Deerclops] && soulVanillaActive[NPCID.Deerclops] == 1)
+            if (SoulIsEnabled(NPCID.Deerclops))
             {
                 SpawnHallucination(item);
                 if (ReaperSoulBoost)
@@ -411,20 +342,10 @@ public class ReaperPlayer : ModPlayer
             }
         }
     }
-    public static bool AllSoulsAreActive()
-    {
-        foreach (Mod mod in NpcList.BossList.Keys)
-        {
-            if(Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades.ContainsValue(false))
-                return false;
-            foreach (KeyValuePair<int, bool> npc in Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades)
-            {
-                if (!npc.Value)
-                    return false;
-            }
-        }
-        return true;
-    }
+    public static bool SoulIsEnabled(int type) => SoulsUpgradesLoaded(type) && SoulsUpgradesLoadedActive(type) > 0;
+    public static bool SoulsUpgradesLoaded(int type) => Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(type)];
+    public static float SoulsUpgradesLoadedActive(int type) => Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(type)];
+
     private void SpawnHallucination(Item item)
     {
         if (Player.whoAmI != Main.myPlayer) return;
@@ -448,5 +369,197 @@ public class ReaperPlayer : ModPlayer
             Projectile.RandomizeInsanityShadowFor(Main.rand.NextFromCollection(_hallucinationCandidates), isHostile: false, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
             Projectile.NewProjectile(new EntitySource_ItemUse(Player, item), spawnposition, spawnvelocity, ProjectileID.InsanityShadowFriendly, damage, 0f, Player.whoAmI, ai, ai2);
         }
+    }
+}
+
+public class ReaperSoulsPlayer : ModPlayer
+{
+    public bool[] SoulsUpgradesLoaded =
+    [
+        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,
+        false, false, false
+    ];
+    public float[] SoulsUpgradesLoadedActive =
+    [
+        0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f,
+        0f, 0f, 0f
+    ];
+    public Dictionary<int, bool> SoulsUpgradesMaybeLoaded = [];
+    public Dictionary<int, float> SoulsUpgradesMaybeLoadedActive = [];
+
+
+    public override void SaveData(TagCompound tag)
+    {
+        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+        if(CalamityMod != null) FillSoulList();
+
+        for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
+        {
+            NPC npc = Main.npc[i];
+            if (npc.boss)
+            {
+                string TagDamage = npc.type + "ReaperUpgrade";
+                tag[TagDamage] = SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)];
+            }         
+        }
+        if(CalamityMod != null)
+        {
+            foreach (NPC npc in NpcList.BossList[CalamityMod])
+            {
+                string TagDamage = npc.ModNPC.GetType().Name + "ReaperUpgrade";
+                tag[TagDamage] = SoulsUpgradesMaybeLoaded[npc.type];
+            }
+        }
+    }
+
+    public override void LoadData(TagCompound tag)
+    {
+        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+        if (CalamityMod != null) FillSoulList();
+
+        for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
+        {
+            NPC npc = Main.npc[i];
+            if (npc.boss)
+            {
+                string TagDamage = npc.type + "ReaperUpgrade";
+                SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)] = tag.GetBool(TagDamage);
+            }
+        }
+        if (CalamityMod != null)
+        {
+            foreach (NPC npc in NpcList.BossList[CalamityMod])
+            {
+                string TagDamage = npc.ModNPC.GetType().Name + "ReaperUpgrade";
+                SoulsUpgradesMaybeLoaded[npc.type] = tag.GetBool(TagDamage);
+            }
+        }
+    }
+    public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+    {
+        ModPacket packet = Mod.GetPacket();
+        LoadSoulsToggle();
+        for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
+        {
+            packet.Write(SoulsUpgradesLoaded[i]);
+            packet.Write(SoulsUpgradesLoadedActive[i]);
+        }
+        for (int i = 0; i < SoulsUpgradesMaybeLoaded.Count; i++)
+        {
+            packet.Write(SoulsUpgradesMaybeLoaded[i]);
+            packet.Write(SoulsUpgradesMaybeLoadedActive[i]);
+        }     
+        packet.Send(toWho, fromWho);
+    }
+
+    public void LoadSoulsToggle()
+    {
+        SubloadSouls(NPCID.KingSlime, GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul);
+        SubloadSouls(NPCID.EyeofCthulhu, GetInstance<ConfigReaperSouls>().ToggleEyeOfChutuluSoul.ToInt());
+        SubloadSouls(NPCID.BrainofCthulhu, GetInstance<ConfigReaperSouls>().ToggleCorruptSoul.ToInt());
+        SubloadSouls(NPCID.QueenBee, GetInstance<ConfigReaperSouls>().ToggleQueenBeeSoul.ToInt());
+        SubloadSouls(NPCID.SkeletronHead, GetInstance<ConfigReaperSouls>().ToggleSkeletronSoul.ToInt());
+        SubloadSouls(NPCID.Deerclops, GetInstance<ConfigReaperSouls>().ToggleDearclopsSoul.ToInt());
+        SubloadSouls(NPCType<DesertAniquilator>(), GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul.ToInt());
+        SubloadSouls(NPCID.WallofFlesh, GetInstance<ConfigReaperSouls>().ToggleWallOfFleshSoul.ToInt());
+        SubloadSouls(NPCType<FrozenAssaulter>(), GetInstance<ConfigReaperSouls>().ToggleFrozenAssaulterSoul.ToInt());
+        SubloadSouls(NPCID.QueenSlimeBoss, GetInstance<ConfigReaperSouls>().ToggleQueenSlimeSoul.ToInt());
+        SubloadSouls(NPCID.Spazmatism, GetInstance<ConfigReaperSouls>().ToggleSpazmatismSoul.ToInt());
+        SubloadSouls(NPCID.Retinazer, GetInstance<ConfigReaperSouls>().ToggleRetinazorSoul.ToInt());
+        SubloadSouls(NPCID.SkeletronPrime, GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul);
+        SubloadSouls(NPCID.TheDestroyer, GetInstance<ConfigReaperSouls>().ToggleDestroyerSoul.ToInt());
+        SubloadSouls(NPCID.Plantera, GetInstance<ConfigReaperSouls>().TogglePlanteraSoul.ToInt());
+        SubloadSouls(NPCType<InfernalTyrantHead>(), GetInstance<ConfigReaperSouls>().ToggleInfernalTyrantSoul.ToInt());
+        SubloadSouls(NPCID.Golem, GetInstance<ConfigReaperSouls>().ToggleGolemSoul.ToInt());
+        SubloadSouls(NPCID.HallowBoss, GetInstance<ConfigReaperSouls>().ToggleEmpressOfLightSoul.ToInt());
+        SubloadSouls(NPCID.DukeFishron, GetInstance<ConfigReaperSouls>().ToggleDukeFishronSoul.ToInt());
+        SubloadSouls(NPCID.CultistBoss, GetInstance<ConfigReaperSouls>().ToggleLunaticCultistSoul.ToInt());
+        SubloadSouls(NPCID.MoonLordCore, GetInstance<ConfigReaperSouls>().ToggleMoonlordSoul.ToInt());
+
+
+        void SubloadSouls(int type, float value)
+        {
+            SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(type)] = value;
+        }
+    }
+    public void FillSoulList()
+    {
+        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+        foreach (NPC npc in NpcList.BossList[CalamityMod])
+        {
+            SoulsUpgradesMaybeLoaded.TryAdd(npc.type, false);
+            SoulsUpgradesMaybeLoadedActive.TryAdd(npc.type, 0f); 
+        }
+    }
+    public static int GetIndexFromLoadedBossById(int id)
+    {
+        switch (id)
+        {
+            case NPCID.KingSlime: return 0;
+            case NPCID.EyeofCthulhu: return 1;
+            case NPCID.BrainofCthulhu: return 2;
+            case NPCID.QueenBee: return 3;
+            case NPCID.SkeletronHead: return 4;
+            case NPCID.Deerclops: return 5;
+            case NPCID.WallofFlesh: return 6;
+            case NPCID.QueenSlimeBoss: return 7;
+            case NPCID.SkeletronPrime: return 8;
+            case NPCID.Spazmatism: return 9;
+            case NPCID.Retinazer: return 10;
+            case NPCID.TheDestroyer: return 11;
+            case NPCID.Plantera: return 12;
+            case NPCID.Golem: return 13;
+            case NPCID.HallowBoss: return 14;
+            case NPCID.DukeFishron: return 15;
+            case NPCID.CultistBoss: return 16;
+            case NPCID.MoonLordCore: return 17;
+            default:
+                
+                if(id == NPCType<DesertAniquilator>()) return 18;
+                else if (id == NPCType<FrozenAssaulter>()) return 19;
+                else if (id == NPCType<InfernalTyrantHead>()) return 20;
+                return -1;
+        }
+    }
+    public static int GetLoadedBossIdByIndex(int Index)
+    {
+        switch (Index)
+        {
+            case 0: return NPCID.KingSlime;
+            case 1: return NPCID.EyeofCthulhu;
+            case 2: return NPCID.BrainofCthulhu;
+            case 3: return NPCID.QueenBee;
+            case 4: return NPCID.SkeletronHead;
+            case 5: return NPCID.Deerclops;
+            case 6: return NPCID.WallofFlesh;
+            case 7: return NPCID.QueenSlimeBoss;
+            case 8: return NPCID.SkeletronPrime;
+            case 9: return NPCID.Spazmatism;
+            case 10: return NPCID.Retinazer;
+            case 11: return NPCID.TheDestroyer;
+            case 12: return NPCID.Plantera;
+            case 13: return NPCID.Golem;
+            case 14: return NPCID.HallowBoss;
+            case 15: return NPCID.DukeFishron;
+            case 16: return NPCID.CultistBoss;
+            case 17: return NPCID.MoonLordCore; 
+            case 18: return NPCType<DesertAniquilator>();
+            case 19: return NPCType<FrozenAssaulter>();
+            case 20: return NPCType<InfernalTyrantHead>();
+            default: return -1;
+        }
+    }
+    public bool AllSoulsAreActive()
+    {
+        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+
+        if(SoulsUpgradesLoaded.Contains(false))
+            return false;
+        if (CalamityMod != null)
+        {
+            if (SoulsUpgradesMaybeLoaded.ContainsValue(false))
+                return false;
+        } 
+        return true;
     }
 }

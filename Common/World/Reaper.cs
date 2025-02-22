@@ -1,7 +1,6 @@
 ﻿using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common;
 using System.IO;
@@ -61,6 +60,8 @@ namespace RemnantOfTheAncientsMod.World
             BitsByte flags = reader.ReadByte();
             ReaperMode = flags[0];
         }
+
+
     }
 }
 

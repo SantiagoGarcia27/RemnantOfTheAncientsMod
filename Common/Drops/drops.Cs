@@ -218,7 +218,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 switch (npc.type)
                 {
                     case NPCID.KingSlime:
-                        npcLoot.AddIff(() => !Main.LocalPlayer.GetModPlayer<ReaperPlayer>().SoulsUpgrades[NPCID.KingSlime] && Reaper.ReaperMode, ItemType<KingSoul>());
+                        npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SlimeReaperSoulRule(), ItemType<KingSoul>(), 1));
                         npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<KingSlimeScroll>(), 5, 1));
                         break;
                     case NPCID.EyeofCthulhu:

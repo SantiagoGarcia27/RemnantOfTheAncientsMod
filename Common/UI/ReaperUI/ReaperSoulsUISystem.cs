@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 			int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
 			if (mouseTextIndex != -1) {
 				layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-					"ExampleMod: Coins Per Minute",
+					"RemnantOfTheAncients: ReaperSoulsUI",
 					delegate {
 						if (userInterface?.CurrentState != null)
 							userInterface.Draw(Main.spriteBatch, new GameTime());

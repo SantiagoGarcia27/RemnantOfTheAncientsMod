@@ -38,8 +38,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         }
         public override void AI()           
         {
-            if (Main.player[Projectile.owner].GetModPlayer<ReaperPlayer>().SoulsUpgrades[NPCID.CultistBoss] &&
-                Reaper.ReaperMode && !Main.player[Projectile.owner].dead && ModContent.GetInstance<ConfigReaperSouls>().ToggleLunaticCultistSoul) Projectile.timeLeft = 2;
+            if (ReaperEffectsPlayer.SoulIsEnabled(NPCID.CultistBoss) && Reaper.ReaperMode && !Main.player[Projectile.owner].dead) 
+                Projectile.timeLeft = 2;
             else Projectile.Kill();
         }
 
@@ -68,8 +68,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         }
         public override void AI()         
         {
-            if (Main.player[Projectile.owner].GetModPlayer<ReaperPlayer>().SoulsUpgrades[NPCID.DukeFishron] &&
-                Reaper.ReaperMode && !Main.player[Projectile.owner].dead && ModContent.GetInstance<ConfigReaperSouls>().ToggleDukeFishronSoul) Projectile.timeLeft = 2;
+            if (ReaperEffectsPlayer.SoulIsEnabled(NPCID.DukeFishron) && Reaper.ReaperMode && !Main.player[Projectile.owner].dead) 
+                Projectile.timeLeft = 2;
             else Projectile.Kill();
         }
         public override bool MinionContactDamage() => true;

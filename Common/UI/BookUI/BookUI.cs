@@ -2,13 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;

@@ -70,24 +70,24 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             else mod = _Npc.ModNPC.Mod;
             NPC npc = _Npc;
             mod ??= RemnantOfTheAncientsMod.Terraria;
-            float value = player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type];
+            float value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[npc.type];
 
             if (Reaper)
             {
                 if (npc.type == NPCID.KingSlime)
                 {
-                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0 ? 30 : 0);
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
+                    ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0 ? 30 : 0);
+                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type)] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
                 }
                 else if (npc.type == NPCID.SkeletronPrime)
                 {
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
-                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0 ? 10 : 0);
+                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type)] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
+                    ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0 ? 10 : 0);
                 }
                 else
                 { 
-                    player.GetModPlayer<ReaperPlayer>().SoulsUpgradesActive[npc.type] = value == 0 ? 1 : 0;
-                    player.GetModPlayer<ReaperPlayer>().SetSoulsToggle(npc.type, value == 0);
+                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type)] = value == 0 ? 1 : 0;
+                    ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0);
                 }
             }
             base.LeftClick(evt);

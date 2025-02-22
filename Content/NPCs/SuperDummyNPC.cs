@@ -11,9 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Super Dummy");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Super factice");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Super muñeco de pruebas");
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BlueSlime];
             NPCID.Sets.CantTakeLunchMoney[Type] = true;
             NPC.spriteDirection = NPC.direction;
@@ -41,22 +38,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         public override void AI()
         {
-			if (NPC.ai[0] == 0) 
+            int mode = (int)NPC.ai[0];
+			if (mode == 0) 
 			{
                 NPC.defense = 0;
             }
-			else if (NPC.ai[0] == 1)
+			else if (mode == 1)
             {
                 NPC.defense = Main.player[Main.myPlayer].statDefense;	
             }
-            else if (NPC.ai[0] == 2)
+            else if (mode == 2)
             {
 				NPC.defense = 0;
                 NPC.width = 230;
                 NPC.height = 230;
                 NPC.scale = 10;
             }
-            else if (NPC.ai[0] == 3)
+            else if (mode == 3)
             {
 				NPC.defense = Main.player[Main.myPlayer].statDefense;
                 NPC.width = 230;
