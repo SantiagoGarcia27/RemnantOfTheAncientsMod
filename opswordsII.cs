@@ -24,7 +24,7 @@ namespace OpswordsII
 			}
 
 			RecipeHelper.ExampleRecipeEditing(this);
-        }*/
+        }*///
 
         public override void AddRecipes()
         {
