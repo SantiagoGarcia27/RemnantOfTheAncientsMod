@@ -7,7 +7,6 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -45,8 +44,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             Buttons.TryAdd(TerrariaMod, []);
             Buttons.TryAdd(RemnantOfTheAncientsM, []);
 
-
-
+            setBackground(ref BackgroundPanel);
+            Append(BackgroundPanel);
         }
         public static void VerifyButtomsIndex(Mod mod)
         {
@@ -82,124 +81,131 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+       
+           
 
 
-
-            if (BackgroundPanel == null)
+            if (!Main.gameMenu)
             {
-                BackgroundPanel = new DragableUIPanel();
-                BackgroundPanel.SetPadding(0);
+                int bottom = 110;
+                const int iconHeight = 40;
+                const int spacing = 50;
+
+
+                setFullPanel(TerrariaMod, ref VanillaSoulTogglePanel,ref bottom, new Color(73, 94, 171),(iconHeight * 2) + spacing);
+                setFullPanel(RemnantOfTheAncientsM, ref RemanntsSoulTogglePanel,ref bottom, new Color(166, 123, 5), iconHeight + spacing);
+                if (CalamityMod != null)
+                    setFullPanel(CalamityMod, ref CalamitySoulTogglePanel,ref bottom, new Color(49, 32, 36, 216));
+                
             }
 
+            base.OnActivate();
+            void setFullPanel(Mod mod,ref UIPanel panel,ref int bottom,Color color,int bottomincrement = 0)
+            {
+                setModPanel(ref panel, color, 10, bottom, mod);
+                setButtonPosition(mod);
+                bottom += bottomincrement;
+            }
+            
+           
+           
+            void setButtonPosition(Mod mod)
+            {
+
+                ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
+                ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
+                ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+                if (!Main.gameMenu)
+                {
+                    VerifyButtomsIndex(mod);
+                    bool[] LoadedSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
+                    Dictionary<int, bool> Souls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
+
+                    int spaceLimit = 10;
+                    float baseLefthPosition = 20f;
+                    float baseTopPosition = 20f;
+
+                    if (CalamityMod != null)
+                    {
+                        spaceLimit += 2;
+                    }
+                    int i = 1;
+
+                    if (mod == TerrariaMod)
+                    {
+                        PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, 0, LoadedSouls.Length - 3);
+                    }
+                    else if (mod == RemnantOfTheAncientsM)
+                    {
+                        PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, LoadedSouls.Length - 3, LoadedSouls.Length);
+                    }
+                    else if (CalamityMod != null && mod == CalamityMod)
+                    {
+                        PreDrawButtons(mod, spaceLimit, Souls, ref baseLefthPosition, ref baseTopPosition, ref i);
+                    }
+                }
+            }
+        }
+        public void setBackground(ref DragableUIPanel panel)
+        {
+            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
             int height = 45 * 8;
             int width = 40 * 12;
+
             if (CalamityMod != null)
             {
                 height += 40 * 3;
                 width += (40 * 3) + 20;
             }
 
-            UIUtils.SetRectangle(BackgroundPanel, left: 400f, top: 100f, width: width, height: height);//left: 400f, top: 100f, width: 170f, height: 70f
-            BackgroundPanel.BackgroundColor = new Color(73, 94, 171);
-            if (!Main.gameMenu)
+            if (panel == null)
             {
-                int bottom = 110;
-                setModPanel(ref VanillaSoulTogglePanel, new Color(73, 94, 171), 10, bottom, TerrariaMod);
-                setButtonPosition(TerrariaMod);
-                bottom += (40 * 2) + 50;
-                setModPanel(ref RemanntsSoulTogglePanel, new Color(166, 123, 5), 10, bottom, RemnantOfTheAncientsM);
-                setButtonPosition(RemnantOfTheAncientsM);
-                bottom += 40 + 50;
-                if (CalamityMod != null)
-                {
-                    setModPanel(ref CalamitySoulTogglePanel, new Color(49, 32, 36, 216), 10, bottom, CalamityMod);
-                    setButtonPosition(CalamityMod);
-                }
+                Asset<Texture2D> BackgroundTexture = ModContent.GetInstance<RemnantOfTheAncientsMod>().Assets.Request<Texture2D>("Common/UI/BookUI/PanelBackground");
+                panel = new DragableUIPanel(BackgroundTexture);
+                panel.SetPadding(0);
             }
-
-            base.OnActivate();
+            UIUtils.SetPanel(ref panel, left: 400f, top: 100f, width,height, new Color(73, 94, 171));
         }
-        public static void setModPanel(ref UIPanel panel, Color color, int left = 0, int top = 120, Mod mod = null)
+        public void setModPanel(ref UIPanel panel, Color color, int left = 0, int top = 120, Mod mod = null)
         {
             float IconSizeHeight = 45f;
             float IconSizeWeight = 40f;
 
-            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
             ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
-            float iconAmmount = 0;
-
+            float iconAmmount = mod == RemnantOfTheAncientsM ? 3 : reaperPlayer.SoulsUpgradesLoaded.Length - 3;
             if (mod == CalamityMod)
-            {
-                foreach (int id in reaperPlayer.SoulsUpgradesMaybeLoaded.Keys)
-                {
-                    if (ContentSamples.NpcsByNetId[id].boss && !BannedIds.Contains(id) && RemnantGlobalNPC.GetMod(id) == mod)
-                    {
-                        iconAmmount++;
-                    }
-                }
-            }
-            else
-            {
-                iconAmmount = mod == RemnantOfTheAncientsM ? 3 : reaperPlayer.SoulsUpgradesLoaded.Length - 3;
-            }
+                iconAmmount = UIUtils.GetBossAmmount(CalamityMod, reaperPlayer.SoulsUpgradesMaybeLoaded.Keys.ToList(),BannedIds);
 
-            int maxButtoms = CalamityMod != null ? 12 : 10;
-            int column = (int)(iconAmmount / maxButtoms);
-            if (iconAmmount % maxButtoms != 0)
-                column += 1;
-            float height = (IconSizeHeight * column) + 20;
-            float width = (IconSizeWeight * maxButtoms) + 40;
-            if (CalamityMod != null) width += 40;
+            float Height = 0, Width = 0;
+            GetPanelSize(ref Height, ref Width);
+
+            if (CalamityMod != null) Width += 40;
             panel = new UIPanel();
             panel.SetPadding(0);
 
-            UIUtils.SetRectangle(panel, left, top, width, height);
-            panel.BackgroundColor = color;// new Color(73, 94, 171);
+            UIUtils.SetPanel(ref panel, left, top, Width, Height, color);
+           
+            if(BackgroundPanel == null) 
+                setBackground(ref BackgroundPanel);
             BackgroundPanel.Append(panel);
-        }
-        public void setButtonPosition(Mod mod)
-        {
 
-            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
-            ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
-            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-            if (!Main.gameMenu)
+
+            void GetPanelSize(ref float Height, ref float Width)
             {
-                VerifyButtomsIndex(mod);
-                bool[] LoadedSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
-                Dictionary<int, bool> Souls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
-
-                int spaceLimit = 10;
-                float baseLefthPosition = 20f;
-                float baseTopPosition = 20f;
-
-                if (CalamityMod != null)
-                {
-                    spaceLimit += 2;
-                }
-                int i = 1;
-
-                if (mod == TerrariaMod)
-                {
-                    PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, 0, LoadedSouls.Length - 3);
-                }
-                else if (mod == RemnantOfTheAncientsM)
-                {
-                    PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, LoadedSouls.Length - 3, LoadedSouls.Length);
-                }
-                else if (CalamityMod != null && mod == CalamityMod)
-                {
-                    PreDrawButtons(mod, spaceLimit, Souls, ref baseLefthPosition, ref baseTopPosition, ref i);
-                }
+                int maxButtoms = CalamityMod != null ? 12 : 10;
+                int column = (int)(iconAmmount / maxButtoms);
+                if (iconAmmount % maxButtoms != 0)
+                    column += 1;
+                 Height = (IconSizeHeight * column) + 20;
+                 Width = (IconSizeWeight * maxButtoms) + 40;
+                if (CalamityMod != null) Width += 40;
             }
         }
-
         public void DrawButtons(Mod mod, int type, ref int i, int spaceLimit, ref float baseLefthPosition, ref float baseTopPosition)
         {
-
 
             float baseLefthPositionIncrement = 40;
             float baseTopPositionIncrement = 40;
@@ -221,28 +227,13 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
                 Buttons[mod][npc.type] = UIUtils.CreateButtom(baseTexture, blockedTexture, baseLefthPosition, baseTopPosition, 22f, 22f, "", new MouseEvent(SetSoulClicked), false, npc, true);
 
-
                 int bottom = 110;
                 if (mod == TerrariaMod)
-                {
-                    if (VanillaSoulTogglePanel == null)
-                        setModPanel(ref VanillaSoulTogglePanel, new Color(73, 94, 171), 10, bottom, TerrariaMod);
-                    VanillaSoulTogglePanel.Append(Buttons[mod][npc.type]);
-                    bottom += (40 * 2) + 50;
-                }
+                    FixButtonPosition(mod, ref VanillaSoulTogglePanel, new Color(73, 94, 171),ref bottom, (40 * 2) + 50);
                 else if (mod == RemnantOfTheAncientsM)
-                {
-                    if (RemanntsSoulTogglePanel == null)
-                        setModPanel(ref RemanntsSoulTogglePanel, new Color(166, 123, 5), 10, bottom, RemnantOfTheAncientsM);
-                    RemanntsSoulTogglePanel.Append(Buttons[mod][npc.type]);
-                    bottom += 40 + 50;
-                }
+                    FixButtonPosition(mod, ref RemanntsSoulTogglePanel, new Color(166, 123, 5), ref bottom, 40 + 50);
                 else if (CalamityMod != null && mod == CalamityMod)
-                {
-                    if (CalamitySoulTogglePanel == null)
-                        setModPanel(ref CalamitySoulTogglePanel, new Color(49, 32, 36, 216), 10, bottom, CalamityMod);
-                    CalamitySoulTogglePanel.Append(Buttons[mod][npc.type]);
-                }
+                    FixButtonPosition(mod, ref CalamitySoulTogglePanel, new Color(49, 32, 36, 216), ref bottom, 0); 
 
                 if (i % spaceLimit == 0)
                 {
@@ -265,7 +256,15 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 UIUtils.SetRectangle(SoulsDisplay, 15f, 20f, 100f, 40f);
                 BackgroundPanel.Append(SoulsDisplay);
 
-                Append(BackgroundPanel);
+               
+
+                void FixButtonPosition(Mod mod,ref UIPanel panel,Color color,ref int bottom, int bottomIncrement)
+                {
+                    if (panel == null)
+                        setModPanel(ref panel, color, 10, bottom, mod);
+                    panel.Append(Buttons[mod][npc.type]);
+                    bottom += bottomIncrement;
+                }
             }
         }
         public static void PreDrawButtons(Mod mod, int spaceLimit, Dictionary<int, bool> List, ref float baseLefthPosition, ref float baseTopPosition, ref int i)
@@ -321,14 +320,14 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                         VerifyButtomsIndex(mod);
 
 
-                        bool SoulsUpgradesConditon = ReaperSoulUIExtras.SelectList(mod, npcId);
-                        float SoulsUpgradesActiveConditon = ReaperSoulUIExtras.SelectActiveList(mod, npcId);
+                        bool playerHaveSoul = ReaperSoulUIExtras.SelectList(mod, npcId);
+                        float playerHaveSoulActive = ReaperSoulUIExtras.SelectActiveList(mod, npcId);
 
                         if (Buttons[mod][npc.type] != null)
                         {
-                            if (SoulsUpgradesConditon)
+                            if (playerHaveSoul)
                             {
-                                Asset<Texture2D> TextureSpecial = SoulsUpgradesActiveConditon > 0 ? TextureSelected : TextureBase;
+                                Asset<Texture2D> TextureSpecial = playerHaveSoulActive > 0 ? TextureSelected : TextureBase;
                                 Buttons[mod][npc.type].SetImage(TextureSpecial);
                             }
                             else
@@ -351,9 +350,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                     Vector2 titlePos = new(innerDimensions.X + BackgroundPanel.Width.Pixels / 4, innerDimensions.Y + 25f);
 
                     ModContent.RequestIfExists(path + "TileBackground", out Asset<Texture2D> backgroundTexture);
-
                     ModContent.RequestIfExists(path + "SoulsText_" + language, out Asset<Texture2D> TitleTexture);
-
 
                     spriteBatch.Draw((Texture2D)backgroundTexture, new(titlePos.X - 15 + BackgroundPanel.Width.Pixels / 4, titlePos.Y + 5), null, Color.White, 0f, backgroundTexture.Size() / 2f, 0.78f, SpriteEffects.None, 0f);
                     spriteBatch.Draw((Texture2D)TitleTexture, new(titlePos.X + 30 + BackgroundPanel.Width.Pixels / 2, titlePos.Y + 30), null, Color.White, 0f, backgroundTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
@@ -392,7 +389,10 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                         UISoulDisplay.UpdateButtons(npc.type, CalamityMod);
                     }
                 }
+
                 base.PostUpdate();
+
+
             }
         }
     }

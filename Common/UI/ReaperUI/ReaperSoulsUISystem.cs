@@ -47,9 +47,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 		// Adding a custom layer to the vanilla layer list that will call .Draw on your interface if it has a state
 		// Setting the InterfaceScaleType to UI for appropriate UI scaling
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
-			
-			
-			
+
 			int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
 			if (mouseTextIndex != -1) {
 				layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(

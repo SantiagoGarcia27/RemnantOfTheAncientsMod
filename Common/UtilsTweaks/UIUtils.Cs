@@ -1,8 +1,12 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
-using System.Drawing;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using static Terraria.UI.UIElement;
@@ -72,6 +76,26 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             uiElement.Width.Set(rec.Width, 0f);
             uiElement.Height.Set(rec.Height, 0f);
         }
+        public static void SetPanel(ref DragableUIPanel uiElement, Rectangle rec,Color color)
+        {
+            SetRectangle(uiElement, rec);
+            uiElement.BackgroundColor = color;
+        }
+        public static void SetPanel(ref DragableUIPanel uiElement, float left, float top, float width, float height, Color color)
+        {
+            SetRectangle(uiElement, left, top, width, height);
+            uiElement.BackgroundColor = color;
+        }
+        public static void SetPanel(ref UIPanel uiElement, Rectangle rec, Color color)
+        {
+            SetRectangle(uiElement, rec);
+            uiElement.BackgroundColor = color;
+        }
+        public static void SetPanel(ref UIPanel uiElement, float left, float top, float width, float height, Color color)
+        {
+            SetRectangle(uiElement, left, top, width, height);
+            uiElement.BackgroundColor = color;
+        }
         public static void SetButtonActive(UIHoverImageButton button,bool condition, Asset<Texture2D> Texture, Asset<Texture2D> TextureGray,NPC npc)
         {
             if (condition)
@@ -87,6 +111,17 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 button.Npc(npc);
             }
         }
-
+        public static int GetBossAmmount(Mod mod,List<int> list,List<int> BannedIds = null)
+        {
+            int iconAmmount = 0;
+            foreach (int id in list)
+            {
+                if (ContentSamples.NpcsByNetId[id].boss && !BannedIds.Contains(id) && RemnantGlobalNPC.GetMod(id) == mod)
+                {
+                    iconAmmount++;
+                }
+            }
+            return iconAmmount;
+        }
     }
 }
