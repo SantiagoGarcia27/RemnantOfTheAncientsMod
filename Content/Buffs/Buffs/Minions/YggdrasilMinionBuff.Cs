@@ -33,4 +33,30 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
 			}
 		}
 	}
+    public class YggdrasilBuff : ModBuff
+    {
+        public override string Texture => getTextura();
+
+        private string getTextura()
+        {
+            string name = nameof(YggdrasilMinionBuff);
+            return "RemnantOfTheAncientsMod/Content/Buffs/Buffs/Minions/" + name;
+        }
+        int defenseBonus = 15;
+        int damageBonus = 10;
+        int damageReductionBonus = 5;
+
+        public override void SetStaticDefaults()
+        {
+            Main.buffNoSave[Type] = true;
+            Main.buffNoTimeDisplay[Type] = true;
+            Main.persistentBuff[Type] = true;
+        }
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.statDefense += defenseBonus;
+            player.GetDamage(DamageClass.Generic) *= 1 + damageBonus / 100;
+            player.endurance += damageReductionBonus / 100;
+        }
+    }
 }

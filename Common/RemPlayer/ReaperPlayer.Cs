@@ -20,6 +20,8 @@ using RemnantOfTheAncientsMod.Common.Configs;
 using SangarUtilities.Common;
 using System;
 using System.Linq;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.Runtime.InteropServices;
 
 
 public class ReaperPlayer : ModPlayer
@@ -85,28 +87,7 @@ public class ReaperEffectsPlayer : ModPlayer
     {
         if (Player.wingTimeMax > 4) 
             ReaperGlobalItem.ReaperWingsNerf(Player);
-    }
-   /* public override void LoadData(TagCompound tag)
-    {
-        ModLoader.TryGetMod("SangarUtilities", out TerrariaMod);
-        ModLoader.TryGetMod("RemnantOfTheAncientsMod", out RemnantOfTheAncientsM);
-        ModLoader.TryGetMod("CalamityMod", out CalamityMod);
-
-        FillSoulList();
-
-        foreach (Mod mod in ModLoader.Mods)
-        {
-            foreach (NPC npc in NpcList.BossList[mod])
-            {
-                string name = mod == TerrariaMod ? npc.type.ToString() : npc.ModNPC.GetType().Name;
-                bool? value = tag.Get<bool>(name + "ReaperUpgrade");
-                value ??= false;
-                SoulsUpgrades[npc.type] = (bool)value;
-            }
-
-        }
-    }*/
-        
+    }       
    
 /// <summary>
 /// Set Reaper mode souls config values
@@ -395,19 +376,22 @@ public class ReaperSoulsPlayer : ModPlayer
 
         for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
         {
-            NPC npc = Main.npc[i];
+            NPC npc = ContentSamples.NpcsByNetId[GetLoadedBossIdByIndex(i)];
             if (npc.boss)
             {
-                string TagDamage = npc.type + "ReaperUpgrade";
-                tag[TagDamage] = SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)];
+                string TagName = npc.type + "ReaperUpgrade";
+                tag[TagName] = SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)];
+                tag.Add(TagName + "Active", SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(npc.type)]);
+                //tag[TagName + "Active"] = SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(npc.type)];
             }         
         }
         if(CalamityMod != null)
         {
             foreach (NPC npc in NpcList.BossList[CalamityMod])
             {
-                string TagDamage = npc.ModNPC.GetType().Name + "ReaperUpgrade";
-                tag[TagDamage] = SoulsUpgradesMaybeLoaded[npc.type];
+                string TagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
+                tag[TagName] = SoulsUpgradesMaybeLoaded[npc.type];
+                tag.Add(TagName + "Active", SoulsUpgradesMaybeLoaded[npc.type]);
             }
         }
     }
@@ -419,11 +403,12 @@ public class ReaperSoulsPlayer : ModPlayer
 
         for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
         {
-            NPC npc = Main.npc[i];
+            NPC npc = ContentSamples.NpcsByNetId[GetLoadedBossIdByIndex(i)];
             if (npc.boss)
             {
                 string TagDamage = npc.type + "ReaperUpgrade";
                 SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)] = tag.GetBool(TagDamage);
+                SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(npc.type)] = tag.GetFloat(TagDamage + "Active");
             }
         }
         if (CalamityMod != null)
@@ -432,6 +417,7 @@ public class ReaperSoulsPlayer : ModPlayer
             {
                 string TagDamage = npc.ModNPC.GetType().Name + "ReaperUpgrade";
                 SoulsUpgradesMaybeLoaded[npc.type] = tag.GetBool(TagDamage);
+                //SoulsUpgradesMaybeLoadedActive[npc.type] = tag.GetFloat(TagDamage + "Active");
             }
         }
     }
@@ -442,12 +428,12 @@ public class ReaperSoulsPlayer : ModPlayer
         for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
         {
             packet.Write(SoulsUpgradesLoaded[i]);
-            packet.Write(SoulsUpgradesLoadedActive[i]);
+            packet.Write((byte)SoulsUpgradesLoadedActive[i]);
         }
         for (int i = 0; i < SoulsUpgradesMaybeLoaded.Count; i++)
         {
             packet.Write(SoulsUpgradesMaybeLoaded[i]);
-            packet.Write(SoulsUpgradesMaybeLoadedActive[i]);
+            packet.Write((byte)SoulsUpgradesMaybeLoadedActive[i]);
         }     
         packet.Send(toWho, fromWho);
     }

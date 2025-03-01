@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
         public override void AddRecipes()
 		{
 			CreateRecipe()
-            .AddIngredient(ItemID.Daybloom, 8)
+            .AddIngredient(ItemID.Daybloom, 4)
             .AddIngredient(ItemID.Vine, 1)
             .AddIngredient<IronBand>()
             .AddTile(TileID.Anvils)

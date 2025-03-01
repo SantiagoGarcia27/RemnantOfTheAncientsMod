@@ -17,6 +17,7 @@ using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Tools.FishingRods;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -31,7 +32,7 @@ namespace RemnantOfTheAncientsMod
         }
 
         #region New recipes
-        public static void AddRecipes()
+        public override void AddRecipes()
         {
             Uncrafting();
             Swaped();
@@ -48,7 +49,6 @@ namespace RemnantOfTheAncientsMod
             HardmodeItems();
             CraftingItems();
             Bait();
-            Shimmer();
         }
         private static void CraftingItems()
         {
@@ -139,15 +139,7 @@ namespace RemnantOfTheAncientsMod
                .AddTile(TileID.Anvils)
                .Register();
 
-            Recipe.Create(ItemID.MagicMirror)
-               .AddIngredient(ItemID.IceMirror, 1)
-               .AddTile(TileID.Anvils)
-               .Register();
-
-            Recipe.Create(ItemID.IceMirror)
-               .AddIngredient(ItemID.MagicMirror, 1)
-               .AddTile(TileID.Anvils)
-               .Register();
+            CreateSwapRecipe(ItemID.IceMirror, ItemID.MagicMirror, TileID.Anvils); 
         } 
         #region Weapons
         private static void Weapons()
@@ -359,91 +351,51 @@ namespace RemnantOfTheAncientsMod
         #region Swap
         private static void Swaped()
         {
-            SwapCorruptionLightPet();
+            SwapCorruptionEquipment();
             SwapSouls();
-            SwapCorruptDebuffMaterial();
+            SwapCorruptMaterial();
             SwapHardmodeBars();
-            SwapPreBossBars();
-            SwapCorruptBars();
-            SwapCorruptMushroom();
+            SwapPreHardmodeBars();
             SwapDolls();
-            CorruptExpertAccesories();
-            SwapFish();
-        }
-        private static void SwapFish()
-        {
-            Recipe.Create(ItemID.Hemopiranha).AddIngredient(ItemID.Ebonkoi).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.Ebonkoi).AddIngredient(ItemID.Hemopiranha).AddTile(TileID.AlchemyTable).Register();
-        }
-        private static void CorruptExpertAccesories()
-        {
-            Recipe.Create(ItemID.BrainOfConfusion)
-            .AddIngredient(ItemID.WormScarf, 1)
-            .AddTile(TileID.WorkBenches)
-            .Register();
-
-            Recipe.Create(ItemID.WormScarf)
-            .AddIngredient(ItemID.BrainOfConfusion, 1)
-            .AddTile(TileID.WorkBenches)
-            .Register();
-        }
-
-        private static void SwapCorruptMushroom()
-        {
-            Recipe.Create(ItemID.ViciousMushroom).AddIngredient(ItemID.VileMushroom).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.VileMushroom).AddIngredient(ItemID.ViciousMushroom).AddTile(TileID.AlchemyTable).Register();
         }
 
         private static void SwapDolls()
         {
-            Recipe.Create(ItemID.ClothierVoodooDoll).AddIngredient(ItemID.GuideVoodooDoll, 1).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.GuideVoodooDoll).AddIngredient(ItemID.ClothierVoodooDoll, 1).AddTile(TileID.AlchemyTable).Register();
+            CreateSwapRecipe(ItemID.GuideVoodooDoll, ItemID.ClothierVoodooDoll, TileID.AlchemyTable); 
+        }
+        private static void SwapPreHardmodeBars()
+        {        
+            CreateSwapRecipe(ItemID.PlatinumBar, ItemID.GoldBar, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.SilverBar, ItemID.TungstenBar, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.LeadBar, ItemID.IronBar, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.CopperBar, ItemID.TinBar, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.DemoniteBar, ItemID.CrimtaneBar, TileID.DemonAltar);
         }
 
-        private static void SwapCorruptBars()
+        private static void SwapCorruptMaterial()
         {
-            Recipe.Create(ItemID.CrimtaneBar).AddIngredient(ItemID.DemoniteBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.DemoniteBar).AddIngredient(ItemID.CrimtaneBar).AddTile(TileID.AlchemyTable).Register();
-        }
-
-        private static void SwapPreBossBars()
-        {
-            Recipe.Create(ItemID.PlatinumBar).AddIngredient(ItemID.GoldBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.GoldBar).AddIngredient(ItemID.PlatinumBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.TungstenBar).AddIngredient(ItemID.SilverBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.SilverBar).AddIngredient(ItemID.TungstenBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.LeadBar).AddIngredient(ItemID.IronBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.IronBar).AddIngredient(ItemID.LeadBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.CopperBar).AddIngredient(ItemID.TinBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.TinBar).AddIngredient(ItemID.CopperBar).AddTile(TileID.AlchemyTable).Register();
-        }
-
-        private static void SwapCorruptDebuffMaterial()
-        {
-            Recipe.Create(ItemID.CursedFlame).AddIngredient(ItemID.Ichor).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.Ichor).AddIngredient(ItemID.CursedFlame).AddTile(TileID.AlchemyTable).Register();
+            CreateSwapRecipe(ItemID.CursedFlame, ItemID.Ichor, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.VileMushroom, ItemID.ViciousMushroom, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.Hemopiranha, ItemID.Ebonkoi, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.LightShard, ItemID.DarkShard, TileID.AlchemyTable);
         }
 
         private static void SwapHardmodeBars()
         {
-            Recipe.Create(ItemID.AdamantiteBar).AddIngredient(ItemID.TitaniumBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.TitaniumBar).AddIngredient(ItemID.AdamantiteBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.PalladiumBar).AddIngredient(ItemID.CobaltBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.CobaltBar).AddIngredient(ItemID.PalladiumBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.OrichalcumBar).AddIngredient(ItemID.MythrilBar).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.MythrilBar).AddIngredient(ItemID.OrichalcumBar).AddTile(TileID.AlchemyTable).Register();
+            CreateSwapRecipe(ItemID.AdamantiteBar, ItemID.TitaniumBar, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.OrichalcumBar, ItemID.MythrilBar, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.PalladiumBar, ItemID.CobaltBar, TileID.AlchemyTable);
         }
 
         private static void SwapSouls()
         {
-            Recipe.Create(ItemID.SoulofNight).AddIngredient(ItemID.SoulofLight).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.SoulofLight).AddIngredient(ItemID.SoulofNight).AddTile(TileID.AlchemyTable).Register();
+            CreateSwapRecipe(ItemID.SoulofLight, ItemID.SoulofNight, TileID.AlchemyTable);    
         }
 
-        private static void SwapCorruptionLightPet()
+        private static void SwapCorruptionEquipment()
         {
-            Recipe.Create(ItemID.CrimsonHeart).AddIngredient(ItemID.ShadowOrb).AddTile(TileID.AlchemyTable).Register();
-            Recipe.Create(ItemID.ShadowOrb).AddIngredient(ItemID.CrimsonHeart).AddTile(TileID.AlchemyTable).Register();
+            CreateSwapRecipe(ItemID.CrimsonHeart, ItemID.ShadowOrb, TileID.AlchemyTable);
+            CreateSwapRecipe(ItemID.WormScarf, ItemID.BrainOfConfusion, TileID.WorkBenches);
         }
 
         private static void Uncrafting()
@@ -453,74 +405,67 @@ namespace RemnantOfTheAncientsMod
             UncraftBone();
 
             Recipe.Create(ModContent.ItemType<JungleBar>(), 6).AddIngredient(ItemID.BladeofGrass, 1).AddTile(TileID.Anvils).Register();
-            //Recipe.Create(ItemID.PlatinumCoin, 100).AddIngredient(ModContent.ItemType<Terracoin>(), 1).Register();
             Recipe.Create(ItemID.EnchantedSword, 1).AddIngredient(ModContent.ItemType<Enchanted_saber>(), 1).AddTile(TileID.Anvils).Register();
         }
 
         private static void UncraftBone()
         {
-            {
-                Recipe.Create(ModContent.ItemType<BoneBar>(), 23)
-                 .AddIngredient(ItemID.NecroGreaves, 1)
-                 .AddTile(TileID.Anvils)
-                 .Register();
-            }
-            {
-                Recipe.Create(ModContent.ItemType<BoneBar>(), 18)
-                   .AddIngredient(ItemID.NecroHelmet, 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
-            {
-                Recipe.Create(ModContent.ItemType<BoneBar>(), 29)
-                   .AddIngredient(ItemID.NecroBreastplate, 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
+
+            Recipe.Create(ModContent.ItemType<BoneBar>(), 23)
+             .AddIngredient(ItemID.NecroGreaves, 1)
+             .AddTile(TileID.Anvils)
+             .Register();
+
+            Recipe.Create(ModContent.ItemType<BoneBar>(), 18)
+               .AddIngredient(ItemID.NecroHelmet, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
+
+            Recipe.Create(ModContent.ItemType<BoneBar>(), 29)
+               .AddIngredient(ItemID.NecroBreastplate, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
+
         }
 
         private static void UncraftJungle()
         {
-            {
-                Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
-                   .AddIngredient(ItemID.JungleHat, 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
-            {
-                Recipe.Create(ModContent.ItemType<JungleBar>(), 6)
-                   .AddIngredient(ItemID.JungleShirt, 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
-            {
-                Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
-                   .AddIngredient(ItemID.JunglePants, 1)
-                   .AddTile(TileID.Anvils)
-                   .Register();
-            }
+
+            Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
+               .AddIngredient(ItemID.JungleHat, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
+
+            Recipe.Create(ModContent.ItemType<JungleBar>(), 6)
+               .AddIngredient(ItemID.JungleShirt, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
+
+            Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
+               .AddIngredient(ItemID.JunglePants, 1)
+               .AddTile(TileID.Anvils)
+               .Register();
+
         }
 
         private static void UncraftMolten()
         {
-            {
-                Recipe.Create(ItemID.HellstoneBar, 10)
-                   .AddIngredient(ItemID.MoltenHelmet, 1)
-                   .AddTile(TileID.Hellforge)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.HellstoneBar, 20)
-                   .AddIngredient(ItemID.MoltenBreastplate, 1)
-                   .AddTile(TileID.Hellforge)
-                   .Register();
-            }
-            {
-                Recipe.Create(ItemID.HellstoneBar, 15)
-                   .AddIngredient(ItemID.MoltenGreaves, 1)
-                   .AddTile(TileID.Hellforge)
-                   .Register();
-            }
+
+            Recipe.Create(ItemID.HellstoneBar, 10)
+               .AddIngredient(ItemID.MoltenHelmet, 1)
+               .AddTile(TileID.Hellforge)
+               .Register();
+
+            Recipe.Create(ItemID.HellstoneBar, 20)
+               .AddIngredient(ItemID.MoltenBreastplate, 1)
+               .AddTile(TileID.Hellforge)
+               .Register();
+
+            Recipe.Create(ItemID.HellstoneBar, 15)
+               .AddIngredient(ItemID.MoltenGreaves, 1)
+               .AddTile(TileID.Hellforge)
+               .Register();
+
         }
         #endregion
         private static void FishingRods()
@@ -593,6 +538,13 @@ namespace RemnantOfTheAncientsMod
                 .AddTile(TileID.Anvils)
                 .Register();
         }
+        private static void CreateSwapRecipe(int item1, int item2,int tile,int ammount = 1)
+        {
+            Recipe.Create(item1, ammount).AddIngredient(item2).AddTile(tile).Register();
+            Recipe.Create(item2,ammount).AddIngredient(item1).AddTile(tile).Register();
+        }
+
+
         #region Accesorios
         private static void Accesories()
         {
@@ -1064,22 +1016,16 @@ namespace RemnantOfTheAncientsMod
         }
         #endregion
         #endregion
-        public static void Shimmer()
-        {
-           
-
-           
-        }
 
         public override void AddRecipeGroups()
         {
-            List<int> lowFood = new();
-            List<int> mediumFood = new();
-            List<int> hightFood = new();
+            List<int> lowFood = [];
+            List<int> mediumFood = [];
+            List<int> hightFood = [];
 
-            List<int> lowBait = new();
-            List<int> mediumBait = new();
-            List<int> hightBait = new();
+            List<int> lowBait = [];
+            List<int> mediumBait = [];
+            List<int> hightBait = [];
 
             // Enumerate from 0 to ItemCount - 1,
             // Filter deprecated items,
@@ -1298,36 +1244,42 @@ namespace RemnantOfTheAncientsMod
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
                     recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 3);
+                    recipe.AddCustomShimmerResult(ModContent.ItemType<JungleBar>(), 3);
                 }
                 if (recipe.TryGetResult(ItemID.JungleShirt, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
                     recipe.RemoveIngredient(ItemID.Stinger);
                     recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 6);
+                    recipe.AddCustomShimmerResult(ModContent.ItemType<JungleBar>(), 6);
                 }
                 if (recipe.TryGetResult(ItemID.JunglePants, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
                     recipe.RemoveIngredient(ItemID.Vine);
                     recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 3);
+                    recipe.AddCustomShimmerResult(ModContent.ItemType<JungleBar>(), 3);
                 }
                 if (recipe.TryGetResult(ItemID.NecroHelmet, out _))
                 {
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
                     recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 18);
+                    recipe.AddCustomShimmerResult(ModContent.ItemType<BoneBar>(), 18);
                 }
                 if (recipe.TryGetResult(ItemID.NecroBreastplate, out _))
                 {
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
                     recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 29);
+                    recipe.AddCustomShimmerResult(ModContent.ItemType<BoneBar>(), 29);
                 }
                 if (recipe.TryGetResult(ItemID.NecroGreaves, out _))
                 {
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
                     recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 23);
+                    recipe.AddCustomShimmerResult(ModContent.ItemType<BoneBar>(), 23);
                 }
                 if (recipe.TryGetResult(ItemID.CellPhone, out _))
                 {

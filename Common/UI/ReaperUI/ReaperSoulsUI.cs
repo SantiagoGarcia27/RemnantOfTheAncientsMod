@@ -22,9 +22,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
     public class ReaperSoulsUIState : UIState
     {
         public static DragableUIPanel BackgroundPanel;
-        public UIPanel VanillaSoulTogglePanel;
-        public UIPanel RemanntsSoulTogglePanel;
-        public UIPanel CalamitySoulTogglePanel;
+        public static UIPanel VanillaSoulTogglePanel;
+        public static UIPanel RemanntsSoulTogglePanel;
+        public static UIPanel CalamitySoulTogglePanel;
         public static UISoulDisplay SoulsDisplay;
         public static Dictionary<Mod, Dictionary<int, UIHoverImageButton>> Buttons = [];
         public static List<int> BannedIds = [];
@@ -123,30 +123,31 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
                     int spaceLimit = 10;
                     float baseLefthPosition = 20f;
-                    float baseTopPosition = 20f;
+                    float baseTopPosition = 30f;
 
                     if (CalamityMod != null)
                     {
                         spaceLimit += 2;
                     }
                     int i = 1;
+                    int bottom = 110;
 
                     if (mod == TerrariaMod)
                     {
-                        PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, 0, LoadedSouls.Length - 3);
+                        PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, ref bottom, 0, LoadedSouls.Length - 3);
                     }
                     else if (mod == RemnantOfTheAncientsM)
                     {
-                        PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, LoadedSouls.Length - 3, LoadedSouls.Length);
+                        PreDrawButtons(mod, spaceLimit, ref baseLefthPosition, ref baseTopPosition, ref i, ref bottom, LoadedSouls.Length - 3, LoadedSouls.Length);
                     }
                     else if (CalamityMod != null && mod == CalamityMod)
                     {
-                        PreDrawButtons(mod, spaceLimit, Souls, ref baseLefthPosition, ref baseTopPosition, ref i);
+                        PreDrawButtons(mod, spaceLimit, Souls, ref baseLefthPosition, ref baseTopPosition, ref i, ref bottom);
                     }
                 }
             }
         }
-        public void setBackground(ref DragableUIPanel panel)
+        public static void setBackground(ref DragableUIPanel panel)
         {
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
             int height = 45 * 8;
@@ -166,7 +167,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             }
             UIUtils.SetPanel(ref panel, left: 400f, top: 100f, width,height, new Color(73, 94, 171));
         }
-        public void setModPanel(ref UIPanel panel, Color color, int left = 0, int top = 120, Mod mod = null)
+        public static void setModPanel(ref UIPanel panel, Color color, int left = 0, int top = 120, Mod mod = null)
         {
             float IconSizeHeight = 45f;
             float IconSizeWeight = 40f;
@@ -204,7 +205,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 if (CalamityMod != null) Width += 40;
             }
         }
-        public void DrawButtons(Mod mod, int type, ref int i, int spaceLimit, ref float baseLefthPosition, ref float baseTopPosition)
+        public static void DrawButtons(Mod mod, int type, ref int i, int spaceLimit, ref float baseLefthPosition, ref float baseTopPosition,ref int bottom)
         {
 
             float baseLefthPositionIncrement = 40;
@@ -227,9 +228,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
                 Buttons[mod][npc.type] = UIUtils.CreateButtom(baseTexture, blockedTexture, baseLefthPosition, baseTopPosition, 22f, 22f, "", new MouseEvent(SetSoulClicked), false, npc, true);
 
-                int bottom = 110;
                 if (mod == TerrariaMod)
-                    FixButtonPosition(mod, ref VanillaSoulTogglePanel, new Color(73, 94, 171),ref bottom, (40 * 2) + 50);
+                    FixButtonPosition(mod, ref VanillaSoulTogglePanel, new Color(73, 94, 171), ref bottom, (40 * 2) + 50);
                 else if (mod == RemnantOfTheAncientsM)
                     FixButtonPosition(mod, ref RemanntsSoulTogglePanel, new Color(166, 123, 5), ref bottom, 40 + 50);
                 else if (CalamityMod != null && mod == CalamityMod)
@@ -240,7 +240,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                     baseLefthPosition = 20;
                     baseTopPosition += baseTopPositionIncrement;
                 }
-                else if (!ReaperSoulUIExtras.CheckCalamityMod(npc, CalamityMod, ref baseLefthPosition, ref baseLefthPositionIncrement))
+
+                else if (!ReaperSoulUIExtras.CheckDistanceForBigIcons(npc, CalamityMod, ref baseLefthPosition, ref baseLefthPositionIncrement))
                 {
                     baseLefthPosition += baseLefthPositionIncrement;
                 }
@@ -267,27 +268,25 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 }
             }
         }
-        public static void PreDrawButtons(Mod mod, int spaceLimit, Dictionary<int, bool> List, ref float baseLefthPosition, ref float baseTopPosition, ref int i)
+        public static void PreDrawButtons(Mod mod, int spaceLimit, Dictionary<int, bool> List, ref float baseLefthPosition, ref float baseTopPosition, ref int i,ref int bottom)
         {
             i = 1;
             baseLefthPosition = 20f;
             baseTopPosition = 20f;
-            ReaperSoulsUIState reaperSoulsUIState = new();
             foreach (KeyValuePair<int, bool> soul in List)
             {
-                reaperSoulsUIState.DrawButtons(mod, soul.Key, ref i, spaceLimit, ref baseLefthPosition, ref baseTopPosition);
+                DrawButtons(mod, soul.Key, ref i, spaceLimit, ref baseLefthPosition, ref baseTopPosition,ref bottom);
             }
         }
-        public static void PreDrawButtons(Mod mod, int spaceLimit, ref float baseLefthPosition, ref float baseTopPosition, ref int i, int min = 0, int max = 0)
+        public static void PreDrawButtons(Mod mod, int spaceLimit, ref float baseLefthPosition, ref float baseTopPosition, ref int i, ref int bottom, int min = 0, int max = 0)
         {
             i = 1;
             baseLefthPosition = 20f;
             baseTopPosition = 20f;
-            ReaperSoulsUIState reaperSoulsUIState = new();
             for (int j = min; j < max; j++)
             {
                 int type = ReaperSoulsPlayer.GetLoadedBossIdByIndex(j);
-                reaperSoulsUIState.DrawButtons(mod, type, ref i, spaceLimit, ref baseLefthPosition, ref baseTopPosition);
+                DrawButtons(mod, type, ref i, spaceLimit, ref baseLefthPosition, ref baseTopPosition,ref bottom);
             }
         }
         public static void SetSoulClicked(UIMouseEvent evt, UIElement listeningElement)

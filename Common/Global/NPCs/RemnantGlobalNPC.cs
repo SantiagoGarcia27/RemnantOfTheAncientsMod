@@ -23,6 +23,7 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Items.Items.Guides;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -434,7 +435,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (item is not null)
                 {
-                    decimal discount = Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat != 0 ? (decimal)(1f - (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat / 100f)) : 1;
+                    decimal discount = Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat != 0 ? (decimal)(1f - (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat / 2 / 100f)) : 1;
                     discount = (float)discount > 0.1f ? discount : (decimal)0.1;
 
                     item.shopCustomPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);

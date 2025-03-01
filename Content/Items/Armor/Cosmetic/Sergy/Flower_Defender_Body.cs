@@ -8,6 +8,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using CalamityMod.MainMenu;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
 {
@@ -24,6 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Cyan;
             Item.vanity = true;
+            Item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 7;
             Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
         }
         public override void AddRecipes()

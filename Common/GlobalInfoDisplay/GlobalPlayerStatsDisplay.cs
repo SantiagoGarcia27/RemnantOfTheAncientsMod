@@ -148,7 +148,7 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
             
-            return $"{Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat} Style bonus";
+            return $"{Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat}/102 Style bonus";
         }
     }
 }

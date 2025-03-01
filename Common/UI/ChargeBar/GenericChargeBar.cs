@@ -53,11 +53,24 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 			Append(area);
 		}
 
-		public override void Draw(SpriteBatch spriteBatch) {
-                if (Main.LocalPlayer.HeldItem.stack <= 0 || !Main.LocalPlayer.HeldItem.GetGlobalItem<RemnantGlobalItem>().CanCharge || RemnantPlayer.GenericChargeCouldownMax <= 0 || RemnantPlayer.GenericChargeCouldown == 0)
-					return;
-            base.Draw(spriteBatch);
-        }
+		public override void Draw(SpriteBatch spriteBatch)
+		{
+
+			Item item = Main.LocalPlayer.HeldItem;
+			if (item.IsAir)
+			{
+				return;
+			}
+			int stack = item.stack;
+			bool canCharge = Main.LocalPlayer.HeldItem.GetGlobalItem<RemnantGlobalItem>().CanCharge;
+			float CouldownMax = RemnantPlayer.GenericChargeCouldownMax;
+			float Couldown = RemnantPlayer.GenericChargeCouldown;
+
+			if (stack <= 0 || !canCharge || CouldownMax <= 0 || Couldown == 0)
+				return;
+
+			base.Draw(spriteBatch);
+		}
 
         // Here we draw our UI
         protected override void DrawSelf(SpriteBatch spriteBatch) {

@@ -33,4 +33,29 @@ namespace  RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
 			}
 		}
 	}
+    public class SacredFlowerBuff : ModBuff
+    {
+        public override string Texture => getTextura();
+
+        private string getTextura()
+        {
+            string name = nameof(SacredFlowerMinionBuff);
+            return "RemnantOfTheAncientsMod/Content/Buffs/Buffs/Minions/" + name;
+        }
+
+        int defenseBonus = 10;
+        int damageBonus = 5;
+
+        public override void SetStaticDefaults()
+        {
+            Main.buffNoSave[Type] = true;
+            Main.buffNoTimeDisplay[Type] = true;
+            Main.persistentBuff[Type] = true;
+        }
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.statDefense += defenseBonus;
+            player.GetDamage(DamageClass.Generic) *= 1 + damageBonus / 100;
+        }
+    }
 }

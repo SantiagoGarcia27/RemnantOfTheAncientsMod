@@ -45,8 +45,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         public int RangeMax = 30 * 16;
         public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
         public int Heal = 20;
-        public int DefenseBonus = 10;
-        public float DamageBonus = 1.05f;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
@@ -71,15 +69,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
 
                 if (playerAvalible && playerOnRange)
                 {
-                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
+                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
                     if (HealTimmer == 1)
                     {
                         Main.player[p].HealEffect(Heal);
                         Main.player[p].statLife += Heal;     
                         SpawnParticles();
                     }
-                    Main.player[p].statDefense += DefenseBonus;
-                    Main.player[p].GetDamage(DamageClass.Generic) *= DamageBonus;
+                    Main.player[p].AddBuff(BuffType<SacredFlowerBuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
                 }
             }
         }

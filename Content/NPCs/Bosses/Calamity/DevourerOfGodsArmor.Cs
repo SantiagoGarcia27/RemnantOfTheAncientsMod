@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return ModLoader.TryGetMod("InfernumMode", out Mod InfernumMode);
+            return ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
         }
         public override string Texture => GetTexturePath();
         public override void SetStaticDefaults()
@@ -44,10 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 NPC.scale = NpcOwner.scale + 0.2f;
                 NPC.Size = NpcOwner.Size + new Vector2(10,10);
             }
-            else
-            {
-                AIType = NPCID.DemonEye;
-            }
+   
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
 {
@@ -19,6 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Cyan;
             Item.vanity = true;
+            Item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 7;
             Item.GetGlobalItem<CustomTooltip>().CompletistItem = true;
         }
         

@@ -64,6 +64,8 @@ namespace RemnantOfTheAncientsMod
 		public bool Hell_Fire;
 		public int healHurt;
 
+
+
 		public bool anyBossIsAlive;
 		public bool MoneyCollector;
 		public List<int> ScrollsBuff = [];
@@ -395,18 +397,16 @@ namespace RemnantOfTheAncientsMod
 		public static void ApplyBuffToAllPlayers(int BuffId, int Hours, int Minutes, int Seconds)
 		{
 			int BuffTime = (Seconds * 60) + (Minutes * 60 * 60) + (Hours * 60 * 60 * 60);
-			int MaxPlayer = RemnantOfTheAncientsMod.MaxPlayerOnline();
-			for (int CurrentPlayer = 0; CurrentPlayer <= MaxPlayer; CurrentPlayer++)
+			foreach(Player player in Main.ActivePlayers)
 			{
-				Main.player[CurrentPlayer].AddBuff(BuffId, BuffTime);
-			}
+				player.AddBuff(BuffId, BuffTime);
+            }
 		}
 		public static void ClearBuffToAllPlayers(int BuffId)
 		{
-			int MaxPlayer = RemnantOfTheAncientsMod.MaxPlayerOnline();
-			for (int CurrentPlayer = 0; CurrentPlayer <= MaxPlayer; CurrentPlayer++)
-			{
-				Main.player[CurrentPlayer].ClearBuff(BuffId);
+            foreach (Player player in Main.ActivePlayers)
+            {
+                player.ClearBuff(BuffId);
 			}
 		}
 		public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
@@ -439,8 +439,8 @@ namespace RemnantOfTheAncientsMod
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			//item.GetGlobalItem<FchangesItem>().ReaperSize(item);
-			if (hit.DamageType == DamageClass.Melee)// item.noMelee && !item.noUseGraphic)
+			
+			if (hit.DamageType == DamageClass.Melee)
 			{
 				foreach (int b in MeleeBuffInflict)
 				{

@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             Projectile.height = 32;
             Projectile.friendly = true;
             Projectile.minion = true;
-            Projectile.minionSlots = 1;
+            Projectile.minionSlots = 0;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 18000;
             Projectile.tileCollide = false;

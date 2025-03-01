@@ -126,9 +126,13 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         {
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
-            bool SoulsUpgradesLoaded = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcId)];
-            bool SoulsUpgradesConditon = SoulsUpgradesLoaded;
-
+            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcId);
+            bool SoulsUpgradesConditon = false;
+            if (index != -1)
+            {
+                bool SoulsUpgradesLoaded = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[index];
+                SoulsUpgradesConditon = SoulsUpgradesLoaded;
+            }
             if (CalamityMod != null && mod == CalamityMod)
             {
                 bool SoulsUpgradesMaybeLoaded = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[npcId];
@@ -143,14 +147,21 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             Player player = Main.LocalPlayer;
 
             int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcId);
-            float SoulsUpgradesConditon = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index];
+            float SoulsUpgradesConditon = 0f;
 
-            if (CalamityMod != null && mod == CalamityMod)
+            if(index != -1)
+                SoulsUpgradesConditon = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index];
+            else if (CalamityMod != null && mod == CalamityMod)
                 SoulsUpgradesConditon = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npcId];
             return SoulsUpgradesConditon;
         }
-        public static bool CheckCalamityMod(NPC npc, Mod CalamityMod, ref float baseLefthPosition, ref float baseLefthPositionIncrement)
+        public static bool CheckDistanceForBigIcons(NPC npc, Mod CalamityMod, ref float baseLefthPosition, ref float baseLefthPositionIncrement)
         {
+            if(npc.type == NPCID.Deerclops)
+            {
+                baseLefthPosition += baseLefthPositionIncrement + 30;
+                return true;
+            }
             if (CalamityMod != null)
             {
                 if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Providence"))

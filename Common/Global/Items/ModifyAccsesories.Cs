@@ -2,6 +2,7 @@ using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
@@ -58,6 +59,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 7;
                 }
+                else if (item.type == ItemID.CopperWatch || item.type == ItemID.TinWatch)
+                {
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 1;
+                }
+                else if (item.type == ItemID.SilverWatch || item.type == ItemID.TungstenWatch)
+                {
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 2;
+                }
+                else if(item.type == ItemID.GoldWatch || item.type == ItemID.PlatinumWatch)
+                {
+                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 3;
+                }
+               
                 if (item.type == ItemID.DiamondRing)
                 {
                     item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;

@@ -18,6 +18,11 @@ Mods: {
 				At night increases max mana by 20.
 				Bright Daisy no cost mana.
 				'''
+			Flinx:
+				'''
+				{$CommonItemTooltip.IncreasesMaxLifeBy}
+				Summon a flinx minion to protect you.
+				'''
 		}
 
 		Messages: {
@@ -433,7 +438,7 @@ Mods: {
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					-moardiego
+					-moardiego -Slash9511
 					for being the first to give this mod a chance
 					'''
 			}
@@ -580,7 +585,7 @@ Mods: {
 
 			FrostBarrierCouldown: {
 				DisplayName: Frost Barrier Couldown
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.FrostBarrierCouldown.Description
+				Description: You cant use Frost Barrier
 			}
 
 			CurseMarkBuff: {
@@ -595,7 +600,22 @@ Mods: {
 
 			FogOfVoid: {
 				DisplayName: Fog Of Void
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.FogOfVoid.Description
+				Description: You cant see anything
+			}
+
+			IlluminatedSunflowerBuff: {
+				DisplayName: Illuminated Sunflower bleasing
+				Description: Increase defense by 5
+			}
+
+			SacredFlowerBuff: {
+				DisplayName: Sacred Flower Buff
+				Description: Increase defense by 10 and damage by 5%
+			}
+
+			YggdrasilBuff: {
+				DisplayName: Yggdrasil Buff
+				Description: Increase defense by 15, damage by 10% and Damage reduction by 5%
 			}
 		}
 
@@ -727,7 +747,11 @@ Mods: {
 				DisplayName: Chalice of souls
 				Tooltip:
 					'''
-					You can store the souls of defeated bosses in this chalice to gain their power.
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					[c/fbac2e:Melee weapons size are increased by {1}%]
+					[c/68d7ff:{$CommonItemTooltip.IncreasesMaxMinionsBy@2}] 
+					[c/ec7ade:{$CommonItemTooltip.IncreasesMaxManaBy@3}]
+					Allows you to channel the power of collected souls.
 					(only works in reaper)
 					'''
 			}
@@ -983,10 +1007,6 @@ Mods: {
 					'''
 					Active Reaper mode
 					You natural max hp is set in 1
-					Increase all damage by 50%
-					Melee weapons size are increased by 150%
-					{$CommonItemTooltip.IncreasesMaxMinionsBy} 
-					{$CommonItemTooltip.IncreasesMaxManaBy@1} 
 					Reduce flight time in half.
 					Damage and max health of bosses are doubled
 					Legendary drops are more common
@@ -1447,7 +1467,11 @@ Mods: {
 
 			CorruptSoul: {
 				DisplayName: Corrupt Soul
-				Tooltip: Increases life regen
+				Tooltip:
+					'''
+					Increases life regen
+					Has a chance to create illusions and dodge an attack
+					'''
 			}
 
 			CultistSoul: {
@@ -3806,6 +3830,31 @@ Mods: {
 				DisplayName: Desert Scourge Soul
 				Tooltip: ""
 			}
+
+			FlinxHood: {
+				DisplayName: Flinx Hood
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+			}
+
+			FlinxPants: {
+				DisplayName: Flinx Pants
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+			}
+
+			ExplorerBoots: {
+				DisplayName: Explorer Boots
+				Tooltip: ""
+			}
+
+			RunningShoes: {
+				DisplayName: Running Shoes
+				Tooltip: ""
+			}
+
+			GatlingShotGun: {
+				DisplayName: Gatling Shot Gun
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4049,6 +4098,9 @@ Mods: {
 			SolverCursor.DisplayName: Solver Cursor
 			HoldSaberCharge.DisplayName: Hold Saber Charge
 			SignusMimic.DisplayName: Signus Mimic
+			AquaScepterHeldProj.DisplayName: Aqua Scepter Held Proj
+			WandOfSparkingHeldProj.DisplayName: Wand Of Sparking Held Proj
+			SparkBomb.DisplayName: Spark Bomb
 		}
 
 		Tiles: {

@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 
 
 namespace RemnantOfTheAncientsMod.Common.Drops
@@ -64,7 +65,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             //  npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fake_The_Legion>(), 1 / dificultyDrop(1), 1, 1));
             //SoulLoot(npc, npcLoot, new Player());
         }
-        public void CommonLoot(NPC npc, NPCLoot npcLoot)
+        public static void CommonLoot(NPC npc, NPCLoot npcLoot)
         {
 
             if (npc.type == NPCID.Shark) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<SharkTooth>(), 10, ReaperDrop(10),1,5));
@@ -236,6 +237,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                     case NPCID.SkeletronHead:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SkeletronReaperSoulRule(), ItemType<SkeletonSoul>()));
                         npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<SkeletronScroll>(), 2, 1));
+                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<GatlingShotGun>(), 240, 240 / 5));
                         break;
                     case NPCID.Deerclops:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DeerclopsReaperSoulRule(), ItemType<DeerclopsSoul>()));
@@ -247,7 +249,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         break;
                     case NPCID.QueenSlimeBoss:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.QueenSlimeReaperSoulRule(), ItemType<QueenSoul>()));
-                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<QueenBeeScroll>(), 5, 1));
+                        npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<QueenSlimeScroll>(), 5, 1));
                         break;
                     case NPCID.Retinazer:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.RetinazorReaperSoulRule(), ItemType<RetinazorEnergyCell>()));

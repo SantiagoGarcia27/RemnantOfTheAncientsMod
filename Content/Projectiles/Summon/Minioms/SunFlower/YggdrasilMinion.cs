@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         public float DamageReductionBonus = 0.05f;
         public override void AI()
         {
-            Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width *1f, TextureAssets.Projectile[Projectile.type].Value.Height /3.1f);
+            Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width, TextureAssets.Projectile[Projectile.type].Value.Height /3.1f);
             Player player = Main.player[Projectile.owner];
             CheckActive(player);
             Projectile.velocity = new Vector2(0, 7f);
@@ -74,16 +74,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
 
                 if (playerAvalible && playerOnRange)
                 {
-                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
+                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
                     if (HealTimmer == 1)
                     {
                         Main.player[p].HealEffect(Heal);
                         Main.player[p].statLife += Heal;
                         SpawnParticles();
                     }
-                    Main.player[p].statDefense += DefenseBonus;
-                    Main.player[p].GetDamage(DamageClass.Generic) *= DamageBonus;
-                    Main.player[p].endurance += DamageReductionBonus;
+                    Main.player[p].AddBuff(BuffType<YggdrasilBuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
                 }
             } 
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Configs;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -70,24 +71,38 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             else mod = _Npc.ModNPC.Mod;
             NPC npc = _Npc;
             mod ??= RemnantOfTheAncientsMod.Terraria;
-            float value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[npc.type];
+
+            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type);
+            float value;
+                if(index != -1) 
+                    value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index];
+                else
+                    value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npc.type];
 
             if (Reaper)
             {
                 if (npc.type == NPCID.KingSlime)
                 {
                     ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0 ? 30 : 0);
-                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type)] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
+                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
                 }
                 else if (npc.type == NPCID.SkeletronPrime)
                 {
-                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type)] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
+                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
                     ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0 ? 10 : 0);
                 }
                 else
-                { 
-                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type)] = value == 0 ? 1 : 0;
-                    ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0);
+                {
+                    if (index != -1)
+                    {
+                        player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index] = value == 0 ? 1 : 0;
+                        ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0);
+                    }
+                    else
+                    {
+                        player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npc.type] = value == 0 ? 1 : 0;
+                        ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0);
+                    }
                 }
             }
             base.LeftClick(evt);

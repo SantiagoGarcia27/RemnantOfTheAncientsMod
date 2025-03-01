@@ -40,8 +40,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.useAmmo = AmmoID.Bullet;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-            Item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-            Item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(8, ProjectileID.CursedBullet,15);
+            new Shotgun(Item, true, 8, ProjectileID.CursedBullet, 15);
+            /*Item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
+            Item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(8, ProjectileID.CursedBullet,15);*/
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

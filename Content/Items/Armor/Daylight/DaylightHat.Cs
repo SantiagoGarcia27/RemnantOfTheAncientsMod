@@ -61,30 +61,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 			{
 				player.statManaMax2 += 20;
 			}
-			RemnantPlayer.DaylightArmorSetBonus = true;
-			//if (RemnantPlayer.tuxoniteStealthCounter == 0)
-			//{
-			//	player.shroomiteStealth = true;
-			//	if (RemnantPlayer.tuxoniteStealthDuration < Utils1.FormatTime(0, 0, 0, 10))
-			//	{
-			//		RemnantPlayer.tuxoniteStealthDuration++;
-			//	}
-			//	else
-			//	{
-			//		RemnantPlayer.tuxoniteStealthCounter = (int)Main.rand.NextFloat(Utils1.FormatTime(0, 0, 0, 30));
-			//		RemnantPlayer.tuxoniteStealthDuration = 0;
-			//	}
-			//}
-			//else
-			//{
-			//	RemnantPlayer.tuxoniteStealthCounter--;
-			//}
+			RemnantPlayer.DaylightArmorSetBonus = true;			
 		}
 
 		public override void AddRecipes()
 		{
             CreateRecipe()
-             .AddIngredient(ItemID.Daybloom, 10)
+             .AddIngredient(ItemID.Daybloom, 4)
              .AddIngredient(ItemID.FallenStar, 1)
              .AddTile(TileID.Anvils)
              .Register();

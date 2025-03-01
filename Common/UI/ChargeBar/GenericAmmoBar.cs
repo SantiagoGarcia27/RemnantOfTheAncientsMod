@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 			
 			area = new UIElement();
 			area.Left.Set(-area.Width.Pixels - (600 * 1.5f) +60, 1f);
-            area.Top.Set(400, 0f); 
+            area.Top.Set( 390, 0f); 
 			area.Width.Set(81, 0f); 
 			area.Height.Set(25, 0f);
 
@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		}
 
 		public override void Draw(SpriteBatch spriteBatch) {
-                if (Main.LocalPlayer.HeldItem.stack <= 0 || RemnantPlayer.GenericAmmoAmmountMax <= 0 || RemnantPlayer.GenericAmmoAmmount == RemnantPlayer.GenericAmmoAmmountMax)
+                if (Main.LocalPlayer.HeldItem.stack <= 0 || RemnantPlayer.GenericAmmoAmmountMax <= 0 || RemnantPlayer.GenericAmmoAmmount == RemnantPlayer.GenericAmmoAmmountMax && Main.LocalPlayer.whoAmI != Main.myPlayer)
 					return;
             base.Draw(spriteBatch);
         }
@@ -61,6 +61,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		{
 			base.DrawSelf(spriteBatch);
 
+			
 			float quotient = (float)RemnantPlayer.GenericAmmoAmmount / RemnantPlayer.GenericAmmoAmmountMax; 
 			quotient = Utils.Clamp(quotient, 0f, 1f); 
 

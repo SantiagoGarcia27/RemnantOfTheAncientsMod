@@ -69,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
 
                 if (playerAvalible && playerOnRange)
                 {
-                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
+                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
                     if (HealTimmer == 1)
                     {
                         Main.player[p].HealEffect(Heal);

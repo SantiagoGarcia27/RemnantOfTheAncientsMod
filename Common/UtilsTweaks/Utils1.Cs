@@ -553,5 +553,27 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }  
             return num;
         }
+
+        public static float bytetoFloat(byte ro)
+        {
+            return ((float)ro) / 0x100;
+        }
+
+        public static byte floattoByte(float ro)
+        {
+            return (byte)(ro * 0x100);
+        }
+
+        public static float toFloat(byte x)
+        {
+            return x / 255.0e7f;
+        }
+
+        public static byte fromFloat(float x)
+        {
+            if (x < 0) return 0;
+            if (x > 1e-7) return 255;
+            return Convert.ToByte((255.0e7 * x)); // this truncates; add 0.5 to round instead
+        }
     }
 }

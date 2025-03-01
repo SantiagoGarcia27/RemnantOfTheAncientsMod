@@ -11,14 +11,12 @@ using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using Terraria.UI;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ReLogic.Content;
-using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.WeaponsRework;
 using RemnantOfTheAncientsMod.World;
@@ -33,8 +31,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool IsRepeater;
 		
 
-		public bool IsShotgun = false;
-		public Vector3 ShotgunBulletStat = new(0,-1,0);
+		
 
 		public Item ItemBase = null;
 		public float ChargeMax = 0;
@@ -95,7 +92,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.RubyStaff,
 			ItemID.DiamondStaff,
 			ItemID.AmberStaff,
-			ItemID.BubbleGun
+			ItemID.BubbleGun,
+            ItemID.AquaScepter,
+			ItemID.WandofFrosting,
+			ItemID.WandofSparking,
 		];
 		public Dictionary<int, int> GemStaffs = new()
 		{
@@ -269,46 +269,40 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.damage = 60;
                     item.useAnimation = 16;
                     item.useTime = 14;
-                }  
-                if (item.type == ItemID.PsychoKnife && Calamity)
-                {
-                    item.damage = 300;
-                }
-				
+                }  				
                 if (item.type == ItemID.Boomstick)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(3, -1, 3);
+                    new Shotgun(item, true, 3, -1, 3);
+                    
                 }
                 if (item.type == ItemID.QuadBarrelShotgun)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(7, -1, 45);
+                    new Shotgun(item,true, 7, -1, 45);
+                   
                 }
                 if (item.type == ItemID.Shotgun)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(3, -1, 5);
+                    new Shotgun(item, true, 3, -1, 5);
+                   
                 }
                 if (item.type == ItemID.OnyxBlaster)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(4, -1, 5);
+                    new Shotgun(item, true, 4, -1, 5);
+                  
                 }
                 if (item.type == ItemID.TacticalShotgun)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(6, -1, 10);
+                    new Shotgun(item, true, 6, -1, 10);                  
                 }  
 				
                 if (item.maxStack > 1 && item.maxStack < 9999)
@@ -433,7 +427,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 						item.mana = player.statManaMax2;
 						if (player.ownedProjectileCounts[Shootproj] <= 0)
 						{
-							Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, PlayerManaDiscounMultpier);
+							Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y);
 						}
 						return false;
 					}
@@ -444,7 +438,45 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					}
 				}
 			}
-			if (item.type == ItemID.FrostStaff)
+			if (item.type == ItemID.AquaScepter)
+			{
+				if (player.whoAmI == Main.myPlayer)
+				{
+                   
+                    int Shootproj = ModContent.ProjectileType<AquaScepterHeldProj>();
+                    if (player.altFunctionUse == 2)
+                    { 
+                        if (player.ownedProjectileCounts[Shootproj] <= 0)
+                        {
+                            Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, item.mana);
+                        }
+                        return false;
+                    }
+                }
+            }
+            else if (item.type == ItemID.WandofFrosting || item.type == ItemID.WandofSparking)
+            {
+                if (player.whoAmI == Main.myPlayer)
+                {
+
+                    int Shootproj = ModContent.ProjectileType<WandOfSparkingHeldProj>();
+                    if (player.altFunctionUse == 2)
+                    {
+                        if (player.ownedProjectileCounts[Shootproj] <= 0)
+                        {
+							int manacost = player.statManaMax2 / 2;
+							if (player.statMana >= manacost)
+							{
+								player.statMana -= manacost;
+								var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, item.mana);
+								Main.projectile[p].localAI[0] = item.shoot;
+							}
+                        }
+                        return false;
+                    }
+                }
+            }
+            else if (item.type == ItemID.FrostStaff)
 			{
 				double ecuacionhonda = Utils1.GenerateWave(3f * 16, player.position.X, counter);
 				if (counter % 2 == 0)
@@ -559,14 +591,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 			else if (GemStaffs.TryGetValue(item.type, out int value))
 			{
+			
 				if (player.altFunctionUse == 2)
 				{
 					if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0 && player.whoAmI == Main.myPlayer)
 					{
+						player.statMana -= item.mana * 3;
 						Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, value);
 					}
 					return false;
 				}
+			
+					
 			}
 			else if (item.type == ItemID.UnholyTrident)
 			{
@@ -606,45 +642,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 			}
 			
-			if (IsShotgun && ShotgunBulletStat.X > 0)
-			{
-                if (Main.mouseRight && Main.mouseLeft)
-                {
-                    SoundEngine.PlaySound(SoundID.Item36);
-					if (Timmer > 0)
-					{
-						shoot((int)ShotgunBulletStat.X + (int)Timmer, (int)ShotgunBulletStat.Z, (int)ShotgunBulletStat.Y);
-						if(item.type == ItemID.OnyxBlaster) shoot(1 + (int)Timmer/5, 45, ProjectileID.BlackBolt);
-                        player.velocity = -velocity * (int)Timmer * 0.05f;
-						Timmer = 0;
-					}
-                    return false;
-                }
-                else if (Main.mouseRight && !Main.mouseLeft)
-                {
-                    item.useStyle = ItemUseStyleID.EatFood;
-                    return false;
-                }
-                else if (player.altFunctionUse == 0 && !Main.mouseRight)
-                {
-					shoot((int)ShotgunBulletStat.X, (int)ShotgunBulletStat.Z, (int)ShotgunBulletStat.Y);
-                }
-
-				void shoot(int ShotgunBulletAmmount,int Unacurency, int type2 = -1)
-				{
-					int type3;
-					if (type2 != -1 && type == ProjectileID.Bullet) type3 = type2;
-					else type3 = type;
-                    item.useStyle = ItemUseStyleID.Shoot;
-                    SoundEngine.PlaySound(SoundID.Item36);
-                    for (int i = 0; i < ShotgunBulletAmmount; i++)
-                    {
-                        Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(Unacurency));
-                        newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-                        Projectile.NewProjectile(source, position, newVelocity, type3, damage, knockback, player.whoAmI);
-                    }
-                }	
-            }
+			
 
 			List<int> BannedBows = BowsChargeRework.BannedBows;
 
@@ -904,22 +902,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     Timmer = UseTimeReduction = 0;
                 }
             }
-			if (IsShotgun) 
-			{
-                TimmerMax = item.useTime / 4;
-    
-                if (player.channel && player.altFunctionUse == 2)
-                {
-                    if (Timmer < TimmerMax)
-                    {
-                        Timmer += 0.5f * player.GetModPlayer<RemnantPlayer>().ChargeBonus;
-                    }
-                }
-                else if (Main.mouseRightRelease)
-                {
-                    Timmer = 0;
-                }
-            }
+			
 			
 			if (CanCharge)
 			{
@@ -1044,19 +1027,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 base.PostDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
 			}
         }
-        public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
-        {
-			if(IsShotgun)
-			{
-				if(Main.mouseRight && !Main.mouseLeft)
-				{
-					return false;
-				}
-                return base.CanConsumeAmmo(weapon, ammo, player);
-            }
-            return base.CanConsumeAmmo(weapon, ammo, player);
-        }
-      
         public override bool CanUseItem(Item item, Player player)
         {
 			WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;

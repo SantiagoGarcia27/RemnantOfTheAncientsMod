@@ -39,13 +39,6 @@ namespace RemnantOfTheAncientsMod
 
         }
 
-        [Obsolete]
-        public override void AddRecipes()/* tModPorter Note: Removed. Use ModSystem.AddRecipes */
-        {
-            RecipeMaker.AddRecipes();
-        }
-
-
         public override void Load()
         {
             ModLoader.TryGetMod("CalamityMod", out CalamityMod);

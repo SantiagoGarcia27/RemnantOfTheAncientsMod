@@ -20,6 +20,11 @@ Mods: {
 				Por la noche, incrementementa le maná máximo en 20.
 				La margarita brillante no consume maná.
 				'''
+			Flinx:
+				'''
+				{$CommonItemTooltip.IncreasesMaxLifeBy}
+				Invoca un súbdito de copito para que luche por ti.
+				'''
 		}
 
 		Messages: {
@@ -296,7 +301,7 @@ Mods: {
 
 			Mage_Infusion: {
 				DisplayName: Mage infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Mage_Infusion.Description
+				Description: Aumenta el daño mágico y la regeneración de maná
 			}
 
 			Melee_Infusion: {
@@ -440,7 +445,7 @@ Mods: {
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					-moardiego
+					-moardiego -Slash9511
 					Por darle una oportunidad al mod en sus inicios
 					'''
 			}
@@ -596,13 +601,28 @@ Mods: {
 			}
 
 			DarksignBuff: {
-				// DisplayName: Darksign Buff
-				// Description: You feen empty
+				DisplayName: Marca obscura
+				Description: Te sientes vacio
 			}
 
 			FogOfVoid: {
-				// DisplayName: Fog Of Void
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.FogOfVoid.Description
+				DisplayName: Niebla del vacio
+				Description: No puedes ver nada
+			}
+
+			IlluminatedSunflowerBuff: {
+				DisplayName: Bendición del girasol iluminado
+				Description: Aumenta la defensa en 5
+			}
+
+			SacredFlowerBuff: {
+				DisplayName: Bendición de la flor sacra
+				Description: Aumenta la defensa en 10 y el daño en un 5%
+			}
+
+			YggdrasilBuff: {
+				DisplayName: Bendición de Yggdrasil
+				Description: Aumenta la defensa en 15,el daño en un 10% y la redución de daño recibido en 5%
 			}
 		}
 
@@ -740,6 +760,10 @@ Mods: {
 				DisplayName: Cáliz de Almas
 				Tooltip:
 					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					[c/fbac2e:Las armas cuerpo a cuerpo aumentan su tamaño en {1}%]
+					[c/68d7ff:{$CommonItemTooltip.IncreasesMaxMinionsBy@2}] 
+					[c/ec7ade:{$CommonItemTooltip.IncreasesMaxManaBy@3}]
 					Puedes almacenar las almas consumidas de los jefes derrotados para ganar su poder.
 					(Solo funciona en segador)
 					'''
@@ -849,7 +873,7 @@ Mods: {
 			}
 
 			Nightchesplate: {
-				DisplayName: Night Breastplate
+				DisplayName: Coraza de la noche
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxManaBy}
@@ -996,10 +1020,6 @@ Mods: {
 					'''
 					Activa el modo segador
 					Establece tu vida natural en 1
-					Aumenta tu daño en 50%
-					Las armas cuerpo a cuerpo aumentan su tamaño en 150%
-					{$CommonItemTooltip.IncreasesMaxMinionsBy} 
-					{$CommonItemTooltip.IncreasesMaxManaBy@1}
 					Reduce el tiempo de vuelo a la mitad.
 					La vida y daño de los jefes se duplica
 					y tienen cambios en su inteligencia
@@ -1460,7 +1480,11 @@ Mods: {
 
 			CorruptSoul: {
 				DisplayName: Alma de corrupta
-				Tooltip: Aumenta la regeneración de vida
+				Tooltip:
+					'''
+					Aumenta la regeneración de vida
+					Hay una probabilidad de crear ilusiones y esquivar
+					'''
 			}
 
 			CultistSoul: {
@@ -2607,7 +2631,7 @@ Mods: {
 			}
 
 			EyeOfCthulhuScroll: {
-				DisplayName: Peragamino Óptico
+				DisplayName: Pergamino Óptico
 				Tooltip:
 					'''
 					Aumenta tu salto
@@ -3826,6 +3850,31 @@ Mods: {
 				// DisplayName: Desert Scourge Soul
 				// Tooltip: ""
 			}
+
+			FlinxHood: {
+				DisplayName: Capucha de copito
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+			}
+
+			FlinxPants: {
+				DisplayName: Pantalones de copito
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+			}
+
+			ExplorerBoots: {
+				// DisplayName: Explorer Boots
+				// Tooltip: ""
+			}
+
+			RunningShoes: {
+				// DisplayName: Running Shoes
+				// Tooltip: ""
+			}
+
+			GatlingShotGun: {
+				// DisplayName: Gatling Shot Gun
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4069,6 +4118,9 @@ Mods: {
 			// SolverCursor.DisplayName: Solver Cursor
 			// HoldSaberCharge.DisplayName: Hold Saber Charge
 			// SignusMimic.DisplayName: Signus Mimic
+			// AquaScepterHeldProj.DisplayName: Aqua Scepter Held Proj
+			// WandOfSparkingHeldProj.DisplayName: Wand Of Sparking Held Proj
+			// SparkBomb.DisplayName: Spark Bomb
 		}
 
 		Tiles: {

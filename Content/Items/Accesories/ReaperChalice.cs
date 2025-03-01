@@ -14,6 +14,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         private static readonly Color rarityColorOne = GetReaperColor(1);
 
         private static readonly Color rarityColorTwo = GetReaperColor(2);
+
+        int damageBonus = 50;
+        int meleeSizeBonus = 150;
+        int minionBonus = 1;
+        int manaBonus = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus, meleeSizeBonus, minionBonus,manaBonus);
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

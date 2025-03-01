@@ -48,23 +48,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             Item.useAmmo = AmmoID.Bullet;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-            Item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-            Item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(4, ModContent.ProjectileType<TerraBulletP>(),5);
-        }
-        //public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        //{
-            //if (type == ProjectileID.Bullet) type = ModContent.ProjectileType<TerraBulletP>();
-
-            //const int NumProjectiles = 4;
-            //for (int i = 0; i < NumProjectiles; i++)
-            //{
-            //    Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
-            //    newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-            //    Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
-            //}
-
-            //return false;
-        //}
+            new Shotgun(Item, true, 4, ModContent.ProjectileType<TerraBulletP>(), 5);           
+        }   
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-10, 0);

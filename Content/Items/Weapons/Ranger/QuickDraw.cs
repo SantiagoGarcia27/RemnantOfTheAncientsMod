@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.noMelee = true;
 			Item.scale = 0.68f;
 			Item.knockBack = 5;
-			Item.value = Item.sellPrice(0, 10, 0, 0);
+			Item.value = Item.sellPrice(0, 0, 5, 0);
 			Item.rare = ItemRarityID.Blue;
 			Item.UseSound = SoundID.Item38;
 			Item.autoReuse = true;

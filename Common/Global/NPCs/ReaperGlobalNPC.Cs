@@ -378,8 +378,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                     AI(npc);
                 }
-                if (RemnantOfTheAncientsMod.CalamityMod != null)
-                    return PreAiCalamity(npc);
+                if (RemnantOfTheAncientsMod.CalamityMod != null && npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+                    PreAiCalamity(npc);
             }
             AI(npc);
             return base.PreAI(npc);
@@ -402,7 +402,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
             return base.PreAI(npc);
         }
-
+        public NPC Owner = null;
         public override void AI(NPC npc)
         {
             List<int> ReaperAffectedNPCs =
@@ -457,19 +457,26 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Player player = Main.player[npc.target];
                     if (npc.type == NPCID.Creeper)
                     {
-                        for (int i = 0; i < Main.maxNPCs; i++)
+                        if (Owner == null)
                         {
-                            if (Main.npc[i].type == NPCID.BrainofCthulhu)
+                            foreach (NPC owner in Main.ActiveNPCs)
                             {
-                                List<Vector2> Postions = GetPositionsAround(Main.npc[i], 25 * 15f, NPC.CountNPCS(NPCID.Creeper));
-                                GetNPCList(NPCID.Creeper, out List<NPC> CreepersList);
-
-                                for (int a = 0; a < NPC.CountNPCS(NPCID.Creeper); a++)
+                                if (owner.type == NPCID.BrainofCthulhu)
                                 {
-                                    CreepersList[a].position = Postions[a];
+                                    Owner = owner;
                                 }
                             }
                         }
+
+                        List<Vector2> Postions = GetPositionsAround(Owner, 25 * 15f, NPC.CountNPCS(NPCID.Creeper));
+                        GetNPCList(NPCID.Creeper, out List<NPC> CreepersList);
+
+                        for (int a = 0; a < NPC.CountNPCS(NPCID.Creeper); a++)
+                        {
+                            CreepersList[a].position = Postions[a];
+                        }
+
+
                     }
                     if (npc.type == NPCID.QueenBee)
                     {
@@ -1322,10 +1329,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         List<Vector2> GetPositionsAround(NPC npc, float radius, int numPositions)
         {
+            if (npc == null) return null;
+
             List<Vector2> positions = [];
 
             float angleSpacing = MathHelper.TwoPi / numPositions;
-
+            
             for (int i = 0; i < numPositions; i++)
             {
                 float angle = angleSpacing * i;
@@ -1562,7 +1571,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     {
                         Vector2 direction = new Vector2(1f, 0f).RotatedBy(angle);
 
-                        var p = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position, direction * projectileSpeed, ProjectileID.CursedFlameHostile, 50, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position, direction * projectileSpeed, ProjectileID.CursedFlameHostile, 50, 0f, Main.myPlayer);
                         angle += angleSpacing;
                     }
                 }
