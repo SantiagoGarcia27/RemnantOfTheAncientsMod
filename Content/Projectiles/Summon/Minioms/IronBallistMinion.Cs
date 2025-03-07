@@ -191,7 +191,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             // int a =  Dust.NewDust(DistanceUtils.ToCoordenatePosition(new Vector2(Projectile.Center.X / 16, Projectile.Center.Y / 16)), 1, 1, DustID.AmberBolt,0,0,1,default,1);
             //  Main.dust[a].noGravity = true;
             bool playerTouchFlour = DistanceUtils.TouchFlour(player);
-            if (TouchBlock && playerTouchFlour)
+            if (TouchBlock && playerTouchFlour && !DistanceUtils.TouchFlourLiquid(player))
             {
                 Jump(2f);
             }
@@ -200,7 +200,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 Projectile.tileCollide = false;
                 Jump(4f);
             }
-            if (DistanceUtils.TouchFlourLiquid(Projectile) && player.waterWalk)
+            if (DistanceUtils.TouchFlourLiquid(Projectile) && player.waterWalk && !DistanceUtils.TouchFlour(player))
             {
                 Jump(1f);
             }
@@ -250,14 +250,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         }
         public void MovmentToTarget(NPC target, float speed, float range)
         {
-            //Vector2 distance =  Projectile.Center -target.Center;
-            //if (distance.X <= range && distance.Y <= range)
-            //{
             int dist = 10 * 16;
             bool touchFlour = DistanceUtils.TouchFlour(Projectile);
 
 
-            if (Projectile.DistanceSQ(target.Center) > dist * dist /*&& touchFlour*/)
+            if (Projectile.DistanceSQ(target.Center) > dist * dist && touchFlour)
             {
                 Projectile.velocity = Projectile.DirectionTo(target.Center) * speed;
 
@@ -292,29 +289,31 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 owner.ClearBuff(BuffType<IronBallistaBuff>());
                 return false;
             }
-            if (owner.HasBuff(BuffType<IronBallistaBuff>()) || owner.GetModPlayer<RemnantFargosSoulsPlayer>().IronBallistaEnchantment)
+            bool condition = RemnantOfTheAncientsMod.FargosSoulMod != null ? owner.HasBuff(BuffType<IronBallistaBuff>()) || owner.GetModPlayer<RemnantFargosSoulsPlayer>().IronBallistaEnchantment : owner.HasBuff(BuffType<IronBallistaBuff>());
+
+            if (condition)
             {
                 Projectile.timeLeft = 4;
             }
             return true;
         }
-        private int[] MovementFrames = new int[3]
-        {
+        private int[] MovementFrames =
+        [
             0,
             1,
             2
-        };
-        private int[] AimingFrames = new int[1]
-        {
+        ];
+        private int[] AimingFrames =
+        [
             3
-        };
-        private int[] ShootFrames = new int[4]
-        {
+        ];
+        private int[] ShootFrames =
+        [
             4,
             5,
             6,
             7
-        };
+        ];
         int ShootFrameCounter = 0;
         public void FindFrame()
         {

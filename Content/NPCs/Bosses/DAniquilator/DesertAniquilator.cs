@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new()
             {
                 Position = new Vector2(40f, 24f),
                 PortraitPositionXOverride = 0f,
@@ -53,8 +53,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         public override void SetDefaults()
         {
             NPC.aiStyle = -1;
-            NPC.lifeMax = 3500;// (int)NpcChanges1.ExpertLifeScale(3500);
-            NPC.damage = 30;// (int)NpcChanges1.ExpertDamageScale(30);
+            NPC.lifeMax = 3500;
+            NPC.damage = 30;
             NPC.defense = 10;
             NPC.knockBackResist = 0f;
             NPC.width = 100;
@@ -78,6 +78,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         public void SetDefautsCalamity()
         {
             NPC.Calamity().canBreakPlayerDefense = true;
+           
             RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC, 0.02f, 0.22f, 0.3f, 0.4f, 0.4f);   
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -88,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 //new FlavorTextBestiaryInfoElement("A great and dreaded worm rules the underworld with an iron fist and his flames, powerful and majestic in equal parts, maintain the order and warmth of the underworld.")
             ]);
         }
-        public bool InfernumMode =SangarUtilities.Common.DificultyUtils.InfernumMode;
+        public bool InfernumMode = DificultyUtils.InfernumMode;
 
         private int attackCounter;
         private int tornadoCounter;
@@ -110,11 +111,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         } 
 
         public static float ScreenAnimationTimer = Utils1.FormatTimeToTick(0,0,0,5);
-        public static bool NoAI = DificultyUtils.InfernumMode != null;
+        public static bool NoAI = DificultyUtils.InfernumMode;
         public override void AI()
         {
-
-            if (DificultyUtils.InfernumMode != null)
+            if (DificultyUtils.InfernumMode)
             {
                 if (ScreenAnimationTimer > 0)
                 {
@@ -807,11 +807,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         private float LifeSize(NPC npc)
         {
             float porcentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
-            if (SangarUtilities.Common.DificultyUtils.MasochistMode) return applyLifeSize(porcentage, 4f);
-            else if (SangarUtilities.Common.DificultyUtils.EternityMode) return applyLifeSize(porcentage, 2.5f);
-            else if (SangarUtilities.Common.DificultyUtils.InfernumMode) return applyLifeSize(porcentage, 2.3f);
-            else if (SangarUtilities.Common.DificultyUtils.Death) return applyLifeSize(porcentage, 2f);
-            else if (SangarUtilities.Common.DificultyUtils.Revengeance || Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
+            if (DificultyUtils.MasochistMode) return applyLifeSize(porcentage, 4f);
+            else if (DificultyUtils.EternityMode) return applyLifeSize(porcentage, 2.5f);
+            else if (DificultyUtils.InfernumMode) return applyLifeSize(porcentage, 2.3f);
+            else if (DificultyUtils.Death) return applyLifeSize(porcentage, 2f);
+            else if (DificultyUtils.Revengeance || Reaper.ReaperMode) return applyLifeSize(porcentage, 1.5f);
             else if (Main.masterMode) return applyLifeSize(porcentage, 1.35f);
             else if (Main.expertMode) return applyLifeSize(porcentage, 1.3f);
             else return applyLifeSize(porcentage, 1.25f);
@@ -871,7 +871,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            string fargos = SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY +(3 *16)), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f),NPC.scale,SpriteEffects.None,0);
             return false;

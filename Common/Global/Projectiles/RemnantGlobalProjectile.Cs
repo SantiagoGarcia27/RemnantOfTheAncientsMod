@@ -311,7 +311,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         int fireballTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
 
 
-        public int HydraMissileCounter = 0;
+        public int AttackCounter = 0;
         public override void AI(Projectile projectile)
         {
            
@@ -319,11 +319,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 GetAlpha(projectile, Color.Green);
             }
-            if(projectile.type == ProjectileID.CrystalPulse2)
+            else if(projectile.type == ProjectileID.CrystalPulse2)
             {
                 HommingProjectile(800f, 5f, projectile);
             }
-            if (projectile.type == ProjectileID.ClingerStaff)
+            else if (projectile.type == ProjectileID.ClingerStaff)
             {
                 
                 if(fireballTimmer++ >= (int)Utils1.FormatTimeToTick(0, 0, 0, 2))
@@ -336,7 +336,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(1f, 0.5f), ProjectileID.CursedFlameFriendly, (int)(projectile.damage * 0.7f), 1f, projectile.owner);
                 }
             }
-            if(projectile.type == ProjectileID.TitaniumStormShard)
+            else if(projectile.type == ProjectileID.TitaniumStormShard)
             {
                 if (projectile.hostile)
                 {
@@ -369,20 +369,48 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
 
             }
-            if (projectile.type == ProjectileID.FrostHydra)
+            else if (projectile.type == ProjectileID.FrostHydra)
             {
                 if (projectile.ai[0] > 0)
                 {
                     float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-                    if (HydraMissileCounter >= maxTimer)
+                    if (AttackCounter >= maxTimer)
                     {
                         Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(0, -3), ProjectileID.ClusterSnowmanRocketI, projectile.damage, 1, projectile.owner);
-                        HydraMissileCounter = 0;
+                        AttackCounter = 0;
                     }
                     else
                     {
-                        HydraMissileCounter++;
+                        AttackCounter++;
                     }
+                }
+            }
+            else if(projectile.type == ProjectileID.FlyingImp)
+            {
+                float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+
+                if (AttackCounter >= maxTimer)
+                {
+
+                    NPC target = projectile.FindTargetWithinRange(200, true);
+                    
+                    if (target != null)
+                    {
+                        Vector2 velocity = target.Center - projectile.Center;
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            var p = Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, velocity.RotatedBy(MathHelper.ToRadians(-i *10)), ProjectileID.ImpFireball, projectile.damage / 2, 1, projectile.owner);
+                            Main.projectile[p].usesLocalNPCImmunity = true;
+                            Main.projectile[p].localNPCHitCooldown = 10;
+                            Main.projectile[p].scale = 0.5f;
+                        }
+                        AttackCounter = 0;
+                    }
+                }
+                else
+                {
+                    AttackCounter++;
                 }
             }
             if (projectile.scale > 1)

@@ -13,7 +13,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 	public class ReaperGlobalItem : GlobalItem
 	{
 		public override bool InstancePerEntity => true; //InstancePerEntity
-		//public static bool Fscale = false;
 		public static float originalsize = 1;
 		public float newsize = 0;
 
@@ -36,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				item.accessory = Reaper.ReaperMode;
 			}
 		}
-		static List<int> BossSummons = new List<int>();
+		static List<int> BossSummons = [];
 		public static void ReaperConsumable(Item item)
 		{
 			AddEventSummon();
@@ -102,7 +101,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             SafeAddContentToList(ItemID.TruffleWorm);
             SafeAddContentToList(ItemID.MechanicalSkull);
             SafeAddContentToList(ItemID.CelestialSigil);
-            SafeAddContentToList(ModContent.ItemType<DesertChest>());
+            SafeAddContentToList(ModContent.ItemType<DesertGlyph>());
             SafeAddContentToList(ModContent.ItemType<FrozenArtifact>());
             SafeAddContentToList(ModContent.ItemType<InfernalCalis>());
             SafeAddContentToList(ModContent.ItemType<ElderSpeaker>());

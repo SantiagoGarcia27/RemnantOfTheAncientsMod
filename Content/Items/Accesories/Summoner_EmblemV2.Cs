@@ -9,19 +9,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     public class Summoner_EmblemV2 : ModItem
     {
         public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("Summoner Emblem V2");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème D'invocateur V2");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Invocador V2");
-            //Tooltip.SetDefault(//Tooltip());
-           
+        { 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(25, DamageClass.Summon);
-        //}
+        int damageBonus = 20;
+        int critBonus = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus, critBonus);
+
         public override void SetDefaults()
         {
             Item.width = 10;
@@ -45,7 +39,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Summon) *= 1.25f;
+            DamageClass damagetype = DamageClass.Summon;
+            player.GetDamage(damagetype) *= 1 + damageBonus / 100f;
+            player.GetCritChance(damagetype) *= 1 + critBonus / 100f;
         }
     }
 }

@@ -17,7 +17,6 @@ using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ReLogic.Content;
-using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.WeaponsRework;
 using RemnantOfTheAncientsMod.World;
 
@@ -29,9 +28,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool IsAmmo;
 		public int StyleStat = 0;
 		public bool IsRepeater;
-		
-
-		
 
 		public Item ItemBase = null;
 		public float ChargeMax = 0;
@@ -324,7 +320,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 				if (Utils1.NameHasWord(item.Name, "Saber"))
 				{
-					item.GetGlobalItem<CustomTooltip>().Saber = true;
+					item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
 				}
                 if (Utils1.NameHasWord(item.Name, "Repeater")|| item.type == ItemID.ChlorophyteShotbow)
                 {
@@ -407,7 +403,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
 			}
-			if (item.type == ItemID.BabyBirdStaff)
+            else if (item.type == ItemID.BabyBirdStaff)
 			{
 				var a = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
 				Main.projectile[a].minionSlots = 0.5f;
@@ -416,7 +412,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				Main.projectile[p].alpha = 200;
 				return false;
 			}
-			if (item.type == ItemID.BookofSkulls)
+            else if (item.type == ItemID.BookofSkulls)
 			{
 				if (player.whoAmI == Main.myPlayer)
 				{
@@ -438,7 +434,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					}
 				}
 			}
-			if (item.type == ItemID.AquaScepter)
+            else if (item.type == ItemID.AquaScepter)
 			{
 				if (player.whoAmI == Main.myPlayer)
 				{
@@ -488,7 +484,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				counter++;
 				return false;
 			}
-			if (item.type == ItemID.FlowerofFire || item.type == ItemID.FlowerofFrost)
+            else if(item.type == ItemID.FlowerofFire || item.type == ItemID.FlowerofFrost)
 			{
 				if (player.altFunctionUse != 2)
 				{
@@ -519,7 +515,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
 
 			}
-            if (item.type == ItemID.SharpTears)
+            else if (item.type == ItemID.SharpTears)
             { 
                 int Shootproj = ModContent.ProjectileType<BloodThornHeldProj>();
                 if (player.altFunctionUse == 2)
@@ -537,12 +533,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     return true;
                 }
             }
-			if (item.type == ItemID.CrystalVileShard)
+			else if (item.type == ItemID.CrystalVileShard)
 			{
                 float numberProjectiles = 2;
                 float rotation = MathHelper.ToRadians(10);
 
-                position += Vector2.Normalize(velocity) * 1f;
+                position += Vector2.Normalize(velocity);
 
                 for (int i = 0; i < numberProjectiles; i++)
                 {
@@ -552,12 +548,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     Main.projectile[p].DamageType = DamageClass.Magic;
                 }
             }
-            if (item.type == ItemID.NettleBurst)
+            else if (item.type == ItemID.NettleBurst)
             {
                 float numberProjectiles = 2;
                 float rotation = MathHelper.ToRadians(10);
 
-                position += Vector2.Normalize(velocity) * 1f;
+				position += Vector2.Normalize(velocity);
 				if (new Random().Next(4) == 1)
 				{
 					for (int i = 0; i < numberProjectiles; i++)
@@ -571,12 +567,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					}
 				}
             }
-			if (item.type == ItemID.ShadowbeamStaff)
+			else if (item.type == ItemID.ShadowbeamStaff)
 			{
 				float numberProjectiles = 2;
 				float rotation = MathHelper.ToRadians(10);
 
-				position += Vector2.Normalize(velocity) * 1f;
+				position += Vector2.Normalize(velocity);
 
 				for (int i = 0; i < numberProjectiles; i++)
 				{
@@ -661,8 +657,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public void AddToDashWeaponsLists(Item item)
 		{
 			AddVanilaSpear();
-			AddModedSpearGeneric(item);
-			
+			AddModedSpearGeneric(item);	
 		}
 		public void AddVanilaSpear()
 		{
@@ -672,8 +667,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public void AddModedSpearGeneric(Item item)
 		{
 			string[] LanceNames =
-            [
-                "Spear",
+			[
+				"Spear",
 				"Lance",
 				"Trient",
 				"Partisan",
@@ -685,9 +680,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 			if (item.DamageType == DamageClass.Melee)
 			{
-				for (int i = 0; i < LanceNames.Length; i++)
+				foreach (string Spearnames in LanceNames)
 				{
-					if (Utils1.NameHasWord(item.Name, LanceNames[i]))
+					if (Utils1.NameHasWord(item.Name, Spearnames))
 					{
 						Utils1.AddSecure(SpearsList, item.type);
 					}
@@ -696,84 +691,33 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public override bool AltFunctionUse(Item item, Player player)
 		{		
-			if (item.GetGlobalItem<CustomTooltip>().SecondHabilitie || item.GetGlobalItem<CustomTooltip>().HaveSecondMode) return true;
+			if (item.GetGlobalItem<CustomTooltip>().SecondHabilitie || item.GetGlobalItem<CustomTooltip>().HaveSecondMode) 
+				return true;
+
 			if (WeaponConf)
 			{
-				if (item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee)
+				if (item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee || 
+					(SecondClickWeapons.Contains(item.type) || item.type == ItemID.UnholyTrident) ||
+                    item.GetGlobalItem<CustomTooltip>().Lance)
 				{
 					return true;
-				}
-				else if (SecondClickWeapons.Contains(item.type) || item.type == ItemID.UnholyTrident)
-				{
-					return true;
-				}
-				else if (item.GetGlobalItem<CustomTooltip>().Lance)
-				{
-					return true;
-				}
-                else
-                {
-                    return base.AltFunctionUse(item, player);
-                }
+				}         
             }
-            else
-            {
-                return base.AltFunctionUse(item, player);
-            }
+            return base.AltFunctionUse(item, player);
+            
         }
 		public override bool? UseItem(Item item, Player player)
 		{
 			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 
 			if (player.altFunctionUse == 2 && WeaponConf)
-			{
-				if (item.type == ItemID.ChlorophyteSaber)
-				{
-					bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
-					int projectileCount = 32;
-					float projectileDistance = 10f;
-
-
-					if (PlayerTouchFlour)
-					{
-                        WeaponDash(player, 1f, 0.75f);
-						for (int i = 0; i < projectileCount; i++)
-						{
-							float angle = MathHelper.ToRadians(360f / projectileCount * i);
-							Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
-							Vector2 position = player.Center + velocity;
-
-							var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, item.shoot, item.damage, 2f, Main.myPlayer);
-							Main.projectile[p].timeLeft = 100;
-						}
-					}
-					return false;
-				}
-				else
-				{
-					if (Utils1.NameHasWord(item.Name, "Saber") && item.ModItem.Mod.Name != "RemnantOfTheAncientsMod")
-					{
-						for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
-						{
-							if (item.rare == j)
-							{
-								if (j > 10)
-								{
-                                    WeaponDash(player, (float)Math.Log(j - Math.Log(j)), 1.7f);
-								}
-								else
-								{
-                                    WeaponDash(player, (float)Math.Log(j), (float)Math.Log(j));
-								}
-							}
-						}
-					}
-				}
+			{	
 				if (SpearsList.Contains(item.type))
 				{
 					for (int j = 0; j < RemnantOfTheAncientsMod.MaxRarity; j++)
 					{
-						if (item.rare == j) WeaponDash(player, (float)Math.Log(j + 2) * 0.75f /** player.direction*/, 0f);
+						if (item.rare == j) 
+							WeaponDash(player, (float)Math.Log(j + 2) * 0.75f, 0f);
 					}
 				}
 				return true;
@@ -1027,6 +971,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 base.PostDrawInInventory(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
 			}
         }
+        public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
+        {
+			int NotConsumeAmmoChance = player.GetModPlayer<RemnantPlayer>().NotConsumeAmmoChance;
+			float selection = Main.rand.NextFloat(0, 100);
+
+			if (selection <= NotConsumeAmmoChance)
+			{
+				return false;
+			}
+			else
+				return base.CanConsumeAmmo(weapon, ammo, player);
+        }
+       
         public override bool CanUseItem(Item item, Player player)
         {
 			WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;

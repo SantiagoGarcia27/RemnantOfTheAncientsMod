@@ -39,8 +39,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 			CreateRecipe(4)
 			.AddIngredient(ItemID.HellstoneBar)
 			.AddRecipeGroup("CorruptBar")
-			.AddIngredient(ItemType<JungleBar>())
-			.AddIngredient(ItemType<BoneBar>())
+			.AddIngredient<JungleBar>()
+			.AddIngredient<BoneBar>()
 			.AddTile(TileID.DemonAltar)
 			.Register();
 

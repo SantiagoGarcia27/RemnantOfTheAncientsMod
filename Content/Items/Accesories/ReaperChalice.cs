@@ -19,13 +19,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         int meleeSizeBonus = 150;
         int minionBonus = 1;
         int manaBonus = 20;
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus, meleeSizeBonus, minionBonus,manaBonus);
+        int ammoSaveBonus = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus, meleeSizeBonus, minionBonus,manaBonus,ammoSaveBonus);
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
-        {
+        {         
+            player.GetDamage(DamageClass.Generic) += 0.50f;
+            player.statLifeMax2 = 1;
+            player.maxMinions += minionBonus;
+            player.statManaMax2 += manaBonus;
+            player.GetModPlayer<RemnantPlayer>().NotConsumeAmmoChance = ammoSaveBonus;
+
             player.GetModPlayer<ReaperPlayer>().ChaliceOn = true;
             player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost(Item);
             player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost();

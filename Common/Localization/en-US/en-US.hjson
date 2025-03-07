@@ -740,7 +740,11 @@ Mods: {
 
 			Ranger_EmblemV2: {
 				DisplayName: Ranger Emblem V2
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance}
+					'''
 			}
 
 			ReaperChalice: {
@@ -751,6 +755,7 @@ Mods: {
 					[c/fbac2e:Melee weapons size are increased by {1}%]
 					[c/68d7ff:{$CommonItemTooltip.IncreasesMaxMinionsBy@2}] 
 					[c/ec7ade:{$CommonItemTooltip.IncreasesMaxManaBy@3}]
+					[c/1aebaa:{$CommonItemTooltip.PercentChanceToSaveAmmo@4}]
 					Allows you to channel the power of collected souls.
 					(only works in reaper)
 					'''
@@ -758,12 +763,20 @@ Mods: {
 
 			Sorcerer_EmblemV2: {
 				DisplayName: Sorcerer Emblem V2
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{$CommonItemTooltip.PercentIncreasedMagicCritChance}
+					'''
 			}
 
 			Summoner_EmblemV2: {
 				DisplayName: Summoner Emblem V2
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					{$CommonItemTooltip.PercentIncreasedSummonCritChance}
+					'''
 			}
 
 			The_Completist: {
@@ -791,12 +804,16 @@ Mods: {
 
 			TrowerEmblem: {
 				DisplayName: Thrower Emblem
-				Tooltip: 15% Increased throwing damage
+				Tooltip: "{0}% Increased throwing damage"
 			}
 
 			TrowerEmblemV2: {
 				DisplayName: Thrower Emblem V2
-				Tooltip: 25% Increased throwing damage
+				Tooltip:
+					'''
+					{0}% Increased throwing damage
+					{1}% Increased throwing damage
+					'''
 			}
 
 			Universal_Emblem: {
@@ -806,12 +823,20 @@ Mods: {
 
 			Universal_EmblemV2: {
 				DisplayName: Universal Emblem V2
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedCritChance}
+					'''
 			}
 
 			Warrior_EmblemV2: {
 				DisplayName: Warrior Emblem V2
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{$CommonItemTooltip.PercentIncreasedMeleeCritChance}
+					'''
 			}
 
 			Daylight_chesplate: {
@@ -882,7 +907,7 @@ Mods: {
 
 			NightHelmetL: {
 				DisplayName: Night Hood
-				Tooltip: Increases Throwing damage by 13%.
+				Tooltip: Increases throwing damage by 13%.
 				SetBonus:
 					'''
 					{0} Defense
@@ -981,8 +1006,8 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
-			DesertChest: {
-				DisplayName: Desert Chest
+			DesertGlyph: {
+				DisplayName: Desert Glyph
 				Tooltip: Summons the Desert Annihilator
 			}
 
@@ -2291,127 +2316,127 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Adamantite_saber: {
+			AdamantiteSaber: {
 				DisplayName: Adamantite Saber
 				Tooltip: ""
 			}
 
-			Cobalt_saber: {
+			CobaltSaber: {
 				DisplayName: Cobalt Saber
 				Tooltip: ""
 			}
 
-			Copper_saber: {
+			CopperSaber: {
 				DisplayName: Copper Saber
 				Tooltip: ""
 			}
 
-			Corrupted_saber: {
-				DisplayName: Light´s Saber
+			CorruptedSaber: {
+				DisplayName: Corrupted Saber
 				Tooltip: ""
 			}
 
-			Crimson_saber: {
-				DisplayName: Blood Saber
+			CrimsonSaber: {
+				DisplayName: Crimson Saber
 				Tooltip: ""
 			}
 
-			Enchanted_saber: {
+			EnchantedSaber: {
 				DisplayName: Enchanted Saber
-				Tooltip: Shoot an enchanted sword beam
-			}
-
-			Fire_saber: {
-				DisplayName: Fiery Saber
-				Tooltip: Inflict fire on enemies
-			}
-
-			gold_saber: {
-				DisplayName: Golden Saber
 				Tooltip: ""
 			}
 
-			Grass_saber: {
-				DisplayName: Grass Saber
-				Tooltip: Inflict poison on enemies
+			FireSaber: {
+				DisplayName: Fire Saber
+				Tooltip: ""
 			}
 
-			Hallowed_saber: {
+			GoldSaber: {
+				DisplayName: Gold Saber
+				Tooltip: ""
+			}
+
+			GrassSaber: {
+				DisplayName: Grass Saber
+				Tooltip: ""
+			}
+
+			HallowedSaber: {
 				DisplayName: Sabebur
 				Tooltip: ""
 			}
 
-			iron_saber: {
+			IronSaber: {
 				DisplayName: Iron Saber
 				Tooltip: ""
 			}
 
-			Lead_saber: {
+			LeadSaber: {
 				DisplayName: Lead Saber
 				Tooltip: ""
 			}
 
-			Mythril_saber: {
+			MythrilSaber: {
 				DisplayName: Mythril Saber
 				Tooltip: ""
 			}
 
-			Night_saber: {
+			NightSaber: {
 				DisplayName: Night Saber
 				Tooltip: ""
 			}
 
-			Orichalcum_saber: {
+			OrichalcumSaber: {
 				DisplayName: Orichalcum Saber
 				Tooltip: ""
 			}
 
-			Palladium_saber: {
+			PalladiumSaber: {
 				DisplayName: Palladium Saber
 				Tooltip: ""
 			}
 
-			platinum_saber: {
+			PlatinumSaber: {
 				DisplayName: Platinum Saber
 				Tooltip: ""
 			}
 
-			Reinforced_Iron_saber: {
+			Reinforced_IronSaber: {
 				DisplayName: Reinforced Iron Saber
 				Tooltip: ""
 			}
 
-			silver_saber: {
+			SilverSaber: {
 				DisplayName: Silver Saber
 				Tooltip: ""
 			}
 
-			Spike_saber: {
-				DisplayName: Spike saber
+			SpikeSaber: {
+				DisplayName: Spike Saber
 				Tooltip: ""
 			}
 
-			tin_saber: {
+			TinSaber: {
 				DisplayName: Tin Saber
 				Tooltip: ""
 			}
 
-			Titanium_saber: {
+			TitaniumSaber: {
 				DisplayName: Titanium Saber
 				Tooltip: ""
 			}
 
-			tungsteno_saber: {
+			TungstenoSaber: {
 				DisplayName: Tungsten Saber
 				Tooltip: ""
 			}
 
-			Tuxonite_saber: {
+			TuxoniteSaber: {
 				DisplayName: Tuxonite Saber
 				Tooltip: ""
 			}
 
-			wooden_saber: {
+			WoodenSaber: {
 				DisplayName: Wooden Saber
 				Tooltip: ""
 			}
@@ -3843,16 +3868,36 @@ Mods: {
 
 			ExplorerBoots: {
 				DisplayName: Explorer Boots
-				Tooltip: ""
+				Tooltip:
+					'''
+					The wearer can run super fast, and even faster on sand, snow and ash
+					Flowers grow on the grass you walk on
+					Increases jump speed and allows auto-jump
+					'''
 			}
 
 			RunningShoes: {
 				DisplayName: Running Shoes
-				Tooltip: ""
+				Tooltip: The wearer can run super fast, and even faster on sand, snow and ash
 			}
 
 			GatlingShotGun: {
 				DisplayName: Gatling Shot Gun
+				Tooltip: Its damage evolves as you progress through the progression
+			}
+
+			ReinforcedIronSaber: {
+				DisplayName: Reinforced Iron Saber
+				Tooltip: ""
+			}
+
+			TungstenSaber: {
+				DisplayName: Tungsten Saber
+				Tooltip: ""
+			}
+
+			DesertGyph: {
+				DisplayName: Desert Gyph
 				Tooltip: ""
 			}
 		}
@@ -4101,6 +4146,10 @@ Mods: {
 			AquaScepterHeldProj.DisplayName: Aqua Scepter Held Proj
 			WandOfSparkingHeldProj.DisplayName: Wand Of Sparking Held Proj
 			SparkBomb.DisplayName: Spark Bomb
+			SaberDashProj.DisplayName: Saber Dash Proj
+			BladeOfGrassLeaftClone.DisplayName: Blade Of Grass Leaft Clone
+			SwordSlash.DisplayName: Sword Slash
+			FlinxMinionClone.DisplayName: Flinx Minion Clone
 		}
 
 		Tiles: {

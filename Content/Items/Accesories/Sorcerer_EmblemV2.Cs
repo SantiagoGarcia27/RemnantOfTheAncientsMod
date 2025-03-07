@@ -11,18 +11,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Sorcerer Emblem V2");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du sorcier V2");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Hechicero V2");
-            //Tooltip.SetDefault(//Tooltip());
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(25, DamageClass.Magic);
-        //}
+
+        int damageBonus = 20;
+        int critBonus = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus,critBonus);
+   
         public override void SetDefaults()
         {
             Item.width = 10;
@@ -46,7 +41,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Magic) *= 1.25f;
+            DamageClass damagetype = DamageClass.Magic;
+            player.GetDamage(damagetype) *= 1 + damageBonus /100f;
+            player.GetCritChance(damagetype) *= 1 + critBonus / 100f;
         }
     }
 }

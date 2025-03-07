@@ -219,16 +219,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     var text = tip.Text.Replace("25", "45");
                     tip.Text = text;
                 }
-            }
-            if (item.type == ModContent.ItemType<TrowerEmblem>()|| item.type == ModContent.ItemType<TrowerEmblemV2>())
-            {
-                var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
-                if (tip != null)
-                {
-                    var text = tip.Text.Replace("throwing", "rogue");
-                    tip.Text = text;
-                }
-            }
+            }   
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
                 ModifyTooltipsFargosSoulMod(item, tooltips);
@@ -277,7 +268,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public void FixDuplicatedPrefix(List<TooltipLine> tooltips)
         {
             var tip = tooltips.FirstOrDefault(tip => tip.Mod != "a");
-            int[] index = new int[2] { TextUtils.GetTooltipDuplicatedIndex(tooltips) ,0};
+            int[] index = [TextUtils.GetTooltipDuplicatedIndex(tooltips) ,0];
            
             if (index[0] != -1)
             {

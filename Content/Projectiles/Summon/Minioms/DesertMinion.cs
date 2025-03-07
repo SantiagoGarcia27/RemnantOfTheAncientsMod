@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             AIType = 266;
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 10;//23
+            Projectile.localNPCHitCooldown = 10;
         }
 
 

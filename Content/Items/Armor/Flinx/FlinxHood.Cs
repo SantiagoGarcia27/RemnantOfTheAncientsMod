@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Microsoft.Xna.Framework;
 using Humanizer;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Flinx
 {
@@ -44,10 +45,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Flinx
 
 			player.statLifeMax2 += 40;
 			//player.flinxMinion = true;
-			if (player.ownedProjectileCounts[ProjectileID.FlinxMinion] < 1 && !player.HasBuff(BuffID.FlinxMinion))
+			player.GetModPlayer<RemnantPlayer>().FlinxArmorSetBonus = true;
+
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<FlinxMinionClone>()] < 1 )
 			{
-				var p = Projectile.NewProjectile(player.GetSource_FromThis(), player.Center, Vector2.Zero, ProjectileID.FlinxMinion, 10, 0, player.whoAmI);
-				Main.projectile[p].minionSlots = 0;
+				Projectile.NewProjectile(player.GetSource_FromThis(), player.Center, Vector2.Zero, ModContent.ProjectileType<FlinxMinionClone>(), 20, 0, player.whoAmI);
 			}
 		}
 

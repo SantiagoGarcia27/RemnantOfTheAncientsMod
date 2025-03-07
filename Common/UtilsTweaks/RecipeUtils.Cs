@@ -59,18 +59,23 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             Recipe recipe = SearchRecipe(Id);
                 List<int> results = [];
-          
-            foreach(Item item in recipe.requiredItem)
+            if (recipe != null)
             {
-                Utils1.AddSecure(results, item.type);
+                foreach (Item item in recipe.requiredItem)
+                {
+                    Utils1.AddSecure(results, item.type);
+                }
             }
             return results;
         }
         public static List<int> SearchRecipeTile(int Id)
         {
             Recipe recipe = SearchRecipe(Id);
-            
-            return recipe.requiredTile;
+            if (recipe != null)
+            {
+                return recipe.requiredTile;
+            }
+            return null;
         }
         public static int SearchAmmountRecipe(int ResultID,int searchItemId)
         {

@@ -42,13 +42,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
         {
             Player player = Main.player[Projectile.owner];
             CheckActive(player);
-            
+
             Projectile.Center = player.Center;
             Point playerPosition = new Point((int)player.position.X, (int)player.position.Y);
 
             int width = 20;
             int height = 20;
-            Rectangle area = new Rectangle(playerPosition.X - width/2 * 16, playerPosition.Y - height / 2 *16, width * 16, height * 16);
+            Rectangle area = new Rectangle(playerPosition.X - width / 2 * 16, playerPosition.Y - height / 2 * 16, width * 16, height * 16);
 
             //if (debugg % 2 == 0)
             //{
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
             {
                 if (projectile.type != this.Type)
                 {
-                    if (area.Contains(new Point((int)projectile.position.X,(int)projectile.position.Y)) && (projectile.hostile || !projectile.friendly))
+                    if (area.Contains(new Point((int)projectile.position.X, (int)projectile.position.Y)) && (projectile.hostile || !projectile.friendly))
                     {
                         projectile.velocity *= -1;
                         projectile.friendly = true;
@@ -71,8 +71,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
                 }
             }
 
-         
-            if(RemnantFargosSoulsPlayer.FrostBarrierCounter > 0)
+
+            if (RemnantFargosSoulsPlayer.FrostBarrierCounter > 0)
             {
                 RemnantFargosSoulsPlayer.FrostBarrierCounter--;
             }
@@ -112,13 +112,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
             {
                 Projectile.Kill();
             }
-         
+
         }
         public override void OnKill(int timeLeft)
         {
             Main.player[Projectile.owner].opacityForAnimation = 1f;
-            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<FrostBarrierCouldown>(), (int)Utils1.FormatTimeToTick(0, 0, 1, 0)/3);
-          
+            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<FrostBarrierCouldown>(), (int)Utils1.FormatTimeToTick(0, 0, 1, 0) / 3);
+
             base.OnKill(timeLeft);
         }
         public override void OnSpawn(IEntitySource source)
@@ -130,18 +130,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
         public float fade = 2.6f;
         public override bool PreDraw(ref Color lightColor)
         {
-               
             var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Fargos/Eternity/FrostBarrier");
-            Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
-            if (Main.myPlayer == Projectile.owner)
-            {
+            Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+            Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, Color.White, 0f, origin, 1, SpriteEffects.None, 1f);
 
-                Color color = new Color(20,Color.White.R, Color.Green.G, Color.Green.B) * fade;
-                Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, Color.White, 0f, origin, 1, SpriteEffects.None, 1f);
-            }
             return true;
         }
-
-
     }
 }

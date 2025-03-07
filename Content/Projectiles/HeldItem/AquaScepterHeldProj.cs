@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Player player = Main.player[Main.myPlayer];
             if (player.whoAmI == Main.myPlayer)
             {
-                Vector2 SubVelocity = new Vector2(Projectile.ai[0], Projectile.ai[1]);
+                Vector2 SubVelocity = new(Projectile.ai[0], Projectile.ai[1]);
 
                 if (++speed >= 10)
                 {
@@ -53,21 +53,17 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                     speed = 0;
                 }
                 Charge++;
-                //Main.NewText(Charge);
+
                 if (Charge >= 180)
                 {
 
                     Projectile.position += Vector2.Normalize(Projectile.velocity) * 1f;
-                    //if (Main.rand.NextFloat() <= (float)1 / 10)
-                    //{
-
 
                     int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.position, SubVelocity * 3, ProjectileID.WaterStream, (int)(player.HeldItem.damage * 3), player.HeldItem.knockBack, player.whoAmI);
                     Main.projectile[p].stepSpeed = 5f;
                     Main.projectile[p].Size *= 2f;
                     Main.projectile[p].scale = 5f;
                     Main.projectile[p].GetAlpha(Color.Red);
-                    // Main.NewText("Fuego");
 
                     Projectile.Kill();
                 }

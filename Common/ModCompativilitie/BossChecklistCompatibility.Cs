@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 ModContent.NPCType<DesertAniquilator>(),
                 new Dictionary<string, object>()
                 {
-                    ["spawnItems"] = ModContent.ItemType<DesertChest>(),
+                    ["spawnItems"] = ModContent.ItemType<DesertGlyph>(),
                     ["collectibles"] = collection
                 }
             );

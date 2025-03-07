@@ -2,22 +2,18 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
-	public class Spike_saber : ModItem
+    public class SpikeSaber : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Spike saber");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Sabre à pointes");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sable de púas");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -38,11 +34,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
             Item.scale = 1;
             if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
 			{
-				if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<InfernalSpike_f>();
+				if (GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<InfernalSpike_f>();
 			}
 			else Item.shoot = ProjectileType<InfernalSpike_f>();
             Item.shootSpeed = 1;
-            Item.GetGlobalItem<CustomTooltip>().Saber = true;
+            Item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
+            Item.GetGlobalItem<SaberGlobalItem>().DashStrength = new(1f, 0.75f);
+
         }
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
@@ -59,27 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
         {
-			bool PlayerTouchFlour = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
-            int projectileCount = 32;
-            float projectileDistance = 10f;
-
-            if (player.altFunctionUse == 2)
-            {
-                if (PlayerTouchFlour)
-                {
-                    DashPlayer.JumpDash(player, 1f, 0.75f);
-                    for (int i = 0; i < projectileCount; i++)
-                    {
-                        float angle = MathHelper.ToRadians(360f / projectileCount * i);
-                        Vector2 velocity = angle.ToRotationVector2() * projectileDistance;
-                        Vector2 position = player.Center + velocity;
-
-                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileType<InfernalSpike_f>(), Item.damage, 2f, Main.myPlayer);
-                        Main.projectile[p].timeLeft = 100;
-                    }
-                }
-            }
-			else
+			if(player.altFunctionUse == 0)
 			{
                 if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 				{
@@ -92,7 +70,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			}
 			return true;
         }
-
     }
 }
 

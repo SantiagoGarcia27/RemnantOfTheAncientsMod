@@ -9,35 +9,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class TrowerEmblem : ModItem
     {
-       
+
+        int damageBonus = 15;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus);
         public override void SetStaticDefaults()
         {
             string TextUs = ModLoader.TryGetMod("CalamityMod", out _) ? "rogue" : "throwing";
             string TextEs = ModLoader.TryGetMod("CalamityMod", out _) ? "de picaro" : "lanzable";
 
-           // //DisplayName.SetDefault("Thrower Emblem");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème du lanceur");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador");
-            //Tooltip.SetDefault(//Tooltip());
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(15);
-        //public static string Tooltip()
-        //{
-        //    string option;
-            //if (ModLoader.TryGetMod("CalamityMod", out _))
-            //{
-            //   DamageClass Rogue = SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
-            //    option = LocalizationHelper.IncreasedDamageBy//Tooltip(15, Rogue);
-            //}
-           // else 
-           // {
-        //        option = LocalizationHelper.IncreasedDamageByTooltip(15, DamageClass.Throwing);
-        //    //}
-        //    return option;
-        //}
-
         public override void SetDefaults()
         {
             Item.width = 10;
@@ -49,7 +30,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Throwing) *= 1.15f;
+            DamageClass damagetype = DamageClass.Throwing;
+            player.GetDamage(damagetype) *= 1 + damageBonus / 100f;
         }
     }
 }

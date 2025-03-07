@@ -27,7 +27,6 @@ using System.Runtime.InteropServices;
 public class ReaperPlayer : ModPlayer
 {
     public bool ChaliceOn;
-    public static bool FWeapons;
     public static bool ReaperFirstTime;
     public override void ResetEffects()
     {      
@@ -35,7 +34,6 @@ public class ReaperPlayer : ModPlayer
     }
     public override void OnEnterWorld()
     {
-        FWeapons = true;
     }
 
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
@@ -89,11 +87,11 @@ public class ReaperEffectsPlayer : ModPlayer
             ReaperGlobalItem.ReaperWingsNerf(Player);
     }       
    
-/// <summary>
-/// Set Reaper mode souls config values
-/// </summary>
-/// <param name="type"></param>
-/// <param name="value"></param>
+    /// <summary>
+    /// Set Reaper mode souls config values
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="value"></param>
     public static void SetSoulsToggle(int type,int value)
     {
         switch (type)
@@ -382,7 +380,6 @@ public class ReaperSoulsPlayer : ModPlayer
                 string TagName = npc.type + "ReaperUpgrade";
                 tag[TagName] = SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)];
                 tag.Add(TagName + "Active", SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(npc.type)]);
-                //tag[TagName + "Active"] = SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(npc.type)];
             }         
         }
         if(CalamityMod != null)

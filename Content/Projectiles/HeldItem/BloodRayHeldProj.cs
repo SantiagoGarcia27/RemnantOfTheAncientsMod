@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Player player = Main.player[Main.myPlayer];
             if (player.whoAmI == Main.myPlayer)
             {
-                Vector2 SubVelocity = new Vector2(Projectile.ai[0], Projectile.ai[1]);
+                Vector2 SubVelocity = new(Projectile.ai[0], Projectile.ai[1]);
 
                 if (++speed >= 10)
                 {

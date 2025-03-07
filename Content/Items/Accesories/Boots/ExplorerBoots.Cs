@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Boots
 {
@@ -55,6 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Boots
             .AddIngredient<RunningShoes>()
             .AddIngredient(ItemID.FlowerBoots, 1)
             .AddIngredient(ItemID.AmphibianBoots, 1)
+            .AddIngredient<BoneBar>(5)
             .AddTile(TileID.TinkerersWorkbench) 
             .Register();
         }

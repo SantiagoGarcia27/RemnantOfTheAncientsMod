@@ -12,19 +12,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Daylight Hat");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Sombrero de luz diurna");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Chapeau de la lumière du jour");
-
-            //Tooltip.SetDefault(//Tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-		//public static string //Tooltip()
-		//{
-		//    return LocalizationHelper.IncreasedDamageBy//Tooltip(3,DamageClass.Magic) +
-		//        "\n" + LocalizationHelper.IncreasedDamageBy//Tooltip(3, DamageClass.Summon) +
-		//        "\n" + LocalizationHelper.IncreasedManaMax//Tooltip(20);
-		//}
+		}	
 		public int IncreasedMagicDamage = 3;
         public int IncreasedSummonDamage = 3;
         public int IncreasesMaxMana = 20;

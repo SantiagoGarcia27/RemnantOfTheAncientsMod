@@ -10,19 +10,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     public class Warrior_EmblemV2 : ModItem
     {
         public override void SetStaticDefaults()
-        {
-            // //DisplayName.SetDefault("Warrior Emblem V2");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Guerrier V2");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Guerrero V2");
-            //Tooltip.SetDefault(//Tooltip());
-
+        { 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(25, DamageClass.Melee);
-
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
+        int damageBonus = 20;
+        int critBonus = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus, critBonus);
         public override void SetDefaults()
         {
             Item.width = 10;
@@ -46,12 +39,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) *= 1.25f;
-
-            /*Mod CalamityMod = ModLoader.GetMod("CalamityMod");
-            if (CalamityMod != null)
-
-    player.GetDamage(DamageClass.Melee) += 0.20f; */
+            DamageClass damagetype = DamageClass.Melee;
+            player.GetDamage(damagetype) *= 1 + damageBonus / 100f;
+            player.GetCritChance(damagetype) *= 1 + critBonus / 100f;
         }
     }
 }

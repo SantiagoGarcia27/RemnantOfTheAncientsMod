@@ -47,6 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Boots
             .AddIngredient(ItemID.FlurryBoots, 1)
             .AddIngredient(ItemID.SandBoots, 1)
             .AddIngredient(ItemID.FlameWakerBoots, 1)
+            .AddRecipeGroup("anyCorruptBossScale", 5)
             .AddTile(TileID.TinkerersWorkbench) 
             .Register();
         }

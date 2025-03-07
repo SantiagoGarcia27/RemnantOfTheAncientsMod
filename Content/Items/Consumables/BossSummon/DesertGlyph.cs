@@ -7,7 +7,7 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 {
-    public class DesertChest : ModItem
+    public class DesertGlyph : ModItem
     {
         public override void SetStaticDefaults()
         {

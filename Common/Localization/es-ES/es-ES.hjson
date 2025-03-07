@@ -753,7 +753,11 @@ Mods: {
 
 			Ranger_EmblemV2: {
 				DisplayName: Emblema del guardian ascendido
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance}
+					''' */
 			}
 
 			ReaperChalice: {
@@ -764,6 +768,7 @@ Mods: {
 					[c/fbac2e:Las armas cuerpo a cuerpo aumentan su tamaño en {1}%]
 					[c/68d7ff:{$CommonItemTooltip.IncreasesMaxMinionsBy@2}] 
 					[c/ec7ade:{$CommonItemTooltip.IncreasesMaxManaBy@3}]
+					[c/1aebaa:{$CommonItemTooltip.PercentChanceToSaveAmmo@4}]
 					Puedes almacenar las almas consumidas de los jefes derrotados para ganar su poder.
 					(Solo funciona en segador)
 					'''
@@ -771,7 +776,11 @@ Mods: {
 
 			Sorcerer_EmblemV2: {
 				DisplayName: Emblema del hechicero ascendido
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMagicDamage}
+					{$CommonItemTooltip.PercentIncreasedMagicCritChance}
+					''' */
 			}
 
 			Summoner_EmblemV2: {
@@ -804,27 +813,39 @@ Mods: {
 
 			TrowerEmblem: {
 				DisplayName: Emblema del lanzador
-				Tooltip: 15% Increased throwing damage
+				Tooltip: Aumenta el daño de lanzador en {0}%
 			}
 
 			TrowerEmblemV2: {
 				DisplayName: Emblema del lanzador ascendido
-				Tooltip: 25% Increased throwing damage
+				Tooltip:
+					'''
+					Aumenta la probabilidad de critico de lanzador en {0}%
+					Aumenta el daño de lanzador en {1}%
+					'''
 			}
 
 			Universal_Emblem: {
 				DisplayName: Emblema Universal
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
 			Universal_EmblemV2: {
 				DisplayName: Emblema Universal ascendido
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedCritChance}
+					''' */
 			}
 
 			Warrior_EmblemV2: {
 				DisplayName: Emblema del guerrero ascendido
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
+					{$CommonItemTooltip.PercentIncreasedMeleeCritChance}
+					''' */
 			}
 
 			Daylight_chesplate: {
@@ -994,8 +1015,8 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
-			DesertChest: {
-				DisplayName: Cofre Desértico
+			DesertGlyph: {
+				DisplayName: Glifo Desértico
 				Tooltip: Invoca al aniquilador del desierto
 			}
 
@@ -2304,129 +2325,129 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Adamantite_saber: {
-				DisplayName: Sable de Adamantita
-				Tooltip: ""
+			AdamantiteSaber: {
+				DisplayName: Sable de adamantita
+				// Tooltip: ""
 			}
 
-			Cobalt_saber: {
-				DisplayName: Sable de Cobalto
-				Tooltip: ""
+			CobaltSaber: {
+				DisplayName: Sable de cobalto
+				// Tooltip: ""
 			}
 
-			Copper_saber: {
-				DisplayName: Sable de Cobre
-				Tooltip: ""
+			CopperSaber: {
+				DisplayName: Sable de cobre
+				// Tooltip: ""
 			}
 
-			Corrupted_saber: {
+			CorruptedSaber: {
 				DisplayName: Sable de la luz
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Crimson_saber: {
-				DisplayName: Sable Carnicero
-				Tooltip: ""
+			CrimsonSaber: {
+				DisplayName: Sable de sanguinario
+				// Tooltip: ""
 			}
 
-			Enchanted_saber: {
-				DisplayName: Sable encantado
-				Tooltip: Dispara un rayo encantado
+			EnchantedSaber: {
+				DisplayName: Sable de encantado
+				// Tooltip: ""
 			}
 
-			Fire_saber: {
-				DisplayName: Sable volcánico
-				Tooltip: Inflije fuego al los enemigos
+			FireSaber: {
+				DisplayName: Sable igneo
+				// Tooltip: ""
 			}
 
-			gold_saber: {
+			GoldSaber: {
 				DisplayName: Sable de oro
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Grass_saber: {
-				DisplayName: Sable de pasto
-				Tooltip: Inflije veneno al los enemigos
+			GrassSaber: {
+				DisplayName: Sable de hierva
+				// Tooltip: ""
 			}
 
-			Hallowed_saber: {
+			HallowedSaber: {
 				DisplayName: Sablebur
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			iron_saber: {
+			IronSaber: {
 				DisplayName: Sable de hierro
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Lead_saber: {
+			LeadSaber: {
 				DisplayName: Sable de plomo
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Mythril_saber: {
+			MythrilSaber: {
 				DisplayName: Sable de mitril
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Night_saber: {
+			NightSaber: {
 				DisplayName: Sable de la noche
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Orichalcum_saber: {
+			OrichalcumSaber: {
 				DisplayName: Sable de oricalco
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Palladium_saber: {
-				DisplayName: Sable de paladio
-				Tooltip: ""
+			PalladiumSaber: {
+				DisplayName: Palladium Saber
+				// Tooltip: ""
 			}
 
-			platinum_saber: {
-				DisplayName: Sable de patino
-				Tooltip: ""
+			PlatinumSaber: {
+				DisplayName: Sable de platino
+				// Tooltip: ""
 			}
 
-			Reinforced_Iron_saber: {
-				DisplayName: Sable de hierro reforzado
-				Tooltip: ""
+			Reinforced_IronSaber: {
+				// DisplayName: Reinforced Iron Saber
+				// Tooltip: ""
 			}
 
-			silver_saber: {
+			SilverSaber: {
 				DisplayName: Sable de plata
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Spike_saber: {
-				DisplayName: Sable de púas
-				Tooltip: ""
+			SpikeSaber: {
+				DisplayName: Sable espinoso
+				// Tooltip: ""
 			}
 
-			tin_saber: {
+			TinSaber: {
 				DisplayName: Sable de estaño
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			Titanium_saber: {
+			TitaniumSaber: {
 				DisplayName: Sable de titanio
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			tungsteno_saber: {
+			TungstenoSaber: {
 				DisplayName: Sable de tungsteno
 				Tooltip: ""
 			}
 
-			Tuxonite_saber: {
+			TuxoniteSaber: {
 				DisplayName: Sable de tusonita
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
-			wooden_saber: {
+			WoodenSaber: {
 				DisplayName: Sable de madera
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
 			Solarang: {
@@ -3862,17 +3883,37 @@ Mods: {
 			}
 
 			ExplorerBoots: {
-				// DisplayName: Explorer Boots
-				// Tooltip: ""
+				DisplayName: Botas de explorador
+				Tooltip:
+					'''
+					El usuario puede correr súper rápido, e incluso más rápido sobre arena, nieve y ceniza
+					Las flores crecen en la hierba sobre la que caminas
+					Aumenta la velocidad de salto y permite el salto automático.
+					'''
 			}
 
 			RunningShoes: {
-				// DisplayName: Running Shoes
-				// Tooltip: ""
+				DisplayName: Zapatillas para correr
+				Tooltip: El usuario puede correr súper rápido, e incluso más rápido sobre arena, nieve y ceniza.
 			}
 
 			GatlingShotGun: {
-				// DisplayName: Gatling Shot Gun
+				DisplayName: Ametralladora de escopetas
+				Tooltip: Evoluciona su daño a medida que avanzas en la progresión
+			}
+
+			ReinforcedIronSaber: {
+				// DisplayName: Reinforced Iron Saber
+				// Tooltip: ""
+			}
+
+			TungstenSaber: {
+				// DisplayName: Tungsten Saber
+				// Tooltip: ""
+			}
+
+			DesertGyph: {
+				// DisplayName: Desert Gyph
 				// Tooltip: ""
 			}
 		}
@@ -4121,6 +4162,10 @@ Mods: {
 			// AquaScepterHeldProj.DisplayName: Aqua Scepter Held Proj
 			// WandOfSparkingHeldProj.DisplayName: Wand Of Sparking Held Proj
 			// SparkBomb.DisplayName: Spark Bomb
+			// SaberDashProj.DisplayName: Saber Dash Proj
+			// BladeOfGrassLeaftClone.DisplayName: Blade Of Grass Leaft Clone
+			// SwordSlash.DisplayName: Sword Slash
+			// FlinxMinionClone.DisplayName: Flinx Minion Clone
 		}
 
 		Tiles: {

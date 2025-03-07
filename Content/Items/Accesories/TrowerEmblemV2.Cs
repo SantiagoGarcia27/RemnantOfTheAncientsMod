@@ -9,15 +9,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class TrowerEmblemV2 : ModItem
     {
+        int damageBonus = 20;
+        int critBonus = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus, critBonus);
         public override void SetStaticDefaults()
         {
             string TextUs = ModLoader.TryGetMod("CalamityMod", out _) ? "rogue" : "throwing";
             string TextEs = ModLoader.TryGetMod("CalamityMod", out _) ? "de picaro" : "lanzable";
 
-           // //DisplayName.SetDefault("Thrower Emblem V2");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Lanzador V2");
-            //Tooltip.SetDefault("Increases "+ TextUs + " damage by 25% ");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta el daño "+ TextEs + " en un 25%  ");
+         
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -45,8 +45,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Throwing) *= 1.25f;
-
+            DamageClass damagetype = DamageClass.Throwing;
+            player.GetDamage(damagetype) *= 1 + damageBonus / 100f;
+            player.GetCritChance(damagetype) *= 1 + critBonus / 100f;
         }
     }
 }

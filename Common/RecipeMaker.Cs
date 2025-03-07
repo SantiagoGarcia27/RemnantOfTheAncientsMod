@@ -405,7 +405,7 @@ namespace RemnantOfTheAncientsMod
             UncraftBone();
 
             Recipe.Create(ModContent.ItemType<JungleBar>(), 6).AddIngredient(ItemID.BladeofGrass, 1).AddTile(TileID.Anvils).Register();
-            Recipe.Create(ItemID.EnchantedSword, 1).AddIngredient(ModContent.ItemType<Enchanted_saber>(), 1).AddTile(TileID.Anvils).Register();
+            Recipe.Create(ItemID.EnchantedSword, 1).AddIngredient(ModContent.ItemType<EnchantedSaber>(), 1).AddTile(TileID.Anvils).Register();
         }
 
         private static void UncraftBone()
@@ -558,7 +558,7 @@ namespace RemnantOfTheAncientsMod
             CorruptAccesories();
             TravelingMerchantAccesories();
             FisherManAccesories();
-            SkyAccesories();
+            SkyAccesories(); 
         }
 
         private static void SkyAccesories()
@@ -1044,7 +1044,7 @@ namespace RemnantOfTheAncientsMod
 
 
 
-            RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Tombstone", new int[]
+            RecipeGroup group = new(() => Language.GetTextValue("LegacyMisc.37") + " Tombstone", new int[]
             {
                 ItemID.Tombstone,
                 ItemID.RichGravestone1,
@@ -1107,10 +1107,10 @@ namespace RemnantOfTheAncientsMod
             });
             RecipeGroup.RegisterGroup("CorruptBar", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "" + Lang.GetItemNameValue(ModContent.ItemType<Crimson_saber>()), new int[]
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "" + Lang.GetItemNameValue(ModContent.ItemType<CrimsonSaber>()), new int[]
             {
-                ModContent.ItemType<Crimson_saber>(),
-                ModContent.ItemType<Corrupted_saber>()
+                ModContent.ItemType<CrimsonSaber>(),
+                ModContent.ItemType<CorruptedSaber>()
             });
             RecipeGroup.RegisterGroup("CorruptSaber", group);
 
@@ -1136,42 +1136,42 @@ namespace RemnantOfTheAncientsMod
             });
             RecipeGroup.RegisterGroup("String", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " FisherofSouls", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " FisherofSouls",
+            [
                 ItemID.FisherofSouls,
                 ItemID.Fleshcatcher
-            });
+            ]);
             RecipeGroup.RegisterGroup("CorruptCaña", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " LightsBane", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " LightsBane",
+            [
                 ItemID.LightsBane,
                 ItemID.BloodButcherer
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyCorruptSwords", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "StrangePlant1", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "StrangePlant1",
+            [
                 ItemID.StrangePlant1,
                 ItemID.StrangePlant2,
                 ItemID.StrangePlant3,
                 ItemID.StrangePlant4
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyStrangePlants", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "BlueBrick", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "BlueBrick",
+            [
                 ItemID.GreenBrick,
                 ItemID.BlueBrick,
                 ItemID.PinkBrick
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyDungeonBrick", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Ale", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Ale",
+            [
                 ItemID.Ale,
                 ItemID.Sake
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyBeer", group);
 
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Marshmallow", lowFood.ToArray());
@@ -1190,102 +1190,118 @@ namespace RemnantOfTheAncientsMod
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "MasterBait", mediumFood.ToArray());
             RecipeGroup.RegisterGroup("+30%bait", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Intestine", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Intestine",
+            [
                 ModContent.ItemType<Intestine>(),
                 ModContent.ItemType<SoulHarvester>(),
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyCorruptWhip", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowHelmet", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowHelmet",
+            [
                 ItemID.ShadowHelmet,
                 ItemID.CrimsonHelmet,
                 ItemID.AncientShadowHelmet
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyCorruptHelmet", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowScalemail", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowScalemail",
+            [
                 ItemID.ShadowScalemail, 
                 ItemID.CrimsonScalemail,
                 ItemID.AncientShadowScalemail
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyCorruptChestplate", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowGreaves", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "ShadowGreaves",
+            [
                 ItemID.ShadowGreaves,
                 ItemID.CrimsonGreaves,
                 ItemID.AncientShadowGreaves
-            });
+            ]);
             RecipeGroup.RegisterGroup("anyCorruptGreaves", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " EnchantedSword", new int[]
-            {
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " EnchantedSword",
+            [
                 ItemID.EnchantedSword,
-                ModContent.ItemType<Enchanted_saber>()
-            });
+                ModContent.ItemType<EnchantedSaber>()
+            ]);
             RecipeGroup.RegisterGroup("anyEnchantedSword", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " ShadowScale",
+            [
+                ItemID.ShadowScale,
+                ItemID.TissueSample
+            ]);
+            RecipeGroup.RegisterGroup("anyCorruptBossScale", group);
         }
 
         public override void PostAddRecipes()
         {
-            for (int i = 0; i < Recipe.numRecipes; i++)
+            foreach (Recipe recipe in Main.recipe)
             {
-                Recipe recipe = Main.recipe[i];
-
                 if (recipe.TryGetResult(ItemID.HandOfCreation, out _))
                 {
                     recipe.RemoveIngredient(ItemID.AncientChisel);
-                    recipe.AddIngredient(ModContent.ItemType<Spectre_Chisel>(), 1);
+                    recipe.AddIngredient<Spectre_Chisel>();
                 }
-                if (recipe.TryGetResult(ItemID.JungleHat, out _))
+                else if (recipe.TryGetResult(ItemID.JungleHat, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
-                    recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 3);
+                    recipe.AddIngredient<JungleBar>();
                     recipe.AddCustomShimmerResult(ModContent.ItemType<JungleBar>(), 3);
                 }
-                if (recipe.TryGetResult(ItemID.JungleShirt, out _))
+                else if (recipe.TryGetResult(ItemID.JungleShirt, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
                     recipe.RemoveIngredient(ItemID.Stinger);
-                    recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 6);
+                    recipe.AddIngredient<JungleBar>(6);
                     recipe.AddCustomShimmerResult(ModContent.ItemType<JungleBar>(), 6);
                 }
-                if (recipe.TryGetResult(ItemID.JunglePants, out _))
+                else if (recipe.TryGetResult(ItemID.JunglePants, out _))
                 {
                     recipe.RemoveIngredient(ItemID.JungleSpores);
                     recipe.RemoveIngredient(ItemID.Vine);
-                    recipe.AddIngredient(ModContent.ItemType<JungleBar>(), 3);
+                    recipe.AddIngredient<JungleBar>(3);
                     recipe.AddCustomShimmerResult(ModContent.ItemType<JungleBar>(), 3);
                 }
-                if (recipe.TryGetResult(ItemID.NecroHelmet, out _))
+                else if (recipe.TryGetResult(ItemID.NecroHelmet, out _))
                 {
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
-                    recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 18);
+                    recipe.AddIngredient<BoneBar>(18);
                     recipe.AddCustomShimmerResult(ModContent.ItemType<BoneBar>(), 18);
                 }
-                if (recipe.TryGetResult(ItemID.NecroBreastplate, out _))
+                else if (recipe.TryGetResult(ItemID.NecroBreastplate, out _))
                 {
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
-                    recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 29);
+                    recipe.AddIngredient<BoneBar>(29);
                     recipe.AddCustomShimmerResult(ModContent.ItemType<BoneBar>(), 29);
                 }
-                if (recipe.TryGetResult(ItemID.NecroGreaves, out _))
+                else if (recipe.TryGetResult(ItemID.NecroGreaves, out _))
                 {
                     recipe.RemoveIngredient(ItemID.Cobweb);
                     recipe.RemoveIngredient(ItemID.Bone);
-                    recipe.AddIngredient(ModContent.ItemType<BoneBar>(), 23);
+                    recipe.AddIngredient<BoneBar>(23);
                     recipe.AddCustomShimmerResult(ModContent.ItemType<BoneBar>(), 23);
                 }
-                if (recipe.TryGetResult(ItemID.CellPhone, out _))
+                else if (recipe.TryGetResult(ItemID.CellPhone, out _))
                 {
-                    recipe.AddIngredient(ModContent.ItemType<PlayerStatViewer>(), 1);
+                    recipe.AddIngredient<PlayerStatViewer>();
                 }
-
+                else if (recipe.TryGetResult(ItemID.TerrasparkBoots, out _))
+                {
+                    recipe.AddIngredient<BoneBar>(5);
+                }
+                else if (recipe.TryGetResult(ItemID.LavaWaders, out _))
+                {
+                    recipe.AddRecipeGroup("anyCorruptBossScale",5);
+                }
+                else if(recipe.TryGetResult(ItemID.LightningBoots, out _))
+                {
+                    recipe.AddRecipeGroup("CorruptBar",5);
+                }
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
                     ModifyCalamityRecipe(recipe);
@@ -1294,6 +1310,7 @@ namespace RemnantOfTheAncientsMod
                 {
                     ModifyFargosRecipe(recipe);
                 }
+
             }
         }
         public void ModifyCalamityRecipe(Recipe recipe)

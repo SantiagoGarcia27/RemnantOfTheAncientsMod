@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemType<TuxoniteBar>(), 8)
+			.AddIngredient<TuxoniteBar>(8)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

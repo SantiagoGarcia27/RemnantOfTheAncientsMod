@@ -84,6 +84,7 @@ namespace RemnantOfTheAncientsMod
 		public bool HealingDrone;
 		public bool InterceptionDrone;
 		public bool DesertHeraldSetBonus;
+		public bool FlinxArmorSetBonus;
 		public bool BrainDogde;
 		public float EnemyProjectilesScaleBouns = 1;
 		public float EnemyProjectilesSpeedScaleBouns = 1;
@@ -113,6 +114,7 @@ namespace RemnantOfTheAncientsMod
 		public List<int> TrowerBuffInflict = [];
 		public List<int> AllClassBuffInflict = [];
 		public int MinionCritChance = 0;
+		public int NotConsumeAmmoChance = 0;
 
 		public bool SpectralLantern;
 
@@ -173,7 +175,8 @@ namespace RemnantOfTheAncientsMod
 			DaylightArmorSetBonus = false;
 			HealingDrone = false;
 			InterceptionDrone = false;
-			DesertHeraldSetBonus = false;
+			FlinxArmorSetBonus = false;
+            DesertHeraldSetBonus = false;
 			CanWormHole = false;
 			BrainDogde = false;
 			Inmortal = false;
@@ -181,7 +184,8 @@ namespace RemnantOfTheAncientsMod
 			EnemyProjectilesScaleBouns = 1;
 			EnemyProjectilesSpeedScaleBouns = 1;
 
-			MinionCritChance = 0;
+			NotConsumeAmmoChance = 0;
+            MinionCritChance = 0;
 			StyleStat = 0;
 
 			ChargeBonus = 1;
@@ -348,7 +352,12 @@ namespace RemnantOfTheAncientsMod
 		public override void OnEnterWorld()
 		{
 			AddScrollBuff();
-			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod)) CalamityMessage();
+			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod))
+			{
+                
+
+                CalamityMessage();
+			}
 			foreach (Asset<Texture2D> asset in TextureAssets.Item)
 			{
 				RemnantGlobalItem.oldTexture.Add(asset);
@@ -359,7 +368,8 @@ namespace RemnantOfTheAncientsMod
 		[JITWhenModsEnabled("CalamityMod")]
 		public static void CalamityMessage()
 		{
-			if (GetInstance<CalamityConfig>().RemoveReforgeRNG)
+            GetInstance<CalamityConfig>().RemoveReforgeRNG = false;
+            if (GetInstance<CalamityConfig>().RemoveReforgeRNG)
 			{
 				ChatHelper.BroadcastChatMessage(NetworkText.From(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Configs.CalamityConfig.RemoveReforgeRNG.Label"))), Color.Red);
 			}
@@ -541,22 +551,14 @@ namespace RemnantOfTheAncientsMod
 		public bool PlayerHaveScroll()
 		{
 			AddScrollBuff();
-			try
+			foreach (int Scrollbuff in ScrollsBuff)
 			{
-				foreach (int Scrollbuff in ScrollsBuff)
+				if (Player.HasBuff(Scrollbuff))
 				{
-					if (Player.HasBuff(Scrollbuff))
-					{
-						return true;
-					}
+					return true;
 				}
-				return false;
 			}
-			catch
-			{
-				return false;
-			}
-
+			return false;
 		}
 		public int SearchCurrenScrollEffect()
 		{
@@ -567,12 +569,12 @@ namespace RemnantOfTheAncientsMod
 			}
 			return -1;
 		}
-		public void ExoticA(int l, int m, int m2, int p, Item item)
+		public void ExoticA(int lifeRegen, int manaRegen, int manaMax, int armorPenetration, Item item)
 		{
-			Player.lifeRegen += l;
-			Player.manaRegenBonus = m;
-			Player.statManaMax2 += m2;
-			Player.GetArmorPenetration(DamageClass.Generic) += p;
+			Player.lifeRegen += lifeRegen;
+			Player.manaRegenBonus = manaRegen;
+			Player.statManaMax2 += manaMax;
+			Player.GetArmorPenetration(DamageClass.Generic) += armorPenetration;
 			Player.pStone = true;
 			if (Player.whoAmI == Main.myPlayer)
 			{
@@ -654,9 +656,8 @@ namespace RemnantOfTheAncientsMod
 		public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
 		{
 			if (DesertHeraldSetBonus)
-			{
 				Projectile.NewProjectile(Projectile.GetSource_None(), Main.npc[proj.owner].position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
-			}
+			
 			base.OnHitByProjectile(proj, hurtInfo);
 		}
 
@@ -720,46 +721,46 @@ namespace RemnantOfTheAncientsMod
 			if (Main.myPlayer != Player.whoAmI)
 				return;
 
-			List<Projectile> list = [];
-			for (int i = 0; i < 1000; i++)
+			List<Projectile> turrets = [];
+			foreach(Projectile projectile in Main.ActiveProjectiles)	
 			{
-				if (Main.projectile[i].WipableTurret)
-					list.Add(Main.projectile[i]);
+				if (projectile.WipableTurret)
+					turrets.Add(projectile);
 			}
 
 			int num = 0;
-			while (list.Count > Player.maxTurrets && ++num < 1000)
+			while (turrets.Count > Player.maxTurrets && ++num < 1000)
 			{
-				Projectile p = list[0];
-				for (int j = 0; j < list.Count; j++)
+				Projectile p = turrets[0];
+				for (int j = 0; j < turrets.Count; j++)
 				{
-					if (list[j].timeLeft < p.timeLeft)
-                        p = list[j];
+					if (turrets[j].timeLeft < p.timeLeft)
+                        p = turrets[j];
 				}
 
                 p.Kill();
-				list.Remove(p);
+				turrets.Remove(p);
 			}
 		}
 	}
-    public class RemnantKeybindPlayer : ModPlayer
-    {
+	public class RemnantKeybindPlayer : ModPlayer
+	{
 		ReaperSoulsUISystem ReaperUI = null;
-        public override void ProcessTriggers(TriggersSet triggersSet)
-        {
-            if (KeybindSystem.TogleReaperInterface.JustPressed)
-            {
-				if (ReaperUI == null)			
-					ReaperUI = GetInstance<ReaperSoulsUISystem>();	
+		public override void ProcessTriggers(TriggersSet triggersSet)
+		{
+			if (KeybindSystem.TogleReaperInterface.JustPressed)
+			{
+				if (ReaperUI == null)
+					ReaperUI = GetInstance<ReaperSoulsUISystem>();
 
-				if (ReaperUI.IsVisible()) 
-					ReaperUI.HideMyUI();             
-				else 
-					ReaperUI.ShowMyUI();	
-            }
+				if (ReaperUI.IsVisible())
+					ReaperUI.HideMyUI();
+				else
+					ReaperUI.ShowMyUI();
+			}
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
 			{
-                if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0)
+				if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0)
 				{
 					Projectile.NewProjectile(Projectile.GetSource_None(), Player.position, Vector2.Zero, ModContent.ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);
 				}
@@ -771,7 +772,7 @@ namespace RemnantOfTheAncientsMod
 						{
 							int x = Player.tileTargetX * 16;
 							int y = Player.tileTargetY * 16;
-							Vector2 pos = new Vector2(x, y);
+							Vector2 pos = new(x, y);
 							for (int i = 0; i < 55; i++)
 							{
 								Dust.NewDustDirect(Player.position * 16, 10, 10, DustID.Corruption);
@@ -783,13 +784,15 @@ namespace RemnantOfTheAncientsMod
 							{
 								Dust.NewDustDirect(pos, 10, 10, DustID.Corruption);
 							}
-                            RemnantFargosSoulsPlayer.NightTpCouldown = RemnantFargosSoulsPlayer.NightTpCouldownMax;
+							RemnantFargosSoulsPlayer.NightTpCouldown = RemnantFargosSoulsPlayer.NightTpCouldownMax;
 						}
 					}
 				}
-            }
-        }
-    }
+			}
+		}
+		
+	
+	}
 }//hola
 
 		

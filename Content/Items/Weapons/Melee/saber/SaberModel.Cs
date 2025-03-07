@@ -5,6 +5,12 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.Global;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using Terraria.Localization;
+using System;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Alas;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
@@ -15,12 +21,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         public override void SetStaticDefaults()
         {
             Main.RegisterItemAnimation(Item.type, Main.itemAnimations[ItemBase.type]);
-            ItemID.Sets.AnimatesAsSoul[base.Type] = ItemID.Sets.AnimatesAsSoul[ItemBase.type];
+            ItemID.Sets.AnimatesAsSoul[Type] = ItemID.Sets.AnimatesAsSoul[ItemBase.type];
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }  
+
+        }
+
+     
+        string path = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Daylight");
+
+        public override LocalizedText Tooltip => IsVanilla() ? base.Tooltip : ToLocalizedText("Tooltip");
+        public override LocalizedText DisplayName => IsVanilla() ? base.DisplayName : ToLocalizedText("DisplayName");
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.AdamantiteSword);
+
+            Item.CloneDefaults(ItemBase.type);
             Item.damage -= 3;
             Item.DamageType = DamageClass.Melee;
             Item.width = 40;
@@ -30,22 +44,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack += 5;
             Item.UseSound = SoundID.Item1;
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+            {
+                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) 
+                    Item.shoot = ItemBase.shoot;
+            }
+            else Item.shoot = ItemBase.shoot;
+ 
+            Item.shootSpeed = ItemBase.shootSpeed;
             Item.autoReuse = true;
+            Item.channel = true;
             Item.scale = 1;
-            Item.GetGlobalItem<CustomTooltip>().Saber = true;
+            Item.GetGlobalItem<SaberGlobalItem>().DashStrength = new(DashStrength[0], DashStrength[1]);
+            Item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
         }
         public override bool AltFunctionUse(Player player) => true;
-        public override bool CanUseItem(Player player)
-        {
-            if (player.altFunctionUse == 2)
-            {
-                if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
-                {
-                    DashPlayer.JumpDash(player, DashStrength[0], DashStrength[1]);
-                }
-            }
-            return true;
-        }
         public override void AddRecipes()
         {
             List<int> baseRecipe = RecipeUtils.SearchRecipeMaterials(ItemBase.type);
@@ -53,15 +66,43 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 
             Recipe recipe = CreateRecipe();
 
-            foreach(int item in baseRecipe)
+            if (baseRecipe != null && baseRecipeTile != null)
             {
-                recipe.AddIngredient(item, RecipeUtils.SearchAmmountRecipe(ItemBase.type, item));
+                foreach (int item in baseRecipe)
+                {
+                    recipe.AddIngredient(item, RecipeUtils.SearchAmmountRecipe(ItemBase.type, item));
+                }
+                foreach (int item in baseRecipeTile)
+                {
+                    recipe.AddTile(item);
+                }
+                recipe.Register();
             }
-            foreach (int item in baseRecipeTile)
+        }
+
+        public LocalizedText ToLocalizedText(string modifier)
+        {
+            if (Item.ModItem.Mod == RemnantOfTheAncientsMod.RemnantOfTheAncients)
             {
-                recipe.AddTile(item);
+                String name = Item.ModItem.Name;
+                string line = $"Mods.RemnantOfTheAncientsMod.Items.{name}." + modifier;
+                LocalizedText returnText = Language.GetText(line);
+
+                return returnText;
             }
-            recipe.Register();
+            switch (modifier)
+            {
+                case "DisplayName":
+                return base.DisplayName;
+                    case "Tooltip":
+                return base.Tooltip;
+                    default:
+                    return base.Tooltip;
+            }
+        }
+        public bool IsVanilla()
+        {
+            return Item.type <= 5455;
         }
     }
 }

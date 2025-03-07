@@ -9,18 +9,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     public class Universal_Emblem : ModItem
     {
         public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("Universal Emblem");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème universel");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema Universal");
-            //Tooltip.SetDefault(//Tooltip());
+        {    
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        //private string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(15, DamageClass.Generic);
-        //}
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(15);
+        int damageBonus = 15;    
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus);
         public override void SetDefaults()
         {
             Item.width = 10;
@@ -32,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) *= (ModLoader.TryGetMod("CalamityMod", out Mod mod))?1.15f : 1.15f;
+            player.GetDamage(DamageClass.Generic) *= 1.15f;
         }
         public override void AddRecipes()
         {

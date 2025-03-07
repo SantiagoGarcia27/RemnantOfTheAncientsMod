@@ -475,8 +475,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         {
                             CreepersList[a].position = Postions[a];
                         }
-
-
                     }
                     if (npc.type == NPCID.QueenBee)
                     {

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,6 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             Projectile.manualDirectionChange = true;
             Projectile.netImportant = true;
             Projectile.timeLeft = 36000;
+            Projectile.light = 2;
 
         }
         public override bool? CanCutTiles()
@@ -107,16 +109,21 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
                 Projectile.timeLeft = 2; 
             }
         }
-        public float fade = 2.6f;
+        
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect");
-            Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+            Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
 
-            Color color = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
-            Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 3.8f, SpriteEffects.None, 0f);
+            Color color = new Color(38, 85, 0, 50);
+            Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 3.8f, SpriteEffects.None, 1f);
 
             return true;
+        }
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+        {
+            overPlayers.Add(index);
+            base.DrawBehind(index, behindNPCsAndTiles, behindNPCs, behindProjectiles, overPlayers, overWiresUI);
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {

@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             Item.UseSound = SoundID.Item10;
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
-            Item.scale = 0.1f;
+            Item.scale = 0.6f;
             new Shotgun(Item, true, 4, -1, 40,false);
         }
 

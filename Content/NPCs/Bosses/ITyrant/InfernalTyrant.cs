@@ -498,7 +498,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999,
             [
-                ModContent.ItemType<Spike_saber>(), 
+                ModContent.ItemType<SpikeSaber>(), 
                 ModContent.ItemType<TyrantRepeater>(), 
                 ModContent.ItemType<Tyran_Blast>(), 
                 ModContent.ItemType<EvilEyeStaff>() 
