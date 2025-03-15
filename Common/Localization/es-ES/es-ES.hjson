@@ -437,7 +437,7 @@ Mods: {
 					-febo1apolo - eltonyhelou - Jormanas_gt 
 					-LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
 					-RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
-					-Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606 
+					-Shadowrath06 -Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606 
 					-gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo 
 					-Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
 					-Rockerheadd -mateoamii -JuanitoLive -DDS0210 -charlestwi -zakzar01 -Wuchang234 
@@ -445,7 +445,7 @@ Mods: {
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					-moardiego -Slash9511
+					-moardiego -Slash9511 
 					Por darle una oportunidad al mod en sus inicios
 					'''
 			}
@@ -756,7 +756,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedRangedDamage}
-					{$CommonItemTooltip.PercentIncreasedRangedCritChance}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance@1}
 					''' */
 			}
 
@@ -779,7 +779,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
-					{$CommonItemTooltip.PercentIncreasedMagicCritChance}
+					{$CommonItemTooltip.PercentIncreasedMagicCritChance@1}
 					''' */
 			}
 
@@ -835,7 +835,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedDamage}
-					{$CommonItemTooltip.PercentIncreasedCritChance}
+					{$CommonItemTooltip.PercentIncreasedCritChance@1}
 					''' */
 			}
 
@@ -844,7 +844,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
-					{$CommonItemTooltip.PercentIncreasedMeleeCritChance}
+					{$CommonItemTooltip.PercentIncreasedMeleeCritChance@1}
 					''' */
 			}
 
@@ -971,8 +971,8 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			Reinforced_iron_chesplate: {
-				DisplayName: Coraza de hierro reforzado
+			ReinforcedIronChesplate: {
+				// DisplayName: Reinforced Iron Chesplate
 				/* Tooltip:
 					'''
 					{$CommonItemTooltip.ReducesDamageTakenByPercent}
@@ -980,12 +980,12 @@ Mods: {
 					''' */
 			}
 
-			Reinforced_Iron_Greaves: {
+			ReinforcedIronGreaves: {
 				DisplayName: Perneras de hierro reforzado
 				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			Reinforced_iron_Helmet: {
+			ReinforcedIronHelmet: {
 				DisplayName: Casco de hierro reforzado
 				/* Tooltip:
 					'''
@@ -1670,12 +1670,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Reinforced_iron_ore: {
-				DisplayName: Mineral de hierro reforzado
-				Tooltip: ""
+			ReinforcedIronOre: {
+				// DisplayName: Reinforced iron ore
+				// Tooltip: ""
 			}
 
-			Reinforced_ironBar: {
+			ReinforcedIronBar: {
 				DisplayName: Lingote de hierro reforzado
 				Tooltip: ""
 			}
@@ -2320,13 +2320,13 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Reinforced_Iron_Broadsword: {
+			ReinforcedIronBroadsword: {
 				DisplayName: Espada larga de hierro reforzado
 				Tooltip: ""
 			}
 
 			AdamantiteSaber: {
-				DisplayName: Sable de adamantita
+				DisplayName: Cimitarra de adamantita
 				// Tooltip: ""
 			}
 
@@ -2410,7 +2410,7 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			Reinforced_IronSaber: {
+			ReinforcedIronSaber: {
 				// DisplayName: Reinforced Iron Saber
 				// Tooltip: ""
 			}
@@ -3004,158 +3004,158 @@ Mods: {
 			}
 
 			EndlesBlueFlare: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesBlueSolution: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesCoperCoin: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesDarkBlueSolution: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesGel: {
-				DisplayName: Gel eterno
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesGoldCoin: {
-				DisplayName: Moneda de oro eterna
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesGreenSolution: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesPlatinumCoin: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesPurpleSolution: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesRedSolution: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesSilverCoin: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesSnowBall: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesStake: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesAccelerationRound: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesAcidRound: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesArcticArrow: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesBloodfireArrow: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesBloodfireBullet: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesElysianArrow: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesEnhancedNanoRound: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesGodSlayerSlug: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesHolyFireBullet: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesHyperiusBullet: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesIcicleArrow: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesIcyBullet: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesNapalmArrow: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesTerraArrow: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesTerraBullet: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndleSuperballBullet: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesVanquisherArrow: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			EndlesVeriumBullet: {
-				DisplayName: "{0} eterna"
-				Tooltip: "{0}"
+				// DisplayName: "{0}"
+				// Tooltip: "{0}"
 			}
 
 			GarritasDoG: {
@@ -3703,67 +3703,67 @@ Mods: {
 			}
 
 			EndlessBoneQuiver: {
-				// DisplayName: Endless Bone Quiver
+				DisplayName: Carcaj de hueso eterno
 				// Tooltip: ""
 			}
 
 			EndlessChlorophyteQuiver: {
-				// DisplayName: Endless Chlorophyte Quiver
+				DisplayName: Carcaj de clorofita eterno
 				// Tooltip: ""
 			}
 
 			EndlessCurcedQuiver: {
-				// DisplayName: Endless Curced Quiver
+				DisplayName: Carcaj maldito eterno
 				// Tooltip: ""
 			}
 
 			EndlessDesertQuiver: {
-				// DisplayName: Endless Desert Quiver
+				DisplayName: Carcaj desértico eterno
 				// Tooltip: ""
 			}
 
 			EndlessFlamingQuiver: {
-				// DisplayName: Endless Flaming Quiver
+				DisplayName: Carcaj igneo eterno
 				// Tooltip: ""
 			}
 
 			EndlessFrostburnQuiver: {
-				// DisplayName: Endless Frostburn Quiver
+				DisplayName: Carcaj de fuego helado eterno
 				// Tooltip: ""
 			}
 
 			EndlessHellQuiver: {
-				// DisplayName: Endless Hell Quiver
+				DisplayName: Carcaj infernal eterno
 				// Tooltip: ""
 			}
 
 			EndlessHolyQuiver: {
-				// DisplayName: Endless Holy Quiver
+				DisplayName: Carcaj sagrado eterno
 				// Tooltip: ""
 			}
 
 			EndlessIchorQuiver: {
-				// DisplayName: Endless Ichor Quiver
+				DisplayName: Carcaj de icor eterno
 				// Tooltip: ""
 			}
 
-			EndlessJestQuiver: {
-				// DisplayName: Endless Jest Quiver
+			EndlessJesterQuiver: {
+				DisplayName: Carcaj de bufón eterno
 				// Tooltip: ""
 			}
 
 			EndlessLuminiteQuiver: {
-				// DisplayName: Endless Luminite Quiver
+				DisplayName: Carcaj de luminita eterno
 				// Tooltip: ""
 			}
 
 			EndlessUnholyQuiver: {
-				// DisplayName: Endless Unholy Quiver
+				DisplayName: Carcaj infame eterno
 				// Tooltip: ""
 			}
 
 			EndlessVenomQuiver: {
-				// DisplayName: Endless Venom Quiver
+				DisplayName: Carcaj de ponsoña eterno
 				// Tooltip: ""
 			}
 
@@ -3788,7 +3788,7 @@ Mods: {
 			}
 
 			EndlesGoldPouch: {
-				// DisplayName: Endles Gold Pouch
+				// DisplayName: Endles Golden Pouch
 				// Tooltip: ""
 			}
 
@@ -3818,17 +3818,17 @@ Mods: {
 			}
 
 			EndlessFirePouch: {
-				// DisplayName: Endless Fire Pouch
+				DisplayName: Petaca ignea eterna
 				// Tooltip: ""
 			}
 
 			EndlessIcePouch: {
-				// DisplayName: Endless Ice Pouch
+				DisplayName: Petaca helada eterna
 				// Tooltip: ""
 			}
 
 			EndlessIchorPouch: {
-				// DisplayName: Endless Ichor Pouch
+				DisplayName: Petaca de icor eterna
 				// Tooltip: ""
 			}
 
@@ -3838,12 +3838,12 @@ Mods: {
 			}
 
 			EndlessTombPouch: {
-				// DisplayName: Endless Tomb Pouch
+				DisplayName: Petaca de tumba eterna
 				// Tooltip: ""
 			}
 
 			EndlessWrathSlimePouch: {
-				// DisplayName: Endless Wrath Slime Pouch
+				DisplayName: Petaca gelatinosa eterna
 				// Tooltip: ""
 			}
 
@@ -3902,19 +3902,133 @@ Mods: {
 				Tooltip: Evoluciona su daño a medida que avanzas en la progresión
 			}
 
-			ReinforcedIronSaber: {
-				// DisplayName: Reinforced Iron Saber
-				// Tooltip: ""
-			}
-
 			TungstenSaber: {
-				// DisplayName: Tungsten Saber
+				DisplayName: Sable de tungsteno
 				// Tooltip: ""
 			}
 
 			DesertGyph: {
-				// DisplayName: Desert Gyph
+				DisplayName: Glifo desértico
+				Tooltip: Convoca al Aniquilador del desierto
+			}
+
+			LeatherQuiver: {
+				DisplayName: Carcaj de cuero
+				Tooltip: Aumenta la velocidad y el daño de las flechas en {0}%
+			}
+
+			ReinforcedAmmoBox: {
+				DisplayName: Caja de munición reforzada
+				Tooltip:
+					'''
+					Aumenta la probabilidad aumentar la penetración de las balas un {0}%
+					Tus balas aumentan su penetración en {1}
+					Ganas una probabilidad del {2}% de de disparar una bala reforzada
+					'''
+			}
+
+			ReinforcedIronBullet: {
+				DisplayName: Bala de hierro reforzado
 				// Tooltip: ""
+			}
+
+			EndlessChlorophytePouch: {
+				DisplayName: Petaca de clorofita eterna
+				// Tooltip: ""
+			}
+
+			EndlessCrystalPouch: {
+				DisplayName: Petaca de cristal eterna
+				// Tooltip: ""
+			}
+
+			EndlessCursedPouch: {
+				DisplayName: Petaca maldita eterna
+				// Tooltip: ""
+			}
+
+			EndlessExplosivePouch: {
+				DisplayName: Petaca explosiva eterna
+				// Tooltip: ""
+			}
+
+			EndlessGoldPouch: {
+				DisplayName: Petaca de oro eterna
+				// Tooltip: ""
+			}
+
+			EndlessHighVelocityPouch: {
+				DisplayName: Petaca de alta velocidad eterna
+				// Tooltip: ""
+			}
+
+			EndlessLuminitePouch: {
+				DisplayName: Petaca de luminita eterna
+				// Tooltip: ""
+			}
+
+			EndlessMeteoritePouch: {
+				DisplayName: Petaca de meteorito eterna
+				// Tooltip: ""
+			}
+
+			EndlessNanoPouch: {
+				DisplayName: Petaca de nanobalas eterna
+				// Tooltip: ""
+			}
+
+			EndlessPartyPouch: {
+				DisplayName: Petaca fiestera eterna
+				// Tooltip: ""
+			}
+
+			EndlessReinforcedIronPouch: {
+				DisplayName: Petaca de hierro reforzado eterna
+				// Tooltip: ""
+			}
+
+			EndlessSilverPouch: {
+				DisplayName: Petaca de plata eterna
+				// Tooltip: ""
+			}
+
+			EndlessVenomPouch: {
+				DisplayName: Petaca de ponsoña eterna
+				// Tooltip: ""
+			}
+
+			NecroAmmoBox: {
+				DisplayName: Caja de munición osea
+				Tooltip:
+					'''
+					Aumenta la probabilidad aumentar la penetración de las balas un {0}%
+					Tus balas aumentan su penetración en {1}
+					Ganas la probablilidad de disparar adicionalmente los siguientes proyectiles:
+					{2}% bala reforzada y {3}% bala de tumba
+					'''
+			}
+
+			TitaniumAmmoBox: {
+				DisplayName: Caja de munición de titanio
+				Tooltip:
+					'''
+					Aumenta la probabilidad aumentar la penetración de las balas un {0}%
+					Tus balas aumentan su penetración en {1}
+					Ganas la probablilidad de disparar adicionalmente los siguientes proyectiles:
+					{2}% bala reforzada, {3}% bala de tumba y {4}% bala de la maldad del mundo
+					'''
+			}
+
+			LizzardAmmoBox: {
+				DisplayName: Caja de munición de lihzahrd
+				Tooltip:
+					'''
+					Aumenta la probabilidad aumentar la penetración de las balas un {0}%
+					Tus balas aumentan su penetración en {1}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance@2}
+					Ganas la probablilidad de disparar adicionalmente los siguientes proyectiles:
+					{3}% bala reforzada, {4}% bala de tumba, {5}% bala de la maldad del mundo y {6}% bala explosiva
+					'''
 			}
 		}
 
@@ -3929,7 +4043,7 @@ Mods: {
 					SangarUtilities: {
 						BossChecklistIntegration: {
 							EntryName: Aniquilador Del Desierto
-							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertChest] en el desierto
+							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertGlyph] en el desierto
 							DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 						}
 					}
@@ -4027,6 +4141,7 @@ Mods: {
 			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
 			HallowedZombie.DisplayName: Zombi blindado
 			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
+			// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
 		}
 
 		Projectiles: {
@@ -4166,6 +4281,9 @@ Mods: {
 			// BladeOfGrassLeaftClone.DisplayName: Blade Of Grass Leaft Clone
 			// SwordSlash.DisplayName: Sword Slash
 			// FlinxMinionClone.DisplayName: Flinx Minion Clone
+			// ReinforcedBullet.DisplayName: Reinforced Bullet
+			// ReinforcedBulletP.DisplayName: Reinforced Bullet P
+			// SaberSwingProgectile.DisplayName: Saber Swing Progectile
 		}
 
 		Tiles: {
@@ -4349,7 +4467,135 @@ Mods: {
 					Tooltip: ""
 				}
 
-				// Headers.ReaperSouls: Reaper Souls Header
+				Headers: {
+					// ReaperSouls: Reaper Souls Header
+					// CalamityReaperSouls: Calamity Reaper Souls Header
+				}
+
+				ToggleDesertScourgeSoul: {
+					// Label: Toggle Desert Scourge Soul
+					// Tooltip: ""
+				}
+
+				ToggleCrabulonSoul: {
+					// Label: Toggle Crabulon Soul
+					// Tooltip: ""
+				}
+
+				ToggleCalamityCorruptBossSoul: {
+					// Label: Toggle Calamity Corrupt Boss Soul
+					// Tooltip: ""
+				}
+
+				ToggleSlimeGodSoul: {
+					// Label: Toggle Slime God Soul
+					// Tooltip: ""
+				}
+
+				ToggleCryogenSoul: {
+					// Label: Toggle Cryogen Soul
+					// Tooltip: ""
+				}
+
+				ToggleAquaticSourgeSoul: {
+					// Label: Toggle Aquatic Sourge Soul
+					// Tooltip: ""
+				}
+
+				ToggleBrimstonElementalSoul: {
+					// Label: Toggle Brimston Elemental Soul
+					// Tooltip: ""
+				}
+
+				ToggleCalamitasCloneSoul: {
+					// Label: Toggle Calamitas Clone Soul
+					// Tooltip: ""
+				}
+
+				ToggleLeviatanSoul: {
+					// Label: Toggle Leviatan Soul
+					// Tooltip: ""
+				}
+
+				ToggleAstrumAureusSoul: {
+					// Label: Toggle Astrum Aureus Soul
+					// Tooltip: ""
+				}
+
+				ToggleAstrumDeusSoul: {
+					// Label: Toggle Astrum Deus Soul
+					// Tooltip: ""
+				}
+
+				TogglePlaguebringerGoliathSoul: {
+					// Label: Toggle Plaguebringer Goliath Soul
+					// Tooltip: ""
+				}
+
+				ToggleRavagerSoul: {
+					// Label: Toggle Ravager Soul
+					// Tooltip: ""
+				}
+
+				ToggleDragonFollySoul: {
+					// Label: Toggle Dragon Folly Soul
+					// Tooltip: ""
+				}
+
+				ToggleProfanedGuardianCommanderSoul: {
+					// Label: Toggle Profaned Guardian Commander Soul
+					// Tooltip: ""
+				}
+
+				ToggleProvidencedSoul: {
+					// Label: Toggle Providenced Soul
+					// Tooltip: ""
+				}
+
+				ToggleSignusSoul: {
+					// Label: Toggle Signus Soul
+					// Tooltip: ""
+				}
+
+				ToggleStormWeaverSoul: {
+					// Label: Toggle Storm Weaver Soul
+					// Tooltip: ""
+				}
+
+				ToggleCeaselessVoidSoul: {
+					// Label: Toggle Ceaseless Void Soul
+					// Tooltip: ""
+				}
+
+				TogglePolterghastSoul: {
+					// Label: Toggle Polterghast Soul
+					// Tooltip: ""
+				}
+
+				ToggleOldDukeSoul: {
+					// Label: Toggle Old Duke Soul
+					// Tooltip: ""
+				}
+
+				ToggleDevourerofGodsSoul: {
+					// Label: Toggle Devourerof Gods Soul
+					// Tooltip: ""
+				}
+
+				ToggleYharonSoul: {
+					// Label: Toggle Yharon Soul
+					// Tooltip: ""
+				}
+
+				ToggleExoMechSoul: {
+					// Label: Toggle Exo Mech Soul
+					// Tooltip: ""
+				}
+
+				ToggleSuprmeCalamitasSoul: {
+					// Label: Toggle Suprme Calamitas Soul
+					// Tooltip: ""
+				}
 			}
 
 			ConfigServer: {

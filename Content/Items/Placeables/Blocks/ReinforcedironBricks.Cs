@@ -28,14 +28,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Blocks
             Item.consumable = true;
 			Item.value = new Item(ItemID.IronBrick).value;
             Item.rare = new Item(ItemID.IronBrick).rare;
-            Item.createTile = TileType<ReinforcedironBricksT>();
+            Item.createTile = TileType<ReinforcedIronBricksT>();
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe(15)
 			.AddIngredient(ItemID.StoneBlock, 15)
-			.AddIngredient<Reinforced_ironBar>()
+			.AddIngredient<ReinforcedIronBar>()
 			.AddTile(TileID.Furnaces)
 			.Register();
 		}

@@ -53,6 +53,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             RemnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
             player.AddEffect<DesertMedalionEffect>(base.Item);
             player.AddEffect<FrostBarrierEffect>(base.Item);
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier = true;
             player.AddEffect<TyrantMarkEnemyProjectileSizeEffect>(base.Item);
             player.AddEffect<TyrantMarkEnemyProjectileSpeedEffect>(base.Item);
             TyrantsMark.AddEffects(player, MovmentSpeedBonusBonus);

@@ -46,7 +46,7 @@ namespace RemnantOfTheAncientsMod
         [Range(0f, 9999f)]
         [Increment(100f)]
         [DrawTicks]
-        [DefaultValue(999f)]
+        [DefaultValue(9999f)]
        // [//Tooltip("Defines the max stack of items")]
         public float MaxItemStackConf { get; set; }
         #endregion

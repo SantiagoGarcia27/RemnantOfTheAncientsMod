@@ -6,10 +6,10 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
+namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 {
     [AutoloadEquip(EquipType.Head)]
-	public class Reinforced_iron_Helmet : ModItem
+	public class ReinforcedIronHelmet : ModItem
 	{
 		public override void SetStaticDefaults()
 		{	
@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == ModContent.ItemType<Reinforced_iron_chesplate>() && legs.type == ModContent.ItemType<Reinforced_Iron_Greaves>();
+			return body.type == ModContent.ItemType<ReinforcedIronChesplate>() && legs.type == ModContent.ItemType<ReinforcedIronGreaves>();
 		}
 		int DamageSetBonus = 2;
 		int DefenseSetBonus = 2;
@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.IronHelmet, ItemID.IronBar))
+			.AddIngredient(ModContent.ItemType<ReinforcedIronBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.IronHelmet, ItemID.IronBar))
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

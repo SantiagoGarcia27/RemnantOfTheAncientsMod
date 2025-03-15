@@ -133,8 +133,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
             var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Fargos/Eternity/FrostBarrier");
             Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
             Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, Color.White, 0f, origin, 1, SpriteEffects.None, 1f);
+            return false;
+        }
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+        {        
+            overPlayers.Add(index);
+            base.DrawBehind(index, behindNPCsAndTiles, behindNPCs, behindProjectiles, overPlayers, overWiresUI);
 
-            return true;
         }
     }
 }

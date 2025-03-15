@@ -6,10 +6,10 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
+namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 {
     [AutoloadEquip(EquipType.Body)]
-	public class Reinforced_iron_chesplate : ModItem
+	public class ReinforcedIronChesplate : ModItem
 	{
 		public override void SetStaticDefaults()
 		{		
@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
         public override void AddRecipes()
 		{
 			CreateRecipe()
-            .AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.IronChainmail, ItemID.IronBar))
+            .AddIngredient(ModContent.ItemType<ReinforcedIronBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.IronChainmail, ItemID.IronBar))
             .AddTile(TileID.Anvils)
 			.Register();
 		}

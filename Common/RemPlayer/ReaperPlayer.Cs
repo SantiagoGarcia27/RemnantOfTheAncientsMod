@@ -53,8 +53,6 @@ public class ReaperPlayer : ModPlayer
 }
 public class ReaperEffectsPlayer : ModPlayer
 {
-    
-  
     private static List<NPC> _hallucinationCandidates = [];
     public bool ReaperSoulBoost;
 
@@ -111,6 +109,12 @@ public class ReaperEffectsPlayer : ModPlayer
     /// <param name="value"></param>
     public static void SetSoulsToggle(int type, bool value)
     {
+        if(RemnantOfTheAncientsMod.RemnantOfTheAncientsMod.CalamityMod != null)
+        {
+
+        }
+
+
         if (type == NPCType<DesertAniquilator>())
             GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul = value;
         else if (type == NPCType<FrozenAssaulter>())
@@ -170,6 +174,8 @@ public class ReaperEffectsPlayer : ModPlayer
                     GetInstance<ConfigReaperSouls>().ToggleMoonlordSoul = value;
                     break;
             }
+
+
         }
     }
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
@@ -412,9 +418,14 @@ public class ReaperSoulsPlayer : ModPlayer
         {
             foreach (NPC npc in NpcList.BossList[CalamityMod])
             {
-                string TagDamage = npc.ModNPC.GetType().Name + "ReaperUpgrade";
-                SoulsUpgradesMaybeLoaded[npc.type] = tag.GetBool(TagDamage);
-                //SoulsUpgradesMaybeLoadedActive[npc.type] = tag.GetFloat(TagDamage + "Active");
+                string TagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
+                SoulsUpgradesMaybeLoaded[npc.type] = tag.GetBool(TagName);
+
+                if(tag.ContainsKey(TagName+ "Active"))
+                {
+                   float value = tag.GetAsLong(TagName + "Active");
+                   SoulsUpgradesMaybeLoadedActive[npc.type] = value;
+                }
             }
         }
     }

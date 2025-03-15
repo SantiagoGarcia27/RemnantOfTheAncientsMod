@@ -33,9 +33,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         public override LocalizedText DisplayName => IsVanilla() ? base.DisplayName : ToLocalizedText("DisplayName");
         public override void SetDefaults()
         {
-
             Item.CloneDefaults(ItemBase.type);
-            Item.damage -= 3;
+            float damage = Utils1.GetValueFromPorcentage(ItemBase.damage, 75f);
+            Item.damage = (int)damage;
             Item.DamageType = DamageClass.Melee;
             Item.width = 40;
             Item.height = 80;
@@ -55,6 +55,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             Item.autoReuse = true;
             Item.channel = true;
             Item.scale = 1;
+            Item.noUseGraphic = true;
             Item.GetGlobalItem<SaberGlobalItem>().DashStrength = new(DashStrength[0], DashStrength[1]);
             Item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
         }

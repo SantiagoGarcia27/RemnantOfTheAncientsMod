@@ -295,11 +295,14 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static void FindAndReplaceTooltip(List<TooltipLine> tooltips, string target, string replace)
         {
-            var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
-            if (tip != null)
+          //  var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+            foreach (TooltipLine line in tooltips)
             {
-                var text = tip.Text.Replace(target, replace);
-                tip.Text = text;
+                if (line != null)
+                {
+                    var text = line.Text.Replace(target, replace);
+                    line.Text = text;
+                }
             }
         }
         public static void FindAndReplaceTooltip(List<TooltipLine> tooltips, string target, string replace, string TooltipName)

@@ -180,7 +180,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
 
             if (npc.type == NPCType<Crimsonzombi>()) ZombieOreLoot(npcLoot, ItemID.CrimtaneOre, ItemID.CrimtaneBar);
 
-            if (npc.type == NPCType<ReinforcedIronZombie>()) ZombieOreLoot(npcLoot, ItemType<Reinforced_iron_ore>(), ItemType<Reinforced_ironBar>());
+            if (npc.type == NPCType<ReinforcedIronZombie>()) ZombieOreLoot(npcLoot, ItemType<ReinforcedIronOre>(), ItemType<ReinforcedIronBar>());
             if (npc.type == NPCType<MoltenZombie>()) ZombieOreLoot(npcLoot, ItemID.Hellstone, ItemID.HellstoneBar);
             if (npc.type == NPCType<NightZombie>())
             {
@@ -196,7 +196,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             }
             if (npc.type == NPCType<ArmoredSlime>())
             {
-                ZombieOreLoot(npcLoot, ItemType<Reinforced_iron_ore>(), ItemType<Reinforced_ironBar>());
+                ZombieOreLoot(npcLoot, ItemType<ReinforcedIronOre>(), ItemType<ReinforcedIronBar>());
                 ItemDropRule.Common(ItemID.Gel, 1, 10, 15);
             }
             if (npc.type == NPCType<CobaltZombie>()) ZombieOreLoot(npcLoot, ItemID.CobaltOre, ItemID.CobaltBar);

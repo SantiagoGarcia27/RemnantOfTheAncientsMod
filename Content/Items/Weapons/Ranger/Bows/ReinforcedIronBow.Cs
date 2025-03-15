@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
         public override void AddRecipes()
         { 
 CreateRecipe()
-            .AddIngredient(ItemType<Reinforced_ironBar>(), 7)
+            .AddIngredient(ItemType<ReinforcedIronBar>(), 7)
             .AddTile(TileID.Anvils)
             .Register();
         }

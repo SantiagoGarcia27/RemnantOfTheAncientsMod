@@ -15,16 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Golden Shuriken");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Shuriken doré");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Shuriken dorado");
-
-            if(RemnantOfTheAncientsMod.CalamityMod != null)
-            {
-                //Tooltip.SetDefault("Stealth Strike double the enemy penetration");
-                //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "El ataque con sigilo tiene el doble de penetración de enemigos");
-               //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Stealth Strike double la pénétration de l'ennemi");
-            }
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -50,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
             Item.shoot = ModContent.ProjectileType<Golden_ShurikenP>();
             Item.shootSpeed = 10f;
             Item.useTurn = true;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.noUseGraphic = true;
         }

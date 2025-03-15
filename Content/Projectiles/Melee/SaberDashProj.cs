@@ -32,10 +32,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
 		float counter = 0;
 		int counterMax = 0;
-		public override void AI()
+        bool FullCharge = false;
+        public override void AI()
 		{
 			Player player = Main.player[Projectile.owner];
             Item BaseItem = ContentSamples.ItemsByType[(int)Projectile.ai[2]];
+			
 
             Projectile.Center = player.Center;
 
@@ -54,7 +56,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			else
 			{
 				Color color = new Color(255, 255, 255);
-				Lighting.AddLight(Projectile.Center, new Vector3(color.R, color.G, color.B));
+				if (!FullCharge)
+				{
+					Lighting.AddLight(Projectile.Center, TorchID.Bone);
+					Rectangle rectangle = new Rectangle((int)(Projectile.Center.X - 10), (int)(Projectile.Center.Y - 10), 20, 20);
+					CombatText.NewText(rectangle, Color.Cyan, "!!!", true);
+					FullCharge = true;
+                }
 
 				if (Main.mouseLeft)
 				{

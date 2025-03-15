@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ModLoader.Utilities;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron;
+using RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 using RemnantOfTheAncientsMod.Common.Systems;
@@ -358,7 +358,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<Reinforced_iron_ore>());
+            Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<ReinforcedIronOre>());
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -378,9 +378,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnSpawn(IEntitySource source)
         {
-            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<Reinforced_iron_Helmet>()].defense;
-            int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<Reinforced_iron_chesplate>()].defense;
-            int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<Reinforced_Iron_Greaves>()].defense;
+            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<ReinforcedIronHelmet>()].defense;
+            int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<ReinforcedIronChesplate>()].defense;
+            int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<ReinforcedIronGreaves>()].defense;
             int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
             NPC.defense += Defense;
         }

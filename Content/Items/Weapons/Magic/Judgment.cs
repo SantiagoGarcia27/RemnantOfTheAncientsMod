@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			for (int i = 0; i < 1; i++)
 			{
 				position = target - new Vector2(Main.rand.Next(-10, 10) * 16, 600f);
-				position.Y -= (100 * i);
+				position.Y -= 100 * i;
 				Vector2 heading;
 				heading = new Vector2(0, 20);
 				heading.Normalize();

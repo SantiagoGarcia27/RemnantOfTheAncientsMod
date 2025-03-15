@@ -8,7 +8,7 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
-	public class Reinforced_Iron_Broadsword : ModItem
+	public class ReinforcedIronBroadsword : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemType<Reinforced_ironBar>(), 8)
+			.AddIngredient(ItemType<ReinforcedIronBar>(), 8)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

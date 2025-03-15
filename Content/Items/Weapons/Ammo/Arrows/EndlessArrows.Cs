@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Arrows
         public override Item ItemBase => new(ItemID.IchorArrow);
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Arrows/" + Name;
     }
-    public class EndlessJestQuiver : EndlessAmmo
+    public class EndlessJesterQuiver : EndlessAmmo
     {
         public override Item ItemBase => new(ItemID.JestersArrow);
         public override string TexturePath => "RemnantOfTheAncientsMod/Content/Items/Weapons/Ammo/Arrows/" + Name;

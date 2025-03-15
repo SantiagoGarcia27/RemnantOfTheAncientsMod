@@ -2,6 +2,7 @@
 using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
@@ -59,8 +60,9 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         public static IItemDropRule InfernumModeCommonDrop(int itemId, int chanceDenominator = 1, int minimumDropped = 1, int maximumDropped = 1, int chanceNumerator = 1)
         {
             return new ItemDropWithConditionRule(itemId, chanceDenominator, minimumDropped, maximumDropped, new RemnantConditions.IsInfernum(), chanceNumerator);
-        }
+        }  
     }
+
 
     public class DropPerPlayerOnThePlayerWithMultipleConditions : CommonDrop
     {

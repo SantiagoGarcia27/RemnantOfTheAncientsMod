@@ -24,6 +24,7 @@ using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Items.Items.Guides;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -435,7 +436,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (item is not null)
                 {
-                    decimal discount = Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat != 0 ? (decimal)(1f - (Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat / 2 / 100f)) : 1;
+                    decimal discount = Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat != 0 ? (decimal)(1f - (Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat / 2 / 100f)) : 1;
                     discount = (float)discount > 0.1f ? discount : (decimal)0.1;
 
                     item.shopCustomPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);
@@ -550,7 +551,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             if (shop.NpcType == NPCID.ArmsDealer)
             {
-                shop.Add(new Item(ItemType<QuickDraw>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) });
+                shop.Add(new Item(ItemType<QuickDraw>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) })
+                .Add(new Item(ItemType<ReinforcedAmmoBox>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, Condition.DownedEyeOfCthulhu)
+                .Add(new Item(ItemID.ChlorophyteBullet) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 5, 0) }, Condition.DownedPlantera);
+
+                if(RemnantOfTheAncientsMod.CalamityMod == null)
+                {
+                    shop.Add(new Item(ItemID.Uzi) { shopCustomPrice = Utils1.FormatMoney(0, 0, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode, Condition.InJungle);
+                }
+
             }
             if (shop.NpcType == NPCID.SkeletonMerchant)
             {

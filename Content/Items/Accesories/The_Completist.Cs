@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -28,9 +29,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.autoReuse = true;
             Item.useAnimation = 15;
             Item.useTime = 10;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.consumable = true;
             Item.createTile = TileType<Tiles.Completist>();
+            Item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 10;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

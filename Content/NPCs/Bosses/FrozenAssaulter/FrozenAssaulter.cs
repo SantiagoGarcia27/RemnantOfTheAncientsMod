@@ -29,6 +29,8 @@ using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+using SangarUtilities.Common;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
@@ -104,15 +106,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             }
 
 
-            if (SangarUtilities.Common.DificultyUtils.InfernumMode != null &&SangarUtilities.Common.DificultyUtils.InfernumMode)
+            if (RemnantOfTheAncientsMod.InfernumMod != null && DificultyUtils.InfernumMode)
             {
                 FrozenAssaulterInfernum.InfernumAi(NPC, currentPhase, attackCounter);
                 CheckPhase();
                 CheckDistance(distance, NPC);
-                if (RemnantOfTheAncientsMod.FargosSoulMod != null)
-                {
-                    EternityIA(target);
-                }
+               
+            }
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+            {
+                EternityIA(target);
             }
             else
             {
@@ -276,16 +279,28 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         {
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                if (SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode)
+                if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode)
                 {
-                    int MainShootRate = ((SangarUtilities.Common.DificultyUtils.MasochistMode ? 4 : 8) * (!SangarUtilities.Common.DificultyUtils.InfernumMode ? 1 : 2));
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Chilled, 0, 0, 1);
+                        RemnantPlayer.ApplyBuffToAllPlayers(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 0, 0, 1);
+                    }
+                    else
+                    {
+                        target.AddBuff(BuffID.Chilled, 1);
+                        target.AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 1);
+                    }
+
+
+                    int MainShootRate = ((DificultyUtils.MasochistMode ? 4 : 8) * (!DificultyUtils.InfernumMode ? 1 : 2));
                     if (attackCounter % MainShootRate == 0 && currentPhase != 2)
                     {
                         EthernityCommonShoot(target);
                     }
                     if (currentPhase > 2)
                     {
-                        for (int i = SangarUtilities.Common.DificultyUtils.MasochistMode ? 5 : 4; i > (SangarUtilities.Common.DificultyUtils.MasochistMode ? 0 : 3); i--)
+                        for (int i = DificultyUtils.MasochistMode ? 5 : 4; i > (DificultyUtils.MasochistMode ? 0 : 3); i--)
                         {
                             EthernityExplosionIA(i * 10);
                         }
@@ -298,7 +313,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                         }
                         if (currentPhase >= 4)
                         {
-                            if (!SangarUtilities.Common.DificultyUtils.MasochistMode)
+                            if (!DificultyUtils.MasochistMode)
                             {
                                 EthernityExplosionIA(currentPhase == 4 ? 200 : 500);
                             }

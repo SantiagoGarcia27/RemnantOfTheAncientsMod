@@ -10,7 +10,7 @@ namespace RemnantOfTheAncientsMod
 	{
 
 		public bool inUse = false;
-		public override string FunctionalBackgroundTexture => "RemnantOfTheAncientsMod/Common/Player/ReaperAccessory";
+		public override string FunctionalBackgroundTexture => "RemnantOfTheAncientsMod/Common/RemPlayer/ReaperAccessory";
 		public override string FunctionalTexture => "RemnantOfTheAncientsMod/Content/Items/Accesories/ReaperChalice";
 
 		public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)

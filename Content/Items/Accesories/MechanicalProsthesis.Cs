@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -26,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Ranged) *= 1.05f;
-            player.GetModPlayer<RemnantPlayer>().ChargeBonus += 1;
+            player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged] += 1;
             player.GetModPlayer<RemnantPlayer>().AutoCharge = true;
         }
     }

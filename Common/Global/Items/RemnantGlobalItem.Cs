@@ -19,6 +19,7 @@ using Terraria.GameContent;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.WeaponsRework;
 using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -357,11 +358,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					type = ProjectileID.JestersArrow;
 					base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
 				}
+				if(item.useAmmo == AmmoID.Arrow)
+				{
+					float bonus = player.GetModPlayer<StatPlayer>().ArrowSpeedBonus;
+
+                    velocity *= bonus;
+					//velocity.Normalize();
+				}
 				if (IsRepeater)
 				{
                     velocity = velocity.RotatedByRandom(MathHelper.ToRadians(1+(UseTimeReduction * 20)));
                 }		
 			}
+	
 
 			else base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
@@ -396,6 +405,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					}
 				}
             }
+			if(item.DamageType == DamageClass.Ranged)
+			{
+				var extraProjectile = player.GetModPlayer<StatPlayer>().GetRangerExtraProjectile(item.useAmmo);
+
+				if (extraProjectile != null)
+				{
+					foreach (ExtraProjectile proj in extraProjectile)
+					{
+						if (Main.rand.NextBool(100 / proj.Chance))
+						{
+							Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, proj.ProjectileType, damage, knockback, player.whoAmI);
+						}
+					}
+				}
+                
+			}
 
 
 

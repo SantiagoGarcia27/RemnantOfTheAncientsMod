@@ -13,15 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Psychic Scroll");
-			//Tooltip.SetDefault("You become invunerable for 4s" +
-			//	"\nBut you cant use items for 8s");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"Parchemin psychique");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French),"tu es invulnérable pendant 4s" +
-			//  "\nMais vous ne pouvez pas utiliser d'objets pendant 8 secondes");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Pergamino psíquico");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish),"Eres invulnerable durante 4s" + 
-			//"\nPero no puedes usar objetos por 8s");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -44,34 +35,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 			Item.buffTime = 250;
 			Item.expert = true;
 		}
-		//public override bool? UseItem(Player player)
-		//{
-		//	bool active = false;
-		//	if (player.GetModPlayer<RemnantPlayer>().PlayerHaveScroll())
-		//	{
-		//		int currentScrollId = player.GetModPlayer<RemnantPlayer>().SearchCurrenScrollEffect();
-
-		//		if (currentScrollId != -1)
-		//		{
-		//			if (!active)
-		//			{
-		//				player.ClearBuff(currentScrollId);
-		//				player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
-
-		//			}
-		//			return false;
-		//		}
-		//	}
-		//	else
-		//	{
-		//		if (!active)
-		//		{
-		//			player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(1, 0, 0, 5));
-		//		}
-		//		return false;
-		//	}
-		//	return base.UseItem(player);
-		//}
 		public override void OnConsumeMana(Player player, int manaConsumed)
 		{
 			if (player.GetModPlayer<RemnantPlayer>().PlayerHaveScroll())
@@ -81,7 +44,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 				if (currentScrollId != -1)
 				{
 					player.ClearBuff(currentScrollId);
-					int time = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
 
                     player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
 

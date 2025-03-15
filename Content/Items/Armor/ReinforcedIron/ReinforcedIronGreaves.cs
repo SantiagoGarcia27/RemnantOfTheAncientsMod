@@ -6,10 +6,10 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
+namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public class Reinforced_Iron_Greaves : ModItem
+	public class ReinforcedIronGreaves : ModItem
 	{
 		public override void SetStaticDefaults()
 		{	
@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reinforced_Iron
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-            .AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.IronGreaves, ItemID.IronBar))
+            .AddIngredient(ModContent.ItemType<ReinforcedIronBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.IronGreaves, ItemID.IronBar))
             .AddTile(TileID.Anvils)
 			.Register();
 		}

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.Projectiles;
@@ -72,7 +73,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     projectile.friendly = true;
                 }
             }
-            
+
+            Item heldItem = Main.LocalPlayer.HeldItem;
+            if (heldItem != null && !heldItem.IsAir)
+            {
+                float pierceStrikeChance = Main.LocalPlayer.GetModPlayer<StatPlayer>().GetProjectilePenetrationChance(DamageClass.Ranged);
+                if (pierceStrikeChance > 0 && projectile.CountsAsClass(DamageClass.Ranged) && heldItem.useAmmo == AmmoID.Bullet && Main.rand.NextBool((int)(100/ pierceStrikeChance)))
+                {
+                    int bonus = (int)Main.LocalPlayer.GetModPlayer<StatPlayer>().GetProjectilePenetration(DamageClass.Ranged);
+                    projectile.penetrate += bonus;
+                }
+            }
         }
         public static void FiilMeleeWeaponEffectsList()
         {
@@ -270,9 +281,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
             RemnantPlayer RemnantPlayer = Main.player[Main.myPlayer].GetModPlayer<RemnantPlayer>();
             if (Reaper.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn )
             {
-                projectile.width *= (int)1.5f;
-                projectile.height *= (int)1.5f;
-                projectile.scale *= 2.5f;
+                float newWidth = projectile.width * 1.5f;
+                float newHeight = projectile.height * 1.5f;
+
+                projectile.width = (int)newWidth;
+                projectile.height = (int)newHeight;
+                projectile.scale += 1.5f;
+
                 if (Spears.Contains(projectile.type))
                 {
                     projectile.velocity *= 3;
@@ -285,7 +300,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         projectile.localAI[1] = Main.player[projectile.owner].HeldItem.scale;
                     }
                 }
-            }
+            }  
             if (projectile.hostile)
             {
                 if (RemnantPlayer.EnemyProjectilesScaleBouns != 1)

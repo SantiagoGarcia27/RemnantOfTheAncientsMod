@@ -1,5 +1,9 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.World;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,40 +15,68 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 		public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("God Slayer Slash"); //projectile name
-			Main.projFrames[Projectile.type] = 7;
+			Main.projFrames[Projectile.type] = 1;
 		}
 		public override void SetDefaults()
 		{
-			Projectile.width = 100;       //projectile width
-			Projectile.height = 150;  //projectile height
+			Projectile.width = 46;       //projectile width
+			Projectile.height = 50;  //projectile height
 			Projectile.friendly = true;      //make that the projectile will not damage you
 			Projectile.DamageType = DamageClass.Melee;          // 
 			Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
-			Projectile.penetrate = 100;      //how many NPC will penetrate
-			Projectile.timeLeft = 100000; //how many time this projectile has before disepire
-			Projectile.light = 1.75f;    // projectile light
-			Projectile.scale = 1f;
+			Projectile.penetrate = 20;      //how many NPC will penetrate
+			Projectile.timeLeft = (int)Utils1.FormatTimeToTick(0,0,0,3); //how many time this projectile has before disepire
+			Projectile.light =0.5f;    // projectile light
+			Projectile.scale = 2f;
 			Projectile.extraUpdates = 1;
 			Projectile.ignoreWater = true;
 			AIType = ProjectileID.TerraBeam;
 			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 1;
 		}
 		public override void AI()
 		{
-			Projectile.direction = Main.player[Main.myPlayer].direction;
-			Projectile.spriteDirection = Projectile.direction;
+            Projectile.tileCollide = false;
+            //Projectile.direction = Main.player[Main.myPlayer].direction;
+            Projectile.spriteDirection = Projectile.direction;
 			//SpriteEffects effects = Main.player[Main.myPlayer].direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+			Player player = Main.player[Projectile.owner];
 
+			if (DistanceUtils.TouchWall(Projectile))
+			{
+				Projectile.damage -= 1;             
+            }
+			if(!DistanceUtils.TouchFlour(Projectile))
+			{
+				Projectile.velocity.Y += 1;
+			}
+			else if(DistanceUtils.ExistTileSolid(Projectile.Center + new Vector2(0,1 *16)))
+			{
+                Projectile.velocity.Y -= 1;
+            }
+			else
+			{
+				Projectile.velocity.Y = 0;
+
+            }
 			AnimateTexture();
 
 		}
-		public override bool PreDraw(ref Microsoft.Xna.Framework.Color lightColor)
+		public int dir = 1;
+		public override bool PreDraw(ref Color lightColor)
 		{
-			SpriteEffects effects = Main.player[Main.myPlayer].direction == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-			return base.PreDraw(ref lightColor);
+			SpriteEffects effects = dir == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+			Texture2D texture2D = ModContent.Request<Texture2D>(Texture).Value;
+			Vector2 posBonus = new Vector2(Projectile.width, Projectile.height) / (Reaper.ReaperMode ? 1 : 2);
+			Main.spriteBatch.Draw(texture2D, Projectile.Center - Main.screenPosition + posBonus, null, lightColor, Projectile.rotation, new Vector2(Projectile.width / 2, Projectile.height / 2), Projectile.scale, effects, 0f);
+			return false;
 		}
-		public void AnimateTexture()
+        public override void OnSpawn(IEntitySource source)
+        {
+			dir = Main.player[Main.myPlayer].direction;
+            Projectile.position -= new Vector2(0, 1)*16;
+            base.OnSpawn(source);
+        }
+        public void AnimateTexture()
 		{
 			//switch (Projectile.frameCounter)
 			//{
@@ -87,18 +119,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
 			//         }
 
-			if (++Projectile.frameCounter >= 5)
-			{
-				Projectile.frameCounter = 0;
-				if (++Projectile.frame >= Main.projFrames[Projectile.type])
-				{
-					Projectile.frame = 0;
-					Projectile.Kill();
-				}
-			}
+			//if (++Projectile.frameCounter >= 5)
+			//{
+			//	Projectile.frameCounter = 0;
+			//	if (++Projectile.frame >= Main.projFrames[Projectile.type])
+			//	{
+			//		Projectile.frame = 0;
+			//		Projectile.Kill();
+			//	}
+			//}
 		}
 
-		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 		}
 	}

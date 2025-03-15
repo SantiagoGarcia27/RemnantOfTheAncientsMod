@@ -151,13 +151,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         {
             int oldLatest = latestNPC;
             latestNPC = NPC.NewNPC(source, (int)NPC.Center.X, (int)NPC.Center.Y, type, NPC.whoAmI, 0, latestNPC);
-
+           
             Main.npc[oldLatest].ai[0] = latestNPC;
 
             NPC latest = Main.npc[latestNPC];
 
             latest.realLife = NPC.whoAmI;
-
+            if (!Main.npc[oldLatest].boss && (latest.type == BodyType || latest.type == TailType))
+            {
+                latest.scale = 0.5f;
+                latest.Size /= 2;
+                latest.boss = false;
+            }
             return latestNPC;
         }
 

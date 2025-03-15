@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles
 {
-    public class ReinforcedironBricksT : ModTile
+    public class ReinforcedIronBricksT : ModTile
 	{
 		public override void SetStaticDefaults() {
 			Main.tileSolid[Type] = true;

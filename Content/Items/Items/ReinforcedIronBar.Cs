@@ -6,7 +6,7 @@ using RemnantOfTheAncientsMod.Content.Tiles;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Items
 {
-	public class Reinforced_ironBar : ModItem
+	public class ReinforcedIronBar : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -30,13 +30,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 			Item.consumable = true;
 			Item.value = 100;
 			Item.rare = ItemRarityID.Orange;
-			Item.createTile = TileType<Reinforced_ironBarB>();
+			Item.createTile = TileType<ReinforcedIronBarB>();
 		}
 
 		public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemType<Reinforced_iron_ore>(), 3)
+			.AddIngredient(ItemType<ReinforcedIronOre>(), 3)
 			.AddTile(TileID.Furnaces)
 			.Register();
 

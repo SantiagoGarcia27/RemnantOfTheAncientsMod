@@ -5,7 +5,7 @@ using Terraria.GameContent.Creative;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Items
 {
-	public class Reinforced_iron_ore : ModItem
+	public class ReinforcedIronOre : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

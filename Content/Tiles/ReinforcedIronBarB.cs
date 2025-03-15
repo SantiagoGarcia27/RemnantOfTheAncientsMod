@@ -6,7 +6,7 @@ using Terraria.ObjectData;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles
 {
-	public class Reinforced_ironBarB : ModTile
+	public class ReinforcedIronBarB : ModTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 		//	int style = t.TileFrameX / 18;
 		//	if (style == 0) // It can be useful to share a single tile with multiple styles. This code will let you drop the appropriate bar if you had multiple.
 		//	{
-		//		Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemType<Reinforced_ironBar>());
+		//		Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ItemType<ReinforcedIronBar>());
 		//	}
 		//	return base.Drop(i, j);
 		//}

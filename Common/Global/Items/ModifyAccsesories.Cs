@@ -1,5 +1,6 @@
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
@@ -111,7 +112,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
             {
-                player.GetModPlayer<RemnantPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;     
+                player.GetModPlayer<StatPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;     
             }
             if (WeaponConf)
             {
@@ -188,7 +189,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
             {
-                player.GetModPlayer<RemnantPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;
+                player.GetModPlayer<StatPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;
             }
             base.UpdateEquip(item, player);
         }

@@ -7,7 +7,7 @@
 
 //namespace RemnantOfTheAncientsMod.Content.Items.Tools
 //{
-//	public class Reinforced_Iron_Axe : ModItem
+//	public class ReinforcedIronAxe : ModItem
 //	{
 //		public override void SetStaticDefaults()
 //		{
@@ -45,7 +45,7 @@
 //        public override void AddRecipes()
 //		{
 //			CreateRecipe()
-//			.AddIngredient(ModContent.ItemType<Reinforced_ironBar>(), 9)
+//			.AddIngredient(ModContent.ItemType<ReinforcedIronBar>(), 9)
 //			.AddIngredient(ItemID.Wood, 3)
 //			.AddTile(TileID.Anvils)
 //			.Register();

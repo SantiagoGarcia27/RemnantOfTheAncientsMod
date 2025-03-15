@@ -13,6 +13,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -43,6 +44,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     }
                 }
             }
+            if(isSaber)
+            {
+                if (item.shoot == ProjectileID.None)
+                {
+                    item.shoot = ModContent.ProjectileType<DamageHitbox>();
+                    item.shootSpeed = 0f;
+                }
+            }
 
             base.SetDefaults(item);
         }
@@ -61,8 +70,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 if (!player.HasBuff<HolyCouldownDebuff>())
                 {
-                    player.AddBuff(BuffID.ShadowDodge, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
-                    player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    player.AddBuff(BuffID.ShadowDodge, (int)Utils1.FormatTimeToTick(0, 0, 0, 3)); 
                 }
             }
             else if (type == ModContent.ItemType<GrassSaber>())
@@ -188,33 +196,48 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+            if(item.shoot == ModContent.ProjectileType<DamageHitbox>())
+            {
+                damage = 0;
+                //velocity.Y -= 50;
+            }
+
             if (item.type == ModContent.ItemType<CorruptedSaber>())
             {
                 int proj = Projectile.NewProjectile(source, position + new Vector2(DistanceUtils.ToCoordenatePosition(8) * player.direction, 0), velocity * new Vector2(0.5f, 0.5f), type, damage, knockback, player.whoAmI, 2.4f);
                 Main.projectile[proj].ai[0] = Main.rand.NextFloat(1.5f, 1.6f);
-                return false;
+                //return false;
             }
-            else if (item.type == ModContent.ItemType<HallowedSaber>())
+            if (item.type == ModContent.ItemType<HallowedSaber>())
             {
                 float adjustedItemScale = player.GetAdjustedItemScale(item);
                 int p = Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale);
                 NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
             }
-            else if (item.type == ModContent.ItemType<GrassSaber>())
+            if (item.type == ModContent.ItemType<GrassSaber>())
             {
                 Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<BladeOfGrassLeaftClone>(), (int)(item.damage * 0.25f), item.knockBack, Main.myPlayer, -0.1f * player.direction, 0, 0);
                 return false;
             }
-            else if (item.type == ModContent.ItemType<EnchantedSaber>())
+            if (item.type == ModContent.ItemType<EnchantedSaber>())
             {
                 if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
                     Projectile.NewProjectile(source, position, velocity, ProjectileID.EnchantedBeam, damage, knockback);
             }
-            else if(item.type == ModContent.ItemType<NightSaber>())
+            if(item.type == ModContent.ItemType<NightSaber>())
             {
                 float adjustedItemScale = player.GetAdjustedItemScale(item); // Get the melee scale of the player and item.
                 Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + Main.rand.NextFloat(0.4f, 1f));
                 NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
+            }
+            if(isSaber)
+            {
+                if(item.shoot != ModContent.ProjectileType<DamageHitbox>())
+                    item.noUseGraphic = true;
+                Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<SaberSwingProgectile>(), damage, knockback, Main.myPlayer, 0);
+                SaberSwingProgectile.SetID(item);
+
+                return true;
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
@@ -285,7 +308,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     {
                         if (Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile == true)
                         {
-                            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<SaberDashProj>(), item.damage /2, 2, Main.myPlayer, DashStrength.X, DashStrength.Y, item.type);
+                            Projectile.NewProjectile(Projectile.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<SaberDashProj>(), item.damage * 2, 2, Main.myPlayer, DashStrength.X, DashStrength.Y, item.type);
                         }
                     }
                     return false;

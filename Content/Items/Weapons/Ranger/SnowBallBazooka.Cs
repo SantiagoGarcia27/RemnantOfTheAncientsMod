@@ -7,6 +7,7 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -58,7 +59,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             RemnantPlayer.GenericChargeCouldown = (int)Timmer/10;
             if (Timmer < TimmerMax)
 			{			
-				Timmer += (int)player.GetModPlayer<RemnantPlayer>().ChargeBonus;
+				Timmer += (int)player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged];
 				SpawnDust(player);
             }
 			else

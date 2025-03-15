@@ -89,7 +89,7 @@ namespace RemnantOfTheAncientsMod
 		public float EnemyProjectilesScaleBouns = 1;
 		public float EnemyProjectilesSpeedScaleBouns = 1;
 
-		public int StyleStat = 0;
+	
 		#region tuxonite
 		public static bool tuxoniteStealth;
 		public static int tuxoniteStealthDuration = 0;
@@ -104,7 +104,7 @@ namespace RemnantOfTheAncientsMod
 		public static float GenericAmmoAmmount { get; set; }
 		public static float GenericAmmoAmmountMax = 0;
 
-		public float ChargeBonus = 1;
+	
 		public bool AutoCharge = false;
 
 		public List<int> MinionsBuffInflict = [];
@@ -118,6 +118,7 @@ namespace RemnantOfTheAncientsMod
 
 		public bool SpectralLantern;
 
+		
 
 		#region Couldowns
 		public bool CouwldownHolySaber;
@@ -186,13 +187,14 @@ namespace RemnantOfTheAncientsMod
 
 			NotConsumeAmmoChance = 0;
             MinionCritChance = 0;
-			StyleStat = 0;
-
-			ChargeBonus = 1;
+				
 			AutoCharge = false;
 			SummonerArea = false;
 
-			if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
+			
+
+
+            if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
 			if (MeleeBuffInflict.Count > 0) MeleeBuffInflict.Clear();
 			if (MageBuffInflict.Count > 0) MageBuffInflict.Clear();
 			if (RangerBuffInflict.Count > 0) RangerBuffInflict.Clear();
@@ -203,7 +205,7 @@ namespace RemnantOfTheAncientsMod
 		public override void Load()
 		{
 			On_Player.TryGettingDevArmor += Player_TryGettingDevArmor;
-			base.Load();
+            base.Load();
 		}
 
 		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -354,8 +356,6 @@ namespace RemnantOfTheAncientsMod
 			AddScrollBuff();
 			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod))
 			{
-                
-
                 CalamityMessage();
 			}
 			foreach (Asset<Texture2D> asset in TextureAssets.Item)
@@ -642,6 +642,8 @@ namespace RemnantOfTheAncientsMod
 
 		public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
 		{
+
+
 			if (DesertHeraldSetBonus)
 			{
 				Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
@@ -650,6 +652,10 @@ namespace RemnantOfTheAncientsMod
 			{
 				hurtInfo.Damage *= 2;
 			}
+			if(Player.HasBuff(BuffID.ShadowDodge))
+			{
+                Player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+            }
 			base.OnHitByNPC(npc, hurtInfo);
 		}
 
@@ -790,8 +796,6 @@ namespace RemnantOfTheAncientsMod
 				}
 			}
 		}
-		
-	
 	}
 }//hola
 

@@ -129,10 +129,16 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Main.tile[x / 16, y / 16].HasTile;
         }
-        public static bool ExistTileSolid(Vector2 pos)
+        public static bool ExistTileSolid(Vector2 pos, bool ignorePlataform = false)
         {
             Tile tile = Main.tile[(int)pos.X / 16, (int)pos.Y / 16];
-            return tile.HasTile && Main.tileSolid[tile.TileType] && !tile.IsActuated;
+
+            bool solid = tile.HasTile && Main.tileSolid[tile.TileType] && !tile.IsActuated;
+            if(ignorePlataform)
+            {
+                solid = solid && !Main.tileSolidTop[tile.TileType];
+            }
+            return solid;
         }
         public static bool ExistFluid(Vector2 pos) 
         {

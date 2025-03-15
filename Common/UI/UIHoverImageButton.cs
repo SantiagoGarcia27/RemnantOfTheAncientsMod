@@ -2,6 +2,7 @@
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -74,11 +75,13 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
             int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type);
             float value;
-                if(index != -1) 
-                    value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index];
-                else
-                    value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npc.type];
-
+            if (index != -1)
+                value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index];
+            else
+            {
+                float v = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npc.type];
+                value = v;
+            }
             if (Reaper)
             {
                 if (npc.type == NPCID.KingSlime)
@@ -100,7 +103,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                     }
                     else
                     {
-                        player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npc.type] = value == 0 ? 1 : 0;
+                        Dictionary<int,float > dict = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive;
+                        dict[npc.type] = value == 0 ? 1 : 0;
+                        player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive = dict;
                         ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0);
                     }
                 }

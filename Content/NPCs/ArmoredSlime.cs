@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void ModifyNPCLoot(NPCLoot NPCLoot)
 		{
 			NPCLoot.Add(ItemDropRule.Common(ItemID.Gel, 1));
-			NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<Reinforced_iron_ore>()));
+			NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<ReinforcedIronOre>()));
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)

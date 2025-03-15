@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,7 +103,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     if (Timmer < TimmerMax)
                     {
-                        Timmer += 0.5f * player.GetModPlayer<RemnantPlayer>().ChargeBonus;
+                        Timmer += 0.5f * player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged];
                     }
                 }
                 else if (Main.mouseRightRelease)

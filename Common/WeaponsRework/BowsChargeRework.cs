@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using System.Collections.Generic;
@@ -125,7 +126,7 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
         {
             _timmer = item.GetGlobalItem<RemnantGlobalItem>().Timmer;
             _timmerMax = item.GetGlobalItem<RemnantGlobalItem>().TimmerMax;
-            ChargeBonus = player.GetModPlayer<RemnantPlayer>().ChargeBonus;
+            ChargeBonus = player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged];
 
             if (BowsReworkConfig && !BannedBows.Contains(item.type))
             {

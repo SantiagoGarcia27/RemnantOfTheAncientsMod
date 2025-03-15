@@ -430,7 +430,7 @@ Mods: {
 					Many thanks to -febo1apolo - eltonyhelou - Jormanas_gt 
 					-LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
 					-RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
-					-Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606 
+					-Shadowrath06 -Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606 
 					-gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo 
 					-Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
 					-Rockerheadd -mateoamii -JuanitoLive -DDS0210 -charlestwi -zakzar01 -Wuchang234 
@@ -743,7 +743,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedRangedDamage}
-					{$CommonItemTooltip.PercentIncreasedRangedCritChance}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance@1}
 					'''
 			}
 
@@ -766,7 +766,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
-					{$CommonItemTooltip.PercentIncreasedMagicCritChance}
+					{$CommonItemTooltip.PercentIncreasedMagicCritChance@1}
 					'''
 			}
 
@@ -775,7 +775,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
-					{$CommonItemTooltip.PercentIncreasedSummonCritChance}
+					{1}% Increased summon critical strike chance 
 					'''
 			}
 
@@ -812,7 +812,7 @@ Mods: {
 				Tooltip:
 					'''
 					{0}% Increased throwing damage
-					{1}% Increased throwing damage
+					{1}% Increased throwing critical strike chance 
 					'''
 			}
 
@@ -826,7 +826,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedDamage}
-					{$CommonItemTooltip.PercentIncreasedCritChance}
+					{$CommonItemTooltip.PercentIncreasedCritChance@1}
 					'''
 			}
 
@@ -835,7 +835,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
-					{$CommonItemTooltip.PercentIncreasedMeleeCritChance}
+					{$CommonItemTooltip.PercentIncreasedMeleeCritChance@1}
 					'''
 			}
 
@@ -962,7 +962,7 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			Reinforced_iron_chesplate: {
+			ReinforcedIronChesplate: {
 				DisplayName: Reinforced Iron Chesplate
 				Tooltip:
 					'''
@@ -971,12 +971,12 @@ Mods: {
 					'''
 			}
 
-			Reinforced_Iron_Greaves: {
+			ReinforcedIronGreaves: {
 				DisplayName: Reinforced Iron Greaves
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			Reinforced_iron_Helmet: {
+			ReinforcedIronHelmet: {
 				DisplayName: Reinforced Iron Helmet
 				Tooltip:
 					'''
@@ -1661,12 +1661,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Reinforced_iron_ore: {
+			ReinforcedIronOre: {
 				DisplayName: Reinforced iron ore
 				Tooltip: ""
 			}
 
-			Reinforced_ironBar: {
+			ReinforcedIronBar: {
 				DisplayName: Reinforced iron Bar
 				Tooltip: ""
 			}
@@ -2311,7 +2311,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Reinforced_Iron_Broadsword: {
+			ReinforcedIronBroadsword: {
 				DisplayName: Reinforced Iron Broadsword
 				Tooltip: ""
 			}
@@ -2401,7 +2401,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Reinforced_IronSaber: {
+			ReinforcedIronSaber: {
 				DisplayName: Reinforced Iron Saber
 				Tooltip: ""
 			}
@@ -3731,8 +3731,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			EndlessJestQuiver: {
-				DisplayName: Endless Jest Quiver
+			EndlessJesterQuiver: {
+				DisplayName: Endless Jester Quiver
 				Tooltip: ""
 			}
 
@@ -3772,7 +3772,7 @@ Mods: {
 			}
 
 			EndlesGoldPouch: {
-				DisplayName: Endles Gold Pouch
+				DisplayName: Endles Golden Pouch
 				Tooltip: ""
 			}
 
@@ -3886,11 +3886,6 @@ Mods: {
 				Tooltip: Its damage evolves as you progress through the progression
 			}
 
-			ReinforcedIronSaber: {
-				DisplayName: Reinforced Iron Saber
-				Tooltip: ""
-			}
-
 			TungstenSaber: {
 				DisplayName: Tungsten Saber
 				Tooltip: ""
@@ -3899,6 +3894,125 @@ Mods: {
 			DesertGyph: {
 				DisplayName: Desert Gyph
 				Tooltip: ""
+			}
+
+			LeatherQuiver: {
+				DisplayName: Leather Quiver
+				Tooltip: "Increases arrow damage by {0}% and greatly increases "
+			}
+
+			ReinforcedAmmoBox: {
+				DisplayName: Reinforced Ammo Box
+				Tooltip:
+					'''
+					{0}% increase bullet pierce strike chance
+					Bullet pierce strike increased by {1}
+					Grants {2}% chance to fire additional reinforced bullets
+					'''
+			}
+
+			ReinforcedIronBullet: {
+				DisplayName: Reinforced Iron Bullet
+				Tooltip: ""
+			}
+
+			EndlessChlorophytePouch: {
+				DisplayName: Endless Chlorophyte Pouch
+				Tooltip: ""
+			}
+
+			EndlessCrystalPouch: {
+				DisplayName: Endless Crystal Pouch
+				Tooltip: ""
+			}
+
+			EndlessCursedPouch: {
+				DisplayName: Endless Cursed Pouch
+				Tooltip: ""
+			}
+
+			EndlessExplosivePouch: {
+				DisplayName: Endless Explosive Pouch
+				Tooltip: ""
+			}
+
+			EndlessGoldPouch: {
+				DisplayName: Endless Gold Pouch
+				Tooltip: ""
+			}
+
+			EndlessHighVelocityPouch: {
+				DisplayName: Endless High Velocity Pouch
+				Tooltip: ""
+			}
+
+			EndlessLuminitePouch: {
+				DisplayName: Endless Luminite Pouch
+				Tooltip: ""
+			}
+
+			EndlessMeteoritePouch: {
+				DisplayName: Endless Meteorite Pouch
+				Tooltip: ""
+			}
+
+			EndlessNanoPouch: {
+				DisplayName: Endless Nano Pouch
+				Tooltip: ""
+			}
+
+			EndlessPartyPouch: {
+				DisplayName: Endless Party Pouch
+				Tooltip: ""
+			}
+
+			EndlessReinforcedIronPouch: {
+				DisplayName: Endless Reinforced Iron Pouch
+				Tooltip: ""
+			}
+
+			EndlessSilverPouch: {
+				DisplayName: Endless Silver Pouch
+				Tooltip: ""
+			}
+
+			EndlessVenomPouch: {
+				DisplayName: Endless Venom Pouch
+				Tooltip: ""
+			}
+
+			NecroAmmoBox: {
+				DisplayName: Necro Ammo Box
+				Tooltip:
+					'''
+					{0}% increase bullet pierce strike chance
+					Bullet pierce strike increased by {1}
+					Grants chance to fire:
+					{2}% reinforced bullets and {3}% tomb bullets
+					'''
+			}
+
+			TitaniumAmmoBox: {
+				DisplayName: Titanium Ammo Box
+				Tooltip:
+					'''
+					{0}% increase bullet pierce strike chance
+					Bullet pierce strike increased by {1}
+					Grants chance to fire:
+					{2}% reinforced bullets, {3}% tomb bullets and {4}% current evil biome bullets	
+					'''
+			}
+
+			LizzardAmmoBox: {
+				DisplayName: Lihzahrd Ammo Box
+				Tooltip:
+					'''
+					{0}% increase bullet pierce strike chance
+					Bullet pierce strike increased by {1}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance@2}
+					Grants chance to fire:
+					{3}% reinforced bullets, {4}% tomb bullets, {5}% current evil biome bullets and {6}% explosive bullet
+					'''
 			}
 		}
 
@@ -4011,6 +4125,7 @@ Mods: {
 			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
 			HallowedZombie.DisplayName: Armored Zombie
 			DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
+			CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
 		}
 
 		Projectiles: {
@@ -4150,6 +4265,9 @@ Mods: {
 			BladeOfGrassLeaftClone.DisplayName: Blade Of Grass Leaft Clone
 			SwordSlash.DisplayName: Sword Slash
 			FlinxMinionClone.DisplayName: Flinx Minion Clone
+			ReinforcedBullet.DisplayName: Reinforced Bullet
+			ReinforcedBulletP.DisplayName: Reinforced Bullet P
+			SaberSwingProgectile.DisplayName: Saber Swing Progectile
 		}
 
 		Tiles: {
@@ -4333,7 +4451,135 @@ Mods: {
 					Tooltip: ""
 				}
 
-				Headers.ReaperSouls: Reaper Souls Header
+				Headers: {
+					ReaperSouls: Reaper Souls Header
+					CalamityReaperSouls: Calamity Reaper Souls Header
+				}
+
+				ToggleDesertScourgeSoul: {
+					Label: Toggle Desert Scourge Soul
+					Tooltip: ""
+				}
+
+				ToggleCrabulonSoul: {
+					Label: Toggle Crabulon Soul
+					Tooltip: ""
+				}
+
+				ToggleCalamityCorruptBossSoul: {
+					Label: Toggle Calamity Corrupt Boss Soul
+					Tooltip: ""
+				}
+
+				ToggleSlimeGodSoul: {
+					Label: Toggle Slime God Soul
+					Tooltip: ""
+				}
+
+				ToggleCryogenSoul: {
+					Label: Toggle Cryogen Soul
+					Tooltip: ""
+				}
+
+				ToggleAquaticSourgeSoul: {
+					Label: Toggle Aquatic Sourge Soul
+					Tooltip: ""
+				}
+
+				ToggleBrimstonElementalSoul: {
+					Label: Toggle Brimston Elemental Soul
+					Tooltip: ""
+				}
+
+				ToggleCalamitasCloneSoul: {
+					Label: Toggle Calamitas Clone Soul
+					Tooltip: ""
+				}
+
+				ToggleLeviatanSoul: {
+					Label: Toggle Leviatan Soul
+					Tooltip: ""
+				}
+
+				ToggleAstrumAureusSoul: {
+					Label: Toggle Astrum Aureus Soul
+					Tooltip: ""
+				}
+
+				ToggleAstrumDeusSoul: {
+					Label: Toggle Astrum Deus Soul
+					Tooltip: ""
+				}
+
+				TogglePlaguebringerGoliathSoul: {
+					Label: Toggle Plaguebringer Goliath Soul
+					Tooltip: ""
+				}
+
+				ToggleRavagerSoul: {
+					Label: Toggle Ravager Soul
+					Tooltip: ""
+				}
+
+				ToggleDragonFollySoul: {
+					Label: Toggle Dragon Folly Soul
+					Tooltip: ""
+				}
+
+				ToggleProfanedGuardianCommanderSoul: {
+					Label: Toggle Profaned Guardian Commander Soul
+					Tooltip: ""
+				}
+
+				ToggleProvidencedSoul: {
+					Label: Toggle Providenced Soul
+					Tooltip: ""
+				}
+
+				ToggleSignusSoul: {
+					Label: Toggle Signus Soul
+					Tooltip: ""
+				}
+
+				ToggleStormWeaverSoul: {
+					Label: Toggle Storm Weaver Soul
+					Tooltip: ""
+				}
+
+				ToggleCeaselessVoidSoul: {
+					Label: Toggle Ceaseless Void Soul
+					Tooltip: ""
+				}
+
+				TogglePolterghastSoul: {
+					Label: Toggle Polterghast Soul
+					Tooltip: ""
+				}
+
+				ToggleOldDukeSoul: {
+					Label: Toggle Old Duke Soul
+					Tooltip: ""
+				}
+
+				ToggleDevourerofGodsSoul: {
+					Label: Toggle Devourerof Gods Soul
+					Tooltip: ""
+				}
+
+				ToggleYharonSoul: {
+					Label: Toggle Yharon Soul
+					Tooltip: ""
+				}
+
+				ToggleExoMechSoul: {
+					Label: Toggle Exo Mech Soul
+					Tooltip: ""
+				}
+
+				ToggleSuprmeCalamitasSoul: {
+					Label: Toggle Suprme Calamitas Soul
+					Tooltip: ""
+				}
 			}
 
 			ConfigServer: {

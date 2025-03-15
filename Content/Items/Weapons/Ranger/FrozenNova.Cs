@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -73,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             RemnantPlayer.GenericChargeCouldown = Timmer / 10;
             if (Timmer < TimmerMax)
 			{			
-				Timmer+= 1 + (int)player.GetModPlayer<RemnantPlayer>().ChargeBonus;
+				Timmer+= 1 + (int)player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged];
 				SpawnDust(player);
             }
 			else

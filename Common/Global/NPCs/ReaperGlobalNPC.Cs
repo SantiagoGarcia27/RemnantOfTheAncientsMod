@@ -18,9 +18,8 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Calamity;
-using System.Linq;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -1272,6 +1271,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (!npc.boss)
                         return false;
                 }
+            }
+            if(npc.type == ModContent.NPCType<InfernalTyrantHead>())
+            {
+                if (!npc.boss)
+                    return false;
             }
             if(npc.type == NPCID.Retinazer)
             {

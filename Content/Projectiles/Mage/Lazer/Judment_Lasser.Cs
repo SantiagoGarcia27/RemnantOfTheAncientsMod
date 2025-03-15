@@ -1,11 +1,8 @@
-using Humanizer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Dusts;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Enums;
@@ -16,7 +13,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 {
-	public class Judment_Lasser_Shooter : ModProjectile
+    public class Judment_Lasser_Shooter : ModProjectile
 	{
         public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath;
         public override void SetDefaults()
@@ -40,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
         {
 			if (RemnantOfTheAncientsMod.ParticleMeter(3) != 0)
 			{
-				var dust = Dust.NewDust(Projectile.position, 95, 95, ModContent.DustType<HollyBurn_P>(), 0, 0, 0, default, 8 + Projectile.scale * 1.5f);
+				var dust = Dust.NewDust(Projectile.position, 95, 95, DustType<HollyBurn_P>(), 0, 0, 0, default, 8 + Projectile.scale * 1.5f);
 				Main.dust[dust].noGravity = true;
 			}
 			Vector2 velocity = new Vector2(0, 20);
@@ -89,7 +86,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 			{
 				var origin = start + i * unit;
 
-				if (DistanceUtils.ExistTileSolid(new Vector2(start.X,start.Y + i)))
+				if (DistanceUtils.ExistTileSolid(new Vector2(start.X,start.Y + i),true))
 				{
 					
                     //Main.EntitySpriteDraw(texture, origin + (Distance + step) * unit - Main.screenPosition, new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
@@ -135,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size()* Projectile.scale, Projectile.Center, Projectile.Center + Projectile.velocity * Distance, 22, ref point);//player.Center
 		}
 
-		 public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffType<HollyBurn>(), 400);
 			target.immune[Projectile.owner] = 5;
@@ -173,6 +170,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 			Vector2 unit = Projectile.velocity;
 			Utils.PlotTileLine(Projectile.Center, Projectile.Center + unit * Distance, (Projectile.width + 16) * Projectile.scale, DelegateMethods.CutTiles);
 		}
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+        {
+			fallThrough = true;
+            return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
+        }
 
-	}
+    }
 }

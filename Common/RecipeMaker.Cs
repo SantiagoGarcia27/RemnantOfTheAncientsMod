@@ -558,9 +558,18 @@ namespace RemnantOfTheAncientsMod
             CorruptAccesories();
             TravelingMerchantAccesories();
             FisherManAccesories();
-            SkyAccesories(); 
+            SkyAccesories();
+            HallowAccesories();
         }
-
+        private static void HallowAccesories()
+        {
+            Recipe.Create(ItemID.MagicQuiver)
+            .AddIngredient<LeatherQuiver>()
+            .AddIngredient(ItemID.SoulofLight, 4)
+            .AddIngredient(ItemID.Bone, 14)
+            .AddTile(TileID.Anvils)
+            .Register();
+        }
         private static void SkyAccesories()
         {
             Recipe.Create(ItemID.ShinyRedBalloon)
@@ -1234,6 +1243,13 @@ namespace RemnantOfTheAncientsMod
                 ItemID.TissueSample
             ]);
             RecipeGroup.RegisterGroup("anyCorruptBossScale", group);
+
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " TitaniumBar",
+            [
+                ItemID.TitaniumBar,
+                ItemID.AdamantiteBar
+            ]);
+            RecipeGroup.RegisterGroup("anyHardmodeTier3Bar", group);
         }
 
         public override void PostAddRecipes()

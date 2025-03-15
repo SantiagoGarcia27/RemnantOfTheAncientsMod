@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace RemnantOfTheAncientsMod.Common.Configs
@@ -94,6 +91,87 @@ namespace RemnantOfTheAncientsMod.Common.Configs
 
         [DefaultValue(true)]
         public bool ToggleMoonlordSoul { get; set; }
+        #endregion
+
+        #region CalamityReaperSouls
+        [JITWhenModsEnabled("CalamityMod")]
+        [Header("CalamityReaperSouls")]
+
+        [DefaultValue(true)]
+        public bool ToggleDesertScourgeSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleCrabulonSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleCalamityCorruptBossSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleSlimeGodSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleCryogenSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleAquaticSourgeSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleBrimstonElementalSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleCalamitasCloneSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleLeviatanSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleAstrumAureusSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleAstrumDeusSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool TogglePlaguebringerGoliathSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleRavagerSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleDragonFollySoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleProfanedGuardianCommanderSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleProvidencedSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleSignusSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleStormWeaverSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleCeaselessVoidSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool TogglePolterghastSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleOldDukeSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleDevourerofGodsSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleYharonSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleExoMechSoul { get; set; }
+
+        [DefaultValue(true)]
+        public bool ToggleSuprmeCalamitasSoul { get; set; }
+
         #endregion
     }
 }

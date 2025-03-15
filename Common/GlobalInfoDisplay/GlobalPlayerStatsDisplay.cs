@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 
 namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
 {
@@ -148,7 +149,7 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
             
-            return $"{Main.LocalPlayer.GetModPlayer<RemnantPlayer>().StyleStat}/102 Style bonus";
+            return $"{Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat}/102 Style bonus";
         }
     }
 }
