@@ -1,27 +1,22 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 {
-    public class Sapphire_Sword : ModItem
+    public class DiamondSword : ModItem
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Sapphire Sword");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée de saphir");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de zafiro");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
         }
         public override void SetDefaults()
         {
-            Item.damage = 16;
+            Item.damage = 23;
             Item.DamageType = DamageClass.Melee;
             Item.width = 50;
             Item.height = 50;
@@ -29,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
             Item.useAnimation = 18;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 1;
-            Item.value = 1000;
+            Item.value = 1900;
             Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = false;
@@ -39,21 +34,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
                 Item.scale = 2f;
             }
         }
+
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (player.ownedProjectileCounts[ModContent.ProjectileType<SpiritGemSword>()] <= 4)
             {
                 Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
                 Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
-                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, 2);
+                int colorID = Utils1.GetColorID(Color.White);
+                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, colorID);
             }
         }
-
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemID.SilverBar, 8)
-            .AddIngredient(ItemID.Sapphire, 10)
+            .AddIngredient(ItemID.PlatinumBar, 8)
+            .AddIngredient(ItemID.Diamond, 10)
             .AddTile(TileID.Anvils)
             .Register();
         }

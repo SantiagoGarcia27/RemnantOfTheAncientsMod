@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
@@ -14,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
 
     public class BowsChargeRework : GlobalItem
     {
-        public bool IsBow;
+     
         public bool Canshoot = false;
         public float ChargeBonus; 
         public bool AutoCharge = false;
@@ -30,10 +31,13 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
         private bool WeaponsReworkConfig = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
         private bool BowsReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
         private bool IsRepeater;
+        private bool IsBow;
         public override bool InstancePerEntity => true;
         public override void SetDefaults(Item item)
         {
-            IsRepeater = item.GetGlobalItem<RemnantGlobalItem>().IsRepeater;
+            IsRepeater = item.GetGlobalItem<BowRework>().IsRepeater;
+            IsBow = item.GetGlobalItem<BowRework>().IsBow;
+
             if (BannedBows.Contains(item.type))
             {
                 item.GetGlobalItem<RemnantGlobalItem>().CanCharge = false;
@@ -48,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
             }
             base.SetDefaults(item);
         }
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.useAmmo == AmmoID.Arrow && !entity.GetGlobalItem<RemnantGlobalItem>().IsRepeater;
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.useAmmo == AmmoID.Arrow && !entity.GetGlobalItem<BowRework>().IsRepeater;
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
 
@@ -181,7 +185,7 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
         public override bool CanUseItem(Item item, Player player)
         {
             AutoCharge = player.GetModPlayer<RemnantPlayer>().AutoCharge;
-            BowsReworkConfig = item.GetGlobalItem<RemnantGlobalItem>().BowReworkConfig;
+            BowsReworkConfig = item.GetGlobalItem<BowRework>().BowReworkConfig;
             return base.CanUseItem(item, player);
         }
     }

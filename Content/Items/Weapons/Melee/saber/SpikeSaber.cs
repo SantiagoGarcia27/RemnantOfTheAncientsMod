@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {

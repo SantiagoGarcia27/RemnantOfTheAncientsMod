@@ -9,6 +9,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {

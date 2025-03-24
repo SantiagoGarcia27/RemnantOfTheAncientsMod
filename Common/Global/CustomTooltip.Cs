@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
@@ -26,7 +27,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public bool CompletistItem;
         public bool BossSummon;
         public bool SizedByReaper;
-        public bool ReaperAccesories;
         public bool MusicBox;
         public bool Lance;
         public bool SecondHabilitie;

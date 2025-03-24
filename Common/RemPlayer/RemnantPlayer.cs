@@ -29,6 +29,7 @@ using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -118,7 +119,7 @@ namespace RemnantOfTheAncientsMod
 
 		public bool SpectralLantern;
 
-		
+		public static Dictionary<int,bool> PlayerTalkToday = new();
 
 		#region Couldowns
 		public bool CouwldownHolySaber;
@@ -362,9 +363,11 @@ namespace RemnantOfTheAncientsMod
 			{
 				RemnantGlobalItem.oldTexture.Add(asset);
 			}
+         
 
 
-		}
+
+        }
 		[JITWhenModsEnabled("CalamityMod")]
 		public static void CalamityMessage()
 		{
@@ -796,7 +799,7 @@ namespace RemnantOfTheAncientsMod
 				}
 			}
 		}
-	}
+    }
 }//hola
 
 		

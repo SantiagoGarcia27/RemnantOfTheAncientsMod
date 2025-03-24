@@ -295,7 +295,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static void FindAndReplaceTooltip(List<TooltipLine> tooltips, string target, string replace)
         {
-          //  var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
+            //  var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
             foreach (TooltipLine line in tooltips)
             {
                 if (line != null)
@@ -367,7 +367,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             {
                 if (p.friendly == friendly && p.hostile == hostile && p.type == id)
                 {
-                     return p;
+                    return p;
                 }
             }
             return null;
@@ -434,7 +434,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 }
             }
         }
-        public static Item ChooseAmmo(Item weapon,int ammoID)
+        public static Item ChooseAmmo(Item weapon, int ammoID)
         {
             var sItem = weapon;
             Item item = null;
@@ -511,7 +511,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             else
             {
-                result = GetVainllaPickPower(tile,  j);
+                result = GetVainllaPickPower(tile, j);
             }
 
             if (Main.tileDungeon[tile.TileType] && j > Main.worldSurface)
@@ -522,26 +522,26 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             return result;
         }
 
-        private static int GetVainllaPickPower(Tile tile,int j)
+        private static int GetVainllaPickPower(Tile tile, int j)
         {
             if (tile.TileType == 211)
-               return 200;
+                return 200;
             else if (tile.TileType == 25 || tile.TileType == 58 || tile.TileType == 117 || tile.TileType == 203)
-               return 65;
+                return 65;
             else if (tile.TileType == 56)
-               return 55;
+                return 55;
             else if (tile.TileType == 37)
-               return 50;
+                return 50;
             else if (tile.TileType == 204 && j > Main.worldSurface)
-               return 55;
+                return 55;
             else if (tile.TileType == 226 || tile.TileType == 237)
-               return 210;
+                return 210;
             else if (tile.TileType == 107 || tile.TileType == 221)
-               return 100;
+                return 100;
             else if (tile.TileType == 108 || tile.TileType == 222)
-               return 110;
+                return 110;
             else if (tile.TileType == 111 || tile.TileType == 223)
-               return 150;
+                return 150;
             return 0;
         }
         public static int GetBestPickPower(Player player)
@@ -553,7 +553,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 {
                     num = item.pick;
                 }
-            }  
+            }
             return num;
         }
 
@@ -577,6 +577,76 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             if (x < 0) return 0;
             if (x > 1e-7) return 255;
             return Convert.ToByte((255.0e7 * x)); // this truncates; add 0.5 to round instead
+        }
+
+        private static Dictionary<Color, int> ColorIDs;
+       
+
+        public static Color GetColorByID(int id)
+        {
+            if (ColorIDs == null)
+                FillColorIDs(ref ColorIDs);
+
+            if (ColorIDs.ContainsValue(id))
+            {
+                Color c = ColorIDs.FirstOrDefault(x => x.Value == id).Key;
+                return c;
+            }
+            return Color.White;
+        }
+        public static int GetColorID(Color color)
+        {
+            if (ColorIDs == null) 
+                FillColorIDs(ref ColorIDs);
+            if(color == Main.DiscoColor)
+            {
+                return -1;
+            }
+
+            if (ColorIDs.ContainsKey(color))
+                return ColorIDs[color];
+            return 0;
+        }
+
+        private static void FillColorIDs(ref Dictionary<Color, int> ColorIDs)
+        {
+            ColorIDs = new()
+            {
+                { Color.White, 0 },
+                { Color.Red, 1 },
+                { Color.Blue, 2 },
+                { Color.Green, 3 },
+                { Color.Yellow, 4 },
+                { Color.Magenta, 5 },
+                { Color.Orange, 6 },
+                { Color.SkyBlue, 7 },
+                { Color.Brown, 8 },
+                { Color.Purple, 9 },
+                { Color.Gray, 10 },
+                { Color.Black, 11},
+                { Color.CornflowerBlue, 12 },
+                { Color.IndianRed, 13 },
+                { Color.Cyan, 14 },
+                { Color.OrangeRed, 15 },
+                { Color.LightGreen, 16 },
+                { Color.SandyBrown , 17 },
+                { Color.PaleVioletRed , 18 },
+                { Color.PaleGreen, 19 },
+                { Color.Pink, 20 },
+                { Color.Violet, 21 },
+                { Color.Salmon, 22 },
+                { Color.Indigo, 23 },
+                { Color.LimeGreen, 24 },
+                { Color.Gold, 25 },
+                { Color.Goldenrod, 26 },
+                { Color.GreenYellow, 27 },
+                { Color.Lavender, 28 }
+            };
+        }
+
+        internal static Color GetColorByID(float v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

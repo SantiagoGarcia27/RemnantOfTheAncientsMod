@@ -2,6 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.Audio;
@@ -98,8 +99,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             base.PostDraw(lightColor);
         }
         public override bool PreDraw(ref Color lightColor)
-        {        
-            lightColor = Projectile.ai[1] switch
+        {
+            if (Projectile.ai[1] == -1)
+                lightColor = Main.DiscoColor;
+            else
+            {
+                Color c = Utils1.GetColorByID((int)Projectile.ai[1]);
+                lightColor = c;
+            }
+          /*  lightColor = Projectile.ai[1] switch
             {
                 0 => Color.Yellow,
                 1 => Color.Violet,
@@ -110,7 +118,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                 6 => new Color(Main.DiscoColor.R, Main.DiscoColor.G, Main.DiscoColor.B),
                 7 => Color.SandyBrown,
                 _ => Color.Black,
-            };
+            };*/
             return true;
         }
         public static Color GetRGeodeColor(int x)

@@ -32,6 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			Projectile.ignoreWater = true;
 			AIType = ProjectileID.TerraBeam;
 			Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
 		}
 		public override void AI()
 		{

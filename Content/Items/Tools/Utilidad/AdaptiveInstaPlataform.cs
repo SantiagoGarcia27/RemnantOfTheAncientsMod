@@ -2,6 +2,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Common.Enums;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
@@ -26,32 +29,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		}
 
 		public int Range = 200;
-		public override bool? UseItem(Player player)
-		{
-			int[] biomes = PlataformModel.getBiomeBlocks(player);
-
-			for (int i = 0; i <= Range; i++)
-			{
-				int x = Player.tileTargetX + (i * player.direction);
-				int y = Player.tileTargetY;
-
-				if (!Main.tile[x, y].HasTile)
-				{	
-					WorldGen.PlaceTile(x, y, TileID.Platforms, false, false, -1, biomes[0]);
-
-                    if (i % 10 == 0)
-                    {
-                        PlataformModel.TileSafe(x, y - 1);
-                        WorldGen.PlaceTile(x, y - 1, TileID.Torches, false, false, -1, biomes[1]);
-
-                    }
-                }
-			}
-
-				
-				Netcode.SyncWorld();
-			return true;
-		}
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            int[] biomes = PlataformModel.getBiomeBlocks(player);
+            if (!player.noBuilding)
+            {
+                Vector2 mouse = Main.MouseWorld;
+                Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), mouse, Vector2.Zero, type, 0, 0, player.whoAmI, biomes[0], biomes[1], Range);
+            }
+            return false;
+        }
         public override void HoldItem(Player player)
         {
 			PlataformModel.HoldItem(player, Range);

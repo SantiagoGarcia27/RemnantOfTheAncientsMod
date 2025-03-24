@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Common.Global.Items
+namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 {
     public class FisherClassOverride : GlobalItem
     {
@@ -111,6 +111,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
         }
         */
-        public override bool InstancePerEntity => true; 
+        public override bool InstancePerEntity => true;
     }
 }

@@ -7,10 +7,10 @@ using RemnantOfTheAncientsMod.Common.Global;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using RemnantOfTheAncientsMod.Common.Global.Items;
 using Terraria.Localization;
 using System;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Alas;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {

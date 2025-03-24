@@ -98,7 +98,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             Projectile.penetrate = -1; // Projectile pierces infinitely
             Projectile.tileCollide = false; // Projectile does not collide with tiles
             Projectile.usesLocalNPCImmunity = true; // Uses local immunity frames
-            Projectile.localNPCHitCooldown = 200; // We set this to -1 to make sure the projectile doesn't hit twice
+            Projectile.localNPCHitCooldown = -1; // We set this to -1 to make sure the projectile doesn't hit twice
             Projectile.ownerHitCheck = true; // Make sure the owner of the projectile has line of sight to the target (aka can't hit things through tile).
             Projectile.DamageType = DamageClass.Melee; // Projectile is a melee projectile
             Projectile.scale = itemBase == null? 1.1f: itemBase.scale;
@@ -228,6 +228,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
         {
             if (CurrentStage == AttackStage.Prepare)
                 return false;
+
             return base.CanDamage();
         }
 
@@ -239,6 +240,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             // If the NPC is hit by the spin attack, increase knockback slightly
             if (CurrentAttack == AttackType.Spin)
                 modifiers.Knockback += 1;
+
+
         }
 
         // Function to easily set projectile and arm position

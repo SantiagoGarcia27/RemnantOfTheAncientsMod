@@ -9,6 +9,7 @@ using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {

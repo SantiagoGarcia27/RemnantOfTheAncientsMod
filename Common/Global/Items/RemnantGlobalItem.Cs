@@ -20,6 +20,7 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.WeaponsRework;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -28,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool IsCoin;
 		public bool IsAmmo;
 		public int StyleStat = 0;
-		public bool IsRepeater;
+	
 
 		public Item ItemBase = null;
 		public float ChargeMax = 0;
@@ -42,8 +43,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public float ReloadCounter = 0;
         public float ReloadCounterMax = 0;
 
-		public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-		public bool BowReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
+		
 
         public override bool InstancePerEntity => true;
 		public int[] lanceId =
@@ -162,7 +162,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             for (int i = 5014; i <= 5040; i++)
                 Utils1.AddSecure(MusicBox, i);       
         }
-
+        public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
         public override void SetDefaults(Item item)
 		{			
 			bool Calamity = RemnantOfTheAncientsMod.CalamityMod != null;
@@ -267,41 +267,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.useAnimation = 16;
                     item.useTime = 14;
                 }  				
-                if (item.type == ItemID.Boomstick)
-                {
-                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 3, -1, 3);
-                    
-                }
-                if (item.type == ItemID.QuadBarrelShotgun)
-                {
-                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item,true, 7, -1, 45);
-                   
-                }
-                if (item.type == ItemID.Shotgun)
-                {
-                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 3, -1, 5);
-                   
-                }
-                if (item.type == ItemID.OnyxBlaster)
-                {
-                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 4, -1, 5);
-                  
-                }
-                if (item.type == ItemID.TacticalShotgun)
-                {
-                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
-                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 6, -1, 10);                  
-                }  
-				
                 if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -312,8 +277,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				AddToDashWeaponsLists(item);
              
 
-
-
                 if (SpearsList.Contains(item.type))
 				{
 					item.GetGlobalItem<CustomTooltip>().Lance = true;
@@ -323,19 +286,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
 				}
-                if (Utils1.NameHasWord(item.Name, "Repeater")|| item.type == ItemID.ChlorophyteShotbow)
-                {
-					item.useAnimation += 5;
-					item.useTime += 5;
-                    item.GetGlobalItem<RemnantGlobalItem>().IsRepeater = true;
-					item.channel = true;
-                }
-				if(item.type == ItemID.Blowpipe || item.type == ItemID.Blowgun)
-				{
-                    item.GetGlobalItem<RemnantGlobalItem>().IsRepeater = true;
-                    item.channel = true;
-                }
-				
+              	
                 if (CanCharge)
 				{
 					item.channel = true;
@@ -357,18 +308,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					type = ProjectileID.JestersArrow;
 					base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
-				}
-				if(item.useAmmo == AmmoID.Arrow)
-				{
-					float bonus = player.GetModPlayer<StatPlayer>().ArrowSpeedBonus;
-
-                    velocity *= bonus;
-					//velocity.Normalize();
-				}
-				if (IsRepeater)
-				{
-                    velocity = velocity.RotatedByRandom(MathHelper.ToRadians(1+(UseTimeReduction * 20)));
-                }		
+				}		
 			}
 	
 
@@ -663,18 +603,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 			}
 			
-			
-
-			List<int> BannedBows = BowsChargeRework.BannedBows;
-
-            if (BowReworkConfig && !BannedBows.Contains(item.type))
-			{
-				if (item.useAmmo == AmmoID.Arrow && !IsRepeater)
-				{
-					bool Canshoot = item.GetGlobalItem<BowsChargeRework>().Canshoot;
-					return Canshoot && base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-				}
-			}
 			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 		
@@ -835,7 +763,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public float Timmer = 0;
 		public float TimmerMax = 0;
-        float UseTimeReduction = 0;
+        public float UseTimeReduction = 0;
         public override void HoldItem(Item item, Player player)
         {
 			int Shootproj;
@@ -850,27 +778,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     Projectile.NewProjectile(Projectile.GetSource_None(), player.position + new Vector2(0,-2 * 16f), Vector2.Zero, Shootproj, 15, 0, Main.myPlayer,1);
                 }
             }
-			if (IsRepeater)
-			{
-				float multiplier = 32f;
-					if(item.type == ItemID.Blowpipe)
-						multiplier = 32f;
-					else if (item.type == ItemID.Blowgun)
-						multiplier = 26f;
-
-                if (player.channel)
-                {
-                    if (Timmer <= item.useTime * 16f)
-                    {
-                        Timmer++;
-                        UseTimeReduction = Timmer / (item.useTime * multiplier);
-                    }
-                }
-                else if (Main.mouseLeftRelease)
-                {
-                    Timmer = UseTimeReduction = 0;
-                }
-            }
+			
 			
 			
 			if (CanCharge)
@@ -880,15 +788,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             base.HoldItem(item, player);
         }
-        public override float UseTimeMultiplier(Item item, Player player)
-        {
-            if (IsRepeater)
-            {
-				//Main.NewText(1f - UseTimeReduction);
-                return 1f - UseTimeReduction;
-            }
-            return base.UseTimeMultiplier(item, player);
-        }
+       
         private int AllowCoinAndAmmoPlacement(On_ItemSlot.orig_PickItemMovementAction orig, Item[] inv, int context, int slot, Item checkItem)
         {
             if (context == 1 && (IsCoin || FixCoin(checkItem))) 
@@ -1012,7 +912,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public override bool CanUseItem(Item item, Player player)
         {
 			WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-			BowReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
             return base.CanUseItem(item, player);
         }
 

@@ -28,24 +28,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
         }
-        //public override void AddRecipes()  //How to craft this item
-        //{
-        //    CreateRecipe()
-        //    .AddIngredient<ReinforcedIronBar>(5)
-        //    .AddIngredient(ItemID.FragmentNebula, 10)
-        //    .AddIngredient(ItemID.FragmentSolar, 10)
-        //    .AddIngredient(ItemID.FragmentStardust, 10)
-        //    .AddIngredient(ItemID.WarriorEmblem, 1)
-        //    .AddIngredient(ItemID.LunarBar, 10) //you need 10 Wood
-        //    .AddTile(TileID.Anvils)  //at work bench
-        //    .Register();
-        //}
-
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetration(DamageClass.Ranged, pierceBonus);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetration(DamageClass.Ranged, pierceBonus);
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ModContent.ProjectileType<ReinforcedBulletP>(), ReinforcedIronBulletBonus);
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
         }
     }
 }

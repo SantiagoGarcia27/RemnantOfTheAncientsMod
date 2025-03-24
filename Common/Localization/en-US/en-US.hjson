@@ -438,7 +438,7 @@ Mods: {
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					-moardiego -Slash9511
+					-AarGonz_ -moardiego -Slash9511
 					for being the first to give this mod a chance
 					'''
 			}
@@ -1700,9 +1700,13 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Magic_Sword: {
-				DisplayName: Magic Sword
-				Tooltip: Summons a traveling sword.
+			StarRampage: {
+				DisplayName: Star rampage
+				Tooltip:
+					'''
+					You can equip it as mount
+					Summons a traveling sword.
+					'''
 			}
 
 			TortugaPet: {
@@ -2218,75 +2222,67 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Amethyst_Sword: {
+			AmethystSword: {
 				DisplayName: Amethyst Sword
 				Tooltip: ""
 			}
 
-			Diamond_Sword: {
+			DiamondSword: {
 				DisplayName: Diamond Sword
-				Tooltip: Wrong game
+				Tooltip: ""
 			}
 
-			Emerald_Sword: {
+			EmeraldSword: {
 				DisplayName: Emerald Sword
 				Tooltip: ""
 			}
 
-			The_Geode: {
+			TheGeode: {
 				DisplayName: The Geode
 				Tooltip: ""
 			}
 
-			The_Geode_Blue: {
-				DisplayName: The Geode
-				Tooltip:
-					'''
-					Inflict Slow on enemies
-					Shoot a sapphire sword that fragments on hit
-					'''
-			}
-
-			The_Geode_Green: {
-				DisplayName: The Geode
-				Tooltip: 50% chance to heal player 5hp per hit
-			}
-
-			The_Geode_Red: {
-				DisplayName: The Geode
-				Tooltip:
-					'''
-					Inflict fire on enemies
-					 Create explosions on hit
-					'''
-			}
-
-			The_Geode_Vi: {
-				DisplayName: The Geode
-				Tooltip: Inflict Confused on enemies
-			}
-
-			The_Geode_White: {
-				DisplayName: The Geode
+			TheGeodeBlue: {
+				DisplayName: The Geode Blue
 				Tooltip: ""
 			}
 
-			The_Geode_Yellow: {
-				DisplayName: The Geode
-				Tooltip: Inflict Ichor on enemies
+			TheGeodeGreen: {
+				DisplayName: The Geode Green
+				Tooltip: ""
 			}
 
-			Ruby_Sword: {
+			TheGeodeRed: {
+				DisplayName: The Geode Red
+				Tooltip: ""
+			}
+
+			TheGeodeViolet: {
+				DisplayName: The Geode Violet
+				Tooltip: ""
+			}
+
+			TheGeodeWhite: {
+				DisplayName: The Geode White
+				Tooltip: ""
+			}
+
+			TheGeodeYellow: {
+				DisplayName: The Geode Yellow
+				Tooltip: ""
+			}
+
+			RubySword: {
 				DisplayName: Ruby Sword
 				Tooltip: ""
 			}
 
-			Sapphire_Sword: {
+			SapphireSword: {
 				DisplayName: Sapphire Sword
 				Tooltip: ""
 			}
 
-			Topaz_Sword: {
+			TopazSword: {
 				DisplayName: Topaz Sword
 				Tooltip: ""
 			}
@@ -2468,11 +2464,7 @@ Mods: {
 
 			DesertBow: {
 				DisplayName: Desert Bow
-				Tooltip:
-					'''
-
-					Transform normal arrows in desert arrows
-					'''
+				Tooltip: Transform normal arrows in desert arrows
 			}
 
 			Nigthbow: {
@@ -3175,12 +3167,12 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Amber_Sword: {
+			AmberSword: {
 				DisplayName: Amber Sword
 				Tooltip: ""
 			}
 
-			The_Geode_Brown: {
+			TheGeodeBrown: {
 				DisplayName: The Geode
 				Tooltip: ""
 			}
@@ -4014,6 +4006,21 @@ Mods: {
 					{3}% reinforced bullets, {4}% tomb bullets, {5}% current evil biome bullets and {6}% explosive bullet
 					'''
 			}
+
+			Emperor: {
+				DisplayName: Emperor
+				Tooltip: Shoots high velocity bullets
+			}
+
+			EmeraldAndScarlet: {
+				DisplayName: Emerald And Scarlet
+				Tooltip: ""
+			}
+
+			Igniter: {
+				DisplayName: Igniter
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4023,28 +4030,20 @@ Mods: {
 			DesertAniquilator: {
 				DisplayName: Desert Annihilator
 
-				SangarUtilities: {
-					SangarUtilities: {
-						BossChecklistIntegration: {
-							EntryName: Desert Annihilator
-							SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertChest] in the desert
-							DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
-						}
-					}
+				BossChecklistIntegration: {
+					EntryName: Desert Annihilator
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertGlyph] in the desert
+					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 			}
 
 			FrozenAssaulter: {
 				DisplayName: Frozen Assaulter
 
-				SangarUtilities: {
-					SangarUtilities: {
-						BossChecklistIntegration: {
-							EntryName: Frozen Assaulter
-							SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
-							DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
-						}
-					}
+				BossChecklistIntegration: {
+					EntryName: Frozen Assaulter
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
+					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
 
@@ -4053,14 +4052,10 @@ Mods: {
 			InfernalTyrantHead: {
 				DisplayName: Infernal Tyrant
 
-				SangarUtilities: {
-					SangarUtilities: {
-						BossChecklistIntegration: {
-							EntryName: Infernal Tyrant
-							SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
-							DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
-						}
-					}
+				BossChecklistIntegration: {
+					EntryName: Infernal Tyrant
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
+					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
 
@@ -4268,6 +4263,9 @@ Mods: {
 			ReinforcedBullet.DisplayName: Reinforced Bullet
 			ReinforcedBulletP.DisplayName: Reinforced Bullet P
 			SaberSwingProgectile.DisplayName: Saber Swing Progectile
+			GenericDamageBream.DisplayName: Generic Damage Bream
+			EmeraldAndScarletHeldProjectile.DisplayName: Emerald And Scarlet Held Projectile
+			InstantPlataformProj.DisplayName: Instant Plataform Proj
 		}
 
 		Tiles: {
@@ -4673,6 +4671,8 @@ Mods: {
 			MiningSpeedBonusDisplay.DisplayName: Mining Speed Bonus Display
 			MovmentSpeedBonusDisplay.DisplayName: Movment Speed Bonus Display
 			StyleStatBonusDisplay.DisplayName: Style Stat Bonus Display
+			PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
+			PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
 		}
 	}
 }

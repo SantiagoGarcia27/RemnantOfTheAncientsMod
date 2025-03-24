@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
 using FargowiltasSouls.Core.Toggler;
+using System.IO;
+using RemnantOfTheAncientsMod.Common.Enums;
+using static RemnantOfTheAncientsMod.Common.Enums.GlobalEnum;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -210,6 +213,35 @@ namespace RemnantOfTheAncientsMod
                 }   
             }
             return MaxPlayers -1;
-        } 
+        }
+
+       
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {
+            if (reader.BaseStream.CanRead)
+            {
+                switch ((packetType)reader.ReadByte())
+                {
+                    
+                    case packetType.placePltaform:
+                        int plataformType = reader.ReadInt32();
+                        int torchType = reader.ReadInt32();
+                        int x = reader.ReadInt32();
+                        int y = reader.ReadInt32();
+                        int range = reader.ReadInt32();
+                        int playerindex = reader.ReadInt32();
+
+                        if(x != Player.tileTargetX) 
+                            x = Player.tileTargetX;
+
+                        if (y != Player.tileTargetY)
+                            y = Player.tileTargetY;
+                        Player player = Main.player[playerindex];
+                            PlataformModel.BuildPlataform(player, plataformType,torchType, x, y, range);
+                        break;
+                }
+            }
+            base.HandlePacket(reader, whoAmI);
+        }
     }
 }

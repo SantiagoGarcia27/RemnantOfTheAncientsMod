@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 25f;
 			NPC.knockBackResist = 0.2f;
-			NPC.aiStyle = 1;
+			NPC.aiStyle =  1;
 			AIType = NPCID.BlueSlime;
 			AnimationType = NPCID.BlueSlime;
 			Banner = Item.NPCtoBanner(NPCID.BlueSlime); ;

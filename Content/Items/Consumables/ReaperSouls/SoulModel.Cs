@@ -34,6 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             Item.maxStack = 1;
             Item.value = 0;
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Reaper;
+            Item.GetGlobalItem<CustomTooltip>().ReaperItem = true;
             Item.useAnimation = 20;
             Item.useTime = 20;
             Item.useStyle = ItemUseStyleID.HoldUp;

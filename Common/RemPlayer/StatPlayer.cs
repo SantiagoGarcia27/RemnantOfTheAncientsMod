@@ -74,16 +74,22 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         {
             ProjectilePenetrationBonus[damageClass] = value;
         }
+        public void AddProjectilePenetration(DamageClass damageClass, float value)
+        {
+            ProjectilePenetrationBonus[damageClass] += value;
+        }
 
         public float GetProjectilePenetrationChance(DamageClass damageClass)
         {
-            float var = ProjectilePenetrationChance[damageClass];
-
-            return var;
+            return ProjectilePenetrationChance[damageClass];
         }
         public void SetProjectilePenetrationChance(DamageClass damageClass, float value)
         {
             ProjectilePenetrationChance[damageClass] = value;
+        }
+        public void AddProjectilePenetrationChance(DamageClass damageClass, float value)
+        {
+            ProjectilePenetrationChance[damageClass] += value;
         }
 
         public List<ExtraProjectile> GetRangerExtraProjectile(int ammoType)

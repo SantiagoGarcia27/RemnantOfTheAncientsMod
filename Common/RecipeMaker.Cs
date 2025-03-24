@@ -190,12 +190,20 @@ namespace RemnantOfTheAncientsMod
                 .Register();
 
             Recipe.Create(ItemID.EnchantedSword)
-                .AddRecipeGroup("EspH", 1)
+                .AddIngredient(ItemID.IronBroadsword)
                 .AddIngredient(ItemID.FallenStar, 10)
                 .AddIngredient(ItemID.SoulofLight, 10)
                 .AddIngredient(ItemID.LightShard, 1)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
+
+            Recipe.Create(ItemID.EnchantedSword)
+             .AddIngredient(ItemID.IronBroadsword)
+             .AddIngredient(ItemID.FallenStar, 10)
+             .AddIngredient(ItemID.SoulofLight, 10)
+             .AddIngredient(ItemID.LightShard, 1)
+             .AddTile(TileID.MythrilAnvil)
+             .Register();
 
             Recipe.Create(ItemID.BallOHurt)
                 .AddIngredient(ItemID.DemoniteBar, 10)
@@ -1069,12 +1077,12 @@ namespace RemnantOfTheAncientsMod
             });
             RecipeGroup.RegisterGroup("Tumbas", group);
 
-            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " IronBroadsword", new int[]
-            {
-                ItemID.IronBroadsword,
-                ItemID.LeadBroadsword
-            });
-            RecipeGroup.RegisterGroup("EspH", group);
+            //group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " IronBroadsword", new int[]
+            //{
+            //    ItemID.IronBroadsword,
+            //    ItemID.LeadBroadsword
+            //});
+            //RecipeGroup.RegisterGroup("EspH", group);
 
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " WarriorEmblem", new int[]
             {

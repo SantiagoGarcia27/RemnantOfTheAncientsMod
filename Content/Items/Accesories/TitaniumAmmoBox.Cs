@@ -2,9 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
@@ -12,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     public class TitaniumAmmoBox : ModItem
     {
         int pierceBonus = 2;
-        int pierceChance = 30;
+        int pierceChance = 20;
         int ReinforcedIronBulletBonus = 40;
         int CorruptBulletBonus = 10;
         int TombBulletBonus = 2;
@@ -45,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetration(DamageClass.Ranged, pierceBonus);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetration(DamageClass.Ranged, pierceBonus);
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ModContent.ProjectileType<ReinforcedBulletP>(), ReinforcedIronBulletBonus);
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ModContent.ProjectileType<Tomb_BulletP>(), TombBulletBonus);
 
@@ -54,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             else
                 player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ProjectileID.IchorBullet, CorruptBulletBonus);
 
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
         }
     }
 }

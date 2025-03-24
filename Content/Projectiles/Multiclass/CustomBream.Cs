@@ -1,3 +1,4 @@
+using InfernumMode;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
@@ -11,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
     {
         public override Color color => Color.LightGreen;
         public override int ProjId => ProjectileID.PinkLaser;
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.hostile && !Projectile.friendly)
             {
@@ -36,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     }
                 }
             }
-            else if(Projectile.hostile && !Projectile.friendly)
+            else if (Projectile.hostile && !Projectile.friendly)
             {
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
@@ -67,8 +68,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         Projectile target = null;
         float distance;
         public override void AI()
-        {   
-            if(target != null)
+        {
+            if (target != null)
             {
                 Projectile.velocity.DirectionTo(target.Center);
                 distance = Vector2.Distance(Projectile.Center, target.Center);
@@ -113,11 +114,53 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     }
                 }
             }
-             return null;
+            return null;
         }
     }
 
-    public abstract class BaseBream: ModProjectile
+    public class GenericDamageBream : ModProjectile
+    {
+        public override string Texture => "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/CustomBream2";
+        public override void SetDefaults()
+        {
+            Projectile.CloneDefaults(ProjectileID.PurpleLaser);
+            Projectile.DamageType = DamageClass.Generic;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.tileCollide = true;
+            Projectile.penetrate = 2;
+            Projectile.scale = 2f;
+            AIType = ProjectileID.PurpleLaser;
+        }
+        public override void AI()
+        {
+            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.CursedInferno, 120);
+            base.OnHitNPC(target, hit, damageDone);
+        }
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            target.AddBuff(BuffID.CursedInferno, 120);
+            base.OnHitPlayer(target, info);
+        }
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return base.GetAlpha(lightColor);
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Color g = Color.Green;
+            Color color = Utils1.GetColorByID((int)Projectile.ai[1]);
+            lightColor = color;
+            return base.PreDraw(ref lightColor);
+        }
+    }
+
+    public abstract class BaseBream : ModProjectile
     {
         public override string Texture => "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/CustomBream";
         public abstract int ProjId { get; }
@@ -134,14 +177,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Projectile.penetrate = 1;
             Projectile.knockBack = -5f;
             AIType = ProjId;
-        }  
+        }
         public override Color? GetAlpha(Color lightColor) => color;
         public override void AI()
         {
-           // Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width, TextureAssets.Projectile[Projectile.type].Value.Height);
+            // Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width, TextureAssets.Projectile[Projectile.type].Value.Height);
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
             base.AI();
+        }
+        public Projectile getProjectile()
+        {
+            return Projectile;
         }
     }
 }

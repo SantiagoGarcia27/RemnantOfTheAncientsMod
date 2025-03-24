@@ -122,14 +122,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 		}
 		public override List<string> SetNPCNameList()
 		{
-			return new List<string>()
-			{
-				"Gand Alf",
+			return
+            [
+                "Gand Alf",
 				"Dio",
 				"Gabriel",
 				"Johy",
 				"Harry"
-			};
+			];
 		}
 		public override void OnChatButtonClicked(bool firstButton, ref string shop)
 		{
@@ -163,7 +163,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 
 		public override string GetChat()
 		{
-			WeightedRandom<string> chat = new WeightedRandom<string>();
+			WeightedRandom<string> chat = new();
 			int Wizard = NPC.FindFirstNPC(NPCID.Wizard);
 			int Clothier = NPC.FindFirstNPC(NPCID.Clothier);
 
@@ -200,59 +200,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 			string a = imput.Replace("\u00BF", "¿").Replace("\u00A1", "¡").Replace("\u00E1", "á").Replace("\u00ED", "í");
 			return a;
 		}
-		//public bool FindItemInventoriPlayer(int ItemChoise)
-		//{
-		//	for (int k = 0; k < 255; k++)
-		//	{
-		//		Player player = Main.player[k];
-		//		if (!player.active)
-		//		{
-		//			continue;
-		//		}
-
-		//		foreach (Item item in player.inventory)
-		//		{
-		//			if (item.type == ItemChoise) return true;
-		//		}
-
-		//	}
-		//	return false;
-		//}
-
-
-
-		//public override void SetupShop(Chest shop, ref int nextSlot)
-		//{
-		//          AddShopItem(shop, nextSlot, ItemType<DayToken>(), Item.buyPrice(0, 1, 0, 0));
-		//          nextSlot++;
-		//          AddShopItem(shop, nextSlot, ItemType<NightToken>(), Item.buyPrice(0, 1, 0, 0));
-		//          nextSlot++;
-
-		//          if (Main.raining)
-		//	{
-		//              AddShopItem(shop, nextSlot, ItemType<RainToken>(), Item.buyPrice(0, 1, 0, 0));
-		//              nextSlot++;
-		//          }
-		//	if (Sandstorm.Happening)
-		//	{
-		//              AddShopItem(shop, nextSlot, ItemType<SandstormToken>(), Item.buyPrice(0, 1, 0, 0));
-		//              nextSlot++;
-		//          }
-		//	if (NPC.downedQueenBee)
-		//	{
-		//              AddShopItem(shop, nextSlot, ItemType<Judgment>(), Item.buyPrice(0, 2, 0, 0));
-		//              nextSlot++;
-		//          }
-		//          if (NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0)
-		//          {
-		//              AddShopItem(shop, nextSlot, ItemType<PlayerStatViewer>(), Item.buyPrice(0, 40, 0, 0));
-		//              nextSlot++;
-		//          }
-		//	if (Main.hardMode)
-		//	{
-		//              AddShopItem(shop, nextSlot, ItemID.Sundial, Item.buyPrice(0, 20, 0, 0));
-		//              nextSlot++;
-		//          }
+		
 		public const string ShopName = "Shop";
 		public override void AddShops()
 		{

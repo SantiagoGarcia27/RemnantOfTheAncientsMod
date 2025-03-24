@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
@@ -19,37 +20,24 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             Projectile.CloneDefaults(ProjectileID.Flames);
             AIType = ProjectileID.Flames;
             Projectile.timeLeft = 3000;
-        }
-
-        public override void OnKill(int timeLeft)
-        {
-            //Vector2 launchVelocity = new Vector2(-4, 0); // Create a velocity moving the left.
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    // Every iteration, rotate the newly spawned projectile by the equivalent 1/4th of a circle (MathHelper.PiOver4)
-            //    // (Remember that all rotation in Terraria is based on Radians, NOT Degrees!)
-            //    launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
-
-            //    // Spawn a new projectile with the newly rotated velocity, belonging to the original projectile owner. The new projectile will inherit the spawning source of this projectile.
-            //    Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center, launchVelocity, ProjectileID.Meowmere, Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
-            //}
-        }
+        }    
         public override void AI()
         {
             AnimateProjectile();
             base.AI();
         }
-        public static List<float> phase = new List<float>()
-        {
+        public static List<float> phase =
+        [
             0,0,0,0,0,0,0
-        };
+        ];
         public void AnimateProjectile()
         {
             Projectile.frame = PhaseSelector();
         }
         private int PhaseSelector()
         {
-            if(Utils1.NumberBetweenExact(Projectile.timeLeft, phase[5], phase[6]))
+
+            if (Utils1.NumberBetweenExact(Projectile.timeLeft, phase[5], phase[6]))
             {
                 return 0;
             }
@@ -88,6 +76,21 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         {   
            // SoundEngine.PlaySound(Main.rand.NextBool() ? SoundID.Item57 : SoundID.Item58, Projectile.position);
             return base.OnTileCollide(oldVelocity);
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            lightColor = Utils1.GetColorByID((int)Projectile.ai[2]);
+            return false;
+        }
+        public override void PostDraw(Color lightColor)
+        {
+            Color color = Utils1.GetColorByID((int)Projectile.ai[2]);
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            int projectileFrames = Main.projFrames[Projectile.type];
+            Vector2 origin = new(texture.Width * 0.5f, (texture.Height * 0.5f / projectileFrames) * Projectile.frame);
+            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+            base.PostDraw(lightColor);
         }
     }
 }

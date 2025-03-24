@@ -10,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     public class LizzardAmmoBox : ModItem
     {
         int pierceBonus = 2;
-        int pierceChance = 40;
+        int pierceChance = 30;
         int CritBonus = 10;
         int ReinforcedIronBulletBonus = 50;
         int CorruptBulletBonus = 20;
@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
 
             player.GetCritChance(DamageClass.Ranged) += CritBonus;
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetration(DamageClass.Ranged, pierceBonus);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetration(DamageClass.Ranged, pierceBonus);
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ModContent.ProjectileType<ReinforcedBulletP>(), ReinforcedIronBulletBonus);
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ModContent.ProjectileType<Tomb_BulletP>(), TombBulletBonus);
 
@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
                 player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ProjectileID.IchorBullet, CorruptBulletBonus);
 
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ProjectileID.ExplosiveBullet, ExplodingBulletBonus);
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
         }
     }
 }

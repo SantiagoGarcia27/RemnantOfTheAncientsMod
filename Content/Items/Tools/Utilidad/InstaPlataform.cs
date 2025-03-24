@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
@@ -27,30 +28,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		}
 
 		public int Range = 200;
-		public override bool? UseItem(Player player)
-		{
-			for (int i = 0; i <= Range; i++)
-			{
-				int x = Player.tileTargetX + (i * player.direction);
-				int y = Player.tileTargetY;
-
-				if (!Main.tile[x, y].HasTile)
-				{
-
-					WorldGen.PlaceTile(x, y, TileID.Platforms, false, false, -1, 0);
-
-					if (i % 10 == 0)
-					{
-						PlataformModel.TileSafe(x, y - 1);
-						WorldGen.PlaceTile(x, y - 1, TileID.Torches, false, false, -1, 0);
-
-					}
-				}
-			}
-			Netcode.SyncWorld();
-			return true;
-		}
-		public override void HoldItem(Player player)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (!player.noBuilding)
+            {
+                Vector2 mouse = Main.MouseWorld;
+                Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), mouse, Vector2.Zero, type, 0, 0, player.whoAmI, 0,0, Range);
+            }
+            return false;
+        }
+        public override void HoldItem(Player player)
 		{
 			PlataformModel.HoldItem(player, Range);
 			base.HoldItem(player);

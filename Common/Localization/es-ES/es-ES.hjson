@@ -445,7 +445,7 @@ Mods: {
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					-moardiego -Slash9511 
+					-AarGonz_ -moardiego -Slash9511 
 					Por darle una oportunidad al mod en sus inicios
 					'''
 			}
@@ -849,7 +849,7 @@ Mods: {
 			}
 
 			Daylight_chesplate: {
-				DisplayName: Daylight Shirt
+				DisplayName: Camisa diurna
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
@@ -1709,9 +1709,13 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Magic_Sword: {
-				DisplayName: Espada Mágica
-				Tooltip: Invoca una espada de transporte.
+			StarRampage: {
+				DisplayName: Estampida estelar
+				Tooltip:
+					'''
+					Puede usarse como montura.
+					Invoca una espada de transporte.
+					'''
 			}
 
 			TortugaPet: {
@@ -2109,7 +2113,7 @@ Mods: {
 
 			Tomb_bullet: {
 				DisplayName: Bala de tumba
-				Tooltip: Causa Marca malidta en los enemigos
+				Tooltip: Causa marca maldita en los enemigos
 			}
 
 			WrathSlimeBullet: {
@@ -2227,27 +2231,27 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Amethyst_Sword: {
+			AmethystSword: {
 				DisplayName: Espada de amatista
 				Tooltip: ""
 			}
 
-			Diamond_Sword: {
+			DiamondSword: {
 				DisplayName: Espada de diamante
 				Tooltip: Juego equivocado
 			}
 
-			Emerald_Sword: {
+			EmeraldSword: {
 				DisplayName: Espada de esmeralda
 				Tooltip: ""
 			}
 
-			The_Geode: {
+			TheGeode: {
 				DisplayName: La Geoda
 				Tooltip: ""
 			}
 
-			The_Geode_Blue: {
+			TheGeodeBlue: {
 				DisplayName: La Geoda
 				Tooltip:
 					'''
@@ -2256,12 +2260,12 @@ Mods: {
 					'''
 			}
 
-			The_Geode_Green: {
+			TheGeodeGreen: {
 				DisplayName: La Geoda
-				Tooltip: Te cura 5 de via al golpear con un 50% de provabilidad
+				Tooltip: Te cura 5 de via al golpear con un 50% de probabilidad
 			}
 
-			The_Geode_Red: {
+			TheGeodeRed: {
 				DisplayName: La Geoda
 				Tooltip:
 					'''
@@ -2270,33 +2274,33 @@ Mods: {
 					'''
 			}
 
-			The_Geode_Vi: {
+			TheGeodeViolet: {
 				DisplayName: La Geoda
 				Tooltip: Inflige confución a los enemigos
 			}
 
-			The_Geode_White: {
+			TheGeodeWhite: {
 				DisplayName: La Geoda
 				Tooltip: ""
 			}
 
-			The_Geode_Yellow: {
+			TheGeodeYellow: {
 				DisplayName: La Geoda
 				Tooltip: Inflige ichor a los enemigos
 			}
 
-			Ruby_Sword: {
-				DisplayName: Ruby Sword
+			RubySword: {
+				DisplayName: Espada de rubi
 				Tooltip: ""
 			}
 
-			Sapphire_Sword: {
-				DisplayName: Sapphire Sword
+			SapphireSword: {
+				DisplayName: Espada de safiro
 				Tooltip: ""
 			}
 
-			Topaz_Sword: {
-				DisplayName: Topaz Sword
+			TopazSword: {
+				DisplayName: Espada de topacio
 				Tooltip: ""
 			}
 
@@ -2401,7 +2405,7 @@ Mods: {
 			}
 
 			PalladiumSaber: {
-				DisplayName: Palladium Saber
+				DisplayName: Sable de Paladio
 				// Tooltip: ""
 			}
 
@@ -2411,7 +2415,7 @@ Mods: {
 			}
 
 			ReinforcedIronSaber: {
-				// DisplayName: Reinforced Iron Saber
+				DisplayName: Sable de hierro reforzado
 				// Tooltip: ""
 			}
 
@@ -3193,14 +3197,14 @@ Mods: {
 				Tooltip: ""
 			}
 
-			Amber_Sword: {
-				DisplayName: Espada de ambar
-				Tooltip: ""
+			AmberSword: {
+				DisplayName: Espada de ámbar
+				// Tooltip: ""
 			}
 
-			The_Geode_Brown: {
+			TheGeodeBrown: {
 				DisplayName: La Geoda
-				Tooltip: ""
+				// Tooltip: ""
 			}
 
 			PalidNail: {
@@ -4030,6 +4034,21 @@ Mods: {
 					{3}% bala reforzada, {4}% bala de tumba, {5}% bala de la maldad del mundo y {6}% bala explosiva
 					'''
 			}
+
+			Emperor: {
+				DisplayName: Emperador
+				Tooltip: Transforma las balas de mosquete en Balas de alta velocidad
+			}
+
+			EmeraldAndScarlet: {
+				// DisplayName: Emerald And Scarlet
+				// Tooltip: ""
+			}
+
+			Igniter: {
+				// DisplayName: Igniter
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4039,28 +4058,20 @@ Mods: {
 			DesertAniquilator: {
 				DisplayName: Aniquilador Del Desierto
 
-				SangarUtilities: {
-					SangarUtilities: {
-						BossChecklistIntegration: {
-							EntryName: Aniquilador Del Desierto
-							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertGlyph] en el desierto
-							DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
-						}
-					}
+				BossChecklistIntegration: {
+					EntryName: Aniquilador Del Desierto
+					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertGlyph] en el desierto
+					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 			}
 
 			FrozenAssaulter: {
 				DisplayName: Asaltante Congelado
 
-				SangarUtilities: {
-					SangarUtilities: {
-						BossChecklistIntegration: {
-							EntryName: Asaltante Congelado
-							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
-							DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
-						}
-					}
+				BossChecklistIntegration: {
+					EntryName: Asaltante Congelado
+					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
+					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
 
@@ -4069,14 +4080,10 @@ Mods: {
 			InfernalTyrantHead: {
 				DisplayName: Tirano Infernal
 
-				SangarUtilities: {
-					SangarUtilities: {
-						BossChecklistIntegration: {
-							EntryName: Tirano Infernal
-							SpawnInfo: Usa [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
-							DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
-						}
-					}
+				BossChecklistIntegration: {
+					EntryName: Tirano Infernal
+					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
+					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
 
@@ -4284,6 +4291,9 @@ Mods: {
 			// ReinforcedBullet.DisplayName: Reinforced Bullet
 			// ReinforcedBulletP.DisplayName: Reinforced Bullet P
 			// SaberSwingProgectile.DisplayName: Saber Swing Progectile
+			// GenericDamageBream.DisplayName: Generic Damage Bream
+			// EmeraldAndScarletHeldProjectile.DisplayName: Emerald And Scarlet Held Projectile
+			// InstantPlataformProj.DisplayName: Instant Plataform Proj
 		}
 
 		Tiles: {
@@ -4689,6 +4699,8 @@ Mods: {
 			// MiningSpeedBonusDisplay.DisplayName: Mining Speed Bonus Display
 			// MovmentSpeedBonusDisplay.DisplayName: Movment Speed Bonus Display
 			// StyleStatBonusDisplay.DisplayName: Style Stat Bonus Display
+			// PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
+			// PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
 		}
 	}
 }

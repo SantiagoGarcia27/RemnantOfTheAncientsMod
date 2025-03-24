@@ -11,7 +11,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Common.Global.Items
+namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 {
     public class ShotgunRework : GlobalItem
     {
@@ -21,7 +21,52 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public int CustomProjectileShoot = -1;
 
         public override bool InstancePerEntity => true;
-       
+
+        public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
+        public override void SetDefaults(Item item)
+        {
+            if (WeaponConf)
+            {
+                if (item.type == ItemID.Boomstick)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    new Shotgun(item, true, 3, -1, 3);
+
+                }
+                if (item.type == ItemID.QuadBarrelShotgun)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    new Shotgun(item, true, 7, -1, 45);
+
+                }
+                if (item.type == ItemID.Shotgun)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    new Shotgun(item, true, 3, -1, 5);
+
+                }
+                if (item.type == ItemID.OnyxBlaster)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    new Shotgun(item, true, 4, -1, 5);
+
+                }
+                if (item.type == ItemID.TacticalShotgun)
+                {
+                    item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+                    item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
+                    new Shotgun(item, true, 6, -1, 10);
+                }
+            }
+            base.SetDefaults(item);
+        }
+
+
+
         public void SetShootgunStats(bool _IsShotgun, int _BulletAmmount, int _Unacurency, int _CustomProjectileShoot)
         {
             IsShotgun = _IsShotgun;
@@ -66,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 else
                 {
                     SoundEngine.PlaySound(SoundID.Item36);
-                    shoot(BulletAmmount, Unacurency, CustomProjectileShoot);  
+                    shoot(BulletAmmount, Unacurency, CustomProjectileShoot);
                     return true;
                 }
             }
@@ -130,7 +175,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
     }
     public class Shotgun : GlobalItem
     {
-        public Shotgun(Item item,bool IsShotgun, int BulletAmmount, int CustomProjectileShoot, int Unacurency, bool CanCharge = true)
+        public Shotgun(Item item, bool IsShotgun, int BulletAmmount, int CustomProjectileShoot, int Unacurency, bool CanCharge = true)
         {
             item.GetGlobalItem<ShotgunRework>().SetShootgunStats(IsShotgun, BulletAmmount, Unacurency, CustomProjectileShoot);
             item.GetGlobalItem<RemnantGlobalItem>().CanCharge = CanCharge;

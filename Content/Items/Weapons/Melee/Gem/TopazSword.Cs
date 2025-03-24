@@ -4,10 +4,11 @@ using Terraria.GameContent.Creative;
 using Terraria;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 {
-	public class Topaz_Sword : ModItem
+	public class TopazSword : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -43,7 +44,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 			{
 				Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
 				Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
-				Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, 0);
+                int colorID = Utils1.GetColorID(Color.Yellow);
+                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, colorID);
 			}
 		}
 

@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.width = 30;
             Item.accessory = true;
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Reaper;
-            Item.GetGlobalItem<CustomTooltip>().ReaperAccesories = true;
+            Item.GetGlobalItem<CustomTooltip>().ReaperItem = true;
         }
         public override void AddRecipes() => CreateRecipe().AddTile(TileID.DemonAltar).Register();
         internal static Color GetRarityColor() => Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);

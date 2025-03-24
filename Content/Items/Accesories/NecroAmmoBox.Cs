@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         int pierceBonus = 1;
-        int pierceChance = 20;
+        int pierceChance = 15;
         int ReinforcedIronBulletBonus = 20;
         int TombBulletBonus = 1;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(pierceChance, pierceBonus,ReinforcedIronBulletBonus,TombBulletBonus);
@@ -42,10 +42,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetration(DamageClass.Ranged, pierceBonus);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetration(DamageClass.Ranged, pierceBonus);
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ModContent.ProjectileType<ReinforcedBulletP>(), ReinforcedIronBulletBonus);
             player.GetModPlayer<StatPlayer>().SetRangerExtraProjectile(AmmoID.Bullet, ModContent.ProjectileType<Tomb_BulletP>(), TombBulletBonus);
-            player.GetModPlayer<StatPlayer>().SetProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
+            player.GetModPlayer<StatPlayer>().AddProjectilePenetrationChance(DamageClass.Ranged, pierceChance);
         }
     }
 }

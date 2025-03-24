@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Dusts;
+using RemnantOfTheAncientsMod.Content.Items.Mount;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -11,6 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Mounts
 {
 	public class Sword : ModMount
 	{
+		static Item baseItem;
 		public override void SetStaticDefaults()
 		{
 			MountData.spawnDust = ModContent.DustType<Smoke>();
@@ -134,7 +136,7 @@ mountData.acceleration = 0.3f;
 		}
 		}
 */
-
+		int inmuniyTimer = 0;
 		public override void UpdateEffects(Player player)
 		{
 			if (player.mount.Active)
@@ -147,17 +149,42 @@ mountData.acceleration = 0.3f;
 					// Check if the mount is currently colliding with an NPC
 					Rectangle mountHitbox = player.getRect();
 					mountHitbox.Inflate(10, 10);
-					for (int i = 0; i < Main.npc.Length; i++)
+
+					if (inmuniyTimer % 2 == 0)
 					{
-						NPC npc = Main.npc[i];
-						if (npc.active && npc.immune[player.whoAmI] == 0 && npc.life > 0 && mountHitbox.Intersects(npc.getRect()))
+						foreach (NPC npc in Main.ActiveNPCs)
 						{
-							npc.SimpleStrikeNPC(20, player.direction, true, 6f, DamageClass.Melee, false, 0, false);
+							if (npc.active && npc.immune[player.whoAmI] == 0 && npc.life > 0 && mountHitbox.Intersects(npc.getRect()))
+							{
+								int damage = baseItem.damage;
+								npc.SimpleStrikeNPC(damage, player.direction, true, 6f, DamageClass.Melee, false, 0, false);
+							}
 						}
 					}
-				}
+                    inmuniyTimer++;
+
+                }
 			}
 		}
+	
+        public override void SetMount(Player player, ref bool skipDust)
+        {
 
-	}
+			if (player.HeldItem.type == ModContent.ItemType<StarRampage>())
+			{
+				baseItem = player.HeldItem.Clone();
+
+				if(!baseItem.IsAir)
+					player.HeldItem.TurnToAir();
+			}
+            base.SetMount(player, ref skipDust);
+        }
+
+        public override void Dismount(Player player, ref bool skipDust)
+        {
+			player.QuickSpawnItem(player.GetSource_FromThis(), baseItem);
+            base.Dismount(player, ref skipDust);
+        }
+
+    }
 }

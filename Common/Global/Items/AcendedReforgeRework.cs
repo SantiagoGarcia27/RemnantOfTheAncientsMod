@@ -29,6 +29,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 FillCalamityList();
             }
+            int debug = item.prefix;
            // storedPrefix = item.prefix;
             if (Reforges.ContainsKey(storedPrefix) && Main.LocalPlayer.HasItem(ModContent.ItemType<Terracoin>()))
             {
@@ -80,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 { PrefixID.Menacing,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Sharp") },
                 { PrefixID.Warding,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Impenetrable") },
                 { PrefixID.Lucky,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Acurate") },
-                { PrefixID.Quick,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic") },
+                { PrefixID.Quick2,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic") },
                 { PrefixID.Violent,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Uncontrolled") },
                 { SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Gigant"),  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Titanic") }
             };

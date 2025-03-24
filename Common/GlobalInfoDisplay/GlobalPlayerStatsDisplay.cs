@@ -37,35 +37,40 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
     }
     public class DamageReductionDisplay : InfoDisplay
     {
-        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showDamageReduction;
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showDamageReduction && Main.LocalPlayer.endurance > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
-        {
-            
+        {      
             return $"{Main.LocalPlayer.endurance * 100}% Damage Reduction";
         }
     }
     public class DamageBonusDisplay : InfoDisplay
     {
-        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showDamageBonus;
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showDamageBonus && GetFinalDamage() > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         { 
-            
+            return $"{GetFinalDamage()}%{Main.LocalPlayer.HeldItem.DamageType.DisplayName} bonus";
+        }
+        public float GetFinalDamage()
+        {
             var damageBonus = Main.LocalPlayer.GetDamage(Main.LocalPlayer.HeldItem.DamageType).Multiplicative;
             var GenericDamageBonus = Main.LocalPlayer.GetDamage(DamageClass.Generic).Multiplicative;
             var FinalDamage = (damageBonus * 100) - 100 + (GenericDamageBonus * 100) - 100;
-            return $"{FinalDamage}%{Main.LocalPlayer.HeldItem.DamageType.DisplayName} bonus";
+            return FinalDamage;
         }
     }
     public class CritBonusDisplay : InfoDisplay
     {
-        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showCritBonus;
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showCritBonus && GetFinalCrit() > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
-            
+            return $"{GetFinalCrit()}%{Main.LocalPlayer.HeldItem.DamageType.DisplayName} crit chance bonus";
+        }
+        public float GetFinalCrit()
+        {
             var CritBonus = Main.LocalPlayer.GetCritChance(Main.LocalPlayer.HeldItem.DamageType);
             var GenericCritBonus = Main.LocalPlayer.GetCritChance(DamageClass.Generic);
-            var FinalCrit = CritBonus  + GenericCritBonus;
-            return $"{FinalCrit}%{Main.LocalPlayer.HeldItem.DamageType.DisplayName} crit chance bonus";
+            var FinalCrit = CritBonus + GenericCritBonus;
+            return FinalCrit;
         }
     }
     public class LifeRegenBonusDisplay : InfoDisplay
@@ -82,29 +87,34 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showLifeRegen && Main.LocalPlayer.statMana < Main.LocalPlayer.statManaMax2;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
-            
             return $"{Main.LocalPlayer.manaRegenBonus} Mana regen bonus";
         }
     }
     public class ArmorPenetrationBonusDisplay : InfoDisplay
     {
-        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showArmorPenetration && Main.LocalPlayer.HeldItem.damage > 0;
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showArmorPenetration && Main.LocalPlayer.HeldItem.damage > 0 && GetFinalArmorPenetration() > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
+        { 
+            return $"{GetFinalArmorPenetration()} Armor penetration";
+        }
+        public float GetFinalArmorPenetration()
         {
-            
             var ApBonus = Main.LocalPlayer.GetTotalArmorPenetration(Main.LocalPlayer.HeldItem.DamageType);
             var GenericAPBonus = Main.LocalPlayer.GetTotalArmorPenetration(DamageClass.Generic);
             var FinalAP = ApBonus + GenericAPBonus;
-            return $"{FinalAP} Armor penetration";
+            return FinalAP;
         }
     }
     public class MeleeAttackspeedBonusDisplay : InfoDisplay
     {
-        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showMeleeAttackspeed && Main.LocalPlayer.HeldItem.damage > 0;
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showMeleeAttackspeed && Main.LocalPlayer.HeldItem.damage > 0 && GetFinalMeleeAttackspeed() > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
+        {  
+            return $"{GetFinalMeleeAttackspeed()}% Attack speed bonus";
+        }
+        public float GetFinalMeleeAttackspeed()
         {
-            
-            return $"{(Main.LocalPlayer.GetTotalAttackSpeed(Main.LocalPlayer.HeldItem.DamageType) *100) -100}% Attack speed bonus";
+            return (Main.LocalPlayer.GetTotalAttackSpeed(Main.LocalPlayer.HeldItem.DamageType) * 100) -100;
         }
     }
     public class FlyTimeBonusDisplay : InfoDisplay
@@ -127,7 +137,7 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
     }
     public class LuckBonusDisplay : InfoDisplay
     {
-        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showLuck;
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showLuck && Main.LocalPlayer.luck > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
             
@@ -145,11 +155,44 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
     }
     public class StyleStatBonusDisplay : InfoDisplay
     {
-        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showStyleStatBonus;
+        public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showStyleStatBonus && Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
             
             return $"{Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat}/102 Style bonus";
+        }
+    }
+    public class PierceChanceBonusDisplay : InfoDisplay
+    {
+        public override bool Active()
+        {
+            Player player = Main.LocalPlayer;
+            return player.GetModPlayer<InfoDisplayPlayer>().showPierceChanceStatBonus && player.GetModPlayer<StatPlayer>().GetProjectilePenetrationChance(player.HeldItem.DamageType) > 0;
+        }
+        public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
+        {
+            Player player = Main.LocalPlayer;
+            //var CritBonus = Main.LocalPlayer.GetCritChance(Main.LocalPlayer.HeldItem.DamageType);
+            var GenericPierceChanceBonus = player.GetModPlayer<StatPlayer>().GetProjectilePenetrationChance(player.HeldItem.DamageType);
+           // var FinalCrit = CritBonus + GenericCritBonus;
+            return $"{GenericPierceChanceBonus}%{Main.LocalPlayer.HeldItem.DamageType.DisplayName} pierce strike chance bonus";
+        }
+    }
+    public class PiercePowerBonusDisplay : InfoDisplay
+    {
+   
+        public override bool Active()
+        {
+            Player player = Main.LocalPlayer;
+            return player.GetModPlayer<InfoDisplayPlayer>().showPiercePowerStatBonus && player.GetModPlayer<StatPlayer>().GetProjectilePenetration(player.HeldItem.DamageType) > 1;
+        }
+        public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
+        {
+            Player player = Main.LocalPlayer;
+            //var CritBonus = Main.LocalPlayer.GetCritChance(Main.LocalPlayer.HeldItem.DamageType);
+            var GenericPiercePowerBonus = player.GetModPlayer<StatPlayer>().GetProjectilePenetration(player.HeldItem.DamageType);
+            // var FinalCrit = CritBonus + GenericCritBonus;
+            return $"{GenericPiercePowerBonus} {player.HeldItem.DamageType.DisplayName} pierce strike penetration bonus";
         }
     }
 }
