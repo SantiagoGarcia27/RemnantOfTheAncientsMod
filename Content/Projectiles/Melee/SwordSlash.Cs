@@ -34,6 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
 		}
+		int blockCounter = 0;
 		public override void AI()
 		{
             Projectile.tileCollide = false;
@@ -44,7 +45,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
 			if (DistanceUtils.TouchWall(Projectile))
 			{
-				Projectile.damage -= 1;             
+				if (blockCounter % 2 == 0)
+				{
+					Projectile.damage -= 1;
+				}
+				blockCounter++;
             }
 			if(!DistanceUtils.TouchFlour(Projectile))
 			{
@@ -57,8 +62,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			else
 			{
 				Projectile.velocity.Y = 0;
-
             }
+
+			if(Projectile.damage == 0)
+			{
+                Projectile.Kill();
+			}
 			AnimateTexture();
 
 		}

@@ -16,8 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         float ViewDistance = 500;
 
         public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("Assault Ballista Minion");
+        {          
             Main.projFrames[Projectile.type] = 8;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;

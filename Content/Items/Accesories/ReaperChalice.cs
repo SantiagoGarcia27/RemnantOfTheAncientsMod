@@ -6,6 +6,7 @@ using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
@@ -26,16 +27,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
-        {         
-            player.GetDamage(DamageClass.Generic) += 0.50f;
-            player.statLifeMax2 = 1;
-            player.maxMinions += minionBonus;
-            player.statManaMax2 += manaBonus;
-            player.GetModPlayer<RemnantPlayer>().NotConsumeAmmoChance = ammoSaveBonus;
+        {
+            if (Reaper.ReaperMode)
+            {
+                player.GetDamage(DamageClass.Generic) += 0.50f;
 
-            player.GetModPlayer<ReaperPlayer>().ChaliceOn = true;
-            player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost(Item);
-            player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost();
+                player.maxMinions += minionBonus;
+                player.statManaMax2 += manaBonus;
+                player.GetModPlayer<RemnantPlayer>().NotConsumeAmmoChance = ammoSaveBonus;
+
+                player.GetModPlayer<ReaperPlayer>().ChaliceOn = true;
+                player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost(Item);
+                player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost();
+            }
         } 
         public override void SetDefaults()
         {

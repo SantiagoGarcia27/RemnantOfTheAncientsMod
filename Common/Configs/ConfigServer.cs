@@ -52,6 +52,16 @@ namespace RemnantOfTheAncientsMod
         #endregion
 
 
+        #region tweaks
+
+        [SliderColor(11, 181, 176, 29)]
+        [Range(1f, 20f)]
+        [Increment(1f)]
+        [DrawTicks]
+        [DefaultValue(10f)]
+        public float FastExtractinatorConf { get; set; }
+
+        #endregion
         //[Label("?")]
         //[SliderColor(11, 181, 176, 29)]
         //[Range(1f, 200f)]

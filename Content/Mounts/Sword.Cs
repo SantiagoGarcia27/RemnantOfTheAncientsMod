@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Mount;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.IL_Mount;
 using static Terraria.Mount;
@@ -169,20 +170,24 @@ mountData.acceleration = 0.3f;
 	
         public override void SetMount(Player player, ref bool skipDust)
         {
-
+            baseItem = player.HeldItem.Clone();
 			if (player.HeldItem.type == ModContent.ItemType<StarRampage>())
 			{
-				baseItem = player.HeldItem.Clone();
-
-				if(!baseItem.IsAir)
-					player.HeldItem.TurnToAir();
+				if (Main.netMode == NetmodeID.SinglePlayer)
+				{
+					if (!baseItem.IsAir)
+						player.HeldItem.TurnToAir();
+				}
 			}
             base.SetMount(player, ref skipDust);
         }
 
         public override void Dismount(Player player, ref bool skipDust)
         {
-			player.QuickSpawnItem(player.GetSource_FromThis(), baseItem);
+			if (Main.netMode == NetmodeID.SinglePlayer)
+			{
+				player.QuickSpawnItem(player.GetSource_FromThis(), baseItem);
+			}
             base.Dismount(player, ref skipDust);
         }
 

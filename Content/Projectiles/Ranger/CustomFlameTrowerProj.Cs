@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -17,53 +18,61 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         }
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileID.Flames);
-            AIType = ProjectileID.Flames;
-            Projectile.timeLeft = 3000;
+            Projectile.width = 40; // The width of projectile hitbox
+            Projectile.height = 40; // The height of projectile hitbox
+
+            Projectile.friendly = true; // Can the projectile deal damage to enemies?
+            Projectile.DamageType = DamageClass.Ranged; // Is the projectile shoot by a ranged weapon?
+            Projectile.ignoreWater = true; // Does the projectile's speed be influenced by water?
+            Projectile.tileCollide = true; // Can the projectile collide with tiles?
+            Projectile.penetrate = -1; // Look at comments ExamplePiercingProjectile
+
+            Projectile.alpha = 0; // How transparent to draw this projectile. 0 to 255. 255 is completely transparent.
+            Projectile.ArmorPenetration = 5;
         }    
         public override void AI()
         {
-            AnimateProjectile();
+            int frameDelay = 2;
+            Projectile.localAI[0] += 1f;
+            Projectile.alpha += 1;
+            //// Slow down
+            Projectile.velocity *= 0.98f;
+
+            
+
+            // Loop through the 4 animation frames, spending 5 ticks on each
+            // Projectile.frame — index of current frame
+            if (++Projectile.frameCounter >= Main.projFrames[Projectile.type] + frameDelay)
+            {
+                Projectile.frameCounter = 0;
+                // Or more compactly Projectile.frame = ++Projectile.frame % Main.projFrames[Projectile.type];
+                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                    Projectile.frame = 0;
+            }
+
+            // Despawn this projectile after 1 second (60 ticks)
+            // You can use Projectile.timeLeft = 60f in SetDefaults() for same goal
+            if (Projectile.localAI[0] >= 60f)
+                Projectile.Kill();
+
+            // Set both direction and spriteDirection to 1 or -1 (right and left respectively)
+            // Projectile.direction is automatically set correctly in Projectile.Update, but we need to set it here or the textures will draw incorrectly on the 1st frame.
+            Projectile.direction = Projectile.spriteDirection = (Projectile.velocity.X > 0f) ? 1 : -1;
+
+            Projectile.rotation = Projectile.velocity.ToRotation();
+            // Since our sprite has an orientation, we need to adjust rotation to compensate for the draw flipping
+            if (Projectile.spriteDirection == -1)
+            {
+                Projectile.rotation += MathHelper.Pi;
+                // For vertical sprites use MathHelper.PiOver2
+            }
+
             base.AI();
         }
         public static List<float> phase =
         [
             0,0,0,0,0,0,0
         ];
-        public void AnimateProjectile()
-        {
-            Projectile.frame = PhaseSelector();
-        }
-        private int PhaseSelector()
-        {
-
-            if (Utils1.NumberBetweenExact(Projectile.timeLeft, phase[5], phase[6]))
-            {
-                return 0;
-            }
-            else if (Utils1.NumberBetweenExact(Projectile.timeLeft, phase[4], phase[5]))
-            {
-                return 1;
-            }
-            else if (Utils1.NumberBetweenExact(Projectile.timeLeft, phase[3], phase[4]))
-            {
-                return 2;
-            }
-            else if (Utils1.NumberBetweenExact(Projectile.timeLeft, phase[2], phase[3]))
-            {
-                return 3;
-            }
-            else if (Utils1.NumberBetweenExact(Projectile.timeLeft, phase[1], phase[2]))
-            {
-                return 4;
-            }
-            else if (Utils1.NumberBetweenExact(Projectile.timeLeft, phase[0], phase[1]))
-            {
-                return 5;
-            }
-
-            return Projectile.frame;
-        }
         public override void OnSpawn(IEntitySource source)
         {
             for (int i = 1; i <= 7; i++)
@@ -72,25 +81,44 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             }
             base.OnSpawn(source);
         }
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {   
-           // SoundEngine.PlaySound(Main.rand.NextBool() ? SoundID.Item57 : SoundID.Item58, Projectile.position);
-            return base.OnTileCollide(oldVelocity);
-        }
-
-        public override bool PreDraw(ref Color lightColor)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            lightColor = Utils1.GetColorByID((int)Projectile.ai[2]);
+            if (Utils1.GetColorByID((int)Projectile.ai[2]) == Color.DarkOrange)
+                target.AddBuff(BuffID.OnFire, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+
+            else if (Utils1.GetColorByID((int)Projectile.ai[2]) == Color.GreenYellow)
+                target.AddBuff(BuffID.CursedInferno, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+            base.OnHitNPC(target, hit, damageDone);
+        }
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            // SoundEngine.PlaySound(Main.rand.NextBool() ? SoundID.Item57 : SoundID.Item58, Projectile.position);
             return false;
         }
-        public override void PostDraw(Color lightColor)
+        int idex = 0;
+        Color color = Color.White;
+        public override bool PreDraw(ref Color lightColor)
         {
-            Color color = Utils1.GetColorByID((int)Projectile.ai[2]);
-            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
-            int projectileFrames = Main.projFrames[Projectile.type];
-            Vector2 origin = new(texture.Width * 0.5f, (texture.Height * 0.5f / projectileFrames) * Projectile.frame);
-            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 1f, SpriteEffects.None, 0f);
-            base.PostDraw(lightColor);
+            List<Color> colors = [Color.White];
+            if (Utils1.GetColorByID((int)Projectile.ai[2]) == Color.DarkOrange)
+            {
+                int maxTimeLeft = 60; 
+                colors = Utils1.GetColorGradiant(Color.OrangeRed, Color.Yellow, maxTimeLeft);       
+              
+            }
+            if (Utils1.GetColorByID((int)Projectile.ai[2]) == Color.GreenYellow)
+            {
+                int maxTimeLeft = 60;
+                Color curseFlameColorInternal = new Color(218, 253, 9);
+                Color curseFlameColorExternal = new Color(55, 200, 26);
+
+                colors = Utils1.GetColorGradiant(curseFlameColorInternal, curseFlameColorExternal, maxTimeLeft);  
+            }
+            color = colors[idex];
+            idex++;
+            lightColor = color;
+            return true;
         }
+      
     }
 }

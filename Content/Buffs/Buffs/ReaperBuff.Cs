@@ -1,5 +1,6 @@
 using RemnantOfTheAncientsMod.World;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
@@ -16,9 +17,15 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			
-			if (Reaper.ReaperMode) 
-				player.buffTime[buffIndex] = 12;
+
+			if (Reaper.ReaperMode)
+			{
+				if (player.whoAmI == Main.myPlayer)
+				{
+                    player.statLifeMax2 = 1;
+                }
+                player.buffTime[buffIndex] = 2;
+            }
 			else
 			{
 				player.DelBuff(buffIndex);

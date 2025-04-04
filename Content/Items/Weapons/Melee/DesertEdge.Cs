@@ -16,10 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
     public class DesertEdge : ModItem
     {
         public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("Desert Edge");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée des désert");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Filo del desierto");
+        { 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -43,6 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             else Item.shoot = ProjectileType<DesertS>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
+            Item.noMelee = true;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

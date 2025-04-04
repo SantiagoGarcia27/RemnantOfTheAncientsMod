@@ -60,20 +60,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder
                 {
                     place(x);
                 }
-                //if (direction == 1)
-                //{
-                //    for (int x = (int)(Projectile.position.X / 16f); x <= Projectile.position.X / 16f + range; x += direction)
-                //    {
-                //        place(x);
-                //    }
-                //}
-                //else
-                //{
-                //    for (int x = (int)(Projectile.position.X / 16f); x >= Projectile.position.X / 16f - range; x += direction)
-                //    {
-                //        place(x);
-                //    }
-                //}
             }
             else
             {

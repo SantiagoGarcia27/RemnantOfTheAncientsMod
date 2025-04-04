@@ -55,11 +55,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
 			else
 			{
-				Color color = new Color(255, 255, 255);
+				Color color = new(255, 255, 255);
 				if (!FullCharge)
 				{
 					Lighting.AddLight(Projectile.Center, TorchID.Bone);
-					Rectangle rectangle = new Rectangle((int)(Projectile.Center.X - 10), (int)(Projectile.Center.Y - 10), 20, 20);
+					Rectangle rectangle = new((int)(Projectile.Center.X - 10), (int)(Projectile.Center.Y - 10), 20, 20);
 					CombatText.NewText(rectangle, Color.Cyan, "!!!", true);
 					FullCharge = true;
                 }
@@ -80,19 +80,17 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 				}
 			}
 		}
-        public override void OnSpawn(IEntitySource source)
+        public override bool? CanDamage()
         {
-            counterMax = getMaxCouter();
-            base.OnSpawn(source);
+            return false;
         }
-        private  int getMaxCouter()
-		{
-			int maxCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
-            Item itemBase = ContentSamples.ItemsByType[(int)Projectile.ai[2]];
-            maxCounter -= itemBase.rare * 2;
-			return maxCounter;
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+			damageDone = 0;
+            base.OnHitNPC(target, hit, damageDone);
         }
-		public string getTextue()
+
+        public string getTextue()
 		{
             Item item = ContentSamples.ItemsByType[(int)Projectile.ai[2]];
             string Texture = item.type < ItemID.Count ? "Terraria/Images/Item_" + item.type : ItemLoader.GetItem(item.type).Texture;

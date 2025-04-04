@@ -36,11 +36,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         }
         public string FormatName(Item item)
         {
-            if(GramaticalCorrection == 'F')
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.EndlessF", item.Name);
-            if(GramaticalCorrection == 'M')
-                return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.EndlessM", item.Name);
-            return item.Name;
+            //if(GramaticalCorrection == 'F')
+            //    return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.EndlessF", ItemBase.Name);
+            //if(GramaticalCorrection == 'M')
+            //    return Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Generic.EndlessM", ItemBase.Name);
+            return ItemBase.Name;
         }
         public override void AddRecipes()
         {

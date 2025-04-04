@@ -174,8 +174,6 @@ namespace RemnantOfTheAncientsMod.Common.Drops
 
             if (npc.type == NPCType<Tungstenzombie>()) ZombieOreLoot(npcLoot, ItemID.TungstenOre, ItemID.TungstenBar);
 
-            if (npc.type == NPCType<Tuxonitezombie>()) ZombieOreLoot(npcLoot, ItemType<TuxoniteOre>(), ItemType<TuxoniteBar>());
-
             if (npc.type == NPCType<Shadowzombie>()) ZombieOreLoot(npcLoot, ItemID.DemoniteOre, ItemID.DemoniteBar);
 
             if (npc.type == NPCType<Crimsonzombi>()) ZombieOreLoot(npcLoot, ItemID.CrimtaneOre, ItemID.CrimtaneBar);
@@ -210,6 +208,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
                 ZombieOreLoot(npcLoot,ore, ItemID.HallowedBar);
             }
+            if (npc.type == NPCType<ChlorophyteZombie>()) ZombieOreLoot(npcLoot, ItemID.ChlorophyteOre, ItemID.ChlorophyteBar);
         }     
         public static void BossLoot(NPC npc, NPCLoot npcLoot)
         {

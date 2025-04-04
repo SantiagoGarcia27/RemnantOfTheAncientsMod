@@ -188,8 +188,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             }
             else if (item.type == ModContent.ItemType<FireSaber>())
             {
-                if (Main.rand.NextBool(1))
+                for (int i = 0; i < 30; i++)
+                {
                     Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
+                }
             }
 
             base.MeleeEffects(item, player, hitbox);
@@ -208,23 +210,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 Main.projectile[proj].ai[0] = Main.rand.NextFloat(1.5f, 1.6f);
                 //return false;
             }
-            if (item.type == ModContent.ItemType<HallowedSaber>())
+            else if (item.type == ModContent.ItemType<HallowedSaber>())
             {
                 float adjustedItemScale = player.GetAdjustedItemScale(item);
                 int p = Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale);
                 NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
             }
-            if (item.type == ModContent.ItemType<GrassSaber>())
+            else if (item.type == ModContent.ItemType<GrassSaber>())
             {
                 Projectile.NewProjectile(Entity.GetSource_None(), position, velocity, ModContent.ProjectileType<BladeOfGrassLeaftClone>(), (int)(item.damage * 0.25f), item.knockBack, Main.myPlayer, -0.1f * player.direction, 0, 0);
-                return false;
+                //return false;
             }
-            if (item.type == ModContent.ItemType<EnchantedSaber>())
+            else if (item.type == ModContent.ItemType<EnchantedSaber>())
             {
                 if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
                     Projectile.NewProjectile(source, position, velocity, ProjectileID.EnchantedBeam, damage, knockback);
             }
-            if (item.type == ModContent.ItemType<NightSaber>())
+            else if (item.type == ModContent.ItemType<NightSaber>())
             {
                 float adjustedItemScale = player.GetAdjustedItemScale(item); // Get the melee scale of the player and item.
                 Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + Main.rand.NextFloat(0.4f, 1f));

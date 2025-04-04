@@ -32,8 +32,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public bool CanDrop = true;
 
         #region shadowDodge 
-        public bool shadowDodge;
-
         public float shadowDodgeCount;
         public int shadowDodgeTimer;
         public bool onHitDodge;
@@ -56,6 +54,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
         public static float DamageBonus = 1f;
         public static float LifeBonus = 1f;
+        public float DamageReduction = 0f;
 
         public override void ResetEffects(NPC NPC)
         {
@@ -204,10 +203,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         num2 += Main.chest[num].item[i].stack;
                         KeyId = ModContent.ItemType<JungleKey>();
                     }
-                    //else if (Main.chest[num].item[i].type == 3091)
-                    //{
-                    //    num3 += Main.chest[num].item[i].stack;
-                    //}
+                   
                     else
                     {
                         num4++;
@@ -291,10 +287,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             UpdateImmunity();
             SetDebuffs(npc);
 
-            if (npc.HasBuff(BuffID.ShadowDodge))
-            {
-                shadowDodge = true;
-            }
             if (npc.HasBuff(BuffID.Slow))
             {
                 npc.velocity.X /= 2;
@@ -303,7 +295,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
         {
-            if (shadowDodge)
+            if (npc.HasBuff(BuffID.ShadowDodge))
             {
                 ShadowDodge(npc);
                 modifiers.FinalDamage.Flat = 0;
@@ -312,11 +304,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 modifiers.SetCrit();
             }
+            if(DamageReduction > 0)
+            {
+                modifiers.FinalDamage.Flat *= 1 - DamageReduction /100;
+            }
             base.ModifyHitByItem(npc, player, item, ref modifiers);
         }
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
-            if (shadowDodge)
+            if (npc.HasBuff(BuffID.ShadowDodge))
             {
                 ShadowDodge(npc);
                 modifiers.FinalDamage.Flat = 0;
@@ -432,10 +428,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public void ShadowDodge(NPC npc)
         {
             SetImmuneTimeForAllTypes(longInvince ? 120 : 80);
-
+            shadowDodgeCount = 0f;
             if (npc.HasBuff(BuffID.ShadowDodge))
             {
                 npc.RequestBuffRemoval(BuffID.ShadowDodge);
+                npc.buffTime[npc.FindBuffIndex(BuffID.ShadowDodge)] = 0;
             }
 
             PutHallowedArmorSetBonusOnCooldown();
@@ -485,7 +482,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (shadowDodge)
+            if (npc.HasBuff(BuffID.ShadowDodge))
             {
                 shadowDodgeCount += 1f;
                 if (shadowDodgeCount > 30f)
@@ -501,18 +498,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     shadowDodgeCount = 0f;
                 }
             }
-            //if (shadowDodgeCount > 0f)
-            //{
-            //    string _texture = npc.type < NPCID.Count ? "Terraria/Images/NPC_" + npc.type : NPCLoader.GetNPC(npc.type).Texture;
-            //    var Texture = ModContent.Request<Texture2D>(_texture);
+            if (shadowDodgeCount > 0f)
+            {
+                string _texture = npc.type < NPCID.Count ? "Terraria/Images/NPC_" + npc.type : NPCLoader.GetNPC(npc.type).Texture;
+                var Texture = ModContent.Request<Texture2D>(_texture);
 
-            //    Vector2 pos = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
+                Vector2 pos = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
 
-            //    SpriteEffects rotation = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+                SpriteEffects rotation = npc.direction == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-            //    Main.EntitySpriteDraw((Texture2D)Texture, pos - new Vector2(3 * 16, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
-            //    Main.EntitySpriteDraw((Texture2D)Texture, pos + new Vector2(1.5f * 16f, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
-            //}
+                Main.EntitySpriteDraw((Texture2D)Texture, pos - new Vector2(3 * 16, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
+                Main.EntitySpriteDraw((Texture2D)Texture, pos + new Vector2(1.5f * 16f, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
+            }
 
             base.PostDraw(npc, spriteBatch, screenPos, drawColor);
         }

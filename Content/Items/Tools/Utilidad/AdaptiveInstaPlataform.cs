@@ -5,6 +5,7 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Enums;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
@@ -17,16 +18,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 
 		public override void SetDefaults()
 		{
-			Item.width = 20;
-			Item.height = 20;
-			Item.rare = ItemRarityID.White;
-			Item.useAnimation = 20;
-			Item.useTime = 20;
-			Item.maxStack = 9999;
-			Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.UseSound = SoundID.Item60;
-			Item.consumable = true;
-		}
+            Item.width = 10;
+            Item.height = 32;
+            Item.maxStack = 9999;
+            Item.consumable = true;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.rare = ItemRarityID.Blue;
+            Item.UseSound = SoundID.Item1;
+            Item.useAnimation = 20;
+            Item.useTime = 20;
+            Item.value = Item.buyPrice(0, 0, 3);
+            Item.noUseGraphic = true;
+            Item.noMelee = true;
+            Item.shoot = ModContent.ProjectileType<InstantPlataformProj>();
+        }
 
 		public int Range = 200;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

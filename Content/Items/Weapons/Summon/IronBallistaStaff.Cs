@@ -16,15 +16,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Rolling Crossbow Staff");
-			//Tooltip.SetDefault("Summons a Rolling Crossbow"+
-   //             "\nUse 2 minion slot");
-			////DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Báculo de Ballesta con ruedas");
-			////Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca a una ballesta con ruedas para que luche por ti"+
-			//	"\nUtiliza 2 espacios de subditos");
-   //        // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bâton gelé");
-   //         //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque une arbalète roulante" + 
-			//	"\nUtiliser 2 emplacements de serviteur");
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;	
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

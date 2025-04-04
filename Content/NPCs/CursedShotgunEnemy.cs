@@ -2,27 +2,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader.Utilities;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Bestiary;
 using Microsoft.Xna.Framework;
 using System;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using FargowiltasSouls.Common.Utilities;
-using CalamityMod.Items.Weapons.DraedonsArsenal;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
-	public class CursedShotgunEnemy : ModNPC
+    public class CursedShotgunEnemy : ModNPC
 	{
 		public override void SetStaticDefaults()
 		{	
-			//Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BlueSlime];
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new()
             {
-                // Influences how the NPC looks in the Bestiary
-                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+                Velocity = 1f 
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
             NPC.spriteDirection = NPC.direction;

@@ -23,10 +23,11 @@ namespace RemnantOfTheAncientsMod
             KillSuperDummy,
         }
 
-        public static void HandlePacket(Mod mod, BinaryReader reader, int whoAmI)
+        public static void HandlePacket(BinaryReader reader, int whoAmI)
         {
+            Main.NewText("a");
             try
-            {
+             {
                 RemnantOfTheAncientsModMessageType msgType = (RemnantOfTheAncientsModMessageType)reader.ReadByte();
                 switch (msgType)
                 {
@@ -37,8 +38,13 @@ namespace RemnantOfTheAncientsMod
                     case RemnantOfTheAncientsModMessageType.SpawnSuperDummy:
                         int x = reader.ReadInt32();
                         int y = reader.ReadInt32();
+                        int mode = reader.ReadInt32();
+                        int owner = reader.ReadInt32();
                         if (Main.netMode != NetmodeID.MultiplayerClient)
-                            NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, RemnantPlayer.DummyMode);
+                        {
+                            if (owner == Main.myPlayer)
+                                NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, mode);
+                        }
                         break;
                 }
             }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Common.Enums;
 using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Exceptions;
-
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
     public static class Utils1
@@ -29,6 +28,21 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             float amount = (float)((Math.Sin(Math.PI * 2f / seconds * Main.GlobalTimeWrappedHourly) + 1.0) * 0.5);
             return Color.Lerp(firstColor, secondColor, amount);
         }
+        public static List<Color> GetColorGradiant(Color firstColor, Color secondColor,float Ammount)
+        {
+            var colorList = new List<Color>();
+            for (int i = 0; i < Ammount; i++)
+            {
+                var rAverage = firstColor.R + (int)((secondColor.R - firstColor.R) * i / Ammount);
+                var gAverage = firstColor.G + (int)((secondColor.G - firstColor.G) * i / Ammount);
+                var bAverage = firstColor.B + (int)((secondColor.B - firstColor.B) * i / Ammount);
+                Color color = new(rAverage, gAverage, bAverage);
+                colorList.Add(color);
+            }
+            return colorList;
+        }
+
+
         public static Color? GetRarityColor(CustomRarity rare)
         {
             switch (rare)
@@ -640,13 +654,55 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 { Color.Gold, 25 },
                 { Color.Goldenrod, 26 },
                 { Color.GreenYellow, 27 },
-                { Color.Lavender, 28 }
+                { Color.Lavender, 28 },
+                { Color.DarkOrange, 29 }
             };
         }
 
         internal static Color GetColorByID(float v)
         {
             throw new NotImplementedException();
+        }
+
+        public static bool IsGameStage(GlobalEnum.gameStage stage)
+        {
+            switch(stage)
+            {
+                case GlobalEnum.gameStage.PostKingSlime : return NPC.downedSlimeKing;
+                case GlobalEnum.gameStage.PostEyeOfCthulhu: return NPC.downedBoss1;
+                case GlobalEnum.gameStage.PostCorruptBoss: return NPC.downedBoss2;
+                case GlobalEnum.gameStage.PostQueenBee: return NPC.downedQueenBee;
+                case GlobalEnum.gameStage.PostSkeletron: return NPC.downedBoss3;
+                case GlobalEnum.gameStage.PostDeerclops: return NPC.downedDeerclops;
+                case GlobalEnum.gameStage.PostQueenSlime: return NPC.downedQueenSlime;
+                case GlobalEnum.gameStage.PostDestoryer: return NPC.downedMechBoss1;
+                case GlobalEnum.gameStage.PostTwins: return NPC.downedMechBoss2;
+                case GlobalEnum.gameStage.PostSkeletronPrime: return NPC.downedMechBoss3;
+                case GlobalEnum.gameStage.PostMech: return NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;
+                case GlobalEnum.gameStage.PostPlantera: return NPC.downedPlantBoss;
+                case GlobalEnum.gameStage.PostEmpressOfLight: return NPC.downedEmpressOfLight;
+                case GlobalEnum.gameStage.PostGolem: return NPC.downedGolemBoss;
+                case GlobalEnum.gameStage.PostCultist: return NPC.downedAncientCultist;
+                case GlobalEnum.gameStage.PostMoonLord: return NPC.downedMoonlord;
+                case GlobalEnum.gameStage.PostDukeFishron: return NPC.downedFishron;
+                case GlobalEnum.gameStage.Hardmode: return Main.hardMode;
+                case GlobalEnum.gameStage.PreHardmode: return !Main.hardMode;
+                case GlobalEnum.gameStage.PreBoss: return !NPC.downedBoss1;
+                case GlobalEnum.gameStage.None : return false;
+                default: return false;
+            }
+        }
+        public static int MechBossDefeatedTierReworkForClamity()
+        {
+            if (!NPC.downedMechBossAny)
+            {
+                return 1;
+            }
+            if ((!NPC.downedMechBoss1 && !NPC.downedMechBoss2) || (!NPC.downedMechBoss2 && !NPC.downedMechBoss3) || (!NPC.downedMechBoss3 && !NPC.downedMechBoss1))
+            {
+                return 2;
+            }
+            return 3;
         }
     }
 }

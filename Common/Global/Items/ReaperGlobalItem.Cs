@@ -16,6 +16,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public static float originalsize = 1;
 		public float newsize = 0;
 
+		public readonly float ReaperWeaponScale = 2.5f;
+		public static float currentScale = 1; 
 
 		public override void ModifyItemScale(Item item, Player player, ref float scale)
 		{
@@ -23,8 +25,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 			if (modPlayer.ChaliceOn && Reaper.ReaperMode && !item.IsAir && item.damage > 0 && item.CountsAsClass(DamageClass.Melee) && item.active)
 			{
-				scale *= 2.5f;
+                currentScale = ReaperWeaponScale;
+                scale *= ReaperWeaponScale;
 			}
+			else
+			{
+                currentScale = 1;
+
+            }
 			base.ModifyItemScale(item, player,ref scale);
 
         }

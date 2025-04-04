@@ -617,6 +617,11 @@ Mods: {
 				DisplayName: Yggdrasil Buff
 				Description: Increase defense by 15, damage by 10% and Damage reduction by 5%
 			}
+
+			CursedShotgunMinionBuff: {
+				DisplayName: Cursed Shotgun
+				Description: A cursed shotgun will fight for you
+			}
 		}
 
 		Items: {
@@ -4013,13 +4018,53 @@ Mods: {
 			}
 
 			EmeraldAndScarlet: {
-				DisplayName: Emerald And Scarlet
+				DisplayName: Emerald & Scarlet
 				Tooltip: ""
 			}
 
-			Igniter: {
-				DisplayName: Igniter
-				Tooltip: ""
+			CopperIgniter: {
+				DisplayName: Copper Igniter
+				Tooltip:
+					'''
+					Uses gel for ammo
+					Ignores {0} points of enemy Defense
+					'''
+			}
+
+			TinIgniter: {
+				DisplayName: Tin Igniter
+				Tooltip:
+					'''
+					Uses gel for ammo
+					Ignores {0} points of enemy Defense
+					'''
+			}
+
+			ScarabDynamite: {
+				DisplayName: Scarab Dynamite
+				Tooltip:
+					'''
+					A narrow explosion that will destroy most tiles
+					Explosion aims away from your position
+					'''
+			}
+
+			CursedSpreader: {
+				DisplayName: Curse Spreader
+				Tooltip:
+					'''
+					Uses gel for ammo
+					Ignores {0} points of enemy Defense
+					'''
+			}
+
+			CursedShotgunStaff: {
+				DisplayName: Shotgun Staff
+				Tooltip:
+					'''
+					Summons a possesed shotgun 
+					The shotgun can be boosted with ranged damage and player bullets.
+					'''
 			}
 		}
 
@@ -4121,6 +4166,7 @@ Mods: {
 			HallowedZombie.DisplayName: Armored Zombie
 			DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
+			ChlorophyteZombie.DisplayName: Chlorophyte Zombie
 		}
 
 		Projectiles: {
@@ -4266,6 +4312,8 @@ Mods: {
 			GenericDamageBream.DisplayName: Generic Damage Bream
 			EmeraldAndScarletHeldProjectile.DisplayName: Emerald And Scarlet Held Projectile
 			InstantPlataformProj.DisplayName: Instant Plataform Proj
+			ScarabDynamiteProj.DisplayName: Scarab Dynamite Proj
+			CursedShotgunMinion.DisplayName: Cursed Shotgun Minion
 		}
 
 		Tiles: {
@@ -4639,6 +4687,11 @@ Mods: {
 				BowReworkConf: {
 					Label: Bow Rework Conf
 					Tooltip: ""
+				}
+
+				FastExtractinatorConf: {
+					Label: Extractinator use speed
+					Tooltip: Modify the use multipier of extractinator use speed
 				}
 			}
 		}

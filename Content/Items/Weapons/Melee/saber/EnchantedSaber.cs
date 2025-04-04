@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 		public override void SetDefaults()
 		{
 			Item.CloneDefaults(ItemID.EnchantedSword);
-			Item.damage /= 2;
+			Item.damage = (int)(Item.damage * 0.60f);
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 40;
@@ -24,6 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			Item.shootSpeed = 10f;
 			Item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
             Item.GetGlobalItem<SaberGlobalItem>().DashStrength = new(0.9f, 0.65f);
+			Item.noMelee = true;
 
         }
 

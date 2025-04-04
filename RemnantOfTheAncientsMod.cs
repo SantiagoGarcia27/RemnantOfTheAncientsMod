@@ -10,8 +10,8 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
 using FargowiltasSouls.Core.Toggler;
 using System.IO;
-using RemnantOfTheAncientsMod.Common.Enums;
-using static RemnantOfTheAncientsMod.Common.Enums.GlobalEnum;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -69,9 +69,10 @@ namespace RemnantOfTheAncientsMod
             }
            
             BackgroundTextureLoader.AddBackgroundTexture(this,PlaceHolderPath);
+            fastPlataformOverride();
 
 
-            
+
         }
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void LoadTogglesFromType(Type type)
@@ -215,33 +216,55 @@ namespace RemnantOfTheAncientsMod
             return MaxPlayers -1;
         }
 
-       
+
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            if (reader.BaseStream.CanRead)
+            Netcode.HandlePacket(reader, whoAmI);
+        }
+
+
+        public void fastPlataformOverride()
+        {
+            IL_Player.Update += il =>
             {
-                switch ((packetType)reader.ReadByte())
-                {
-                    
-                    case packetType.placePltaform:
-                        int plataformType = reader.ReadInt32();
-                        int torchType = reader.ReadInt32();
-                        int x = reader.ReadInt32();
-                        int y = reader.ReadInt32();
-                        int range = reader.ReadInt32();
-                        int playerindex = reader.ReadInt32();
+                var c = new ILCursor(il);
 
-                        if(x != Player.tileTargetX) 
-                            x = Player.tileTargetX;
+                // These will be always be set by the time they are used,
+                // but C# doesn't know that the predicates will always be called
+                // (unless an error occurs, but code execution will stop here too in that case)
+                int ignorePlatsIndex = default;
+                int fallThroughIndex = default;
 
-                        if (y != Player.tileTargetY)
-                            y = Player.tileTargetY;
-                        Player player = Main.player[playerindex];
-                            PlataformModel.BuildPlataform(player, plataformType,torchType, x, y, range);
-                        break;
-                }
-            }
-            base.HandlePacket(reader, whoAmI);
+                c.GotoNext(MoveType.After,
+                    // We don't actually care about the first 2 parts, but match them anyway,
+                    // because the sequence we actaully need may very well appear before.
+                    i => i.MatchLdarg0(),
+                    i => i.MatchLdfld<Entity>(nameof(Entity.velocity)),
+                    i => i.Match(OpCodes.Stloc_S),
+
+                    i => i.MatchLdarg0(),
+                    i => i.Match(OpCodes.Ldc_I4_0),
+                    i => i.MatchStfld<Player>(nameof(Player.slideDir)),
+
+                    i => i.Match(OpCodes.Ldc_I4_0),
+                    i => i.MatchStloc(out ignorePlatsIndex),
+
+                    i => i.MatchLdarg0(),
+                    i => i.MatchLdfld<Player>(nameof(Player.controlDown)),
+                    i => i.MatchStloc(out fallThroughIndex)
+                );
+
+                c.Index -= 5;
+                c.RemoveRange(5);
+
+                c.EmitLdarg0();                                                   // Push the first argument (this)
+                c.EmitLdfld(typeof(Player).GetField(nameof(Player.controlDown))); // Pop, then push the value of controlDown
+                c.EmitDup();                                                      // Duplicate stack value
+                c.EmitStloc(ignorePlatsIndex);                                    // Store stack value in ignorePlats
+                c.EmitStloc(fallThroughIndex);                                    // Store stack value in fallThrough
+            };
+
+            base.Load();
         }
     }
 }

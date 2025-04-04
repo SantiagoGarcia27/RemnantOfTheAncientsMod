@@ -1,8 +1,10 @@
 using System;
 using Microsoft.CodeAnalysis.MSBuild;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,10 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 
     public class DamageHitbox : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("");
-        }
         public override void SetDefaults()
         {
             Projectile.width = 1;
@@ -22,10 +20,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 2000;
+            Projectile.timeLeft = 20;
             Projectile.light = 1.0f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = -1;
             AIType = -1;
         }
         public override void AI()
@@ -61,8 +61,20 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
                 Projectile.Center = player.Center;
             }
         }
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        NPC lastTarget = null;
+        static Item baseItem = null;
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
+            if (baseItem != null)
+            {
+                baseItem.GetGlobalItem<SaberGlobalItem>().OnHitNPC(baseItem, Main.player[Projectile.owner],target, hit, damageDone);
+            }
+            if (lastTarget == target)
+            {
+                damageDone = 0;
+                return;
+            }
+
             if (Projectile.ai[0] == 1)
             {
                 target.AddBuff(BuffID.OnFire, 100);
@@ -71,10 +83,27 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             {
                 target.AddBuff(BuffID.ShadowFlame, 100);
             }
+
+            
+
+            if(Main.player[Projectile.owner].direction == -1)
+                target.velocity -= new Vector2(-target.velocity.X * hit.Knockback * target.knockBackResist, -target.velocity.Y * hit.Knockback/2 * target.knockBackResist);
+
+            lastTarget = target;
+            base.OnHitNPC(target, hit, damageDone);
         }
         public override void OnKill(int timeLeft)
         {
            
+        }
+
+        public static void SetItem(Item item)
+        {
+            baseItem = item;
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            base.OnSpawn(source);
         }
     }
 }

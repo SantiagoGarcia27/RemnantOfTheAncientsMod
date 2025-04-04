@@ -46,5 +46,18 @@ Patch notes:
 https://docs.google.com/document/d/1SjHv7QnOTsFYEbybGiapBTX3jB74eZen8GjYSnC93ks/edit?usp=sharing
 
 -Special thanks-
-Many thanks to SoyEnaid for help with localizations
+	Many thanks to:
+	-SoyEnaid: for help with localizations
+	-Wanderingband: for this incredible soundtrack 
+
+	External mods code that i use:
+	-Example mod
+	-Calamity mod
+	-LuiAFK
+	-Fargos mutant mod
+	-Fargos soul mod
+	-Instant Platform Fallthrough
+
+
+
 [/olist]

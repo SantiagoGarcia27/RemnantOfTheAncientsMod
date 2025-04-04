@@ -12,11 +12,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
     public class BigGemBolt : ModProjectile
     {
         public override string Texture => GetTexture();
-        public override void SetStaticDefaults()
-        {
-            // //DisplayName.SetDefault("SkyCutterS"); 
+        public int ProjectileTexture = 0;
+        public int CurrentDust = 0;
 
-        }
+
         public override void SetDefaults()
         {
             Projectile.width = 46;
@@ -35,7 +34,42 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
         }
         public string GetTexture()
         {
-            string a = "Terraria/Images/Item_" + (int)Projectile.localAI[0];
+            int ProjectileTexture = 0;
+            switch (Projectile.localAI[0])
+            {
+                case ProjectileID.AmethystBolt:
+                    ProjectileTexture = ItemID.LargeAmethyst;
+                    CurrentDust = DustID.GemAmethyst;
+                    break;
+                case ProjectileID.TopazBolt:
+                    ProjectileTexture = ItemID.LargeTopaz;
+                    CurrentDust = DustID.GemTopaz;
+                    break;
+                case ProjectileID.EmeraldBolt:
+                    ProjectileTexture = ItemID.LargeEmerald;
+                    CurrentDust = DustID.GemEmerald;
+                    break;
+                case ProjectileID.SapphireBolt:
+                    ProjectileTexture = ItemID.LargeSapphire;
+                    CurrentDust = DustID.GemSapphire;
+                    break;
+                case ProjectileID.RubyBolt:
+                    ProjectileTexture = ItemID.LargeRuby;
+                    CurrentDust = DustID.GemRuby;
+                    break;
+                case ProjectileID.DiamondBolt:
+                    ProjectileTexture = ItemID.LargeDiamond;
+                    CurrentDust = DustID.GemDiamond;
+                    break;
+                case ProjectileID.AmberBolt:
+                    ProjectileTexture = ItemID.LargeAmber;
+                    CurrentDust = DustID.GemAmber;
+                    break;
+            }
+
+
+
+            string a = "Terraria/Images/Item_" + ProjectileTexture;
             return a;
         }
         public override void AI()
@@ -48,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             {
                 if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
                 {
-                    int dust5 = Dust.NewDust(Projectile.position, 1, Projectile.height, (int)Projectile.localAI[1]);
+                    int dust5 = Dust.NewDust(Projectile.position, 1, Projectile.height, CurrentDust);
                     Main.dust[dust5].velocity = Projectile.velocity;
                     Main.dust[dust5].noGravity = true;
                 }
@@ -62,7 +96,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             const int NUM_DUSTS = 20;
             for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(NUM_DUSTS); i++)
             {
-                int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, (int)Projectile.localAI[1], 0f, 0f, 100, default(Color), 1f);
+                int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, (int)Projectile.localAI[1], 0f, 0f, 100, default, 1f);
                 Main.dust[p1].velocity = Projectile.velocity;
                 Main.dust[p1].noGravity = true;
             }

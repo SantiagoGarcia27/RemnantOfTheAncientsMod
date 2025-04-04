@@ -3,13 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.Global;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using Terraria.Localization;
 using System;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Alas;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
@@ -25,10 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
         }
-
-     
-        string path = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Daylight");
-
+        
         public override LocalizedText Tooltip => IsVanilla() ? base.Tooltip : ToLocalizedText("Tooltip");
         public override LocalizedText DisplayName => IsVanilla() ? base.DisplayName : ToLocalizedText("DisplayName");
         public override void SetDefaults()
@@ -58,6 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             Item.noUseGraphic = true;
             Item.GetGlobalItem<SaberGlobalItem>().DashStrength = new(DashStrength[0], DashStrength[1]);
             Item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
+            Item.noMelee = true;
         }
         public override bool AltFunctionUse(Player player) => true;
         public override void AddRecipes()

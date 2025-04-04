@@ -7,10 +7,8 @@ using Terraria.GameContent.Creative;
 using Terraria.Chat;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common;
-using FargowiltasSouls.Core.ModPlayers;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
 {
@@ -53,8 +51,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
             {
                 if (!Reaper.ReaperMode && !DificultyUtils.ReaperMode)
                 {
-                   // Reaper.ReaperMode = true;
-                   // DificultyUtils.ReaperMode = true;
                     Item.buffTime = 1;
                     Color gray = Color.DarkSlateGray;
                     string text = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.Reaper.On");
@@ -68,8 +64,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
                 }
                 else
                 {
-                    //Reaper.ReaperMode = false;
-                   // DificultyUtils.ReaperMode = false;
                     Color gray = Color.DarkSlateGray;
                     string text = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.Reaper.Off");
                     ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), gray);

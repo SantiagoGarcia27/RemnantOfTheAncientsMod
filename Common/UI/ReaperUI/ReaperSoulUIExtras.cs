@@ -3,9 +3,9 @@ using ReLogic.Content;
 using SangarUtilities.Common;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent;
 
 namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 {
@@ -159,9 +159,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         {
             if(npc.type == NPCID.Deerclops)
             {
-                baseLefthPosition += baseLefthPositionIncrement + 30;
+                baseLefthPosition += baseLefthPositionIncrement + 10;
                 return true;
-            }
+            }   
             if (CalamityMod != null)
             {
                 if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Providence"))
@@ -208,10 +208,6 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 {
                     baseLefthPosition += baseLefthPositionIncrement - 10;
                     return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
             return false;

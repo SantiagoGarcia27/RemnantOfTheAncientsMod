@@ -624,6 +624,11 @@ Mods: {
 				DisplayName: Bendición de Yggdrasil
 				Description: Aumenta la defensa en 15,el daño en un 10% y la redución de daño recibido en 5%
 			}
+
+			CursedShotgunMinionBuff: {
+				DisplayName: Escopeta poseída
+				Description: Una escopeta poseída luchara por ti
+			}
 		}
 
 		Items: {
@@ -4041,13 +4046,54 @@ Mods: {
 			}
 
 			EmeraldAndScarlet: {
-				// DisplayName: Emerald And Scarlet
+				DisplayName: Esmeralda y Escalata
 				// Tooltip: ""
 			}
 
-			Igniter: {
-				// DisplayName: Igniter
-				// Tooltip: ""
+			CopperIgniter: {
+				DisplayName: Mechero de cobre
+				Tooltip:
+					'''
+					Utiliza gel como munición
+					Ignora {0} puntos de la defensa del enemigo
+					'''
+			}
+
+			TinIgniter: {
+				DisplayName: Mechero de estaño
+				Tooltip:
+					'''
+					Utiliza gel como munición
+					Ignora {0} puntos de la defensa del enemigo
+					'''
+			}
+
+			ScarabDynamite: {
+				DisplayName: Dinamita de escarabajo
+				Tooltip:
+					'''
+					Una explosión estrecha que destruye la mayoría de los ladrillos
+					La explosión apunta fuera de tu posición
+					'''
+			}
+
+			CursedSpreader: {
+				DisplayName: Propagador de maldiciones
+				Tooltip:
+					'''
+					Utiliza gel como munición
+					Ignora {0} puntos de la defensa del enemigo
+					'''
+			}
+
+			CursedShotgunStaff: {
+				DisplayName: Báculo de escopeta
+				Tooltip:
+					'''
+					Invoca una escopeta poseída
+					El daño del arma escala con el daño a distancia.
+					La escopeta puede usar las balas que tengas para potenciarse.
+					'''
 			}
 		}
 
@@ -4149,6 +4195,7 @@ Mods: {
 			HallowedZombie.DisplayName: Zombi blindado
 			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
+			// ChlorophyteZombie.DisplayName: Chlorophyte Zombie
 		}
 
 		Projectiles: {
@@ -4294,6 +4341,8 @@ Mods: {
 			// GenericDamageBream.DisplayName: Generic Damage Bream
 			// EmeraldAndScarletHeldProjectile.DisplayName: Emerald And Scarlet Held Projectile
 			// InstantPlataformProj.DisplayName: Instant Plataform Proj
+			// ScarabDynamiteProj.DisplayName: Scarab Dynamite Proj
+			// CursedShotgunMinion.DisplayName: Cursed Shotgun Minion
 		}
 
 		Tiles: {
@@ -4665,8 +4714,13 @@ Mods: {
 				}
 
 				BowReworkConf: {
-					// Label: Bow Rework Conf
+					Label: Rework de arcos (Experimental)
 					// Tooltip: ""
+				}
+
+				FastExtractinatorConf: {
+					Label: Velocidad del extractor
+					Tooltip: Define que tan rápido se usa el extractor
 				}
 			}
 		}

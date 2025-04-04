@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod
 		public bool anyBossIsAlive;
 		public bool MoneyCollector;
 		public List<int> ScrollsBuff = [];
-		public static int DummyMode = 0;
+		public int DummyMode = 0;
 		public static int SolverMode = 0;
 		/*
 			0 = Move,
