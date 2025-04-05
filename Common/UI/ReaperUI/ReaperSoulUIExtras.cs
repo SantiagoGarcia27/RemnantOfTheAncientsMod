@@ -117,6 +117,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                         return ModContent.Request<Texture2D>(CalamityPath + "SupremeCalamitas/HoodedHeadIcon");
                     else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Providence"))
                         return ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_Providence");
+                    else if(npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeHead"))
+                        return ModContent.Request<Texture2D>(CalamityPath + "DesertScourge/DesertScourgeHead_Head_Boss");
                 }
             }
             int idex = npc.GetBossHeadTextureIndex();

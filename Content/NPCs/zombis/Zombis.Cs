@@ -1,25 +1,18 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader.Utilities;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite;
 using RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using static RemnantOfTheAncientsMod.Content.NPCs.zombis.Shadowzombie;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using CalamityMod;
-using Terraria.Chat;
 using Terraria.GameContent.Bestiary;
-using System.Collections.Generic;
-using System;
 using RemnantOfTheAncientsMod.Common.Enums;
-using SangarUtilities.Common;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
@@ -605,7 +598,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             Vector2 targetPosition = Main.player[NPC.target].position;
             if (NPC.velocity.Y == 0)
             {
-                NPC.velocity.X *=  1+ (MovmentSpeedBonus / 100f) ;
+                NPC.velocity.X *=  (1+ (MovmentSpeedBonus / 100f))/* * NPC.direction*/;
             }
             base.AI();
         }

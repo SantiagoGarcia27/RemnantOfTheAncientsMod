@@ -273,26 +273,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
 
                     Vector2 pos = Projectile.position;
-                    float widthMultiplier = 1;
-                    float heightMultiplier = 1;
-                    if (Main.MouseWorld.Y < player.position.Y) // If the mouse is above the player, we make it so the hitbox goes down
-                    {
-                        widthMultiplier = 1.5f;
-           
-                        float reaperScale = (float)Math.Pow(ReaperGlobalItem.currentScale - 0.5f, 2);
-                        heightMultiplier = ReaperGlobalItem.currentScale;
-                        pos.Y -= 4 * itemBase.scale * reaperScale * 16;
-                        pos.X -= 3 * itemBase.scale * reaperScale *16;
-                    }
-                    else
-                    {
-                        if (Main.player[Projectile.owner].direction == -1)
-                            pos.X += (5 * itemBase.scale * ReaperGlobalItem.currentScale) * 16 * player.direction;
-                        else
-                            pos.X += (3 * itemBase.scale * ReaperGlobalItem.currentScale) * 16 * player.direction;
-
-                        pos.Y -= (3 * itemBase.scale * ReaperGlobalItem.currentScale) * 16;
-                    }
+                    float widthMultiplier = 3.1f;
+                    float heightMultiplier = ReaperGlobalItem.currentScale + 1.8f;
+                    float reaperScale = (float)Math.Pow(ReaperGlobalItem.currentScale - 0.5f, 2);           
+                    pos.Y -= 2.1f * 16 * itemBase.scale * reaperScale * 16;
+                    pos.X -= 2.1f * 16 * itemBase.scale * reaperScale * 16;
                     if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<DamageHitbox>()] <= 1)
                     {
                         Vector2 size = new(90 * widthMultiplier, 90 * heightMultiplier);

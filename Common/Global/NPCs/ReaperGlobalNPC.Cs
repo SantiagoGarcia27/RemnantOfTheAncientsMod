@@ -1016,7 +1016,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     foreach (var proj in Main.projectile)
                     {
-                        if (proj.active && !proj.hostile && proj.friendly)
+                        if (proj.active && !proj.hostile && proj.friendly && !proj.minion)
                         {
                             float distance = npc.Distance(proj.Center);
                             if (distance < 194f)
@@ -1188,7 +1188,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     {
                         foreach (var proj in Main.projectile)
                         {
-                            if (proj.active && !proj.hostile && proj.friendly)
+                            if (proj.active && !proj.hostile && proj.friendly && !proj.minion)
                             {
                                 float distance = npc.Distance(proj.Center);
                                 if (distance < 194f)
@@ -1241,10 +1241,21 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         {
                             if (npc.Center.Distance(proj.Center) < 100 && proj.friendly && !proj.hostile)
                             {
+                                Vector2 fixedVelocity = proj.velocity;
+                                if(proj.velocity.X > 20) 
+                                    fixedVelocity.X = 20;
+                                if (proj.velocity.Y > 20) 
+                                    fixedVelocity.Y = 20;
+                                if (proj.velocity.X < -20)
+                                    fixedVelocity.X = -20;
+                                if (proj.velocity.Y < -20)
+                                    fixedVelocity.Y = -20;
+
                                 if (Math.Abs(proj.velocity.Y) > Math.Abs(proj.velocity.X))
-                                    npc.velocity = proj.velocity - new Vector2(15, 0);
+                                    npc.velocity = fixedVelocity - new Vector2(15, 0);
                                 else
-                                    npc.velocity = proj.velocity - new Vector2(0, 15);
+                                    npc.velocity = fixedVelocity - new Vector2(0, 15);
+                                //npc.velocity.Normalize();
                                 attackCounter = 0;
                             }
                         }

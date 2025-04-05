@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep
             Item.SetShopValues((Terraria.Enums.ItemRarityColor)Base.rare, Base.value);
             Item.Size = new Vector2(12, 38);
             Item.DamageType = DamageClass.Ranged;
-            Item.UseSound = SoundID.Item12;
+            Item.UseSound = SoundID.Item5;
             Item.channel = true;
         }
         public override Vector2? HoldoutOffset()

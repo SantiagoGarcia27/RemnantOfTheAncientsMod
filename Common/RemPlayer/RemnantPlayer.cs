@@ -636,9 +636,14 @@ namespace RemnantOfTheAncientsMod
 			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[proj] < 1 && Player.whoAmI == Main.myPlayer)
 			{
 				Vector2 velocity = Player.velocity * 1.5f;
-				var projectile = Projectile.NewProjectileDirect(Player.GetSource_FromAI(), Player.Center, velocity, proj, damage, knockback, Main.myPlayer);
-				projectile.originalDamage = damage;
-			}
+				var a = Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, velocity, proj, damage, knockback, Main.myPlayer);
+				Main.projectile[a].originalDamage = damage;
+                Main.projectile[a].minion = true;
+                Main.projectile[a].minionSlots = 0;
+                Main.projectile[a].friendly = true;
+                Main.projectile[a].hostile = false;
+
+            }
 		}
 
 		public static void KillMinion(int proj) => Main.projectile[proj].Kill();

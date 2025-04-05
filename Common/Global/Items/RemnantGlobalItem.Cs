@@ -338,6 +338,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
 				}
+
+				if(item.type == ItemID.ReaperHood || item.type == ItemID.ReaperRobe)
+				{
+					item.value = 0;
+				}
 			}
 		}
 

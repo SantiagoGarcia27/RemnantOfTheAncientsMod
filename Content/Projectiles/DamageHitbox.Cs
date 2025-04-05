@@ -1,9 +1,6 @@
-using System;
-using Microsoft.CodeAnalysis.MSBuild;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;

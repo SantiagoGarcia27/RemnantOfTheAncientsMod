@@ -366,8 +366,8 @@ public class ReaperSoulsPlayer : ModPlayer
     ];
     public float[] SoulsUpgradesLoadedActive =
     [
-        0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f,
-        0f, 0f, 0f
+        1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f,
+        1f, 1f, 1f
     ];
     public Dictionary<int, bool> SoulsUpgradesMaybeLoaded = [];
     public Dictionary<int, float> SoulsUpgradesMaybeLoadedActive = [];

@@ -545,6 +545,20 @@ namespace RemnantOfTheAncientsMod
                 .AddRecipeGroup(RecipeGroupID.IronBar, 4)
                 .AddTile(TileID.Anvils)
                 .Register();
+
+            Recipe.Create(ItemID.SkyMill)
+                .AddIngredient(ItemID.SunplateBlock, 20)
+                .AddIngredient(ItemID.Cloud,10)
+                .AddRecipeGroup("GoldBar", 2)
+                .AddTile(TileID.Anvils)
+                .Register();
+
+            Recipe.Create(ItemID.IceMachine)
+               .AddIngredient(ItemID.IceBlock, 20)
+               .AddIngredient(ItemID.Granite, 5)
+               .AddRecipeGroup(RecipeGroupID.IronBar, 2)
+               .AddTile(TileID.Anvils)
+               .Register();
         }
         private static void CreateSwapRecipe(int item1, int item2,int tile,int ammount = 1)
         {
@@ -568,6 +582,14 @@ namespace RemnantOfTheAncientsMod
             FisherManAccesories();
             SkyAccesories();
             HallowAccesories();
+
+
+            Recipe.Create(ItemID.ReaperHood)
+            .AddTile(TileID.DemonAltar)
+            .Register();
+            Recipe.Create(ItemID.ReaperRobe)
+             .AddTile(TileID.DemonAltar)
+             .Register();
         }
         private static void HallowAccesories()
         {
