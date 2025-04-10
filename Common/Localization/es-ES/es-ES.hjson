@@ -169,6 +169,7 @@ Mods: {
 				MeleeSpeed: +{0}% velocidad cuerpo a cuerpo
 				LifeRegeneration: +{0} regeneración de vida
 				DamageReduction: +{0}% redución de daño recivido
+				Luck: +{0} suerte
 			}
 		}
 
@@ -4095,6 +4096,11 @@ Mods: {
 					La escopeta puede usar las balas que tengas para potenciarse.
 					'''
 			}
+
+			BossSummonSaver: {
+				DisplayName: Amuleto guardador de tiempo
+				Tooltip: Te permite conservar los invocadores de jefes una vez usados
+			}
 		}
 
 		NPCs: {
@@ -4196,6 +4202,9 @@ Mods: {
 			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
 			// ChlorophyteZombie.DisplayName: Chlorophyte Zombie
+			// TurtleZombie.DisplayName: Turtle Zombie
+			// BeetleZombie.DisplayName: Beetle Zombie
+			// SolarZombie.DisplayName: Solar Zombie
 		}
 
 		Projectiles: {

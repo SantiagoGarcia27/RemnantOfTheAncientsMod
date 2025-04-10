@@ -265,9 +265,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (Reaper.ReaperMode)
             {
-                if (RemnantOfTheAncientsMod.CalamityMod != null)
-                    OnSpawnCalamity(npc, source);
-
+                ModNPC modNpc = npc.ModNPC;
+                if (modNpc != null)
+                {
+                    if (RemnantOfTheAncientsMod.CalamityMod != null && modNpc.Mod == RemnantOfTheAncientsMod.CalamityMod)
+                        OnSpawnCalamity(npc, source);
+                }
                 if (npc.type == NPCID.SkeletronHead)
                 {
                     for (int i = 0; i < 2; i++)
@@ -302,8 +305,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.time = 5000.0;
                     Netcode.SyncWorld();
                 }
-                base.OnSpawn(npc, source);
             }
+            base.OnSpawn(npc, source);
         }
 
         [JITWhenModsEnabled("CalamityMod")]
@@ -358,7 +361,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 Netcode.SyncWorld();
                 npc.defDefense = 0;
                 npc.Calamity().DR = 0;
-            }
+            }   
         }
 
 
@@ -377,7 +380,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                     AI(npc);
                 }
-                if (RemnantOfTheAncientsMod.CalamityMod != null && npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+                if (RemnantOfTheAncientsMod.CalamityMod != null /*&& npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper")*/)
                     PreAiCalamity(npc);
             }
             AI(npc);
@@ -397,6 +400,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 npc.Center = Postions[CreepersList.IndexOf(npc)];
                 ang += 0.08f;
                 return false;
+            }
+            else if (DevourerOFGods.Contains(npc.type))
+            {
+                if (!UniqueToggledFlag)
+                {
+
+                    var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<DevourerOfGodsArmor>());
+                    Main.npc[a].netUpdate = true;
+                    Main.npc[a].localAI[2] = npc.whoAmI;
+
+                    UniqueToggledFlag = true;
+                }
+
             }
 
             return base.PreAI(npc);
@@ -1138,23 +1154,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            else if (DevourerOFGods.Contains(npc.type))
-            {
-                if (!UniqueToggledFlag)
-                {
-                    foreach (NPC npc2 in Main.npc)
-                    {
-                        if (DevourerOFGods.Contains(npc2.type))
-                        {
-                            var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<DevourerOfGodsArmor>());
-                            Main.npc[a].netUpdate = true;
-                            Main.npc[a].localAI[2] = npc2.whoAmI;
-                        }
-                    }
-                    UniqueToggledFlag = true;
-
-                }
-            }
+          
             else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"))
             {
                 if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 40) && !UniqueToggledFlag)

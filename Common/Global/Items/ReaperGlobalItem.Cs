@@ -2,8 +2,10 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
+using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -44,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 		}
 		static List<int> BossSummons = [];
-		public static void ReaperConsumable(Item item)
+		public static void ReaperConsumable(Item item, Player player)
 		{
 			AddEventSummon();
             AddBossSummon();
@@ -54,9 +56,17 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{			
 				if (BossSummons.Contains(item.type))
 				{
-					item.consumable = !Reaper.ReaperMode;
-					item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
-				}
+
+					bool consumable = !Reaper.ReaperMode;
+					if(consumable == true)
+                        consumable = !Utils1.playerHaveItem(player, ModContent.ItemType<BossSummonSaver>());
+
+                    item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
+					item.consumable = consumable;
+
+
+
+                }
 			}
 			else
 			{

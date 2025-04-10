@@ -54,10 +54,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 				.SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
 				.SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate)
 				.SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
-			//DisplayName.SetDefault("Time Wizard");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Magicien du temps");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mago del tiempo");
-
 		}
 
 		public override void SetDefaults()
@@ -210,7 +206,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 			.Add(new Item(ItemType<RainToken>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) },Condition.InRain)
 			.Add(new Item(ItemType<SandstormToken>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) },Condition.InSandstorm)
 			.Add(new Item(ItemType<Judgment>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, Condition.DownedQueenBee)
-			.Add(new Item(ItemType<PlayerStatViewer>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 40, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive", () => NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0))
+            .Add(new Item(ItemType<BossSummonSaver>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, Condition.DownedSkeletron)
+            .Add(new Item(ItemType<PlayerStatViewer>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 40, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive", () => NPC.FindFirstNPC(NPCID.GoblinTinkerer) >= 0))
 			.Add(new Item(ItemID.Sundial) { shopCustomPrice = Utils1.FormatMoney(0, 0, 20, 0, 0) },Condition.Hardmode)
 			.Register();
 		}

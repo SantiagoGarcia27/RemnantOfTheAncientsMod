@@ -219,6 +219,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
             else if (item.prefix == ModContent.PrefixType<Acurate>())
             {
                 RegorgeTooltip(Tooltips, 8, color, commonPath + "CritChance");
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                    RegorgeTooltip(Tooltips, 0.1f, color, commonPath + "Luck");
             }
             else if (item.prefix == ModContent.PrefixType<Uncontrolled>())
             {
@@ -231,7 +233,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             
         }
 
-        public void RegorgeTooltip(IList<TooltipLine> Tooltips, int quantity, Color color, string textString)
+        public void RegorgeTooltip(IList<TooltipLine> Tooltips, float quantity, Color color, string textString)
         {
             string text = Language.GetTextValue(textString, quantity);
             TooltipLine item2 = new(Mod, "Reforge", text)

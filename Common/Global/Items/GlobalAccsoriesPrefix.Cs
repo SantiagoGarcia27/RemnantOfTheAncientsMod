@@ -52,7 +52,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (item.prefix == ModContent.PrefixType<Acurate>())
             {
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                   player.luck += 0.1f;
+                }
                 PrefixUpdate(player, 8f, 3);
+
             }
             if (item.prefix == ModContent.PrefixType<Sharp>())
             {

@@ -17,6 +17,9 @@ namespace RemnantOfTheAncientsMod.Common.Enums
         {
             None,
             PreBoss,
+            Hardmode,
+            PreHardmode,
+            PostMech,
             PostKingSlime,
             PostEyeOfCthulhu,
             PostCorruptBoss,
@@ -29,17 +32,13 @@ namespace RemnantOfTheAncientsMod.Common.Enums
             PostQueenSlime,
             PostDestoryer,
             PostTwins,
-            PostSkeletronPrime,
-            PostMech,
+            PostSkeletronPrime,     
             PostPlantera,
             PostGolem,
             PostEmpressOfLight,
             PostDukeFishron,
             PostCultist,
-            PostMoonLord,
-            Hardmode,
-            PreHardmode
-
+            PostMoonLord
         };
     }
 }

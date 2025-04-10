@@ -129,7 +129,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return number < 0 ? -1 : 1;
         }
-        public static int FormatTime(int Day, int Hour, int Minute, int Second)
+        public static int FormatTime(int Day = 0, int Hour = 0, int Minute = 0, int Second = 0)
         {
             int sec = Second;
             int min = 0;
@@ -150,11 +150,11 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
             return day + hour + min + sec;
         }
-        public static float FormatTimeToTick(float Day, float Hour, float Minute, float Second)
+        public static float FormatTimeToTick(float Day = 0, float Hour = 0, float Minute= 0, float Second= 0)
         {
             return Second * 60 + Minute * 60 * 60 + Hour * 60 * 60 * 60 + Day * 60 * 60 * 60 * 60;
         }
-        public static int FormatMoney(int Terra, int Platinum, int Gold, int Silver, int Copper)
+        public static int FormatMoney(int Terra = 0, int Platinum = 0, int Gold = 0, int Silver = 0, int Copper = 0)
         {
             int _Copper = 1;
             int _Silver = 100;
@@ -685,7 +685,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 case GlobalEnum.gameStage.PostCultist: return NPC.downedAncientCultist;
                 case GlobalEnum.gameStage.PostMoonLord: return NPC.downedMoonlord;
                 case GlobalEnum.gameStage.PostDukeFishron: return NPC.downedFishron;
-                case GlobalEnum.gameStage.Hardmode: return Main.hardMode;
+                case GlobalEnum.gameStage.Hardmode: return Main.hardMode && !NPC.downedMoonlord;
                 case GlobalEnum.gameStage.PreHardmode: return !Main.hardMode;
                 case GlobalEnum.gameStage.PreBoss: return !NPC.downedBoss1;
                 case GlobalEnum.gameStage.None : return false;
@@ -695,14 +695,80 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static int MechBossDefeatedTierReworkForClamity()
         {
             if (!NPC.downedMechBossAny)
-            {
                 return 1;
-            }
             if ((!NPC.downedMechBoss1 && !NPC.downedMechBoss2) || (!NPC.downedMechBoss2 && !NPC.downedMechBoss3) || (!NPC.downedMechBoss3 && !NPC.downedMechBoss1))
-            {
                 return 2;
-            }
+            if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
+                return 4;
             return 3;
+        }
+
+        public static bool playerHaveItem(Player player,int itemID, int amount = 1)
+        {
+            foreach (Item item in player.inventory)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.armor)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.miscEquips)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.bank.item)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.bank2.item)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.bank3.item)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.bank4.item)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.dye)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            foreach (Item item in player.miscDyes)
+            {
+                if (item.type == itemID && item.stack >= amount)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

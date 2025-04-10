@@ -13,6 +13,8 @@ using CalamityMod;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
+using RemnantOfTheAncientsMod.Content.NPCs.zombis;
+using Terraria.ModLoader.Utilities;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -612,7 +614,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             return count;
         }
-
+        public static void DeleteBuff(NPC npc,int buffId)
+        { 
+            int idex = npc.FindBuffIndex(buffId);
+            if(idex >= 0)
+                npc.DelBuff(idex);
+        }
+ 
         [JITWhenModsEnabled("CalamityMod")]
         public static void SetNpcDamageReductionCalamity(NPC npc, float normal, float revenge, float death, float bossrush, float infernum)
         {

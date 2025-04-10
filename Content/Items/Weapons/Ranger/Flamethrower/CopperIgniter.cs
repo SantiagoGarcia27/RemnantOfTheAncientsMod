@@ -22,6 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Flamethrower
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ArmorPenetration);
         public override void SetDefaults()
         {
+            Item baseItem = new(ItemID.Flamethrower);
             Item.damage = 14;
             Item.knockBack = 0.5f;
             Item.useTime = 3;
@@ -35,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Flamethrower
             Item.value = Item.sellPrice(0, 0, 2, 0);
             Item.Size = new Vector2(80, 40);      
             Item.DamageType = DamageClass.Ranged;        
-            Item.UseSound = SoundID.Item10;
+            Item.UseSound = baseItem.UseSound;
         }
 
         public override Vector2? HoldoutOffset()

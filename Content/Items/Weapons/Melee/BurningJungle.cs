@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -18,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void SetDefaults()
         {
             Item Base = new Item(ItemID.FieryGreatsword);
-            Item.damage = Base.damage + 5;
+            Item.damage = Base.damage;
             Item.DamageType = DamageClass.Melee;
             Item.width = 130;
             Item.height = 160;
@@ -58,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             CreateRecipe()
             .AddIngredient(ItemID.FieryGreatsword, 1)
             .AddIngredient(ItemID.BladeofGrass, 1)
-            .AddIngredient<BoneBar>(2)
+            .AddRecipeGroup("anyCorruptBossScale", 5)
             .AddTile(TileID.Hellforge)
             .Register();
         }

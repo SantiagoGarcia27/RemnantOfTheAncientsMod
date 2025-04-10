@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
                 if(projectile.hostile == true || projectile.ai[2] != 0)
                 {
                     projectile.Size = new Vector2(32, 32);
-                    owner =  Main.npc[(int)projectile.ai[2]];
+                    owner =  Main.npc[(int)projectile.ai[2] - 1];
                     if (owner != null)
                     {
                         projectile.Center = owner.Center - new Vector2(0, 20);

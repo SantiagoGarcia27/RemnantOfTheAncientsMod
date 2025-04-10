@@ -790,10 +790,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			if (Reaper.ReaperMode)
 			{
-				ReaperGlobalItem.ReaperConsumable(item);
 				ReaperGlobalItem.ReaperSetDefaut(item);
 			}
-			ReaperGlobalItem.ReaperConsumable(item);
+			ReaperGlobalItem.ReaperConsumable(item,player);
 
 
 			if (Phones.Contains(item.type))
@@ -809,6 +808,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 			}
 		}
+
+
 		public float Timmer = 0;
 		public float TimmerMax = 0;
 		public float UseTimeReduction = 0;
@@ -927,6 +928,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 				TextureAssets.Item[item.type] = ModContent.Request<Texture2D>("Terraria/Images/Item_" + texture);
 				spriteBatch.Draw((Texture2D)ModContent.Request<Texture2D>("Terraria/Images/Item_" + texture), new Vector2(0, 0), default);
+
 			}
 			else
 			{

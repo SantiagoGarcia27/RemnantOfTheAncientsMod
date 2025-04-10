@@ -160,56 +160,72 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         {
             if (npc.type == NPCType<Goldzombie>()) ZombieOreLoot(npcLoot, ItemID.GoldOre, ItemID.GoldBar);
 
-            if (npc.type == NPCType<Platinumzombie>()) ZombieOreLoot(npcLoot, ItemID.PlatinumOre, ItemID.PlatinumBar);
+            else if (npc.type == NPCType<Platinumzombie>()) ZombieOreLoot(npcLoot, ItemID.PlatinumOre, ItemID.PlatinumBar);
 
-            if (npc.type == NPCType<Copperzombie>()) ZombieOreLoot(npcLoot, ItemID.CopperOre, ItemID.CopperBar);
+            else if (npc.type == NPCType<Copperzombie>()) ZombieOreLoot(npcLoot, ItemID.CopperOre, ItemID.CopperBar);
 
-            if (npc.type == NPCType<Ironzombie>()) ZombieOreLoot(npcLoot, ItemID.IronOre, ItemID.IronBar);
+            else if (npc.type == NPCType<Ironzombie>()) ZombieOreLoot(npcLoot, ItemID.IronOre, ItemID.IronBar);
 
-            if (npc.type == NPCType<Leadzombie>()) ZombieOreLoot(npcLoot, ItemID.LeadOre, ItemID.LeadBar);
+            else if (npc.type == NPCType<Leadzombie>()) ZombieOreLoot(npcLoot, ItemID.LeadOre, ItemID.LeadBar);
 
-            if (npc.type == NPCType<Silverzombie>()) ZombieOreLoot(npcLoot, ItemID.SilverOre, ItemID.SilverBar);
+            else if (npc.type == NPCType<Silverzombie>()) ZombieOreLoot(npcLoot, ItemID.SilverOre, ItemID.SilverBar);
 
-            if (npc.type == NPCType<Tinzombie>()) ZombieOreLoot(npcLoot, ItemID.TinOre, ItemID.TinBar);
+            else if (npc.type == NPCType<Tinzombie>()) ZombieOreLoot(npcLoot, ItemID.TinOre, ItemID.TinBar);
 
-            if (npc.type == NPCType<Tungstenzombie>()) ZombieOreLoot(npcLoot, ItemID.TungstenOre, ItemID.TungstenBar);
+            else if (npc.type == NPCType<Tungstenzombie>()) ZombieOreLoot(npcLoot, ItemID.TungstenOre, ItemID.TungstenBar);
 
-            if (npc.type == NPCType<Shadowzombie>()) ZombieOreLoot(npcLoot, ItemID.DemoniteOre, ItemID.DemoniteBar);
+            else if (npc.type == NPCType<Shadowzombie>()) ZombieOreLoot(npcLoot, ItemID.DemoniteOre, ItemID.DemoniteBar);
 
-            if (npc.type == NPCType<Crimsonzombi>()) ZombieOreLoot(npcLoot, ItemID.CrimtaneOre, ItemID.CrimtaneBar);
+            else if (npc.type == NPCType<Crimsonzombi>()) ZombieOreLoot(npcLoot, ItemID.CrimtaneOre, ItemID.CrimtaneBar);
 
-            if (npc.type == NPCType<ReinforcedIronZombie>()) ZombieOreLoot(npcLoot, ItemType<ReinforcedIronOre>(), ItemType<ReinforcedIronBar>());
-            if (npc.type == NPCType<MoltenZombie>()) ZombieOreLoot(npcLoot, ItemID.Hellstone, ItemID.HellstoneBar);
-            if (npc.type == NPCType<NightZombie>())
+            else if (npc.type == NPCType<ReinforcedIronZombie>()) ZombieOreLoot(npcLoot, ItemType<ReinforcedIronOre>(), ItemType<ReinforcedIronBar>());
+            else if (npc.type == NPCType<MoltenZombie>()) ZombieOreLoot(npcLoot, ItemID.Hellstone, ItemID.HellstoneBar);
+            else if (npc.type == NPCType<NightZombie>())
             {
-                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.JungleSpores, 8, ReaperDrop(8),1,5,1,7));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.JungleSpores, 8, ReaperDrop(8), 1, 5, 1, 7));
                 npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Stinger, 8, ReaperDrop(8), 1, 5, 1, 7));
                 npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Obsidian, 8, ReaperDrop(8), 1, 5, 1, 7));
                 npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Hellstone, 8, ReaperDrop(8), 1, 5, 1, 7));
                 npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Bone, 8, ReaperDrop(8), 1, 5, 1, 7));
-                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Cobweb, 8, ReaperDrop(8), 1, 5, 1, 7));     
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.Cobweb, 8, ReaperDrop(8), 1, 5, 1, 7));
                 RemnantDropRules.ReaperModeVsNormal(ItemID.CrimtaneOre, 16, ReaperDrop(16), 1, 5, 1, 7);
                 RemnantDropRules.ReaperModeVsNormal(ItemID.DemoniteOre, 16, ReaperDrop(16), 1, 5, 1, 7);
                 npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<NightBar>(), 50, ReaperDrop(50), 1, 5, 1, 7));
             }
-            if (npc.type == NPCType<ArmoredSlime>())
+            else if (npc.type == NPCType<ArmoredSlime>())
             {
                 ZombieOreLoot(npcLoot, ItemType<ReinforcedIronOre>(), ItemType<ReinforcedIronBar>());
                 ItemDropRule.Common(ItemID.Gel, 1, 10, 15);
             }
-            if (npc.type == NPCType<CobaltZombie>()) ZombieOreLoot(npcLoot, ItemID.CobaltOre, ItemID.CobaltBar);
-            if (npc.type == NPCType<PaladiumZombie>()) ZombieOreLoot(npcLoot, ItemID.PalladiumOre, ItemID.PalladiumBar);
-            if (npc.type == NPCType<MythrilZombie>()) ZombieOreLoot(npcLoot, ItemID.MythrilOre, ItemID.MythrilBar);
-            if (npc.type == NPCType<OrichalcumZombie>()) ZombieOreLoot(npcLoot, ItemID.OrichalcumOre, ItemID.OrichalcumBar);
-            if (npc.type == NPCType<AdamantiteZombie>()) ZombieOreLoot(npcLoot, ItemID.AdamantiteOre, ItemID.AdamantiteBar);
-            if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
-            if (npc.type == NPCType<HallowedZombie>())
+            else if (npc.type == NPCType<CobaltZombie>()) ZombieOreLoot(npcLoot, ItemID.CobaltOre, ItemID.CobaltBar);
+            else if (npc.type == NPCType<PaladiumZombie>()) ZombieOreLoot(npcLoot, ItemID.PalladiumOre, ItemID.PalladiumBar);
+            else if (npc.type == NPCType<MythrilZombie>()) ZombieOreLoot(npcLoot, ItemID.MythrilOre, ItemID.MythrilBar);
+            else if (npc.type == NPCType<OrichalcumZombie>()) ZombieOreLoot(npcLoot, ItemID.OrichalcumOre, ItemID.OrichalcumBar);
+            else if (npc.type == NPCType<AdamantiteZombie>()) ZombieOreLoot(npcLoot, ItemID.AdamantiteOre, ItemID.AdamantiteBar);
+            else if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
+            else if (npc.type == NPCType<HallowedZombie>())
             {
                 int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
-                ZombieOreLoot(npcLoot,ore, ItemID.HallowedBar);
+                ZombieOreLoot(npcLoot, ore, ItemID.HallowedBar);
             }
-            if (npc.type == NPCType<ChlorophyteZombie>()) ZombieOreLoot(npcLoot, ItemID.ChlorophyteOre, ItemID.ChlorophyteBar);
-        }     
+            else if (npc.type == NPCType<ChlorophyteZombie>()) ZombieOreLoot(npcLoot, ItemID.ChlorophyteOre, ItemID.ChlorophyteBar);
+            else if (npc.type == NPCType<TurtleZombie>())
+            {
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.ChlorophyteOre, 1, ReaperDrop(1), 1, 3, 2, 6));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.ChlorophyteBar, 200, ReaperDrop(200), 1, 1, 2, 3));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.TurtleShell, 2, ReaperDrop(2), 1, 1, 1, 1));
+            }
+            else if (npc.type == NPCType<BeetleZombie>())
+            {
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.ChlorophyteBar, 1, ReaperDrop(1), 1, 1, 2, 3));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.BeetleHusk, 2, ReaperDrop(2), 1, 1, 1, 1));
+            }
+            else if (npc.type == NPCType<SolarZombie>())
+            {
+                ZombieOreLoot(npcLoot, ItemID.LunarOre, ItemID.LunarBar);
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.FragmentSolar, 10, ReaperDrop(10), 1, 2, 1, 5));
+            }
+        }
         public static void BossLoot(NPC npc, NPCLoot npcLoot)
         {
 

@@ -363,7 +363,11 @@ namespace RemnantOfTheAncientsMod
 			{
 				RemnantGlobalItem.oldTexture.Add(asset);
 			}
-         
+
+            if (Utils1.IsAprilFoolDay() && ModContent.GetInstance<ConfigClient>().AprilFoolsDay)
+			{
+				ChatHelper.SendChatMessageFromClient(new ChatMessage("Happy April Fools Day, if you want to disable this, go to settings"));
+			}
 
 
 

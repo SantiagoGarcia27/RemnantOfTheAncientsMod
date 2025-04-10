@@ -46,13 +46,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanUseItem(Player player)
         {
-            if(Main.mouseLeft && Main.mouseRight)
+            if (Main.mouseLeft && Main.mouseRight)
             {
                 Item.damage = 50;
                 Item.useTime = 10;
                 Item.useAnimation = 18;
                 Item.shoot = ProjectileID.PurificationPowder;
                 Item.shootSpeed = 15f;
+                Item.UseSound = SoundID.Item12;
             }
             else if (player.altFunctionUse == 2)
             {
@@ -61,6 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
                 Item.useAnimation = 18;
                 Item.shoot = ProjectileID.PurpleLaser;
                 Item.shootSpeed = 20f;
+                Item.UseSound = SoundID.Item12;
             }
             else
             {
@@ -69,6 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
                 Item.useAnimation = 18;
                 Item.shoot = ProjectileID.CursedFlameFriendly;
                 Item.shootSpeed = 10f;
+                Item.UseSound = SoundID.Item20;
             }
             return base.CanUseItem(player);
         }

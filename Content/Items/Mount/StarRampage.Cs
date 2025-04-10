@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Mount
 
 		public override void SetDefaults()
 		{
-
+            Item itemBase = new(ItemID.Starfury);
             Item.damage = 40;
             Item.DamageType = DamageClass.Melee;
             Item.width = 50;
@@ -27,11 +27,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Mount
 			Item.useAnimation = 30;
             Item.knockBack = 8;
             Item.useStyle = ItemUseStyleID.Swing;
-			Item.value = 30000;
+			Item.value = Item.sellPrice(0, 3, 0, 0);
 			Item.rare = ItemRarityID.LightRed;
-			Item.UseSound = SoundID.Item79;
+			Item.UseSound = itemBase.UseSound;
             Item.autoReuse = true;
-            Item.shoot = ProjectileID.Starfury;
+            Item.shoot = itemBase.shoot;
             Item.shootSpeed = 25f;
           //  Item.mountType = ModContent.MountType<Sword>();
             Item.shootsEveryUse = false;

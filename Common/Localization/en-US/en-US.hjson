@@ -163,6 +163,7 @@ Mods: {
 				MeleeSpeed: +{0}% melee speed
 				LifeRegeneration: +{0} life regeneration
 				DamageReduction: +{0}% damage reduction
+				Luck: +{0} Luck
 			}
 		}
 
@@ -4066,6 +4067,11 @@ Mods: {
 					The shotgun can be boosted with ranged damage and player bullets.
 					'''
 			}
+
+			BossSummonSaver: {
+				DisplayName: Time saver charm
+				Tooltip: Allow you save the boss summon after use
+			}
 		}
 
 		NPCs: {
@@ -4167,6 +4173,9 @@ Mods: {
 			DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
 			ChlorophyteZombie.DisplayName: Chlorophyte Zombie
+			TurtleZombie.DisplayName: Turtle Zombie
+			BeetleZombie.DisplayName: Beetle Zombie
+			SolarZombie.DisplayName: Solar Zombie
 		}
 
 		Projectiles: {

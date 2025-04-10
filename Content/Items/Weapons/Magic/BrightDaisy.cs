@@ -13,12 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Bright Daisy");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Marguerite brillante");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Margarita Brillante");
-            //Tooltip.SetDefault("A daisy with the power of luminous skies");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Une marguerite avec le pouvoir des cieux lumineux");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Una margarita con el poder del cielo luminoso");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             Item.staff[Item.type] = true;
         }
@@ -39,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<BrightPetal>();
             Item.shootSpeed = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item75;
+            Item.UseSound = SoundID.Item34;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(copper: 50);
             Item.noMelee = true;

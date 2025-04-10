@@ -37,12 +37,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
+            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
             base.OnHitNPC(target, hit, damageDone);
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
+            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
             base.OnHitPlayer(target, info);
         }
         public override void OnKill(int timeLeft)
