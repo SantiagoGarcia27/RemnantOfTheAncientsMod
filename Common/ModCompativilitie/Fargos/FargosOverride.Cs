@@ -6,7 +6,7 @@
 //using Terraria;
 //using Terraria.ModLoader;
 
-//namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos
+//namespace RemnantOfTheAncients.Common.ModCompativilitie.Fargos
 //{
 //    [ExtendsFromMod("FargowiltasSouls")]
 //    //public class FargosOverride : EModeNPCBehaviour

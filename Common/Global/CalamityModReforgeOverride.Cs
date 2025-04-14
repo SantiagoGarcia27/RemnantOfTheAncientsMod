@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             //if (!CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG || Main.gameMenu || storedPrefix == -1)
             //{
-            //    var damageClass = SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
+            //    var damageClass = SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncients.CalamityMod, "RogueDamageClass");
             //    if (item.CountsAsClass(damageClass)) return prefix;
             //    else return -1;
             //}

@@ -1,13 +1,13 @@
 /*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Buffs;
+using RemnantOfTheAncients.Content.Buffs;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
+using RemnantOfTheAncients.Content.Buffs.Buffs.Scrolls;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncients.Content.Items.Weapons.Summon.Buf
 {
 	public class DeerclopsScroll: ModItem
 	{

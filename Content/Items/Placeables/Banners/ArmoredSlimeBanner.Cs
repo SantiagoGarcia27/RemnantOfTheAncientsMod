@@ -4,7 +4,7 @@
 //using Terraria.ID;
 //using Terraria.GameContent.Creative;
 
-//namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Banners
+//namespace RemnantOfTheAncients.Content.Items.Placeables.Banners
 //{
 //	public class ArmoredSlimeBanner : ModItem
 //	{

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.Bobbers;
 using Terraria;
 using Terraria.DataStructures;
@@ -64,8 +65,27 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             {
                 item.damage = item.fishingPole - 1;
                 item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                item.autoReuse = false;
+                item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             }
         }
+        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
+        }
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if(player.altFunctionUse == 2)
+            {
+                if (player.ownedProjectileCounts[ModContent.ProjectileType<BoberHook>()] <= 0)
+                {
+                   var p = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BoberHook>(), 1, 1, player.whoAmI, ai2: item.shoot);
+                }
+                return false;
+            }
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+        }
+
         /*
          public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
@@ -111,6 +131,47 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             }
         }
         */
+        public override bool InstancePerEntity => true;
+    }
+    public class BobersOverride : GlobalProjectile
+    {
+        NPC Target = null;
+        public override void AI(Projectile projectile)
+        {
+            Player owner = Main.player[projectile.owner];
+            if (projectile.bobber)
+            {
+                if (Target != null)
+                {
+                    if (Target.knockBackResist > 0 && !Target.boss && Target.lifeMax < projectile.damage * 20)
+                    {
+                        if (projectile.Distance(owner.Center) > 200)
+                        {
+                            Target.Center = projectile.position - new Vector2(0, 1) * 16f;
+                            Target.velocity = Vector2.Zero;
+                        }
+                    }
+
+                    if (Target.life <= 0 || !Target.active)
+                        projectile.timeLeft = 1;
+                }
+            }
+            base.AI(projectile);
+        }
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            
+            if (projectile.bobber)
+            {
+                projectile.velocity = Vector2.Zero;
+                projectile.penetrate = 100;
+                projectile.timeLeft = 1000;
+                Target = target; 
+
+                
+            }
+            base.OnHitNPC(projectile, target, hit, damageDone);
+        }
         public override bool InstancePerEntity => true;
     }
 }

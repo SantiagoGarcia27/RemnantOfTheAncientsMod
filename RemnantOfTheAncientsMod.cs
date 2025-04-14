@@ -37,6 +37,8 @@ namespace RemnantOfTheAncientsMod
 
         public static string PlaceHolderPath = $"RemnantOfTheAncientsMod/Assets/PlaceHolder";
         public static string PlaceHolderWithoutModPath = $"Assets/PlaceHolder";
+
+        public static string MagicPixelPath = $"RemnantOfTheAncientsMod/Assets/MagicPixelColored";
         public RemnantOfTheAncientsMod()
         {
 

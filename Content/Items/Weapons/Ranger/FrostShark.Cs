@@ -50,19 +50,25 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (Main.rand.NextFloat() <= (float)1 / 5)
-				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<ice_bulletP>(), damage, 1, player.whoAmI);
-			if (Main.rand.NextFloat() <= (float)1 / 10)
-				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FrostBeamF>(), 30, 1, player.whoAmI);
+			//if (Main.rand.NextFloat() <= (float)1 / 5)
+			//	Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<ice_bulletP>(), damage, 1, player.whoAmI);
+			//if (Main.rand.NextFloat() <= (float)1 / 10)
+			//	Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FrostBeamF>(), 30, 1, player.whoAmI);
 
-			if (ModLoader.TryGetMod("CalamityMod", out Mod mod))
-			{
-				if (Main.rand.NextFloat() <= (float)1 / 1)
-					Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<frozen_p_f>(), 8, 1, player.whoAmI);
-			}
+			//if (ModLoader.TryGetMod("CalamityMod", out Mod mod))
+			//{
+			//	if (Main.rand.NextFloat() <= (float)1 / 1)
+			//		Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<frozen_p_f>(), 8, 1, player.whoAmI);
+			//}
 			return true;
 		}
-		public override Vector2? HoldoutOffset()
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+			if(type == ProjectileID.Bullet) type = ModContent.ProjectileType<EnchantedIceBullet>();
+
+            base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
+        }
+        public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-10, 0);
 		}

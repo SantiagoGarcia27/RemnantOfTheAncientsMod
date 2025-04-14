@@ -4,12 +4,12 @@
 //using Terraria.ID;
 //using Terraria.ModLoader;
 //using static Terraria.ModLoader.ModContent;
-//using RemnantOfTheAncientsMod.Content.Dusts;
-//using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-//using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-//using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+//using RemnantOfTheAncients.Content.Dusts;
+//using RemnantOfTheAncients.Content.Buffs.Debuff;
+//using RemnantOfTheAncients.Content.Buffs.Buffs.Minions;
+//using RemnantOfTheAncients.Common.UtilsTweaks;
 
-//namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
+//namespace RemnantOfTheAncients.Content.Projectiles.Summon.Minioms
 //{
 //    public class SandSlimeMinion : ModProjectile
 //    {
@@ -82,7 +82,7 @@
 //        public override void AI()
 //        {
 //            Player player = Main.player[Projectile.owner];
-//            RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();
+//            RemnantPlayer Modplayer = player.RemnantOfTheAncients();
 //            if (!CheckActive(player)) return;
 //            if (dust == 0f)
 //            {

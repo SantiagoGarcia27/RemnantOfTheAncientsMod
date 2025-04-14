@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
     public class StardustMinion : ModProjectile
     {
-      //  public override string Texture => "RemnantOfTheAncientsMod/Projectiles/Summon/Minioms/StardustMinion";
+      //  public override string Texture => "RemnantOfTheAncients/Projectiles/Summon/Minioms/StardustMinion";
         public override void SetStaticDefaults()
         {
            // //DisplayName.SetDefault("StardustMinion");

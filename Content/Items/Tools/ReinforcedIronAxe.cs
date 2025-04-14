@@ -3,9 +3,9 @@
 //using Terraria.ID;
 //using Terraria.ModLoader;
 //using Terraria.Localization;
-//using RemnantOfTheAncientsMod.Content.Items.Items;
+//using RemnantOfTheAncients.Content.Items.Items;
 
-//namespace RemnantOfTheAncientsMod.Content.Items.Tools
+//namespace RemnantOfTheAncients.Content.Items.Tools
 //{
 //	public class ReinforcedIronAxe : ModItem
 //	{

@@ -118,7 +118,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
         }
         //public override void HoldItem(Player player)
         //{
-        //    string path = "RemnantOfTheAncientsMod/Content/Items/Weapons/Ranger/Bows/";
+        //    string path = "RemnantOfTheAncients/Content/Items/Weapons/Ranger/Bows/";
 
         //    if (!(Main.mouseLeft && Main.mouseRight))
         //    {

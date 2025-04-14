@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncients.World;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Accesories
+namespace RemnantOfTheAncients.Content.Items.Accesories
 {
     public class TemporalDislocator : ModItem
     {

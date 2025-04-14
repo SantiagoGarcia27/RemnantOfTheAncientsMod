@@ -1,7 +1,7 @@
 /*using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
+namespace RemnantOfTheAncients.Common.UtilsTweaks
 {
     public static class ExternalModCallUtils
     {

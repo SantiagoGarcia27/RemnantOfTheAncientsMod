@@ -1,14 +1,14 @@
 /*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Buffs;
+using RemnantOfTheAncients.Content.Buffs;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
+using RemnantOfTheAncients.Buffs.Debuff;
+using RemnantOfTheAncients.Content.Buffs.Buffs.Scrolls;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncients.Content.Items.Weapons.Summon.Buf
 {
 	public class FrozenAssaulterScroll : ModItem
 	{

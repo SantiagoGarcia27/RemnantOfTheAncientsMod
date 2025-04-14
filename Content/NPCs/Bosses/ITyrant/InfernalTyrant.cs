@@ -253,7 +253,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                             {
                                 TornadoIa((int)(70 * RemnantGlobalNPC.DamageBonus), SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
                             }
-                           // FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), SangarUtilities.Common.CallUtils.Get<ModProjectile>(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
+                           // FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), SangarUtilities.Common.CallUtils.Get<ModProjectile>(RemnantOfTheAncients.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
                         }
                     }
                     SummonIa(NPCID.RedDevil);

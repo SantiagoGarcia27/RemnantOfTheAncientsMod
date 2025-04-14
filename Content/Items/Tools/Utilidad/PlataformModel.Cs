@@ -141,7 +141,7 @@ public class PlataformModel
     }
     public static void SavePacket(Player player, int plataform, int torch, int x, int y, int range)
     {
-        //ModPacket packet = ModContent.GetInstance<RemnantOfTheAncientsMod.RemnantOfTheAncientsMod>().GetPacket();
+        //ModPacket packet = ModContent.GetInstance<RemnantOfTheAncients.RemnantOfTheAncients>().GetPacket();
         //packet.Write((byte)GlobalEnum.packetType.placePltaform);
         //packet.Write(plataform);
         //packet.Write(torch);

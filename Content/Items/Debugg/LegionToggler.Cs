@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Debugg
+namespace RemnantOfTheAncients.Content.Items.Debugg
 {
 	public class LegionToggler : ModItem
 	{

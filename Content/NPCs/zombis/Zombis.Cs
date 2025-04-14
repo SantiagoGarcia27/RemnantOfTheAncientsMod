@@ -81,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.5f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.4f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -95,7 +95,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.5f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.4f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -109,7 +109,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.4f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -123,7 +123,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.4f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -137,7 +137,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.2f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -151,7 +151,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.2f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -166,7 +166,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.2f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.1f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -180,7 +180,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.2f, GlobalEnum.gameStage.PreBoss) : 0f);
+            return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss2 ? AdjustProgresionChance(0.1f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
 
@@ -879,7 +879,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         //        {
         //            if (Main.hardMode)
         //            {
-        //                if (RemnantOfTheAncientsMod.CalamityMod != null )
+        //                if (RemnantOfTheAncients.CalamityMod != null )
         //                {
         //                    if (CalamityConfigEnabled())
         //                    {

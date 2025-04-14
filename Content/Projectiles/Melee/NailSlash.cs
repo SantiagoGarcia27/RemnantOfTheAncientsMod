@@ -6,7 +6,7 @@
 //using Terraria.ModLoader;
 
 
-//namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
+//namespace RemnantOfTheAncients.Content.Projectiles.Melee
 //{
 
 //    public class NailSlash : ModProjectile
@@ -37,7 +37,7 @@
 //            Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
 //            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
 //            //  Lighting.AddLight(Projectile.position, 230, 230,0);
-//            //if (RemnantOfTheAncientsMod.CalamityMod != null)
+//            //if (RemnantOfTheAncients.CalamityMod != null)
 //            //{
 //            //    for (int i = 0; i < 200; i++)
 //            //    {
@@ -82,7 +82,7 @@
 //           // SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
 //            //const int NUM_DUSTS = 20;
-//            //for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(NUM_DUSTS); i++)
+//            //for (int i = 0; i < RemnantOfTheAncients.ParticleMeter(NUM_DUSTS); i++)
 //            //{
 //            //    int p1 = Dust.NewDust(Projectile.position,Projectile.width, Projectile.height,DustID.GemTopaz,0f,0f,100,default(Color),3f);
 //            //    Main.dust[p1].velocity = Projectile.velocity;

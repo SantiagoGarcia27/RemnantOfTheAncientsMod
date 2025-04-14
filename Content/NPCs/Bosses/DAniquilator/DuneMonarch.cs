@@ -1,28 +1,28 @@
 /*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncients.Content.Items.Items;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.ItemDropRules;
 using System;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Bloques;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.tresure_bag;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
-using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncients.Content.Items.Placeables.Bloques;
+using RemnantOfTheAncients.Content.Items.Weapons.Melee;
+using RemnantOfTheAncients.Content.Items.Weapons.Magic;
+using RemnantOfTheAncients.Content.Items.Weapons.Summon;
+using RemnantOfTheAncients.Content.Items.Weapons.tresure_bag;
+using RemnantOfTheAncients.Content.Items.Weapons.Ranger.Bows;
+using RemnantOfTheAncients.Content.Items.Placeables.Relics;
+using RemnantOfTheAncients.Content.Items.Armor.Masks;
+using RemnantOfTheAncients.Common.Systems;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncients.World;
 
 using Terraria.Audio;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using RemnantOfTheAncientsMod.Buffs.Debuff;
+using RemnantOfTheAncients.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncients.Buffs.Debuff;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs.DAniquilator
+namespace RemnantOfTheAncients.Content.NPCs.DAniquilator
 {
     [AutoloadBossHead]
     public class DuneMonarch : ModNPC

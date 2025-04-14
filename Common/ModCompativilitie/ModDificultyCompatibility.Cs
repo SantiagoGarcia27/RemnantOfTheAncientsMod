@@ -1,6 +1,6 @@
 //using Terraria.ModLoader;
 
-//namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
+//namespace RemnantOfTheAncients.Common.ModCompativilitie
 //{
 //    public class ModDificultyCompatibility : ModSystem
 //    {
@@ -21,7 +21,7 @@
 //        }
 //        public void CheckDificulty()
 //        {
-//            if (RemnantOfTheAncientsMod.CalamityMod != null)
+//            if (RemnantOfTheAncients.CalamityMod != null)
 //            {
 //                CheckCalamity();
 //                if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
@@ -29,7 +29,7 @@
 //                    CheckInfernum();
 //                }
 //            }
-//            if(RemnantOfTheAncientsMod.FargosSoulMod != null)
+//            if(RemnantOfTheAncients.FargosSoulMod != null)
 //            {
 //                CheckFargos();
 //            }

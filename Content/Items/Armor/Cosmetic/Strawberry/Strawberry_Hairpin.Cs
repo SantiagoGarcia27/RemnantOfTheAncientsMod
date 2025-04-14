@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry
 
     //public class Flower_Defender_Helmet_EffectDraw : PlayerDrawLayer
     //{
-    //    public static Asset<Texture2D> BaseTexture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Items/Armor/Cosmetic/Sergy/Flower_Defender_Helme_Effect");
+    //    public static Asset<Texture2D> BaseTexture = ModContent.Request<Texture2D>("RemnantOfTheAncients/Content/Items/Armor/Cosmetic/Sergy/Flower_Defender_Helme_Effect");
     //    public float floatingCounter = 0;
     //    public static Item ItemSource;
     //    public override bool IsHeadLayer => true;

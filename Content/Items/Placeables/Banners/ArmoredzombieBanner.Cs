@@ -4,7 +4,7 @@
 //using Terraria.ModLoader;
 //using Terraria.ID;
 
-//namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Banners
+//namespace RemnantOfTheAncients.Content.Items.Placeables.Banners
 //{
 //	public class ArmoredzombieBanner : ModItem
 //	{

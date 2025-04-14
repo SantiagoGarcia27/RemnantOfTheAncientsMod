@@ -1,6 +1,6 @@
 //using Terraria.ModLoader;
 
-//namespace RemnantOfTheAncientsMod
+//namespace RemnantOfTheAncients
 //{
 //    public class AccesorieDamageClass : GlobalItem
 //    {

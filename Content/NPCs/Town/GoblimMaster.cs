@@ -5,11 +5,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod;
-using RemnantOfTheAncientsMod.Content.Projectiles;
-using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
-using RemnantOfTheAncientsMod.Dusts;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncients;
+using RemnantOfTheAncients.Content.Projectiles;
+using RemnantOfTheAncients.Content.Items.Tools.Utilidad;
+using RemnantOfTheAncients.Dusts;
+using RemnantOfTheAncients.Content.Items.Weapons.Magic;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Events;
 using Terraria.GameContent;
@@ -19,10 +19,10 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
 using Terraria.Utilities;
 using System.Linq;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncients.World;
 using Terraria.Audio;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs.Town
+namespace RemnantOfTheAncients.Content.NPCs.Town
 {
 
 	[AutoloadHead]
@@ -153,23 +153,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 			int Wizard = NPC.FindFirstNPC(NPCID.Wizard);
 			int Clothier = NPC.FindFirstNPC(NPCID.Clothier);
 
-			if (Wizard >= 0 && Main.rand.NextBool(4)) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.WizardDialogue", Main.npc[Wizard].GivenName)));
+			if (Wizard >= 0 && Main.rand.NextBool(4)) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.WizardDialogue", Main.npc[Wizard].GivenName)));
 
 			if (Main.dayTime)
 			{
-				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue1")), 4);
-				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.DayDialogue2", Main.LocalPlayer.name)));
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.DayDialogue1")), 4);
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.DayDialogue2", Main.LocalPlayer.name)));
 			}
 			else
 			{
-				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue1")), 4);
-				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NightDialogue2", Main.LocalPlayer.name)));
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.NightDialogue1")), 4);
+				chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.NightDialogue2", Main.LocalPlayer.name)));
 			}
 
-			if (NPC.downedBoss3 && Clothier >= 0) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.ClotierDialogue", Main.npc[Clothier].GivenName)));
-            if (!NPC.downedQueenBee) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.NoBeeDefeatedDialogue1")), 4);
-			if (Main.LocalPlayer.HasItem(ItemType<Judgment>())) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.JudmnetDialogue1")));
-			chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.Time_Wizard.GenericDialog1")));
+			if (NPC.downedBoss3 && Clothier >= 0) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.ClotierDialogue", Main.npc[Clothier].GivenName)));
+            if (!NPC.downedQueenBee) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.NoBeeDefeatedDialogue1")), 4);
+			if (Main.LocalPlayer.HasItem(ItemType<Judgment>())) chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.JudmnetDialogue1")));
+			chat.Add(formater(Language.GetTextValue("Mods.RemnantOfTheAncients.Dialogue.Time_Wizard.GenericDialog1")));
 
 			return chat;
 		}
@@ -178,7 +178,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 			button = Language.GetTextValue("LegacyInterface.28");
 			if (RemanntWorld.TimeWizardTimeAcelerationCouldown == 0)
 			{
-				button2 = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.UI.Buttoms.SkipDay");
+				button2 = Language.GetTextValue("Mods.RemnantOfTheAncients.UI.Buttoms.SkipDay");
 			}		
 		}
 		private string formater(String imput)
@@ -333,14 +333,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 		public Asset<Texture2D> GetTextureNPCShouldUse(NPC npc)
 		{
 			if (npc.IsABestiaryIconDummy && !npc.ForcePartyHatOn)
-				return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard");
+				return Request<Texture2D>("RemnantOfTheAncients/NPCs/Town/Time_Wizard");
 
 			if (npc.altTexture == 1)
-				return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard_Party");
+				return Request<Texture2D>("RemnantOfTheAncients/NPCs/Town/Time_Wizard_Party");
 
-			return Request<Texture2D>("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard");
+			return Request<Texture2D>("RemnantOfTheAncients/NPCs/Town/Time_Wizard");
 		}
 
-		public int GetHeadTextureIndex(NPC npc) => GetModHeadSlot("RemnantOfTheAncientsMod/NPCs/Town/Time_Wizard_Head");
+		public int GetHeadTextureIndex(NPC npc) => GetModHeadSlot("RemnantOfTheAncients/NPCs/Town/Time_Wizard_Head");
 	}
 }*/

@@ -56,7 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 				if (charged)
 				{
 					SoundEngine.PlaySound(SoundID.Item38);
-                    for (int i = 0; i <= 4; i++)
+                    for (int i = 0; i <= 8; i++)
 					{
 						Projectile.NewProjectile(source, position, velocity * 2, ProjectileID.EatersBite, Damegscale(damage * 2), 1, player.whoAmI);
 					}
@@ -89,6 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 
             RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax;
 			RemnantPlayer.GenericChargeCouldown = (int)Timmer;
+
             TimmerDustMax = TimmerMax / 4;
             if (player.channel && player.altFunctionUse == 2)
 			{

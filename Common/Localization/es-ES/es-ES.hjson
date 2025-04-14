@@ -307,17 +307,17 @@ Mods: {
 
 			Melee_Infusion: {
 				DisplayName: Melee infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Melee_Infusion.Description
+				Description: Aumenta el retroceso, aumenta la velocidad de ataque y aplicas ichor a los enemigos
 			}
 
 			Mining_infusion: {
 				DisplayName: Mining infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Mining_infusion.Description
+				Description: Ofrece visión mejorada y aumentos en la velocidad de minería
 			}
 
 			Poseidon_Infusion: {
 				DisplayName: Poseidon infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Poseidon_Infusion.Description
+				Description: Aumenta la capacidad de movimiento y respiración bajo el agua. Además de otorgar todos los efectos para pescar
 			}
 
 			Ranger_Infusion: {
@@ -327,12 +327,12 @@ Mods: {
 
 			Summon_Infusion: {
 				DisplayName: Summon infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Summon_Infusion.Description
+				Description: Aumenta la cantidad de súbditos y torretas
 			}
 
 			Tank_Infusion: {
 				DisplayName: Tank infusion
-				Description: Combinación de todos los efectos defensivos de vainilla.
+				Description: Combinación de todos los efectos defensivos.
 			}
 
 			Ultimate_Infusion: {
@@ -4352,6 +4352,10 @@ Mods: {
 			// InstantPlataformProj.DisplayName: Instant Plataform Proj
 			// ScarabDynamiteProj.DisplayName: Scarab Dynamite Proj
 			// CursedShotgunMinion.DisplayName: Cursed Shotgun Minion
+			// EnchantedIceBullet.DisplayName: Enchanted Ice Bullet
+			// EnchantedIceFragment.DisplayName: Enchanted Ice Fragment
+			// BoberHook.DisplayName: Bober Hook
+			// BoberHookLine.DisplayName: Bober Hook Line
 		}
 
 		Tiles: {

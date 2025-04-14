@@ -121,7 +121,7 @@ namespace RemnantOfTheAncientsMod.World
         {
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-               //ModContent.GetInstance<RemnantOfTheAncientsMod>().AddFargosLocalization();
+               //ModContent.GetInstance<RemnantOfTheAncients>().AddFargosLocalization();
             }
             base.SetupContent();
         }

@@ -56,7 +56,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 
         public override void PostDraw(Color lightColor)     
         {
-            var laserTexture = Request<Texture2D>("RemnantOfTheAncientsMod/Projectiles/HollyLaser");
+            var laserTexture = Request<Texture2D>("RemnantOfTheAncients/Projectiles/HollyLaser");
             Rectangle laserRect = new Rectangle(0, 0, 2, (int)Projectile.Distance(laserStart));
             Vector2 laserOrigin = new Vector2(laserRect.Width / 2f, 0f);
 

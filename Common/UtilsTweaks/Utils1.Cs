@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CalamityMod.Items.Potions.Alcohol;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Enums;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Exceptions;
@@ -109,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             return new Rectangle(0, item.height * frame, item.width, item.height);
         }
 
-        public static RemnantPlayer RemnantOfTheAncientsMod(this Player player)
+        public static RemnantPlayer RemnantOfTheAncients(this Player player)
         {
             return player.GetModPlayer<RemnantPlayer>();
         }
@@ -243,33 +245,25 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             return DateTime.Now.Day == day && DateTime.Now.Month == month && DateTime.Now.Year == year;
         }
 
-        public static void AddSecure(List<int> list, int p)
+        public static void AddSecure<T>(List<T> list, T p)
         {
             if (!list.Contains(p)) list.Add(p);
         }
-        public static void AddSecure(List<int> list, List<int> p)
+        public static void AddSecure<T>(List<T> list, List<T> p)
         {
-            foreach (int i in p)
+            foreach (T i in p)
             {
                 if (!list.Contains(i)) list.Add(i);
             }
         }
-        public static void AddSecure(List<int> list, int[] p)
+        public static void AddSecure<T>(List<T> list, T[] p)
         {
-            foreach (int i in p)
+            foreach (T i in p)
             {
                 if (!list.Contains(i)) list.Add(i);
             }
         }
         public static void AddSecure(List<Type> list, Type p)
-        {
-            if (!list.Contains(p)) list.Add(p);
-        }
-        public static void AddSecure(List<Asset<Texture2D>> list, Asset<Texture2D> p)
-        {
-            if (!list.Contains(p)) list.Add(p);
-        }
-        public static void AddSecure(List<string> list, string p)
         {
             if (!list.Contains(p)) list.Add(p);
         }
@@ -769,6 +763,19 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 }
             }
             return false;
+        }
+
+        public static void DrawLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color color = default, float splits = 1f,float rotation = 0f, float scale = 1f, Texture2D texture = null)
+        {
+            if(texture == null) texture = (Texture2D)ModContent.Request<Texture2D>(RemnantOfTheAncientsMod.MagicPixelPath);
+
+            spriteBatch.Draw(texture, start, null, color, rotation, Vector2.Zero, scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(texture, end, null, color, rotation, Vector2.Zero, scale, SpriteEffects.None, 1);
+            float num = 1f / splits;
+            for (float i = 0f; i < 1f; i += num)
+            {
+                spriteBatch.Draw(texture, Vector2.Lerp(start, end, i), null, color, rotation, Vector2.Zero, scale, SpriteEffects.None, 1);
+            }
         }
     }
 }

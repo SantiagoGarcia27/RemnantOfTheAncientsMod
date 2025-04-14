@@ -82,8 +82,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 				Recipe recipe = CreateRecipe()
 				.AddIngredient(ItemType<Garritas>())
 				.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
-				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
-				//recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
+				//recipe.AddIngredient(RemnantOfTheAncients.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
+				//recipe.AddIngredient(RemnantOfTheAncients.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
 				recipe.AddTile(SangarUtilities.Common.CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
 				recipe.Register();
 			}

@@ -2,15 +2,15 @@
 //using Terraria.ID;
 //using Terraria.ModLoader;
 //using Terraria.GameContent.Creative;
-//using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+//using RemnantOfTheAncients.Content.Projectiles.Melee;
 //using Microsoft.Xna.Framework;
 //using Terraria.DataStructures;
 //using System;
 //using CalamityMod;
-//using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+//using RemnantOfTheAncients.Common.UtilsTweaks;
 //using System.Linq;
 
-//namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee //arkimedeez' push test
+//namespace RemnantOfTheAncients.Content.Items.Weapons.Melee //arkimedeez' push test
 //{
 //	public class PalidNail : ModItem
 //	{
@@ -34,7 +34,7 @@
 //			Item.value = Item.sellPrice(silver: 100);
 //			Item.rare = 1;
 //			Item.scale = 1f;
-//            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+//            if (RemnantOfTheAncients.TerrariaOverhaul != null)
 //            {
 //                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ModContent.ProjectileType<NailSlash>();
 //            }
@@ -47,7 +47,7 @@
 //		{
 //			//Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
 
-//			//if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+//			//if (RemnantOfTheAncients.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 //			//{
 //			//	Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.position + new Vector2(3*16 * player.direction,0), velocity, ModContent.ProjectileType<NailSlash>(), Item.damage, 2f, Main.myPlayer);
 //			//}

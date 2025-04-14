@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            RemnantPlayer Modplayer = player.RemnantOfTheAncientsMod();   
+            RemnantPlayer Modplayer = player.RemnantOfTheAncients();   
             if (!CheckActive(player)) return;
         }
 

@@ -311,7 +311,7 @@ Mods: {
 
 			Poseidon_Infusion: {
 				DisplayName: Poseidon infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Poseidon_Infusion.Description
+				Description: Increased liquid afinity and give you fishing buffs
 			}
 
 			Ranger_Infusion: {
@@ -321,7 +321,7 @@ Mods: {
 
 			Summon_Infusion: {
 				DisplayName: Summon infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Summon_Infusion.Description
+				Description: Increase your max minions and turret ammount.
 			}
 
 			Tank_Infusion: {
@@ -4323,6 +4323,10 @@ Mods: {
 			InstantPlataformProj.DisplayName: Instant Plataform Proj
 			ScarabDynamiteProj.DisplayName: Scarab Dynamite Proj
 			CursedShotgunMinion.DisplayName: Cursed Shotgun Minion
+			EnchantedIceBullet.DisplayName: Enchanted Ice Bullet
+			EnchantedIceFragment.DisplayName: Enchanted Ice Fragment
+			BoberHook.DisplayName: Bober Hook
+			BoberHookLine.DisplayName: Bober Hook Line
 		}
 
 		Tiles: {

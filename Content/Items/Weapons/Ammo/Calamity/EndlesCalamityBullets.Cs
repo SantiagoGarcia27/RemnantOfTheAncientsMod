@@ -7,7 +7,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     //public class EndlesAccelerationRound : EndlessAmmo
     //{
     //    public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-    //    public override Item ItemBase => new(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AccelerationRound"));
+    //    public override Item ItemBase => new(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncients.CalamityMod, "AccelerationRound"));
     //    public override string TexturePath => null;
     //}
     public class EndlesAcidRound : EndlessAmmo
@@ -55,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     //public class EndleSuperballBullet : EndlessAmmo
     //{
     //    public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-    //    public override Item ItemBase => new(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SuperballBullet"));
+    //    public override Item ItemBase => new(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncients.CalamityMod, "SuperballBullet"));
     //    public override string TexturePath => null;
     //}
     public class EndlesTerraBullet : EndlessAmmo

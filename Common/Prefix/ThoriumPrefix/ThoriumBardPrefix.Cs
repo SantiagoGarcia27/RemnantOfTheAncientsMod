@@ -1,9 +1,9 @@
-//using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+//using RemnantOfTheAncients.Common.UtilsTweaks;
 //using System.Collections.Generic;
 //using Terraria;
 //using Terraria.ModLoader;
 
-//namespace RemnantOfTheAncientsMod.Prefix.ThoriumPrefix
+//namespace RemnantOfTheAncients.Prefix.ThoriumPrefix
 //{
 //    public abstract class ThoriumBardPrefix : ModPrefix
 //    {
@@ -45,7 +45,7 @@
 
 //        public static bool DoConditionsApply(Item item)
 //        {
-//            // Mod ThoiumMod = RemnantOfTheAncientsMod.ThoriumMod;
+//            // Mod ThoiumMod = RemnantOfTheAncients.ThoriumMod;
 //            if (ModLoader.TryGetMod("ThoiumMod", out Mod ThoriumMod))
 //            {
 //                if (item is ThoriumMod.GetContent<BardItem>() && item.maxStack == 1 && item.damage > 0)
@@ -66,7 +66,7 @@
 //        {
 //            if (ModLoader.TryGetMod("ThoiumMod", out Mod ThoriumMod))
 //            {
-//                if (item.CountsAsClass(SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass")) && item is BardItem bardItem)
+//                if (item.CountsAsClass(SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncients.CalamityMod, "RogueDamageClass")) && item is BardItem bardItem)
 //            {
 //                    ThoriumMod.GetContent<BardItem>().DurationBonus = (short)(durationBonus * 60);
 //                }

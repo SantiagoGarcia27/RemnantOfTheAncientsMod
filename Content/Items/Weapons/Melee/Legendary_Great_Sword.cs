@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.value = Item.sellPrice(gold: 35);
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
-            //if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+            //if (RemnantOfTheAncients.TerrariaOverhaul != null)
             //{
             //    if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ModContent.ProjectileType<LegendaryGreatSwordSwingProgectile>();
             //}

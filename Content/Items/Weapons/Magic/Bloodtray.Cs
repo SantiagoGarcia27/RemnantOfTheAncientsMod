@@ -99,7 +99,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         //public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         //{
         //    Player player = Main.player[Main.myPlayer];
-        //    var texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect");
+        //    var texture = ModContent.Request<Texture2D>("RemnantOfTheAncients/Content/Projectiles/Summon/Minioms/AreaEffect");
         //    Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
         //    if (Charge < 180)
         //    {

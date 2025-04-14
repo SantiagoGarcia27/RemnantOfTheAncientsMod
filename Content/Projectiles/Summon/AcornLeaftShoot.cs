@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         //    Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
         //    usePos += rotVector * 16f;
 
-        //    RemnantOfTheAncientsMod r = ModContent.GetInstance<RemnantOfTheAncientsMod>();
+        //    RemnantOfTheAncients r = ModContent.GetInstance<RemnantOfTheAncients>();
         //    int NUM_DUSTS = r.ParticleMeter(20);
 
         //    for (int i = 0; i < NUM_DUSTS; i++)

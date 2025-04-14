@@ -380,7 +380,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                     AI(npc);
                 }
-                if (RemnantOfTheAncientsMod.CalamityMod != null /*&& npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper")*/)
+                if (RemnantOfTheAncientsMod.CalamityMod != null /*&& npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncients.CalamityMod, "DankCreeper")*/)
                     PreAiCalamity(npc);
             }
             AI(npc);
