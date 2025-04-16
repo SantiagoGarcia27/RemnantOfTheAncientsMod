@@ -4116,6 +4116,11 @@ Mods: {
 				// DisplayName: True Nigthbow
 				// Tooltip: ""
 			}
+
+			TerraBow: {
+				// DisplayName: Terra Bow
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4373,6 +4378,7 @@ Mods: {
 			// BoberHookLine.DisplayName: Bober Hook Line
 			// TrueHallowArrow.DisplayName: True Hallow Arrow
 			// TrueNightArrow.DisplayName: True Night Arrow
+			// TerraArrow.DisplayName: Terra Arrow
 		}
 
 		Tiles: {
