@@ -4072,6 +4072,21 @@ Mods: {
 				DisplayName: Time saver charm
 				Tooltip: Allow you save the boss summon after use
 			}
+
+			Failnaught: {
+				DisplayName: Failnaught
+				Tooltip: ""
+			}
+
+			TrueFailnaught: {
+				DisplayName: True Failnaught
+				Tooltip: ""
+			}
+
+			TrueNigthbow: {
+				DisplayName: True Nigthbow
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4327,6 +4342,8 @@ Mods: {
 			EnchantedIceFragment.DisplayName: Enchanted Ice Fragment
 			BoberHook.DisplayName: Bober Hook
 			BoberHookLine.DisplayName: Bober Hook Line
+			TrueHallowArrow.DisplayName: True Hallow Arrow
+			TrueNightArrow.DisplayName: True Night Arrow
 		}
 
 		Tiles: {

@@ -103,8 +103,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         //    Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
         //    if (Charge < 180)
         //    {
-        //        Color color = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
-        //        Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, color, 0f, origin, 3.2f, SpriteEffects.None, 0f);
+        //        Color MainColor = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
+        //        Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, MainColor, 0f, origin, 3.2f, SpriteEffects.None, 0f);
         //    }
         //    return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
         //}

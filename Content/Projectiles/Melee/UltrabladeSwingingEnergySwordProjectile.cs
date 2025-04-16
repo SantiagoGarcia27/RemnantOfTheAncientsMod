@@ -87,7 +87,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			Vector2 dustPosition = Projectile.Center + dustRotation.ToRotationVector2() * 84f * Projectile.scale;
 			Vector2 dustVelocity = (dustRotation + Projectile.ai[0] * MathHelper.PiOver2).ToRotationVector2();
 			if (Main.rand.NextFloat() * 2f < Projectile.Opacity) {
-				// Original Excalibur color: Color.Gold, Color.White
+				// Original Excalibur MainColor: Color.Gold, Color.White
 				Color dustColor = Color.Lerp(Color.Yellow, Color.White, Main.rand.NextFloat() * 0.3f);
 				Dust coloredDust = Dust.NewDustPerfect(Projectile.Center + dustRotation.ToRotationVector2() * (Main.rand.NextFloat() * 80f * Projectile.scale + 20f * Projectile.scale), DustID.FireworksRGB, dustVelocity * 1f, 100, dustColor, 0.4f);
 				coloredDust.fadeIn = 0.4f + Main.rand.NextFloat() * 0.15f;
@@ -95,7 +95,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			}
 
 			if (Main.rand.NextFloat() * 1.5f < Projectile.Opacity) {
-				// Original Excalibur color: Color.White
+				// Original Excalibur MainColor: Color.White
 				Dust.NewDustPerfect(dustPosition, DustID.TintableDustLighted, dustVelocity, 100, Color.SkyBlue * Projectile.Opacity, 1.2f * Projectile.Opacity);
 			}
 
@@ -199,9 +199,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			float lightingColor = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float)Math.Sqrt(3.0);
 			lightingColor = Utils.Remap(lightingColor, 0.2f, 1f, 0f, 1f);
 
-			Color backDarkColor = new Color(178, 180, 60); // Original Excalibur color: Color(180, 160, 60)
-			Color middleMediumColor = new Color(249, 255, 80); // Original Excalibur color: Color(255, 255, 80)
-			Color frontLightColor = new Color(250, 245, 92); // Original Excalibur color: Color(255, 240, 150)
+			Color backDarkColor = new Color(178, 180, 60); // Original Excalibur MainColor: Color(180, 160, 60)
+			Color middleMediumColor = new Color(249, 255, 80); // Original Excalibur MainColor: Color(255, 255, 80)
+			Color frontLightColor = new Color(250, 245, 92); // Original Excalibur MainColor: Color(255, 240, 150)
 
 			Color whiteTimesLerpTime = Color.White * lerpTime * 0.5f;
 			whiteTimesLerpTime.A = (byte)(whiteTimesLerpTime.A * (1f - lightingColor));
@@ -211,7 +211,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
 			// Back part
 			Main.EntitySpriteDraw(texture, position, sourceRectangle, backDarkColor * lightingColor * lerpTime, Projectile.rotation + Projectile.ai[0] * MathHelper.PiOver4 * -1f * (1f - percentageOfLife), origin, scale, spriteEffects, 0f);
-			// Very faint part affected by the light color
+			// Very faint part affected by the light MainColor
 			Main.EntitySpriteDraw(texture, position, sourceRectangle, faintLightingColor * 0.15f, Projectile.rotation + Projectile.ai[0] * 0.01f, origin, scale, spriteEffects, 0f);
 			// Middle part
 			Main.EntitySpriteDraw(texture, position, sourceRectangle, middleMediumColor * lightingColor * lerpTime * 0.3f, Projectile.rotation, origin, scale, spriteEffects, 0f);

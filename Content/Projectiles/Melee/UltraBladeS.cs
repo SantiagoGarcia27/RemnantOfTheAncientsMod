@@ -133,9 +133,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             float lightingColor = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float)Math.Sqrt(3.0);
             lightingColor = Utils.Remap(lightingColor, 0.2f, 1f, 0f, 1f);
 
-            Color backDarkColor = new Color(180, 160, 60); // Original Excalibur color: Color(180, 160, 60)
-            Color middleMediumColor = new Color(255, 255, 80); // Original Excalibur color: Color(255, 255, 80)
-            Color frontLightColor = new Color(255, 240, 150); // Original Excalibur color: Color(255, 240, 150)
+            Color backDarkColor = new Color(180, 160, 60); // Original Excalibur MainColor: Color(180, 160, 60)
+            Color middleMediumColor = new Color(255, 255, 80); // Original Excalibur MainColor: Color(255, 255, 80)
+            Color frontLightColor = new Color(255, 240, 150); // Original Excalibur MainColor: Color(255, 240, 150)
 
             Color whiteTimesLerpTime = Color.White * lerpTime * 0.5f;//Color.White
             whiteTimesLerpTime.A = (byte)(whiteTimesLerpTime.A * (1f - lightingColor));
@@ -145,7 +145,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
             // Back part
             Main.EntitySpriteDraw(texture, position, sourceRectangle, backDarkColor * lightingColor * lerpTime, Projectile.rotation + Projectile.ai[0] * MathHelper.PiOver4 * -1f * (1f - percentageOfLife), origin, scale, spriteEffects, 0f);
-            // Very faint part affected by the light color
+            // Very faint part affected by the light MainColor
             Main.EntitySpriteDraw(texture, position, sourceRectangle, faintLightingColor * 0.15f, Projectile.rotation + Projectile.ai[0] * 0.01f, origin, scale, spriteEffects, 0f);
             // Middle part
             Main.EntitySpriteDraw(texture, position, sourceRectangle, middleMediumColor * lightingColor * lerpTime * 0.3f, Projectile.rotation, origin, scale, spriteEffects, 0f);

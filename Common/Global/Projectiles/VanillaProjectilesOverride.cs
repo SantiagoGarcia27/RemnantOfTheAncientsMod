@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -61,6 +62,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
 
 
             base.AI(projectile);
+        }
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (projectile.type == ProjectileID.AbigailMinion)
+            {
+                if(Main.rand.NextBool(10))
+                    target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second: 2));
+            }
+            base.OnHitNPC(projectile, target, hit, damageDone);
         }
 
         public Player FindTarget(Projectile projectile, float ViewDistance)

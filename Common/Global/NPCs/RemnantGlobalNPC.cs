@@ -512,21 +512,42 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 Main.EntitySpriteDraw((Texture2D)Texture, pos - new Vector2(3 * 16, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
                 Main.EntitySpriteDraw((Texture2D)Texture, pos + new Vector2(1.5f * 16f, 0), npc.frame, Color.Gray, npc.rotation, Texture.Size() * 0.18f, npc.scale, rotation, 0);
             }
+            if (CursedMark)
+            {
+                SpriteEffects effects = SpriteEffects.None;
+                Vector2 origin = new(npc.width, npc.height);
+                Vector2 position = npc.Center;
+                position.X += (npc.width / 2);
+                position.Y -= (npc.height);
+                position -= Main.screenPosition;
 
+                var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/Effect/CurseMarkEffect");
+                float rotation = 0f;
+                Color color = new Color(Color.White.R, Color.White.G, Color.White.B, 100);
+                float scale = 1f;
+                if(npc.scale > 1f)
+                    scale = npc.scale;
+                Main.spriteBatch.Draw((Texture2D)texture, position, null, color, rotation, origin, scale, effects, 1f);
+            }
             base.PostDraw(npc, spriteBatch, screenPos, drawColor);
         }
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (CursedMark)
-            {
-                SpriteEffects effects = SpriteEffects.None;
-                Vector2 vectorFrame = new(1, 1);/*new(TextureAssets.Npc[npc.type].Value.Width / 2, TextureAssets.Npc[npc.type].Value.Height / Main.npcFrameCount[npc.type] / 2);*/
-                Vector2 position = new Vector2(npc.Center.X + 0.5f * 16, npc.Center.Y - (TextureAssets.Npc[npc.type].Value.Height / Main.npcFrameCount[npc.type])) - Main.screenPosition;
-                var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/Effect/CurseMarkEffect");
-                position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[npc.type]) /*/ 2f*/;
-                position += vectorFrame * 1f + new Vector2(0f, 4f + npc.gfxOffY);
-                Main.spriteBatch.Draw((Texture2D)a, position, null/*npc.frame*/, new Color(Color.White.R, Color.White.G, Color.White.B, 100), 0/*npc.rotation*/, vectorFrame, npc.scale, effects, 0f);
-            }
+            //if (CursedMark)
+            //{
+            //    SpriteEffects effects = SpriteEffects.None;
+            //    Vector2 origin = new(npc.width, npc.height);
+            //    Vector2 position = npc.Center;
+            //    position.X += (npc.width /2);
+            //    position.Y -= (npc.height);
+            //    position -= Main.screenPosition;
+
+            //    var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/Effect/CurseMarkEffect");
+            //    float rotation = 0f;
+            //    Color MainColor = new Color(Color.White.R, Color.White.G, Color.White.B, 100);
+
+            //    Main.spriteBatch.Draw((Texture2D)texture, position, null, MainColor, rotation, origin, npc.scale, effects, 1f);
+            //}
             return base.PreDraw(npc, spriteBatch, screenPos, drawColor);
         }
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)

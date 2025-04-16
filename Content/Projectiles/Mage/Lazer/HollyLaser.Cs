@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 
             Vector2 laserDirection = Projectile.DirectionTo(laserStart);
             Main.spriteBatch.Draw((Texture2D)laserTexture, Projectile.Center - Main.screenPosition, laserRect, default(Color),laserDirection.ToRotation(), laserOrigin, 1f, SpriteEffects.None, 0f);
-//Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects, 0f);
+//Main.spriteBatch.Draw((Texture2D)a, position, NPC.frame, MainColor, NPC.rotation, vector2, NPC.scale, effects, 0f);
 		}
 	}
 }*/
@@ -176,7 +176,7 @@ for (int i = 0; i < 2; ++i)
 	dust.fadeIn = 0f;
 	dust.noGravity = true;
 	dust.scale = 0.88f;
-	dust.color = Color.Cyan;
+	dust.MainColor = Color.Cyan;
 }
 
 if (Main.rand.NextBool(5)) 

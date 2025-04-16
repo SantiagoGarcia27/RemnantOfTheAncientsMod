@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Content.Items.Tools;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -50,6 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         }
         public static NPC target = null;
         public Tile tile_;
+
         public override void AI()
         {
             CheckActive();
@@ -58,63 +60,64 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             {
                 Projectile.position = Main.MouseWorld;
                 Projectile.netUpdate = true;
-            }
-            // Projectile.position = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-            if (RemnantPlayer.SolverMode == 0)
-            {
 
-                Rectangle hitbox = Projectile.Hitbox;
-                if (Main.mouseLeft)
+                // Projectile.position = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+                if (RemnantPlayer.SolverMode == 0)
                 {
-                    if (target == null)
+
+                    Rectangle hitbox = Projectile.Hitbox;
+                    if (Main.mouseLeft)
                     {
-                        foreach (NPC n in Main.npc)
+                        if (target == null)
                         {
-                            if (n.active && !n.boss && n.lifeMax <= 1000)
+                            foreach (NPC n in Main.npc)
                             {
-                                if (hitbox.Intersects(n.Hitbox))
+                                if (n.active && !n.boss && n.lifeMax <= 1000)
                                 {
-                                    target = n;
-                                    break;
+                                    if (hitbox.Intersects(n.Hitbox))
+                                    {
+                                        target = n;
+                                        break;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        if (target.life <= 0 || !target.active || !hitbox.Intersects(target.Hitbox))
+                        else
                         {
-                            target = null;
-                        }
-                        if (target != null)
-                        {
-                            target.Center = Projectile.Center/* - new Vector2((float)(target.width / 2), (float)(target.height / 2))*/;
-                            target.netUpdate = true;
+                            if (target.life <= 0 || !target.active || !hitbox.Intersects(target.Hitbox))
+                            {
+                                target = null;
+                            }
+                            if (target != null)
+                            {
+                                target.Center = Projectile.Center/* - new Vector2((float)(target.width / 2), (float)(target.height / 2))*/;
+                                target.netUpdate = true;
+                            }
                         }
                     }
                 }
-            }
-            else if (RemnantPlayer.SolverMode == 1)
-            {
-                if (Projectile.owner == Main.myPlayer)
+                else if (RemnantPlayer.SolverMode == 1)
                 {
-                    if (Main.mouseLeft)
+                    if (Projectile.owner == Main.myPlayer)
                     {
-                        int i = (int)(Projectile.Center.X / 16f);
-                        int j = (int)(Projectile.Center.Y / 16f);
-                        // Ensure that all tile coordinates are within the world bounds
-
-                        if (Utils1.GetBlockPickPower(Main.tile[i, j], j) <= Utils1.GetBestPickPower(player))
+                        if (Main.mouseLeft)
                         {
-                            WorldGen.KillTile(i, j);
-                            if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
-                                NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j);
-                        }
-                        else
-                        {
+                            int i = (int)(Projectile.Center.X / 16f);
+                            int j = (int)(Projectile.Center.Y / 16f);
+                            // Ensure that all tile coordinates are within the world bounds
 
-                            player.Hurt(PlayerDeathReason.ByCustomReason($"{player.name} was consumed by Solver"), player.statLifeMax / 4, player.direction, false, false, -1, false, 10000, 1, 2);
-                            Dust.NewDust(player.position, 10, 10, DustID.Electric, 0, 0, 0, Color.Red, 1.0f);
+                            if (Utils1.GetBlockPickPower(Main.tile[i, j], j) <= Utils1.GetBestPickPower(player))
+                            {
+                                WorldGen.KillTile(i, j);
+                                if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
+                                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j);
+                            }
+                            else
+                            {
+       
+                                player.Hurt(PlayerDeathReason.ByCustomReason($"{player.name} was consumed by Solver"), player.statLifeMax / 4, player.direction, false, false, -1, false, 10000, 1, 2);
+                                Dust.NewDust(player.position, 10, 10, DustID.Electric, 0, 0, 0, Color.Red, 1.0f);
+                            }
                         }
                     }
                 }

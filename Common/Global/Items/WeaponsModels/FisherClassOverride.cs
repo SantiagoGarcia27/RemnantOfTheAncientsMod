@@ -75,7 +75,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         }
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if(player.altFunctionUse == 2)
+            if(player.altFunctionUse == 2 && item.DamageType == ModContent.GetInstance<FisherDamageClass>())
             {
                 if (player.ownedProjectileCounts[ModContent.ProjectileType<BoberHook>()] <= 0)
                 {
@@ -143,12 +143,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             {
                 if (Target != null)
                 {
-                    if (Target.knockBackResist > 0 && !Target.boss && Target.lifeMax < projectile.damage * 20)
+                    int MaxLife = projectile.damage * 20;
+                    if (Target.knockBackResist > 0 && !Target.boss && Target.lifeMax < MaxLife)
                     {
                         if (projectile.Distance(owner.Center) > 200)
                         {
                             Target.Center = projectile.position - new Vector2(0, 1) * 16f;
                             Target.velocity = Vector2.Zero;
+                            NetMessage.SendData(MessageID.SyncNPC, number: Target.whoAmI);
                         }
                     }
 

@@ -2,6 +2,7 @@ using InfernumMode.Core.Netcode;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -87,12 +88,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 
 			base.AI();
 		}
+        Color lineColor = Color.White;
+        Texture2D texture = null;
         public override bool PreDraw(ref Color lightColor)
         {
             Vector2 origin;
             SpriteEffects effects;
             Player player = Main.player[Projectile.owner];
-            Projectile baseProj = ContentSamples.ProjectilesByType[player.HeldItem.shoot];
+          
 
             if (Projectile.velocity.X != 0 || Projectile.velocity.Y != 0)
             {
@@ -110,148 +113,57 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
                // rotationOffset = MathHelper.ToRadians(135f);
                 effects = SpriteEffects.FlipHorizontally;
             }
-
-            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            if(texture == null)
+             texture = ModContent.Request<Texture2D>(Texture).Value;
 
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, default, lightColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
-
-            Color lineColor = Color.White;
-            if (baseProj != null)
-            {
-                ModItem modItem = player.HeldItem.ModItem;
-                if (modItem != null) 
-                {
-                    Vector2 ofset = Vector2.Zero;
-                    modItem.ModifyFishingLine(baseProj, ref ofset, ref lineColor);
-                }
-                else
-                {
-                    if(player.HeldItem.type == ItemID.GoldenFishingRod)
-                    {
-                        lineColor = Color.Cyan;
-                    }
-                    else if(player.HeldItem.type == ItemID.HotlineFishingHook)
-                    {
-                        lineColor = Color.Gold;
-                    }
-                    else if (player.HeldItem.type == ItemID.ScarabFishingRod)
-                    {
-                        lineColor = Color.DarkSlateBlue;
-                    }
-                }
-            }
+   
+          
 
             Utils.DrawLine(Main.spriteBatch, Projectile.Center, Main.player[Projectile.owner].Center, lineColor, lineColor, 2f);
             // Since we are doing a custom draw, prevent it from normally drawing
             return false;
-        }
-        //void SpawnLine()
-        //{
-        //    Player player = Main.player[Projectile.owner];
-        //    float Distance = player.Distance(Projectile.Center);
-        //    int nodeNumber = (int)(Distance);
-
-        //    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<BoberHookLine>(), 0, 0, player.whoAmI,0, nodeNumber);
-
-        //}
+        }    
         public override void OnKill(int timeLeft)
         {
             base.OnKill(timeLeft);
         }
+        public override void OnSpawn(IEntitySource source)
+        {
+            Player player = Main.player[Projectile.owner];
+            Projectile baseProj = ContentSamples.ProjectilesByType[player.HeldItem.shoot];
+            if (baseProj != null)
+            {
+                if (baseProj.bobber)
+                {
+
+
+                    ModItem modItem = player.HeldItem.ModItem;
+                    if (modItem != null)
+                    {
+                        Vector2 ofset = Vector2.Zero;
+                        modItem.ModifyFishingLine(baseProj, ref ofset, ref lineColor);
+                        texture = ModContent.Request<Texture2D>(ProjectileLoader.GetProjectile(baseProj.type).Texture).Value;
+                    }
+                    else
+                    {
+                        if (player.HeldItem.type == ItemID.GoldenFishingRod)
+                        {
+                            lineColor = Color.Cyan;
+                        }
+                        else if (player.HeldItem.type == ItemID.HotlineFishingHook)
+                        {
+                            lineColor = Color.Gold;
+                        }
+                        else if (player.HeldItem.type == ItemID.ScarabFishingRod)
+                        {
+                            lineColor = Color.DarkSlateBlue;
+                        }
+                        texture = ModContent.Request<Texture2D>("Terraria/Images/Projectile_" + baseProj.type).Value;
+                    }
+                }
+            }
+            base.OnSpawn(source);
+        }
     }
-
-    //public class BoberHookLine : ModProjectile
-    //{
-    //    public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath;
-
-    //    Projectile lastProjectile = null;
-    //    Projectile nextProjectile = null;
-    //    public override void SetDefaults()
-    //    {
-    //        Projectile.width = 5;
-    //        Projectile.height = 5;
-    //        Projectile.friendly = true;
-    //        Projectile.tileCollide = true;
-    //        Projectile.penetrate = -1;
-    //        Projectile.timeLeft = 2000;
-    //        Projectile.ignoreWater = true;
-    //        Projectile.netImportant = true;
-    //        AIType = -1;
-    //    }
-
-    //    public override void AI()
-    //    {
-    //        Player player = Main.player[Projectile.owner];
-    //        Projectile end = Main.projectile.FirstOrDefault(p => p.type == ModContent.ProjectileType<BoberHook>());
-    //        if (RemnantPlayer.Nodes.Count > 0)
-    //        {
-    //            int index = RemnantPlayer.Nodes.IndexOf(Projectile);
-    //            if (nextProjectile != null && index > -1 && end != null)
-    //            {
-    //                Vector2 vector = player.Center - end.Center;
-    //                Vector2 spacing = new Vector2(vector.X / (RemnantPlayer.Nodes.Count - 1), vector.Y / (RemnantPlayer.Nodes.Count - 1));
-    //                Vector2 pos = end.Center + (spacing * (index));
-
-    //                Projectile.velocity = pos - Projectile.Center;
-
-
-    //            }
-    //        }
-    //        if (player.ownedProjectileCounts[ModContent.ProjectileType<BoberHook>()] < 1) Projectile.Kill();
-    //        base.AI();
-    //    }
-    //    public override bool OnTileCollide(Vector2 oldVelocity)
-    //    {
-    //        return false;
-    //    }
-    //    public override bool PreDrawExtras()
-    //    {
-    //        if (nextProjectile != null)
-    //        {                
-    //            Color color = Color.White;
-    //            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(RemnantOfTheAncientsMod.MagicPixelPath); 
-    //            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition,null,color,0f,texture.Size() / 2f, Projectile.scale,SpriteEffects.None,1f);
-    //          // Utils1.DrawLine(Main.spriteBatch, start, end,color: color,splits: splits,scale: scale);
-    //        }
-    //        return base.PreDrawExtras();
-    //    }
-    //    public override void OnSpawn(IEntitySource source)
-    //    {
-    //        float counter = Projectile.ai[0];
-    //        float counterMax = Projectile.ai[1];
-
-    //        Utils1.AddSecure(RemnantPlayer.Nodes, Main.projectile[Projectile.whoAmI]);
-    //        int index = RemnantPlayer.Nodes.IndexOf(Projectile);
-    //        Projectile proj = null;
-    //        if (counter < counterMax - 1)
-    //        {       
-    //            SpawnNode(ref proj);
-    //        }
-    //        if (index == 0)
-    //        {
-    //            lastProjectile = null;
-    //            if(proj != null)
-    //            nextProjectile = proj;
-    //        }
-    //        else if(index <= RemnantPlayer.Nodes.Count - 2)
-    //        {
-    //            lastProjectile = RemnantPlayer.Nodes[index - 1];
-    //            if (proj != null)
-    //                nextProjectile = proj;
-    //        }
-    //        else if(index == RemnantPlayer.Nodes.Count - 1)
-    //        {
-    //            Projectile next = Main.projectile.FirstOrDefault(p => p.type == ModContent.ProjectileType<BoberHook>());
-
-    //            lastProjectile = RemnantPlayer.Nodes[index - 1];
-    //            nextProjectile = next != null? next : null;
-    //        }
-    //        void SpawnNode(ref Projectile Proj)
-    //        {
-    //            var p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<BoberHookLine>(), 0, 0, Projectile.owner, ai0: counter + 1,ai1: counterMax);
-    //            Proj = Main.projectile[p];
-    //        }
-    //        base.OnSpawn(source);
-    //    }  
-    //}
 }

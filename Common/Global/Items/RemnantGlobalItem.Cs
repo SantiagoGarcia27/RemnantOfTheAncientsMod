@@ -17,14 +17,13 @@ using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ReLogic.Content;
-using RemnantOfTheAncientsMod.Common.WeaponsRework;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
-	public class RemnantGlobalItem : GlobalItem
+    public class RemnantGlobalItem : GlobalItem
 	{
 		public bool IsCoin;
 		public bool IsAmmo;
@@ -308,7 +307,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					item.DamageType = DamageClass.Throwing;
 				}
-
+				else if(item.type == ItemID.AbigailsFlower)
+				{
+					item.damage /= 2;
+				}
 				if (item.maxStack > 1 && item.maxStack < 9999)
 				{
 					if (!CoinsId.Contains(item.type))
@@ -966,13 +968,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public override float UseSpeedMultiplier(Item item, Player player)
 		{
-
-			Vector2 mouseWorld = Main.MouseWorld /16;
-			Tile cursorTile = Main.tile[(int)mouseWorld.X, (int)mouseWorld.Y];
-			if ((cursorTile.TileType == TileID.Extractinator || cursorTile.TileType == TileID.ChlorophyteExtractinator) && player.cursorItemIconEnabled)
+			if (player == Main.LocalPlayer)
 			{
-				float multiplier = ModContent.GetInstance<ConfigServer>().FastExtractinatorConf;
-                return base.UseSpeedMultiplier(item, player) * multiplier;
+				Vector2 mouseWorld = Main.MouseWorld / 16;
+				Tile cursorTile = Main.tile[(int)mouseWorld.X, (int)mouseWorld.Y];
+				if ((cursorTile.TileType == TileID.Extractinator || cursorTile.TileType == TileID.ChlorophyteExtractinator) && player.cursorItemIconEnabled)
+				{
+					float multiplier = ModContent.GetInstance<ConfigServer>().FastExtractinatorConf;
+					return base.UseSpeedMultiplier(item, player) * multiplier;
+				}
 			}
 			return base.UseSpeedMultiplier(item, player);
 		}

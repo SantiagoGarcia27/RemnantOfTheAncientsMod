@@ -83,7 +83,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic.Infernum
             // Register the tile data itself
             TileObjectData.addTile(Type);
 
-            // Register map name and color
+            // Register map name and MainColor
             // "MapObject.Relic" refers to the translation key for the vanilla "Relic" text
             AddMapEntry(new Color(41, 32, 48), Language.GetText("MapObject.Relic"));
         }

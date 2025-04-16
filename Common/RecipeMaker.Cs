@@ -486,6 +486,14 @@ namespace RemnantOfTheAncientsMod
                .AddTile(TileID.Hellforge)
                .Register();
 
+            Recipe.Create(ItemID.FiberglassFishingPole)
+            .AddIngredient(ItemID.Vine,2)
+            .AddIngredient(ItemID.Glass, 10)
+            .AddIngredient(ItemID.JungleSpores, 5)
+            .AddIngredient(ItemID.WoodFishingPole, 1)
+            .AddTile(TileID.GlassKiln)
+            .Register();
+
             Recipe.Create(ItemID.GoldenFishingRod)
                .AddIngredient(ModContent.ItemType<TuxoniteFishingPole>())
                .AddIngredient(ModContent.ItemType<Fish_Potion>(), 1)

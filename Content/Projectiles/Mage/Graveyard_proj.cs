@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -68,6 +69,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                 }
             }
             base.OnKill(timeLeft);
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second: 3));
+            base.OnHitNPC(target, hit, damageDone);
         }
         public override bool PreDraw(ref Color lightColor)
         {

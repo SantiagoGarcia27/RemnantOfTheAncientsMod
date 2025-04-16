@@ -4101,6 +4101,21 @@ Mods: {
 				DisplayName: Amuleto guardador de tiempo
 				Tooltip: Te permite conservar los invocadores de jefes una vez usados
 			}
+
+			Failnaught: {
+				// DisplayName: Failnaught
+				// Tooltip: ""
+			}
+
+			TrueFailnaught: {
+				// DisplayName: True Failnaught
+				// Tooltip: ""
+			}
+
+			TrueNigthbow: {
+				// DisplayName: True Nigthbow
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4356,6 +4371,8 @@ Mods: {
 			// EnchantedIceFragment.DisplayName: Enchanted Ice Fragment
 			// BoberHook.DisplayName: Bober Hook
 			// BoberHookLine.DisplayName: Bober Hook Line
+			// TrueHallowArrow.DisplayName: True Hallow Arrow
+			// TrueNightArrow.DisplayName: True Night Arrow
 		}
 
 		Tiles: {

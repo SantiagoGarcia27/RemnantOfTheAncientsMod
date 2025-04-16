@@ -1,3 +1,4 @@
+using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
@@ -44,7 +45,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
             ProjectileID.Swordfish,
             ProjectileID.ChlorophytePartisan
         ];
-        public static List<int> MeleeWeaponEffectsProjectiles = []; 
+        public static List<int> MeleeWeaponEffectsProjectiles = [];
+        public bool isHomming; 
+        public Item ItemOwner;
+        public NPC NpcOwner;
+        public Player PlayerOwner;
         public override void SetDefaults(Projectile projectile)
         {  
             if (WeaponConf)
@@ -277,9 +282,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            ReaperPlayer ReaperPlayer = Main.player[Main.myPlayer].GetModPlayer<ReaperPlayer>();
-            RemnantPlayer RemnantPlayer = Main.player[Main.myPlayer].GetModPlayer<RemnantPlayer>();
-            if (Reaper.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn )
+            if (projectile.owner == Main.myPlayer)
+            {
+                PlayerOwner = Main.player[projectile.owner];
+                ItemOwner = Main.player[projectile.owner].HeldItem;
+            }
+            ReaperPlayer ReaperPlayer = PlayerOwner.GetModPlayer<ReaperPlayer>();
+            RemnantPlayer RemnantPlayer = PlayerOwner.GetModPlayer<RemnantPlayer>();
+            if (Reaper.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn)
             {
                 float newWidth = projectile.width * 1.5f;
                 float newHeight = projectile.height * 1.5f;
@@ -329,14 +339,15 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public int AttackCounter = 0;
         public override void AI(Projectile projectile)
         {
-           
+            Player player = Main.player[projectile.owner];
+
             if (projectile.type == 85 && projectile.ai[0] == 2)
             {
                 GetAlpha(projectile, Color.Green);
             }
             else if(projectile.type == ProjectileID.CrystalPulse2)
             {
-                HommingProjectile(800f, 5f, projectile);
+                HommingProjectile(projectile,Range:800f,speed: 5f);
             }
             else if (projectile.type == ProjectileID.ClingerStaff)
             {
@@ -428,6 +439,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     AttackCounter++;
                 }
             }
+            if(isHomming)
+            {
+
+                HommingProjectile(projectile, Range: 800f, speed: ItemOwner.shootSpeed,rotationBonus:90f);
+            }
             if (projectile.scale > 1)
             {
                 if (projectile.type == ProjectileID.AmethystBolt)
@@ -518,16 +534,13 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 base.OnKill(projectile, timeLeft);
             }
         }
-        public void HommingProjectile(float Range,float speed, Projectile projectile)
+        public void HommingProjectile(Projectile projectile, float Range = 100, float speed = 1,float rotationBonus = 0)
         {   
             NPC closestNPC = FindClosestNPC(Range,projectile);
             if (closestNPC == null)
                 return;
-
-            // If found, change the velocity of the projectile and turn it in the direction of the target
-            // Use the SafeNormalize extension method to avoid NaNs returned by Vector2.Normalize when the vector is zero
             projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * speed;
-            projectile.rotation = projectile.velocity.ToRotation();
+            projectile.rotation = projectile.velocity.ToRotation() + rotationBonus;
         }
         public NPC FindClosestNPC(float maxDetectDistance, Projectile projectile)
         {
@@ -592,6 +605,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             UpdateMiscCounter();
         }
+
+        
         
     }
 }
