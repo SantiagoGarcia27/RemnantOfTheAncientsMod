@@ -2174,7 +2174,7 @@ Mods: {
 			}
 
 			LaserMachineGun: {
-				DisplayName: L.M.G
+				DisplayName: H.V.T
 				Tooltip: Legendary Drop
 			}
 
@@ -4075,7 +4075,7 @@ Mods: {
 
 			Failnaught: {
 				DisplayName: Failnaught
-				Tooltip: ""
+				Tooltip: It never fails
 			}
 
 			TrueFailnaught: {
@@ -4350,6 +4350,7 @@ Mods: {
 			TrueHallowArrow.DisplayName: True Hallow Arrow
 			TrueNightArrow.DisplayName: True Night Arrow
 			TerraArrow.DisplayName: Terra Arrow
+			ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
 		}
 
 		Tiles: {

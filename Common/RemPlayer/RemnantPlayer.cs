@@ -113,6 +113,8 @@ namespace RemnantOfTheAncientsMod
 		public List<int> RangerBuffInflict = [];
 		public List<int> TrowerBuffInflict = [];
 		public List<int> AllClassBuffInflict = [];
+
+		public int numTurrets = 0;
 		public int MinionCritChance = 0;
 		public int NotConsumeAmmoChance = 0;
 
@@ -745,8 +747,9 @@ namespace RemnantOfTheAncientsMod
 				if (projectile.WipableTurret)
 					turrets.Add(projectile);
 			}
+			
 
-			int num = 0;
+            int num = 0;
 			while (turrets.Count > Player.maxTurrets && ++num < 1000)
 			{
 				Projectile p = turrets[0];
@@ -759,8 +762,9 @@ namespace RemnantOfTheAncientsMod
                 p.Kill();
 				turrets.Remove(p);
 			}
-		}
-	}
+            numTurrets = turrets.Count;
+        }
+    }
 	public class RemnantKeybindPlayer : ModPlayer
 	{
 		ReaperSoulsUISystem ReaperUI = null;

@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
             
-            return $"{Main.LocalPlayer.maxMinions} minions.";
+            return $"{Main.LocalPlayer.numMinions}/{Main.LocalPlayer.maxMinions} minions.";
         }
     }
     public class MaxSentryDisplay : InfoDisplay
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
             
-           return $"{Main.LocalPlayer.maxTurrets} turrets.";
+           return $"{Main.LocalPlayer.GetModPlayer<RemnantPlayer>().numTurrets}/{Main.LocalPlayer.maxTurrets} turrets.";
         }
     }
     public class DamageReductionDisplay : InfoDisplay

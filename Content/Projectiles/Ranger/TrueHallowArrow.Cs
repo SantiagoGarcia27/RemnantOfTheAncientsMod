@@ -12,6 +12,7 @@ using RemnantOfTheAncientsMod.Common.Global;
 using static System.Net.Mime.MediaTypeNames;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria.DataStructures;
+using System.IO;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 {
@@ -77,19 +78,36 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 
 			// Redraw the projectile with the color not influenced by light
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-			for (int k = 0; k < Projectile.oldPos.Length; k++)
-			{
-				string path = "RemnantOfTheAncientsMod/Content/Projectiles/Ranger/TrueHallowArrow";
+            string path = "RemnantOfTheAncientsMod/Content/Projectiles/Ranger/TrueHallowArrow";
 
-                if (MainColor == Color.SkyBlue)
-					path += "Alt";
+            if (MainColor == Color.SkyBlue)
+                path += "Alt";
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+			{
+				
 				texture = ModContent.Request<Texture2D>(path).Value;
 				Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
 				Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
 				Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
 			}
+            DrawGlowMask(ref MainColor, texture);
+            void DrawGlowMask(ref Color MainColor, Texture2D texture)
+            {
+                SpriteEffects effects = SpriteEffects.None;
+                if (Projectile.spriteDirection == 1)
+                {
+                    effects = SpriteEffects.FlipHorizontally;
+                }
+                Vector2 vectorFrame = new(TextureAssets.Projectile[Projectile.type].Value.Width / 2, TextureAssets.Projectile[Projectile.type].Value.Height / 2);
+                Vector2 position = new Vector2(Projectile.Center.X, Projectile.Center.Y) - Main.screenPosition;
 
-			return false;
+                texture = ModContent.Request<Texture2D>(path + "_Glow").Value;
+                position -= new Vector2(texture.Width, texture.Height) / 2f;
+                position += vectorFrame * 1f + new Vector2(0f, 4f + Projectile.gfxOffY);
+                Color color = Utils.MultiplyRGBA(MainColor, Color.LightYellow);
+                Main.spriteBatch.Draw(texture, position, null, color, Projectile.rotation, vectorFrame, Projectile.scale, effects, 0f);
+            }
+            return false;
 		}
 		
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

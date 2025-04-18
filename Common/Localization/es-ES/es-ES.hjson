@@ -2183,7 +2183,7 @@ Mods: {
 			}
 
 			LaserMachineGun: {
-				DisplayName: L.M.G
+				DisplayName: L.A.V
 				Tooltip: ""
 			}
 
@@ -4103,22 +4103,22 @@ Mods: {
 			}
 
 			Failnaught: {
-				// DisplayName: Failnaught
-				// Tooltip: ""
+				DisplayName: Failnaught
+				Tooltip: Nunca falla
 			}
 
 			TrueFailnaught: {
-				// DisplayName: True Failnaught
+				DisplayName: Failnaught verdadero
 				// Tooltip: ""
 			}
 
 			TrueNigthbow: {
-				// DisplayName: True Nigthbow
+				DisplayName: Arco de la noche verdadero
 				// Tooltip: ""
 			}
 
 			TerraBow: {
-				// DisplayName: Terra Bow
+				DisplayName: Arco Terra
 				// Tooltip: ""
 			}
 		}
@@ -4379,6 +4379,7 @@ Mods: {
 			// TrueHallowArrow.DisplayName: True Hallow Arrow
 			// TrueNightArrow.DisplayName: True Night Arrow
 			// TerraArrow.DisplayName: Terra Arrow
+			// ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
 		}
 
 		Tiles: {

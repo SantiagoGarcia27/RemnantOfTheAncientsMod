@@ -5,6 +5,8 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Content.Projectiles;
+using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
@@ -19,39 +21,38 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 
 		public override void SetDefaults()
 		{
-			Item.damage = 95;
-			Item.noMelee = true;
-			Item.DamageType = DamageClass.Magic;
-			Item.channel = true;
-			Item.mana = 2;
-			Item.width = 28;
-			Item.height = 30;
-			Item.useTime = 5;
-			Item.useStyle = ItemUseStyleID.Shoot;
-			Item.shootSpeed = 14f;
-			Item.useAnimation = 5;
-			Item.shoot = ProjectileID.LaserMachinegunLaser;
-			Item.UseSound = SoundID.Item39;
-			Item.value = 600000;
-			Item.autoReuse = true;
-			Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
-			Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
-			if (RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-				Item.damage = 150;
-			}
-		}
+            Item.damage = 800;
+            Item.noMelee = true;
+            Item.DamageType = DamageClass.Magic;
+            Item.channel = true;
+            Item.mana = 80;
+            Item.Size = new(28, 30);
+            Item.useTime = 80;
+            Item.useAnimation = 80;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.shootSpeed = 14f;
+
+            Item.shoot = ModContent.ProjectileType<ElectricRailGunProjectile>();
+            Item.UseSound = SoundID.Item39;
+            Item.value = Item.sellPrice(gold: 20);
+            Item.autoReuse = true;
+			Item.rare = 10;
+            Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
+            Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
+        }
+    
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			float numberProjectiles = 5 + Main.rand.Next(4); //set the numer of projectiles
-			float rotation = MathHelper.ToRadians(4); // establishes the deviation of the projectiles (in this case 4 degrees between projectile and projectile)
-            position += Vector2.Normalize(velocity) * 45f; // fix the velocity to make more stable
-			for (int i = 0; i < numberProjectiles; i++)
-			{
-				Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Apply all on the new Velocity
-				Projectile.NewProjectile(source, position, perturbedSpeed, ProjectileID.LaserMachinegunLaser, 40, knockback, player.whoAmI);
-			}
-			return false;
+			//float numberProjectiles = 5 + Main.rand.Next(4); //set the numer of projectiles
+			//float rotation = MathHelper.ToRadians(4); // establishes the deviation of the projectiles (in this case 4 degrees between projectile and projectile)
+			//         position += Vector2.Normalize(velocity) * 45f; // fix the velocity to make more stable
+			//for (int i = 0; i < numberProjectiles; i++)
+			//{
+			//	Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Apply all on the new Velocity
+			//	Projectile.NewProjectile(source, position, perturbedSpeed, ProjectileID.LaserMachinegunLaser, 40, knockback, player.whoAmI);
+			//}
+			if (player.ownedProjectileCounts[type] >= 1) return false;
+			return true;
 		}
 	}
 }

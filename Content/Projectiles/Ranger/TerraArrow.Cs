@@ -74,7 +74,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 
 			// Redraw the projectile with the color not influenced by light
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-			for (int k = 0; k < Projectile.oldPos.Length; k++)
+			Color color;
+
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
 			{
 				//string path = "RemnantOfTheAncientsMod/Content/Projectiles/Ranger/TrueHallowArrow";
 
@@ -82,11 +84,25 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 				//	path += "Alt";
 				//texture = ModContent.Request<Texture2D>(path).Value;
 				Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-				Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+				color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
 				Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
 			}
 
-			return true;
+            SpriteEffects effects = SpriteEffects.None;
+            if (Projectile.spriteDirection == 1)
+            {
+                effects = SpriteEffects.FlipHorizontally;
+            }
+            Vector2 vectorFrame = new(TextureAssets.Projectile[Projectile.type].Value.Width / 2, TextureAssets.Projectile[Projectile.type].Value.Height/ 2);
+            Vector2 position = new Vector2(Projectile.Center.X, Projectile.Center.Y) - Main.screenPosition;
+            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Ranger/TerraArrow_Glow");
+            position -= new Vector2(a.Width(), a.Height())/2f;
+            position += vectorFrame * 1f + new Vector2(0f, 4f + Projectile.gfxOffY);
+            color = Utils.MultiplyRGBA(Color.Green, Color.LightYellow);
+            Main.spriteBatch.Draw((Texture2D)a, position, null, color, Projectile.rotation, vectorFrame, Projectile.scale, effects, 0f);
+
+
+            return true;
 		}
 		
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -118,7 +134,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 		{
 			Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(-90f);
-			Projectile.GetGlobalProjectile<RemnantGlobalProjectile>().HommingProjectile(Projectile,Range:400,speed:10f,rotationBonus:90f);
+			Projectile.GetGlobalProjectile<RemnantGlobalProjectile>().HommingProjectile(Projectile,Range:400,speed:10f,rotationBonus:-90f);
         }
 	}
 }

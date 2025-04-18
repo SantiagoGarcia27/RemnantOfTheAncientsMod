@@ -735,7 +735,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
         public Vector2 GetSecurePosition(Vector2 pos)
         {
             Vector2 newPos;
-
+            if(pos.Y < 0) pos.Y *= -1;
+            if (pos.X < 0) pos.X *= -1;
             if (!CoordHasTile(pos) && !CoordHasLiquid(pos))
             {
                 return pos;
@@ -748,6 +749,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
                 } while (CoordHasTile(newPos) && CoordHasLiquid(newPos));
 
                 blockIncrement = 0;
+                if (newPos.Y < 0) newPos.Y *= -1;
                 return newPos;
             }
         }
