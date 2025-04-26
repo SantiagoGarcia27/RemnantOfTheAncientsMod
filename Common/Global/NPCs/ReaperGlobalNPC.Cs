@@ -504,7 +504,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
                         if (attackCounter == 200)
                         {
-                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.Center.X, (int)npc.Center.Y, -57);
+                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.Center.X, (int)npc.Center.Y,NPCID.BigHornetFatty);
                         }
                         Point NpcFloor = Utils.ToTileCoordinates(npc.Center);
                         if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0 && Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidType == LiquidID.Honey)

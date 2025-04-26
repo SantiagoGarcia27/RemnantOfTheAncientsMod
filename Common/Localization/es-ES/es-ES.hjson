@@ -1500,7 +1500,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			BeeSoul: {
+			QueenBeeSoul: {
 				DisplayName: Alma de Reina abeja
 				Tooltip: Suelta abejas cuando te golpean
 			}
@@ -1514,7 +1514,7 @@ Mods: {
 					'''
 			}
 
-			CultistSoul: {
+			LunaticCultistSoul: {
 				DisplayName: Alma del Cultista
 				Tooltip: Invoca una niebla de hielo para protegerte
 			}
@@ -1524,7 +1524,7 @@ Mods: {
 				Tooltip: Ganas la hablilidad de invocar manos de sombra para atacar a los enemigos con un daño de 1/4 de tu dps.
 			}
 
-			DesertSoul: {
+			DesertAnnihilatorSoul: {
 				DisplayName: Alma del Aniquilador del desierto
 				Tooltip: Reduce el tiempo de reaparición
 			}
@@ -1534,34 +1534,34 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
-			EmpressSoul: {
+			EmpressOfLightSoul: {
 				DisplayName: Alma de la Emperatiz de la luz
 				Tooltip: Otorga un vuelo infinito con alas y botas cohete
 			}
 
-			EyeSoul: {
+			EyeOfCthulhuSoul: {
 				DisplayName: Alma de Ojo
 				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
 
-			FishSoul: {
+			DukeFishronSoul: {
 				DisplayName: Alma del Duke Fishron
 				Tooltip: Invoca un tornado de tiburones para protegerte
 			}
 
-			FleshSoul: {
-				DisplayName: Alma del Muro carnoso
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
+			WallOfFleshSoul: {
+				// DisplayName: Wall of Flesh Soul
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
-			FrozenSoul: {
-				DisplayName: Alma del Asaltante congelado
-				Tooltip: Otorga inmunidad a los efectos de congelado,helado y quemadura helada
+			FrozenAssaulterSoul: {
+				// DisplayName: Frozen Assaulter Soul
+				// Tooltip: Grants immunity to Frozen, Chilled and Frostburn
 			}
 
 			GolemSoul: {
 				DisplayName: Alma del Golem
-				Tooltip: Aumenta la defensa en 10 puntos
+				Tooltip: Aumenta la defensa en {0} puntos
 			}
 
 			InfernalSoul: {
@@ -1573,17 +1573,17 @@ Mods: {
 					'''
 			}
 
-			KingSoul: {
+			KingSlimeSoul: {
 				DisplayName: Alma del Rey slime
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			MoonSoul: {
+			MoonLordSoul: {
 				DisplayName: Alma del Señor de la luna
 				Tooltip: Reduce el tiempo de reaparición
 			}
 
-			PlantSoul: {
+			PlanteraSoul: {
 				DisplayName: Alma de Plantera
 				Tooltip:
 					'''
@@ -1604,7 +1604,7 @@ Mods: {
 
 			SkeletonSoul: {
 				DisplayName: Alma del esqueleto
-				Tooltip: Aumenta la defensa en 5 puntos
+				Tooltip: Aumenta la defensa en {0} puntos
 			}
 
 			SkeletronPrimeEnergyCell: {
@@ -4119,6 +4119,16 @@ Mods: {
 
 			TerraBow: {
 				DisplayName: Arco Terra
+				// Tooltip: ""
+			}
+
+			InfernalTyrantSoul: {
+				// DisplayName: Infernal Tyrant Soul
+				// Tooltip: ""
+			}
+
+			QueenSlimeSoul: {
+				// DisplayName: Queen Slime Soul
 				// Tooltip: ""
 			}
 		}

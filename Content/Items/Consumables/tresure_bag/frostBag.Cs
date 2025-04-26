@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<FrozenAssaulter>())); ;
             // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<FrostShark>(), ItemType<Permafrost>(), ItemType<frozen_staff>(), ItemType<FrozenStafff>()));
-            itemLoot.Add(ItemDropRule.ByCondition(new FrozenReaperSoul(), ItemType<FrozenSoul>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new FrozenReaperSoul(), ItemType<FrozenAssaulterSoul>()));
 
 
         }

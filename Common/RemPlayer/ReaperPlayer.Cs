@@ -20,8 +20,6 @@ using RemnantOfTheAncientsMod.Common.Configs;
 using SangarUtilities.Common;
 using System;
 using System.Linq;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System.Runtime.InteropServices;
 
 
 public class ReaperPlayer : ModPlayer
@@ -231,7 +229,7 @@ public class ReaperEffectsPlayer : ModPlayer
             if (SoulIsEnabled(NPCID.KingSlime))
             {
                 float speedForce = (SoulsUpgradesLoadedActive(NPCID.KingSlime) / 100) + 1;
-                Player.moveSpeed = ReaperSoulBoost ? OgPlayerSpeed + speedForce * 1.2f : OgPlayerSpeed + speedForce;
+                Player.moveSpeed = ReaperSoulBoost ? OgPlayerSpeed + speedForce * 1.25f : OgPlayerSpeed + speedForce;
             }
             if (SoulIsEnabled(NPCID.EyeofCthulhu))
             {

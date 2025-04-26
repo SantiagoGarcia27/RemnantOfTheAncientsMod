@@ -206,10 +206,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
 
             return true;
         }
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (Main.rand.NextBool()) target.AddBuff(ModContent.BuffType<Burning_Sand>(), 300);
+            target.AddBuff(ModContent.BuffType<Burning_Sand>(), 300);
 
+        }
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            target.AddBuff(ModContent.BuffType<Burning_Sand>(), 4 * 60);
+            base.OnHitPlayer(target, info);
         }
     }
 }

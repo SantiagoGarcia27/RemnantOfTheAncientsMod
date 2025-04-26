@@ -1491,7 +1491,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			BeeSoul: {
+			QueenBeeSoul: {
 				DisplayName: Queen Bee Soul
 				Tooltip: Releases bees when damaged
 			}
@@ -1505,17 +1505,17 @@ Mods: {
 					'''
 			}
 
-			CultistSoul: {
+			LunaticCultistSoul: {
 				DisplayName: Cultist Soul
 				Tooltip: An Ice Mist will protect you
 			}
 
 			DeerclopsSoul: {
 				DisplayName: Deerclops Soul
-				Tooltip: Gives you the ability to summon shadow hands to attack your enemies with 1/4 of your dps
+				Tooltip: Gives you the ability to summon shadow hands to attack your enemies with 25% of your dps
 			}
 
-			DesertSoul: {
+			DesertAnnihilatorSoul: {
 				DisplayName: Desert Annihilator Soul
 				Tooltip: Reduces respawn time
 			}
@@ -1525,34 +1525,34 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
 			}
 
-			EmpressSoul: {
+			EmpressOfLightSoul: {
 				DisplayName: Empress of Light Soul
 				Tooltip: Grants infinite wing and rocket boot flight
 			}
 
-			EyeSoul: {
-				DisplayName: Eye Soul
+			EyeOfCthulhuSoul: {
+				DisplayName: Eye Of Chutulu Soul
 				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
 
-			FishSoul: {
+			DukeFishronSoul: {
 				DisplayName: Duke Fishron Soul
 				Tooltip: A Sharknado will protect you
 			}
 
-			FleshSoul: {
+			WallOfFleshSoul: {
 				DisplayName: Wall of Flesh Soul
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
-			FrozenSoul: {
+			FrozenAssaulterSoul: {
 				DisplayName: Frozen Assaulter Soul
 				Tooltip: Grants immunity to Frozen, Chilled and Frostburn
 			}
 
 			GolemSoul: {
 				DisplayName: Golem Soul
-				Tooltip: Increases defense by 10
+				Tooltip: Increases defense by {0}
 			}
 
 			InfernalSoul: {
@@ -1564,17 +1564,17 @@ Mods: {
 					'''
 			}
 
-			KingSoul: {
+			KingSlimeSoul: {
 				DisplayName: King Slime Soul
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
-			MoonSoul: {
+			MoonLordSoul: {
 				DisplayName: Moon Lord Soul
 				Tooltip: Reduces respawn time
 			}
 
-			PlantSoul: {
+			PlanteraSoul: {
 				DisplayName: Plantera Soul
 				Tooltip:
 					'''
@@ -1595,7 +1595,7 @@ Mods: {
 
 			SkeletonSoul: {
 				DisplayName: Skeleton Soul
-				Tooltip: Increases defense by 5
+				Tooltip: Increases defense by {0}
 			}
 
 			SkeletronPrimeEnergyCell: {
@@ -4090,6 +4090,16 @@ Mods: {
 
 			TerraBow: {
 				DisplayName: Terra Bow
+				Tooltip: ""
+			}
+
+			InfernalTyrantSoul: {
+				DisplayName: Infernal Tyrant Soul
+				Tooltip: ""
+			}
+
+			QueenSlimeSoul: {
+				DisplayName: Queen Slime Soul
 				Tooltip: ""
 			}
 		}

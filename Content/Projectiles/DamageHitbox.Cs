@@ -86,8 +86,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
            // if(Main.player[Projectile.owner].direction == -1)
 
 
-
-            Vector2 knockbackVelocity = new Vector2(target.direction * target.velocity.X * hit.Knockback * target.knockBackResist, target.direction * target.velocity.Y * hit.Knockback/2 * target.knockBackResist);
+            float KbX = target.direction /** target.velocity.X*/ * hit.Knockback * target.knockBackResist;
+            float KbY = target.direction /** target.velocity.Y*/ * hit.Knockback / 2 * target.knockBackResist;
+            Vector2 knockbackVelocity = new Vector2(KbX, KbY);
             target.velocity -= knockbackVelocity;
             hit.Knockback = 0;
 

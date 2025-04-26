@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Events;
 using Terraria.GameContent;
 using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +23,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 {
 
-	[AutoloadHead]
+    [AutoloadHead]
 	public class Time_Wizard : ModNPC
 	{
 		public override void SetStaticDefaults()
@@ -87,22 +86,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustType<Sparkle>());
 			}
 		}
-		public List<int> SpawnItems = new List<int>()
-		{
+		public List<int> SpawnItems =
+		[
 			ItemID.GoldWatch,
 			ItemID.PlatinumWatch,
 			ItemID.GPS,
 			ItemID.PDA,
 			ItemID.CellPhone,
 			ItemID.Shellphone
-		};
+		];
 		public override bool CanTownNPCSpawn(int numTownNPCs)
 		{
-			for (int k = 0; k < 255; k++)
+			foreach (Player player in Main.ActivePlayers)
 			{
-				Player player = Main.player[k];
-				if (!player.active) continue;
-
 				foreach (Item item in player.inventory)
 				{
 					if (SpawnItems.Contains(item.type))

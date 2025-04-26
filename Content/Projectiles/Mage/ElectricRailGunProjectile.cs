@@ -2,6 +2,7 @@ using FargowiltasSouls.Common.Utilities;
 using InfernumMode.Core.Netcode;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
 using Terraria.DataStructures;
@@ -97,6 +98,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                     Main.projectile[p].scale = 2f;
                     timmer = 0;
                 }
+                if(host != null && !host.active)
+                {
+
+                    state = HookState.Pull;
+                }
             }
 			else if (state == HookState.Pull)
 			{
@@ -108,6 +114,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
 					Projectile.Kill();
 				}
 			}
+            else
+            {
+                Projectile.GetGlobalProjectile<RemnantGlobalProjectile>().HommingProjectile(Projectile, speed: 10);
+            }
 			if ((player.ownedProjectileCounts[Type] >= 1 && Main.mouseLeft && state == HookState.Attached) || (state != HookState.Attached && Projectile.timeLeft <= 40) || player.dead || player.Distance(Projectile.Center) > 1000 || player.HeldItem.shoot != Projectile.type)
 			{
 				state = HookState.Pull;

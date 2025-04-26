@@ -120,7 +120,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             if (shop.NpcType == NPCID.GoblinTinkerer)
             {
-                shop.Add(new Item(ItemType<Terracoin>()) { shopCustomPrice = Utils1.FormatMoney(0, 5, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode);
+                shop.Add(new Item(ItemType<Terracoin>()) { shopCustomPrice = Utils1.FormatMoney(0, 5, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode,Condition.DownedPlantera);
                 shop.Add(new Item(ItemType<AReforge_Guide>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, Condition.IsNpcShimmered);
             }
             if (shop.NpcType == NPCID.ArmsDealer)

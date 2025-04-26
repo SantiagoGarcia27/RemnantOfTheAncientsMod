@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         }
     }
 
-    public class KingSoul : SoulModel
+    public class KingSlimeSoul : SoulModel
     {
         int SpeedBoost = 30;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBoost);
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 
 
     }
-    public class EyeSoul : SoulModel
+    public class EyeOfCthulhuSoul : SoulModel
     {
         int LifeBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.BrainofCthulhu];
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class BeeSoul : SoulModel
+    public class QueenBeeSoul : SoulModel
     {
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.QueenBee];
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
@@ -60,27 +60,25 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Deerclops]; 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class DesertSoul : SoulModel
+    public class DesertAnnihilatorSoul : SoulModel
     {
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAniquilator>()]; 
        public override Mod ItemMod => GetVanillaMod.Get("RemnantOfTheAncientsMod");
     }
    
-    public class FleshSoul : SoulModel
+    public class WallOfFleshSoul : SoulModel
     {
         int DamageBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBoost);
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.WallofFlesh]; 
-       public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
-
-
+        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class FrozenSoul : SoulModel
+    public class FrozenAssaulterSoul : SoulModel
     {
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[ModContent.NPCType<FrozenAssaulter>()]; 
        public override Mod ItemMod => GetVanillaMod.Get("RemnantOfTheAncientsMod");
     }
-    public class QueenSoul : SoulModel
+    public class QueenSlimeSoul : SoulModel
     {
         int LifeBoost = 15;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
@@ -99,6 +97,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
     }
     public class SkeletronPrimeEnergyCell : SoulModel
     {
+        int DefenseBoost = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DefenseBoost);
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.SkeletronPrime];
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
@@ -109,14 +109,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.TheDestroyer];
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class PlantSoul : SoulModel
+    public class PlanteraSoul : SoulModel
     {
         int LifeBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeBoost);
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Plantera]; 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class InfernalSoul : SoulModel
+    public class InfernalTyrantSoul : SoulModel
     {
         int DamageBoost = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBoost);
@@ -125,25 +125,27 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
     }
     public class GolemSoul : SoulModel
     {
+        int DefenseBoost = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DefenseBoost);
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.Golem]; 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class EmpressSoul : SoulModel
+    public class EmpressOfLightSoul : SoulModel
     {
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.HallowBoss]; 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class FishSoul : SoulModel
+    public class DukeFishronSoul : SoulModel
     {
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.DukeFishron]; 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class CultistSoul : SoulModel
+    public class LunaticCultistSoul : SoulModel
     {
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.CultistBoss]; 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");
     }
-    public class MoonSoul : SoulModel
+    public class MoonLordSoul : SoulModel
     {
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.MoonLordCore]; 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");

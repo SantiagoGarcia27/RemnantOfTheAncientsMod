@@ -286,50 +286,51 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 PlayerOwner = Main.player[projectile.owner];
                 ItemOwner = Main.player[projectile.owner].HeldItem;
-            }
-            ReaperPlayer ReaperPlayer = PlayerOwner.GetModPlayer<ReaperPlayer>();
-            RemnantPlayer RemnantPlayer = PlayerOwner.GetModPlayer<RemnantPlayer>();
-            if (Reaper.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn)
-            {
-                float newWidth = projectile.width * 1.5f;
-                float newHeight = projectile.height * 1.5f;
 
-                projectile.width = (int)newWidth;
-                projectile.height = (int)newHeight;
-                projectile.scale += 1.5f;
+                ReaperPlayer ReaperPlayer = PlayerOwner.GetModPlayer<ReaperPlayer>();
+                RemnantPlayer RemnantPlayer = PlayerOwner.GetModPlayer<RemnantPlayer>();
+                if (Reaper.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn)
+                {
+                    float newWidth = projectile.width * 1.5f;
+                    float newHeight = projectile.height * 1.5f;
 
-                if (Spears.Contains(projectile.type))
-                {
-                    projectile.velocity *= 3;
-                }
-                if (RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
-                {
-                    if (MeleeWeaponEffectsProjectiles.Contains(projectile.type))
+                    projectile.width = (int)newWidth;
+                    projectile.height = (int)newHeight;
+                    projectile.scale += 1.5f;
+
+                    if (Spears.Contains(projectile.type))
                     {
-                        projectile.localAI[0] = Main.player[projectile.owner].GetWeaponDamage(Main.player[projectile.owner].HeldItem);
-                        projectile.localAI[1] = Main.player[projectile.owner].HeldItem.scale;
+                        projectile.velocity *= 3;
+                    }
+                    if (RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
+                    {
+                        if (MeleeWeaponEffectsProjectiles.Contains(projectile.type))
+                        {
+                            projectile.localAI[0] = Main.player[projectile.owner].GetWeaponDamage(Main.player[projectile.owner].HeldItem);
+                            projectile.localAI[1] = Main.player[projectile.owner].HeldItem.scale;
+                        }
                     }
                 }
-            }  
-            if (projectile.hostile)
-            {
-                if (RemnantPlayer.EnemyProjectilesScaleBouns != 1)
+                if (projectile.hostile)
                 {
-                    if (RemnantPlayer.EnemyProjectilesScaleBouns <= 0) RemnantPlayer.EnemyProjectilesScaleBouns = 0.1f;
-                    projectile.scale *= RemnantPlayer.EnemyProjectilesScaleBouns;
+                    if (RemnantPlayer.EnemyProjectilesScaleBouns != 1)
+                    {
+                        if (RemnantPlayer.EnemyProjectilesScaleBouns <= 0) RemnantPlayer.EnemyProjectilesScaleBouns = 0.1f;
+                        projectile.scale *= RemnantPlayer.EnemyProjectilesScaleBouns;
+                    }
+                    if (RemnantPlayer.EnemyProjectilesSpeedScaleBouns != 1)
+                    {
+                        if (RemnantPlayer.EnemyProjectilesSpeedScaleBouns < 0) RemnantPlayer.EnemyProjectilesSpeedScaleBouns = 0.01f;
+                        projectile.velocity *= RemnantPlayer.EnemyProjectilesSpeedScaleBouns;
+                    }
+
                 }
-                if (RemnantPlayer.EnemyProjectilesSpeedScaleBouns != 1)
+                if (projectile.bobber)
                 {
-                    if (RemnantPlayer.EnemyProjectilesSpeedScaleBouns < 0) RemnantPlayer.EnemyProjectilesSpeedScaleBouns = 0.01f;
-                    projectile.velocity *= RemnantPlayer.EnemyProjectilesSpeedScaleBouns;
-                }
-               
-            }
-            if(projectile.bobber) 
-            {
-                if (projectile.damage <= 0)
-                {
-                    projectile.damage = new Item(Main.LocalPlayer.HeldItem.type).damage;
+                    if (projectile.damage <= 0)
+                    {
+                        projectile.damage = new Item(Main.LocalPlayer.HeldItem.type).damage;
+                    }
                 }
             }
         }

@@ -278,7 +278,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
                     float reaperScale = (float)Math.Pow(ReaperGlobalItem.currentScale - 0.5f, 2);           
                     pos.Y -= 2.1f * 16 * itemBase.scale * reaperScale * 16;
                     pos.X -= 2.1f * 16 * itemBase.scale * reaperScale * 16;
-                    if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<DamageHitbox>()] <= 1)
+                    if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<DamageHitbox>()] < 1)
                     {
                         Vector2 size = new(90 * widthMultiplier, 90 * heightMultiplier);
                         var a = Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos, Vector2.Zero, ModContent.ProjectileType<DamageHitbox>(), itemBase.damage, itemBase.knockBack, Projectile.owner);

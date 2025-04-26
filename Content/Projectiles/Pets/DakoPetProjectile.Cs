@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Pets;
 using Terraria;
 using Terraria.ID;
@@ -35,6 +36,22 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Pets
 			{
 				Projectile.timeLeft = 2;
 			}
+		}
+		public override void PostDraw(Color lightColor)
+		{
+			lightColor = Color.Red;
+			base.PostDraw(lightColor);
+		}
+		public override bool PreDraw(ref Color lightColor)
+		{
+			if (Projectile.ai[1] != -1)
+				lightColor = Main.DiscoColor;
+			else
+			{
+				Color c = Color.Red;
+				lightColor = c;
+			}
+			return true;
 		}
 	}
 }
