@@ -27,6 +27,7 @@ using System;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
+using SangarUtilities.Common.UtilsTweaks;
 
 
 namespace RemnantOfTheAncientsMod.Common.Drops
@@ -43,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             HallowBiomeLoot(npc, npcLoot);
             CorruptBiomeLoot(npc, npcLoot);
             CrimsomBiomeLoot(npc, npcLoot);
-            if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
+            if (DificultyUtils.InfernumMode != null)
             {
                 InfernumLoot(npc, npcLoot);
             }
@@ -131,14 +132,14 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         [JITWhenModsEnabled("InfernumMode")]
         public static void InfernumLoot(NPC npc, NPCLoot npcLoot)
         {
-            bool Infernum =SangarUtilities.Common.DificultyUtils.InfernumMode;
+            bool Infernum =DificultyUtils.InfernumMode;
 
             if (npc.type == NPCType<DesertAniquilator>())
-                npcLoot.AddIff(() =>SangarUtilities.Common.DificultyUtils.InfernumMode, ItemType<Desert_Relic_Infernum>());
+                npcLoot.AddIff(() =>DificultyUtils.InfernumMode, ItemType<Desert_Relic_Infernum>());
             else if (npc.type == NPCType<FrozenAssaulter>())
-                npcLoot.AddIff(() =>SangarUtilities.Common.DificultyUtils.InfernumMode, ItemType<Frozen_Relic_Infernum>());
+                npcLoot.AddIff(() =>DificultyUtils.InfernumMode, ItemType<Frozen_Relic_Infernum>());
             else if (npc.type == NPCType<InfernalTyrantHead>())
-                npcLoot.AddIff(() =>SangarUtilities.Common.DificultyUtils.InfernumMode, ItemType<Tyrant_Relic_Infernum>());
+                npcLoot.AddIff(() =>DificultyUtils.InfernumMode, ItemType<Tyrant_Relic_Infernum>());
         }
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void FargosLoot(NPC npc, NPCLoot npcLoot)
@@ -205,7 +206,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             else if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
             else if (npc.type == NPCType<HallowedZombie>())
             {
-                int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
+                int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
                 ZombieOreLoot(npcLoot, ore, ItemID.HallowedBar);
             }
             else if (npc.type == NPCType<ChlorophyteZombie>()) ZombieOreLoot(npcLoot, ItemID.ChlorophyteOre, ItemID.ChlorophyteBar);

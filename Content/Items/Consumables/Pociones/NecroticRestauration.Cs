@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -77,7 +78,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 CreateRecipe(3)
-                .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodOrb"), 10)
+                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodOrb"), 10)
                 .AddIngredient(ItemID.BottledWater, 1)
                 .AddTile(TileID.Bottles)
                 .Register();

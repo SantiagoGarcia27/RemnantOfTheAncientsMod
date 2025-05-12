@@ -1,5 +1,6 @@
 ﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -74,24 +75,24 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             Reforges = new Dictionary<int, int>()
             {
-                { PrefixID.Legendary,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Berserk") },
-                { PrefixID.Legendary2,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Berserk") },
-                { PrefixID.Unreal,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Veteran") },
-                { PrefixID.Mythical,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Relic") },
-                { PrefixID.Menacing,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Sharp") },
-                { PrefixID.Warding,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Impenetrable") },
-                { PrefixID.Lucky,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Acurate") },
-                { PrefixID.Quick2,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic") },
-                { PrefixID.Violent,  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Uncontrolled") },
-                { SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Gigant"),  SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Titanic") }
+                { PrefixID.Legendary,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Berserk") },
+                { PrefixID.Legendary2,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Berserk") },
+                { PrefixID.Unreal,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Veteran") },
+                { PrefixID.Mythical,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Relic") },
+                { PrefixID.Menacing,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Sharp") },
+                { PrefixID.Warding,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Impenetrable") },
+                { PrefixID.Lucky,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Acurate") },
+                { PrefixID.Quick2,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic") },
+                { PrefixID.Violent,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Uncontrolled") },
+                { CallUtils.GetModPrefix(RemnantOfTheAncient, "Gigant"),  CallUtils.GetModPrefix(RemnantOfTheAncient, "Titanic") }
             };
         }
 
         [JITWhenModsEnabled("CalamityMod")]
         public void FillCalamityList()
         {
-            Reforges.Add(SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Flawless"), SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite"));
-            Reforges.Add(SangarUtilities.Common.CallUtils.GetModPrefix(calamityMod, "Silent"), SangarUtilities.Common.CallUtils.GetModPrefix(RemnantOfTheAncient, "Shadow"));
+            Reforges.Add(CallUtils.GetModPrefix(calamityMod, "Flawless"), CallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite"));
+            Reforges.Add(CallUtils.GetModPrefix(calamityMod, "Silent"), CallUtils.GetModPrefix(RemnantOfTheAncient, "Shadow"));
         }
     }
 }

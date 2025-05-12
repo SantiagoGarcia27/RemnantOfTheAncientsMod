@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using CalamityMod.Items.Potions;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -48,9 +49,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                 CreateRecipe(2)
                .AddIngredient(ItemID.GravitationPotion, 1)
                .AddIngredient(ItemID.FeatherfallPotion, 1)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumPotion"), 1)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerPotion"), 1)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoaringPotion"), 1)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumPotion"), 1)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerPotion"), 1)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoaringPotion"), 1)
                .AddTile(TileID.Bottles)
                .Register();
             }
@@ -93,9 +94,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                 CreateRecipe()
                .AddIngredient(ItemID.GravitationPotion, 30)
                .AddIngredient(ItemID.FeatherfallPotion, 30)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumPotion"), 30)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerPotion"), 30)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoaringPotion"), 30)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumPotion"), 30)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerPotion"), 30)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoaringPotion"), 30)
                .AddTile(TileID.Bottles)
                .Register();
 

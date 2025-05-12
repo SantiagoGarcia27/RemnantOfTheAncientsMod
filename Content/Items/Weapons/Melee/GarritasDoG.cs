@@ -8,6 +8,7 @@ using System.Linq;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using CalamityMod.Rarities;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -81,10 +82,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			{
 				Recipe recipe = CreateRecipe()
 				.AddIngredient(ItemType<Garritas>())
-				.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
+				.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
 				//recipe.AddIngredient(RemnantOfTheAncients.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
 				//recipe.AddIngredient(RemnantOfTheAncients.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddTile(SangarUtilities.Common.CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
+				recipe.AddTile(CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
 				recipe.Register();
 			}
 		}

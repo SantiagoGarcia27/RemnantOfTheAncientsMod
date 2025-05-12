@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -21,13 +22,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 				.AddIngredient(ItemType<GrassSaber>())
 				.AddIngredient(ItemID.Muramasa, 1)
 				.AddIngredient(ItemType<FireSaber>())
-				.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+				.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
 				.AddTile(TileID.DemonAltar)
 				.Register();
 
 				Recipe.Create(ItemID.NightsEdge)
-				.AddIngredient(ModContent.ItemType<NightBar>(), 10)
-				.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+				.AddIngredient(ItemType<NightBar>(), 10)
+				.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
 				.AddTile(TileID.DemonAltar)
 				.Register();
 			}

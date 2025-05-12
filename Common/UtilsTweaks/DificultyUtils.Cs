@@ -27,7 +27,7 @@
 //            if (RemnantOfTheAncients.CalamityMod != null)
 //            {
 //                CheckCalamity();
-//                if (SangarUtilities.Common.DificultyUtils.InfernumMode != null)
+//                if (DificultyUtils.InfernumMode != null)
 //                {
 //                    CheckInfernum();
 //                }
@@ -54,7 +54,7 @@
 //        [JITWhenModsEnabled("InfernumMode")]
 //        public void CheckInfernum()
 //        {
-//            InfernumMode = (bool)SangarUtilities.Common.DificultyUtils.InfernumMode.Call("GetInfernumActive");
+//            InfernumMode = (bool)DificultyUtils.InfernumMode.Call("GetInfernumActive");
 //        }
 
 //        [JITWhenModsEnabled("FargowiltasSouls")]

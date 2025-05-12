@@ -5,6 +5,7 @@ using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 {
@@ -45,13 +46,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
                  .AddIngredient(ItemID.JungleShirt)
                  .AddIngredient(ItemID.NecroGreaves)
                  .AddIngredient(ItemID.MoltenBreastplate)
-                 .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                 .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
                  .AddTile(TileID.DemonAltar)
                  .Register();
 
                 CreateRecipe()
 				.AddIngredient(ModContent.ItemType<NightBar>(), 20)
-                .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
 				.AddTile(TileID.DemonAltar)
                 .Register();
             }

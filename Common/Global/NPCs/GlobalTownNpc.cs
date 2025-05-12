@@ -18,6 +18,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using RemnantOfTheAncientsMod.World;
 using Terraria.Localization;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -28,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (RemnantOfTheAncientsMod.AlchemistNPCMod != null)
             {
-                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Brewer"))
+                if (shop.NpcType == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Brewer"))
                 {
                     string SHOP_4 = "MorePotions/Atheria";
                     if (shop.Name == SHOP_4)
@@ -37,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         .Add(new Item(ItemType<Commander_Potion>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 50, 0) }, Condition.DownedEowOrBoc);
                     }
                 }
-                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Alchemist"))
+                if (shop.NpcType == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Alchemist"))
                 {
                     string BaseShop = "BaseShop";
                     if (shop.Name == BaseShop)
@@ -45,7 +46,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         shop.Add(new Item(ItemType<NecroticRestauration>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 50, 0) }, Condition.DownedSkeletron);
                     }
                 }
-                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Musician"))
+                if (shop.NpcType == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Musician"))
                 {
                     string Sh5 = "Sh5";
                     if (shop.Name == Sh5)
@@ -56,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                             .Add(new Item(ItemType<InfernalMusicBox>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 10, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedTyrant", () => RemnantDownedBossSystem.downedTyrant));
                     }
                 }
-                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Tinkerer"))
+                if (shop.NpcType == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Tinkerer"))
                 {
                     string Shop1 = "MovementMisc";
                     string Shop2 = "Combat";
@@ -69,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         shop.Add(new Item(ItemType<magic_stick>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 20, 0, 0) }, Condition.DownedEyeOfCthulhu);
                     }
                 }
-                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "YoungBrewer"))
+                if (shop.NpcType == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "YoungBrewer"))
                 {
                     string Shop1 = "Combinations";
                     string Shop2 = "Flasks";
@@ -89,7 +90,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         shop.Add(new Item(ItemType<Sand_Flask>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, new Condition("Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert", () => RemnantDownedBossSystem.downedDesert));
                     }
                 }
-                if (shop.NpcType == SangarUtilities.Common.CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Operator"))
+                if (shop.NpcType == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.AlchemistNPCMod, "Operator"))
                 {
                     string MaterialShop = "Materials";
                     string ModMaterialShop = "ModMaterials";

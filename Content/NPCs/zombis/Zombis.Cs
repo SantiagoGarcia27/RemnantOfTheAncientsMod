@@ -337,15 +337,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            if (Main.hardMode)
             {
-                if (CalamityConfigEnabled())
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Utils1.MechBossDefeatedTierReworkForClamity() >= 1)
-                        return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    if (CalamityConfigEnabled())
+                    {
+                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= 1)
+                            return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    }
                 }
+                return ((Main.hardMode && WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt) ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
             }
-            return (Main.hardMode && WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            return  0;
         }
     }
     public class PaladiumZombie : BaseZombie
@@ -363,15 +367,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            if (Main.hardMode)
             {
-                if (CalamityConfigEnabled())
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Utils1.MechBossDefeatedTierReworkForClamity() >= 1)
-                        return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    if (CalamityConfigEnabled())
+                    {
+                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= 1)
+                            return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    }
                 }
+                return ((Main.hardMode && WorldGen.SavedOreTiers.Cobalt == TileID.Palladium) ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
             }
-            return (Main.hardMode && WorldGen.SavedOreTiers.Cobalt == TileID.Palladium ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            return 0f;
         }
     }
 
@@ -385,15 +393,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            if (Main.hardMode)
             {
-                if (CalamityConfigEnabled())
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Utils1.MechBossDefeatedTierReworkForClamity() >= 2)
-                      return  AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    if (CalamityConfigEnabled())
+                    {
+                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= 2)
+                            return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    }
                 }
+                return ((NPC.downedMechBossAny && WorldGen.SavedOreTiers.Mythril == TileID.Mythril) ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
             }
-            return (NPC.downedMechBossAny && WorldGen.SavedOreTiers.Mythril == TileID.Mythril ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            return 0;
         }
     }
     public class OrichalcumZombie : BaseZombie
@@ -417,15 +429,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            if (Main.hardMode)
             {
-                if (CalamityConfigEnabled())
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Utils1.MechBossDefeatedTierReworkForClamity() >= 2)
-                        return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    if (CalamityConfigEnabled())
+                    {
+                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= 2)
+                            return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    }
                 }
+                return ((NPC.downedMechBossAny && WorldGen.SavedOreTiers.Mythril == TileID.Orichalcum) ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
             }
-            return (NPC.downedMechBossAny && WorldGen.SavedOreTiers.Mythril == TileID.Orichalcum ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            return 0;
         }
     }
     public class AdamantiteZombie : BaseZombie
@@ -438,15 +454,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            if (Main.hardMode)
             {
-                if (CalamityConfigEnabled())
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Utils1.MechBossDefeatedTierReworkForClamity() >= 3)
-                       return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    if (CalamityConfigEnabled())
+                    {
+                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= 3)
+                            return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    }
                 }
+                return ((NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Adamantite) ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
             }
-            return (NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Adamantite? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            return 0;
         }
     }
     public class TitaniumZombie : BaseZombie
@@ -468,15 +488,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            if (Main.hardMode)
             {
-                if (CalamityConfigEnabled())
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Utils1.MechBossDefeatedTierReworkForClamity() >= 3)
-                        return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    if (CalamityConfigEnabled())
+                    {
+                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= 3)
+                            return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+                    }
                 }
+                return (NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Titanium ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
             }
-            return (NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Titanium ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.Hardmode) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            return 0;
         }
     }
     public class HallowedZombie : BaseZombie
@@ -500,15 +524,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
+            if (Main.hardMode)
             {
-                if (CalamityConfigEnabled())
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    if (Utils1.MechBossDefeatedTierReworkForClamity() >= 4)
-                       return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostMech) * SpawnCondition.OverworldNightMonster.Chance;
+                    if (CalamityConfigEnabled())
+                    {
+                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= 4)
+                            return AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostMech) * SpawnCondition.OverworldNightMonster.Chance;
+                    }
                 }
+                return (NPC.downedMechBossAny ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostMech) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
             }
-            return (NPC.downedMechBossAny ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostMech) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            return 0;
         }
     }
 
@@ -537,7 +565,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostMech) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            if (Main.hardMode)
+            {
+                return (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3 ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostMech) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            }
+            return 0;
         }
     }
     public class TurtleZombie : BaseZombie
@@ -560,7 +592,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (NPC.downedPlantBoss ? AdjustProgresionChance(0.4f, GlobalEnum.gameStage.PostPlantera, 0.05f) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            if (Main.hardMode)
+            {
+                return (NPC.downedPlantBoss ? AdjustProgresionChance(0.4f, GlobalEnum.gameStage.PostPlantera, 0.05f) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            }
+            return 0;
         }
     }
 
@@ -594,7 +630,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (NPC.downedGolemBoss ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostGolem,0.01f) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            if (Main.hardMode)
+            {
+                return (NPC.downedGolemBoss ? AdjustProgresionChance(0.3f, GlobalEnum.gameStage.PostGolem, 0.01f) : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            }
+            return 0;
         }
     }
     public class SolarZombie : BaseZombie
@@ -642,7 +682,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
                 {
                     if (dashTimmer >= DashTimmerMax)
                     {
-                        int direction =  Utils1.GetSign(target.Center.X - NPC.Center.X);
+                        int direction =  Math.Sign(target.Center.X - NPC.Center.X);
  
                         NPC.velocity.X = 10f * direction;
 
@@ -664,7 +704,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (NPC.downedMoonlord ? 0.6f : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            if (Main.hardMode)
+            {
+                return (NPC.downedMoonlord ? 0.6f : 0f) * SpawnCondition.OverworldNightMonster.Chance;
+            }
+            return 0;
         }
     }
 
@@ -801,7 +845,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             NPC.TargetClosest(true);
             Vector2 targetPosition = Main.player[NPC.target].position;
-            if (NPC.velocity.Y == 0 && Utils1.GetSign(NPC.velocity.X) == NPC.direction)
+            if (NPC.velocity.Y == 0 && Math.Sign(NPC.velocity.X) == NPC.direction)
             {
                 float velocity = (1 + (MovmentSpeedBonus / 100f));
                 NPC.velocity.X *= velocity;

@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Prefixe;
 using RemnantOfTheAncientsMod.World;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,7 +123,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         
         public void ModifyTooltipsCalamityMod(Item item, List<TooltipLine> Tooltips)
         {
-            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "InmuneTo", Lang.GetBuffName(BuffID.ManaSickness)), Color.White, $"ToolTip4", Color.White);
             }

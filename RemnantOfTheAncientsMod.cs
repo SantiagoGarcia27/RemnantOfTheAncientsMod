@@ -58,19 +58,19 @@ namespace RemnantOfTheAncientsMod
             ModLoader.TryGetMod("AlchemistNPCLite", out AlchemistNPCMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMusicMod", out RemnantOfTheAncientsMusic);
             ModLoader.TryGetMod("MeleeWeaponEffects", out MeleeWeaponEffects);
-           // ModLoader.TryGetMod("SangarUtilities", out Terraria);
+            // ModLoader.TryGetMod("SangarUtilities", out Terraria);
 
-            if (ModContent.GetInstance<Terracoin>() != null) 
+            if (ModContent.GetInstance<Terracoin>() != null)
             {
-                ModContent.GetInstance<Terracoin>(); 
+                ModContent.GetInstance<Terracoin>();
             }
 
-            if(InfernumMod != null)
+            if (InfernumMod != null)
             {
                 IntroScreenManager.Load();
             }
-           
-            BackgroundTextureLoader.AddBackgroundTexture(this,PlaceHolderPath);
+
+            BackgroundTextureLoader.AddBackgroundTexture(this, PlaceHolderPath);
             fastPlataformOverride();
 
 
@@ -128,7 +128,7 @@ namespace RemnantOfTheAncientsMod
         {
             return Lighting.GetColor((int)(position.X / 16f), (int)(position.Y / 16f));
         }
-      
+
         public static int ParticleMeter(int i)
         {
             float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
@@ -140,7 +140,7 @@ namespace RemnantOfTheAncientsMod
 
             return (int)(i / Math.Pow(2, (int)lagLevel));
         }
-        public static int ParticleMeter(int total,int first, int second, int off)
+        public static int ParticleMeter(int total, int first, int second, int off)
         {
             float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
 
@@ -156,7 +156,7 @@ namespace RemnantOfTheAncientsMod
                     return off;
                 default:
                     return off;
-            }      
+            }
         }
         public static bool ParticleMeterChoice()
         {
@@ -170,13 +170,13 @@ namespace RemnantOfTheAncientsMod
             {
                 return true;
             }
-            if (lagLevel == 1) 
+            if (lagLevel == 1)
             {
                 return Main.rand.NextBool(3, 4);
             }
             return Main.rand.NextBool(2, 4);
         }
-        public static int ParticleMeter(int i,bool increment)
+        public static int ParticleMeter(int i, bool increment)
         {
             float lagLevel = ModContent.GetInstance<ConfigServer>().LagReducer;
 
@@ -213,9 +213,9 @@ namespace RemnantOfTheAncientsMod
                     {
                         MaxPlayers++;
                     }
-                }   
+                }
             }
-            return MaxPlayers -1;
+            return MaxPlayers - 1;
         }
 
 
@@ -227,46 +227,54 @@ namespace RemnantOfTheAncientsMod
 
         public void fastPlataformOverride()
         {
-            IL_Player.Update += il =>
+            try
             {
-                var c = new ILCursor(il);
 
-                // These will be always be set by the time they are used,
-                // but C# doesn't know that the predicates will always be called
-                // (unless an error occurs, but code execution will stop here too in that case)
-                int ignorePlatsIndex = default;
-                int fallThroughIndex = default;
+                IL_Player.Update += il =>
+                {
+                    var c = new ILCursor(il);
 
-                c.GotoNext(MoveType.After,
-                    // We don't actually care about the first 2 parts, but match them anyway,
-                    // because the sequence we actaully need may very well appear before.
-                    i => i.MatchLdarg0(),
-                    i => i.MatchLdfld<Entity>(nameof(Entity.velocity)),
-                    i => i.Match(OpCodes.Stloc_S),
+                    // These will be always be set by the time they are used,
+                    // but C# doesn't know that the predicates will always be called
+                    // (unless an error occurs, but code execution will stop here too in that case)
+                    int ignorePlatsIndex = default;
+                    int fallThroughIndex = default;
 
-                    i => i.MatchLdarg0(),
-                    i => i.Match(OpCodes.Ldc_I4_0),
-                    i => i.MatchStfld<Player>(nameof(Player.slideDir)),
+                    c.GotoNext(MoveType.After,
+                        // We don't actually care about the first 2 parts, but match them anyway,
+                        // because the sequence we actaully need may very well appear before.
+                        i => i.MatchLdarg0(),
+                        i => i.MatchLdfld<Entity>(nameof(Entity.velocity)),
+                        i => i.Match(OpCodes.Stloc_S),
 
-                    i => i.Match(OpCodes.Ldc_I4_0),
-                    i => i.MatchStloc(out ignorePlatsIndex),
+                        i => i.MatchLdarg0(),
+                        i => i.Match(OpCodes.Ldc_I4_0),
+                        i => i.MatchStfld<Player>(nameof(Player.slideDir)),
 
-                    i => i.MatchLdarg0(),
-                    i => i.MatchLdfld<Player>(nameof(Player.controlDown)),
-                    i => i.MatchStloc(out fallThroughIndex)
-                );
+                        i => i.Match(OpCodes.Ldc_I4_0),
+                        i => i.MatchStloc(out ignorePlatsIndex),
 
-                c.Index -= 5;
-                c.RemoveRange(5);
+                        i => i.MatchLdarg0(),
+                        i => i.MatchLdfld<Player>(nameof(Player.controlDown)),
+                        i => i.MatchStloc(out fallThroughIndex)
+                    );
 
-                c.EmitLdarg0();                                                   // Push the first argument (this)
-                c.EmitLdfld(typeof(Player).GetField(nameof(Player.controlDown))); // Pop, then push the value of controlDown
-                c.EmitDup();                                                      // Duplicate stack value
-                c.EmitStloc(ignorePlatsIndex);                                    // Store stack value in ignorePlats
-                c.EmitStloc(fallThroughIndex);                                    // Store stack value in fallThrough
-            };
+                    c.Index -= 5;
+                    c.RemoveRange(5);
 
-            base.Load();
+                    c.EmitLdarg0();                                                   // Push the first argument (this)
+                    c.EmitLdfld(typeof(Player).GetField(nameof(Player.controlDown))); // Pop, then push the value of controlDown
+                    c.EmitDup();                                                      // Duplicate stack value
+                    c.EmitStloc(ignorePlatsIndex);                                    // Store stack value in ignorePlats
+                    c.EmitStloc(fallThroughIndex);                                    // Store stack value in fallThrough
+                };
+
+                base.Load();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error("RemnantOfTheAncientsMod: Error on fastPlataformOverride:" + ex);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
+using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -42,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
             {
                 CreateRecipe()
                 .AddIngredient(ModContent.ItemType<NightBar>(), 10)
-                .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
+                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
                 .AddTile(TileID.DemonAltar)
                 .Register();
 
@@ -51,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
                 .AddIngredient(ItemID.BoneWhip, 1)
                 .AddIngredient(ModContent.ItemType<FireStorm>())
                 .AddRecipeGroup("anyCorruptWhip")
-                .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
+                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             }

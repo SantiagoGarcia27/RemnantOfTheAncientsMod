@@ -6,6 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
@@ -88,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
             if (target != null)
             {
-                Vector2 TargetDistance = Utils1.FormatToPositive(DistanceUtils.GetDistance(target, Projectile));
+                Vector2 TargetDistance = MathUtils.FormatToPositive(DistanceUtils.GetDistance(target, Projectile));
 
                 if (FoundTarget)
                 {
@@ -225,7 +226,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             if (playerDistanceFloat < 2200 && !FoundTarget)
             {
                 Vector2 playerDistance = player.Center - Projectile.Center;
-                if (Utils1.FormatToPositive(playerDistance).Y < 20 * 16)
+                if (MathUtils.FormatToPositive(playerDistance).Y < 20 * 16)
                 {
                     Projectile.tileCollide = playerDistance.Y < 5 * 16;
                     Projectile.velocity.X = (Projectile.position.DirectionTo(player.position).X * (speed / 2));

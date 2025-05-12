@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 using System.Collections.Generic;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Override.Fargos
 {
@@ -66,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Override.Fargos
         {
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
-                if (projectile.type == SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "GlowRing"))
+                if (projectile.type == CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "GlowRing"))
                 {
                     NPC npc = FargoSoulsUtil.NPCExists(projectile.ai[0]);
                     if (npc != null)

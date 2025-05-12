@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -88,10 +89,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.scale = LifeSize(NPC);
             int[] projectiles =
             [
-                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMagic"),
-                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMelee"),
-                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRanged"),
-                SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRogue")
+                CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMagic"),
+                CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftMelee"),
+                CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRanged"),
+                CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod,"LuxorsGiftRogue")
             ];
             int proj = 0;
 
@@ -125,7 +126,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         private static float LifeSize(NPC npc)
         {       
-            return ApplyLifeSize(Utils1.GetPorcentage(npc.life, npc.lifeMax), 1.5f);          
+            return ApplyLifeSize(MathUtils.GetPorcentage(npc.life, npc.lifeMax), 1.5f);          
         }
         private static float ApplyLifeSize(float porcentage, float MaxValue)
         {
@@ -133,19 +134,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             //{
             //    if ((int)porcentage == i)
             //    {
-            //        float j = Utils1.GetValueFromPorcentage(MaxValue, porcentage);
-            //        if (j > Utils1.GetValueFromPorcentage(MaxValue, 30))
+            //        float j = MathUtils.GetValueFromPorcentage(MaxValue, porcentage);
+            //        if (j > MathUtils.GetValueFromPorcentage(MaxValue, 30))
             //        {
             //            return j;
             //        }
             //    }
 
             //}
-            //return Utils1.GetValueFromPorcentage(MaxValue, 30);
+            //return MathUtils.GetValueFromPorcentage(MaxValue, 30);
 
 
-            float porcentageValue = Utils1.GetValueFromPorcentage(MaxValue, porcentage);
-            float thirtyPercentValue = Utils1.GetValueFromPorcentage(MaxValue, 30);
+            float porcentageValue = MathUtils.GetValueFromPorcentage(MaxValue, porcentage);
+            float thirtyPercentValue = MathUtils.GetValueFromPorcentage(MaxValue, 30);
 
             if (porcentageValue > thirtyPercentValue)
             {

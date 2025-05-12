@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -41,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum
             int rarity;
             try
             {
-                rarity = SangarUtilities.Common.CallUtils.GetRarityFromMod(RemnantOfTheAncientsMod.InfernumMod, "InfernumRedRarity");
+                rarity = CallUtils.GetRarityFromMod(RemnantOfTheAncientsMod.InfernumMod, "InfernumRedRarity");
             }
             catch
             {

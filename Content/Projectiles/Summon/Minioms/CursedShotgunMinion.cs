@@ -6,6 +6,7 @@ using System;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using RemnantOfTheAncientsMod.Common.TmodClassOverride;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
@@ -188,7 +189,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             {
                 dashTimmer = 0;
                 currentAttck = Attacks.Shoot;
-                shootTimmer = (int)Utils1.GetValueFromPorcentage(shootTimmerMax, 75);
+                shootTimmer = (int)MathUtils.GetValueFromPorcentage(shootTimmerMax, 75);
             }
 
         }

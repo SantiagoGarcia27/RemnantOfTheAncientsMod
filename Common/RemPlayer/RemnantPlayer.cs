@@ -29,6 +29,7 @@ using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -211,7 +212,8 @@ namespace RemnantOfTheAncientsMod
             base.Load();
 		}
 
-		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+ 
+        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
 		{
 			if (Inmortal)
 			{

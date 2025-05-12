@@ -66,7 +66,7 @@
 //        {
 //            if (ModLoader.TryGetMod("ThoiumMod", out Mod ThoriumMod))
 //            {
-//                if (item.CountsAsClass(SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncients.CalamityMod, "RogueDamageClass")) && item is BardItem bardItem)
+//                if (item.CountsAsClass(CallUtils.GetDamageClassFromMod(RemnantOfTheAncients.CalamityMod, "RogueDamageClass")) && item is BardItem bardItem)
 //            {
 //                    ThoriumMod.GetContent<BardItem>().DurationBonus = (short)(durationBonus * 60);
 //                }

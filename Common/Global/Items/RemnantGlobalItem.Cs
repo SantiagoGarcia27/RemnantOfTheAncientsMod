@@ -20,6 +20,7 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -136,30 +137,30 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				ModContent.ItemType<Frozenp2MusicBox>(),
 				ModContent.ItemType<InfernalMusicBox>()
 			];
-			Utils1.AddSecure(MusicBox, musicBox);
+			 ListUtils.AddSecure(MusicBox, musicBox);
 			for (int i = 562; i <= 574; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 
 			for (int i = 1596; i <= 1610; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 
 			for (int i = 1963; i <= 1965; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 
 			for (int i = 3235; i <= 3237; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 
 			for (int i = 4077; i <= 4082; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 
 			for (int i = 4356; i <= 4358; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 
 			for (int i = 4990; i <= 4992; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 
 			for (int i = 5014; i <= 5040; i++)
-				Utils1.AddSecure(MusicBox, i);
+				 ListUtils.AddSecure(ref MusicBox, i);
 		}
 		public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 		public override void SetDefaults(Item item)
@@ -664,7 +665,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public void AddVanilaSpear()
 		{
-			Utils1.AddSecure(SpearsList, lanceId);
+			 ListUtils.AddSecure(SpearsList, lanceId);
 		}
 
 		public void AddModedSpearGeneric(Item item)
@@ -687,7 +688,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					if (Utils1.NameHasWord(item.Name, Spearnames))
 					{
-						Utils1.AddSecure(SpearsList, item.type);
+						 ListUtils.AddSecure(ref SpearsList, item.type);
 					}
 				}
 			}

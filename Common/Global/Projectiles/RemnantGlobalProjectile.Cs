@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.World;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -92,11 +93,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public static void FiilMeleeWeaponEffectsList()
         {
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlash2"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlashMethod"));
-            Utils1.AddSecure(MeleeWeaponEffectsProjectiles, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashWeapon"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlash2"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlashMethod"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashWeapon"));
         }
         public void UpdateMiscCounter()
         {

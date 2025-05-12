@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -26,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
 
         public override bool CaresAboutBossEffectCondition => true;
 
-        public override bool ShouldBeActive() => NPC.AnyNPCs(ModContent.NPCType<DesertAniquilator>()) &&SangarUtilities.Common.DificultyUtils.InfernumMode;
+        public override bool ShouldBeActive() => NPC.AnyNPCs(ModContent.NPCType<DesertAniquilator>()) &&DificultyUtils.InfernumMode;
 
         public override SoundStyle? SoundToPlayWithTextCreation => null;
     }

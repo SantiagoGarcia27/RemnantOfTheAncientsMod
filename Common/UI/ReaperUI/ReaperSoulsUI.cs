@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common;
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -61,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
 
 
-            GlobalUtils.AddSecure(ref NpcList.BossList, RemnantOfTheAncientsM, RemnantsNpc.ToList());
+            ListUtils.AddSecure(ref  NpcList.BossList, RemnantOfTheAncientsM, RemnantsNpc.ToList());
 
             if (mod != null)
             {

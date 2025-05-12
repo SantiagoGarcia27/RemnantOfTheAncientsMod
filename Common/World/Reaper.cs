@@ -3,6 +3,7 @@ using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common;
+using SangarUtilities.Common.UtilsTweaks;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -21,7 +22,7 @@ namespace RemnantOfTheAncientsMod.World
             }
             foreach (int id in RemnantGlobalItem.SpearsList)
             {
-                Utils1.AddSecure(RemnantGlobalProjectile.Spears, new Item(id).shoot);
+                ListUtils.AddSecure(ref RemnantGlobalProjectile.Spears, new Item(id).shoot);
             }
         }
         public override void OnWorldUnload()

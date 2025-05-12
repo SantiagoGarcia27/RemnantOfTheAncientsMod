@@ -26,6 +26,7 @@ using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using SangarUtilities.Common;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -180,7 +181,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         {
                             Vector2 FlameVelocity = NPC.velocity * 1.25f;//1.25
                             FlameVelocity.RotatedBy(i * 20);
-                            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Utils1.GetSign(i));
+                            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Math.Sign(i));
                             Main.projectile[projectile].timeLeft = 30;
                             Main.projectile[projectile].tileCollide = false;
                             Main.projectile[projectile].friendly = false;
@@ -197,7 +198,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 {
                     if (NPC.boss && !SpawnClon)
                     {
-                        if (Utils1.GetPorcentage(NPC.life, NPC.lifeMax) < (DificultyUtils.MasochistMode ? 70f : 50f))
+                        if (MathUtils.GetPorcentage(NPC.life, NPC.lifeMax) < (DificultyUtils.MasochistMode ? 70f : 50f))
                         {
                             var a = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<InfernalTyrantHead>());
                             Main.npc[a].boss = false;
@@ -251,9 +252,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         {
                             for (int i = 0; i <= 10; i++)
                             {
-                                TornadoIa((int)(70 * RemnantGlobalNPC.DamageBonus), SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
+                                TornadoIa((int)(70 * RemnantGlobalNPC.DamageBonus), CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
                             }
-                           // FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), SangarUtilities.Common.CallUtils.Get<ModProjectile>(RemnantOfTheAncients.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
+                           // FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), CallUtils.Get<ModProjectile>(RemnantOfTheAncients.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
                         }
                     }
                     SummonIa(NPCID.RedDevil);
@@ -513,7 +514,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
     {
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            string fargos = SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;

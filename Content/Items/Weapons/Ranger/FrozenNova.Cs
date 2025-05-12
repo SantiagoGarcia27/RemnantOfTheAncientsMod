@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			int numProj = 5;
 			for (int i = -1; i <= 0; i++)
 			{
-                Vector2 unacurency = velocity.RotatedBy(MathHelper.ToRadians(Utils1.GetSign(i) * 45));
+                Vector2 unacurency = velocity.RotatedBy(MathHelper.ToRadians(Math.Sign(i) * 45));
 				var a = Projectile.NewProjectile(source, position, unacurency, type, damage, 1, player.whoAmI);
                 Main.projectile[a].scale = 3.0f;
                 Main.projectile[a].penetrate = 4;

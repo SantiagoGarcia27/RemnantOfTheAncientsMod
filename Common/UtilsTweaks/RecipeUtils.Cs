@@ -1,3 +1,4 @@
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
 
@@ -12,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
             foreach (Recipe Items in recipes)
             {
-                Utils1.AddSecure(list, Items.createItem.type);
+                ListUtils.AddSecure(ref list, Items.createItem.type);
             }
             return list;
         }
@@ -63,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             {
                 foreach (Item item in recipe.requiredItem)
                 {
-                    Utils1.AddSecure(results, item.type);
+                     ListUtils.AddSecure(ref results, item.type);
                 }
             }
             return results;

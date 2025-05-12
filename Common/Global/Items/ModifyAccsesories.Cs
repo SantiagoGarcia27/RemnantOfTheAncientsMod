@@ -9,6 +9,7 @@ using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using RemnantOfTheAncientsMod.World;
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -153,7 +154,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         [JITWhenModsEnabled("CalamityMod")]
         public void UpdateAccessoryCalamityMod(Item item, Player player, bool hideVisual)
         {
-            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 player.buffImmune[BuffID.ManaSickness] = true;
                 player.Calamity().eTalisman = true;
@@ -170,15 +171,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public void UpdateAccessoryFargosSoulMod(Item item, Player player, bool hideVisual)
         {
-            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"))
+            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"))
             {
                 ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
             }
-            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"))
+            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"))
             {
                 ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
             }
-            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
             {
                 ModContent.GetInstance<ForceOfRemants>().UpdateAccessory(player, hideVisual);
                 ModContent.GetInstance<GuardiansShield>().UpdateAccessory(player, hideVisual);
@@ -202,10 +203,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
         public static void ModifyCalamity()
         {
-            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "AngelTreads"));
-            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "TracersCelestial"));
-            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "TracersElysian"));
-            Utils1.AddSecure(FastFall, SangarUtilities.Common.CallUtils.GetItemFromMod(Calamity, "TracersSeraph"));
+             ListUtils.AddSecure(ref FastFall, CallUtils.GetItemFromMod(Calamity, "AngelTreads"));
+             ListUtils.AddSecure(ref FastFall, CallUtils.GetItemFromMod(Calamity, "TracersCelestial"));
+             ListUtils.AddSecure(ref FastFall, CallUtils.GetItemFromMod(Calamity, "TracersElysian"));
+             ListUtils.AddSecure(ref FastFall, CallUtils.GetItemFromMod(Calamity, "TracersSeraph"));
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -232,7 +233,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public void ModifyTooltipsFargosSoulMod(Item item, List<TooltipLine> tooltips)
         {
-            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul") || item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
             {
                 int ProjectileSizeBonus = 50;
                 int ProjectileSpeedBonus = 10;
@@ -253,7 +254,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         }
         public void ModifyTooltipsCalamityMod(Item item, List<TooltipLine> tooltips)
         {
-            if (item.type == SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");
                 if (tip != null)

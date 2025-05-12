@@ -1,6 +1,7 @@
 using InfernumMode;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -31,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     {
                         if (Vector2.Distance(Projectile.Center, Main.player[i].Center) < 10)
                         {
-                            Main.player[i].Heal((int)Utils1.GetValueFromPorcentage(Main.player[i].statLifeMax2, 5));
+                            Main.player[i].Heal((int)MathUtils.GetValueFromPorcentage(Main.player[i].statLifeMax2, 5));
                             Projectile.Kill();
                         }
                     }

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using SangarUtilities.Common;
+using SangarUtilities.Common.UtilsTweaks;
 using CalamityMod.NPCs.BrimstoneElemental;
 using Terraria.Audio;
 using CalamityMod;
@@ -855,7 +855,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
             {
-                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 70) && !UniqueToggledFlag)
+                if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 70) && !UniqueToggledFlag)
                 {
                     NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
                     UniqueToggledFlag = true;
@@ -882,7 +882,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                     attackCounter = 0;
                 }
-                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 50) && !UniqueToggledFlag)
+                if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 50) && !UniqueToggledFlag)
                 {
                     for (int i = 0; i <= 2; i++)
                     {
@@ -978,7 +978,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalamitasClone"))
             {
                 int count = NPC.CountNPCS(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"));
-                float lifePercentage = Utils1.GetPorcentage(npc.life, npc.lifeMax);
+                float lifePercentage = MathUtils.GetPorcentage(npc.life, npc.lifeMax);
                 int maxCount = (int)(7 + ((100 - lifePercentage) / 10));
                 if (count < maxCount)
                 {
@@ -1157,7 +1157,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
           
             else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"))
             {
-                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 40) && !UniqueToggledFlag)
+                if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 40) && !UniqueToggledFlag)
                 {
                     for (int i = 0; i < 2; i++)
                     {
@@ -1318,9 +1318,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         }
         public int GetHootAmount(NPC npc)
         {
-            if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 50))
+            if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 50))
             {
-                if (npc.life <= Utils1.GetValueFromPorcentage(npc.lifeMax, 25))
+                if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 25))
                 {
                     return 1;
                 }
@@ -1537,37 +1537,37 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
                     if(RemnantOfTheAncientsMod.CalamityMod != null)
                     {
-                        Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
-                        Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
+                        ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
+                        ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
                         if (CalamityUtils.IsBossDefeated("HiveMind") || CalamityUtils.IsBossDefeated("PerforatorHive"))
                         {
-                            Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
+                           ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
                         }
                         if (Main.hardMode)
                         {
-                            Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
+                           ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
                             if (CalamityUtils.IsBossDefeated("Cryogen") && NPC.downedMechBossAny)
                             {
-                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
                             }
                             if (NPC.downedPlantBoss)
                             {
-                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
                             }
                             if (NPC.downedGolemBoss)
                             {
-                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
                             }
                             if (CalamityUtils.IsBossDefeated("AstrumDeus"))
                             {
-                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
                             }
                             if (NPC.downedMoonlord)
                             {
-                                Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
                                 if (CalamityUtils.IsBossDefeated("Providence"))
                                 {
-                                    Utils1.AddSecure(SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
+                                   ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
                                 }
                             }
                         }

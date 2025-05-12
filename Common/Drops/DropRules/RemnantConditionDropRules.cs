@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.World;
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -216,26 +217,26 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public class IsEternity : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode;
-            public bool CanShowItemDropInUI() => SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode;
+            public bool CanDrop(DropAttemptInfo info) => DificultyUtils.EternityMode || DificultyUtils.MasochistMode;
+            public bool CanShowItemDropInUI() => DificultyUtils.EternityMode || DificultyUtils.MasochistMode;
             public string GetConditionDescription() => null;
         }
         public class IsOnlyEternity : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => SangarUtilities.Common.DificultyUtils.EternityMode;
-            public bool CanShowItemDropInUI() => SangarUtilities.Common.DificultyUtils.EternityMode;
+            public bool CanDrop(DropAttemptInfo info) => DificultyUtils.EternityMode;
+            public bool CanShowItemDropInUI() => DificultyUtils.EternityMode;
             public string GetConditionDescription() => null;
         }
         public class IsMasochist: IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => SangarUtilities.Common.DificultyUtils.MasochistMode;
-            public bool CanShowItemDropInUI() => SangarUtilities.Common.DificultyUtils.MasochistMode;
+            public bool CanDrop(DropAttemptInfo info) => DificultyUtils.MasochistMode;
+            public bool CanShowItemDropInUI() => DificultyUtils.MasochistMode;
             public string GetConditionDescription() => null;
         }
         public class IsInfernum : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) =>SangarUtilities.Common.DificultyUtils.InfernumMode;
-            public bool CanShowItemDropInUI() =>SangarUtilities.Common.DificultyUtils.InfernumMode;
+            public bool CanDrop(DropAttemptInfo info) =>DificultyUtils.InfernumMode;
+            public bool CanShowItemDropInUI() =>DificultyUtils.InfernumMode;
             public string GetConditionDescription() => null;
         }
     }

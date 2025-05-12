@@ -31,6 +31,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using SangarUtilities.Common;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
@@ -229,7 +230,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     }
                     break;
                 case >= 0:
-                    if (currentPhase != 3 && !SangarUtilities.Common.DificultyUtils.EternityMode && !SangarUtilities.Common.DificultyUtils.MasochistMode)
+                    if (currentPhase != 3 && !DificultyUtils.EternityMode && !DificultyUtils.MasochistMode)
                     {
                         if (!isReaper)
                         {
@@ -252,7 +253,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                             {
                                 framerate = Main.frameRate;
                             }
-                            float diferencia = Utils1.FormatToPositive(55 - framerate);
+                            float diferencia = Math.Abs(55 - framerate);
                             if (++delay >= diferencia)
                             {
                                 for (int j = 0; j < 3; j++)
@@ -349,7 +350,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 X = Main.rand.Next((int)(Main.player[NPC.target].position.X - 50 * 16f), (int)(Main.player[NPC.target].position.X + 50 * 16f));
                 Y = Main.rand.Next((int)(Main.player[NPC.target].position.Y - 50 * 16f), (int)(Main.player[NPC.target].position.Y + 50 * 16f));
                 ExplosionPosition = new Vector2(X, Y);
-                var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Vector2.Zero, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
+                var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Vector2.Zero, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
             }
             if (attackCounter == count && attackCounter > 0)
             {
@@ -373,9 +374,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     ShootIa(10, ProjectileID.FrostBeam, target, -10f, 0.5, 1.5);
                     ShootIa(10, ProjectileID.FrostBeam, target, 10f, 0.5,-1.5);
 
-                    if (SangarUtilities.Common.DificultyUtils.MasochistMode)
+                    if (DificultyUtils.MasochistMode)
                     {
-                        if (!SangarUtilities.Common.DificultyUtils.InfernumMode)
+                        if (!DificultyUtils.InfernumMode)
                         {
                             ShootIa(10, ProjectileID.FrostBeam, target, -30f, -1.5, 1.5);
                             ShootIa(10, ProjectileID.FrostBeam, target, 30f, 1.5, -1.5);
@@ -402,12 +403,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 {
                     framerate = Main.frameRate;
                 }
-                float diferencia = Utils1.FormatToPositive(55 - framerate);
+                float diferencia = Math.Abs(55 - framerate);
                 if (++delay >= diferencia)
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        if (!SangarUtilities.Common.DificultyUtils.InfernumMode)
+                        if (!DificultyUtils.InfernumMode)
                         {
                             ShootIa(10, ProjectileID.FrostBeam, 7f, 360f + grades, 0);//70
                             ShootIa(10, ProjectileID.FrostBeam, 7f, -120f + grades, 0);
@@ -438,7 +439,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 NPC.netUpdate = true;
             }
 
-            if (SangarUtilities.Common.DificultyUtils.InfernumMode)
+            if (DificultyUtils.InfernumMode)
             {
                 if (attackCounter <= 0)
                 {
@@ -585,9 +586,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood,hit.HitDirection, -1f);
                 }
 
-                if(SangarUtilities.Common.DificultyUtils.InfernumMode != null)
+                if(DificultyUtils.InfernumMode != null)
                 {
-                    if(SangarUtilities.Common.DificultyUtils.InfernumMode) 
+                    if(DificultyUtils.InfernumMode) 
                     {
                         int numberOfPoints = 6;
                         float radius = 9 *16;
@@ -674,7 +675,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.FrostCore, 5, 3));
             npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
             npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));
-            if (SangarUtilities.Common.DificultyUtils.InfernumMode != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Frozen_Relic>()));
+            if (DificultyUtils.InfernumMode != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Frozen_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Frozen_Relic>()));
 
             if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
@@ -683,7 +684,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         [JITWhenModsEnabled("CalamityMod")]
         private static void CalamityDrop(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofEleum"), 1,2,Utils1.ReaperDropScaler(5)));
+            npcLoot.Add(ItemDropRule.Common(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofEleum"), 1,2,Utils1.ReaperDropScaler(5)));
         } 
         public override void OnSpawn(IEntitySource source)
         {
@@ -747,7 +748,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            string fargos = SangarUtilities.Common.DificultyUtils.EternityMode || SangarUtilities.Common.DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, (NPC.position - Main.screenPosition) + new Vector2((0 * 16), NPC.gfxOffY - (0 * 16)), NPC.frame, drawColor, 0, new Vector2(Texture.Width * 0f, Texture.Height * 0f), NPC.scale, SpriteEffects.None, 0);
             return false;

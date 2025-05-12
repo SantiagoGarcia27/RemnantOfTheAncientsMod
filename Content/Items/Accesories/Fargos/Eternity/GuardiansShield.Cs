@@ -13,6 +13,7 @@ using FargowiltasSouls.Core.Toggler;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using CalamityMod.Items.SummonItems;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
@@ -72,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             .AddIngredient(ModContent.ItemType<DesertMedalion>(), 1)
             .AddIngredient(ModContent.ItemType<FrostBarrier>(), 1)
             .AddIngredient(ModContent.ItemType<TyrantsMark>(), 1)
-            .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "DeviatingEnergy"), 5)
+            .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "DeviatingEnergy"), 5)
             .AddTile(TileID.MythrilAnvil)
             .Register();
         }

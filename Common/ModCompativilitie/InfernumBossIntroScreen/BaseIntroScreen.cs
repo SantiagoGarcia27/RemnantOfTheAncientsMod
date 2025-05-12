@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using RemnantOfTheAncientsMod.World;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -87,7 +88,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
 
         public virtual void Draw(SpriteBatch sb)
         {
-            if (SangarUtilities.Common.DificultyUtils.InfernumMode)
+            if (DificultyUtils.InfernumMode)
             {
                 bool notInvolvedWithBoss = !Main.LocalPlayer.HasBuff(ModContent.BuffType<BossEffects>());
                 if (!CalamityConfig.Instance.BossZen || !CaresAboutBossEffectCondition)
@@ -249,7 +250,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
             if (Main.netMode == NetmodeID.Server)
                 return;
 
-            if (!ShouldBeActive() /*|| !SangarUtilities.Common.DificultyUtils.InfernumMode.CanUseCustomAIs || !InfernumConfig.Instance.BossIntroductionAnimationsAreAllowed*/)
+            if (!ShouldBeActive() /*|| !DificultyUtils.InfernumMode.CanUseCustomAIs || !InfernumConfig.Instance.BossIntroductionAnimationsAreAllowed*/)
             {
                 AnimationTimer = 0;
                 HasPlayedMainSound = false;

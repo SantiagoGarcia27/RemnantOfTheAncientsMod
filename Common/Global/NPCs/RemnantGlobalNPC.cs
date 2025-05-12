@@ -15,6 +15,7 @@ using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.NPCs.zombis;
 using Terraria.ModLoader.Utilities;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -395,7 +396,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     if (Main.netMode != NetmodeID.Server && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
                     {
-                        Main.player[Main.myPlayer].AddBuff(SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                        Main.player[Main.myPlayer].AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
                     }
                 }
             }
@@ -409,7 +410,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     if (Main.netMode != NetmodeID.Server && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
                     {
-                        Main.player[Main.myPlayer].AddBuff(SangarUtilities.Common.CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                        Main.player[Main.myPlayer].AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
                     }
                 }
             }
@@ -645,7 +646,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         [JITWhenModsEnabled("CalamityMod")]
         public static void SetNpcDamageReductionCalamity(NPC npc, float normal, float revenge, float death, float bossrush, float infernum)
         {
-            if (SangarUtilities.Common.DificultyUtils.InfernumMode)
+            if (DificultyUtils.InfernumMode)
             {
                 npc.GetGlobalNPC<CalamityGlobalNPC>().DR = infernum;
             }

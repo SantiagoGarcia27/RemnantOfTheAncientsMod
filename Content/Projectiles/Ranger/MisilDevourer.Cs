@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -42,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
                 launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
                 Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleDevourer>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0, 1);
             }
-            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5, 1) * 16, Main.rand.Next(-1, 5) * 16), launchVelocity, SangarUtilities.Common.CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ApotheosisWorm"), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5, 1) * 16, Main.rand.Next(-1, 5) * 16), launchVelocity, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ApotheosisWorm"), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
         }
         public override void AI()           //this make that the projectile will face the corect way
         {                                                           // |

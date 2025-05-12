@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -122,8 +123,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 		{
 			CreateRecipe()
 			.AddIngredient<The_Legion>()
-			.AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
-			.AddTile(SangarUtilities.Common.CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
+			.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+			.AddTile(CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
 			.Register();
 		}
 	}

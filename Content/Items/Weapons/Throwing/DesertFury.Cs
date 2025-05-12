@@ -9,6 +9,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
 using CalamityMod;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
 {
@@ -61,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
         [JITWhenModsEnabled("CalamityMod")]
         public void SetDefaultCalamity()
         {
-            Item.DamageType = SangarUtilities.Common.CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
+            Item.DamageType = CallUtils.GetDamageClassFromMod(RemnantOfTheAncientsMod.CalamityMod, "RogueDamageClass");
         }
         [JITWhenModsEnabled("CalamityMod")]
         private void StealStrike(Player player, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

@@ -119,18 +119,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Main.mouseItem;
         }
-        public static float GetValueFromPorcentage(float number, float porcentage)
-        {
-            return porcentage * number / 100;
-        }
-        public static float GetPorcentage(float intitialNumber, float total)
-        {
-            return (intitialNumber * 100) / total;
-        }
-        public static int GetSign(float number)
-        {
-            return number < 0 ? -1 : 1;
-        }
+   
         public static int FormatTime(int Day = 0, int Hour = 0, int Minute = 0, int Second = 0)
         {
             int sec = Second;
@@ -167,18 +156,12 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
             return value;
         }
-        public static Vector2 FormatToPositive(Vector2 imput)
-        {
-            Vector2 Output;
-            Output.X = imput.X < 0 ? -imput.X : imput.X;
-            Output.Y = imput.Y < 0 ? -imput.Y : imput.Y;
-            return Output;
-        }
-        public static float FormatToPositive(float imput)
-        {
-            if (imput >= 0) return imput;
-            return -imput;
-        }
+      
+        //public static float FormatToPositive(float imput)
+        //{
+        //    if (imput >= 0) return imput;
+        //    return -imput;
+        //}
 
         public static bool NameHasWord(string word, string SeachedWord)
         {
@@ -194,11 +177,6 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return new Point((int)vector2.X, (int)vector2.Y);
         }
-        public static bool NumberBetween(float min, float max, float number)
-        {
-            return number <= max && number >= min;
-        }
-
         public static bool CanDevourerOfWorldsDrop(NPC npc)
         {
             return npc.boss && Array.IndexOf([NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail], npc.type) > -1;
@@ -211,19 +189,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Main.player[Main.myPlayer].inventory.Any(item => !item.IsAir && item.type == type);
         }
-        public static bool NumberBetweenExact(float value, float min, float max)
-        {
-            if ((value > min && value < max))
-            {
-                return true;
-            }
-            else if (value == min || value == max)
-            {
-                return true;
-            }
-
-            return false;
-        }
+       
         public static double GenerateWave(float A, float t, float x)
         {
             return A * Math.Sin(2 * Math.PI * (((double)t / 10) + (double)x / 5));
@@ -245,51 +211,6 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             return DateTime.Now.Day == day && DateTime.Now.Month == month && DateTime.Now.Year == year;
         }
 
-        public static void AddSecure<T>(List<T> list, T p)
-        {
-            if (!list.Contains(p)) list.Add(p);
-        }
-        public static void AddSecure<T>(List<T> list, List<T> p)
-        {
-            foreach (T i in p)
-            {
-                if (!list.Contains(i)) list.Add(i);
-            }
-        }
-        public static void AddSecure<T>(List<T> list, T[] p)
-        {
-            foreach (T i in p)
-            {
-                if (!list.Contains(i)) list.Add(i);
-            }
-        }
-        public static void AddSecure(List<Type> list, Type p)
-        {
-            if (!list.Contains(p)) list.Add(p);
-        }
-        public static bool OnlyOneValue(List<bool> list, bool a)
-        {
-            List<bool> result = [];
-            foreach (bool e in list)
-            {
-                if (e == a) result.Add(e);
-            }
-
-            return result.Count == 1;
-        }
-        public static bool OnlyOneValue(List<bool> list, bool a, int index)
-        {
-            if (list[index] != a) return false;
-            List<bool> result = [];
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i] == a)
-                    result.Add(list[i]);
-            }
-
-
-            return result.Count == 1;
-        }
         public static string TooltipHotkeyString(ModKeybind imput)
         {
             try

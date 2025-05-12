@@ -9,6 +9,7 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using CalamityMod.Items.Potions;
 using System.Runtime.InteropServices;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {
@@ -100,8 +101,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                .AddIngredient(ItemID.WaterWalkingPotion, 30)
                .AddIngredient(ItemID.FlipperPotion, 30)
                .AddIngredient(ItemID.GillsPotion, 30)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoating"), 30)
-               .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinPotion"), 30)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoating"), 30)
+               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinPotion"), 30)
                .AddTile(TileID.Bottles)
                .Register();
 

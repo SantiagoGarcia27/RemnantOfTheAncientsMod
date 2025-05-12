@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using SangarUtilities.Common;
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -32,60 +33,60 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 Buttons.TryAdd(CalamityMod, []);
 
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHive"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHive"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadSmall"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodySmall"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailSmall"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadSmall"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodySmall"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailSmall"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadMedium"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyMedium"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailMedium"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadMedium"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyMedium"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailMedium"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadLarge"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyLarge"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailLarge"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadLarge"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyLarge"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailLarge"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusTail"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsTail"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeTail"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "SkeletronPrime2"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "SkeletronPrime2"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Cataclysm"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Catastrophe"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Cataclysm"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Catastrophe"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeTail"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverTail"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody1"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody2"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody1"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody2"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosTail"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Artemis"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Apollo"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Artemis"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Apollo"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresGaussNuke"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresLaserCannon"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresPlasmaFlamethrower"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresTeslaCannon"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresGaussNuke"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresLaserCannon"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresPlasmaFlamethrower"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresTeslaCannon"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Anahita"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Anahita"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "THELORDE"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "THELORDE"));
 
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmHead"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmBody"));
-                GlobalUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmHead"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmTail"));
             }
 
         }

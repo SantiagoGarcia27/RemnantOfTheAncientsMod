@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
+using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -60,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
                     .AddIngredient(ItemID.BrokenHeroSword, 1)
                     .AddIngredient(ModContent.ItemType<TrueTwilight>(), 1)
                     .AddIngredient(ModContent.ItemType<TrueDurendal>(), 1)
-                    .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "LivingShard"), 12)
+                    .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "LivingShard"), 12)
                     .AddTile(TileID.MythrilAnvil)
                     .Register();
             }

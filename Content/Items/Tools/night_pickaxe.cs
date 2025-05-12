@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools
 {
@@ -59,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
             {
                 CreateRecipe()
                 .AddIngredient(ModContent.ItemType<NightBar>(), 16)
-                .AddIngredient(SangarUtilities.Common.CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
+                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             }

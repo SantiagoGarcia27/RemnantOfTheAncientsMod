@@ -5,6 +5,7 @@ using Terraria;
 using CalamityMod;
 using Terraria.ID;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -25,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public static void LifeSpeed(Worm worm)
         {
             
-            float lifePercentage = Utils1.GetPorcentage(worm.NPC.life, worm.NPC.lifeMax);;
+            float lifePercentage = MathUtils.GetPorcentage(worm.NPC.life, worm.NPC.lifeMax);;
             bool isReaperMode = Reaper.ReaperMode;
 
             if (Main.player[Main.myPlayer].HasBuff(BuffID.Stinky))

@@ -1,6 +1,7 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -70,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             .AddIngredient<ReinforcedIronEnchant>()
             .AddIngredient<DaylightEnchant>()
             .AddIngredient<TuxoniteEnchant>()
-            .AddTile(SangarUtilities.Common.CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
+            .AddTile(CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
             .Register();
 		}
 	}

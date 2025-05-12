@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Terraria.Localization;
 using System;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {
@@ -27,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemBase.type);
-            float damage = Utils1.GetValueFromPorcentage(ItemBase.damage, 75f);
+            float damage = MathUtils.GetValueFromPorcentage(ItemBase.damage, 75f);
             Item.damage = (int)damage;
             Item.DamageType = DamageClass.Melee;
             Item.width = 40;
