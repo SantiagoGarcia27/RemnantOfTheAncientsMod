@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         static Item baseItem = null;
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (baseItem != null)
+            if (baseItem != null && baseItem.netID != 0)
             {
                 baseItem.GetGlobalItem<SaberGlobalItem>().OnHitNPC(baseItem, Main.player[Projectile.owner],target, hit, damageDone);
             }

@@ -4102,6 +4102,11 @@ Mods: {
 				DisplayName: Queen Slime Soul
 				Tooltip: ""
 			}
+
+			GravediggersSickle: {
+				DisplayName: Gravedigger´s Sickle
+				Tooltip: Can apply Cursed Mark to enemies
+			}
 		}
 
 		NPCs: {
@@ -4361,6 +4366,8 @@ Mods: {
 			TrueNightArrow.DisplayName: True Night Arrow
 			TerraArrow.DisplayName: Terra Arrow
 			ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
+			GravediggersSickleProjectile.DisplayName: Gravediggers Sickle Projectile
+			GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
 		}
 
 		Tiles: {

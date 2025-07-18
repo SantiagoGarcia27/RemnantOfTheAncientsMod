@@ -12,6 +12,7 @@ using FargowiltasSouls.Core.Toggler;
 using System.IO;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
+using System.Linq;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -71,7 +72,7 @@ namespace RemnantOfTheAncientsMod
             }
 
             BackgroundTextureLoader.AddBackgroundTexture(this, PlaceHolderPath);
-            fastPlataformOverride();
+       
 
 
 
@@ -93,6 +94,11 @@ namespace RemnantOfTheAncientsMod
                     ToggleLoader.RegisterToggle(item);
                 }
             }
+        }
+        public override void PostSetupContent()
+        {
+            fastPlataformOverride();
+            base.PostSetupContent();
         }
         public static int GetMaxRarity()
         {
@@ -229,7 +235,13 @@ namespace RemnantOfTheAncientsMod
         {
             try
             {
-
+                var detourManager = MonoMod.RuntimeDetour.DetourManager.GetDetourInfo(typeof(Player).GetMethod("Update"));
+                int count = detourManager.Detours.Count();
+                if (count >= 1)
+                {
+                    base.Load();
+                    return;
+                }
                 IL_Player.Update += il =>
                 {
                     var c = new ILCursor(il);

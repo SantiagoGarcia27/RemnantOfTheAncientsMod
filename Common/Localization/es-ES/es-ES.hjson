@@ -4131,6 +4131,11 @@ Mods: {
 				// DisplayName: Queen Slime Soul
 				// Tooltip: ""
 			}
+
+			GravediggersSickle: {
+				DisplayName: Guadaña del enterrador
+				Tooltip: Puede aplicar marca de malición
+			}
 		}
 
 		NPCs: {
@@ -4390,6 +4395,8 @@ Mods: {
 			// TrueNightArrow.DisplayName: True Night Arrow
 			// TerraArrow.DisplayName: Terra Arrow
 			// ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
+			// GravediggersSickleProjectile.DisplayName: Gravediggers Sickle Projectile
+			// GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
 		}
 
 		Tiles: {

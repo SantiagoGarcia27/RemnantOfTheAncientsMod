@@ -272,12 +272,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
 
 
-                    Vector2 pos = Projectile.position;
-                    float widthMultiplier = 3.1f;
-                    float heightMultiplier = ReaperGlobalItem.currentScale + 1.8f;
+                    Vector2 pos = player.position;
+                    float widthMultiplier = 2f;
+                    float heightMultiplier = ReaperGlobalItem.currentScale + 0.5f;
                     float reaperScale = (float)Math.Pow(ReaperGlobalItem.currentScale - 0.5f, 2);           
-                    pos.Y -= 2.1f * 16 * itemBase.scale * reaperScale * 16;
-                    pos.X -= 2.1f * 16 * itemBase.scale * reaperScale * 16;
                     if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<DamageHitbox>()] < 1)
                     {
                         Vector2 size = new(90 * widthMultiplier, 90 * heightMultiplier);
@@ -287,6 +285,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
                         Main.projectile[a].hostile = false;
                         Main.projectile[a].timeLeft = 60;
                         Main.projectile[a].penetrate = 5;
+                        Main.projectile[a].Center = player.Center;
                         DamageHitbox.SetItem(itemBase);
                         CurrentStage = AttackStage.Unwind;
                     }

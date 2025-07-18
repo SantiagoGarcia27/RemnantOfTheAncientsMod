@@ -587,7 +587,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
         {
-            Main.player[projectile.owner].Hurt(PlayerDeathReason.ByNPC(NPC.whoAmI), damageDone / 2, hit.HitDirection);      
+            if (!projectile.minion)
+            {
+                Main.player[projectile.owner].Hurt(PlayerDeathReason.ByNPC(NPC.whoAmI), damageDone / 2, hit.HitDirection);
+            }
             base.OnHitByProjectile(projectile, hit, damageDone);
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
