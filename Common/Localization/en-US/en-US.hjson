@@ -4107,6 +4107,11 @@ Mods: {
 				DisplayName: Gravedigger´s Sickle
 				Tooltip: Can apply Cursed Mark to enemies
 			}
+
+			NightLotus: {
+				DisplayName: Night Lotus
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4368,6 +4373,8 @@ Mods: {
 			ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
 			GravediggersSickleProjectile.DisplayName: Gravediggers Sickle Projectile
 			GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
+			NightLotusSickleProjectile.DisplayName: Night Lotus Sickle Projectile
+			NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
 		}
 
 		Tiles: {

@@ -777,10 +777,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator
             else if (NPC.life <= NPC.lifeMax / 2) currentPhase = 2;
             else currentPhase = 1;
         }
-        public int AttackCounterScale(int Num, Player player)
-        {
-            return (!Reaper.ReaperMode) ? Num : Num - 100;
-        }
         public void DesertTp()
         {
             tpDirection = Main.rand.Next(1, 100);

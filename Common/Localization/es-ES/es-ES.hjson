@@ -4136,6 +4136,11 @@ Mods: {
 				DisplayName: Guadaña del enterrador
 				Tooltip: Puede aplicar marca de malición
 			}
+
+			NightLotus: {
+				DisplayName: Loto nocturno
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4397,6 +4402,8 @@ Mods: {
 			// ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
 			// GravediggersSickleProjectile.DisplayName: Gravediggers Sickle Projectile
 			// GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
+			// NightLotusSickleProjectile.DisplayName: Night Lotus Sickle Projectile
+			// NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
 		}
 
 		Tiles: {

@@ -7,11 +7,11 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
-
-	public class GravediggersSickle : ModItem
+	public class NightLotus : ModItem
 	{
         public int attackType = 0;
         public int comboExpireTimer = 0;
@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 15;
+			Item.damage = 30;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 40;
 			Item.height = 80;
@@ -37,23 +37,26 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
             Item.GetGlobalItem<RemnantGlobalItem>().SecondClickWeapons.Add(ModContent.ItemType<GravediggersSickle>());
-            Item.shoot = ModContent.ProjectileType<GravediggersSickleSwingProjectile>();
+            Item.shoot = ModContent.ProjectileType<NightLotusSickleSwingProjectile>();
         }
         public override bool CanUseItem(Player player)
         {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<GravediggersSickleProjectile>()] > 0) return false;
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<NightLotusSickleProjectile>()] > 0) return false;
             return base.CanUseItem(player);
         }
         public override bool? UseItem(Player player)
         {
-			if (player.ownedProjectileCounts[ModContent.ProjectileType<GravediggersSickleProjectile>()] > 0) return false;     
+			if (player.ownedProjectileCounts[ModContent.ProjectileType<NightLotusSickleProjectile>()] > 0) return false;
+
+           
             return base.UseItem(player);
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             if (player.altFunctionUse == 2)
             {
-                Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<GravediggersSickleProjectile>(), damage, knockback, player.whoAmI, ai2: Type);
+                 Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<NightLotusSickleProjectile>(), damage, knockback, player.whoAmI,ai2: Type);
+
             }
             else
             {
@@ -73,11 +76,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void AddRecipes()
 		{
 			CreateRecipe()
-            .AddRecipeGroup("Tumbas", 5)
-			.AddIngredient(ItemID.StoneBlock , 10)
-            .AddRecipeGroup("CorruptBar", 5)
-            .AddTile(TileID.Anvils)
-			.AddCondition(Condition.InGraveyard)
+			.AddIngredient<GravediggersSickle>()
+            .AddIngredient<NightBar>(5)
+            .AddTile(TileID.DemonAltar)
 			.Register();
 		}
 	}
