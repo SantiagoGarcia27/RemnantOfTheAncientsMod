@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             DamageClass damagetype = DamageClass.Throwing;
             player.GetDamage(damagetype) *= 1 + damageBonus / 100f;
-            player.GetCritChance(damagetype) *= 1 + critBonus / 100f;
+            player.GetCritChance(damagetype) += critBonus;
         }
     }
 }

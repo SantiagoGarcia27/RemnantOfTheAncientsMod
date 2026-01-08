@@ -8,7 +8,6 @@ using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Alas;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.pets;
@@ -25,9 +24,9 @@ using RemnantOfTheAncientsMod.Common.Systems;
 using System.Collections.Generic;
 using System;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
-using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using SangarUtilities.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 
 
 namespace RemnantOfTheAncientsMod.Common.Drops
@@ -134,7 +133,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         {
             bool Infernum =DificultyUtils.InfernumMode;
 
-            if (npc.type == NPCType<DesertAniquilator>())
+            if (npc.type == NPCType<DesertAnnihilator>())
                 npcLoot.AddIff(() =>DificultyUtils.InfernumMode, ItemType<Desert_Relic_Infernum>());
             else if (npc.type == NPCType<FrozenAssaulter>())
                 npcLoot.AddIff(() =>DificultyUtils.InfernumMode, ItemType<Frozen_Relic_Infernum>());
@@ -144,7 +143,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void FargosLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (npc.type == NPCType<DesertAniquilator>())
+            if (npc.type == NPCType<DesertAnnihilator>())
             {
                 npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive([new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist()], ItemType<DesertMedalion>()));
             }
@@ -306,7 +305,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<LaserMachineGun>(), 100, 100 / 5));
                         break;
                 }
-                if (npc.type == NPCType<DesertAniquilator>())
+                if (npc.type == NPCType<DesertAnnihilator>())
                 {
                     npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DesertAnhilatorReaperSoulRule(), ItemType<DesertAnnihilatorSoul>()));
                     BossTrpoyMask(ItemType<DesertTrophy>(), ItemType<DesertAMask>(), npcLoot);
@@ -375,7 +374,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         { NPCID.Golem, () => !NPC.downedGolemBoss },
                         { NPCID.CultistBoss, () => !NPC.downedAncientCultist },
                         { NPCID.MoonLordCore, () => !NPC.downedMoonlord },
-                        { NPCType<DesertAniquilator>(), () => !RemnantDownedBossSystem.downedDesert },
+                        { NPCType<DesertAnnihilator>(), () => !RemnantDownedBossSystem.downedDesert },
                         { NPCType<FrozenAssaulter>(), () => !RemnantDownedBossSystem.downedFrozen },
                         { NPCType<InfernalTyrantHead>(), () => !RemnantDownedBossSystem.downedTyrant }
                     };

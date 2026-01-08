@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
-            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            int associatedNPCType = ModContent.NPCType<DesertAnnihilator>();
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
@@ -75,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
-            int associatedNPCType = ModContent.NPCType<DesertAniquilator>();
+            int associatedNPCType = ModContent.NPCType<DesertAnnihilator>();
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {

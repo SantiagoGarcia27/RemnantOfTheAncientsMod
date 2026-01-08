@@ -11,12 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Undead");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Mort-vivant");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Muertos viviente");
-            ////Description.SetDefault("Your senses are heightened");
-            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tes sens sont exacerbés");
-            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tus sentidos se agudizan");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing
@@ -33,9 +27,9 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             player.ammoCost75 = true;
             player.GetDamage(DamageClass.Throwing) *= 1.20f;
 
-            player.GetModPlayer<RemnantPlayer>().UndeadInmunity();
+            player.GetModPlayer<RemnantPlayer>().UnreadInmunity();
             int Buff = BuffType<Skeleton>();
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
+            player.GetModPlayer<RemnantPlayer>().ScrollImmunity(Buff);
         }
     }
 }

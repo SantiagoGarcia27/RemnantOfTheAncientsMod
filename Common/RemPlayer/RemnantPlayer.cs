@@ -89,7 +89,7 @@ namespace RemnantOfTheAncientsMod
 		public bool BrainDogde;
 		public float EnemyProjectilesScaleBouns = 1;
 		public float EnemyProjectilesSpeedScaleBouns = 1;
-
+		
 	
 		#region tuxonite
 		public static bool tuxoniteStealth;
@@ -97,9 +97,9 @@ namespace RemnantOfTheAncientsMod
 		public static float tuxoniteStealthCounter = 0;
 
 
-		#endregion
+        #endregion
 
-		public static float GenericChargeCouldown { get; set; }
+        public static float GenericChargeCouldown { get; set; }
 		public static float GenericChargeCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
 
 		public static float GenericAmmoAmmount { get; set; }
@@ -379,10 +379,10 @@ namespace RemnantOfTheAncientsMod
 		[JITWhenModsEnabled("CalamityMod")]
 		public static void CalamityMessage()
 		{
-            GetInstance<CalamityConfig>().RemoveReforgeRNG = false;
-            if (GetInstance<CalamityConfig>().RemoveReforgeRNG)
+            GetInstance<CalamityServerConfig>().RemoveReforgeRNG = false;
+            if (GetInstance<CalamityServerConfig>().RemoveReforgeRNG)
 			{
-				ChatHelper.BroadcastChatMessage(NetworkText.From(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Configs.CalamityConfig.RemoveReforgeRNG.Label"))), Color.Red);
+				ChatHelper.BroadcastChatMessage(NetworkText.From(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Configs.CalamityConfig.CalamityServerConfig.Label"))), Color.Red);
 			}
 		}
 		public static void WormHoleEffect(Player player)
@@ -511,7 +511,7 @@ namespace RemnantOfTheAncientsMod
 				target.AddBuff(b, 300);
 			}
 		}
-		public void UndeadInmunity()
+		public void UnreadInmunity()
 		{
 			Player.buffImmune[BuffID.Blackout] = true;
 			Player.buffImmune[BuffID.Horrified] = true;
@@ -520,6 +520,7 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.TheTongue] = true;
 			Player.buffImmune[BuffID.CursedInferno] = true;
 			Player.buffImmune[BuffID.Ichor] = true;
+			Player.buffImmune[BuffID.VortexDebuff] = true;
 			AnkInmunity();
 		}
 		public void AnkInmunity()
@@ -550,7 +551,7 @@ namespace RemnantOfTheAncientsMod
 			ScrollsBuff.Add(BuffType<Infernal>());
 			ScrollsBuff.Add(BuffType<QueenSlimeScrollBuff>());
 		}
-		public void ScrollInmunity(int buff)
+		public void ScrollImmunity(int buff)
 		{
 			AddScrollBuff();
 			foreach (int Scrollbuff in ScrollsBuff)

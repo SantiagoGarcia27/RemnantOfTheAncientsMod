@@ -67,7 +67,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			ItemID.JoustingLance,
 			ItemID.HallowJoustingLance,
 			ItemID.ShadowJoustingLance,
-			ItemID.UnholyTrident
+			ItemID.UnholyTrident,
+			ItemID.Gungnir
 		];
 		public List<int> CoinsId =
 		[
@@ -178,7 +179,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 				else if (item.type == ItemID.DaedalusStormbow)
 				{
-					item.DefaultToRangedWeapon(item.shoot, item.ammo, 24, item.shootSpeed);
+					item.DefaultToRangedWeapon(item.shoot, AmmoID.Arrow, 24, item.shootSpeed);
 					item.SetWeaponValues(35, item.knockBack);
 				}
 				else if (item.type == ItemID.FetidBaghnakhs)

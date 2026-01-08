@@ -23,6 +23,7 @@ Mods: {
 				{$CommonItemTooltip.IncreasesMaxLifeBy}
 				Summon a flinx minion to protect you.
 				'''
+			TrueHallowed: Become immune and summon 2 clones after striking an enemy.
 		}
 
 		Messages: {
@@ -717,7 +718,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMagicDamage}
-					{$CommonItemTooltip.PercentIncreasedMagicCritChance}
+					{$CommonItemTooltip.PercentIncreasedMagicCritChance@1}
 					'''
 			}
 
@@ -4112,6 +4113,61 @@ Mods: {
 				DisplayName: Night Lotus
 				Tooltip: ""
 			}
+
+			TrueHallowedGreaves: {
+				DisplayName: True Hallowed Greaves
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					'''
+			}
+
+			TrueHallowedHeadgear: {
+				DisplayName: True Hallowed Headgear
+				Tooltip:
+					'''
+					{$CommonItemTooltip.IncreasesMaxManaBy}
+					{$CommonItemTooltip.PercentIncreasedMagicDamageCritChance@1}
+					'''
+			}
+
+			TrueHallowedHelmet: {
+				DisplayName: True Hallowed Helmet
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance@1}
+					'''
+			}
+
+			TrueHallowedHood: {
+				DisplayName: True Hallowed Hood
+				Tooltip:
+					'''
+					{$CommonItemTooltip.IncreasesMaxMinionsBy}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					'''
+			}
+
+			TrueHallowedMask: {
+				DisplayName: True Hallowed Mask
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamageCritChance}
+					{$CommonItemTooltip.PercentIncreasedMeleeSpeed@1}
+					'''
+			}
+
+			TrueHallowedPlateMail: {
+				DisplayName: True Hallowed Plate Mail
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeCritChance}"
+			}
+
+			HydraCluster: {
+				DisplayName: Hydra Cluster
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4209,6 +4265,7 @@ Mods: {
 			TitaniumZombie.DisplayName: Titanium Zombie
 			DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
 			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
+			DesertAnnihilator.DisplayName: Desert Annihilator
 			HallowedZombie.DisplayName: Armored Zombie
 			DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
@@ -4375,6 +4432,8 @@ Mods: {
 			GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
 			NightLotusSickleProjectile.DisplayName: Night Lotus Sickle Projectile
 			NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
+			PlayerClone.DisplayName: Player Clone
+			HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
 		}
 
 		Tiles: {

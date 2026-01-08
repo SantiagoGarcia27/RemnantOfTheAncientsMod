@@ -56,8 +56,6 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeBody"));
                 ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeTail"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "SkeletronPrime2"));
-
                 ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Cataclysm"));
                 ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Catastrophe"));
 

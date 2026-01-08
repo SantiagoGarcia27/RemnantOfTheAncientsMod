@@ -34,8 +34,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Boots
             ];
 
             player.flowerBoots = true;
-
-            if (FastBlocks.Contains(DistanceUtils.GetPlayerFlour(player)))
+            int playerFlour = DistanceUtils.GetPlayerFlour(player);
+            if (FastBlocks.Contains(playerFlour))
             {
                 player.moveSpeed += 2.2f;
                 player.DoBootsEffect(player.DoBootsEffect_PlaceFlamesOnTile);

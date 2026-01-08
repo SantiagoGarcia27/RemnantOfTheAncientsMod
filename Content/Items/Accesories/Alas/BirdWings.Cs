@@ -12,15 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Alas
     {
         public override void SetStaticDefaults()
         {
-            // //DisplayName.SetDefault("Bird Wings");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ailes D'oiseau");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Alas de Ave");
-            //Tooltip.SetDefault("Allows flight and fall slowly"
-            // +"\n10% increased movment speed");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Permet de voler et de tomber lentement"
-            ////+ "\n10% d'augmentation de la vitesse de déplacement");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Permite volar y caer lentamente"
-            // +"\nAumenta la velocidad de movimiento en un 10%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(39, 5f, 0.2f);
         }

@@ -1,3 +1,4 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -81,9 +82,28 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
         }
+        public static bool TouchFlour(NPC npc)
+        {
+            return Main.tile[(int)(npc.Center.X / 16), (int)((npc.Center.Y + (2 * 16)) / 16)].HasTile;
+        }
         public static bool TouchFlour(Projectile projectile)
         {
-            return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].HasTile;
+            Tile tile = Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)];
+            return tile.HasTile && tile.IsTileSolidGround();
+        }
+        public static bool IsTileSolidGround(this Tile tile)
+        {
+            if (tile != null && tile.HasUnactuatedTile)
+            {
+                if (!Main.tileSolid[tile.TileType])
+                {
+                    return Main.tileSolidTop[tile.TileType];
+                }
+
+                return true;
+            }
+
+            return false;
         }
         public static bool TouchFlourLiquid(Player player)
         {
@@ -94,9 +114,10 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
         }
 
-        public static int GetPlayerFlour(Player player)
+        public static int GetPlayerFlour(Player player,int depth = 1)
         {
-            return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].TileType;
+            Tile tile = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (depth + 1) * 16) / 16)];
+            return tile.HasTile ? tile.TileType : -1; 
         }
        
 

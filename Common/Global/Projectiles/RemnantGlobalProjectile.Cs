@@ -441,10 +441,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     AttackCounter++;
                 }
             }
-            if(isHomming)
+            else if(projectile.type == ProjectileID.Excalibur)
+            {
+                if(projectile.localAI[2] >= 0 && Main.projectile[(int)projectile.localAI[2]] != null && Main.projectile[(int)projectile.localAI[2]].type == ModContent.ProjectileType<PlayerClone>())
+                {
+                    projectile.Center = Main.projectile[(int)projectile.localAI[2]].Center;
+                }
+            }
+            if (isHomming)
             {
 
-                HommingProjectile(projectile, Range: 800f, speed: ItemOwner.shootSpeed,rotationBonus:90f);
+                HommingProjectile(projectile, Range: 800f, speed: ItemOwner.shootSpeed, rotationBonus: 90f);
             }
             if (projectile.scale > 1)
             {

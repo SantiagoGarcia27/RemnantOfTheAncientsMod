@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             player.noFallDmg = true;
             player.GetModPlayer<DashPlayer>().DashEquipped = true;
             int Buff = BuffType<Eye>();
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff); 
+            player.GetModPlayer<RemnantPlayer>().ScrollImmunity(Buff); 
         }
 
     }

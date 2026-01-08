@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
+using System;
 
 namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
 {
@@ -52,10 +53,12 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         }
         public float GetFinalDamage()
         {
-            var damageBonus = Main.LocalPlayer.GetDamage(Main.LocalPlayer.HeldItem.DamageType).Multiplicative;
-            var GenericDamageBonus = Main.LocalPlayer.GetDamage(DamageClass.Generic).Multiplicative;
-            var FinalDamage = (damageBonus * 100) - 100 + (GenericDamageBonus * 100) - 100;
-            return FinalDamage;
+            Player player = Main.LocalPlayer;
+            var specificDamage = player.GetTotalDamage(player.HeldItem.DamageType);
+            float totalMultiplier = specificDamage.ApplyTo(1f);
+            float percentageBonus = (totalMultiplier * 100f) - 100f;
+
+            return MathF.Round(percentageBonus);
         }
     }
     public class CritBonusDisplay : InfoDisplay
@@ -67,10 +70,14 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         }
         public float GetFinalCrit()
         {
-            var CritBonus = Main.LocalPlayer.GetCritChance(Main.LocalPlayer.HeldItem.DamageType);
-            var GenericCritBonus = Main.LocalPlayer.GetCritChance(DamageClass.Generic);
-            var FinalCrit = CritBonus + GenericCritBonus;
-            return FinalCrit;
+            Player player = Main.LocalPlayer;
+
+            // GetTotalCritChance returns the total crit chance as a percentage (e.g., 14 for 14%)
+            float totalCritChance = player.GetTotalCritChance(player.HeldItem.DamageType);
+
+            // Subtract the base crit chance (4%) to get only the bonus
+            float critBonus = totalCritChance - 4f;
+            return MathF.Round(critBonus);
         }
     }
     public class LifeRegenBonusDisplay : InfoDisplay

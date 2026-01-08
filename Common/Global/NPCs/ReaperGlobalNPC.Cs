@@ -261,6 +261,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             npc.lifeMax *= Reaper.ReaperMode ? 2 : 1;
             npc.damage *= Reaper.ReaperMode ? 2 : 1;
         }
+        int primePhase = 0;
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
             if (Reaper.ReaperMode)
@@ -493,7 +494,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                     if (npc.type == NPCID.QueenBee)
                     {
-                        if (attackCounter < 300)
+                        if (attackCounter < 600)
                         {
                             attackCounter++;
                         }
@@ -634,7 +635,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                                     if (Main.npc[i].type == NPCID.Spazmatism)
                                     {
                                         updateRotation(npc, false);
-                                        var p = ShootIa(npc, npc.damage / 2, ModContent.ProjectileType<HealthBream>(), Main.npc[i], 10f);
+                                        var p = ShootIa(npc, 10, ModContent.ProjectileType<HealthBream>(), Main.npc[i], 10f);
                                         Main.projectile[p].Size = new(60f, 60f);
                                     }
                                 }
@@ -643,8 +644,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
 
                     bool[] IsInmune = new bool[4];
+                
                     if (npc.type == NPCID.SkeletronPrime)
                     {
+                        int handAmmount = 8;
+
                         if (NPC.AnyNPCs(NPCID.PrimeCannon) || NPC.AnyNPCs(NPCID.PrimeLaser) || NPC.AnyNPCs(NPCID.PrimeSaw) || NPC.AnyNPCs(NPCID.PrimeVice))
                         {
                             for (int a = 0; a < Main.maxNPCs; a++)
@@ -677,21 +681,56 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
                         if (!npc.dontTakeDamage)
                         {
-                            if (attackCounter < 200)
+                            if (npc.life >= npc.lifeMax * 0.75f)
                             {
-                                attackCounter++;
+                                if (attackCounter < 200)
+                                {
+                                    attackCounter++;
+                                }
+                                else
+                                {
+                                    attackCounter = 0;
+                                }
+                                if (attackCounter == 180)
+                                {
+                                    for (int i = -2; i < 5; i++)
+                                    {
+                                        Vector2 pos = (player.Center - npc.Center).RotatedBy(i * 0.2f);
+                                        int proj = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, pos, ProjectileID.PinkLaser, 20, 1, Main.myPlayer);
+                                        Main.projectile[proj].velocity /= 2;
+                                    }
+                                }
                             }
                             else
                             {
-                                attackCounter = 0;
-                            }
-                            if (attackCounter == 180)
-                            {
-                                for (int i = -2; i < 5; i++)
+                                if (primePhase <= 4) primePhase++;
+                                if (primePhase < 5)
                                 {
-                                    Vector2 pos = (player.Center - npc.Center).RotatedBy(i * 0.2f);
-                                    int proj = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, pos, ProjectileID.PinkLaser, 20, 1, Main.myPlayer);
-                                    Main.projectile[proj].velocity /= 2;
+                                    int handId = NPCID.PrimeSaw;
+                                    switch (primePhase)
+                                    {
+                                        case 1:
+                                            handId = NPCID.PrimeLaser;
+                                            break;
+                                        case 2:
+                                            handId = NPCID.PrimeCannon;
+                                            break;
+                                        case 3:
+                                            handId = NPCID.PrimeVice;
+                                            break;
+                                        case 4:
+                                            handId = NPCID.PrimeSaw; 
+                                            break;
+                                    }
+                                    for (int i = -(int)(handAmmount / 2); i < (int)(handAmmount / 2); i++)
+                                    {
+                                        var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, handId, Main.myPlayer);
+                                        Main.npc[a].ai[0] = i;
+                                        Main.npc[a].ai[1] = npc.whoAmI;
+                                        Main.npc[a].target = npc.target;
+                                        Main.npc[a].netUpdate = true;
+                                    }
+                                    
                                 }
                             }
                         }

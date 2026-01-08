@@ -25,7 +25,6 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
-using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant

@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
         {
             player.shadowDodge = true;
             int Buff = BuffType<BrainOfChutuluScrollBuff>();
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
+            player.GetModPlayer<RemnantPlayer>().ScrollImmunity(Buff);
            
         }
     }

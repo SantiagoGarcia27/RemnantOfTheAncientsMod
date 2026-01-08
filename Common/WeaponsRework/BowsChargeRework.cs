@@ -62,7 +62,6 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
                 velocity *= _timmer /*/ 2*/;
                 if (velocity == Vector2.Zero) velocity.X = 5 * player.direction * _timmer;
                 float damageMultiplier = 1 + ((_timmer / (_timmerMax * 2)) * 3);
-                //Main.NewText(velocity + "|" + damageMultiplier);
                 damage *= (int)damageMultiplier;
                 knockback *= damageMultiplier;
                 // item.GetGlobalItem<RemnantGlobalItem>().Timmer = 0;
@@ -78,12 +77,6 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
                 if (IsBow && BowsReworkConfig)
                 {
                     AutoCharge = player.GetModPlayer<RemnantPlayer>().AutoCharge;
-                    //if (Main.mouseLeft)
-                    //{
-                    // Main.NewText(Canshoot + "|" + _timmer + "|" + _timmerMax + "|" + item.GetGlobalItem<RemnantGlobalItem>().Timmer);
-                    //return false;	
-                    // }
-                   // Main.NewText(_timmer + "||" + Canshoot + "|" + Main.mouseLeftRelease + "||" + AutoCharge);
                     if ((_timmer > 1 || Canshoot) && (Main.mouseLeftRelease || AutoCharge))
                     {
                         Canshoot = false;
@@ -113,13 +106,8 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
                     }
                 }
                 if (Canshoot || !BowsReworkConfig)
-                {
                     return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-                }
-                else
-                {
-                    return false;
-                }
+                else return false;
             }
             else
             {

@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
@@ -17,7 +16,7 @@ using Microsoft.Xna.Framework;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {
@@ -50,12 +49,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
         {
             itemLoot.Add(ItemDropRule.Common(ItemType<DesertMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
-            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAniquilator>())); ;
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAnnihilator>())); 
             itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<DesertBow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
             itemLoot.Add(ItemDropRule.ByCondition(new DesertReaperSoul(), ItemType<DesertAnnihilatorSoul>()));
         }
-        //public override int BossBagNPC => NPCType<DesertAniquilator>();
+        //public override int BossBagNPC => NPCType<DesertAnnihilator>();
 
         public override Color? GetAlpha(Color lightColor)
         {
@@ -140,7 +139,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
     public class DesertReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NPCType<DesertAniquilator>())] && Reaper.ReaperMode;
+        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NPCType<DesertAnnihilator>())] && Reaper.ReaperMode;
         public bool CanShowItemDropInUI() => true;
         public string GetConditionDescription() => null;
     }

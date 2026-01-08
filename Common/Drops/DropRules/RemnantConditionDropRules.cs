@@ -1,16 +1,12 @@
-﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
@@ -58,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         }
         public class DesertAnhilatorReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
-            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(ModContent.NPCType<DesertAniquilator>())] && Reaper.ReaperMode;
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(ModContent.NPCType<DesertAnnihilator>())] && Reaper.ReaperMode;
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }

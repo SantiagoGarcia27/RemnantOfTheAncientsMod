@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             player.moveSpeed += 0.50f;
             player.maxMinions++;
             int Buff = BuffType<QueenSlimeScrollBuff>();
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
+            player.GetModPlayer<RemnantPlayer>().ScrollImmunity(Buff);
         }
     }
 }

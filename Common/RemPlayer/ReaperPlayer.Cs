@@ -13,13 +13,13 @@ using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.Common.Configs;
 using SangarUtilities.Common;
 using System;
 using System.Linq;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 
 
 public class ReaperPlayer : ModPlayer
@@ -113,7 +113,7 @@ public class ReaperEffectsPlayer : ModPlayer
         }
 
 
-        if (type == NPCType<DesertAniquilator>())
+        if (type == NPCType<DesertAnnihilator>())
             GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul = value;
         else if (type == NPCType<FrozenAssaulter>())
             GetInstance<ConfigReaperSouls>().ToggleFrozenAssaulterSoul = value;
@@ -191,7 +191,7 @@ public class ReaperEffectsPlayer : ModPlayer
     }   
     private float RespawnTimeCalculator()
     {
-        bool DesertAnhilatorActivated = SoulIsEnabled(NPCType<DesertAniquilator>());
+        bool DesertAnhilatorActivated = SoulIsEnabled(NPCType<DesertAnnihilator>());
 
         bool MoonlordRespawnActivated = SoulIsEnabled(NPCID.MoonLordCore);
 
@@ -452,7 +452,7 @@ public class ReaperSoulsPlayer : ModPlayer
         SubloadSouls(NPCID.QueenBee, GetInstance<ConfigReaperSouls>().ToggleQueenBeeSoul.ToInt());
         SubloadSouls(NPCID.SkeletronHead, GetInstance<ConfigReaperSouls>().ToggleSkeletronSoul.ToInt());
         SubloadSouls(NPCID.Deerclops, GetInstance<ConfigReaperSouls>().ToggleDearclopsSoul.ToInt());
-        SubloadSouls(NPCType<DesertAniquilator>(), GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul.ToInt());
+        SubloadSouls(NPCType<DesertAnnihilator>(), GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul.ToInt());
         SubloadSouls(NPCID.WallofFlesh, GetInstance<ConfigReaperSouls>().ToggleWallOfFleshSoul.ToInt());
         SubloadSouls(NPCType<FrozenAssaulter>(), GetInstance<ConfigReaperSouls>().ToggleFrozenAssaulterSoul.ToInt());
         SubloadSouls(NPCID.QueenSlimeBoss, GetInstance<ConfigReaperSouls>().ToggleQueenSlimeSoul.ToInt());
@@ -507,7 +507,7 @@ public class ReaperSoulsPlayer : ModPlayer
             case NPCID.MoonLordCore: return 17;
             default:
                 
-                if(id == NPCType<DesertAniquilator>()) return 18;
+                if(id == NPCType<DesertAnnihilator>()) return 18;
                 else if (id == NPCType<FrozenAssaulter>()) return 19;
                 else if (id == NPCType<InfernalTyrantHead>()) return 20;
                 return -1;
@@ -535,7 +535,7 @@ public class ReaperSoulsPlayer : ModPlayer
             case 15: return NPCID.DukeFishron;
             case 16: return NPCID.CultistBoss;
             case 17: return NPCID.MoonLordCore; 
-            case 18: return NPCType<DesertAniquilator>();
+            case 18: return NPCType<DesertAnnihilator>();
             case 19: return NPCType<FrozenAssaulter>();
             case 20: return NPCType<InfernalTyrantHead>();
             default: return -1;

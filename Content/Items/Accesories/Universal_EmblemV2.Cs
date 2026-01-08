@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             DamageClass damagetype = DamageClass.Summon;
             player.GetDamage(damagetype) *= 1 + damageBonus / 100f;
-            player.GetCritChance(damagetype) *= 1 + critBonus / 100f;
+            player.GetCritChance(damagetype) += critBonus;
         }
         public override void AddRecipes()
         {

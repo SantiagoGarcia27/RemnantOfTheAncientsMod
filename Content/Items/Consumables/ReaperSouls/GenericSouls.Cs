@@ -1,13 +1,11 @@
-using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
-using SangarUtilities.Common;
 using Terraria.ID;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
@@ -62,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
     }
     public class DesertAnnihilatorSoul : SoulModel
     {
-        public override NPC BaseNpc => ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAniquilator>()]; 
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAnnihilator>()]; 
        public override Mod ItemMod => GetVanillaMod.Get("RemnantOfTheAncientsMod");
     }
    

@@ -1,9 +1,13 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Mount;
 using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.IL_Mount;
@@ -16,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.Mounts
 		static Item baseItem;
 		public override void SetStaticDefaults()
 		{
-			MountData.spawnDust = ModContent.DustType<Smoke>();
+			MountData.spawnDust = DustID.YellowStarDust;
 			MountData.buff = ModContent.BuffType<SwordMount>();
 			MountData.heightBoost = 20;
 			MountData.fallDamage = 0.5f;
@@ -26,7 +30,6 @@ namespace RemnantOfTheAncientsMod.Content.Mounts
 			MountData.blockExtraJumps = false;
 			MountData.totalFrames = 4;
 			MountData.constantJump = false;
-			MountData.flightTimeMax = 10;
 			MountData.acceleration = 0.3f;
 			MountData.runSpeed = 11f;
 			MountData.flightTimeMax = 1000;
@@ -67,7 +70,6 @@ namespace RemnantOfTheAncientsMod.Content.Mounts
 				MountData.textureHeight = MountData.backTexture.Height();
 			}
 		}
-
 		/*
 		public override void SetMount(Player player) {
 
@@ -190,6 +192,55 @@ mountData.acceleration = 0.3f;
 			}
             base.Dismount(player, ref skipDust);
         }
+		float _rotation = 44.79f;
+        public override bool Draw(List<DrawData> playerDrawData, int drawType, Player drawPlayer, ref Texture2D texture, ref Texture2D glowTexture, ref Vector2 drawPosition, ref Rectangle frame, ref Color drawColor, ref Color glowColor, ref float rotation, ref SpriteEffects spriteEffects, ref Vector2 drawOrigin, ref float drawScale, float shadow)
+        {
+            if (baseItem == null || baseItem.IsAir)
+                baseItem = new Item(ItemID.CopperShortsword);
+			Texture2D textureRequest;
+            try
+            {
+                string texturePath;
+                if (baseItem.type < ItemID.Count)
+                {
+                    texturePath = "Terraria/Images/Item_" + baseItem.type;
+                }
+                else
+                {
+                    texturePath = ItemLoader.GetItem(baseItem.type).Texture;
+                }
 
+                // Use ModContent.Request for proper texture loading
+                textureRequest =  (Texture2D)ModContent.Request<Texture2D>(texturePath);
+                if (textureRequest == null)
+                {
+					textureRequest = ModContent.Request<Texture2D>("Terraria/Images/Item_" + ItemID.CopperShortsword).Value;
+                }
+            }
+            catch
+            {
+                // Fallback to default texture if loading fails
+                textureRequest = ModContent.Request<Texture2D>("Terraria/Images/Item_" + ItemID.CopperShortsword).Value;
+            }
+			Player player = Main.player[Main.myPlayer];
+            Vector2 origin = textureRequest.Size() / 2f;
+            //45
+			bool touchFloor = DistanceUtils.GetPlayerFlour(player) != 0 || DistanceUtils.GetPlayerFlour(player,3) != 0;
+			if (touchFloor) {
+				if (_rotation >= 44.79f) _rotation -= 0.01f;
+			}
+			else {
+				if (_rotation <= 45) _rotation += 0.01f;
+			}
+            
+			
+				Main.spriteBatch.Draw(textureRequest, (player.Center - Main.screenPosition) + new Vector2(0, 10), null, drawColor, _rotation * player.direction, origin, drawScale, spriteEffects, 0f);
+			return false;//base.Draw(playerDrawData, drawType, drawPlayer, ref texture, ref glowTexture, ref drawPosition, ref frame, ref drawColor, ref glowColor, ref rotation, ref spriteEffects, ref drawOrigin, ref drawScale, shadow);
+			/*if (baseItem.IsAir || baseItem == null) baseItem = new Item(ItemID.CopperShortsword);
+                string texturePath = baseItem.type < ItemID.Count ? "Terraria/Images/Item_" + baseItem.type : ItemLoader.GetItem(baseItem.type).Texture;
+			Texture2D request = (Texture2D)ModContent.Request<Texture2D>(texturePath);
+			texture = request;
+            return base.Draw(playerDrawData, drawType, drawPlayer, ref texture, ref glowTexture, ref drawPosition, ref frame, ref drawColor, ref glowColor, ref rotation, ref spriteEffects, ref drawOrigin, ref drawScale, shadow);*/
+        }
     }
 }

@@ -5,7 +5,7 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using System;
@@ -59,7 +59,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 "DesertAniquilator",    
                 6.7f,
                 () => RemnantDownedBossSystem.downedDesert,
-                ModContent.NPCType<DesertAniquilator>(),
+                ModContent.NPCType<DesertAnnihilator>(),
                 new Dictionary<string, object>()
                 {
                     ["spawnItems"] = ModContent.ItemType<DesertGlyph>(),

@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             player.statDefense += 5;
             player.GetArmorPenetration(DamageClass.Generic) = 15;
             int Buff = BuffType<Bee>();
-            player.GetModPlayer<RemnantPlayer>().ScrollInmunity(Buff);
+            player.GetModPlayer<RemnantPlayer>().ScrollImmunity(Buff);
            
         }
     }

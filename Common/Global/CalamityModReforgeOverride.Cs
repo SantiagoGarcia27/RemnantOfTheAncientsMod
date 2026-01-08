@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             //    if (item.CountsAsClass(damageClass)) return prefix;
             //    else return -1;
             //}
-            return /*CalamityMod.CalamityConfig.Instance.RemoveReforgeRNG? GetReworkedReforge(item, rand, storedPrefix):*/ base.ChoosePrefix(item, rand) ;
+            return base.ChoosePrefix(item, rand) ;
         }
         public static Mod calamityMod = RemnantOfTheAncientsMod.CalamityMod;
         public static Mod RemnantOfTheAncient = RemnantOfTheAncientsMod.RemnantOfTheAncients;

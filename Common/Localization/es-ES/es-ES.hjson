@@ -25,6 +25,7 @@ Mods: {
 				{$CommonItemTooltip.IncreasesMaxLifeBy}
 				Invoca un súbdito de copito para que luche por ti.
 				'''
+			TrueHallowed: Te vuelves inmune e invocas clones tras golpear a un enemigo.
 		}
 
 		Messages: {
@@ -4141,6 +4142,61 @@ Mods: {
 				DisplayName: Loto nocturno
 				// Tooltip: ""
 			}
+
+			TrueHallowedGreaves: {
+				DisplayName: Grebas sagradas verdaderas
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
+					''' */
+			}
+
+			TrueHallowedHeadgear: {
+				DisplayName: Tocado sagrado verdadero
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.IncreasesMaxManaBy}
+					{$CommonItemTooltip.PercentIncreasedMagicDamageCritChance@1}
+					''' */
+			}
+
+			TrueHallowedHelmet: {
+				DisplayName: Casco sagrado verdadero
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedRangedDamage}
+					{$CommonItemTooltip.PercentIncreasedRangedCritChance@1}
+					''' */
+			}
+
+			TrueHallowedHood: {
+				DisplayName: Capucha sagrada verdadera
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.IncreasesMaxMinionsBy}
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					''' */
+			}
+
+			TrueHallowedMask: {
+				DisplayName: Máscara sagrada verdadera
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMeleeDamageCritChance}
+					{$CommonItemTooltip.PercentIncreasedMeleeSpeed@1}
+					''' */
+			}
+
+			TrueHallowedPlateMail: {
+				DisplayName: Cota de placas sagrada verdadera
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeCritChance}"
+			}
+
+			HydraCluster: {
+				DisplayName: Cluster de hydra
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4238,6 +4294,7 @@ Mods: {
 			TitaniumZombie.DisplayName: Zombi blindado
 			DesertAnnihilatorGuard.DisplayName: Escolta desético
 			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
+			// DesertAnnihilator.DisplayName: Desert Annihilator
 			HallowedZombie.DisplayName: Zombi blindado
 			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
@@ -4404,6 +4461,8 @@ Mods: {
 			// GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
 			// NightLotusSickleProjectile.DisplayName: Night Lotus Sickle Projectile
 			// NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
+			// PlayerClone.DisplayName: Player Clone
+			// HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
 		}
 
 		Tiles: {

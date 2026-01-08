@@ -1,9 +1,9 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 {
@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
         }
         public override bool CanUseItem(Player player)
         {
-            return player.ZoneDesert && !NPC.AnyNPCs(ModContent.NPCType<DesertAniquilator>());
+            return player.ZoneDesert && !NPC.AnyNPCs(ModContent.NPCType<DesertAnnihilator>());
         }
         public override bool? UseItem(Player player)
         {
@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
             {
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-                int type = ModContent.NPCType<DesertAniquilator>();
+                int type = ModContent.NPCType<DesertAnnihilator>();
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {

@@ -50,7 +50,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sergy
                 return false;
             }
             return drawPlayer.head == EquipLoader.GetEquipSlot(Mod, nameof(Flower_Defender_Helmet), EquipType.Head);
-            //  return Main.LocalPlayer.armor[0].type == ModContent.ItemType<Flower_Defender_Helmet>()|| Main.LocalPlayer.armor[10].type == ModContent.ItemType<Flower_Defender_Helmet>();
         }
         public override Position GetDefaultPosition() => new BeforeParent(PlayerDrawLayers.Head);     
         protected override void Draw(ref PlayerDrawSet drawInfo)

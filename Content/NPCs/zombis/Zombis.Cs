@@ -959,6 +959,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         //    return 0;
         //}
         [JITWhenModsEnabled("CalamityMod")]
-        public bool CalamityConfigEnabled() => ModContent.GetInstance<CalamityConfig>().EarlyHardmodeProgressionRework;
+        public bool CalamityConfigEnabled() => ModContent.GetInstance<CalamityServerConfig>().EarlyHardmodeProgressionRework;
     }
 }

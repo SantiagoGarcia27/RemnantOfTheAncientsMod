@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DAniquilator;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common;
@@ -55,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
             NPC[] RemnantsNpc =
             [
-                ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAniquilator>()],
+                ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAnnihilator>()],
                 ContentSamples.NpcsByNetId[ModContent.NPCType<FrozenAssaulter>()],
                 ContentSamples.NpcsByNetId[ModContent.NPCType<InfernalTyrantHead>()]
             ];
