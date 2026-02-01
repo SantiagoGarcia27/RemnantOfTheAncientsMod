@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 		public override void SetDefaults()
 		{
-			NPC.width = 32;
+			NPC.width = 36;
 			NPC.height = 32;
 			NPC.damage = 25;
 			NPC.defense = 56;

@@ -18,8 +18,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 		public override void SetDefaults()
 		{
-			NPC.width = 32;
-			NPC.height = 32;
+			NPC.width = 24;
+			NPC.height = 42;
 			NPC.damage = 0;
 			NPC.defense = 0;
 			NPC.lifeMax = 9999999;
@@ -27,7 +27,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.friendly = false;
 			AIType = -1;
-			AnimationType = NPCID.BlueSlime;
             NPC.netAlways = true;
             NPC.aiStyle = 0;
             NPC.knockBackResist = 0;
