@@ -18,8 +18,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Flinx
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovementSpeedBonus);
         public override void SetDefaults()
 		{
-			Item.width = 18;
-			Item.height = 18;
+			Item.width = 26;
+			Item.height = 16;
 			Item.value = Item.sellPrice(0, 1, 0, 0); 
 			Item.rare = ItemRarityID.Green;
 			Item.defense = 2;
