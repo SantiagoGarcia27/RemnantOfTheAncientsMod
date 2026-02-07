@@ -23,7 +23,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.AncientChisel);
+            Item.width = 32;
+            Item.height = 32;
             Item.value = Item.sellPrice(0,1,0,0);
             Item.rare = ItemRarityID.Yellow;
         }

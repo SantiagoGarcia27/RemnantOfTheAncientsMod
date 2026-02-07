@@ -17,8 +17,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(10);
         public override void SetDefaults()
         {
-            Item.width = 10;
-            Item.height = 14;
+            Item.width = 32;
+            Item.height = 32;
             Item.value = Item.buyPrice(0, 0, 70, 72);
             Item.rare = ItemRarityID.Green;
             Item.accessory = true;
