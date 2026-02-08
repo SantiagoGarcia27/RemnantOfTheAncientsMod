@@ -1,35 +1,36 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using System.Collections.Generic;
-using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Content.Dusts;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using Terraria.Audio;
-using Terraria.GameInput;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
-using Terraria.Chat;
-using Terraria.Localization;
-using Terraria.UI;
-using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
-using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using RemnantOfTheAncientsMod.Common;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
-using CalamityMod;
-using Terraria.GameContent;
-using RemnantOfTheAncientsMod.Common.Global.Items;
-using ReLogic.Content;
-using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using RemnantOfTheAncientsMod.World;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
+using Terraria.Audio;
+using Terraria.Chat;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameInput;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.UI;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -815,6 +816,27 @@ namespace RemnantOfTheAncientsMod
 				}
 			}
 		}
+        public override void OnEnterWorld()
+        {
+            ShopUtils.maxStyleStat = 0;
+            int sum = 0;
+            if (ModifyAccsesories.mayoresEstiloAccesorios.Max() > 0)
+            {
+                foreach (int estilo in ModifyAccsesories.mayoresEstiloAccesorios)
+                {
+                    sum += estilo;
+                }
+            }
+            if (ModifyAccsesories.mayoresEstiloArmaduras.Max() > 0)
+            {
+                foreach (int estilo in ModifyAccsesories.mayoresEstiloArmaduras)
+                {
+                    sum += estilo;
+                }
+            }
+            ShopUtils.maxStyleStat = sum;
+            base.OnEnterWorld();
+        }
     }
 }//hola
 

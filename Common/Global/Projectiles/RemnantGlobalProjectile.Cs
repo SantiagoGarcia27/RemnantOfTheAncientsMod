@@ -1,6 +1,5 @@
 using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs;
@@ -61,14 +60,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
           
             }
-            if (projectile.bobber)
+            /*if (projectile.bobber)
             {
                 projectile.penetrate = (Main.LocalPlayer.HeldItem.rare + 2);
                 projectile.DamageType = ModContent.GetInstance<FisherDamageClass>();
                 projectile.damage = Main.LocalPlayer.HeldItem.damage + Main.LocalPlayer.fishingSkill;
                 projectile.friendly = true;
                 projectile.hostile = !projectile.friendly;
-            }
+            }*/
 
             if (RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
             {

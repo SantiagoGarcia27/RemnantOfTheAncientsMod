@@ -1,13 +1,12 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Mounts;
 using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Mount
+namespace RemnantOfTheAncientsMod.Content.Items.Mounts
 {
 	public class StarRampage : ModItem
 	{

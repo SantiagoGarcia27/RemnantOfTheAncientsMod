@@ -1,4 +1,4 @@
-﻿using Terraria;
+﻿/*using Terraria;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Global.DamageClasses
@@ -37,4 +37,4 @@ namespace RemnantOfTheAncientsMod.Common.Global.DamageClasses
 			return true;	
 		}
 	}
-}
+}*/

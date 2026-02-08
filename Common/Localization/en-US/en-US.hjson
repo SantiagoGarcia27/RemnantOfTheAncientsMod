@@ -4168,6 +4168,16 @@ Mods: {
 				DisplayName: Hydra Cluster
 				Tooltip: ""
 			}
+
+			ReforgeAnvil: {
+				DisplayName: Reforge Anvil
+				Tooltip: ""
+			}
+
+			RedCrossUI: {
+				DisplayName: Error
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4447,6 +4457,7 @@ Mods: {
 			TuxoniteDoorClosed.MapEntry: Example Door
 			TuxoniteDoorOpen.MapEntry: Example Door
 			TuxoniteTableTile.MapEntry: Table
+			ReforgeAnvilTile.MapEntry: Reforge Anvil Tile
 		}
 
 		Conditions: {
@@ -4847,5 +4858,39 @@ Mods: {
 			PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
 			PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
 		}
+
+		Achievements: {
+			LegionAchievement: {
+				FriendlyName: Uno en medio millón
+				Description: Obtén la Legión, the most refined gem.
+			}
+
+			MaxStyleAchievement: {
+				FriendlyName: Fashionable
+				Description: Obtain the maximum amount possible of Style.
+			}
+
+			DefeatDesertAnnihilatorAchievement: {
+				FriendlyName: Slippery sand
+				Description: Defeat the Desert Annihilator, the guardian of the all dunes.
+			}
+
+			DefeatFrozenAssaulterAchievement: {
+				FriendlyName: Persistent icicle
+				Description: Defeat the Frozen Assaulter, the icy guardian with a sturdy shell
+			}
+
+			DefeatInfernalTyrantAchievement: {
+				FriendlyName: Tyrannicide
+				Description: Defeat the Infernal Tyrant, the ruler of the deep
+			}
+
+			AnkhAmuletAchievement: {
+				FriendlyName: All in one
+				Description: Get the ankh amulet, the most versatile jewelry.
+			}
+		}
+
+		Commands.MaxStyleCommand.Description: Mods.RemnantOfTheAncientsMod.Commands.MaxStyleCommand.Description
 	}
 }

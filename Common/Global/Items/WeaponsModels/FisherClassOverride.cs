@@ -1,4 +1,4 @@
-﻿using CalamityMod.Items.Accessories;
+﻿/*using CalamityMod.Items.Accessories;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -130,7 +130,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 Projectile.NewProjectile(source, position,Velocity, type, damage, knockback, player);
             }
         }
-        */
+        // Aca terminaba el comentario original
         public override bool InstancePerEntity => true;
     }
     public class BobersOverride : GlobalProjectile
@@ -176,4 +176,4 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         }
         public override bool InstancePerEntity => true;
     }
-}
+}*/

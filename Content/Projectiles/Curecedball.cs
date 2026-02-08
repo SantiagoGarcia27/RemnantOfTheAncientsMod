@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 			Projectile.extraUpdates = 1;
 			Main.projFrames[Projectile.type] = 3;
 			Projectile.ignoreWater = true;
-			Projectile.aiStyle = ProjectileID.BallofFire;
+			//Projectile.aiStyle = ProjectileID.BallofFire;
 			Projectile.CloneDefaults(ProjectileID.BallofFire);
 
 		}

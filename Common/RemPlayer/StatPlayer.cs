@@ -1,6 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using InfernumMode.Content.Achievements;
+using RemnantOfTheAncientsMod.Content.Achievements;
+using System;
+using System.Collections.Generic;
 using System.Threading.Channels;
 using Terraria;
+using Terraria.Achievements;
+using Terraria.GameContent.Achievements;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.RemPlayer
@@ -23,6 +29,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
     public class StatPlayer : ModPlayer
     {
         public int StyleStat = 0;
+        public const int MaxStyleStat = 110;
 
 
         public float ArrowSpeedBonus = 1;
@@ -64,6 +71,15 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                     ProjectilePenetrationChance[damageClass] = 0;
                 }
             }
+        }
+
+        public override void UpdateEquips()
+        {
+            if(!ModContent.GetInstance<MaxStyleAchievement>().Condition.IsCompleted && StyleStat > ModContent.GetInstance<MaxStyleAchievement>().Condition.Value)
+            {
+                ModContent.GetInstance<MaxStyleAchievement>().Condition.Value = StyleStat;
+            }
+            base.UpdateEquips();
         }
 
         public float GetProjectilePenetration(DamageClass damageClass)

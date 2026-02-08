@@ -16,8 +16,6 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Items.Guides;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
-using RemnantOfTheAncientsMod.World;
-using Terraria.Localization;
 using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
@@ -148,9 +146,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (item is not null)
                 {
-                    decimal discount = Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat != 0 ? (decimal)(1f - (Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat / 2 / 100f)) : 1;
-                    discount = (float)discount > 0.1f ? discount : (decimal)0.1;
-
+                    decimal discount = (decimal)ShopUtils.GetShopDiscount(Main.LocalPlayer);
                     item.shopCustomPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);
                 }
             }

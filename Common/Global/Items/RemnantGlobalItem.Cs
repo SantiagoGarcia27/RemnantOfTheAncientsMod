@@ -21,6 +21,7 @@ using RemnantOfTheAncientsMod.World;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using SangarUtilities.Common.UtilsTweaks;
+using System.Linq;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -167,7 +168,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public override void SetDefaults(Item item)
 		{
 			bool Calamity = RemnantOfTheAncientsMod.CalamityMod != null;
-
 
 			if (WeaponConf)
 			{
@@ -784,6 +784,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 			orig(item, i);
 		}
+
+
 		float counter;
 
 		public List<Mod> ModsWith30Endless =

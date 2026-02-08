@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using Terraria;
 using CalamityMod;
 using Terraria.ID;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant

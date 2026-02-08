@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Dusts;
-using RemnantOfTheAncientsMod.Content.Items.Mount;
+using RemnantOfTheAncientsMod.Content.Items.Mounts;
 using System;
 using System.Collections.Generic;
 using Terraria;

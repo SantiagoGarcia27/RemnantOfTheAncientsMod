@@ -649,7 +649,7 @@ Mods: {
 			}
 
 			Ankh_Amulet: {
-				DisplayName: Amuleto de Cruz Anzata
+				DisplayName: Amuleto de Cruz Ansata
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxManaBy} 
@@ -4197,6 +4197,16 @@ Mods: {
 				DisplayName: Cluster de hydra
 				// Tooltip: ""
 			}
+
+			ReforgeAnvil: {
+				// DisplayName: Reforge Anvil
+				// Tooltip: ""
+			}
+
+			RedCrossUI: {
+				// DisplayName: Error
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4476,6 +4486,7 @@ Mods: {
 			TuxoniteDoorClosed.MapEntry: Puerta
 			TuxoniteDoorOpen.MapEntry: Puerta
 			TuxoniteTableTile.MapEntry: Mesa
+			// ReforgeAnvilTile.MapEntry: Reforge Anvil Tile
 		}
 
 		Conditions: {
@@ -4876,5 +4887,39 @@ Mods: {
 			// PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
 			// PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
 		}
+
+		Achievements: {
+			LegionAchievement: {
+				FriendlyName: One in half a million
+				Description: Obtain the Legion, la gema mas refinada.
+			}
+
+			MaxStyleAchievement: {
+				FriendlyName: A la moda
+				Description: Obtén el máximo valor posible de estilo
+			}
+
+			DefeatDesertAnnihilatorAchievement: {
+				FriendlyName: Arena escurridiza
+				Description: Derrota al Aniquilador Del Desierto, el guardián de todas las dunas.
+			}
+
+			DefeatFrozenAssaulterAchievement: {
+				FriendlyName: Carámbano persistente
+				Description: Derrota al Asaltante Congelado, el guardián helado de coraza robusta.
+			}
+
+			DefeatInfernalTyrantAchievement: {
+				FriendlyName: Tiranicidio
+				Description: Derrota al Tirano Infernal, el gobernante de lo profundo.
+			}
+
+			AnkhAmuletAchievement: {
+				FriendlyName: Todo en uno
+				Description: Obtén el amuleto de la cruz ansata, la joyeria mas versatil.
+			}
+		}
+
+		// Commands.MaxStyleCommand.Description: Mods.RemnantOfTheAncientsMod.Commands.MaxStyleCommand.Description
 	}
 }

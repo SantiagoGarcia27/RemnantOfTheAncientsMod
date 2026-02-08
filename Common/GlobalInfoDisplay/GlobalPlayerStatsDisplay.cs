@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using System;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
 {
@@ -165,8 +166,10 @@ namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
         public override bool Active() => Main.LocalPlayer.GetModPlayer<InfoDisplayPlayer>().showStyleStatBonus && Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat > 0;
         public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
         {
-            
-            return $"{Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat}/102 Style bonus";
+            int StyleStat = Main.LocalPlayer.GetModPlayer<StatPlayer>().StyleStat;
+
+
+            return $"{StyleStat}/{ShopUtils.maxStyleStat} Style bonus";
         }
     }
     public class PierceChanceBonusDisplay : InfoDisplay

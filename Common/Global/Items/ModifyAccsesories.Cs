@@ -10,12 +10,14 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -27,10 +29,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             base.SetStaticDefaults();
         }
+        public static int[] mayoresEstiloAccesorios = [0,0,0,0,0,0,0];
+        public static int[] mayoresEstiloAccesoriosID = [0, 0, 0, 0, 0, 0, 0];
+        public static int[] mayoresEstiloArmaduras = [0,0,0];
+        public static int[] mayoresEstiloArmadurasID = [0, 0, 0];
         public override void SetDefaults(Item item)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-
+            RemnantGlobalItem styleItem = item.GetGlobalItem<RemnantGlobalItem>();
             if (WeaponConf)
             {
                 if (item.type == ItemID.BandofRegeneration)
@@ -55,53 +61,89 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
                 if (item.type == ItemID.RedCape || item.type == ItemID.MysteriousCape || item.type == ItemID.PrinceCape || item.type == ItemID.WinterCape || item.type == ItemID.CrimsonCloak)
                 {
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
+                    styleItem.StyleStat = 6;
                 }
                 if (item.type == ItemID.DiamondRing)
                 {
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 7;
+                    styleItem.StyleStat = 7;
                 }
                 else if (item.type == ItemID.CopperWatch || item.type == ItemID.TinWatch)
                 {
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 1;
+                    styleItem.StyleStat = 1;
                 }
                 else if (item.type == ItemID.SilverWatch || item.type == ItemID.TungstenWatch)
                 {
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 2;
+                    styleItem.StyleStat = 2;
                 }
                 else if(item.type == ItemID.GoldWatch || item.type == ItemID.PlatinumWatch)
                 {
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 3;
+                    styleItem.StyleStat = 3;
                 }
                
                 if (item.type == ItemID.DiamondRing)
                 {
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
+                    styleItem.StyleStat = 6;
                 }
                 if (item.type == ModContent.ItemType<Sangar_Head>() || item.type == ModContent.ItemType<Sangar_Body>() || item.type == ModContent.ItemType<Sangar_Legs>() 
                 || item.type == ModContent.ItemType<Ttim_Head>() || item.type == ModContent.ItemType<Ttim_Body>() || item.type == ModContent.ItemType<Ttim_Legs>())
                 {
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 10;
+                    styleItem.StyleStat = 10;
                 }
                 
                 item.GetGlobalItem<RemnantGlobalItem>().FillMusicBox();
                 if (item.GetGlobalItem<RemnantGlobalItem>().MusicBox.Contains(item.type))
-                {     
-                    item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 4;
+                {
+                    styleItem.StyleStat = 4;
                 }
                 if (item.vanity)
                 {
                     if (RemnantPlayer.DevSuits.Contains(item.type))
                     {
-                        item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
+                        styleItem.StyleStat = 6;
                     }
-                    if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat == 0)
+                    if (styleItem.StyleStat == 0)
                     {
-                        item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 5;
+                        styleItem.StyleStat = 5;
                     }    
                 }     
             }
+            if (styleItem.StyleStat > 0)
+            {
+                UpdateMaxStyle(item, styleItem);
+            }
         }
+
+        void UpdateMaxStyle(Item item, RemnantGlobalItem styleItem)
+        {
+            if (item.accessory)
+            {
+                int minIndex = Array.IndexOf(mayoresEstiloAccesorios, mayoresEstiloAccesorios.Min());
+                int min = mayoresEstiloAccesorios[minIndex];
+                if (styleItem.StyleStat > min && !mayoresEstiloAccesoriosID.Contains(item.type))
+                {
+                    mayoresEstiloAccesorios[minIndex] = styleItem.StyleStat;
+                    mayoresEstiloAccesoriosID[minIndex] = item.type;
+                }
+            }
+
+            else if (item.headSlot != -1 && mayoresEstiloArmaduras[0] < styleItem.StyleStat)
+            {
+                mayoresEstiloArmaduras[0] = styleItem.StyleStat;
+                mayoresEstiloArmadurasID[0] = item.type;
+            }
+            else if (item.bodySlot != -1 && mayoresEstiloArmaduras[1] < styleItem.StyleStat)
+            {
+                mayoresEstiloArmaduras[1] = styleItem.StyleStat;
+                mayoresEstiloArmadurasID[1] = item.type;
+            }
+
+            else if (item.legSlot != -1 && mayoresEstiloArmaduras[2] < styleItem.StyleStat)
+            {
+                mayoresEstiloArmaduras[2] = styleItem.StyleStat;
+                mayoresEstiloArmadurasID[2] = item.type;
+            }
+        }
+
 
         public static List<int> FastFall = [];
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
@@ -111,10 +153,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 player.pickSpeed -= 0.45f;
             }
-            if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
+           /* if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
             {
                 player.GetModPlayer<StatPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;     
-            }
+            }*/
             if (WeaponConf)
             {
                 if (item.type == ItemID.JungleRose)
@@ -190,7 +232,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             if (item.GetGlobalItem<RemnantGlobalItem>().StyleStat != 0)
             {
-                player.GetModPlayer<StatPlayer>().StyleStat += item.GetGlobalItem<RemnantGlobalItem>().StyleStat;
+                int styleStat = item.GetGlobalItem<RemnantGlobalItem>().StyleStat;
+                StatPlayer p = player.GetModPlayer<StatPlayer>();
+                int currentStyle = p.StyleStat;
+                p.StyleStat += styleStat;
+                int currentStyle2 = p.StyleStat;
+
             }
             base.UpdateEquip(item, player);
         }

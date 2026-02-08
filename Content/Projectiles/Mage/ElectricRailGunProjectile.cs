@@ -1,5 +1,3 @@
-using FargowiltasSouls.Common.Utilities;
-using InfernumMode.Core.Netcode;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Global;

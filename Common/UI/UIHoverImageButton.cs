@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Configs;
+using RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
@@ -60,58 +61,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
         public NPC Npc()
         {
             return _Npc;
-        }
-        public override void LeftClick(UIMouseEvent evt)
-        {
-            ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
-
-            Player player = Main.player[Main.myPlayer];
-            ModNPC ModNpc = _Npc.ModNPC;
-            Mod mod;
-            if (ModNpc == null) mod = TerrariaMod;
-            else mod = _Npc.ModNPC.Mod;
-            NPC npc = _Npc;
-            mod ??= RemnantOfTheAncientsMod.Terraria;
-
-            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npc.type);
-            float value;
-            if (index != -1)
-                value = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index];
-            else
-            {
-                float v = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npc.type];
-                value = v;
-            }
-            if (Reaper)
-            {
-                if (npc.type == NPCID.KingSlime)
-                {
-                    ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0 ? 30 : 0);
-                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index] = ModContent.GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul;
-                }
-                else if (npc.type == NPCID.SkeletronPrime)
-                {
-                    player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index] = ModContent.GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul;
-                    ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0 ? 10 : 0);
-                }
-                else
-                {
-                    if (index != -1)
-                    {
-                        player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index] = value == 0 ? 1 : 0;
-                        ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0);
-                    }
-                    else
-                    {
-                        Dictionary<int,float > dict = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive;
-                        dict[npc.type] = value == 0 ? 1 : 0;
-                        player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive = dict;
-                        ReaperEffectsPlayer.SetSoulsToggle(npc.type, value == 0);
-                    }
-                }
-            }
-            base.LeftClick(evt);
-        }
+        }   
         protected override void DrawSelf(SpriteBatch spriteBatch) {
 			// When you override UIElement methods, don't forget call the base method
 			// This helps to keep the basic behavior of the UIElement
