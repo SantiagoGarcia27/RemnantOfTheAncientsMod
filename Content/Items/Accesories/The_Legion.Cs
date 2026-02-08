@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             //+ "\nMany thanks to:"
             //+ "\n S-Pladison   -NKSHV  -perrogalan"
             //+ "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(9, 9));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 6));
         }
         //public string //Tooltip()
         //{
@@ -45,8 +45,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);
         public override void SetDefaults()
         {
-            Item.width = 10;
-            Item.height = 14;
+            Item.width = 24;
+            Item.height = 36;
             Item.value = Item.buyPrice(0, 18, 0, 0);
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.accessory = true;
