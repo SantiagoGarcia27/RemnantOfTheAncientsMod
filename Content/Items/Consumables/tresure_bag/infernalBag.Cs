@@ -35,8 +35,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
         {
             Item.maxStack = 999;
             Item.consumable = true;
-            Item.width = 24;
-            Item.height = 24;
+            Item.width = 42;
+            Item.height = 36;
             Item.rare = ItemRarityID.Purple;
             Item.expert = true;
         }
