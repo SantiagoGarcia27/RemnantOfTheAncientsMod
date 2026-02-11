@@ -170,7 +170,8 @@ namespace RemnantOfTheAncientsMod
 
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
-                player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff")] = true;
+                //Calamity revisar
+                //player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff")] = true;
             }
         }
 

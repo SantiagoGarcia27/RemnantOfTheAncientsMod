@@ -223,7 +223,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianCommander"),
                 CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianDefender"),
                 CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianHealer"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"),
+                //CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"),
                 CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Providence"),
                 CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"),
                 CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"),
@@ -1093,10 +1093,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"))
+            /*if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"))
             {
                 npc.velocity *= 1.02f;
-            }
+            }*/
             if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"))
             {
 
@@ -1198,12 +1198,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 40) && !UniqueToggledFlag)
                 {
-                    for (int i = 0; i < 2; i++)
+                    //Calamity revisar
+                    /*for (int i = 0; i < 2; i++)
                     {
                         var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"));
                         Main.npc[a].lifeMax /= 4;
                         Main.npc[a].life /= 4;
-                    }
+                    }*/
                     UniqueToggledFlag = true;
                 }
             }
@@ -1771,20 +1772,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     if (HasElectricShield)
                     {
-                        Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
+                        //Calamity revisar
+                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Green;
-                        animateEffects(npc, 1f, texture, color);
+                        animateEffects(npc, 1f, texture, color);*/
                     }
                 }
                 else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
                 {
                     if (HasElectricShield)
                     {
-                        Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
+                        //Calamity revisar
+                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Gray;
-                        animateEffects(npc, 1f, texture, color);
+                        animateEffects(npc, 1f, texture, color);*/
                     }
                 }
             }

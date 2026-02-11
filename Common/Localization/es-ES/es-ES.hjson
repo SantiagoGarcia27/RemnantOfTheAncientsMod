@@ -4199,12 +4199,17 @@ Mods: {
 			}
 
 			ReforgeAnvil: {
-				// DisplayName: Reforge Anvil
-				// Tooltip: ""
+				DisplayName: Yunque de reforja
+				Tooltip: Puede ser utilizado para aplicar reforjas avanzadas
 			}
 
 			RedCrossUI: {
 				// DisplayName: Error
+				// Tooltip: ""
+			}
+
+			ExperticeStone: {
+				// DisplayName: Expertice Stone
 				// Tooltip: ""
 			}
 		}

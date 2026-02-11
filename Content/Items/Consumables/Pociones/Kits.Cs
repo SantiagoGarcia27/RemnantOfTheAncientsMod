@@ -155,7 +155,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void OnConsumeItem(Player player)
         {
-            player.AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
+            //Calamity revisar
+            //player.AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
             base.OnConsumeItem(player);
         }
         public override void AddRecipes()
@@ -180,7 +181,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                 .AddIngredient(ItemID.SummoningPotion, 1)
                 .AddIngredient(ItemID.InfernoPotion, 1)
                 .AddIngredient(ItemType<Commander_Potion>(), 1)
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
+                //Calamity revisar
+                //.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
                 .AddTile(TileID.Bottles)
                 .Register();
             }
@@ -197,7 +199,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         }
         public override void OnConsumeItem(Player player)
         {
-            player.AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
+            //Calamity revisar
+            //player.AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
             base.OnConsumeItem(player);
         }
         public override void AddRecipes()
@@ -231,7 +234,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                .AddIngredient(ItemID.SummoningPotion, 30)
                .AddIngredient(ItemID.InfernoPotion, 30)
                .AddIngredient(ItemType<Commander_Potion>(), 30)
-               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 30)
+               //Calamity revisar
+               //.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 30)
                .AddTile(TileID.Bottles)
                .Register();
 
@@ -239,7 +243,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                .AddIngredient(ItemType<EndlessSummoning>(), 1)
                .AddIngredient(ItemType<EndlessInferno>(), 1)
                .AddIngredient(ItemType<Endless_Commander_Porion>(), 1)
-               .AddIngredient(ItemType<EndlessTeslaPotion>(), 1)
+               //Calamity revisar
+               //.AddIngredient(ItemType<EndlessTeslaPotion>(), 1)
                .AddTile(TileID.Bottles)
                .Register();
             }

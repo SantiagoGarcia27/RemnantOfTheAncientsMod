@@ -22,11 +22,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		}
 		public override void SetStaticDefaults()
 		{
-
-			//DisplayName.SetDefault("God Slayer Claws");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Pazury Zabójcy Bogów");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Griffes de tueur de dieu");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Garras del asesinas de dioses");
 		}
 		public override void SetDefaults()
 		{
@@ -39,8 +34,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(gold: 100);
-			Item.rare = ModContent.RarityType<DarkBlue>();
-			Item.scale = 2.0f;
+            //Calamity revisar
+            Item.rare = ItemRarityID.Purple;//ModContent.RarityType<DarkBlue>();
+            Item.scale = 2.0f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)

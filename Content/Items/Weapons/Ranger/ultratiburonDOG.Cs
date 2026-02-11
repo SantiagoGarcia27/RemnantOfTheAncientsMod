@@ -38,7 +38,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.noMelee = true;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(1, 50, 2, 0);
-			Item.rare = ModContent.RarityType<DarkBlue>();
+            //Calamity revisar
+            Item.rare = ItemRarityID.Purple;//ModContent.RarityType<DarkBlue>();
             Item.UseSound = SoundID.Item12;
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.PurificationPowder;

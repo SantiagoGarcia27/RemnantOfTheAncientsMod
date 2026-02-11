@@ -4170,12 +4170,17 @@ Mods: {
 			}
 
 			ReforgeAnvil: {
-				DisplayName: Reforge Anvil
-				Tooltip: ""
+				DisplayName: Reforge Anvil (Wip)
+				Tooltip: Can be used for apply advanced reforges
 			}
 
 			RedCrossUI: {
 				DisplayName: Error
+				Tooltip: ""
+			}
+
+			ExperticeStone: {
+				DisplayName: Expertice Stone
 				Tooltip: ""
 			}
 		}

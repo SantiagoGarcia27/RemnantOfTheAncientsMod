@@ -33,12 +33,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PotionofOmniscience"));
         public override char GramaticalCorrection => 'F';
     }
-    public class EndlessTeslaPotion : BasePotions
+    //Calamity revisar
+    /*public class EndlessTeslaPotion : BasePotions
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"));
         public override char GramaticalCorrection => 'F';
-    }
+    }*/
     public class EndlessZenPotion : BasePotions
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);

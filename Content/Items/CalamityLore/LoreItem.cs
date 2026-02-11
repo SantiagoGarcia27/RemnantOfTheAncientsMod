@@ -27,7 +27,6 @@ public abstract class LoreItem : ModItem, ILocalizedModType, IModType
 
 	public override Color? GetAlpha(Color lightColor)
 	{
-		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
 		return Color.White;
 	}
 
@@ -38,12 +37,11 @@ public abstract class LoreItem : ModItem, ILocalizedModType, IModType
 
 	public override void ModifyTooltips(List<TooltipLine> tooltips)
 	{
-		//IL_0036: Unknown result type (might be due to invalid IL or missing references)
-		TooltipLine fullLore = new TooltipLine(Mod, "CalamityMod:Lore", this.GetLocalizedValue("Lore"));
+		TooltipLine fullLore = new(Mod, "CalamityMod:Lore", this.GetLocalizedValue("Lore"));
 		if (LoreColor.HasValue)
 		{
 			fullLore.OverrideColor = LoreColor.Value;
 		}
-		CalamityMod.CalamityUtils.HoldShiftTooltip(tooltips, new TooltipLine[1] { fullLore }, hideNormalTooltip: true);
+		//CalamityMod.CalamityUtils.HoldShiftTooltip(tooltips, [fullLore], hideNormalTooltip: true);
 	}
 }

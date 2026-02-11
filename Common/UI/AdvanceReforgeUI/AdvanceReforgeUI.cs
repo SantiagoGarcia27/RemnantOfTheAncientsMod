@@ -1,10 +1,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
 using RemnantOfTheAncientsMod.Prefixe;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -21,6 +24,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
         public UIItemSlotElement ReforgeStoneSlot;
         public UIItemSlotElement ResultSlot;
         public UIHoverImageButton ReforgeButton;
+        public UIMoneyDisplay MoneyDisplay;
 
         public override void OnInitialize()
         {
@@ -43,11 +47,28 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
             ReforgeButton.OnLeftClick += OnReforgeButtonClick;
             MainPanel.Append(ReforgeButton);
 
+            MoneyDisplay = new UIMoneyDisplay();
+            UIUtils.SetRectangle(MoneyDisplay, 60f, 150f, 120f, 20f);
+            MainPanel.Append(MoneyDisplay);
+
             ReforgeStoneSlot = new UIItemSlotElement(ItemSlot.Context.BankItem, ModContent.ItemType<Terracoin>());
+            ReforgeStoneSlot.OnUpdate += OnUpdateCatalyst;
             UIUtils.SetRectangle(ReforgeStoneSlot, 145f, 95f, 52f, 52f);
             MainPanel.Append(ReforgeStoneSlot);
 
             Append(MainPanel);
+        }
+
+        void OnUpdateCatalyst(UIElement affectedElement)
+        {
+            if (affectedElement != null)
+            {
+                MoneyDisplay.SetCoins(ReforgeStoneSlot.Item.GetApplyPrice());
+            }
+            else
+            {
+                MoneyDisplay.ResetCoins();
+            }
         }
 
         private void OnReforgeButtonClick(UIMouseEvent evt, UIElement listeningElement)
@@ -60,12 +81,14 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
                 Item reforgeStoneItem = ReforgeStoneSlot.Item;
                 Item resultItem = ResultSlot.Item;
                 int reforge = -1;
-                if (reforgeStoneItem.type == ModContent.ItemType<Terracoin>())
+                if (reforgeStoneItem.type == ModContent.ItemType<ExperticeStone>())
                 {
-                    if (inputItem.DamageType == DamageClass.Magic) { 
+                    if (inputItem.DamageType == DamageClass.Magic)
+                    {
                         reforge = ModContent.PrefixType<Relic>();
                     }
-                    else if (inputItem.DamageType == DamageClass.Summon) {
+                    else if (inputItem.DamageType == DamageClass.Summon)
+                    {
                         reforge = ModContent.PrefixType<Relic>();
                     }
                     else if (inputItem.DamageType == DamageClass.Melee || inputItem.DamageType == DamageClass.MeleeNoSpeed || inputItem.DamageType == DamageClass.SummonMeleeSpeed)
@@ -83,8 +106,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
                     Item result = InputSlot.Item.Clone();
                     int ogReforge = result.prefix;
                     bool canPrefix = result.Prefix(reforge);
-
-                    if (canPrefix && ogReforge != reforge)
+                   
+                    if (canPrefix && ogReforge != reforge && Main.LocalPlayer.BuyItem(reforgeStoneItem.GetApplyPrice()))
                     {
                         if (!ResultSlot.Item.IsAir && ResultSlot.Item.type != ModContent.ItemType<RedCrossUI>())
                         {
@@ -95,6 +118,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
                         }
                         else
                         {
+                            ResultSlot.Item.TurnToAir(true);
                             ResultSlot.Item = result;
                         }
 
@@ -135,17 +159,20 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
         {
             ReturnItemToPlayer(InputSlot);
             ReturnItemToPlayer(ReforgeStoneSlot);
-            ReturnItemToPlayer(ResultSlot);
+            if (ResultSlot.Item.type != ModContent.ItemType<RedCrossUI>())
+            {
+                ReturnItemToPlayer(ResultSlot);
+            }
+            else
+            {
+                ResultSlot.Item.TurnToAir();
+            }
             base.OnDeactivate();
         }
 
         private static void ReturnItemToPlayer(UIItemSlotElement slot)
         {
-            if (!slot.Item.IsAir)
-            {
-                Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_Misc("AdvanceReforgeUI"), slot.Item, slot.Item.stack);
-                slot.Item.TurnToAir();
-            }
+            slot.ReturnItemToPlayer(Main.LocalPlayer);
         }
     }
 
@@ -153,8 +180,14 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
     {
         public Item Item;
         private readonly int _context;
+        private Item _previousItem;
         public int HintItemType { get; }
         public bool Locked { get; set; }
+
+        public Func<Item, bool> CanPutItemCondition;
+        public event Action<Item, Item> OnItemChanged;
+
+        public bool HasItem => !Item.IsAir;
 
         public UIItemSlotElement(int context, int hintItemType = -1)
         {
@@ -162,8 +195,72 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
             HintItemType = hintItemType;
             Item = new Item();
             Item.TurnToAir();
+            _previousItem = new Item();
+            _previousItem.TurnToAir();
             Width.Set(52f, 0f);
             Height.Set(52f, 0f);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            if (!ItemEquals(_previousItem, Item))
+            {
+                Item oldItem = _previousItem.Clone();
+                _previousItem = Item.Clone();
+                OnItemChanged?.Invoke(oldItem, Item);
+            }
+        }
+
+        public void SetItem(Item item)
+        {
+            Item = item?.Clone() ?? new Item();
+        }
+
+        public void SetItem(int type, int stack = 1, int prefix = 0)
+        {
+            Item = new Item(type, stack, prefix);
+        }
+
+        public void Clear()
+        {
+            Item.TurnToAir();
+        }
+
+        public Item TakeItem()
+        {
+            Item taken = Item.Clone();
+            Item.TurnToAir();
+            return taken;
+        }
+
+        public bool ConsumeStack(int amount = 1)
+        {
+            if (Item.IsAir || Item.stack < amount)
+                return false;
+
+            Item.stack -= amount;
+            if (Item.stack <= 0)
+                Item.TurnToAir();
+
+            return true;
+        }
+
+        public void ReturnItemToPlayer(Player player)
+        {
+            if (!Item.IsAir)
+            {
+                player.QuickSpawnItem(player.GetSource_Misc("UIItemSlot"), Item, Item.stack);
+                Item.TurnToAir();
+            }
+        }
+
+        private static bool ItemEquals(Item a, Item b)
+        {
+            if (a.IsAir && b.IsAir)
+                return true;
+            return a.type == b.type && a.stack == b.stack && a.prefix == b.prefix;
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -178,7 +275,16 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
             {
                 Main.LocalPlayer.mouseInterface = true;
                 if (!Locked)
-                    ItemSlot.Handle(tempInv, _context, 0);
+                {
+                    if (CanPutItemCondition != null && !Main.mouseItem.IsAir && !CanPutItemCondition(Main.mouseItem))
+                    {
+                        // Item not accepted by filter, skip interaction
+                    }
+                    else
+                    {
+                        ItemSlot.Handle(tempInv, _context, 0);
+                    }
+                }
             }
 
             Item = tempInv[0];
@@ -217,6 +323,68 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
             Vector2 origin = sourceRect.Size() / 2f;
 
             spriteBatch.Draw(hintTexture, slotCenter, sourceRect, Color.White * 0.35f, 0f, origin, scale, SpriteEffects.None, 0f);
+        }
+    }
+
+    public class UIMoneyDisplay : UIElement
+    {
+        // How many coins have been collected in copper
+        public long Coins;
+        // Saving coin textures to an array to make them easier to access
+        private readonly Texture2D[] coinsTextures = new Texture2D[4];
+
+        public UIMoneyDisplay()
+        {
+       
+
+            for (int j = 0; j < 4; j++)
+            {
+                // Textures may not be loaded without it
+                Main.instance.LoadItem(74 - j);
+                coinsTextures[j] = TextureAssets.Item[74 - j].Value;
+            }
+
+            // This allows clicks to "pass-through" this element to the parent element and not be consumed by this element. This allows ExampleDraggableUIPanel to be dragged even when the user is clicking on the UIMoneyDisplay.
+            IgnoresMouseInteraction = true;
+        }
+        public void SetCoins(int coins)
+        {
+            Coins = coins;
+        }
+
+        public long GetCoins()
+        {
+            return Coins;
+        }
+
+        protected override void DrawSelf(SpriteBatch spriteBatch)
+        {
+            CalculatedStyle innerDimensions = GetInnerDimensions();
+            // Getting top left position of this UIElement
+            float shopx = innerDimensions.X;
+            float shopy = innerDimensions.Y;
+
+            // Drawing first line of coins (current collected coins)
+            // CoinsSplit converts the number of copper coins into an array of all types of coins
+            DrawCoins(spriteBatch, shopx, shopy, Utils.CoinsSplit(Coins));
+
+            // Drawing second line of coins (coins per minute) and text "CPM"
+            //DrawCoins(spriteBatch, shopx, shopy, Utils.CoinsSplit(GetCoinsPerMinute()), 0, 25);
+            //Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, "", shopx + (float)(24 * 4), shopy + 25f, Color.White, Color.Black, new Vector2(0.3f), 0.75f);
+        }
+
+        private void DrawCoins(SpriteBatch spriteBatch, float shopx, float shopy, int[] coinsArray, int xOffset = 0, int yOffset = 0)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                spriteBatch.Draw(coinsTextures[j], new Vector2(shopx + 11f + 24 * j + xOffset, shopy + yOffset), null, Color.White, 0f, coinsTextures[j].Size() / 2f, 1f, SpriteEffects.None, 0f);
+                Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, coinsArray[3 - j].ToString(), shopx + 24 * j + xOffset, shopy + yOffset, Color.White, Color.Black, new Vector2(0.3f), 0.75f);
+            }
+        }
+
+        public void ResetCoins()
+        {
+            Coins = 0;
         }
     }
 }
