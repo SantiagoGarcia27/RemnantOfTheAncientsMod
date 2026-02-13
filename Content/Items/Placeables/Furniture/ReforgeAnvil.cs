@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture
 			Item.DefaultToPlaceableTile(ModContent.TileType<ReforgeAnvilTile>());
 			Item.value = 150;
 			Item.maxStack = 99;
-			Item.width = 16;
+			Item.width = 32;
 			Item.height = 24;
 		}
 		
