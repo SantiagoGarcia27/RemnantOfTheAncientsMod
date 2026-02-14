@@ -46,13 +46,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
                  .AddIngredient(ItemID.JungleShirt)
                  .AddIngredient(ItemID.NecroGreaves)
                  .AddIngredient(ItemID.MoltenBreastplate)
-                 .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                 .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
                  .AddTile(TileID.DemonAltar)
                  .Register();
 
                 CreateRecipe()
 				.AddIngredient(ModContent.ItemType<NightBar>(), 20)
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
 				.AddTile(TileID.DemonAltar)
                 .Register();
             }

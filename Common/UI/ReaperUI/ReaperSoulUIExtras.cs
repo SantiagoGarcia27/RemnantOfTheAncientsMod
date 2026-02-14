@@ -33,58 +33,58 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 Buttons.TryAdd(CalamityMod, []);
 
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHive"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorHive"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadSmall"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodySmall"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailSmall"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorHeadSmall"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorBodySmall"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorTailSmall"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadMedium"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyMedium"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailMedium"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorHeadMedium"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorBodyMedium"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorTailMedium"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorHeadLarge"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorBodyLarge"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PerforatorTailLarge"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorHeadLarge"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorBodyLarge"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PerforatorTailLarge"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusBody"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AstrumDeusTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AstrumDeusBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AstrumDeusTail"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsBody"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "DevourerofGodsBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "DevourerofGodsTail"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeBody"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AquaticScourgeTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AquaticScourgeBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AquaticScourgeTail"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Cataclysm"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Catastrophe"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "Cataclysm"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "Catastrophe"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeBody"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "DesertScourgeBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "DesertScourgeTail"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverBody"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "StormWeaverBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "StormWeaverTail"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody1"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosBody2"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "ThanatosTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "ThanatosBody1"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "ThanatosBody2"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "ThanatosTail"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Artemis"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Apollo"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "Artemis"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "Apollo"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresBody"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresGaussNuke"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresLaserCannon"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresPlasmaFlamethrower"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "AresTeslaCannon"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AresBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AresGaussNuke"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AresLaserCannon"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AresPlasmaFlamethrower"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "AresTeslaCannon"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "Anahita"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "Anahita"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "THELORDE"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "THELORDE"));
 
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmHead"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmBody"));
-                ListUtils.AddSecure(ref BannedIds, CallUtils.GetNpcFromMod(CalamityMod, "PrimordialWyrmTail"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PrimordialWyrmHead"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PrimordialWyrmBody"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PrimordialWyrmTail"));
             }
 
         }
@@ -108,15 +108,15 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 {
                     string CalamityPath = "CalamityMod/NPCs/";
 
-                    if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverHead"))
+                    if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "StormWeaverHead"))
                         return ModContent.Request<Texture2D>(CalamityPath + "StormWeaver/StormWeaverHead_Head_Boss");
-                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsHead"))
+                    else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "DevourerofGodsHead"))
                         return ModContent.Request<Texture2D>(CalamityPath + "DevourerofGods/DevourerofGodsHead_Head_Boss");
-                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "SupremeCalamitas"))
+                    else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "SupremeCalamitas"))
                         return ModContent.Request<Texture2D>(CalamityPath + "SupremeCalamitas/HoodedHeadIcon");
-                    else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Providence"))
+                    else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "Providence"))
                         return ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_Providence");
-                    else if(npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeHead"))
+                    else if(npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "DesertScourgeHead"))
                         return ModContent.Request<Texture2D>(CalamityPath + "DesertScourge/DesertScourgeHead_Head_Boss");
                 }
             }
@@ -165,47 +165,47 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             }   
             if (CalamityMod != null)
             {
-                if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Providence"))
+                if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "Providence"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 30;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "CeaselessVoid"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "CeaselessVoid"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 30;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Cryogen"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "Cryogen"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 10;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DesertScourgeHead"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "DesertScourgeHead"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 10;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "HiveMind"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "HiveMind"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 20;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Crabulon"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "Crabulon"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 10;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "Signus"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "Signus"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 10;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "StormWeaverHead"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "StormWeaverHead"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement + 10;
                     return true;
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(CalamityMod, "DevourerofGodsHead"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "DevourerofGodsHead"))
                 {
                     baseLefthPosition += baseLefthPositionIncrement - 10;
                     return true;

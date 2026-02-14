@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 CreateRecipe()
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodOrb"), 20)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodOrb"), 20)
                 .AddIngredient(ItemID.BottledWater, 1)
                 .AddTile(TileID.Bottles)
                 .Register();

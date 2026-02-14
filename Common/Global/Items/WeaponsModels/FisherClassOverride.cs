@@ -91,22 +91,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         {
             if (Calamity != null)
             {
-                if (item.type == CallUtils.GetItemFromMod(Calamity, "TheDevourerofCods"))
+                if (item.type == CallUtils.TryGetItemFromMod(Calamity, "TheDevourerofCods"))
                 {
                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 10);
                     return false;
                 }
-                else if (item.type == CallUtils.GetItemFromMod(Calamity, "RiftReeler"))
+                else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "RiftReeler"))
                 {
                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, new Vector2(3, 6));
                     return false;
                 }
-                else if (item.type == CallUtils.GetItemFromMod(Calamity, "FeralDoubleRod"))
+                else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "FeralDoubleRod"))
                 {
                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 2);
                     return false;
                 }
-                else if (item.type == CallUtils.GetItemFromMod(Calamity, "EarlyBloomRod"))
+                else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "EarlyBloomRod"))
                 {
                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 6);
                     return false;

@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             .AddIngredient(ModContent.ItemType<DesertMedalion>(), 1)
             .AddIngredient(ModContent.ItemType<FrostBarrier>(), 1)
             .AddIngredient(ModContent.ItemType<TyrantsMark>(), 1)
-            .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "DeviatingEnergy"), 5)
+            .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "DeviatingEnergy"), 5)
             .AddTile(TileID.MythrilAnvil)
             .Register();
         }

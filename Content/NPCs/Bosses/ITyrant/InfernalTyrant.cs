@@ -251,7 +251,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         {
                             for (int i = 0; i <= 10; i++)
                             {
-                                TornadoIa((int)(70 * RemnantGlobalNPC.DamageBonus), CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
+                                TornadoIa((int)(70 * RemnantGlobalNPC.DamageBonus), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "Flarenado"), target, i);
                             }
                            // FireBallIa(12f, (int)(70 * RemnantGlobalNPC.DamageBonus), CallUtils.Get<ModProjectile>(RemnantOfTheAncients.CalamityMod, "Flarenado"), "*", 4, 3, target, 0f);
                         }
@@ -406,7 +406,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [JITWhenModsEnabled("CalamityMod")]
         private static void CalamityDrop(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofChaos"), 1, 5, Utils1.ReaperDropScaler(15)));
+            npcLoot.Add(ItemDropRule.Common(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofChaos"), 1, 5, Utils1.ReaperDropScaler(15)));
         }
     }
 

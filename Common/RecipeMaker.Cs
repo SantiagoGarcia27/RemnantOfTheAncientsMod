@@ -233,7 +233,7 @@ namespace RemnantOfTheAncientsMod
                .AddIngredient(ItemID.BeeKeeper)
                .AddRecipeGroup("anyEnchantedSword")
                .AddIngredient(ItemID.CopperShortsword)
-               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"),5)
+               .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"),5)
                .AddTile(TileID.MythrilAnvil)
                .Register();
 
@@ -244,8 +244,8 @@ namespace RemnantOfTheAncientsMod
               .AddIngredient(ItemID.BeeKeeper)
               .AddRecipeGroup("anyEnchantedSword")
               .AddIngredient(ItemID.CopperShortsword)
-               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TrueArkoftheAncients"), 1)
-              .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"), 5)
+               .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TrueArkoftheAncients"), 1)
+              .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"), 5)
               .AddTile(TileID.MythrilAnvil)
               .Register();
             }
@@ -270,7 +270,7 @@ namespace RemnantOfTheAncientsMod
             {
                 Recipe.Create(ItemID.NightsEdge)
                 .AddIngredient(ModContent.ItemType<NightBar>(), 10)
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
                 .AddTile(TileID.DemonAltar)
                 .Register();
 
@@ -278,7 +278,7 @@ namespace RemnantOfTheAncientsMod
                 .AddIngredient(ModContent.ItemType<BurningJungle>())
                 .AddIngredient(ItemID.Muramasa)
                 .AddRecipeGroup("anyCorruptSwords")
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
                 .AddTile(TileID.DemonAltar)
                 .Register();
 
@@ -287,7 +287,7 @@ namespace RemnantOfTheAncientsMod
                 .AddIngredient(ItemID.Muramasa)
                 .AddIngredient(ItemID.BladeofGrass)
                 .AddIngredient(ItemID.FieryGreatsword)
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             }
@@ -1387,20 +1387,20 @@ namespace RemnantOfTheAncientsMod
             }
             if (recipe.TryGetResult(ModContent.ItemType<Horizon>(), out _))
             {
-                recipe.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"), 5);
+                recipe.AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AuricBar"), 5);
             }
-            if (recipe.TryGetResult(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElementalGauntlet"), out _))
+            if (recipe.TryGetResult(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElementalGauntlet"), out _))
             {
                 recipe.RemoveIngredient(ItemID.FireGauntlet);
                 recipe.AddIngredient(ModContent.ItemType<SolarGlove>());
             }
-            if (recipe.TryGetResult(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"), out _))
+            if (recipe.TryGetResult(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"), out _))
             {
                 recipe.RemoveRecipeGroup(Utils1.GetRecipeGroupId("AnyManaFlower"));
                 recipe.RemoveIngredient(ItemID.ManaFlower);
                 recipe.AddIngredient(ModContent.ItemType<ManaO>());
             }
-            if (recipe.TryGetResult(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeHealingPotion"), out _))
+            if (recipe.TryGetResult(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeHealingPotion"), out _))
             {
                 recipe.RemoveIngredient(ItemID.SuperHealingPotion);
                 recipe.AddIngredient(ModContent.ItemType<UltraHealtingPotion>());
@@ -1409,11 +1409,11 @@ namespace RemnantOfTheAncientsMod
 
         public void ModifyFargosRecipe(Recipe recipe)
         {
-            if (recipe.TryGetResult(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"), out _))
+            if (recipe.TryGetResult(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "MasochistSoul"), out _))
             {
                 recipe.AddIngredient(ModContent.ItemType<GuardiansShield>());
             }
-            if (recipe.TryGetResult(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"), out _))
+            if (recipe.TryGetResult(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "TerrariaSoul"), out _))
             {
                 recipe.AddIngredient(ModContent.ItemType<ForceOfRemants>());
             }

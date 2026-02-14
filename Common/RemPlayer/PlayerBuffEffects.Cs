@@ -75,9 +75,9 @@ namespace RemnantOfTheAncientsMod
         [JITWhenModsEnabled("CalamityMod")]
         public static void FishPotionCalamity(Player player)
         {
-            player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoatingBuff")] = true;
+            player.buffImmune[CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoatingBuff")] = true;
             player.Calamity().anechoicCoating = true;
-            player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinBuff")] = true;
+            player.buffImmune[CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinBuff")] = true;
             player.Calamity().sulphurskin = true;
         }
         public static void RangerInfusion(Player player)
@@ -106,11 +106,11 @@ namespace RemnantOfTheAncientsMod
         [JITWhenModsEnabled("CalamityMod")]
         public static void GravityControlPotionCalamity(Player player)
         {
-            player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumBuff")] = true;
+            player.buffImmune[CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalciumBuff")] = true;
             player.Calamity().calcium = true;
-            player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerBuff")] = true;
+            player.buffImmune[CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GravityNormalizerBuff")] = true;
             player.Calamity().gravityNormalizer = true;
-            player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "Soaring")] = true;
+            player.buffImmune[CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "Soaring")] = true;
             player.Calamity().soaring = true;
         }
         public static void FishingInfusion(Player player)
@@ -171,7 +171,7 @@ namespace RemnantOfTheAncientsMod
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 //Calamity revisar
-                //player.buffImmune[CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff")] = true;
+                //player.buffImmune[CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff")] = true;
             }
         }
 

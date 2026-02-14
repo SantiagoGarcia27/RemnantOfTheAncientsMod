@@ -285,12 +285,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Chilled, 0, 0, 1);
-                        RemnantPlayer.ApplyBuffToAllPlayers(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 0, 0, 1);
+                        RemnantPlayer.ApplyBuffToAllPlayers(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 0, 0, 1);
                     }
                     else
                     {
                         target.AddBuff(BuffID.Chilled, 1);
-                        target.AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 1);
+                        target.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 1);
                     }
 
 
@@ -350,7 +350,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 X = Main.rand.Next((int)(Main.player[NPC.target].position.X - 50 * 16f), (int)(Main.player[NPC.target].position.X + 50 * 16f));
                 Y = Main.rand.Next((int)(Main.player[NPC.target].position.Y - 50 * 16f), (int)(Main.player[NPC.target].position.Y + 50 * 16f));
                 ExplosionPosition = new Vector2(X, Y);
-                var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Vector2.Zero, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
+                var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Vector2.Zero, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
             }
             if (attackCounter == count && attackCounter > 0)
             {
@@ -684,7 +684,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         [JITWhenModsEnabled("CalamityMod")]
         private static void CalamityDrop(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofEleum"), 1,2,Utils1.ReaperDropScaler(5)));
+            npcLoot.Add(ItemDropRule.Common(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceofEleum"), 1,2,Utils1.ReaperDropScaler(5)));
         } 
         public override void OnSpawn(IEntitySource source)
         {

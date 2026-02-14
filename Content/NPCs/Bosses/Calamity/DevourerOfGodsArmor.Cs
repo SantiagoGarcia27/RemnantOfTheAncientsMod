@@ -88,15 +88,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC NpcOwner = Main.npc[(int)NPC.localAI[2]];
             if (!Main.dedServ)
             {
-                if (NpcOwner.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsHead"))
+                if (NpcOwner.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsHead"))
                 {
                     return "RemnantOfTheAncientsMod/Content/NPCs/Bosses/Calamity/DOGShield_Phase1_Head";
                 }
-                if (NpcOwner.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsBody"))
+                if (NpcOwner.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsBody"))
                 { 
                     return "RemnantOfTheAncientsMod/Content/NPCs/Bosses/Calamity/DOGShield_Phase1_Body";
                 }
-                if (NpcOwner.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsTail"))
+                if (NpcOwner.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsTail"))
                 {         
                     return "RemnantOfTheAncientsMod/Content/NPCs/Bosses/Calamity/DOGShield_Phase1_Tail";
                 }

@@ -205,7 +205,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             else if (npc.type == NPCType<TitaniumZombie>()) ZombieOreLoot(npcLoot, ItemID.TitaniumOre, ItemID.TitaniumBar);
             else if (npc.type == NPCType<HallowedZombie>())
             {
-                int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
+                int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
                 ZombieOreLoot(npcLoot, ore, ItemID.HallowedBar);
             }
             else if (npc.type == NPCType<ChlorophyteZombie>()) ZombieOreLoot(npcLoot, ItemID.ChlorophyteOre, ItemID.ChlorophyteBar);

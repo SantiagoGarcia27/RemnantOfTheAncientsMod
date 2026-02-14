@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             .AddIngredient<ReinforcedIronEnchant>()
             .AddIngredient<DaylightEnchant>()
             .AddIngredient<TuxoniteEnchant>()
-            .AddTile(CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
+            .AddTile(CallUtils.TryGetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
             .Register();
 		}
 	}

@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls.Calamity
         public override bool IsLoadingEnabled(Mod mod) => false;
         int SpeedBoost = 30;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SpeedBoost);
-        public override NPC BaseNpc => ContentSamples.NpcsByNetId[CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead")];
+        public override NPC BaseNpc => ContentSamples.NpcsByNetId[CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead")];
         public override Mod ItemMod => RemnantOfTheAncientsMod.CalamityMod;
     }
   

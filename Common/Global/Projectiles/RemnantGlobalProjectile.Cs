@@ -92,11 +92,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public static void FiilMeleeWeaponEffectsList()
         {
-             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
-             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
-             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlash2"));
-             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlashMethod"));
-             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashWeapon"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlash"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashingEffect"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlash2"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "HeroSlashMethod"));
+             ListUtils.AddSecure(ref MeleeWeaponEffectsProjectiles, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.MeleeWeaponEffects, "ExampleSlashWeapon"));
         }
         public void UpdateMiscCounter()
         {

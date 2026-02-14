@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 {
                     for (int i = 0; i < 4; i++)
                     {
-                        int npcid = CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
+                        int npcid = CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
                         int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, npcid, 0, 0);
                         Main.npc[a].lifeMax *= 3;
                         Main.npc[a].life *= 3;
@@ -67,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     phaseChange[2] = true;
                     for (int i = 0; i < 5; i++)
                     {
-                        int npcid = CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
+                        int npcid = CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceClasper");
                         int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, npcid, 0, 0);
                         Main.npc[a].lifeMax *= 3;
                         Main.npc[a].life *= 3;
@@ -99,7 +99,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     float angle = (float)(2 * Math.PI * i / numberOfPoints);
                     float x = (float)(npc.Center.X + radius * Math.Cos(angle));
                     float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
-                    int proj = CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                    int proj = CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
 
                     if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
                     {
@@ -125,7 +125,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 float x = (float)(npc.Center.X + radius * Math.Cos(angle));
                 float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
 
-                int proj = CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                int proj = CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
 
                 if ((DificultyUtils.EternityMode || DificultyUtils.MasochistMode) && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
                 {
@@ -133,7 +133,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 }
                 else
                 {
-                    proj = CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                    proj = CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
                 }
                 ShootIceCubeIa(Reaper.ReaperMode ? 5 : 20, proj, 30f, angle + (intercalate * 10), 0, npc.target, npc, x, y);
 

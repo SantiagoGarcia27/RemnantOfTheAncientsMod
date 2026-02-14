@@ -101,8 +101,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                .AddIngredient(ItemID.WaterWalkingPotion, 30)
                .AddIngredient(ItemID.FlipperPotion, 30)
                .AddIngredient(ItemID.GillsPotion, 30)
-               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoating"), 30)
-               .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinPotion"), 30)
+               .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "AnechoicCoating"), 30)
+               .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "SulphurskinPotion"), 30)
                .AddTile(TileID.Bottles)
                .Register();
 

@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Relics.Infernum
             int rarity;
             try
             {
-                rarity = CallUtils.GetRarityFromMod(RemnantOfTheAncientsMod.InfernumMod, "InfernumRedRarity");
+                rarity = CallUtils.TryGetRarityFromMod(RemnantOfTheAncientsMod.InfernumMod, "InfernumRedRarity");
             }
             catch
             {

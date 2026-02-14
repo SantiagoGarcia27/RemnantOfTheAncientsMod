@@ -58,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
             {
                 CreateRecipe()
                 .AddIngredient(ModContent.ItemType<NightBar>(), 10)
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             }

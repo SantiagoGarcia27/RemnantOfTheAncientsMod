@@ -131,7 +131,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                 npc.AddBuff(BuffID.OnFire3, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    npc.AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GalvanicCorrosion"), (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    npc.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GalvanicCorrosion"), (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
                     npc.AddBuff(BuffID.Electrified, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
                 }
             }

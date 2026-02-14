@@ -128,14 +128,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		[JITWhenModsEnabled("ThoriumMod")]
 		public static void AddBossSummonThorium()
 		{
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StormFlare"));
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
-			SafeAddContentToList(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StormFlare"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "JellyfishResonator"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "UnstableCore"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "AncientBlade"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StarCaller"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "StriderTear"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "VoidLens"));
+			SafeAddContentToList(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.ThoriumMod, "DoomSayersCoin"));
 		}
 		public static void SafeAddContentToList(int id)
 		{

@@ -1,25 +1,25 @@
-using Terraria.ID;
-using RemnantOfTheAncientsMod.World;
-using Terraria;
-using Terraria.ModLoader;
-using System.Collections.Generic;
-using Terraria.DataStructures;
-using System;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using RemnantOfTheAncientsMod.Content.NPCs;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using SangarUtilities.Common.UtilsTweaks;
-using CalamityMod.NPCs.BrimstoneElemental;
-using Terraria.Audio;
 using CalamityMod;
-using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using CalamityMod.NPCs.BrimstoneElemental;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Calamity;
+using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Calamity;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using RemnantOfTheAncientsMod.World;
+using SangarUtilities.Common.UtilsTweaks;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -90,7 +90,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     {
                         npc.scale *= 0.25f;
                     }
-                    if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+                    if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
                     {
                         if (Reaper.ReaperMode) npc.lifeMax /= 2;
                     }
@@ -103,7 +103,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         }
                     }
 
-                    if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"))
+                    if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"))
                     {
                         if (Reaper.ReaperMode)
                         {
@@ -111,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                             npc.dontTakeDamage = true;
                         }
                     }
-                    if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Leviathan"))
+                    if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Leviathan"))
                     {
                         if (Reaper.ReaperMode)
                         {
@@ -132,111 +132,111 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             desertScourge =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeTail")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeTail")
             ];
             desertNuisance =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceTail")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceTail")
             ];
             perforatorWormSamll =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadSmall"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodySmall"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailSmall")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadSmall"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodySmall"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailSmall")
             ];
             perforatorWormMedium =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadMedium"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyMedium"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailMedium")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadMedium"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyMedium"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailMedium")
             ];
             perforatorWormBig =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadLarge"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailLarge")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadLarge"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailLarge")
             ];
             AstrumDeus =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusTail")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusTail")
             ];
             StormWeaver =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverTail")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverTail")
             ];
             DevourerOFGods =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsTail")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsTail")
             ];
             PrimordialWyrm =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PrimordialWyrmHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PrimordialWyrmBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PrimordialWyrmTail")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PrimordialWyrmHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PrimordialWyrmBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PrimordialWyrmTail")
             ];
 
             CalamityAffectedNPCs =
             [
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Crabulon"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "HiveMind"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHive"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadSmall"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodySmall"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailSmall"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadMedium"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyMedium"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailMedium"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadLarge"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailLarge"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SlimeGodCore"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanPaladin"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianPaladin"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AquaticScourgeHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BrimstoneElemental"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalamitasClone"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cataclysm"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Catastrophe"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GreatSandShark"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Leviathan"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Anahita"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumAureus"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PlaguebringerGoliath"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianCommander"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianDefender"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianHealer"),
-                //CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Providence"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Signus"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Polterghast"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "OldDuke"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Apollo"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Artemis"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ThanatosHead"),
-                CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeCalamitas")
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Crabulon"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "HiveMind"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHive"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadSmall"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodySmall"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailSmall"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadMedium"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyMedium"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailMedium"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorHeadLarge"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorBodyLarge"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerforatorTailLarge"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SlimeGodCore"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanPaladin"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianPaladin"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AquaticScourgeHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BrimstoneElemental"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalamitasClone"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cataclysm"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Catastrophe"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GreatSandShark"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Leviathan"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Anahita"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumAureus"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PlaguebringerGoliath"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumDeusHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianCommander"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianDefender"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianHealer"),
+                //CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Providence"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Signus"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Polterghast"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "OldDuke"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DevourerofGodsHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Apollo"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Artemis"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ThanatosHead"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeCalamitas")
             ];
         }
         public List<int> destroyer =
@@ -313,50 +313,50 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         [JITWhenModsEnabled("CalamityMod")]
         public void OnSpawnCalamity(NPC npc, IEntitySource source)
         {
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
             {
-                NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
-                NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
+                NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
+                NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
             }
 
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "HiveMind"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "HiveMind"))
             {
                 int ammount = 20;
                 for (int i = 0; i <= ammount; i++)
                 {
                     GetPositionsAround(Main.player[npc.FindClosestPlayer()], 25 * 15f, ammount + 1, out List<Vector2> Postions);
-                    var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X * 10, (int)Postions[i].Y * 10, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
-                    NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
-                    NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
+                    var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X * 10, (int)Postions[i].Y * 10, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
+                    NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
+                    NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
                     Main.npc[p].aiStyle = -1;
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
             {
-                GetNPCList(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"), out List<NPC> CreepersList);
+                GetNPCList(CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"), out List<NPC> CreepersList);
                 GetPositionsAround(Main.player[npc.FindClosestPlayer()], 25 * 15f, CreepersList.Count, out List<Vector2> Postions);
 
-                for (int a = 0; a < NPC.CountNPCS(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper")); a++)
+                for (int a = 0; a < NPC.CountNPCS(CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper")); a++)
                 {
                     CreepersList[a].position = Postions[a];
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerBody"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerBody"))
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y + i * 10, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerClawLeft"));
-                    NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y - i * 10, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerClawRight"));
+                    NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y + i * 10, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerClawLeft"));
+                    NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y - i * 10, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "RavagerClawRight"));
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianCommander"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianCommander"))
             {
-                int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X - 50, (int)npc.Center.Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianDefender"));
+                int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X - 50, (int)npc.Center.Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianDefender"));
                 Main.npc[a].lifeMax /= 2;
-                a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X - 1350, (int)npc.Center.Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianHealer"));
+                a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X - 1350, (int)npc.Center.Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianHealer"));
                 Main.npc[a].lifeMax /= 2;
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Providence"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Providence"))
             {
                 Main.dayTime = false;
                 Netcode.SyncWorld();
@@ -381,7 +381,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                     AI(npc);
                 }
-                if (RemnantOfTheAncientsMod.CalamityMod != null /*&& npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncients.CalamityMod, "DankCreeper")*/)
+                if (RemnantOfTheAncientsMod.CalamityMod != null /*&& npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncients.CalamityMod, "DankCreeper")*/)
                     PreAiCalamity(npc);
             }
             AI(npc);
@@ -394,9 +394,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             Player player = Main.player[npc.FindClosestPlayer()];
 
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"))
             {
-                GetNPCList(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"), out List<NPC> CreepersList);
+                GetNPCList(CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"), out List<NPC> CreepersList);
                 GetPositionsAround(Main.player[npc.FindClosestPlayer()], 25 * 15f, CreepersList.Count, ang, out List<Vector2> Postions);
                 npc.Center = Postions[CreepersList.IndexOf(npc)];
                 ang += 0.08f;
@@ -892,15 +892,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         [JITWhenModsEnabled("CalamityMod")]
         public void CalamityAi(NPC npc)
         {
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
             {
                 if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 70) && !UniqueToggledFlag)
                 {
-                    NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
+                    NPC.SpawnOnPlayer(npc.FindClosestPlayer(), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertNuisanceHeadYoung"));
                     UniqueToggledFlag = true;
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Crabulon"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Crabulon"))
             {
                 if (attackCounter++ >= 200)
                 {
@@ -908,14 +908,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     for (int i = 0; i < maxProj / 2; i++)
                     {
                         Vector2 velocity = (Main.player[npc.target].Center - npc.Center).RotatedBy((360 / maxProj / 2) * i);
-                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
+                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
                         Main.projectile[p].timeLeft = 60;
                         Main.projectile[p].ignoreWater = true;
                     }
                     for (int i = 0; i < maxProj / 2; i++)
                     {
                         Vector2 velocity = (Main.player[npc.target].Center - npc.Center).RotatedBy((-360 / maxProj / 2) * i);
-                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
+                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
                         Main.projectile[p].timeLeft = 60;
                         Main.projectile[p].ignoreWater = true;
                     }
@@ -939,23 +939,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (attackCounter++ >= 300)
                 {
-                    var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(5, 0).RotatedBy(npc.rotation), CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
                     Main.projectile[p].hostile = true;
                     Main.projectile[p].friendly = false;
-                    p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(-5, 0).RotatedBy(npc.rotation), CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(-5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
                     Main.projectile[p].hostile = true;
                     Main.projectile[p].friendly = false;
                     attackCounter = 0;
                 }
             }
 
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"))
             {
                 float lifeRatio = npc.life / (float)npc.lifeMax;
                 bool phase5 = lifeRatio < (DificultyUtils.Death ? 0.5f : DificultyUtils.Revengeance ? 0.45f : 0.3f);
                 if (phase5 && !UniqueToggledFlag && npc.boss)
                 {
-                    int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)Main.player[npc.target].Center.X + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), (int)Main.player[npc.target].Center.Y + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"));
+                    int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)Main.player[npc.target].Center.X + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), (int)Main.player[npc.target].Center.Y + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"));
                     Main.npc[n].lifeMax = 1000;
                     Main.npc[n].boss = false;
                     Main.npc[n].life = 1000;
@@ -964,9 +964,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     UniqueToggledFlag = true;
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AquaticScourgeHead"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AquaticScourgeHead"))
             {
-                Main.player[npc.target].AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "DoGExtremeGravity"), 1);
+                Main.player[npc.target].AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "DoGExtremeGravity"), 1);
                 Main.player[npc.target].AddBuff(BuffID.Darkness, 1);
                 Main.player[npc.target].AddBuff(BuffID.Blackout, 1);
                 foreach (var p in Main.player)
@@ -975,7 +975,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         Main.player[npc.FindClosestPlayer()].AddBuff(BuffID.Confused, 1);
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BrimstoneElemental"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BrimstoneElemental"))
             {
                 BrimstoneElemental brimmy = npc.ModNPC<BrimstoneElemental>();
                 if (npc.ai[0] == 1f)
@@ -1014,21 +1014,21 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalamitasClone"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CalamitasClone"))
             {
-                int count = NPC.CountNPCS(CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"));
+                int count = NPC.CountNPCS(CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"));
                 float lifePercentage = MathUtils.GetPorcentage(npc.life, npc.lifeMax);
                 int maxCount = (int)(7 + ((100 - lifePercentage) / 10));
                 if (count < maxCount)
                 {
                     if (attackCounter++ >= 200 - ((100 - lifePercentage)))
                     {
-                        NPC.SpawnOnPlayer(npc.target, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"));
+                        NPC.SpawnOnPlayer(npc.target, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SoulSeeker"));
                         attackCounter = 0;
                     }
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GreatSandShark"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GreatSandShark"))
             {
                 if (attackCounter++ >= 200)
                 {
@@ -1036,7 +1036,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     attackCounter = 0;
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumAureus"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstrumAureus"))
             {
                 if (npc.oldVelocity.Y > 3f && npc.velocity.Y <= 0f)
                 {
@@ -1053,7 +1053,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PlaguebringerGoliath"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PlaguebringerGoliath"))
             {
 
                 if (!HasElectricShield)
@@ -1093,11 +1093,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            /*if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"))
+            /*if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"))
             {
                 npc.velocity *= 1.02f;
             }*/
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"))
             {
 
                 if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -1115,16 +1115,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.LocalPlayer.AddBuff(ModContent.BuffType<FogOfVoid>(), 120);
                 }
             }
-            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"))
+            else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"))
             {
                 if (Main.LocalPlayer.infernoCounter % 20 == 0)
                 {
-                    var a = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, (npc.velocity * 0.5f).RotatedByRandom(0.12f), CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElementalFire"), 50, 0, Main.myPlayer);
+                    var a = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, (npc.velocity * 0.5f).RotatedByRandom(0.12f), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElementalFire"), 50, 0, Main.myPlayer);
                     Main.projectile[a].friendly = false;
                     Main.projectile[a].hostile = true;
                 }
             }
-            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Signus"))
+            else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Signus"))
             {
                 if (UniqueToggledFlag)
                 {
@@ -1156,7 +1156,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     UniqueToggledFlag = true;
                 }
             }
-            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Polterghast"))
+            else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Polterghast"))
             {
                 if (UniqueToggledFlag)
                 {
@@ -1164,7 +1164,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     {
                         SecondUniqueToggledFlag = true;
                         for (int i = 0; i < 10; i++)
-                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
                     }
                 }
                 else
@@ -1172,11 +1172,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (npc.life <= npc.lifeMax / 2)
                     {
                         UniqueToggledFlag = true;
-                        NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                        NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
                     }
                 }
             }
-            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "OldDuke"))
+            else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "OldDuke"))
             {
                 if (attackCounter < 400)
                 {
@@ -1194,21 +1194,21 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 }
             }
           
-            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"))
+            else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Yharon"))
             {
                 if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 40) && !UniqueToggledFlag)
                 {
                     //Calamity revisar
-                    /*for (int i = 0; i < 2; i++)
+                    for (int i = 0; i < 2; i++)
                     {
-                        var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"));
+                        var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"));
                         Main.npc[a].lifeMax /= 4;
                         Main.npc[a].life /= 4;
-                    }*/
+                    }
                     UniqueToggledFlag = true;
                 }
             }
-            if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
             {
                 if (npc.alpha < 255)
                 {
@@ -1251,7 +1251,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Artemis"))
+            else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Artemis"))
             {
                 if (npc.alpha < 255)
                 {
@@ -1271,7 +1271,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeCalamitas"))
+            else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SupremeCalamitas"))
             {
                 if (attackCounter >=  Utils1.FormatTimeToTick(0, 0, 0, 1))
                 {
@@ -1317,7 +1317,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
-                if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"))
+                if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"))
                 {
                     if (!npc.boss)
                         return false;
@@ -1577,37 +1577,37 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
                     if(RemnantOfTheAncientsMod.CalamityMod != null)
                     {
-                        ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
-                        ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
+                        ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
+                        ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
                         if (CalamityUtils.IsBossDefeated("HiveMind") || CalamityUtils.IsBossDefeated("PerforatorHive"))
                         {
-                           ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
+                           ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
                         }
                         if (Main.hardMode)
                         {
-                           ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
+                           ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
                             if (CalamityUtils.IsBossDefeated("Cryogen") && NPC.downedMechBossAny)
                             {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
                             }
                             if (NPC.downedPlantBoss)
                             {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
                             }
                             if (NPC.downedGolemBoss)
                             {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
                             }
                             if (CalamityUtils.IsBossDefeated("AstrumDeus"))
                             {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
                             }
                             if (NPC.downedMoonlord)
                             {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
+                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
                                 if (CalamityUtils.IsBossDefeated("Providence"))
                                 {
-                                   ListUtils.AddSecure(ref SlimesList, CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
+                                   ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
                                 }
                             }
                         }
@@ -1723,8 +1723,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 }
                 if(RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    int idCrimulan = CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin");
-                    if (npc.type == idCrimulan || npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"))
+                    int idCrimulan = CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin");
+                    if (npc.type == idCrimulan || npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"))
                     {
                         var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, NPCID.KingSlime);
                         Main.npc[p].lifeMax = 500;
@@ -1768,23 +1768,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (Reaper.ReaperMode)
             {
-                if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PlaguebringerGoliath"))
+                if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PlaguebringerGoliath"))
                 {
                     if (HasElectricShield)
                     {
                         //Calamity revisar
-                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
+                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Green;
                         animateEffects(npc, 1f, texture, color);*/
                     }
                 }
-                else if (npc.type == CallUtils.GetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
+                else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
                 {
                     if (HasElectricShield)
                     {
                         //Calamity revisar
-                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.GetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
+                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Gray;
                         animateEffects(npc, 1f, texture, color);*/

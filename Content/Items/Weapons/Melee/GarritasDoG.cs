@@ -6,9 +6,8 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System.Linq;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using CalamityMod.Rarities;
 using SangarUtilities.Common.UtilsTweaks;
+
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -34,9 +33,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(gold: 100);
-            //Calamity revisar
-            Item.rare = ItemRarityID.Purple;//ModContent.RarityType<DarkBlue>();
-            Item.scale = 2.0f;
+            Item.rare = CallUtils.TryGetRarityFromMod(RemnantOfTheAncientsMod.CalamityMod ,"CosmicPurple", ItemRarityID.Purple);          
+			Item.scale = 2.0f;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
@@ -44,7 +42,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 				if (GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<GodClaws>();
 			}
 			else Item.shoot = ProjectileType<GodClaws>();
-			//Item.shootSpeed = 5f;
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
@@ -78,10 +75,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			{
 				Recipe recipe = CreateRecipe()
 				.AddIngredient(ItemType<Garritas>())
-				.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
-				//recipe.AddIngredient(RemnantOfTheAncients.CalamityMod.Find<ModItem>("EndothermicEnergy"), 10);
-				//recipe.AddIngredient(RemnantOfTheAncients.CalamityMod.Find<ModItem>("NightmareFuel"), 10);
-				recipe.AddTile(CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil"));
+				.AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmiliteBar"), 15);
+				recipe.AddTile(CallUtils.TryGetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicAnvil", TileID.LunarCraftingStation));
 				recipe.Register();
 			}
 		}

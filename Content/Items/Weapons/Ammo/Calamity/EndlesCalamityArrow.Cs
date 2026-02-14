@@ -8,7 +8,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     public class EndlesArcticArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ArcticArrow"));
+        public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ArcticArrow"));
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     public class EndlesBloodfireArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodfireArrow"));
+        public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodfireArrow"));
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     public class EndlesElysianArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElysianArrow"));
+        public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElysianArrow"));
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     public class EndlesIcicleArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "IcicleArrow"));
+        public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "IcicleArrow"));
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
@@ -48,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     public class EndlesNapalmArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "NapalmArrow"));
+        public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "NapalmArrow"));
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
@@ -58,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     public class EndlesTerraArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TerraArrow"));
+        public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TerraArrow"));
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {
@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
     public class EndlesVanquisherArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
-        public override Item ItemBase => new(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "VanquisherArrow"));
+        public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "VanquisherArrow"));
         public override string TexturePath => null;
         public override void SetStaticDefaults()
         {

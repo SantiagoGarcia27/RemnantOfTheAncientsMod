@@ -123,8 +123,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 		{
 			CreateRecipe()
 			.AddIngredient<The_Legion>()
-			.AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
-			.AddTile(CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
+			.AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "EternitySoul"))
+			.AddTile(CallUtils.TryGetTileFromMod(RemnantOfTheAncientsMod.FargowiltasMod, "CrucibleCosmosSheet"))
 			.Register();
 		}
 	}

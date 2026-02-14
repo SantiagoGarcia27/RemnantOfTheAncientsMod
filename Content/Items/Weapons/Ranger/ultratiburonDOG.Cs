@@ -1,17 +1,12 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.Localization;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using CalamityMod.Rarities;
-using CalamityMod.Items.Materials;
-using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -28,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 210;//155
+			Item.damage = 210;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 80;
 			Item.height = 40;
@@ -38,8 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.noMelee = true;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(1, 50, 2, 0);
-            //Calamity revisar
-            Item.rare = ItemRarityID.Purple;//ModContent.RarityType<DarkBlue>();
+            Item.rare = CallUtils.TryGetRarityFromMod(RemnantOfTheAncientsMod.CalamityMod, "CosmicPurple", ItemRarityID.Purple);
             Item.UseSound = SoundID.Item12;
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.PurificationPowder;
@@ -70,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 				.AddIngredient(ItemType<Ultratiburon>());
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("CosmiliteBar"), 15);
 				recipe.AddIngredient(RemnantOfTheAncientsMod.CalamityMod.Find<ModItem>("ShadowspecBar"), 5);
-                recipe.AddTile(CallUtils.GetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "DraedonsForge"));
+                recipe.AddTile(CallUtils.TryGetTileFromMod(RemnantOfTheAncientsMod.CalamityMod, "DraedonsForge", TileID.LunarCraftingStation));
                 recipe.Register();
 			}
 		}

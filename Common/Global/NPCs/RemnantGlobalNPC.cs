@@ -396,7 +396,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     if (Main.netMode != NetmodeID.Server && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
                     {
-                        Main.player[Main.myPlayer].AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                        Main.player[Main.myPlayer].AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
                     }
                 }
             }
@@ -410,7 +410,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     if (Main.netMode != NetmodeID.Server && !Main.player[Main.myPlayer].dead && Main.player[Main.myPlayer].active && Vector2.Distance(Main.player[Main.myPlayer].Center, npc.Center) < 6400f)
                     {
-                        Main.player[Main.myPlayer].AddBuff(CallUtils.GetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
+                        Main.player[Main.myPlayer].AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "BossEffects"), 2);
                     }
                 }
             }

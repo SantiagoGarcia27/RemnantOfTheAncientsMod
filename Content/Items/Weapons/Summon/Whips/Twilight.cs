@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
             {
                 CreateRecipe()
                 .AddIngredient(ModContent.ItemType<NightBar>(), 10)
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
                 .AddTile(TileID.DemonAltar)
                 .Register();
 
@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Whips
                 .AddIngredient(ItemID.BoneWhip, 1)
                 .AddIngredient(ModContent.ItemType<FireStorm>())
                 .AddRecipeGroup("anyCorruptWhip")
-                .AddIngredient(CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 10)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             }

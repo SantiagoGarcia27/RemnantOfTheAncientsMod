@@ -123,7 +123,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         
         public void ModifyTooltipsCalamityMod(Item item, List<TooltipLine> Tooltips)
         {
-            if (item.type == CallUtils.GetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
+            if (item.type == CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 SetTooltipCustom(Tooltips, Language.GetTextValue(GenericPath + "InmuneTo", Lang.GetBuffName(BuffID.ManaSickness)), Color.White, $"ToolTip4", Color.White);
             }

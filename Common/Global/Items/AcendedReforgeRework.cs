@@ -75,24 +75,24 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             Reforges = new Dictionary<int, int>()
             {
-                { PrefixID.Legendary,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Berserk") },
-                { PrefixID.Legendary2,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Berserk") },
-                { PrefixID.Unreal,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Veteran") },
-                { PrefixID.Mythical,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Relic") },
-                { PrefixID.Menacing,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Sharp") },
-                { PrefixID.Warding,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Impenetrable") },
-                { PrefixID.Lucky,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Acurate") },
-                { PrefixID.Quick2,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Supersonic") },
-                { PrefixID.Violent,  CallUtils.GetModPrefix(RemnantOfTheAncient, "Uncontrolled") },
-                { CallUtils.GetModPrefix(RemnantOfTheAncient, "Gigant"),  CallUtils.GetModPrefix(RemnantOfTheAncient, "Titanic") }
+                { PrefixID.Legendary,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Berserk") },
+                { PrefixID.Legendary2,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Berserk") },
+                { PrefixID.Unreal,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Veteran") },
+                { PrefixID.Mythical,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Relic") },
+                { PrefixID.Menacing,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Sharp") },
+                { PrefixID.Warding,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Impenetrable") },
+                { PrefixID.Lucky,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Acurate") },
+                { PrefixID.Quick2,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Supersonic") },
+                { PrefixID.Violent,  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Uncontrolled") },
+                { CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Gigant"),  CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Titanic") }
             };
         }
 
         [JITWhenModsEnabled("CalamityMod")]
         public void FillCalamityList()
         {
-            Reforges.Add(CallUtils.GetModPrefix(calamityMod, "Flawless"), CallUtils.GetModPrefix(RemnantOfTheAncient, "Exquisite"));
-            Reforges.Add(CallUtils.GetModPrefix(calamityMod, "Silent"), CallUtils.GetModPrefix(RemnantOfTheAncient, "Shadow"));
+            Reforges.Add(CallUtils.TryGetPrefixFromMod(calamityMod, "Flawless"), CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Exquisite"));
+            Reforges.Add(CallUtils.TryGetPrefixFromMod(calamityMod, "Silent"), CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Shadow"));
         }
     }
 }
