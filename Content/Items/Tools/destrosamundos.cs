@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 		{
 			Item.damage = 290;
 			Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 40;
+			Item.width = 54;
+			Item.height = 54;
 			Item.useTime = 2; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
 			Item.useAnimation = 20;  //Animacion normal de Pico
 			Item.pick = 250; //Potencia de Pico. 
