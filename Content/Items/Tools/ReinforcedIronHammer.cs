@@ -22,8 +22,8 @@
 //		{
 //Item.damage = 11;
 //Item.DamageType = DamageClass.Melee;
-//Item.width = 40;
-//Item.height = 40;
+//Item.width = 38;
+//Item.height = 38;
 //Item.useTime = 18; 
 //Item.useAnimation = 26;  
 //Item.hammer = 60; 
