@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }  
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Ranged) *= 1.05f;
+            player.GetDamage(DamageClass.Ranged) += .05f;
             player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged] += 1;
             player.GetModPlayer<RemnantPlayer>().AutoCharge = true;
         }

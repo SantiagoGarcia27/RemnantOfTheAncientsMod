@@ -7,6 +7,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Utilities.Terraria.Utilities;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 {
@@ -30,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Melee) *= 1+ (MeleeDamageBonus/100);
+            player.GetDamage(DamageClass.Melee) += MeleeDamageBonus / 100f;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

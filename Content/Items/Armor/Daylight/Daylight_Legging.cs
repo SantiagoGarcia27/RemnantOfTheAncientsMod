@@ -12,10 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Daylight skirt");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pollera de hojas");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jupe lumière du jour");
-            //Tooltip.SetDefault(//Tooltip());
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
         public int IncreasedMinionDamage = 4;
@@ -30,16 +26,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
             Item.rare = ItemRarityID.White;
 			Item.defense = 4;
 		}
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(4, DamageClass.Summon) +
-        //        "\n" + LocalizationHelper.IncreasedManaMax//Tooltip(5);
-        //}
+
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) *= 1.04f;
-            player.statManaMax2 += 5;
-            player.moveSpeed += 0.05f;
+            player.GetDamage(DamageClass.Summon) += IncreasedMinionDamage / 100f;
+            player.statManaMax2 += IncreasesMaxMana;
+            player.moveSpeed += MovmentSpeedBonus / 100f;
         }
         public override void AddRecipes()
 		{

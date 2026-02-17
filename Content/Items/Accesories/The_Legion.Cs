@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     {
         private static readonly Color ColorOne = new Color(255, 0, 0);
         private static readonly Color ColorTwo = new Color(0, 0, 255);
-        private List<string> ForumComments = new List<string>()
+        private static readonly List<string> ForumComments = new List<string>()
         {
             "S-Pladison",
             "NKSHV",
@@ -24,24 +24,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             "DinoZers",
             "scorpion17907"
         };
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25,5);
+        int damageBonus = getDamageBonus();
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonus, 5);
         public override void SetStaticDefaults()
         {
-            // //DisplayName.SetDefault("The Legion");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "La Légion");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La Legión");
-            //Tooltip.SetDefault(//Tooltip()
-            //+ "\nMany thanks to:"
-            //+ "\n S-Pladison   -NKSHV  -perrogalan"
-            //+ "\n-Banmei   -Scratch Lunin  -DinoZers -scorpion17907");
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 6));
         }
-        //public string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(25, DamageClass.Summon)
-        //        //+ "\n" + LocalizationHelper.IncreasedMinion//Tooltip(5);
+        static int getDamageBonus()
+        {
+            return ForumComments.Contains(Main.LocalPlayer.name) ? 25 : 200;
+        }
 
-        //}
         internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);
         public override void SetDefaults()
         {
@@ -56,12 +49,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             if (ForumComments.Contains(player.name))
             {
-                player.GetDamage(DamageClass.Summon) *= 2f;
+                player.GetDamage(DamageClass.Summon) += 2f;
                 player.maxMinions += 8;
             }
             else
             {
-                player.GetDamage(DamageClass.Summon) *= 1.25f;
+                player.GetDamage(DamageClass.Summon) += .25f;
                 player.maxMinions += 5;
             }
         }

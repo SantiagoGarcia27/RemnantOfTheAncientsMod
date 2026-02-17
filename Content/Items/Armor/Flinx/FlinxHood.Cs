@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Flinx
 		}
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) *= 1.03f;
+            player.GetDamage(DamageClass.Summon) += .03f;
         }
         public override void UpdateArmorSet(Player player)
 		{

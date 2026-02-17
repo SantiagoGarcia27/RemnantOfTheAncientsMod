@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Generic) *= 1.15f;
+            player.GetDamage(DamageClass.Generic) += damageBonus / 100f;
         }
         public override void AddRecipes()
         {

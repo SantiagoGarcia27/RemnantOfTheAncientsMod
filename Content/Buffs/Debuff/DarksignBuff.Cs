@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 			int lifeDecreased = (int)MathUtils.GetValueFromPorcentage(player.statLifeMax2, 20);
 
             if(!Reaper.ReaperMode) player.statLifeMax2 -= lifeDecreased;
-            player.GetDamage(DamageClass.Generic) *= 1.2f;
+            player.GetDamage(DamageClass.Generic) += .2f;
         }
 
 		public override void Update(NPC npc, ref int buffIndex)

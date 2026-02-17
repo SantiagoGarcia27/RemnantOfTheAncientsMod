@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             DamageClass damagetype = DamageClass.Magic;
-            player.GetDamage(damagetype) *= 1 + damageBonus /100f;
+            player.GetDamage(damagetype) += damageBonus / 100f;
             player.GetCritChance(damagetype) += critBonus;
         }
     }

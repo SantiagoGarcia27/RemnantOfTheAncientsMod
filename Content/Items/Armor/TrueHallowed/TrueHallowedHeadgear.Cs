@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 		{
             player.statManaMax2 += ManaBonus;
 
-            player.GetDamage(DamageClass.Magic) *= 1.13f;
+            player.GetDamage(DamageClass.Magic) += .13f;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

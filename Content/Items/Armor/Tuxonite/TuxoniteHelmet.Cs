@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 		}
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Ranged) *= 1.03f;
+            player.GetDamage(DamageClass.Ranged) += .03f;
         }
         public override void UpdateArmorSet(Player player)
 		{

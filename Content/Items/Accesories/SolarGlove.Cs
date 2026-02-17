@@ -10,16 +10,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
     {
         public override void SetStaticDefaults()
         {
-            // //DisplayName.SetDefault("Warrior Emblem V2");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Emblème Guerrier V2");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Emblema de Guerrero V2");
-            //Tooltip.SetDefault(//Tooltip());
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageBy//Tooltip(25, DamageClass.Melee);
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
         public override void SetDefaults()
@@ -27,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.width = 28;
             Item.height = 36;
             Item.value = Item.buyPrice(0, 8, 0, 0);
-            Item.rare = 10;
+            Item.rare = ItemRarityID.Red;
             Item.accessory = true;
         }
         public override void AddRecipes()  //How to craft this item
@@ -43,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Melee) *= 1.14f;
+            player.GetDamage(DamageClass.Melee) += .14f;
             player.kbGlove = true;
             player.autoReuseGlove = true;
             player.meleeScaleGlove = true;

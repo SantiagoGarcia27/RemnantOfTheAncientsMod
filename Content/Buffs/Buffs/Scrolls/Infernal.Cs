@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
         {
             player.inferno = true;
             player.lifeForce = true;
-            player.GetDamage(DamageClass.Generic) *= 1.10f;
+            player.GetDamage(DamageClass.Generic) += .10f;
             int Buff = BuffType<Infernal>();
             player.GetModPlayer<RemnantPlayer>().ScrollImmunity(Buff);
         }

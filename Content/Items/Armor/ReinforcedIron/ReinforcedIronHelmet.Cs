@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 		public override void UpdateArmorSet(Player player)
 		{
             player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DamageSetBonus, MovmentSpeedSetBonus, DefenseSetBonus).Value;
-            player.GetDamage(DamageClass.Generic) *= 1f + (DamageSetBonus/100f);
+            player.GetDamage(DamageClass.Generic) += DamageSetBonus / 100f;
 			player.statDefense += DefenseSetBonus;
 			player.moveSpeed += MovmentSpeedSetBonus / 100f;
 		}

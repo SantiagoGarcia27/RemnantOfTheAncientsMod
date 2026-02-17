@@ -55,7 +55,7 @@ namespace  RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
         public override void Update(Player player, ref int buffIndex)
         {
             player.statDefense += defenseBonus;
-            player.GetDamage(DamageClass.Generic) *= 1 + damageBonus / 100;
+            player.GetDamage(DamageClass.Generic) += damageBonus / 100f;
         }
     }
 }

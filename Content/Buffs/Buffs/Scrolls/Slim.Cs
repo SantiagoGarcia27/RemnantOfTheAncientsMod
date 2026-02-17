@@ -10,12 +10,6 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("King's blessing");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Bénédiction du ro");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Bendición del rey");
-            ////Description.SetDefault("You feel lighter");
-            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tu te sens plus léger");
-            //Description.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Te sientes más ligero");
             Main.persistentBuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.debuff[Type] = false; //Add this so the nurse doesn't remove the buff when healing

@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		}
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.MagicSummonHybrid) *= 1.03f;
+            player.GetDamage(DamageClass.MagicSummonHybrid) += 0.03f;
 			player.statManaMax2 += 20;	
         }
         public override void UpdateArmorSet(Player player)

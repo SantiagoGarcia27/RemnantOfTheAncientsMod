@@ -251,7 +251,7 @@ public class ReaperEffectsPlayer : ModPlayer
             }
             if (SoulIsEnabled(NPCID.WallofFlesh))
             {
-                Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
+                Player.GetDamage(DamageClass.Generic) += ReaperSoulBoost ? .20f : .10f;
             }
             if (SoulIsEnabled(NPCType<FrozenAssaulter>())) 
                 Player.GetModPlayer<RemnantPlayer>().FrostInmune();
@@ -281,7 +281,7 @@ public class ReaperEffectsPlayer : ModPlayer
             {
                 Player.fireWalk = true;
                 Player.lavaImmune = true;
-                Player.GetDamage(DamageClass.Generic) *= ReaperSoulBoost ? 1.20f : 1.10f;
+                Player.GetDamage(DamageClass.Generic) += ReaperSoulBoost ? .20f : .10f;
             }
             if (SoulIsEnabled(NPCID.Golem)) 
                 Player.statDefense += ReaperSoulBoost ? 15 : 10;

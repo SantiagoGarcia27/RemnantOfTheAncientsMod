@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Throwing) *= 1 + (DamageBonus/100);
+			player.GetDamage(DamageClass.Throwing) += (DamageBonus/100);
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

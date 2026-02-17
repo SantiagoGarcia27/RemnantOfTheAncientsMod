@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls
             player.detectCreature = true;
             Main.persistentBuff[Type] = true;
             player.ammoCost75 = true;
-            player.GetDamage(DamageClass.Throwing) *= 1.20f;
+            player.GetDamage(DamageClass.Throwing) += .20f;
 
             player.GetModPlayer<RemnantPlayer>().UnreadInmunity();
             int Buff = BuffType<Skeleton>();
