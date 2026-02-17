@@ -22,8 +22,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 
 		public override void SetDefaults()
 		{
-			Item.width = 18;
-			Item.height = 18;
+			Item.width = 34;
+			Item.height = 22;
 			Item.value = Item.sellPrice(gold:1);
 			Item.rare = ItemRarityID.Yellow;
 			Item.defense = 13;
