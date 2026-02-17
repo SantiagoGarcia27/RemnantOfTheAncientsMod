@@ -156,7 +156,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override void OnConsumeItem(Player player)
         {
             //Calamity revisar
-            //player.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
+            player.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
             base.OnConsumeItem(player);
         }
         public override void AddRecipes()
@@ -182,7 +182,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
                 .AddIngredient(ItemID.InfernoPotion, 1)
                 .AddIngredient(ItemType<Commander_Potion>(), 1)
                 //Calamity revisar
-                //.AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
                 .AddTile(TileID.Bottles)
                 .Register();
             }
@@ -193,14 +193,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
         public override Item ItemBase => new(ItemType<Summon_Potion_Kit>());
         public override void SetStaticDefaults()
         {
-            // //DisplayName.SetDefault("ModelEndless Summoner Potions Kit");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Kit de potions d'invocateur sans fin");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Kit de pociones de invocador eterno");
         }
         public override void OnConsumeItem(Player player)
         {
             //Calamity revisar
-            //player.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
+            player.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaBuff"), 2);
             base.OnConsumeItem(player);
         }
         public override void AddRecipes()

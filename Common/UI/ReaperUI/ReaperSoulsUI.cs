@@ -332,6 +332,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                             }
                             else
                             {
+                                if(TextureGray != null)
                                 Buttons[mod][npc.type].SetImage(TextureGray);
                             }
                         }

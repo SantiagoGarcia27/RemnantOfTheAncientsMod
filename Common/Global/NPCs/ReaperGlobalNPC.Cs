@@ -223,7 +223,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianCommander"),
                 CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianDefender"),
                 CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "ProfanedGuardianHealer"),
-                //CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"),
+                CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Dragonfolly"),
                 CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Providence"),
                 CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"),
                 CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"),
@@ -1093,10 +1093,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     }
                 }
             }
-            /*if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"))
+            if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Bumblefuck"))
             {
                 npc.velocity *= 1.02f;
-            }*/
+            }
             if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"))
             {
 
@@ -1773,10 +1773,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (HasElectricShield)
                     {
                         //Calamity revisar
-                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
+                        Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Green;
-                        animateEffects(npc, 1f, texture, color);*/
+                        animateEffects(npc, 1f, texture, color);
                     }
                 }
                 else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
@@ -1784,10 +1784,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (HasElectricShield)
                     {
                         //Calamity revisar
-                        /*Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
+                        Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Gray;
-                        animateEffects(npc, 1f, texture, color);*/
+                        animateEffects(npc, 1f, texture, color);
                     }
                 }
             }

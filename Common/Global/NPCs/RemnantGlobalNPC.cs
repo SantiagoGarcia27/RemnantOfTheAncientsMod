@@ -647,11 +647,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public static void SetNpcDamageReductionCalamity(NPC npc, float normal, float revenge, float death, float bossrush, float infernum)
         {
             //Calamity revisar
-            /*if (DificultyUtils.InfernumMode)
+            if (DificultyUtils.InfernumMode)
             {
                 npc.GetGlobalNPC<CalamityGlobalNPC>().DR = infernum;
             }
-            else npc.DR_NERD(normal, revenge, death, bossrush);*/
+            else npc.DR_NERD(normal, revenge, death, bossrush);
         }
     }
 }
