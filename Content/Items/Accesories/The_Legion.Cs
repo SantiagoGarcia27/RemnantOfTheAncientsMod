@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         static int getDamageBonus()
         {
-            return ForumComments.Contains(Main.LocalPlayer.name) ? 25 : 200;
+            return ForumComments.Contains(Main.LocalPlayer.name) ? 200 : 25;
         }
 
         internal static Color GetRarityColor() => Utils1.ColorSwap(ColorOne, ColorTwo, 3f);
