@@ -20,8 +20,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus);
         public override void SetDefaults()
 		{
-			Item.width = 18;
-			Item.height = 18;
+			Item.width = 34;
+			Item.height = 22;
 			Item.value = 10000;
 			Item.rare = ItemRarityID.Blue;
 			Item.defense = 7;//18

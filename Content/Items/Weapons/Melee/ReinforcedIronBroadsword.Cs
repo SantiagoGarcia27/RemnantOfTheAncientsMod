@@ -21,8 +21,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		{
 			Item.damage = new Item(ItemID.PlatinumBroadsword).damage + 10;
 			Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
-			Item.height = 80;
+			Item.width = 64;
+			Item.height = 64;
 			Item.useTime = 30;
 			Item.useAnimation = 30;
 			Item.useStyle = ItemUseStyleID.Swing;

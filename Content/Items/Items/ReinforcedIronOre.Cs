@@ -18,8 +18,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 
 		public override void SetDefaults()
 		{
-			Item.width = 26;
-			Item.height = 26;
+			Item.width = 22;
+			Item.height = 18;
 			Item.maxStack = 100;
 			Item.value = 100;
 			Item.rare = ItemRarityID.Green;
