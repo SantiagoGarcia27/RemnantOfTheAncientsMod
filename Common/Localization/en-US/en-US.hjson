@@ -4183,6 +4183,90 @@ Mods: {
 				DisplayName: Expertice Stone
 				Tooltip: ""
 			}
+
+			TrueNightchesplate: {
+				DisplayName: True Night Breastplate
+				Tooltip:
+					'''
+					{$CommonItemTooltip.IncreasesMaxManaBy}
+					{$CommonItemTooltip.IncreasesMaxLifeBy@1}
+					Immune to burning and broken armor
+					'''
+			}
+
+			TrueNightHelmetMage: {
+				DisplayName: True Night Headgear
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedMagicDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Summons a dark mist that blocks enemy projectiles
+					'''
+			}
+
+			TrueNightHelmetMelee: {
+				DisplayName: True Night Helmet
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Summons a dark mist that blocks enemy projectiles
+					'''
+			}
+
+			TrueNightHelmetRanger: {
+				DisplayName: True Night Mask
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedRangedDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Summons a dark mist that blocks enemy projectiles
+					'''
+			}
+
+			TrueNightHelmetSummoner: {
+				DisplayName: True Night Hat
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				SetBonus:
+					'''
+					{0} Defense
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@3}
+					Summons a dark mist that blocks enemy projectiles
+					'''
+			}
+
+			TrueNightHelmetThrower: {
+				DisplayName: True Night Hood
+				Tooltip: Increases throwing damage by {0}%.
+				SetBonus:
+					'''
+					{0} Defense
+					{1}% increased throw damage
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Summons a dark mist that blocks enemy projectiles
+					'''
+				SetBonusCalamity:
+					'''
+					{0} Defense
+					{1}% increased rogue damage
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Increased max stealth by {3}
+					Summons a dark mist that blocks enemy projectiles
+					'''
+			}
+
+			TrueNightLeggings: {
+				DisplayName: True Night Greaves
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+			}
 		}
 
 		NPCs: {
@@ -4449,6 +4533,8 @@ Mods: {
 			NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
 			PlayerClone.DisplayName: Player Clone
 			HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
+			TrueShadowMistProj.DisplayName: True Shadow Mist Proj
+			TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
 		}
 
 		Tiles: {

@@ -4212,6 +4212,90 @@ Mods: {
 				// DisplayName: Expertice Stone
 				// Tooltip: ""
 			}
+
+			TrueNightchesplate: {
+				DisplayName: Coraza de la noche verdadera
+				Tooltip:
+					'''
+					{$CommonItemTooltip.IncreasesMaxManaBy}
+					{$CommonItemTooltip.IncreasesMaxLifeBy@1}
+					Otorga inmunidad a los efectos de fuego y armadura rota
+					'''
+			}
+
+			TrueNightHelmetMage: {
+				DisplayName: Sombrero de la noche verdadera
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMagicDamage}"
+				SetBonus:
+					'''
+					{0} de defensa
+					{$CommonItemTooltip.PercentIncreasedMagicDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Invoca una neblina oscura que bloquea proyectiles enemigos
+					'''
+			}
+
+			TrueNightHelmetMelee: {
+				DisplayName: Casco de la noche verdadera
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMeleeDamage}"
+				SetBonus:
+					'''
+					{0} Defensa
+					{$CommonItemTooltip.PercentIncreasedMeleeDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Invoca una neblina oscura que bloquea proyectiles enemigos
+					'''
+			}
+
+			TrueNightHelmetRanger: {
+				DisplayName: Máscara de la noche verdadera
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
+				SetBonus:
+					'''
+					{0} Defensa
+					{$CommonItemTooltip.PercentIncreasedRangedDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Invoca una neblina oscura que bloquea proyectiles enemigos
+					'''
+			}
+
+			TrueNightHelmetSummoner: {
+				DisplayName: Gorro de la noche verdadera
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				SetBonus:
+					'''
+					{0} Defensa
+					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					{$CommonItemTooltip.IncreasesMaxMinionsBy@3}
+					Invoca una neblina oscura que bloquea proyectiles enemigos
+					'''
+			}
+
+			TrueNightHelmetThrower: {
+				DisplayName: Capucha de la noche verdadera
+				Tooltip: Aumenta el daño de lanzador en {0}%.
+				SetBonus:
+					'''
+					{0} Defensa
+					Aumenta un {1}% el daño de lanzador
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Invoca una neblina oscura que bloquea proyectiles enemigos
+					'''
+				SetBonusCalamity:
+					'''
+					{0} Defensa
+					Aumenta un {1}% el daño de pícaro
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@2}
+					Aumenta el sigilo en {3}
+					Invoca una neblina oscura que bloquea proyectiles enemigos
+					'''
+			}
+
+			TrueNightLeggings: {
+				DisplayName: Perneras de la noche verdadera
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
+			}
 		}
 
 		NPCs: {
@@ -4478,6 +4562,8 @@ Mods: {
 			// NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
 			// PlayerClone.DisplayName: Player Clone
 			// HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
+			// TrueShadowMistProj.DisplayName: True Shadow Mist Proj
+			// TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
 		}
 
 		Tiles: {

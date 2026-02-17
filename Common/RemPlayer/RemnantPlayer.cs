@@ -14,6 +14,7 @@ using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
+using RemnantOfTheAncientsMod.Content.Projectiles.Fargos;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.World;
@@ -122,6 +123,8 @@ namespace RemnantOfTheAncientsMod
 
 		public bool SpectralLantern;
 
+		public bool TrueShadowMist;
+
 		public static Dictionary<int,bool> PlayerTalkToday = [];
 
         #region Couldowns
@@ -195,6 +198,8 @@ namespace RemnantOfTheAncientsMod
 				
 			AutoCharge = false;
 			SummonerArea = false;
+
+			TrueShadowMist = false;
 
 			
 
@@ -342,7 +347,8 @@ namespace RemnantOfTheAncientsMod
 					GenericAmmoAmmountMax = heldItem.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax;
 				}
 			}
-		}
+			if (TrueShadowMist) ToggleTrueShadowMist();
+        }
 		public override bool FreeDodge(Player.HurtInfo info)
 		{
 			if (BrainDogde)
@@ -582,6 +588,13 @@ namespace RemnantOfTheAncientsMod
 			}
 			return -1;
 		}
+		public void ToggleTrueShadowMist()
+		{
+			if (TrueShadowMist && Player.ownedProjectileCounts[ProjectileType<TrueShadowMistProj>()] < 1)
+			{
+				Projectile.NewProjectile(Player.GetSource_None(), Player.Center, Vector2.Zero, ProjectileType<TrueShadowMistProj>(), 0, 0, Main.myPlayer);
+            }
+		}
 		public void ExoticA(int lifeRegen, int manaRegen, int manaMax, int armorPenetration, Item item)
 		{
 			Player.lifeRegen += lifeRegen;
@@ -655,6 +668,8 @@ namespace RemnantOfTheAncientsMod
 
             }
 		}
+
+
 
 		public static void KillMinion(int proj) => Main.projectile[proj].Kill();
 

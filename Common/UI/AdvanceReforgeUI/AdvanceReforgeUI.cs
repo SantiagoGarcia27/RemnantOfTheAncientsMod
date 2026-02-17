@@ -30,31 +30,37 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
         {
             MainPanel = new DragableUIPanel();
             MainPanel.SetPadding(10);
-            UIUtils.SetRectangle(MainPanel, left: 400f, top: 200f, width: 220f, height: 190f);
+            UIUtils.SetRectangle(MainPanel, left: 400f, top: 200f, width: 240f, height: 160f);
             MainPanel.BackgroundColor = new Color(73, 94, 171, 200);
 
-            ResultSlot = new UIItemSlotElement(ItemSlot.Context.BankItem);
-            UIUtils.SetRectangle(ResultSlot, 74f, 15f, 52f, 52f);
-            MainPanel.Append(ResultSlot);
-
+            float paddingLeft = 10f;
+            float itemSlotSize = 52f;
             InputSlot = new UIItemSlotElement(ItemSlot.Context.BankItem, ItemID.CopperShortsword);
-            UIUtils.SetRectangle(InputSlot, 15f, 95f, 52f, 52f);
+            UIUtils.SetRectangle(InputSlot, paddingLeft, 15f, itemSlotSize, itemSlotSize);
             MainPanel.Append(InputSlot);
+
+            paddingLeft += itemSlotSize + 10f;
+            ReforgeStoneSlot = new UIItemSlotElement(ItemSlot.Context.BankItem, ModContent.ItemType<Terracoin>());
+            ReforgeStoneSlot.OnUpdate += OnUpdateCatalyst;
+            UIUtils.SetRectangle(ReforgeStoneSlot, paddingLeft, 15f, itemSlotSize, itemSlotSize);
+            MainPanel.Append(ReforgeStoneSlot);
+
+            paddingLeft += itemSlotSize + 30f;
+            ResultSlot = new UIItemSlotElement(ItemSlot.Context.BankItem);
+            UIUtils.SetRectangle(ResultSlot, paddingLeft, 15f, itemSlotSize, itemSlotSize);
+            MainPanel.Append(ResultSlot);
 
             Asset<Texture2D> reforgeTexture = TextureAssets.Reforge[0];
             ReforgeButton = new UIHoverImageButton(reforgeTexture, "Reforge");
-            UIUtils.SetRectangle(ReforgeButton, 82f, 97f, 40f, 40f);
+            UIUtils.SetRectangle(ReforgeButton, 10f, 87f, 40f, 40f);
             ReforgeButton.OnLeftClick += OnReforgeButtonClick;
             MainPanel.Append(ReforgeButton);
 
             MoneyDisplay = new UIMoneyDisplay();
-            UIUtils.SetRectangle(MoneyDisplay, 60f, 150f, 120f, 20f);
+            UIUtils.SetRectangle(MoneyDisplay, 60f, 97f, 120f, 20f);
             MainPanel.Append(MoneyDisplay);
 
-            ReforgeStoneSlot = new UIItemSlotElement(ItemSlot.Context.BankItem, ModContent.ItemType<Terracoin>());
-            ReforgeStoneSlot.OnUpdate += OnUpdateCatalyst;
-            UIUtils.SetRectangle(ReforgeStoneSlot, 145f, 95f, 52f, 52f);
-            MainPanel.Append(ReforgeStoneSlot);
+           
 
             Append(MainPanel);
         }
