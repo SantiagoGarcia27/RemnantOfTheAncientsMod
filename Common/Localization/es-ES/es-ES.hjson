@@ -91,32 +91,38 @@ Mods: {
 		}
 
 		UI: {
-			Buttoms: {
-				DeliverPickaxe: Entregar pico
-				UpgradeItem: Mejorar {0}
-				SkipDay: Skip day
-			}
+			SoulLocked: "[Bloqueada]"
+			SoulActive: "[Activa]"
+			SoulInactive: "[Inactiva]"
 
-			ReaperTitle: Almas
+			SoulDesc: {
+				KingSlime: La jalea real recorre tus venas, otorgando un 30% más de velocidad de movimiento.
+				EyeOfCthulhu: El ojo omnisciente fortalece tu vitalidad, aumentando permanentemente la vida máxima en 10.
+				BrainOfCthulhu: Una barrera psíquica protege tu mente, otorgando inmunidad a Confusión y Lentitud.
+				QueenBee: El veneno de la reina fortifica tu sangre, otorgando inmunidad a Envenenado.
+				Skeletron: Huesos ancestrales refuerzan tu cuerpo, aumentando la defensa en 5.
+				Deerclops: Manos sombrías emergen del más allá para golpear a tus enemigos con un 25% de tu DPS total.
+				DesertAnnihilator: La resiliencia del desierto fluye a través de ti, reduciendo tu tiempo de reaparición.
+				WallOfFlesh: El poder bruto del muro de carne surge en tu interior, aumentando todo el daño en un 10%.
+				FrozenAssaulter: Un aura gélida envuelve tu cuerpo, otorgando inmunidad a Congelado, Escalofrío y Quemadura de hielo.
+				QueenSlime: La esencia cristalina fortalece tu constitución, aumentando permanentemente la vida máxima en 15.
+				Spazmatism: La furia de la llama maldita te protege de todos los efectos de quemadura.
+				Retinazer: La precisión mecánica desbloquea tu potencial, eliminando las restricciones de vuelo en modo Segador.
+				SkeletronPrime: Mejoras mecánicas potencian tus piernas drásticamente y otorgan la capacidad de ver minerales ocultos.
+				Destroyer: La energía implacable del destructor acelera tu velocidad de minería en un 35%.
+				Plantera: La fuerza vital de la selva aumenta tu vida máxima en 10 y libera esporas dañinas a tu alrededor.
+				InfernalTyrant: El poder infernal del tirano aumenta todo el daño en un 10% y te protege de la lava y los bloques de fuego.
+				Golem: La piel de piedra del gólem endurece tu cuerpo, aumentando la defensa en 10.
+				EmpressOfLight: Alas radiantes de luz pura te sostienen sin fin, otorgando vuelo infinito.
+				DukeFishron: Un furioso tornado de tiburones orbita a tu alrededor, destrozando a cualquier enemigo cercano.
+				LunaticCultist: Una niebla de hielo mística te rodea, congelando a los enemigos que osen acercarse.
+				MoonLord: La esencia persistente del Señor de la Luna debilita el agarre de la muerte, reduciendo tu tiempo de reaparición.
+			}
 
 			Couldowns: {
-				CouldownBar: "{0}s"
-				AmmoBar: "{0}"
+				// AmmoBar: Mods.RemnantOfTheAncientsMod.UI.Couldowns.AmmoBar
+				// CouldownBar: Mods.RemnantOfTheAncientsMod.UI.Couldowns.CouldownBar
 			}
-
-			AscendedReforgesTitle: Reforges Ascendidos
-			AscendedReforgesText:
-				'''
-				Para que un reforge ascienda a un nivel superior debes cumplir con los siguientes requisitos:
-
-				-Un Duende chapucero imbuido del brillante poder del fulgor.
-
-				-Un arma reforjada con un nivel máximo de reforja (ejemplo: Legendario)
-
-				-Y por ultimo una moneda para pagar el trabajo, esta debe ser una moneda terra
-
-				Una vez que lo tengas todo, tu próxima reforja podrá ascender.
-				'''
 		}
 
 		IntroScreen: {

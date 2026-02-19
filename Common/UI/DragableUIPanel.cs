@@ -20,9 +20,10 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
         public new Color BorderColor = Color.White;
         public new Color BackgroundColor = Color.White;
-        public override void LeftMouseDown(UIMouseEvent evt) {
+		public override void LeftMouseDown(UIMouseEvent evt) {
 			base.LeftMouseDown(evt);
-			DragStart(evt);
+			if (evt.Target == this)
+				DragStart(evt);
 		}
         public DragableUIPanel(Asset<Texture2D> backgroundTexture, Asset<Texture2D> borderTexture = null)
         {
@@ -37,9 +38,10 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             SetPadding(_cornerSize);
             _needsTextureLoading = true;
         }
-        public override void LeftMouseUp(UIMouseEvent evt) {
+		public override void LeftMouseUp(UIMouseEvent evt) {
 			base.LeftMouseUp(evt);
-			DragEnd(evt);
+			if (dragging)
+				DragEnd(evt);
 		}
 
 		private void DragStart(UIMouseEvent evt) {

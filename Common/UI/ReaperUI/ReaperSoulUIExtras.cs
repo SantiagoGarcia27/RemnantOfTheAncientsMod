@@ -85,6 +85,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PrimordialWyrmHead"));
                 ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PrimordialWyrmBody"));
                 ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "PrimordialWyrmTail"));
+
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "BrainIllusion"));
+                ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "FalseBrain"));
             }
 
         }

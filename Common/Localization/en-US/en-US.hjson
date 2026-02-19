@@ -85,32 +85,38 @@ Mods: {
 		}
 
 		UI: {
-			Buttoms: {
-				DeliverPickaxe: Deliver pickaxe
-				UpgradeItem: Upgrade {0}
-				SkipDay: Skip day
-			}
+			SoulLocked: "[Locked]"
+			SoulActive: "[Active]"
+			SoulInactive: "[Inactive]"
 
-			ReaperTitle: Souls
+			SoulDesc: {
+				KingSlime: The royal jelly courses through your veins, granting 30% increased movement speed.
+				EyeOfCthulhu: The all-seeing eye strengthens your vitality, permanently increasing max life by 10.
+				BrainOfCthulhu: A psychic barrier shields your mind, granting immunity to Confusion and Slow.
+				QueenBee: The queen's venom fortifies your blood, granting immunity to Poisoned.
+				Skeletron: Ancient bones reinforce your body, increasing defense by 5.
+				Deerclops: Shadowy hands emerge from beyond to strike your foes, dealing 25% of your total DPS.
+				DesertAnnihilator: The desert's resilience flows through you, reducing your respawn time.
+				WallOfFlesh: The flesh barrier's raw power surges within you, increasing all damage by 10%.
+				FrozenAssaulter: An icy aura envelops your body, granting immunity to Frozen, Chilled, and Frostburn.
+				QueenSlime: Crystalline essence fortifies your constitution, permanently increasing max life by 15.
+				Spazmatism: The cursed flame's fury shields you from all fire debuffs.
+				Retinazer: Mechanical precision unlocks your full potential, removing flight restrictions in Reaper Mode.
+				SkeletronPrime: Mechanical augmentation enhances your legs drastically and grants the ability to see hidden minerals.
+				Destroyer: The destroyer's relentless energy accelerates your mining speed by 35%.
+				Plantera: The jungle's life force increases your max life by 10 and releases damaging spores around you.
+				InfernalTyrant: The tyrant's infernal might increases all damage by 10% and shields you from lava and fire blocks.
+				Golem: The golem's stone skin hardens your body, increasing defense by 10.
+				EmpressOfLight: Radiant wings of pure light carry you endlessly, granting infinite flight.
+				DukeFishron: A raging Sharknado orbits around you, shredding any enemy that gets too close.
+				LunaticCultist: A mystical Ice Mist surrounds you, freezing enemies that dare approach.
+				MoonLord: The Moon Lord's lingering essence weakens death's grip, reducing your respawn time.
+			}
 
 			Couldowns: {
-				CouldownBar: "{0}s"
-				AmmoBar: "{0}"
+				AmmoBar: Mods.RemnantOfTheAncientsMod.UI.Couldowns.AmmoBar
+				CouldownBar: Mods.RemnantOfTheAncientsMod.UI.Couldowns.CouldownBar
 			}
-
-			AscendedReforgesTitle: Ascended Reforges
-			AscendedReforgesText:
-				'''
-				In order for a reforge to advance to a higher level you must meet the following requirements:
-
-				-A tinkerer imbued with the brilliant power of radiance
-
-				-A weapon reforged with a maximum level reforge (example: Legendary)
-
-				-And finally, a currency to pay for the work, this must be a terra coin
-
-				Once you have everything, your next reforge can ascend
-				'''
 		}
 
 		IntroScreen: {

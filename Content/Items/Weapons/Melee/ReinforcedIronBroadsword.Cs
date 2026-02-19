@@ -12,9 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Reinforced Iron Broadsword");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Epée large en fer renforcé");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Hierro Reforzado");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -23,21 +20,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 64;
 			Item.height = 64;
-			Item.useTime = 30;
-			Item.useAnimation = 30;
+			Item.useTime = 50;
+			Item.useAnimation = 50;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 8;
 			Item.value = Item.sellPrice(silver: 27);
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
-			if (RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-				Item.autoReuse = true;
-				Item.scale = 1.5f;
-				Item.useTime = 28;
-				Item.useAnimation = 28;
-			}
+			Item.ArmorPenetration = 5;
+			Item.autoReuse = true;
+			Item.scale = 1.5f;
 		}
 		public override void AddRecipes()
 		{
