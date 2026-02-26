@@ -1,15 +1,21 @@
 using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
 {
-    public abstract class ModReforgeCatalyst : ModItem
+    [JITWhenModsEnabled("CalamityMod")]
+    public class ShadowStone : ModReforgeCatalyst
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
         }
+
         public override void SetDefaults()
         {
             Item.width = 20;
@@ -18,16 +24,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
             Item.value = Item.sellPrice(gold: 10);
             Item.rare = ItemRarityID.Green;
             Item.SetCatalyst(true);
-        }
 
-        /// <summary>
-        /// Devuelve el prefijo que aplica este catalizador. Override en subclases.
-        /// </summary>
-        public virtual int GetCatalystReforge(Item inputItem)
-        {
-            if (Item.TryGetGlobalItem(out CatalystGlobalItem global) && global.Reforges != -1)
-                return global.Reforges;
-            return -1;
+            Item.SetApplyPrice(Utils1.FormatMoney(Gold: 10));
+            Item.SetReforges(CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "Shadow"));
         }
     }
 }

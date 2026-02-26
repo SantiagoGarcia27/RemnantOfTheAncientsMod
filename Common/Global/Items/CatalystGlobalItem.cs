@@ -1,4 +1,5 @@
 using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,6 +10,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public override bool InstancePerEntity => true;
         public bool Catalyst { get; set; }
         public int ApplyPrice { get; set; }
+
+        public int Reforges { get; set; } = -1;
     }
 
     public static class CatalystItemExtensions
@@ -28,10 +31,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             item.GetGlobalItem<CatalystGlobalItem>().Catalyst = value;
         }
 
+        public static void SetApplyPrice(this Item item, string price)
+        {
+            if (int.TryParse(price, out int parsedPrice))
+            {
+                item.GetGlobalItem<CatalystGlobalItem>().ApplyPrice = parsedPrice;
+            }
+        }
         public static void SetApplyPrice(this Item item, int price)
         {
             item.GetGlobalItem<CatalystGlobalItem>().ApplyPrice = price;
         }
+
+        public static void SetReforges(this Item item, int reforges)
+        {
+            item.GetGlobalItem<CatalystGlobalItem>().Reforges = reforges;
+        }
+
 
         /// <summary>
         /// Obtiene el reforge del catalizador. Delega al método virtual de ModReforgeCatalyst.

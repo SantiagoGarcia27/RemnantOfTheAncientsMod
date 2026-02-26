@@ -4273,6 +4273,89 @@ Mods: {
 				DisplayName: True Night Greaves
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
+
+			ReinforcedIronAxe: {
+				DisplayName: Reinforced Iron Axe
+				Tooltip: ""
+			}
+
+			ReinforcedIronPickaxe: {
+				DisplayName: Reinforced Iron Pickaxe
+				Tooltip:
+					'''
+					Mines a 3x3 area
+					+1 range
+					'''
+			}
+
+			GemScavenger: {
+				DisplayName: Gem Scavenger
+				Tooltip: ""
+			}
+
+			ReinforcedIronHammer: {
+				DisplayName: Reinforced Iron Hammer
+				Tooltip:
+					'''
+					Removes walls in a 5x5 area
+					+2 range
+					'''
+			}
+
+			AcurateStone: {
+				DisplayName: Acurate Stone
+				Tooltip: ""
+			}
+
+			BerserkStone: {
+				DisplayName: Berserk Stone
+				Tooltip: ""
+			}
+
+			ExquisiteStone: {
+				DisplayName: Exquisite Stone
+				Tooltip: ""
+			}
+
+			ImpenetrableStone: {
+				DisplayName: Impenetrable Stone
+				Tooltip: ""
+			}
+
+			RelicStone: {
+				DisplayName: Relic Stone
+				Tooltip: ""
+			}
+
+			ShadowStone: {
+				DisplayName: Shadow Stone
+				Tooltip: ""
+			}
+
+			SharpStone: {
+				DisplayName: Sharp Stone
+				Tooltip: ""
+			}
+
+			SupersonicStone: {
+				DisplayName: Supersonic Stone
+				Tooltip: ""
+			}
+
+			TitanicStone: {
+				DisplayName: Titanic Stone
+				Tooltip: ""
+			}
+
+			UncontrolledStone: {
+				DisplayName: Uncontrolled Stone
+				Tooltip: ""
+			}
+
+			VeteranStone: {
+				DisplayName: Veteran Stone
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {

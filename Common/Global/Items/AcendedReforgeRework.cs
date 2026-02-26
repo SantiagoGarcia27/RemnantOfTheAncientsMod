@@ -31,8 +31,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 FillCalamityList();
             }
             int debug = item.prefix;
-           // storedPrefix = item.prefix;
-            if (Reforges.ContainsKey(storedPrefix) && Main.LocalPlayer.HasItem(ModContent.ItemType<Terracoin>()))
+            // storedPrefix = item.prefix;
+            /*if (Reforges.ContainsKey(storedPrefix) && Main.LocalPlayer.HasItem(ModContent.ItemType<Terracoin>()))
             {
                 if (Utils1.SearchNPC(NPCID.GoblinTinkerer, true) != null)
                 {
@@ -52,24 +52,26 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             else
             {
                 return base.ChoosePrefix(item, rand);
-            }
+            }*/
+            return base.ChoosePrefix(item, rand);
         }
         public override void PostReforge(Item item)
         {
-            if (Reforges.ContainsValue(item.prefix))
-            {
-                if (NPC.CountNPCS(NPCID.GoblinTinkerer) > 0 && Utils1.SearchNPC(NPCID.GoblinTinkerer,true).active && Main.LocalPlayer.HasItem(ModContent.ItemType<Terracoin>()))
-                {
-                   
-                    int ItemIndex = Main.LocalPlayer.FindItem(ModContent.ItemType<Terracoin>());
-                    Main.LocalPlayer.inventory[ItemIndex].stack--;
-                    item.prefix = AcendedPrefixSelected;
-                }
-            }
-            else
-            {
-                base.PostReforge(item);
-            }
+            /* if (Reforges.ContainsValue(item.prefix))
+             {
+                 if (NPC.CountNPCS(NPCID.GoblinTinkerer) > 0 && Utils1.SearchNPC(NPCID.GoblinTinkerer,true).active && Main.LocalPlayer.HasItem(ModContent.ItemType<Terracoin>()))
+                 {
+
+                     int ItemIndex = Main.LocalPlayer.FindItem(ModContent.ItemType<Terracoin>());
+                     Main.LocalPlayer.inventory[ItemIndex].stack--;
+                     item.prefix = AcendedPrefixSelected;
+                 }
+             }
+             else
+             {
+                 base.PostReforge(item);
+             }*/
+            base.PostReforge(item);
         }
         public void FillReforgeList()
         {

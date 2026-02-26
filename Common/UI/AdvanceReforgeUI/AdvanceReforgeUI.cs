@@ -87,24 +87,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
                 Item reforgeStoneItem = ReforgeStoneSlot.Item;
                 Item resultItem = ResultSlot.Item;
                 int reforge = -1;
-                if (reforgeStoneItem.type == ModContent.ItemType<ExperticeStone>())
-                {
-                    if (inputItem.DamageType == DamageClass.Magic)
-                    {
-                        reforge = ModContent.PrefixType<Relic>();
-                    }
-                    else if (inputItem.DamageType == DamageClass.Summon)
-                    {
-                        reforge = ModContent.PrefixType<Relic>();
-                    }
-                    else if (inputItem.DamageType == DamageClass.Melee || inputItem.DamageType == DamageClass.MeleeNoSpeed || inputItem.DamageType == DamageClass.SummonMeleeSpeed)
-                    {
-                        reforge = ModContent.PrefixType<Berserk>();
-                    }
-                    else if (inputItem.DamageType == DamageClass.Ranged)
-                    {
-                        reforge = ModContent.PrefixType<Veteran>();
-                    }
+                if (reforgeStoneItem.GetCatalystReforge(inputItem) != -1)
+                { 
+                    reforge = reforgeStoneItem.GetCatalystReforge(inputItem);   
                 }
                 if (reforge != -1)
                 {

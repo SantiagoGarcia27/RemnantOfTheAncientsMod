@@ -4302,6 +4302,89 @@ Mods: {
 				DisplayName: Perneras de la noche verdadera
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
+
+			ReinforcedIronAxe: {
+				// DisplayName: Reinforced Iron Axe
+				// Tooltip: ""
+			}
+
+			ReinforcedIronPickaxe: {
+				DisplayName: Pico de Hierro Reforzado
+				Tooltip:
+					'''
+					Mina en un área de 3x3
+					+1 alcance
+					'''
+			}
+
+			GemScavenger: {
+				// DisplayName: Gem Scavenger
+				// Tooltip: ""
+			}
+
+			ReinforcedIronHammer: {
+				DisplayName: Martillo de Hierro Reforzado
+				Tooltip:
+					'''
+					Elimina muros en un área de 5x5
+					+2 alcance
+					'''
+			}
+
+			AcurateStone: {
+				// DisplayName: Acurate Stone
+				// Tooltip: ""
+			}
+
+			BerserkStone: {
+				// DisplayName: Berserk Stone
+				// Tooltip: ""
+			}
+
+			ExquisiteStone: {
+				// DisplayName: Exquisite Stone
+				// Tooltip: ""
+			}
+
+			ImpenetrableStone: {
+				// DisplayName: Impenetrable Stone
+				// Tooltip: ""
+			}
+
+			RelicStone: {
+				// DisplayName: Relic Stone
+				// Tooltip: ""
+			}
+
+			ShadowStone: {
+				// DisplayName: Shadow Stone
+				// Tooltip: ""
+			}
+
+			SharpStone: {
+				// DisplayName: Sharp Stone
+				// Tooltip: ""
+			}
+
+			SupersonicStone: {
+				// DisplayName: Supersonic Stone
+				// Tooltip: ""
+			}
+
+			TitanicStone: {
+				// DisplayName: Titanic Stone
+				// Tooltip: ""
+			}
+
+			UncontrolledStone: {
+				// DisplayName: Uncontrolled Stone
+				// Tooltip: ""
+			}
+
+			VeteranStone: {
+				// DisplayName: Veteran Stone
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

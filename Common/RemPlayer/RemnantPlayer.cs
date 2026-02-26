@@ -92,9 +92,8 @@ namespace RemnantOfTheAncientsMod
 		public float EnemyProjectilesScaleBouns = 1;
 		public float EnemyProjectilesSpeedScaleBouns = 1;
 		
-	
-		#region tuxonite
-		public static bool tuxoniteStealth;
+        #region tuxonite
+        public static bool tuxoniteStealth;
 		public static int tuxoniteStealthDuration = 0;
 		public static float tuxoniteStealthCounter = 0;
 
@@ -200,8 +199,6 @@ namespace RemnantOfTheAncientsMod
 			SummonerArea = false;
 
 			TrueShadowMist = false;
-
-			
 
 
             if (MinionsBuffInflict.Count > 0) MinionsBuffInflict.Clear();
@@ -422,7 +419,7 @@ namespace RemnantOfTheAncientsMod
 				}
 			}
 		}
-		public static void ApplyBuffToAllPlayers(int BuffId, int Hours, int Minutes, int Seconds)
+        public static void ApplyBuffToAllPlayers(int BuffId, int Hours, int Minutes, int Seconds)
 		{
 			int BuffTime = (Seconds * 60) + (Minutes * 60 * 60) + (Hours * 60 * 60 * 60);
 			foreach(Player player in Main.ActivePlayers)

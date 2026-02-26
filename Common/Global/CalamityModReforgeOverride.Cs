@@ -81,15 +81,15 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 obj4[5] = CallUtils.TryGetPrefixFromMod(calamityMod, "Silent");
                 obj4[6] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Gigant");
                 array[3] = obj4;
-                int[] obj5 = [0, 0, 0, 0, 0, 0, 0];
-                obj4[0] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Impenetrable");
-                obj4[1] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Uncontrolled");
-                obj4[2] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Supersonic");
-                obj4[3] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Sharp");
-                obj4[4] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Accurate");
-                obj4[5] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Shadow");
-                obj4[6] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Titanic");
-                array[4] = obj5;
+                /*int[] obj5 = [0, 0, 0, 0, 0, 0, 0];
+                obj5[0] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Impenetrable");
+                obj5[1] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Uncontrolled");
+                obj5[2] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Supersonic");
+                obj5[3] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Sharp");
+                obj5[4] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Accurate");
+                obj5[5] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Shadow");
+                obj5[6] = CallUtils.TryGetPrefixFromMod(RemnantOfTheAncient, "Titanic");
+                array[4] = obj5;*/
                 int[][] accessoryReforgeTiers = array;
                 prefix = IteratePrefix(rand, accessoryReforgeTiers, currentPrefix);
             }
