@@ -20,8 +20,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 
         public override void SetDefaults()
         { 
-            Item.width = 10;
-            Item.height = 14;
+            Item.width = 24;
+            Item.height = 30;
             Item.buyPrice(0, 0, 10, 72);
             Item.rare = -12;
             Item.accessory = true;

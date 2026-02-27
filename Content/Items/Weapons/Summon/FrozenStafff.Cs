@@ -33,8 +33,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 			Item.damage = 9;
 			Item.knockBack = 3f;
 			Item.mana = 10;
-			Item.width = 32;
-			Item.height = 32;
+			Item.width = 46;
+			Item.height = 46;
 			Item.useTime = 36;
 			Item.useAnimation = 36;
 			Item.useStyle = ItemUseStyleID.Swing;
