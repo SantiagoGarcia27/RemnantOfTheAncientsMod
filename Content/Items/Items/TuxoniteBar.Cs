@@ -19,8 +19,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 
 		public override void SetDefaults()
 		{
-            Item.width = 26;
-            Item.height = 22;
+            Item.width = 30;
+            Item.height = 24;
             Item.maxStack = 99;
             Item.useTurn = true;
             Item.autoReuse = true;

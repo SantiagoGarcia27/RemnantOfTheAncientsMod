@@ -22,8 +22,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
         
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 20;
+            Item.width = 26;
+            Item.height = 26;
             Item.maxStack = 999;
             Item.value = 0;
             Item.rare = ItemRarityID.Green;
