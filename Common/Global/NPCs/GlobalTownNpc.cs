@@ -17,6 +17,9 @@ using RemnantOfTheAncientsMod.Content.Items.Items.Guides;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using SangarUtilities.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
+using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
+using RemnantOfTheAncientsMod.Content.Currencies;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
@@ -120,7 +123,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if (shop.NpcType == NPCID.GoblinTinkerer)
             {
                 shop.Add(new Item(ItemType<Terracoin>()) { shopCustomPrice = Utils1.FormatMoney(0, 5, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode,Condition.DownedPlantera);
-                shop.Add(new Item(ItemType<AReforge_Guide>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 2, 0, 0) }, Condition.IsNpcShimmered);
+                shop.Add(new Item(ItemType<ReforgeAnvil>()) { shopCustomPrice = Utils1.FormatMoney(0, 1, 0, 0, 0) }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<BerserkStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<VeteranStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<RelicStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<SharpStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<ImpenetrableStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<AcurateStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<SupersonicStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<UncontrolledStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<TitanicStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    shop.Add(new Item(ItemType<ExquisiteStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                    shop.Add(new Item(ItemType<ShadowStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                }
             }
             if (shop.NpcType == NPCID.ArmsDealer)
             {
