@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         internal static readonly Color ReaperRarityColor = new(48, 48, 48);
         internal static readonly Color LegendaryRarityColor = new(0, 255, 200);
         internal static readonly Color CompletistRarityColor = new(242, 231, 15);
-
+        internal static List<Projectile> auxProjectileList = [];
         internal static bool IsABoss()
         {
             throw new NotImplementedException();
@@ -319,20 +319,25 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
 
         }
+
         public static List<Projectile> SearchProjectiles(bool friendly, NPC center, float range)
         {
-            List<Projectile> l = [];
-            foreach (Projectile p in Main.projectile)
+            float rangeSquared = range * range;
+            auxProjectileList.Clear();
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Vector2.Distance(center.Center, p.Center) <= range)
+                Projectile p = Main.projectile[i];
+                if (!p.active) continue;
+                if (p.damage > 0 && p.friendly == friendly && p.hostile == !friendly)
                 {
-                    if (p.friendly == friendly && p.hostile == !friendly)
+                    float distSq = Vector2.DistanceSquared(center.Center, p.Center);
+                    if (distSq <= rangeSquared)
                     {
-                        l.Add(p);
+                        auxProjectileList.Add(p);
                     }
                 }
             }
-            return l;
+            return auxProjectileList;
         }
         public static bool PlayerIsUnderWather(Player player)
         {
@@ -379,7 +384,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 }
             }
         }
-        public static Item ChooseAmmo(Item weapon, int ammoID)
+        /*public static Item ChooseAmmo(Item weapon, int ammoID)
         {
             var sItem = weapon;
             Item item = null;
@@ -387,7 +392,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             Player player = Main.LocalPlayer;
             /*
             usedAmmoItemId = 0;
-            */
+            //
             //bool canShoot = false; // Dummy.
 
             if (ammoID == AmmoID.Coin)
@@ -398,7 +403,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
                     /*
                     if (inventory[num].ammo == sItem.useAmmo && inventory[num].stack > 0) {
-                    */
+                    //
                     if (player.inventory[num].stack > 0 && player.inventory[i].ammo == ammoID)
                     {
                         item = player.inventory[num];
@@ -413,7 +418,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             {
                 /*
                 if (inventory[j].ammo == sItem.useAmmo && inventory[j].stack > 0) {
-                */
+                
                 if (player.inventory[j].stack > 0 && player.inventory[j].ammo == ammoID)
                 {
                     item = player.inventory[j];
@@ -429,7 +434,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 {
                     /*
                     if (inventory[k].ammo == sItem.useAmmo && inventory[k].stack > 0) {
-                    */
+                    
                     if (player.inventory[k].stack > 0 && player.inventory[k].ammo == ammoID)
                     {
                         item = player.inventory[k];
@@ -440,7 +445,43 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
 
             return item;
+        }*/
+        public static Item ChooseAmmo(Player player, Item weapon)
+        {
+            // Si el arma no usa munición, no buscamos nada
+            if (weapon.useAmmo == AmmoID.None) return null;
+
+            int ammoID = weapon.useAmmo;
+
+            // 1. Prioridad: Monedas (solo si el arma dispara monedas, como la Coin Gun)
+            if (ammoID == AmmoID.Coin)
+            {
+                Item coin = FindAmmoInRange(player, ammoID, 50, 54);
+                if (coin != null) return coin;
+            }
+
+            // 2. Prioridad: Slots de Munición (54-57)
+            Item dedicatedAmmo = FindAmmoInRange(player, ammoID, 54, 58);
+            if (dedicatedAmmo != null) return dedicatedAmmo;
+
+            // 3. Prioridad: Inventario principal (0-53)
+            return FindAmmoInRange(player, ammoID, 0, 54);
         }
+
+        private static Item FindAmmoInRange(Player player, int ammoID, int start, int end)
+        {
+            for (int i = start; i < end; i++)
+            {
+                Item item = player.inventory[i];
+                // Verificamos que el item coincida con el tipo de munición del arma
+                if (!item.IsAir && item.stack > 0 && item.ammo == ammoID)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
         public static int GetBlockPickPower(Tile tile, int j)
         {
             int result = 0;
@@ -469,23 +510,23 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         private static int GetVainllaPickPower(Tile tile, int j)
         {
-            if (tile.TileType == 211)
+            if (tile.TileType == TileID.Chlorophyte)
                 return 200;
-            else if (tile.TileType == 25 || tile.TileType == 58 || tile.TileType == 117 || tile.TileType == 203)
+            else if (tile.TileType is TileID.Ebonstone or TileID.Hellstone or TileID.Pearlstone or TileID.Crimstone)
                 return 65;
-            else if (tile.TileType == 56)
+            else if (tile.TileType == TileID.Obsidian)
                 return 55;
-            else if (tile.TileType == 37)
+            else if (tile.TileType == TileID.Meteorite)
                 return 50;
-            else if (tile.TileType == 204 && j > Main.worldSurface)
+            else if (tile.TileType == TileID.Crimtane && j > Main.worldSurface)
                 return 55;
-            else if (tile.TileType == 226 || tile.TileType == 237)
+            else if (tile.TileType is TileID.LihzahrdBrick or TileID.LihzahrdAltar)
                 return 210;
-            else if (tile.TileType == 107 || tile.TileType == 221)
+            else if (tile.TileType is TileID.Cobalt or TileID.Palladium)
                 return 100;
-            else if (tile.TileType == 108 || tile.TileType == 222)
+            else if (tile.TileType is TileID.Mythril or TileID.Orichalcum)
                 return 110;
-            else if (tile.TileType == 111 || tile.TileType == 223)
+            else if (tile.TileType is TileID.Adamantite or TileID.Titanium)
                 return 150;
             return 0;
         }
@@ -502,22 +543,22 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             return num;
         }
 
-        public static float bytetoFloat(byte ro)
+        public static float BytetoFloat(byte ro)
         {
             return ((float)ro) / 0x100;
         }
 
-        public static byte floattoByte(float ro)
+        public static byte FloattoByte(float ro)
         {
             return (byte)(ro * 0x100);
         }
 
-        public static float toFloat(byte x)
+        public static float ToFloat(byte x)
         {
             return x / 255.0e7f;
         }
 
-        public static byte fromFloat(float x)
+        public static byte FromFloat(float x)
         {
             if (x < 0) return 0;
             if (x > 1e-7) return 255;
@@ -529,8 +570,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
         public static Color GetColorByID(int id)
         {
-            if (ColorIDs == null)
-                FillColorIDs(ref ColorIDs);
+            if (ColorIDs == null) FillColorIDs(ref ColorIDs);
 
             if (ColorIDs.ContainsValue(id))
             {
@@ -541,15 +581,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static int GetColorID(Color color)
         {
-            if (ColorIDs == null) 
-                FillColorIDs(ref ColorIDs);
-            if(color == Main.DiscoColor)
-            {
-                return -1;
-            }
-
-            if (ColorIDs.ContainsKey(color))
-                return ColorIDs[color];
+            if (ColorIDs == null) FillColorIDs(ref ColorIDs);
+            if(color == Main.DiscoColor) return -1;
+            if (ColorIDs.TryGetValue(color, out int value)) return value;
             return 0;
         }
 
@@ -633,73 +667,21 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 return 4;
             return 3;
         }
-
-        public static bool playerHaveItem(Player player,int itemID, int amount = 1)
+        public static bool PlayerHaveItem(Player player, int itemID, int totalNeeded = 1)
         {
-            foreach (Item item in player.inventory)
+            int count = 0;
+
+            // Método auxiliar que suma al contador
+            void CountIn(Item[] inv)
             {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
+                foreach (var item in inv) if (item.type == itemID) count += item.stack;
             }
-            foreach (Item item in player.armor)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            foreach (Item item in player.miscEquips)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            foreach (Item item in player.bank.item)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            foreach (Item item in player.bank2.item)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            foreach (Item item in player.bank3.item)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            foreach (Item item in player.bank4.item)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            foreach (Item item in player.dye)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            foreach (Item item in player.miscDyes)
-            {
-                if (item.type == itemID && item.stack >= amount)
-                {
-                    return true;
-                }
-            }
-            return false;
+
+            CountIn(player.inventory);
+            if (count >= totalNeeded) return true;
+
+            CountIn(player.bank.item);
+            return count >= totalNeeded;
         }
 
         public static void DrawLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end, Color color = default, float splits = 1f,float rotation = 0f, float scale = 1f, Texture2D texture = null)

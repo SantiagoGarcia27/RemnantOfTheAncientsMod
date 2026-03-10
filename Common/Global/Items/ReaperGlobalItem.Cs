@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 					bool consumable = !Reaper.ReaperMode;
 					if(consumable == true)
-                        consumable = !Utils1.playerHaveItem(player, ModContent.ItemType<BossSummonSaver>());
+                        consumable = !Utils1.PlayerHaveItem(player, ModContent.ItemType<BossSummonSaver>());
 
                     item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
 					item.consumable = consumable;

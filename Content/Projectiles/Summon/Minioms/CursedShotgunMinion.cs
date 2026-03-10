@@ -207,7 +207,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 shootTimmer = 0;
 
                 int projType = ProjectileID.Bullet;
-                Item playerAmmo = Utils1.ChooseAmmo(new Item(ItemID.Shotgun), AmmoID.Bullet);
+                Item playerAmmo = Utils1.ChooseAmmo(owner, new Item(ItemID.Shotgun));
                 if (playerAmmo != null)
                 {
                     int index = owner.FindItem(playerAmmo.type);

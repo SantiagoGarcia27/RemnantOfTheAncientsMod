@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.Bullet;
 			Item.shootSpeed = 20f;
-			//Item.useAmmo = AmmoID.Bullet;
+			Item.useAmmo = AmmoID.Bullet;
 			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoMax = 7;
 			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType = [14, 14, 14, 14];
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			ReloadCounter = Item.GetGlobalItem<RemnantGlobalItem>().ReloadCounter;
 			
 
-            Item ammo = Utils1.ChooseAmmo(player.HeldItem,AmmoID.Bullet);
+            Item ammo = Utils1.ChooseAmmo(player,player.HeldItem);
 			if (CurrentAmunation < MaxAmunation && ReloadCounter == ReloadCounterMax && ammo != null)
 			{
 				//Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmo++;

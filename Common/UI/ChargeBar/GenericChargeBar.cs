@@ -25,33 +25,31 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		private Color gradientB;
 
 		public override void OnInitialize() {
-			// Create a UIElement for all the elements to sit on top of, this simplifies the numbers as nested elements can be positioned relative to the top left corner of this element. 
-			// UIElement is invisible and has no padding.
-			area = new UIElement();
-			area.Left.Set(-area.Width.Pixels - (600 * 1.5f) +60, 1f); // Place the resource bar to the left of the hearts.
-            area.Top.Set(400, 0f); // Placing it just a bit below the top of the screen. 
-			area.Width.Set(81, 0f); // We will be placing the following 2 UIElements within this 182x60 area.
-			area.Height.Set(25, 0f);
+            area = new UIElement();
+            area.Left.Set(0, 0f);
+            area.Top.Set(0, 0f);
+            area.Width.Set(81, 0f);
+            area.Height.Set(25, 0f);
 
-			barFrame = new UIImage(ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Common/UI/ChargeBar/GenericChargeBarFrame")); // Frame of our resource bar
-			barFrame.Left.Set(0, 0f);//22
-			barFrame.Top.Set(0, 0f);
-			barFrame.Width.Set(75, 0f);
-			barFrame.Height.Set(30, 0f);
+            barFrame = new UIImage(ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Common/UI/ChargeBar/GenericChargeBarFrame")); // Frame of our resource bar
+            barFrame.Left.Set(0, 0f);//22
+            barFrame.Top.Set(0, 0f);
+            barFrame.Width.Set(75, 0f);
+            barFrame.Height.Set(30, 0f);
 
-			text = new UIText("0/0", 0.8f); // text to show stat
-			text.Width.Set(31, 0f);//138
-			text.Height.Set(25, 0f);
-			text.Top.Set(-20, 0f);
-			text.Left.Set(20, 0f);
+            text = new UIText("0/0", 0.8f); // text to show stat
+            text.Width.Set(31, 0f);//138
+            text.Height.Set(25, 0f);
+            text.Top.Set(-22, 0f);
+            text.Left.Set(20, 0f);
 
-			gradientA = new Color(176, 176, 176); // A dark purple
-			gradientB = new Color(224, 119, 49); // A light purple
+            gradientA = new Color(176, 176, 176); // A dark purple
+            gradientB = new Color(224, 119, 49); // A light purple
 
-			area.Append(text);
-			area.Append(barFrame);
-			Append(area);
-		}
+            area.Append(barFrame);
+            area.Append(text);
+            Append(area);
+        }
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
@@ -102,9 +100,18 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		}
 
 		public override void Update(GameTime gameTime) {
-            if (RemnantPlayer.GenericChargeCouldownMax <= 0 || RemnantPlayer.GenericChargeCouldown <= 0)
-                return;
-			text.SetText(GenericChargeUISystem.Text.Format(RemnantPlayer.GenericChargeCouldownMax - RemnantPlayer.GenericChargeCouldown,"s"));
+			Player player = Main.LocalPlayer;
+
+			Vector2 screenPos = (player.position - Main.screenPosition) / Main.UIScale;
+			float barX = screenPos.X + (player.width / 2f / Main.UIScale) - (area.Width.Pixels / 2f);
+			float barY = screenPos.Y - 60;
+			area.Left.Set(barX, 0f);
+			area.Top.Set(barY, 0f);
+
+			if (RemnantPlayer.GenericChargeCouldownMax > 0 && RemnantPlayer.GenericChargeCouldown > 0)
+			{
+				text.SetText(GenericChargeUISystem.Text.Format(RemnantPlayer.GenericChargeCouldownMax - RemnantPlayer.GenericChargeCouldown,"s"));
+			}
 			base.Update(gameTime);
 		}
 	}

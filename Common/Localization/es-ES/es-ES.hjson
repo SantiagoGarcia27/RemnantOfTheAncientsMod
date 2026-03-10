@@ -120,8 +120,8 @@ Mods: {
 			}
 
 			Couldowns: {
-				// AmmoBar: Mods.RemnantOfTheAncientsMod.UI.Couldowns.AmmoBar
-				// CouldownBar: Mods.RemnantOfTheAncientsMod.UI.Couldowns.CouldownBar
+				// AmmoBar: "{0}"
+				// CouldownBar: "{0}"
 			}
 		}
 

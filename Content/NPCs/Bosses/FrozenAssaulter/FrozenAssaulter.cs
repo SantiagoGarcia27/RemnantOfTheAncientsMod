@@ -91,8 +91,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         float delay = 2;
         public override void AI()
         {
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            {
+                NPC.TargetClosest(true);
+            }
+
             Player target = Main.player[NPC.target];
-            float distance = NPC.Distance(Main.player[NPC.target].Center);
+            float distance = NPC.Distance(target.Center);
             PhaseChanger();
             setAttackCounter(target);
 
@@ -101,10 +106,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 NPC.EncourageDespawn(7);
                 return;
             }
-            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
-            {
-                NPC.TargetClosest(true);
-            }
 
 
             if (RemnantOfTheAncientsMod.InfernumMod != null && DificultyUtils.InfernumMode)
@@ -112,7 +113,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 FrozenAssaulterInfernum.InfernumAi(NPC, currentPhase, attackCounter);
                 CheckPhase();
                 CheckDistance(distance, NPC);
-               
+                return;
             }
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
@@ -270,10 +271,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     }
                     break;
             }
-            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
-            {
-                EternityIA(target);
-            }
         }
         #region Eternity
         public void EternityIA(Player target)
@@ -329,7 +326,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                                 }
                                 else if (currentPhase > 4)
                                 {
-                                    for (int i = 300; i >= 500; i += 100)
+                                    for (int i = 300; i <= 500; i += 100)
                                     {
                                         EthernityExplosionIA(i);
                                     }
@@ -464,7 +461,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         {
             if(distance <= 60)
             {
-                NPC.directionY = -NPC.oldDirectionY - 310;
+                NPC.directionY = -NPC.oldDirectionY;
             }
         }
         public void ShootIa(int damage, int type, Player player, float speed, double x, double y)
@@ -621,7 +618,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
             Vector2 position = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
             Projectile.NewProjectile(NPC.GetSource_FromAI(), position, new Vector2(0, 0), ProjectileType<BossMark>(), 0, 0f, 0);
-            new BossMark().texture = "RemnantOfTheAncientsMod/Items/Core/Frost_core";
 
             if (TpDelay == 0)
             {

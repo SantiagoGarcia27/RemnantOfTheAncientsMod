@@ -25,8 +25,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		public override void OnInitialize() {
 			
 			area = new UIElement();
-			area.Left.Set(-area.Width.Pixels - (600 * 1.5f) +60, 1f);
-            area.Top.Set( 390, 0f); 
+			area.Left.Set(0, 0f);
+			area.Top.Set(0, 0f); 
 			area.Width.Set(81, 0f); 
 			area.Height.Set(25, 0f);
 
@@ -36,17 +36,17 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
             barFrame.Width.Set(75, 0f);
             barFrame.Height.Set(30, 0f);
 
-            textAmmo = new UIText("0/0", 0.8f); // text to show stat
-            textAmmo.Width.Set(31, 0f);//138
-            textAmmo.Height.Set(25, 0f);
-            textAmmo.Top.Set(-20, 0f);
-            textAmmo.Left.Set(20, 0f);
+			textAmmo = new UIText("0/0", 0.8f); // text to show stat
+			textAmmo.Width.Set(31, 0f);//138
+			textAmmo.Height.Set(25, 0f);
+			textAmmo.Top.Set(-22, 0f);
+			textAmmo.Left.Set(20, 0f);
 
 			gradientA = new Color(176, 176, 176); // A dark purple
 			gradientB = new Color(224, 119, 49); // A light purple
 
-			area.Append(textAmmo);
 			area.Append(barFrame);
+			area.Append(textAmmo);
 			Append(area);
 		}
 
@@ -86,14 +86,19 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		}
 
 		public override void Update(GameTime gameTime) {
-            if (RemnantPlayer.GenericAmmoAmmountMax <= 0)
-                return;
+			if (RemnantPlayer.GenericAmmoAmmountMax <= 0)
+				return;
 			Player player = Main.LocalPlayer;
 
-           
-            Item item = Utils1.ChooseAmmo(player.HeldItem, AmmoID.Bullet);
-            textAmmo.SetText(GenericAmmoCouldownUISystem.Text.Format(RemnantPlayer.GenericAmmoAmmount + "/" + RemnantPlayer.GenericAmmoAmmountMax + (item != null? $"[I:{item.type}]": "")));
-            base.Update(gameTime);
+			Vector2 screenPos = (player.position - Main.screenPosition) / Main.UIScale;
+			float barX = screenPos.X + (player.width / 2f / Main.UIScale) - (area.Width.Pixels / 2f);
+			float barY = screenPos.Y - 40;
+			area.Left.Set(barX, 0f);
+			area.Top.Set(barY, 0f);
+
+			Item item = Utils1.ChooseAmmo(player, player.HeldItem);
+			textAmmo.SetText(GenericAmmoCouldownUISystem.Text.Format(RemnantPlayer.GenericAmmoAmmount + "/" + RemnantPlayer.GenericAmmoAmmountMax + (item != null? $" [I:{item.type}]": "")));
+			base.Update(gameTime);
 		}
 	}
 
