@@ -184,8 +184,10 @@ Mods: {
 			Acurate.DisplayName: (Preciso)
 			Atletic.DisplayName: (Atlético)
 			Berserk.DisplayName: (Berserker)
+			BerserkProjectile.DisplayName: (Berserker)
 			Gigant.DisplayName: (Gigante)
 			Healer.DisplayName: (Sanador)
+			Heavy.DisplayName: (Pesado)
 			Healthy.DisplayName: (Saludable)
 			Impenetrable.DisplayName: (Impenetrable)
 			Regenerative.DisplayName: (Regenerativo)
@@ -1705,11 +1707,7 @@ Mods: {
 
 			Terracoin: {
 				DisplayName: Moneda Terra
-				Tooltip:
-					'''
-					Puede utilizarse para obtener reforjas avanzadas en el duende chapucero
-					(Solo funciona si tu objeto está en su mejor reforja)
-					'''
+				Tooltip: '''Se usa para comprar catalizadores de reforja ascendida del Duende Chapucero del fulgor				'''
 			}
 
 			TuxoniteBar: {
@@ -3533,7 +3531,7 @@ Mods: {
 			}
 
 			ForceOfRemants: {
-				// DisplayName: Force Of Remants
+				// DisplayName: Force Of Remnants
 				Tooltip:
 					'''
 					[I:RemnantOfTheAncientsMod/NightEnchant] Otorga un teletransportación y sigilo durante la noche
@@ -3805,7 +3803,7 @@ Mods: {
 			}
 
 			EndlesGoldPouch: {
-				// DisplayName: Endles Golden Pouch
+				// DisplayName: Endles Gold Pouch
 				// Tooltip: ""
 			}
 
@@ -3834,18 +3832,8 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			EndlessFirePouch: {
-				DisplayName: Petaca ignea eterna
-				// Tooltip: ""
-			}
-
-			EndlessIcePouch: {
-				DisplayName: Petaca helada eterna
-				// Tooltip: ""
-			}
-
-			EndlessIchorPouch: {
-				DisplayName: Petaca de icor eterna
+			EndlesReinforcedIronPouch: {
+				// DisplayName: Endles Reinforced Iron Pouch
 				// Tooltip: ""
 			}
 
@@ -3854,163 +3842,8 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			EndlessTombPouch: {
-				DisplayName: Petaca de tumba eterna
-				// Tooltip: ""
-			}
-
-			EndlessWrathSlimePouch: {
-				DisplayName: Petaca gelatinosa eterna
-				// Tooltip: ""
-			}
-
 			EndlesVenomPouch: {
 				// DisplayName: Endles Venom Pouch
-				// Tooltip: ""
-			}
-
-			DealersPeacemaker: {
-				DisplayName: Pacificador del comerciante
-				// Tooltip: ""
-			}
-
-			Darksign: {
-				DisplayName: Marca obscura
-				Tooltip: Aumenta tu daño un {0}% a cambio de un {1}% de tu vida;
-			}
-
-			Endless_Darksign: {
-				DisplayName: Marca obscura eterna
-				// Tooltip: ""
-			}
-
-			DesertScourgeSoul: {
-				// DisplayName: Desert Scourge Soul
-				// Tooltip: ""
-			}
-
-			FlinxHood: {
-				DisplayName: Capucha de copito
-				// Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
-			}
-
-			FlinxPants: {
-				DisplayName: Pantalones de copito
-				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-			}
-
-			ExplorerBoots: {
-				DisplayName: Botas de explorador
-				Tooltip:
-					'''
-					El usuario puede correr súper rápido, e incluso más rápido sobre arena, nieve y ceniza
-					Las flores crecen en la hierba sobre la que caminas
-					Aumenta la velocidad de salto y permite el salto automático.
-					'''
-			}
-
-			RunningShoes: {
-				DisplayName: Zapatillas para correr
-				Tooltip: El usuario puede correr súper rápido, e incluso más rápido sobre arena, nieve y ceniza.
-			}
-
-			GatlingShotGun: {
-				DisplayName: Ametralladora de escopetas
-				Tooltip: Evoluciona su daño a medida que avanzas en la progresión
-			}
-
-			TungstenSaber: {
-				DisplayName: Sable de tungsteno
-				// Tooltip: ""
-			}
-
-			DesertGyph: {
-				DisplayName: Glifo desértico
-				Tooltip: Convoca al Aniquilador del desierto
-			}
-
-			LeatherQuiver: {
-				DisplayName: Carcaj de cuero
-				Tooltip: Aumenta la velocidad y el daño de las flechas en {0}%
-			}
-
-			ReinforcedAmmoBox: {
-				DisplayName: Caja de munición reforzada
-				Tooltip:
-					'''
-					Aumenta la probabilidad aumentar la penetración de las balas un {0}%
-					Tus balas aumentan su penetración en {1}
-					Ganas una probabilidad del {2}% de de disparar una bala reforzada
-					'''
-			}
-
-			ReinforcedIronBullet: {
-				DisplayName: Bala de hierro reforzado
-				// Tooltip: ""
-			}
-
-			EndlessChlorophytePouch: {
-				DisplayName: Petaca de clorofita eterna
-				// Tooltip: ""
-			}
-
-			EndlessCrystalPouch: {
-				DisplayName: Petaca de cristal eterna
-				// Tooltip: ""
-			}
-
-			EndlessCursedPouch: {
-				DisplayName: Petaca maldita eterna
-				// Tooltip: ""
-			}
-
-			EndlessExplosivePouch: {
-				DisplayName: Petaca explosiva eterna
-				// Tooltip: ""
-			}
-
-			EndlessGoldPouch: {
-				DisplayName: Petaca de oro eterna
-				// Tooltip: ""
-			}
-
-			EndlessHighVelocityPouch: {
-				DisplayName: Petaca de alta velocidad eterna
-				// Tooltip: ""
-			}
-
-			EndlessLuminitePouch: {
-				DisplayName: Petaca de luminita eterna
-				// Tooltip: ""
-			}
-
-			EndlessMeteoritePouch: {
-				DisplayName: Petaca de meteorito eterna
-				// Tooltip: ""
-			}
-
-			EndlessNanoPouch: {
-				DisplayName: Petaca de nanobalas eterna
-				// Tooltip: ""
-			}
-
-			EndlessPartyPouch: {
-				DisplayName: Petaca fiestera eterna
-				// Tooltip: ""
-			}
-
-			EndlessReinforcedIronPouch: {
-				DisplayName: Petaca de hierro reforzado eterna
-				// Tooltip: ""
-			}
-
-			EndlessSilverPouch: {
-				DisplayName: Petaca de plata eterna
-				// Tooltip: ""
-			}
-
-			EndlessVenomPouch: {
-				DisplayName: Petaca de ponsoña eterna
 				// Tooltip: ""
 			}
 
@@ -4215,8 +4048,13 @@ Mods: {
 			}
 
 			ExperticeStone: {
-				// DisplayName: Expertice Stone
-				// Tooltip: ""
+				DisplayName: Piedra de Experticia
+				Tooltip:
+					'''
+					Aplica la reforja ascendida óptima según el tipo de objeto
+					Selecciona automáticamente el mejor prefijo para tu arma o accesorio
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			TrueNightchesplate: {
@@ -4332,58 +4170,270 @@ Mods: {
 			}
 
 			AcurateStone: {
-				// DisplayName: Acurate Stone
-				// Tooltip: ""
+				DisplayName: Piedra de Precisión
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Preciso a los accesorios
+					Otorga la máxima probabilidad de golpe crítico
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			BerserkStone: {
-				// DisplayName: Berserk Stone
-				// Tooltip: ""
+				DisplayName: Piedra Berserker
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Berserker a las armas cuerpo a cuerpo
+					Estadísticas ofensivas máximas para el combate cercano
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			ExquisiteStone: {
-				// DisplayName: Exquisite Stone
-				// Tooltip: ""
+				DisplayName: Piedra Exquisita
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Exquisito a las armas de pícaro
+					El equilibrio perfecto entre poder y precisión
+					Cuesta {0} aplicarla
+					Requiere Calamity Mod
+					'''
 			}
 
 			ImpenetrableStone: {
-				// DisplayName: Impenetrable Stone
-				// Tooltip: ""
+				DisplayName: Piedra Impenetrable
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Impenetrable a los accesorios
+					Otorga el máximo aumento de defensa
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			RelicStone: {
-				// DisplayName: Relic Stone
-				// Tooltip: ""
+				DisplayName: Piedra Reliquia
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Reliquia a las armas mágicas
+					El encantamiento definitivo para hechiceros
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			ShadowStone: {
-				// DisplayName: Shadow Stone
-				// Tooltip: ""
+				DisplayName: Piedra Sombría
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Sombrío a los accesorios
+					Mejora las capacidades de sigilo
+					Cuesta {0} aplicarla
+					Requiere Calamity Mod
+					'''
 			}
 
 			SharpStone: {
-				// DisplayName: Sharp Stone
-				// Tooltip: ""
+				DisplayName: Piedra Afilada
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Afilado a los accesorios
+					Otorga el máximo aumento de daño
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			SupersonicStone: {
-				// DisplayName: Supersonic Stone
-				// Tooltip: ""
+				DisplayName: Piedra Supersónica
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Supersónico a los accesorios
+					Otorga la máxima velocidad de movimiento
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			TitanicStone: {
-				// DisplayName: Titanic Stone
-				// Tooltip: ""
+				DisplayName: Piedra Titánica
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Titánico a los accesorios
+					Otorga el máximo aumento de vida
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			UncontrolledStone: {
-				// DisplayName: Uncontrolled Stone
-				// Tooltip: ""
+				DisplayName: Piedra Incontrolable
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Incontrolable a los accesorios
+					Otorga el máximo aumento de velocidad cuerpo a cuerpo
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			VeteranStone: {
-				// DisplayName: Veteran Stone
+				DisplayName: Piedra Veterana
+				Tooltip:
+					'''
+					Aplica la reforja ascendida Veterano a las armas a distancia
+					La marca de un verdadero tirador
+					Cuesta {0} aplicarla
+					'''
+			}
+
+			ExplorerBoots: {
+				DisplayName: Botas de explorador
+				Tooltip:
+					'''
+					El usuario puede correr súper rápido, e incluso más rápido sobre arena, nieve y ceniza
+					Las flores crecen en la hierba sobre la que caminas
+					Aumenta la velocidad de salto y permite el salto automático.
+					'''
+			}
+
+			RunningShoes: {
+				DisplayName: Zapatillas para correr
+				Tooltip: El usuario puede correr súper rápido, e incluso más rápido sobre arena, nieve y ceniza.
+			}
+
+			LeatherQuiver: {
+				DisplayName: Carcaj de cuero
+				Tooltip: Aumenta la velocidad y el daño de las flechas en {0}%
+			}
+
+			ReinforcedAmmoBox: {
+				DisplayName: Caja de munición reforzada
+				Tooltip:
+					'''
+					Aumenta la probabilidad aumentar la penetración de las balas un {0}%
+					Tus balas aumentan su penetración en {1}
+					Ganas una probabilidad del {2}% de de disparar una bala reforzada
+					'''
+			}
+
+			FlinxHood: {
+				DisplayName: Capucha de copito
 				// Tooltip: ""
+			}
+
+			FlinxPants: {
+				DisplayName: Pantalones de copito
+				// Tooltip: ""
+			}
+
+			Darksign: {
+				DisplayName: Marca obscura
+				Tooltip: Aumenta tu daño un {0}% a cambio de un {1}% de tu vida;
+			}
+
+			Endless_Darksign: {
+				DisplayName: Marca obscura eterna
+				// Tooltip: ""
+			}
+
+			EndlessChlorophytePouch: {
+				DisplayName: Petaca de clorofita eterna
+				// Tooltip: ""
+			}
+
+			EndlessCrystalPouch: {
+				DisplayName: Petaca de cristal eterna
+				// Tooltip: ""
+			}
+
+			EndlessCursedPouch: {
+				DisplayName: Petaca maldita eterna
+				// Tooltip: ""
+			}
+
+			EndlessExplosivePouch: {
+				DisplayName: Petaca explosiva eterna
+				// Tooltip: ""
+			}
+
+			EndlessFirePouch: {
+				DisplayName: Petaca ignea eterna
+				// Tooltip: ""
+			}
+
+			EndlessGoldPouch: {
+				DisplayName: Petaca de oro eterna
+				// Tooltip: ""
+			}
+
+			EndlessHighVelocityPouch: {
+				DisplayName: Petaca de alta velocidad eterna
+				// Tooltip: ""
+			}
+
+			EndlessIcePouch: {
+				DisplayName: Petaca helada eterna
+				// Tooltip: ""
+			}
+
+			EndlessIchorPouch: {
+				DisplayName: Petaca de icor eterna
+				// Tooltip: ""
+			}
+
+			EndlessLuminitePouch: {
+				DisplayName: Petaca de luminita eterna
+				// Tooltip: ""
+			}
+
+			EndlessMeteoritePouch: {
+				DisplayName: Petaca de meteorito eterna
+				// Tooltip: ""
+			}
+
+			EndlessNanoPouch: {
+				DisplayName: Petaca de nanobalas eterna
+				// Tooltip: ""
+			}
+
+			EndlessPartyPouch: {
+				DisplayName: Petaca fiestera eterna
+				// Tooltip: ""
+			}
+
+			EndlessReinforcedIronPouch: {
+				DisplayName: Petaca de hierro reforzado eterna
+				// Tooltip: ""
+			}
+
+			EndlessSilverPouch: {
+				DisplayName: Petaca de plata eterna
+				// Tooltip: ""
+			}
+
+			EndlessTombPouch: {
+				DisplayName: Petaca de tumba eterna
+				// Tooltip: ""
+			}
+
+			EndlessVenomPouch: {
+				DisplayName: Petaca de ponsoña eterna
+				// Tooltip: ""
+			}
+
+			EndlessWrathSlimePouch: {
+				DisplayName: Petaca gelatinosa eterna
+				// Tooltip: ""
+			}
+
+			ReinforcedIronBullet: {
+				DisplayName: Bala de hierro reforzado
+				// Tooltip: ""
+			}
+
+			DealersPeacemaker: {
+				DisplayName: Pacificador del comerciante
+				// Tooltip: ""
+			}
+
+			GatlingShotGun: {
+				DisplayName: Ametralladora de escopetas
+				Tooltip: Evoluciona su daño a medida que avanzas en la progresión
 			}
 		}
 
@@ -4792,9 +4842,9 @@ Mods: {
 					Tooltip: ""
 				}
 
-				ToggleRetinazorSoul: {
-					Label: Activar alma de retinazor
-					Tooltip: ""
+				ToggleRetinazerSoul: {
+					// Label: Toggle Retinazer Soul
+					// Tooltip: ""
 				}
 
 				ToggleSkeletronPrimeSoul: {
@@ -4966,16 +5016,20 @@ Mods: {
 					// Label: Toggle Suprme Calamitas Soul
 					// Tooltip: ""
 				}
+
+				ToggleRetinazorSoul: {
+					Label: Activar alma de retinazor
+					Tooltip: ""
+				}
 			}
 
 			ConfigServer: {
-				DisplayName: Config Server
-
 				Headers: {
 					Performance: Rendimiento
 					TerrariaOverhaul: Terraria Overhaul
-					TerrariaOverhaulHeader: Terraria Overhaul
 				}
+
+				DisplayName: Config Server
 
 				LagReducer: {
 					Label: Reductor de Lag
@@ -4998,6 +5052,11 @@ Mods: {
 						'''
 				}
 
+				BowReworkConf: {
+					Label: Rework de arcos (Experimental)
+					// Tooltip: ""
+				}
+
 				DropTombstomOnDeadtConf: {
 					Label: Dejar tumbas al morir
 					Tooltip:
@@ -5014,29 +5073,17 @@ Mods: {
 					Tooltip: ""
 				}
 
-				OverhaulMeleeManaCostConfig: {
-					Label: Armas cuerpo a cuerpo gastan maná con Terraria Overhaul
-					Tooltip: Desactiva la mecanica de coste de maná en las armas cuerpo a cuerpo con proyectil
-				}
-
-				BoowReworkConf: {
-					// Label: Boow Rework Conf
-					// Tooltip: ""
-				}
-
-				BowReworkConf: {
-					Label: Rework de arcos (Experimental)
-					// Tooltip: ""
-				}
-
 				FastExtractinatorConf: {
 					Label: Velocidad del extractor
 					Tooltip: Define que tan rápido se usa el extractor
 				}
+
+				OverhaulMeleeManaCostConfig: {
+					Label: Armas cuerpo a cuerpo gastan maná con Terraria Overhaul
+					Tooltip: Desactiva la mecanica de coste de maná en las armas cuerpo a cuerpo con proyectil
+				}
 			}
 		}
-
-		ConfigServer.Headers.Performance: Lag Reducer Header
 
 		Keybinds: {
 			ReaperModeInterface.DisplayName: Reaper Mode Interface
@@ -5070,8 +5117,8 @@ Mods: {
 
 		Achievements: {
 			LegionAchievement: {
-				FriendlyName: One in half a million
-				Description: Obtain the Legion, la gema mas refinada.
+				FriendlyName: Uno en medio millón
+				Description: Obtén la lgeión, la gema mas refinada.
 			}
 
 			MaxStyleAchievement: {
@@ -5101,5 +5148,6 @@ Mods: {
 		}
 
 		// Commands.MaxStyleCommand.Description: Mods.RemnantOfTheAncientsMod.Commands.MaxStyleCommand.Description
+		ConfigServer.Headers.Performance: Lag Reducer Header
 	}
 }

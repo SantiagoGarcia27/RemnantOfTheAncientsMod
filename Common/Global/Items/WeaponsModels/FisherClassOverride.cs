@@ -1,9 +1,5 @@
-﻿/*using CalamityMod.Items.Accessories;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.Global.DamageClasses;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using RemnantOfTheAncientsMod.Content.Projectiles.Bobbers;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -14,10 +10,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
     public class FisherClassOverride : GlobalItem
     {
         readonly Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
-
+        public override bool InstancePerEntity => true;
         public override void SetDefaults(Item item)
         {
-            if (item.type == ItemID.PurpleClubberfish)
+            /*if (item.type == ItemID.PurpleClubberfish)
             {
                 item.DamageType = ModContent.GetInstance<FisherDamageClass>();
             }
@@ -56,15 +52,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             if (item.type == ItemID.ObsidianSwordfish)
             {
                 item.DamageType = ModContent.GetInstance<FisherDamageClass>();
-            }
+            }*/
             SetFishClass(item);
         }
         public static void SetFishClass(Item item)
         {
             if (item.fishingPole > 0)
             {
-                item.damage = item.fishingPole - 1;
-                item.DamageType = ModContent.GetInstance<FisherDamageClass>();
+                //item.damage = item.fishingPole - 1;
+                //item.DamageType = ModContent.GetInstance<FisherDamageClass>();
                 item.autoReuse = false;
                 item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             }
@@ -75,63 +71,64 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         }
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if(player.altFunctionUse == 2 && item.DamageType == ModContent.GetInstance<FisherDamageClass>())
+            if (player.altFunctionUse == 2 && item.fishingPole > 0)
             {
                 if (player.ownedProjectileCounts[ModContent.ProjectileType<BoberHook>()] <= 0)
                 {
-                   var p = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BoberHook>(), 1, 1, player.whoAmI, ai2: item.shoot);
+                    var p = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BoberHook>(), 1, 1, player.whoAmI, ai2: item.shoot);
                 }
                 return false;
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
 
-        /*
-         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            if (Calamity != null)
-            {
-                if (item.type == CallUtils.TryGetItemFromMod(Calamity, "TheDevourerofCods"))
-                {
-                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 10);
-                    return false;
-                }
-                else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "RiftReeler"))
-                {
-                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, new Vector2(3, 6));
-                    return false;
-                }
-                else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "FeralDoubleRod"))
-                {
-                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 2);
-                    return false;
-                }
-                else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "EarlyBloomRod"))
-                {
-                    FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 6);
-                    return false;
-                }
-            }
-            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-        }
-        public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, int BoberAmount)
-        {
-            for (int index = 0; index < BoberAmount; index++)
-            {
-                Vector2 Velocity = velocity.RotatedByRandom((double)MathHelper.ToRadians(18f));
-                Projectile.NewProjectile(source, position, Velocity, type, damage, knockback, player);
-            }
-        }
-        public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, Vector2 BoberAmount)
-        {
-            for (int index = 0; index < Main.rand.Next((int)BoberAmount.X, (int)BoberAmount.Y); index++)
-            {
-                Vector2 Velocity = velocity.RotatedByRandom((double)MathHelper.ToRadians(18f));
-                Projectile.NewProjectile(source, position,Velocity, type, damage, knockback, player);
-            }
-        }
-        // Aca terminaba el comentario original
-        public override bool InstancePerEntity => true;
+
+        /* public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+         {
+             if (Calamity != null)
+             {
+                 if (item.type == CallUtils.TryGetItemFromMod(Calamity, "TheDevourerofCods"))
+                 {
+                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 10);
+                     return false;
+                 }
+                 else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "RiftReeler"))
+                 {
+                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, new Vector2(3, 6));
+                     return false;
+                 }
+                 else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "FeralDoubleRod"))
+                 {
+                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 2);
+                     return false;
+                 }
+                 else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "EarlyBloomRod"))
+                 {
+                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 6);
+                     return false;
+                 }
+             }
+             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+         }
+         public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, int BoberAmount)
+         {
+             for (int index = 0; index < BoberAmount; index++)
+             {
+                 Vector2 Velocity = velocity.RotatedByRandom((double)MathHelper.ToRadians(18f));
+                 Projectile.NewProjectile(source, position, Velocity, type, damage, knockback, player);
+             }
+         }
+         public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, Vector2 BoberAmount)
+         {
+             for (int index = 0; index < Main.rand.Next((int)BoberAmount.X, (int)BoberAmount.Y); index++)
+             {
+                 Vector2 Velocity = velocity.RotatedByRandom((double)MathHelper.ToRadians(18f));
+                 Projectile.NewProjectile(source, position,Velocity, type, damage, knockback, player);
+             }
+         }
+         // Aca terminaba el comentario original
+         public override bool InstancePerEntity => true;
+     }*/
     }
     public class BobersOverride : GlobalProjectile
     {
@@ -162,18 +159,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         }
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            
+
             if (projectile.bobber)
             {
                 projectile.velocity = Vector2.Zero;
                 projectile.penetrate = 100;
                 projectile.timeLeft = 1000;
-                Target = target; 
+                Target = target;
 
-                
+
             }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }
         public override bool InstancePerEntity => true;
     }
-}*/
+}
+

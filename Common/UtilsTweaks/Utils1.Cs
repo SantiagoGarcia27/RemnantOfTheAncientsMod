@@ -156,6 +156,22 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
             return value;
         }
+
+        public static string FormatMoneyToString(int copperValue)
+        {
+            int platinum = copperValue / 1000000;
+            int gold = (copperValue % 1000000) / 10000;
+            int silver = (copperValue % 10000) / 100;
+            int copper = copperValue % 100;
+
+            List<string> parts = [];
+            if (platinum > 0) parts.Add($"{platinum} [i:74]");
+            if (gold > 0) parts.Add($"{gold} [i:73]");
+            if (silver > 0) parts.Add($"{silver} [i:72]");
+            if (copper > 0) parts.Add($"{copper} [i:71]");
+
+            return parts.Count > 0 ? string.Join(" ", parts) : "0 [i:71]";
+        }
       
         //public static float FormatToPositive(float imput)
         //{

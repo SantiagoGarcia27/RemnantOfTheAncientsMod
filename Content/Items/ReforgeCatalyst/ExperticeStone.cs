@@ -1,4 +1,4 @@
-﻿using Terraria;
+﻿/*using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
@@ -25,4 +25,4 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
             Item.SetApplyPrice(Utils1.FormatMoney(Gold: 10));
         }
     }
-}
+}*/

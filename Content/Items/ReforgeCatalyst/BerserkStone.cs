@@ -27,5 +27,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
             Item.SetApplyPrice(Utils1.FormatMoney(Gold: 10));
             Item.SetReforges(CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "Berserk"));
         }
+
+        public override int GetCatalystReforge(Item inputItem)
+        {
+            if (inputItem.CountsAsClass<MeleeDamageClass>() && inputItem.noMelee)
+                return CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "BerserkProjectile");
+
+            return base.GetCatalystReforge(inputItem);
+        }
     }
 }

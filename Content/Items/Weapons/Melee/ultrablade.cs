@@ -33,6 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.UseSound = SoundID.Item100;
 			Item.value = Item.sellPrice(gold: 11);
 			Item.rare = ItemRarityID.Red;
+			Item.noMelee = true;
 			Item.scale = 1.20f;
             if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
             {

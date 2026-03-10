@@ -11,6 +11,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
     [JITWhenModsEnabled("CalamityMod")]
     public class ShadowStone : ModReforgeCatalyst
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.TryGetMod("CalamityMod", out mod);
+        }
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;

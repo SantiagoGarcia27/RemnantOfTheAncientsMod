@@ -178,8 +178,10 @@ Mods: {
 			Acurate.DisplayName: Accurate
 			Atletic.DisplayName: Athletic
 			Berserk.DisplayName: Berserk
+			BerserkProjectile.DisplayName: Berserk
 			Gigant.DisplayName: Giant
 			Healer.DisplayName: Healer
+			Heavy.DisplayName: Heavy
 			Healthy.DisplayName: Healthy
 			Impenetrable.DisplayName: Impenetrable
 			Regenerative.DisplayName: Regenerative
@@ -1696,11 +1698,7 @@ Mods: {
 
 			Terracoin: {
 				DisplayName: Terra Coin
-				Tooltip:
-					'''
-					Can be used to obtain ascended reforgings on the Tinkerer Goblin 
-					(Only works if your item is at its best reforge)
-					'''
+				Tooltip: Used to purchase Ascended Reforge Catalysts from the Shimmered Goblin Tinkerer
 			}
 
 			TuxoniteBar: {
@@ -3505,7 +3503,7 @@ Mods: {
 			}
 
 			ForceOfRemants: {
-				DisplayName: Force Of Remants
+				DisplayName: Force Of Remnants
 				Tooltip:
 					'''
 					[I:RemnantOfTheAncientsMod/NightEnchant] Grants teleport and stealth during  the night
@@ -3777,7 +3775,7 @@ Mods: {
 			}
 
 			EndlesGoldPouch: {
-				DisplayName: Endles Golden Pouch
+				DisplayName: Endles Gold Pouch
 				Tooltip: ""
 			}
 
@@ -3806,18 +3804,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			EndlessFirePouch: {
-				DisplayName: Endless Fire Pouch
-				Tooltip: ""
-			}
-
-			EndlessIcePouch: {
-				DisplayName: Endless Ice Pouch
-				Tooltip: ""
-			}
-
-			EndlessIchorPouch: {
-				DisplayName: Endless Ichor Pouch
+			EndlesReinforcedIronPouch: {
+				DisplayName: Endles Reinforced Iron Pouch
 				Tooltip: ""
 			}
 
@@ -3826,163 +3814,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			EndlessTombPouch: {
-				DisplayName: Endless Tomb Pouch
-				Tooltip: ""
-			}
-
-			EndlessWrathSlimePouch: {
-				DisplayName: Endless Wrath Slime Pouch
-				Tooltip: ""
-			}
-
 			EndlesVenomPouch: {
 				DisplayName: Endles Venom Pouch
-				Tooltip: ""
-			}
-
-			DealersPeacemaker: {
-				DisplayName: Dealers Peacemaker
-				Tooltip: ""
-			}
-
-			Darksign: {
-				DisplayName: Darksign
-				Tooltip: increases your damage by {0}% at the cost of {1}% of your life;
-			}
-
-			Endless_Darksign: {
-				DisplayName: Endless Darksign
-				Tooltip: ""
-			}
-
-			DesertScourgeSoul: {
-				DisplayName: Desert Scourge Soul
-				Tooltip: ""
-			}
-
-			FlinxHood: {
-				DisplayName: Flinx Hood
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
-			}
-
-			FlinxPants: {
-				DisplayName: Flinx Pants
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
-			}
-
-			ExplorerBoots: {
-				DisplayName: Explorer Boots
-				Tooltip:
-					'''
-					The wearer can run super fast, and even faster on sand, snow and ash
-					Flowers grow on the grass you walk on
-					Increases jump speed and allows auto-jump
-					'''
-			}
-
-			RunningShoes: {
-				DisplayName: Running Shoes
-				Tooltip: The wearer can run super fast, and even faster on sand, snow and ash
-			}
-
-			GatlingShotGun: {
-				DisplayName: Gatling Shot Gun
-				Tooltip: Its damage evolves as you progress through the progression
-			}
-
-			TungstenSaber: {
-				DisplayName: Tungsten Saber
-				Tooltip: ""
-			}
-
-			DesertGyph: {
-				DisplayName: Desert Gyph
-				Tooltip: ""
-			}
-
-			LeatherQuiver: {
-				DisplayName: Leather Quiver
-				Tooltip: "Increases arrow damage by {0}% and greatly increases "
-			}
-
-			ReinforcedAmmoBox: {
-				DisplayName: Reinforced Ammo Box
-				Tooltip:
-					'''
-					{0}% increase bullet pierce strike chance
-					Bullet pierce strike increased by {1}
-					Grants {2}% chance to fire additional reinforced bullets
-					'''
-			}
-
-			ReinforcedIronBullet: {
-				DisplayName: Reinforced Iron Bullet
-				Tooltip: ""
-			}
-
-			EndlessChlorophytePouch: {
-				DisplayName: Endless Chlorophyte Pouch
-				Tooltip: ""
-			}
-
-			EndlessCrystalPouch: {
-				DisplayName: Endless Crystal Pouch
-				Tooltip: ""
-			}
-
-			EndlessCursedPouch: {
-				DisplayName: Endless Cursed Pouch
-				Tooltip: ""
-			}
-
-			EndlessExplosivePouch: {
-				DisplayName: Endless Explosive Pouch
-				Tooltip: ""
-			}
-
-			EndlessGoldPouch: {
-				DisplayName: Endless Gold Pouch
-				Tooltip: ""
-			}
-
-			EndlessHighVelocityPouch: {
-				DisplayName: Endless High Velocity Pouch
-				Tooltip: ""
-			}
-
-			EndlessLuminitePouch: {
-				DisplayName: Endless Luminite Pouch
-				Tooltip: ""
-			}
-
-			EndlessMeteoritePouch: {
-				DisplayName: Endless Meteorite Pouch
-				Tooltip: ""
-			}
-
-			EndlessNanoPouch: {
-				DisplayName: Endless Nano Pouch
-				Tooltip: ""
-			}
-
-			EndlessPartyPouch: {
-				DisplayName: Endless Party Pouch
-				Tooltip: ""
-			}
-
-			EndlessReinforcedIronPouch: {
-				DisplayName: Endless Reinforced Iron Pouch
-				Tooltip: ""
-			}
-
-			EndlessSilverPouch: {
-				DisplayName: Endless Silver Pouch
-				Tooltip: ""
-			}
-
-			EndlessVenomPouch: {
-				DisplayName: Endless Venom Pouch
 				Tooltip: ""
 			}
 
@@ -4186,8 +4019,13 @@ Mods: {
 			}
 
 			ExperticeStone: {
-				DisplayName: Expertice Stone
-				Tooltip: ""
+				DisplayName: Expertise Stone
+				Tooltip:
+					'''
+					Applies the optimal ascended reforge based on item type
+					Automatically selects the best prefix for your weapon or accessory
+					Costs {0}to apply
+					'''
 			}
 
 			TrueNightchesplate: {
@@ -4303,57 +4141,264 @@ Mods: {
 			}
 
 			AcurateStone: {
-				DisplayName: Acurate Stone
-				Tooltip: ""
+				DisplayName: Accurate Stone
+				Tooltip:
+					'''
+					Applies the Accurate ascended reforge to accessories
+					Grants maximum critical strike chance
+					Costs {0}to apply
+					'''
 			}
 
 			BerserkStone: {
 				DisplayName: Berserk Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Berserk ascended reforge to melee weapons
+					Maximum offensive stats for close combat
+					Costs {0}to apply
+					'''
 			}
 
 			ExquisiteStone: {
 				DisplayName: Exquisite Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Exquisite ascended reforge to rogue weapons
+					The perfect balance of power and precision
+					Costs {0}to apply
+					Requires Calamity Mod
+					'''
 			}
 
 			ImpenetrableStone: {
 				DisplayName: Impenetrable Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Impenetrable ascended reforge to accessories
+					Grants maximum defense boost
+					Costs {0}to apply
+					'''
 			}
 
 			RelicStone: {
 				DisplayName: Relic Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Relic ascended reforge to magic weapons
+					The ultimate enchantment for spellcasters
+					Costs {0}to apply
+					'''
 			}
 
 			ShadowStone: {
 				DisplayName: Shadow Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Shadow ascended reforge to accessories
+					Enhances stealth capabilities
+					Costs {0}to apply
+					Requires Calamity Mod
+					'''
 			}
 
 			SharpStone: {
 				DisplayName: Sharp Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Sharp ascended reforge to accessories
+					Grants maximum damage boost
+					Costs {0}to apply
+					'''
 			}
 
 			SupersonicStone: {
 				DisplayName: Supersonic Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Supersonic ascended reforge to accessories
+					Grants maximum movement speed
+					Costs {0}to apply
+					'''
 			}
 
 			TitanicStone: {
 				DisplayName: Titanic Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Titanic ascended reforge to accessories
+					Grants maximum health increase
+					Costs {0}to apply
+					'''
 			}
 
 			UncontrolledStone: {
 				DisplayName: Uncontrolled Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Uncontrolled ascended reforge to accessories
+					Grants maximum melee speed boost
+					Costs {0}to apply
+					'''
 			}
 
 			VeteranStone: {
 				DisplayName: Veteran Stone
+				Tooltip:
+					'''
+					Applies the Veteran ascended reforge to ranged weapons
+					The mark of a true sharpshooter
+					Costs {0}to apply
+					'''
+			}
+
+			ExplorerBoots: {
+				DisplayName: Explorer Boots
+				Tooltip:
+					'''
+					The user can run super fast, and even faster on sand, snow, and ash.
+					Flowers grow in the grass you walk on.
+					It increases jump speed and enables auto-jumping.
+					'''
+			}
+
+			RunningShoes: {
+				DisplayName: Running Shoes
+				Tooltip: The user can run super fast, and even faster on sand, snow, and ash.
+			}
+
+			LeatherQuiver: {
+				DisplayName: Leather Quiver
+				Tooltip: ""
+			}
+
+			ReinforcedAmmoBox: {
+				DisplayName: Reinforced Ammo Box
+				Tooltip: ""
+			}
+
+			FlinxHood: {
+				DisplayName: Flinx Hood
+				Tooltip: ""
+			}
+
+			FlinxPants: {
+				DisplayName: Flinx Pants
+				Tooltip: ""
+			}
+
+			Darksign: {
+				DisplayName: Darksign
+				Tooltip: ""
+			}
+
+			Endless_Darksign: {
+				DisplayName: Endless_ Darksign
+				Tooltip: ""
+			}
+
+			EndlessChlorophytePouch: {
+				DisplayName: Endless Chlorophyte Pouch
+				Tooltip: ""
+			}
+
+			EndlessCrystalPouch: {
+				DisplayName: Endless Crystal Pouch
+				Tooltip: ""
+			}
+
+			EndlessCursedPouch: {
+				DisplayName: Endless Cursed Pouch
+				Tooltip: ""
+			}
+
+			EndlessExplosivePouch: {
+				DisplayName: Endless Explosive Pouch
+				Tooltip: ""
+			}
+
+			EndlessFirePouch: {
+				DisplayName: Endless Fire Pouch
+				Tooltip: ""
+			}
+
+			EndlessGoldPouch: {
+				DisplayName: Endless Gold Pouch
+				Tooltip: ""
+			}
+
+			EndlessHighVelocityPouch: {
+				DisplayName: Endless High Velocity Pouch
+				Tooltip: ""
+			}
+
+			EndlessIcePouch: {
+				DisplayName: Endless Ice Pouch
+				Tooltip: ""
+			}
+
+			EndlessIchorPouch: {
+				DisplayName: Endless Ichor Pouch
+				Tooltip: ""
+			}
+
+			EndlessLuminitePouch: {
+				DisplayName: Endless Luminite Pouch
+				Tooltip: ""
+			}
+
+			EndlessMeteoritePouch: {
+				DisplayName: Endless Meteorite Pouch
+				Tooltip: ""
+			}
+
+			EndlessNanoPouch: {
+				DisplayName: Endless Nano Pouch
+				Tooltip: ""
+			}
+
+			EndlessPartyPouch: {
+				DisplayName: Endless Party Pouch
+				Tooltip: ""
+			}
+
+			EndlessReinforcedIronPouch: {
+				DisplayName: Endless Reinforced Iron Pouch
+				Tooltip: ""
+			}
+
+			EndlessSilverPouch: {
+				DisplayName: Endless Silver Pouch
+				Tooltip: ""
+			}
+
+			EndlessTombPouch: {
+				DisplayName: Endless Tomb Pouch
+				Tooltip: ""
+			}
+
+			EndlessVenomPouch: {
+				DisplayName: Endless Venom Pouch
+				Tooltip: ""
+			}
+
+			EndlessWrathSlimePouch: {
+				DisplayName: Endless Wrath Slime Pouch
+				Tooltip: ""
+			}
+
+			ReinforcedIronBullet: {
+				DisplayName: Reinforced Iron Bullet
+				Tooltip: ""
+			}
+
+			DealersPeacemaker: {
+				DisplayName: Dealers Peacemaker
+				Tooltip: ""
+			}
+
+			GatlingShotGun: {
+				DisplayName: Gatling Shot Gun
 				Tooltip: ""
 			}
 		}
@@ -4763,8 +4808,8 @@ Mods: {
 					Tooltip: ""
 				}
 
-				ToggleRetinazorSoul: {
-					Label: Toggle Retinazor Soul
+				ToggleRetinazerSoul: {
+					Label: Toggle Retinazer Soul
 					Tooltip: ""
 				}
 
@@ -4937,61 +4982,28 @@ Mods: {
 					Label: Toggle Suprme Calamitas Soul
 					Tooltip: ""
 				}
+
+				ToggleRetinazorSoul: {
+					Label: Toggle Retinazor Soul
+					Tooltip: ""
+				}
 			}
 
 			ConfigServer: {
-				DisplayName: Config Server
-
 				Headers: {
-					Performance: Performance
-					TerrariaOverhaul: Terraria Overhaul
-					TerrariaOverhaulHeader: Terraria Overhaul
+					Performance: Lag Reducer Header
+					TerrariaOverhaul: Terraria Overhaul Header
 				}
+
+				DisplayName: Config Server
 
 				LagReducer: {
 					Label: Lag Reducer
-					Tooltip:
-						'''
-						Reduces graphical aspects of the mod in order to improve game performance.
-						0 - Disable anti lagg
-						1 - 50% of mod effects
-						2 - 25% of mod effects
-						3 - Disable mod effects
-						'''
+					Tooltip: ""
 				}
 
 				VanillaWeaponsChangesConf: {
 					Label: Vanilla Weapons Changes Conf
-					Tooltip:
-						'''
-						Activate the balance changes of vanilla items
-						deactivate this if it generates incompatibility with some other mod
-						'''
-				}
-
-				DropTombstomOnDeadtConf: {
-					Label: Drop Tombstom On Deadt Conf
-					Tooltip:
-						'''
-						Defines if the player drops graves upon death
-						0- Disable all of the tombs
-						1 - 50% Chance to drop tombs
-						2 - 100% Chance to drop tombs
-						'''
-				}
-
-				MaxItemStackConf: {
-					Label: Max Item Stack Conf
-					Tooltip: ""
-				}
-
-				OverhaulMeleeManaCostConfig: {
-					Label: Overhaul Melee Mana Cost Config
-					Tooltip: Activate the mechanic of melee cost mana
-				}
-
-				BoowReworkConf: {
-					Label: Boow Rework Conf
 					Tooltip: ""
 				}
 
@@ -5000,14 +5012,27 @@ Mods: {
 					Tooltip: ""
 				}
 
+				DropTombstomOnDeadtConf: {
+					Label: Drop Tombstom On Deadt Conf
+					Tooltip: ""
+				}
+
+				MaxItemStackConf: {
+					Label: Max Item Stack Conf
+					Tooltip: ""
+				}
+
 				FastExtractinatorConf: {
-					Label: Extractinator use speed
-					Tooltip: Modify the use multipier of extractinator use speed
+					Label: Fast Extractinator Conf
+					Tooltip: ""
+				}
+
+				OverhaulMeleeManaCostConfig: {
+					Label: Overhaul Melee Mana Cost Config
+					Tooltip: ""
 				}
 			}
 		}
-
-		ConfigServer.Headers.Performance: Lag Reducer Header
 
 		Keybinds: {
 			ReaperModeInterface.DisplayName: Reaper Mode Interface
@@ -5041,8 +5066,8 @@ Mods: {
 
 		Achievements: {
 			LegionAchievement: {
-				FriendlyName: Uno en medio millón
-				Description: Obtén la Legión, the most refined gem.
+				FriendlyName: One in half million
+				Description: Obtain the Legion, the most refined gem.
 			}
 
 			MaxStyleAchievement: {
@@ -5072,5 +5097,6 @@ Mods: {
 		}
 
 		Commands.MaxStyleCommand.Description: Mods.RemnantOfTheAncientsMod.Commands.MaxStyleCommand.Description
+		ConfigServer.Headers.Performance: Lag Reducer Header
 	}
 }

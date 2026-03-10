@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
             MainPanel.Append(InputSlot);
 
             paddingLeft += itemSlotSize + 10f;
-            ReforgeStoneSlot = new UIItemSlotElement(ItemSlot.Context.BankItem, ModContent.ItemType<Terracoin>());
+            ReforgeStoneSlot = new UIItemSlotElement(ItemSlot.Context.BankItem, ModContent.ItemType<BerserkStone>());
             ReforgeStoneSlot.OnUpdate += OnUpdateCatalyst;
             UIUtils.SetRectangle(ReforgeStoneSlot, paddingLeft, 15f, itemSlotSize, itemSlotSize);
             MainPanel.Append(ReforgeStoneSlot);
