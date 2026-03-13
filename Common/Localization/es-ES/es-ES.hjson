@@ -168,15 +168,16 @@ Mods: {
 
 		Prefix: {
 			Description: {
-				Life: +{0} vida máxima
-				Defense: +{0} defensa
-				Speed: +{0}% velocidad de movimiento
-				CritChance: +{0}% probabilidad de ataque crítico
-				Damage: +{0}% daño
-				MeleeSpeed: +{0}% velocidad cuerpo a cuerpo
-				LifeRegeneration: +{0} regeneración de vida
-				DamageReduction: +{0}% redución de daño recivido
-				Luck: +{0} suerte
+				Life: "{0} vida máxima"
+				Defense: "{0} defensa"
+				Speed: "{0}% velocidad de movimiento"
+				CritChance: "{0}% probabilidad de ataque crítico"
+				Damage: "{0}% daño"
+				MeleeSpeed: "{0}% velocidad cuerpo a cuerpo"
+				LifeRegeneration: "{0} regeneración de vida"
+				DamageReduction: "{0}% redución de daño recivido"
+				Luck: "{0} suerte"
+				Rarity: "{0} rareza de objeto"
 			}
 		}
 
@@ -201,6 +202,9 @@ Mods: {
 			Shadow.DisplayName: (Sombrio)
 			// Weapon.Exquisite.DisplayName: Exquisite
 			// Accessory.Shadow.DisplayName: Shadow
+			// Pure.DisplayName: Pure
+			// Harmful.DisplayName: Harmful
+			// Cursed.DisplayName: Cursed
 		}
 
 		Generic: {
@@ -4434,6 +4438,21 @@ Mods: {
 			GatlingShotGun: {
 				DisplayName: Ametralladora de escopetas
 				Tooltip: Evoluciona su daño a medida que avanzas en la progresión
+			}
+
+			PureStone: {
+				// DisplayName: Pure Stone
+				// Tooltip: ""
+			}
+
+			HarmfulStone: {
+				// DisplayName: Harmful Stone
+				// Tooltip: ""
+			}
+
+			CursedStone: {
+				// DisplayName: Cursed Stone
+				// Tooltip: ""
 			}
 		}
 

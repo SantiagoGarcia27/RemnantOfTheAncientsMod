@@ -1,13 +1,21 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.World;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.IO;
 using Terraria;
@@ -18,14 +26,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using CalamityMod;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Common.Drops.DropRules;
-using SangarUtilities.Common.UtilsTweaks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
@@ -105,15 +106,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
         private int attackCounter;
         private int attackCounterMaxValue = 800;
+        private int movementTimer;
+        private int movementPhase;
+        private float mandibleAngle;
+
+        private int orbitalPhase;
+        private int orbitalTimer;
+        private float orbitalAngle;
+        private Vector2 dashDirection;
 
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(attackCounter);
+            writer.Write(movementTimer);
+            writer.Write(movementPhase);
+            writer.Write(orbitalPhase);
+            writer.Write(orbitalTimer);
+            writer.Write(orbitalAngle);
+            writer.Write(dashDirection.X);
+            writer.Write(dashDirection.Y);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             attackCounter = reader.ReadInt32();
+            movementTimer = reader.ReadInt32();
+            movementPhase = reader.ReadInt32();
+            orbitalPhase = reader.ReadInt32();
+            orbitalTimer = reader.ReadInt32();
+            orbitalAngle = reader.ReadSingle();
+            dashDirection = new Vector2(reader.ReadSingle(), reader.ReadSingle());
         }
         private int MaxSegmentCount(int MinSegmentLength) 
         {
@@ -129,10 +151,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
 
         public bool SpawnClon = false;
+        public bool IsEnraged => MathUtils.GetPorcentage(NPC.life, NPC.lifeMax) < 25f;
+        public bool IsPhase2 => MathUtils.GetPorcentage(NPC.life, NPC.lifeMax) < 50f;
         public override void AI()
         {
             NPC.buffImmune[BuffID.OnFire] = true;
-           
+            NPC.defense = TyranStats.TyrantArmor(999, NPC);
+
             if (!GenericVariables.SizeChanged[0])
             {
                 try
@@ -150,10 +175,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
 
             Player target = Main.player[NPC.target];
-          
+            //UpdateMandibleAngle(target);
+
             UpdateCounters(target);
             DespawnSafeCheck(target, this);
             DoAttacks(target);
+            if(IsPhase2) 
+                SerpentMovementAi(target);
+            //UpdateOrbitalAttack(target);
 
 
             if (RemnantOfTheAncientsMod.CalamityMod != null)
@@ -179,7 +208,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                         for (int i = -3; i <= 3; i++)
                         {
                             Vector2 FlameVelocity = NPC.velocity * 1.25f;//1.25
-                            FlameVelocity.RotatedBy(i * 20);
+                            FlameVelocity = FlameVelocity.RotatedBy(i * 20);
                             int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Math.Sign(i));
                             Main.projectile[projectile].timeLeft = 30;
                             Main.projectile[projectile].tileCollide = false;
@@ -213,8 +242,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
 
             InfernalTyrantAuxiliaryClass.LifeSpeed(this);
+            UpdateMovement();
         }
-  
+
         public override void OnSpawn(IEntitySource source)
         {
             GenericVariables.IsSpawned = false;
@@ -259,17 +289,84 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     SummonIa(NPCID.RedDevil);
                     break;
             }
+
+            if (IsPhase2)
+            {
+                switch (attackCounter)
+                {
+                    case 650:
+                        StartOrbitalAttack(target);
+                        break;
+                    case 550:
+                        for (int i = -3; i <= 3; i++)
+                            FireBallIa(12f, (int)(45 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBallF>(), "*", 2, 2, target, i * 0.45f);
+                        break;
+                    case 450:
+                        SpikeIa((int)(50 * RemnantGlobalNPC.DamageBonus), true, -3, -3);
+                        SpikeIa((int)(50 * RemnantGlobalNPC.DamageBonus), true, 3, 3);
+                        break;
+                    case 320:
+                        for (int i = -1; i <= 1; i++)
+                            FireBallIa(12f, (int)(55 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBall>(), "*", 3, 3, target, i * 0.15f);
+                        break;
+                    case 180:
+                        SpikeIa((int)(60 * RemnantGlobalNPC.DamageBonus), false, -2, 2);
+                        SummonIa(NPCID.Demon);
+                        break;
+                }
+            }
+
+            if (IsEnraged)
+            {
+                switch (attackCounter)
+                {
+                    case 580:
+                        for (int i = 0; i < 5; i++)
+                            FireBallIa(12f, (int)(60 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBallF>(), "*", 2, 2, target, i * 1.256f);
+                        break;
+                    case 500:
+                        SpikeIa((int)(60 * RemnantGlobalNPC.DamageBonus), true, -3, 3);
+                        SpikeIa((int)(60 * RemnantGlobalNPC.DamageBonus), false, 3, 3);
+                        break;
+                    case 350:
+                        for (int i = -3; i <= 3; i++)
+                            FireBallIa(12f, (int)(40 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBall>(), "*", i, i + 1, target, i * 0.2f);
+                        break;
+                    case 270:
+                        SpikeIa((int)(80 * RemnantGlobalNPC.DamageBonus), true, -2, -2);
+                        SpikeIa((int)(80 * RemnantGlobalNPC.DamageBonus), true, 2, -2);
+                        SpikeIa((int)(80 * RemnantGlobalNPC.DamageBonus), true, 0, 3);
+                        break;
+                    case 150:
+                        SpikeIa((int)(70 * RemnantGlobalNPC.DamageBonus), true, -3, -3);
+                        SpikeIa((int)(70 * RemnantGlobalNPC.DamageBonus), true, 3, -3);
+                        break;
+                    case 120:
+                        StartOrbitalAttack(target);
+                        break;
+                    case 50:
+                        for (int i = -2; i <= 2; i++)
+                            FireBallIa(12f, (int)(50 * RemnantGlobalNPC.DamageBonus), ModContent.ProjectileType<InfernalBallF>(), "*", 3, 2, target, i * 0.3f);
+                        break;
+                }
+            }
         }
         public void UpdateCounters(Player target)
         {
-
             int distance = (int)Vector2.Distance(NPC.Center, target.Center);
+            int distanceThreshold = IsEnraged ? 600 : IsPhase2 ? 400 : 200;
 
-            if (distance < 200 && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
+            if (distance < distanceThreshold && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
             {
                 if (attackCounter <= 0)
                 {
-                    attackCounterMaxValue = !Main.expertMode ? 700 : 800;
+                    if (IsEnraged)
+                        attackCounterMaxValue = !Main.expertMode ? 600 : 700;
+                    else if (IsPhase2)
+                        attackCounterMaxValue = !Main.expertMode ? 650 : 750;
+                    else
+                        attackCounterMaxValue = !Main.expertMode ? 700 : 800;
+
                     attackCounter = attackCounterMaxValue;
                     NPC.netUpdate = true;
                 }       
@@ -278,10 +375,171 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 attackCounter--;
             }
-            
-
         }
 
+        private void UpdateMovement()
+        {
+            if (!IsPhase2)
+            {
+                Acceleration = 0.245f;
+                return;
+            }
+
+            movementTimer--;
+            if (movementTimer <= 0)
+            {
+                int maxPhases = IsEnraged ? 3 : 2;
+                movementPhase = (movementPhase + 1) % maxPhases;
+                movementTimer = movementPhase switch
+                {
+                    0 => 180,
+                    1 => IsEnraged ? 120 : 150,
+                    2 => 100,
+                    _ => 180
+                };
+                NPC.netUpdate = true;
+            }
+
+            switch (movementPhase)
+            {
+                case 1:
+                    MoveSpeed = IsEnraged ? 42f : 36f;
+                    Acceleration = 0.20f;
+                    break;
+                case 2:
+                    MoveSpeed = 34f;
+                    Acceleration = 0.15f;
+                    break;
+                default:
+                    MoveSpeed = 30f;
+                    Acceleration = IsEnraged ? 0.28f : 0.26f;
+                    break;
+            }
+        }
+
+        //No terminado (ignorar)
+        /*private void UpdateMandibleAngle(Player target)
+        {
+            float distToPlayer = Vector2.Distance(NPC.Center, target.Center);
+            float targetAngle;
+
+            if (distToPlayer > 400f)
+                targetAngle = 0f;
+            else if (distToPlayer > 200f)
+                targetAngle = 0.45f;
+            else
+                targetAngle = 0f;
+
+            float lerpSpeed = targetAngle < mandibleAngle ? 0.2f : 0.08f;
+            mandibleAngle = MathHelper.Lerp(mandibleAngle, targetAngle, lerpSpeed);
+        }*/
+
+        private void StartOrbitalAttack(Player target)
+        {
+            if (orbitalPhase != 0) return;
+            orbitalPhase = 1;
+            orbitalTimer = (int)Utils1.FormatTimeToTick(Second:4);
+            orbitalAngle = (NPC.Center - target.Center).ToRotation();
+            SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
+            NPC.netUpdate = true;
+        }
+
+        private float amplitud = 3.0f;          // grados máximos de desviación por frame
+        private float frecuencia = 0.02f;       // velocidad de ondulación (ciclo completo cada ~50 ticks)
+
+        private void SerpentMovementAi(Player target)
+        {
+            if (NPC.velocity.LengthSquared() < 0.01f) return;
+
+            float tiempo = (float)Main.timeForVisualEffects;
+
+            // Ángulo oscilante en radianes: rota la velocidad ±amplitud grados
+            float angulo = MathHelper.ToRadians(amplitud)
+                * (float)Math.Sin(tiempo * frecuencia * MathHelper.TwoPi + NPC.whoAmI * 1.5f);
+
+            // Rotar la velocidad existente (no suma, no usa dirección externa)
+            NPC.velocity = NPC.velocity.RotatedBy(angulo);
+        }
+
+
+        //No terminado
+        /*private void UpdateOrbitalAttack(Player target)
+        {
+            if (orbitalPhase == 0 && target.Distance(NPC.Center) > (200 * 16f) ) return;
+
+            const float orbitalRadius = 100f * 16f;
+
+            switch (orbitalPhase)
+            {
+                case 1:
+                {
+                    float angularSpeed = MathHelper.TwoPi / 50f;
+                    orbitalAngle += angularSpeed;
+
+                    Vector2 desiredPos = target.Center + orbitalAngle.ToRotationVector2() * orbitalRadius;
+                    Vector2 toDesired = desiredPos - NPC.Center;
+                    float speed = MathHelper.Clamp(toDesired.Length() * 0.2f, 20f, 50f);
+                    NPC.velocity = toDesired.SafeNormalize(Vector2.UnitX) * speed;
+
+                    for (int d = 0; d < 2; d++)
+                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f);
+
+                    orbitalTimer--;
+                    if (orbitalTimer <= 0)
+                    {
+                        orbitalPhase = 2;
+                        orbitalTimer = 40;
+                        SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
+                        NPC.netUpdate = true;
+                    }
+                    break;
+                }
+                case 2:
+                {
+                    dashDirection = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
+                    float t = orbitalTimer / 40f;
+                    NPC.velocity = dashDirection * t * 5f;
+
+                    for (int d = 0; d < 3; d++)
+                    {
+                        int dust = Dust.NewDust(NPC.Center - new Vector2(16f), 32, 32, DustID.InfernoFork, 0f, 0f, 100, default, 1.5f);
+                        Main.dust[dust].noGravity = true;
+                        Main.dust[dust].velocity *= 2f;
+                    }
+
+                    orbitalTimer--;
+                    if (orbitalTimer <= 0)
+                    {
+                        orbitalPhase = 3;
+                        orbitalTimer = 25;
+                        dashDirection = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
+                        NPC.velocity = dashDirection * 45f;
+                        SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
+                        NPC.netUpdate = true;
+                    }
+                    break;
+                }
+                case 3:
+                {
+                    NPC.velocity = dashDirection * 45f;
+
+                    for (int d = 0; d < 3; d++)
+                    {
+                        int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.InfernoFork, -NPC.velocity.X * 0.3f, -NPC.velocity.Y * 0.3f, 100, default, 2f);
+                        Main.dust[dust].noGravity = true;
+                    }
+
+                    orbitalTimer--;
+                    if (orbitalTimer <= 0)
+                    {
+                        orbitalPhase = 0;
+                        NPC.netUpdate = true;
+                    }
+                    break;
+                }
+            }
+        }
+        */
         public void FindTarget()
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead)
@@ -343,9 +601,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public void SpikeIa(int damage, bool isStrong, int cordx, int cordy)
         {
             int type = isStrong ? ModContent.ProjectileType<InfernalSpikeF>() : ModContent.ProjectileType<InfernalSpike>();
-            Vector2 spawnPosition = NPC.Center + new Vector2(cordx * NPC.width, cordy * NPC.height);
             SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
-            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(),spawnPosition, Vector2.Zero, type, damage, 0f, Main.myPlayer);
+            Vector2 spikeDirection = Vector2.Normalize(new Vector2(cordx, cordy));
+            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, spikeDirection * 14f, type, damage, 0f, Main.myPlayer);
             Main.projectile[projectile].timeLeft = 1500;
         }
       
@@ -385,6 +643,61 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (NPC.IsABestiaryIconDummy)
+                return;
+
+            //DrawMandibles(drawColor);
+        }
+
+        //No funciona (toca arreglar las posiciones de las mandíbulas)
+        private void DrawMandibles(Color drawColor)
+        {
+            var texRequest = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrantMandible");
+            if (!texRequest.IsLoaded) return;
+            Texture2D tex = texRequest.Value;
+
+            Vector2 drawPos = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
+
+            Vector2 forward = NPC.rotation.ToRotationVector2();
+
+            // Pivote ajustado (mantén el que te dejó bien ubicado)
+            float pivotOffset = 16f * NPC.scale;   // o el valor que te dejó el punto rojo en la boca
+            Vector2 hingeCenter = drawPos + forward * pivotOffset;
+
+            // Separación RELATIVA al frente del boss
+            // Invertimos el signo del perp para que "superior" quede en el lado que querés (prueba + o -)
+            Vector2 perp = forward.RotatedBy(MathHelper.PiOver2);  // +90° (derecha relativa al forward)
+                                                                   // Si querés invertir (para que una quede "arriba" en vertical), usa:
+                                                                   // Vector2 perp = forward.RotatedBy(-MathHelper.PiOver2);   // -90° (izquierda relativa)
+
+            float halfSep = 3f * NPC.scale;  // ← prueba 2f a 5f hasta que la separación se vea bien (no muy pegadas ni muy lejos)
+            Vector2 upperHinge = hingeCenter - perp * halfSep;   // "superior" = -perp
+            Vector2 lowerHinge = hingeCenter + perp * halfSep;   // "inferior" = +perp
+
+            Vector2 origin = new Vector2(0f, tex.Height * 0.5f);
+
+            SpriteEffects upperEffects = NPC.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            SpriteEffects lowerEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipVertically : SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
+
+            float mandibleBaseRot = NPC.rotation + MathHelper.Pi;  // el que te dejó la rotación correcta
+
+            float angleMultiplier = NPC.spriteDirection == 1 ? 1f : -1f;
+
+            // Mandíbula superior
+            Main.EntitySpriteDraw(tex, upperHinge, null, drawColor, mandibleBaseRot - (mandibleAngle * angleMultiplier), origin, NPC.scale, upperEffects, 0);
+            // Mandíbula inferior
+            Main.EntitySpriteDraw(tex, lowerHinge, null, drawColor, mandibleBaseRot + (mandibleAngle * angleMultiplier), origin, NPC.scale, lowerEffects, 0);
+
+            // Debug rojo (para confirmar pivote)
+            var pixelTex = TextureAssets.MagicPixel.Value;
+            if (pixelTex != null)
+            {
+                Main.spriteBatch.Draw(pixelTex, hingeCenter - Main.screenPosition, null, Color.Red * 0.9f, 0f, new Vector2(0.5f), 10f, SpriteEffects.None, 0f);
+            }
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -466,7 +779,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    for(int i = 1; i >= 3; i++) 
+                    for(int i = 1; i <= 3; i++) 
                     {
                         Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("InfernalTyrantBodyGore"+i).Type, NPC.scale);
                     }      
@@ -481,6 +794,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public override void AI()
         {
             NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.defense = TyranStats.TyrantArmor(999, NPC);
             GenericVariables gv = new GenericVariables();
             if (!GenericVariables.SizeChanged[1])
             {
@@ -562,6 +876,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public override void AI()
         {
             NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.defense = TyranStats.TyrantArmor(25, NPC);
             if (!GenericVariables.SizeChanged[2])
             {
                 try
@@ -604,6 +919,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 }
                 RemnantDownedBossSystem.downedTyrant = true;
             }
+            base.HitEffect(hit);
+        }
+        public override void ModifyHitByItem(Player player, Item item, ref NPC.HitModifiers modifiers)
+        {
+            modifiers.FinalDamage *= 2;
+            base.ModifyHitByItem(player, item, ref modifiers);
+        }
+        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            modifiers.FinalDamage *= 2;
+            base.ModifyHitByProjectile(projectile, ref modifiers);
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -617,43 +943,47 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
     public static class TyranStats 
     {
-        public static int TyrantArmor(int i, NPC npc)
+        public static int TyrantArmor(int defense, NPC npc)
         {
+            // 1. Calculamos el porcentaje de vida actual (0.0 a 1.0)
+            float lifePercent = (float)npc.life / npc.lifeMax;
+
+            // 2. Aplicamos una potencia para que la caída sea drástica al inicio.
+            // Elevar el porcentaje a la potencia 5 hace que:
+            // Al 100% de vida -> 1.0^5 = 1.0  (Defensa total: 999)
+            // Al 75% de vida  -> 0.75^5 = 0.23 (Defensa: ~230)
+            // Al 50% de vida  -> 0.50^5 = 0.03 (Defensa: ~30)
+            float decayFactor = (float)Math.Pow(lifePercent, 5);
+
+            // 3. Definimos el "Suelo" (Mínimo de defensa para que no sea papel al final)
+            float minPercent = 0.05f; // Mantener al menos un 15% de la defensa
+
             if (Main.expertMode || Main.masterMode)
             {
-                if (npc.life > npc.life / 10)
-                {
-                    i /= 3;
-                }
-                else if (npc.life > npc.life / 15 && Reaper.ReaperMode)
-                {
-                    i = 0;
-                }
-            }
-            else if (npc.life > npc.life / 4)
-            {
-                i /= 2;
+                if (Reaper.ReaperMode) minPercent = 0.00f;
+                minPercent = 0.02f;
             }
 
-            int a = RemnantOfTheAncientsMod.CalamityMod != null ? i * 2 : i;
-            return a;
+            // Mezclamos el factor de caída con el mínimo (Lerp manual)
+            float finalFactor = MathHelper.Lerp(minPercent, 1f, decayFactor);
+
+            int processedDefense = (int)(defense * finalFactor);
+
+            // 4. Multiplicador de Calamity
+            return RemnantOfTheAncientsMod.CalamityMod != null ? processedDefense * 2 : processedDefense;
         }
-       
 
-        public static void DrawGlow(NPC npc,string NpcName)
+
+        public static void DrawGlow(NPC npc, string NpcName)
         {
-            SpriteEffects effects = SpriteEffects.None;
-            if (npc.spriteDirection == 1)
-            {
-                effects = SpriteEffects.FlipHorizontally;
-            }
-            Vector2 vectorFrame = new(TextureAssets.Npc[npc.type].Value.Width / 2, TextureAssets.Npc[npc.type].Value.Height / Main.npcFrameCount[npc.type] / 2);
-            Vector2 position = new Vector2(npc.Center.X, npc.Center.Y) - Main.screenPosition;
-            var a = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/"+ NpcName + "_Glow");
-            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[npc.type]) / 2f;
-            position += vectorFrame * 1f + new Vector2(0f, 4f + npc.gfxOffY);
+            SpriteEffects effects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            var glowTexture = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/" + NpcName + "_Glow");
+            Vector2 origin = new(glowTexture.Width * 0.5f, glowTexture.Height / Main.npcFrameCount[npc.type] * 0.5f);
+            Vector2 position = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY);
             Color color = Utils.MultiplyRGBA(new Color(127 - npc.alpha, 127 - npc.alpha, 127 - npc.alpha, 0), Color.LightYellow);
-            Main.spriteBatch.Draw((Texture2D)a, position, npc.frame, color, npc.rotation, vectorFrame, npc.scale, effects, 0f);
+
+            Main.EntitySpriteDraw(glowTexture, position, npc.frame, color, npc.rotation, origin, npc.scale, effects, 0);
         }
     }
 }

@@ -259,7 +259,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             FixDuplicatedPrefix(tooltips);
-
+        
             if (item.type == ItemID.HandOfCreation)
             {
                 var tip = tooltips.FirstOrDefault(tip => tip.Name == "Tooltip0" && tip.Mod == "Terraria");

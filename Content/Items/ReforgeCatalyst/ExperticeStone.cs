@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
             Item.value = Item.sellPrice(gold: 10);
             Item.rare = ItemRarityID.Green;
             Item.SetCatalyst(true);
-            Item.SetApplyPrice(Utils1.FormatMoney(Gold: 10));
+            Item.SetApplyPrice(Utils1.FormatMoney(Gold: 70));
         }
     }
 }*/

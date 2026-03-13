@@ -1,4 +1,4 @@
-﻿using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
 {
-    public class TitanicStone : ModReforgeCatalyst
+    public class PureStone : ModReforgeCatalyst
     {
         public override void SetStaticDefaults()
         {
@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
             Item.rare = ItemRarityID.Green;
             Item.SetCatalyst(true);
 
-            Item.SetApplyPrice(Utils1.FormatMoney(Gold: 70));
-            Item.SetReforges(CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "Titanic")); 
+            Item.SetApplyPrice(Utils1.FormatMoney(Gold: 5));
+            Item.SetReforges(CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "Pure"));
         }
     }
 }

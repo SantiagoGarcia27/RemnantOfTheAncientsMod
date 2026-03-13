@@ -1,4 +1,6 @@
 ﻿using Steamworks;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ID;
 using Terraria.Localization;
@@ -96,10 +98,46 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         internal static readonly MethodInfo LocalizationLoader_SetLocalizedText = typeof(LocalizationLoader).GetMethod("SetLocalizedText", BindingFlags.NonPublic | BindingFlags.Static)!;
         internal static readonly FieldInfo LanguageManager__localizedTexts = typeof(LanguageManager).GetField("_localizedTexts", BindingFlags.NonPublic | BindingFlags.Instance)!;
 
-      //  /// <summary>
-      //  /// Force's the localization for the given mod, <paramref name="mod"/>, to be loaded for use with <seealso cref="Language"/>
-      //  /// </summary>
-      //  /// <param name="mod">The mod instance</param>
+
+        public static IEnumerable<TooltipLine> GetAccesoryPrefixDescription(Mod mod,
+             int damage = 0, int defense = 0, int speed = 0, int crit = 0, int life = 0,
+             int meleeSpeed = 0, int mana = 0, int damageReduction = 0, int luck = 0,
+             int lifeRegeneration = 0, int stealth = 0)
+        {
+            var stats = new (string Key, string DescKey, int Value)[]
+            {
+                ("Damage", "Damage", damage),
+                ("Defense", "Defense", defense),
+                ("Speed", "Speed", speed),
+                ("Crit", "CritChance", crit),
+                ("Life", "Life", life),
+                ("MeleeSpeed", "MeleeSpeed", meleeSpeed),
+                ("Mana", "Mana", mana),
+                ("DamageReduction", "DamageReduction", damageReduction),
+                ("Luck", "Luck", luck),
+                ("LifeRegeneration", "LifeRegeneration", lifeRegeneration),
+                ("Stealth", "Stealth", stealth)
+            };
+
+            foreach (var (Key, DescKey, Value) in stats)
+            {
+                if (Value != 0)
+                {
+                    yield return new TooltipLine(mod, $"PrefixAcc{Key}", PrefixDesc(DescKey).Format(Value > 0 ? $"+{Value}" : $"{Value}"))
+                    {
+                        IsModifier = true,
+                        IsModifierBad = Value < 0
+                    };
+                }
+            }
+        }
+        private static LocalizedText PrefixDesc(string key) =>
+           Language.GetText($"Mods.RemnantOfTheAncientsMod.Prefix.Description.{key}");
+
+        //  /// <summary>
+        //  /// Force's the localization for the given mod, <paramref name="mod"/>, to be loaded for use with <seealso cref="Language"/>
+        //  /// </summary>
+        //  /// <param name="mod">The mod instance</param>
         //public static void ForceLoadModHJsonLocalization(Mod mod)
         //{
         //    Dictionary<string, ModTranslation> modTranslationDictionary = new();

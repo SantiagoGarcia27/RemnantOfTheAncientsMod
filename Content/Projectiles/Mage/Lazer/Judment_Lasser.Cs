@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -74,35 +75,87 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			DrawLaser(TextureAssets.Projectile[Projectile.type].Value, Projectile.Center, Projectile.velocity, 10, -1.57f, Projectile.scale, 1);
+			SpriteBatch spriteBatch = Main.spriteBatch;
+			Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+
+			// Glow pass - additive blending for the outer radiance
+			spriteBatch.End();
+			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+			DrawLaser(texture, Projectile.Center, Projectile.velocity, 10, -1.57f, Projectile.scale, 1, true);
+
+			// Normal pass - body and core
+			spriteBatch.End();
+			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+			DrawLaser(texture, Projectile.Center, Projectile.velocity, 10, -1.57f, Projectile.scale, 1, false);
+
 			return false;
 		}
 
 		public float floor;
-		public void DrawLaser(Texture2D texture, Vector2 start, Vector2 unit, float step, float rotation = 0f, float scale = 2f, int transDist = 50)
+		public void DrawLaser(Texture2D texture, Vector2 start, Vector2 unit, float step, float rotation, float scale, int transDist, bool isGlow)
 		{
 			float r = unit.ToRotation() + rotation;
+			float time = Main.GlobalTimeWrappedHourly;
+			float pulse = 0.85f + 0.15f * (float)Math.Sin(time * 10f);
+			float glowPulse = 0.7f + 0.3f * (float)Math.Sin(time * 14f);
+
+			Rectangle bodyRect = new(0, 26, 28, 26);
+			Rectangle endRect = new(0, 57, 26, 22);
+			Vector2 texOrigin = new(28 * 0.5f, 26 * 0.5f);
+
 			for (float i = transDist; i <= Distance; i += step)
 			{
-				var origin = start + i * unit;
+				Vector2 drawPos = start + i * unit - Main.screenPosition;
+				bool hitSolid = DistanceUtils.ExistTileSolid(new Vector2(start.X, start.Y + i), true);
 
-				if (DistanceUtils.ExistTileSolid(new Vector2(start.X,start.Y + i),true))
+				if (isGlow)
 				{
-					
-                    //Main.EntitySpriteDraw(texture, origin + (Distance + step) * unit - Main.screenPosition, new Rectangle(0, 52, 28, 26), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale, 0, 0);
-                    var dust = Dust.NewDust(new Vector2(start.X - 2 *16, start.Y + i), Projectile.width *2, 25, ModContent.DustType<HollyBurn_P>(), 0, 0, 0, default, 1 + Projectile.scale * 2f);
-                    Main.EntitySpriteDraw(texture, origin - Main.screenPosition, new Rectangle(0, 57, 26, 22), Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale *2, 0, 0); //new Vector2(start.X - 2 * 16, start.Y + i)
-                    Main.dust[dust].noGravity = true;
-					floor = i;
-                    i = Distance - 1;
-                }		             
+					if (hitSolid)
+					{
+						Color glowColor = new Color(255, 200, 50) * 0.4f * glowPulse;
+						Main.EntitySpriteDraw(texture, drawPos, endRect, glowColor, r, texOrigin, scale * 3f * glowPulse, 0, 0);
+						floor = i;
+						break;
+					}
+					else
+					{
+						float mult = HaveBlockMultiplier(start.X, start.Y + i);
+						Color glowColor = new Color(255, 200, 50) * 0.3f * glowPulse;
+						Main.EntitySpriteDraw(texture, drawPos, bodyRect, glowColor, r, texOrigin, scale * mult * 2.2f * glowPulse, 0, 0);
+					}
+				}
 				else
 				{
-					float mult = HaveBlockMultiplier(start.X, start.Y + i);
+					if (hitSolid)
+					{
+						if (RemnantOfTheAncientsMod.ParticleMeterChoice())
+						{
+							var dust = Dust.NewDust(new Vector2(start.X - 2 * 16, start.Y + i), Projectile.width * 2, 25, DustType<HollyBurn_P>(), 0, 0, 0, default, 1 + Projectile.scale * 2f);
+							Main.dust[dust].noGravity = true;
+						}
+						Main.EntitySpriteDraw(texture, drawPos, endRect, Color.White, r, texOrigin, scale * 2, 0, 0);
+						Main.EntitySpriteDraw(texture, drawPos, endRect, Color.White * 0.9f, r, texOrigin, scale * 0.8f * pulse, 0, 0);
+						floor = i;
+						break;
+					}
 
-                    Main.EntitySpriteDraw(texture, origin - Main.screenPosition, new Rectangle(0, 26, 28, 26), i < transDist ? Color.Transparent : Color.White, r, new Vector2(28 * .5f, 26 * .5f), scale * mult, 0, 0);
+					else
+					{
+						float mult = HaveBlockMultiplier(start.X, start.Y + i);
+						Main.EntitySpriteDraw(texture, drawPos, bodyRect, Color.White, r, texOrigin, scale * mult, 0, 0);
+						Main.EntitySpriteDraw(texture, drawPos, bodyRect, Color.White * 0.85f * pulse, r, texOrigin, scale * mult * 0.5f, 0, 0);
+
+						int dustChance = RemnantOfTheAncientsMod.ParticleMeter(8, 8, 16, 0);
+						if (dustChance > 0 && Main.rand.NextBool(dustChance))
+						{
+							var d = Dust.NewDustPerfect(new Vector2(start.X + Main.rand.NextFloat(-16, 16), start.Y + i), DustType<HollyBurn_P>(), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-0.5f, 0.5f)), 0, default, 1f + Projectile.scale);
+							d.noGravity = true;
+						}
+					}
 				}
-            }
+			}
 		}
 		public float HaveBlockMultiplier(float x, float y)
 		{

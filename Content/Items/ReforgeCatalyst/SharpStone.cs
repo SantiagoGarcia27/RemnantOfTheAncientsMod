@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
             Item.rare = ItemRarityID.Green;
             Item.SetCatalyst(true);
 
-            Item.SetApplyPrice(Utils1.FormatMoney(Gold: 10));
+            Item.SetApplyPrice(Utils1.FormatMoney(Gold: 70));
             Item.SetReforges(CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "Sharp"));
         }
     }

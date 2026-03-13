@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,6 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
         }
         public override void AI()
         {
+            DecelerateMovement();
             AnimateTexture();
         }
         public override void SetDefaults() => base.SetDefaults();
@@ -46,6 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
         public override void SetDefaults() => base.SetDefaults();
         public override void AI()
         {
+            DecelerateMovement();
             AnimateTexture();
         }
         public void AnimateTexture()
@@ -150,6 +153,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             AIType = ProjectileID.BlueMoon;
+        }
+
+        public void DecelerateMovement()
+        {
+            if (Projectile.velocity.LengthSquared() > 0.01f)
+            {
+                Projectile.velocity *= 0.975f;
+                Projectile.rotation = Projectile.velocity.ToRotation();
+            }
+            else
+            {
+                Projectile.velocity = Vector2.Zero;
+            }
         }
 
     }

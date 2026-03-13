@@ -12,28 +12,33 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             if (item.prefix == ModContent.PrefixType<Healthy>())
             {
-                PrefixUpdate(player, 5, 0, 1);
-                CustomTooltip.HealthyReforgeValue = Reaper.ReaperMode ? 1 : 5;
+                int lifeBonus = Reaper.ReaperMode ? 1 : 5;
+                PrefixUpdate(player, lifeMax: lifeBonus);
+                CustomTooltip.HealthyReforgeValue = lifeBonus;
             }
             if (item.prefix == ModContent.PrefixType<Healer>())
             {
-                PrefixUpdate(player, 10, 0, 2);
-                CustomTooltip.HealerReforgeValue = Reaper.ReaperMode ? 2 : 10;
+                int lifeBonus = Reaper.ReaperMode ? 2 : 10;
+                PrefixUpdate(player, lifeMax: lifeBonus);
+                CustomTooltip.HealerReforgeValue = lifeBonus;
             }
             if (item.prefix == ModContent.PrefixType<Atletic>())
             {
-                PrefixUpdate(player, 15, 0, 3);
-                CustomTooltip.AtleticReforgeValue = Reaper.ReaperMode ? 3 : 15;
+                int lifeBonus = Reaper.ReaperMode ? 3 : 15;
+                PrefixUpdate(player, lifeMax: lifeBonus);
+                CustomTooltip.AtleticReforgeValue = lifeBonus;
             }
             if (item.prefix == ModContent.PrefixType<Gigant>())
             {
-                PrefixUpdate(player, 20, 0, 5);
-                CustomTooltip.GigantReforgeValue = Reaper.ReaperMode ? 5 : 20;
+                int lifeBonus = Reaper.ReaperMode ? 5 : 20;
+                PrefixUpdate(player, lifeMax: lifeBonus);
+                CustomTooltip.GigantReforgeValue = lifeBonus;
             }
             if (item.prefix == ModContent.PrefixType<Titanic>())
             {
-                PrefixUpdate(player, 40, 0, 10);
-                CustomTooltip.TitanicReforgeValue = Reaper.ReaperMode ? 10 : 40;
+                int lifeBonus = Reaper.ReaperMode ? 10 : 40;
+                PrefixUpdate(player, lifeMax: lifeBonus, defense: 0, speed: 10);
+                CustomTooltip.TitanicReforgeValue = lifeBonus;
             }
             if (item.prefix == ModContent.PrefixType<Impenetrable>())
             {
@@ -44,11 +49,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     player.endurance += 0.02f;
                 }
                 CustomTooltip.UnpenetrableReforgeValue = Basedefense;
-                PrefixUpdate(player, Basedefense, 1);
+                PrefixUpdate(player, defense: Basedefense);
             }
             if (item.prefix == ModContent.PrefixType<Supersonic>())
             {
-                PrefixUpdate(player, 0.08f, 2);
+                PrefixUpdate(player, speed: 0.08f);
             }
             if (item.prefix == ModContent.PrefixType<Acurate>())
             {
@@ -56,21 +61,34 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                    player.luck += 0.1f;
                 }
-                PrefixUpdate(player, 8f, 3);
+                PrefixUpdate(player, crit: 8f);
 
             }
             if (item.prefix == ModContent.PrefixType<Sharp>())
             {
-                PrefixUpdate(player, 0.08f, 4);
+                PrefixUpdate(player, damage: 0.08f);
             }
             if (item.prefix == ModContent.PrefixType<Uncontrolled>())
             {
-                PrefixUpdate(player, 0.08f, 5);
+                PrefixUpdate(player, meleeSpeed: 0.08f);
             }
             if (item.prefix == ModContent.PrefixType<Regenerative>())
             {
-                PrefixUpdate(player, 2f, 6);
+                PrefixUpdate(player, lifeRegen: 2);
             }
+            if(item.prefix == ModContent.PrefixType<Pure>())
+            {
+                PrefixUpdate(player,damage:1,crit:1,speed:1,defense:1);
+            }
+            if (item.prefix == ModContent.PrefixType<Harmful>())
+            {
+                PrefixUpdate(player, damage: 2, crit: 2);
+            }
+            if (item.prefix == ModContent.PrefixType<Cursed>())
+            {
+                PrefixUpdate(player, damage: 5, defense: -3);
+            }
+
         }
         [JITWhenModsEnabled("CalamityMod")]
         private static int CalamityPrefixChanger()
@@ -111,39 +129,37 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             return 8;
         }
-        private static void PrefixUpdate(Player player, float value, int stat)
+        private static void PrefixUpdate(Player player, int lifeMax = 0, int defense = 0, float speed = 0, float crit = 0, float damage = 0, int lifeRegen = 0, float meleeSpeed = 0)
         {
-            switch (stat)
+            if (lifeMax != 0)
             {
-                case 0:
-                    player.statLifeMax2 += (int)value;
-                    break;
-                case 1:
-                    player.statDefense += (int)value;
-                    break;
-                case 2:
-                    player.moveSpeed += value;
-                    break;
-                case 3:
-                    player.GetCritChance(DamageClass.Generic) += value;
-                    break;
-                case 4:
-                    ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
-                    GenericDamage += value;
-                    break;
-                case 5:
-                    player.GetAttackSpeed(DamageClass.Melee) += value;
-                    break;
-                case 6:
-                    player.lifeRegen += (int)value;
-                    break;
+                player.statLifeMax2 += lifeMax;
             }
-        }
-        private void PrefixUpdate(Player player, float value, int stat, float reaperValue)
-        {
-            if (stat == 0)
+            if (defense != 0)
             {
-                player.statLifeMax2 += Reaper.ReaperMode ? (int)reaperValue : (int)value;
+                player.statDefense += defense;
+            }
+            if (speed != 0)
+            {
+                float bonus = (float)speed/100f;
+                player.moveSpeed += bonus;
+            }
+            if (crit != 0)
+            {
+                player.GetCritChance(DamageClass.Generic) += crit;
+            }
+            if (damage != 0)
+            {
+                ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
+                GenericDamage *= 1+(damage/100f);
+            }
+            if (lifeRegen != 0)
+            {
+                player.lifeRegen += lifeRegen;
+            }
+            if (meleeSpeed != 0)
+            {
+                player.GetAttackSpeed(DamageClass.Melee) += meleeSpeed;
             }
         }
         public override bool InstancePerEntity => true;

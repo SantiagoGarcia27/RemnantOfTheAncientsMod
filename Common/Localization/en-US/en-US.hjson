@@ -162,15 +162,16 @@ Mods: {
 
 		Prefix: {
 			Description: {
-				Life: +{0} max life
-				Defense: +{0} defense
-				Speed: +{0}% movement speed
-				CritChance: +{0}% critical strike chance
-				Damage: +{0}% damage
-				MeleeSpeed: +{0}% melee speed
-				LifeRegeneration: +{0} life regeneration
-				DamageReduction: +{0}% damage reduction
-				Luck: +{0} Luck
+				Life: "{0} max life"
+				Defense: "{0} defense"
+				Speed: "{0}% movement speed"
+				CritChance: "{0}% critical strike chance"
+				Damage: "{0}% damage"
+				MeleeSpeed: "{0}% melee speed"
+				LifeRegeneration: "{0} life regeneration"
+				DamageReduction: "{0}% damage reduction"
+				Luck: "{0} Luck"
+				Rarity: "{0} item rarity"
 			}
 		}
 
@@ -195,6 +196,9 @@ Mods: {
 			Shadow.DisplayName: Shadow
 			Weapon.Exquisite.DisplayName: Exquisite
 			Accessory.Shadow.DisplayName: Shadow
+			Pure.DisplayName: Pure
+			Harmful.DisplayName: Harmful
+			Cursed.DisplayName: Cursed
 		}
 
 		Generic: {
@@ -4399,6 +4403,21 @@ Mods: {
 
 			GatlingShotGun: {
 				DisplayName: Gatling Shot Gun
+				Tooltip: ""
+			}
+
+			PureStone: {
+				DisplayName: Pure Stone
+				Tooltip: ""
+			}
+
+			HarmfulStone: {
+				DisplayName: Harmful Stone
+				Tooltip: ""
+			}
+
+			CursedStone: {
+				DisplayName: Cursed Stone
 				Tooltip: ""
 			}
 		}

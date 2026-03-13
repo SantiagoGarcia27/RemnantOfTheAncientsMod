@@ -178,9 +178,9 @@ namespace RemnantOfTheAncientsMod
             }
             if (lagLevel == 1)
             {
-                return Main.rand.NextBool(3, 4);
+                return Main.rand.NextBool(2);
             }
-            return Main.rand.NextBool(2, 4);
+            return Main.rand.NextBool(4);
         }
         public static int ParticleMeter(int i, bool increment)
         {
@@ -194,11 +194,11 @@ namespace RemnantOfTheAncientsMod
             {
                 if (lagLevel == 2)
                 {
-                    return i * 2;
+                    return i * 4;
                 }
                 else if (lagLevel == 1)
                 {
-                    return (int)(i * 1.5f);
+                    return i * 2;
                 }
                 else return i;
             }
