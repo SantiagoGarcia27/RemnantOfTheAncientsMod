@@ -202,9 +202,9 @@ Mods: {
 			Shadow.DisplayName: (Sombrio)
 			// Weapon.Exquisite.DisplayName: Exquisite
 			// Accessory.Shadow.DisplayName: Shadow
-			// Pure.DisplayName: Pure
-			// Harmful.DisplayName: Harmful
-			// Cursed.DisplayName: Cursed
+			Pure.DisplayName: (Puro)
+			Harmful.DisplayName: (Nocivo)
+			Cursed.DisplayName: (Maldito)
 		}
 
 		Generic: {
@@ -4441,18 +4441,33 @@ Mods: {
 			}
 
 			PureStone: {
-				// DisplayName: Pure Stone
-				// Tooltip: ""
+				DisplayName: Piedra Pura
+				Tooltip:
+					'''
+					Aplica la reforja Puro a los accesorios
+					Otorga un pequeño aumento a varias estadísticas
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			HarmfulStone: {
-				// DisplayName: Harmful Stone
-				// Tooltip: ""
+				DisplayName: Piedra Dañina
+				Tooltip:
+					'''
+					Aplica la reforja Dañina a los accesorios
+					Otorga un aumento moderado al daño y la probabilidad de crítico
+					Cuesta {0} aplicarla
+					'''
 			}
 
 			CursedStone: {
-				// DisplayName: Cursed Stone
-				// Tooltip: ""
+				DisplayName: Piedra Maldita
+				Tooltip:
+					'''
+					Aplica la reforja Maldito a los accesorios
+					Otorga un gran aumento al daño, pero reduce la defensa
+					Cuesta {0} aplicarla
+					'''
 			}
 		}
 

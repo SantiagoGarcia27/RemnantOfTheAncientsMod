@@ -4408,17 +4408,32 @@ Mods: {
 
 			PureStone: {
 				DisplayName: Pure Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Pure reforge to accessories
+					Grants a small boost to some stats
+					Costs {0} to apply
+					'''
 			}
 
 			HarmfulStone: {
 				DisplayName: Harmful Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Harmful reforge to accessories
+					Grants a medium boost to damage and critical strike chance
+					Costs {0} to apply
+					'''
 			}
 
 			CursedStone: {
 				DisplayName: Cursed Stone
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Cursed reforge to accessories
+					Grants a huge boost to damage, but reduces defense
+					Costs {0} to apply
+					'''
 			}
 		}
 
