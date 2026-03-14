@@ -46,6 +46,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep
                 Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
 
                 Projectile.NewProjectile(source, position, velocity, type, damage * 2, 1, player.whoAmI);
+                Projectile.NewProjectile(source, position, (velocity / 2).RotatedByRandom(10), ProjectileID.Flames, damage / 2, 1, player.whoAmI);
             }
 
             return false; 

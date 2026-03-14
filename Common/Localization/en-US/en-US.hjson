@@ -3611,7 +3611,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			ReinforcedironBricks: {
+			ReinforcedIronBricks: {
 				DisplayName: Reinforcediron Bricks
 				Tooltip: ""
 			}

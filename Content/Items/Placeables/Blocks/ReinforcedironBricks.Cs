@@ -8,7 +8,7 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Blocks
 {
-	public class ReinforcedironBricks : ModItem
+	public class ReinforcedIronBricks : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
