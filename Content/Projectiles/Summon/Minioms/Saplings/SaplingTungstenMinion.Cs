@@ -12,7 +12,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings
 		public override void SetStaticDefaults()
 		{
 			//DisplayName.SetDefault("Animated Tungsten Sapling Minion");
-			Main.projFrames[Projectile.type] = 6;
+			Main.projFrames[Projectile.type] = 4;
 			Main.projPet[Projectile.type] = true;
 			ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
@@ -22,8 +22,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings
 		public override void SetDefaults()
 		{
 			Projectile.netImportant = true;
-			Projectile.width = 24;
-			Projectile.height = 32;
+			Projectile.width = 26;
+			Projectile.height = 30;
 			Projectile.friendly = true;
 			Projectile.minion = true;
 			Projectile.minionSlots = 1;

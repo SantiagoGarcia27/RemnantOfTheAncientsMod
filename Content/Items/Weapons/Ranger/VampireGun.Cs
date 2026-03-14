@@ -28,8 +28,8 @@ CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		{
 Item.damage = 50;
 Item.DamageType = DamageClass.Ranged;
-Item.width = 8;
-Item.height = 2;
+Item.width = 54;
+Item.height = 26;
 Item.useTime = 4;
 Item.useAnimation = 12;
 Item.useStyle = ItemUseStyleID.Shoot;

@@ -32,8 +32,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.channel = true;
 			Item.mana = 6;
 			Item.rare = ItemRarityID.Yellow;
-			Item.width = 72;
-			Item.height = 74;
+			Item.width = 70;
+			Item.height = 70;
 			Item.useTime = 5;
             Item.useAnimation = 5;
             Item.UseSound = SoundID.Item34;

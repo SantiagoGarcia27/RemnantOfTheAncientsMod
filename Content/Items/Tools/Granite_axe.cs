@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 		{
 			Item.damage = 9;
 			Item.DamageType = DamageClass.Melee;
-			Item.width = 40;
+			Item.width = 42;
 			Item.height = 40;
 			Item.useTime = 15;
 			Item.useAnimation = 23;

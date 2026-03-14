@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		{
 			Item.damage = 70;
 			Item.DamageType = DamageClass.Ranged;
-			Item.width = 2;
-			Item.height = 2;
+			Item.width = 64;
+			Item.height = 30;
 			Item.useTime = 30;
 			Item.useAnimation = 30;
 			Item.useStyle = ItemUseStyleID.Shoot;
