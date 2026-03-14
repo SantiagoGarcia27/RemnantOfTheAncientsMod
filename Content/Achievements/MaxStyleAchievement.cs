@@ -30,7 +30,7 @@ public class MaxStyleAchievement : ModAchievement
         // Achievement.SetCategory(AchievementCategory.Collector);
 
         // Unlike MinionBossKilled, which uses AddNPCKilledCondition, this ModAchievement uses AddIntCondition to track the 5 kills. This is necessary because AddNPCKilledCondition only supports tracking a single kill.
-        Condition = AddIntCondition((int)ShopUtils.maxStyleStat);
+        Condition = AddIntCondition(StatPlayer.MaxStyleStat);
 
         // This approach requires manually incrementing Condition.Value to track the kill count. To do this, we subscribe to the AchievementsHelper.OnNPCKilled event, then in NPCKilledListener we increment our Condition by 1. See the NPCKilledListener method below.
         // We can't use the ExampleWormHead.OnKill method for this because that doesn't run on multiplayer clients.

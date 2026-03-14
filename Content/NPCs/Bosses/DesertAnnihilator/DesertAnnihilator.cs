@@ -96,7 +96,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         private int attackCounter;
         private int tornadoCounter;
         private int summonCounter;
-        private int markProjectileIndex = -1;
+        private List<int> markProjectileIndices = [];
         private int tpDirection;
         private int currentPhase;
         private bool BossIsInRage = false;
@@ -622,27 +622,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
 
             if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 4))
             {
+                markProjectileIndices.Clear();
                 if (!Reaper.ReaperMode)
                 {
-                    markProjectileIndex = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position, Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
+                    int idx = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position, Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
+                    markProjectileIndices.Add(idx);
                 }
                 else
                 {
                     float distanceBetweenTornados = 5f;
                     for (int a = 0; a < 7; a++)
                     {
-                        markProjectileIndex = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position + new Vector2(a * 16 * distanceBetweenTornados * Main.player[NPC.target].direction, 0), Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
+                        int idx = Projectile.NewProjectile(Projectile.GetSource_None(), Main.player[NPC.target].position + new Vector2(a * 16 * distanceBetweenTornados * Main.player[NPC.target].direction, 0), Vector2.Zero, ProjectileID.SandnadoHostileMark, 0, 0, Main.myPlayer);
+                        markProjectileIndices.Add(idx);
                     }
                 }
             }
 
-            if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 1) && markProjectileIndex >= 0 && markProjectileIndex < Main.maxProjectiles)
+            if (tornadoCounter == (int)Utils1.FormatTimeToTick(0, 0, 0, 1) && markProjectileIndices.Count > 0)
             {
                 int damage = (int)(30 * RemnantGlobalNPC.DamageBonus);
-                int sandnadoId = Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[markProjectileIndex].position, Vector2.Zero, ProjectileID.SandnadoHostile, damage, 1, Main.myPlayer);
                 int time = (int)Utils1.FormatTimeToTick(Second: 1);
-                Main.projectile[sandnadoId].timeLeft = time;
-                markProjectileIndex = -1;
+                foreach (int idx in markProjectileIndices)
+                {
+                    if (idx >= 0 && idx < Main.maxProjectiles && Main.projectile[idx].active)
+                    {
+                        int sandnadoId = Projectile.NewProjectile(Projectile.GetSource_None(), Main.projectile[idx].position, Vector2.Zero, ProjectileID.SandnadoHostile, damage, 1, Main.myPlayer);
+                        Main.projectile[sandnadoId].timeLeft = time;
+                    }
+                }
+                markProjectileIndices.Clear();
             }
         }
         [JITWhenModsEnabled("FargowiltasSouls")]

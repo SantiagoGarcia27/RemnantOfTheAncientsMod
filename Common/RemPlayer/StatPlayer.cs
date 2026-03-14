@@ -1,4 +1,5 @@
 ﻿using InfernumMode.Content.Achievements;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Achievements;
 using System;
 using System.Collections.Generic;
@@ -75,9 +76,15 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 
         public override void UpdateEquips()
         {
-            if(!ModContent.GetInstance<MaxStyleAchievement>().Condition.IsCompleted && StyleStat > ModContent.GetInstance<MaxStyleAchievement>().Condition.Value)
+            MaxStyleAchievement achievement = ModContent.GetInstance<MaxStyleAchievement>();
+            if (!achievement.Condition.IsCompleted)
             {
-                ModContent.GetInstance<MaxStyleAchievement>().Condition.Value = StyleStat;
+                if (StyleStat > achievement.Condition.Value)
+                    achievement.Condition.Value = StyleStat;
+
+                // Completar dinámicamente: cuando StyleStat alcanza el máximo calculado en runtime
+                if (ShopUtils.maxStyleStat > 0 && StyleStat >= (int)ShopUtils.maxStyleStat)
+                    achievement.Condition.Value = MaxStyleStat;
             }
             base.UpdateEquips();
         }
