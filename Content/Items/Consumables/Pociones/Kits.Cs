@@ -177,14 +177,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             [JITWhenModsEnabled("CalamityMod")]
             void Calamity()
             {
-                CreateRecipe()
-                .AddIngredient(ItemID.SummoningPotion, 1)
-                .AddIngredient(ItemID.InfernoPotion, 1)
-                .AddIngredient(ItemType<Commander_Potion>(), 1)
-                //Calamity revisar
-                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion"), 1)
-                .AddTile(TileID.Bottles)
-                .Register();
+                int teslaPotion = CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaPotion");
+                var recipe = CreateRecipe()
+                    .AddIngredient(ItemID.SummoningPotion, 1)
+                    .AddIngredient(ItemID.InfernoPotion, 1)
+                    .AddIngredient(ItemType<Commander_Potion>(), 1);
+
+                if (teslaPotion > 0)
+                    recipe.AddIngredient(teslaPotion, 1);
+
+                recipe.AddTile(TileID.Bottles).Register();
             }
         }
     }
