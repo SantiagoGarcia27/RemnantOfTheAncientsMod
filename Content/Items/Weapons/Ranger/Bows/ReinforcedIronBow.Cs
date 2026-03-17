@@ -21,8 +21,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
         {
             Item.damage = 20;
             Item.DamageType = DamageClass.Ranged;
-            Item.width = 12;
-            Item.height = 38;
+            Item.width = 26;
+            Item.height = 40;
             Item.maxStack = 1;
             Item.useTime = 42;
             Item.useAnimation = 42;
