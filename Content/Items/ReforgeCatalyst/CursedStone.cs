@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
         public override void SetDefaults()
         {
             Item.width = 38;
-            Item.height = 34;
+            Item.height = 40;
             Item.maxStack = 999;
             Item.value = Item.sellPrice(gold: 10);
             Item.rare = ItemRarityID.Green;
