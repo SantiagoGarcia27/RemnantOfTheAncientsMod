@@ -28,8 +28,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 			
 			Projectile.rotation = Projectile.velocity.X * 0.05f;
             Movment(player,spacing);
-            SelectFrame();
-			CreateDust();
+            AnimateTexture(framesDelay: 5);
+            CreateDust();
 			if (Projectile.velocity.X > 0f) Projectile.spriteDirection = Projectile.direction = -1;
 			else if (Projectile.velocity.X < 0f) Projectile.spriteDirection = Projectile.direction = 1;
 			if (Projectile.ai[1] > 0f)
@@ -192,5 +192,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
 			fallThrough = true;
 			return true;
 		}
-	}
+      
+    }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+/*using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
@@ -13,40 +13,101 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 {
-    // Shortsword projectiles are handled in a special way with how they draw and damage things
-    // The "hitbox" itself is closer to the player, the sprite is centered on it
-    // However the interactions with the world will occur offset from this hitbox, closer to the sword's tip (CutTiles, Colliding)
-    // Values chosen mostly correspond to Iron Shortword
+    // ─────────────────────────────────────────────────────────────────────────────
+    // HOW THE ANIMATION WORKS (overview)
+    // ─────────────────────────────────────────────────────────────────────────────
+    // The sword is a "held projectile": it has no real velocity and is manually
+    // positioned on the player's hand every frame inside SetSwordPosition().
+    //
+    // Its visual angle is driven by two values stored in the ai/localAI arrays:
+    //   • InitialAngle  – the fixed starting angle calculated once on spawn.
+    //   • Progress      – how far (in radians) the sword has rotated FROM that
+    //                     starting angle. This value grows every frame.
+    //
+    // Final rotation each frame:
+    //   Projectile.rotation = InitialAngle + spriteDirection * Progress
+    //
+    // The animation goes through three sequential stages:
+    //
+    //   1. Prepare  – sword appears and pulls BACK (wind-up).
+    //                 Progress decreases from WINDUP*SWINGRANGE → 0.
+    //                 Size grows from 0 → 1 (fade-in effect).
+    //
+    //   2. Execute  – sword sweeps FORWARD through most of the arc.
+    //                 Progress grows from 0 → SWINGRANGE*(1-UNWIND) via SmoothStep
+    //                 (easing in/out for a natural look).
+    //                 When the arc is done a DamageHitbox projectile is spawned.
+    //
+    //   3. Unwind   – sword finishes the last portion of the arc and disappears.
+    //                 Progress grows from SWINGRANGE*(1-UNWIND) → SWINGRANGE.
+    //                 Size shrinks from 1 → 0 (fade-out effect).
+    //
+    // Each stage has its own duration (prepTime / execTime / hideTime), all
+    // derived from the item's useAnimation divided by 3, so the full swing takes
+    // exactly one use-animation cycle and respects melee attack-speed modifiers.
+    // ─────────────────────────────────────────────────────────────────────────────
+
+    // This projectile is drawn and positioned manually; the sprite is centered on
+    // the player's hand. Actual collision (Colliding / CutTiles) is calculated as
+    // a line from the hand to the sword tip, not from the sprite hitbox.
     public class SaberSwingProgectile : ModProjectile
     {
-        private const float SWINGRANGE = 1.67f * (float)Math.PI; // The angle a swing attack covers (300 deg)
-        private const float FIRSTHALFSWING = 0.45f; // How much of the swing happens before it reaches the target angle (in relation to swingRange)
-        private const float SPINRANGE = 3.5f * (float)Math.PI; // The angle a spin attack covers (630 degrees)
-        private const float WINDUP = 0.15f; // How far back the player's hand goes when winding their attack (in relation to swingRange)
-        private const float UNWIND = 0.4f; // When should the sword start disappearing
-        private float SPINTIME = 2.5f; // How much longer a spin is than a swing
+        // ── Arc angle constants ───────────────────────────────────────────────────
+        // SWINGRANGE: total angle swept by a normal vertical swing (≈ 300°).
+        private const float SWINGRANGE = 1.67f * (float)Math.PI;
+        // HORIZONTAL_SWINGRANGE: total angle swept by a horizontal swing (180°).
+        // Narrower than a vertical swing for a quicker, more focused slash.
+        private const float HORIZONTAL_SWINGRANGE = (float)Math.PI;
+        // FIRSTHALFSWING: fraction of the arc that happens BEFORE the cursor
+        // angle, so the swing naturally passes through where the player is aiming.
+        private const float FIRSTHALFSWING = 0.45f;
+        // SPINRANGE: total angle swept by a spin attack (≈ 630°, more than a full
+        // circle). Currently unused because AttackType only has Swing.
+        private const float SPINRANGE = 3.5f * (float)Math.PI;
 
-        private enum AttackType // Which attack is being performed
+        // ── Animation timing constants ────────────────────────────────────────────
+        // WINDUP: how far BACK (as a fraction of SWINGRANGE) the sword goes during
+        // the Prepare stage before sweeping forward — creates the "wind-up" look.
+        private const float WINDUP = 0.15f;
+        // UNWIND: what fraction of SWINGRANGE is left for the Unwind (fade-out)
+        // stage. The Execute stage only covers (1 - UNWIND) of the arc so Unwind
+        // can finish the remaining portion while the sword disappears.
+        private const float UNWIND = 0.4f;
+        // SPINTIME: duration multiplier for spin attacks relative to a normal swing.
+        private float SPINTIME = 2.5f;
+
+        // Which attack animation to play.
+        // The combo cycles: HorizontalSwing, HorizontalSwing, Swing (vertical), repeat.
+        private enum AttackType
         {
-            // Swings are normal sword swings that can be slightly aimed
-            // Swings goes through the full cycle of animations
-            Swing
+            // Vertical swing: a wide 300° arc aimed loosely toward the cursor.
+            Swing,
+            // Horizontal swing: a 180° arc centered on the horizontal axis.
+            HorizontalSwing
         }
 
-        private enum AttackStage // What stage of the attack is being executed, see functions found in AI for description
+        // The three sequential stages every attack goes through (see methods below).
+        private enum AttackStage
         {
-            Prepare,
-            Execute,
-            Unwind
+            Prepare, // Wind-up: sword appears and pulls back before striking.
+            Execute, // Strike:  sword sweeps forward through the main arc.
+            Unwind   // Follow-through: sword finishes the arc and fades out.
         }
 
-        // These properties wrap the usual ai and localAI arrays for cleaner and easier to understand code.
+        // ── State stored in Terraria's ai / localAI arrays ────────────────────────
+        // Terraria automatically syncs Projectile.ai[] over the network.
+        // Projectile.localAI[] is local-only (no sync), which is fine for
+        // purely visual values like Progress and Size.
+
+        // ai[0] – which attack type is playing (cast to AttackType).
         private AttackType CurrentAttack
         {
             get => (AttackType)Projectile.ai[0];
             set => Projectile.ai[0] = (float)value;
         }
 
+        // localAI[0] – current stage of the animation (cast to AttackStage).
+        // Setting this also resets Timer to 0 so each stage starts fresh.
         private AttackStage CurrentStage
         {
             get => (AttackStage)Projectile.localAI[0];
@@ -57,21 +118,42 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             }
         }
 
-        // Variables to keep track of during runtime
-        private ref float InitialAngle => ref Projectile.ai[1]; // Angle aimed in (with constraints)
-        private ref float Timer => ref Projectile.ai[2]; // Timer to keep track of progression of each stage
-        private ref float Progress => ref Projectile.localAI[1]; // Position of sword relative to initial angle
-        private ref float Size => ref Projectile.localAI[2]; // Size of sword
+        // Returns the swing arc angle for the current attack type.
+        // Horizontal swings use a shorter arc (180°) vs vertical swings (300°).
+        private float CurrentSwingRange => CurrentAttack == AttackType.HorizontalSwing ? HORIZONTAL_SWINGRANGE : SWINGRANGE;
 
-        // We define timing functions for each stage, taking into account melee attack speed
-        // Note that you can change this to suit the need of your projectile
-        private float prepTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
-        private float execTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
-        private float hideTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
+        // Returns true for any swing-like attack (horizontal or vertical), as
+        // opposed to the spin attack which uses different timing and arc logic.
+        private bool IsSwingAttack => CurrentAttack == AttackType.Swing || CurrentAttack == AttackType.HorizontalSwing;
 
-        public override string Texture => GetTexturePath(); // Use texture of item as projectile texture
+        // ai[1] – the angle at which the swing STARTS (radians, world space).
+        //         Set once in OnSpawn based on the cursor position.
+        private ref float InitialAngle => ref Projectile.ai[1];
+        // ai[2] – frames elapsed within the current stage. Incremented at the
+        //         end of AI() and reset to 0 whenever the stage changes.
+        private ref float Timer => ref Projectile.ai[2];
+        // localAI[1] – how far (radians) the sword has rotated from InitialAngle.
+        //              Drives the visual sweep of the swing each frame.
+        private ref float Progress => ref Projectile.localAI[1];
+        // localAI[2] – current visual scale of the sword (0 = invisible, 1 = full).
+        //              Used for the fade-in during Prepare and fade-out during Unwind.
+        private ref float Size => ref Projectile.localAI[2];
+
+        // ── Per-stage durations (in frames) ──────────────────────────────────────
+        // Each stage lasts exactly one third of the item's use animation, scaled by
+        // the player's attack speed. This means faster attack speed = faster swing.
+        private float BasePhaseTime => Owner.HeldItem.useAnimation / 3f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
+        private float prepTime => BasePhaseTime; // Duration of the Prepare (wind-up) stage.
+        private float execTime => BasePhaseTime; // Duration of the Execute (strike) stage.
+        private float hideTime => BasePhaseTime; // Duration of the Unwind (fade-out) stage.
+
+        // The texture is read from the item that owns this projectile (set via SetID),
+        // so the swing sprite always matches the weapon being swung.
+        public override string Texture => GetTexturePath();
         private Player Owner => Main.player[Projectile.owner];
 
+        // Returns the texture path for the item currently held. Uses vanilla path
+        // format for vanilla items and the mod's path for modded items.
         private string GetTexturePath()
         {
             if (itemBase == null) return "Terraria/Images/Item_0";
@@ -79,7 +161,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             string Texture = item.type < ItemID.Count ? "Terraria/Images/Item_" + item.type : ItemLoader.GetItem(item.type).Texture;
             return Texture;
         }
+        // The weapon item whose stats (damage, scale, texture) this projectile uses.
+        // Must be set by the item BEFORE spawning the projectile via SetID().
         public static Item itemBase;
+        // Tracks how many consecutive saber swings have been performed.
+        // The combo pattern repeats every 3 attacks: Horizontal, Horizontal, Vertical.
+        public static int comboCounter = 0;
+        // Called by the owning item before UseItem() spawns the projectile.
         public static void SetID(Item id)
         {
             itemBase = id;
@@ -106,31 +194,51 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
         public override void OnSpawn(IEntitySource source)
         {
+            // Determine which side of the player the cursor is on; this controls
+            // spriteDirection (+1 = right, -1 = left) and flips the sprite accordingly.
             Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
-            float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
 
-            if (Projectile.spriteDirection == 1)
+            if (CurrentAttack == AttackType.HorizontalSwing)
             {
-                // However, we limit the rangle of possible directions so it does not look too ridiculous
-                targetAngle = MathHelper.Clamp(targetAngle, (float)-Math.PI * 1 / 3, (float)Math.PI * 1 / 6);
+                // Horizontal swing: force the arc to sweep around the horizontal axis
+                // regardless of cursor vertical position. The target angle is fixed at
+                // 0° (right) or π (left) so the slash always feels horizontal.
+                float targetAngle = Projectile.spriteDirection == 1 ? 0f : (float)Math.PI;
+                InitialAngle = targetAngle - FIRSTHALFSWING * HORIZONTAL_SWINGRANGE * Projectile.spriteDirection;
+                InitialAngle += 100;
             }
             else
             {
-                if (targetAngle < 0)
+                // Vertical swing: aim toward the cursor with angle constraints.
+                float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
+
+                if (Projectile.spriteDirection == 1)
                 {
-                    targetAngle += 2 * (float)Math.PI; // This makes the range continuous for easier operations
+                    // Clamp the aim angle so the sword doesn't point straight up or behind
+                    // the player when swinging to the right (-60° to +30° from horizontal).
+                    targetAngle = MathHelper.Clamp(targetAngle, (float)-Math.PI * 1 / 3, (float)Math.PI * 1 / 6);
+                }
+                else
+                {
+                    if (targetAngle < 0)
+                    {
+                        targetAngle += 2 * (float)Math.PI; // Shift negative angles to [0, 2π] so the clamp below works correctly.
+                    }
+                    // Clamp aim angle for left-side swings (150° to 240° from positive-X).
+                    targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
                 }
 
-                targetAngle = MathHelper.Clamp(targetAngle, (float)Math.PI * 5 / 6, (float)Math.PI * 4 / 3);
+                // InitialAngle is placed BEFORE the target angle by FIRSTHALFSWING of the arc,
+                // so the swing naturally passes through the aimed direction part-way through Execute.
+                InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection;
             }
-
-            InitialAngle = targetAngle - FIRSTHALFSWING * SWINGRANGE * Projectile.spriteDirection; // Otherwise, we calculate the angle
-
         }
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            // Projectile.spriteDirection for this projectile is derived from the mouse position of the owner in OnSpawn, as such it needs to be synced. spriteDirection is not one of the fields automatically synced over the network. All Projectile.ai slots are used already, so we will sync it manually. 
+            // spriteDirection is derived from the cursor position in OnSpawn and is not
+            // synced automatically by Terraria. All ai[] slots are already occupied, so
+            // we manually write it as a signed byte for other clients in multiplayer.
             writer.Write((sbyte)Projectile.spriteDirection);
         }
 
@@ -141,19 +249,20 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
         public override void AI()
         {
+            // Keep the player's use animation alive so the game doesn't cancel the swing.
             Owner.itemAnimation = 2;
             Owner.itemTime = 2;
 
-            // Kill the projectile if the player dies or gets crowd controlled
+            // Cancel the swing if the player is dead, crowd-controlled, or has items disabled.
             if (!Owner.active || Owner.dead || Owner.noItems || Owner.CCed)
             {
                 Projectile.Kill();
                 return;
             }
 
-            // AI depends on stage and attack
-            // Note that these stages are to facilitate the scaling effect at the beginning and end
-            // If this is not desirable for you, feel free to simplify
+            // Delegate per-frame logic to the current animation stage.
+            // Each stage method updates Progress and Size, then advances to the
+            // next stage (or kills the projectile) when its timer expires.
             switch (CurrentStage)
             {
                 case AttackStage.Prepare:
@@ -167,7 +276,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
                     break;
             }
 
+            // After updating Progress/Size, reposition the sword on the player's hand.
             SetSwordPosition();
+            // Advance the frame counter for the current stage.
             Timer++;
         }
 
@@ -179,12 +290,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
             if (Projectile.spriteDirection > 0)
             {
+                // For a right-facing swing the pivot point is the bottom-left corner of
+                // the sprite, and we rotate it 45° so the blade points diagonally.
                 origin = new Vector2(0, Projectile.height);
                 rotationOffset = MathHelper.ToRadians(45f);
                 effects = SpriteEffects.None;
             }
             else
             {
+                // For a left-facing swing the pivot moves to the bottom-right corner
+                // and the sprite is flipped horizontally; offset becomes 135°.
                 origin = new Vector2(Projectile.width, Projectile.height);
                 rotationOffset = MathHelper.ToRadians(135f);
                 effects = SpriteEffects.FlipHorizontally;
@@ -192,12 +307,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
             Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
 
+            // Draw centered on the projectile's world position (which sits on the player's hand).
+            // rotationOffset aligns the sprite so the blade tip points in the rotation direction.
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, default, lightColor * Projectile.Opacity, Projectile.rotation + rotationOffset, origin, Projectile.scale, effects, 0);
-            // Since we are doing a custom draw, prevent it from normally drawing
+            // Returning false suppresses Terraria's default projectile drawing.
             return false;
         }
 
-        // Find the start and end of the sword and use a line collider to check for collision with enemies
+        // Instead of using the rectangular sprite hitbox, collision is tested as a
+        // line segment from the player's center to the sword tip. This makes hits
+        // feel accurate regardless of the current rotation angle.
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             Vector2 start = Owner.MountedCenter;
@@ -206,7 +325,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), start, end, 15f * Projectile.scale, ref collisionPoint);
         }
 
-        // Do a similar collision check for tiles
+        // Tile cutting uses the same line from hand to tip so grass/vines are cut
+        // along the actual blade path rather than the rectangular hitbox.
         public override void CutTiles()
         {
             Vector2 start = Owner.MountedCenter;
@@ -214,7 +334,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             Utils.PlotTileLine(start, end, 15 * Projectile.scale, DelegateMethods.CutTiles);
         }
 
-        // We make it so that the projectile can only do damage in its release and unwind phases
+        // Damage is intentionally allowed during Prepare as well (returns true) so the
+        // wind-up can hit enemies the player pulls back through. During Execute and
+        // Unwind the base implementation returns null (use default damage rules).
         public override bool? CanDamage()
         {
             if (CurrentStage == AttackStage.Prepare)
@@ -228,54 +350,73 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             modifiers.HitDirectionOverride = target.position.X > Owner.MountedCenter.X ? 1 : -1;
         }
 
-        // Function to easily set projectile and arm position
+        // Repositions the projectile on the player's front hand every frame and
+        // updates the arm's composite rotation to match the current sword angle.
         public void SetSwordPosition()
         {
-            Projectile.rotation = InitialAngle + Projectile.spriteDirection * Progress; // Set projectile rotation
+            // Rotation = base angle + how far the sword has swept so far.
+            // spriteDirection flips the sweep direction for left-facing swings.
+            Projectile.rotation = InitialAngle + Projectile.spriteDirection * Progress;
 
-            // Set composite arm allows you to set the rotation of the arm and stretch of the front and back arms independently
-            Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f)); // set arm position (90 degree offset since arm starts lowered)
-            Vector2 armPosition = Owner.GetFrontHandPosition(Player.CompositeArmStretchAmount.Full, Projectile.rotation - (float)Math.PI / 2); // get position of hand
+            // Rotate the player's front arm to follow the sword (−90° because the
+            // arm's zero rotation points downward, not to the right).
+            Owner.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation - MathHelper.ToRadians(90f));
+            // Get the world position of the hand after applying the arm rotation.
+            Vector2 armPosition = Owner.GetFrontHandPosition(Player.CompositeArmStretchAmount.Full, Projectile.rotation - (float)Math.PI / 2);
 
-            armPosition.Y += Owner.gfxOffY;
-            Projectile.Center = armPosition; // Set projectile to arm position
-            Projectile.scale = Size * 1.2f * Owner.GetAdjustedItemScale(Owner.HeldItem); // Slightly scale up the projectile and also take into account melee size modifiers
+            armPosition.Y += Owner.gfxOffY; // Account for vertical mount/grapple offsets.
+            Projectile.Center = armPosition; // Snap the projectile to the hand position.
+            // Scale includes: Size (0→1 fade), a fixed 1.2× boost, and the item's
+            // melee-size modifier so accessories that increase sword size work correctly.
+            Projectile.scale = Size * 1.2f * Owner.GetAdjustedItemScale(Owner.HeldItem);
 
-            Owner.heldProj = Projectile.whoAmI; // set held projectile to this projectile
+            Owner.heldProj = Projectile.whoAmI; // Tell the game this is the held projectile.
         }
 
-        // Function facilitating the taking out of the sword
+        // ── Stage 1: Prepare ──────────────────────────────────────────────────────
+        // The sword appears (Size 0→1) and holds slightly BEHIND InitialAngle
+        // (Progress counts DOWN from WINDUP*SWINGRANGE to 0). This gives the
+        // visual impression of the player pulling the sword back before striking.
         private void PrepareStrike()
         {
-            Progress = WINDUP * SWINGRANGE * (1f - Timer / prepTime); // Calculates rotation from initial angle
-            Size = MathHelper.SmoothStep(0, 1, Timer / prepTime); // Make sword slowly increase in size as we prepare to strike until it reaches max
+            // Progress shrinks linearly: starts at WINDUP offset, reaches 0 at end of prep.
+            Progress = WINDUP * CurrentSwingRange * (1f - Timer / prepTime);
+            // SmoothStep eases the fade-in so the sword doesn't just pop into existence.
+            Size = MathHelper.SmoothStep(0, 1, Timer / prepTime);
 
             if (Timer >= prepTime)
             {
-                SoundEngine.PlaySound(SoundID.Item1); // Play sword sound here since playing it on spawn is too early
-                CurrentStage = AttackStage.Execute; // If attack is over prep time, we go to next stage
+                SoundEngine.PlaySound(SoundID.Item1); // Play swing sound now (too early on spawn).
+                CurrentStage = AttackStage.Execute;   // Advance to the forward sweep.
             }
         }
 
-        // Function facilitating the first half of the swing
+        // ── Stage 2: Execute ──────────────────────────────────────────────────────
+        // The sword sweeps forward. Progress grows from 0 to SWINGRANGE*(1-UNWIND)
+        // via SmoothStep so the motion accelerates at the start and decelerates
+        // slightly near the end (feels snappier than a linear sweep).
+        // When execTime expires the DamageHitbox is spawned and we move to Unwind.
         private void ExecuteStrike()
         {
-            if (CurrentAttack == AttackType.Swing)
+            if (IsSwingAttack)
             {
-                Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) * Timer / execTime);
+                // Advance Progress through (1-UNWIND) of the full arc.
+                // The remaining UNWIND fraction is reserved for the Unwind stage.
+                Progress = MathHelper.SmoothStep(0, CurrentSwingRange, (1f - UNWIND) * Timer / execTime);
 
                 if (Timer >= execTime)
                 {
                     Player player = Main.player[Projectile.owner];
                     Rectangle rec = new Rectangle((int)Projectile.position.X, (int)Projectile.position.Y, (int)Projectile.Size.X, (int)Projectile.Size.Y);
+                    // Trigger any on-hit visual/sound effects defined on the item (e.g. particles).
                     itemBase.GetGlobalItem<SaberGlobalItem>().MeleeEffects(itemBase, player, rec);
-
-
 
                     Vector2 pos = player.position;
                     float widthMultiplier = 2f;
                     float heightMultiplier = ReaperGlobalItem.currentScale + 0.5f;
-                    float reaperScale = (float)Math.Pow(ReaperGlobalItem.currentScale - 0.5f, 2);           
+                    float reaperScale = (float)Math.Pow(ReaperGlobalItem.currentScale - 0.5f, 2);
+                    // Only spawn the hitbox if one doesn't already exist for this player,
+                    // preventing double-hits if the swing fires faster than 60 fps.
                     if (Main.player[Projectile.owner].ownedProjectileCounts[ModContent.ProjectileType<DamageHitbox>()] < 1)
                     {
                         Vector2 size = new(90 * widthMultiplier, 90 * heightMultiplier);
@@ -293,12 +434,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             }
             else
             {
+                // Spin attack (unused currently): sweeps through SPINRANGE over SPINTIME
+                // times the normal exec duration. Half-way through the spin, local NPC
+                // immunity is reset so the sword can hit each enemy a second time.
                 Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) * Timer / (execTime * SPINTIME));
 
                 if (Timer == (int)(execTime * SPINTIME * 3 / 4))
                 {
-                    SoundEngine.PlaySound(SoundID.Item1); // Play sword sound again
-                    Projectile.ResetLocalNPCHitImmunity(); // Reset the local npc hit immunity for second half of spin
+                    SoundEngine.PlaySound(SoundID.Item1); // Play sword sound again for the second half of the spin.
+                    Projectile.ResetLocalNPCHitImmunity(); // Allow hitting enemies a second time in the back half.
                 }
 
                 if (Timer >= execTime * SPINTIME)
@@ -308,13 +452,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             }
         }
 
-        // Function facilitating the latter half of the swing where the sword disappears
+        // ── Stage 3: Unwind ───────────────────────────────────────────────────────
+        // The sword finishes the last UNWIND fraction of the arc while fading out
+        // (Size 1→0). Progress picks up exactly where ExecuteStrike left off so
+        // the motion is continuous. When hideTime expires the projectile is killed.
         private void UnwindStrike()
         {
-            if (CurrentAttack == AttackType.Swing)
+            if (IsSwingAttack)
             {
-                Progress = MathHelper.SmoothStep(0, SWINGRANGE, (1f - UNWIND) + UNWIND * Timer / hideTime);
-                Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime); // Make sword slowly decrease in size as we end the swing to make a smooth hiding animation
+                // Progress resumes from (1-UNWIND)*CurrentSwingRange and reaches CurrentSwingRange.
+                Progress = MathHelper.SmoothStep(0, CurrentSwingRange, (1f - UNWIND) + UNWIND * Timer / hideTime);
+                // Size fades from 1 to 0 — the sword shrinks and disappears smoothly.
+                Size = 1f - MathHelper.SmoothStep(0, 1, Timer / hideTime);
 
                 if (Timer >= hideTime)
                 {
@@ -323,6 +472,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
             }
             else
             {
+                // Spin variant: same idea but the fade-out covers a longer arc.
                 Progress = MathHelper.SmoothStep(0, SPINRANGE, (1f - UNWIND / 2) + UNWIND / 2 * Timer / (hideTime * SPINTIME / 2));
                 Size = 1f - MathHelper.SmoothStep(0, 1, Timer / (hideTime * SPINTIME / 2));
 
@@ -334,3 +484,4 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
         }
     }
 }
+*/

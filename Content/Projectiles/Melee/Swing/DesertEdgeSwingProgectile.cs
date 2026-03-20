@@ -65,9 +65,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
         // We define timing functions for each stage, taking into account melee attack speed
         // Note that you can change this to suit the need of your projectile
-        private float prepTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
-        private float execTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
-        private float hideTime => 12f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
+        // Tiempo base por fase: useAnimation del arma / 3 fases, escalado por velocidad de ataque total
+        private float BasePhaseTime => Owner.HeldItem.useAnimation / 3f / Owner.GetTotalAttackSpeed(Projectile.DamageType);
+        private float prepTime => BasePhaseTime;
+        private float execTime => BasePhaseTime;
+        private float hideTime => BasePhaseTime;
 
         public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Melee/DesertEdge"; // Use texture of item as projectile texture
         private Player Owner => Main.player[Projectile.owner];

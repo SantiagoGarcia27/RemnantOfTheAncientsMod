@@ -47,7 +47,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 		{
 			velocity = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));
 		}
-		public override void AddRecipes()
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-10, 0);
+        }
+        public override void AddRecipes()
 		{
 			CreateRecipe()
 			.AddIngredient(ItemID.BeeGun, 2)

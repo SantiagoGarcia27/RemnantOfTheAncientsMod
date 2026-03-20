@@ -232,7 +232,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + Main.rand.NextFloat(0.4f, 1f));
                 NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
             }
-            if (isSaber)
+            /*if (isSaber)
             {
                 if (item.shoot != ModContent.ProjectileType<DamageHitbox>())
                     item.noUseGraphic = true;
@@ -240,7 +240,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 SaberSwingProgectile.SetID(item);
 
                 return true;
-            }
+            }*/
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)

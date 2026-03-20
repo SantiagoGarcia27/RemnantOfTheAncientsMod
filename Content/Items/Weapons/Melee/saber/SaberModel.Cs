@@ -49,10 +49,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             Item.autoReuse = true;
             Item.channel = true;
             Item.scale = 1;
-            Item.noUseGraphic = true;
+            Item.noUseGraphic = false;
             Item.GetGlobalItem<SaberGlobalItem>().DashStrength = new(DashStrength[0], DashStrength[1]);
             Item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
-            Item.noMelee = true;
+            Item.noMelee = false;
         }
         public override bool AltFunctionUse(Player player) => true;
         public override void AddRecipes()

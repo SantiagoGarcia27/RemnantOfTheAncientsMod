@@ -147,7 +147,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 						Main.EntitySpriteDraw(texture, drawPos, bodyRect, Color.White, r, texOrigin, scale * mult, 0, 0);
 						Main.EntitySpriteDraw(texture, drawPos, bodyRect, Color.White * 0.85f * pulse, r, texOrigin, scale * mult * 0.5f, 0, 0);
 
-						int dustChance = RemnantOfTheAncientsMod.ParticleMeter(8, 8, 16, 0);
+						int dustChance = RemnantOfTheAncientsMod.ParticleMeter(45, 90, 180, 0);
 						if (dustChance > 0 && Main.rand.NextBool(dustChance))
 						{
 							var d = Dust.NewDustPerfect(new Vector2(start.X + Main.rand.NextFloat(-16, 16), start.Y + i), DustType<HollyBurn_P>(), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-0.5f, 0.5f)), 0, default, 1f + Projectile.scale);
@@ -173,7 +173,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 
 		public override void OnKill(int timeLeft)
 		{
-			SoundEngine.PlaySound(SoundID.Item27, Projectile.Center);
+			//SoundEngine.PlaySound(SoundID.Item27, Projectile.Center);
 			Vector2 usePos = Projectile.position;
 			Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(45f)).ToRotationVector2();
 			usePos += rotVector * 1f;

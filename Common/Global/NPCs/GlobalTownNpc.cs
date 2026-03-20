@@ -123,7 +123,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if (shop.NpcType == NPCID.GoblinTinkerer)
             {
                 shop.Add(new Item(ItemType<Terracoin>()) { shopCustomPrice = Utils1.FormatMoney(0, 5, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode,Condition.DownedPlantera);
-                shop.Add(new Item(ItemType<ReforgeAnvil>()) { shopCustomPrice = Utils1.FormatMoney(0, 1, 0, 0, 0) }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
+                shop.Add(new Item(ItemType<ReforgeAnvil>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 5, 0, 0) }, Condition.DownedEyeOfCthulhu);
                 shop.Add(new Item(ItemType<BerserkStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
                 shop.Add(new Item(ItemType<VeteranStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
                 shop.Add(new Item(ItemType<RelicStone>()) { shopCustomPrice = 1, shopSpecialCurrency = CustomCurrencies.TerracoinCurrency }, Condition.IsNpcShimmered, Condition.DownedEyeOfCthulhu);
