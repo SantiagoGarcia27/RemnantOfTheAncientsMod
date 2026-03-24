@@ -16,8 +16,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		{
 			Item.damage = 800;
 			Item.DamageType = DamageClass.Melee;
-			Item.width = 10;
-			Item.height = 10;
+			Item.width = 42;
+			Item.height = 38;
 			Item.useTime = 10;
 			Item.useAnimation = 10;
 			Item.useStyle = ItemUseStyleID.Swing;
