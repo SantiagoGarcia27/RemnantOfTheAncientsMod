@@ -117,6 +117,8 @@ Mods: {
 				AmmoBar: "{0}"
 				CouldownBar: "{0}"
 			}
+
+			Buttoms.SkipDay: Skip day
 		}
 
 		IntroScreen: {
@@ -4278,7 +4280,12 @@ Mods: {
 
 			ReinforcedAmmoBox: {
 				DisplayName: Reinforced Ammo Box
-				Tooltip: ""
+				Tooltip:
+					'''
+					Increases the probability of bullet penetration by {0}%.
+					Your bullets have increased penetration by {1}.
+					You gain a {2}% chance of firing a reinforced bullet.
+					'''
 			}
 
 			FlinxHood: {
@@ -4426,14 +4433,19 @@ Mods: {
 					'''
 			}
 
-			CursedStone: {
-				DisplayName: Cursed Stone
+			CursedSkull: {
+				DisplayName: Cursed Skull
 				Tooltip:
 					'''
 					Applies the Cursed reforge to accessories
 					Grants a huge boost to damage, but reduces defense
 					Costs {0} to apply
 					'''
+			}
+
+			HarmfulPlate: {
+				DisplayName: Harmful Plate
+				Tooltip: ""
 			}
 		}
 
@@ -4703,6 +4715,7 @@ Mods: {
 			HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
 			TrueShadowMistProj.DisplayName: True Shadow Mist Proj
 			TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
+			CactusBoulderClone.DisplayName: Cactus Boulder Clone
 		}
 
 		Tiles: {

@@ -86,26 +86,32 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, DustType<Sparkle>());
 			}
 		}
-		public List<int> SpawnItems =
+		public HashSet<int> SpawnItems =
 		[
 			ItemID.GoldWatch,
 			ItemID.PlatinumWatch,
 			ItemID.GPS,
 			ItemID.PDA,
 			ItemID.CellPhone,
-			ItemID.Shellphone
+			ItemID.Shellphone,
+			ItemID.ShellphoneDummy,
+			ItemID.ShellphoneHell,
+			ItemID.ShellphoneOcean,
+			ItemID.ShellphoneSpawn
 		];
 		public override bool CanTownNPCSpawn(int numTownNPCs)
 		{
-			foreach (Player player in Main.ActivePlayers)
+			if (NPC.downedBoss2)
 			{
-				foreach (Item item in player.inventory)
+				foreach (Player player in Main.ActivePlayers)
 				{
-					if (SpawnItems.Contains(item.type))
+					foreach (Item item in player.inventory)
 					{
-						if (NPC.downedBoss2)
+						if (SpawnItems.Contains(item.type))
 						{
+
 							return true;
+
 						}
 					}
 				}

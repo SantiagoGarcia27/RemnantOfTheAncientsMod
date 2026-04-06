@@ -141,9 +141,9 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             if (npc.type == NPCID.BigMimicJungle) npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DownedPlantera(), ItemID.PiranhaGun, 4, 1, 1));
             if (npc.type is NPCID.BirdRed or NPCID.BirdBlue or NPCID.Bird) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<BirdWings>(), 100, ReaperDrop(100)));
             if (Zombies.Contains(npc.type)) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<PureStone>(), 500, ReaperDrop(500)));
-            if (npc.type == NPCID.GiantCursedSkull) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<CursedStone>(), 50, ReaperDrop(50)));
-            if (npc.type is NPCID.EaterofSouls or NPCID.Crimera or NPCID.BigCrimera) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<HarmfulStone>(), 200, ReaperDrop(200)));
-            if (npc.type == NPCID.Corruptor) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<HarmfulStone>(), 100, ReaperDrop(100)));
+            if (npc.type == NPCID.GiantCursedSkull) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<CursedSkull>(), 50, ReaperDrop(50)));
+            if (npc.type is NPCID.EaterofSouls or NPCID.Crimera or NPCID.BigCrimera) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<HarmfulPlate>(), 200, ReaperDrop(200)));
+            if (npc.type == NPCID.Corruptor) npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemType<HarmfulPlate>(), 100, ReaperDrop(100)));
         }
         public static void HallowBiomeLoot(NPC npc, NPCLoot npcLoot)
         {

@@ -165,7 +165,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 if (item is not null)
                 {
                     decimal discount = (decimal)ShopUtils.GetShopDiscount(Main.LocalPlayer);
-                    item.shopCustomPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);
+                    int? finalPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);
+                    if (finalPrice <= 0) finalPrice = 1;
+                    item.shopCustomPrice = finalPrice;
                 }
             }
         }

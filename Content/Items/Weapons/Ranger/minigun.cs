@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
+using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -15,21 +16,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 30;
+			Item.damage = 27;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 2;
 			Item.height = 2;
-			Item.useTime = 25;
-			Item.useAnimation = 25;
+			Item.useTime = 27;
+			Item.useAnimation = 27;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.noMelee = true;
 			Item.scale = 0.68f;
-			Item.knockBack = 5;
+			Item.knockBack = 7;
 			Item.value = Item.sellPrice(0, 10, 0, 0);
 			Item.rare = ItemRarityID.Blue;
 			Item.UseSound = SoundID.Item38;
 			Item.autoReuse = true;
-			Item.shoot = ProjectileID.PurificationPowder;
+			Item.shoot = ProjectileID.Bullet;
 			Item.shootSpeed = 20f;
 			Item.useAmmo = AmmoID.Bullet;
 		}
@@ -37,6 +38,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		{
 			return new Vector2(-10, 0);
 		}
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+			player.velocity.X += 2f * -player.direction;
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
+        }
 		public override void AddRecipes()
 		{
 			CreateRecipe()

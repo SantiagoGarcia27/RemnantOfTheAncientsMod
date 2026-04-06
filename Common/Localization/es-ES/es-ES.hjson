@@ -123,6 +123,8 @@ Mods: {
 				// AmmoBar: "{0}"
 				// CouldownBar: "{0}"
 			}
+
+			Buttoms.SkipDay: Saltar dia
 		}
 
 		IntroScreen: {
@@ -4451,21 +4453,31 @@ Mods: {
 			}
 
 			HarmfulStone: {
+				// DisplayName: Harmful Stone
+				/* Tooltip:
+					'''
+					Applies the Harmful reforge to accessories
+					Grants a medium boost to damage and critical strike chance
+					Costs {0} to apply
+					''' */
+			}
+
+			CursedSkull: {
+				DisplayName: Craneo Maldita
+				Tooltip:
+					'''
+					Aplica la reforja Maldito a los accesorios
+					Otorga un gran aumento al daño, pero reduce la defensa
+					Cuesta {0} aplicarla
+					'''
+			}
+
+			HarmfulPlate: {
 				DisplayName: Piedra Dañina
 				Tooltip:
 					'''
 					Aplica la reforja Dañina a los accesorios
 					Otorga un aumento moderado al daño y la probabilidad de crítico
-					Cuesta {0} aplicarla
-					'''
-			}
-
-			CursedStone: {
-				DisplayName: Piedra Maldita
-				Tooltip:
-					'''
-					Aplica la reforja Maldito a los accesorios
-					Otorga un gran aumento al daño, pero reduce la defensa
 					Cuesta {0} aplicarla
 					'''
 			}
@@ -4737,6 +4749,7 @@ Mods: {
 			// HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
 			// TrueShadowMistProj.DisplayName: True Shadow Mist Proj
 			// TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
+			// CactusBoulderClone.DisplayName: Cactus Boulder Clone
 		}
 
 		Tiles: {

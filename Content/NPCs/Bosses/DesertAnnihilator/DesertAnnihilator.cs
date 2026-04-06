@@ -16,6 +16,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
@@ -685,7 +686,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
                     {
                         var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(point.X, point.Y + (100f * 16)), Vector2.Zero, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
                         Main.projectile[p].scale = 0.5f;
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), point, Vector2.Zero, ProjectileID.RollingCactus, 100, 0f, Main.myPlayer);
+                        int proj = RemnantOfTheAncientsMod.ParticleMeterChoice() ? ProjectileID.RollingCactus : ModContent.ProjectileType<CactusBoulderClone>();
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), point, Vector2.Zero,proj, 100, 0f, Main.myPlayer);
                     }
                     static List<Vector2> GeneratePoints(Vector2 start, Vector2 end, int pointCount)
                     {

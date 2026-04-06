@@ -6,6 +6,7 @@ using Terraria.GameContent.Bestiary;
 using Microsoft.Xna.Framework;
 using System;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
@@ -53,8 +54,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void ModifyNPCLoot(NPCLoot NPCLoot)
 		{
 			NPCLoot.Add(ItemDropRule.Common(ItemID.Shotgun, 10));
-			//NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<ReinforcedIronOre>()));
-		}
+			NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<CursedShotgunStaff>(), 3));
+            //NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<ReinforcedIronOre>()));
+        }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit)
         {
 			if(Main.rand.NextBool(2))

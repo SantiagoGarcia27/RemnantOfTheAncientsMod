@@ -7,7 +7,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
+namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert
 {
     public class DesertTyphoon : DesertTyphoonModel
     {

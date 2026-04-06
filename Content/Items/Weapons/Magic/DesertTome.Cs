@@ -5,17 +5,14 @@ using Terraria.ID;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
 	public class DesertTome : ModItem
 	{
 		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Desert Tome");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Desert Tome");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Tome du désert");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Tomo del Desierto");
+		{	
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

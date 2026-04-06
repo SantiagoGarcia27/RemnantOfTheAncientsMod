@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
 {
-    public class CursedStone : ModReforgeCatalyst
+    public class HarmfulPlate : ModReforgeCatalyst
     {
         public override void SetStaticDefaults()
         {
@@ -17,15 +17,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
 
         public override void SetDefaults()
         {
-            Item.width = 38;
-            Item.height = 40;
+            Item.width = 40;
+            Item.height = 30;
             Item.maxStack = 999;
             Item.value = Item.sellPrice(gold: 10);
             Item.rare = ItemRarityID.Green;
             Item.SetCatalyst(true);
 
             Item.SetApplyPrice(Utils1.FormatMoney(Gold: 10));
-            Item.SetReforges(CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "Cursed"));
+            Item.SetReforges(CallUtils.TryGetPrefixFromMod(RemnantOfTheAncientsMod.RemnantOfTheAncients, "Harmful"));
         }
     }
 }

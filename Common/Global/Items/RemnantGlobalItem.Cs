@@ -22,6 +22,7 @@ using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Linq;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
