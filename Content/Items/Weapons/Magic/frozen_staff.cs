@@ -29,8 +29,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.channel = true;
 			Item.mana = 2;
 			Item.rare = ItemRarityID.LightRed;
-			Item.width = 28;
-			Item.height = 30;
+			Item.width = 46;
+			Item.height = 46;
 			Item.useTime = 8;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
