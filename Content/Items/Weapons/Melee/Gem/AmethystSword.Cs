@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
             Item.height = 50;
             Item.useTime = 18;
             Item.useAnimation = 18;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 1;
             Item.value = 1000;
             Item.rare = 1;

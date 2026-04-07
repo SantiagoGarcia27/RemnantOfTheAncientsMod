@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
             p.maxMinions+= 1;
             if (p.ZoneDesert)
             {
-                p.GetDamage(DamageClass.Generic) *= 1.08f;
+                p.GetDamage(DamageClass.Generic) += .08f;
                 p.lifeRegen += 2;
                 if (p.ZoneSandstorm) p.statLifeMax2 += 50;
             }

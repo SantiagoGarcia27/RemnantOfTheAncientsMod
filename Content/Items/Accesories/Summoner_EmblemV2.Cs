@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.rare = ItemRarityID.Red;
             Item.accessory = true;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.FragmentVortex, 10) 
@@ -32,8 +32,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             .AddIngredient(ItemID.FragmentSolar, 10)
             .AddIngredient(ItemID.FragmentStardust, 10)
             .AddIngredient(ItemID.SummonerEmblem, 1)
-            .AddIngredient(ItemID.LunarBar, 10)  //you need 10 Wood
-            .AddTile(TileID.LunarCraftingStation)  //at work bench
+            .AddIngredient(ItemID.LunarBar, 10)
+            .AddTile(TileID.LunarCraftingStation)
             .Register();
         }
 
@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         {
             DamageClass damagetype = DamageClass.Summon;
             player.GetDamage(damagetype) += damageBonus / 100f;
-            player.GetCritChance(damagetype) += critBonus;
+            player.GetCritChance(DamageClass.SummonMeleeSpeed) += critBonus;
         }
     }
 }

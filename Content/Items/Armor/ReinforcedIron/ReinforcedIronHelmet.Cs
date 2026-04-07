@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Melee) *= 1f + (MeleeDamageBonus/100f);
+			player.GetDamage(DamageClass.Melee) += (MeleeDamageBonus/100f);
             player.moveSpeed += MovmentSpeedBonus/100f;
         }
 

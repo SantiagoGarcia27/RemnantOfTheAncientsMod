@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
             Item.shoot = ProjectileType<TerracoinP>();
             Item.shootSpeed = 4f;
             Item.DamageType = DamageClass.Ranged;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.useAnimation = 15;
             Item.useTime = 10;

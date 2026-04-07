@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.accessory = true;
         }
 
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.FragmentVortex, 10) 

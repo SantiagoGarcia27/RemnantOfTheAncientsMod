@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.rare = 10;
             Item.accessory = true;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.FragmentVortex, 10)
@@ -32,8 +32,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             .AddIngredient(ItemID.FragmentSolar, 10)
             .AddIngredient(ItemID.FragmentStardust, 10)
             .AddIngredient(ItemID.WarriorEmblem, 1)
-            .AddIngredient(ItemID.LunarBar, 10) //you need 10 Wood
-            .AddTile(TileID.LunarCraftingStation)  //at work bench
+            .AddIngredient(ItemID.LunarBar, 10)
+            .AddTile(TileID.LunarCraftingStation)
             .Register();
         }
 

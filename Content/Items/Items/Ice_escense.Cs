@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 			Item.height = 26;
 			Item.maxStack = 9999;
 			Item.value = 100;
-			Item.rare = 4;
+			Item.rare = ItemRarityID.LightRed;
 		}
 	}
 }

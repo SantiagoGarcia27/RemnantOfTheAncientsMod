@@ -103,14 +103,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-
+            if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count <= 0) return false;
 			int currentAmmo = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count-1;
-			type = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType[currentAmmo];
-			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.RemoveAt(currentAmmo);
             float damageMultiplier = IsBurst ? 0.9f : 1f;
+
+            type = Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType[currentAmmo];
+			Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.RemoveAt(currentAmmo);
+           
             damage = (int)(damage * damageMultiplier);
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-            return false;//base.Shoot(player,source,position,velocity,type,damage, knockback);
+            return false;
         }
         public override bool CanShoot(Player player)
         {
@@ -118,25 +120,23 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         }
         public override bool CanUseItem(Player player)
         {
-			if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count > 0)
+			if (Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count < 0) return false;
+			
+			if (Main.mouseRight)
 			{
-				if (Main.mouseRight)
-				{
-					Item.useTime = Usetime / 3;
-                    Item.useAnimation = Item.useTime * Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count;
-                    IsBurst = true;
-                }
-				else if (Main.mouseLeft)
-				{
-					Item.useTime = Usetime;
-                    Item.useAnimation = Item.useTime;
-                    IsBurst = false;
+				Item.useTime = Usetime / 3;
+                Item.useAnimation = Item.useTime * Item.GetGlobalItem<RemnantGlobalItem>().CurrentAmmoType.Count;
+                IsBurst = true;
+            }
+			else if (Main.mouseLeft)
+			{
+				Item.useTime = Usetime;
+                Item.useAnimation = Item.useTime;
+                IsBurst = false;
 
-                }
-				return true;
-			}
-			else
-            return false;
+            }
+			return true;
+			
         }
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {

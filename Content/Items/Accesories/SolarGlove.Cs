@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.rare = ItemRarityID.Red;
             Item.accessory = true;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.FireGauntlet, 1)

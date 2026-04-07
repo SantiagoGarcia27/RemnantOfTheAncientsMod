@@ -44,14 +44,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.rare = ItemRarityID.Lime;
             Item.accessory = true;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.LihzahrdBrick, 10)
             .AddIngredient(ItemID.ManaRegenerationBand, 1)
             .AddIngredient(ItemID.MagnetFlower, 1)
-            .AddIngredient(ItemID.ManaCrystal, 10)  //you need 10 Wood
-            .AddTile(TileID.LihzahrdFurnace)  //at work bench
+            .AddIngredient(ItemID.ManaCrystal, 10)
+            .AddTile(TileID.LihzahrdFurnace)
             .Register();
         }
 

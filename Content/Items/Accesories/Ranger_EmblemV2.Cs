@@ -8,7 +8,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
     public class Ranger_EmblemV2 : ModItem
     {
-       // public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -24,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.rare = ItemRarityID.Red;
             Item.accessory = true;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.FragmentVortex, 10) 
@@ -32,14 +31,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             .AddIngredient(ItemID.FragmentSolar, 10)
             .AddIngredient(ItemID.FragmentStardust, 10)
             .AddIngredient(ItemID.RangerEmblem, 1)
-            .AddIngredient(ItemID.LunarBar, 10) //you need 10 Wood
-            .AddTile(TileID.LunarCraftingStation)  //at work bench
+            .AddIngredient(ItemID.LunarBar, 10) 
+            .AddTile(TileID.LunarCraftingStation) 
             .Register();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Ranged) += .25f;
+            player.GetDamage(DamageClass.Ranged) +=  (float)(damageBonus/100f);
+            player.GetCritChance(DamageClass.Ranged) += critBonus;
         }
     }
 }

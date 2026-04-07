@@ -24,23 +24,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
         }
         public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("True Reaper Hood");
-			//Tooltip.SetDefault(LocalizationHelper.IncreasedDamageBy//Tooltip(20,DamageClass.Generic)
-   //         +"\nLuck increased in 2"
-   //         +"\nNot moving puts you in stealth," 
-			//+"\nincreasing ranged ability and reducing chance for enemies to target you");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Capuche de la vraie faucheuse");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), LocalizationHelper.IncreasedDamageBy//Tooltip(20,DamageClass.Generic)
-   //         //+ "\nLuck increased in 2"
-   //         //+ "\nNot moving puts you in stealth," 
-			//+"\nincreasing ranged ability and reducing chance for enemies to target you");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Verdadera capucha de parca");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), LocalizationHelper.IncreasedDamageBy//Tooltip(20, DamageClass.Generic)
-            ////+ "\nAumenta la suerte en 2"
-            ////+ "\nEntras en sigilo al quedarte quieto,"
-            ////+ "\naumenta el rango y es menos probable que los enemigos te detecten");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -57,11 +40,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Generic) *= 1.2f;
+			player.GetDamage(DamageClass.Generic) += .2f;
 			player.shroomiteStealth = true;
 			player.luck += 2;
-			//player.GetDamage(DamageClass.Melee) *= 1.05f;
-           // player.moveSpeed -= 0.25f;
         }
         public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
@@ -73,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		{
 			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(LifeMaxBonus, GlobalDamageSetBonus).Value;//"+100 life, + 20% damage, Soul effects are boosted";
             player.statLifeMax2 += LifeMaxBonus;
-			player.GetDamage(DamageClass.Generic) *= 1f + (GlobalDamageSetBonus / 100f) ;
+			player.GetDamage(DamageClass.Generic) += (GlobalDamageSetBonus / 100f) ;
             player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulBoost = true;
             player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost(Item);
             player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulsBoost();

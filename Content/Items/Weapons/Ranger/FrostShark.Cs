@@ -17,9 +17,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		{
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
+		Mod calamity = null;
+
 		public override void SetDefaults()
 		{
-			Item.damage = 24;
+            if (ModLoader.TryGetMod("CalamityMod", out calamity))
+
+            Item.damage = calamity != null ? 26 : 24;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 64;
 			Item.height = 28;
@@ -28,38 +32,36 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.noMelee = true;
 			Item.knockBack = 1;
-			Item.value = 1000;
+			Item.value = Item.sellPrice(0,3,0,0);
 			Item.rare = ItemRarityID.Pink;
 			Item.UseSound = SoundID.Item31;
 			Item.autoReuse = true;
-			Item.shoot = ProjectileID.JestersArrow;
+			Item.shoot = ProjectileID.PurificationPowder;
 			Item.shootSpeed = 10f;
 			Item.useAmmo = AmmoID.Bullet;
-
-			if (ModLoader.TryGetMod("CalamityMod", out Mod mod)) Item.damage = 26;
-
 		}
         public override void AddRecipes()
         {
+
             CreateRecipe()
              .AddIngredient(ItemID.Minishark, 1)
              .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
-             .AddTile(TileID.Anvils)
+             .AddTile(calamity != null? TileID.MythrilAnvil : TileID.Anvils)
              .Register();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			//if (Main.rand.NextFloat() <= (float)1 / 5)
-			//	Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<ice_bulletP>(), damage, 1, player.whoAmI);
-			//if (Main.rand.NextFloat() <= (float)1 / 10)
-			//	Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FrostBeamF>(), 30, 1, player.whoAmI);
+			if (Main.rand.NextFloat() <= (float)1 / 5)
+				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<ice_bulletP>(), damage, 1, player.whoAmI);
+			if (Main.rand.NextFloat() <= (float)1 / 10)
+				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FrostBeamF>(), 30, 1, player.whoAmI);
 
-			//if (ModLoader.TryGetMod("CalamityMod", out Mod mod))
-			//{
-			//	if (Main.rand.NextFloat() <= (float)1 / 1)
-			//		Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<frozen_p_f>(), 8, 1, player.whoAmI);
-			//}
+			if (calamity != null)
+			{
+				if (Main.rand.NextFloat() <= (float)1 / 1)
+					Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<frozen_p_f>(), 8, 1, player.whoAmI);
+			}
 			return true;
 		}
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

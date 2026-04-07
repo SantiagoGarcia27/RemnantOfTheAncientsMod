@@ -67,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
 
         void OnUpdateCatalyst(UIElement affectedElement)
         {
-            if (affectedElement != null)
+            if (affectedElement != null && !ReforgeStoneSlot.Item.IsAir)
             {
                 MoneyDisplay.SetCoins(ReforgeStoneSlot.Item.GetApplyPrice());
             }
@@ -81,16 +81,14 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
         {
             if (!InputSlot.Item.IsAir && !ReforgeStoneSlot.Item.IsAir)
             {
-                SoundEngine.PlaySound(SoundID.Item37);
+                
 
                 Item inputItem = InputSlot.Item;
                 Item reforgeStoneItem = ReforgeStoneSlot.Item;
                 Item resultItem = ResultSlot.Item;
                 int reforge = -1;
-                if (reforgeStoneItem.GetCatalystReforge(inputItem) != -1)
-                { 
-                    reforge = reforgeStoneItem.GetCatalystReforge(inputItem);   
-                }
+                
+                reforge = reforgeStoneItem.GetCatalystReforge(inputItem);   
                 if (reforge != -1)
                 {
                    
@@ -100,12 +98,11 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
                    
                     if (canPrefix && ogReforge != reforge && Main.LocalPlayer.BuyItem(reforgeStoneItem.GetApplyPrice()))
                     {
-                        if (!ResultSlot.Item.IsAir && ResultSlot.Item.type != ModContent.ItemType<RedCrossUI>())
+                        SoundEngine.PlaySound(SoundID.Item37);
+                        if (!resultItem.IsAir && resultItem.type != ModContent.ItemType<RedCrossUI>())
                         {
-                            if (ResultSlot.Item == result && ResultSlot.Item.stack < ResultSlot.Item.maxStack)
-                            {
+                            if (resultItem.type == result.type && resultItem.stack < resultItem.maxStack)
                                 ResultSlot.Item.stack++;
-                            }
                         }
                         else
                         {
@@ -180,6 +177,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
 
         public bool HasItem => !Item.IsAir;
 
+        private Asset<Texture2D> _hintTextureAsset;
+
         public UIItemSlotElement(int context, int hintItemType = -1)
         {
             _context = context;
@@ -190,6 +189,16 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
             _previousItem.TurnToAir();
             Width.Set(52f, 0f);
             Height.Set(52f, 0f);
+
+            if (hintItemType > 0)
+            {
+                string texturePath = hintItemType < ItemID.Count
+                    ? $"Terraria/Images/Item_{hintItemType}"
+                    : ItemLoader.GetItem(hintItemType)?.Texture ?? "";
+
+                if (!string.IsNullOrEmpty(texturePath))
+                    _hintTextureAsset = ModContent.Request<Texture2D>(texturePath, AssetRequestMode.AsyncLoad);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -291,15 +300,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
 
         private void DrawHintIcon(SpriteBatch spriteBatch, CalculatedStyle dimensions)
         {
-            if (HintItemType <= 0) return;
+            if (HintItemType <= 0 || _hintTextureAsset == null || !_hintTextureAsset.IsLoaded) return;
 
-            string texturePath = HintItemType < ItemID.Count
-                ? $"Terraria/Images/Item_{HintItemType}"
-                : ItemLoader.GetItem(HintItemType)?.Texture ?? "";
-
-            if (string.IsNullOrEmpty(texturePath)) return;
-
-            Texture2D hintTexture = ModContent.Request<Texture2D>(texturePath, AssetRequestMode.ImmediateLoad).Value;
+            Texture2D hintTexture = _hintTextureAsset.Value;
             Rectangle sourceRect = Main.itemAnimations[HintItemType] != null
                 ? Main.itemAnimations[HintItemType].GetFrame(hintTexture)
                 : hintTexture.Frame();
@@ -338,7 +341,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
             // This allows clicks to "pass-through" this element to the parent element and not be consumed by this element. This allows ExampleDraggableUIPanel to be dragged even when the user is clicking on the UIMoneyDisplay.
             IgnoresMouseInteraction = true;
         }
-        public void SetCoins(int coins)
+        public void SetCoins(long coins)
         {
             Coins = coins;
         }

@@ -32,26 +32,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
            Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            if (player.name == "S-Pladison" || player.name == "NKSHV" || player.name == "perrogalan" || player.name == "Banmei" || player.name == "Scratch Lunin" || player.name == "DinoZers" || player.name == "scorpion17907")
-            {
-                player.GetDamage(DamageClass.Summon) *= 0f;
-                player.maxMinions = 0;
-                //player.moveSpeed *= 99999999f;
-            }
-            else
-            {
-                player.GetDamage(DamageClass.Summon) *= 0f;
-                player.maxMinions = 0;
-               // player.moveSpeed *= 99999999f;
-            }
+        {   
+            player.GetDamage(DamageClass.Summon) *= 0f;
+            player.maxMinions = 0;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.Sign, 1)
             .AddIngredient(ItemID.DirtWall, 1)
-            .AddTile(TileID.WorkBenches)  //at work bench
+            .AddTile(TileID.WorkBenches)
             .Register();
         }
     }

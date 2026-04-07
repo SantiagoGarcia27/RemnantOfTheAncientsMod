@@ -150,8 +150,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (damage != 0)
             {
-                ref StatModifier GenericDamage = ref (player.GetDamage<GenericDamageClass>());
-                GenericDamage *= 1+(damage/100f);
+                player.GetDamage<GenericDamageClass>() += damage/100f;
             }
             if (lifeRegen != 0)
             {

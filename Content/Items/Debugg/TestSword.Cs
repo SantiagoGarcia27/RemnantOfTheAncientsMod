@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
             Item.height = 600;
             Item.useTime = 10;
             Item.useAnimation = 10;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 3;
             Item.value = 25700;
             Item.rare = 5;

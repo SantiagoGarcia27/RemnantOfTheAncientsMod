@@ -21,9 +21,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.FishingRods
             Item.height = 28;
             Item.useAnimation = 8;
             Item.useTime = 8;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
-            Item.rare = 4;
+            Item.rare = ItemRarityID.LightRed;
             Item.fishingPole = 60;
             Item.shootSpeed = 20f;
             Item.shoot = ModContent.ProjectileType<NigthBobber>();

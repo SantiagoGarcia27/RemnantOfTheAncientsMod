@@ -13,12 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Tuxonite Chainmail");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Cotte de mailles Tuxonite");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cota de malla de tusonita");
-            //Tooltip.SetDefault("3% increased ranged damage");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "3% d'augmentation des dégâts à distance");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta un 3% el daño a distancia");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
         public int RangerDamageBonus = 3;
@@ -33,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 		}
         public override void UpdateEquip(Player player)
         {
-			player.GetDamage(DamageClass.Ranged) *= 1.03f;
+			player.GetDamage(DamageClass.Ranged) += .03f;
         }
         public override void AddRecipes()
 		{

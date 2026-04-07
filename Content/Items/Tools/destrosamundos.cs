@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			Item.useAnimation = 20;  //Animacion normal de Pico
 			Item.pick = 250; //Potencia de Pico. 
 			Item.axe = 025; //125% = 025
-			Item.useStyle = 1; //Dejar en 1 para que el personaje use el arma de forma normal
+			Item.useStyle = ItemUseStyleID.Swing; //Dejar en 1 para que el personaje use el arma de forma normal
 			Item.knockBack = 6; //Retroceso al golpear
 			Item.value = Item.sellPrice(gold: 7);
 			Item.rare = 10;

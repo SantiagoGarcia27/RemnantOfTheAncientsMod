@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.height = 40;
 			Item.useTime = 23;
 			Item.useAnimation = 23;
-			Item.useStyle = 1;
+			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.autoReuse = true;
 			Item.UseSound = SoundID.Item20;

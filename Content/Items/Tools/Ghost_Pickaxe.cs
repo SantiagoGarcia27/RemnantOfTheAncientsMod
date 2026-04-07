@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			Item.useTime = 15; //mientras mas alto sea el useTime mas lenta será el arma. Usa un bajo UseTime para que el arma sea Rapida
 			Item.useAnimation = 17;  //Animacion normal de Pico
 			Item.pick = 72; //Potencia de Pico. 
-			Item.useStyle = 1; //Dejar en 1 para que el personaje use el arma de forma normal
+			Item.useStyle = ItemUseStyleID.Swing; //Dejar en 1 para que el personaje use el arma de forma normal
 			Item.knockBack = 6; //Retroceso al golpear
 			Item.value = 100000; 
 			Item.rare = 0;

@@ -1,4 +1,4 @@
-Mods: {
+﻿Mods: {
 	RemnantOfTheAncientsMod: {
 		ChatMessage.CalamityReforgeConfig:
 			'''
@@ -311,17 +311,17 @@ Mods: {
 
 			Mage_Infusion: {
 				DisplayName: Mage infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Mage_Infusion.Description
+				Description: Increase magic damage and mana regeneration
 			}
 
 			Melee_Infusion: {
 				DisplayName: Melee infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Melee_Infusion.Description
+				Description: Increase melee damage and speed
 			}
 
 			Mining_infusion: {
 				DisplayName: Mining infusion
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.Mining_infusion.Description
+				Description: Increase mining speed and range
 			}
 
 			Poseidon_Infusion: {
@@ -475,7 +475,7 @@ Mods: {
 			}
 
 			Sand_Weapons: {
-				DisplayName: "[c/48E16F:Wepon Imbue: Burning Sand]"
+				DisplayName: "[c/48E16F:Weapon Imbue: Burning Sand]"
 				Description: You are losing life
 			}
 
@@ -545,8 +545,8 @@ Mods: {
 			}
 
 			FireStormDebuff: {
-				DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.FireStormDebuff
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.FireStormDebuff
+				DisplayName: Fire Storm
+				Description: Burning from fire
 			}
 
 			Hell_Fire: {
@@ -556,12 +556,12 @@ Mods: {
 
 			HollyBurn: {
 				DisplayName: Holly Burn
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HollyBurn
+				Description: Burning with holy fire
 			}
 
 			HolyCouldownDebuff: {
-				DisplayName: Holy Couldown
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.HolyCouldownDebuff
+				DisplayName: Holy Cooldown
+				Description: Unable to use holy abilities
 			}
 
 			Javalina: {
@@ -570,28 +570,28 @@ Mods: {
 			}
 
 			Marble_erosion: {
-				DisplayName: Marble rosion
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.Marble_erosion
+				DisplayName: Marble Erosion
+				Description: Your armor is being eroded
 			}
 
 			NightWhipDebuff: {
-				DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.NightWhipDebuff
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.NightWhipDebuff
+				DisplayName: Night Whip
+				Description: Weakened by the night whip
 			}
 
 			TerraWhipDebuff: {
-				DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TerraWhipDebuff
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TerraWhipDebuff
+				DisplayName: Terra Whip
+				Description: Marked by the terra whip
 			}
 
 			TrueDurendalDebuff: {
-				DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueDurendalDebuff
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueDurendalDebuff
+				DisplayName: True Durendal
+				Description: Attack speed increased
 			}
 
 			TrueTwiligtDebuff: {
-				DisplayName: Mods.RemnantOfTheAncientsMod.BuffName.TrueTwiligtDebuff
-				Description: Mods.RemnantOfTheAncientsMod.BuffDescription.TrueTwiligtDebuff
+				DisplayName: True Twilight
+				Description: Defense reduced
 			}
 
 			DakoVanityBuff: {
@@ -611,7 +611,7 @@ Mods: {
 
 			DarksignBuff: {
 				DisplayName: Darksign Buff
-				Description: You feen empty
+				Description: You feel empty
 			}
 
 			FogOfVoid: {
@@ -796,7 +796,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedSummonDamage}
-					{1}% Increased summon critical strike chance 
+					{1}% Increased whip critical strike chance 
 					'''
 			}
 
@@ -1865,8 +1865,8 @@ Mods: {
 				DisplayName: Night Fishing Rod
 				Tooltip:
 					'''
-					{EditVanilla.LavaFishing}
-					{EditVanilla.StrongFishString}
+					{$EditVanilla.LavaFishing}
+					{$EditVanilla.StrongFishString}
 					'''
 			}
 
@@ -2609,7 +2609,7 @@ Mods: {
 			}
 
 			TerraGun: {
-				DisplayName: TerraGun1
+				DisplayName: TerraGun
 				Tooltip:
 					'''
 					A weapon fit for a legend
@@ -3412,7 +3412,7 @@ Mods: {
 			}
 
 			Tyrant_Relic_Infernum: {
-				DisplayName: Infernal Infernal Tyrant relic
+				DisplayName: Infernal Tyrant relic
 				Tooltip: ""
 			}
 
@@ -4030,11 +4030,11 @@ Mods: {
 					'''
 					Applies the optimal ascended reforge based on item type
 					Automatically selects the best prefix for your weapon or accessory
-					Costs {0}to apply
-					'''
-			}
+						Costs {0} to apply
+						'''
+					}
 
-			TrueNightchesplate: {
+					TrueNightchesplate:
 				DisplayName: True Night Breastplate
 				Tooltip:
 					'''
@@ -4151,28 +4151,28 @@ Mods: {
 				Tooltip:
 					'''
 					Applies the Accurate ascended reforge to accessories
-					Grants maximum critical strike chance
-					Costs {0}to apply
-					'''
-			}
+						Grants maximum critical strike chance
+						Costs {0} to apply
+						'''
+					}
 
-			BerserkStone: {
+					BerserkStone:
 				DisplayName: Berserk Stone
 				Tooltip:
 					'''
 					Applies the Berserk ascended reforge to melee weapons
-					Maximum offensive stats for close combat
-					Costs {0}to apply
-					'''
-			}
+						Maximum offensive stats for close combat
+						Costs {0} to apply
+						'''
+					}
 
-			ExquisiteStone: {
+					ExquisiteStone:
 				DisplayName: Exquisite Stone
 				Tooltip:
 					'''
 					Applies the Exquisite ascended reforge to rogue weapons
 					The perfect balance of power and precision
-					Costs {0}to apply
+					Costs {0} to apply
 					Requires Calamity Mod
 					'''
 			}
@@ -4182,28 +4182,28 @@ Mods: {
 				Tooltip:
 					'''
 					Applies the Impenetrable ascended reforge to accessories
-					Grants maximum defense boost
-					Costs {0}to apply
-					'''
-			}
+						Grants maximum defense boost
+						Costs {0} to apply
+						'''
+					}
 
-			RelicStone: {
+					RelicStone:
 				DisplayName: Relic Stone
 				Tooltip:
 					'''
 					Applies the Relic ascended reforge to magic weapons
-					The ultimate enchantment for spellcasters
-					Costs {0}to apply
-					'''
-			}
+						The ultimate enchantment for spellcasters
+						Costs {0} to apply
+						'''
+					}
 
-			ShadowStone: {
+					ShadowStone:
 				DisplayName: Shadow Stone
 				Tooltip:
 					'''
 					Applies the Shadow ascended reforge to accessories
 					Enhances stealth capabilities
-					Costs {0}to apply
+					Costs {0} to apply
 					Requires Calamity Mod
 					'''
 			}
@@ -4213,52 +4213,52 @@ Mods: {
 				Tooltip:
 					'''
 					Applies the Sharp ascended reforge to accessories
-					Grants maximum damage boost
-					Costs {0}to apply
-					'''
-			}
+						Grants maximum damage boost
+						Costs {0} to apply
+						'''
+					}
 
-			SupersonicStone: {
+					SupersonicStone:
 				DisplayName: Supersonic Stone
 				Tooltip:
 					'''
 					Applies the Supersonic ascended reforge to accessories
-					Grants maximum movement speed
-					Costs {0}to apply
-					'''
-			}
+						Grants maximum movement speed
+						Costs {0} to apply
+						'''
+					}
 
-			TitanicStone: {
+					TitanicStone:
 				DisplayName: Titanic Stone
 				Tooltip:
 					'''
 					Applies the Titanic ascended reforge to accessories
-					Grants maximum health increase
-					Costs {0}to apply
-					'''
-			}
+						Grants maximum health increase
+						Costs {0} to apply
+						'''
+					}
 
-			UncontrolledStone: {
+					UncontrolledStone:
 				DisplayName: Uncontrolled Stone
 				Tooltip:
 					'''
 					Applies the Uncontrolled ascended reforge to accessories
-					Grants maximum melee speed boost
-					Costs {0}to apply
-					'''
-			}
+						Grants maximum melee speed boost
+						Costs {0} to apply
+						'''
+					}
 
-			VeteranStone: {
+					VeteranStone:
 				DisplayName: Veteran Stone
 				Tooltip:
 					'''
 					Applies the Veteran ascended reforge to ranged weapons
-					The mark of a true sharpshooter
-					Costs {0}to apply
-					'''
-			}
+						The mark of a true sharpshooter
+						Costs {0} to apply
+						'''
+					}
 
-			ExplorerBoots: {
+					ExplorerBoots:
 				DisplayName: Explorer Boots
 				Tooltip:
 					'''
@@ -4734,7 +4734,7 @@ Mods: {
 
 		Conditions: {
 			OpositeOreGeneration: When world have
-			TinkererAlive: When Goblim Tinkerer is alive
+			TinkererAlive: When Goblin Tinkerer is alive
 			OpositeOreGenerationTin: When world have tin
 			OpositeOreGenerationCopper: When world have Copper
 			OpositeOreGenerationLead: When world have Lead
@@ -5143,7 +5143,6 @@ Mods: {
 			}
 		}
 
-		Commands.MaxStyleCommand.Description: Mods.RemnantOfTheAncientsMod.Commands.MaxStyleCommand.Description
-		ConfigServer.Headers.Performance: Lag Reducer Header
+		Commands.MaxStyleCommand.Description: Maximizes the player's style stat
 	}
 }

@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Summon) *= 1.08f;
+			player.GetDamage(DamageClass.Summon) += .08f;
 			player.maxMinions++;
         }
 

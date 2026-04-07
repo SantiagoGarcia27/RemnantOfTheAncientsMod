@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Melee) *= 1.13f;
+			player.GetDamage(DamageClass.Melee) += .13f;
 			player.GetCritChance(DamageClass.Melee) += 13f;
 			player.GetAttackSpeed(DamageClass.Melee) *= 1.13f;
 		}

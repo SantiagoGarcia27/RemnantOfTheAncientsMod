@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.master = true;
             Item.masterOnly = true;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.BrainOfConfusion, 1)

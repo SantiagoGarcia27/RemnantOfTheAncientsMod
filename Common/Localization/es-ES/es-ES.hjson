@@ -806,7 +806,11 @@ Mods: {
 
 			Summoner_EmblemV2: {
 				DisplayName: Emblema del invocador ascendido
-				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedSummonDamage}
+					Aumenta la probabilidad de crítico de látigos en {1}%
+					'''
 			}
 
 			The_Completist: {

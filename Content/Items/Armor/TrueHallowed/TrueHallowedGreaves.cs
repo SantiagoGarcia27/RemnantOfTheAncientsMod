@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 		public override void UpdateEquip(Player player)
 		{
 			player.moveSpeed *= 1.10f;
-			player.GetDamage(DamageClass.Generic) *= 1.10f;
+			player.GetDamage(DamageClass.Generic) += .10f;
 		}
 
         public override void AddRecipes()

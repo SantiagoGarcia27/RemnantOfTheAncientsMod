@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.defense = 5;
             Item.accessory = true;
         }
-        public override void AddRecipes()  //How to craft this item
+        public override void AddRecipes()
         {
             CreateRecipe()
             .AddIngredient(ItemID.MagicCuffs, 1)
