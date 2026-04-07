@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
         {
             AnimateTexture();  
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
         public void AnimateTexture()
         {
@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
         {
             AnimateTexture();
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public void AnimateTexture()
@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
         {
             AnimateTexture();
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+            Projectile.rotation = Projectile.velocity.ToRotation();
 
             Lighting.AddLight(Projectile.position, 1, 0, 0);
             if(Projectile.scale < 1)
@@ -97,7 +97,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
             AnimateTexture();
            
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(10f);
+            Projectile.rotation = Projectile.velocity.ToRotation();
 
 
             Lighting.AddLight(Projectile.position, 1,0,0);

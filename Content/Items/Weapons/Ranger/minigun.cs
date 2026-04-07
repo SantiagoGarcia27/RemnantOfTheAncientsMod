@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 
@@ -16,12 +15,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 27;
+			Item.damage = 30;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 2;
 			Item.height = 2;
-			Item.useTime = 27;
-			Item.useAnimation = 27;
+			Item.useTime = 26;
+			Item.useAnimation = 26;
 			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.noMelee = true;
 			Item.scale = 0.68f;
@@ -31,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.UseSound = SoundID.Item38;
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.Bullet;
-			Item.shootSpeed = 20f;
+			Item.shootSpeed = 10f;
 			Item.useAmmo = AmmoID.Bullet;
 		}
 		public override Vector2? HoldoutOffset()
