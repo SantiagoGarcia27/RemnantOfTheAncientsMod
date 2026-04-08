@@ -118,6 +118,28 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         }
     }
 
+    public class CursedBream : BaseBream
+    {
+        public override Color color => Color.Purple;
+        public override int ProjId => ProjectileID.PurpleLaser;
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.CursedInferno, 120);
+            base.OnHitNPC(target, hit, damageDone);
+        }
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            target.AddBuff(BuffID.CursedInferno, 120);
+            base.OnHitPlayer(target, info);
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            lightColor = Color.GreenYellow;
+            return base.PreDraw(ref lightColor);
+        }
+    }
+
     public class GenericDamageBream : ModProjectile
     {
         public override string Texture => "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/CustomBream2";
@@ -136,16 +158,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         {
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
-        }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            target.AddBuff(BuffID.CursedInferno, 120);
-            base.OnHitNPC(target, hit, damageDone);
-        }
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-            target.AddBuff(BuffID.CursedInferno, 120);
-            base.OnHitPlayer(target, info);
         }
         public override Color? GetAlpha(Color lightColor)
         {

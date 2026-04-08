@@ -88,11 +88,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
 
                 return false;
             }
-            else if (type == ProjectileID.PurificationPowder)
-            {
-                int ColorId = Utils1.GetColorID(Color.GreenYellow);
-                Projectile.NewProjectile(source, position, velocity * 10, ModContent.ProjectileType<GenericDamageBream>(), damage, knockback, player.whoAmI,0, ColorId);
 
+            if (type == ProjectileID.PurificationPowder)
+            {
+                Projectile.NewProjectile(source, position, velocity * 10, ModContent.ProjectileType<CursedBream>(), damage, knockback, player.whoAmI,0);
                 return false;
             }
             return base.Shoot(player, source, position, velocity, type, damage, knockback);

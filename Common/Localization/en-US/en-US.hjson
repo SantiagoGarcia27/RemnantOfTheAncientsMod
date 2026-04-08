@@ -4034,8 +4034,8 @@
 						'''
 					}
 
-					TrueNightchesplate:
-				DisplayName: True Night Breastplate
+					TrueNightchesplate: {
+					DisplayName: True Night Breastplate
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxManaBy}
@@ -4156,8 +4156,8 @@
 						'''
 					}
 
-					BerserkStone:
-				DisplayName: Berserk Stone
+					BerserkStone: {
+					DisplayName: Berserk Stone
 				Tooltip:
 					'''
 					Applies the Berserk ascended reforge to melee weapons
@@ -4166,7 +4166,7 @@
 						'''
 					}
 
-					ExquisiteStone:
+			ExquisiteStone:{
 				DisplayName: Exquisite Stone
 				Tooltip:
 					'''
@@ -4187,7 +4187,7 @@
 						'''
 					}
 
-					RelicStone:
+			RelicStone: {
 				DisplayName: Relic Stone
 				Tooltip:
 					'''
@@ -4197,7 +4197,7 @@
 						'''
 					}
 
-					ShadowStone:
+			ShadowStone:{
 				DisplayName: Shadow Stone
 				Tooltip:
 					'''
@@ -4213,22 +4213,22 @@
 				Tooltip:
 					'''
 					Applies the Sharp ascended reforge to accessories
-						Grants maximum damage boost
-						Costs {0} to apply
-						'''
-					}
+					Grants maximum damage boost
+					Costs {0} to apply
+					'''
+			}
 
-					SupersonicStone:
+			SupersonicStone:{
 				DisplayName: Supersonic Stone
 				Tooltip:
 					'''
 					Applies the Supersonic ascended reforge to accessories
-						Grants maximum movement speed
-						Costs {0} to apply
-						'''
-					}
+					Grants maximum movement speed
+					Costs {0} to apply
+					'''
+			}
 
-					TitanicStone:
+			TitanicStone:{
 				DisplayName: Titanic Stone
 				Tooltip:
 					'''
@@ -4236,10 +4236,10 @@
 						Grants maximum health increase
 						Costs {0} to apply
 						'''
-					}
+			}
 
-					UncontrolledStone:
-				DisplayName: Uncontrolled Stone
+			UncontrolledStone: {
+			DisplayName: Uncontrolled Stone
 				Tooltip:
 					'''
 					Applies the Uncontrolled ascended reforge to accessories
@@ -4248,8 +4248,8 @@
 						'''
 					}
 
-					VeteranStone:
-				DisplayName: Veteran Stone
+					VeteranStone: {
+					DisplayName: Veteran Stone
 				Tooltip:
 					'''
 					Applies the Veteran ascended reforge to ranged weapons
@@ -4258,8 +4258,8 @@
 						'''
 					}
 
-					ExplorerBoots:
-				DisplayName: Explorer Boots
+					ExplorerBoots: {
+					DisplayName: Explorer Boots
 				Tooltip:
 					'''
 					The user can run super fast, and even faster on sand, snow, and ash.
