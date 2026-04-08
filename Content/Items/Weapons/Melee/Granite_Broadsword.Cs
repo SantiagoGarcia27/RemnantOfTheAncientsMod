@@ -7,10 +7,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
 	public class Granite_Broadsword : ModItem
 	{
-		public override void SetStaticDefaults()
-		{	
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
 		public override void SetDefaults()
 		{
 			Item.damage = 12;
@@ -24,7 +20,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.value = Item.sellPrice(silver: 27);
 			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
-			Item.autoReuse = false;
+            Item.ResearchUnlockCount = 1;
+            Item.autoReuse = false;
 		}
   
         public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
@@ -43,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         }
         public override void UseItemFrame(Player player)
         {
-            Item.scale = player.ZoneGranite ? 2 : 1;
+            Item.scale = player.ZoneGranite ? 2f : 1f;
             base.UseItemFrame(player);
         }
 

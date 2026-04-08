@@ -8,8 +8,8 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Humanizer.In;
 using static Terraria.ModLoader.ModContent;
+using ReLogic.Content;
 
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
@@ -38,6 +38,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             Projectile.timeLeft = 2000;
             Projectile.tileCollide = false;
         }
+
+        private Asset<Texture2D> _areaTexture;
         public override bool? CanCutTiles()
         {
             return false;
@@ -47,8 +49,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             return false;
         }
         public int RangeMax = 8;
-        public static int AttackTimmer = (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.5f);
-        public static int shootCounter = 0;
+        public int AttackTimmer = (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.5f);
+        public int shootCounter = 0;
         public NPC target;
         public override void AI()
         {
@@ -57,9 +59,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             {
                 target = Main.npc[player.MinionAttackTargetNPC];
             }
-            Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width, TextureAssets.Projectile[Projectile.type].Value.Height/ Main.projFrames[Projectile.type]);
 
             CheckActive(player);
+            if (_areaTexture == null)
+                _areaTexture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/EvilEyeArea");
+            if (Projectile.width != TextureAssets.Projectile[Projectile.type].Value.Width)
+                Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width, TextureAssets.Projectile[Projectile.type].Value.Height / Main.projFrames[Projectile.type]);
             GeneralBehavior(player, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition);
             SearchForTargets(player, out bool foundTarget, out float distanceFromTarget, out Vector2 targetCenter);
             Movement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);      
@@ -82,26 +87,17 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         
         private void Shoot(Vector2 targetCenter)
         {
-           /* float rotation;
-            if (Projectile.OwnerMinionAttackTargetNPC != null)
-            {
-                rotation = (float)Math.Atan2(Projectile.Center.Y - (Projectile.OwnerMinionAttackTargetNPC.position.Y + Projectile.OwnerMinionAttackTargetNPC.height), Projectile.position.X - (Projectile.position.X + Projectile.width));
-            }
-            else
-            {
-                rotation = 0;
-            }*/
-            Vector2 direction;
-            direction = targetCenter - Projectile.Center;
-            //direction.X = (float)(Math.Cos(rotation) * 4f * -1);
-            //direction.Y = (float)(Math.Sin(rotation) * 4f * -1);
-            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,  direction, ProjectileID.InfernoFriendlyBolt, Projectile.damage, 0, Projectile.owner, 0, 0);
+            Vector2 direction = targetCenter - Projectile.Center;
+            direction.Normalize();
+            direction *= 10f;
+            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, direction, ProjectileID.InfernoFriendlyBolt, Projectile.damage, 0, Projectile.owner, 0, 0);
         }
 
         public bool IsAttack = false;
         private void AreaEffect()
         {
-            for (int i = 0; i < Main.maxNPCs;i++)
+            bool didHit = false;
+            for (int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC target = Main.npc[i];
                 if (Projectile.Distance(target.Center) <= RangeMax * 16 && !target.immortal && !target.friendly && target.active && target.type != 549)
@@ -109,19 +105,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                     target.AddBuff(BuffType<Hell_Fire>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (AttackTimmer == 1)
                     {
-                        target.SimpleStrikeNPC(Projectile.damage, 0, Main.rand.NextBool(6),0, DamageClass.Summon);
+                        target.SimpleStrikeNPC(Projectile.damage, 0, Main.rand.NextBool(6), 0, DamageClass.Summon);
                         if (target.type != 679)
-                        {
                             IsAttack = true;
-                        }
-                        if (IsAttack)
-                        {
-                            SpawnParticles();
-                        }
+                        didHit = true;
                     }
                 }
-                //IsAttack = false;
             }
+            if (didHit && IsAttack)
+                SpawnParticles();
         }
         private void GeneralBehavior(Player owner, out Vector2 vectorToIdlePosition, out float distanceToIdlePosition)
         {
@@ -234,7 +226,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                         bool lineOfSight = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, npc.position, npc.width, npc.height);
                         bool closeThroughWall = between < 100f;
 
-                        if (((!closest && inRange) /*|| !foundTarget*/) && (lineOfSight || closeThroughWall))
+                        if (((closest && inRange) || !foundTarget) && (lineOfSight || closeThroughWall))
                         {
                             distanceFromTarget = between;
                             targetCenter = npc.Center;
@@ -345,15 +337,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public float fade = 2.6f;
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/EvilEyeArea");
-            Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+            if (_areaTexture == null || !_areaTexture.IsLoaded) return true;
+            Vector2 origin = new Vector2(_areaTexture.Width() * 0.5f, _areaTexture.Height() * 0.5f);
             if (Main.myPlayer == Projectile.owner)
             {
                 Color color = new Color(Color.Red.R, Color.Orange.G, Color.Red.B, 20) * fade;
                 if (IsAttack)
-                {
-                    Main.spriteBatch.Draw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 1.0f, SpriteEffects.None, 0f);
-                }
+                    Main.spriteBatch.Draw((Texture2D)_areaTexture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 1.0f, SpriteEffects.None, 0f);
             }
             return true;
         }
