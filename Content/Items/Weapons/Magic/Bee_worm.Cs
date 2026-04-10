@@ -2,23 +2,12 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Terraria.Localization;
-using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
 	public class Bee_worm : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Bee Worm");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Bee Worm");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Ver d'abeille");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Gusano de abejas");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.damage = 69;
@@ -36,7 +25,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.useAnimation = 9;
 			Item.shoot = ProjectileID.Bee;
 			Item.value = 550000;
-			Item.autoReuse = true;
+			Item.ResearchUnlockCount = 1;
+            Item.autoReuse = true;
 		}
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{

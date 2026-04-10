@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
@@ -14,11 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 	{
         public int attackType = 0; // keeps track of which attack it is
         public int comboExpireTimer = 0;
-        public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("UltraBlade");
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
 		public override void SetDefaults()
 		{
 			Item.damage = 360;
@@ -35,9 +29,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.rare = ItemRarityID.Red;
 			Item.noMelee = true;
 			Item.scale = 1.20f;
-            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
+			Item.ResearchUnlockCount = 1;
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
             {
-                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ModContent.ProjectileType<UltraBladeS>();
+               Item.shoot = ModContent.ProjectileType<UltraBladeS>();
             }
             else Item.shoot = ModContent.ProjectileType<UltraBladeS>();
 			Item.shootSpeed = 13f;
@@ -64,22 +59,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 
             float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
             Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ModContent.ProjectileType<UltrabladeSwingingEnergySwordProjectile>(), damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale);
-            NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
-            return false; // return false to prevent original projectile from being shot
-        }
-
-        public override void UpdateInventory(Player player)
-        {
-            //if (comboExpireTimer++ >= 120) // after 120 ticks (== 2 seconds) in inventory, reset the attack pattern
-            //    attackType = 0;
+            NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); 
+            return false;
         }
 
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ItemID.InfluxWaver, 1)
+
 			.AddIngredient(ItemID.Meowmere, 1)
-			.AddIngredient(ItemID.TerraBlade, 1)
+			.AddIngredient(ItemID.StarWrath, 1)
+            .AddIngredient(ItemID.InfluxWaver, 1)
+            .AddIngredient(ItemID.TerraBlade, 1)
 			.AddTile(TileID.LunarCraftingStation)
 			.Register();
 		}

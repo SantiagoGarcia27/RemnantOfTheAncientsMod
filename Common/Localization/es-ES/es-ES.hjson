@@ -4754,6 +4754,7 @@ Mods: {
 			// TrueShadowMistProj.DisplayName: True Shadow Mist Proj
 			// TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
 			// CactusBoulderClone.DisplayName: Cactus Boulder Clone
+			// CursedBream.DisplayName: Cursed Bream
 		}
 
 		Tiles: {
@@ -5198,7 +5199,7 @@ Mods: {
 			}
 		}
 
-		// Commands.MaxStyleCommand.Description: Mods.RemnantOfTheAncientsMod.Commands.MaxStyleCommand.Description
+		// Commands.MaxStyleCommand.Description: Maximizes the player's style stat
 		ConfigServer.Headers.Performance: Lag Reducer Header
 	}
 }

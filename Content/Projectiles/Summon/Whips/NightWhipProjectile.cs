@@ -16,7 +16,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
 	
         public override void SetStaticDefaults()
         {
-            // This makes the projectile use whip collision detection and allows flasks to be applied to it.
             ProjectileID.Sets.IsAWhip[Type] = true;
         }
 
@@ -27,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
-            Projectile.ownerHitCheck = true; // This prevents the projectile from hitting through solid tiles.
+            Projectile.ownerHitCheck = true;
             Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
@@ -41,27 +40,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             set => Projectile.ai[0] = value;
         }
 
-        private float ChargeTime
-        {
-            get => Projectile.ai[1];
-            set => Projectile.ai[1] = value;
-        }
-
         public override void AI()
         {
             Player owner = Main.player[Projectile.owner];
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2; // Without PiOver2, the rotation would be off by 90 degrees counterclockwise.
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
             Projectile.Center = Main.GetPlayerArmPosition(Projectile) + Projectile.velocity * Timer;
-            // Vanilla uses Vector2.Dot(Projectile.velocity, Vector2.UnitX) here. Dot Product returns the difference between two vectors, 0 meaning they are perpendicular.
-            // However, the use of UnitX basically turns it into a more complicated way of checking if the projectile's velocity is above or equal to zero on the X axis.
             Projectile.spriteDirection = Projectile.velocity.X >= 0f ? 1 : -1;
 
-            // remove these 3 lines if you don't want the charging mechanic
-            if (!Charge(owner))
-            {
-                return; // timer doesn't update while charging, freezing the animation at the start.
-            }
+            
 
             Timer++;
 
@@ -80,32 +67,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
                 Projectile.FillWhipControlPoints(Projectile, points);
                 SoundEngine.PlaySound(SoundID.Item153, points[points.Count - 1]);
             }
-        }
-
-        // This method handles a charging mechanic.
-        // If you remove this, also remove Item.channel = true from the item's SetDefaults.
-        // Returns true if fully charged
-        private bool Charge(Player owner)
-        {
-            // Like other whips, this whip updates twice per frame (Projectile.extraUpdates = 1), so 120 is equal to 1 second.
-            if (!owner.channel || ChargeTime >= 120)
-            {
-                return true; // finished charging
-            }
-
-            ChargeTime++;
-
-            if (ChargeTime % 12 == 0) // 1 segment per 12 ticks of charge.
-                Projectile.WhipSettings.Segments++;
-
-            // Increase range up to 2x for full charge.
-            Projectile.WhipSettings.RangeMultiplier += 1 / 120f;
-
-            // Reset the animation and item timer while charging.
-            owner.itemAnimation = owner.itemAnimationMax;
-            owner.itemTime = owner.itemTimeMax;
-
-            return false; // still charging
         }
 
          public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

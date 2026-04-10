@@ -3,19 +3,12 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.Audio;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Dusts;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 {
     public class UltraBladeProjectileSub : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("DesertS");
-        }
         public override void SetDefaults()   
         {    
             Projectile.width = 72;      
@@ -46,25 +39,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                 for (int i = 0; i < 200; i++)
                 {
                     NPC target = Main.npc[i];
-                    //If the NPC is hostile
                     if (!target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
                     {
-                        //Get the shoot trajectory from the projectile and target
                         float shootToX = target.position.X + target.width * 0.5f - Projectile.Center.X;
                         float shootToY = target.position.Y - Projectile.Center.Y;
                         float distance = (float)Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
 
-                        //If the distance between the live targeted NPC and the projectile is less than 480 pixels
                         if (distance < 480f && !target.friendly && target.active)
                         {
-                            //Divide the factor, 3f, which is the desired velocity
                             distance = 3f / distance;
 
-                            //Multiply the distance by a multiplier if you wish the projectile to have go faster
                             shootToX *= distance * 5;
                             shootToY *= distance * 5;
 
-                            //Set the velocities to the shoot values
                             Projectile.velocity.X = shootToX;
                             Projectile.velocity.Y = shootToY;
                             Projectile.velocity.Normalize();
@@ -93,11 +80,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                 Main.dust[p1].velocity = Projectile.velocity * 0f;
                 Main.dust[p1].noGravity = true;
             }
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            // if (Main.rand.NextBool()) target.AddBuff(BuffType<Burning_Sand>(), 300);
-        }
+        }  
     }
 }

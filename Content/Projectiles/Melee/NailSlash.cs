@@ -17,8 +17,8 @@
 //        }
 //        public override void SetDefaults()
 //        {
-//            Projectile.width = 80;       //projectile width 36
-//            Projectile.height = 80;  //projectile height 36
+//            Projectile.width = 80;
+//            Projectile.height = 80;
 //            Projectile.friendly = true;      //make that the projectile will not damage you
 //            Projectile.DamageType = DamageClass.Melee;          // 
 //            Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain

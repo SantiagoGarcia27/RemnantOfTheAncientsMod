@@ -15,20 +15,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
     {
         public override void SetStaticDefaults()
         {
-            // //DisplayName.SetDefault("UltraBladeS"); //projectile name
             ProjectileID.Sets.AllowsContactDamageFromJellyfish[Type] = true;
             Main.projFrames[Type] = 4;
         }
         public override void SetDefaults()
         {
-            Projectile.width = 100;       //projectile width 36
-            Projectile.height = 100;  //projectile height 36
-            Projectile.friendly = true;      //make that the projectile will not damage you
-            Projectile.DamageType = DamageClass.Melee;          // 
-            Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
-            Projectile.penetrate = 3;      //how many NPC will penetrate
-            Projectile.timeLeft = 20000;   //how many time this projectile has before disepire
-            Projectile.light = 1.75f;    // projectile light
+            Projectile.width = 100;
+            Projectile.height = 100;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.tileCollide = false;
+            Projectile.penetrate = 3;
+            Projectile.timeLeft = 20000;
+            Projectile.light = 1.75f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             Projectile.scale = 1.5f;
@@ -36,19 +35,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             AIType = -1;
             Projectile.noEnchantmentVisuals = true;
         }
-        public override void AI()           //this make that the projectile will face the corect way
-        {                                                           // |
+        public override void AI()
+        {
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
-            //  Lighting.AddLight(Projectile.position, 230, 230,0);
 
             Projectile.localAI[0]++;
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
-                for (int i = 0; i < 200; i++)
-                {
-                    NPC target = Main.npc[i];
-                    //If the NPC is hostile
+                foreach (NPC target in Main.npc)
+                { 
                     if (!target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
                     {
                         //Get the shoot trajectory from the projectile and target
@@ -112,32 +108,30 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             }
             Vector2 newVelocity = (target.position - Projectile.position);
             newVelocity.Normalize();
+            newVelocity *= 4;
             Vector2 newPosition = target.position - new Vector2(Main.rand.Next(5, 10), Main.rand.Next(5, 10)) * 16 * (int)Math.Pow(-1.0, Main.rand.Next(1, 2));
             Vector2 newPosition2 = target.position + new Vector2(Main.rand.Next(5, 10), Main.rand.Next(5, 10)) * 16 * (int)Math.Pow(-1.0, Main.rand.Next(1, 2));
             Projectile.NewProjectile(Projectile.GetSource_FromAI(), newPosition, newVelocity, ModContent.ProjectileType<UltraBladeProjectileSub>(), Projectile.damage /3, 1, Projectile.owner); 
             Projectile.NewProjectile(Projectile.GetSource_FromAI(), newPosition2 + new Vector2(0,10), newVelocity, ModContent.ProjectileType<UltraBladeProjectileSub>(), Projectile.damage /3, 1, Projectile.owner);
-            //Projectile.Kill();
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            //lightColor = Color.Yellow;
-
             Vector2 position = Projectile.Center - Main.screenPosition;
             Texture2D texture = TextureAssets.Projectile[Type].Value;
-            Rectangle sourceRectangle = texture.Frame(1, 4); // The sourceRectangle says which frame to use.
+            Rectangle sourceRectangle = texture.Frame(1, 4);
             Vector2 origin = sourceRectangle.Size() / 2f;
             float scale = Projectile.scale * 1.1f;
-            SpriteEffects spriteEffects = ((!(Projectile.ai[0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None); // Flip the sprite based on the direction it is facing.
-            float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1] /5; // The current time over the max time.
+            SpriteEffects spriteEffects = ((!(Projectile.ai[0] >= 0f)) ? SpriteEffects.FlipVertically : SpriteEffects.None);
+            float percentageOfLife = Projectile.localAI[0] / Projectile.ai[1] /5;
             float lerpTime = Utils.Remap(percentageOfLife, 0f, 0.6f, 0f, 1f) * Utils.Remap(percentageOfLife, 0.6f, 1f, 1f, 0f);
             float lightingColor = Lighting.GetColor(Projectile.Center.ToTileCoordinates()).ToVector3().Length() / (float)Math.Sqrt(3.0);
             lightingColor = Utils.Remap(lightingColor, 0.2f, 1f, 0f, 1f);
 
-            Color backDarkColor = new Color(180, 160, 60); // Original Excalibur MainColor: Color(180, 160, 60)
-            Color middleMediumColor = new Color(255, 255, 80); // Original Excalibur MainColor: Color(255, 255, 80)
-            Color frontLightColor = new Color(255, 240, 150); // Original Excalibur MainColor: Color(255, 240, 150)
+            Color backDarkColor = new Color(180, 160, 60);
+            Color middleMediumColor = new Color(255, 255, 80);
+            Color frontLightColor = new Color(255, 240, 150);
 
-            Color whiteTimesLerpTime = Color.White * lerpTime * 0.5f;//Color.White
+            Color whiteTimesLerpTime = Color.White * lerpTime * 0.5f;
             whiteTimesLerpTime.A = (byte)(whiteTimesLerpTime.A * (1f - lightingColor));
             Color faintLightingColor = whiteTimesLerpTime * lightingColor * 0.5f;
             faintLightingColor.G = (byte)(faintLightingColor.G * lightingColor);
@@ -152,11 +146,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             // Front part
             Main.EntitySpriteDraw(texture, position, sourceRectangle, frontLightColor * lightingColor * lerpTime * 0.5f, Projectile.rotation, origin, scale * 0.975f, spriteEffects, 0f);
             // Thin top line (final frame)
-            Main.EntitySpriteDraw(texture, position, texture.Frame(1, 4, 0, 3), Color.White * 0.6f * lerpTime, Projectile.rotation + Projectile.ai[0] * 0.01f, origin, scale, spriteEffects, 0f);//Color.White
+            Main.EntitySpriteDraw(texture, position, texture.Frame(1, 4, 0, 3), Color.White * 0.6f * lerpTime, Projectile.rotation + Projectile.ai[0] * 0.01f, origin, scale, spriteEffects, 0f);
             // Thin middle line (final frame)
-            Main.EntitySpriteDraw(texture, position, texture.Frame(1, 4, 0, 3), Color.White * 0.5f * lerpTime, Projectile.rotation + Projectile.ai[0] * -0.05f, origin, scale * 0.8f, spriteEffects, 0f);//Color.White
+            Main.EntitySpriteDraw(texture, position, texture.Frame(1, 4, 0, 3), Color.White * 0.5f * lerpTime, Projectile.rotation + Projectile.ai[0] * -0.05f, origin, scale * 0.8f, spriteEffects, 0f);
             // Thin bottom line (final frame)
-            Main.EntitySpriteDraw(texture, position, texture.Frame(1, 4, 0, 3), Color.White * 0.4f * lerpTime, Projectile.rotation + Projectile.ai[0] * -0.1f, origin, scale * 0.6f, spriteEffects, 0f);//Color.White
+            Main.EntitySpriteDraw(texture, position, texture.Frame(1, 4, 0, 3), Color.White * 0.4f * lerpTime, Projectile.rotation + Projectile.ai[0] * -0.1f, origin, scale * 0.6f, spriteEffects, 0f);
 
             // This draws some sparkles around the circumference of the swing.
             for (float i = 0f; i < 8f; i += 1f)
@@ -170,13 +164,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
             Vector2 drawPos2 = position + (Projectile.rotation + Utils.Remap(percentageOfLife, 0f, 1f, 0f, MathHelper.PiOver4) * Projectile.ai[0]).ToRotationVector2() * ((float)texture.Width * 0.5f - 4f) * scale;
             DrawPrettyStarSparkle(Projectile.Opacity, SpriteEffects.None, drawPos2, new Color(255, 255, 255, 0) * lerpTime * 0.5f, middleMediumColor, percentageOfLife, 0f, 0.5f, 0.5f, 1f, 0f, new Vector2(2f, Utils.Remap(percentageOfLife, 0f, 1f, 4f, 1f)) * scale, Vector2.One * scale);
 
-            // Uncomment this line for a visual representation of the projectile's size.
-            // Main.EntitySpriteDraw(TextureAssets.MagicPixel.Value, position, sourceRectangle, Color.Orange * 0.75f, 0f, origin, scale, spriteEffects);
-
             return false;
         }
 
-        // Copied from Main.DrawPrettyStarSparkle() which is private
         private static void DrawPrettyStarSparkle(float opacity, SpriteEffects dir, Vector2 drawPos, Color drawColor, Color shineColor, float flareCounter, float fadeInStart, float fadeInEnd, float fadeOutStart, float fadeOutEnd, float rotation, Vector2 scale, Vector2 fatness)
         {
             Texture2D sparkleTexture = TextureAssets.Extra[98].Value;

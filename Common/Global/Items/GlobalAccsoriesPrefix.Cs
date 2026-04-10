@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (item.prefix == ModContent.PrefixType<Supersonic>())
             {
-                PrefixUpdate(player, speed: 0.08f);
+                PrefixUpdate(player, speed: 8f);
             }
             if (item.prefix == ModContent.PrefixType<Acurate>())
             {
@@ -66,7 +66,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (item.prefix == ModContent.PrefixType<Sharp>())
             {
-                PrefixUpdate(player, damage: 0.08f);
+                PrefixUpdate(player, damage: 8f);
             }
             if (item.prefix == ModContent.PrefixType<Uncontrolled>())
             {
@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (item.prefix == ModContent.PrefixType<Harmful>())
             {
-                PrefixUpdate(player, damage: 2, crit: 2);
+                PrefixUpdate(player, damage: 2, speed: 2);
             }
             if (item.prefix == ModContent.PrefixType<Cursed>())
             {
@@ -99,34 +99,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             bool downedPolterghast = CalamityUtils.IsBossDefeated("polterghast");
             bool downedProvidence = CalamityUtils.IsBossDefeated("providence");
 
-            if (downedYharon)
-            {
-                return 20;
-            }
-            else if (downedDoG)
-            {
-                return 19;
-            }
-            else if (downedPolterghast)
-            {
-                return 18;
-            }
-            else if (downedProvidence)
-            {
-                return 16;
-            }
-            else if (NPC.downedMoonlord)
-            {
-                return 14;
-            }
-            else if (NPC.downedGolemBoss)
-            {
-                return 12;
-            }
-            else if (Main.hardMode)
-            {
-                return 10;
-            }
+            if (downedYharon) return 20;
+            else if (downedDoG) return 19;
+            else if (downedPolterghast) return 18;     
+            else if (downedProvidence) return 16;   
+            else if (NPC.downedMoonlord) return 14;
+            else if (NPC.downedGolemBoss) return 12;
+            else if (Main.hardMode) return 10;   
             return 8;
         }
         private static void PrefixUpdate(Player player, int lifeMax = 0, int defense = 0, float speed = 0, float crit = 0, float damage = 0, int lifeRegen = 0, float meleeSpeed = 0)

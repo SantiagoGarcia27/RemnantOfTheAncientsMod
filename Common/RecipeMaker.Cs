@@ -226,7 +226,6 @@ namespace RemnantOfTheAncientsMod
             {
                 Recipe.Create(ItemID.Zenith)
                .AddIngredient(ModContent.ItemType<Ultrablade>())
-               .AddIngredient(ItemID.StarWrath)
                .AddIngredient(ItemID.TheHorsemansBlade)
                .AddIngredient(ItemID.Seedler)
                .AddIngredient(ItemID.Starfury)
@@ -253,7 +252,6 @@ namespace RemnantOfTheAncientsMod
             {
                 Recipe.Create(ItemID.Zenith)
                .AddIngredient(ModContent.ItemType<Ultrablade>())
-               .AddIngredient(ItemID.StarWrath)
                .AddIngredient(ItemID.TheHorsemansBlade)
                .AddIngredient(ItemID.Seedler)
                .AddIngredient(ItemID.Starfury)
@@ -409,73 +407,9 @@ namespace RemnantOfTheAncientsMod
 
         private static void Uncrafting()
         {
-            UncraftMolten();
-            UncraftJungle();
-            UncraftBone();
-
-            Recipe.Create(ModContent.ItemType<JungleBar>(), 6).AddIngredient(ItemID.BladeofGrass, 1).AddTile(TileID.Anvils).Register();
             Recipe.Create(ItemID.EnchantedSword, 1).AddIngredient(ModContent.ItemType<EnchantedSaber>(), 1).AddTile(TileID.Anvils).Register();
         }
 
-        private static void UncraftBone()
-        {
-
-            Recipe.Create(ModContent.ItemType<BoneBar>(), 23)
-             .AddIngredient(ItemID.NecroGreaves, 1)
-             .AddTile(TileID.Anvils)
-             .Register();
-
-            Recipe.Create(ModContent.ItemType<BoneBar>(), 18)
-               .AddIngredient(ItemID.NecroHelmet, 1)
-               .AddTile(TileID.Anvils)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<BoneBar>(), 29)
-               .AddIngredient(ItemID.NecroBreastplate, 1)
-               .AddTile(TileID.Anvils)
-               .Register();
-
-        }
-
-        private static void UncraftJungle()
-        {
-
-            Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
-               .AddIngredient(ItemID.JungleHat, 1)
-               .AddTile(TileID.Anvils)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<JungleBar>(), 6)
-               .AddIngredient(ItemID.JungleShirt, 1)
-               .AddTile(TileID.Anvils)
-               .Register();
-
-            Recipe.Create(ModContent.ItemType<JungleBar>(), 3)
-               .AddIngredient(ItemID.JunglePants, 1)
-               .AddTile(TileID.Anvils)
-               .Register();
-
-        }
-
-        private static void UncraftMolten()
-        {
-
-            Recipe.Create(ItemID.HellstoneBar, 10)
-               .AddIngredient(ItemID.MoltenHelmet, 1)
-               .AddTile(TileID.Hellforge)
-               .Register();
-
-            Recipe.Create(ItemID.HellstoneBar, 20)
-               .AddIngredient(ItemID.MoltenBreastplate, 1)
-               .AddTile(TileID.Hellforge)
-               .Register();
-
-            Recipe.Create(ItemID.HellstoneBar, 15)
-               .AddIngredient(ItemID.MoltenGreaves, 1)
-               .AddTile(TileID.Hellforge)
-               .Register();
-
-        }
         #endregion
         private static void FishingRods()
         {

@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using RemnantOfTheAncientsMod.Common.Global;
+using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
@@ -53,25 +54,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 
             if (player.altFunctionUse == 2)
             {
-                if (player.whoAmI == Main.myPlayer)
+                int chargeManaCost = 30;
+                if (player.whoAmI == Main.myPlayer && player.ownedProjectileCounts[ModContent.ProjectileType<BloodRayHeldProj>()] <= 0 && player.statMana >= chargeManaCost )
                 {
-                    Vector2 vector2 = velocity;
-
-                    //if (Charge++ >= 240) // after 120 ticks (== 2 seconds) in inventory, reset the attack pattern
-                    //    Charge = 0;
                     float attackSpeedBonus = player.GetAttackSpeed(DamageClass.Generic);
                     Item.useTime = (int)(65 / attackSpeedBonus);
                     Item.useAnimation = (int)(65 / attackSpeedBonus);
-                    Item.mana = 30;
-
-                    if (player.ownedProjectileCounts[ModContent.ProjectileType<BloodRayHeldProj>()] <= 0)
+                    player.statMana -= chargeManaCost;
+                    
+                    foreach(Projectile proj in Main.projectile)
                     {
-                        for (int proj = 0; proj <= Main.maxProjectiles; proj++)
+                        if (proj.type == ModContent.ProjectileType<BloodRayHeldProj>() && proj.owner == player.whoAmI)
                         {
-                            if (Main.projectile[proj].type == ModContent.ProjectileType<BloodRayHeldProj>() && Main.projectile[proj].owner == player.whoAmI)
-                            {
-                                Main.projectile[proj].Kill();
-                            }
+                            proj.Kill();
                         }
                     }
 
@@ -84,7 +79,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             }
             else
             {
-                Item.mana = 9;
                 Item.useAnimation = 49;
                 Item.useTime = RemnantOfTheAncientsMod.CalamityMod != null ? 23 : 25;
               
@@ -96,18 +90,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         public float fade = 2.6f;
 
         
-        //public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        //{
-        //    Player player = Main.player[Main.myPlayer];
-        //    var texture = ModContent.Request<Texture2D>("RemnantOfTheAncients/Content/Projectiles/Summon/Minioms/AreaEffect");
-        //    Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
-        //    if (Charge < 180)
-        //    {
-        //        Color MainColor = new Color(Color.Green.R, Color.Green.G, Color.Green.B, 20) * fade;
-        //        Main.spriteBatch.Draw((Texture2D)texture, player.Center - Main.screenPosition, null, MainColor, 0f, origin, 3.2f, SpriteEffects.None, 0f);
-        //    }
-        //    return base.PreDrawInWorld(spriteBatch, lightColor, alphaColor, ref rotation, ref scale, whoAmI);
-        //}
         public void SpawnParticles(Player player,Vector2 position)
         {
             const int NUM_DUSTS = 150;

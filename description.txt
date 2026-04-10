@@ -1,4 +1,4 @@
-﻿----------------------------------------
+----------------------------------------
 Remnant of the ancients is a mod
 created for complement Terraria vanilla,
 although it can use in addition to other mods to 
@@ -10,22 +10,22 @@ Remnant of the ancients currently adds:
 Items:
 - 3 bosses
 - 30 enemies
-- 2 town NPCs
-- 42 accessories
-- 161 weapons 
-- 7 Armor sets
-- 3 Vanity armor sets
+- 1 town NPC
+- 39 accessories
+- 172 weapons 
+- 10 Armor sets
+- 4 Vanity armor sets
 - 93 potions
 - 54 Ammos
 - 26 blocks
 - 4 pets
-- 13 new materials
+- 14 new materials
 - 1 new difficulty
-- 1 new "Class" fisher class
 - New mechanic "Style" stat
 - +88 new recipes for vanilla items
 - +19 tweaks and improvements to vanilla items 
-- +15 new reforges
+- +19 new reforges
 - 2 Language translation (English and Spanish) (no completed)
-- Cross-mod support for the Calamity Mod,Infernum Mod,Fargos soul,Fargowitas,Thorium, RemnantOfTheAncientsMod.BossChecklist,AlchemistNPC and Census
-                  
+- Cross-mod support for the Calamity Mod,Infernum Mod,Fargos soul,Fargowitas,Thorium, BossChecklist,AlchemistNPC and Census
+- 2 weapons (Calamity Mod)
+- 11 accessories (Fargos Soul)

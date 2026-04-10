@@ -14,7 +14,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.DemonScythe;
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("DemonScytheP");
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}

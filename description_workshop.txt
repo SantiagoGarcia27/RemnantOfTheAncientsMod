@@ -21,26 +21,27 @@ The mod also modifies some features of the game while adding new ones to help th
 A more detailed breakdown of the content available in the mod:
 [olist]
 [*] 3 bosses
-[*] 31 enemies
-[*] 2 town NPCs
-[*] 33 accsesories
-[*] 139 weapons
-[*] 5 Armor sets
-[*] 3 Vanity armor sets
+[*] 30 enemies
+[*] 1 town NPC
+[*] 39 accessories
+[*] 172 weapons (+2 with Calamity Mod)
+[*] 10 Armor sets
+[*] 4 Vanity armor sets
 [*] 93 potions
-[*] 52 Ammos
-[*] 18 blocks
+[*] 54 Ammos
+[*] 26 blocks
 [*] 4 pets
-[*] 12 new materials
+[*] 14 new materials
 [*] 4 pieces of furniture
 [*] 5 ores (non world generation)
 [*] 1 new difficulty
 [*] New mechanic "Style" stat
-[*] +86 new recipes for vanilla items
-[*] +18 tweaks and improvements to vanilla items
-[*] 2 Language translation (English and Spanish) (no completed)
-[*] Cross-mod support for the Calamity Mod,Infernum Mod,Fargos soul,Fargowitas,Thorium, RemnantOfTheAncientsMod.BossChecklist,Terraria Overhaul,AlchemistNPC and Census
-[*] Separated mod balanced for CalamityMod (it is activated automatically when having the mod activated)
+[*] +88 new recipes for vanilla items
+[*] +19 tweaks and improvements to vanilla items
+[*] +19 new reforges
+[*] 2 Language translation (English and Spanish) (not completed)
+[*] Cross-mod support for the Calamity Mod, Infernum Mod, Fargos Soul, Fargowiltas, Thorium, Boss Checklist, AlchemistNPC and Census
+[*] +11 accessories with Fargos Soul
 
 Patch notes:
 https://docs.google.com/document/d/1SjHv7QnOTsFYEbybGiapBTX3jB74eZen8GjYSnC93ks/edit?usp=sharing

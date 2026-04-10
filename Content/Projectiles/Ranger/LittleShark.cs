@@ -11,75 +11,91 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 {
     public class LittleShark : ModProjectile
     {
-        //public override string Texture => "Terraria/Images/NPC_" + NPCID.Shark;
         public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("LittleShark"); //projectile name
+        {  
             Main.projFrames[Projectile.type] = 4;
         }
         public override void SetDefaults()
         {
-            Projectile.width = 40;       //projectile width
-            Projectile.height = 40;  //projectile height
-            Projectile.friendly = true;      //make that the projectile will not damage you
-            Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
-            Projectile.penetrate = 1;      //how many NPC will penetrate
-            Projectile.timeLeft = 400;   //how many time this projectile has before disepire
-            Projectile.light = 1.75f;    // projectile light
+            Projectile.width = 40;
+            Projectile.height = 40;
+            Projectile.friendly = true;
+            Projectile.tileCollide = false;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = 400;
+            Projectile.light = 1.75f;
             Projectile.extraUpdates = 1;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.ignoreWater = true;
             Projectile.scale = 0.3f;
-            //AIType = ProjectileID.InfluxWaver;
-
+            Projectile.netImportant = false;
         }
-        public override void AI()           //this make that the projectile will face the corect way
-        {                                                           // |
-          // Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-           
+        int targetindex = -1;
+        public override void AI()
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(190f);
 
-
-            if (Projectile.ai[1] >= 80)
+            if (targetindex == -1)
             {
-                for (int i = 0; i < 200; i++)
+                if (Projectile.ai[0] >= 0)
                 {
-                    NPC target = Main.npc[i];
-                    //If the NPC is hostile
-                    if (!target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
+                    int targetIndex = (int)Projectile.ai[0];
+                    if (targetIndex < 200 && targetIndex >= 0 && Main.npc[targetIndex].active && Main.npc[targetIndex].life > 0)
                     {
-                        //Get the shoot trajectory from the projectile and target
-                        float shootToX = target.position.X + target.width * 0.5f - Projectile.Center.X;
-                        float shootToY = target.position.Y - Projectile.Center.Y;
-                        float distance = (float)Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
-
-                        //If the distance between the live targeted NPC and the projectile is less than 480 pixels
-                        if (distance < 480f && !target.friendly && target.active)
+                        targetindex = targetIndex;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 200; i++)
+                    {
+                        if (Main.npc[i].active && Main.npc[i].life > 0)
                         {
-                            //Divide the factor, 3f, which is the desired velocity
-                            distance = 3f / distance;
-
-                            //Multiply the distance by a multiplier if you wish the projectile to have go faster
-                            shootToX *= distance * 5;
-                            shootToY *= distance * 5;
-
-                            //Set the velocities to the shoot values
-                            Projectile.velocity.X = shootToX;
-                            Projectile.velocity.Y = shootToY;
+                            targetindex = i;
+                            break;
                         }
                     }
                 }
+
             }
-            else
-            {
-                Projectile.ai[1]++;
-            }
-            // generateDust();
+            NPC target = null;
+            if (targetindex >= 0 && targetindex < 202) target = Main.npc[targetindex];
+            if (target != null) Homming(target);
             if (RemnantOfTheAncientsMod.ParticleMeter(3) != 0)
             {
                 AnimateTexture();
+                generateDust();
+            }
+
+        }
+
+        private void Homming(NPC target)
+        {
+            //If the NPC is hostile
+            if (target.active && !target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
+            {
+                //Get the shoot trajectory from the projectile and target
+                float shootToX = target.position.X + target.width * 0.5f - Projectile.Center.X;
+                float shootToY = target.position.Y - Projectile.Center.Y;
+                float distance = (float)Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+
+                //If the distance between the live targeted NPC and the projectile is less than 480 pixels
+                if (distance < 480f && !target.friendly && target.active)
+                {
+                    //Divide the factor, 3f, which is the desired velocity
+                    distance = 3f / distance;
+
+                    //Multiply the distance by a multiplier if you wish the projectile to have go faster
+                    shootToX *= distance * 5;
+                    shootToY *= distance * 5;
+
+                    //Set the velocities to the shoot values
+                    Projectile.velocity.X = shootToX;
+                    Projectile.velocity.Y = shootToY;
+                }
             }
         }
-        
+
         private void generateDust()
         {
             Vector2 position = Projectile.position + new Vector2(Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f));

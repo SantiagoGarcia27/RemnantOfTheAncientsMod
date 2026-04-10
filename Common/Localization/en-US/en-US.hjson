@@ -1,4 +1,4 @@
-﻿Mods: {
+Mods: {
 	RemnantOfTheAncientsMod: {
 		ChatMessage.CalamityReforgeConfig:
 			'''
@@ -4030,12 +4030,12 @@
 					'''
 					Applies the optimal ascended reforge based on item type
 					Automatically selects the best prefix for your weapon or accessory
-						Costs {0} to apply
-						'''
-					}
+					Costs {0} to apply
+					'''
+			}
 
-					TrueNightchesplate: {
-					DisplayName: True Night Breastplate
+			TrueNightchesplate: {
+				DisplayName: True Night Breastplate
 				Tooltip:
 					'''
 					{$CommonItemTooltip.IncreasesMaxManaBy}
@@ -4151,22 +4151,22 @@
 				Tooltip:
 					'''
 					Applies the Accurate ascended reforge to accessories
-						Grants maximum critical strike chance
-						Costs {0} to apply
-						'''
-					}
+					Grants maximum critical strike chance
+					Costs {0} to apply
+					'''
+			}
 
-					BerserkStone: {
-					DisplayName: Berserk Stone
+			BerserkStone: {
+				DisplayName: Berserk Stone
 				Tooltip:
 					'''
 					Applies the Berserk ascended reforge to melee weapons
-						Maximum offensive stats for close combat
-						Costs {0} to apply
-						'''
-					}
+					Maximum offensive stats for close combat
+					Costs {0} to apply
+					'''
+			}
 
-			ExquisiteStone:{
+			ExquisiteStone: {
 				DisplayName: Exquisite Stone
 				Tooltip:
 					'''
@@ -4184,8 +4184,9 @@
 					Applies the Impenetrable ascended reforge to accessories
 						Grants maximum defense boost
 						Costs {0} to apply
-						'''
-					}
+						
+					'''
+			}
 
 			RelicStone: {
 				DisplayName: Relic Stone
@@ -4194,10 +4195,11 @@
 					Applies the Relic ascended reforge to magic weapons
 						The ultimate enchantment for spellcasters
 						Costs {0} to apply
-						'''
-					}
+						
+					'''
+			}
 
-			ShadowStone:{
+			ShadowStone: {
 				DisplayName: Shadow Stone
 				Tooltip:
 					'''
@@ -4218,7 +4220,7 @@
 					'''
 			}
 
-			SupersonicStone:{
+			SupersonicStone: {
 				DisplayName: Supersonic Stone
 				Tooltip:
 					'''
@@ -4228,38 +4230,39 @@
 					'''
 			}
 
-			TitanicStone:{
+			TitanicStone: {
 				DisplayName: Titanic Stone
 				Tooltip:
 					'''
 					Applies the Titanic ascended reforge to accessories
 						Grants maximum health increase
 						Costs {0} to apply
-						'''
+						
+					'''
 			}
 
 			UncontrolledStone: {
-			DisplayName: Uncontrolled Stone
+				DisplayName: Uncontrolled Stone
 				Tooltip:
 					'''
 					Applies the Uncontrolled ascended reforge to accessories
-						Grants maximum melee speed boost
-						Costs {0} to apply
-						'''
-					}
+					Grants maximum melee speed boost
+					Costs {0} to apply
+					'''
+			}
 
-					VeteranStone: {
-					DisplayName: Veteran Stone
+			VeteranStone: {
+				DisplayName: Veteran Stone
 				Tooltip:
 					'''
 					Applies the Veteran ascended reforge to ranged weapons
-						The mark of a true sharpshooter
-						Costs {0} to apply
-						'''
-					}
+					The mark of a true sharpshooter
+					Costs {0} to apply
+					'''
+			}
 
-					ExplorerBoots: {
-					DisplayName: Explorer Boots
+			ExplorerBoots: {
+				DisplayName: Explorer Boots
 				Tooltip:
 					'''
 					The user can run super fast, and even faster on sand, snow, and ash.
@@ -4716,6 +4719,7 @@
 			TrueShadowMistProj.DisplayName: True Shadow Mist Proj
 			TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
 			CactusBoulderClone.DisplayName: Cactus Boulder Clone
+			CursedBream.DisplayName: Cursed Bream
 		}
 
 		Tiles: {
@@ -5144,5 +5148,6 @@
 		}
 
 		Commands.MaxStyleCommand.Description: Maximizes the player's style stat
+		ConfigServer.Headers.Performance: Lag Reducer Header
 	}
 }

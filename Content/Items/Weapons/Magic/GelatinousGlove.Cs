@@ -2,38 +2,20 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
-using CalamityMod.Particles;
-using System;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
     public class GelatinousGlove : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            // //DisplayName.SetDefault("Desert Bow");
-            //Tooltip.SetDefault(""
-            //+ "\nTransform normal arrows in desert arrows");
-
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Arc du désert");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-            //+ "\nTransformez les flèches normales en flèches du désert");
-
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Arco Desertico");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-            //+ "\nTransforma flechas normales en flechas del deserticas");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
         public override void SetDefaults()
         {
-            Item.damage = 25;
+            Item.damage = 22;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Magic;
             Item.channel = true;
-            Item.mana = 10;
-            Item.rare = ItemRarityID.Blue;
+            Item.mana = 8;
+            Item.rare = ItemRarityID.Master;
             Item.width = 28;
             Item.height = 30;
             Item.useTime = 30;
@@ -46,6 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.autoReuse = true;
             Item.noUseGraphic = true;
             Item.knockBack = 0.1f;
+            Item.ResearchUnlockCount = 1;
             Item.master = true;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -63,7 +46,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
                 Main.projectile[p].friendly = true;
                 Main.projectile[p].hostile = false;
             }
-            //Projectile.NewProjectile(source, position, velocity, type, damage, 1, player.whoAmI);
             return false;
         }
         public override void HoldItem(Player player)

@@ -8,15 +8,14 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 {
-    // to investigate: Projectile.Damage, (8843)
     public class MisilDevourer : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Misil Devourer"); // The English name of the projectile
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5; // The length of old position to be recorded
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
+        NPC targetActual = null;
         public override void SetDefaults()
         {
             Projectile.width = 10; 
@@ -27,35 +26,35 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 1; 
             Projectile.timeLeft = 600; 
-            Projectile.alpha = 0; //255
+            Projectile.alpha = 0;
             Projectile.light = 0.5f; 
             Projectile.ignoreWater = true;
             Projectile.tileCollide = true; 
             Projectile.extraUpdates = 1; 
             AIType = ProjectileID.RocketIII;
         }
-        public override void Kill(int timeLeft)
-        {     
-            Vector2 launchVelocity = new Vector2(-4, 0); // Create a velocity moving the left.            
+        public override void OnKill(int timeLeft)
+        {
+            Vector2 launchVelocity = new Vector2(-4, 0);         
             for (int i = 0; i < Projectile.ai[1]; i++)
             {
 
                 launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
-                Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleDevourer>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0, 1);
+                Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleDevourer>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, targetActual?.whoAmI ?? -1, 1);
             }
             if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5, 1) * 16, Main.rand.Next(-1, 5) * 16), launchVelocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ApotheosisWorm"), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+            base.OnKill(timeLeft);
         }
-        public override void AI()           //this make that the projectile will face the corect way
-        {                                                           // |
+        public override void AI() 
+        {
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
 
-            for (int i = 0; i < 200; i++)
-            {
-                NPC target = Main.npc[i];
-               
-                if (!target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
+            foreach(NPC target in Main.npc)
+            { 
+                if (target.active && !target.friendly && !target.dontTakeDamage && target.defense <= 998 && !target.immortal)
                 {
+                    targetActual = target;
                     float shootToX = target.position.X + target.width * 0.5f - Projectile.Center.X;
                     float shootToY = target.position.Y - Projectile.Center.Y;
                     float distance = (float)Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
