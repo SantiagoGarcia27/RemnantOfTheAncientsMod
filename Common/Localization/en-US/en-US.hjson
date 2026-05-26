@@ -2246,7 +2246,7 @@ Mods: {
 
 			DiamondSword: {
 				DisplayName: Diamond Sword
-				Tooltip: ""
+				Tooltip: Wrong game
 			}
 
 			EmeraldSword: {
@@ -5050,17 +5050,24 @@ Mods: {
 
 				LagReducer: {
 					Label: Lag Reducer
-					Tooltip: ""
+					Tooltip:
+						'''
+						Reduce some visual effects to improve performance.
+						0: Off
+						1: Low decrease of visual effects,
+						2: Medium decrease of visual effects,
+						3: High decrease of visual effects.
+						'''
 				}
 
 				VanillaWeaponsChangesConf: {
 					Label: Vanilla Weapons Changes Conf
-					Tooltip: ""
+					Tooltip: Enable the mod balance change to vanilla items
 				}
 
 				BowReworkConf: {
 					Label: Bow Rework Conf
-					Tooltip: ""
+					Tooltip: apply charge mechanic to bows (WIP)
 				}
 
 				DropTombstomOnDeadtConf: {

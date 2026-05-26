@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         public Vector2 DashStrength = Vector2.Zero;
         public bool isSaber = false;
 
-        public override void SetDefaults(Item item)
+       /* public override void SetDefaults(Item item)
         {
             bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
             if (item.type == ItemID.ChlorophyteSaber && WeaponConf)
@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 isSaber = true;
                 DashStrength = new Vector2(1f, 0.75f);
             }
-            else if (Utils1.NameHasWord(item.Name, "Saber") && item.ModItem.Mod.Name != "RemnantOfTheAncientsMod")
+            else if (item?.Name != null && item.ModItem?.Mod?.Name is string modName && modName != "RemnantOfTheAncientsMod" && Utils1.NameHasWord(item.Name, "Saber"))
             {
                 for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
                 {
@@ -54,6 +54,55 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             }
 
             base.SetDefaults(item);
+        }*/
+        public override void SetDefaults(Item item)
+        {
+            // 1. Blindaje contra nulos y carga temprana de ContentSamples
+            if (item == null) return;
+
+            // 2. Ejecutar base
+            base.SetDefaults(item);
+
+            // 3. Evitar procesar ítems "vacíos" o aire que tML usa para inicializar
+            if (item.type == ItemID.None || item.IsAir) return;
+
+            var config = ModContent.GetInstance<ConfigServer>();
+            if (config == null) return; // Seguridad extra durante la carga
+
+            bool WeaponConf = config.VanillaWeaponsChangesConf;
+
+            if (item.type == ItemID.ChlorophyteSaber && WeaponConf)
+            {
+                isSaber = true;
+                DashStrength = new Vector2(1f, 0.75f);
+            }
+            // Simplificamos el acceso para que sea 100% seguro contra nulos
+            else if (item.ModItem != null && item.ModItem.Mod != null)
+            {
+                string modName = item.ModItem.Mod.Name;
+
+                if (modName != "RemnantOfTheAncientsMod" && !string.IsNullOrEmpty(item.Name) && Utils1.NameHasWord(item.Name, "Saber"))
+                {
+                    for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
+                    {
+                        if (item.rare == j)
+                        {
+                            float StrenghtX = j > 10 ? (float)Math.Log(j - Math.Log(j)) : (float)Math.Log(j);
+                            float StrenghtY = j > 10 ? 1.7f : (float)Math.Log(j);
+
+                            isSaber = true;
+                            DashStrength = new Vector2(StrenghtX, StrenghtY);
+                        }
+                    }
+                }
+            }
+
+            // Lógica final de proyectiles
+            if (isSaber && item.shoot == ProjectileID.None)
+            {
+                item.shoot = ModContent.ProjectileType<DamageHitbox>();
+                item.shootSpeed = 0f;
+            }
         }
 
         public static void DashEffect(Player player, int type)

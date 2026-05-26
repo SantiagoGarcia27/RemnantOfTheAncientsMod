@@ -12,9 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 	{
 		public override void SetStaticDefaults()
 		{
-			// //DisplayName.SetDefault("Topaz Sword");
-			// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée de topaze");
-			// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Topacio");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
         public override void SetDefaults()

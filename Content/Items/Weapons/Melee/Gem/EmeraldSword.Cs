@@ -14,9 +14,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Emerald Sword");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée d'émeraude");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de esmeralda");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

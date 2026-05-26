@@ -12,9 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Ruby Sword");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée rubis");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de rubí");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

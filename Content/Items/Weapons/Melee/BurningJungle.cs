@@ -30,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.UseSound = SoundID.Item45;
             Item.autoReuse = true;
             Item.value = Base.value;
-            Item.shoot = ModContent.ProjectileType<MoltenGrassSwordLeaft>();          
+            Item.shoot = ModContent.ProjectileType<MoltenLeaftBlade>();          
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

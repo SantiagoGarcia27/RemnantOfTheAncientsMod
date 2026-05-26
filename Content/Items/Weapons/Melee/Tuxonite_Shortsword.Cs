@@ -11,9 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Tuxonite Shortsword");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée Tuxonite");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada corta de Tusonita");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

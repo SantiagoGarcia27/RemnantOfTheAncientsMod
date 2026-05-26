@@ -14,11 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Sapphire Sword");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée de saphir");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de zafiro");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
         }
         public override void SetDefaults()
         {

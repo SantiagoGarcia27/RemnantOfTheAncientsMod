@@ -9,7 +9,7 @@ using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Projectiles.Melee
 {
-    public class MoltenGrassSwordLeaft : ModProjectile
+    public class MoltenLeaftBlade : ModProjectile
     {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.BladeOfGrass;
         public override void SetStaticDefaults()

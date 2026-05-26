@@ -12,9 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 	{
 		public override void SetStaticDefaults()
 		{
-			// //DisplayName.SetDefault("Topaz Sword");
-			// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Épée de topaze");
-			// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Espada de Topacio");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -27,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
 			Item.useAnimation = 18;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
-			Item.value = 1200;
+			Item.value = Item.sellPrice(silver:12);
 			Item.rare = ItemRarityID.Blue;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = false;

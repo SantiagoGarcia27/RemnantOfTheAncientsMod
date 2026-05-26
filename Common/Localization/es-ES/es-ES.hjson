@@ -5106,7 +5106,7 @@ Mods: {
 
 				BowReworkConf: {
 					Label: Rework de arcos (Experimental)
-					// Tooltip: ""
+					// Tooltip: apply charge mechanic to bows (WIP)
 				}
 
 				DropTombstomOnDeadtConf: {
