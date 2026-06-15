@@ -208,39 +208,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             return SpawnCondition.OverworldNightMonster.Chance * (!NPC.downedBoss3 ? AdjustProgresionChance(0.1f, GlobalEnum.gameStage.PreBoss) : 0f);
         }
     }
-
-
-    //public class Tuxonitezombie : BaseZombie
-    //{
-    //    static int DefenseSetBonus = 0;
-    //    static float AttackBonus = 1.00f;
-    //    static int CritBonus = 5;
-    //    public override void SetDefaults()
-    //    {
-    //        base.SetDefaults();
-    //        NPC.damage = (int)(ContentSamples.NpcsByNetId[NPCID.Zombie].damage * AttackBonus);
-           
-    //        NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritBonus > 0 ? true : false;
-    //        NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritBonus;
-    //    }
-    //    public override float SpawnChance(NPCSpawnInfo spawnInfo)
-    //    {
-    //        if (Main.hardMode) return SpawnCondition.OverworldNightMonster.Chance * 0f;
-    //        else if (NPC.downedBoss3) return SpawnCondition.OverworldNightMonster.Chance * 0.02f;
-    //        else if (NPC.downedSlimeKing) return SpawnCondition.OverworldNightMonster.Chance * 0.016f;
-    //        else return SpawnCondition.OverworldNightMonster.Chance * 0f;
-    //    }
-    //    public override void OnSpawn(IEntitySource source)
-    //    {
-    //        int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<TuxoniteHelmet>()].defense;
-    //        int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<Tuxonite_chesplate>()].defense;
-    //        int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<Tuxonite_Legging>()].defense;
-    //        int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;
-    //        NPC.defense += Defense;
-    //    }
-
-    //}
-
     public class Shadowzombie : BaseZombie
     {
         public override void SetDefaults()
@@ -261,7 +228,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             SetArmor(ItemID.CrimsonHelmet, ItemID.CrimsonScalemail, ItemID.CrimsonGreaves);
             SetStats(DamageBonus: 1.09f);
-            NPC.lifeRegen = 100;
             base.SetDefaults();
         }
         int RegenCounter = 0;
@@ -823,7 +789,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             BannerItem = Item.BannerToItem(Banner);
 
            
-            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritChance > 0 ? true : false;
+            NPC.GetGlobalNPC<RemnantGlobalNPC>().CanMakeCrit = CritChance > 0;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().CritChance = CritChance;
             NPC.GetGlobalNPC<RemnantGlobalNPC>().DamageReduction = DamageReduction;
         }
@@ -904,60 +870,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
                 initialChance = 0;
             return initialChance;
         }
-        //public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        //{
-        //    CustomSpawnCondition SpawnConditions = RemnantGlobalNPC.SpawnConditions;
-        //    float postCondition = SpawnConditions.ChancePostCondition * SpawnCondition.OverworldNightMonster.Chance;
-        //    float defaultChance = SpawnConditions.ChanceDefault * SpawnCondition.OverworldNightMonster.Chance;
-
-
-        //    NPC npc = ContentSamples.NpcsByNetId[SpawnConditions.Type];
-        //    if (SpawnConditions.GameStage == GlobalEnum.gameStage.None)
-        //    {
-        //        if(SpawnConditions.Condition)
-        //        {
-        //            return postCondition;
-        //        }
-        //        return defaultChance;
-        //    }
-        //    else
-        //    {
-        //        if(SpawnConditions.HardmodeOreZombieLevel > 0)
-        //        {
-        //            if (Main.hardMode)
-        //            {
-        //                if (RemnantOfTheAncients.CalamityMod != null )
-        //                {
-        //                    if (CalamityConfigEnabled())
-        //                    {
-        //                        if (Utils1.MechBossDefeatedTierReworkForClamity() >= SpawnConditions.HardmodeOreZombieLevel)
-        //                            return postCondition;
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    if (SpawnConditions.Condition)
-        //                    {
-        //                        return postCondition;
-        //                    }
-        //                    return defaultChance;
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if(Utils1.IsGameStage(SpawnConditions.GameStage))
-        //            {
-        //                if (SpawnConditions.Condition)
-        //                {
-        //                    return SpawnConditions.ChancePostCondition;
-        //                }
-        //                return defaultChance;
-        //            }
-        //        }
-        //    }      
-        //    return 0;
-        //}
+       
         [JITWhenModsEnabled("CalamityMod")]
         public bool CalamityConfigEnabled() => ModContent.GetInstance<CalamityServerConfig>().EarlyHardmodeProgressionRework;
     }

@@ -1,8 +1,9 @@
-using Terraria.ModLoader;
-using Terraria;
+using RemnantOfTheAncientsMod.Common.DataSet;
+using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using System.Linq;
-using RemnantOfTheAncientsMod.Common.Global.Items;
+using Terraria;
+using Terraria.ModLoader;
 
 public class InfoDisplayPlayer : ModPlayer
 {
@@ -28,7 +29,7 @@ public class InfoDisplayPlayer : ModPlayer
 
     public override void PreUpdate()
     {
-        bool n = Main.LocalPlayer.inventory.Any(item => RemnantGlobalItem.Phones.Contains(item.type) || item .type == ModContent.ItemType<PlayerStatViewer>())? true: false;
+        bool n = Main.LocalPlayer.inventory.Any(item => RemnantItemTags.Phones.Contains(item.type) || item.type == ModContent.ItemType<PlayerStatViewer>());
 
         showMaxMinion = n;
         showMaxSentry = n;

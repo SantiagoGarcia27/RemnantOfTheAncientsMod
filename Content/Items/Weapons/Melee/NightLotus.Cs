@@ -1,13 +1,14 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -36,7 +37,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			Item.autoReuse = true;
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
-            Item.GetGlobalItem<RemnantGlobalItem>().SecondClickWeapons.Add(ModContent.ItemType<GravediggersSickle>());
+            RemnantItemTags.SecondClickWeapons.Add(ModContent.ItemType<GravediggersSickle>());
+            //Item.GetGlobalItem<RemnantGlobalItem>().SecondClickWeapons.Add(ModContent.ItemType<GravediggersSickle>());
             Item.shoot = ModContent.ProjectileType<NightLotusSickleSwingProjectile>();
         }
         public override bool CanUseItem(Player player)

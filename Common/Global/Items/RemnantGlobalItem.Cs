@@ -1,28 +1,22 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.DataSet;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
-using Terraria.UI;
-using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
-using ReLogic.Content;
-using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Common.RemPlayer;
-using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
-using SangarUtilities.Common.UtilsTweaks;
-using System.Linq;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
+using SangarUtilities.Common.UtilsTweaks;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
@@ -45,278 +39,28 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public float ReloadCounter = 0;
 		public float ReloadCounterMax = 0;
 
+        public bool WeaponConf => ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 
-
-		public override bool InstancePerEntity => true;
-		public int[] lanceId =
-		[
-			ItemID.Spear,
-			ItemID.Trident,
-			ItemID.DarkLance,
-			ItemID.TheRottedFork,
-			ItemID.ThunderSpear,
-			ItemID.Swordfish,
-			ItemID.CobaltNaginata,
-			ItemID.PalladiumPike,
-			ItemID.MythrilHalberd,
-			ItemID.OrichalcumHalberd,
-			ItemID.AdamantiteGlaive,
-			ItemID.TitaniumTrident,
-			ItemID.ChlorophytePartisan,
-			ItemID.MushroomSpear,
-			ItemID.ObsidianSwordfish,
-			ItemID.NorthPole,
-			ItemID.JoustingLance,
-			ItemID.HallowJoustingLance,
-			ItemID.ShadowJoustingLance,
-			ItemID.UnholyTrident,
-			ItemID.Gungnir
-		];
-		public List<int> CoinsId =
-		[
-			ItemID.CopperCoin,
-			ItemID.SilverCoin,
-			ItemID.GoldCoin,
-			ItemID.PlatinumCoin
-		];
-		public List<int> SecondClickWeapons =
-		[
-			ItemID.BookofSkulls,
-			ItemID.FlowerofFire,
-			ItemID.FlowerofFrost,
-			ItemID.SharpTears,
-			ItemID.AmethystStaff,
-			ItemID.TopazStaff,
-			ItemID.SapphireStaff,
-			ItemID.EmeraldStaff,
-			ItemID.RubyStaff,
-			ItemID.DiamondStaff,
-			ItemID.AmberStaff,
-			ItemID.BubbleGun,
-			ItemID.AquaScepter,
-			ItemID.WandofFrosting,
-			ItemID.WandofSparking,
-		];
-		public Dictionary<int, int> GemStaffs = new()
-		{
-			{ ItemID.AmethystStaff,0},
-			{ ItemID.TopazStaff ,1},
-			{ ItemID.EmeraldStaff,2 },
-			{ ItemID.SapphireStaff,3 },
-			{ ItemID.RubyStaff,4 },
-			{ ItemID.DiamondStaff,5 },
-			{ ItemID.AmberStaff,6 }
-		};
-		public static List<int> Phones =
-		[
-			ItemID.CellPhone,
-			ItemID.Shellphone,
-			ItemID.ShellphoneDummy,
-			ItemID.ShellphoneHell,
-			ItemID.ShellphoneOcean,
-			ItemID.ShellphoneSpawn,
-			ItemID.ShellPileBlock
-		];
-		public List<int> LowFood = [];
-		public List<int> MediumFood = [];
-		public List<int> HightFood = [];
-		public List<int> LowBait = [];
-		public List<int> MediumBait = [];
-		public List<int> HightBait = [];
-		public List<int> MusicBox = [];
+        public override bool InstancePerEntity => true;
+        
 		public override void SetStaticDefaults()
 		{
 			CurrentAmmoMax = 0;
 		}
 
-		public void FillMusicBox()
-		{
-			List<int> musicBox =
-			[
-				576,2742,2742,3044,3370,3371,3869,4237,
-				4421,4606,4979,4985,5006,5044,5112,5362,
-				ModContent.ItemType<DesertMusicBox>(),
-				ModContent.ItemType<FrozenMusicBox>(),
-				ModContent.ItemType<Frozenp2MusicBox>(),
-				ModContent.ItemType<InfernalMusicBox>()
-			];
-			 ListUtils.AddSecure(MusicBox, musicBox);
-			for (int i = 562; i <= 574; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-
-			for (int i = 1596; i <= 1610; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-
-			for (int i = 1963; i <= 1965; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-
-			for (int i = 3235; i <= 3237; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-
-			for (int i = 4077; i <= 4082; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-
-			for (int i = 4356; i <= 4358; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-
-			for (int i = 4990; i <= 4992; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-
-			for (int i = 5014; i <= 5040; i++)
-				 ListUtils.AddSecure(ref MusicBox, i);
-		}
-		public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 		public override void SetDefaults(Item item)
 		{
-			bool Calamity = RemnantOfTheAncientsMod.CalamityMod != null;
-
 			if (WeaponConf)
 			{
-				FillMusicBox();
-				if (SecondClickWeapons.Contains(item.type))
+				
+				if (RemnantItemTags.SecondClickWeapons.Contains(item.type))
 				{
 					ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
 				}
-
-				else if (item.type == ItemID.DaedalusStormbow)
-				{
-					item.DefaultToRangedWeapon(item.shoot, AmmoID.Arrow, 24, item.shootSpeed);
-					item.SetWeaponValues(35, item.knockBack);
-				}
-				else if (item.type == ItemID.FetidBaghnakhs)
-				{
-					item.damage = 50;
-					item.useTime = 11;
-					item.useAnimation = 11;
-					item.scale = 1.80f;
-				}
-				else if (item.type == ItemID.HeatRay)
-				{
-					item.damage = 200;
-					item.useTime = 58;
-					item.useAnimation = 58;
-				}
-				else if (item.type == ItemID.NightsEdge)
-				{
-					if (RemnantOfTheAncientsMod.CalamityMod == null)
-						item.damage = 45;
-				}
-				else if (item.type == ItemID.Minishark)
-				{
-					item.knockBack = 0.1f;
-				}
-				else if (item.type == ItemID.DD2BallistraTowerT1Popper) item.damage = 45;
-				else if (item.type == ItemID.DD2BallistraTowerT2Popper) item.damage = 85;
-				else if (item.type == ItemID.DD2BallistraTowerT3Popper) item.damage = 200;
-				else if (item.type == ItemID.DD2FlameburstTowerT1Popper) item.damage = 30;
-				else if (item.type == ItemID.DD2FlameburstTowerT2Popper) item.damage = 60;
-				else if (item.type == ItemID.DD2FlameburstTowerT3Popper) item.damage = 100;
-				else if (item.type == ItemID.DD2ExplosiveTrapT1Popper) item.damage = 40;
-				else if (item.type == ItemID.DD2ExplosiveTrapT2Popper) item.damage = 80;
-				else if (item.type == ItemID.DD2ExplosiveTrapT3Popper) item.damage = 250;
-				else if (item.type == ItemID.DD2LightningAuraT1Popper) item.damage = 10;//30
-				else if (item.type == ItemID.DD2LightningAuraT2Popper) item.damage = 16;//50
-				else if (item.type == ItemID.DD2LightningAuraT3Popper) item.damage = 50;//150
-
-				else if (item.type == ItemID.PearlwoodBow)
-				{
-					item.damage = 30;
-					item.shootSpeed = 10;
-					item.useTime = 8;
-					item.useAnimation = 70;
-				}
-				else if (item.type == ItemID.FlinxFurCoat)
-				{
-					item.defense = 3;
-				}
-				else if (item.type == ItemID.WeatherPain)
-				{
-					item.knockBack = 5;
-				}
-				else if (item.type == ItemID.BookofSkulls)
-				{
-					item.mana = 15;
-					item.damage += 5;
-				}
-				else if (item.type == ItemID.InfernoFork)
-				{
-					item.crit = 76; // da 80 en el juego (valor buscado - 4)
-				}
-				else if (item.type == ItemID.ClingerStaff)
-				{
-					item.mana = 10;
-				}
-				else if (item.type == ItemID.ToxicFlask)
-				{
-					item.useAnimation = 25;
-					item.useTime = 7;
-					item.mana += 10;
-					item.reuseDelay = 40;
-				}
-				else if (item.type == ItemID.MagicDagger)
-				{
-					item.damage -= 3;
-					item.mana = 4;
-				}
-				else if (item.type == ItemID.ZapinatorGray)
-				{
-					item.damage = 25;
-					item.useAnimation = 16;
-					item.useTime = 14;
-				}
-				else if (item.type == ItemID.ZapinatorOrange)
-				{
-					item.damage = 60;
-					item.useAnimation = 16;
-					item.useTime = 14;
-				}
-				else if (item.type == ItemID.ThrowingKnife || item.type == ItemID.PoisonedKnife || item.type == ItemID.BoneDagger)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.Shuriken || item.type == ItemID.StarAnise)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.SpikyBall)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.Bone)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.RottenEgg)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.Grenade || item.type == ItemID.StickyGrenade || item.type == ItemID.BouncyGrenade || item.type == ItemID.Beenade || item.type == ItemID.PartyGirlGrenade)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.Javelin || item.type == ItemID.BoneJavelin)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.PaperAirplaneA || item.type == ItemID.PaperAirplaneB)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.MolotovCocktail)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if (item.type == ItemID.AleThrowingGlove)
-				{
-					item.DamageType = DamageClass.Throwing;
-				}
-				else if(item.type == ItemID.AbigailsFlower)
-				{
-					item.damage /= 2;
-				}
+		
 				if (item.maxStack > 1 && item.maxStack < 9999)
 				{
-					if (!CoinsId.Contains(item.type))
+					if (!RemnantItemTags.CoinsId.Contains(item.type))
 					{
 						item.maxStack = (int)ModContent.GetInstance<ConfigServer>().MaxItemStackConf;
 					}
@@ -334,12 +78,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
 				}
 
-				if (CanCharge)
+                if (CanCharge)
 				{
 					item.channel = true;
 					ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
 				}
-				if (SecondClickWeapons.Contains(item.type))
+				if (RemnantItemTags.SecondClickWeapons.Contains(item.type))
 				{
 					item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
 				}
@@ -353,19 +97,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 		public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-			if (WeaponConf)
-			{
-				if (item.type == ItemID.PearlwoodBow)
-				{
-					type = ProjectileID.JestersArrow;
-					base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
-				}
-			}
+			if (!WeaponConf) base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
 
-
-			else base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
-		}
+			else if (item.type == ItemID.PearlwoodBow) type = ProjectileID.JestersArrow;
+			
+            base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
+        }
 
 
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -414,250 +151,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 
 			}
-
-
-
-			if (item.type == ItemID.PearlwoodBow)
-			{
-				return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
-			}
-			else if (item.type == ItemID.BabyBirdStaff)
-			{
-				var a = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
-				Main.projectile[a].minionSlots = 0.5f;
-				var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2, Main.myPlayer, 0, 0, 0);
-				Main.projectile[p].minionSlots = 0.5f;
-				Main.projectile[p].alpha = 200;
-				return false;
-			}
-			else if (item.type == ItemID.BookofSkulls)
-			{
-				if (player.whoAmI == Main.myPlayer)
-				{
-					float PlayerManaDiscounMultpier = player.statManaMax2 / 20;
-					int Shootproj = ModContent.ProjectileType<BookOfSkullHeldProj>();
-					if (player.altFunctionUse == 2)
-					{
-						item.mana = player.statManaMax2;
-						if (player.ownedProjectileCounts[Shootproj] <= 0)
-						{
-							Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y);
-						}
-						return false;
-					}
-					else
-					{
-						item.mana = 15;
-						return true;
-					}
-				}
-			}
-			else if (item.type == ItemID.AquaScepter)
-			{
-				if (player.whoAmI == Main.myPlayer)
-				{
-
-					int Shootproj = ModContent.ProjectileType<AquaScepterHeldProj>();
-					if (player.altFunctionUse == 2)
-					{
-						if (player.ownedProjectileCounts[Shootproj] <= 0)
-						{
-							Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, item.mana);
-						}
-						return false;
-					}
-				}
-			}
-			else if (item.type == ItemID.WandofFrosting || item.type == ItemID.WandofSparking)
-			{
-				if (player.whoAmI == Main.myPlayer)
-				{
-
-					int Shootproj = ModContent.ProjectileType<WandOfSparkingHeldProj>();
-					if (player.altFunctionUse == 2)
-					{
-						if (player.ownedProjectileCounts[Shootproj] <= 0)
-						{
-							int manacost = player.statManaMax2 / 2;
-							if (player.statMana >= manacost)
-							{
-								player.statMana -= manacost;
-								var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, item.mana);
-								Main.projectile[p].localAI[0] = item.shoot;
-							}
-						}
-						return false;
-					}
-				}
-			}
-			else if (item.type == ItemID.FrostStaff)
-			{
-				double ecuacionhonda = Utils1.GenerateWave(3f * 16, player.position.X, counter);
-				if (counter % 2 == 0)
-				{
-					var p = Projectile.NewProjectile(source, player.position - new Vector2(0, (float)ecuacionhonda - 2 * 16f), velocity, 174, damage / 4, knockback, Main.myPlayer);
-					Main.projectile[p].stepSpeed /= 2;
-				}
-				Projectile.NewProjectile(source, player.position + new Vector2(0, 2 * 16f), velocity, type, damage, knockback, Main.myPlayer);
-				counter++;
-				return false;
-			}
-			else if (item.type == ItemID.FlowerofFire || item.type == ItemID.FlowerofFrost)
-			{
-				if (player.altFunctionUse != 2)
-				{
-					item.useTime = item.type == ItemID.FlowerofFire ? 16 : 12;
-					item.useAnimation = item.type == ItemID.FlowerofFire ? 16 : 12;
-					item.mana = item.type == ItemID.FlowerofFire ? 12 : 11;
-					item.useStyle = ItemUseStyleID.Swing;
-					item.shootSpeed = item.type == ItemID.FlowerofFire ? 7.5f : 9f;
-					item.autoReuse = true;
-				}
-				else
-				{
-					item.useTime = 6;
-					item.useAnimation = 6;
-					item.useStyle = ItemUseStyleID.Shoot;
-					item.shootSpeed = item.type == ItemID.FlowerofFire ? 1f : 2f;
-					item.channel = true;
-					item.mana = 3;
-					item.autoReuse = true;
-					int p = Projectile.NewProjectile(source, position, velocity, ProjectileID.Flames, damage / 2, knockback, player.whoAmI, item.type == ItemID.FlowerofFire ? 2 : 1);
-					Main.projectile[p].DamageType = DamageClass.Magic;
-					if (player.ownedProjectileCounts[ModContent.ProjectileType<FlowerHeldProj>()] <= 0)
-					{
-						Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FlowerHeldProj>(), 0, 0, player.whoAmI, item.type == ItemID.FlowerofFire ? 1 : 2);
-					}
-					return false;
-
-				}
-
-			}
-			else if (item.type == ItemID.SharpTears)
-			{
-				int Shootproj = ModContent.ProjectileType<BloodThornHeldProj>();
-				if (player.altFunctionUse == 2)
-				{
-					item.mana = 90;
-					if (player.ownedProjectileCounts[Shootproj] <= 0)
-					{
-						Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y);
-					}
-					return false;
-				}
-				else
-				{
-					item.mana = 20;
-					return true;
-				}
-			}
-			else if (item.type == ItemID.CrystalVileShard)
-			{
-				float numberProjectiles = 2;
-				float rotation = MathHelper.ToRadians(10);
-
-				position += Vector2.Normalize(velocity);
-
-				for (int i = 0; i < numberProjectiles; i++)
-				{
-					Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-					int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, 491, damage, knockback, player.whoAmI, 0, 0);
-					Main.projectile[p].stepSpeed = 1f;
-					Main.projectile[p].DamageType = DamageClass.Magic;
-				}
-			}
-			else if (item.type == ItemID.NettleBurst)
-			{
-				float numberProjectiles = 2;
-				float rotation = MathHelper.ToRadians(10);
-
-				position += Vector2.Normalize(velocity);
-				if (new Random().Next(4) == 1)
-				{
-					for (int i = 0; i < numberProjectiles; i++)
-					{
-						Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-						int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, 277, damage, knockback, player.whoAmI, 0, 0);
-						Main.projectile[p].stepSpeed = 1f;
-						Main.projectile[p].friendly = true;
-						Main.projectile[p].hostile = false;
-						Main.projectile[p].DamageType = DamageClass.Magic;
-					}
-				}
-			}
-			else if (item.type == ItemID.ShadowbeamStaff)
-			{
-				float numberProjectiles = 2;
-				float rotation = MathHelper.ToRadians(10);
-
-				position += Vector2.Normalize(velocity);
-
-				for (int i = 0; i < numberProjectiles; i++)
-				{
-					Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-					int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, type, damage, knockback, player.whoAmI);
-					Main.projectile[p].stepSpeed = 1f;
-					Main.projectile[p].friendly = true;
-					Main.projectile[p].hostile = false;
-					Main.projectile[p].DamageType = DamageClass.Magic;
-				}
-
-			}
-			else if (GemStaffs.TryGetValue(item.type, out int value))
-			{
-
-				if (player.altFunctionUse == 2)
-				{
-					if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0 && player.whoAmI == Main.myPlayer)
-					{
-						player.statMana -= item.mana * 3;
-						Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, value);
-					}
-					return false;
-				}
-
-
-			}
-			else if (item.type == ItemID.UnholyTrident)
-			{
-				if (player.altFunctionUse == 2)
-				{
-					item.mana = 0;
-					return false;
-				}
-				else
-				{
-					item.mana = 18;
-					item.useStyle = ItemUseStyleID.Shoot;
-				}
-			}
-			else if (item.type == ItemID.BubbleGun)
-			{
-				if (player.altFunctionUse == 2)
-				{
-					item.reuseDelay = 70;
-					int p = Projectile.NewProjectile(source, position, velocity + new Vector2(0, 5), ModContent.ProjectileType<SharknadoBoltClone>(), item.damage * 2, 0, player.whoAmI);
-					Main.projectile[p].friendly = true;
-					Main.projectile[p].hostile = !Main.projectile[p].friendly;
-					return false;
-				}
-				else
-				{
-					item.reuseDelay = 0;
-				}
-			}
-			else if (item.type == ItemID.PygmyStaff)
-			{
-				if (Main.rand.NextBool(2))
-				{
-					player.AddBuff(BuffID.Pygmies, 10);
-					Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<PygmyMelee>(), damage, knockback, player.whoAmI);
-					return false;
-				}
-			}
-
-			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-		}
+            return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+        }
 
 
 		public void AddToDashWeaponsLists(Item item)
@@ -667,7 +162,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public void AddVanilaSpear()
 		{
-			 ListUtils.AddSecure(SpearsList, lanceId);
+			 ListUtils.AddSecure(SpearsList, RemnantItemTags.lanceId);
 		}
 
 		public void AddModedSpearGeneric(Item item)
@@ -703,7 +198,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			if (WeaponConf)
 			{
 				if (item.damage > 0 && item.axe < 1 && item.pick < 1 && item.DamageType == DamageClass.Melee ||
-					(SecondClickWeapons.Contains(item.type) || item.type == ItemID.UnholyTrident) ||
+					(RemnantItemTags.SecondClickWeapons.Contains(item.type) || item.type == ItemID.UnholyTrident) ||
 					item.GetGlobalItem<CustomTooltip>().Lance)
 				{
 					return true;
@@ -714,8 +209,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public override bool? UseItem(Item item, Player player)
 		{
-			bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-
 			if (player.altFunctionUse == 2 && WeaponConf)
 			{
 				if (SpearsList.Contains(item.type))
@@ -751,68 +244,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		}
 		public override void Load()
 		{
-			On_Item.CheckLavaDeath += On_Item_CheckLavaDeath;
-			On_ItemSlot.PickItemMovementAction += AllowCoinAndAmmoPlacement;
-			base.Load();
+			On_ItemSlot.PickItemMovementAction += AllowCoinAndAmmoPlacement;	
+            base.Load();
 		}
 
-		private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
-		{
-
-			if (Reaper.ReaperMode)
-			{
-				if (Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().AllSoulsAreActive())
-				{
-					if (item.type == ItemID.ReaperHood)
-					{
-						Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Hood>(), 1);
-					}
-					if (item.type == ItemID.ReaperRobe)
-					{
-						Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Robe>(), 1);
-					}
-					if (item.type == ItemID.NecroGreaves)
-					{
-						Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Pants>(), 1);
-						item.rare = ItemRarityID.White;
-					}
-				}
-				if (item.type == ItemID.GuideVoodooDoll && item.rare == ItemRarityID.White)
-				{
-					int a = Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ItemID.GuideVoodooDoll, 1);
-					Main.item[a].rare = ItemRarityID.Blue;
-				}
-			}
-			orig(item, i);
-		}
-
-
-		float counter;
-
-		public List<Mod> ModsWith30Endless =
-		[
-			RemnantOfTheAncientsMod.FargowiltasMod
-		];
-		public override void UpdateInventory(Item item, Player player)
-		{
-			if (Reaper.ReaperMode)
-			{
-				ReaperGlobalItem.ReaperSetDefaut(item);
-			}
-			ReaperGlobalItem.ReaperConsumable(item,player);
-
-
-			if (Phones.Contains(item.type))
-			{
+        public override void UpdateInventory(Item item, Player player)
+		{		
+			if (RemnantItemTags.Phones.Contains(item.type))
 				player.GetModPlayer<InfoDisplayPlayer>().showMaxMinion = true;
-			}
-
-			foreach (Mod mod in ModsWith30Endless)
+			
+			foreach (Mod mod in RemnantItemTags.ModsWith30Endless)
 			{
-				if (mod != null)
-				{
-					AddEndlessEffectOnInventory(item, player);
-				}
+				if (mod != null) AddEndlessEffectOnInventory(item, player);
 			}
 		}
 
@@ -835,8 +278,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 			}
 
-
-
 			if (CanCharge)
 			{
 				RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax;
@@ -847,35 +288,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 		private int AllowCoinAndAmmoPlacement(On_ItemSlot.orig_PickItemMovementAction orig, Item[] inv, int context, int slot, Item checkItem)
 		{
-			if (context == 1 && (IsCoin || FixCoin(checkItem)))
-			{
-				return 0;
-			}
-			if (context == 2 && IsAmmo)
-			{
-				return 0;
-			}
+			if (context == 1 && (IsCoin || FixCoin(checkItem))) return 0;
+			if (context == 2 && IsAmmo) return 0;
+			
 			return orig(inv, context, slot, checkItem);
 		}
 		public static bool FixCoin(Item item)
 		{
 			List<int> coins = [ModContent.ItemType<Terracoin>()];
-			if (coins.Contains(item.type))
-			{
-				return true;
-			}
-			return false;
+			return coins.Contains(item.type);
 		}
 
 		public static void AddEndlessEffectOnInventory(Item item, Player player)
 		{
-			if (item.IsAir)
-				return;
+			if (item.IsAir) return;
 
 			if (item.buffTime >= (int)Utils1.FormatTimeToTick(14, 0, 0, 0) && item.buffType != 0)
 				player.AddBuff(item.buffType, 2);
-
-
 		}
 
 		public static List<Asset<Texture2D>> oldTexture = [];
@@ -884,55 +313,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			if (Utils1.IsAprilFoolDay() && ModContent.GetInstance<ConfigClient>().AprilFoolsDay)
 			{
 				int texture;
-				if (item.pick > 0)
-				{
-					texture = 3509;
-				}
-				else if (item.axe > 0)
-				{
-					texture = 3506;
-				}
-				else if (item.hammer > 0)
-				{
-					texture = 3505;
-				}
-				else if (item.DamageType == DamageClass.Magic)
-				{
-					texture = 3069;
-				}
-				else if (item.DamageType == DamageClass.Ranged)
-				{
-					texture = item.ammo > 0 ? 40 : 39;
-				}
-				else if (item.DamageType == DamageClass.Summon)
-				{
-					texture = 1309;
-				}
-				else if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed)
-				{
-					texture = 24;
-				}
-				else if (item.DamageType == DamageClass.SummonMeleeSpeed)
-				{
-					texture = 4672;
-				}
-				else if (item.accessory)
-				{
-					texture = 3068;
-				}
-				else if (item.defense > 0)
-				{
-					texture = 728;
-				}
-				else if (item.buffType > 0)
-				{
-					texture = 28;
-				}
-				else
-				{
-					texture = 2;
-				}
-
+				if (item.pick > 0) texture = 3509;
+				else if (item.axe > 0) texture = 3506;
+				else if (item.hammer > 0) texture = 3505;		
+				else if (item.DamageType == DamageClass.Magic) texture = 3069;		
+				else if (item.DamageType == DamageClass.Ranged) texture = item.ammo > 0 ? 40 : 39;	
+				else if (item.DamageType == DamageClass.Summon) texture = 1309;	
+				else if (item.DamageType == DamageClass.Melee || item.DamageType == DamageClass.MeleeNoSpeed) texture = 24;
+				else if (item.DamageType == DamageClass.SummonMeleeSpeed) texture = 4672;
+				else if (item.accessory) texture = 3068;			
+				else if (item.defense > 0) texture = 728;
+				else if (item.buffType > 0) texture = 28;
+				else texture = 2;
+				
 				TextureAssets.Item[item.type] = ModContent.Request<Texture2D>("Terraria/Images/Item_" + texture);
 				spriteBatch.Draw((Texture2D)ModContent.Request<Texture2D>("Terraria/Images/Item_" + texture), new Vector2(0, 0), default);
 
@@ -958,17 +351,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			int NotConsumeAmmoChance = player.GetModPlayer<RemnantPlayer>().NotConsumeAmmoChance;
 			float selection = Main.rand.NextFloat(0, 100);
 
-			if (selection <= NotConsumeAmmoChance)
-			{
-				return false;
-			}
-			else
-				return base.CanConsumeAmmo(weapon, ammo, player);
+			if (selection <= NotConsumeAmmoChance) return false;
+			else return base.CanConsumeAmmo(weapon, ammo, player);
 		}
 
 		public override bool CanUseItem(Item item, Player player)
 		{
-			WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
 			return base.CanUseItem(item, player);
 		}
 		public override float UseSpeedMultiplier(Item item, Player player)

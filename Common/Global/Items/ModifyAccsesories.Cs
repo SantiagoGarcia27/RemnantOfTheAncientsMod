@@ -1,4 +1,5 @@
 using CalamityMod;
+using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -90,8 +91,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     styleItem.StyleStat = 10;
                 }
                 
-                item.GetGlobalItem<RemnantGlobalItem>().FillMusicBox();
-                if (item.GetGlobalItem<RemnantGlobalItem>().MusicBox.Contains(item.type))
+                if (RemnantItemTags.MusicBox.Contains(item.type))
                 {
                     styleItem.StyleStat = 4;
                 }

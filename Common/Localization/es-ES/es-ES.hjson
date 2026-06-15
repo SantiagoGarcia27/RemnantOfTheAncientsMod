@@ -4590,6 +4590,7 @@ Mods: {
 			// TurtleZombie.DisplayName: Turtle Zombie
 			// BeetleZombie.DisplayName: Beetle Zombie
 			// SolarZombie.DisplayName: Solar Zombie
+			// GemstoneCrusher.DisplayName: Gemstone Crusher
 		}
 
 		Projectiles: {
@@ -4755,6 +4756,7 @@ Mods: {
 			// TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
 			// CactusBoulderClone.DisplayName: Cactus Boulder Clone
 			// CursedBream.DisplayName: Cursed Bream
+			// MoltenLeaftBlade.DisplayName: Molten Leaft Blade
 		}
 
 		Tiles: {

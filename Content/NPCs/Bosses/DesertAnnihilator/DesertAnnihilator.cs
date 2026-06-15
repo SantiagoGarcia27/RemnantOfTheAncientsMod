@@ -125,6 +125,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         public static bool NoAI = DificultyUtils.InfernumMode;
         public override void AI()
         {
+            NPC.frame.Y = 0;
             NPC.TargetClosest(true);
             currentTarget = Main.player[NPC.target];
 
@@ -194,6 +195,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         float inertia = 0.95f;
         public void MovementAI()
         {
+            ResetNPCFrameAndRotation();
             // Reset NPC.ai[1] if it falls within a certain range
             if (NPC.ai[1] >= 1f && NPC.ai[1] <= 3f)
             {

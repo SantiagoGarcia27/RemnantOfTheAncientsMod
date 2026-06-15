@@ -1,18 +1,19 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.DataSet;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
+using System.IO;
+using System.Linq;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
-using FargowiltasSouls.Core.Toggler;
-using System.IO;
-using MonoMod.Cil;
-using Mono.Cecil.Cil;
-using System.Linq;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -98,6 +99,8 @@ namespace RemnantOfTheAncientsMod
         public override void PostSetupContent()
         {
             fastPlataformOverride();
+            RemnantItemTags.MusicBox = RemnantItemTags.FillMusicBox();
+            WikiHelper.ExportAllContentCSV();
             base.PostSetupContent();
         }
         public static int GetMaxRarity()

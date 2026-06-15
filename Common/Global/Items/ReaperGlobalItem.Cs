@@ -1,6 +1,7 @@
 using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.World;
@@ -20,7 +21,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public float newsize = 0;
 
 		public readonly float ReaperWeaponScale = 2.5f;
-		public static float currentScale = 1; 
+		public static float currentScale = 1;
+
+        public override void Load()
+        {
+            On_Item.CheckLavaDeath += On_Item_CheckLavaDeath;
+            base.Load();
+        }
+
+        public override void UpdateInventory(Item item, Player player)
+        {
+            if (Reaper.ReaperMode) ReaperSetDefaut(item);
+
+            ReaperConsumable(item, player);
+
+            //ReaperConsumable(item, player);
+            base.UpdateInventory(item, player);
+        }
 
 		public override void ModifyItemScale(Item item, Player player, ref float scale)
 		{
@@ -156,5 +173,35 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				}
 			}
 		}
-	}
+
+        private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
+        {
+
+            if (Reaper.ReaperMode)
+            {
+                if (Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().AllSoulsAreActive())
+                {
+                    if (item.type == ItemID.ReaperHood)
+                    {
+                        Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Hood>(), 1);
+                    }
+                    if (item.type == ItemID.ReaperRobe)
+                    {
+                        Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Robe>(), 1);
+                    }
+                    if (item.type == ItemID.NecroGreaves)
+                    {
+                        Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Pants>(), 1);
+                        item.rare = ItemRarityID.White;
+                    }
+                }
+                if (item.type == ItemID.GuideVoodooDoll && item.rare == ItemRarityID.White)
+                {
+                    int a = Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ItemID.GuideVoodooDoll, 1);
+                    Main.item[a].rare = ItemRarityID.Blue;
+                }
+            }
+            orig(item, i);
+        }
+    }
 }
