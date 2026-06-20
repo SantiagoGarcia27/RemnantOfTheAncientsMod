@@ -4722,6 +4722,10 @@ Mods: {
 			CactusBoulderClone.DisplayName: Cactus Boulder Clone
 			CursedBream.DisplayName: Cursed Bream
 			MoltenLeaftBlade.DisplayName: Molten Leaft Blade
+			GemstoneCrusherProj_Diamond.DisplayName: Gemstone Crusher Proj_ Diamond
+			GemstoneCrusherProj_Emerald.DisplayName: Gemstone Crusher Proj_ Emerald
+			GemstoneCrusherProj_Ruby.DisplayName: Gemstone Crusher Proj_ Ruby
+			GemstoneCrusherProj_Sapphire.DisplayName: Gemstone Crusher Proj_ Sapphire
 		}
 
 		Tiles: {

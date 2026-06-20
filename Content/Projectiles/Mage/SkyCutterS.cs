@@ -10,10 +10,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
 {
     public class SkyCutterS : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("SkyCutterS"); 
-        }
         public override void SetDefaults()
         {
             Projectile.width = 46;     

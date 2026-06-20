@@ -1,6 +1,8 @@
 ﻿using CalamityMod.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -14,7 +16,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
     {
         public override void SetStaticDefaults()
         {
-            //Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.BlueSlime];
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.NPCBestiaryDrawModifiers value = new()
@@ -29,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         }
         public override void SetDefaults()
         {
-            NPC.lifeMax = 750;
+            NPC.lifeMax = 500;
             NPC.damage = 20;
             NPC.width = 60;
             NPC.height = 60;
@@ -41,8 +42,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.lavaImmune = true;
-            NPC.noGravity = true;
-            NPC.noTileCollide = true;
+            NPC.noGravity = false;
+            NPC.noTileCollide = false;
             NPC.netAlways = true;
             NPC.aiStyle = -1;
             base.SetDefaults();
@@ -64,10 +65,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         int stompTimer = (int)Utils1.FormatTimeToTick(Second: 2);
         int stompColdownTimer = (int)Utils1.FormatTimeToTick(Second: 6);
 
-        int stompActivationTimmerTrigger = (int)Utils1.FormatTimeToTick(Second: 10);
+        int stompActivationTimmerTrigger = (int)Utils1.FormatTimeToTick(Second: 20);
         int shootTimmerTrigger = (int)Utils1.FormatTimeToTick(Second: 5);
-        int spawnTimmerTrigger = (int)Utils1.FormatTimeToTick(Second: 10);
+        int spawnTimmerTrigger = (int)Utils1.FormatTimeToTick(Second: 15);
         bool touchFloor => DistanceUtils.ExistTileSolid(new Vector2(NPC.Center.X, NPC.Center.Y + NPC.height / 2));
+        bool spawnWorms = false;
         public override void AI()
         {
             UpdateTarget();
@@ -122,8 +124,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         {
             if (touchFloor)
             {
-                if (currentState == BossState.Stomp)
-                    currentState = BossState.Falling;
+                /*if (currentState == BossState.Stomp)
+                    currentState = BossState.Falling;*/
                 if (touchFloor && currentState == BossState.Falling && NPC.noTileCollide)
                 {
                     NPC.noTileCollide = false;
@@ -135,9 +137,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         }
         internal void StompMovmentAi()
         {
-            if (stompColdownTimer == 0)
+           // if (stompColdownTimer == 0)
                 FollowPlayerCeilingAi();
-            else stompColdownTimer--;
+            //else stompColdownTimer--;
         }
         internal void FollowPlayerCeilingAi()
         {
@@ -148,16 +150,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             }
             else stompTimer--;
 
-            NPC.noTileCollide = !(NPC.Center.Y >= target.Center.Y && touchFloor);
+            //NPC.noTileCollide = !(NPC.Center.Y + 10 >= target.Center.Y && touchFloor);
 
             float Offset = 300f;
             Vector2 CelinPosition = new(target.Center.X, target.Center.Y - Offset);
-            NPC.velocity = CelinPosition - NPC.Center;
+            NPC.Center = CelinPosition;
             //NPC.position = CelinPosition;
         }
         internal void StompAi()
         {
-            if (NPC.Center.Y >= target.Center.Y)
+            if (NPC.Bottom.Y + 5 >= target.Center.Y)
             {
                 NPC.noTileCollide = false;
                 stompTimer = (int)Utils1.FormatTimeToTick(Second: 2);
@@ -170,11 +172,41 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             currentState = BossState.Falling;
 
         }
-
+        List<int> gemId = [
+            ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(),
+            ModContent.ProjectileType<GemstoneCrusherProj_Emerald>(),
+            ModContent.ProjectileType<GemstoneCrusherProj_Ruby>(),
+            ModContent.ProjectileType<GemstoneCrusherProj_Diamond>(),
+        ];
         internal void ShootAi()
         {
             Vector2 shootVelocityRuby = Vector2.Normalize(target.Center - NPC.Center) * Main.rand.Next(3,10);
-            int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, shootVelocityRuby, ProjectileID.BallofFire, 10, 0f, Main.myPlayer);
+            int randomGemChoice = Main.rand.Next(gemId.Count);
+            int p = -1;
+            //randomGemChoice = 2;
+            if (randomGemChoice == 0)
+            {
+                p = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, shootVelocityRuby, gemId[randomGemChoice], 10, 0f, Main.myPlayer, NPC.whoAmI);
+            }
+            else if(randomGemChoice == 1)
+            {
+                shootVelocityRuby /= 2; 
+                p = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, shootVelocityRuby, gemId[randomGemChoice], 10, 0f, Main.myPlayer);
+            }
+            else if(randomGemChoice == 2)
+            {
+                shootVelocityRuby = Vector2.Normalize(target.Center - NPC.Center) * Main.rand.Next(6, 8);
+                shootVelocityRuby.Y = -7f;
+                p = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, shootVelocityRuby, gemId[randomGemChoice], 10, 0f, Main.myPlayer);
+            }
+            else if(randomGemChoice == 3)
+            {
+                shootVelocityRuby.X *= 1.5f;
+                p = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, shootVelocityRuby, gemId[randomGemChoice], 10, 0f, Main.myPlayer);
+            }
+
+            if (p == -1) return;
+
             Main.projectile[p].penetrate = -1;
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
@@ -182,6 +214,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         internal void SpawnAi()
         {
             NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCID.CaveBat);
+            if(!spawnWorms && Main.expertMode && NPC.life < NPC.lifeMax / 2)
+            {
+                int i = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y + (10 * 16), NPCID.GiantWormHead);
+                Main.npc[i].lifeMax = 50;
+                Main.npc[i].life = 50;
+                i = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X + 30, (int)NPC.Center.Y + (10 * 16), NPCID.GiantWormHead);
+                Main.npc[i].lifeMax = 50;
+                Main.npc[i].life = 50;
+                i = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X - 30, (int)NPC.Center.Y + (10 * 16), NPCID.GiantWormHead);
+                Main.npc[i].lifeMax = 50;
+                Main.npc[i].life = 50;
+                spawnWorms = true;
+            }
         }    
         public override void ModifyHitByItem(Player player, Item item, ref NPC.HitModifiers modifiers)
         {

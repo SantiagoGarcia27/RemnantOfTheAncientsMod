@@ -15,7 +15,6 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
@@ -87,7 +86,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             bestiaryEntry.Info.AddRange(
             [
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
-                //new FlavorTextBestiaryInfoElement("A great and dreaded worm rules the underworld with an iron fist and his flames, powerful and majestic in equal parts, maintain the order and warmth of the underworld.")
             ]);
         }
         public bool InfernumMode = DificultyUtils.InfernumMode;
@@ -121,8 +119,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         }
         Player currentTarget = null;
 
-        public static float ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-        public static bool NoAI = DificultyUtils.InfernumMode;
+        public float ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+        public bool NoAI = DificultyUtils.InfernumMode;
         public override void AI()
         {
             NPC.frame.Y = 0;
@@ -448,7 +446,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             }
         }
         #endregion
-        public static bool CheckRage(Player player) => !player.dead && player.active && !player.ZoneDesert && !player.ZoneUndergroundDesert;
+        public bool CheckRage(Player player) => !player.dead && player.active && !player.ZoneDesert && !player.ZoneUndergroundDesert;
         private void AttackIA(Player target)
         {
             List<int[]> AttackValue = SetAttackCounter();
@@ -707,7 +705,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
                 }
             }
         }
-        public static bool spawnGuardians = true;
+        public bool spawnGuardians = true;
         public override void HitEffect(NPC.HitInfo hit)
         {
             int choice = Main.rand.Next(2, 8);

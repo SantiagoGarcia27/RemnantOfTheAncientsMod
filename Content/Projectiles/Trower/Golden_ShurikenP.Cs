@@ -9,10 +9,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
 
     public class Golden_ShurikenP : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("Golden_ShurikenP"); //projectile name
-        }
         public override void SetDefaults()
         {
 
@@ -34,10 +30,5 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
                 }
             }
         }
-        /*  public override bool PreKill(int timeLeft) {
-Projectile.type = ProjectileID.Shuriken;
-return true;
-
-}*/
     }
 }
