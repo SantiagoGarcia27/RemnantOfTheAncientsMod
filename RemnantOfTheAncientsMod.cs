@@ -100,7 +100,7 @@ namespace RemnantOfTheAncientsMod
         {
             fastPlataformOverride();
             RemnantItemTags.MusicBox = RemnantItemTags.FillMusicBox();
-            WikiHelper.ExportAllContentCSV();
+            //WikiHelper.ExportAllContentCSV();
             base.PostSetupContent();
         }
         public static int GetMaxRarity()
