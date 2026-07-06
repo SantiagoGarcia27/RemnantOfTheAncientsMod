@@ -15,6 +15,8 @@ using Terraria.GameContent.Bestiary;
 using RemnantOfTheAncientsMod.Common.Enums;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Linq;
+using RemnantOfTheAncientsMod.Common.PlayerProxy;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {
@@ -411,8 +413,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            NPC.AddBuff(BuffID.TitaniumStorm, (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
-            var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 50, 0, NPC.whoAmI);
+
+            fakePlayer.position = NPC.position;
+            fakePlayer.velocity = NPC.velocity;
+            fakePlayer.name = NPC.FullName;
+            fakePlayer.hasTitaniumStormBuff = true;
+
+            fakePlayer.AddBuff(BuffID.TitaniumStorm, (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
+            Player aux = Main.player.FirstOrDefault(x => x.whoAmI == fakePlayer.whoAmI);
+            bool ok = aux.HasBuff(BuffID.TitaniumStorm);
+            var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 50, 0, fakePlayer.whoAmI);
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
             Main.projectile[p].penetrate = -1;
@@ -420,14 +430,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             //target.AddBuff(BuffID.TitaniumStorm, (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
             base.OnHitPlayer(target, hurtInfo);
         }
+        Player fakePlayer = null;
+
         public override void AI()
         {
-            NPC.AddBuff(BuffID.TitaniumStorm, (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
-            var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2(-1 * 16, -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 50, 0, NPC.whoAmI);
-            Main.projectile[p].hostile = true;
-            Main.projectile[p].friendly = false;
-            Main.projectile[p].penetrate = -1;
-            Main.projectile[p].timeLeft = 1000;
+            fakePlayer = FakePlayers.Get(NPC);
             base.AI();
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -435,6 +442,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             if (!Main.hardMode || !NPC.downedMechBossAny || WorldGen.SavedOreTiers.Adamantite != TileID.Titanium) return 0;
             if (RemnantOfTheAncientsMod.CalamityMod != null && CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() < 3) return 0;
             return AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode) * SpawnCondition.OverworldNightMonster.Chance;
+        }
+        public override bool CheckDead()
+        {
+            FakePlayers.Remove(NPC);
+            return base.CheckDead();
         }
     }
     public class HallowedZombie : BaseZombie
