@@ -4556,6 +4556,7 @@ Mods: {
 			BeetleZombie.DisplayName: Beetle Zombie
 			SolarZombie.DisplayName: Solar Zombie
 			GemstoneCrusher.DisplayName: Gemstone Crusher
+			KillerBunny.DisplayName: Killer Bunny
 		}
 
 		Projectiles: {

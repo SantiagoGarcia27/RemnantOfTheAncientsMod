@@ -629,31 +629,31 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             throw new NotImplementedException();
         }
 
-        public static bool IsGameStage(GlobalEnum.gameStage stage)
+        public static bool IsGameStage(GlobalEnum.GameStage stage)
         {
             switch(stage)
             {
-                case GlobalEnum.gameStage.PostKingSlime : return NPC.downedSlimeKing;
-                case GlobalEnum.gameStage.PostEyeOfCthulhu: return NPC.downedBoss1;
-                case GlobalEnum.gameStage.PostCorruptBoss: return NPC.downedBoss2;
-                case GlobalEnum.gameStage.PostQueenBee: return NPC.downedQueenBee;
-                case GlobalEnum.gameStage.PostSkeletron: return NPC.downedBoss3;
-                case GlobalEnum.gameStage.PostDeerclops: return NPC.downedDeerclops;
-                case GlobalEnum.gameStage.PostQueenSlime: return NPC.downedQueenSlime;
-                case GlobalEnum.gameStage.PostDestoryer: return NPC.downedMechBoss1;
-                case GlobalEnum.gameStage.PostTwins: return NPC.downedMechBoss2;
-                case GlobalEnum.gameStage.PostSkeletronPrime: return NPC.downedMechBoss3;
-                case GlobalEnum.gameStage.PostMech: return NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;
-                case GlobalEnum.gameStage.PostPlantera: return NPC.downedPlantBoss;
-                case GlobalEnum.gameStage.PostEmpressOfLight: return NPC.downedEmpressOfLight;
-                case GlobalEnum.gameStage.PostGolem: return NPC.downedGolemBoss;
-                case GlobalEnum.gameStage.PostCultist: return NPC.downedAncientCultist;
-                case GlobalEnum.gameStage.PostMoonLord: return NPC.downedMoonlord;
-                case GlobalEnum.gameStage.PostDukeFishron: return NPC.downedFishron;
-                case GlobalEnum.gameStage.Hardmode: return Main.hardMode && !NPC.downedMoonlord;
-                case GlobalEnum.gameStage.PreHardmode: return !Main.hardMode;
-                case GlobalEnum.gameStage.PreBoss: return !NPC.downedBoss1;
-                case GlobalEnum.gameStage.None : return false;
+                case GlobalEnum.GameStage.PostKingSlime : return NPC.downedSlimeKing;
+                case GlobalEnum.GameStage.PostEyeOfCthulhu: return NPC.downedBoss1;
+                case GlobalEnum.GameStage.PostCorruptBoss: return NPC.downedBoss2;
+                case GlobalEnum.GameStage.PostQueenBee: return NPC.downedQueenBee;
+                case GlobalEnum.GameStage.PostSkeletron: return NPC.downedBoss3;
+                case GlobalEnum.GameStage.PostDeerclops: return NPC.downedDeerclops;
+                case GlobalEnum.GameStage.PostQueenSlime: return NPC.downedQueenSlime;
+                case GlobalEnum.GameStage.PostDestoryer: return NPC.downedMechBoss1;
+                case GlobalEnum.GameStage.PostTwins: return NPC.downedMechBoss2;
+                case GlobalEnum.GameStage.PostSkeletronPrime: return NPC.downedMechBoss3;
+                case GlobalEnum.GameStage.PostMech: return NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;
+                case GlobalEnum.GameStage.PostPlantera: return NPC.downedPlantBoss;
+                case GlobalEnum.GameStage.PostEmpressOfLight: return NPC.downedEmpressOfLight;
+                case GlobalEnum.GameStage.PostGolem: return NPC.downedGolemBoss;
+                case GlobalEnum.GameStage.PostCultist: return NPC.downedAncientCultist;
+                case GlobalEnum.GameStage.PostMoonLord: return NPC.downedMoonlord;
+                case GlobalEnum.GameStage.PostDukeFishron: return NPC.downedFishron;
+                case GlobalEnum.GameStage.Hardmode: return Main.hardMode && !NPC.downedMoonlord;
+                case GlobalEnum.GameStage.PreHardmode: return !Main.hardMode;
+                case GlobalEnum.GameStage.PreBoss: return !NPC.downedBoss1;
+                case GlobalEnum.GameStage.None : return false;
                 default: return false;
             }
         }

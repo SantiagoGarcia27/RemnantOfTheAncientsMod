@@ -354,11 +354,19 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			if (selection <= NotConsumeAmmoChance) return false;
 			else return base.CanConsumeAmmo(weapon, ammo, player);
 		}
+        public override void UpdateEquip(Item item, Player player)
+        {
+            base.UpdateEquip(item, player);
+        }
 
 		public override bool CanUseItem(Item item, Player player)
 		{
 			return base.CanUseItem(item, player);
 		}
+        public override void UseStyle(Item item, Player player, Rectangle heldItemFrame)
+        {
+            base.UseStyle(item, player, heldItemFrame);
+        }
 		public override float UseSpeedMultiplier(Item item, Player player)
 		{
 			if (player == Main.LocalPlayer)

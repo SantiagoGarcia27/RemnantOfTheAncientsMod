@@ -8,12 +8,12 @@ namespace RemnantOfTheAncientsMod.Common.Enums
 {
     public class GlobalEnum
     {
-        public enum packetType : byte
+        public enum PacketType : byte
         {
             placePltaform
         };
 
-        public enum gameStage : byte
+        public enum GameStage : byte
         {
             None,
             PreBoss,
@@ -39,6 +39,18 @@ namespace RemnantOfTheAncientsMod.Common.Enums
             PostDukeFishron,
             PostCultist,
             PostMoonLord
+        };
+
+        public enum GemType : byte
+        {
+            none,
+            Amethyst,
+            Topaz,
+            Emerald,
+            Sapphire,
+            Ruby,
+            Amber,
+            Diamond
         };
     }
 }

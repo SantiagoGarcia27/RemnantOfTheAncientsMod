@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,9 +28,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if(Math.Abs(Projectile.velocity.Y) > 0.001f)
-            Projectile.velocity.Y *= -2f;
-            if (Math.Abs(Projectile.velocity.Y) > 9) Projectile.velocity.Y = 9 * Math.Sign(Projectile.velocity.Y);
+            float bounce = 0.9f; // 90% de la velocidad
+
+            if (Projectile.velocity.X != oldVelocity.X)
+                Projectile.velocity.X = -oldVelocity.X * bounce;
+
+            if (Projectile.velocity.Y != oldVelocity.Y)
+                Projectile.velocity.Y = -oldVelocity.Y * bounce;
+
             return false;
         }
     }
@@ -46,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
         public override void AI()
         {
             NPC npc = Main.npc[(int)Projectile.ai[0]];
-
+            Projectile.rotation -= 0.1f * Projectile.direction;
             if (!npc.active)
             {
                 Projectile.Kill();
@@ -93,10 +99,15 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
     public class GemstoneCrusherProj_Ruby : GemstoneCrusherProj
     {
         public override int GemId => ItemID.Ruby;
-        public override void SetDefaults() => AIType = ProjectileID.Shuriken;
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Projectile.timeLeft = (int)Utils1.FormatTimeToTick(Second:3);
+        }
 
         public override void AI()
         {
+            Projectile.rotation += 0.1f * Projectile.direction;
             Projectile.velocity.Y += 0.3f;
             base.AI();
         }
@@ -110,11 +121,46 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
             target.AddBuff(BuffID.OnFire, (int)Utils1.FormatTimeToTick(Second: 2));
             base.OnHitPlayer(target, info);
         }
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            float bounce = 0.1f;
+            if (Projectile.velocity.X != oldVelocity.X)
+                Projectile.velocity.X = -oldVelocity.X * bounce;
+
+            if (Projectile.velocity.Y != oldVelocity.Y)
+                Projectile.velocity.Y = -oldVelocity.Y * bounce;
+
+            return false;
+        }
     }
     public class GemstoneCrusherProj_Diamond : GemstoneCrusherProj
     {
         public override int GemId => ItemID.Diamond;
-        public override void SetDefaults() => AIType = ProjectileID.Fireball;
+        public override void SetDefaults()
+        {
+            Projectile.penetrate = -1;
+        }
+        private Vector2 oldVelocity = Vector2.Zero;
+        public override void AI()
+        {
+            Projectile.rotation += 0.1f * Projectile.direction;
+            
+            if(Projectile.ai[1] >= Utils1.FormatTimeToTick(Second:1))
+            {
+                Projectile.velocity = oldVelocity;
+            }
+            else
+            {
+                Projectile.ai[1]++;
+                Projectile.velocity = Vector2.Zero;
+            }
+            base.AI();
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            oldVelocity = Projectile.velocity;
+            base.OnSpawn(source);
+        }
     }
 
     public abstract class GemstoneCrusherProj : ModProjectile

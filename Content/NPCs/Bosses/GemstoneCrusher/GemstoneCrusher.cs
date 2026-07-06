@@ -1,12 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Enums;
+using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
+using static RemnantOfTheAncientsMod.Common.Enums.GlobalEnum;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 {
@@ -64,20 +70,30 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
         private bool spawnWorms;
 
-        private readonly List<int> gemProjectiles =
-        [
-            ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(),
-            ModContent.ProjectileType<GemstoneCrusherProj_Emerald>(),
-            ModContent.ProjectileType<GemstoneCrusherProj_Ruby>(),
-            ModContent.ProjectileType<GemstoneCrusherProj_Diamond>()
-        ];
-        private readonly List<int> gemDust =
-        [
-            DustID.GemSapphire,
-            DustID.GemEmerald,
-            DustID.GemRuby,
-            DustID.GemDiamond
-        ];
+
+        private readonly Dictionary<GemType, (int Projectile, int Dust)> gemData = new()
+        {
+            [GemType.Sapphire] = (
+                ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(),
+                DustID.GemSapphire
+            ),
+
+            [GemType.Emerald] = (
+                ModContent.ProjectileType<GemstoneCrusherProj_Emerald>(),
+                DustID.GemEmerald
+            ),
+
+            [GemType.Ruby] = (
+                ModContent.ProjectileType<GemstoneCrusherProj_Ruby>(),
+                DustID.GemRuby
+            ),
+
+            [GemType.Diamond] = 
+            (
+                ModContent.ProjectileType<GemstoneCrusherProj_Diamond>(),
+                DustID.GemDiamond
+            )
+        };
 
         public override void SetStaticDefaults()
         {
@@ -118,13 +134,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             base.SetDefaults();
         }
 
-        int projectileType = -1;
+        GemType projectileType = GemType.none;
         bool esServer = Main.netMode != NetmodeID.MultiplayerClient;
         public override void AI()
         {
             UpdateTarget();
 
-            if (target == null)
+            if (target == null || CurrentState == BossState.Sleep)
                 return;
 
             stompActivationTimer++;
@@ -162,11 +178,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
         private void UpdateTarget()
         {
-            if (target != null && target.active && !target.dead)
-                return;
 
-            NPC.TargetClosest(true);
-            target = Main.player[NPC.target];
+            if (Main.netMode == NetmodeID.SinglePlayer && target != null && target.active && !target.dead)
+                return;
+           
+            NPC.TargetClosest(faceTarget: true);
+            target = Main.player[NPC.target]; 
         }
 
         private void MovementAI()
@@ -221,7 +238,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
         private void ShootAI()
         {
-            if (projectileType == -1) projectileType = 0;
+            if (projectileType == GemType.none) projectileType = GemType.Sapphire;
             Vector2 velocity = Vector2.Normalize(target.Center - NPC.Center) * Main.rand.Next(3, 10);
 
             int projectileIndex = -1;
@@ -231,18 +248,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 if (!esServer) return;
                 switch (projectileType)
                 {
-                    case 1:
+                    case GemType.Emerald:
                         velocity /= 2f;
                         break;
-                    case 2:
-                        velocity = Vector2.Normalize(target.Center - NPC.Center) * Main.rand.Next(6, 8);
+                    case GemType.Ruby:
+                        velocity = Vector2.Normalize(target.Center - NPC.Center) * Main.rand.Next(5, 7);
                         velocity.Y = -7f;
                         break;
-                    case 3:
+                    case GemType.Diamond:
                         velocity.X *= 1.5f;
                         break;
                 }
-                projectileIndex = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity, gemProjectiles[projectileType], 10, 0f, Main.myPlayer, NPC.whoAmI);
+                projectileIndex = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity, gemData[projectileType].Projectile, 10, 0f, Main.myPlayer, NPC.whoAmI);
 
                 if (projectileIndex < 0)
                     return;
@@ -252,13 +269,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 proj.penetrate = -1;
                 proj.hostile = true;
                 proj.friendly = false;
-                projectileType = Main.rand.Next(gemProjectiles.Count);
+
+                projectileType = gemData.RandomKey();
                 shootTimer = 0;
                 NPC.netUpdate = true;
             }
             else 
             {
-                Dust.NewDust(NPC.Center, 10, 10, gemDust[projectileType]);   
+                Dust.NewDust(NPC.Center, 10, 10, gemData[projectileType].Dust);   
             }
         }
 
@@ -288,8 +306,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         public override void ModifyHitByItem(Player player,Item item,ref NPC.HitModifiers modifiers)
         {
             if (item.pick > 0)
-                modifiers.FinalDamage *= 5;
-
+            {
+                modifiers.DefenseEffectiveness *= 0;
+                modifiers.FinalDamage *= 2.1f;
+            }
             base.ModifyHitByItem(player, item, ref modifiers);
         }
 
@@ -324,7 +344,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             writer.Write((byte)CurrentState);
             writer.Write(stompTimer);
             writer.Write(spawnWorms);
-            writer.Write(projectileType);
+            writer.Write((int)projectileType);
             base.SendExtraAI(writer);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -332,8 +352,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             _currentState = (BossState)reader.ReadByte();
             stompTimer = reader.ReadInt32();
             spawnWorms = reader.ReadBoolean();
-            projectileType = reader.ReadInt32();
+            projectileType = (GemType)reader.ReadInt32();
             base.ReceiveExtraAI(reader);
+        }
+         
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if(NPC.AnyNPCs(Type)) return 0f;
+            float chance = SpawnCondition.Cavern.Chance * 0.2f; 
+            return chance;
         }
     }
 }

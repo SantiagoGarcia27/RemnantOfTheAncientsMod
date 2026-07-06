@@ -14,9 +14,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.pets
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Magic Lettuce");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Laitue magique");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Lechuga mágica");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
