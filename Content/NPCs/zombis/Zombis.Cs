@@ -434,7 +434,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 
         public override void AI()
         {
-            fakePlayer = FakePlayers.Get(NPC);
+            fakePlayer = FakePlayers.Update(NPC);
             base.AI();
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -445,7 +445,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override bool CheckDead()
         {
-            FakePlayers.Remove(NPC);
+            FakePlayers.Remove(NPC.whoAmI);
             return base.CheckDead();
         }
     }

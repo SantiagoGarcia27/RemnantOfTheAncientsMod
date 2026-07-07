@@ -365,7 +365,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             else if(projectile.type == ProjectileID.TitaniumStormShard)
             {
-                if (projectile.hostile)
+               /* if (projectile.hostile && projectile.owner < 255)
                 {
                     NPC npc = Main.npc[projectile.owner];
                     if (!npc.active || npc.life <= 0 || !npc.HasBuff(BuffID.TitaniumStorm))
@@ -393,7 +393,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 else
                 {
                     base.AI(projectile);
-                }
+                }*/
 
             }
             else if (projectile.type == ProjectileID.FrostHydra)
