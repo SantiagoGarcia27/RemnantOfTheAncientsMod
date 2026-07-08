@@ -1,12 +1,15 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
+namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
 {
     public class GemstoneCrusherProj_Emerald : GemstoneCrusherProj
     {
@@ -176,7 +179,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
             Projectile.tileCollide = true;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 200;
-            Projectile.light = 1.05f;
+            Projectile.light = 0f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             Projectile.scale = 1f;
@@ -186,6 +189,36 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
         static string getTexture(int GemId)
         {
             return "Terraria/Images/Item_" + GemId;
+        }
+        public override void PostDraw(Color lightColor)
+        {
+            Type type = GetType();
+            String ruta = type.FullName.Replace('.', '/');
+            string Texture = $"{ruta}_Glow";
+
+
+            if (Texture != null)
+            {
+               // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);
+                Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+                Main.spriteBatch.Draw
+                (
+                    texture,
+                    new Vector2
+                    (
+                        Projectile.position.X - Main.screenPosition.X + Projectile.width * 0.5f,
+                        Projectile.position.Y - Main.screenPosition.Y + Projectile.height - texture.Height * 0.5f + 2f
+                    ),
+                    new Rectangle(0, 0, texture.Width, texture.Height),
+                    Color.White,
+                    Projectile.rotation,
+                    texture.Size() * 0.5f,
+                    Projectile.scale,
+                    SpriteEffects.None,
+                    0f
+                );
+            }
+            base.PostDraw(lightColor);
         }
     }
 }

@@ -14,11 +14,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
 using Terraria.Utilities;
-using RemnantOfTheAncientsMod.World;
 using Terraria.Audio;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.World;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 {

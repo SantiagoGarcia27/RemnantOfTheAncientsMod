@@ -44,10 +44,8 @@ namespace RemnantOfTheAncientsMod.World
             ReaperMode = !ReaperMode;
             DificultyUtils.ReaperMode = ReaperMode;
 
-            if (ReaperMode) 
-                RemnantGlobalNPC.setStatBonus(2f, 2f);
-            else
-                RemnantGlobalNPC.setStatBonus(1f, 1f,'-');
+            if (ReaperMode) RemnantGlobalNPC.setStatBonus(2f, 2f);
+            else RemnantGlobalNPC.setStatBonus(1f, 1f,'-');
         }
 
         public override void NetSend(BinaryWriter writer)

@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Enums;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
 using System;
 using System.Collections.Generic;
@@ -71,29 +74,30 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         private bool spawnWorms;
 
 
-        private readonly Dictionary<GemType, (int Projectile, int Dust)> gemData = new()
+        private readonly Dictionary<GemType, (int Projectile, Color Dust)> gemData = new()
         {
             [GemType.Sapphire] = (
                 ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(),
-                DustID.GemSapphire
+                Color.Blue
             ),
 
             [GemType.Emerald] = (
                 ModContent.ProjectileType<GemstoneCrusherProj_Emerald>(),
-                DustID.GemEmerald
+                Color.Green
             ),
 
             [GemType.Ruby] = (
                 ModContent.ProjectileType<GemstoneCrusherProj_Ruby>(),
-                DustID.GemRuby
+                Color.Red
             ),
 
             [GemType.Diamond] = 
             (
                 ModContent.ProjectileType<GemstoneCrusherProj_Diamond>(),
-                DustID.GemDiamond
+                Color.White
             )
         };
+        private bool shootTelegraph = false;
 
         public override void SetStaticDefaults()
         {
@@ -122,7 +126,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             NPC.value = Item.buyPrice(0, 1, 0, 0);
             NPC.npcSlots = 30f;
             NPC.knockBackResist = 0f;
-            NPC.boss = true;
+            NPC.boss = false;
             NPC.lavaImmune = true;
             NPC.noGravity = false;
             NPC.noTileCollide = false;
@@ -235,7 +239,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             CurrentState = BossState.Falling;
             NPC.noTileCollide = true;
         }
-
         private void ShootAI()
         {
             if (projectileType == GemType.none) projectileType = GemType.Sapphire;
@@ -273,10 +276,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 projectileType = gemData.RandomKey();
                 shootTimer = 0;
                 NPC.netUpdate = true;
+                shootTelegraph = false;
             }
             else 
             {
-                Dust.NewDust(NPC.Center, 10, 10, gemData[projectileType].Dust);   
+                shootTelegraph = true;
+                //Dust.NewDust(NPC.Center, 10, 10, gemData[projectileType].Dust);   
             }
         }
 
@@ -316,15 +321,20 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         public override void OnHitByItem(Player player,Item item,NPC.HitInfo hit,int damageDone)
         {
             if (CurrentState == BossState.Sleep)
+            {
                 CurrentState = BossState.Idle;
+                NPC.boss = true;
+            }
 
             base.OnHitByItem(player, item, hit, damageDone);
         }
 
         public override void OnHitByProjectile(Projectile projectile,NPC.HitInfo hit,int damageDone){
             if (CurrentState == BossState.Sleep)
+            {
                 CurrentState = BossState.Idle;
-
+                NPC.boss = true;
+            }
             base.OnHitByProjectile(projectile, hit, damageDone);
         }
 
@@ -359,8 +369,39 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if(NPC.AnyNPCs(Type)) return 0f;
-            float chance = SpawnCondition.Cavern.Chance * 0.2f; 
+            float chance = SpawnCondition.Cavern.Chance * 0.17f; 
             return chance;
+        }
+        
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Type type = GetType();
+            String ruta = type.FullName.Replace('.', '/');
+            string Texture = $"{ruta}_Glow";
+
+            Color color = !shootTelegraph ? Color.White : gemData[projectileType].Dust;
+            if (Texture != null && CurrentState != BossState.Sleep)
+            {
+                // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);
+                Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+                spriteBatch.Draw
+                (
+                    texture,
+                    new Vector2
+                    (
+                        NPC.position.X - Main.screenPosition.X + NPC.width * 0.5f,
+                        NPC.position.Y - Main.screenPosition.Y + NPC.height - texture.Height * 0.5f + 2f
+                    ),
+                    new Rectangle(0, 0, texture.Width, texture.Height),
+                    color,
+                    NPC.rotation,
+                    texture.Size() * 0.5f,
+                    NPC.scale,
+                    SpriteEffects.None,
+                    0f
+                );
+            }
+            base.PostDraw(spriteBatch, screenPos, drawColor);
         }
     }
 }
