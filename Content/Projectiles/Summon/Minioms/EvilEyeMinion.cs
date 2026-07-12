@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             return false;
         }
         public int RangeMax = 8;
-        public int AttackTimmer = (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.5f);
+        public int AttackTimmer = Utils1.FormatTimeToTick(0f, 0f, 0f, 0.5f);
         public int shootCounter = 0;
         public NPC target;
         public override void AI()
@@ -70,8 +70,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             Movement(foundTarget, distanceFromTarget, targetCenter, distanceToIdlePosition, vectorToIdlePosition);      
             //setCounters();
 
-            shootCounter = CounterUpdate(shootCounter, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
-            AttackTimmer = CounterUpdate(AttackTimmer, (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 0.4f));
+            shootCounter = CounterUpdate(shootCounter, Utils1.FormatTimeToTick(0, 0, 0, 5));
+            AttackTimmer = CounterUpdate(AttackTimmer, Utils1.FormatTimeToTick(0f, 0f, 0f, 0.4f));
 
             float TimmerMax = Utils1.FormatTimeToTick(0, 0, 0, 5) - 60;
             if (shootCounter == TimmerMax && foundTarget /*&& target != null*/)
@@ -102,7 +102,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 NPC target = Main.npc[i];
                 if (Projectile.Distance(target.Center) <= RangeMax * 16 && !target.immortal && !target.friendly && target.active && target.type != 549)
                 {
-                    target.AddBuff(BuffType<Hell_Fire>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
+                    target.AddBuff(BuffType<Hell_Fire>(), Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (AttackTimmer == 1)
                     {
                         target.SimpleStrikeNPC(Projectile.damage, 0, Main.rand.NextBool(6), 0, DamageClass.Summon);
@@ -200,7 +200,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             }
             else
             {
-                if (IsAttack == true && AnimationCounter >= (int)Utils1.FormatTimeToTick(0, 0, 0, 1))
+                if (IsAttack == true && AnimationCounter >= Utils1.FormatTimeToTick(0, 0, 0, 1))
                 {
                     IsAttack = false;
                     AnimationCounter = 0;

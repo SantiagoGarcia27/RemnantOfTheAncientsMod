@@ -1,15 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using RemnantOfTheAncientsMod.Common.Enums;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
-using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -49,10 +46,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
         }
 
-        private int stompTimer = (int)Utils1.FormatTimeToTick(Second: 2);
-        private readonly int stompActivationTimerTrigger = (int)Utils1.FormatTimeToTick(Second: 20);
-        private readonly int shootTimerTrigger = (int)Utils1.FormatTimeToTick(Second: 5);
-        private readonly int spawnTimerTrigger = (int)Utils1.FormatTimeToTick(Second: 15);
+        private int stompTimer = Utils1.FormatTimeToTick(Second: 2);
+        private readonly int stompActivationTimerTrigger = Utils1.FormatTimeToTick(Second: 20);
+        private readonly int shootTimerTrigger = Utils1.FormatTimeToTick(Second: 5);
+        private readonly int spawnTimerTrigger = Utils1.FormatTimeToTick(Second: 15);
 
         private float shootTimer
         {
@@ -70,11 +67,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             set => NPC.ai[2] = value;
         }
 
-
+        private bool shootTelegraph = false;
         private bool spawnWorms;
 
-
-        private readonly Dictionary<GemType, (int Projectile, Color Dust)> gemData = new()
+        private readonly Dictionary<GemType, (int Projectile, Color color)> gemData = new()
         {
             [GemType.Sapphire] = (
                 ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(),
@@ -97,8 +93,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 Color.White
             )
         };
-        private bool shootTelegraph = false;
-
+     
         public override void SetStaticDefaults()
         {
             NPCID.Sets.MPAllowedEnemies[Type] = true;
@@ -152,7 +147,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             if (stompActivationTimer >= stompActivationTimerTrigger)
             {
                 stompActivationTimer = 0;
-                stompTimer = (int)Utils1.FormatTimeToTick(Second: 2);
+                stompTimer = Utils1.FormatTimeToTick(Second: 2);
                 CurrentState = BossState.Stomp;
             }
 
@@ -165,7 +160,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 shootTimer++;
                 spawnerTimer++;
 
-                if (shootTimer >= shootTimerTrigger - (int)Utils1.FormatTimeToTick(Second: 1))
+                if (shootTimer >= shootTimerTrigger - Utils1.FormatTimeToTick(Second: 1))
                 { 
                     ShootAI();
                 }
@@ -227,7 +222,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         {
             if (NPC.Bottom.Y >= target.Center.Y)
             {
-                stompTimer = (int)Utils1.FormatTimeToTick(Second: 2);
+                stompTimer = Utils1.FormatTimeToTick(Second: 2);
                 return;
             }
 
@@ -288,7 +283,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         private void SpawnAI()
         {
             if (!esServer) return;
-            NPC.NewNPC(NPC.GetSource_FromAI(),(int)NPC.Center.X,(int)NPC.Center.Y,NPCID.CaveBat);
+            int batID = Main.masterMode ? NPCID.GiantBat : NPCID.CaveBat;
+            int npcIndex = NPC.NewNPC(NPC.GetSource_FromAI(),(int)NPC.Center.X,(int)NPC.Center.Y, batID);
+            if (Main.masterMode)
+            {
+                Main.npc[npcIndex].lifeMax /= 5;
+                Main.npc[npcIndex].life /= 5;
+                Main.npc[npcIndex].defense = 2;
+                Main.npc[npcIndex].damage /= 3;
+            }
 
             if (!spawnWorms && Main.expertMode && NPC.life < NPC.lifeMax / 2)
             {
@@ -379,7 +382,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             String ruta = type.FullName.Replace('.', '/');
             string Texture = $"{ruta}_Glow";
 
-            Color color = !shootTelegraph ? Color.White : gemData[projectileType].Dust;
+            Color color = !shootTelegraph ? Color.White : gemData[projectileType].color;
             if (Texture != null && CurrentState != BossState.Sleep)
             {
                 // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);

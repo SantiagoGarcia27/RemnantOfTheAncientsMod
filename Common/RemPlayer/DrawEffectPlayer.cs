@@ -128,11 +128,11 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
             }
             static void setDebuff(NPC npc)
             {
-                npc.AddBuff(BuffID.OnFire3, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
+                npc.AddBuff(BuffID.OnFire3, Utils1.FormatTimeToTick(0, 0, 0, 10));
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    npc.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GalvanicCorrosion"), (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
-                    npc.AddBuff(BuffID.Electrified, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                    npc.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.CalamityMod, "GalvanicCorrosion"), Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    npc.AddBuff(BuffID.Electrified, Utils1.FormatTimeToTick(0, 0, 0, 3));
                 }
             }
             

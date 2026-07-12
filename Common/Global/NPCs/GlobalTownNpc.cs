@@ -192,7 +192,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         if (firstButton && Main.rand.NextBool(4))
                         {
                             RemnantPlayer.PlayerTalkToday[npc.type] = true;
-                            player.AddBuff(BuffID.AmmoBox, (int)Utils1.FormatTimeToTick(0, 0, 10, 0));
+                            player.AddBuff(BuffID.AmmoBox, Utils1.FormatTimeToTick(0, 0, 10, 0));
                         }
                     }
                 }

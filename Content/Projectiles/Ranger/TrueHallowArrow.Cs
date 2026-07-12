@@ -126,7 +126,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 			var p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), target.position, Vector2.Zero, ModContent.ProjectileType<DamageHitbox>(), damageDone/4, 0, Main.myPlayer);
 			Main.projectile[p].Size = new Vector2(140, 140) * 2f;
             Main.projectile[p].penetrate = -1;
-            Main.projectile[p].timeLeft = (int)Utils1.FormatTimeToTick(Second:1);
+            Main.projectile[p].timeLeft = Utils1.FormatTimeToTick(Second:1);
             Main.projectile[p].usesLocalNPCImmunity = true;
             Main.projectile[p].localNPCHitCooldown = -1;
         }

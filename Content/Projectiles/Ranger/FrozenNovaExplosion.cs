@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 		int MaxFrameCounter;
 		public override void AI()
 		{
-			MaxFrameCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 3) / Main.projFrames[Projectile.type];
+			MaxFrameCounter = Utils1.FormatTimeToTick(0, 0, 0, 3) / Main.projFrames[Projectile.type];
 			Projectile.velocity = Vector2.Zero;
 			if (Projectile.frameCounter++ % MaxFrameCounter == 0) 
 			{

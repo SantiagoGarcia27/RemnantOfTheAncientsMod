@@ -117,14 +117,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
         public override void OnKill(int timeLeft)
         {
             Main.player[Projectile.owner].opacityForAnimation = 1f;
-            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<FrostBarrierCouldown>(), (int)Utils1.FormatTimeToTick(0, 0, 1, 0) / 3);
+            Main.player[Projectile.owner].AddBuff(ModContent.BuffType<FrostBarrierCouldown>(), Utils1.FormatTimeToTick(0, 0, 1, 0) / 3);
 
             base.OnKill(timeLeft);
         }
         public override void OnSpawn(IEntitySource source)
         {
             Main.player[Projectile.owner].opacityForAnimation = 0;
-            RemnantFargosSoulsPlayer.FrostBarrierCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
+            RemnantFargosSoulsPlayer.FrostBarrierCounter = Utils1.FormatTimeToTick(0, 0, 0, 10);
             base.OnSpawn(source);
         }
         public float fade = 2.6f;

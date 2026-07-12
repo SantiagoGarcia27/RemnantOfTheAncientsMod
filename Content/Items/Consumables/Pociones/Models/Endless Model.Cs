@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
                 Item.rare += 1;
                 Item.maxStack = 1;
                 Item.consumable = false;
-                Item.buffTime = (int)Utils1.FormatTimeToTick(14, 0, 0, 0);
+                Item.buffTime = Utils1.FormatTimeToTick(14, 0, 0, 0);
                 Item.GetGlobalItem<RemnantGlobalItem>().ItemBase = ItemBase;
         }
         public string GetTextureFromItem(Item item)

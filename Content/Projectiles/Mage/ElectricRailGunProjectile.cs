@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
 		public override void AI()
 		{         
 			Player player = Main.player[Projectile.owner];
-            timmerMax = (int)Utils1.FormatTimeToTick(Second: 0.15f);
+            timmerMax = Utils1.FormatTimeToTick(Second: 0.15f);
 			if (state == HookState.Attached)
 			{
                 if (host == null)

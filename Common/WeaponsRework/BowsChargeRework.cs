@@ -90,7 +90,7 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
                                 if (shootdelay <= 0)
                                 {
                                     Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
-                                    shootdelay = (int)Utils1.FormatTimeToTick(0, 0, 0, 1);
+                                    shootdelay = Utils1.FormatTimeToTick(0, 0, 0, 1);
                                     i++;
                                 }
                                 else

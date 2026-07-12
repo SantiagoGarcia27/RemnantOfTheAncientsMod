@@ -105,7 +105,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.timeLeft = (int)Utils1.FormatTimeToTick(Second:3);
+            Projectile.timeLeft = Utils1.FormatTimeToTick(Second:3);
         }
 
         public override void AI()
@@ -116,12 +116,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(BuffID.OnFire, (int)Utils1.FormatTimeToTick(Second: 2));
+            target.AddBuff(BuffID.OnFire, Utils1.FormatTimeToTick(Second: 2));
             base.OnHitNPC(target, hit, damageDone);
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            target.AddBuff(BuffID.OnFire, (int)Utils1.FormatTimeToTick(Second: 2));
+            target.AddBuff(BuffID.OnFire, Utils1.FormatTimeToTick(Second: 2));
             base.OnHitPlayer(target, info);
         }
         public override bool OnTileCollide(Vector2 oldVelocity)

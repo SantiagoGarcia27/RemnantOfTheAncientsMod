@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 
             Projectile CactusBoulderproj = null;
             public static int counter = 0;
-            public static int counterMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 1);
+            public static int counterMax = Utils1.FormatTimeToTick(0, 0, 0, 1);
             public override void PostUpdateEquips(Player player)
             {
                 player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(BuffID.Electrified);

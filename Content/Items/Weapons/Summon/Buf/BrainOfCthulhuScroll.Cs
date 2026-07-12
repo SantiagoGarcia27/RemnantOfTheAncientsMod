@@ -45,15 +45,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 				{
 					player.ClearBuff(currentScrollId);
 
-                    player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    player.AddBuff(Item.buffType, Utils1.FormatTimeToTick(0, 0, 0, 5));
 
 
                 }
-                player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                player.AddBuff(Item.buffType, Utils1.FormatTimeToTick(0, 0, 0, 5));
             }
 			else
 			{
-				player.AddBuff(Item.buffType, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+				player.AddBuff(Item.buffType, Utils1.FormatTimeToTick(0, 0, 0, 5));
 			}
             base.OnConsumeMana(player, manaConsumed);
         }

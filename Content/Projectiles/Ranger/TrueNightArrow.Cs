@@ -109,9 +109,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			if (MainColor == Color.Pink)
-				target.AddBuff(BuffID.ShadowFlame, (int)Utils1.FormatTimeToTick(Second: 2));
+				target.AddBuff(BuffID.ShadowFlame, Utils1.FormatTimeToTick(Second: 2));
 			else
-				target.AddBuff(BuffID.CursedInferno, (int)Utils1.FormatTimeToTick(Second: 2));
+				target.AddBuff(BuffID.CursedInferno, Utils1.FormatTimeToTick(Second: 2));
 
 		}
         public override void OnSpawn(IEntitySource source)

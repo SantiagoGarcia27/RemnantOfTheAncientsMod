@@ -14,9 +14,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
     public class SnowBallBazooka : ModItem
 	{
 		public int Timmer = 0;
-		public int TimmerMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 6);
+		public int TimmerMax = Utils1.FormatTimeToTick(0, 0, 0, 6);
 		public int TimmerDust = 0;
-		public int TimmerDustMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 2);
+		public int TimmerDustMax = Utils1.FormatTimeToTick(0, 0, 0, 2);
 		public override void SetStaticDefaults()
 		{	
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -53,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		}
         public override bool CanShoot(Player player)
         {
-			TimmerMax = (int)Utils1.FormatTimeToTick(0, 0, 0, (Item.useTime/10));
+			TimmerMax = Utils1.FormatTimeToTick(0, 0, 0, (Item.useTime/10));
 			TimmerDustMax = TimmerMax / 3;
             RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax/10;
             RemnantPlayer.GenericChargeCouldown = (int)Timmer/10;

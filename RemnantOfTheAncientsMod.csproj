@@ -19,6 +19,9 @@
     <Reference Include="InfernumMode">
       <HintPath>..\..\ModReader\InfernumMode\InfernumMode.dll</HintPath>
     </Reference>
+    <Reference Include="PlayerProxyLib">
+      <HintPath>..\..\ModReader\PlayerProxyLib\PlayerProxyLib.dll</HintPath>
+    </Reference>
     <Reference Include="SangarUtilities">
       <HintPath>..\..\ModReader\SangarUtilities\SangarUtilities.dll</HintPath>
     </Reference>

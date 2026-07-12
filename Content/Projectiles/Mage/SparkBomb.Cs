@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                    
                     int buff = spark ? BuffID.OnFire : BuffID.Frostburn;
                     int damage = spark ? new Item(ItemID.WandofSparking).damage : new Item(ItemID.WandofFrosting).damage;
-                    npc.AddBuff(buff, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    npc.AddBuff(buff, Utils1.FormatTimeToTick(0, 0, 0, 5));
                     int dir = npc.direction == 0? 0: -npc.direction;
                     int crit = (int)Main.player[Projectile.owner].GetCritChance(DamageClass.Magic);
 

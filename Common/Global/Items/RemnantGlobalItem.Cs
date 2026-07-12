@@ -303,7 +303,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			if (item.IsAir) return;
 
-			if (item.buffTime >= (int)Utils1.FormatTimeToTick(14, 0, 0, 0) && item.buffType != 0)
+			if (item.buffTime >= Utils1.FormatTimeToTick(14, 0, 0, 0) && item.buffType != 0)
 				player.AddBuff(item.buffType, 2);
 		}
 

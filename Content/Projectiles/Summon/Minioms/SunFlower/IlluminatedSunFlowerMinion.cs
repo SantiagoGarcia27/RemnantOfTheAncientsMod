@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             return true;
         }
         public int RangeMax = 25 * 16;
-        public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
+        public int HealTimmer = Utils1.FormatTimeToTick(0, 0, 0, 7);
         public int Heal = 10;
         public override void AI()
         {
@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             Projectile.velocity = new Vector2(0, 7f);
             if(HealTimmer == 0)
             {
-                HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 7);
+                HealTimmer = Utils1.FormatTimeToTick(0, 0, 0, 7);
             }
             else
             {
@@ -71,14 +71,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
 
                 if (playerAvalible && playerOnRange)
                 {
-                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
+                    Main.player[p].AddBuff(BuffID.Sunflower, Utils1.FormatTimeToTick(0, 0, 0, 4));
                     if (HealTimmer == 1)
                     {
                         Main.player[p].HealEffect(Heal);
                         Main.player[p].statLife += Heal; 
                         SpawnParticles();
                     }
-                    Main.player[p].AddBuff(BuffType<IlluminatedSunflowerBuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
+                    Main.player[p].AddBuff(BuffType<IlluminatedSunflowerBuff>(), Utils1.FormatTimeToTick(0, 0, 0, 4));
                 }
             } 
         }

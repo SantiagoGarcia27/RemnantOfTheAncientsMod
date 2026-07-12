@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
             return true;
         }
         public int RangeMax = 20 * 16;
-        public int HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
+        public int HealTimmer = Utils1.FormatTimeToTick(0, 0, 0, 5);
         public int Heal = 5;
         public override void AI()
         {
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
 
             if (HealTimmer == 0)
             {
-                HealTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 5);
+                HealTimmer = Utils1.FormatTimeToTick(0, 0, 0, 5);
                 UpdtateStats();
             }
             else
@@ -76,7 +76,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
 
                 if (playerAvalible && playerOnRange)
                 {
-                    Main.player[p].AddBuff(BuffID.Sunflower, (int)Utils1.FormatTimeToTick(0, 0, 0, 2));
+                    Main.player[p].AddBuff(BuffID.Sunflower, Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (HealTimmer == 1)
                     {
                         Main.player[p].HealEffect(Heal);

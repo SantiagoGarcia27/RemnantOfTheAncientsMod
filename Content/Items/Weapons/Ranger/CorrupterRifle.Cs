@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		float Timmer = 0;
 		float TimmerMax = 30;
         float TimmerDust = 0;
-        float TimmerDustMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 2);
+        float TimmerDustMax = Utils1.FormatTimeToTick(0, 0, 0, 2);
         public override void HoldItem(Player player)
 		{
 			TimmerMax = Item.useTime / 4;

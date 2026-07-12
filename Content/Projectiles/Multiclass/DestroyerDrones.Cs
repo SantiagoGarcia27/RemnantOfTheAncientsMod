@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             // //DisplayName.SetDefault("HealingDrone");
         }
 
-        public static int AttackCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 6);
+        public static int AttackCounter = Utils1.FormatTimeToTick(0, 0, 0, 6);
         float distanceFromPlayer = 150f;
         float orbitSpeed = 0.02f;
         public override void AI()
@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
 
             if (AttackCounter == 0)
             {
-                AttackCounter = (int)Utils1.FormatTimeToTick(0, 0, 0, 6);
+                AttackCounter = Utils1.FormatTimeToTick(0, 0, 0, 6);
                 Shoot(player);
             }
             else
@@ -103,7 +103,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
            // //DisplayName.SetDefault("InterceptionDrone");
         }
 
-        public static int AttackCounter = (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 5f);
+        public static int AttackCounter = Utils1.FormatTimeToTick(0f, 0f, 0f, 5f);
         float distanceFromPlayer = 150f;
         float orbitSpeed = 0.02f;
         public override void AI()
@@ -165,7 +165,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                         Main.projectile[p].tileCollide = false;
                         Main.projectile[p].damage = 0;
                         Main.projectile[p].velocity += new Vector2(1, 0);
-                        AttackCounter = (int)Utils1.FormatTimeToTick(0f, 0f, 0f, 5f);
+                        AttackCounter = Utils1.FormatTimeToTick(0f, 0f, 0f, 5f);
                     }
                 }
             }

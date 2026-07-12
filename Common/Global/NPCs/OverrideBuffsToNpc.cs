@@ -64,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (index > -1)
                     {
                         if (beetleLevel > 1)
-                            npc.AddBuff(95 + (beetleLevel - 2), (int)Utils1.FormatTimeToTick(Day: 1));
+                            npc.AddBuff(95 + (beetleLevel - 2), Utils1.FormatTimeToTick(Day: 1));
                         npc.DelBuff(index);
                     }
                     beetleLevel--;
@@ -85,7 +85,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (index > -1)
                     {
                         if (beetleLevel > 1)
-                            npc.AddBuff(95 + beetleLevel - 1, (int)Utils1.FormatTimeToTick(Day: 1));
+                            npc.AddBuff(95 + beetleLevel - 1, Utils1.FormatTimeToTick(Day: 1));
                         npc.DelBuff(index);
                     }
                     beetleLevel--;
@@ -151,7 +151,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     //if (index > -1 && i + 1 < buffTiers[buffId].Count)
                     //{
                     //    npc.DelBuff(index);
-                    //    npc.AddBuff(buffTiers[buffId][i+1], (int)Utils1.FormatTimeToTick(Day: 1));
+                    //    npc.AddBuff(buffTiers[buffId][i+1], Utils1.FormatTimeToTick(Day: 1));
                     //}
                     return i + 1;
                 }
@@ -170,7 +170,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     {
                         if (i > 0)
                         {
-                            npc.AddBuff(buffTiers[buffId][i - 1], (int)Utils1.FormatTimeToTick(Day: 1));
+                            npc.AddBuff(buffTiers[buffId][i - 1], Utils1.FormatTimeToTick(Day: 1));
                         }
                         npc.DelBuff(index);
                     }

@@ -137,7 +137,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Projectile.manualDirectionChange = true;
             Projectile.netImportant = true;
             Projectile.tileCollide = false;
-            Projectile.timeLeft = (int)Utils1.FormatTimeToTick(Second: 63);
+            Projectile.timeLeft = Utils1.FormatTimeToTick(Second: 63);
 
         }
         public override bool? CanCutTiles()

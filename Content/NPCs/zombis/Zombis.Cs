@@ -7,7 +7,6 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron;
 using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
-using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using CalamityMod;
@@ -15,8 +14,7 @@ using Terraria.GameContent.Bestiary;
 using RemnantOfTheAncientsMod.Common.Enums;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Linq;
-using RemnantOfTheAncientsMod.Common.PlayerProxy;
+using PlayerProxyLib.Common;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {
@@ -312,7 +310,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            NPC.AddBuff(BuffID.RapidHealing, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+            NPC.AddBuff(BuffID.RapidHealing, Utils1.FormatTimeToTick(0, 0, 0, 5));
             base.OnHitPlayer(target, hurtInfo);
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -391,6 +389,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             SetArmor(ItemID.TitaniumHelmet, ItemID.TitaniumBreastplate, ItemID.TitaniumLeggings);
             base.SetDefaults();
         }
+        Player fakePlayer => NPC.GetPlayerProxy();
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
 
@@ -399,7 +398,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             fakePlayer.name = NPC.FullName;
             fakePlayer.hasTitaniumStormBuff = true;
 
-            fakePlayer.AddBuff(BuffID.TitaniumStorm, (int)Utils1.FormatTimeToTick(0, 0, 0, 6));
+            fakePlayer.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTimeToTick(0, 0, 0, 6));
 
             var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, fakePlayer.whoAmI);
             Main.projectile[p].hostile = true;
@@ -408,24 +407,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             Main.projectile[p].timeLeft = 1000;
             base.OnHitPlayer(target, hurtInfo);
         }
-        Player fakePlayer = null;
+       
 
-        public override void AI()
-        {
-            fakePlayer = FakePlayers.Update(NPC);
-            base.AI();
-        }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             bool condition = Main.hardMode && NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Titanium;
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 3;
             float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
-        }
-        public override bool CheckDead()
-        {
-            FakePlayers.Remove(NPC.whoAmI);
-            return base.CheckDead();
         }
     }
     public class HallowedZombie : BaseZombie
@@ -443,7 +432,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
-            NPC.AddBuff(BuffID.ShadowDodge, (int)Utils1.FormatTimeToTick(0, 0, 0, 30));
+            NPC.AddBuff(BuffID.ShadowDodge, Utils1.FormatTimeToTick(0, 0, 0, 30));
             base.OnHitPlayer(target, hurtInfo);
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -526,9 +515,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
                 return;
             }
 
-            if (!NPC.HasBuff(BuffID.BeetleEndurance1) && !NPC.HasBuff(BuffID.BeetleEndurance2) && !NPC.HasBuff(BuffID.BeetleEndurance3)) NPC.AddBuff(BuffID.BeetleEndurance1, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
-            else if (NPC.HasBuff(BuffID.BeetleEndurance1)) NPC.AddBuff(BuffID.BeetleEndurance2, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));     
-            else if (NPC.HasBuff(BuffID.BeetleEndurance2)) NPC.AddBuff(BuffID.BeetleEndurance3, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));  
+            if (!NPC.HasBuff(BuffID.BeetleEndurance1) && !NPC.HasBuff(BuffID.BeetleEndurance2) && !NPC.HasBuff(BuffID.BeetleEndurance3)) NPC.AddBuff(BuffID.BeetleEndurance1, Utils1.FormatTimeToTick(1, 0, 0, 0));
+            else if (NPC.HasBuff(BuffID.BeetleEndurance1)) NPC.AddBuff(BuffID.BeetleEndurance2, Utils1.FormatTimeToTick(1, 0, 0, 0));     
+            else if (NPC.HasBuff(BuffID.BeetleEndurance2)) NPC.AddBuff(BuffID.BeetleEndurance3, Utils1.FormatTimeToTick(1, 0, 0, 0));  
                 
             timmer = 0;
          
@@ -560,24 +549,24 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             {
                 if (NPC.HasBuff(BuffID.SolarShield2))
                 {
-                    NPC.AddBuff(BuffID.SolarShield3, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
+                    NPC.AddBuff(BuffID.SolarShield3, Utils1.FormatTimeToTick(1, 0, 0, 0));
                     RemnantGlobalNPC.DeleteBuff(NPC, BuffID.SolarShield2);
                 }
                 else if (NPC.HasBuff(BuffID.SolarShield1))
                 {
-                    NPC.AddBuff(BuffID.SolarShield2, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
+                    NPC.AddBuff(BuffID.SolarShield2, Utils1.FormatTimeToTick(1, 0, 0, 0));
                     RemnantGlobalNPC.DeleteBuff(NPC, BuffID.SolarShield1);
                 }
                 else if (!NPC.HasBuff(BuffID.SolarShield1) && !NPC.HasBuff(BuffID.SolarShield2) && !NPC.HasBuff(BuffID.SolarShield3))
-                    NPC.AddBuff(BuffID.SolarShield1, (int)Utils1.FormatTimeToTick(1, 0, 0, 0));
+                    NPC.AddBuff(BuffID.SolarShield1, Utils1.FormatTimeToTick(1, 0, 0, 0));
 
                 timmer = 0;
             }
             else timmer++;
 
 
-            int DashTimmerMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 3);
-            int DashDuration = (int)Utils1.FormatTimeToTick(0, 0, 0, 0.1f);
+            int DashTimmerMax = Utils1.FormatTimeToTick(0, 0, 0, 3);
+            int DashDuration = Utils1.FormatTimeToTick(0, 0, 0, 0.1f);
 
             if (target == null) return;   
             if (!NPC.HasBuff(BuffID.SolarShield3)) return;

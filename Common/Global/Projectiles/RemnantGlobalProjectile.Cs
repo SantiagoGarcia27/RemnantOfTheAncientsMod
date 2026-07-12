@@ -113,7 +113,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 if (Main.rand.NextBool(4) && projectile.type == ProjectileID.FlinxMinion)
                 {
-                    target.AddBuff(BuffID.Confused, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    target.AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 5));
                 }
                 if (projectile.type == ProjectileID.ThunderStaffShot)
                 {
@@ -173,7 +173,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     {
                         foreach (int debuff in list)
                         {
-                            target.AddBuff(debuff, (int)Utils1.FormatTimeToTick(0, 0, 0, 10));
+                            target.AddBuff(debuff, Utils1.FormatTimeToTick(0, 0, 0, 10));
                         }
                     }
                 }
@@ -181,7 +181,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     if (player.HeldItem.type == ItemID.Blowgun)
                     {
-                        target.AddBuff(BuffID.Poisoned, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                        target.AddBuff(BuffID.Poisoned, Utils1.FormatTimeToTick(0, 0, 0, 3));
                     }
                 }
                 if(projectile.type == ProjectileID.NanoBullet)
@@ -209,7 +209,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
                     else if(projectile.ai[1] == 3)
                     {
-                        target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                        target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 3));
                     }
                     else if (projectile.ai[1] == 6)
                     {
@@ -217,11 +217,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
                     else if (projectile.ai[1] == 17)
                     {
-                        target.AddBuff(BuffID.Confused, (int)Utils1.FormatTimeToTick(0, 0, 0, 4));
+                        target.AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 4));
                     }
                     else if (projectile.ai[1] == 18)
                     {
-                        target.AddBuff(BuffID.Ichor, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+                        target.AddBuff(BuffID.Ichor, Utils1.FormatTimeToTick(0, 0, 0, 1));
                     }
                     else if (projectile.ai[1] == 19)
                     {
@@ -229,11 +229,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
                     else if (projectile.ai[1] == 20)
                     {
-                        target.AddBuff(BuffID.OnFire, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                        target.AddBuff(BuffID.OnFire, Utils1.FormatTimeToTick(0, 0, 0, 5));
                     }
                     else if (projectile.ai[1] == 21)
                     {
-                        target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                        target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 5));
                     }
                     else if (projectile.ai[1] == 22)
                     {
@@ -334,7 +334,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
             }
         }
-        int fireballTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
+        int fireballTimmer = Utils1.FormatTimeToTick(0, 0, 0, 10);
 
 
         public int AttackCounter = 0;
@@ -353,7 +353,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             else if (projectile.type == ProjectileID.ClingerStaff)
             {
                 
-                if(fireballTimmer++ >= (int)Utils1.FormatTimeToTick(0, 0, 0, 2))
+                if(fireballTimmer++ >= Utils1.FormatTimeToTick(0, 0, 0, 2))
                 {
                     fireballTimmer = 0;
                 }

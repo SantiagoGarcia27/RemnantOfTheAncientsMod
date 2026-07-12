@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
                             FoundTarget = target != null;
                         }
 
-                        timmerMax = (int)Utils1.FormatTimeToTick(0, 0, 0, 10);
+                        timmerMax = Utils1.FormatTimeToTick(0, 0, 0, 10);
                         if (timmer >= timmerMax)
                         {
                             if (FoundTarget )
@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
             if (projectile.type == ProjectileID.AbigailMinion)
             {
                 if(Main.rand.NextBool(10))
-                    target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second: 2));
+                    target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), Utils1.FormatTimeToTick(Second: 2));
             }
             base.OnHitNPC(projectile, target, hit, damageDone);
         }

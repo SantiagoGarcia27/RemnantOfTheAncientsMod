@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
             Main.buffNoTimeDisplay[Type] = true;
             if (player.ownedProjectileCounts[ProjectileType<CursedShotgunMinion>()] > 0)
             {
-                player.buffTime[buffIndex] = (int)Utils1.FormatTimeToTick(1, 0, 0, 0);
+                player.buffTime[buffIndex] = Utils1.FormatTimeToTick(1, 0, 0, 0);
             }
             else
             {

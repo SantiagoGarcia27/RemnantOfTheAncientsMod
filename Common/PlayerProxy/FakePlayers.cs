@@ -1,26 +1,28 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.PlayerProxy
 {
     public static class FakePlayers
     {
-        private static readonly Dictionary<int, int> _players = [];
+        private static readonly Dictionary<NPC, int> _players = [];
 
-        public static Player Get(NPC npc, bool visible = false)
+        public static Player GetPlayerProxy(this NPC npc, bool visible = false)
         {
             Player player = null;
-            if (!_players.TryGetValue(npc.whoAmI, out int playerwhoAmI))
+            if (!_players.TryGetValue(npc, out int playerwhoAmI))
             {
                 int index = GetAvailableWhoAmI();
                 if (index <= -1) return null;
-                _players[npc.whoAmI] = index;
+
+                _players[npc] = index;
                 Main.player[index] = new Player()
                 {
                     whoAmI = index,
@@ -34,12 +36,12 @@ namespace RemnantOfTheAncientsMod.Common.PlayerProxy
 
             return player;
         }
-        public static Player Update(NPC npc, bool visible = false) => Get(npc, visible);
-        public static void Remove(int npcWhoAmI)
+        public static Player UpdatePlayerProxy(NPC npc, bool visible = false) => GetPlayerProxy(npc, visible);
+        public static void DisposePlayerProxy(this NPC npc)
         {
-            if (!_players.TryGetValue(npcWhoAmI, out int playerWhoAmI)) return;
+            if (!_players.TryGetValue(npc, out int playerWhoAmI)) return;
             Main.player[playerWhoAmI].Reset();
-            _players.Remove(npcWhoAmI);  
+            _players.Remove(npc);  
         }
 
         private static void Sync(Player player, NPC npc, bool visible)
@@ -57,6 +59,22 @@ namespace RemnantOfTheAncientsMod.Common.PlayerProxy
 
             }
         }
+
+        private static void GarbageCollector()
+        {
+            if (_players.Count == 0) return;
+            foreach (Player player in Main.player)
+            {
+                if (player == null || !player.active) continue;
+                if (!player.GetModPlayer<FakePlayer>().isFakePlayer) continue;
+                NPC npc = _players.FirstOrDefault(x => x.Value == player.whoAmI).Key;
+                if (npc == null) continue;
+                if (Main.npc.IndexInRange(npc.whoAmI) && ReferenceEquals(npc, Main.npc[npc.whoAmI])) continue;
+
+                player.Reset();
+            }
+        }
+
         private static void Reset(this Player player)
         {
             int whoAmI = player.whoAmI;
@@ -69,13 +87,14 @@ namespace RemnantOfTheAncientsMod.Common.PlayerProxy
 
         private static int GetAvailableWhoAmI()
         {
-            for (int i = Main.player.Length - 2; i >= 0; i--)
+            int reservedSpaceForRealPlayers = Main.netMode == NetmodeID.SinglePlayer ? 0 : 5; 
+
+            for (int i = Main.player.Length - 2; i >= reservedSpaceForRealPlayers; i--)
             {
                 if (!Main.player[i].active) return i;   
             }
             return -1;
         }
-
 
     }
 
@@ -94,4 +113,4 @@ namespace RemnantOfTheAncientsMod.Common.PlayerProxy
         }
     }
 }
-
+*/

@@ -141,10 +141,11 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
             return day + hour + min + sec;
         }
-        public static float FormatTimeToTick(float Day = 0, float Hour = 0, float Minute= 0, float Second= 0)
+        public static int FormatTimeToTick(float Day = 0, float Hour = 0, float Minute= 0, float Second= 0)
         {
-            return Second * 60 + Minute * 60 * 60 + Hour * 60 * 60 * 60 + Day * 60 * 60 * 60 * 60;
+            return (int)(Second * 60 + Minute * 60 * 60 + Hour * 60 * 60 * 60 + Day * 60 * 60 * 60 * 60);
         }
+
         public static int FormatMoney(int Terra = 0, int Platinum = 0, int Gold = 0, int Silver = 0, int Copper = 0)
         {
             int _Copper = 1;

@@ -102,7 +102,7 @@ namespace RemnantOfTheAncientsMod
         #endregion
 
         public static float GenericChargeCouldown { get; set; }
-		public static float GenericChargeCouldownMax = (int)Utils1.FormatTimeToTick(0, 0, 1, 0);
+		public static float GenericChargeCouldownMax = Utils1.FormatTimeToTick(0, 0, 1, 0);
 
 		public static float GenericAmmoAmmount { get; set; }
 		public static float GenericAmmoAmmountMax = 0;
@@ -685,7 +685,7 @@ namespace RemnantOfTheAncientsMod
 			}
 			if(Player.HasBuff(BuffID.ShadowDodge))
 			{
-                Player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
+                Player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), Utils1.FormatTimeToTick(0, 0, 0, 5));
             }
 			base.OnHitByNPC(npc, hurtInfo);
 		}

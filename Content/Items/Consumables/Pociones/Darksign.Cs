@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
             Item.CloneDefaults(ItemID.BuilderPotion);
             Item.value = 0;
             Item.buffType = ModContent.BuffType<DarksignBuff>();
-            Item.buffTime = (int)Utils1.FormatTimeToTick(0, 0, 5, 0);
+            Item.buffTime = Utils1.FormatTimeToTick(0, 0, 5, 0);
         }
 
     }

@@ -438,7 +438,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             if (orbitalPhase != 0) return;
             orbitalPhase = 1;
-            orbitalTimer = (int)Utils1.FormatTimeToTick(Second:4);
+            orbitalTimer = Utils1.FormatTimeToTick(Second:4);
             orbitalAngle = (NPC.Center - target.Center).ToRotation();
             SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
             NPC.netUpdate = true;

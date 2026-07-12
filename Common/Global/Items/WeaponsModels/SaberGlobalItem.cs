@@ -119,7 +119,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             {
                 if (!player.HasBuff<HolyCouldownDebuff>())
                 {
-                    player.AddBuff(BuffID.ShadowDodge, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                    player.AddBuff(BuffID.ShadowDodge, Utils1.FormatTimeToTick(0, 0, 0, 3));
                 }
             }
             else if (type == ModContent.ItemType<GrassSaber>())

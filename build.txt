@@ -6,4 +6,4 @@ includeSource = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 sortAfter = SangarUtilities@0.1,VanillaQoL@1.5
 weakReferences = CalamityMod@2.0.7.1,InfernumMode@2.0.1,Fargowiltas@3.2.1,FargowiltasSouls@1.6.5.1
-modReferences = SangarUtilities@0.2
+modReferences = SangarUtilities@0.2,PlayerProxyLib@0.1

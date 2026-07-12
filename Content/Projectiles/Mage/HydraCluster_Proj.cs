@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = (int)Utils1.FormatTimeToTick(Second: 10);
+            Projectile.timeLeft = Utils1.FormatTimeToTick(Second: 10);
             Projectile.light = 1.75f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;

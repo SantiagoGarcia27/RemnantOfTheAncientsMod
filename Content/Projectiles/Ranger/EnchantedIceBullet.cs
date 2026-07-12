@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 20));
+            target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 20));
             base.OnHitNPC(target, hit, damageDone);
         }
     }
@@ -108,7 +108,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
 
-            int timmer = (int)Utils1.FormatTimeToTick(Second: 0.3f);
+            int timmer = Utils1.FormatTimeToTick(Second: 0.3f);
 
             if (counter >= timmer)
             {
@@ -132,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         int counter = 0;
         public override bool? CanHitNPC(NPC target)
         {
-            int timmer = (int)Utils1.FormatTimeToTick(Second: 0.3f);
+            int timmer = Utils1.FormatTimeToTick(Second: 0.3f);
             if (counter >= timmer) return true;
             return false;
         }
@@ -144,7 +144,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(0, 0, 0, 20));
+            target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 20));
             base.OnHitNPC(target, hit, damageDone);
         }
     }

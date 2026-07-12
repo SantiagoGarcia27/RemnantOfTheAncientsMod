@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			Projectile.DamageType = DamageClass.Melee;          // 
 			Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
 			Projectile.penetrate = 20;      //how many NPC will penetrate
-			Projectile.timeLeft = (int)Utils1.FormatTimeToTick(0,0,0,3); //how many time this projectile has before disepire
+			Projectile.timeLeft = Utils1.FormatTimeToTick(0,0,0,3); //how many time this projectile has before disepire
 			Projectile.light =0.5f;    // projectile light
 			Projectile.scale = 2f;
 			Projectile.extraUpdates = 1;

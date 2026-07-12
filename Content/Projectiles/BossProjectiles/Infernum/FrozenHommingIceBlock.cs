@@ -102,8 +102,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            target.AddBuff(BuffID.Frostburn2, (int)Utils1.FormatTimeToTick(0, 0, 0, 5));
-            target.AddBuff(BuffID.Frozen, (int)Utils1.FormatTimeToTick(0, 0, 0, 1));
+            target.AddBuff(BuffID.Frostburn2, Utils1.FormatTimeToTick(0, 0, 0, 5));
+            target.AddBuff(BuffID.Frozen, Utils1.FormatTimeToTick(0, 0, 0, 1));
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
             if (Math.Abs(Projectile.velocity.X - Projectile.oldVelocity.X) > float.Epsilon) Projectile.velocity.X = -Projectile.oldVelocity.X;
             if (Math.Abs(Projectile.velocity.Y - Projectile.oldVelocity.Y) > float.Epsilon) Projectile.velocity.Y = -Projectile.oldVelocity.Y;

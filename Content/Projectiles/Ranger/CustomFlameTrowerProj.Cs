@@ -84,10 +84,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Utils1.GetColorByID((int)Projectile.ai[2]) == Color.DarkOrange)
-                target.AddBuff(BuffID.OnFire, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                target.AddBuff(BuffID.OnFire, Utils1.FormatTimeToTick(0, 0, 0, 3));
 
             else if (Utils1.GetColorByID((int)Projectile.ai[2]) == Color.GreenYellow)
-                target.AddBuff(BuffID.CursedInferno, (int)Utils1.FormatTimeToTick(0, 0, 0, 3));
+                target.AddBuff(BuffID.CursedInferno, Utils1.FormatTimeToTick(0, 0, 0, 3));
             base.OnHitNPC(target, hit, damageDone);
         }
         public override bool OnTileCollide(Vector2 oldVelocity)

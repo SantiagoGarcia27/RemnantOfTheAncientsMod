@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void OnHitNPC(NPC target, NPC.HitInfo hit)
         {
 			if(Main.rand.NextBool(2))
-				target.AddBuff(BuffID.Cursed, (int)Utils1.FormatTimeToTick(0,0,0,3));
+				target.AddBuff(BuffID.Cursed, Utils1.FormatTimeToTick(0,0,0,3));
             base.OnHitNPC(target, hit);
         }
         enum Attacks
@@ -151,7 +151,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 				{
                     dashTimmer = 0;
                     currentAttck = Attacks.Shoot;
-					shootTimmer = (int)Utils1.FormatTimeToTick(0, 0, 0, 2);
+					shootTimmer = Utils1.FormatTimeToTick(0, 0, 0, 2);
                 }
 				
             }

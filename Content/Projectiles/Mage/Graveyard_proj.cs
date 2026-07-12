@@ -72,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second: 3));
+            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), Utils1.FormatTimeToTick(Second: 3));
             base.OnHitNPC(target, hit, damageDone);
         }
         public override bool PreDraw(ref Color lightColor)

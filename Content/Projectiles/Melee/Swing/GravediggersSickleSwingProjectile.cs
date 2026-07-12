@@ -337,12 +337,12 @@ public class GravediggersSickleSwingProjectile : CickerSwingProjectile
     public override int itemBaseType => ModContent.ItemType<GravediggersSickle>();
     public override void OnHitPlayer(Player target, Player.HurtInfo info)
     {
-        target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second:5));
+        target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), Utils1.FormatTimeToTick(Second:5));
         base.OnHitPlayer(target, info);
     }
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
     {
-        target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second: 3));
+        target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), Utils1.FormatTimeToTick(Second: 3));
         base.OnHitNPC(target, hit, damageDone);
     }
 }
@@ -351,16 +351,16 @@ public class NightLotusSickleSwingProjectile : CickerSwingProjectile
     public override int itemBaseType => ModContent.ItemType<NightLotus>();
     public override void OnHitPlayer(Player target, Player.HurtInfo info)
     {
-        target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second: 5));
-        target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(Second: 5));
+        target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), Utils1.FormatTimeToTick(Second: 5));
+        target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(Second: 5));
         base.OnHitPlayer(target, info);
     }
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
     {
         if (Main.rand.NextBool(3))
         {
-            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), (int)Utils1.FormatTimeToTick(Second: 3));
-            target.AddBuff(BuffID.Slow, (int)Utils1.FormatTimeToTick(Second: 3));
+            target.AddBuff(ModContent.BuffType<CurseMarkBuff>(), Utils1.FormatTimeToTick(Second: 3));
+            target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(Second: 3));
         }
         base.OnHitNPC(target, hit, damageDone);
     }
