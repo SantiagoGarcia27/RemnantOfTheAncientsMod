@@ -63,7 +63,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
         }
         public override void OnKill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+            if (Main.rand.NextBool(4))
+            {
+                SoundEngine.PlaySound(SoundID.Item27 with
+                {
+                    Volume = 0.2f,
+                    PitchVariance = 1.2f
+                }, Projectile.position);
+            }
             Vector2 usePos = Projectile.position;
             Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2();
             usePos += rotVector * 16f;

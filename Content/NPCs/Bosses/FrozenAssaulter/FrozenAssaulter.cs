@@ -1,48 +1,54 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using FargowiltasSouls.Content.Items.Armor;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
+using RemnantOfTheAncientsMod.Common.Extensions;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie;
+using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
-using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using Terraria.GameContent.ItemDropRules;
-using RemnantOfTheAncientsMod.Common.Systems;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
-using System.IO;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using Terraria.GameContent.Bestiary;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using RemnantOfTheAncientsMod.Common.Drops.DropRules;
-using System.Collections.Generic;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.World;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using Terraria;
+using Terraria.Chat;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 {
     [AutoloadBossHead]
     public class FrozenAssaulter : ModNPC
     {
-        public int invincibilityTimer = 0;
-        public bool healAnimation = false;
+    
+
         public int currentPhase = 1;
-        public int MaxPlayers = RemnantOfTheAncientsMod.MaxPlayerOnline() / 2;
-        public int TpDelay = 20;
+        public int MaxPlayers => RemnantOfTheAncientsMod.MaxPlayerOnline() / 2;
+     
         public override void SetStaticDefaults()
         {        
             Main.npcFrameCount[NPC.type] = 8;
@@ -78,14 +84,31 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime
             ]);
         }
+        #region Networking
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(attackCounter);
+            writer.Write(currentPhase);
+            writer.Write(DogdeCouldown);
+            writer.Write(grades);
+            writer.Write(delay);
+            writer.Write(invincibilityTimer);
+            writer.Write(healAnimation);
+            writer.Write(TpDelay);
+
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             attackCounter = reader.ReadInt32();
+            currentPhase = reader.ReadInt32();
+            DogdeCouldown = reader.ReadSingle();
+            grades = reader.ReadSingle();
+            delay = reader.ReadSingle(); 
+            invincibilityTimer = reader.ReadInt32();
+            healAnimation = reader.ReadBoolean();
+            TpDelay = reader.ReadInt32();
         }
+        #endregion
         float grades = 0;
         float delay = 2;
         public override void AI()
@@ -97,7 +120,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
             Player target = Main.player[NPC.target];
             float distance = NPC.Distance(target.Center);
-            PhaseChanger();
+            currentPhase = PhaseChanger();
             setAttackCounter(target);
 
             if (target.dead)
@@ -114,14 +137,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 CheckDistance(distance, NPC);
                 return;
             }
-            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
-            {
-                EternityIA(target);
-            }
-            else
-            {
-                BaseAi(target, distance);
-            }
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null) EternityIA(target);
+            else BaseAi(target, distance);
+            
         }
         
         public void BaseAi(Player target, float distance)
@@ -131,102 +149,108 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             CheckDistance(distance, NPC);
             DogdeAi(target);
 
-
-            if (Main.expertMode)
-            {
-                if (attackCounter < 600 && attackCounter > 500 && currentPhase != 3)
-                {
-                    ShootIa((int)(10 * RemnantGlobalNPC.DamageBonus), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
-                }
-            }
-            if (Main.expertMode )
-            {
-                CheckPhase();
-            }
-        }
-        private void DogdeAi(Player target)
-        {
-            float DistancePlayer;
-            List<Projectile> projectiles;
-            if (DogdeCouldown == 0)
-            {
-                DistancePlayer = Vector2.Distance(NPC.Center, target.Center);
-                if (DistancePlayer <= 250)
-                {
-                    Dogde(target);
-                }
-
-                projectiles = Utils1.SearchProjectiles(true, NPC, 250);
-                if (projectiles.Count > 0)
-                {
-                    Dogde(projectiles[0]);
-                }
-            } 
-            else
-            {
-                DogdeCouldown = Math.Max(DogdeCouldown - 1, 0); //actualiza el contador
-            }
+            if (!Main.expertMode) return;
+            if (attackCounter.Between(min:500,max:600) && currentPhase != 3) 
+                ShootIa((int)(10 * RemnantGlobalNPC.DamageBonus), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+            CheckPhase();
+            
         }
         private void SummonAi(bool isReaper)
-        {  
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
+
             int conter1 = isReaper? 150 : 300;
-            if(attackCounter == conter1) NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
-            if (attackCounter == 600 && currentPhase >= 2 && (Main.expertMode || Main.masterMode))
-            {
-                int a = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceGolem);
-                Main.npc[a].damage *= 2;
-                Main.npc[a].lifeMax /= 2;
-                Main.npc[a].value = 0;
+            if (attackCounter == conter1) { 
+                int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
+                Main.npc[npc].lifeMax /= 2;
+                Main.npc[npc].life = Main.npc[npc].lifeMax;
             }
+            if (attackCounter != 600 || currentPhase < 2 || (!Main.expertMode && !Main.masterMode)) return;
+            int count = Main.npc.Where(x => x.type == NPCID.IceGolem && x.active && x.life > 0).ToArray().Length;
+            if (count > 4) return;
+            int a = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceGolem);
+            Main.npc[a].damage *= 2;
+            Main.npc[a].lifeMax /= 4;
+            Main.npc[a].life = Main.npc[a].lifeMax;
+            Main.npc[a].defense = 0;
+            Main.npc[a].value = 0;   
         }
+
         float DogdeCouldown =0;
-        public void Dogde(Player player)
+        private void DogdeAi(Player target)
         {
-            NPC.velocity = -Vector2.Normalize(player.Center - NPC.Center) * 12;
-            NPC.velocity.Y +=  5 * (Main.rand.NextBool(2)? 1:-1);
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
+            float DistancePlayer;
+            List<Projectile> projectiles;
+            if (DogdeCouldown != 0)
+            {
+                DogdeCouldown = Math.Max(DogdeCouldown - 1, 0); //actualiza el contador
+                return;
+            }
+            int SearchRange = 4;
+            DistancePlayer = Vector2.Distance(NPC.Center, target.Center);
+            if (DistancePlayer <= SearchRange) Dogde(target);
+            projectiles = Utils1.SearchProjectiles(true, NPC, SearchRange);
+            if (projectiles.Count > 0) Dogde(projectiles[0]);  
+        }
+        public void Dogde(Player player) => Dogde(velocity: player.velocity,center:player.Center);
+        public void Dogde(Projectile proj) => Dogde(velocity: proj.velocity,center:proj.Center);
+       
+        public void Dogde(Vector2 velocity, Vector2 center)
+        {
+            const float dodgeSpeed = 4f;
+            if (velocity == Vector2.Zero)
+            {
+                NPC.velocity += new Vector2(Main.rand.Next(-1,1), Main.rand.Next(-1, 1)) * dodgeSpeed;
+                return;
+            }
+            float danger = Vector2.Dot(Vector2.Normalize(velocity),Vector2.Normalize(NPC.Center - center));
+            if (danger < 0.8f)
+                return;
+
+
+            Vector2 left = Vector2.Normalize(velocity).RotatedBy(MathHelper.PiOver2);
+            Vector2 right = -left;
+
+            Vector2 futureCenter = center + velocity * 10f;
+
+            float leftDist = Vector2.DistanceSquared(NPC.Center + left * 64f, futureCenter);
+            float rightDist = Vector2.DistanceSquared(NPC.Center + right * 64f, futureCenter);
+
+            Vector2 dodgeDir = leftDist > rightDist ? left : right;
+
+            NPC.velocity += dodgeDir * dodgeSpeed;
+
+            if (NPC.velocity.Length() > dodgeSpeed)
+                NPC.velocity = Vector2.Normalize(NPC.velocity) * dodgeSpeed;
+
             DogdeCouldown = 360;
         }
-        public void Dogde(Projectile proj)
-        {
-            NPC.velocity = -Vector2.Normalize(proj.Center - NPC.Center) * 12;
-            NPC.velocity.Y += 3 * (Main.rand.NextBool(2) ? 1 : -1);
-            DogdeCouldown = 360;
-        }
-        private Vector2 ExplosionPosition;
+
         private void ShootAi(Player target, bool isReaper)
         {
             switch (attackCounter)
             {
                 case 500:
                 case 200:
-                    if (currentPhase == 3 )
-                    {
-                        for (int i = 0; i < 3; i++)
-                        {
-                            ShootSwordIa(target, 50, ModContent.ProjectileType<FrozenPermafrostRain>(), 4f);
-                        }
-                    }
+                    if (currentPhase != 3) return;  
+                    for (int i = 0; i < 3; i++){
+                        ShootSwordIa(target, 50, ModContent.ProjectileType<FrozenPermafrostRain>(), 4f);
+                    }            
                     break;
                 case 400:
-                    if (isReaper)
+                    if (!isReaper) return;
+                    for (int i = 0; i < 6; i++)
                     {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            ShootIa(10, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
-                        }
+                        ShootIa(10, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                     }
                     break;
                 case 115:
-                    if (isReaper)
+                    int beamAmount = isReaper? 6 : 1;
+                    int damage = isReaper ? 10 : 50;
+                    for (int i = 0; i < beamAmount; i++)
                     {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            ShootIa(10, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
-                        }
-                    }
-                    else
-                    {
-                        ShootIa(50, ProjectileID.FrostBeam, target, 20f, 0.5, 0.5);
+                        ShootIa(damage, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
                     }
                     break;
                 case >= 0:
@@ -234,8 +258,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     {
                         if (!isReaper)
                         {
-
-                            if (currentPhase > 2) ShootIa(10, ProjectileType<Frozenp>(), target, -20f, 0.5, 0.5);
+                            if (currentPhase > 2) 
+                                ShootIa(10, ProjectileType<Frozenp>(), target, -20f, 0.5, 0.5);
                             for (int i = -1; i < MaxPlayers; i++)
                             {
                                 int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
@@ -244,28 +268,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                         }
                         else
                         {
-                            int framerate;
-                            if (Main.frameRate >= 60)
-                            {
-                                framerate = 60;
-                            }
-                            else
-                            {
-                                framerate = Main.frameRate;
-                            }
+                            int framerate = Math.Min(Main.frameRate,60);
                             float diferencia = Math.Abs(55 - framerate);
-                            if (++delay >= diferencia)
+                            if (++delay < diferencia) return;
+                            
+                            for (int j = 0; j < 3; j++)
                             {
-                                for (int j = 0; j < 3; j++)
-                                {
-                                    ShootIa(10, ProjectileType<Frozenp>(), 7f, 360f + grades, 0);//70
-                                    ShootIa(10, ProjectileType<Frozenp>(), 7f, -120f + grades, 0);
-                                    ShootIa(10, ProjectileType<Frozenp>(), 7f, 120f + grades, 0);
-                                    ShootIa(10, ProjectileType<Frozenp>(), 7f, -360f + grades, 0);
-                                }
-                                grades = (grades <= 360) ? (grades + 0.01f) : 0;
-                                delay = 0;
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f, 360f + grades, 0);//70
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f, -120f + grades, 0);
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f, 120f + grades, 0);
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f, -360f + grades, 0);
                             }
+                            grades = grades <= 360 ? (grades + 0.01f) : 0;
+                            delay = 0;
                         }
                     }
                     break;
@@ -274,81 +289,72 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         #region Eternity
         public void EternityIA(Player target)
         {
-            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
+            if (RemnantOfTheAncientsMod.FargosSoulMod == null) return;
+            if (!DificultyUtils.EternityMode && !DificultyUtils.MasochistMode) return;
+                
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode)
-                {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Chilled, 0, 0, 1);
-                        RemnantPlayer.ApplyBuffToAllPlayers(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 0, 0, 1);
-                    }
-                    else
-                    {
-                        target.AddBuff(BuffID.Chilled, 1);
-                        target.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 1);
-                    }
-
-
-                    int MainShootRate = ((DificultyUtils.MasochistMode ? 4 : 8) * (!DificultyUtils.InfernumMode ? 1 : 2));
-                    if (attackCounter % MainShootRate == 0 && currentPhase != 2)
-                    {
-                        EthernityCommonShoot(target);
-                    }
-                    if (currentPhase > 2)
-                    {
-                        for (int i = DificultyUtils.MasochistMode ? 5 : 4; i > (DificultyUtils.MasochistMode ? 0 : 3); i--)
-                        {
-                            EthernityExplosionIA(i * 10);
-                        }
-                        if (currentPhase == 3)
-                        {
-                            for (int i = 8; i > 0; i--)
-                            {
-                                EthernityExplosionIA(i * 10);
-                            }
-                        }
-                        if (currentPhase >= 4)
-                        {
-                            if (!DificultyUtils.MasochistMode)
-                            {
-                                EthernityExplosionIA(currentPhase == 4 ? 200 : 500);
-                            }
-                            else
-                            {
-                                if (currentPhase == 4)
-                                {
-                                    for (int i = 100; i > 0; i -= 5)
-                                    {
-                                        EthernityExplosionIA(i);
-                                    }
-                                }
-                                else if (currentPhase > 4)
-                                {
-                                    for (int i = 300; i <= 500; i += 100)
-                                    {
-                                        EthernityExplosionIA(i);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }  
+                RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Chilled, 0, 0, 1);
+                RemnantPlayer.ApplyBuffToAllPlayers(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 0, 0, 1);
             }
-        }
+            else
+            {
+                target.AddBuff(BuffID.Chilled, 1);
+                target.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 1);
+            }
 
+
+            int MainShootRate = ((DificultyUtils.MasochistMode ? 4 : 8) * (!DificultyUtils.InfernumMode ? 1 : 2));
+            if (attackCounter % MainShootRate == 0 && currentPhase != 2) EthernityCommonShoot(target);
+
+            if (currentPhase <= 2) return;
+            
+            for (int i = DificultyUtils.MasochistMode ? 5 : 4; i > (DificultyUtils.MasochistMode ? 0 : 3); i--)
+            {
+                EthernityExplosionIA(i * 10);
+            }
+            if (currentPhase == 3)
+            {
+                for (int i = 8; i > 0; i--)
+                {
+                    EthernityExplosionIA(i * 10);
+                }
+            }
+            if (currentPhase >= 4)
+            {
+                if (!DificultyUtils.MasochistMode) EthernityExplosionIA(currentPhase == 4 ? 200 : 500);  
+                else
+                {
+                    if (currentPhase == 4)
+                    {
+                        for (int i = 100; i > 0; i -= 5)
+                        {
+                            EthernityExplosionIA(i);
+                        }
+                    }
+                    else if (currentPhase > 4)
+                    {
+                        for (int i = 300; i <= 500; i += 100)
+                        {
+                            EthernityExplosionIA(i);
+                        }
+                    }
+                }
+            }       
+        }
+        private Vector2 ExplosionPosition;
         public void EthernityExplosionIA(int count)
         {
-            int X;
-            int Y;
-            if (attackCounter == count + 120 && attackCounter > 0)
+            if (attackCounter <= 0) return;
+
+            if (attackCounter == count + 120)
             {
-                X = Main.rand.Next((int)(Main.player[NPC.target].position.X - 50 * 16f), (int)(Main.player[NPC.target].position.X + 50 * 16f));
-                Y = Main.rand.Next((int)(Main.player[NPC.target].position.Y - 50 * 16f), (int)(Main.player[NPC.target].position.Y + 50 * 16f));
+                int X = Main.rand.Next((int)(Main.player[NPC.target].position.X - 50 * 16f), (int)(Main.player[NPC.target].position.X + 50 * 16f));
+                int Y = Main.rand.Next((int)(Main.player[NPC.target].position.Y - 50 * 16f), (int)(Main.player[NPC.target].position.Y + 50 * 16f));
                 ExplosionPosition = new Vector2(X, Y);
-                var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Vector2.Zero, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), ExplosionPosition, Vector2.Zero, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
             }
-            if (attackCounter == count && attackCounter > 0)
+            if (attackCounter == count)
             {
                 int numProjectiles = 5;
 
@@ -356,7 +362,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 {
                     Vector2 Velocity = new Vector2(2, 2).RotatedBy(i * 10);
 
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(ExplosionPosition.X, ExplosionPosition.Y), Velocity, ProjectileID.FrostWave, 30, 1, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), ExplosionPosition, Velocity, ProjectileID.FrostWave, 30, 1, Main.myPlayer);
                 }
             }
         }
@@ -390,15 +396,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             }
             else
             {
-                int framerate;
-                if (Main.frameRate >= 60)
-                {
-                    framerate = 60;
-                }
-                else
-                {
-                    framerate = Main.frameRate;
-                }
+                int framerate = Math.Min(Main.frameRate, 60); 
                 float diferencia = Math.Abs(55 - framerate);
                 if (++delay >= diferencia)
                 {
@@ -421,47 +419,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
         private void setAttackCounter(Player target)
         {
-            if (attackCounter > 0)
-            {
-                attackCounter--;
-            }
+            if (Main.netMode != NetmodeID.MultiplayerClient && attackCounter > 0) attackCounter--;
+            
             float Distance = Vector2.Distance(NPC.Center, target.Center);
             bool IsOnDistance = Distance < 600;
             bool CanHit = Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1);
-            if (attackCounter <= 0 && IsOnDistance && CanHit)
+           
+            if (attackCounter <= 0 && ((IsOnDistance && CanHit) || DificultyUtils.InfernumMode))
             {
-
                 attackCounter = 900;
                 NPC.netUpdate = true;
-            }
-
-            if (DificultyUtils.InfernumMode)
-            {
-                if (attackCounter <= 0)
-                {
-                    attackCounter = 900;
-                    NPC.netUpdate = true;
-                }
             }
         }
         public void CheckPhase()
         {
-            if (currentPhase == 3)
-            {
-               FrozenPhase3();
-            }
-            if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200))
-            {
-                FrozenTp();
-            }
+            if (currentPhase == 3) FrozenPhase3();        
+            if (currentPhase == 4 && (attackCounter == 700 || attackCounter == 200)) FrozenTp();         
         }
 
         public static void CheckDistance(float distance, NPC NPC)
         {
-            if(distance <= 60)
-            {
-                NPC.directionY = -NPC.oldDirectionY;
-            }
+            if(distance <= 60) NPC.directionY = -NPC.oldDirectionY;
         }
         public void ShootIa(int damage, int type, Player player, float speed, double x, double y)
         {
@@ -477,7 +455,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
         public void ShootIa(int damage, int type, float speed, float grades, float Orotation)
         {
-            Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
+            Vector2 vector8 = new(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             Vector2 direction = Vector2.UnitX * speed;
             direction = direction.RotatedBy(grades);
             int i = Projectile.NewProjectile(NPC.GetSource_FromAI(), vector8, direction, type, damage, 0f, Main.myPlayer);
@@ -491,25 +469,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             // Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
             Vector2 position = target.position;
             float ceilingLimit = position.Y;
-            if (ceilingLimit > target.Center.Y - 200f)
-            {
-                ceilingLimit = target.Center.Y - 200f;
-            }
+            float limit = target.Center.Y - 200f;
+            
+            if (ceilingLimit > limit) ceilingLimit = limit;
+            
             for (int i = 0; i < 3; i++)
             {
                 position = target.Center - new Vector2(Main.rand.NextFloat(401) * NPC.direction, 600f);
                 position.Y -= 100 * i;
                 Vector2 heading = position- NPC.position /*- position*/;
 
-                if (heading.Y < 0f)
-                {
-                    heading.Y *= -1f;
-                }
-
-                if (heading.Y < 20f)
-                {
-                    heading.Y = 20f;
-                }
+                if (heading.Y < 0f) heading.Y *= -1f;
+                if (heading.Y < 20f) heading.Y = 20f;
+                
                 Vector2 velocity = Vector2.UnitX * speed;
                 velocity = velocity.RotatedBy(grades);
                 heading.Normalize();
@@ -519,41 +491,35 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 Main.projectile[p].stepSpeed = speed;
             }
         }
-       
+
+        public bool healAnimation = false;
+        public int invincibilityTimer = 0;
         public void FrozenPhase3()
         {
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Frozen_Assaulter_p2");
-
-
-            switch (invincibilityTimer)
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
+            if (invincibilityTimer == 0 && !healAnimation)
             {
-                case 0:
-                    NPC.defDefense = 9999;
-                    invincibilityTimer = 1304;   
-                    break;
-                case 4:
-                    NPC.defDefense = 15;
-                    invincibilityTimer--;
-                    break;
-                case 3 :
-                    if (!healAnimation)
-                    {
-                        if (Reaper.ReaperMode)
-                        {
-                            NPC.life = NPC.lifeMax / 2;
-                        }
-                        else
-                        {
-                            NPC.life = NPC.lifeMax / 3;
-                        }
-                        healAnimation = true;
-                        invincibilityTimer--;
-                    }
-                    break;
-                case > 1:
-                    invincibilityTimer--;
-                        break;
+                NPC.defDefense = 9999;
+                invincibilityTimer = Utils1.FormatTimeToTick(Second: 26); //1304;
+                NPC.netUpdate = true;
+                return;
             }
+
+            if (invincibilityTimer == 4)
+            {
+                NPC.defDefense = 15;
+                NPC.netUpdate = true;
+            }
+            else if (invincibilityTimer == 3 && !healAnimation)
+            {
+                int healAmount = NPC.lifeMax / (DificultyUtils.ReaperMode ? 2 : 3);
+                NPC.life = healAmount;
+                healAnimation = true;
+                NPC.netUpdate = true;
+            }  
+
+            invincibilityTimer--;
         }
         public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
         {
@@ -582,7 +548,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood,hit.HitDirection, -1f);
                 }
 
-                if(DificultyUtils.InfernumMode != null)
+                if(RemnantOfTheAncientsMod.InfernumMod != null)
                 {
                     if(DificultyUtils.InfernumMode) 
                     {
@@ -612,42 +578,35 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             }
             PhaseChanger();
         }
+        private int TpDelay = 20;
         public void FrozenTp()
         {
-
             Vector2 position = Main.player[NPC.target].Center + new Vector2(Main.rand.Next(-250 * 2, 150 * 2), Main.rand.Next(-250 * 2, 150 * 2));
             Projectile.NewProjectile(NPC.GetSource_FromAI(), position, new Vector2(0, 0), ProjectileType<BossMark>(), 0, 0f, 0);
 
-            if (TpDelay == 0)
-            {
-                NPC.position = position;
-                TpDelay = 20;
-            }
-            else
-            {
-                TpDelay--;
-            }
+            if (TpDelay-- > 0) return;
+            
+            NPC.position = position;
+            NPC.netUpdate = true;
+            TpDelay = 20;
+             
         }
-        public void PhaseChanger()
+        public int PhaseChanger()
         {
             if (NPC.life >= (NPC.lifeMax / 2))
-            {
-                currentPhase = 1;
+            {   
                 NPC.localAI[2] = 0;
+                return 1;
             }
+            else if (healAnimation) return 4;
             else if (NPC.life <= (NPC.lifeMax / 4))
             {
-                if (healAnimation)
-                {
-                    currentPhase = 4;
-                }
-                else
-                {
-                    currentPhase = 3;
-                    NPC.localAI[2] = 1;
-                }
+                NPC.localAI[2] = 1;
+                return 3; 
             }
-            else if (NPC.life <= (NPC.lifeMax / 2) && currentPhase < 3) currentPhase = 2;
+            else if (NPC.life <= (NPC.lifeMax / 2) && currentPhase < 3) return 2;
+
+            return 1;
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
@@ -753,21 +712,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (NPC.defDefense == 9999)
-            {
-                SpriteEffects effects = SpriteEffects.None;
-                if (NPC.spriteDirection == 1)
-                {
-                    effects = SpriteEffects.FlipHorizontally;
-                }
-                Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
-                Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0, -65));
-                var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/FrozenAssaulter/FrozenAssaulter_Shield");
-                position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
-                position += vectorFrame + new Vector2(0f, 4f + NPC.gfxOffY);
-                Color color = new Color(147, 219, 252,150);
-                Main.spriteBatch.Draw((Texture2D)a, position, null, color, 0, vectorFrame, 1f, effects, 0f);    
-            }
+            if (NPC.defDefense != 9999) return;
+            
+            SpriteEffects effects = SpriteEffects.None;
+            if (NPC.spriteDirection == 1)  effects = SpriteEffects.FlipHorizontally;
+            
+            Vector2 vectorFrame = new Vector2(TextureAssets.Npc[NPC.type].Value.Width / 2, TextureAssets.Npc[NPC.type].Value.Height / Main.npcFrameCount[NPC.type] / 2);
+            Vector2 position = new Vector2(NPC.Center.X, NPC.Center.Y) - (Main.screenPosition - new Vector2(0, -65));
+            var a = Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/FrozenAssaulter/FrozenAssaulter_Shield");
+            position -= new Vector2(a.Width(), a.Height() / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            position += vectorFrame + new Vector2(0f, 4f + NPC.gfxOffY);
+            Color color = new Color(147, 219, 252,150);
+            Main.spriteBatch.Draw((Texture2D)a, position, null, color, 0, vectorFrame, 1f, effects, 0f);    
         }
         public void ChoiseFrame(int frame, int frameHeight)
         {
@@ -776,6 +732,3 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         } 
     }
 }
-	
-
-    

@@ -28,6 +28,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.GameContent.Animations.IL_Actions.Sprites;
 using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
@@ -138,11 +139,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             }
 
             if (CurrentTarget == null || NoAI) return;
-          
-            NPC.scale = LifeSize(NPC);
-           
+
+            UpdateScale();
             CheckForCheating();
             MovementAI();
+
+            if(Main.netMode != NetmodeID.MultiplayerClient)
             AttackIA(CurrentTarget);
 
 
@@ -632,22 +634,32 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
 
         public void GenerateTpParticles(bool appear = false)
         {
-            int tpParticleTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+            int particleCount = RemnantOfTheAncientsMod.ParticleMeter(45);//25
 
             int width = (int)(NPC.width * NPC.scale);
             int height = (int)(NPC.height * NPC.scale);
             if (!appear) NPC.alpha = 150;
-            while (tpParticleTimer-- > 0)
+          
+                
+            for (int i = 0; i < particleCount; i++)
             {
-                int particleCount = RemnantOfTheAncientsMod.ParticleMeter(5);//25
-                for (int i = 0; i < particleCount; i++)
-                {
-                    Vector2 dustPosition = NPC.position - new Vector2(Main.rand.Next(width), Main.rand.Next(height));
-                    Dust dust = Dust.NewDustDirect(dustPosition, width, height, DustID.Sand, 0, 0, 100, default, 3f);
-                    dust.velocity = NPC.velocity * 0.2f;
-                    dust.noGravity = true;
-                }
+                Vector2 dustPosition = NPC.position - new Vector2(Main.rand.Next(width/2), Main.rand.Next(height/2));
+                Dust dust = Dust.NewDustDirect(dustPosition, width, height, DustID.Sand, 0, 0, 100, default, 3f);
+                dust.velocity = NPC.velocity * 0.2f;
+                dust.noGravity = true;
             }
+            
+        }
+        private void UpdateScale()
+        {
+            NPC.scale = LifeSize(NPC);
+            int oldCenterX = (int)NPC.Center.X;
+            int oldCenterY = (int)NPC.Center.Y;
+
+            NPC.width = (int)(originalSize.X * NPC.scale);
+            NPC.height = (int)(originalSize.Y * NPC.scale);
+
+            NPC.Center = new Vector2(oldCenterX, oldCenterY);
         }
 
         private float LifeSize(NPC npc)
@@ -719,9 +731,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY + (3 * 16)), NPC.frame, color, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
         }
+
+        Vector2 originalSize = new();
         public override void OnSpawn(IEntitySource source)
         {
             ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+            originalSize.X = NPC.width;
+            originalSize.Y = NPC.height;
             spawnGuardians = true;
             base.OnSpawn(source);
         }
