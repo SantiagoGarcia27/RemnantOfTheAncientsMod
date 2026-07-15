@@ -292,21 +292,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
             return null;
         }
-        public static List<Projectile> SearchProjectiles(bool friendly, Vector2 center, float range)
-        {
-            List<Projectile> l = [];
-            foreach (Projectile p in Main.projectile)
-            {
-                if (Vector2.Distance(center, p.Center) <= range)
-                {
-                    if (p.friendly == friendly && p.hostile == !friendly)
-                    {
-                        l.Add(p);
-                    }
-                }
-            }
-            return l;
-        }
+  
         public static Projectile SearchFirstProjectile(int id, bool friendly = false, bool hostile = false)
         {
             foreach (Projectile p in Main.projectile)
@@ -320,23 +306,24 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 
 
         }
-
-        public static List<Projectile> SearchProjectiles(bool friendly, NPC center, float range)
+        public static List<Projectile> SearchProjectiles(bool friendly, NPC npc, float rangeInBlocks)
         {
-            float rangeSquared = range * range;
+            float rangeInPixels = DistanceUtils.ToCoordenatePosition(rangeInBlocks);
+            float rangeSquared = rangeInPixels * rangeInPixels;
             auxProjectileList.Clear();
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile p = Main.projectile[i];
                 if (!p.active) continue;
-                if (p.damage > 0 && p.friendly == friendly && p.hostile == !friendly)
+                if (p.damage <= 0) continue;
+                if (p.friendly != friendly || p.hostile == friendly) continue;
+                
+                float distSq = Vector2.DistanceSquared(npc.Center, p.Center);
+                if (distSq <= rangeSquared)
                 {
-                    float distSq = Vector2.DistanceSquared(center.Center, p.Center);
-                    if (distSq <= rangeSquared)
-                    {
-                        auxProjectileList.Add(p);
-                    }
+                    auxProjectileList.Add(p);
                 }
+                
             }
             return auxProjectileList;
         }

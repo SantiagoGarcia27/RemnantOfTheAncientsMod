@@ -728,7 +728,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Color color = NPC.GetAlpha(drawColor);
-            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY + (3 * 16)), NPC.frame, color, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
+            Vector2 position = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY + (3 * 16) * NPC.scale);
+            Main.EntitySpriteDraw(Texture, position, NPC.frame, color, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
         }
 

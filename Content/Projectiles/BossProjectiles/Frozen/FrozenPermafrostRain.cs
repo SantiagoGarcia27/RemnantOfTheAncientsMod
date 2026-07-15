@@ -1,10 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,48 +14,36 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
         public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Melee/Permafrost";
         public override void SetStaticDefaults()
         {
-            // //DisplayName.SetDefault("SkyCutterS"); //projectile name
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5; // The length of old position to be recorded
-            ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // The recording mode
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
         public override void SetDefaults()
         {
-            Projectile.width = 36;       //projectile width
-            Projectile.height = 36;  //projectile height
+            Projectile.width = 36;
+            Projectile.height = 36;
             Projectile.friendly = false;
-            Projectile.hostile = !Projectile.friendly;//make that the projectile will not damage you
-            Projectile.DamageType = DamageClass.Melee;          // 
-            Projectile.tileCollide = true;   //make that the projectile will be destroed if it hits the terrain
-            Projectile.penetrate = 1;      //how many NPC will penetrate
-            Projectile.timeLeft = 2000;   //how many time this projectile has before disepire
-            Projectile.light = 1.75f;    // projectile light
+            Projectile.hostile = !Projectile.friendly;
+            Projectile.DamageType = DamageClass.Melee;
+            Projectile.tileCollide = true;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = 2000;
+            Projectile.light = 1.75f;
             Projectile.extraUpdates = 1;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.ignoreWater = true;
             Projectile.scale = 0.7f;
             AIType = ProjectileID.InfluxWaver;
-
-
         }
         public override void AI()
         {
-            //if (Projectile.ai[2] <= Utils1.FormatTimeToTick(0, 0, 0, 2) && Projectile.ai[2] > 0)
-            //{
-            //    Projectile.velocity = Vector2.Zero;
-            //    Projectile.ai[2]--;
-            //}
-
-            //if (Projectile.ai[2] == 0)
-            //{
                 float maxDetectRadius = 200f;
-                float projSpeed = Projectile.stepSpeed;//4
+                float projSpeed = Projectile.stepSpeed;
                 Player target = FindClosestNPC(maxDetectRadius);
                 if (target == null)
                     return;
 
                 Projectile.velocity = (target.Center - Projectile.Center).SafeNormalize(Vector2.Zero) * projSpeed;
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
-            //}
         }
         public Player FindClosestNPC(float maxDetectDistance)
         {
@@ -79,16 +64,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
             }
             if (target == null)
             {
-                target = Main.player[Main.myPlayer];
+                target = Main.LocalPlayer;
             }
             return target;
         }
 
-        //public override void OnSpawn(IEntitySource source)
-        //{
-        //    Projectile.ai[2] = Utils1.FormatTimeToTick(0, 0, 0, 2);
-        //    base.OnSpawn(source);
-        //}
         public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item10, Projectile.position);

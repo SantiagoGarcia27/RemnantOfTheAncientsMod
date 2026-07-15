@@ -389,26 +389,26 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             SetArmor(ItemID.TitaniumHelmet, ItemID.TitaniumBreastplate, ItemID.TitaniumLeggings);
             base.SetDefaults();
         }
-        Player fakePlayer => NPC.GetPlayerProxy();
+        Player proxyPlayer => NPC.GetPlayerProxy(); // Instance the proxy 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
+            proxyPlayer.name = NPC.FullName;
+            proxyPlayer.hasTitaniumStormBuff = true;
+            proxyPlayer.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTimeToTick(0, 0, 0, 6));
 
-            fakePlayer.position = NPC.position;
-            fakePlayer.velocity = NPC.velocity;
-            fakePlayer.name = NPC.FullName;
-            fakePlayer.hasTitaniumStormBuff = true;
-
-            fakePlayer.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTimeToTick(0, 0, 0, 6));
-
-            var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, fakePlayer.whoAmI);
+            var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, proxyPlayer.whoAmI);
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
             Main.projectile[p].penetrate = 2;
             Main.projectile[p].timeLeft = 1000;
             base.OnHitPlayer(target, hurtInfo);
         }
-       
-
+        public override void AI()
+        {
+            NPC.UpdatePlayerProxy(); // Keeps the proxy synchronized with the NPC.
+            base.AI();
+        }
+        
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             bool condition = Main.hardMode && NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Titanium;
@@ -416,6 +416,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
         }
+
+       
     }
     public class HallowedZombie : BaseZombie
     {

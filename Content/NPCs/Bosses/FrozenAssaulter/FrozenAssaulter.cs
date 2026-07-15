@@ -29,6 +29,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Terraria;
+using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -54,6 +55,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             Main.npcFrameCount[NPC.type] = 8;
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.TrailCacheLength[NPC.type] = 8;
+            NPCID.Sets.TrailingMode[NPC.type] = 0;
         }
         public override void SetDefaults()
         {
@@ -69,7 +72,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             NPC.lavaImmune = true;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.HitSound = SoundID.NPCHit1;
+            /*NPC.HitSound = SoundID.Item27 with
+            {
+                Pitch = 5f
+            };*/
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.buffImmune[24] = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Frozen_Assaulter_p1");
@@ -95,7 +101,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             writer.Write(invincibilityTimer);
             writer.Write(healAnimation);
             writer.Write(TpDelay);
-
+            writer.Write(NPC.localAI[2]);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
@@ -107,6 +113,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             invincibilityTimer = reader.ReadInt32();
             healAnimation = reader.ReadBoolean();
             TpDelay = reader.ReadInt32();
+            NPC.localAI[2] = reader.ReadSingle();
         }
         #endregion
         float grades = 0;
@@ -177,6 +184,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
 
         float DogdeCouldown =0;
+        const float DogdeCouldownMax = 360;
         private void DogdeAi(Player target)
         {
             if (Main.netMode == NetmodeID.MultiplayerClient) return;
@@ -187,7 +195,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 DogdeCouldown = Math.Max(DogdeCouldown - 1, 0); //actualiza el contador
                 return;
             }
-            int SearchRange = 4;
+            int SearchRange = 15;
             DistancePlayer = Vector2.Distance(NPC.Center, target.Center);
             if (DistancePlayer <= SearchRange) Dogde(target);
             projectiles = Utils1.SearchProjectiles(true, NPC, SearchRange);
@@ -198,10 +206,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
        
         public void Dogde(Vector2 velocity, Vector2 center)
         {
-            const float dodgeSpeed = 4f;
+            const float dodgeSpeed = 9f;
             if (velocity == Vector2.Zero)
             {
                 NPC.velocity += new Vector2(Main.rand.Next(-1,1), Main.rand.Next(-1, 1)) * dodgeSpeed;
+                DogdeCouldown = DogdeCouldownMax;
                 return;
             }
             float danger = Vector2.Dot(Vector2.Normalize(velocity),Vector2.Normalize(NPC.Center - center));
@@ -224,7 +233,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             if (NPC.velocity.Length() > dodgeSpeed)
                 NPC.velocity = Vector2.Normalize(NPC.velocity) * dodgeSpeed;
 
-            DogdeCouldown = 360;
+            DogdeCouldown = DogdeCouldownMax;
         }
 
         private void ShootAi(Player target, bool isReaper)
@@ -256,14 +265,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 case >= 0:
                     if (currentPhase != 3 && !DificultyUtils.EternityMode && !DificultyUtils.MasochistMode)
                     {
+                        int choice = Main.rand.Next(-1, 1);
+                        float variance = choice * 0.5f;
                         if (!isReaper)
                         {
                             if (currentPhase > 2) 
-                                ShootIa(10, ProjectileType<Frozenp>(), target, -20f, 0.5, 0.5);
+                                ShootIa(10, ProjectileType<Frozenp>(), target, -20f + variance, 0.5, 0.5);
                             for (int i = -1; i < MaxPlayers; i++)
                             {
                                 int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
-                                ShootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f, 0.5, 0.5);
+                                ShootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f + variance, 0.5, 0.5);
                             }
                         }
                         else
@@ -274,10 +285,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                             
                             for (int j = 0; j < 3; j++)
                             {
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f, 360f + grades, 0);//70
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f, -120f + grades, 0);
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f, 120f + grades, 0);
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f, -360f + grades, 0);
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, 360f + grades, 0);//70
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, -120f + grades, 0);
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, 120f + grades, 0);
+                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, -360f + grades, 0);
                             }
                             grades = grades <= 360 ? (grades + 0.01f) : 0;
                             delay = 0;
@@ -489,6 +500,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
                 var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, type, Damage, 1, target.whoAmI, 0f, ceilingLimit);
                 Main.projectile[p].stepSpeed = speed;
+                Main.projectile[p].timeLeft = Utils1.FormatTimeToTick(Second:20);
             }
         }
 
@@ -643,6 +655,22 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         public override void OnSpawn(IEntitySource source)
         {
         }
+        public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone)
+        {
+            ReproduceHitSound();
+            base.OnHitByItem(player, item, hit, damageDone);
+        }
+        public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
+        {
+            ReproduceHitSound();
+            base.OnHitByProjectile(projectile, hit, damageDone);
+        }
+        internal void ReproduceHitSound()
+        {
+            if(NPC.defDefense > 999) SoundEngine.PlaySound(SoundID.Item27 with { Pitch = -0.8f,PitchVariance = 0.2f, Volume = 0.6f });
+            else SoundEngine.PlaySound(SoundID.Item27 with {Pitch = -0.3f, PitchVariance = 0.2f,Volume = 0.6f});
+            SoundEngine.PlaySound(SoundID.Dig with {Volume = 0.25f});
+        }
 
         private const int Frame_static = 0;
         private const int Frame_1 = 1;
@@ -700,16 +728,39 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 }
             }
         }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+
             if (NPC.IsABestiaryIconDummy)
                 return true;
 
+
             string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
-            Main.EntitySpriteDraw(Texture, (NPC.position - Main.screenPosition) + new Vector2((0 * 16), NPC.gfxOffY - (0 * 16)), NPC.frame, drawColor, 0, new Vector2(Texture.Width * 0f, Texture.Height * 0f), NPC.scale, SpriteEffects.None, 0);
+            Vector2 drawOrigin = NPC.frame.Size() / 2f;
+            Vector2 drawPos = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
+            if (DogdeCouldown > DogdeCouldownMax - Utils1.FormatTimeToTick(Second:1))
+            {
+                drawColor = Main.rand.Next(0, 2) switch
+                {
+                    0 => Color.Cyan,
+                    1 => Color.White,
+                    2 => Color.DarkBlue,
+                    _ => Color.White
+                };
+                for (int k = 3; k < NPC.oldPos.Length; k++)
+                {
+                    Vector2 drawPos2 = NPC.oldPos[k]+ NPC.Size / 2f - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
+                    Color color = NPC.GetAlpha(drawColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
+                    Main.EntitySpriteDraw(Texture, drawPos2, NPC.frame, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
+                   
+                }
+            }
+           
+            Main.EntitySpriteDraw(Texture, drawPos, NPC.frame, drawColor, 0, drawOrigin, NPC.scale, SpriteEffects.None, 0);
             return false;
-        }
+        }   
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.defDefense != 9999) return;
