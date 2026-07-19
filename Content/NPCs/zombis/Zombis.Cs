@@ -389,13 +389,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             SetArmor(ItemID.TitaniumHelmet, ItemID.TitaniumBreastplate, ItemID.TitaniumLeggings);
             base.SetDefaults();
         }
-        Player proxyPlayer => NPC.GetPlayerProxy(); // Instance the proxy 
+        
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
+            Player proxyPlayer = NPC.GetPlayerProxy(sync: false); // Instance the proxy 
             proxyPlayer.name = NPC.FullName;
             proxyPlayer.hasTitaniumStormBuff = true;
             proxyPlayer.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTimeToTick(0, 0, 0, 6));
-
+            NPC.ConfigureProxyPlayer(targetable: true, shouldBeDrawn:true);
             var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, proxyPlayer.whoAmI);
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;

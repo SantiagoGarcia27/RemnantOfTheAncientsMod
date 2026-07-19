@@ -19,6 +19,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         public int BulletAmmount = 0;
         public int Unacurency = 0;
         public int CustomProjectileShoot = -1;
+        public int ExtraProjectile = -1;
 
         public override bool InstancePerEntity => true;
 
@@ -52,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 4, -1, 5);
+                    new Shotgun(item, true, 4, -1, 5, ExtraProjectile: ProjectileID.BlackBolt);
 
                 }
                 if (item.type == ItemID.TacticalShotgun)
@@ -67,12 +68,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 
 
 
-        public void SetShootgunStats(bool _IsShotgun, int _BulletAmmount, int _Unacurency, int _CustomProjectileShoot)
+        public void SetShootgunStats(bool _IsShotgun, int _BulletAmmount, int _Unacurency, int _CustomProjectileShoot, int _ExtraProjectile)
         {
             IsShotgun = _IsShotgun;
             BulletAmmount = _BulletAmmount;
             Unacurency = _Unacurency;
             CustomProjectileShoot = _CustomProjectileShoot;
+            ExtraProjectile = _ExtraProjectile;
         }
 
 
@@ -105,8 +107,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                     else if (player.altFunctionUse == 0 && !Main.mouseRight)
                     {
                         shoot(BulletAmmount, Unacurency, CustomProjectileShoot);
+                        if (ExtraProjectile != -1) Projectile.NewProjectile(source, position, velocity, ExtraProjectile, damage, knockback, player.whoAmI);
+                        
                         return false;
                     }
+
                 }
                 else
                 {
@@ -175,9 +180,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
     }
     public class Shotgun : GlobalItem
     {
-        public Shotgun(Item item, bool IsShotgun, int BulletAmmount, int CustomProjectileShoot, int Unacurency, bool CanCharge = true)
+        public Shotgun(Item item, bool IsShotgun, int BulletAmmount, int CustomProjectileShoot, int Unacurency, bool CanCharge = true, int ExtraProjectile = -1)
         {
-            item.GetGlobalItem<ShotgunRework>().SetShootgunStats(IsShotgun, BulletAmmount, Unacurency, CustomProjectileShoot);
+            item.GetGlobalItem<ShotgunRework>().SetShootgunStats(IsShotgun, BulletAmmount, Unacurency, CustomProjectileShoot, ExtraProjectile);
             item.GetGlobalItem<RemnantGlobalItem>().CanCharge = CanCharge;
         }
     }

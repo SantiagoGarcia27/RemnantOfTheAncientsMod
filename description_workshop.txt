@@ -1,9 +1,10 @@
 ﻿[h1]Remnant Of The Ancients Mod [Beta][/h1]
 [b][url=https://discord.gg/UrD2JSf]Discord[/url] [url=https://forums.terraria.org/index.php?threads/remnant-of-the-ancients.85732/]Mod Forum[/url][/b]
 
-Remnant of the ancients is a mod created to expand the vanilla experience with varied content and entertainment.
-
-With this mod you will be able to find dozens of items, several bosses, new Npcs and a new challenging difficulty.
+Remnant of the ancients is a mod
+created to complement Terraria vanilla,to 
+improve the experience without force to change the progresion.
+It is also designed to work alongside other content mods 
 
 The mod also modifies some features of the game while adding new ones to help the player in his adventure,this includes but is not limited to:
 [olist]
@@ -12,6 +13,7 @@ The mod also modifies some features of the game while adding new ones to help th
 [*] Many crafting recipes for existing vanilla items
 [*] Some quality of life and vanilla balance changes!
 [*] Custom soundtrack
+[*] No world recreation required. The mod can be added to existing worlds.
 [/olist]
 
 [b]Be sure to joining our discord server to find out about future updates and features[/b]
@@ -40,7 +42,7 @@ A more detailed breakdown of the content available in the mod:
 [*] +19 tweaks and improvements to vanilla items
 [*] +19 new reforges
 [*] 2 Language translation (English and Spanish) (not completed)
-[*] Cross-mod support for the Calamity Mod, Infernum Mod, Fargos Soul, Fargowiltas, Thorium, Boss Checklist, AlchemistNPC and Census
+[*] Cross-mod support/Exclusive interactions for the Calamity Mod, Infernum Mod, Fargos Soul, Fargowiltas, Thorium, Boss Checklist, AlchemistNPC and Census
 [*] +11 accessories with Fargos Soul
 
 Patch notes:
