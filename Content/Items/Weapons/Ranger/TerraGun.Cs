@@ -18,14 +18,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(50);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("TerraGun1");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "La Terra Arma");
-            //Tooltip.SetDefault("A weapon fit for a legend"
-                //+ "\n50% chance of not spending ammo"
-                //+ "\nMusquet bullets turn into terra bullet");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Un arma digna para el guia de una generación"
-                    //+ "\nProbabilidad del 50% de no gastar munición " +
-                   // "+\nTransforma las balas de mosquete en ballas terra");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -49,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             Item.useAmmo = AmmoID.Bullet;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-            new Shotgun(Item, true, 4, ModContent.ProjectileType<TerraBulletP>(), 5);           
+            //new Shotgun(Item, true, 4, ModContent.ProjectileType<TerraBulletP>(), 5);           
         }   
         public override Vector2? HoldoutOffset()
         {

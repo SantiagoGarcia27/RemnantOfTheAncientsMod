@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.useAmmo = AmmoID.Bullet;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-            new Shotgun(Item, true, 8, ProjectileID.CursedBullet, 15);
+            //new Shotgun(Item, true, 8, ProjectileID.CursedBullet, 15);
             /*Item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
             Item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(8, ProjectileID.CursedBullet,15);*/
         }

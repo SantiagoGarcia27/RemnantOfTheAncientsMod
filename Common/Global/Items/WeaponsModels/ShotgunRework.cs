@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using System;
 using System.Collections.Generic;
@@ -77,6 +77,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             ExtraProjectile = _ExtraProjectile;
         }
 
+        public override bool AltFunctionUse(Item item, Player player)
+        {
+            if (IsShotgun) 
+                return true;
+            return base.AltFunctionUse(item,player);
+        }
 
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
@@ -154,6 +160,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                     if (Timmer < TimmerMax)
                     {
                         Timmer += 0.5f * player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged];
+                        Timmer = Math.Min(Timmer, TimmerMax);
                     }
                 }
                 else if (Main.mouseRightRelease)
@@ -182,8 +189,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
     {
         public Shotgun(Item item, bool IsShotgun, int BulletAmmount, int CustomProjectileShoot, int Unacurency, bool CanCharge = true, int ExtraProjectile = -1)
         {
+            item.channel = true;
             item.GetGlobalItem<ShotgunRework>().SetShootgunStats(IsShotgun, BulletAmmount, Unacurency, CustomProjectileShoot, ExtraProjectile);
             item.GetGlobalItem<RemnantGlobalItem>().CanCharge = CanCharge;
         }
     }
 }
+*/

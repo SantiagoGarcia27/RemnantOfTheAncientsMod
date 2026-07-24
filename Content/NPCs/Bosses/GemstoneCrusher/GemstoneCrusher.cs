@@ -4,10 +4,12 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -45,9 +47,37 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
 
         }
+        private enum StompType
+        {
+            none,
+            elevate,
+            moveTo,
+            follow
+        }
+        private StompType _currentStompPhase = StompType.none;
+        private StompType CurrentStompPhase 
+        {
+            get => _currentStompPhase;
+            set
+            {
+                if (_currentStompPhase == value)
+                    return;
+
+                _currentStompPhase = value;
+                if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
+            }
+        }
 
         private int stompTimer = Utils1.FormatTimeToTick(Second: 2);
-        private readonly int stompActivationTimerTrigger = Utils1.FormatTimeToTick(Second: 20);
+        private int stompActivationTimerTrigger 
+        {
+            get {
+                if (NPC.life < NPC.lifeMax / 5) return Utils1.FormatTimeToTick(Second: 5);
+                if (NPC.life < NPC.lifeMax / 2) return Utils1.FormatTimeToTick(Second: 10);
+                return Utils1.FormatTimeToTick(Second: 20);
+            }
+        }
+
         private readonly int shootTimerTrigger = Utils1.FormatTimeToTick(Second: 5);
         private readonly int spawnTimerTrigger = Utils1.FormatTimeToTick(Second: 15);
 
@@ -65,6 +95,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         {
             get => NPC.ai[2];
             set => NPC.ai[2] = value;
+        }
+        private int StompTimmerMax
+        {
+            get
+            {
+                if (NPC.life < NPC.lifeMax / 3) return Utils1.FormatTimeToTick(Second: 1.5f);
+                if (NPC.life < NPC.lifeMax / 2) return Utils1.FormatTimeToTick(Second: 1.7f);
+                return Utils1.FormatTimeToTick(Second: 2);
+            }
         }
 
         private bool shootTelegraph = false;
@@ -98,6 +137,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         {
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
+            NPCID.Sets.TrailCacheLength[Type] = 10;
+            NPCID.Sets.TrailingMode[Type] = 0;
 
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
             {
@@ -127,8 +168,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             NPC.noTileCollide = false;
             NPC.netAlways = true;
             NPC.aiStyle = -1;
-            NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.HitSound = SoundID.Dig with { Pitch = -1.8f, PitchVariance = 0.3f, Volume = 1.6f };
 
             base.SetDefaults();
         }
@@ -147,7 +187,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             if (stompActivationTimer >= stompActivationTimerTrigger)
             {
                 stompActivationTimer = 0;
-                stompTimer = Utils1.FormatTimeToTick(Second: 2);
+                stompTimer = StompTimmerMax;
                 CurrentState = BossState.Stomp;
             }
 
@@ -170,11 +210,20 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                     SpawnAI();
                     spawnerTimer = 0;
                 }
-            }
 
+                //Stomp collision Effects
+                if (NPC.collideY && !NPC.noTileCollide && CanUseStompEffect)
+                {
+                    StompFallEffectAi();
+                }
+            }
+            SecurityCheck();
             base.AI();
         }
-
+        private void SecurityCheck()
+        {
+            if (CurrentStompPhase == StompType.elevate) NPC.noTileCollide = true;
+        }
         private void UpdateTarget()
         {
 
@@ -184,6 +233,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             NPC.TargetClosest(faceTarget: true);
             target = Main.player[NPC.target]; 
         }
+        private bool CanUseStompEffect = false;
 
         private void MovementAI()
         {
@@ -191,38 +241,94 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             {
                 NPC.noTileCollide = false;
                 CurrentState = BossState.Idle;
+                CanUseStompEffect = true;
             }
-
+            
             StompMovementAI();
+        }
+        private void StompFallEffectAi()
+        {
+            int cloudWidth = NPC.width / 2 + 3;
+            Tile tile = Framing.GetTileSafely(NPC.Bottom.ToTileCoordinates());
+           
+            ModTile floorTile =  TileLoader.GetTile(tile != null ? tile.TileType : 1);
+            int dustType = floorTile != null? floorTile.DustType : (int)DustID.Stone;
+            for (int offset = -cloudWidth; offset <= cloudWidth; offset++)
+            {
+                Vector2 pos = NPC.Center + new Vector2(offset, 0);
+                Vector2 velocity = pos - NPC.Center;
+                velocity.X /= 2;
+                velocity.Y -= 1;
+                Dust.NewDustDirect(pos, 10, 10, DustID.Stone, velocity.X, velocity.Y, Scale: Main.rand.Next(1, 3));
+                velocity += new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(1, 1));
+                Dust.NewDustDirect(pos, 10, 10, DustID.Dirt, velocity.X, velocity.Y, Scale: Main.rand.Next(1, 3));
+                velocity += new Vector2(Main.rand.Next(-2, 2), Main.rand.Next(1, 1));
+                Dust.NewDustDirect(pos, 10, 10, dustType, velocity.X, velocity.Y, Scale: Main.rand.Next(1, 5));
+
+            }
+            SoundEngine.PlaySound(SoundID.Item14 with { Pitch = -1.8f, PitchVariance = 0.2f, Volume = 1.6f });
+            SoundEngine.PlaySound(SoundID.Item14 with { Pitch = -0.8f, PitchVariance = 0.2f, Volume = 1.0f });
+            SoundEngine.PlaySound(SoundID.Item62 with { Pitch = -0.8f, PitchVariance = 0.3f, Volume = 1.6f });
+            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode with { Pitch = -0.5f, Volume = 0.4f });
+            
+            CanUseStompEffect = false;
         }
 
         private void StompMovementAI()
         {
 
-            Mod.Logger.Info($"stompTimer = {stompTimer}");
             if (stompTimer <= 0)
             {
                 StompAI();
+                CurrentStompPhase = StompType.none;
                 return;
             }
-
+            if(CurrentStompPhase == StompType.none) CurrentStompPhase = StompType.elevate;
             FollowPlayerCeilingAI();
         }
 
+        
         private void FollowPlayerCeilingAI()
         {
-            stompTimer--;
-
+            
+            const float velocity = 5f;
             const float ceilingOffset = 300f;
+            const float tolerance = 5; //In Tiles
+            Vector2 playerHead = new Vector2(target.Center.X, target.Center.Y - ceilingOffset);
 
-            NPC.Center = new Vector2(target.Center.X,target.Center.Y - ceilingOffset);
+            NPC.velocity = Vector2.Zero;
+            if (CurrentStompPhase == StompType.elevate)
+            {
+                if (NPC.Center.Y <= playerHead.Y)
+                {
+                    CurrentStompPhase = StompType.moveTo;
+                    return;
+                }
+                else NPC.velocity -= new Vector2(0, velocity);
+            }
+            else if (CurrentStompPhase == StompType.moveTo)
+            {
+                if(NPC.Center.DistanceSQ(playerHead) <= DistanceUtils.ToCoordenatePosition(tolerance * tolerance))
+                {
+                    CurrentStompPhase = StompType.follow;
+                    return;
+                }
+                NPC.velocity = playerHead - NPC.Center;
+                NPC.velocity.Normalize();
+                NPC.velocity *= velocity * 3;
+            }
+            else
+            {
+                stompTimer--;
+                NPC.Center = new Vector2(target.Center.X, target.Center.Y - ceilingOffset);
+            }
         }
 
         private void StompAI()
         {
             if (NPC.Bottom.Y >= target.Center.Y)
             {
-                stompTimer = Utils1.FormatTimeToTick(Second: 2);
+                stompTimer = StompTimmerMax;
                 return;
             }
 
@@ -275,8 +381,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             }
             else 
             {
-                shootTelegraph = true;
-                //Dust.NewDust(NPC.Center, 10, 10, gemData[projectileType].Dust);   
+                shootTelegraph = true; 
             }
         }
 
@@ -358,6 +463,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             writer.Write(stompTimer);
             writer.Write(spawnWorms);
             writer.Write((int)projectileType);
+            writer.Write((byte)CurrentStompPhase);
             base.SendExtraAI(writer);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -366,16 +472,28 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             stompTimer = reader.ReadInt32();
             spawnWorms = reader.ReadBoolean();
             projectileType = (GemType)reader.ReadInt32();
+            _currentStompPhase = (StompType)reader.ReadByte();
             base.ReceiveExtraAI(reader);
         }
          
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if(NPC.AnyNPCs(Type)) return 0f;
-            float chance = SpawnCondition.Cavern.Chance * 0.17f; 
+            float chance = SpawnCondition.Cavern.Chance * 0.19f; 
             return chance;
         }
-        
+
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            if(NPC.life <= 0)
+            {
+                SoundEngine.PlaySound(SoundID.Item14 with { Pitch = -1.8f, PitchVariance = 0.2f, Volume = 1.6f });
+                SoundEngine.PlaySound(SoundID.Item14 with { Pitch = -0.8f, PitchVariance = 0.2f, Volume = 1.0f });
+                SoundEngine.PlaySound(SoundID.Item62 with { Pitch = -0.8f, PitchVariance = 0.3f, Volume = 1.6f });
+                SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode with { Pitch = -0.5f, Volume = 1.8f });
+            }
+            base.HitEffect(hit);
+        }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Type type = GetType();
@@ -405,6 +523,38 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 );
             }
             base.PostDraw(spriteBatch, screenPos, drawColor);
+        }
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+
+            if (NPC.IsABestiaryIconDummy)
+                return true;
+
+
+           // string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(base.Texture);
+            Vector2 drawOrigin = NPC.frame.Size() / 2f;
+            Vector2 drawPos = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
+            if (CurrentStompPhase != StompType.none)
+            {
+                drawColor = Main.rand.Next(0, 2) switch
+                {
+                    0 => Color.Gray,
+                    1 => Color.DarkGray,
+                    2 => Color.LightGray,
+                    _ => Color.SlateGray
+                };
+                for (int k = 0; k < NPC.oldPos.Length; k++)
+                {
+                    Vector2 drawPos2 = NPC.oldPos[k] + NPC.Size / 2f - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
+                    Color color = NPC.GetAlpha(drawColor) * ((NPC.oldPos.Length - k) / (float)NPC.oldPos.Length);
+                    Main.EntitySpriteDraw(Texture, drawPos2, NPC.frame, color, NPC.rotation, drawOrigin, NPC.scale, SpriteEffects.None, 0);
+
+                }
+            }
+
+            //Main.EntitySpriteDraw(Texture, drawPos, NPC.frame, drawColor, 0, drawOrigin, NPC.scale, SpriteEffects.None, 0);
+            return true;
         }
     }
 }
