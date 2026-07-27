@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.ShadowKey);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.White;
         }
 
         public override void AddRecipes()

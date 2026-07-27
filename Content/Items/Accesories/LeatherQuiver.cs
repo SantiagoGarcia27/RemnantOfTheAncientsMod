@@ -15,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
        
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(10);
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(7);
         public override void SetDefaults()
         {
             Item.width = 30;
@@ -26,8 +26,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.arrowDamage *= 1.10f;
-            player.GetModPlayer<StatPlayer>().ArrowSpeedBonus += 0.10f;
+            player.arrowDamage *= 1.07f;
+            player.GetModPlayer<StatPlayer>().ArrowSpeedBonus += 0.07f;
         }
         public override void AddRecipes()
         {

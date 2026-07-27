@@ -1,4 +1,4 @@
-using Terraria.ID;
+/*using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
@@ -38,4 +38,4 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items.Guides
             return base.UseItem(player);
         }
     }
-}
+}*/

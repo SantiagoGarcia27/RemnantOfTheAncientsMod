@@ -10,69 +10,41 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ArcticArrow"));
         public override string TexturePath => null;
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Arctic Arrow Quiver");
-        }
     }
     public class EndlesBloodfireArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloodfireArrow"));
-        public override string TexturePath => null;
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Bloodfire Arrow Quiver");
-        }
+        public override string TexturePath => null;  
     }
     public class EndlesElysianArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElysianArrow"));
         public override string TexturePath => null;
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Elysian Arrow Quiver");
-        }
     }
     public class EndlesIcicleArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "IcicleArrow"));
         public override string TexturePath => null;
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Icicle Arrow Quiver");
-        }
     }
     public class EndlesNapalmArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "NapalmArrow"));
         public override string TexturePath => null;
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Napalm Arrow Quiver");
-        }
     }
     public class EndlesTerraArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "TerraArrow"));
         public override string TexturePath => null;
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Terra Arrow Quiver");
-        }
     }
     public class EndlesVanquisherArrow : EndlessAmmo
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("CalamityMod", out mod);
         public override Item ItemBase => new(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "VanquisherArrow"));
         public override string TexturePath => null;
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("ModelEndless Vanquisher Arrow Quiver");
-        }
     }
 }

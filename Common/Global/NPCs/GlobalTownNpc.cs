@@ -1,5 +1,4 @@
-﻿using RemnantOfTheAncientsMod.Common.RemPlayer;
-using System;
+﻿using System;
 using static Terraria.ModLoader.ModContent;
 using Terraria;
 using Terraria.ModLoader;
@@ -13,7 +12,6 @@ using Terraria.ID;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
-using RemnantOfTheAncientsMod.Content.Items.Items.Guides;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using SangarUtilities.Common.UtilsTweaks;

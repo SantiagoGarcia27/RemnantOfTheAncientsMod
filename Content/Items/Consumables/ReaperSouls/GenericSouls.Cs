@@ -49,6 +49,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
     }
     public class SkeletonSoul : SoulModel
     {
+        int DefenseBoost = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DefenseBoost);
         public override NPC BaseNpc => ContentSamples.NpcsByNetId[NPCID.SkeletronHead];
 
        public override Mod ItemMod => GetVanillaMod.Get("SangarUtilities");

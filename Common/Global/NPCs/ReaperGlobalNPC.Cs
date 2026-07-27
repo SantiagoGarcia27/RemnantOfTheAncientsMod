@@ -306,6 +306,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     Main.time = 5000.0;
                     Netcode.SyncWorld();
                 }
+                if(npc.type == NPCID.GolemHeadFree && npc.ai[3] >= 0)
+                {
+                    int i = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X - 13 * 16, (int)npc.position.Y, NPCID.GolemHeadFree, ai3:-1);
+                    Main.npc[i].alpha = 50;
+                }
             }
             base.OnSpawn(npc, source);
         }

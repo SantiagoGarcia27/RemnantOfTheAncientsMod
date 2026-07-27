@@ -27,10 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
         public string GetTextureFromItem(Item item)
         {
             string Texture;
-            if (TexturePath != null)
-            {
-                Texture = TexturePath;
-            }
+            if (TexturePath != null) Texture = TexturePath;
             else Texture = item.type < ItemID.Count ? "Terraria/Images/Item_" + item.type : ItemLoader.GetItem(item.type).Texture;
             return Texture;
         }

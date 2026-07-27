@@ -1574,8 +1574,8 @@ Mods: {
 			}
 
 			FrozenAssaulterSoul: {
-				// DisplayName: Frozen Assaulter Soul
-				// Tooltip: Grants immunity to Frozen, Chilled and Frostburn
+				DisplayName: Alma del asaltante congelado
+				Tooltip: Otorga inmunidad a los efectos de Congelado,Helado y Quemadura de hielo
 			}
 
 			GolemSoul: {
@@ -1611,9 +1611,9 @@ Mods: {
 					'''
 			}
 
-			QueenSoul: {
-				DisplayName: Alma de la Reina slime
-				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
+			QueenSlimeSoul: {
+				// DisplayName: Queen Slime Soul
+				// Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
 
 			RetinazorEnergyCell: {
@@ -1672,7 +1672,7 @@ Mods: {
 
 			CelestialAmalgamate: {
 				DisplayName: Amalgama celestial
-				Tooltip: ""
+				Tooltip: El poder del cosmos se puede escuchar en este fragmento
 			}
 
 			JungleBar: {
@@ -1687,7 +1687,7 @@ Mods: {
 
 			Neutrum_Fragment: {
 				DisplayName: Fragmento de Neutrum
-				Tooltip: ""
+				Tooltip: La nada misma emana de este fragmento
 			}
 
 			NightBar: {
@@ -1696,7 +1696,7 @@ Mods: {
 			}
 
 			ReinforcedIronOre: {
-				// DisplayName: Reinforced iron ore
+				DisplayName: Mineral de hierro reforzado
 				// Tooltip: ""
 			}
 
@@ -1717,7 +1717,7 @@ Mods: {
 
 			Terracoin: {
 				DisplayName: Moneda Terra
-				Tooltip: '''Se usa para comprar catalizadores de reforja ascendida del Duende Chapucero del fulgor				'''
+				Tooltip: Se usa para comprar catalizadores de reforja ascendida del Duende Chapucero del fulgor
 			}
 
 			TuxoniteBar: {
@@ -2460,7 +2460,7 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			TungstenoSaber: {
+			TungstenSaber: {
 				DisplayName: Sable de tungsteno
 				Tooltip: ""
 			}
@@ -3364,7 +3364,7 @@ Mods: {
 			}
 
 			TrueSacredFishingRod: {
-				DisplayName: True Sacred Fishing Rod
+				DisplayName: Verdadera Caña sagrada
 				Tooltip: "{$EditVanilla.FishMultipleLine}"
 			}
 
@@ -3472,7 +3472,7 @@ Mods: {
 
 			JungleKey: {
 				DisplayName: LLave selvática
-				Tooltip: ""
+				Tooltip: Está cargado con la esencia de muchas almas
 			}
 
 			TyrantsMark: {
@@ -3974,12 +3974,7 @@ Mods: {
 
 			InfernalTyrantSoul: {
 				// DisplayName: Infernal Tyrant Soul
-				// Tooltip: ""
-			}
-
-			QueenSlimeSoul: {
-				// DisplayName: Queen Slime Soul
-				// Tooltip: ""
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
 			GravediggersSickle: {
@@ -4166,7 +4161,7 @@ Mods: {
 			}
 
 			GemScavenger: {
-				// DisplayName: Gem Scavenger
+				DisplayName: Recolector de gemas
 				// Tooltip: ""
 			}
 
@@ -4323,12 +4318,12 @@ Mods: {
 
 			FlinxHood: {
 				DisplayName: Capucha de copito
-				// Tooltip: ""
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 			}
 
 			FlinxPants: {
 				DisplayName: Pantalones de copito
-				// Tooltip: ""
+				// Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Darksign: {
@@ -4454,16 +4449,6 @@ Mods: {
 					Otorga un pequeño aumento a varias estadísticas
 					Cuesta {0} aplicarla
 					'''
-			}
-
-			HarmfulStone: {
-				// DisplayName: Harmful Stone
-				/* Tooltip:
-					'''
-					Applies the Harmful reforge to accessories
-					Grants a medium boost to damage and critical strike chance
-					Costs {0} to apply
-					''' */
 			}
 
 			CursedSkull: {

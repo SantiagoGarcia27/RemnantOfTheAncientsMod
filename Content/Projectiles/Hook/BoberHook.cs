@@ -1,5 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -15,6 +18,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
              ProjectileID.Sets.DrawScreenCheckFluff[Projectile.type] = 3000;
 		}
         public override string Texture => SetTexture();
+
+        static float MaxLeght = DistanceUtils.ToCoordenatePosition(19);
+        static float MinLeght = DistanceUtils.ToCoordenatePosition(1);
+        float CurrentLength = MaxLeght;
         string SetTexture()
 		{
             Player player = Main.player[Projectile.owner];
@@ -40,35 +47,72 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 	
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
-            state = HookState.Attached;
-           // SpawnLine();
+            currentState = HookState.Attached;
             return false;
 		}
 		enum HookState {Throw, Pull, Attached };
 
-		HookState state = HookState.Throw;
+		
+        private HookState _currentState = HookState.Throw;
+        private HookState currentState
+        {
+            get => _currentState;
+            set {
+                if (_currentState == value)
+                    return;
+
+                _currentState = value;
+                if (Main.netMode != NetmodeID.MultiplayerClient) Projectile.netUpdate = true;
+            }
+        }
+        float stabilization = 0f; 
 		public override void AI()
 		{
-           //Vector2 lineOriginOffset = new(Projectile.localAI[0],Projectile.localAI[1]);
-           // Color lineColor = al;
-            
-            int HookLeght = 300;
+
 			Player player = Main.player[Projectile.owner];
-			if (state == HookState.Attached)
+            UpdateLeght(player);
+
+            if (currentState == HookState.Attached)
 			{
+
 				Projectile.timeLeft = 10;
                 Projectile.velocity = Vector2.Zero;
-
-				if(player.Distance(Projectile.Center) > HookLeght)
+                float distance = player.Distance(Projectile.Center);
+                Vector2 puntoReposo = new(Projectile.Center.X, Projectile.Center.Y + CurrentLength);
+                if (distance > CurrentLength)
                 {
-					Vector2 limit = (player.Center - Projectile.Center);
-					limit.Normalize();
+                    Vector2 limit = Vector2.Normalize(player.Center - Projectile.Center);
                     player.velocity -= limit;
+
+
+                    
+                    /*// Recolocar exactamente sobre el círculo
+                    Vector2 dir = Vector2.Normalize(player.Center - Projectile.Center);
+
+                    float radial = Vector2.Dot(player.velocity, dir);
+                    Vector2 tangential = player.velocity - dir * radial;
+
+                    if (distance > CurrentLength)
+                    {
+
+                        float error = distance - CurrentLength;
+
+                        if (error > 0)
+                        {
+                            player.Center -= dir * error;
+                        }
+
+                        if (radial > 0)
+                            radial = 0;
+
+                        player.velocity = (tangential + dir * radial) * 1.03f;
+                    }*/
+
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                 }
             }
-			else if (state == HookState.Pull)
+			else if (currentState == HookState.Pull)
 			{
                 Projectile.velocity = (player.Center - Projectile.Center);
                 Projectile.velocity.Normalize();
@@ -78,15 +122,24 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 					Projectile.Kill();
 				}
 			}
-			if (player.ownedProjectileCounts[Type] >= 1 && Main.mouseRight && state == HookState.Attached || (state != HookState.Attached && Projectile.timeLeft <= 40))
+			if (player.ownedProjectileCounts[Type] >= 1 && Main.mouseRight && currentState == HookState.Attached || (currentState != HookState.Attached && Projectile.timeLeft <= 40))
 			{
-				state = HookState.Pull;
+				currentState = HookState.Pull;
 
             }
 
 
 			base.AI();
 		}
+
+        float increment = 3f;
+        private void UpdateLeght(Player player) {
+            if (player.controlDown && CurrentLength + increment < MaxLeght) 
+                CurrentLength += increment;
+            if (player.controlUp && CurrentLength - increment > MinLeght) 
+                CurrentLength -= increment;
+        }
+
         Color lineColor = Color.White;
         Texture2D texture = null;
         public override bool PreDraw(ref Color lightColor)
@@ -103,13 +156,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             if (Projectile.spriteDirection > 0)
             {
                 origin = new Vector2(0, Projectile.height);
-               // rotationOffset = MathHelper.ToRadians(180f);
                 effects = SpriteEffects.None;
             }
             else
             {
                 origin = new Vector2(Projectile.width, Projectile.height);
-               // rotationOffset = MathHelper.ToRadians(135f);
                 effects = SpriteEffects.FlipHorizontally;
             }
             if(texture == null)
@@ -117,15 +168,23 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, default, lightColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
    
-          
-
             Utils.DrawLine(Main.spriteBatch, Projectile.Center, Main.player[Projectile.owner].Center, lineColor, lineColor, 2f);
-            // Since we are doing a custom draw, prevent it from normally drawing
             return false;
         }    
         public override void OnKill(int timeLeft)
         {
             base.OnKill(timeLeft);
+        }
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write((byte)currentState);
+            base.SendExtraAI(writer);
+        }
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            _currentState = (HookState)reader.ReadByte();
+
+            base.ReceiveExtraAI(reader);
         }
         public override void OnSpawn(IEntitySource source)
         {

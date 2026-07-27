@@ -13,7 +13,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Items
 		{
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(10, 3));
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
+            ItemID.Sets.ItemIconPulse[Item.type] = true;
+            ItemID.Sets.ItemNoGravity[Item.type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 25;
 		}
 
 		public override void SetDefaults()

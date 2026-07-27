@@ -12,18 +12,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Desert Herald Helmet");
-			//Tooltip.SetDefault(//Tooltip());
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Casque de héraut du désert");	
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Casco del heraldo del desierto");
-		
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		//     public static string //Tooltip()
-		//     {
-		//return LocalizationHelper.IncreasedDamageBy//Tooltip(8, DamageClass.Summon) +
-		//	"\n" + LocalizationHelper.IncreasedMinion//Tooltip(1);
-		//     }
 		public int SummonDamageBonus = 8;
         public int MinionMaxBonus = 1;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus,MinionMaxBonus);
@@ -32,8 +22,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 10000;
-			Item.rare = 3;
-			Item.defense = 4;//5
+			Item.rare = ItemRarityID.Orange;
+			Item.defense = 4;
 		}
 		public override void UpdateEquip(Player player)
 		{

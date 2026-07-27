@@ -17,13 +17,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 		{
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		Mod calamity = null;
 
 		public override void SetDefaults()
 		{
-            if (ModLoader.TryGetMod("CalamityMod", out calamity))
-
-            Item.damage = calamity != null ? 26 : 24;
+			Item.damage = RemnantOfTheAncientsMod.CalamityMod != null ? 26 : 24;
 			Item.DamageType = DamageClass.Ranged;
 			Item.width = 64;
 			Item.height = 28;
@@ -46,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             CreateRecipe()
              .AddIngredient(ItemID.Minishark, 1)
              .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
-             .AddTile(calamity != null? TileID.MythrilAnvil : TileID.Anvils)
+             .AddTile(RemnantOfTheAncientsMod.CalamityMod != null? TileID.MythrilAnvil : TileID.Anvils)
              .Register();
         }
 
@@ -57,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			if (Main.rand.NextFloat() <= (float)1 / 10)
 				Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<FrostBeamF>(), 30, 1, player.whoAmI);
 
-			if (calamity != null)
+			if (RemnantOfTheAncientsMod.CalamityMod != null)
 			{
 				if (Main.rand.NextFloat() <= (float)1 / 1)
 					Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<frozen_p_f>(), 8, 1, player.whoAmI);

@@ -13,17 +13,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 	{
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Desert Herald Greaves");
-            //Tooltip.SetDefault(//Tooltip());
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves du héraut du désert");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Grevas del heraldo del desierto");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedMinion//Tooltip(1);
-        //}
         public int MinionMaxBonus = 1;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MinionMaxBonus);
         public override void SetDefaults()

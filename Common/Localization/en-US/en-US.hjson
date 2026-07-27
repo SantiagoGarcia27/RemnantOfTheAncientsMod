@@ -1598,7 +1598,7 @@ Mods: {
 					'''
 			}
 
-			QueenSoul: {
+			QueenSlimeSoul: {
 				DisplayName: Queen Slime Soul
 				Tooltip: "{$CommonItemTooltip.PermanentlyIncreasesMaxLifeBy}"
 			}
@@ -1659,7 +1659,7 @@ Mods: {
 
 			CelestialAmalgamate: {
 				DisplayName: Celestial Amalgam
-				Tooltip: ""
+				Tooltip: The power of cosmos can be listened inside this fragment
 			}
 
 			JungleBar: {
@@ -1674,7 +1674,7 @@ Mods: {
 
 			Neutrum_Fragment: {
 				DisplayName: Neutrum Fragment
-				Tooltip: ""
+				Tooltip: The emptiness itself lies within this fragment
 			}
 
 			NightBar: {
@@ -2439,7 +2439,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			TungstenoSaber: {
+			TungstenSaber: {
 				DisplayName: Tungsten Saber
 				Tooltip: ""
 			}
@@ -3438,7 +3438,7 @@ Mods: {
 
 			JungleKey: {
 				DisplayName: Jungle Key
-				Tooltip: ""
+				Tooltip: Charged with the essence of many souls
 			}
 
 			TyrantsMark: {
@@ -3941,12 +3941,7 @@ Mods: {
 
 			InfernalTyrantSoul: {
 				DisplayName: Infernal Tyrant Soul
-				Tooltip: ""
-			}
-
-			QueenSlimeSoul: {
-				DisplayName: Queen Slime Soul
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedDamage}"
 			}
 
 			GravediggersSickle: {
@@ -4182,9 +4177,8 @@ Mods: {
 				Tooltip:
 					'''
 					Applies the Impenetrable ascended reforge to accessories
-						Grants maximum defense boost
-						Costs {0} to apply
-						
+					Grants maximum defense boost
+					Costs {0} to apply
 					'''
 			}
 
@@ -4193,9 +4187,8 @@ Mods: {
 				Tooltip:
 					'''
 					Applies the Relic ascended reforge to magic weapons
-						The ultimate enchantment for spellcasters
-						Costs {0} to apply
-						
+					The ultimate enchantment for spellcasters
+					Costs {0} to apply
 					'''
 			}
 
@@ -4235,9 +4228,8 @@ Mods: {
 				Tooltip:
 					'''
 					Applies the Titanic ascended reforge to accessories
-						Grants maximum health increase
-						Costs {0} to apply
-						
+					Grants maximum health increase
+					Costs {0} to apply
 					'''
 			}
 
@@ -4278,7 +4270,7 @@ Mods: {
 
 			LeatherQuiver: {
 				DisplayName: Leather Quiver
-				Tooltip: ""
+				Tooltip: Increases arrow damage by {0}% and greatly increases arrow speed
 			}
 
 			ReinforcedAmmoBox: {
@@ -4293,12 +4285,12 @@ Mods: {
 
 			FlinxHood: {
 				DisplayName: Flinx Hood
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
 			}
 
 			FlinxPants: {
 				DisplayName: Flinx Pants
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedMovementSpeed}"
 			}
 
 			Darksign: {
@@ -4307,7 +4299,7 @@ Mods: {
 			}
 
 			Endless_Darksign: {
-				DisplayName: Endless_ Darksign
+				DisplayName: Endless Darksign
 				Tooltip: ""
 			}
 
@@ -4426,16 +4418,6 @@ Mods: {
 					'''
 			}
 
-			HarmfulStone: {
-				DisplayName: Harmful Stone
-				Tooltip:
-					'''
-					Applies the Harmful reforge to accessories
-					Grants a medium boost to damage and critical strike chance
-					Costs {0} to apply
-					'''
-			}
-
 			CursedSkull: {
 				DisplayName: Cursed Skull
 				Tooltip:
@@ -4448,7 +4430,12 @@ Mods: {
 
 			HarmfulPlate: {
 				DisplayName: Harmful Plate
-				Tooltip: ""
+				Tooltip:
+					'''
+					Applies the Harmful reforge to accessories
+					Grants a medium boost to damage and critical strike chance
+					Costs {0} to apply
+					'''
 			}
 		}
 
