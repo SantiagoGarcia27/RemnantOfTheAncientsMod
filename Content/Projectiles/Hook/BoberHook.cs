@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles
 {
@@ -19,9 +20,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 		}
         public override string Texture => SetTexture();
 
-        static float MaxLeght = DistanceUtils.ToCoordenatePosition(19);
-        static float MinLeght = DistanceUtils.ToCoordenatePosition(1);
-        float CurrentLength = MaxLeght;
+        private const float SwingControlAcceleration = 0.08f;
+        private const float MaximumSwingSpeed = 24f;
+
+        private static readonly float MaxLength = DistanceUtils.ToCoordenatePosition(19);
+        private static readonly float MinLength = DistanceUtils.ToCoordenatePosition(1);
+        private float CurrentLength = MaxLength;
         string SetTexture()
 		{
             Player player = Main.player[Projectile.owner];
@@ -65,54 +69,36 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
                 if (Main.netMode != NetmodeID.MultiplayerClient) Projectile.netUpdate = true;
             }
         }
-        float stabilization = 0f; 
 		public override void AI()
 		{
 
 			Player player = Main.player[Projectile.owner];
             UpdateLeght(player);
 
+
             if (currentState == HookState.Attached)
 			{
 
 				Projectile.timeLeft = 10;
                 Projectile.velocity = Vector2.Zero;
+                ApplySwingPhysics(player);
+            }
+            /*if (currentState == HookState.Attached)
+            {
+
+                Projectile.timeLeft = 10;
+                Projectile.velocity = Vector2.Zero;
                 float distance = player.Distance(Projectile.Center);
-                Vector2 puntoReposo = new(Projectile.Center.X, Projectile.Center.Y + CurrentLength);
                 if (distance > CurrentLength)
                 {
                     Vector2 limit = Vector2.Normalize(player.Center - Projectile.Center);
                     player.velocity -= limit;
 
-
-                    
-                    /*// Recolocar exactamente sobre el cÃ­rculo
-                    Vector2 dir = Vector2.Normalize(player.Center - Projectile.Center);
-
-                    float radial = Vector2.Dot(player.velocity, dir);
-                    Vector2 tangential = player.velocity - dir * radial;
-
-                    if (distance > CurrentLength)
-                    {
-
-                        float error = distance - CurrentLength;
-
-                        if (error > 0)
-                        {
-                            player.Center -= dir * error;
-                        }
-
-                        if (radial > 0)
-                            radial = 0;
-
-                        player.velocity = (tangential + dir * radial) * 1.03f;
-                    }*/
-
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
                 }
-            }
-			else if (currentState == HookState.Pull)
+            }*/
+            else if (currentState == HookState.Pull)
 			{
                 Projectile.velocity = (player.Center - Projectile.Center);
                 Projectile.velocity.Normalize();
@@ -132,12 +118,90 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 			base.AI();
 		}
 
-        float increment = 3f;
-        private void UpdateLeght(Player player) {
-            if (player.controlDown && CurrentLength + increment < MaxLeght) 
-                CurrentLength += increment;
-            if (player.controlUp && CurrentLength - increment > MinLeght) 
-                CurrentLength -= increment;
+       
+        private void ApplySwingPhysics(Player player)
+        {
+            Vector2 rope = player.Center - Projectile.Center;
+            float distance = rope.Length();
+
+            if (distance < 0.001f)
+                return;
+
+            Vector2 ropeDirection = rope / distance;
+            Vector2 tangent = new(-ropeDirection.Y, ropeDirection.X);
+
+            // Pequeña holgura para evitar microcorrecciones constantes.
+            const float Slack = 2f;
+            if(distance > CurrentLength * 1.3f)
+            {
+                Vector2 limit = Vector2.Normalize(player.Center - Projectile.Center);
+                player.velocity -= limit;
+                return;
+            }
+
+            if (distance > CurrentLength + Slack)
+            {
+                float radialVelocity = Vector2.Dot(player.velocity, ropeDirection);
+
+                // No cancelar completamente la velocidad radial.
+                if (radialVelocity > 0f)
+                    player.velocity -= ropeDirection * radialVelocity * 0.92f;
+
+                // Tensión suave.
+                float stretch = distance - CurrentLength - Slack;
+                player.velocity -= ropeDirection * Math.Min(stretch * 0.15f, 1.2f);
+            }
+
+            // Control del jugador.
+            if (player.controlLeft != player.controlRight)
+            {
+                float input = player.controlRight ? 1f : -1f;
+
+                float tangentInput = Vector2.Dot(Vector2.UnitX * input, tangent);
+
+                float tangentialSpeed = Math.Abs(Vector2.Dot(player.velocity, tangent));
+
+                // Cuanto más rápido vas, un poco más eficaz es bombear.
+                float pump = SwingControlAcceleration + tangentialSpeed * 0.015f;
+
+                player.velocity += tangent * tangentInput * pump;
+            }
+
+            // Límite de velocidad suave.
+            float tangentialVelocity = Vector2.Dot(player.velocity, tangent);
+
+            if (Math.Abs(tangentialVelocity) > MaximumSwingSpeed)
+            {
+                float excess = Math.Abs(tangentialVelocity) - MaximumSwingSpeed;
+
+                player.velocity -= tangent *
+                    Math.Sign(tangentialVelocity) *
+                    excess *
+                    0.20f;
+            }
+
+            player.fallStart = (int)(player.position.Y / 16f);
+
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
+        }
+
+        private void UpdateLeght(Player player)
+        {
+            // Only the owner (or the server) changes the requested rope length.
+            // Other clients receive the value via SendExtraAI.
+            if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI != Main.myPlayer)
+                return;
+
+            const float increment = 3f;
+            float previousLength = CurrentLength;
+            if (player.controlDown)
+                CurrentLength = MathHelper.Min(CurrentLength + increment, MaxLength);
+            if (player.controlUp)
+                CurrentLength = MathHelper.Max(CurrentLength - increment, MinLength);
+
+            if (CurrentLength != previousLength)
+                Projectile.netUpdate = true;
         }
 
         Color lineColor = Color.White;
@@ -178,12 +242,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write((byte)currentState);
+            writer.Write(CurrentLength);
+            writer.Write(lineColor.R);
+            writer.Write(lineColor.G);
+            writer.Write(lineColor.B);
+            writer.Write(lineColor.A);
             base.SendExtraAI(writer);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             _currentState = (HookState)reader.ReadByte();
-
+            CurrentLength = reader.ReadSingle();
+            Color color = new(reader.ReadByte(), reader.ReadByte(), reader.ReadByte(), reader.ReadByte());
+            lineColor = color;
             base.ReceiveExtraAI(reader);
         }
         public override void OnSpawn(IEntitySource source)
@@ -194,8 +265,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             {
                 if (baseProj.bobber)
                 {
-
-
                     ModItem modItem = player.HeldItem.ModItem;
                     if (modItem != null)
                     {

@@ -1,12 +1,14 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.ModLoader;
+using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
@@ -41,7 +43,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.reuseDelay = 0;
             Item.knockBack = 0.1f;
             Item.scale = 0.5f;
-		}
+            Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
+        }
     
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{

@@ -75,7 +75,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             {
                 if (player.ownedProjectileCounts[ModContent.ProjectileType<BoberHook>()] <= 0)
                 {
-                    var p = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BoberHook>(), 1, 1, player.whoAmI, ai2: item.shoot);
+                    var p = Projectile.NewProjectile(source, position, velocity * 1.5f, ModContent.ProjectileType<BoberHook>(), 1, 1, player.whoAmI, ai2: item.shoot);
                 }
                 return false;
             }

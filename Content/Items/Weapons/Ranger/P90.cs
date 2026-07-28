@@ -18,9 +18,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(NotConsumeAmmoChance);
         public override void SetDefaults()
         {
-            Item.DefaultToRangedWeapon(ProjectileID.PurificationPowder, AmmoID.Bullet, 4, 10f, true);
-            Item.SetWeaponValues(13, 1f);
-            Item.SetShopValues((Terraria.Enums.ItemRarityColor)ItemRarityID.LightPurple, Item.sellPrice(0, 1, 2, 0));
+            Item.damage = 13;
+            Item.knockBack = 1f;
+            Item.ammo = AmmoID.Bullet;
+            Item.useTime = 4;
+            Item.useAnimation = 4;
+            Item.shootSpeed = 10f;
+            Item.autoReuse = true;
+            Item.rare = ItemRarityID.LightPurple;
+            Item.value = Item.sellPrice(0, 1, 2, 0);
             Item.Size = new Vector2(80, 40);      
             Item.DamageType = DamageClass.Ranged;        
             Item.UseSound = SoundID.Item10;

@@ -1,15 +1,16 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
+using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.Common.Global.Items;
-using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -33,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             Item.noMelee = true;
             Item.knockBack = 1;
             Item.value = Item.sellPrice(0, 15, 0, 0);
-            Item.rare = 11;
+            Item.rare = ItemRarityID.Purple;
             Item.UseSound = SoundID.Item40;
             Item.autoReuse = true;
             Item.shoot = ProjectileID.Bullet;
@@ -41,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             Item.useAmmo = AmmoID.Bullet;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-            //new Shotgun(Item, true, 4, ModContent.ProjectileType<TerraBulletP>(), 5);           
+            Item.ShotgunStats(BulletAmmount: 4, Unacurency: 5, CustomProjectileShoot: ModContent.ProjectileType<TerraBulletP>());         
         }   
         public override Vector2? HoldoutOffset()
         {

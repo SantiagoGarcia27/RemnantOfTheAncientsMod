@@ -127,15 +127,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         {
             NPC.frame.Y = 0;
             NPC.TargetClosest(true);
-            if (DificultyUtils.InfernumMode)
+            if (DificultyUtils.InfernumMode && NoAI)
             {
                 if (ScreenAnimationTimer <= 0)
                 {
                     NoAI = false;
-                    return;
                 }
-                NPC.velocity = Vector2.Zero;
-                ScreenAnimationTimer--;
+                else
+                {
+                    NPC.velocity = Vector2.Zero;
+                    ScreenAnimationTimer--;
+                }
             }
 
             if (CurrentTarget == null || NoAI) return;

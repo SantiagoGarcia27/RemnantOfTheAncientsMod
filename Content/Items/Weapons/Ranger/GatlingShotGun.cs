@@ -1,15 +1,16 @@
+using CalamityMod;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.Global.Items;
-using CalamityMod;
-using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using RemnantOfTheAncientsMod.Common.Systems;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -32,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
             Item.scale = 0.6f;
-            //new Shotgun(Item, true, 4, -1, 40,false);
+            Item.ShotgunStats(BulletAmmount: 4, Unacurency: 40,CanCharge: false);
         }
 
         public override Vector2? HoldoutOffset()

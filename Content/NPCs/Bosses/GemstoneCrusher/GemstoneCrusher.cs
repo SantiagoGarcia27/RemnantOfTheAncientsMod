@@ -178,10 +178,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         public override void AI()
         {
             UpdateTarget();
+            if (esServer && CurrentState == BossState.Sleep)
+            {
+                if (NPC.justHit)
+                {
+                    CurrentState = BossState.Idle;
+                    NPC.boss = true;
+                }
 
+                return;
+            }
             if (target == null || CurrentState == BossState.Sleep)
                 return;
-
             stompActivationTimer++;
 
             if (stompActivationTimer >= stompActivationTimerTrigger)

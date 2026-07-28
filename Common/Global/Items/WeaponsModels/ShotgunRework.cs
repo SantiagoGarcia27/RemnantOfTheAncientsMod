@@ -1,4 +1,4 @@
-﻿/*using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using System;
 using System.Collections.Generic;
@@ -32,35 +32,32 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 3, -1, 3);
+                    item.ShotgunStats(BulletAmmount: 3, Unacurency: 3);
 
                 }
                 if (item.type == ItemID.QuadBarrelShotgun)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 7, -1, 45);
-
+                    item.ShotgunStats(BulletAmmount: 7, Unacurency: 45);
                 }
                 if (item.type == ItemID.Shotgun)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 3, -1, 5);
-
+                    item.ShotgunStats(BulletAmmount: 4, Unacurency: 5);
                 }
                 if (item.type == ItemID.OnyxBlaster)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 4, -1, 5, ExtraProjectile: ProjectileID.BlackBolt);
-
+                    item.ShotgunStats(BulletAmmount: 4, Unacurency: 5, ExtraProjectile: ProjectileID.BlackBolt);
                 }
                 if (item.type == ItemID.TacticalShotgun)
                 {
                     item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
                     item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-                    new Shotgun(item, true, 6, -1, 10);
+                    item.ShotgunStats(BulletAmmount: 6, Unacurency: 10);
                 }
             }
             base.SetDefaults(item);
@@ -185,14 +182,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             return base.CanConsumeAmmo(weapon, ammo, player);
         }
     }
-    public class Shotgun : GlobalItem
+    public static class Shotgun
     {
-        public Shotgun(Item item, bool IsShotgun, int BulletAmmount, int CustomProjectileShoot, int Unacurency, bool CanCharge = true, int ExtraProjectile = -1)
+        public static void ShotgunStats(this Item item, int BulletAmmount, int Unacurency, bool CanCharge = true, int ExtraProjectile = -1, bool IsShotgun = true, int CustomProjectileShoot = -1)
         {
             item.channel = true;
+            item.autoReuse = true;
             item.GetGlobalItem<ShotgunRework>().SetShootgunStats(IsShotgun, BulletAmmount, Unacurency, CustomProjectileShoot, ExtraProjectile);
             item.GetGlobalItem<RemnantGlobalItem>().CanCharge = CanCharge;
         }
     }
 }
-*/

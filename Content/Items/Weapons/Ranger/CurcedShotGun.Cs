@@ -1,15 +1,16 @@
-using System;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using System;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.Localization;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using Terraria.Audio;
-using RemnantOfTheAncientsMod.Common.Global.Items;
-using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
@@ -41,48 +42,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.useAmmo = AmmoID.Bullet;
             Item.GetGlobalItem<CustomTooltip>().SecondHabilitie = true;
             Item.GetGlobalItem<RemnantGlobalItem>().CanCharge = true;
-            //new Shotgun(Item, true, 8, ProjectileID.CursedBullet, 15);
-            /*Item.GetGlobalItem<RemnantGlobalItem>().IsShotgun = true;
-            Item.GetGlobalItem<RemnantGlobalItem>().ShotgunBulletStat = new(8, ProjectileID.CursedBullet,15);*/
+            Item.ShotgunStats(BulletAmmount: 5, Unacurency: 15,CustomProjectileShoot: ProjectileID.CursedBullet);
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{  
-            if (player.altFunctionUse == 2) return false;
-            //int NumProjectiles = 8;
-            //if (Main.mouseRight && Main.mouseLeft)
-            //{
-
-            //    SoundEngine.PlaySound(SoundID.Item36);
-            //    if (Timmer > 0)
-            //    {
-            //        Item.useStyle = ItemUseStyleID.Shoot;
-            //        for (int i = 0; i < NumProjectiles + (int)Timmer; i++)
-            //        {
-            //            Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(15));
-            //            newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-            //            Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
-            //            player.velocity = -velocity * (int)Timmer * 0.05f;
-            //        }
-            //        Timmer = 0;
-            //    }
-            //    return false;
-            //}
-            //else if (Main.mouseRight && !Main.mouseLeft)
-            //{
-            //    Item.useStyle = 2;
-            //}
-            //else if (player.altFunctionUse == 0 && !Main.mouseRight)
-            //{
-            //    Item.useStyle = ItemUseStyleID.Shoot;
-            //    SoundEngine.PlaySound(SoundID.Item36);
-            //    for (int i = 0; i < NumProjectiles; i++)
-            //    {
-            //        Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(15));
-            //        newVelocity *= 1f - Main.rand.NextFloat(0.3f);
-            //        Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
-            //    }
-            //}
+            if (player.altFunctionUse == 2) return false;  
             return base.Shoot(player,source,position,velocity,type,damage,knockback);   
 		}
 		public override bool CanConsumeAmmo(Item ammo, Player player)
