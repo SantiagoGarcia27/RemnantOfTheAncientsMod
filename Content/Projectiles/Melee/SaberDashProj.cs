@@ -46,13 +46,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 				Projectile.Kill();
 			}
 
-			if (Projectile.rotation <= 2 && Projectile.rotation >= -2)
+			if (!FullCharge && Projectile.rotation <= 2 && Projectile.rotation >= -2)
 			{
 				float chargeSpeedBonus = player.GetAttackSpeed(DamageClass.Melee);
-                counter += 0.02f * player.direction * chargeSpeedBonus;
-				Projectile.rotation = counter;
+                counter += 0.02f * chargeSpeedBonus;
+				Projectile.rotation = counter * player.direction;
             }
-
 			else
 			{
 				Color color = new(255, 255, 255);
@@ -62,6 +61,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 					Rectangle rectangle = new((int)(Projectile.Center.X - 10), (int)(Projectile.Center.Y - 10), 20, 20);
 					CombatText.NewText(rectangle, Color.Cyan, "!!!", true);
 					FullCharge = true;
+                }
+				else
+				{
+					Projectile.rotation = 2 * player.direction;
                 }
 
 				if (Main.mouseLeft)

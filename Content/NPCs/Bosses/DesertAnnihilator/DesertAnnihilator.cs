@@ -28,7 +28,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.GameContent.Animations.IL_Actions.Sprites;
 using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
@@ -477,7 +476,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             }
             if (attackCounter == Utils1.FormatTimeToTick(0, 0, 0, 7) - 10)
             {
-                float ofset = DistanceUtils.ToCoordenatePosition(100f);
+                float ofset = 100f.ToCoordinatePosition();
                 float ofsetY = player.position.Y - ofset;
 
                 Vector2 start = new(player.position.X - ofset, ofsetY);
@@ -610,7 +609,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
 
             do
             {
-                float positionY = position.Y - DistanceUtils.ToCoordenatePosition(blockIncrement++);
+                float positionY = position.Y - (blockIncrement++).ToCoordinatePosition();
                 newPos = new(position.X, positionY);
             } while (CoordHasTile(newPos) || CoordHasLiquid(newPos));
 
@@ -629,7 +628,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             NPC.alpha = 0;
             int tpDirection = Main.rand.NextBool() ? -1 : 1;
             Vector2 tileDistance = new(30f, -5f); 
-            Vector2 tpDistance = new (DistanceUtils.ToCoordenatePosition(tileDistance.X),DistanceUtils.ToCoordenatePosition(tileDistance.Y));
+            Vector2 tpDistance = new Vector2(tileDistance.X,tileDistance.Y).ToCoordenatePosition();
             NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(tpDirection * tpDistance.X, tpDistance.Y));
             GenerateTpParticles(appear: true);
         }

@@ -112,7 +112,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 
             if (type == ModContent.ItemType<CorruptedSaber>())
             {
-                int proj = Projectile.NewProjectile(Entity.GetSource_None(), player.MountedCenter + new Vector2(DistanceUtils.ToCoordenatePosition(8) * player.direction, 0), new Vector2(player.direction, 0f) * new Vector2(0.5f, 0.5f), ProjectileID.LightsBane, item.damage + 10, item.knockBack, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, 3.4f);
+                int proj = Projectile.NewProjectile(Entity.GetSource_None(), player.MountedCenter + new Vector2(8.ToCoordinatePosition() * player.direction, 0), new Vector2(player.direction, 0f) * new Vector2(0.5f, 0.5f), ProjectileID.LightsBane, item.damage + 10, item.knockBack, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, 3.4f);
                 Main.projectile[proj].ai[0] = Main.rand.NextFloat(3.5f, 4.6f);
             }
             else if (type == ModContent.ItemType<HallowedSaber>())
@@ -255,7 +255,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 
             if (item.type == ModContent.ItemType<CorruptedSaber>())
             {
-                int proj = Projectile.NewProjectile(source, position + new Vector2(DistanceUtils.ToCoordenatePosition(8) * player.direction, 0), velocity * new Vector2(0.5f, 0.5f), type, damage, knockback, player.whoAmI, 2.4f);
+                int proj = Projectile.NewProjectile(source, position + new Vector2(8.ToCoordinatePosition() * player.direction, 0), velocity * new Vector2(0.5f, 0.5f), type, damage, knockback, player.whoAmI, 2.4f);
                 Main.projectile[proj].ai[0] = Main.rand.NextFloat(1.5f, 1.6f);
                 //return false;
             }

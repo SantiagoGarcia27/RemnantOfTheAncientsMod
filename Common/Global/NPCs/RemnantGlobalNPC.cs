@@ -70,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             //DamageBonus = 1f;
             //LifeBonus = 1f;
         }
-        public static void setStatBonus(float DamageBonusMultiplier = 1f, float LifeBonusMultiplier = 1f, char type = '*')
+        public static void SetStatBonus(float DamageBonusMultiplier = 1f, float LifeBonusMultiplier = 1f, char type = '*')
         {
             switch (type)
             {

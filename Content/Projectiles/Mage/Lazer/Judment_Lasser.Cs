@@ -189,6 +189,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 		{
 			target.AddBuff(BuffType<HollyBurn>(), 400);
 			target.immune[Projectile.owner] = 5;
+			Projectile.damage = (int)(Projectile.damage * 0.9f);
 		}
 
 		public override void AI()

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,10 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         public Color Color { get; set; }
         public float Scale = 1;
 
-        public MagicCircle()
-        {
-
-        }
+        public MagicCircle() { }
 
         public MagicCircle(Texture2D texture, Color color, float Scale = 1)
         {
@@ -48,14 +46,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         }
 
         public int speed = 0;
-        public float rotation = 0;
+        public double rotation = 0;
         public int Charge = 0;
         public virtual float GetMaxCharge(float MaxCharge = 180) => MaxCharge;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
             Projectile.Center = player.Center;
-            if (player.whoAmI == Main.myPlayer)
+            //if (player.whoAmI == Main.myPlayer)
             {
                 if (++speed >= 10)
                 {
@@ -87,6 +85,21 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
              if(killAfterEnd)
                 Projectile.Kill();
         }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(Charge);
+            writer.Write(rotation);
+            writer.Write(speed);
+            base.SendExtraAI(writer);
+        }
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            Charge = reader.ReadInt32();
+            rotation = reader.ReadDouble();
+            speed = reader.ReadInt32();
+            base.ReceiveExtraAI(reader);
+        }
         public virtual void DrawCirclee(ref List<MagicCircle> internalCircle, ref List<MagicCircle> externalCircle)
         {
             Player player = Main.player[Main.myPlayer];
@@ -102,7 +115,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                         if (Projectile.ai[0] <= 170)
                         {
                             Color color = new Color(colorBase.R, colorBase.G, colorBase.B, 20);
-                            Main.spriteBatch.Draw(circle.Texture, Projectile.Center - Main.screenPosition, null, color, rotation, origin, circle.Scale, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(circle.Texture, Projectile.Center - Main.screenPosition, null, color, (float)rotation, origin, circle.Scale, SpriteEffects.None, 0f);
                         }
                     }
                 }
@@ -115,7 +128,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                         if (Projectile.ai[0] <= 170)
                         {
                             Color color = new Color(colorBase.R, colorBase.G, colorBase.B, 20);
-                            Main.spriteBatch.Draw(circle.Texture, Projectile.Center - Main.screenPosition, null, color, rotation, origin, circle.Scale, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(circle.Texture, Projectile.Center - Main.screenPosition, null, color, (float)rotation, origin, circle.Scale, SpriteEffects.None, 0f);
                         }
                     }
                 }

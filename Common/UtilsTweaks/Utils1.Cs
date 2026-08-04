@@ -308,7 +308,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static List<Projectile> SearchProjectiles(bool friendly, NPC npc, float rangeInBlocks)
         {
-            float rangeInPixels = DistanceUtils.ToCoordenatePosition(rangeInBlocks);
+            float rangeInPixels = rangeInBlocks.ToCoordinatePosition();
             float rangeSquared = rangeInPixels * rangeInPixels;
             auxProjectileList.Clear();
             for (int i = 0; i < Main.maxProjectiles; i++)

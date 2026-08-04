@@ -1,91 +1,31 @@
-using CalamityMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.Numerics;
 using Terraria;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
 {
     public static class DistanceUtils
     {
-        public static Vector2 GetDistance(NPC request, NPC target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static Vector2 GetDistance(NPC request, Player target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static Vector2 GetDistance(NPC request, Projectile target)
+        public static Vector2 GetDistance(Entity request, Entity target)
         {
             float x = request.position.X - target.position.X;
             float y = request.position.Y - target.position.Y;
             return new Vector2(x, y);
         }
 
-        public static Vector2 GetDistance(Projectile request, NPC target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static Vector2 GetDistance(Projectile request, Projectile target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static Vector2 GetDistance(Projectile request, Player target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static Vector2 GetDistance(Player request, NPC target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static Vector2 GetDistance(Player request, Projectile target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static Vector2 GetDistance(Player request, Player target)
-        {
-            float x = request.position.X - target.position.X;
-            float y = request.position.Y - target.position.Y;
-            return new Vector2(x, y);
-        }
-        public static float ToTilePosition(float NpcPosition)
-        {
-            return NpcPosition / 16;
-        }
-        public static Vector2 ToTilePosition(Vector2 NpcPosition)
-        {
-            return NpcPosition / 16;
-        }
-        public static float ToCoordenatePosition(float NpcPosition)
-        {
-            return NpcPosition * 16;
-        }
-        public static Vector2 ToCoordenatePosition(Vector2 NpcPosition)
-        {
-            return NpcPosition * 16;
-        }
-        public static bool TouchFlour(Player player)
-        {
-            return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].HasTile;
-        }
-        public static bool TouchFlour(NPC npc)
-        {
-            return Main.tile[(int)(npc.Center.X / 16), (int)((npc.Center.Y + (2 * 16)) / 16)].HasTile;
-        }
+        public static Tile GetFloor(this Entity entity, int depth = 1) => Main.tile[(int)entity.Center.X.ToTilePosition(), (int)(entity.Center.Y.ToTilePosition() + (depth + 1))];
+
+        public static T ToTilePosition<T>(this T value) where T : INumber<T> => value / T.CreateChecked(16);
+        public static Vector2 ToTilePosition(this Vector2 position) => position / 16;
+        
+        public static T ToCoordinatePosition<T>(this T value) where T : INumber<T> => value * T.CreateChecked(16);
+        public static Vector2 ToCoordenatePosition(this Vector2 position) =>  position * 16;
+
+        public static bool TouchFlour(this Entity entity) => entity.GetFloor().HasTile;
+        
+        
         public static bool TouchFlour(Projectile projectile)
         {
             Tile tile = Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)];
@@ -93,30 +33,16 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static bool IsTileSolidGround(this Tile tile)
         {
-            if (tile != null && tile.HasUnactuatedTile)
-            {
-                if (!Main.tileSolid[tile.TileType])
-                {
-                    return Main.tileSolidTop[tile.TileType];
-                }
-
-                return true;
-            }
-
-            return false;
+            if (tile == null || !tile.HasUnactuatedTile) return false;
+            if (Main.tileSolid[tile.TileType]) return true;
+            
+            return Main.tileSolidTop[tile.TileType];  
         }
-        public static bool TouchFlourLiquid(Player player)
-        {
-            return Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
-        }
-        public static bool TouchFlourLiquid(Projectile projectile)
-        {
-            return Main.tile[(int)(projectile.Center.X / 16), (int)((projectile.Center.Y + (2 * 16)) / 16)].LiquidAmount > 0;
-        }
-
+        public static bool TouchFlourLiquid(Entity entity) => entity.GetFloor().LiquidAmount > 0;
+        
         public static int GetPlayerFlour(Player player,int depth = 1)
         {
-            Tile tile = Main.tile[(int)(player.Center.X / 16), (int)((player.Center.Y + (depth + 1) * 16) / 16)];
+            Tile tile = player.GetFloor(depth);
             return tile.HasTile ? tile.TileType : -1; 
         }
        
@@ -125,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         {
             Vector2 coordenate;
             int orientacion = 1 * 16 * projectile.direction;
-            coordenate.X = (projectile.Center.X + orientacion) / 16;///** projectile.direction*/ / 16);
+            coordenate.X = (projectile.Center.X + orientacion) / 16;
             coordenate.Y = projectile.Center.Y / 16;
 
             return Main.tile[(int)coordenate.X, (int)coordenate.Y].HasTile;
@@ -163,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static bool ExistFluid(Vector2 pos) 
         {
-            return Main.tile[(new Point((int)pos.X / 16, (int)(pos.Y) / 16))].LiquidAmount > 0;
+            return Main.tile[new Point((int)pos.X / 16, (int)(pos.Y) / 16)].LiquidAmount > 0;
         }
         public static bool ExistFluid(Vector2 pos, int liquidId)
         {
@@ -248,6 +174,28 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 CheckHigh(imput);
             }
             return (int)imput.Y;
+        }
+
+
+        public static bool TryFindGround(Vector2 pos, int maxDistance, out Point groundTile)
+        {
+            Point tilePos = pos.ToTileCoordinates();
+
+            for (int y = tilePos.Y; y < tilePos.Y + maxDistance && y < Main.maxTilesY; y++)
+            {
+                Tile tile = Framing.GetTileSafely(tilePos.X, y);
+
+                if (tile.HasTile &&
+                    Main.tileSolid[tile.TileType] &&
+                    !Main.tileSolidTop[tile.TileType])
+                {
+                    groundTile = new Point(tilePos.X, y);
+                    return true;
+                }
+            }
+
+            groundTile = Point.Zero;
+            return false;
         }
     }
 }

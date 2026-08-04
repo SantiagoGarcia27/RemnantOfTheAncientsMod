@@ -56,7 +56,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 BossChecklistMod.Call(
                 "LogBoss",
                 Mod,
-                "DesertAniquilator",    
+                "DesertAnnihilator",    
                 6.7f,
                 () => RemnantDownedBossSystem.downedDesert,
                 ModContent.NPCType<DesertAnnihilator>(),

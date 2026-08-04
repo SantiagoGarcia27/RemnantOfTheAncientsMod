@@ -164,7 +164,7 @@ Mods: {
 
 		Prefix: {
 			Description: {
-				Life: "{0} max life"
+				Life: +{0} max life
 				Defense: "{0} defense"
 				Speed: "{0}% movement speed"
 				CritChance: "{0}% critical strike chance"
@@ -4295,12 +4295,20 @@ Mods: {
 
 			Darksign: {
 				DisplayName: Darksign
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					Decrease max life by {1}%
+					'''
 			}
 
 			Endless_Darksign: {
 				DisplayName: Endless Darksign
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					Decrease max life by {1}%
+					'''
 			}
 
 			EndlessChlorophytePouch: {
@@ -5081,6 +5089,11 @@ Mods: {
 
 				OverhaulMeleeManaCostConfig: {
 					Label: Overhaul Melee Mana Cost Config
+					Tooltip: ""
+				}
+
+				BootFastFallConf: {
+					Label: Boot Fast Fall Conf
 					Tooltip: ""
 				}
 			}

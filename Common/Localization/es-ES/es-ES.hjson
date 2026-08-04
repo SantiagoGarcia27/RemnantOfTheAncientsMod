@@ -170,7 +170,7 @@ Mods: {
 
 		Prefix: {
 			Description: {
-				Life: "{0} vida máxima"
+				Life: +{0} vida máxima
 				Defense: "{0} defensa"
 				Speed: "{0}% velocidad de movimiento"
 				CritChance: "{0}% probabilidad de ataque crítico"
@@ -4333,7 +4333,11 @@ Mods: {
 
 			Endless_Darksign: {
 				DisplayName: Marca obscura eterna
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedDamage}
+					Decrease max life by {1}%
+					''' */
 			}
 
 			EndlessChlorophytePouch: {
@@ -5125,6 +5129,11 @@ Mods: {
 				OverhaulMeleeManaCostConfig: {
 					Label: Armas cuerpo a cuerpo gastan maná con Terraria Overhaul
 					Tooltip: Desactiva la mecanica de coste de maná en las armas cuerpo a cuerpo con proyectil
+				}
+
+				BootFastFallConf: {
+					// Label: Boot Fast Fall Conf
+					// Tooltip: ""
 				}
 			}
 		}

@@ -76,8 +76,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 
         public override bool AltFunctionUse(Item item, Player player)
         {
-            if (IsShotgun) 
-                return true;
+            if (IsShotgun) return true;
             return base.AltFunctionUse(item,player);
         }
 
@@ -86,6 +85,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 
             if (IsShotgun)
             {
+                if (player.altFunctionUse == 2) return false;
                 bool canCharge = item.GetGlobalItem<RemnantGlobalItem>().CanCharge;
                 if (BulletAmmount > 0 && canCharge)
                 {
@@ -152,7 +152,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             {
                 TimmerMax = item.useTime / 4;
 
-                if (player.channel && player.altFunctionUse == 2)
+                 if (player.channel && player.altFunctionUse == 2)
                 {
                     if (Timmer < TimmerMax)
                     {
@@ -169,6 +169,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 item.GetGlobalItem<RemnantGlobalItem>().TimmerMax = TimmerMax;
             }
         }
+
         public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
         {
             if (IsShotgun)
@@ -190,6 +191,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             item.autoReuse = true;
             item.GetGlobalItem<ShotgunRework>().SetShootgunStats(IsShotgun, BulletAmmount, Unacurency, CustomProjectileShoot, ExtraProjectile);
             item.GetGlobalItem<RemnantGlobalItem>().CanCharge = CanCharge;
+            ItemID.Sets.ItemsThatAllowRepeatedRightClick[item.type] = true;
         }
     }
 }

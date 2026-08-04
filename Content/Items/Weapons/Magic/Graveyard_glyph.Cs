@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.shootSpeed = 14f;
             Item.shoot = ModContent.ProjectileType<Graveyard_proj>();
             Item.UseSound = SoundID.Item39;
-            Item.value = Item.sellPrice(silver: 50);
+            Item.value = 0;
             Item.autoReuse = true;
             Item.noUseGraphic = true;
             Item.knockBack = 0.1f;

@@ -12,11 +12,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     public class Darksign : ModItem
     {
        // public override bool IsLoadingEnabled(Mod mod) => false;
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(20,20);
+        int damageBonu = 20;
+        int lifeBonus = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonu, lifeBonus);
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.BuilderPotion);
@@ -28,7 +31,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
     }
     public class Endless_Darksign : ModelEndless
     {
-      //  public override bool IsLoadingEnabled(Mod mod) => false;
+        int damageBonu = 20;
+        int lifeBonus = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageBonu, lifeBonus);
         public override Item ItemBase => new(ModContent.ItemType<Darksign>());
         public override void SetStaticDefaults()
         {

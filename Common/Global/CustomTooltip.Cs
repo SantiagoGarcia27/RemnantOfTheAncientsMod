@@ -189,18 +189,26 @@ namespace RemnantOfTheAncientsMod.Common.Global
             if (ReaperItems.Contains(item.type))
                 nameLine.OverrideColor = Ftoggler.GetRarityColor();
         }
-  
+
 
         private void AplyReforgeTooltip(Item item, IList<TooltipLine> Tooltips)
         {
-            int[] healthPrefix = [ModContent.PrefixType<Healthy>(), ModContent.PrefixType<Healer>(), ModContent.PrefixType<Atletic>(), ModContent.PrefixType<Gigant>(), ModContent.PrefixType<Titanic>()];
+            Dictionary<int, float> healthPrefix = new()
+            {
+                { ModContent.PrefixType<Healthy>(), HealthyReforgeValue },
+                { ModContent.PrefixType<Healer>(), HealerReforgeValue },
+                { ModContent.PrefixType<Atletic>(), AtleticReforgeValue },
+                { ModContent.PrefixType<Gigant>(), GigantReforgeValue },
+                { ModContent.PrefixType<Titanic>(), TitanicReforgeValue }
+            };
             string commonPath = "Mods.RemnantOfTheAncientsMod.Prefix.Description.";
 
             Color color = new(92, Main.DiscoColor.G, 94, 255);
-            if (healthPrefix.Contains(item.prefix))
-            {
+            if (healthPrefix.Keys.Contains(item.prefix))
+            {          
                 color = item.prefix == ModContent.PrefixType<Titanic>() ? new Color(92, Main.DiscoColor.G, 94, 255) : new Color(92, 145, 94, 255);
-                RegorgeTooltip(Tooltips, (int)HealthyReforgeValue, color, commonPath + "Life");
+                int valor = (int)healthPrefix[item.prefix];
+                RegorgeTooltip(Tooltips, valor, color, commonPath + "Life");
             }
             else if (item.prefix == ModContent.PrefixType<Regenerative>())
             {

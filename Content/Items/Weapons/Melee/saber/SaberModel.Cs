@@ -20,7 +20,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
             Main.RegisterItemAnimation(Item.type, Main.itemAnimations[ItemBase.type]);
             ItemID.Sets.AnimatesAsSoul[Type] = ItemID.Sets.AnimatesAsSoul[ItemBase.type];
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-
         }
         
         public override LocalizedText Tooltip => IsVanilla() ? base.Tooltip : ToLocalizedText("Tooltip");

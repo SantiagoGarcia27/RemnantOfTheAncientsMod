@@ -23,8 +23,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
         private const float SwingControlAcceleration = 0.08f;
         private const float MaximumSwingSpeed = 24f;
 
-        private static readonly float MaxLength = DistanceUtils.ToCoordenatePosition(19);
-        private static readonly float MinLength = DistanceUtils.ToCoordenatePosition(1);
+        private static readonly float MaxLength = 19.ToCoordinatePosition();
+        private static readonly float MinLength = 1.ToCoordinatePosition();
         private float CurrentLength = MaxLength;
         string SetTexture()
 		{

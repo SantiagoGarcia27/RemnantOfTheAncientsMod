@@ -1,8 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
@@ -11,6 +21,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
@@ -316,7 +327,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             }
             else if (CurrentStompPhase == StompType.moveTo)
             {
-                if(NPC.Center.DistanceSQ(playerHead) <= DistanceUtils.ToCoordenatePosition(tolerance * tolerance))
+                if(NPC.Center.DistanceSQ(playerHead) <= (tolerance * tolerance).ToTilePosition())
                 {
                     CurrentStompPhase = StompType.follow;
                     return;
@@ -487,7 +498,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if(NPC.AnyNPCs(Type)) return 0f;
-            float chance = SpawnCondition.Cavern.Chance * 0.19f; 
+            float chance = SpawnCondition.Cavern.Chance * 0.06f; 
             return chance;
         }
 
@@ -563,6 +574,37 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
             //Main.EntitySpriteDraw(Texture, drawPos, NPC.frame, drawColor, 0, drawOrigin, NPC.scale, SpriteEffects.None, 0);
             return true;
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemID.Amethyst, 3, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Topaz, 3, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Emerald, 3, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Sapphire, 3, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Ruby, 3, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Diamond, 3, 1, 3));
+
+
+            /*npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999,
+            [
+                ItemType<DesertBow>(),
+                ItemType<DesertEdge>(),
+                ItemType<DesertStaff>(),
+                ItemType<DesertTome>()
+            ]));
+            npcLoot.Add(ItemDropRule.Common(ItemType<Sand_escense>(), 1, 5, 20));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SandBlock, 1, 1, 50));
+            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.Amber, 6, 1));
+            npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsHardModeRule(), ItemID.AncientBattleArmorMaterial, 5, 1, 1, Utils1.ReaperDropScaler(1)));
+
+            npcLoot.Add(ItemDropRule.Common(ItemType<DesertAMask>(), 7));
+            npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));
+
+            npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
+            if (DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ItemType<Desert_Relic>()));
+            else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Desert_Relic>()));*/
+
         }
     }
 }

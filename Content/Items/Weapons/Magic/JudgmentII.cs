@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true; //Channel so that you can hold the weapon [Important]
 			Item.autoReuse = true;
-			Item.mana = 5;
+			Item.mana = 10;
 			Item.rare = ItemRarityID.Pink;
 			Item.width = 30;
 			Item.height = 34;

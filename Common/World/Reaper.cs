@@ -16,9 +16,9 @@ namespace RemnantOfTheAncientsMod.World
         public static bool ReaperMode;
         public override void OnWorldLoad()
         {
-            if (RemnantGlobalNPC.DamageBonus == 1 || RemnantGlobalNPC.LifeBonus == 1 && ReaperMode)
+            if ((RemnantGlobalNPC.DamageBonus == 1 || RemnantGlobalNPC.LifeBonus == 1) && ReaperMode)
             {
-                RemnantGlobalNPC.setStatBonus(2f, 2f);
+                RemnantGlobalNPC.SetStatBonus(2f, 2f);
             }
             foreach (int id in RemnantGlobalItem.SpearsList)
             {
@@ -44,8 +44,8 @@ namespace RemnantOfTheAncientsMod.World
             ReaperMode = !ReaperMode;
             DificultyUtils.ReaperMode = ReaperMode;
 
-            if (ReaperMode) RemnantGlobalNPC.setStatBonus(2f, 2f);
-            else RemnantGlobalNPC.setStatBonus(1f, 1f,'-');
+            if (ReaperMode) RemnantGlobalNPC.SetStatBonus(2f, 2f);
+            else RemnantGlobalNPC.SetStatBonus(1f, 1f,'-');
         }
 
         public override void NetSend(BinaryWriter writer)

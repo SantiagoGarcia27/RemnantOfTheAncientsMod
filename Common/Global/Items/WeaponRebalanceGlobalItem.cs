@@ -105,14 +105,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 else if (item.type == ItemID.ZapinatorGray)
                 {
                     item.damage = 25;
-                    item.useAnimation = 16;
-                    item.useTime = 14;
+                    item.useAnimation = 22;
+                    item.useTime = 22;
                 }
                 else if (item.type == ItemID.ZapinatorOrange)
                 {
                     item.damage = 60;
-                    item.useAnimation = 16;
-                    item.useTime = 14;
+                    item.useAnimation = 22;
+                    item.useTime = 22;
                 }
                 else if (item.type == ItemID.ThrowingKnife || item.type == ItemID.PoisonedKnife || item.type == ItemID.BoneDagger)
                 {
@@ -222,19 +222,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     int Shootproj = ModContent.ProjectileType<WandOfSparkingHeldProj>();
                     if (player.altFunctionUse == 2)
                     {
-                        if (player.ownedProjectileCounts[Shootproj] <= 0)
-                        {
-                            int manacost = player.statManaMax2 / 2;
-                            if (player.statMana >= manacost)
-                            {
-                                player.statMana -= manacost;
-                                var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, item.mana);
-                                Main.projectile[p].localAI[0] = item.shoot;
-                            }
-                        }
-                        return false;
+                        if (player.ownedProjectileCounts[Shootproj] > 0) return false;
+                        int manacost = player.statManaMax2 - item.mana;
+                        if (player.statMana < manacost) return false;
+                            
+                        player.statMana -= manacost;
+
+                        var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, ai0: velocity.X, ai2: item.type);
                     }
                 }
+               
             }
             else if (item.type == ItemID.FrostStaff)
             {

@@ -31,6 +31,9 @@ namespace RemnantOfTheAncientsMod
         [DefaultValue(true)]
         public bool VanillaWeaponsChangesConf { get; set; }
 
+        [DefaultValue(true)]
+        public bool BootFastFallConf { get; set; }
+
         [DefaultValue(false)]
         public bool BowReworkConf { get; set; }
 

@@ -178,15 +178,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     {
                         player.moveSpeed += 2f;
                     }
-                }
-               
-                if (FastFall.Contains(item.type))
-                {
-                   // string ResultItemName = new Item(item.type).Name;
-                    player.maxFallSpeed *= 2f;
-                }
+                }                
             }
-            if(RemnantOfTheAncientsMod.FargosSoulMod != null)
+            if (ModContent.GetInstance<ConfigServer>().BootFastFallConf && FastFall.Contains(item.type))
+            {
+                player.maxFallSpeed *= 2f;
+            }
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
                 UpdateAccessoryFargosSoulMod(item, player, hideVisual);
             }
