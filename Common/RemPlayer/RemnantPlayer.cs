@@ -1,6 +1,7 @@
 using CalamityMod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PlayerProxyLib.Common;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global.Items;
@@ -225,6 +226,7 @@ namespace RemnantOfTheAncientsMod
 				Player.lifeRegen = 999;
 				return false;
 			}
+
 			return true;
 		}
 		private static void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
@@ -311,12 +313,27 @@ namespace RemnantOfTheAncientsMod
 				Player.lifeRegen -= 16;
 			}
 		}
+        public override bool PreItemCheck()
+        {  
+            return true;
+        }
+        public override void PreUpdate()
+        {
+			if (Player.IsProxyPlayer())
+			{
+                Player.controlUseItem = true;
+                Player.releaseUseItem = false;
+                Player.selectedItem = 0;
+                Player.itemAnimation = 0;
+                Player.itemTime = 0;
+            }
+            base.PreUpdate();
+        }
 		public override void PostUpdate()
 		{
-			Player.opacityForAnimation = 1;
+            Player.opacityForAnimation = 1;
 
-
-			if (MoneyCollector)
+            if (MoneyCollector)
 			{
 				MoneyColectorBuff.UpdateCoins(Player);
 			}
@@ -473,6 +490,7 @@ namespace RemnantOfTheAncientsMod
 					target.AddBuff(b, 300);
 				}
 			}
+
 		}
 		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) //This is the same as the one in OnHitNPC, but for melee projectiles.
 		{
@@ -850,6 +868,7 @@ namespace RemnantOfTheAncientsMod
             ShopUtils.maxStyleStat = sum;
             base.OnEnterWorld();
         }
+
     }
 }//hola
 

@@ -142,12 +142,31 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
             public bool CanShowItemDropInUI() => Reaper.ReaperMode;
             public string GetConditionDescription() => null;
         }
+        #region Bosses 
+        public class DownedEyeOfChutulu : IItemDropRuleCondition, IProvideItemConditionDescription
+        {
+            public bool CanDrop(DropAttemptInfo info) => NPC.downedBoss1;
+            public bool CanShowItemDropInUI() => NPC.downedBoss1;
+            public string GetConditionDescription() => null;
+        }
         public class DownedPlantera : IItemDropRuleCondition, IProvideItemConditionDescription
         {
             public bool CanDrop(DropAttemptInfo info) => NPC.downedPlantBoss;
             public bool CanShowItemDropInUI() => NPC.downedPlantBoss;
             public string GetConditionDescription() => null;
         }
+
+        #endregion
+
+        #region Events
+        public class DownedGoblinArmy : IItemDropRuleCondition, IProvideItemConditionDescription
+        {
+            public bool CanDrop(DropAttemptInfo info) => NPC.downedGoblins;
+            public bool CanShowItemDropInUI() => NPC.downedGoblins;
+            public string GetConditionDescription() => null;
+        }
+        #endregion
+       
 
 
         public class IsReaperMode : IItemDropRuleCondition, IProvideItemConditionDescription

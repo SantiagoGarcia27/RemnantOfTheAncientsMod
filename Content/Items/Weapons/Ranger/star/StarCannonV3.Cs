@@ -14,14 +14,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Star Cannon Mk3");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Canon étoile Mk3");
-            // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cañon de estrellas MK3");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.damage = 400;//305
+            Item.damage = 200;//305
             Item.DamageType = DamageClass.Ranged;
             Item.width = 80;
             Item.height = 40;

@@ -14,7 +14,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		{
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-		public override void SetDefaults()
+		int armorPenetration = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(armorPenetration);
+        public override void SetDefaults()
 		{
 			Item.damage = new Item(ItemID.PlatinumBroadsword).damage + 10;
 			Item.DamageType = DamageClass.Melee;

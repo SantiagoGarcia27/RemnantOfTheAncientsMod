@@ -74,30 +74,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
 
 			Player player = Main.player[Projectile.owner];
             UpdateLeght(player);
-
+            if(player.dead || !player.active)
+            {
+                Projectile.Kill();
+                return;
+            }
 
             if (currentState == HookState.Attached)
 			{
-
 				Projectile.timeLeft = 10;
                 Projectile.velocity = Vector2.Zero;
                 ApplySwingPhysics(player);
             }
-            /*if (currentState == HookState.Attached)
-            {
-
-                Projectile.timeLeft = 10;
-                Projectile.velocity = Vector2.Zero;
-                float distance = player.Distance(Projectile.Center);
-                if (distance > CurrentLength)
-                {
-                    Vector2 limit = Vector2.Normalize(player.Center - Projectile.Center);
-                    player.velocity -= limit;
-
-                    if (Main.netMode == NetmodeID.Server)
-                        NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
-                }
-            }*/
             else if (currentState == HookState.Pull)
 			{
                 Projectile.velocity = (player.Center - Projectile.Center);

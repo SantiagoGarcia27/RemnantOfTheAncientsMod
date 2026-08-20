@@ -396,12 +396,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             proxyPlayer.name = NPC.FullName;
             proxyPlayer.hasTitaniumStormBuff = true;
             proxyPlayer.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTimeToTick(0, 0, 0, 6));
-            NPC.ConfigureProxyPlayer(targetable: true, shouldBeDrawn:true);
-            var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2 (-1 *16 , -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, proxyPlayer.whoAmI);
-            Main.projectile[p].hostile = true;
-            Main.projectile[p].friendly = false;
-            Main.projectile[p].penetrate = 2;
-            Main.projectile[p].timeLeft = 1000;
+            NPC.ConfigureProxyPlayer(targetable: false, shouldBeDrawn:true);
+            if (proxyPlayer.ownedProjectileCounts[ProjectileID.TitaniumStormShard] < 5)
+            {
+                var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2(-1 * 16, -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, proxyPlayer.whoAmI);
+                Main.projectile[p].hostile = true;
+                Main.projectile[p].friendly = false;
+                Main.projectile[p].penetrate = 2;
+                Main.projectile[p].timeLeft = 1000;
+            }
             base.OnHitPlayer(target, hurtInfo);
         }
         public override void AI()
@@ -416,9 +419,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 3;
             float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
-        }
-
-       
+        }   
     }
     public class HallowedZombie : BaseZombie
     {

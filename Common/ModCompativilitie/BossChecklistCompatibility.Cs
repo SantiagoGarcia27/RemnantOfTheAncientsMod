@@ -10,6 +10,7 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using System;
 using System.Collections.Generic;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
@@ -40,6 +41,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
             AddDesert(BossChecklistMod);
             AddFrozen(BossChecklistMod);
             AddTyrant(BossChecklistMod);
+            AddSkeletron(BossChecklistMod);
         }
 
         List<int> collection;
@@ -121,6 +123,18 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                     ["spawnItems"] = ModContent.ItemType<InfernalCalis>(),
                     ["collectibles"] = collection,
                     ["customPortrait"] = customPortrait
+                }
+            );
+        }
+
+        public void AddSkeletron(Mod BossChecklistMod)
+        {
+            BossChecklistMod.Call(
+                "SubmitEntrySpawnItems",
+                Mod,
+                new Dictionary<string, object>()
+                {
+                    ["Terraria Skeletron"] = ModContent.ItemType<ElderSpeaker>()
                 }
             );
         }

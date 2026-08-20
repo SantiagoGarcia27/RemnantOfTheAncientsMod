@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
             Item.width = 38;
             Item.height = 34;
             Item.maxStack = 999;
-            Item.value = Item.sellPrice(gold: 10);
+            Item.value = Item.sellPrice(silver: 90);
             Item.rare = ItemRarityID.Green;
             Item.SetCatalyst(true);
 

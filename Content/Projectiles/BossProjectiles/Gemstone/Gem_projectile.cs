@@ -54,9 +54,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         }
         public override void AI()
         {
-            NPC npc = Main.npc[(int)Projectile.ai[0]];
+            
             Projectile.rotation -= 0.1f * Projectile.direction;
-            if (!npc.active)
+            int ownerIndex = (int)Projectile.ai[0];
+            Entity owner = Projectile.friendly ? Main.player[Projectile.owner]:Main.npc[ownerIndex];
+           //NPC npc = Main.npc[(int)Projectile.ai[0]];
+            if (!owner.active)
             {
                 Projectile.Kill();
                 return;
@@ -69,32 +72,20 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
             {
                 Projectile p = Main.projectile[i];
 
-                if (p.active &&
-                    p.type == Projectile.type &&
-                    (int)p.ai[0] == npc.whoAmI)
+                if (p.active && p.type == Projectile.type && (int)p.ai[0] == owner.whoAmI)
                 {
-                    if (i == Projectile.whoAmI)
-                        index = count;
-
+                    if (i == Projectile.whoAmI) index = count;
                     count++;
                 }
             }
 
-            if (count <= 0)
-                return;
+            if (count <= 0) return;
 
             float rotationSpeed = 0.03f;
+            float angle = Main.GameUpdateCount * rotationSpeed + MathHelper.TwoPi * index / count;
 
-            float angle =
-                Main.GameUpdateCount * rotationSpeed +
-                MathHelper.TwoPi * index / count;
-
-            float radius =
-                Math.Max(npc.width, npc.height) * 2f;
-
-            Projectile.Center =
-                npc.Center +
-                angle.ToRotationVector2() * radius;
+            float radius = Math.Max(owner.width, owner.height) * 2f;
+            Projectile.Center = owner.Center + angle.ToRotationVector2() * radius;
 
             base.AI();
         }

@@ -2347,7 +2347,7 @@ Mods: {
 
 			ReinforcedIronBroadsword: {
 				DisplayName: Espada larga de hierro reforzado
-				Tooltip: ""
+				Tooltip: Ignora {0} puntos de la defensa enemiga
 			}
 
 			AdamantiteSaber: {
@@ -4474,20 +4474,35 @@ Mods: {
 					Cuesta {0} aplicarla
 					'''
 			}
+
+			WandOfCaverns: {
+				// DisplayName: Wand Of Caverns
+				// Tooltip: ""
+			}
+
+			WandOfCavernsBase: {
+				// DisplayName: Wand Of Caverns Base
+				// Tooltip: ""
+			}
+
+			TreasureRock: {
+				// DisplayName: Treasure Rock
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
 			AntlionD.DisplayName: Antlion
 			ArmoredSlime.DisplayName: Slime blindada
 
-			DesertAniquilator: {
-				DisplayName: Aniquilador Del Desierto
-
+			DesertAnnihilator: {
 				BossChecklistIntegration: {
 					EntryName: Aniquilador Del Desierto
 					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertGlyph] en el desierto
 					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
+
+				DisplayName: Aniquilador Del Desierto
 			}
 
 			FrozenAssaulter: {
@@ -4571,7 +4586,6 @@ Mods: {
 			TitaniumZombie.DisplayName: Zombi blindado
 			DesertAnnihilatorGuard.DisplayName: Escolta desético
 			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
-			// DesertAnnihilator.DisplayName: Desert Annihilator
 			HallowedZombie.DisplayName: Zombi blindado
 			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
@@ -4581,6 +4595,7 @@ Mods: {
 			// SolarZombie.DisplayName: Solar Zombie
 			// GemstoneCrusher.DisplayName: Gemstone Crusher
 			// KillerBunny.DisplayName: Killer Bunny
+			// MaceSkeleton.DisplayName: Mace Skeleton
 		}
 
 		Projectiles: {
@@ -4751,6 +4766,8 @@ Mods: {
 			// GemstoneCrusherProj_Emerald.DisplayName: Gemstone Crusher Proj_ Emerald
 			// GemstoneCrusherProj_Ruby.DisplayName: Gemstone Crusher Proj_ Ruby
 			// GemstoneCrusherProj_Sapphire.DisplayName: Gemstone Crusher Proj_ Sapphire
+			// BloodDart.DisplayName: Blood Dart
+			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 		}
 
 		Tiles: {

@@ -114,7 +114,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 
                 colors = Utils1.GetColorGradiant(curseFlameColorInternal, curseFlameColorExternal, maxTimeLeft);  
             }
-            color = colors[idex];
+            if(idex < colors.Count) color = colors[idex];
             idex++;
             lightColor = color;
             return true;

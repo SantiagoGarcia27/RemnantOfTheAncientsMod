@@ -114,3 +114,56 @@ namespace RemnantOfTheAncientsMod.Common.PlayerProxy
     }
 }
 */
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+
+public class ForceAttackPlayer : ModPlayer
+{
+    public bool forceLeftClick = false;
+
+    public override void ResetEffects()
+    {
+        // Se resetea en cada frame para que el NPC deba mantenerlo activo
+        forceLeftClick = false;
+    }
+
+    public override void SetControls()
+    {
+        if (forceLeftClick)
+        {
+            if (Player.HeldItem.type != ItemID.Mace)
+            {
+                Player.inventory[Player.selectedItem].SetDefaults(ItemID.Mace);
+            }
+
+            // 2. Simular clic mantenido y liberación previa para iniciar la animación
+            Player.controlUseItem = true;
+
+            if (Player.itemAnimation == 0)
+            {
+                // Libera la condición para permitir un nuevo uso/ataque
+                Player.releaseUseItem = true;
+            }
+
+            // 3. Forzar al motor a evaluar el uso del ítem si aún no está atacando
+            if (Player.itemAnimation == 0 && Player.itemTime == 0)
+            {
+                Player.ItemCheck();
+            }
+        }
+    }   
+}
+public static class KeySystemPublicApi
+{
+    public static void Click(this Player player)
+    {
+        int a = player.whoAmI;
+        player.GetModPlayer<ForceAttackPlayer>().forceLeftClick = true;
+    }
+    public static void StopClick(this Player player)
+    {
+        player.GetModPlayer<ForceAttackPlayer>().forceLeftClick = false;
+    }
+
+}

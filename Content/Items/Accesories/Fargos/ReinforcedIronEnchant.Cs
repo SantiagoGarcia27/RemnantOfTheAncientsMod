@@ -91,7 +91,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
                     float damage = 30;
 
                     damage = player.GetTotalDamage(DamageClass.Summon).ApplyTo(damage);
-                    IronBallistaProj = Projectile.NewProjectileDirect(Projectile.GetSource_None(), player.position, new Vector2(0, 2 * 16) * 10, ModContent.ProjectileType<IronBallistMinion>(), (int)damage, 1, Main.myPlayer);
+                    int index = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, new Vector2(0, 2 * 16) * 10, ModContent.ProjectileType<IronBallistMinion>(), (int)damage, 1, Main.myPlayer);
+                    IronBallistaProj = Main.projectile[Index];
                     IronBallistaProj.minionSlots = 0;
                     IronBallistaProj.timeLeft = 300;
                     IronBallistaProj.originalDamage = (int)damage;

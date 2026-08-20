@@ -188,6 +188,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 UpdateAccessoryFargosSoulMod(item, player, hideVisual);
             }
+
             base.UpdateAccessory(item, player, hideVisual);
         }
 
@@ -197,16 +198,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             if (item.type == CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "EtherealTalisman"))
             {
                 player.buffImmune[BuffID.ManaSickness] = true;
-                player.Calamity().eTalisman = true;
-                player.manaMagnet = true;
-                if (!hideVisual)
-                {
-                    player.manaFlower = true;
-                }
-                player.statManaMax2 += 150;
-                player.GetDamage<MagicDamageClass>() += 0.10f;
-                player.manaCost *= 0.85f;
-                player.GetCritChance<MagicDamageClass>() += 5f;
             }
         }
         public void UpdateAccessoryFargosSoulMod(Item item, Player player, bool hideVisual)

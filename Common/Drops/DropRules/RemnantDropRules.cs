@@ -14,9 +14,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         {
             return new ItemDropWithConditionRule(itemId, chanceDenominator, minimumDropped, maximumDropped, new RemnantConditions.IsReaperMode(), chanceNumerator);
         }
-        public static IItemDropRule ReaperModeVsNormal(int itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper)
+        
+        public static IItemDropRule ReaperModeVsNormal(int itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper, List<IItemDropRuleCondition> conditions = null)
         {
-            return new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal), ItemDropRule.Common(itemId, chanceDenominatorInReaper));
+            return new DropBasedOnReaperMode(ItemDropRule.Common(itemId, chanceDenominatorInNormal), ItemDropRule.Common(itemId, chanceDenominatorInReaper), conditions);    
         }
         public static IItemDropRule ReaperModeVsNormal(int? itemId, int chanceDenominatorInNormal, int chanceDenominatorInReaper)
         {
@@ -319,15 +320,22 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
         }
     }
 
-    public class DropBasedOnReaperMode(IItemDropRule ruleForNormalMode, IItemDropRule ruleForReaperMode) : IItemDropRule, INestedItemDropRule
+    public class DropBasedOnReaperMode(IItemDropRule ruleForNormalMode,IItemDropRule ruleForReaperMode,List<IItemDropRuleCondition> conditions = null) : IItemDropRule, INestedItemDropRule
     {
         public IItemDropRule ruleForNormalMode = ruleForNormalMode;
         public IItemDropRule ruleForReaperMode = ruleForReaperMode;
+        public List<IItemDropRuleCondition> conditions = conditions ?? [];
 
         public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; } = [];
 
         public bool CanDrop(DropAttemptInfo info)
         {
+            foreach (IItemDropRuleCondition condition in conditions)
+            {
+                if (!condition.CanDrop(info))
+                    return false;
+            }
+
             if (Reaper.ReaperMode)
                 return ruleForReaperMode.CanDrop(info);
 
@@ -343,6 +351,13 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info, ItemDropRuleResolveAction resolveAction)
         {
+            if (!CanDrop(info))
+            {
+                ItemDropAttemptResult result = default;
+                result.State = ItemDropAttemptResultState.DidNotRunCode;
+                return result;
+            }
+
             if (Reaper.ReaperMode)
                 return resolveAction(ruleForReaperMode, info);
 
@@ -351,13 +366,23 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 
         public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
         {
-            DropRateInfoChainFeed ratesInfo2 = ratesInfo.With(1f);
-            ratesInfo2.AddCondition(new RemnantConditions.IsReaperMode());
-            ruleForReaperMode.ReportDroprates(drops, ratesInfo2);
-            DropRateInfoChainFeed ratesInfo3 = ratesInfo.With(1f);
-            ratesInfo3.AddCondition(new RemnantConditions.IsNotReaperMode());
-            ruleForNormalMode.ReportDroprates(drops, ratesInfo3);
-            Chains.ReportDroprates(ChainedRules, 1f, drops, ratesInfo);
+            DropRateInfoChainFeed reaperRates = ratesInfo.With(1f);
+            reaperRates.AddCondition(new RemnantConditions.IsReaperMode());
+
+            foreach (IItemDropRuleCondition condition in conditions)
+                reaperRates.AddCondition(condition);
+
+            ruleForReaperMode.ReportDroprates(drops, reaperRates);
+
+            DropRateInfoChainFeed normalRates = ratesInfo.With(1f);
+            normalRates.AddCondition(new RemnantConditions.IsNotReaperMode());
+
+            foreach (IItemDropRuleCondition condition in conditions)
+                normalRates.AddCondition(condition);
+
+            ruleForNormalMode.ReportDroprates(drops, normalRates);
+
+            Chains.ReportDroprates(ChainedRules,1f,drops, ratesInfo);
         }
     }
 }

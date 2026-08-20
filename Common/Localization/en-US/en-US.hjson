@@ -2326,7 +2326,7 @@ Mods: {
 
 			ReinforcedIronBroadsword: {
 				DisplayName: Reinforced Iron Broadsword
-				Tooltip: ""
+				Tooltip: Ingore {0} points of enemy defense
 			}
 
 			AdamantiteSaber: {
@@ -4445,20 +4445,35 @@ Mods: {
 					Costs {0} to apply
 					'''
 			}
+
+			WandOfCaverns: {
+				DisplayName: Wand Of Caverns
+				Tooltip: ""
+			}
+
+			WandOfCavernsBase: {
+				DisplayName: Wand Of Caverns Base
+				Tooltip: ""
+			}
+
+			TreasureRock: {
+				DisplayName: Treasure Rock
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
 			AntlionD.DisplayName: Antlion
 			ArmoredSlime.DisplayName: Armored Slime
 
-			DesertAniquilator: {
-				DisplayName: Desert Annihilator
-
+			DesertAnnihilator: {
 				BossChecklistIntegration: {
 					EntryName: Desert Annihilator
 					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertGlyph] in the desert
 					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
+
+				DisplayName: Desert Annihilator
 			}
 
 			FrozenAssaulter: {
@@ -4542,7 +4557,6 @@ Mods: {
 			TitaniumZombie.DisplayName: Titanium Zombie
 			DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
 			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
-			DesertAnnihilator.DisplayName: Desert Annihilator
 			HallowedZombie.DisplayName: Armored Zombie
 			DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
 			CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
@@ -4552,6 +4566,7 @@ Mods: {
 			SolarZombie.DisplayName: Solar Zombie
 			GemstoneCrusher.DisplayName: Gemstone Crusher
 			KillerBunny.DisplayName: Killer Bunny
+			MaceSkeleton.DisplayName: Mace Skeleton
 		}
 
 		Projectiles: {
@@ -4722,6 +4737,8 @@ Mods: {
 			GemstoneCrusherProj_Emerald.DisplayName: Gemstone Crusher Proj_ Emerald
 			GemstoneCrusherProj_Ruby.DisplayName: Gemstone Crusher Proj_ Ruby
 			GemstoneCrusherProj_Sapphire.DisplayName: Gemstone Crusher Proj_ Sapphire
+			BloodDart.DisplayName: Blood Dart
+			WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 		}
 
 		Tiles: {

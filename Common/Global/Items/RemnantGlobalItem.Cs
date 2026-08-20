@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using PlayerProxyLib.Common;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
@@ -361,7 +362,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 		public override bool CanUseItem(Item item, Player player)
 		{
-			return base.CanUseItem(item, player);
+		/*	Main.NewText(
+		$"CanUseItem: who={player.whoAmI} " +
+		$"proxyWho={player?.whoAmI} "
+	//$"same={ReferenceEquals(player, proxy)}"
+	);
+            if (player.IsProxyPlayer())
+			{
+                Main.NewText($"PROXY CanUseItem PlayerLoader: {item.type}");
+            }*/
+            return base.CanUseItem(item, player);
 		}
         public override void UseStyle(Item item, Player player, Rectangle heldItemFrame)
         {
@@ -381,5 +391,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 			return base.UseSpeedMultiplier(item, player);
 		}
+
+
 	}
 }
