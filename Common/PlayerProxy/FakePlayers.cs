@@ -114,9 +114,13 @@ namespace RemnantOfTheAncientsMod.Common.PlayerProxy
     }
 }
 */
+/*using Humanizer;
+using PlayerProxyLib.Common;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
+
+
 
 public class ForceAttackPlayer : ModPlayer
 {
@@ -124,46 +128,113 @@ public class ForceAttackPlayer : ModPlayer
 
     public override void ResetEffects()
     {
-        // Se resetea en cada frame para que el NPC deba mantenerlo activo
+        Mod.Logger.Info($"RESET {Player.whoAmI}");
         forceLeftClick = false;
     }
-
+    public override void Load()
+    {
+        On_Player.ItemCheck += ItemCheck;
+        base.Load();
+    }
+    public override void Unload()
+    {
+        On_Player.ItemCheck -= ItemCheck;
+        base.Unload();
+    }
     public override void SetControls()
     {
-        if (forceLeftClick)
+        Mod.Logger.Info(
+       $"CONTROLS {Player.whoAmI} force={forceLeftClick}"
+   );
+        if (!forceLeftClick) return;
+        Player.releaseUseItem = true;
+        if (Player.itemAnimation == 0)
+            Player.releaseUseItem = true;
+        /*if (forceLeftClick)
         {
-            if (Player.HeldItem.type != ItemID.Mace)
-            {
-                Player.inventory[Player.selectedItem].SetDefaults(ItemID.Mace);
-            }
-
-            // 2. Simular clic mantenido y liberación previa para iniciar la animación
             Player.controlUseItem = true;
 
+            // Si la animación está en 0, le indicamos al motor que puede iniciar un nuevo ataque
             if (Player.itemAnimation == 0)
             {
-                // Libera la condición para permitir un nuevo uso/ataque
                 Player.releaseUseItem = true;
             }
-
-            // 3. Forzar al motor a evaluar el uso del ítem si aún no está atacando
-            if (Player.itemAnimation == 0 && Player.itemTime == 0)
-            {
-                Player.ItemCheck();
-            }
         }
-    }   
+    }
+    private void ItemCheck(On_Player.orig_ItemCheck orig, Player self)
+    {
+       /* if (self.IsProxyPlayer())
+        {
+            Mod.Logger.Info(
+                $"ITEMCHECK BEFORE {self.whoAmI}: " +
+                $"anim={self.itemAnimation}, " +
+                $"time={self.itemTime}, " +
+                $"release={self.releaseUseItem}, " +
+                $"reuse={self.reuseDelay}, " +
+                $"control={self.controlUseItem}"
+            );
+        }
+
+        orig(self);
+
+        if (self.IsProxyPlayer())
+        {
+            Mod.Logger.Info(
+                $"ITEMCHECK AFTER {self.whoAmI}: " +
+                $"anim={self.itemAnimation}, " +
+                $"time={self.itemTime}, " +
+                $"release={self.releaseUseItem}, " +
+                $"reuse={self.reuseDelay}, " +
+                $"control={self.controlUseItem}"
+            );
+        }
+
+        orig(self);
+
+        if (!self.IsProxyPlayer())
+            return;
+
+        int count = 0;
+
+        foreach (Projectile projectile in Main.projectile)
+        {
+            if (projectile.active && projectile.owner == self.whoAmI)
+                count++;
+        }
+
+        Mod.Logger.Info(
+            $"ITEMCHECK {self.whoAmI}: " +
+            $"anim={self.itemAnimation}, " +
+            $"time={self.itemTime}, " +
+            $"projectiles={count}"
+        );
+    }
+
+
 }
+
 public static class KeySystemPublicApi
 {
     public static void Click(this Player player)
     {
         int a = player.whoAmI;
         player.GetModPlayer<ForceAttackPlayer>().forceLeftClick = true;
+       // ProcessProxyControls(player);
     }
+
     public static void StopClick(this Player player)
     {
         player.GetModPlayer<ForceAttackPlayer>().forceLeftClick = false;
+        //ProcessProxyControls(player);
     }
+    public static void ProcessProxyControls(this Player player)
+    {
+        if (player == null || !player.active) return;
 
-}
+        // Invocamos SetControls manualmente para que corra ForceAttackPlayer u otros ModPlayers
+        foreach (ModPlayer modPlayer in player.ModPlayers)
+        {
+            modPlayer.SetControls();
+        }
+    }
+}*/

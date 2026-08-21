@@ -1,6 +1,9 @@
+using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameInput;
@@ -13,90 +16,104 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 {
 	public class MaceSkeleton : ModNPC
 	{
-		public override void SetStaticDefaults()
+		private Player proxy;
+        private int timmer; 	
+		readonly int timmerMax = Utils1.FormatTimeToTick(Second: 2);
+
+        private int _maceId = -1;
+        int MaceId {
+            get => _maceId;
+			set 
+			{
+                _maceId = value;
+                if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
+            }
+		}
+
+public override void SetStaticDefaults()
 		{
-			
+
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
-            {
-                Velocity = 1f
-            };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-            NPC.spriteDirection = NPC.direction;
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+			{
+				Velocity = 1f
+			};
+			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+			NPC.spriteDirection = NPC.direction;
 		}
 
 		public override void SetDefaults()
 		{
-			NPC.width = 36;
-			NPC.height = 32;
-			NPC.damage = 25;
-			NPC.defense = 56;
-			NPC.lifeMax = 59;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath1;
-			NPC.value = 25f;
-			NPC.knockBackResist = 0.2f;
-			NPC.aiStyle =  NPCAIStyleID.Fighter;
+			NPC.CloneDefaults(NPCID.Skeleton);
 			AIType = NPCID.Skeleton;
 			AnimationType = NPCID.Skeleton;
-			Banner = Item.NPCtoBanner(NPCID.Skeleton); 
+			Banner = Item.NPCtoBanner(NPCID.Skeleton);
 			BannerItem = Item.BannerToItem(Banner);
 		}
-        public override void AI()
-        {
-			NPC.TargetClosest();
-
-			if (NPC.target != null)
-			{
-				//Player target = Main.player[NPC.target];
-				Player proxy = NPC.GetPlayerProxy();
-
-                if (proxy.inventory[0] == null || proxy.inventory[0].IsAir)
-                {
-                    // Usa SetDefaults en lugar de new Item() para inicializar correctamente los stats del arma
-                    proxy.inventory[0].SetDefaults(ItemID.Mace);
-                }
-
-                // 2. Seleccionar el slot
-                proxy.selectedItem = 0;
-
-				proxy.Click();
-                // 3. Forzar los controles de entrada
-               /* proxy.PressUseItem();
-
-                // 4. Iniciar la animación SOLO si el personaje está libre para atacar
-                if (proxy.itemAnimation == 0)
-                {
-                    proxy.ApplyItemAnimation(proxy.HeldItem);
-                }
-			   */
-                
-            }
-
-
-            
-            base.AI();
-        }
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("A fearless slime with a stolen helmet"),
-            });
-        }
-        public override void ModifyNPCLoot(NPCLoot NPCLoot)
+		public override void AI()
 		{
-			NPCLoot.Add(ItemDropRule.Common(ItemID.Gel, 1));
-			NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<ReinforcedIronOre>()));
+			if (proxy == null || !proxy.active) proxy = NPC.GetPlayerProxy();
+
+			NPC.TargetClosest();
+			NPC.UpdatePlayerProxy();
+			NPC.ConfigureProxyPlayer(shouldBeDrawn: false);
+			proxy.Center = NPC.Center;
+		
+			if (NPC.target > -1)
+			{
+                Player target = Main.player[NPC.target];
+				float distance = NPC.Center.DistanceSQ(target.Center);
+				float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
+                if (proxy.ownedProjectileCounts[ProjectileID.Mace] < 1 && distance < distanceMin)
+				{
+					timmer = timmerMax;
+
+                    MaceId = Projectile.NewProjectile(NPC.GetSource_FromAI(), proxy.Center, Vector2.Zero, ProjectileID.Mace, 25, 0f, proxy.whoAmI);
+					Main.projectile[MaceId].hostile = true;
+					Main.projectile[MaceId].friendly = false;
+				}
+				else
+				{
+					if (timmer > 0) timmer--;
+					else 
+					{
+                        if (proxy.ownedProjectileCounts[ProjectileID.Mace] >= 1)
+						{
+							Main.projectile[MaceId].Kill();
+							MaceId = -1;
+                        }
+                    }
+				}
+			}
+			base.AI();
+		}
+
+		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		{
+            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+            bestiaryEntry.Info.AddRange([
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+				new FlavorTextBestiaryInfoElement("A brave warrior with a powerfull mace"),
+			]);
+		}
+		public override void ModifyNPCLoot(NPCLoot NPCLoot)
+		{
+			NPCLoot.Add(ItemDropRule.Common(ItemID.Mace, 90));
 		}
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return 0;//SpawnCondition.OverworldNightMonster.Chance * 0.02f; //* ModContent.GetInstance<ConfigClient1>().xdlevel; 
-        }
+			return SpawnCondition.Cavern.Chance * 0.01f; //* ModContent.GetInstance<ConfigClient1>().xdlevel; 
+		}
+		public override void OnSpawn(IEntitySource source)
+		{
+			proxy = NPC.GetPlayerProxy();
+			base.OnSpawn(source);
+		}
+		public override void OnKill()
+		{
+			proxy?.DisposePlayerProxy();
+			base.OnKill();
+		}
 	}
 }

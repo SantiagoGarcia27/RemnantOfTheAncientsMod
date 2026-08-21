@@ -362,15 +362,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 		public override bool CanUseItem(Item item, Player player)
 		{
-		/*	Main.NewText(
-		$"CanUseItem: who={player.whoAmI} " +
-		$"proxyWho={player?.whoAmI} "
-	//$"same={ReferenceEquals(player, proxy)}"
-	);
-            if (player.IsProxyPlayer())
-			{
-                Main.NewText($"PROXY CanUseItem PlayerLoader: {item.type}");
-            }*/
             return base.CanUseItem(item, player);
 		}
         public override void UseStyle(Item item, Player player, Rectangle heldItemFrame)
