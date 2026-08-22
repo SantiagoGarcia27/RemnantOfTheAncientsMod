@@ -1,11 +1,10 @@
-﻿using InfernumMode.Content.BehaviorOverrides.BossAIs.Cultist;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Typeless;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using System;
 using System.Collections.Generic;
@@ -557,7 +556,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if(NPC.AnyNPCs(Type)) return 0f;
-            float chance = SpawnCondition.Cavern.Chance * 0.06f; 
+            float chance = SpawnCondition.Cavern.Chance * 0.006f; 
             return chance;
         }
 

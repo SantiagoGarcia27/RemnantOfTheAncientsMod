@@ -2584,7 +2584,7 @@ Mods: {
 			}
 
 			PlatinumRepeater: {
-				DisplayName: Repetidor de platno
+				DisplayName: Repetidor de platino
 				// Tooltip: ""
 			}
 
@@ -4489,6 +4489,11 @@ Mods: {
 				// DisplayName: Treasure Rock
 				// Tooltip: ""
 			}
+
+			StoneBlunderbuss: {
+				// DisplayName: Stone Blunderbuss
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4768,6 +4773,7 @@ Mods: {
 			// GemstoneCrusherProj_Sapphire.DisplayName: Gemstone Crusher Proj_ Sapphire
 			// BloodDart.DisplayName: Blood Dart
 			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
+			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
 		}
 
 		Tiles: {

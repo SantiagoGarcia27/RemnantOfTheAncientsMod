@@ -1,12 +1,10 @@
-using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Typeless;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
@@ -34,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 			Projectile.penetrate = -1;
 			Projectile.timeLeft = 999100;
 			Projectile.alpha = 0;
-			Projectile.light = 0.5f;
+			Projectile.light = 0;
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
 			Projectile.extraUpdates = 1;
@@ -45,10 +43,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 		bool isAnimation;
 		int animationTime = Utils1.FormatTimeToTick(Second: 2f);
         int animationTimer = 0;
+
+    
         public override void AI()
         {
             Player owner = Main.player[Projectile.owner];
-
+            
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(-45f);
 
             if (owner.HeldItem.type != ModContent.ItemType<WandOfCaverns>())
@@ -73,7 +73,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             {
                 float speed = offsetY / (animationTime / 2f);
                 animationTimer++;
-                if(animationTimer < animationTime / 2) posY -= speed;
+                if(animationTimer < animationTime / 2) 
+                    posY -= speed;
                 else  {
                     posY += speed;
                     if (posY >= 0)

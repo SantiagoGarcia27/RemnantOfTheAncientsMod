@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         }
         public override void SetStaticDefaults()
         {
-
+            Projectile.light = 0;
         }
     }
 }

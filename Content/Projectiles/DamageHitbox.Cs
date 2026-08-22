@@ -18,7 +18,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
             Projectile.tileCollide = false;
             Projectile.penetrate = 1;
             Projectile.timeLeft = 20;
-            Projectile.light = 1.0f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             Projectile.usesLocalNPCImmunity = true;

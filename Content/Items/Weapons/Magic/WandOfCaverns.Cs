@@ -1,23 +1,16 @@
 using Microsoft.Xna.Framework;
-using Mono.Cecil;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Projectiles;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using static System.Net.Mime.MediaTypeNames;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Typeless
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {
 	public class WandOfCaverns : ModItem
 	{
-		public override string Texture => "RemnantOfTheAncientsMod/Content/Items/Weapons/Typeless/WandOfCaverns";
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -37,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Typeless
 			Item.knockBack = 8;
 			Item.mana = 10;
 			Item.value = Item.sellPrice(silver: 27);
-			Item.rare = ItemRarityID.White;
+			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			Item.scale = 1.5f;

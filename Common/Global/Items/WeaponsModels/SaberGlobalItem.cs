@@ -22,52 +22,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
         public Vector2 DashStrength = Vector2.Zero;
         public bool isSaber = false;
 
-       /* public override void SetDefaults(Item item)
-        {
-            bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
-            if (item.type == ItemID.ChlorophyteSaber && WeaponConf)
-            {
-                isSaber = true;
-                DashStrength = new Vector2(1f, 0.75f);
-            }
-            else if (item?.Name != null && item.ModItem?.Mod?.Name is string modName && modName != "RemnantOfTheAncientsMod" && Utils1.NameHasWord(item.Name, "Saber"))
-            {
-                for (int j = 0; j <= RemnantOfTheAncientsMod.MaxRarity; j++)
-                {
-                    if (item.rare == j)
-                    {
-                        float StrenghtX = j > 10 ? (float)Math.Log(j - Math.Log(j)) : (float)Math.Log(j);
-                        float StrenghtY = j > 10 ? 1.7f : (float)Math.Log(j);
-
-                        isSaber = true;
-                        DashStrength = new Vector2(StrenghtX, StrenghtY);
-                    }
-                }
-            }
-            if (isSaber)
-            {
-                if (item.shoot == ProjectileID.None)
-                {
-                    item.shoot = ModContent.ProjectileType<DamageHitbox>();
-                    item.shootSpeed = 0f;
-                }
-            }
-
-            base.SetDefaults(item);
-        }*/
         public override void SetDefaults(Item item)
         {
-            // 1. Blindaje contra nulos y carga temprana de ContentSamples
             if (item == null) return;
-
-            // 2. Ejecutar base
             base.SetDefaults(item);
-
-            // 3. Evitar procesar ítems "vacíos" o aire que tML usa para inicializar
             if (item.type == ItemID.None || item.IsAir) return;
 
             var config = ModContent.GetInstance<ConfigServer>();
-            if (config == null) return; // Seguridad extra durante la carga
+            if (config == null) return;
 
             bool WeaponConf = config.VanillaWeaponsChangesConf;
 
@@ -76,7 +38,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 isSaber = true;
                 DashStrength = new Vector2(1f, 0.75f);
             }
-            // Simplificamos el acceso para que sea 100% seguro contra nulos
             else if (item.ModItem != null && item.ModItem.Mod != null)
             {
                 string modName = item.ModItem.Mod.Name;
@@ -97,7 +58,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 }
             }
 
-            // Lógica final de proyectiles
             if (isSaber && item.shoot == ProjectileID.None)
             {
                 item.shoot = ModContent.ProjectileType<DamageHitbox>();
@@ -148,9 +108,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             }
             else if (type == ModContent.ItemType<NightSaber>())
             {
-                float adjustedItemScale = player.GetAdjustedItemScale(item); // Get the melee scale of the player and item.
+                float adjustedItemScale = player.GetAdjustedItemScale(item);
                 Projectile.NewProjectile(Entity.GetSource_None(), player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, item.damage + 10, item.knockBack, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + 0.7f);
-                NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
+                NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
 
                 var p = Projectile.NewProjectile(Entity.GetSource_None(), player.position, new Vector2(0, 0), ModContent.ProjectileType<DamageHitbox>(), item.damage, 2f, Main.myPlayer, 3, 1);
                 Main.projectile[p].width = item.width * 2;
@@ -250,14 +210,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             if (item.shoot == ModContent.ProjectileType<DamageHitbox>())
             {
                 damage = 0;
-                //velocity.Y -= 50;
             }
 
             if (item.type == ModContent.ItemType<CorruptedSaber>())
             {
                 int proj = Projectile.NewProjectile(source, position + new Vector2(8.ToCoordinatePosition() * player.direction, 0), velocity * new Vector2(0.5f, 0.5f), type, damage, knockback, player.whoAmI, 2.4f);
                 Main.projectile[proj].ai[0] = Main.rand.NextFloat(1.5f, 1.6f);
-                //return false;
             }
             else if (item.type == ModContent.ItemType<HallowedSaber>())
             {
@@ -268,7 +226,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             else if (item.type == ModContent.ItemType<GrassSaber>())
             {
                 Projectile.NewProjectile(Entity.GetSource_None(), position, velocity, ModContent.ProjectileType<BladeOfGrassLeaftClone>(), (int)(item.damage * 0.25f), item.knockBack, Main.myPlayer, -0.1f * player.direction, 0, 0);
-                //return false;
             }
             else if (item.type == ModContent.ItemType<EnchantedSaber>())
             {
@@ -281,15 +238,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ProjectileID.NightsEdge, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale + Main.rand.NextFloat(0.4f, 1f));
                 NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); // Sync the changes in multiplayer.
             }
-            /*if (isSaber)
-            {
-                if (item.shoot != ModContent.ProjectileType<DamageHitbox>())
-                    item.noUseGraphic = true;
-                Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<SaberSwingProgectile>(), damage, knockback, Main.myPlayer, 0);
-                SaberSwingProgectile.SetID(item);
-
-                return true;
-            }*/
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
         public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)

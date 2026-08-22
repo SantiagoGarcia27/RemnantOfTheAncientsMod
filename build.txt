@@ -1,6 +1,6 @@
 author = Sangar & TTIM
 version = 2.5
-displayName = [c/09E9DE:R][c/0AE5D2:e][c/0BE2C7:m][c/0CDEBB:n][c/0CDAB0:a][c/0DD6A4:n][c/0ED399:t] [c/0FCF8D:O][c/10CB82:f] [c/11C776:T][c/11C46B:h][c/12C05F:e] [c/13BC54:A][c/14B848:n][c/15B53D:c][c/16B131:i][c/16AD26:e][c/17A91A:n][c/18A60F:t][c/19A203:s] [BETA]
+displayName = [c/09E9DE:R][c/0AE5D2:e][c/0BE2C7:m][c/0CDEBB:n][c/0CDAB0:a][c/0DD6A4:n][c/0ED399:t] [c/0FCF8D:O][c/10CB82:f] [c/11C776:T][c/11C46B:h][c/12C05F:e] [c/13BC54:A][c/14B848:n][c/15B53D:c][c/16B131:i][c/16AD26:e][c/17A91A:n][c/18A60F:t][c/19A203:s] [BETA sandio]
 homepage = https://forums.terraria.org/index.php?threads/opswords.85732/
 includeSource = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*

@@ -103,10 +103,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         public override void PostDraw(Color lightColor)
         {
             Player player = Main.player[Projectile.owner];
-
 			SpriteEffects effect = player.direction == 1 ? SpriteEffects.FlipVertically : SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
 			Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
-			Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation , texture.Size() * 0.5f, Projectile.scale, effect, 1f);
+			Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, lightColor, Projectile.rotation , texture.Size() * 0.5f, Projectile.scale, effect, 1f);
             base.PostDraw(lightColor);
         }
     }

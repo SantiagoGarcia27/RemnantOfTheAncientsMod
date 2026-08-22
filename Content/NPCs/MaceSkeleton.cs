@@ -1,14 +1,11 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameInput;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
@@ -30,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
 		}
 
-public override void SetStaticDefaults()
+		public override void SetStaticDefaults()
 		{
 
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
@@ -57,11 +54,11 @@ public override void SetStaticDefaults()
 			NPC.TargetClosest();
 			NPC.UpdatePlayerProxy();
 			NPC.ConfigureProxyPlayer(shouldBeDrawn: false);
-			proxy.Center = NPC.Center;
 		
 			if (NPC.target > -1)
 			{
                 Player target = Main.player[NPC.target];
+
 				float distance = NPC.Center.DistanceSQ(target.Center);
 				float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
                 if (proxy.ownedProjectileCounts[ProjectileID.Mace] < 1 && distance < distanceMin)
@@ -74,14 +71,18 @@ public override void SetStaticDefaults()
 				}
 				else
 				{
-					if (timmer > 0) timmer--;
+					if (MaceId == -1) return;
+
+                    if (timmer > 0) timmer--;
 					else 
 					{
                         if (proxy.ownedProjectileCounts[ProjectileID.Mace] >= 1)
 						{
+							proxy.channel = false;
 							Main.projectile[MaceId].Kill();
 							MaceId = -1;
                         }
+
                     }
 				}
 			}
@@ -113,7 +114,8 @@ public override void SetStaticDefaults()
 		public override void OnKill()
 		{
 			proxy?.DisposePlayerProxy();
-			base.OnKill();
+            Main.projectile[MaceId].Kill();
+            base.OnKill();
 		}
 	}
 }

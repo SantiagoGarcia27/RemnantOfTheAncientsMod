@@ -291,12 +291,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 RemnantPlayer RemnantPlayer = PlayerOwner.GetModPlayer<RemnantPlayer>();
                 if (Reaper.ReaperMode && (projectile.CountsAsClass(DamageClass.Melee) || projectile.CountsAsClass(DamageClass.MeleeNoSpeed)) && projectile.friendly && ReaperPlayer.ChaliceOn)
                 {
-                    float newWidth = projectile.width * 1.5f;
-                    float newHeight = projectile.height * 1.5f;
+                    float newWidth = projectile.width * 2f;
+                    float newHeight = projectile.height * 2f;
 
                     projectile.width = (int)newWidth;
                     projectile.height = (int)newHeight;
-                    projectile.scale += 1.5f;
+                    projectile.scale = 2f;
+
+
 
                     if (Spears.Contains(projectile.type))
                     {

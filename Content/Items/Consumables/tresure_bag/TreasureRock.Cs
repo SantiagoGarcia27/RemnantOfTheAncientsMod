@@ -8,7 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Typeless;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {
@@ -34,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             /*itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));*/
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<GemstoneCrusher>()));
-            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<WandOfCaverns>(),ItemID.StoneBlock) /*ItemType<SpikeSaber>(), ItemType<Tyran_Blast>(), ItemType<EvilEyeStaff>())*/);
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<WandOfCaverns>(), ItemType<StoneBlunderbuss>()) /*ItemType<SpikeSaber>(), ItemType<Tyran_Blast>(), ItemType<EvilEyeStaff>())*/);
             //itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalTyrantSoul>()));
         }
 
