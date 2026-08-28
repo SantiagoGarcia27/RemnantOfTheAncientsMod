@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         }
         public override void SetDefaults()
         {
-            Item.damage = 15;
+            Item.damage = 7;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Magic;
             Item.channel = true;
@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.height = 30;
             Item.useTime = 30;
             Item.useAnimation = 30;
-            Item.maxStack = 9999;
+            Item.maxStack = 1;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shootSpeed = 14f;
             Item.shoot = ModContent.ProjectileType<Graveyard_proj>();
@@ -37,12 +37,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.autoReuse = true;
             Item.noUseGraphic = true;
             Item.knockBack = 0.1f;
-            Item.consumable = true;
+            Item.consumable = false;
         }
         public override void AddRecipes()
         {
-            CreateRecipe(2)
-            .AddRecipeGroup("Tumbas")
+            CreateRecipe(1)
+            .AddRecipeGroup("Tumbas",5)
+            .AddIngredient(ItemID.Deathweed, 2)
             .Register();
         }
     }

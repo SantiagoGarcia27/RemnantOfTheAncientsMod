@@ -124,7 +124,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 else if (player.inventory.Any(item => !item.IsAir && item.pick < 70 && item.pick > 0))
                 {
                     Item item = player.inventory.FirstOrDefault(item => !item.IsAir && item.pick < 70 && item.pick > 0);
-                    Main.npcChatText = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.MinerSoul.ThanksDialogue1");
+                    string text = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.MinerSoul.ThanksDialogue", item.Name);
+                    CombatText.NewText(new Rectangle((int)NPC.Center.X,(int)NPC.Center.Y, 1,1), new Color(255, 255, 255), text);
+                   // Main.npcChatText = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.MinerSoul.ThanksDialogue1");
                     int IronPickaxeItemIndex = player.FindItem(item.type);
                     player.inventory[IronPickaxeItemIndex].TurnToAir();
                     player.QuickSpawnItem(NPC.GetSource_Loot(), ItemType<Ghost_Pickaxe>());
@@ -136,7 +138,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         public void UpgradeItem(Player player, int input, int inputCount, int output, int outputCount, int money, int moneyCount)
         {
-            Main.npcChatText = Main.npcChatText = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.MinerSoul.ThanksDialogue2");
+            Main.npcChatText = Main.npcChatText = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Dialogue.MinerSoul.UpgradeItem");
             int ItemIndex = player.FindItem(input);
             player.inventory[ItemIndex].TurnToAir();
             player.QuickSpawnItem(NPC.GetSource_Loot(), output, outputCount);

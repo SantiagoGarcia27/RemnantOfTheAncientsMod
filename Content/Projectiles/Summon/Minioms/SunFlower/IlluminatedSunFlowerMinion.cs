@@ -15,7 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Illuminated SunFlower Minion");
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;

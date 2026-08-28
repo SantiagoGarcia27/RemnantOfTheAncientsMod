@@ -79,8 +79,18 @@ Mods: {
 					I remember those days when I was looking for gold in these parts.
 					But now I've run out of a iron pick, could you get me one?
 					'''
-				ThanksDialogue1: Many thanks....
+				ThanksDialogue: Thanks you....
 				UpgradeItem: I upgrade your item...
+			}
+
+			Clothier: {
+				StyleDialogue1: By the way, I see that your style is {0} and your current discount is {1}%.
+				StyleDialogue2: I see your style is at {0} right now. That earns you a {1}% discount.
+				StyleDialogue3: By the way, your style is currently {0}, giving you a {1}% discount.
+				StyleDialogue4: I couldn't help but notice your style is {0}. That gives you a {1}% discount.
+				StyleDialogue5: I see your style is {0}. That qualifies you for a {1}% discount.
+				HighStyleDialogue1: What incredible clothes you're wearing! With a style of {0}, you're sure to get an astonishing {1}% discount!
+				MaxStyleDialogue1: Amazing! I've never seen anyone with such great taste! With your unbeatable {0} style points, you're sure to get a stunning {1}% discount!
 			}
 		}
 
@@ -118,7 +128,11 @@ Mods: {
 				CouldownBar: "{0}"
 			}
 
-			Buttoms.SkipDay: Skip day
+			Buttoms: {
+				SkipDay: Skip day
+				UpgradeItem: Empower item
+				DeliverPickaxe: Deliver pickaxe
+			}
 		}
 
 		IntroScreen: {
@@ -232,6 +246,7 @@ Mods: {
 			IncreasedLifeMax: Increases maximum life by {0}
 			IncreasedLifeMaxPercent: Increases maximum life by {0}%
 			IncreasedPickSpeed: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
+			ReforgeCatalystTooltip: Can be applied on a {0}
 		}
 
 		EditVanilla: {
@@ -454,7 +469,7 @@ Mods: {
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					-AarGonz_ -moardiego -Slash9511
+					-AarGonz_ -moardiego -Slash9511 -Sandiosan
 					for being the first to give this mod a chance
 					'''
 			}
@@ -481,47 +496,90 @@ Mods: {
 
 			Bee: {
 				DisplayName: Queen Bee
-				Description: The bees give you their power
+				Description:
+					'''
+					The bees give you their power
+					Increase armor penetration and defense
+					Release bees when take damage
+					Gain honey effect
+					'''
 			}
 
 			BrainOfChutuluScrollBuff: {
 				DisplayName: Dodge Apprentice
-				Description: You are untouchable
+				Description:
+					'''
+					You are untouchable
+					Gain a perfect  dodge
+					'''
 			}
 
 			Eye: {
 				DisplayName: Dash master
-				Description: Your reflexes sharpen
+				Description:
+					'''
+					Your reflexes sharpen
+					Increase your Jump height and remove fall damage
+					Gain the ability to dash
+					'''
 			}
 
 			Infernal: {
 				DisplayName: Infernal
-				Description: The flames of hell cover you
+				Description:
+					'''
+					The flames of hell cover you
+					Damage increased and gain a fire ring arround you
+					'''
 			}
 
 			MasterD: {
 				DisplayName: Master of the Desert
-				Description: You feel with leadership
+				Description:
+					'''
+					You feel with leadership
+					Increase the movement speed
+					Increase summon damage and max minions
+					'''
 			}
 
 			Putrid: {
 				DisplayName: Putrid
-				Description: You're breaking down
+				Description:
+					'''
+					You're breaking down
+					Increase damage reduction and critical strike chance
+					'''
 			}
 
 			QueenSlimeScrollBuff: {
 				DisplayName: Queen's blessing
-				Description: You feel blessed
+				Description:
+					'''
+					You feel blessed
+					Increase the movement speed and life max
+					Increase summon damage and max minions
+					'''
 			}
 
 			Skeleton: {
 				DisplayName: Undead
-				Description: Your senses are heightened
+				Description:
+					'''
+					Your senses are heightened
+					Increase ammo save and thrower damage
+					Grant inmunity to debuffs
+					'''
 			}
 
 			Slim: {
 				DisplayName: King's blessing
-				Description: You feel lighter
+				Description:
+					'''
+					You feel lighter
+					Increase the movement speed
+					Increase summon damage
+					'''
 			}
 
 			SuperSenseBuff: {
@@ -637,6 +695,11 @@ Mods: {
 			CursedShotgunMinionBuff: {
 				DisplayName: Cursed Shotgun
 				Description: A cursed shotgun will fight for you
+			}
+
+			StoneMortarBuff: {
+				DisplayName: Stone Mortar Buff
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.StoneMortarBuff.Description
 			}
 		}
 
@@ -4010,7 +4073,7 @@ Mods: {
 			}
 
 			ReforgeAnvil: {
-				DisplayName: Reforge Anvil (Wip)
+				DisplayName: Reforge Anvil
 				Tooltip: Can be used for apply advanced reforges
 			}
 
@@ -4465,6 +4528,11 @@ Mods: {
 				DisplayName: Stone Blunderbuss
 				Tooltip: ""
 			}
+
+			StoneMortarStaff: {
+				DisplayName: Stone Mortar Staff
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4745,6 +4813,7 @@ Mods: {
 			BloodDart.DisplayName: Blood Dart
 			WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 			StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
+			StoneMortarMinion.DisplayName: Stone Mortar Minion
 		}
 
 		Tiles: {

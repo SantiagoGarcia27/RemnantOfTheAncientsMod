@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,23 +28,23 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Projectile.timeLeft = 120;
             
         }
+        bool isGrounded => Projectile.ai[2] == 27;
+        int timmer = 0;
+        int timmerMax = Utils1.FormatTimeToTick(Second: 0.2f);
         public override void AI()           
         {                                                      
-            //Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
-            //Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
-
-
-            if(Projectile.ai[2] == 27)
+            if(isGrounded)
             {
-                if (Main.tile[(int)Projectile.position.X/16, (int)Projectile.position.Y/16].HasTile)
+                if(timmer++ >= timmerMax)
                 {
-                    Projectile.velocity = new Vector2(0, -0.5f);
+                    Projectile.rotation = Main.rand.Next(-200, -100);
+                    Projectile.tileCollide = true;
+                    Projectile.velocity += new Vector2(0, 0.4f);
                 }
-                if (!Main.tile[(int)Projectile.position.X / 16, (int)Projectile.position.Y / 16].HasTile && !Main.tile[(int)Projectile.position.X / 16, (int)Projectile.position.Y / 16 + 1].HasTile)
+                else
                 {
-                    Projectile.velocity = new Vector2(0, 5f);
+                    Projectile.rotation++;
                 }
-                else Projectile.velocity = Vector2.Zero;
             }
             else
             {
@@ -52,22 +53,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
         }
         public override void OnKill(int timeLeft)
         {
-            Player player = Main.player[Main.myPlayer];
-            if (Projectile.ai[2] != 27)
-            {
-                Projectile.position += Vector2.Normalize(Projectile.velocity) * 1f;
-
-                for (int i = 0; i < 2; i++)
-                {
-                    Vector2 pos1 = Projectile.position + new Vector2((i + 2 * i) * 16, 3 - 1 * 16);
-                    Vector2 pos2 = Projectile.position - new Vector2((i + 2 * i) * 16, -3 + 1 * 16);
-                    pos1 = DistanceUtils.SetPositionOnSolidFloor(pos1);
-                    pos2 = DistanceUtils.SetPositionOnSolidFloor(pos2);
-                    
-                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos1, Vector2.Zero, ModContent.ProjectileType<Graveyard_proj>(), Projectile.damage, Projectile.knockBack, player.whoAmI, 0, 0,27);
-                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), pos2, Vector2.Zero, ModContent.ProjectileType<Graveyard_proj>(), Projectile.damage, Projectile.knockBack, player.whoAmI, 0, 0,27);
-                }
-            }
             base.OnKill(timeLeft);
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -81,6 +66,46 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), Projectile.scale, SpriteEffects.None, 0);
             return false;
+        }
+        public override bool PreKill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+            if (!isGrounded)
+            {
+                int exraProjectileNum = 2;
+                Vector2 spawnPos = Projectile.position + new Vector2(0, 1).ToCoordenatePosition();
+
+                Vector2 baseVelocity = new Vector2(0, -6);
+                
+                for (int i = -exraProjectileNum/2; i <= exraProjectileNum/2; i++)
+                {
+                    float angle = MathHelper.ToRadians(30f * i);
+
+                    Vector2 velocity = baseVelocity.RotatedBy(angle);
+
+                    int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(),spawnPos, velocity, ModContent.ProjectileType<Graveyard_proj>(), Projectile.damage,Projectile.knockBack, Main.myPlayer, ai2:27);
+                    Main.projectile[p].tileCollide = false;
+                    Main.projectile[p].usesLocalNPCImmunity = true;
+                    Main.projectile[p].rotation = angle;
+                    Main.projectile[p].penetrate = -1;
+                }
+            }
+            return base.PreKill(timeLeft);
+        }
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            for (int i = 0; i <= RemnantOfTheAncientsMod.ParticleMeter(10); i++)
+            {
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Stone);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame);
+            }
+            if (!isGrounded)
+            {
+                Projectile.Kill();
+            }
+
+           
+            return base.OnTileCollide(oldVelocity);
         }
     }
 }

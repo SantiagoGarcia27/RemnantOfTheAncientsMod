@@ -3,6 +3,7 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.World
@@ -62,6 +63,20 @@ namespace RemnantOfTheAncientsMod.Common.World
 			
 			return false;
 		}
+
+        public override void PostUpdateWorld()
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient && Main.dayTime && Main.time == 0)
+            {
+				foreach (Player player in Main.player)
+				{
+					if(!player.active) continue;
+                    RemnantPlayer modPlayer = player.GetModPlayer<RemnantPlayer>();
+					foreach(int npc in modPlayer.PlayerTalkToday.Keys) modPlayer.PlayerTalkToday[npc] = false;            
+                }
+            
+            }
+        }
 
         private static readonly HashSet<int> tombsID = [43, 201, 202, 203, 204, 205, 527, 528, 529, 530, 531];
         public static void KillTombstom()

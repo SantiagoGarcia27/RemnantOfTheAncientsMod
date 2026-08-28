@@ -337,7 +337,12 @@ namespace RemnantOfTheAncientsMod
         }
         private static void PreHardmodeSummonerWeapons()
         {
-          
+            Recipe.Create(ItemID.SlimeStaff)
+                 .AddIngredient(ItemID.PinkGel, 10)
+                 .AddIngredient(ItemID.FallenStar, 10)
+                 .AddRecipeGroup(RecipeGroupID.Wood,30)
+                 .AddTile(TileID.WorkBenches)
+                 .Register();
         }
         private static void PreHardmodeThrowerWeapons()
         {

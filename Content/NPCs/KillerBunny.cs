@@ -6,6 +6,7 @@ using Terraria.ModLoader.Utilities;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Bestiary;
+using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {
@@ -62,6 +63,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void AI()
         {
             NPC.TargetClosest();
+        }
+        public override void OnKill()
+        {       
+            if (Main.netMode != NetmodeID.Server)
+            {
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 76, NPC.scale);
+                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 77, NPC.scale);;
+            }          
+            base.OnKill();
         }
     }
 }

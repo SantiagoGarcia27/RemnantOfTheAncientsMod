@@ -45,18 +45,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         public override bool MinionContactDamage() => false;
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
-
             fallThrough = false;
-
             return true;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
-            //Vector2 t = Projectile.Center + new Vector2(10 * 16, 10 * 16);
-            //Rectangle rec = new Rectangle((int)Projectile.Center.X, (int)Projectile.Center.Y, (int)t.X, (int)t.Y );
-            //var origin = Request<Texture2D>(Texture).Size() / 2;
-            //Main.EntitySpriteDraw(TextureAssets.MagicPixel.Value, Projectile.position - Main.screenPosition, rec, Color.Orange * 0.75f, 0f, origin, 1, 0);
             return true;
         }
 
@@ -67,17 +61,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         NPC target = null;
         Vector2 UnfocusDistance = new(1,1);
         public override void AI()
-        {
-            //Main.NewText(Projectile.position);   
+        {  
             Player player = Main.player[Projectile.owner];
             UnfocusDistance = new Vector2(Main.screenWidth /2, Main.screenHeight/2);
-
-            //Dust.NewDust(Projectile.Center - UnfocusDistance/2, (int)UnfocusDistance.X, (int)UnfocusDistance.Y, DustID.Torch, 0, 0, 1, default, 1);
-            //Rectangle rec = new Rectangle((int)Projectile.Center.X, (int)Projectile.Center.Y, (int)UnfocusDistance.X, (int)UnfocusDistance.Y);
- 
-            //if (!rec.Contains(Utils1.ToPoint(player.Center))) Main.NewText("fuera de rango");
-            //else Main.NewText("dentro de rango");
-           
 
             if (!CheckActive(player)) return;
             FixSize();
@@ -170,6 +156,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 Vector2 Velocity = target.position - Projectile.position;
                 int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, Velocity, ProjectileID.DD2BallistraProj, damage, KnockBack, Projectile.owner);
                 Main.projectile[p].velocity *= Speed;
+                Main.projectile[p].minion = true;
+                ProjectileID.Sets.MinionShot[Main.projectile[p].type] = true;
                 attackCounter = 0;
                 shootAnimation = true;
             }

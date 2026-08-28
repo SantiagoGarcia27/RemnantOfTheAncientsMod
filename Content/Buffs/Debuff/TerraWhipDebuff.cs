@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 		public bool markedByWhip;
 
 		public override void ResetEffects(NPC npc) {
-            	markedByWhip = false;
+            markedByWhip = false;
 		}
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
 		{ 

@@ -126,7 +126,7 @@ namespace RemnantOfTheAncientsMod
 
 		public bool TrueShadowMist;
 
-		public static Dictionary<int,bool> PlayerTalkToday = [];
+		public Dictionary<int,bool> PlayerTalkToday = [];
 
         #region Couldowns
         public bool CouwldownHolySaber;

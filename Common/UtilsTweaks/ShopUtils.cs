@@ -18,14 +18,18 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             StatPlayer modPlayer = player.GetModPlayer<StatPlayer>();
             if (modPlayer == null || modPlayer.StyleStat == 0) return 1f;
 
-            float discount = getDiscount(modPlayer.StyleStat);
-            if (discount < minDiscount) return 0.1f;
+            float discount = getStyleDiscount(modPlayer.StyleStat);
+            if (discount < minDiscount) return minDiscount;
             return discount;
         }
 
-        static private float getDiscount(float value)
+        static private float getStyleDiscount(float value)
         {
             return 1f - (value / 200f);
+        }
+        static public double getStyleDiscountPorcentage(float value)
+        {
+            return Math.Round(value / 2f,2); 
         }
 
     }

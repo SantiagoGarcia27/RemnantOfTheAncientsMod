@@ -29,6 +29,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
         public override bool Friendly => true;
         public override bool hostile => false;
         public override int DefenseIgnore => 6;
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.MinionShot[Projectile.type] = true;
+            base.SetStaticDefaults();
+        }
     }
     public abstract class BaseFrozenP : ModProjectile
     {

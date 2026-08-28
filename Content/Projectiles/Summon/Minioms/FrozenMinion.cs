@@ -11,12 +11,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Baby Frozen Assaulter Minion");
-
             Main.projFrames[Projectile.type] = 6;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
-            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true; //This is necessary for right-click targeting
+            ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
         }
 
         public override void SetDefaults()

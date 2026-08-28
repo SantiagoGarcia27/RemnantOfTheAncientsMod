@@ -36,18 +36,43 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         int animationTime = 30;
 
         int couldown = 0;
-        int couldownMax = Utils1.FormatTimeToTick(Second: 1);
+        int couldownMax {
+            get
+            {
+                float speedBonus = Main.player[Projectile.owner].HeldItem.useTime /26f;
+                return Utils1.FormatTimeToTick(Second: speedBonus);
+            }
+        }
+        int shootCount
+        {
+            get => (int)Projectile.ai[2];
+            set => Projectile.ai[2] = value;
+        }
+        int shotCountMax = 3;
+      
+        int edgySpinTimmerMax { 
+            get 
+            {
+                float speedBonus = (Main.player[Projectile.owner].HeldItem.useTime / 26f);
+                int finalValue = (int)(Utils1.FormatTimeToTick(Second: 1) * speedBonus);
+                return finalValue;  
+            } 
+        }
+        int edgySpinTimmer = 0;
+
         public override void AI()
         {
             Player owner = Main.player[Projectile.owner];
 
-            if (owner.HeldItem.type != ModContent.ItemType<StoneBlunderbuss>())
+            if (!owner.active || owner.dead || owner.HeldItem.type != ModContent.ItemType<StoneBlunderbuss>())
             {
                 Projectile.Kill();
                 return;
             }
-            DrawRotation(owner);
-            if (couldown > 0) couldown--;
+            
+             DrawRotation(owner);
+            
+            if (couldown > 0 && edgySpinTimmer <= 0) couldown--;
             
 
             bool clicked = owner.controlUseItem && !isAnimation;
@@ -58,6 +83,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                 animationTimer = 0;
                 couldown = couldownMax;
                 shoot();
+                shootCount++;
+                if (shootCount >= shotCountMax) edgySpinTimmer = edgySpinTimmerMax;
             }
 
             if (isAnimation)
@@ -68,11 +95,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
                 if (progress < 0.5f)
                 {
-                    recoilRotation = MathHelper.Lerp(
-                        0f,
-                        maxRecoil,
-                        progress * 2f
-                    );
+                    recoilRotation = MathHelper.Lerp(0f,maxRecoil,progress * 2f);
                 }
                 else
                 {
@@ -93,16 +116,35 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             float distanciaDeLaMano = 20f;
 
             Projectile.Center = owner.MountedCenter + direccion * distanciaDeLaMano;
+            float recoil = direccion.X < 0 ? recoilRotation: -recoilRotation;
 
-            Projectile.rotation = direccion.ToRotation() + recoilRotation;
-
-            if (direccion.X < 0)
+            if (shootCount >= shotCountMax)
             {
-                Projectile.rotation += MathHelper.Pi;
+                DrawEdgySpin();
+            }
+            else
+            {
+                Projectile.rotation = direccion.ToRotation() + recoil;
 
+                if (direccion.X < 0)
+                {
+                    Projectile.rotation += MathHelper.Pi;
+
+                }
             }
             owner.direction = direccion.X < 0 ? -1 : 1;
+
+           
         }
+        public void DrawEdgySpin()
+        {
+            Projectile.rotation += 1f;
+            if (edgySpinTimmer-- <= 0)
+            {
+                shootCount = 0;
+            }
+        }
+
 
         public void shoot()
         {
@@ -133,6 +175,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                 Main.projectile[p].friendly = true;
                 Main.projectile[p].hostile = false;
                 Main.projectile[p].timeLeft = Utils1.FormatTimeToTick(Second: 10);
+
+                
+                owner.velocity = -(velocity /3);
             }
         }
 

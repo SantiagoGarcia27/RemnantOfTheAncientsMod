@@ -1,8 +1,10 @@
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
@@ -26,6 +28,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
         {
             string formattedPrice = Utils1.FormatMoneyToString(Item.GetApplyPrice());
             Utils1.FindAndReplaceTooltip(tooltips, "{0}", formattedPrice);
+
+            ModItem anvil = ItemLoader.GetItem(ModContent.ItemType<ReforgeAnvil>());
+            string Text = Language.GetTextValue($"Mods.RemnantOfTheAncientsMod.CommonTooltip.ReforgeCatalystTooltip", anvil.DisplayName);
+            TooltipLine line = new(RemnantOfTheAncientsMod.RemnantOfTheAncients, "ReforgeCatalysAnvilTooltip", $"{Text} [i:{anvil.Type}]");
+            tooltips.Add(line);
+
+
         }
 
         /// <summary>

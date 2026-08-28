@@ -190,24 +190,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
 
             if (Texture != null)
             {
-               // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);
+                // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);
+              
                 Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
-                Main.spriteBatch.Draw
-                (
-                    texture,
-                    new Vector2
-                    (
-                        Projectile.position.X - Main.screenPosition.X + Projectile.width * 0.5f,
-                        Projectile.position.Y - Main.screenPosition.Y + Projectile.height - texture.Height * 0.5f + 2f
-                    ),
-                    new Rectangle(0, 0, texture.Width, texture.Height),
-                    Color.White,
-                    Projectile.rotation,
-                    texture.Size() * 0.5f,
-                    Projectile.scale,
-                    SpriteEffects.None,
-                    0f
+
+                Vector2 pos = new(
+                    Projectile.position.X - Main.screenPosition.X + Projectile.width * 0.5f,
+                    Projectile.position.Y - Main.screenPosition.Y + Projectile.height - texture.Height * 0.5f + 2f
                 );
+                Rectangle source = new(0, 0, texture.Width, texture.Height);
+                Main.spriteBatch.Draw(texture,pos, source, Color.White, Projectile.rotation, texture.Size() * 0.5f, Projectile.scale,SpriteEffects.None,0f);
             }
             base.PostDraw(lightColor);
         }

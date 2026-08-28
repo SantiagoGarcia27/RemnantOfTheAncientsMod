@@ -85,8 +85,18 @@ Mods: {
 					Recuerdo esos días en los que podía picar oro por todos lados.
 					Pero ahora perdi mi pico de hierro, ¿Podrias conseguirme uno?
 					'''
-				ThanksDialogue1: Muchas gracias .....
+				ThanksDialogue: Muchas gracias .....
 				UpgradeItem: Eh mejorado tu objeto...
+			}
+
+			Clothier: {
+				StyleDialogue1: Por cierto me percaté de que tienes un estilo de {0}, los comerciantes probablemente te descontarán un {1}% del precio.
+				StyleDialogue2: Veo que tienes {0} de estilo. Eso es como {1}% de descuento.
+				StyleDialogue3: De hecho viéndolo bien, tus {0} de estilo te valen un {1}% de descuento.
+				StyleDialogue4: No pude evitar notar que tu estilo es {0}. Eso te da un {1}% de descuento.
+				StyleDialogue5: Te ves bien, con tus {0} de estilo calificas para un {1}% de descuento.
+				HighStyleDialogue1: ¡Qué ingreíbles prendas traes! Con tu estilo de {0} seguramente tendrás un asombroso descuento del {1}%
+				MaxStyleDialogue1: ¡Asombroso! ¡Nunca había visto a alguien con tan buen gusto! Con tus insuperables {0} puntos de estilo seguramente tendrás un despampanante descuento del {1}%
 			}
 		}
 
@@ -124,7 +134,11 @@ Mods: {
 				// CouldownBar: "{0}"
 			}
 
-			Buttoms.SkipDay: Saltar dia
+			Buttoms: {
+				SkipDay: Saltar dia
+				UpgradeItem: Mejorar objeto
+				DeliverPickaxe: Entregar picota
+			}
 		}
 
 		IntroScreen: {
@@ -238,6 +252,7 @@ Mods: {
 			IncreasedLifeMax: Increases maximum life by {0}
 			IncreasedLifeMaxPercent: Increases maximum life by {0}%
 			IncreasedPickSpeed: "{$CommonItemTooltip.PercentIncreasedMiningSpeed}"
+			ReforgeCatalystTooltip: Puede aplicarse en un {0}
 		}
 
 		EditVanilla: {
@@ -454,14 +469,14 @@ Mods: {
 					-LaGalletaOtaku -licenciado_carlos -Millogp -JMessiahs -starlord101094 
 					-RBTTIM -Arvid_7 -Marcusfenix8593 -vitocox411 -zero-greyhound
 					-Shadowrath06 -Vic38878 -SudsierBard -perrito_coca -Dialex1205 -Josesillo606 
-					-gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -perrito_coca -Frikiceoo 
+					-gaonawithg -Samuchamulol -Chuckysin -PAT0MALO -Frikiceoo 
 					-Marqui020 -ScarletMoonGA -tomasgrox -Mr_Scolex -Jhotx_24 -natillon -R3V4NTV
 					-Rockerheadd -mateoamii -JuanitoLive -DDS0210 -charlestwi -zakzar01 -Wuchang234 
 					-WHYonex -zun32 -bickelo -sakarok4 -Mr_D2D2 -Brunix_117 -kire -LixFTO -tuamigojoker1234 
 					-Juanoma2912 -mrbelieved -musytari1 -Mau518 -The_Manquequito -¡RazorOnUwU -1v1SinCamisa
 					-JoseRoyalty_ -TheMalk11 -kevinprogame06 -omarshdio -gamerhuefe -Andrucastell -Fernastors 
 					-LBJ_XD -d4rckn3 -ommyalolok0 -yellowpop -wirytiox -Johy315 -IVasher -poshosupremo -elmizu -StillJuno
-					-AarGonz_ -moardiego -Slash9511 
+					-AarGonz_ -moardiego -Slash9511 -Sandiosan
 					Por darle una oportunidad al mod en sus inicios
 					'''
 			}
@@ -488,47 +503,91 @@ Mods: {
 
 			Bee: {
 				DisplayName: Reina abeja
-				Description: La abejas te entregan su poder
+				Description:
+					'''
+					La abejas te entregan su poder
+					Aumenta la pnetracion de armadura y la defensa
+					Lberas abejas al sufrir daño 
+					Obtienes el efecto de miel
+					'''
 			}
 
 			BrainOfChutuluScrollBuff: {
-				DisplayName: Dodge Apprentice
-				Description: You are untouchable
+				DisplayName: Aprendiz de esquiva
+				Description:
+					'''
+					Eres intocable
+					Esquivas cualquier ataque
+					'''
 			}
 
 			Eye: {
-				DisplayName: Dash master
-				Description: Your reflexes sharpen
+				DisplayName: Maestro de las envestidas
+				Description:
+					'''
+					Tus reflejos se agudizan
+					Aumenta la atura de los saltos y remueve el daño de cahída
+					Ganas una embestida
+					'''
 			}
 
 			Infernal: {
 				DisplayName: Infernal
-				Description: The flames of hell cover you
+				Description:
+					'''
+					Las llamas del inframundo te cubren
+					Aumenta el daño y un áura ignea te cubre
+					'''
 			}
 
 			MasterD: {
-				DisplayName: Master of the Desert
-				Description: You feel with leadership
+				DisplayName: Maestro de las dunas
+				Description:
+					'''
+					Sientes el liderazgo
+					la velocidad de movimiento 
+					además del daño y numero de invocaciones 
+					'''
 			}
 
 			Putrid: {
-				DisplayName: Putrid
-				Description: You're breaking down
+				DisplayName: Putrido
+				Description:
+					'''
+					Te estas deteriorando
+					Aumenta la reduccion de daño y la probabilidad de critico
+					'''
 			}
 
 			QueenSlimeScrollBuff: {
-				DisplayName: Queen's blessing
-				Description: You feel blessed
+				DisplayName: Bendición de la reina
+				Description:
+					'''
+					Te sientes bendecido
+					Aumenta la vida máxima, 
+					la velocidad de movimiento 
+					además del daño y numero de invocaciones 
+					'''
 			}
 
 			Skeleton: {
-				DisplayName: Undead
-				Description: Your senses are heightened
+				DisplayName: No muerto
+				Description:
+					'''
+					Tus sentidos se agudizan
+					Aumenta la probabilidad de guardar municion y el daño de lanzador
+					Otorga inmunidad a varios perjuicios
+					'''
 			}
 
 			Slim: {
-				DisplayName: King's blessing
-				Description: You feel lighter
+				DisplayName: Bendición real
+				Description:
+					'''
+					Te ligero
+					Aumenta la velocidad de movimiento 
+					además del daño de invocaciones 
+					'''
 			}
 
 			SuperSenseBuff: {
@@ -537,13 +596,13 @@ Mods: {
 			}
 
 			SwordMount: {
-				DisplayName: Travel sword
-				Description: Who said that melee could not be buff more?
+				DisplayName: Espada de viaje
+				Description: ¿Quien dijo que melee no podia chetarse mas?
 			}
 
 			True_Night_Bleasing_Buff: {
-				DisplayName: Night Bleasing
-				Description: Increase defense by 7
+				DisplayName: Bendición nocturna
+				Description: Aumenta la defensa en 7
 			}
 
 			Burning_Sand: {
@@ -644,6 +703,11 @@ Mods: {
 			CursedShotgunMinionBuff: {
 				DisplayName: Escopeta poseída
 				Description: Una escopeta poseída luchara por ti
+			}
+
+			StoneMortarBuff: {
+				// DisplayName: Stone Mortar Buff
+				// Description: Mods.RemnantOfTheAncientsMod.Buffs.StoneMortarBuff.Description
 			}
 		}
 
@@ -1026,17 +1090,17 @@ Mods: {
 			}
 
 			Tuxonite_chesplate: {
-				DisplayName: Pechera de Tusonita
+				DisplayName: Pechera de Tucsonita
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
 			Tuxonite_Legging: {
-				DisplayName: Perneras de Tusonita
+				DisplayName: Perneras de Tucsonita
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedCritChance}"
 			}
 
 			TuxoniteHelmet: {
-				DisplayName: Casco de Tusonita
+				DisplayName: Casco de Tucsonita
 				Tooltip: "{$CommonItemTooltip.PercentIncreasedRangedDamage}"
 			}
 
@@ -1721,12 +1785,12 @@ Mods: {
 			}
 
 			TuxoniteBar: {
-				DisplayName: Lingote de tusonita
+				DisplayName: Lingote de Tucsonita
 				Tooltip: ""
 			}
 
 			TuxoniteOre: {
-				DisplayName: Mineral de tusonita
+				DisplayName: Mineral de Tucsonita
 				Tooltip: ""
 			}
 
@@ -1765,22 +1829,22 @@ Mods: {
 			}
 
 			TuxoniteChair: {
-				DisplayName: Silla de tusonita
+				DisplayName: Silla de Tucsonita
 				Tooltip: ""
 			}
 
 			TuxoniteDoor: {
-				DisplayName: Puerta de tusonita
+				DisplayName: Puerta de Tucsonita
 				Tooltip: ""
 			}
 
 			TuxoniteTable: {
-				DisplayName: Mesa de tusonita
+				DisplayName: Mesa de Tucsonita
 				Tooltip: ""
 			}
 
 			TuxoniteToilet: {
-				DisplayName: Retrete de tusonita
+				DisplayName: Retrete de Tucsonita
 				Tooltip: Un regalo extraño para un gran fan
 			}
 
@@ -1884,22 +1948,22 @@ Mods: {
 			}
 
 			Tuxonite_axe: {
-				DisplayName: Hacha de tusonita
+				DisplayName: Hacha de Tucsonita
 				Tooltip: ""
 			}
 
 			Tuxonite_hammer: {
-				DisplayName: Martillo de tusonita
+				DisplayName: Martillo de Tucsonita
 				Tooltip: ""
 			}
 
 			Tuxonite_pickaxe: {
-				DisplayName: Pico de tusonita
+				DisplayName: Pico de Tucsonita
 				Tooltip: ""
 			}
 
 			TuxoniteFishingPole: {
-				DisplayName: Caña de tusonita
+				DisplayName: Caña de Tucsonita
 				Tooltip: ""
 			}
 
@@ -2466,7 +2530,7 @@ Mods: {
 			}
 
 			TuxoniteSaber: {
-				DisplayName: Sable de tusonita
+				DisplayName: Sable de Tucsonita
 				// Tooltip: ""
 			}
 
@@ -2486,12 +2550,12 @@ Mods: {
 			}
 
 			Tuxonite_Shortsword: {
-				DisplayName: Espada corta de tusonita
+				DisplayName: Espada corta de Tucsonita
 				Tooltip: ""
 			}
 
 			Tuxonite_Sword: {
-				DisplayName: Espada larga de tusonita
+				DisplayName: Espada larga de Tucsonita
 				Tooltip: ""
 			}
 
@@ -2516,7 +2580,7 @@ Mods: {
 			}
 
 			TuxoniteBow: {
-				DisplayName: Arco de tusonita
+				DisplayName: Arco de Tucsonita
 				Tooltip: ""
 			}
 
@@ -2604,7 +2668,7 @@ Mods: {
 			}
 
 			TuxoniteRepeater: {
-				DisplayName: Repetidor de tusonita
+				DisplayName: Repetidor de Tucsonita
 				// Tooltip: ""
 			}
 
@@ -3615,7 +3679,7 @@ Mods: {
 			}
 
 			TuxoniteBrick: {
-				DisplayName: Ladrillo de tusonita
+				DisplayName: Ladrillo de Tucsonita
 				// Tooltip: ""
 			}
 
@@ -4494,6 +4558,11 @@ Mods: {
 				// DisplayName: Stone Blunderbuss
 				// Tooltip: ""
 			}
+
+			StoneMortarStaff: {
+				// DisplayName: Stone Mortar Staff
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4774,6 +4843,7 @@ Mods: {
 			// BloodDart.DisplayName: Blood Dart
 			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
+			// StoneMortarMinion.DisplayName: Stone Mortar Minion
 		}
 
 		Tiles: {

@@ -29,7 +29,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(0, 0, 20, 0);
 			Item.rare = ItemRarityID.Green;
-			//Item.UseSound = SoundID.Item38;
 			Item.autoReuse = true;
 			Item.shoot = ProjectileID.Bullet;
 			Item.shootSpeed = 10f;

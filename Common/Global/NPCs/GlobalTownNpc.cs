@@ -1,29 +1,32 @@
-﻿using System;
-using static Terraria.ModLoader.ModContent;
-using Terraria;
-using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_Basic_Potion_Kit;
-using Terraria.ID;
+﻿using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.Systems;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
-using SangarUtilities.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
-using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Currencies;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
+using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
+using SangarUtilities.Common.UtilsTweaks;
+using System;
+using System.Drawing;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Endless_Basic_Potion_Kit;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {
     public class GlobalTownNpc : GlobalNPC
     {
-
+        
         public override void ModifyShop(NPCShop shop)
         {
             if (RemnantOfTheAncientsMod.AlchemistNPCMod != null)
@@ -160,13 +163,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             foreach (Item item in items)
             {
-                if (item is not null)
-                {
-                    decimal discount = (decimal)ShopUtils.GetShopDiscount(Main.LocalPlayer);
-                    int? finalPrice = (int?)Math.Round((item.shopCustomPrice ?? item.value) * discount);
-                    if (finalPrice <= 0) finalPrice = 1;
-                    item.shopCustomPrice = finalPrice;
-                }
+                if (item is  null) continue;
+               
+                float discount = ShopUtils.GetShopDiscount(Main.LocalPlayer);
+                int basePrice = item.shopCustomPrice ?? item.value;
+                int finalPrice = (int)Math.Max(1, Math.Round(basePrice * discount));
+                item.shopCustomPrice = finalPrice; 
             }
         }
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
@@ -178,43 +180,54 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
         public override void OnChatButtonClicked(NPC npc, bool firstButton)
         {
+            RemnantPlayer modPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
             Player player = Main.LocalPlayer;
-            if (npc.type == NPCID.ArmsDealer)
-            {
-                if (npc.IsShimmerVariant)
-                {
-                    RemnantPlayer.PlayerTalkToday.TryAdd(npc.type, false);
-                    if (!RemnantPlayer.PlayerTalkToday[npc.type])
-                    {
 
-                        if (firstButton && Main.rand.NextBool(4))
-                        {
-                            RemnantPlayer.PlayerTalkToday[npc.type] = true;
-                            player.AddBuff(BuffID.AmmoBox, Utils1.FormatTimeToTick(0, 0, 10, 0));
-                        }
-                    }
-                }
-
-            }
+            if(!modPlayer.PlayerTalkToday.ContainsKey(npc.type)) modPlayer.PlayerTalkToday.TryAdd(npc.type, false);
+            
+            if (npc.type == NPCID.ArmsDealer) ApplyEffectOnTimePreDay(npc, firstButton, () => { player.AddBuff(BuffID.AmmoBox, Utils1.FormatTimeToTick(Minute: 29)); });
+            if(npc.type == NPCID.Angler) ApplyEffectOnTimePreDay(npc,firstButton, () => { player.QuickSpawnItem(Item.GetSource_TownSpawn(), ItemID.CanOfWorms, 1); });       
             base.OnChatButtonClicked(npc, firstButton);
+        }
+
+        public void ApplyEffectOnTimePreDay(NPC npc, bool firstButton, Action action)
+        {
+            RemnantPlayer modPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
+            Player player = Main.LocalPlayer;
+            if (!npc.IsShimmerVariant) return;
+            if (modPlayer.PlayerTalkToday[npc.type]) return;
+            if (!firstButton) return;
+            
+            modPlayer.PlayerTalkToday[npc.type] = true;
+            action();
+        }
+        public override void GetChat(NPC npc, ref string chat)
+        {
+            if(npc.type == NPCID.Clothier)
+            {
+                Player player = Main.LocalPlayer;
+                int style = player.GetModPlayer<StatPlayer>().StyleStat;
+                if (style > 0)
+                {
+                    
+                    string text;
+                    if (style < 50)
+                    {
+                        int choice = Main.rand.Next(1, 5);
+                        text = Language.GetTextValue($"Mods.RemnantOfTheAncientsMod.Dialogue.Clothier.StyleDialogue{choice}", style, ShopUtils.getStyleDiscountPorcentage(style));
+                    }
+                    else if(style < (int)ShopUtils.maxStyleStat) text = Language.GetTextValue($"Mods.RemnantOfTheAncientsMod.Dialogue.Clothier.HighStyleDialogue1", style, ShopUtils.getStyleDiscountPorcentage(style));
+                    else text = Language.GetTextValue($"Mods.RemnantOfTheAncientsMod.Dialogue.Clothier.MaxStyleDialogue1", style, ShopUtils.getStyleDiscountPorcentage(style));
+
+                    string hex = $"{Color.Pink.R:X2}{Color.Pink.G:X2}{Color.Pink.B:X2}";
+                    string finalText = $"\n[c/{hex}:{text}]";
+                    chat += finalText;
+                }
+            }
+            base.GetChat(npc, ref chat);
         }
         public override void AI(NPC npc)
         {
-            if(npc.type == NPCID.ArmsDealer && npc.IsShimmerVariant)
-            {
-                RemnantPlayer.PlayerTalkToday.TryAdd(npc.type, false);
-                if (RemnantPlayer.PlayerTalkToday[npc.type])
-                {
-                    float hour = Utils.GetDayTimeAs24FloatStartingFromMidnight();
-                    if ((hour >= 3f && hour <= 4f) || (hour >= 23f && hour <= 24f))
-                    {
-                        RemnantPlayer.PlayerTalkToday[npc.type] = false;
-                    }
-                }
-            }
-
-
-
             base.AI(npc);
         }
     }

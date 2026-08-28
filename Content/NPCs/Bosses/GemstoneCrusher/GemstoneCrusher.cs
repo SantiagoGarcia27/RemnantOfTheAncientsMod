@@ -5,6 +5,8 @@ using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using System;
 using System.Collections.Generic;
@@ -672,6 +674,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999,
             [
                 ModContent.ItemType<WandOfCaverns>(),
+                ModContent.ItemType<StoneBlunderbuss>(),
+                ModContent.ItemType<StoneMortarStaff>(),
                 /*ItemType<DesertEdge>(),
                 ItemType<DesertStaff>(),
                 ItemType<DesertTome>()*/

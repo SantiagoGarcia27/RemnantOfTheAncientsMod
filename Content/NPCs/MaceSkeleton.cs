@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
@@ -14,24 +15,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 	public class MaceSkeleton : ModNPC
 	{
 		private Player proxy;
-        private int timmer; 	
+		private int timmer;
 		readonly int timmerMax = Utils1.FormatTimeToTick(Second: 2);
 
-        private int _maceId = -1;
-        int MaceId {
-            get => _maceId;
-			set 
+		private int _maceId = -1;
+		int MaceId
+		{
+			get => _maceId;
+			set
 			{
-                _maceId = value;
-                if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
-            }
+				_maceId = value;
+				if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
+			}
 		}
 
 		public override void SetStaticDefaults()
 		{
 
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
-			NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
+			NPCID.Sets.NPCBestiaryDrawModifiers value = new()
 			{
 				Velocity = 1f
 			};
@@ -54,18 +56,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			NPC.TargetClosest();
 			NPC.UpdatePlayerProxy();
 			NPC.ConfigureProxyPlayer(shouldBeDrawn: false);
-		
+
 			if (NPC.target > -1)
 			{
-                Player target = Main.player[NPC.target];
+				Player target = Main.player[NPC.target];
 
 				float distance = NPC.Center.DistanceSQ(target.Center);
 				float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
-                if (proxy.ownedProjectileCounts[ProjectileID.Mace] < 1 && distance < distanceMin)
+				if (proxy.ownedProjectileCounts[ProjectileID.Mace] < 1 && distance < distanceMin)
 				{
 					timmer = timmerMax;
 
-                    MaceId = Projectile.NewProjectile(NPC.GetSource_FromAI(), proxy.Center, Vector2.Zero, ProjectileID.Mace, 25, 0f, proxy.whoAmI);
+					MaceId = Projectile.NewProjectile(NPC.GetSource_FromAI(), proxy.Center, Vector2.Zero, ProjectileID.Mace, 25, 0f, proxy.whoAmI);
 					Main.projectile[MaceId].hostile = true;
 					Main.projectile[MaceId].friendly = false;
 				}
@@ -73,17 +75,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 				{
 					if (MaceId == -1) return;
 
-                    if (timmer > 0) timmer--;
-					else 
+					if (timmer > 0) timmer--;
+					else
 					{
-                        if (proxy.ownedProjectileCounts[ProjectileID.Mace] >= 1)
+						if (proxy.ownedProjectileCounts[ProjectileID.Mace] >= 1)
 						{
 							proxy.channel = false;
 							Main.projectile[MaceId].Kill();
 							MaceId = -1;
-                        }
+						}
 
-                    }
+					}
 				}
 			}
 			base.AI();
@@ -91,8 +93,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-            bestiaryEntry.Info.AddRange([
+			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
+			bestiaryEntry.Info.AddRange([
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 				new FlavorTextBestiaryInfoElement("A brave warrior with a powerfull mace"),
 			]);
@@ -114,8 +116,26 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		public override void OnKill()
 		{
 			proxy?.DisposePlayerProxy();
-            Main.projectile[MaceId].Kill();
-            base.OnKill();
+			if (MaceId > -1) Main.projectile[MaceId].Kill();
+
+			if (Main.netMode != NetmodeID.Server)
+			{
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 42, NPC.scale);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 43, NPC.scale);
+				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 44, NPC.scale);
+			}
+
+			base.OnKill();
+		}
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.Write(MaceId);
+			base.SendExtraAI(writer);
+		}
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			MaceId = reader.ReadInt32();
+			base.ReceiveExtraAI(reader);
 		}
 	}
 }

@@ -681,6 +681,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
                 dust.velocity = new Vector2(Main.rand.NextFloat(-50f, 51f) * 1110.01f, Main.rand.NextFloat(-50f, 51f) * 111110.01f);
                 dust.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
             }
+            if (NPC.life <= 0)
+            {
+
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 3, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 4, NPC.scale);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 5, NPC.scale);
+                }
+            }
         }
         public override void AI()
         {
