@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             get 
             {
                 float speedBonus = (Main.player[Projectile.owner].HeldItem.useTime / 26f);
-                int finalValue = (int)(Utils1.FormatTimeToTick(Second: 1) * speedBonus);
+                int finalValue = (int)(Utils1.FormatTimeToTick(Second: 0.8f) * speedBonus);
                 return finalValue;  
             } 
         }

@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 15;
 
-            _trail ??= new PrimitiveTrail(TextureAssets.MagicPixel.Value, StripWidth, StripColor);
+            //_trail ??= new PrimitiveTrail(TextureAssets.MagicPixel.Value, StripWidth, StripColor);
         }
         internal int stopTimer = Utils1.FormatTimeToTick(Second: 1);
         internal int graceTimeTimer = Utils1.FormatTimeToTick(Second: 0.5f);

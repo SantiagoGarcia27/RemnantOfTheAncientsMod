@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
             Projectile.height = 36;
             Projectile.penetrate = 2;
             Projectile.timeLeft = 20000;
-            Projectile.light = 1.15f;
+            //Projectile.light = 1.15f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             Projectile.friendly = Friendly;
@@ -108,13 +108,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
             Vector2 drawPos = Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY);
             Rectangle frame = texture.Frame(1,Main.projFrames[Projectile.type],0,Projectile.frame);
             Vector2 drawOrigin = frame.Size() / 2f;
-            lightColor = Main.rand.Next(0, 2) switch
+            Color choiceColor = Main.rand.Next(0, 2) switch
             {
                 0 => Color.Cyan,
                 1 => Color.White,
                 2 => Color.DarkBlue,
                 _ => Color.White
             };
+            lightColor = new Color(choiceColor.R, choiceColor.G, choiceColor.B, lightColor.A);
             for (int k = 2; k < Projectile.oldPos.Length; k++)
             {
                 Vector2 drawPos2 = Projectile.oldPos[k] + Projectile.Size / 2f - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY);

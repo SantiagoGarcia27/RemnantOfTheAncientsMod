@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			target.AddBuff(BuffID.Daybreak, 240);
 			if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
 			{
-				Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, damageDone / 10, 0);
+				Projectile.NewProjectile(Projectile.GetSource_None(), target.Center, new Vector2(0f, 0f), ProjectileID.SolarWhipSwordExplosion, damageDone / 10, 0);
 			}
 		}
 

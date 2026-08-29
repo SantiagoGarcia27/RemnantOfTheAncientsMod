@@ -25,6 +25,7 @@ using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -157,8 +158,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             DogdeAi(target);
 
             if (!Main.expertMode) return;
-            if (attackCounter.Between(min:500,max:600) && currentPhase != 3) 
-                ShootIa((int)(10 * RemnantGlobalNPC.DamageBonus), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
             CheckPhase();
             
         }
@@ -167,14 +166,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             if (Main.netMode == NetmodeID.MultiplayerClient) return;
 
             int conter1 = isReaper? 150 : 300;
-            if (attackCounter == conter1) { 
+
+            int countIceElemental = Main.npc.Count(x => x.type == NPCID.IceElemental && x.active && x.life > 0);
+            if (attackCounter == conter1 && countIceElemental < 3) { 
                 int npc = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceElemental);
                 Main.npc[npc].lifeMax /= 2;
                 Main.npc[npc].life = Main.npc[npc].lifeMax;
             }
             if (attackCounter != 600 || currentPhase < 2 || (!Main.expertMode && !Main.masterMode)) return;
-            int count = Main.npc.Where(x => x.type == NPCID.IceGolem && x.active && x.life > 0).ToArray().Length;
-            if (count > 4) return;
+            int countIceGolem = Main.npc.Count(x => x.type == NPCID.IceGolem && x.active && x.life > 0);
+            if (countIceGolem > 4) return;
             int a = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, NPCID.IceGolem);
             Main.npc[a].damage *= 2;
             Main.npc[a].lifeMax /= 4;
@@ -238,6 +239,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
         private void ShootAi(Player target, bool isReaper)
         {
+            int framerate = Math.Min(Main.frameRate, 60);
+            float diferencia = Math.Abs(55 - framerate);
+            int beamAmount = isReaper ? 6 : 1;
+            float scale = 1;
+
             switch (attackCounter)
             {
                 case 500:
@@ -245,56 +251,83 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     if (currentPhase != 3) return;  
                     for (int i = 0; i < 3; i++){
                         ShootSwordIa(target, 50, ModContent.ProjectileType<FrozenPermafrostRain>(), 4f);
-                    }            
+                    }     
+                    
                     break;
+
                 case 400:
+
                     if (!isReaper) return;
-                    for (int i = 0; i < 6; i++)
+
+                    if (diferencia > 30 && beamAmount > 1)
                     {
-                        ShootIa(10, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                        beamAmount -= (int)((diferencia - 30) / 10);
+                        beamAmount = Math.Max(1, beamAmount);
+                        scale = Math.Abs(beamAmount - (beamAmount - 1));
+                    }
+
+                    for (int i = 0; i < beamAmount; i++)
+                    {
+                        int  a = ShootIa(10, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                        Main.projectile[a].width = (int) (Main.projectile[a].width * scale);
                     }
                     break;
                 case 115:
-                    int beamAmount = isReaper? 6 : 1;
+                   
                     int damage = isReaper ? 10 : 50;
+                   
+                    if (diferencia > 30 && beamAmount > 1)
+                    {
+                        beamAmount -= (int)((diferencia - 30) / 10);
+                        beamAmount = Math.Max(1, beamAmount);
+                        scale = Math.Abs(beamAmount - (beamAmount - 1));
+                    }
+
                     for (int i = 0; i < beamAmount; i++)
                     {
-                        ShootIa(damage, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                        int a = ShootIa(damage, ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
+                        Main.projectile[a].width = (int)(Main.projectile[a].width * scale);
                     }
                     break;
                 case >= 0:
-                    if (currentPhase != 3 && !DificultyUtils.EternityMode && !DificultyUtils.MasochistMode)
+                    if (attackCounter % 3 == 0) return;
+                    if (currentPhase == 3 || DificultyUtils.EternityMode || DificultyUtils.MasochistMode) return;
+                    if (++delay < diferencia) return;
+
+                    delay = 0;
+                    int choice = Main.rand.Next(-1, 1);
+                    float variance = choice * 0.5f;
+                    if (!isReaper)
                     {
-                        int choice = Main.rand.Next(-1, 1);
-                        float variance = choice * 0.5f;
-                        if (!isReaper)
+                        if (currentPhase > 2) 
+                            ShootIa(10, ProjectileType<Frozenp>(), target, -20f + variance, 0.5, 0.5);
+                        for (int i = -1; i < MaxPlayers; i++)
                         {
-                            if (currentPhase > 2) 
-                                ShootIa(10, ProjectileType<Frozenp>(), target, -20f + variance, 0.5, 0.5);
-                            for (int i = -1; i < MaxPlayers; i++)
-                            {
-                                int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
-                                ShootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f + variance, 0.5, 0.5);
-                            }
-                        }
-                        else
-                        {
-                            int framerate = Math.Min(Main.frameRate,60);
-                            float diferencia = Math.Abs(55 - framerate);
-                            if (++delay < diferencia) return;
-                            
-                            for (int j = 0; j < 3; j++)
-                            {
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, 360f + grades, 0);//70
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, -120f + grades, 0);
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, 120f + grades, 0);
-                                ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, -360f + grades, 0);
-                            }
-                            grades = grades <= 360 ? (grades + 0.01f) : 0;
-                            delay = 0;
+                            int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
+                            ShootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f + variance, 0.5, 0.5);
                         }
                     }
+                    else
+                    {    
+                        for (int j = 0; j < 3; j++)
+                        {
+                            ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, 360f + grades, 0);//70
+                            ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, -120f + grades, 0);
+                            ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, 120f + grades, 0);
+                            ShootIa(10, ProjectileType<Frozenp>(), 7f + variance, -360f + grades, 0);
+                        }
+                        grades = grades <= 360 ? (grades + 0.01f) : 0;
+                        delay = 0;
+                    }
+                    
                     break;
+            }
+
+            if(Main.expertMode)
+            {
+                if (delay < diferencia && diferencia > 5) return;
+                if (attackCounter.Between(min: 500, max: 600) && currentPhase != 3)
+                    ShootIa((int)(10 * RemnantGlobalNPC.DamageBonus), ProjectileID.FrostBeam, target, 30f, 0.5, 0.5);
             }
         }
         #region Eternity
@@ -452,7 +485,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         {
             if(distance <= 60) NPC.directionY = -NPC.oldDirectionY;
         }
-        public void ShootIa(int damage, int type, Player player, float speed, double x, double y)
+        public int ShootIa(int damage, int type, Player player, float speed, double x, double y)
         {
             Vector2 vector8 = new Vector2(NPC.position.X + (NPC.width / 2), NPC.position.Y + (NPC.height / 2));
             float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * x)), vector8.X - (player.position.X + (player.width * y)));
@@ -463,6 +496,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             Main.projectile[i].timeLeft = 200;
             Main.projectile[i].hostile = true;
             Main.projectile[i].friendly = false;
+            return i;
         }
         public void ShootIa(int damage, int type, float speed, float grades, float Orotation)
         {
