@@ -2658,12 +2658,12 @@ Mods: {
 
 			StarCannonV2: {
 				DisplayName: Star Cannon Mk2
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 			}
 
 			StarCannonV3: {
 				DisplayName: Star Cannon Mk3
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 			}
 
 			SuperShark: {
@@ -4533,6 +4533,15 @@ Mods: {
 				DisplayName: Stone Mortar Staff
 				Tooltip: ""
 			}
+
+			StelarRifle: {
+				DisplayName: Stelar Rifle
+				Tooltip: 
+				'''
+				Damage and speed scale as you keep firing.
+				{$CommonItemTooltip.PercentChanceToSaveAmmo}
+				'''
+			}
 		}
 
 		NPCs: {
@@ -4814,6 +4823,7 @@ Mods: {
 			WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 			StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
 			StoneMortarMinion.DisplayName: Stone Mortar Minion
+			SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 		}
 
 		Tiles: {

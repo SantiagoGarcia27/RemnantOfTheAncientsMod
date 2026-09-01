@@ -209,7 +209,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             }
             if (target == null || CurrentState == BossState.Sleep)
                 return;
-            if (CurrentPhase == 1)
+            if (CurrentPhase == 1 || CurrentPhase == 3)
             {
                 AnimatePhase();
                 return;
@@ -495,11 +495,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             {
                 CurrentPhase = 1;
             }
+            if (CurrentPhase == 2 && NPC.life < (NPC.lifeMax / 5) * 2)
+            {
+                CurrentPhase = 3;
+            }
         }
 
         public void AnimatePhase()
         {
-            if (CurrentPhase == 1)
+            if (CurrentPhase == 1 || CurrentPhase == 3)
             {
                 NPC.dontTakeDamage = true;
                 if(breackingTimer < breackingDelay)
@@ -577,20 +581,22 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         {
             Type type = GetType();
             String ruta = type.FullName.Replace('.', '/');
-            string Texture = $"{ruta}_Glow";
+
+            string TextureGlowPath = $"{ruta}_Glow";
+            if (CurrentPhase >= 2) TextureGlowPath = TextureGlowPath +"_2";
 
             Color color = !shootTelegraph ? Color.White : gemData[projectileType].color;
-            if (Texture != null && CurrentState != BossState.Sleep)
+            if (TextureGlowPath != null && CurrentState != BossState.Sleep)
             {
                 // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);
-                Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+                Texture2D texture = ModContent.Request<Texture2D>(TextureGlowPath, AssetRequestMode.ImmediateLoad).Value;
                 Vector2 position = (NPC.position - Main.screenPosition) + new Vector2(NPC.width * 0.5f, NPC.height - texture.Height * 0.5f + 2f);
                 spriteBatch.Draw(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), color, NPC.rotation, texture.Size() * 0.5f, NPC.scale, SpriteEffects.None, 0f);
             }
             base.PostDraw(spriteBatch, screenPos, drawColor);
         }
 
-        int frameCount => CurrentPhase == 2? 1: 8;
+        int frameCount => CurrentPhase == 4? 1: 8;
         int currentIndex = 0;
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -657,8 +663,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
         internal string texturePath()
         {
-            string variation = CurrentPhase < 2 ? "_P1" : "_P2";
-            return GetType().FullName.Replace('.', '/')+ variation;
+            string variation = CurrentPhase switch
+            {
+                4 => "_P4",
+                3 => "_P2",
+                2 => "_P2",
+                _ => "_P1"
+            };
+            string result = GetType().FullName.Replace('.', '/') + variation;
+            return result;
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

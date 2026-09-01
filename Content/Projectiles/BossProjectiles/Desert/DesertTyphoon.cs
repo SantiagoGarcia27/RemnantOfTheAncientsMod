@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Projectile.penetrate--;
-            if (Projectile.penetrate <= PenetrateKill) Projectile.Kill();
+            if (Projectile.penetrate <= 0) Projectile.Kill();
             else
             {
                 Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);

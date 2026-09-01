@@ -12,6 +12,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
 {
     public class StarCannonV3 : ModItem
     {
+        public int NotConsumeAmmoChance = 80;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(NotConsumeAmmoChance);
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -64,7 +66,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            return Main.rand.NextFloat() >= .80f;
+            return Main.rand.NextFloat() >= NotConsumeAmmoChance / 100f;
         }
         public override void AddRecipes()
         {

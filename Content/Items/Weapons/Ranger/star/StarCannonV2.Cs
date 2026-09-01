@@ -1,20 +1,20 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Projectiles;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Projectiles;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
 {
 	public class StarCannonV2 : ModItem
 	{
-		public override void SetStaticDefaults()
+        public int NotConsumeAmmoChance = 30;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(NotConsumeAmmoChance);
+        public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Star Cannon Mk2");
-			// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Canon étoile Mk2");
-			// //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cañon de estrellas MK2");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
 		}
 		public override bool CanConsumeAmmo(Item ammo, Player player)
 		{
-			return Main.rand.NextFloat() >= .30f;
+			return Main.rand.NextFloat() >= NotConsumeAmmoChance / 100f;
 		}
 		public override void AddRecipes()
 		{

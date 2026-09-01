@@ -4563,6 +4563,11 @@ Mods: {
 				// DisplayName: Stone Mortar Staff
 				// Tooltip: ""
 			}
+
+			StelarRifle: {
+				DisplayName: Rifle Estelar
+				Tooltip: El daño y velocidad escala al mantenerse disparando
+			}
 		}
 
 		NPCs: {
@@ -4844,6 +4849,7 @@ Mods: {
 			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
 			// StoneMortarMinion.DisplayName: Stone Mortar Minion
+			// SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 		}
 
 		Tiles: {

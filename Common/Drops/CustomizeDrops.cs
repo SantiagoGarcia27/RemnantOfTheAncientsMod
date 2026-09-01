@@ -20,6 +20,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 if (sourceLoot != null)
                 {
                     var entity = sourceLoot.Entity;
+                    if (entity is Projectile) return;
                     NPC npc = (NPC)entity;
 
 
