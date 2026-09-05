@@ -18,6 +18,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert
             AIType = ProjectileID.Boulder;
         }
 
-
+        public override void AI()
+        {
+            Player owner = Main.player[Projectile.owner];
+            if (Projectile.friendly && Projectile.ai[2] == 1 && Main.myPlayer == owner.whoAmI)
+            {
+                
+                Vector2 MousePosition = new Vector2(Player.tileTargetX, Player.tileTargetY -1).ToWorldCoordinates();
+                Projectile.Center = MousePosition;
+            }
+            base.AI();
+        }
     }
 }

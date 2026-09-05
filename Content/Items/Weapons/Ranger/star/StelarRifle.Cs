@@ -32,12 +32,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
             Item.crit = 30 - 4;
             Item.width = 80;
             Item.height = 40;
-            Item.useTime = 40;
-            Item.useAnimation = 40;
+            Item.useTime = 45;
+            Item.useAnimation = 45;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 1;
-            Item.value = 100000;
+            Item.value = Item.sellPrice(gold:20);
             Item.rare = ItemRarityID.Red +1;
             Item.UseSound = SoundID.Item10;
             Item.autoReuse = true;

@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Desert;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -69,7 +70,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
                 player.GetModPlayer<RemnantPlayer>().AllClassBuffInflict.Add(BuffID.Electrified);
 
                 int cactusDamage = getCactusDamage(player)/2;
-                CactusBoulderproj = player.GetModPlayer<RemnantPlayer>().SpawnProjectileOnMouse(ProjectileID.RollingCactus, cactusDamage, CactusBoulderproj);
+                CactusBoulderproj = player.GetModPlayer<RemnantPlayer>().SpawnProjectileOnMouse(ModContent.ProjectileType<CactusBoulderClone>(), cactusDamage, CactusBoulderproj);
 
 
                 if(player.FargoSouls().WizardEnchantActive)

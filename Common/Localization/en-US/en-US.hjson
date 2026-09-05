@@ -4536,11 +4536,11 @@ Mods: {
 
 			StelarRifle: {
 				DisplayName: Stelar Rifle
-				Tooltip: 
-				'''
-				Damage and speed scale as you keep firing.
-				{$CommonItemTooltip.PercentChanceToSaveAmmo}
-				'''
+				Tooltip:
+					'''
+					Damage and speed scale as you keep firing.
+					{$CommonItemTooltip.PercentChanceToSaveAmmo}
+					'''
 			}
 		}
 

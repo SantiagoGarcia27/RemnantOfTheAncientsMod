@@ -231,8 +231,9 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static string TooltipHotkeyString(ModKeybind imput)
         {
             try
-            {
-                return imput.GetAssignedKeys()[0];
+            {   
+                if(imput.GetAssignedKeys().Count > 0) return imput.GetAssignedKeys()[0];
+                return "[...]";
             }
             catch
             {

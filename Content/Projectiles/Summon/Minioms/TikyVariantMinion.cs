@@ -18,14 +18,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Baby Desert Aniquilator Minion");
             Main.projFrames[Projectile.type] = 15;
 
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
-            //ProjectileID.Sets.CountsAsHoming[Projectile.type] = true;
-            //AIType = ProjectileID.BabySlime;
         }
 
         public sealed override void SetDefaults()
@@ -42,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             Projectile.penetrate = -1;
             Projectile.timeLeft *= 5;
             Projectile.minion = true;
-            AIType = 393;
+            AIType = ProjectileID.OneEyedPirate;
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 7;//23
@@ -88,8 +85,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             if (!CheckActive(player)) return;
             if (dust == 0f)
             {
-                //Projectile.spawnedPlayerMinionDamageValue = val.MinionDamage();
-                // Projectile.spawnedPlayerMinionProjectileDamageValue = Projectile.damage;
                 int num = 16;
                 for (int i = 0; i < num; i++)
                 {
@@ -102,12 +97,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
                 }
                 dust += 1f;
             }
-            /* if (player.MinionDamage() != Projectile.Calamity().spawnedPlayerMinionDamageValue)
-             {
-                 int damage = (int)((float)Projectile.Calamity().spawnedPlayerMinionProjectileDamageValue / Projectile.Calamity().spawnedPlayerMinionDamageValue * val.MinionDamage());
-                 Projectile.damage = damage;
-             }*/
-            //   player.AddBuff(BuffType<DesertMinionBuff>(), 3600, true);  
         }
 
         private bool CheckActive(Player owner)

@@ -16,6 +16,7 @@ using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
@@ -279,6 +280,7 @@ namespace RemnantOfTheAncientsMod
 		{
 			Burn_Sand = false;
 			Hell_Fire = false;
+			Player.ClearBuff(BuffType<Burning_Sand>());
 			hBurn = false;
 			MoneyCollector = false;
 			Marble_Erosion = false;
@@ -745,12 +747,13 @@ namespace RemnantOfTheAncientsMod
 
 			if (CountOfProj <= 0)
 			{
-				proj = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ProjectileID.RollingCactus, 10, 0, Player.whoAmI);
+				proj = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ModContent.ProjectileType<CactusBoulderClone>(), 15, 0, Player.whoAmI);
 				proj.friendly = true;
 				proj.hostile = false;
 				proj.tileCollide = false;
+				proj.velocity = Vector2.Zero;
 			}
-			proj.position = MousePosition;
+			proj.Center = MousePosition;
 		}
 		public Projectile SpawnProjectileOnMouse(int id,int damage, Projectile p)
 		{
@@ -759,16 +762,17 @@ namespace RemnantOfTheAncientsMod
 
 			if (CountOfProj <= 0)
 			{
-				p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ProjectileID.RollingCactus, damage, 0, Player.whoAmI);
+				p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ModContent.ProjectileType<CactusBoulderClone>(), damage, 0, Player.whoAmI, ai2:1);
 				p.friendly = true;
 				p.hostile = false;
 				p.tileCollide = false;
-				p.timeLeft = 50;
+				p.velocity = Vector2.Zero;
+				p.timeLeft = 150;
 			}
-			if (p != null)
+			/*if (p != null)
 			{
-				p.position = MousePosition;
-			}
+				p.Center = MousePosition;
+			}*/
 			return p;
 		}
 		public void UpdateMaxTurrets()
