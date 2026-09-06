@@ -5,21 +5,15 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 {
 	public class WandOfCavernsHeldProjectile : ModProjectile
 	{
-		public override string Texture
-		{
-		
-			get {
-                string path = $"{base.Texture}_{Projectile.ai[0]}";
-				return path;
-			}
-		}
-		public override void SetStaticDefaults()
+        public override string Texture => ModContent.GetInstance<WandOfCaverns>().Texture;
+        public override void SetStaticDefaults()
 		{
 		}
 

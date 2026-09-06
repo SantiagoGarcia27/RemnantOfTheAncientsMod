@@ -28,18 +28,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             AnimationType = NPCID.SandSlime;
             NPC.CloneDefaults(NPCID.SandSlime);
             NPC.value = Item.buyPrice(0, 0, 0, 0);
-            NPC.lifeMax = 50;
+            NPC.lifeMax = 25;
             NPC.damage = 22;
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
             int associatedNPCType = ModContent.NPCType<DesertAnnihilator>();
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
-                // Plain black background
 				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
             });
         }
@@ -73,7 +71,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
             int associatedNPCType = ModContent.NPCType<DesertAnnihilator>();
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
@@ -128,33 +125,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             return ApplyLifeSize(MathUtils.GetPorcentage(npc.life, npc.lifeMax), 1.5f);          
         }
         private static float ApplyLifeSize(float porcentage, float MaxValue)
-        {
-            //for (int i = 100; i >= 0; i--)
-            //{
-            //    if ((int)porcentage == i)
-            //    {
-            //        float j = MathUtils.GetValueFromPorcentage(MaxValue, porcentage);
-            //        if (j > MathUtils.GetValueFromPorcentage(MaxValue, 30))
-            //        {
-            //            return j;
-            //        }
-            //    }
-
-            //}
-            //return MathUtils.GetValueFromPorcentage(MaxValue, 30);
-
-
+        {     
             float porcentageValue = MathUtils.GetValueFromPorcentage(MaxValue, porcentage);
             float thirtyPercentValue = MathUtils.GetValueFromPorcentage(MaxValue, 30);
 
-            if (porcentageValue > thirtyPercentValue)
-            {
+            if (porcentageValue > thirtyPercentValue) 
                 return porcentageValue;
-            }
-            else
-            {
-                return thirtyPercentValue;
-            }
+            return thirtyPercentValue;
         }
     }
 }

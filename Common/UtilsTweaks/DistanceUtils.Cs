@@ -96,26 +96,56 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             Tile tile = Main.tile[(new Point((int)pos.X / 16, (int)(pos.Y) / 16))];
             return tile.LiquidAmount > 0 && tile.LiquidType == liquidId;
         }
-        public static Vector2 SetPositionOnSolidFloor(Vector2 imput)
-        {
-            if (ExistTileSolid(imput) && ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))))
-            {
-                do
-                {
-                    imput -= ToCoordenatePosition(new Vector2(0, 1));
-                }
-                while (ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))));
+        /* public static Vector2 SetPositionOnSolidFloor(Vector2 imput)
+         {
+             if (ExistTileSolid(imput) && ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))))
+             {
+                 do
+                 {
+                     imput -= ToCoordenatePosition(new Vector2(0, 1));
+                 }
+                 while (ExistTileSolid(imput - ToCoordenatePosition(new Vector2(0, 1))));
 
-                if (!ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))))
+                 if (!ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))))
+                 {
+                     do
+                     {
+                         imput += ToCoordenatePosition(new Vector2(0, 1));
+                     }
+                     while (ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))));
+                 }
+             }
+             return imput;
+         }*/
+        public static Vector2 SetPositionOnSolidFloor(Vector2 input)
+        {
+            Vector2 tileSize = ToCoordenatePosition(new Vector2(0, 1));
+            Vector2 originalPos = input;
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (ExistTileSolid(input + tileSize))
                 {
-                    do
+                    return input;
+                }
+
+                input += tileSize;
+            }
+            if (ExistTileSolid(input))
+            {
+                input = originalPos;
+                for (int i = 0; i < 100; i++)
+                {
+                    if (ExistTileSolid(input - tileSize))
                     {
-                        imput += ToCoordenatePosition(new Vector2(0, 1));
+                        return input;
                     }
-                    while (ExistTileSolid(imput + ToCoordenatePosition(new Vector2(0, 1))));
+
+                    input -= tileSize;
                 }
             }
-            return imput;
+
+            return input;
         }
         public static Tile? SearchLiquid(int liquid, int range)
         {

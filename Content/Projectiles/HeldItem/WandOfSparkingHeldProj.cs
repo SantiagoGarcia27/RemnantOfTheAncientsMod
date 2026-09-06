@@ -14,7 +14,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
     public class WandOfSparkingHeldProj : HeldCyrcleModel
 	{
         public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath;
-      
+
+        MagicCircle circle1 = null;
+        MagicCircle circle2 = null;
         public override void DrawCirclee(ref List<MagicCircle> internalCircle, ref List<MagicCircle> externalCircle)
         {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_2");
@@ -24,8 +26,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Color color1 = BaseWeapon == ItemID.WandofSparking ? Color.DarkRed : Color.DarkCyan;
             Color color2 = BaseWeapon == ItemID.WandofSparking ? Color.Red : Color.Cyan;
 
-            MagicCircle circle1 = new(texture, color1, 1.2f);
-            MagicCircle circle2 = new(texture2, color2, 1.2f);
+            int maxCharge = (int)(GetMaxCharge() /4);
+            circle1 ??= new(texture, color1, 0.8f,TimeDuration: maxCharge);
+            circle2 ??= new(texture2, color2, 1.2f,TimeDuration: maxCharge);
 
             internalCircle.Add(circle1);
             externalCircle.Add(circle2);

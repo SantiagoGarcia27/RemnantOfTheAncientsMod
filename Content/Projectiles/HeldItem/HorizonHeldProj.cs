@@ -15,15 +15,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 		}
 		public override void SetDefaults()
 		{
-			Projectile.width = 36;       //projectile width
-			Projectile.height = 36;  //projectile height
-			Projectile.friendly = true;      //make that the projectile will not damage you
-			Projectile.DamageType = DamageClass.Default;          // 
-			Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
-			Projectile.penetrate = -1;      //how many NPC will penetrate
-			Projectile.timeLeft = 110;   //how many time this projectile has before disepire
-			Projectile.light = 0f;    // projectile light
-			Projectile.extraUpdates = 1;
+			Projectile.width = 36;  
+			Projectile.height = 36;
+			Projectile.friendly = true;
+			Projectile.DamageType = DamageClass.Default;
+			Projectile.tileCollide = false;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 1110;
+			Projectile.light = 0f;
 			Main.projFrames[Projectile.type] = 3;
 			Projectile.ignoreWater = true;
 			Projectile.aiStyle = -1;
@@ -31,30 +30,28 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
 		}
 		public static int[] speed = [0, 0, 0, 0];
-        public static int[] speedMax = [8, 10, 15, 10];
+        public static int[] speedMax = [3, 4,4, 3];
         public float fade = 1.6f;
         public static float[] rotation = [0f, 0f, 0f, 0f];
         public override void AI()
 		{
             Player player = Main.player[Projectile.owner];
 			Projectile.Center = player.Center;
-            if (player.whoAmI == Main.myPlayer)
+            //if (player.whoAmI == Main.myPlayer)
 			{
 				for (int i = 0; i < speedMax.Length; i++)
 				{
                     UpdateRotation(i, speedMax[i]);
                 }
             }
-                base.AI();
+            base.AI();
         }
 		public static void UpdateRotation(int index,int speedValue)
 		{
             if (++speed[index] >= speedValue)
             {
-                if (rotation[index]++ >= 360)
-                {
-					rotation[index] = 0;
-                }
+				if (rotation[index] >= 360) rotation[index] = 0;
+				else rotation[index] += 0.8f; 
                 speed[index] = 0;
             }
         }

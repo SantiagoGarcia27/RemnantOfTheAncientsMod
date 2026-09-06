@@ -7,8 +7,6 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.Graphics;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -33,14 +31,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Projectile.penetrate = 3;
             Projectile.timeLeft = 20000;
             Projectile.light = 1.75f;
-            Projectile.extraUpdates = 1;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.ignoreWater = true;
             Projectile.scale = scale;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 15;
-
-            //_trail ??= new PrimitiveTrail(TextureAssets.MagicPixel.Value, StripWidth, StripColor);
         }
         internal int stopTimer = Utils1.FormatTimeToTick(Second: 1);
         internal int graceTimeTimer = Utils1.FormatTimeToTick(Second: 0.5f);
@@ -145,37 +140,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             }
         }
 
-        int animationDelay = Utils1.FormatTimeToTick(Second: 0.3f);
+        int animationDelay = Utils1.FormatTimeToTick(Second: 0.1f);
         public void AnimateTexture()
         {
-            if (++Projectile.frameCounter >= animationDelay)
+            if (Projectile.frameCounter++ >= animationDelay)
             {
                 Projectile.frameCounter = 0;
-                if (++Projectile.frame >= Main.projFrames[Projectile.type])
+                if (Projectile.frame++ >= Main.projFrames[Projectile.type] -1)
                     Projectile.frame = 0;
             }
-        }
-        private Color StripColor(float progress)
-        {
-            Color c = Color.Lerp(
-                new Color(120, 10, 10),
-                new Color(30, 0, 0),
-                progress);
-
-            c *= 1f - progress;
-
-            return c;
-        }
-        private float StripWidth(float progress)
-        {
-            float pulse = 1f + 0.15f * (float)Math.Sin(Main.GlobalTimeWrappedHourly * 10f);
-
-            return MathHelper.Lerp(18f, 3f, progress) * pulse;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
-            // _trail.Draw(Projectile.oldPos);
             DrawBloodTrail();
             return true;
         }
@@ -205,8 +182,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                 float rotation = diff.ToRotation();
 
                 float progress = i / (float)(Projectile.oldPos.Length - 1);
-
-                //if (i == 1) Main.NewText(length.ToString());
 
                 float width = MathHelper.Lerp(0.01f, 0.02f, progress);
 

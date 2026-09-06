@@ -12,12 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Rain Token");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Jeton de pluie");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Ficha de lluvia");
-            //Tooltip.SetDefault("Summons the rain");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque la pluie");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Convoca a la lluvia ");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 
@@ -83,7 +77,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
             Main.rainTime = (int)(Main.rainTime * num3);
             RainStuff();
             Main.raining = true;
-            NetMessage.SendData(7);
+            NetMessage.SendData(MessageID.WorldData);
         }
 
         private static void RainStuff()

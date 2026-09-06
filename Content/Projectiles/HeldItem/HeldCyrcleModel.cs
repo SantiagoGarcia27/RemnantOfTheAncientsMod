@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.GameContent.Animations.IL_Actions.Sprites;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 {
@@ -12,15 +14,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
     {
         public Texture2D Texture { get; set; }
         public Color Color { get; set; }
-        public float Scale = 1;
+        public float Scale = 0;
+        public float MaxScale = 1f;
 
+        public int TimeDuration = Utils1.FormatTimeToTick(Second:1);
         public MagicCircle() { }
 
-        public MagicCircle(Texture2D texture, Color color, float Scale = 1)
+        public MagicCircle(Texture2D texture, Color color, float MaxScale = 1,int TimeDuration = 60)
         {
             this.Texture = texture;
             this.Color = color;
-            this.Scale = Scale;
+            this.MaxScale = MaxScale;
+            this.TimeDuration = TimeDuration;
         }
     }
 
@@ -38,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Projectile.penetrate = -1;
             Projectile.timeLeft = 210;
             Projectile.light = 0f;
-            Projectile.extraUpdates = 1;
+            Projectile.extraUpdates = 0;
             Main.projFrames[Projectile.type] = 3;
             Projectile.ignoreWater = true;
             Projectile.aiStyle = -1;
@@ -55,12 +60,11 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Projectile.Center = player.Center;
             //if (player.whoAmI == Main.myPlayer)
             {
-                if (++speed >= 10)
+                if (++speed >= 0)
                 {
-                    if (rotation++ >= 360)
-                    {
-                        rotation = 0;
-                    }
+                    if (rotation >= 360) rotation = 0;
+                    else rotation += 0.05f;
+                    
                     speed = 0;
                 }
                 Charge++;
@@ -112,6 +116,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                     {
                         Color colorBase = circle.Color;
                         Vector2 origin = new(circle.Texture.Width * 0.5f, circle.Texture.Height * 0.5f);
+
+                        if (circle.Scale < circle.MaxScale) circle.Scale += circle.MaxScale/circle.TimeDuration;
                         if (Projectile.ai[0] <= 170)
                         {
                             Color color = new Color(colorBase.R, colorBase.G, colorBase.B, 20);
@@ -125,10 +131,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                     {
                         Color colorBase = circle.Color;
                         Vector2 origin = new(circle.Texture.Width * 0.5f, circle.Texture.Height * 0.5f);
+
+                        if (circle.Scale < circle.MaxScale) 
+                            circle.Scale += circle.MaxScale / (circle.TimeDuration /2);
                         if (Projectile.ai[0] <= 170)
                         {
                             Color color = new Color(colorBase.R, colorBase.G, colorBase.B, 20);
-                            Main.spriteBatch.Draw(circle.Texture, Projectile.Center - Main.screenPosition, null, color, (float)rotation, origin, circle.Scale, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(circle.Texture, Projectile.Center - Main.screenPosition, null, color, (float)-rotation, origin, circle.Scale, SpriteEffects.None, 0f);
                         }
                     }
                 }

@@ -14,13 +14,16 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 	{
         public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath;
 
+        MagicCircle circle1 = null;
+        MagicCircle circle2 = null;
         public override void DrawCirclee(ref List<MagicCircle> internalCircle, ref List<MagicCircle> externalCircle)
         {
             Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_1");
             Texture2D texture2 = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_3");
-   
-            MagicCircle circle1 = new(texture, Color.Red, 1.2f);
-            MagicCircle circle2 = new(texture2, Color.DarkRed, 1.5f);
+
+            int timeDuration = (int)(180 / Projectile.ai[2]) / 4;
+            circle1 ??= new(texture, Color.Red, 1.2f,TimeDuration: timeDuration);
+            circle2 ??= new(texture2, Color.DarkRed, 1.5f, TimeDuration: timeDuration);
 
             internalCircle.Add(circle1);
             externalCircle.Add(circle2);
