@@ -112,7 +112,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect");
+            var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect_3");
             Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
 
             Color color = new Color(38, 85, 0, 50);

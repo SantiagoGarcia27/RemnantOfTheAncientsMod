@@ -1,12 +1,8 @@
 using CalamityMod;
-using FargowiltasSouls.Content.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PlayerProxyLib.Common;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
-using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
@@ -19,18 +15,14 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Desert;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -92,67 +84,37 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
             ]);
         }
-        public bool InfernumMode = DificultyUtils.InfernumMode;
 
-        private int attackCounter;
-        private bool _BossIsInRage = false;
-        private bool BossIsInRage
-        {
-            get => _BossIsInRage;
-            set
-            {
-                _BossIsInRage = value;
-                if (value) SoundEngine.PlaySound(SoundID.Roar);
-            }
-        }
+        Player CurrentTarget => auxiliaryModule.CurrentTarget;
         private bool BossActive => !CurrentTarget.dead && CurrentTarget.active;
-
         Point NpcFloor => Utils.ToTileCoordinates(NPC.Center);
-     
-        Player CurrentTarget => Main.player[NPC.target];
+      
+        DesertAnnihilator_Intro introModule = new();
+        DesertAnnihilator_Movment movmentModule = new();
+        DesertAnnihilator_Attack attackModule = new();
+        DesertAnnihilator_Aux auxiliaryModule = new();
+        DesertAnnihilator_Animation animationModule = new();
 
-        private readonly List<TornadoParticle> TornadoParticles = new();
-        public float ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-        public float SpawnerAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-        public bool NoAI = true;
-
-        public enum TextureType
-        {
-            Default,
-            Jump,
-            Shoot
-        }
-        internal TextureType _CurrentTexture = TextureType.Default;
-        public TextureType CurrentTexture
-        {
-            get => _CurrentTexture;
-            set
-            {
-                if (_CurrentTexture != value)
-                {
-                    _CurrentTexture = value;
-                    NPC.netUpdate = true;
-                }
-            }
-        }
-
+        public bool spawnGuardians = true;
         public override void AI()
         {
 
             NPC.TargetClosest(true);
-            UpdateScale();
-            UpdateAnimation();
+
+            animationModule.UpdateScale();
+            animationModule.UpdateAnimation();
+
             NPC.ai[0]++;
 
-            if (NoAI) SpawnAnimationAI();
+            if (introModule.NoAI) introModule.SpawnAnimationAI();
             
-            if (CurrentTarget == null || NoAI) return;
+            if (CurrentTarget == null || introModule.NoAI) return;
 
             CheckRage(); 
             CheckForCheating();
-            MovementAI();
+            movmentModule.MovementAI();
 
-            if (Main.netMode != NetmodeID.MultiplayerClient) AttackIA(CurrentTarget);
+            if (Main.netMode != NetmodeID.MultiplayerClient) attackModule.AttackIA(NPC, CurrentTarget);
 
             if (CurrentTarget.dead)
             {
@@ -160,184 +122,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
                 DespawnBoss();
             }
 
-            if (RemnantOfTheAncientsMod.FargosSoulMod != null) EternityIA(CurrentTarget);
-        }
-        private void SpawnAnimationAI()
-        {
-            UpdateTornado();
-            NPC.velocity = new Vector2(0, 10);
-            if (DificultyUtils.InfernumMode && ScreenAnimationTimer > 0) ScreenAnimationTimer--;
-            else ScreenAnimationTimer = 0;
-
-            if (ScreenAnimationTimer <= 0 && SpawnerAnimationTimer >= 0)
-            {
-                if (SpawnerAnimationTimer <= 0)
-                {
-                    NoAI = false;
-                    NPC.alpha = 0;
-
-                    if (Main.netMode != NetmodeID.Server) Main.LocalPlayer.GetModPlayer<CameraPlayer>().ResetCameraPosition();
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        Sandstorm.Happening = false;
-                        Sandstorm.TimeLeft = 0;
-                        Sandstorm.IntendedSeverity = (Sandstorm.Happening ? (0.4f + Main.rand.NextFloat()) : ((Main.rand.Next(3) != 0) ? (Main.rand.NextFloat() * 0.3f) : 0f));
-                        NetMessage.SendData(MessageID.WorldData);
-                    }
-                }
-                else
-                {
-                    if (NPC.alpha > 0) NPC.alpha--;
-                    if(Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        Sandstorm.Happening = true;
-                        Sandstorm.TimeLeft = (int)(3600.0 * (8.0 + (double)Main.rand.NextFloat() * 16.0));
-                        Sandstorm.IntendedSeverity = (Sandstorm.Happening ? (0.4f + Main.rand.NextFloat()) : ((Main.rand.Next(3) != 0) ? (Main.rand.NextFloat() * 0.3f) : 0f));
-                        NetMessage.SendData(MessageID.WorldData);
-                    }
-                    if (Main.netMode != NetmodeID.Server)
-                    {
-                        Vector2 cameraPos = NPC.Center;
-                        Main.LocalPlayer.GetModPlayer<CameraPlayer>().SetCameraPosition(cameraPos);
-                    }
-
-                    SpawnAnimation(NPC.alpha);
-                    SpawnerAnimationTimer--;
-
-                }
-
-            }
-        }
-
-
-        private void SpawnAnimation(int alpha)
-        {
-            for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(alpha); i++)
-            {
-                float angle = Main.rand.NextFloat(MathHelper.TwoPi);
-
-                // Ancho del tornado
-                float radius = Main.rand.NextFloat(25f, 75f);
-
-                // Posición vertical
-                float height = Main.rand.NextFloat(-NPC.height * 1.2f, NPC.height * 1.2f);
-
-                // Posición inicial siguiendo una elipse horizontal
-                Vector2 position = NPC.Center + new Vector2(
-                    MathF.Cos(angle) * radius,
-                    height
-                );
-
-                int dustid = Main.rand.Next(0, 4) switch
-                {
-                    0 => DustID.Smoke,
-                    1 => DustID.Sandnado,
-                    2 => DustID.Sandstorm,
-                    3 => DustID.Sandstorm,
-                    _ => DustID.SandstormInABottle
-                };
-                Dust dust = Dust.NewDustPerfect(
-                    position,
-                    dustid
-                );
-
-                dust.noGravity = true;
-                dust.velocity = Vector2.Zero;
-                dust.scale = Main.rand.NextFloat(1.2f, 2.2f);
-                dust.alpha = 30;
-
-                TornadoParticles.Add(new TornadoParticle
-                {
-                    Dust = dust,
-
-                    Angle = angle,
-                    Radius = radius,
-                    Height = height,
-
-                    RotationSpeed = Main.rand.NextFloat(0.035f, 0.09f),
-                    VerticalSpeed = Main.rand.NextFloat(0.3f, 0.8f),
-
-                    Lifetime = 0,
-                    MaxLifetime = Main.rand.Next(45, 80)
-                });
-            }
-        }
-        private void UpdateTornado()
-        {
-            for (int i = TornadoParticles.Count - 1; i >= 0; i--)
-            {
-                TornadoParticle p = TornadoParticles[i];
-
-                if (p.Dust == null || !p.Dust.active)
-                {
-                    TornadoParticles.RemoveAt(i);
-                    continue;
-                }
-
-                p.Lifetime++;
-
-                // Girar alrededor del eje horizontal
-                p.Angle += p.RotationSpeed;
-
-                // Subir lentamente
-                p.Height -= p.VerticalSpeed;
-
-                // Cuando llega demasiado arriba,
-                // vuelve abajo para mantener el flujo continuo.
-                if (p.Height < -NPC.height * 1.2f)
-                {
-                    p.Height = NPC.height * 1.2f;
-                }
-
-                /*
-                 * La parte importante:
-                 *
-                 * El radio cambia según la altura.
-                 * Cerca del centro es estrecho,
-                 * arriba y abajo se abre.
-                 */
-                float normalizedHeight = MathHelper.Clamp(Math.Abs(p.Height) / (NPC.height * 1.2f),0f, 1f);
-
-
-                //Tamaño de ancho primer numero es minimo y el segundo maximo
-                float minAncho = Main.rand.NextFloat(10f, 50f) * NPC.scale;
-                float maxAncho = Main.rand.NextFloat(80f, 90f) * NPC.scale;
-                float currentRadius = MathHelper.Lerp(minAncho, maxAncho, normalizedHeight);//15 85
-
-                Vector2 offset = new Vector2(MathF.Cos(p.Angle) * currentRadius,p.Height);
-
-                p.Dust.position = NPC.Center + offset;
-
-                // Evitamos que el Dust se vaya por su cuenta.
-                p.Dust.velocity = Vector2.Zero;
-
-                // Fade
-                float fadeIn = MathHelper.Clamp(p.Lifetime / 10f, 0f, 1f);
-                float fadeOut = MathHelper.Clamp(
-                    (p.MaxLifetime - p.Lifetime) / 15f,
-                    0f,
-                    1f
-                );
-
-                p.Dust.scale *= 0.98f;
-
-                p.Dust.color = Color.White * (fadeIn * fadeOut);
-
-                if (p.Lifetime >= p.MaxLifetime)
-                {
-                    p.Dust.active = false;
-                    TornadoParticles.RemoveAt(i);
-                    continue;
-                }
-
-                TornadoParticles[i] = p;
-            }
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null) attackModule.EternityIA(NPC, CurrentTarget);
         }
 
         void CheckRage()
         {
             bool rage = BossActive && !CurrentTarget.ZoneDesert && !CurrentTarget.ZoneUndergroundDesert;
-            if (BossIsInRage != rage) BossIsInRage = rage;
+            if (auxiliaryModule.BossIsInRage != rage) auxiliaryModule.BossIsInRage = rage;
         }
 
         #region Anticheat
@@ -350,9 +141,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             float distanceToTarget = NPC.Distance(CurrentTarget.Center);
             if (distanceToTarget >= ForceTpDistance && !Reaper.ReaperMode)
             {
-                GenerateTpParticles();
+                attackModule.GenerateTpParticles();
                 NPC.velocity = Vector2.Zero;
-                DesertTp();
+                attackModule.DesertTp();
             }
 
             if (Main.tile[NpcFloor.X, NpcFloor.Y + 1].LiquidAmount > 0)
@@ -360,381 +151,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
                 Point PlayerFloor = Utils.ToTileCoordinates(CurrentTarget.Center);
                 if (Main.tile[PlayerFloor.X, PlayerFloor.Y + 1].LiquidAmount == 0)
                 {
-                    GenerateTpParticles();
-                    DesertTp();
+                    attackModule.GenerateTpParticles();
+                    attackModule.DesertTp();
                 }
             }
         }
 
         #endregion
 
-
-        #region Movement
-        float inertia => 1.3f;//0.95f;
-        public void MovementAI()
-        {
-            ResetNPCFrameAndRotation();
-
-            // Handle behavior when NPC is wet
-            if (NPC.wet) HandleWetBehavior();
-
-            // Reset aiAction and set ai[2] if ai[2] is 0f
-            InitializeTargeting();
-
-            // Handle movement when NPC velocity.Y is 0f
-            if (NPC.velocity.Y == 0f)
-            {
-                if (NPC.collideY && NPC.oldVelocity.Y != 0f && Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
-                {
-                    NPC.position.X -= NPC.velocity.X + NPC.direction;
-                }
-
-                if (NPC.ai[3] == NPC.position.X)
-                {
-                    NPC.direction *= -1;
-                    NPC.ai[2] = 200f;
-                }
-
-                NPC.ai[3] = 0f;
-                NPC.velocity.X *= inertia;
-
-                if (Math.Abs(NPC.velocity.X) < 0.1) NPC.velocity.X = 0f;
-
-                int jumpType = Main.rand.NextBool(4) ? 3 : 2;
-
-                //UpdateAnimation(TextureType.Jump);
-
-                HandlejumpTypeBehavior(jumpType);
-
-                
-            }
-            else if (NPC.target < 255 && ((NPC.direction == 1 && NPC.velocity.X < 3f) || (NPC.direction == -1 && NPC.velocity.X > -3f)))
-            {
-                HandleXMovement();
-            }
-        }
-
-
-        // Handles resetting NPC frame and rotation
-        private void ResetNPCFrameAndRotation()
-        {
-            //NPC.frame.Y = 0;
-            //NPC.frameCounter = 0.0;
-            NPC.rotation = 0f;
-        }
-
-        // Handles behavior when NPC is wet
-        private void HandleWetBehavior()
-        {
-            if (NPC.collideY) NPC.velocity.Y = -2f;
-
-            if (NPC.velocity.Y < 0f && NPC.ai[3] == NPC.position.X)
-            {
-                NPC.direction *= -1;
-                NPC.ai[2] = 200f;
-            }
-            if (NPC.velocity.Y > 0f) NPC.ai[3] = NPC.position.X;
-            if (NPC.velocity.Y > 2f) NPC.velocity.Y *= 0.9f;
-
-            NPC.velocity.Y -= 0.5f;
-            if (NPC.velocity.Y < -4f) NPC.velocity.Y = -4f;
-            if (NPC.ai[2] == 1f) NPC.TargetClosest();
-
-        }
-
-        // Handles resetting aiAction and setting ai[0] and ai[2]
-        private void InitializeTargeting()
-        {
-            NPC.aiAction = 0;
-            if (NPC.ai[2] == 0f)
-            {
-                NPC.ai[2] = 1f;
-                NPC.TargetClosest();
-            }
-        }
-
-        // Handles behavior based on the value of num34
-
-        private void HandlejumpTypeBehavior(int jumpType)
-        {
-            NPC.netUpdate = true;
-
-            if (NPC.ai[2] == 1f) NPC.TargetClosest();
-
-            if (jumpType == 3)
-            {
-                NPC.velocity.Y = -8f;
-                NPC.velocity.X += 3 * NPC.direction;
-                NPC.ai[3] = NPC.position.X;
-            }
-            else
-            {
-                NPC.velocity.Y = -6f;
-                NPC.velocity.X += 2 * NPC.direction;
-
-            }
-        }
-
-        // Handles X movement logic
-        private void HandleXMovement()
-        {
-            if (NPC.collideX && Math.Abs(NPC.velocity.X) == 0.2f)
-            {
-                NPC.position.X -= 1.4f * NPC.direction;//1.4
-            }
-
-            if (NPC.collideY && NPC.oldVelocity.Y != 0f && Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
-            {
-                NPC.position.X -= NPC.velocity.X + NPC.direction;
-            }
-
-            float acceleration = 0.6f * Main.player[NPC.target].maxRunSpeed;
-            float deceleration = 0.97f;
-
-            if ((NPC.direction == -1 && NPC.velocity.X < 0.01f) || (NPC.direction == 1 && NPC.velocity.X > -0.01f))
-            {
-                NPC.velocity.X += acceleration * NPC.direction;
-            }
-            else
-            {
-                NPC.velocity.X *= deceleration;
-            }
-        }
-        #endregion
         #region Attacks
 
-        
-        private void AttackIA(Player target)
-        {     
-            TornadoAI();
-
-            if (Main.expertMode)
-            {
-                ShootAI(target);
-            }
-
-            
-        }
-
-        public int shootTimeline = -1;
-        int shootTimelineMax = -1;
-        public void ShootAI(Player target)
-        {
-            shootTimelineMax = GetMaxShootTimeline();
-            if (shootTimeline++ >= shootTimelineMax) shootTimeline = 0;
-
-            ShootData data = new()
-            {
-                type = Reaper.ReaperMode ? NPCType<DesertTyphoonParry>() : ProjectileType<DesertTyphoon>(),
-                projectileType = Reaper.ReaperMode ? ShootData.ProjectileType.NPC : ShootData.ProjectileType.Projectile
-            };
-
-            ShootManager(timePercent: 10, () => ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: Main.rand.Next(-20, 20)));
-
-            ShootManager(timePercent: 50, () => 
-                {
-                    for (int i = -1; i <= 1; i++)
-                        ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-20, 20));
-                });
-            
-            if(BossIsInRage)
-            {
-                ShootManager(timePercent: 80, () =>
-                {
-                    for (int i = -2; i <= 2; i++)
-                        ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 30));
-                });
-                ShootManager(timePercent: 85, () =>
-                {
-                    for (int i = -2; i <= 2; i++)
-                        ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 30));
-                });
-                ShootManager(timePercent: 90, () =>
-                {
-                    for (int i = -2; i <= 2; i++)
-                        ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 30));
-                });
-            }
-
-            if (shootTimeline == MathUtils.GetValueFromPorcentage(shootTimelineMax, 40)) DesertTp();
-
-            if (shootTimeline.Between(
-                (int)MathUtils.GetValueFromPorcentage(shootTimelineMax, 39) - 60, 
-                (int)MathUtils.GetValueFromPorcentage(shootTimelineMax, 40) - 1, inclusive: true))
-            GenerateTpParticles();
-        }
-        private void ShootManager(int timePercent, Action shootMethod)
-        {
-            float timeMark = MathUtils.GetValueFromPorcentage(shootTimelineMax, timePercent);
-            float timeMarkTelegraph = timeMark - Utils1.FormatTimeToTick(Second: 1);
-            if (shootTimeline == timeMarkTelegraph) CurrentTexture = TextureType.Shoot;
-            if (shootTimeline == timeMark)
-            {
-                shootMethod();
-                CurrentTexture = TextureType.Default;
-            }
-        }
-
-        private int GetMaxShootTimeline()
-        {
-            int maxTimeline = Utils1.FormatTimeToTick(Second: 10);
-            if (Reaper.ReaperMode) maxTimeline -= Utils1.FormatTimeToTick(0, 0, 0, 2);
-            if (BossIsInRage || InfernumMode) maxTimeline -= Utils1.FormatTimeToTick(0, 0, 0, 4);
-            return maxTimeline;
-        }
-
-        
-        private List<int> lightSpawn =
-        [
-            NPCID.Antlion,
-            NPCID.FlyingAntlion,
-            NPCID.WalkingAntlion,
-            NPCID.TombCrawlerHead,
-        ];
-
-        private List<int> heavySpawn =
-        [
-            NPCID.Antlion,
-            NPCID.GiantFlyingAntlion,
-            NPCID.GiantWalkingAntlion,
-            NPCID.DuneSplicerHead,
-        ];
-
-        int tornadoInterval = Utils1.FormatTimeToTick(Second: 8);
-        int markDelay 
-        {
-            get{
-                if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode) return 1;
-                if (DificultyUtils.InfernumMode || DificultyUtils.LegendaryMode) return 1;
-                if (DificultyUtils.ReaperMode || DificultyUtils.Revengeance || DificultyUtils.Death) return 2;
-                return 3;
-            }
-        }
-        int markDelayTicks => Utils1.FormatTimeToTick(Second: markDelay);
-        int tornadoCounter2 = Utils1.FormatTimeToTick(Second: 8);
-        int spawnIndex = 0;
-        List<(Vector2 Position, int Timer)> pendingTornados = [];
-
-        public void TornadoAI()
-        {
-            tornadoCounter2--;
-
-            if (tornadoCounter2 <= 0)
-            {
-                tornadoCounter2 = tornadoInterval;
-
-                int numberOfTornados = DificultyUtils.ReaperMode ? 3 : 1;
-
-                for (int i = 0; i < numberOfTornados; i++)
-                {
-                    float randomX = Main.rand.NextBool()
-                        ? Main.rand.Next(-50, -20).ToCoordinatePosition()
-                        : Main.rand.Next(20, 50).ToCoordinatePosition();
-
-                    float randomY = NPC.Bottom.Y + Main.rand.Next(-3, 3).ToCoordinatePosition();
-
-                    Vector2 spawnPosition = new(CurrentTarget.Center.X + randomX,randomY);
-
-                    Projectile.NewProjectile(Projectile.GetSource_None(), spawnPosition, Vector2.Zero,ModContent.ProjectileType<SandnadoMarkClone>(),0,0,Main.myPlayer,ai0: markDelay);
-
-                    pendingTornados.Add((spawnPosition, markDelayTicks));      
-                }
-
-                foreach (Player player in Main.player)
-                {
-                    if (!player.active || player.dead || player.ghost || player.IsProxyPlayer()) continue;
-                    Vector2 pos = player.position;
-                    Projectile.NewProjectile(Projectile.GetSource_None(), pos, Vector2.Zero, ModContent.ProjectileType<SandnadoMarkClone>(), 0, 0, Main.myPlayer, ai0: markDelay);
-
-                    pendingTornados.Add((pos, markDelayTicks));
-                }
-            }
-            else if(tornadoCounter2 < Utils1.FormatTimeToTick(Second: 1) && tornadoCounter2 > 0) CurrentTexture = TextureType.Shoot;
-
-            // Actualizar cada tornado pendiente
-            for (int i = pendingTornados.Count - 1; i >= 0; i--)
-            {
-                var tornado = pendingTornados[i];
-                tornado.Timer--;
-
-                int enemyId = Reaper.ReaperMode || Main.masterMode ? heavySpawn[spawnIndex] : lightSpawn[spawnIndex];
-                if (tornado.Timer <= 0)
-                {
-                    int index = NPC.NewNPC(NPC.GetSource_FromAI(), (int)tornado.Position.X, (int)tornado.Position.Y - 16, enemyId);
-                    int vidaMax = (int)(Main.npc[index].lifeMax * 0.75f);
-                    Main.npc[index].lifeMax = vidaMax;
-                    Main.npc[index].life = vidaMax;
-
-                    pendingTornados.RemoveAt(i);
-                    CurrentTexture = TextureType.Default;
-                }
-                else
-                {
-                    pendingTornados[i] = tornado;
-                }
-            }
-            if (spawnIndex++ >= lightSpawn.Count - 1) spawnIndex = 0;
-        }
-
-        public int GetFinalStagePorcentage()
-        {
-            if (DificultyUtils.MasochistMode) return 15;
-            if (DificultyUtils.EternityMode || DificultyUtils.InfernumMode) return 10;
-            return 5;
-        }
-        [JITWhenModsEnabled("FargowiltasSouls")]
-        public void EternityIA(Player player)
-        {
-            if (!DificultyUtils.MasochistMode && !DificultyUtils.EternityMode) return;
-            
-            if (attackCounter == Utils1.FormatTimeToTick(0, 0, 0, 7))
-            {
-                NPC.netUpdate = true;
-
-                if (Main.netMode != NetmodeID.MultiplayerClient)  
-                    Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "GlowRing"), 0, 0f, Main.myPlayer, NPC.whoAmI, -19);
-
-                if (NPC.HasValidTarget)  
-                    SoundEngine.PlaySound(in SoundID.ForceRoarPitched, Main.player[NPC.target].Center);
-                    
-            }
-            if (attackCounter == Utils1.FormatTimeToTick(0, 0, 0, 7) - 10)
-            {
-                float ofset = 100f.ToCoordinatePosition();
-                float ofsetY = player.position.Y - ofset;
-
-                Vector2 start = new(player.position.X - ofset, ofsetY);
-                Vector2 end = new(player.position.X + ofset, ofsetY);
-
-                int numberOfProjectiles = DificultyUtils.EternityMode ? 40 : 80;
-
-                List<Vector2> points = GeneratePoints(start, end, numberOfProjectiles);
-
-                int damage = 100;
-                int proj = RemnantOfTheAncientsMod.ParticleMeterChoice() ? ProjectileID.RollingCactus : ProjectileType<CactusBoulderClone>();
-
-                foreach (var point in points)
-                {
-                    var p = Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(point.X, point.Y + (100f * 16)), Vector2.Zero, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "WOFReticle"), 0, 0f, Main.myPlayer);
-                    Main.projectile[p].scale = 0.5f;
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), point, Vector2.Zero,proj, damage, 0f, Main.myPlayer);
-                }
-                static List<Vector2> GeneratePoints(Vector2 start, Vector2 end, int pointCount)
-                {
-                    List<Vector2> points = [];
-
-                    for (int i = 0; i < pointCount; i++)
-                    {
-                        float t = i / (float)(pointCount - 1);
-                        Vector2 point = Vector2.Lerp(start, end, t);
-                        points.Add(point);
-                    }
-
-                    return points;
-                }
-            }    
-        }
-        public bool spawnGuardians = true;
+       
+       
         public override void HitEffect(NPC.HitInfo hit)
         {
             SpawnAddsOnHit();
@@ -752,10 +180,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         }
         private void SpawnAddsOnHit()
         {
-            if (InfernumMode) InfernumHitEffect();
+            if (DificultyUtils.InfernumMode) InfernumHitEffect();
             
             int choice = Main.rand.Next(2, 8);
-            if (Reaper.ReaperMode || BossIsInRage) choice *= 2;
+            if (Reaper.ReaperMode || auxiliaryModule.BossIsInRage) choice *= 2;
             
             if (!Main.rand.NextBool(5)) return;
 
@@ -774,126 +202,28 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X - offset, (int)NPC.position.Y, NPCType<DesertAnnihilatorGuard>());
             spawnGuardians = false;
         }
-
-        public static Vector2 GetSecurePosition(Vector2 position)
-        {
-            Vector2 newPos;
-            int blockIncrement = 0;
-
-            position = new (Math.Abs(position.X), Math.Abs(position.Y));
-
-            if (!CoordHasTile(position) && !CoordHasLiquid(position)) return position;
-
-            do
-            {
-                float positionY = position.Y - (blockIncrement++).ToCoordinatePosition();
-                newPos = new(position.X, positionY);
-            } while (CoordHasTile(newPos) || CoordHasLiquid(newPos));
-
-            if (newPos.Y < 0) newPos.Y *= -1;
-            return newPos;   
-        }
-        public static bool CoordHasTile(Vector2 pos) => Collision.SolidCollision(pos, 6 * 16, 6 * 16);
-        public static bool CoordHasLiquid(Vector2 pos)
-        {
-            if (Collision.LavaCollision(pos, 6 * 16, 6 * 16) || Collision.WetCollision(pos, 6 * 16, 6 * 16)) return true;
-            if (Main.tile[(new Point((int)pos.X / 16, (int)(pos.Y - 5 * 16) / 16))].LiquidAmount > 0) return true;
-            return false;
-        }
-        public void DesertTp()
-        {
-            NPC.alpha = 0;
-            int tpDirection = Main.rand.NextBool() ? -1 : 1;
-            Vector2 tileDistance = new(30f, -5f); 
-            Vector2 tpDistance = new Vector2(tileDistance.X,tileDistance.Y).ToCoordenatePosition();
-            NPC.Center = GetSecurePosition(Main.player[NPC.target].Center + new Vector2(tpDirection * tpDistance.X, tpDistance.Y));
-            GenerateTpParticles(appear: true);
-        }
-
-        public void GenerateTpParticles(bool appear = false)
-        {
-            int particleCount = RemnantOfTheAncientsMod.ParticleMeter(45);//25
-
-            int width = (int)(NPC.width * NPC.scale);
-            int height = (int)(NPC.height * NPC.scale);
-            if (!appear) NPC.alpha = 150;
-          
-                
-            for (int i = 0; i < particleCount; i++)
-            {
-                Vector2 dustPosition = NPC.position - new Vector2(Main.rand.Next(width/2), Main.rand.Next(height/2));
-                Dust dust = Dust.NewDustDirect(dustPosition, width, height, DustID.Sand, 0, 0, 100, default, 3f);
-                dust.velocity = NPC.velocity * 0.2f;
-                dust.noGravity = true;
-            }
-            
-        }
-        private void UpdateScale()
-        {
-            NPC.scale = LifeSize(NPC);
-            int oldCenterX = (int)NPC.Center.X;
-            int oldCenterY = (int)NPC.Center.Y;
-
-            NPC.width = (int)(originalSize.X * NPC.scale);
-            NPC.height = (int)(originalSize.Y * NPC.scale);
-
-            NPC.Center = new Vector2(oldCenterX, oldCenterY);
-        }
-
-        private float LifeSize(NPC npc)
-        {
-            float percentage = MathUtils.GetPorcentage(npc.life, npc.lifeMax);
-            float maxValue = 1.25f;
-
-            if (DificultyUtils.MasochistMode) maxValue = 4f;
-            else if (DificultyUtils.EternityMode) maxValue = 2.5f;
-            else if(DificultyUtils.InfernumMode) maxValue = 2.3f;
-            else if(DificultyUtils.Death) maxValue = 2f;
-            else if(DificultyUtils.Revengeance || Reaper.ReaperMode) maxValue = 1.5f;
-            else if(Main.masterMode) maxValue = 1.35f;
-            else if(Main.expertMode) maxValue = 1.3f;
-            return ApplyLifeSize(percentage, maxValue);
-        }
-
-        private float ApplyLifeSize(float percentage, float maxValue)
-        {
-            float valorMinimo = MathUtils.GetValueFromPorcentage(maxValue, 30);
-
-            if (percentage < 0 || percentage > 100) return valorMinimo;
-
-            float valorActual = MathUtils.GetValueFromPorcentage(maxValue, percentage);
-            return Math.Max(valorActual, valorMinimo);
-        }
-
+      
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(attackCounter);
+            writer.Write(introModule.NoAI);
+            writer.Write(introModule.ScreenAnimationTimer);
+            writer.Write(introModule.SpawnerAnimationTimer);
+
+            writer.Write((byte)animationModule.CurrentTexture);
+            writer.Write(auxiliaryModule.BossIsInRage);
+            writer.Write(spawnGuardians);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            attackCounter = reader.ReadInt32();
-        }
+            introModule.NoAI = reader.ReadBoolean();
+            introModule.ScreenAnimationTimer = reader.ReadSingle();
+            introModule.SpawnerAnimationTimer = reader.ReadSingle();
 
-        public void ShootHelper(int dammage, ShootData shoot, Player player, float Speed, float rotationGrades = 0f)
-        {
+            animationModule.CurrentTexture = (DesertAnnihilator_Animation.TextureType)reader.ReadByte();
 
-            Vector2 direction = player.Center - NPC.Center;
-            direction.Normalize();
-            direction = direction.RotatedBy(MathHelper.ToRadians(rotationGrades));
-            direction *= Speed;
-            
-
-            if (shoot.projectileType == ShootData.ProjectileType.Projectile)
-            {      
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, direction, shoot.type, dammage, 0f, Main.myPlayer);
-            }
-            else if(shoot.projectileType == ShootData.ProjectileType.NPC) 
-            {
-                var n = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, shoot.type);
-                Main.npc[n].lifeMax = 10;
-                Main.npc[n].damage = dammage;
-                Main.npc[n].velocity = direction;
-            }
+            // Idealmente asignar un campo interno, sin disparar sonido.
+            auxiliaryModule.BossIsInRage = reader.ReadBoolean();
+            spawnGuardians = reader.ReadBoolean();
         }
 
         int despawnCounter = 0;
@@ -902,7 +232,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         {
             NPC.velocity = new Vector2(0,3);
             NPC.EncourageDespawn(7);
-            if (despawnCounter > Utils1.FormatTimeToTick(0, 0, 0, 0.3f)) GenerateTpParticles();
+            if (despawnCounter > Utils1.FormatTimeToTick(0, 0, 0, 0.3f)) attackModule.GenerateTpParticles();
             if (despawnCounter++ >= despawnCounterMax) NPC.Center = new(0,0);
             return;
         }
@@ -913,103 +243,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         {
             if (Main.rand.NextBool(3)) target.AddBuff(BuffType<Burning_Sand>(), 100, true);
         }
-
-        readonly Dictionary<TextureType, List<int>> framesTypes = new() {
-            {TextureType.Default, [0] },
-            {TextureType.Jump, [1,2] },
-            {TextureType.Shoot, [3,4,5] }
-        };
-
-        public void UpdateCounte()
-        {
-            List<int> frames;
-            if(!framesTypes.ContainsKey(CurrentTexture)) return;
-
-            
-
-            if (NPC.ai[0] % 10 == 0) auraFrameCounter++;
-            if (auraFrameCounter >= 3) auraFrameCounter = 0;
-        }
-        int frame = 0;
-
-        public void UpdateAnimation()
-        {
-            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(base.Texture);
-            /* int frameHeight = Texture.Height / Main.npcFrameCount[NPC.type];
-             int frame = (int)(NPC.frame.Y / frameHeight);*/
-
-         
-            if(NPC.ai[0] % 5 == 0) if(auraFrameCounter++ == auraFrameAmmount - 1) auraFrameCounter = 0;
-
-
-            if (NPC.ai[0] % 10 != 0) return;
-
-
-            if (CurrentTexture == TextureType.Shoot)
-            {
-                if (frame == 0 || frame == 5) frame = 3;
-                else if (frame == 3) frame = 4;
-                else if (frame == 4) frame = 5;
-            }
-            else if (CurrentTexture == TextureType.Default) frame = 0;
-            else frame = 0;
-            /* else if(type == TextureType.Jump)
-             {
-                 if (NPC.TouchFlour() && (frame == 0 || frame >= 4)) frame = 1;
-                 else
-                 {
-                     if (frame == 1) frame++;
-                     //if (frame == 2) frame = 0;
-                 }
-             }*/
-           
-
-            NPC.frame.Y = (Texture.Height / Main.npcFrameCount[NPC.type]) * frame;
-        }
+        
+        
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (NPC.IsABestiaryIconDummy) return true;
-       
-            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
-            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
-            Color color = NPC.GetAlpha(drawColor);
-           
-            Vector2 position = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
-            Vector2 origin = NPC.frame.Size() * 0.5f;
-            Main.EntitySpriteDraw(Texture, position, NPC.frame, color, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0);
-
-            return false;
+            string a = base.Texture;
+            return animationModule.PreDraw(spriteBatch, screenPos, drawColor);       
         }
 
-        int auraFrameCounter = 0;
-        int auraFrameAmmount = 6;
+        
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            //Aura
-            Texture2D TextureAura = (Texture2D)ModContent.Request<Texture2D>(base.Texture+ "_Aura");
-
-            int heightPerFrame = TextureAura.Height / auraFrameAmmount;
-            Rectangle auraFrame = new Rectangle(x: 0, y: heightPerFrame * auraFrameCounter, width: TextureAura.Width, height: heightPerFrame);
-            Color colorAura = NPC.GetAlpha(drawColor);
-            Vector2 positionAura = NPC.Center - Main.screenPosition + new Vector2(0f, (NPC.gfxOffY + NPC.height/10));
-            Vector2 originAura = auraFrame.Size() * 0.5f;
-            Main.EntitySpriteDraw(TextureAura, positionAura, auraFrame, colorAura, NPC.rotation, originAura, NPC.scale, SpriteEffects.None, 0);
-
-            Texture2D TextureCore = (Texture2D)ModContent.Request<Texture2D>(base.Texture + "_Core");
-            Color colorCore = NPC.GetAlpha(drawColor);
-            Vector2 positionCore = NPC.Center - Main.screenPosition + new Vector2(0f, (NPC.gfxOffY + NPC.height / 10));
-            Vector2 originCore = TextureCore.Size() * 0.5f; 
-            Main.EntitySpriteDraw(TextureCore, positionCore, null, colorCore, NPC.rotation, originCore, NPC.scale, SpriteEffects.None, 1);
-
+            animationModule.PostDraw(spriteBatch, screenPos, drawColor);
             base.PostDraw(spriteBatch, screenPos, drawColor);
         }
 
-        Vector2 originalSize = new();
+        
         public override void OnSpawn(IEntitySource source)
         {
-            ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-            originalSize.X = NPC.width;
-            originalSize.Y = NPC.height;
+            auxiliaryModule.npc = NPC;
+            attackModule.npc = NPC;
+            attackModule.auxiliaryModule = auxiliaryModule;
+            attackModule.animationModule = animationModule;
+            movmentModule.npc = NPC;
+            introModule.npc = NPC;
+            animationModule.npc = NPC;
+
+
+            introModule.ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+            animationModule.setOriginalSize(NPC.Size);
+
             spawnGuardians = true;
             NPC.alpha = 255;
             base.OnSpawn(source);
@@ -1041,34 +304,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             npcLoot.Add(ItemDropRule.BossBag(ItemType<desertBag>()));
             if (DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ItemType<Desert_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Desert_Relic>()));
-
         }
-    }
-
-    public class ShootData
-    {
-        public int type { get; set; }
-        public ProjectileType projectileType { get; set; }
-
-        public enum ProjectileType
-        {
-            Projectile = 0,
-            NPC = 1,
-        }
-    }
-
-    public class TornadoParticle
-    {
-        public Dust Dust;
-
-        public float Angle;
-        public float Radius;
-        public float Height;
-
-        public float RotationSpeed;
-        public float VerticalSpeed;
-
-        public int Lifetime;
-        public int MaxLifetime;
-    }
+    }   
 }

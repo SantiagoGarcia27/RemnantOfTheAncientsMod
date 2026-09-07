@@ -126,7 +126,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
                 Main.projectile[p].scale = item.scale;
                 Main.projectile[p].timeLeft = 100;
 
-                for (int i = 0; i < 50; i++)
+                for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(20); i++)
                 {
                     Dust dust = Dust.NewDustDirect(player.position, player.width, player.height, DustID.Torch, 0f, 0f, 100, default, 2f);
                     dust.noGravity = true;
@@ -197,10 +197,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             }
             else if (item.type == ModContent.ItemType<FireSaber>())
             {
-                for (int i = 0; i < 30; i++)
-                {
-                    Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
-                }
+                Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
             }
 
             base.MeleeEffects(item, player, hitbox);

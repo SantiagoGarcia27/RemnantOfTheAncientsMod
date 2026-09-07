@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
                 Item.useTime = 10;
                 Item.useAnimation = 18;
                 Item.shoot = ProjectileID.PurificationPowder;
-                Item.shootSpeed = 15f;
+                Item.shootSpeed = 10f;
                 Item.UseSound = SoundID.Item12;
             }
             else if (player.altFunctionUse == 2)
@@ -85,13 +85,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
             {
                 int ColorId = Utils1.GetColorID(Color.Red);
                 Projectile.NewProjectile(source, position, velocity * 10, ModContent.ProjectileType<GenericDamageBream>(), damage, knockback, player.whoAmI, 0, ColorId);
-
+                
                 return false;
             }
 
             if (type == ProjectileID.PurificationPowder)
             {
-                Projectile.NewProjectile(source, position, velocity * 10, ModContent.ProjectileType<CursedBream>(), damage, knockback, player.whoAmI,0);
+                int p = Projectile.NewProjectile(source, position, velocity * 10, ModContent.ProjectileType<CursedBream>(), damage, knockback, player.whoAmI,0);
                 return false;
             }
             return base.Shoot(player, source, position, velocity, type, damage, knockback);

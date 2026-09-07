@@ -122,7 +122,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
     {
         public override Color color => Color.Purple;
         public override int ProjId => ProjectileID.PurpleLaser;
-
+        public override void SetDefaults()
+        {
+            Projectile.CloneDefaults(ProjId);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.tileCollide = true;
+            Projectile.penetrate = 1;
+            Projectile.knockBack = 1f;
+            AIType = ProjId;
+        }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.CursedInferno, 120);

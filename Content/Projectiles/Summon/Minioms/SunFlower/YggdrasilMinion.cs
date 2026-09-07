@@ -1,7 +1,9 @@
+using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -16,7 +18,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Yggdrasil Minion");
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
@@ -50,10 +51,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         public int DefenseBonus = 15;
         public float DamageBonus = 1.10f;
         public float DamageReductionBonus = 0.05f;
+
+
+        float Interpolation = 0.5f;
+        float InterpolationOpacity = 0.5f;
+        bool IncreaseInterpolation = true;
+        bool IncreaseInterpolationOpacity = true;
+        float AuraRotation = 0f;
         public override void AI()
         {
             Projectile.Size = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width, TextureAssets.Projectile[Projectile.type].Value.Height /3.1f);
             Player player = Main.player[Projectile.owner];
+
             CheckActive(player);
             Projectile.velocity = new Vector2(0, 7f);
             if(HealTimmer == 0)
@@ -68,6 +77,21 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
             {
                 AnimateTexture();
             }
+
+            if (HealTimmer % 3 == 0)
+            {
+                if (Interpolation >= 1f) IncreaseInterpolation = false;
+                if (Interpolation <= 0f) IncreaseInterpolation = true;
+                Interpolation += 0.1f * (IncreaseInterpolation ? 1f : -1f);
+            }
+            if (HealTimmer % 4 == 0)
+            {
+                if (InterpolationOpacity >= 1f) IncreaseInterpolationOpacity = false;
+                if (InterpolationOpacity <= 0f) IncreaseInterpolationOpacity = true;
+                InterpolationOpacity += 0.01f * (IncreaseInterpolationOpacity ? 1f : -1f);
+            }
+            AuraRotation += 0.01f;
+
             for (int p = 0; p < Main.maxPlayers; p++)
             {
                 bool playerAvalible = Main.player[p].active && !Main.player[p].dead;
@@ -113,16 +137,29 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
                 Projectile.timeLeft = 2;
             }
         }
+        Color auraColor;
+
+        float waveScale = 0f;
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect");
-            Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+            var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect_Ygdrasil");
+           // Vector2 origin = new Vector2(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5
+            Vector2 origin = texture.Size() * 0.5f;
 
-            Color color = new Color(38, 85, 0, 50);
-            Main.EntitySpriteDraw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, color, 0f, origin, 4.5f, SpriteEffects.None, 1f);
+            auraColor = Color.Lerp(new Color(48, 107, 0, 0), new Color(42, 89, 4, 1), Interpolation);
+            auraColor *= float.Lerp(0.3f,0.5f, Interpolation);
+            Main.EntitySpriteDraw((Texture2D)texture, Projectile.Center - Main.screenPosition, null, auraColor, AuraRotation, origin, 4.5f, SpriteEffects.None, 1f);//4.5
+
+            if (waveScale < 3.5) waveScale += 0.01f;
+            else waveScale = 0f;
+
+            var textureWave = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect_Wave");
+            Main.EntitySpriteDraw((Texture2D)textureWave, Projectile.Center - Main.screenPosition, null, auraColor, AuraRotation, origin, waveScale, SpriteEffects.None, 1f);
 
             return true;
         }
+
+      
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
         {
             overPlayers.Add(index);

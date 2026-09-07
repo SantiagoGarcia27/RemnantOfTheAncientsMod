@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
                     for (int i = 0; i <RemnantOfTheAncientsMod.ParticleMeter(20); i++)
                     {
                         Vector2 dustPos = player.position - new Vector2(24, 24) + offset + new Vector2(60, 0).RotatedBy(MathHelper.ToRadians(18 * i));
-                        var d = Dust.NewDustPerfect(dustPos, 172, Vector2.Zero);
+                        var d = Dust.NewDustPerfect(dustPos, DustID.DungeonWater, Vector2.Zero);
                         d.noGravity = true;
                     }
                     break;
