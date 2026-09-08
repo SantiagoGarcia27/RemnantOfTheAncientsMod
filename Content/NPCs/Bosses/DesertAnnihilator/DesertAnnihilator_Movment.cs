@@ -4,6 +4,11 @@ using Terraria;
 class DesertAnnihilator_Movment
 {
     public NPC npc { get; set; }
+
+    public DesertAnnihilator_Movment(NPC npc)
+    {
+        this.npc = npc;
+    }
     float inertia => 1.3f;//0.95f;
     public void MovementAI()
     {

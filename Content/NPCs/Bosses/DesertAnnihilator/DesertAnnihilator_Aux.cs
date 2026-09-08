@@ -9,7 +9,7 @@ class DesertAnnihilator_Aux
 {
     public NPC npc {  get; set; }
 
-    public Player CurrentTarget => Main.player[npc.target];
+    public Player CurrentTarget => npc != null ? Main.player[npc.target] : Main.player[0];
     private bool _BossIsInRage = false;
     public bool BossIsInRage
     {
@@ -19,6 +19,11 @@ class DesertAnnihilator_Aux
             _BossIsInRage = value;
             if (value) SoundEngine.PlaySound(SoundID.Roar);
         }
+    }
+
+    public DesertAnnihilator_Aux(NPC npc)
+    {
+        this.npc = npc;
     }
     public static Vector2 GetSecurePosition(Vector2 position)
     {

@@ -18,6 +18,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
+using System.Diagnostics;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
@@ -69,6 +70,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Desert_Aniquilator");
             NPC.netAlways = true;
             NPC.stepSpeed = 8f;
+
+            InitializeModules();
+            Initialize();
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefaultsCalamity();
         }
         [JITWhenModsEnabled("CalamityMod")]
@@ -86,37 +90,55 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         }
 
         Player CurrentTarget => auxiliaryModule.CurrentTarget;
+        public Vector2 NpcCenter
+            {
+            get => NPC.Center;
+            set { 
+                NPC.Center = value;
+                NPC.netUpdate = true;
+            }
+        }
         private bool BossActive => !CurrentTarget.dead && CurrentTarget.active;
-        Point NpcFloor => Utils.ToTileCoordinates(NPC.Center);
+        Point NpcFloor => Utils.ToTileCoordinates(NpcCenter);
       
-        DesertAnnihilator_Intro introModule = new();
-        DesertAnnihilator_Movment movmentModule = new();
-        DesertAnnihilator_Attack attackModule = new();
-        DesertAnnihilator_Aux auxiliaryModule = new();
-        DesertAnnihilator_Animation animationModule = new();
+        DesertAnnihilator_Intro introModule;
+        DesertAnnihilator_Movment movmentModule;
+        DesertAnnihilator_Attack attackModule;
+        DesertAnnihilator_Aux auxiliaryModule;
+        DesertAnnihilator_Animation animationModule;
 
         public bool spawnGuardians = true;
         public override void AI()
         {
+            if (Main.netMode != NetmodeID.Server) 
+            { 
+                animationModule.UpdateAnimation();
+                introModule.UpdateVisuals();
+            }
 
-            NPC.TargetClosest(true);
-
+            if (Main.netMode != NetmodeID.MultiplayerClient) NPC.TargetClosest(true);
             animationModule.UpdateScale();
-            animationModule.UpdateAnimation();
-
             NPC.ai[0]++;
 
-            if (introModule.NoAI) introModule.SpawnAnimationAI();
-            
-            if (CurrentTarget == null || introModule.NoAI) return;
+            if (introModule.NoAI)
+            {
+                introModule.SpawnAnimationAI();
+                return;
+            }
 
-            CheckRage(); 
+            if (CurrentTarget == null) return;
+
+            // A custom AI must keep the NPC alive explicitly while it has a target.
+            // Without this, timeLeft reaches zero and clients receive a despawn packet.
+            NPC.timeLeft = 1800;
+
+            CheckRage();
             CheckForCheating();
             movmentModule.MovementAI();
 
-            if (Main.netMode != NetmodeID.MultiplayerClient) attackModule.AttackIA(NPC, CurrentTarget);
+            attackModule.AttackIA(NPC, CurrentTarget);
 
-            if (CurrentTarget.dead)
+            if (CurrentTarget.dead && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.EncourageDespawn(7);
                 DespawnBoss();
@@ -124,7 +146,32 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
 
             if (RemnantOfTheAncientsMod.FargosSoulMod != null) attackModule.EternityIA(NPC, CurrentTarget);
         }
+        public override bool CheckDead()
+        {
+            Mod.Logger.Info(
+                $"[DesertAnnihilator] CheckDead | " +
+                $"life={NPC.life}/{NPC.lifeMax} | " +
+                $"active={NPC.active} | " +
+                $"timeLeft={NPC.timeLeft} | " +
+                $"target={NPC.target} | " +
+                $"netMode={Main.netMode}"
+            );
 
+            return base.CheckDead();
+        }
+        public override void OnKill()
+        {
+            Mod.Logger.Info(
+                $"[DesertAnnihilator] OnKill | " +
+                $"life={NPC.life}/{NPC.lifeMax} | " +
+                $"active={NPC.active} | " +
+                $"timeLeft={NPC.timeLeft} | " +
+                $"target={NPC.target} | " +
+                $"netMode={Main.netMode}"
+            );
+
+            base.OnKill();
+        }
         void CheckRage()
         {
             bool rage = BossActive && !CurrentTarget.ZoneDesert && !CurrentTarget.ZoneUndergroundDesert;
@@ -156,27 +203,50 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
                 }
             }
         }
+        bool modulesInitialized = false;
+        private void InitializeModules()
+        {
+            if (modulesInitialized)
+                return;
+
+            modulesInitialized = true;
+
+            auxiliaryModule = new DesertAnnihilator_Aux(NPC);
+            animationModule = new DesertAnnihilator_Animation(NPC);
+            attackModule = new DesertAnnihilator_Attack(NPC,aux: auxiliaryModule, animation: animationModule);
+            movmentModule = new DesertAnnihilator_Movment(NPC);
+            introModule = new DesertAnnihilator_Intro(NPC);
+        }
+        private void Initialize()
+        {
+            introModule.ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+            animationModule.setOriginalSize(NPC.Size);
+            spawnGuardians = true;
+            NPC.alpha = 255;
+        }
 
         #endregion
 
         #region Attacks
 
-       
-       
         public override void HitEffect(NPC.HitInfo hit)
         {
-            SpawnAddsOnHit();
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                SpawnAddsOnHit();
 
-            if (NPC.life > 0) return;
-            
-            if (Main.netMode != NetmodeID.Server)
-            {
-                Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("DesertAniquilatorGore").Type, NPC.scale);
+                if (NPC.life > 0) return;
+
+
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("DesertAniquilatorGore").Type, NPC.scale);
+                }
+                for (int j = 0; j < RemnantOfTheAncientsMod.ParticleMeter(1000); j++)
+                {
+                    Dust.NewDust(NPC.position, (int)(NPC.width * NPC.scale), (int)(NPC.height * NPC.scale), DustID.Sandstorm, hit.HitDirection, -1f);
+                }
             }
-            for (int j = 0; j < RemnantOfTheAncientsMod.ParticleMeter(1000); j++)
-            {
-                Dust.NewDust(NPC.position, (int)(NPC.width * NPC.scale), (int)(NPC.height * NPC.scale), DustID.Sandstorm, hit.HitDirection, -1f);
-            }       
         }
         private void SpawnAddsOnHit()
         {
@@ -208,22 +278,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             writer.Write(introModule.NoAI);
             writer.Write(introModule.ScreenAnimationTimer);
             writer.Write(introModule.SpawnerAnimationTimer);
-
+            
             writer.Write((byte)animationModule.CurrentTexture);
+
             writer.Write(auxiliaryModule.BossIsInRage);
+
+            writer.Write(attackModule.shootTimeline);
+
             writer.Write(spawnGuardians);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
-        {
+        { 
             introModule.NoAI = reader.ReadBoolean();
             introModule.ScreenAnimationTimer = reader.ReadSingle();
             introModule.SpawnerAnimationTimer = reader.ReadSingle();
 
-            animationModule.CurrentTexture = (DesertAnnihilator_Animation.TextureType)reader.ReadByte();
+            animationModule?.CurrentTexture = (DesertAnnihilator_Animation.TextureType)reader.ReadByte();
 
-            // Idealmente asignar un campo interno, sin disparar sonido.
-            auxiliaryModule.BossIsInRage = reader.ReadBoolean();
+            auxiliaryModule?.BossIsInRage = reader.ReadBoolean();
+
+            attackModule?.shootTimeline = reader.ReadInt32();
+
             spawnGuardians = reader.ReadBoolean();
+            
         }
 
         int despawnCounter = 0;
@@ -233,7 +310,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             NPC.velocity = new Vector2(0,3);
             NPC.EncourageDespawn(7);
             if (despawnCounter > Utils1.FormatTimeToTick(0, 0, 0, 0.3f)) attackModule.GenerateTpParticles();
-            if (despawnCounter++ >= despawnCounterMax) NPC.Center = new(0,0);
+            if (despawnCounter++ >= despawnCounterMax) NpcCenter = new(0, 0);
             return;
         }
 
@@ -261,20 +338,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         
         public override void OnSpawn(IEntitySource source)
         {
-            auxiliaryModule.npc = NPC;
-            attackModule.npc = NPC;
-            attackModule.auxiliaryModule = auxiliaryModule;
-            attackModule.animationModule = animationModule;
-            movmentModule.npc = NPC;
-            introModule.npc = NPC;
-            animationModule.npc = NPC;
-
-
-            introModule.ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-            animationModule.setOriginalSize(NPC.Size);
-
-            spawnGuardians = true;
-            NPC.alpha = 255;
             base.OnSpawn(source);
         }
         public override void BossLoot(ref string name, ref int potionType)

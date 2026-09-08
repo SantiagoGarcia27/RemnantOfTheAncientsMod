@@ -17,10 +17,15 @@ class DesertAnnihilator_Intro
     public float ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
     public float SpawnerAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
 
+    public DesertAnnihilator_Intro(NPC npc)
+    {
+        this.npc = npc;
+    }
+
     public void SpawnAnimationAI()
     {
+        if (npc == null) return;
         UpdateTornado();
-
         npc.velocity = new Vector2(0, 10);
 
         if (DificultyUtils.InfernumMode && ScreenAnimationTimer > 0) ScreenAnimationTimer--;
@@ -32,38 +37,42 @@ class DesertAnnihilator_Intro
             {
                 NoAI = false;
                 npc.alpha = 0;
+                npc.netUpdate = true;
 
-                if (Main.netMode != NetmodeID.Server) Main.LocalPlayer.GetModPlayer<CameraPlayer>().ResetCameraPosition();
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    Sandstorm.Happening = false;
-                    Sandstorm.TimeLeft = 0;
-                    Sandstorm.IntendedSeverity = (Sandstorm.Happening ? (0.4f + Main.rand.NextFloat()) : ((Main.rand.Next(3) != 0) ? (Main.rand.NextFloat() * 0.3f) : 0f));
-                    NetMessage.SendData(MessageID.WorldData);
-                }
+                Sandstorm.Happening = false;
+                Sandstorm.TimeLeft = 0;
+                Sandstorm.IntendedSeverity = (Sandstorm.Happening ? (0.4f + Main.rand.NextFloat()) : ((Main.rand.Next(3) != 0) ? (Main.rand.NextFloat() * 0.3f) : 0f));
+                NetMessage.SendData(MessageID.WorldData);
             }
             else
             {
                 if (npc.alpha > 0) npc.alpha--;
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    Sandstorm.Happening = true;
-                    Sandstorm.TimeLeft = (int)(3600.0 * (8.0 + (double)Main.rand.NextFloat() * 16.0));
-                    Sandstorm.IntendedSeverity = (Sandstorm.Happening ? (0.4f + Main.rand.NextFloat()) : ((Main.rand.Next(3) != 0) ? (Main.rand.NextFloat() * 0.3f) : 0f));
-                    NetMessage.SendData(MessageID.WorldData);
-                }
-                if (Main.netMode != NetmodeID.Server)
-                {
-                    Vector2 cameraPos = npc.Center;
-                    Main.LocalPlayer.GetModPlayer<CameraPlayer>().SetCameraPosition(cameraPos);
-                }
-
-                SpawnAnimation(npc.alpha);
+                Sandstorm.Happening = true;
+                Sandstorm.TimeLeft = (int)(3600.0 * (8.0 + (double)Main.rand.NextFloat() * 16.0));
+                Sandstorm.IntendedSeverity = (Sandstorm.Happening ? (0.4f + Main.rand.NextFloat()) : ((Main.rand.Next(3) != 0) ? (Main.rand.NextFloat() * 0.3f) : 0f));
+                NetMessage.SendData(MessageID.WorldData);
                 SpawnerAnimationTimer--;
 
             }
 
         }
+    }
+    // Kept client-side: particles and camera are cosmetic, but must never write NPC state.
+    public void UpdateVisuals()
+    {
+        if (npc == null) return;
+
+        UpdateTornado();
+
+        if (!NoAI)
+        {
+            Main.LocalPlayer.GetModPlayer<CameraPlayer>().ResetCameraPosition();
+            return;
+        }
+
+        Main.LocalPlayer.GetModPlayer<CameraPlayer>().SetCameraPosition(npc.Center);
+        if (SpawnerAnimationTimer > 0)
+            SpawnAnimation(npc.alpha);
     }
 
     private void SpawnAnimation(int alpha)

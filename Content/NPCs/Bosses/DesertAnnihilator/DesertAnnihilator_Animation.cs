@@ -17,6 +17,8 @@ class DesertAnnihilator_Animation
         Jump,
         Shoot
     }
+
+    float tickCounter => npc.ai[0];
     internal TextureType _CurrentTexture = TextureType.Default;
     public TextureType CurrentTexture
     {
@@ -30,25 +32,36 @@ class DesertAnnihilator_Animation
             }
         }
     }
+
+    public DesertAnnihilator_Animation(NPC npc)
+    {
+        this.npc = npc;
+    }
+
     public void setOriginalSize(Vector2 size)
     {
         originalSize = size;
     }
     public void UpdateScale()
     {
-        npc.scale = LifeSize();
+        if (npc == null) return;
+        float scale = LifeSize();
+        if (Math.Abs(npc.scale - scale) < 0.001f) return;
 
-        int oldCenterX = (int)npc.Center.X;
-        int oldCenterY = (int)npc.Center.Y;
+        npc.scale = scale;
+
+        Vector2 oldCenter = npc.Center;
 
         npc.width = (int)(originalSize.X * npc.scale);
         npc.height = (int)(originalSize.Y * npc.scale);
 
-        npc.Center = new Vector2(oldCenterX, oldCenterY);
+        npc.Center = oldCenter;
+        npc.netUpdate = true;
     }
 
     private float LifeSize()
     {
+        if (npc == null) return 1f;
         float percentage = MathUtils.GetPorcentage(npc.life, npc.lifeMax);
         float maxValue = 1.25f;
 
@@ -74,11 +87,13 @@ class DesertAnnihilator_Animation
     int frame = 0;
     public void UpdateAnimation()
     {
+        if (npc == null || Main.dedServ) return;
+
         Texture2D Texture = TextureAssets.Npc[npc.type].Value;
 
-        if (npc.ai[0] % 5 == 0) if (auraFrameCounter++ == auraFrameAmmount - 1) auraFrameCounter = 0;
+        if (tickCounter % 5 == 0) if (auraFrameCounter++ == auraFrameAmmount - 1) auraFrameCounter = 0;
 
-        if (npc.ai[0] % 10 != 0) return;
+        if (tickCounter % 10 != 0) return;
 
         if (CurrentTexture == TextureType.Shoot)
         {
@@ -96,6 +111,7 @@ class DesertAnnihilator_Animation
     int auraFrameAmmount = 6;
     public void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
     {
+        if (npc == null) return;
         string baseTexture = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{TextureAssets.Npc[npc.type].Name}_Eternity" : TextureAssets.Npc[npc.type].Name;
         baseTexture = baseTexture.Replace("\\", "/");
         baseTexture = "RemnantOfTheAncientsMod/" + baseTexture;
@@ -104,14 +120,14 @@ class DesertAnnihilator_Animation
         int heightPerFrame = TextureAura.Height / auraFrameAmmount;
         Rectangle auraFrame = new Rectangle(x: 0, y: heightPerFrame * auraFrameCounter, width: TextureAura.Width, height: heightPerFrame);
         Color colorAura = npc.GetAlpha(drawColor);
-        Vector2 positionAura = npc.Center - Main.screenPosition + new Vector2(0f, (npc.gfxOffY + npc.height / 10));
+        Vector2 positionAura = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY + npc.height / 10);
         Vector2 originAura = auraFrame.Size() * 0.5f;
         Main.EntitySpriteDraw(TextureAura, positionAura, auraFrame, colorAura, npc.rotation, originAura, npc.scale, SpriteEffects.None, 0);
 
         //Core
         Texture2D TextureCore = (Texture2D)ModContent.Request<Texture2D>(baseTexture + "_Core");
         Color colorCore = npc.GetAlpha(drawColor);
-        Vector2 positionCore = npc.Center - Main.screenPosition + new Vector2(0f, (npc.gfxOffY + npc.height / 10));
+        Vector2 positionCore = npc.Center - Main.screenPosition + new Vector2(0f, npc.gfxOffY + npc.height / 10);
         Vector2 originCore = TextureCore.Size() * 0.5f;
         Main.EntitySpriteDraw(TextureCore, positionCore, null, colorCore, npc.rotation, originCore, npc.scale, SpriteEffects.None, 1);
 
@@ -119,7 +135,7 @@ class DesertAnnihilator_Animation
 
     public bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
     {
-
+        if (npc == null) return true;
         if (npc.IsABestiaryIconDummy) return true;
         string baseTexture = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{TextureAssets.Npc[npc.type].Name}_Eternity" : TextureAssets.Npc[npc.type].Name;
         baseTexture = baseTexture.Replace("\\", "/");

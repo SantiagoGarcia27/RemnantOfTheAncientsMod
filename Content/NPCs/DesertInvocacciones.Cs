@@ -81,6 +81,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         public override void AI()
         {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
+
             Player player = Main.player[NPC.target];
             NPC.scale = LifeSize(NPC);
             int[] projectiles =

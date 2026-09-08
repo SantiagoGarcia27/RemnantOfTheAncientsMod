@@ -63,6 +63,13 @@ class DesertAnnihilator_Attack
     public DesertAnnihilator_Aux auxiliaryModule { get; set; }
     public DesertAnnihilator_Animation animationModule { get; set; }
 
+    public DesertAnnihilator_Attack(NPC npc, DesertAnnihilator_Aux aux, DesertAnnihilator_Animation animation)
+    {
+        this.npc = npc;
+        auxiliaryModule = aux;
+        animationModule = animation;
+    }
+
     public void AttackIA(NPC currentNpc, Player target)
     {
         TornadoAI();
@@ -79,7 +86,7 @@ class DesertAnnihilator_Attack
         Vector2 tpDistance = new Vector2(tileDistance.X, tileDistance.Y).ToCoordenatePosition();
 
         npc.Center = DesertAnnihilator_Aux.GetSecurePosition(Main.player[npc.target].Center + new Vector2(tpDirection * tpDistance.X, tpDistance.Y));
-
+        npc.netUpdate = true;
         GenerateTpParticles(appear: true);
     }
     public void ShootAI(Player target)
@@ -299,7 +306,8 @@ class DesertAnnihilator_Attack
         for (int i = 0; i < particleCount; i++)
         {
             Vector2 dustPosition = npc.position - new Vector2(Main.rand.Next(width / 2), Main.rand.Next(height / 2));
-            Dust dust = Dust.NewDustDirect(dustPosition, width, height, DustID.Sand, 0, 0, 100, default, 3f);
+            int index = Dust.NewDust(dustPosition, width, height, DustID.Sand, 0, 0, 100, default, 3f);
+            Dust dust = Main.dust[index];
             dust.velocity = npc.velocity * 0.2f;
             dust.noGravity = true;
         }
