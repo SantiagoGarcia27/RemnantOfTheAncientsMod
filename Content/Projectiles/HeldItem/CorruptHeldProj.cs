@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil;
+using ReLogic.Content;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using System.Collections.Generic;
 using Terraria;
@@ -15,10 +16,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
         MagicCircle circle1 = null;
         MagicCircle circle2 = null;
-        public override void DrawCirclee(ref List<MagicCircle> internalCircle, ref List<MagicCircle> externalCircle)
+        public override void DrawCirclee(List<MagicCircle> internalCircle, List<MagicCircle> externalCircle)
         {
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_4");
-            Texture2D texture2 = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_2");
+            Texture2D texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_4", AssetRequestMode.ImmediateLoad).Value;
+            Texture2D texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_2", AssetRequestMode.ImmediateLoad).Value;
 
             int maxCharge = (int)(GetMaxCharge() / 4);
             circle1 ??= new(texture, Color.Purple, 1.2f,TimeDuration: maxCharge);
@@ -26,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
             internalCircle.Add(circle1);
             externalCircle.Add(circle2);
-            base.DrawCirclee(ref internalCircle, ref externalCircle);
+            base.DrawCirclee(internalCircle, externalCircle);
         }
         public override float GetMaxCharge(float MaxCharge = 180)
         {

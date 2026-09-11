@@ -81,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         {
             List<MagicCircle> internalCircle = [];
             List<MagicCircle> externalCircle = [];
-            DrawCirclee(ref internalCircle, ref externalCircle);
+            DrawCirclee(internalCircle, externalCircle);
             return base.PreDraw(ref lightColor);
         }
         public virtual void ShootEffect(ref bool killAfterEnd) 
@@ -104,10 +104,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             speed = reader.ReadInt32();
             base.ReceiveExtraAI(reader);
         }
-        public virtual void DrawCirclee(ref List<MagicCircle> internalCircle, ref List<MagicCircle> externalCircle)
+        public virtual void DrawCirclee(List<MagicCircle> internalCircle, List<MagicCircle> externalCircle)
         {
             Player player = Main.player[Main.myPlayer];
-            if (player.whoAmI == Main.myPlayer)
+           // if (player.whoAmI == Main.myPlayer)
             {
                 if (internalCircle.Count > 0)
                 {
@@ -143,7 +143,5 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                 }
             }
         }
-
-
     }
 }

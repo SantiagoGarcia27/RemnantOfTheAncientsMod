@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -30,10 +31,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
         MagicCircle circle1 = null;
         MagicCircle circle2 = null;
-        public override void DrawCirclee(ref List<MagicCircle> internalCircle, ref List<MagicCircle> externalCircle)
+        public override void DrawCirclee(List<MagicCircle> internalCircle, List<MagicCircle> externalCircle)
         {
-            Texture2D texture = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_1");
-            Texture2D texture2 = (Texture2D)ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_2");
+            Texture2D texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleCenter_1", AssetRequestMode.ImmediateLoad).Value;
+            Texture2D texture2 = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Effects/MagicCircle/MagicCircleExterior_2", AssetRequestMode.ImmediateLoad).Value;
 
             int timeDuration = 50;
             circle1 ??= new(texture, Color.Blue, 0.8f,TimeDuration: timeDuration);
@@ -41,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 
             internalCircle.Add(circle1);
             externalCircle.Add(circle2);
-            base.DrawCirclee(ref internalCircle,ref externalCircle);
+            base.DrawCirclee(internalCircle, externalCircle);
         }
 	}
 }

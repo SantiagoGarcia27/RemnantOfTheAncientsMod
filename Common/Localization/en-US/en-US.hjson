@@ -4654,6 +4654,7 @@ Mods: {
 			GemstoneCrusher.DisplayName: Gemstone Crusher
 			KillerBunny.DisplayName: Killer Bunny
 			MaceSkeleton.DisplayName: Mace Skeleton
+			FakePlayer.DisplayName: Fake Player
 		}
 
 		Projectiles: {
