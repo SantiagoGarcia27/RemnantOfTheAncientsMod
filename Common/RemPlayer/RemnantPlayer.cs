@@ -17,11 +17,9 @@ using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
-using RemnantOfTheAncientsMod.Content.Projectiles.Fargos;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.World;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -60,19 +58,19 @@ namespace RemnantOfTheAncientsMod
 		public bool hBurn;
 		public bool Marble_Erosion;
 		public bool CursedMark;
-		#endregion
+        public bool Hell_Fire;
+        #endregion
 
-		#region pets
-		public bool TortugaPet;
+        #region pets
+        public bool TortugaPet;
 		public bool TwitchPet;
 		public bool YtPet;
 		#endregion
-		public bool Hell_Fire;
 		public int healHurt;
 
 
-
-		public bool anyBossIsAlive;
+		public Item starRampageBaseItem;
+        public bool anyBossIsAlive;
 		public bool MoneyCollector;
 		public List<int> ScrollsBuff = [];
 		public int DummyMode = 0;

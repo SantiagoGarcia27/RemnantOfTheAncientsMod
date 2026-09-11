@@ -165,8 +165,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			 ListUtils.AddSecure(SpearsList, RemnantItemTags.lanceId);
 		}
+		public static void isSpear(Item item)
+        {
+            ListUtils.AddSecure(ref SpearsList, item.type);
+            if (SpearsList.Contains(item.type))
+            {
+                item.GetGlobalItem<CustomTooltip>().Lance = true;
+            }
+        }
 
-		public void AddModedSpearGeneric(Item item)
+		private void AddModedSpearGeneric(Item item)
 		{
 			string[] LanceNames =
 			[

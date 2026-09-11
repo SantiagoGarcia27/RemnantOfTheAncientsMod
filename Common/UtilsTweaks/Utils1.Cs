@@ -213,7 +213,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static bool IsAprilFoolDay()
         {
-            return DateTime.Now.Month == 4 && DateTime.Now.Day == 1;
+            return (DateTime.Now.Month == 4 && DateTime.Now.Day == 1);
         }
         public static bool IsDate(int day)
         {

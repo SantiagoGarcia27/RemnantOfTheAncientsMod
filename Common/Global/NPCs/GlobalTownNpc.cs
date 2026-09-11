@@ -170,12 +170,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 int finalPrice = (int)Math.Max(1, Math.Round(basePrice * discount));
                 item.shopCustomPrice = finalPrice; 
             }
+            base.ModifyActiveShop(npc, shopName, items);
         }
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
         {
-            shop[nextSlot] = ItemType<Strawberry_Hairpin>();
-            nextSlot++;
             base.SetupTravelShop(shop, ref nextSlot);
+
+            if (Main.rand.NextBool(4) && nextSlot < shop.Length)
+            {
+                shop[nextSlot] = ItemType<Strawberry_Hairpin>();
+                nextSlot++;
+            }
+
         }
 
         public override void OnChatButtonClicked(NPC npc, bool firstButton)

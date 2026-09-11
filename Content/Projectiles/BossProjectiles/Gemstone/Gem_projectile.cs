@@ -133,6 +133,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         public override void SetDefaults()
         {
             Projectile.penetrate = -1;
+            base.SetDefaults();
         }
         private Vector2 oldVelocity = Vector2.Zero;
         public override void AI()
@@ -163,8 +164,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         public override string Texture => getTexture(GemId);
         public override void SetDefaults()
         {
-            Projectile.width = 16;
-            Projectile.height = 16;
+            Projectile.width = 18;
+            Projectile.height = 18;
             Projectile.friendly = false;
             Projectile.hostile = true;
             Projectile.tileCollide = true;
@@ -183,24 +184,50 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         }
         public override void PostDraw(Color lightColor)
         {
+            /* Type type = GetType();
+             String ruta = type.FullName.Replace('.', '/');
+             string Texture = $"{ruta}_Glow";
+
+
+             if (Texture != null)
+             {
+
+
+                 Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+                 Vector2 pos = Projectile.Center - Main.screenPosition;
+                 Rectangle source = new(0, 0, texture.Width, texture.Height);
+                 Main.spriteBatch.Draw(texture,pos, source, Color.White, Projectile.rotation, texture.Size() * 0.5f, Projectile.scale,SpriteEffects.None,0f);
+             }
+             base.PostDraw(lightColor);*/
+
             Type type = GetType();
-            String ruta = type.FullName.Replace('.', '/');
+            string ruta = type.FullName.Replace('.', '/');
             string Texture = $"{ruta}_Glow";
 
+            Texture2D texture = ModContent.Request<Texture2D>(
+                Texture,
+                AssetRequestMode.ImmediateLoad
+            ).Value;
 
-            if (Texture != null)
-            {
-                // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);
-              
-                Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+            Vector2 pos = Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY);
 
-                Vector2 pos = new(
-                    Projectile.position.X - Main.screenPosition.X + Projectile.width * 0.5f,
-                    Projectile.position.Y - Main.screenPosition.Y + Projectile.height - texture.Height * 0.5f + 2f
-                );
-                Rectangle source = new(0, 0, texture.Width, texture.Height);
-                Main.spriteBatch.Draw(texture,pos, source, Color.White, Projectile.rotation, texture.Size() * 0.5f, Projectile.scale,SpriteEffects.None,0f);
-            }
+            Vector2 origin = new(
+                texture.Width * 0.5f,
+                texture.Height * 0.5f
+            );
+
+            Main.spriteBatch.Draw(
+                texture,
+                pos,
+                null,
+                Color.White,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None,
+                0f
+            );
+
             base.PostDraw(lightColor);
         }
     }

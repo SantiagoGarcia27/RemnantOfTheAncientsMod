@@ -1094,6 +1094,13 @@ namespace RemnantOfTheAncientsMod
             });
             RecipeGroup.RegisterGroup("CorruptBar", group);
 
+            group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "Any Cobalt Bar", new int[]
+            {
+                ItemID.PalladiumBar,
+                ItemID.CobaltBar
+            });
+            RecipeGroup.RegisterGroup("CobaltBar", group);
+
             group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + "" + Lang.GetItemNameValue(ModContent.ItemType<CrimsonSaber>()), new int[]
             {
                 ModContent.ItemType<CrimsonSaber>(),

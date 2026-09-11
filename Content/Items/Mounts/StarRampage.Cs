@@ -32,14 +32,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Mounts
             Item.autoReuse = true;
             Item.shoot = itemBase.shoot;
             Item.shootSpeed = 25f;
-          //  Item.mountType = ModContent.MountType<Sword>();
             Item.shootsEveryUse = false;
 		}
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             for (int i = 0; i < Main.rand.Next(0, 4); i++)
-            { 
-                
+            {  
                 var p = Projectile.NewProjectile(source, position + new Vector2(Main.rand.Next(-10,10), 0) *16, velocity.RotatedByRandom(MathHelper.ToRadians(10)), type, damage, knockback, player.whoAmI,0,-100);
                 Main.projectile[p].tileCollide = false;
             }
@@ -57,38 +55,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Mounts
         }
 
         public override void AddRecipes()
-		{
-			CreateRecipe()
-			.AddIngredient(ItemID.Starfury, 1)
-			.AddIngredient(ItemID.CobaltBar,10)
-			.AddIngredient(ItemID.IronBar, 10)
-            .AddIngredient(ItemID.SoulofFlight, 40)
-			.AddTile(TileID.Anvils)
-			.Register();
-
+		{          
             CreateRecipe()
-            .AddIngredient(ItemID.Starfury, 1)
-            .AddIngredient(ItemID.CobaltBar,10)
-            .AddIngredient(ItemID.LeadBar, 10)
-            .AddIngredient(ItemID.SoulofFlight, 40)
-            .AddTile(TileID.Anvils)
-            .Register();
-
-            CreateRecipe()
-            .AddIngredient(ItemID.Starfury, 1)
-            .AddIngredient(ItemID.PalladiumBar, 10)
-            .AddIngredient(ItemID.IronBar, 10)
-            .AddIngredient(ItemID.SoulofFlight, 40)
-            .AddTile(TileID.Anvils)
-            .Register();
-
-            CreateRecipe()
-            .AddIngredient(ItemID.Starfury, 1)
-            .AddIngredient(ItemID.PalladiumBar, 10)
-            .AddIngredient(ItemID.LeadBar, 10)
-            .AddIngredient(ItemID.SoulofFlight, 40)
-            .AddTile(TileID.Anvils)
-            .Register();
+           .AddIngredient(ItemID.Starfury, 1)
+           .AddRecipeGroup("CobaltBar", 10)    
+           .AddRecipeGroup(RecipeGroupID.IronBar, 10)
+           .AddIngredient(ItemID.SoulofFlight, 40)
+           .AddTile(TileID.Anvils)
+           .Register();
         }
 	}
 }

@@ -4568,6 +4568,11 @@ Mods: {
 				DisplayName: Rifle Estelar
 				Tooltip: El daño y velocidad escala al mantenerse disparando
 			}
+
+			StoneImpaler: {
+				// DisplayName: Stone Impaler
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4850,6 +4855,7 @@ Mods: {
 			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
 			// StoneMortarMinion.DisplayName: Stone Mortar Minion
 			// SandnadoMarkClone.DisplayName: Sandnado Mark Clone
+			// StoneImpalerP.DisplayName: Stone Impaler P
 		}
 
 		Tiles: {
