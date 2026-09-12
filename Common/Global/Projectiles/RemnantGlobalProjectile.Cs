@@ -23,6 +23,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public static DamageClass ProjdamageClass = null;
         public float miscCounterNormalized => miscCounter / 300f;
 
+        public bool useVanillaDamageScale { get; set; } = true;
+        public int originalDamage;
+
         bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
         public List<int> MeleeProjFix =
         [
@@ -282,6 +285,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            originalDamage = projectile.damage;
             if (projectile.owner == Main.myPlayer)
             {
                 PlayerOwner = Main.player[projectile.owner];
@@ -616,7 +620,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
             UpdateMiscCounter();
         }
 
-        
-        
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
+        {    
+            base.ModifyHitPlayer(projectile, target, ref modifiers);
+        }
+
+
     }
 }

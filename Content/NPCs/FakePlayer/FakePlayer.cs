@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -9,27 +8,19 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using static FakePlayer_Setup;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 {
 	public class FakePlayer : ModNPC
 	{
 		private Player proxy;
-		private int timmer;
-		readonly int timmerMax = Utils1.FormatTimeToTick(Second: 2);
+		private FakePlayer_Attack attackModule { get; set; }
 
-		private int _maceId = -1;
-		int MaceId
-		{
-			get => _maceId;
-			set
-			{
-				_maceId = value;
-				if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
-			}
-		}
+        FakePlayerEquipmentList inventory { get; set; }
+		private int meleeWeaponIndex = -1;
 
-		public override void SetStaticDefaults()
+        public override void SetStaticDefaults()
 		{
 
 			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
@@ -44,6 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		public override void SetDefaults()
 		{
 			NPC.CloneDefaults(NPCID.Skeleton);
+			NPC.damage = 0;
 			AIType = NPCID.Skeleton;
 			AnimationType = NPCID.Skeleton;
 			Banner = Item.NPCtoBanner(NPCID.Skeleton);
@@ -60,38 +52,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			if (NPC.target > -1)
 			{
 				Player target = Main.player[NPC.target];
+				attackModule.SetTarget(target);
+				attackModule.AI();
 
-				float distance = NPC.Center.DistanceSQ(target.Center);
-				float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
-				if (proxy.ownedProjectileCounts[ProjectileID.Mace] < 1 && distance < distanceMin)
-				{
-					timmer = timmerMax;
-					int id = ProjectileID.Mace;
-					id = ProjectileID.CopperShortswordStab;
-					Vector2 velocity = Vector2.Zero;
-					velocity =  target.Center - NPC.Center;
-					velocity.Normalize();
-                    MaceId = Projectile.NewProjectile(NPC.GetSource_FromAI(), proxy.Center, velocity, id, 25, 0f, proxy.whoAmI);
-					Main.projectile[MaceId].hostile = true;
-					Main.projectile[MaceId].friendly = false;
-				}
-				else
-				{
-					if (MaceId == -1) return;
-
-					if (timmer > 0) timmer--;
-					else
-					{
-						if (proxy.ownedProjectileCounts[ProjectileID.Mace] >= 1)
-						{
-							proxy.channel = false;
-							Main.projectile[MaceId].Kill();
-							MaceId = -1;
-						}
-
-					}
-				}
-			}
+            }
 			base.AI();
 		}
 
@@ -116,12 +80,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		{
 			proxy = NPC.GetPlayerProxy();
 			proxy.name = "Rogue";
-			base.OnSpawn(source);
+
+			inventory = new();
+            attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex);
+
+
+            inventory.meleeWeapon = GetRandomMelee();
+			inventory.rangedWeapon = GetRandomBow();
+			inventory.armor[0] = new FakePlayerEquipment(ItemID.NinjaHood);
+            inventory.armor[1] = new FakePlayerEquipment(ItemID.NinjaShirt);
+            inventory.armor[2] = new FakePlayerEquipment(ItemID.NinjaPants);
+
+			/*proxy.armor[0] = inventory.armor[0].item;
+            proxy.armor[1] = inventory.armor[1].item;
+            proxy.armor[2] = inventory.armor[2].item;*/
+
+            base.OnSpawn(source);
 		}
 		public override void OnKill()
 		{
 			proxy?.DisposePlayerProxy();
-			if (MaceId > -1) Main.projectile[MaceId].Kill();
+			if (meleeWeaponIndex > -1) Main.projectile[meleeWeaponIndex].Kill();
 
 			if (Main.netMode != NetmodeID.Server)
 			{
@@ -134,12 +113,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		}
 		public override void SendExtraAI(BinaryWriter writer)
 		{
-			writer.Write(MaceId);
+			writer.Write(meleeWeaponIndex);
 			base.SendExtraAI(writer);
 		}
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
-			MaceId = reader.ReadInt32();
+            meleeWeaponIndex = reader.ReadInt32();
 			base.ReceiveExtraAI(reader);
 		}
 	}

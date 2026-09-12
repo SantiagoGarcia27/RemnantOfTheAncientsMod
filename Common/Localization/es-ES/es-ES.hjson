@@ -4540,7 +4540,7 @@ Mods: {
 			}
 
 			WandOfCaverns: {
-				// DisplayName: Wand Of Caverns
+				DisplayName: Vara de las cavernas
 				// Tooltip: ""
 			}
 
@@ -4550,17 +4550,17 @@ Mods: {
 			}
 
 			TreasureRock: {
-				// DisplayName: Treasure Rock
+				DisplayName: Roca del tesoro
 				// Tooltip: ""
 			}
 
 			StoneBlunderbuss: {
-				// DisplayName: Stone Blunderbuss
+				DisplayName: Trabuco rocoso
 				// Tooltip: ""
 			}
 
 			StoneMortarStaff: {
-				// DisplayName: Stone Mortar Staff
+				DisplayName: Báculo de mortero pétreo
 				// Tooltip: ""
 			}
 
@@ -4570,7 +4570,7 @@ Mods: {
 			}
 
 			StoneImpaler: {
-				// DisplayName: Stone Impaler
+				DisplayName: Empalador pétreo
 				// Tooltip: ""
 			}
 		}

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using PlayerProxyLib.Common;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common;
+using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
@@ -27,6 +28,7 @@ using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Creative;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
@@ -869,6 +871,25 @@ namespace RemnantOfTheAncientsMod
             }
             ShopUtils.maxStyleStat = sum;
             base.OnEnterWorld();
+        }
+
+        public override void ModifyHitByProjectile(Projectile proj,ref Player.HurtModifiers modifiers)
+        {
+            if (!proj.hostile || proj.reflected)
+                return;
+
+            float damageMult = Main.GameModeInfo.EnemyDamageMultiplier;
+
+            if (Main.GameModeInfo.IsJourneyMode)
+            {
+                var power = CreativePowerManager.Instance.GetPower<CreativePowers.DifficultySliderPower>();
+
+                if (power.GetIsUnlocked())
+                    damageMult = power.StrengthMultiplierToGiveNPCs;
+            }
+
+            if (damageMult != 0f && !proj.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale)
+                modifiers.SourceDamage /= damageMult * 2;
         }
 
     }
