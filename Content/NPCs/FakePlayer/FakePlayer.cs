@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -12,7 +13,7 @@ using static FakePlayer_Setup;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 {
-	public class FakePlayer : ModNPC
+	public abstract class FakePlayer : ModNPC
 	{
 		private Player proxy;
 		private FakePlayer_Attack attackModule { get; set; }
@@ -38,10 +39,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			NPC.damage = 0;
 			AIType = NPCID.Skeleton;
 			AnimationType = NPCID.Skeleton;
-			Banner = Item.NPCtoBanner(NPCID.Skeleton);
-			BannerItem = Item.BannerToItem(Banner);
-		}
-		public override void AI()
+
+			Initialize();
+        }
+
+		protected virtual void Initialize()
+		{
+            proxy = NPC.GetPlayerProxy();
+            proxy.name = "Rogue";
+            proxy.hostile = true;
+            inventory = new();
+            attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex);
+
+            FakePlayerEquipmentList inv = inventory;
+
+            ModifyInventory(ref inv);
+
+        }
+
+        public override void AI()
 		{
 			if (proxy == null || !proxy.active) proxy = NPC.GetPlayerProxy();
 
@@ -67,29 +83,26 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 				new FlavorTextBestiaryInfoElement("A brave warrior with a powerfull mace"),
 			]);
 		}
-		public override void ModifyNPCLoot(NPCLoot NPCLoot)
-		{
-			NPCLoot.Add(ItemDropRule.Common(ItemID.Mace, 90));
-		}
 
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
+
+
+		public virtual void ModifyInventory(ref FakePlayerEquipmentList inventory)
 		{
-			return SpawnCondition.Cavern.Chance * 0.01f; //* ModContent.GetInstance<ConfigClient1>().xdlevel; 
-		}
+			inventory ??= new();
+
+            proxy.armor[0] = inventory.armor[0]?.item;
+            proxy.armor[1] = inventory.armor[1]?.item;
+            proxy.armor[2] = inventory.armor[2]?.item;
+
+            this.inventory = inventory;
+        }
+		
 		public override void OnSpawn(IEntitySource source)
 		{
-			proxy = NPC.GetPlayerProxy();
-			proxy.name = "Rogue";
-
-			inventory = new();
-            attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex);
+			
 
 
-            inventory.meleeWeapon = GetRandomMelee();
-			inventory.rangedWeapon = GetRandomBow();
-			inventory.armor[0] = new FakePlayerEquipment(ItemID.NinjaHood);
-            inventory.armor[1] = new FakePlayerEquipment(ItemID.NinjaShirt);
-            inventory.armor[2] = new FakePlayerEquipment(ItemID.NinjaPants);
+            
 
 			/*proxy.armor[0] = inventory.armor[0].item;
             proxy.armor[1] = inventory.armor[1].item;
@@ -102,12 +115,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			proxy?.DisposePlayerProxy();
 			if (meleeWeaponIndex > -1) Main.projectile[meleeWeaponIndex].Kill();
 
-			if (Main.netMode != NetmodeID.Server)
+			/*if (Main.netMode != NetmodeID.Server)
 			{
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 42, NPC.scale);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 43, NPC.scale);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 44, NPC.scale);
-			}
+			}*/
 
 			base.OnKill();
 		}

@@ -4655,6 +4655,7 @@ Mods: {
 			KillerBunny.DisplayName: Killer Bunny
 			MaceSkeleton.DisplayName: Mace Skeleton
 			FakePlayer.DisplayName: Fake Player
+			Outlaw.DisplayName: Outlaw
 		}
 
 		Projectiles: {
