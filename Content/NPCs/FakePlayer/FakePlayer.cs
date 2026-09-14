@@ -20,7 +20,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 
         FakePlayerEquipmentList inventory { get; set; }
 		private int meleeWeaponIndex = -1;
-
+        private int rangerWeaponIndex = -1;
         public override void SetStaticDefaults()
 		{
 
@@ -49,19 +49,21 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             proxy.name = "Rogue";
             proxy.hostile = true;
             inventory = new();
-            attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex);
+            attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex, ref rangerWeaponIndex);
 
             FakePlayerEquipmentList inv = inventory;
 
             ModifyInventory(ref inv);
+            SyncProxyStats(spawn: true);
 
+          
         }
 
         public override void AI()
 		{
 			if (proxy == null || !proxy.active) proxy = NPC.GetPlayerProxy();
-
-			NPC.TargetClosest();
+            SyncProxyStats();
+            NPC.TargetClosest();
 			NPC.UpdatePlayerProxy();
 			NPC.ConfigureProxyPlayer(shouldBeDrawn: true);
 
@@ -72,10 +74,22 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 				attackModule.AI();
 
             }
-			base.AI();
+			
+
+            base.AI();
 		}
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		private void  SyncProxyStats(bool spawn = false)
+        {
+            proxy.statLife = NPC.life;
+            NPC.defense = proxy.statDefense;
+			if (spawn)
+			{
+				NPC.lifeMax = proxy.statLifeMax2;
+				NPC.life = proxy.statLifeMax2;
+            }
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange([
@@ -83,56 +97,100 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 				new FlavorTextBestiaryInfoElement("A brave warrior with a powerfull mace"),
 			]);
 		}
+        public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) => false;
 
 
-
-		public virtual void ModifyInventory(ref FakePlayerEquipmentList inventory)
+        public virtual void ModifyInventory(ref FakePlayerEquipmentList inventory)
 		{
 			inventory ??= new();
 
-            proxy.armor[0] = inventory.armor[0]?.item;
-            proxy.armor[1] = inventory.armor[1]?.item;
-            proxy.armor[2] = inventory.armor[2]?.item;
+			//Armor
+            proxy.armor[0] = inventory.armor[0]?.item ?? new Item();
+            proxy.armor[1] = inventory.armor[1]?.item ?? new Item();
+            proxy.armor[2] = inventory.armor[2]?.item ?? new Item();
 
+            //Accessories
+			proxy.armor[3] = inventory.accessories[0]?.item ?? new Item();
+			proxy.armor[4] = inventory.accessories[1]?.item ?? new Item();
+			proxy.armor[5] = inventory.accessories[2]?.item ?? new Item();
+			proxy.armor[6] = inventory.accessories[3]?.item ?? new Item();
+			proxy.armor[7] = inventory.accessories[4]?.item ?? new Item();
+
+            //Extra Accessories
+            proxy.armor[8] = inventory.accessories[5]?.item ?? new Item();
+			proxy.armor[9] = inventory.accessories[6]?.item ?? new Item();
+			
+
+            //Weapons
+            proxy.inventory[0] = inventory.meleeWeapon.item ?? new Item();
+			proxy.inventory[1] = inventory.rangedWeapon.item ?? new Item();
+
+            //Ammo
+            proxy.inventory[54] = inventory.ammo[0]?.item ?? new Item();
+			proxy.inventory[55] = inventory.ammo[1]?.item ?? new Item();
+			proxy.inventory[56] = inventory.ammo[2]?.item ?? new Item();
+			proxy.inventory[57] = inventory.ammo[3]?.item ?? new Item();
+
+		
             this.inventory = inventory;
         }
 		
 		public override void OnSpawn(IEntitySource source)
 		{
-			
-
-
-            
-
-			/*proxy.armor[0] = inventory.armor[0].item;
-            proxy.armor[1] = inventory.armor[1].item;
-            proxy.armor[2] = inventory.armor[2].item;*/
-
             base.OnSpawn(source);
 		}
-		public override void OnKill()
-		{
-			proxy?.DisposePlayerProxy();
-			if (meleeWeaponIndex > -1) Main.projectile[meleeWeaponIndex].Kill();
 
-			/*if (Main.netMode != NetmodeID.Server)
+      
+        public override void OnKill()
+		{
+			
+			if (meleeWeaponIndex > -1) Main.projectile[meleeWeaponIndex].Kill();
+			if(rangerWeaponIndex > -1) Main.projectile[rangerWeaponIndex].Kill();
+            if (Main.netMode != NetmodeID.Server)
 			{
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 42, NPC.scale);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 43, NPC.scale);
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 44, NPC.scale);
-			}*/
-
-			base.OnKill();
+			}
+            base.OnKill();
 		}
-		public override void SendExtraAI(BinaryWriter writer)
+
+        public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
+        {
+            PlayerDeathReason deathReason = PlayerDeathReason.ByProjectile(projectile.owner, projectile.whoAmI);
+            if (NPC.life <= 0)
+            {
+                
+                proxy.KillMe(deathReason,damageDone,hit.HitDirection,proxy.hostile);
+                //proxy?.DisposePlayerProxy();
+            }
+
+			proxy.Hurt(deathReason, damageDone, hit.HitDirection, proxy.hostile, armorPenetration: projectile.ArmorPenetration, knockback: hit.Knockback);
+			hit.Damage = 0;
+        }
+        public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone)
+        {
+            PlayerDeathReason deathReason = PlayerDeathReason.ByPlayerItem(player.whoAmI, item);
+            if (NPC.life <= 0)
+            {
+                
+                proxy.KillMe(deathReason, damageDone, hit.HitDirection, proxy.hostile);
+				//proxy?.DisposePlayerProxy();
+            }
+            proxy.Hurt(deathReason, damageDone, hit.HitDirection, proxy.hostile, armorPenetration: player.GetArmorPenetration(item.DamageType), knockback: hit.Knockback);
+            hit.Damage = 0;
+        }
+        public override void SendExtraAI(BinaryWriter writer)
 		{
 			writer.Write(meleeWeaponIndex);
-			base.SendExtraAI(writer);
+            writer.Write(rangerWeaponIndex);
+            base.SendExtraAI(writer);
 		}
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
             meleeWeaponIndex = reader.ReadInt32();
-			base.ReceiveExtraAI(reader);
+            rangerWeaponIndex = reader.ReadInt32();
+            base.ReceiveExtraAI(reader);
 		}
 	}
 }

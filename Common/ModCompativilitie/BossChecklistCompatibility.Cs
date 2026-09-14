@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
         }
         public void AddBoses(Mod BossChecklistMod)
         {
+            AddCrusher(BossChecklistMod);
             AddDesert(BossChecklistMod);
             AddFrozen(BossChecklistMod);
             AddTyrant(BossChecklistMod);
@@ -46,6 +48,29 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
 
         List<int> collection;
         Action customPortrait;
+        public void AddCrusher(Mod BossChecklistMod)
+        {
+            collection =
+                [
+                ModContent.ItemType<DesertTrophy>(),
+                ModContent.ItemType<DesertAMask>(),
+                ModContent.ItemType<DesertMusicBox>()
+                ];
+
+            BossChecklistMod.Call(
+            "LogBoss",
+            Mod,
+            "GemstoneCrusher",
+            0.2f,
+            () => RemnantDownedBossSystem.downedCrusher,
+            ModContent.NPCType<GemstoneCrusher>(),
+            new Dictionary<string, object>()
+            {
+                //["spawnItems"] = ModContent.ItemType<DesertGlyph>(),
+                ["collectibles"] = collection
+            }
+        );
+        }
         public void AddDesert(Mod BossChecklistMod)
         {
             collection =

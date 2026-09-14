@@ -4547,11 +4547,26 @@ Mods: {
 				DisplayName: Stone Impaler
 				Tooltip: ""
 			}
+
+			OutlawSummon: {
+				DisplayName: Outlaw Summon
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
 			AntlionD.DisplayName: Antlion
 			ArmoredSlime.DisplayName: Armored Slime
+
+			GemstoneCrusher: {
+				DisplayName: Gemstone Crusher
+
+				BossChecklistIntegration: {
+					EntryName: Gemstone Crusher
+					SpawnInfo: Spawns naturally on caverns
+					DespawnMessage: "[c/6495ed:The ancient stone has rolled far away.]"
+				}
+			}
 
 			DesertAnnihilator: {
 				BossChecklistIntegration: {
@@ -4651,7 +4666,6 @@ Mods: {
 			TurtleZombie.DisplayName: Turtle Zombie
 			BeetleZombie.DisplayName: Beetle Zombie
 			SolarZombie.DisplayName: Solar Zombie
-			GemstoneCrusher.DisplayName: Gemstone Crusher
 			KillerBunny.DisplayName: Killer Bunny
 			MaceSkeleton.DisplayName: Mace Skeleton
 			FakePlayer.DisplayName: Fake Player
@@ -4863,6 +4877,7 @@ Mods: {
 			OpositeOreGenerationCobalt: When world have Cobalt
 			OpositeOreGenerationOrichalcum: When world have Orichalcum
 			OpositeOreGenerationMythril: When world have Mythril
+			DownedCrusher: When Gemstone Crusher has been defeated
 			DownedDesert: When Desert Anhilator has been defeated
 			DownedFrozen: When Frozen Assaulter has been defeated
 			DownedTyrant: When Infernal Tyrant has been defeated

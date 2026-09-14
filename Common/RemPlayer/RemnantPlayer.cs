@@ -321,14 +321,14 @@ namespace RemnantOfTheAncientsMod
         }
         public override void PreUpdate()
         {
-			if (Player.IsProxyPlayer())
+			/*if (Player.IsProxyPlayer())
 			{
                 Player.controlUseItem = true;
                 Player.releaseUseItem = false;
                 Player.selectedItem = 0;
                 Player.itemAnimation = 0;
                 Player.itemTime = 0;
-            }
+            }*/
             base.PreUpdate();
         }
 		public override void PostUpdate()

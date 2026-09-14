@@ -4573,16 +4573,31 @@ Mods: {
 				DisplayName: Empalador pétreo
 				// Tooltip: ""
 			}
+
+			OutlawSummon: {
+				// DisplayName: Outlaw Summon
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
 			AntlionD.DisplayName: Antlion
 			ArmoredSlime.DisplayName: Slime blindada
 
+			GemstoneCrusher: {
+				DisplayName: Triturador de Gemas
+
+				BossChecklistIntegration: {
+					EntryName: Triturador de Gemas
+					SpawnInfo: Aparece naturalmente en las cavernas
+					DespawnMessage: "[c/6495ed:La antigua roca se aleja rodando]"
+				}
+			}
+
 			DesertAnnihilator: {
 				BossChecklistIntegration: {
 					EntryName: Aniquilador Del Desierto
-					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/DesertGlyph] en el desierto
+					SpawnInfo: Usando [i:RemnantOfTheAncientsMod/DesertGlyph] en el desierto
 					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
 				}
 
@@ -4594,7 +4609,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: Asaltante Congelado
-					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
+					SpawnInfo: Usando [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
 					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
 				}
 			}
@@ -4606,7 +4621,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: Tirano Infernal
-					SpawnInfo: Usa [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
+					SpawnInfo: Usando [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
 					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
 				}
 			}
@@ -4677,7 +4692,6 @@ Mods: {
 			// TurtleZombie.DisplayName: Turtle Zombie
 			// BeetleZombie.DisplayName: Beetle Zombie
 			// SolarZombie.DisplayName: Solar Zombie
-			// GemstoneCrusher.DisplayName: Gemstone Crusher
 			// KillerBunny.DisplayName: Killer Bunny
 			// MaceSkeleton.DisplayName: Mace Skeleton
 			// FakePlayer.DisplayName: Fake Player
@@ -4889,6 +4903,7 @@ Mods: {
 			OpositeOreGenerationCobalt: En un mundo con cobalto
 			OpositeOreGenerationOrichalcum: En un mundo con orichalco
 			OpositeOreGenerationMythril: En un mundo con mythril
+			DownedCrusher: Cuando el Titurador de Gemas ah sido derrotado
 			DownedDesert: Cuando el Aniquilador del desierto ah sido derrotado
 			DownedFrozen: Cuando el Asaltante congelado ah sido derrotado
 			DownedTyrant: Cuando el Tirano infernal ah sido derrotado

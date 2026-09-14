@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
@@ -12,17 +11,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Infernal Chalice");
-            //Tooltip.SetDefault("Summons the Infernal Tyrant " +
-                //"\nNot work on multiplayer");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Calice infernal");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Invoque le tyran infernal" +
-               // "\nNe fonctionne pas en multijoueur");
-
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cáliz infernal");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Invoca al Tirano Infernal" + 
-               // "\nNo funciona en multijugador");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 

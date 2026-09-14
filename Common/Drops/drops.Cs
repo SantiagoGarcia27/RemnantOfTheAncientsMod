@@ -28,6 +28,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using SangarUtilities.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
 
 
 namespace RemnantOfTheAncientsMod.Common.Drops
@@ -419,6 +420,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         { NPCID.Golem, () => !NPC.downedGolemBoss },
                         { NPCID.CultistBoss, () => !NPC.downedAncientCultist },
                         { NPCID.MoonLordCore, () => !NPC.downedMoonlord },
+                        { NPCType<GemstoneCrusher>(), () => !RemnantDownedBossSystem.downedCrusher  },
                         { NPCType<DesertAnnihilator>(), () => !RemnantDownedBossSystem.downedDesert },
                         { NPCType<FrozenAssaulter>(), () => !RemnantDownedBossSystem.downedFrozen },
                         { NPCType<InfernalTyrantHead>(), () => !RemnantDownedBossSystem.downedTyrant }

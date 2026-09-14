@@ -185,7 +185,8 @@ public static class FakePlayer_Setup
             helmet,
             chestplate,
             boots,
-
+            accessory,
+            ammo,
             none
 
         }
@@ -193,10 +194,12 @@ public static class FakePlayer_Setup
 
     public class FakePlayerEquipmentList
     {
-       public FakePlayerEquipment[] armor = new FakePlayerEquipment[3];
-       public FakePlayerEquipment meleeWeapon = null;
-       public FakePlayerEquipment rangedWeapon = null;
-       public FakePlayerEquipment[] potions = new FakePlayerEquipment[2];
-       public FakePlayerEquipment healPotion = null;
+        public FakePlayerEquipment[] armor = new FakePlayerEquipment[3];
+        public FakePlayerEquipment meleeWeapon = null;
+        public FakePlayerEquipment rangedWeapon = null;
+        public FakePlayerEquipment[] ammo = new FakePlayerEquipment[4];
+        public FakePlayerEquipment[] potions = new FakePlayerEquipment[2];
+        public FakePlayerEquipment healPotion = null;
+        public FakePlayerEquipment[] accessories = new FakePlayerEquipment[7];
     }
 }

@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.Systems;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer;
 using System.Collections.Generic;
@@ -24,7 +25,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw
         {
             base.SetDefaults();
         }
-
+        public override void OnKill()
+        {
+            OutlawInvasionSystem.EnemyKilled();
+            base.OnKill();
+        }
         public override void ModifyInventory(ref FakePlayerEquipmentList inventory)
         {
             inventory ??= new();
@@ -32,9 +37,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw
             inventory.meleeWeapon = GetRandomMelee();
             inventory.rangedWeapon = GetRandomBow();
             List<FakePlayerEquipment> armorSet = GetRandomArmorSet();
+
             inventory.armor[0] = armorSet[0];
             inventory.armor[1] = armorSet[1];
             inventory.armor[2] = armorSet[2];
+
+            inventory.accessories[0] = new FakePlayerEquipment(ItemID.SharkToothNecklace);
 
             base.ModifyInventory(ref inventory);
         }

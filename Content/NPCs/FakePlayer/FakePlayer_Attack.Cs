@@ -1,12 +1,9 @@
-using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static FakePlayer_Setup;
@@ -28,29 +25,45 @@ public class FakePlayer_Attack
     Player target;
 
     int meleeWeaponIndex { get; set; }
-    public FakePlayer_Attack(Player proxy, NPC npc, FakePlayerEquipmentList inventory, ref int meleeWeaponIndex)
+    int rangerWeaponIndex { get; set; }
+    public FakePlayer_Attack(Player proxy, NPC npc, FakePlayerEquipmentList inventory, ref int meleeWeaponIndex, ref int rangerWeaponIndex)
     {
         this.proxy = proxy;
         this.npc = npc;
         this.inventory = inventory;
         this.meleeWeaponIndex = meleeWeaponIndex;
+        this.rangerWeaponIndex = rangerWeaponIndex;
     }
 
-    public void SetTarget(Player target) => this.target = target;
-    
 
+    public void SetTarget(Player target) => this.target = target;
+
+    private int lastSlot = 0;
+
+    private int SelectedItem
+    {
+        get => proxy.selectedItem;
+        set
+        {
+            proxy.selectedItem = value;
+            if (Main.netMode != NetmodeID.MultiplayerClient) npc.netUpdate = true;
+        }
+    }
     public void AI()
     {
 
         float distance = npc.Center.DistanceSQ(target.Center);
         float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
+        float distanceMax = 80.ToCoordinatePosition() * 80.ToCoordinatePosition();
 
         if (target != null && !target.dead)
         {
+
+            
             if (distance < distanceMin)
             {
                 if (meleeWeapon == null) return;
-
+                SelectedItem = 0; 
                 switch(meleeWeapon.category)
                 {
                     case FakePlayerEquipment.itemType.spear:
@@ -65,10 +78,16 @@ public class FakePlayer_Attack
                 }
                
             }
-            else
+            else if(distance < distanceMax)
             {
+                SelectedItem = 1;
                 ShootAi();
             }
+            if (lastSlot != SelectedItem)
+            {
+                ClearWeaponAnimation();
+            }
+            lastSlot = SelectedItem;
         }
     }
 
@@ -78,6 +97,15 @@ public class FakePlayer_Attack
         set
         {
             meleeWeaponIndex = value;
+            if (Main.netMode != NetmodeID.MultiplayerClient) npc.netUpdate = true;
+        }
+    }
+    int RangerWeaponIndex
+    {
+        get => rangerWeaponIndex;
+        set
+        {
+            rangerWeaponIndex = value;
             if (Main.netMode != NetmodeID.MultiplayerClient) npc.netUpdate = true;
         }
     }
@@ -92,11 +120,8 @@ public class FakePlayer_Attack
             dismissWeaponnTimmer = dismissWeaponnTimmerMax;
 
             MeleeWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, Vector2.Zero, meleeWeapon.item.shoot, 25, 0f, proxy.whoAmI);
-            Projectile weapon = Main.projectile[MeleeWeaponIndex];
-
-            weapon.hostile = true;
-            weapon.friendly = false;
-            weapon.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
+            Projectile projectile = Main.projectile[MeleeWeaponIndex];
+            ApplyProxyStats(projectile, rangeWeapon.item);
         }
         else
         {
@@ -161,13 +186,8 @@ public class FakePlayer_Attack
 
         MeleeWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, meleeWeapon.item.damage, 0f, proxy.whoAmI);
 
-        Projectile spear = Main.projectile[MeleeWeaponIndex];
-
-        spear.hostile = true;
-        spear.friendly = false;
-        spear.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
-
-       
+        Projectile projectile = Main.projectile[MeleeWeaponIndex];
+        ApplyProxyStats(projectile, rangeWeapon.item);
     }
 
     private int meleeAnimationTimer;
@@ -193,27 +213,23 @@ public class FakePlayer_Attack
             Vector2 velocity = target.Center - npc.Center;
             velocity.Normalize();
 
-            MeleeWeaponIndex = Projectile.NewProjectile(
-                npc.GetSource_FromAI(),
-                proxy.Center,
-                velocity,
-                id,
-                meleeWeapon.item.damage,
-                0f,
-                proxy.whoAmI
-            );
+            MeleeWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, meleeWeapon.item.damage, 0f, proxy.whoAmI);
 
-            Projectile weapon = Main.projectile[MeleeWeaponIndex];
-
-            weapon.hostile = true;
-            weapon.friendly = false;
-
-            weapon.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
-
+            Projectile projectile = Main.projectile[MeleeWeaponIndex];
+            ApplyProxyStats(projectile, rangeWeapon.item);
 
             return;
         }
 
+        BasicMeleeAi();
+
+        // Cooldown entre ataques
+        if (attackTimer > 0)
+            attackTimer--;
+    }
+
+    private void BasicMeleeAi()
+    {
         // =========================
         // MELEE BÁSICO
         // =========================
@@ -247,7 +263,7 @@ public class FakePlayer_Attack
             float progress = 1f - (meleeAnimationTimer / (float)meleeWeapon.item.useAnimation);
 
             // Ángulo del brazo durante el swing
-            float armRotation = MathHelper.Lerp(-2.2f,0.8f,progress);
+            float armRotation = MathHelper.Lerp(-2.2f, 0.8f, progress);
 
             // Invertir el movimiento si mira hacia la izquierda
             if (proxy.direction == -1)
@@ -262,6 +278,7 @@ public class FakePlayer_Attack
                 proj.friendly = false;
                 proj.timeLeft = Math.Max(1, 20);
                 proj.Size = meleeWeapon.item.Size * 3 * meleeWeapon.item.scale;
+                proj.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
             }
             if (meleeItemTimeTimer > 0)
                 meleeItemTimeTimer--;
@@ -270,10 +287,6 @@ public class FakePlayer_Attack
 
             return;
         }
-
-        // Cooldown entre ataques
-        if (attackTimer > 0)
-            attackTimer--;
     }
 
 
@@ -282,14 +295,14 @@ public class FakePlayer_Attack
     {
         if (rangeWeapon == null) return;
         if (rangeWeapon.item.shoot == ProjectileID.None) return;
-
+        if (!Collision.CanHitLine(npc.position, npc.width, npc.height, target.position, target.width, target.height)) return;
         // =========================
         // INICIAR DISPARO
         // =========================
         if (attackTimer <= 0 && meleeAnimationTimer <= 0)
         {
-            proxy.inventory[0] = rangeWeapon.item;
-            proxy.selectedItem = 0;
+            proxy.inventory[1] = rangeWeapon.item;
+            SelectedItem = 1;
 
             proxy.itemAnimationMax = rangeWeapon.item.useAnimation;
             proxy.itemAnimation = rangeWeapon.item.useAnimation;
@@ -311,19 +324,18 @@ public class FakePlayer_Attack
                 velocity.Normalize();
                 velocity *= rangeWeapon.item.shootSpeed * 1.5f;
 
-                proxy.inventory[3] = new Item(ItemID.MusketBall, 300);
-                if (id == ProjectileID.PurificationPowder) id = proxy.ChooseAmmo(rangeWeapon.item).shoot;
+                proxy.inventory[3] = new Item(ItemID.MusketBall, 10);
+                if (id == ProjectileID.PurificationPowder)
+                {
+                    Item armmo = proxy.ChooseAmmo(rangeWeapon.item);
+                    id = armmo?.shoot ?? ProjectileID.WoodenArrowFriendly;
+                }
 
                 if(rangeWeapon.item.UseSound == SoundID.Item38) rangeWeapon.item.UseSound = SoundID.Item1;
-
-                int index = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, rangeWeapon.item.damage, 0f, proxy.whoAmI);
-
-                Main.projectile[index].hostile = true;
-                Main.projectile[index].friendly = false;
-
-                Main.projectile[index]
-                    .GetGlobalProjectile<RemnantGlobalProjectile>()
-                    .useVanillaDamageScale = false;
+               
+                RangerWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, rangeWeapon.item.damage, 0f, proxy.whoAmI);
+                Projectile projectile = Main.projectile[RangerWeaponIndex];
+                ApplyProxyStats(projectile, rangeWeapon.item);
             }
         }
 
@@ -349,11 +361,11 @@ public class FakePlayer_Attack
 
             if (direction.LengthSquared() > 0f)
             {
-                float offset = 5;
+                float offset = 1.6f;
                 float rotation = direction.ToRotation() - MathHelper.PiOver2;
 
                 proxy.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, rotation);
-                proxy.itemRotation = rotation - (offset * proxy.direction);
+                proxy.itemRotation = rotation + (offset * proxy.direction);
             }
            
 
@@ -368,5 +380,48 @@ public class FakePlayer_Attack
         // =========================
         if (attackTimer > 0)
             attackTimer--;
+    }
+
+    private void ApplyProxyStats(Projectile projectile, Item weapon)
+    {
+        projectile.hostile = proxy.hostile;
+        projectile.friendly = !proxy.hostile;
+
+        projectile.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
+        projectile.DamageType = weapon.DamageType;
+        projectile.ArmorPenetration = (int)proxy.GetTotalArmorPenetration(weapon.DamageType);
+    }
+
+  
+
+    private void ClearWeaponAnimation()
+    {
+        meleeAnimationTimer = 0;
+        meleeItemTimeTimer = 0;
+
+        proxy.itemAnimation = 0;
+        proxy.itemTime = 0;
+        proxy.itemAnimationMax = 0;
+        proxy.itemTimeMax = 0;
+
+        proxy.SetCompositeArmFront(false, Player.CompositeArmStretchAmount.None, 0f);
+
+
+        if(SelectedItem != 0)
+        {
+            if (meleeWeapon != null && proxy.ownedProjectileCounts[meleeWeapon.item.shoot] >= 1)
+            {
+                proxy.channel = false;
+                Main.projectile[MeleeWeaponIndex].Kill();
+                MeleeWeaponIndex = -1;
+            }
+        }
+        else if(SelectedItem != 1)
+        {
+            if (rangeWeapon != null && proxy.ownedProjectileCounts[rangeWeapon.item.shoot] >= 1)
+            {
+                proxy.channel = false;
+            }
+        }
     }
 }
