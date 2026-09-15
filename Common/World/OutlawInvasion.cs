@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw;
@@ -6,6 +7,7 @@ using SteelSeries.GameSense;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -20,6 +22,17 @@ namespace RemnantOfTheAncientsMod.Common.Systems
         public const int RequiredKills = 50;
         public const int MaxEnemies = 5;
 
+        public static Texture2D BarIcon
+        {
+            get
+            {
+                string path = "RemnantOfTheAncientsMod/Common/UI/InvasionBar/PlayerInvasion_Icon";
+                Texture2D texture = (Texture2D)ModContent.Request<Texture2D>(path);
+                return texture ?? TextureAssets.Extra[ExtrasID.EventIconPirateInvasion].Value;
+            }
+        }
+
+        public static string BarText => "Player Invasion";
         public override void PostUpdateWorld()
         {
             if (!EventActive)
@@ -77,7 +90,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
             EventActive = true;
             Kills = 0;
-            Main.ReportInvasionProgress( Kills, RequiredKills,4/*ModContent.NPCType<Outlaw>()*/, 1);
+            FakeMain.ReportInvasionProgress(Kills, RequiredKills, BarIcon, 1, BarText, new Color(165, 160, 155) * 0.5f);
             ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("¡Los Outlaws han llegado!"), Color.MediumPurple);
         }
 
@@ -88,7 +101,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
             Kills++;
 
-            Main.ReportInvasionProgress(Kills, RequiredKills, ModContent.NPCType<Outlaw>(), 1);
+            FakeMain.ReportInvasionProgress(Kills, RequiredKills, BarIcon, 1, BarText, new Color(165, 160, 155) * 0.5f);
 
             if (Kills >= RequiredKills)
             {

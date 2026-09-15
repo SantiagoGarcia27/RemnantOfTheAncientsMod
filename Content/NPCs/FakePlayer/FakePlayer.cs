@@ -17,6 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 	{
 		private Player proxy;
 		private FakePlayer_Attack attackModule { get; set; }
+		private FakePlayer_Consumables consumableModule { get; set; }
 
         FakePlayerEquipmentList inventory { get; set; }
 		private int meleeWeaponIndex = -1;
@@ -50,6 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             proxy.hostile = true;
             inventory = new();
             attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex, ref rangerWeaponIndex);
+			consumableModule = new FakePlayer_Consumables(proxy, NPC, inventory: inventory);
 
             FakePlayerEquipmentList inv = inventory;
 
@@ -72,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 				Player target = Main.player[NPC.target];
 				attackModule.SetTarget(target);
 				attackModule.AI();
-
+				consumableModule.AI();
             }
 			
 
@@ -82,6 +84,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		private void  SyncProxyStats(bool spawn = false)
         {
             proxy.statLife = NPC.life;
+			//NPC.life = proxy.statLife;
             NPC.defense = proxy.statDefense;
 			if (spawn)
 			{
@@ -131,7 +134,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			proxy.inventory[56] = inventory.ammo[2]?.item ?? new Item();
 			proxy.inventory[57] = inventory.ammo[3]?.item ?? new Item();
 
-		
+			//Potions
+			proxy.inventory[9] = inventory.healPotion?.item ?? new Item();
+
+			for (int i = 0; i <= (inventory?.potions?.Length - 1 ?? 0); i++) {
+				proxy.inventory[i + 10] = inventory.potions[i]?.item ?? new Item();
+            }
+
             this.inventory = inventory;
         }
 		

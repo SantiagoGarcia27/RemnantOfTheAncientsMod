@@ -1,26 +1,30 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json.Linq;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.ID;
+using static System.Net.Mime.MediaTypeNames;
 
 public class FakeMain : ModSystem
 {
     public override void Load()
     {
         On_Main.DrawInvasionProgress += DrawInvasionProgress;
+        On_Main.ReportInvasionProgress += ReportInvasionProgress;
     }
 
     public override void Unload()
     {
         On_Main.DrawInvasionProgress -= DrawInvasionProgress;
+        On_Main.ReportInvasionProgress -= ReportInvasionProgress;
     }
 
 
-    private static int invasionProgress 
-    { 
+    private static int invasionProgress
+    {
         get => Main.invasionProgress;
         set => Main.invasionProgress = value;
     }
@@ -80,49 +84,15 @@ public class FakeMain : ModSystem
         get => Main.spriteBatch;
         set => Main.spriteBatch = value;
     }
+
+    private static string invasionBarText { get; set;  }
+
+    private static Texture2D invasionBarIcon { get; set; }
+
+    private static Color invasionBarColor { get; set; }
     
-    private static Texture2D TextureAssets_Extra(int index)
+    private static void GetVanillaInvasionByIndex(int invasionProgressIcon, ref Texture2D value, ref string text, ref Color c)
     {
-        return TextureAssets.Extra[index].Value;
-    }
-
-    private void DrawInvasionProgress(On_Main.orig_DrawInvasionProgress orig)
-    {
-      
-        if (invasionProgress == -1)
-            return;
-
-        if (invasionProgressMode == 2 && invasionProgressNearInvasion && invasionProgressDisplayLeft < 160)
-            invasionProgressDisplayLeft = 160;
-
-        if (!Main.gamePaused && invasionProgressDisplayLeft > 0)
-            invasionProgressDisplayLeft--;
-
-        if (invasionProgressDisplayLeft > 0)
-            invasionProgressAlpha += 0.05f;
-        else
-            invasionProgressAlpha -= 0.05f;
-
-        if (invasionProgressMode == 0)
-        {
-            invasionProgressDisplayLeft = 0;
-            invasionProgressAlpha = 0f;
-        }
-
-        if (invasionProgressAlpha < 0f)
-            invasionProgressAlpha = 0f;
-
-        if (invasionProgressAlpha > 1f)
-            invasionProgressAlpha = 1f;
-
-        if (invasionProgressAlpha <= 0f)
-            return;
-
-        float scale = 0.5f + invasionProgressAlpha * 0.5f;
-        Texture2D value = TextureAssets.Extra[ExtrasID.EventIconGoblinArmy].Value;
-        string text = "";
-        Color c = Color.White;
-
         if (invasionProgressIcon == 1)
         {
             value = TextureAssets.Extra[ExtrasID.EventIconFrostMoon].Value;
@@ -165,6 +135,77 @@ public class FakeMain : ModSystem
             text = Lang.inter[88].Value;
             c = new Color(94, 72, 131) * 0.5f;
         }
+    }
+
+    public static void ReportInvasionProgress(On_Main.orig_ReportInvasionProgress orig,int progress, int progressMax, int icon, int progressWave)
+    {
+        ReportInvasionProgress(progress, progressMax, vanillaIcon: icon, progressWave);
+    }
+    public static void ReportInvasionProgress(int progress, int progressMax, int vanillaIcon, int progressWave)
+    {
+        invasionProgress = progress;
+        invasionProgressMax = progressMax;
+        invasionProgressIcon = vanillaIcon;
+        invasionProgressWave = progressWave;
+        invasionProgressDisplayLeft = 160;
+    }
+    public static void ReportInvasionProgress(int progress, int progressMax, Texture2D icon, int progressWave,  string text, Color color)
+    {
+        invasionProgress = progress;
+        invasionProgressMax = progressMax;
+        invasionBarIcon = icon;
+        invasionBarText = text;
+        invasionProgressWave = progressWave;
+        invasionBarColor = color;
+        invasionProgressDisplayLeft = 160;
+    }
+
+    private void DrawInvasionProgress(On_Main.orig_DrawInvasionProgress orig)
+    {
+      
+        if (invasionProgress == -1)
+            return;
+
+        if (invasionProgressMode == 2 && invasionProgressNearInvasion && invasionProgressDisplayLeft < 160)
+            invasionProgressDisplayLeft = 160;
+
+        if (!Main.gamePaused && invasionProgressDisplayLeft > 0)
+            invasionProgressDisplayLeft--;
+
+        if (invasionProgressDisplayLeft > 0)
+            invasionProgressAlpha += 0.05f;
+        else
+            invasionProgressAlpha -= 0.05f;
+
+        if (invasionProgressMode == 0)
+        {
+            invasionProgressDisplayLeft = 0;
+            invasionProgressAlpha = 0f;
+        }
+
+        if (invasionProgressAlpha < 0f)
+            invasionProgressAlpha = 0f;
+
+        if (invasionProgressAlpha > 1f)
+            invasionProgressAlpha = 1f;
+
+        if (invasionProgressAlpha <= 0f)
+            return;
+
+        float scale = 0.5f + invasionProgressAlpha * 0.5f;
+        Texture2D value = TextureAssets.Extra[ExtrasID.EventIconGoblinArmy].Value;
+        string text = "";
+        Color c = Color.White;
+
+
+        if(invasionProgressIcon != 0)
+            GetVanillaInvasionByIndex(invasionProgressIcon, ref value, ref text, ref c);
+        else
+        {
+            value = invasionBarIcon;
+            text = invasionBarText;
+            c = invasionBarColor;
+        }
 
         int barWidth = (int)(200f * scale);
         int barHeight = (int)(45f * scale);
@@ -202,7 +243,7 @@ public class FakeMain : ModSystem
         else
         {
             string progressText = ((invasionProgressMax != 0) ? 
-                ((int)((float)invasionProgress * 100f / (float)invasionProgressMax) + "%") : 
+                ((int)((float)invasionProgress * 100f / (float)invasionProgressMax) + "% :)") : 
                 invasionProgress.ToString());
 
             progressText = Language.GetTextValue("Game.WaveCleared", progressText);

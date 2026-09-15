@@ -44,6 +44,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw
 
             inventory.accessories[0] = new FakePlayerEquipment(ItemID.SharkToothNecklace);
 
+            inventory.healPotion = new FakePlayerEquipment(ItemID.LesserHealingPotion, stack: 2);
+
             base.ModifyInventory(ref inventory);
         }
     }

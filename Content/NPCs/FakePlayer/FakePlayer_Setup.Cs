@@ -157,20 +157,23 @@ public static class FakePlayer_Setup
 
         public int type { get; set; }
         public float weight { get; set; }
+        public int stack { get; set; }
         public Item item {
             get
             {
                 if (!ContentSamples.ItemsByType.TryGetValue(this.type, out Item item)) return null;
+                item.stack = stack;
                 return item;
             }
         }
         public itemType category { get; set; }
 
-        public FakePlayerEquipment(int type, float weight = 1f, itemType category = itemType.none)
+        public FakePlayerEquipment(int type, float weight = 1f, int stack = 1,  itemType category = itemType.none)
         {
             this.type = type;
             this.weight = weight;
             this.category = category;
+            this.stack = stack;
         }
 
         public enum itemType
