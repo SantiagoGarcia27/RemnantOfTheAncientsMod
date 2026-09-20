@@ -118,7 +118,9 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
         {
             _timmer = item.GetGlobalItem<RemnantGlobalItem>().Timmer;
             _timmerMax = item.GetGlobalItem<RemnantGlobalItem>().TimmerMax;
-            ChargeBonus = player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged];
+            StatPlayer statPlayer = player.GetModPlayer<StatPlayer>();
+            if (!statPlayer.ChargeBonus.ContainsKey(DamageClass.Ranged)) statPlayer.ChargeBonus.Add(DamageClass.Ranged, 1f);
+            ChargeBonus = statPlayer.ChargeBonus[DamageClass.Ranged];
 
             if (BowsReworkConfig && !BannedBows.Contains(item.type))
             {

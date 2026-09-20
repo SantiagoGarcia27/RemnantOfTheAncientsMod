@@ -6,6 +6,7 @@ using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
@@ -27,8 +28,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public bool IsAmmo;
 		public int StyleStat = 0;
 
-
-		public Item ItemBase = null;
+        [CloneByReference]
+        public Item ItemBase = null;
 		public float ChargeMax = 0;
 		public static List<int> SpearsList = [];
 		public bool CanCharge = false;
@@ -36,6 +37,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 		// public float CurrentAmmo = 0;
 		public float CurrentAmmoMax = 0;
+
+
 		public List<int> CurrentAmmoType = [];
 		public float ReloadCounter = 0;
 		public float ReloadCounterMax = 0;
@@ -154,9 +157,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
+        public override GlobalItem Clone(Item from, Item to)
+        {
 
+			if (to.TryGetGlobalItem(out RemnantGlobalItem global) && from.TryGetGlobalItem(out RemnantGlobalItem globalOg))
+			{
+				global.CurrentAmmoType = [];
+				global.CurrentAmmoType.AddRange(globalOg.CurrentAmmoType);
+			}
+            return base.Clone(from, to);
+        }
 
-		public void AddToDashWeaponsLists(Item item)
+        public void AddToDashWeaponsLists(Item item)
 		{
 			AddVanilaSpear();
 			AddModedSpearGeneric(item);

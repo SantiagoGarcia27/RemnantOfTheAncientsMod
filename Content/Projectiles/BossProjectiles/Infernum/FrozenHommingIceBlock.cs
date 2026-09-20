@@ -65,10 +65,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
         {
             Player target = null;
             float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
-            for (int k = 0; k < RemnantOfTheAncientsMod.MaxPlayers; k++)
-            {
-                Player target_ = Main.player[k];
-                if (!target_.dead && target_.active)
+            foreach(Player target_ in Main.ActivePlayers) 
+            { 
+                if (!target_.dead)
                 {     
                     float sqrDistanceToTarget = Vector2.DistanceSquared(target_.Center, Projectile.Center);
                     if (sqrDistanceToTarget < sqrMaxDetectDistance)

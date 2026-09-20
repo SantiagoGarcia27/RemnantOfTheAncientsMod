@@ -8,8 +8,10 @@ using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -35,8 +37,6 @@ namespace RemnantOfTheAncientsMod
         public static bool DebuggMode;
         public static int CustomCurrencyId;
         public static int MaxRarity = GetMaxRarity();
-        public static int MaxPlayers = 0;
-
         public static string PlaceHolderPath = $"RemnantOfTheAncientsMod/Assets/PlaceHolder";
         public static string PlaceHolderWithoutModPath = $"Assets/PlaceHolder";
 
@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod
             }
 
             BackgroundTextureLoader.AddBackgroundTexture(this, PlaceHolderPath);
-       
+            AppDomain.CurrentDomain.FirstChanceException += OnFirstChanceException;
 
 
 
@@ -116,7 +116,21 @@ namespace RemnantOfTheAncientsMod
         public override void Unload()
         {
             RemnantOfTheAncientsMod.BossChecklist = null;
+            AppDomain.CurrentDomain.FirstChanceException -= OnFirstChanceException;
             Array.Resize(ref TextureAssets.GlowMask, GlowMaskID.Count);
+        }
+
+        private void OnFirstChanceException(object sender, FirstChanceExceptionEventArgs e)
+        {
+            if (e.Exception is IndexOutOfRangeException)
+            {
+                if (e.Exception is IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine("========== INDEX OUT OF RANGE ==========");
+                    Console.WriteLine(ex.StackTrace);
+                    //Debugger.Break();
+                }
+            }
         }
         public static short AddGlowMask(string texture)
         {
@@ -212,17 +226,19 @@ namespace RemnantOfTheAncientsMod
         }
         public static int MaxPlayerOnline()
         {
-            MaxPlayers = 0;
-            for (int i = 0; i < Main.maxPlayers; i++)
+            int MaxPlayers = 0;
+            foreach (Player player in Main.ActivePlayers)
+            {     
+                MaxPlayers++; 
+            }
+            return MaxPlayers - 1;
+        }
+        public static int MaxPlayerOnlineAlives()
+        {
+            int MaxPlayers = 0;
+            foreach (Player player in Main.ActivePlayers)
             {
-                if (MaxPlayers < 10)
-                {
-                    Player plr = Main.player[i];
-                    if (plr.active && !plr.dead)
-                    {
-                        MaxPlayers++;
-                    }
-                }
+                if(!player.dead) MaxPlayers++;
             }
             return MaxPlayers - 1;
         }
@@ -238,7 +254,7 @@ namespace RemnantOfTheAncientsMod
         {
             try
             {
-                var detourManager = MonoMod.RuntimeDetour.DetourManager.GetDetourInfo(typeof(Player).GetMethod("Update"));
+                /*var detourManager = MonoMod.RuntimeDetour.DetourManager.GetDetourInfo(typeof(Player).GetMethod("Update"));
                 int count = detourManager.Detours.Count();
                 if (count >= 1)
                 {
@@ -284,7 +300,7 @@ namespace RemnantOfTheAncientsMod
                     c.EmitStloc(fallThroughIndex);                                    // Store stack value in fallThrough
                 };
 
-                base.Load();
+                base.Load();*/
             }
             catch (Exception ex)
             {

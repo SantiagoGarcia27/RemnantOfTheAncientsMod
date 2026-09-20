@@ -173,6 +173,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             Tooltips.Add(item2);
         }
 
+        [CloneByReference]
         public List<int> ReaperItems =
         [
            ModContent.ItemType<Ftoggler>(),

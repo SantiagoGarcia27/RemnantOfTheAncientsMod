@@ -9,7 +9,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 {
     public class FisherClassOverride : GlobalItem
     {
-        readonly Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
+        //readonly Mod Calamity = RemnantOfTheAncientsMod.CalamityMod;
         public override bool InstancePerEntity => true;
         public override void SetDefaults(Item item)
         {

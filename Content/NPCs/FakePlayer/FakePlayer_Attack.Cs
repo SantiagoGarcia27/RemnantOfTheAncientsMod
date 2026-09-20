@@ -323,6 +323,12 @@ public class FakePlayer_Attack
             {
                 velocity.Normalize();
                 velocity *= rangeWeapon.item.shootSpeed * 1.5f;
+                if(target.Center.Distance(proxy.Center) > 60.ToCoordinatePosition())
+                {
+                    float diference = target.Center.Distance(proxy.Center) - 60.ToCoordinatePosition();
+                    velocity.RotatedByRandom(diference.ToTilePosition());
+                }
+
 
                 proxy.inventory[3] = new Item(ItemID.MusketBall, 10);
                 if (id == ProjectileID.PurificationPowder)
@@ -353,7 +359,6 @@ public class FakePlayer_Attack
             );
 
             proxy.itemTimeMax = rangeWeapon.item.useTime;
-
             proxy.ItemCheck();
 
             // Apuntar hacia el objetivo

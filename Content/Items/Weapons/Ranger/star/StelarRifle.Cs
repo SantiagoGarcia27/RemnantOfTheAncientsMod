@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
 
         public override void SetDefaults()
         {
-            Item.damage = 600;//305
+            Item.damage = 600;
             Item.DamageType = DamageClass.Ranged;
             Item.crit = 30 - 4;
             Item.width = 80;
@@ -46,6 +46,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
             Item.useAmmo = AmmoID.FallenStar;
             Item.channel = true;
         }
+
+        [CloneByReference]
         List<int> stars =
         [
             ProjectileID.SuperStar,

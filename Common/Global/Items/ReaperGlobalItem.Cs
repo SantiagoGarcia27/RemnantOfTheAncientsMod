@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 {
 	public class ReaperGlobalItem : GlobalItem
 	{
-		public override bool InstancePerEntity => true; //InstancePerEntity
+		public override bool InstancePerEntity => true;
 		public static float originalsize = 1;
 		public float newsize = 0;
 

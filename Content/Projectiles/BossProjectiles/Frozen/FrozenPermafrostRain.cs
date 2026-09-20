@@ -49,10 +49,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
         {
             Player target = null;
             float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
-            for (int k = 0; k < RemnantOfTheAncientsMod.MaxPlayers; k++)
+            foreach (Player target_ in Main.ActivePlayers)
             {
-                Player target_ = Main.player[k];
-                if (!target_.dead && target_.active)
+                if (!target_.dead)
                 {
                     float sqrDistanceToTarget = Vector2.DistanceSquared(target_.Center, Projectile.Center);
                     if (sqrDistanceToTarget < sqrMaxDetectDistance)

@@ -46,8 +46,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
     [AutoloadBossHead]
     public class FrozenAssaulter : ModNPC
     {
-    
-
         public int currentPhase = 1;
         public int MaxPlayers => RemnantOfTheAncientsMod.MaxPlayerOnline() / 2;
      
@@ -73,10 +71,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             NPC.lavaImmune = true;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            /*NPC.HitSound = SoundID.Item27 with
-            {
-                Pitch = 5f
-            };*/
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.buffImmune[24] = true;
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Frozen_Assaulter_p1");
@@ -136,7 +130,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 NPC.EncourageDespawn(7);
                 return;
             }
-
 
             if (RemnantOfTheAncientsMod.InfernumMod != null && DificultyUtils.InfernumMode)
             {
@@ -250,7 +243,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 case 200:
                     if (currentPhase != 3) return;  
                     for (int i = 0; i < 3; i++){
-                        ShootSwordIa(target, 50, ModContent.ProjectileType<FrozenPermafrostRain>(), 4f);
+                        ShootSwordIa(target, 50, ProjectileType<FrozenPermafrostRain>(), 4f);
                     }     
                     
                     break;
@@ -656,7 +649,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         }
         public override void BossLoot(ref string name, ref int potionType)
         {
-            RemnantOfTheAncientsMod.MaxPlayers = 0;
             RemnantDownedBossSystem.downedFrozen = true;
             potionType = ItemID.GreaterHealingPotion;
             Item.NewItem(NPC.GetSource_Loot(), (int)NPC.position.X, (int)NPC.position.Y, NPC.width, NPC.height, ItemType<Ice_escense>(), 10);

@@ -59,26 +59,28 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
         private static void SpawnOutlaw()
         {
-            Player player = Main.player[Main.myPlayer];
-
-            if (player.whoAmI == Main.myPlayer)
+            //Player player = Main.player[Main.myPlayer];
+            foreach (Player player in Main.ActivePlayers)
             {
-                SoundEngine.PlaySound(SoundID.Roar, player.position);
-
-                int type = ModContent.NPCType<Outlaw>();
-
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    int spawnX = (int)player.Center.X + (Main.rand.NextBool() ? Main.rand.Next(-1000,-800) : Main.rand.Next(800, 1000));
-                    int spawnY = (int)player.Center.Y - 100;
-                    Vector2 spawnPos = new Vector2(spawnX, spawnY);
-                    spawnPos = DistanceUtils.GetSecurePosition(spawnPos);
+                    SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-                    NPC.NewNPC(player.GetSource_Misc("OutlawInvasion"), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<Outlaw>()); 
-                }
-                else
-                {
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
+                    int type = ModContent.NPCType<Outlaw>();
+
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        int spawnX = (int)player.Center.X + (Main.rand.NextBool() ? Main.rand.Next(-1000, -800) : Main.rand.Next(800, 1000));
+                        int spawnY = (int)player.Center.Y - 100;
+                        Vector2 spawnPos = new Vector2(spawnX, spawnY);
+                        spawnPos = DistanceUtils.GetSecurePosition(spawnPos);
+
+                        NPC.NewNPC(player.GetSource_Misc("OutlawInvasion"), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<Outlaw>());
+                    }
+                    else
+                    {
+                        NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: type);
+                    }
                 }
             }
         }

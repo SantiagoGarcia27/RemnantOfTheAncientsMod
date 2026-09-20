@@ -63,7 +63,9 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                 {
                     ProjectilePenetrationBonus.Add(damageClass,1);
                     ProjectilePenetrationChance.Add(damageClass, 0);
-                    ChargeBonus.Add(damageClass,1);
+
+                    if (!ChargeBonus.ContainsKey(damageClass)) ChargeBonus.Add(damageClass, 1);
+                    else ChargeBonus[damageClass] = 1;
                 }
                 else
                 {

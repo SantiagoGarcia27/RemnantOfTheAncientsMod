@@ -1,14 +1,11 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 using static FakePlayer_Setup;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
@@ -19,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		private FakePlayer_Attack attackModule { get; set; }
 		private FakePlayer_Consumables consumableModule { get; set; }
 
-        FakePlayerEquipmentList inventory { get; set; }
+        private FakePlayerEquipmentList inventory { get; set; }
 		private int meleeWeaponIndex = -1;
         private int rangerWeaponIndex = -1;
         public override void SetStaticDefaults()
@@ -41,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			AIType = NPCID.Skeleton;
 			AnimationType = NPCID.Skeleton;
 
-			Initialize();
+			if (Main.netMode == NetmodeID.Server) Initialize();
         }
 
 		protected virtual void Initialize()
@@ -51,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             proxy.hostile = true;
             inventory = new();
             attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex, ref rangerWeaponIndex);
-			consumableModule = new FakePlayer_Consumables(proxy, NPC, inventory: inventory);
+			consumableModule = new FakePlayer_Consumables(ref proxy, NPC, inventory: inventory);
 
             FakePlayerEquipmentList inv = inventory;
 
@@ -69,12 +66,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			NPC.UpdatePlayerProxy();
 			NPC.ConfigureProxyPlayer(shouldBeDrawn: true);
 
+			if(inventory == null)
+			{
+				Initialize();
+			}
 			if (NPC.target > -1)
 			{
 				Player target = Main.player[NPC.target];
-				attackModule.SetTarget(target);
-				attackModule.AI();
-				consumableModule.AI();
+                int lifeLosed = proxy.statLifeMax2 - proxy.statLife;
+				if (lifeLosed >= inventory.healPotion.item.healLife && proxy.inventory[9].stack > 0)
+				{
+					consumableModule.HealingAI();
+                    return;
+				}
+
+                attackModule.SetTarget(target);
+                attackModule.AI();
+                
             }
 			
 
@@ -146,6 +154,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		
 		public override void OnSpawn(IEntitySource source)
 		{
+            if (Main.netMode == NetmodeID.SinglePlayer) Initialize();
             base.OnSpawn(source);
 		}
 
@@ -168,10 +177,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
         {
             PlayerDeathReason deathReason = PlayerDeathReason.ByProjectile(projectile.owner, projectile.whoAmI);
             if (NPC.life <= 0)
-            {
-                
+            {         
                 proxy.KillMe(deathReason,damageDone,hit.HitDirection,proxy.hostile);
-                //proxy?.DisposePlayerProxy();
             }
 
 			proxy.Hurt(deathReason, damageDone, hit.HitDirection, proxy.hostile, armorPenetration: projectile.ArmorPenetration, knockback: hit.Knockback);
@@ -181,10 +188,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
         {
             PlayerDeathReason deathReason = PlayerDeathReason.ByPlayerItem(player.whoAmI, item);
             if (NPC.life <= 0)
-            {
-                
+            {     
                 proxy.KillMe(deathReason, damageDone, hit.HitDirection, proxy.hostile);
-				//proxy?.DisposePlayerProxy();
             }
             proxy.Hurt(deathReason, damageDone, hit.HitDirection, proxy.hostile, armorPenetration: player.GetArmorPenetration(item.DamageType), knockback: hit.Knockback);
             hit.Damage = 0;

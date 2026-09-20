@@ -4549,8 +4549,8 @@ Mods: {
 			}
 
 			OutlawSummon: {
-				DisplayName: Outlaw Summon
-				Tooltip: ""
+				DisplayName: Outlaw Summon (Wip)
+				Tooltip: " invoca una invasion de jugadores, está en desarollo asique no esperque recompenza o algo balanceado"
 			}
 		}
 

@@ -1,7 +1,9 @@
+using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Common.Systems;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 {
@@ -32,6 +34,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
             OutlawInvasionSystem.StartEvent();
 
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+            .AddIngredient(ItemID.Wood, 10)
+            .AddTile(TileID.LunarCraftingStation)
+            .Register();
+            base.AddRecipes();
         }
     }
 }
