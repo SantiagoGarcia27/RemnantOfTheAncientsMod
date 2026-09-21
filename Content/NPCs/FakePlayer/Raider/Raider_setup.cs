@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using static FakePlayer_Setup;
 using static FakePlayer_Setup.FakePlayerEquipment;
 
-public static class Outlaw_setup
+public static class Raider_setup
 {
     public static List<FakePlayerEquipment> ShortSword = [
         new(type: ItemID.CopperShortsword, category: itemType.shortSword),

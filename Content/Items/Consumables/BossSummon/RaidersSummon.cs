@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 {
-    public class OutlawSummon : ModItem
+    public class RaidersSummon : ModItem
     {
         public override void SetDefaults()
         {
@@ -26,12 +26,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 
         public override bool CanUseItem(Player player)
         {
-            return !OutlawInvasionSystem.EventActive;
+            return !RaidersInvasionSystem.EventActive;
         }
 
         public override bool? UseItem(Player player)
         {
-            OutlawInvasionSystem.StartEvent();
+            RaidersInvasionSystem.StartEvent();
 
             return true;
         }

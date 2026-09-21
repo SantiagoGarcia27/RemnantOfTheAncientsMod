@@ -4578,6 +4578,11 @@ Mods: {
 				// DisplayName: Outlaw Summon (Wip)
 				// Tooltip: " invoca una invasion de jugadores, está en desarollo asique no esperque recompenza o algo balanceado"
 			}
+
+			RaidersSummon: {
+				// DisplayName: Raiders Summon
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4696,6 +4701,7 @@ Mods: {
 			// MaceSkeleton.DisplayName: Mace Skeleton
 			// FakePlayer.DisplayName: Fake Player
 			// Outlaw.DisplayName: Outlaw
+			// Raider.DisplayName: Raider
 		}
 
 		Projectiles: {

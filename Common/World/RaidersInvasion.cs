@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
-using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw;
-using SteelSeries.GameSense;
+using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -14,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Systems
 {
-    public class OutlawInvasionSystem : ModSystem
+    public class RaidersInvasionSystem : ModSystem
     {
         public static bool EventActive;
         public static int Kills;
@@ -45,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
             {
                 NPC npc = Main.npc[i];
 
-                if (npc.active && npc.type == ModContent.NPCType<Outlaw>())
+                if (npc.active && npc.type == ModContent.NPCType<Raider>())
                     currentEnemies++;
             }
 
@@ -66,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
                 {
                     SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-                    int type = ModContent.NPCType<Outlaw>();
+                    int type = ModContent.NPCType<Raider>();
 
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
@@ -75,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
                         Vector2 spawnPos = new Vector2(spawnX, spawnY);
                         spawnPos = DistanceUtils.GetSecurePosition(spawnPos);
 
-                        NPC.NewNPC(player.GetSource_Misc("OutlawInvasion"), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<Outlaw>());
+                        NPC.NewNPC(player.GetSource_Misc("OutlawInvasion"), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<Raider>());
                     }
                     else
                     {

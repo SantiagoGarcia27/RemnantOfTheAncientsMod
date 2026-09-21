@@ -37,13 +37,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			NPC.damage = 0;
 			AIType = NPCID.Skeleton;
 			AnimationType = NPCID.Skeleton;
-
-			if (Main.netMode == NetmodeID.Server) Initialize();
         }
 
 		protected virtual void Initialize()
 		{
             proxy = NPC.GetPlayerProxy();
+			if (proxy == null) return;
             proxy.name = "Rogue";
             proxy.hostile = true;
             inventory = new();
@@ -57,10 +56,22 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 
           
         }
+        private bool initialized;
 
         public override void AI()
 		{
-			if (proxy == null || !proxy.active) proxy = NPC.GetPlayerProxy();
+            if (!initialized && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                initialized = true;
+                Initialize();
+            }
+
+
+			if (proxy == null || !proxy.active)
+			{
+				proxy = NPC.GetPlayerProxy();
+				if (proxy == null) return;
+			}
             SyncProxyStats();
             NPC.TargetClosest();
 			NPC.UpdatePlayerProxy();
@@ -85,12 +96,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
                 
             }
 			
-
             base.AI();
 		}
 
 		private void  SyncProxyStats(bool spawn = false)
         {
+			if (proxy == null) return;
             proxy.statLife = NPC.life;
 			//NPC.life = proxy.statLife;
             NPC.defense = proxy.statDefense;
@@ -151,14 +162,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 
             this.inventory = inventory;
         }
-		
-		public override void OnSpawn(IEntitySource source)
-		{
-            if (Main.netMode == NetmodeID.SinglePlayer) Initialize();
-            base.OnSpawn(source);
-		}
 
-      
         public override void OnKill()
 		{
 			
@@ -175,6 +179,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 
         public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
         {
+			if(proxy == null)
+			{
+				return;
+			}
+
             PlayerDeathReason deathReason = PlayerDeathReason.ByProjectile(projectile.owner, projectile.whoAmI);
             if (NPC.life <= 0)
             {         

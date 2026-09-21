@@ -1,17 +1,13 @@
 using RemnantOfTheAncientsMod.Common.Systems;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
-using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static FakePlayer_Setup;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw
+namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
 {
-    public class Outlaw : FakePlayer
+    public class Raider : FakePlayer
     {
         private FakePlayerEquipmentList inventory = null; 
         public override void SetStaticDefaults()
@@ -56,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw
 
         public override void OnKill()
         {
-            OutlawInvasionSystem.EnemyKilled();
+            RaidersInvasionSystem.EnemyKilled();
 
             int choice = Main.rand.Next(0, 101);
             int chance = 5 * (DificultyUtils.ReaperMode ? 5 : 1);
@@ -94,9 +90,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Outlaw
         {
             inventory ??= new();
 
-            inventory.meleeWeapon = Outlaw_setup.GetRandomMelee();
-            inventory.rangedWeapon = Outlaw_setup.GetRandomBow();
-            List<FakePlayerEquipment> armorSet = Outlaw_setup.GetRandomArmorSet();
+            inventory.meleeWeapon = Raider_setup.GetRandomMelee();
+            inventory.rangedWeapon = Raider_setup.GetRandomBow();
+            List<FakePlayerEquipment> armorSet = Raider_setup.GetRandomArmorSet();
 
             inventory.armor[0] = armorSet[0];
             inventory.armor[1] = armorSet[1];
