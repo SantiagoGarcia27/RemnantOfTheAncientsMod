@@ -3,17 +3,16 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using SangarUtilities.Common.UtilsTweaks;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class TrueHallowedHelmet : ModItem
 	{
-		int RangedDamageBonus = 17;
-		int RangedCritBonus = 10;
+        private readonly int RangedDamageBonus = 17;
+        private readonly int RangedCritBonus = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangedDamageBonus, RangedCritBonus);
         public override void SetStaticDefaults()
 		{
@@ -30,8 +29,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Ranged) += .17f;
-            player.GetCritChance(DamageClass.Ranged) += 10f;
+			player.GetDamage(DamageClass.Ranged) += RangedDamageBonus/100f;
+            player.GetCritChance(DamageClass.Ranged) += RangedCritBonus;
         }
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -48,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
             {
                 int dir = cloneAmmount < 1 ? -1 : 1;
 
-                Vector2 margin = new Vector2(dir * -2 * 16, -2 * 16);
+                Vector2 margin = new Vector2(dir * -2, -2).ToCoordenatePosition();
 
                 var p = Projectile.NewProjectile(player.GetSource_FromThis(), player.Center + margin, Vector2.Zero, ModContent.ProjectileType<PlayerClone>(), 20, 0, player.whoAmI);
                 Main.projectile[p].localAI[1] = dir;

@@ -24,12 +24,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 			Item.height = 22;
 			Item.value = 10000;
 			Item.rare = ItemRarityID.Blue;
-			Item.defense = 7;//18
+			Item.defense = 7;
 		}
 
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed -= 0.25f;
+			player.moveSpeed += MovmentSpeedBonus/100f;
         }
 
 		public override void AddRecipes()

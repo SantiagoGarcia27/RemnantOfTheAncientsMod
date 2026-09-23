@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 
         private static readonly Color rarityColorTwo = Utils1.GetReaperColor(2);
 
-		int DamageBonus = 20;
+        private readonly int DamageBonus = 20;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBonus);
         internal static Color GetRarityColor()
         {
@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Generic) += .2f;
+			player.GetDamage(DamageClass.Generic) += DamageBonus/100f;
 			player.shroomiteStealth = true;
 			player.luck += 2;
         }
@@ -48,11 +48,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		{
 			return body.type == ModContent.ItemType<Reaper_Robe>() && legs.type == ModContent.ItemType<Reaper_Pants>();
 		}
-		int LifeMaxBonus = 100;
-		int GlobalDamageSetBonus = 20;
+        private readonly int LifeMaxBonus = 100;
+        private readonly int GlobalDamageSetBonus = 20;
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(LifeMaxBonus, GlobalDamageSetBonus).Value;//"+100 life, + 20% damage, Soul effects are boosted";
+			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(LifeMaxBonus, GlobalDamageSetBonus).Value;
             player.statLifeMax2 += LifeMaxBonus;
 			player.GetDamage(DamageClass.Generic) += (GlobalDamageSetBonus / 100f) ;
             player.GetModPlayer<ReaperEffectsPlayer>().ReaperSoulBoost = true;

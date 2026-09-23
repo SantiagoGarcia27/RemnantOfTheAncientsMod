@@ -2,17 +2,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 {
     [AutoloadEquip(EquipType.Body)]
 	public class TrueHallowedPlateMail : ModItem
 	{
-		int critBonus = 10;
+        private readonly int critBonus = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(critBonus);
         public override void SetStaticDefaults()
 		{
@@ -38,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 
         public override void UpdateEquip(Player player)
 		{
-            player.GetCritChance(DamageClass.Generic) += 10f;
+            player.GetCritChance(DamageClass.Generic) += critBonus;
 		}
 
         public override void AddRecipes()

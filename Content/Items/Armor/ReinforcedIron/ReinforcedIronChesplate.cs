@@ -15,9 +15,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 		{		
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-        
-        public int DamageReduction = 8;
-        public int MovmentSpeedBonus = -25;
+
+        private readonly int DamageReduction = 8;
+        private readonly int MovmentSpeedBonus = -25;
+
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageReduction, MovmentSpeedBonus);
         public override void SetDefaults()
 		{
@@ -25,12 +26,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron
 			Item.height = 24;
 			Item.value = 10000;
 			Item.rare = ItemRarityID.Blue;
-			Item.defense = 13;//5
+			Item.defense = 13;
 		}
         public override void UpdateEquip(Player player)
         {
-			player.endurance += 0.08f;
-            player.moveSpeed -= 0.25f;
+			player.endurance += DamageReduction/100f;
+            player.moveSpeed += MovmentSpeedBonus/100f;
         }
 
         public override void AddRecipes()

@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
@@ -16,19 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
         public override void SetStaticDefaults()
 		{
-
-			//DisplayName.SetDefault("Night Hat");
-			//Tooltip.SetDefault(""
-			//+ "\nSummon damage increased by 13%");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Mascara de la noche");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), ""
-			//+ "\nDaño de invocacion aumentado en un 13%");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Masque de nuit");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), ""
-			//+ "\nLes dégâts d'invocation ont augmentés de 13%");
-
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
@@ -55,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
         int MaxMinionBonus = 2;
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, SummonDamageSetBonus, SpeedBonus, MaxMinionBonus).Value;// "+5 Defense, Increase Melee Damage 6%, Increase Movement Speed";
+            player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, SummonDamageSetBonus, SpeedBonus, MaxMinionBonus).Value;
             player.GetDamage(DamageClass.Ranged) += SummonDamageSetBonus / 100f;
             player.statDefense += DefenseBonus;
             player.moveSpeed += SpeedBonus / 100f;

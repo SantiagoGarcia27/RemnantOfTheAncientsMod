@@ -3,8 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Microsoft.Xna.Framework;
 using Humanizer;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
@@ -19,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Flinx
 			
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public int SummonDamageBonus = 3;
+        private readonly int SummonDamageBonus = 3;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
         public override void SetDefaults()
 		{
@@ -36,15 +34,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Flinx
 		}
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Summon) += .03f;
+            player.GetDamage(DamageClass.Summon) *= 1f + SummonDamageBonus/100f;
         }
         public override void UpdateArmorSet(Player player)
 		{
 			int lifeBonus = 40;
 			player.setBonus = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Flinx").FormatWith(lifeBonus);
 
-			player.statLifeMax2 += 40;
-			//player.flinxMinion = true;
+			player.statLifeMax2 += lifeBonus;
 			player.GetModPlayer<RemnantPlayer>().FlinxArmorSetBonus = true;
 
             if (player.ownedProjectileCounts[ModContent.ProjectileType<FlinxMinionClone>()] < 1 )

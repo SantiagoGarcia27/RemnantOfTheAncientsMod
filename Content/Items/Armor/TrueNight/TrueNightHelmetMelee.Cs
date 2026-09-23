@@ -1,20 +1,16 @@
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Utilities.Terraria.Utilities;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class TrueNightHelmetMelee : ModItem
 	{
-        int MeleeDamageBonus = 16;
+        private readonly int MeleeDamageBonus = 16;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MeleeDamageBonus);
         public override void SetStaticDefaults()
 		{
@@ -38,9 +34,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 		{
 			return body.type == ModContent.ItemType<TrueNightchesplate>() && legs.type == ModContent.ItemType<TrueNightLeggings>();
 		}
-        int DefenseBonus = 5;
-        int MeleeDamageSetBonus = 6;
-        int SpeedBonus = 5;
+        private readonly int DefenseBonus = 5;
+        private readonly int MeleeDamageSetBonus = 6;
+        private readonly int SpeedBonus = 5;
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, MeleeDamageSetBonus, SpeedBonus).Value;

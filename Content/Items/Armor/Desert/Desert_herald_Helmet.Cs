@@ -1,9 +1,9 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 {
@@ -27,8 +27,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Summon) += .08f;
-			player.maxMinions++;
+			player.GetDamage(DamageClass.Summon) += SummonDamageBonus/100f;
+			player.maxMinions += MinionMaxBonus;
         }
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

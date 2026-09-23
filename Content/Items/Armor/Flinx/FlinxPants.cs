@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Flinx
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
-        public int MovementSpeedBonus = 5;
+        private readonly int MovementSpeedBonus = 5;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovementSpeedBonus);
         public override void SetDefaults()
 		{

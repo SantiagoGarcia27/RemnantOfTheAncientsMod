@@ -1,9 +1,6 @@
 using CalamityMod;
 using CalamityMod.CalPlayer;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -31,22 +28,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Throwing) += (DamageBonus/100);
+			player.GetDamage(DamageClass.Throwing) += (DamageBonus/100f);
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
 			return body.type == ModContent.ItemType<TrueNightchesplate>() && legs.type == ModContent.ItemType<TrueNightLeggings>();
 		}
-        int DefenseBonus = 5;
-        int ThrowerDamageSetBonus = 6;
-        int SpeedBonus = 5;
-		int StealthBonus = 80;
+        private readonly int DefenseBonus = 5;
+        private readonly int ThrowerDamageSetBonus = 6;
+        private readonly int SpeedBonus = 5;
+        private readonly int StealthBonus = 80;
 		public override void UpdateArmorSet(Player player)
 		{
 
 			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus).Value;
-			player.setBonus = RemnantOfTheAncientsMod.CalamityMod != null? 
+			player.setBonus = RemnantOfTheAncientsMod.CalamityMod == null? 
 				this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus).Value : 
 				this.GetLocalization("SetBonusCalamity").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus, StealthBonus).Value;
 			player.GetModPlayer<RemnantPlayer>().TrueShadowMist = true;

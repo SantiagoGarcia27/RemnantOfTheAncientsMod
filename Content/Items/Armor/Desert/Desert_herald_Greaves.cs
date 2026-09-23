@@ -1,10 +1,9 @@
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
-using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 {
@@ -22,13 +21,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 10000;
-			Item.rare = 3;
-			Item.defense = 5;//18
+			Item.rare = ItemRarityID.Orange;
+			Item.defense = 5;
 		}
 
 		public override void UpdateEquip(Player player)
 		{
-			player.maxMinions++;
+			player.maxMinions += MinionMaxBonus;
         }
 
         public override void AddRecipes()

@@ -1,12 +1,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
 using CalamityMod;
 using CalamityMod.CalPlayer;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
@@ -44,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		{
 
 			player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus).Value;
-			player.setBonus = RemnantOfTheAncientsMod.CalamityMod != null? 
+			player.setBonus = RemnantOfTheAncientsMod.CalamityMod == null? 
 				this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus).Value : 
 				this.GetLocalization("SetBonusCalamity").WithFormatArgs(DefenseBonus, ThrowerDamageSetBonus, SpeedBonus, StealthBonus).Value;  // "+5 Defense, Increases throwable damage by 6%, Increases movement speed";
             player.GetDamage(DamageClass.Throwing) += ThrowerDamageSetBonus/100f;
@@ -64,7 +62,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
                 CalamityPlayer calamityPlayer = player.Calamity();
 				calamityPlayer.umbraphileSet = true;
 				calamityPlayer.rogueStealthMax += StealthBonus / 100f;
-				//player.setBonus = "+5 Defense, Increases throwable damage by 6%, Increases movement speed and +80 maximum stealth";
 				player.Calamity().wearingRogueArmor = true;
 			}
 		}

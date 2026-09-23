@@ -1,10 +1,9 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
-using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
 {
@@ -15,19 +14,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Desert
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-        public int MinionMaxBonus = 1;
+        private readonly int MinionMaxBonus = 1;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MinionMaxBonus);
         public override void SetDefaults()
 		{
 			Item.width = 18;
 			Item.height = 18;
 			Item.value = 10000;
-			Item.rare = ItemRarityID.Blue;
-			Item.defense = 6;//5
+			Item.rare = ItemRarityID.Orange;
+			Item.defense = 6;
 		}
         public override void UpdateEquip(Player player)
         {
-			player.maxMinions ++;       
+			player.maxMinions += MinionMaxBonus;       
         }
 
         public override void AddRecipes()

@@ -12,29 +12,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 	[AutoloadEquip(EquipType.Legs)]
 	public class Reaper_Pants : ModItem
 	{
-        public int IncreasedMovementSpeed = 10;
-        public int IncreasesMaxMana = 40;
-        public int PercentIncreasedCritChance = 5;
+        private readonly int IncreasedMovementSpeed = 10;
+        private readonly int IncreasesMaxMana = 40;
+        private readonly int PercentIncreasedCritChance = 5;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMovementSpeed, IncreasesMaxMana, PercentIncreasedCritChance);
         public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("True Reaper Pants");
-			//Tooltip.SetDefault(//Tooltip());
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pantalones de parca verdaderos");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), //Tooltip());
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vrai pantalon de faucheur");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), //Tooltip());
-
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}
-        //public static string Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedMovmentSpeedTooltip(10) +
-        //        "\n" + LocalizationHelper.IncreasedManaMaxTooltip(40) +
-        //        "\n" + LocalizationHelper.IncreasedCritByTooltip(5,DamageClass.Generic);
-        //}
+		}   
         private static readonly Color rarityColorOne = Utils1.GetReaperColor(1);
 
         private static readonly Color rarityColorTwo = Utils1.GetReaperColor(2);
@@ -56,9 +41,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed += 0.1f;
-			player.statManaMax2 += 40;
-			player.GetCritChance(DamageClass.Generic) += 5;
+			player.moveSpeed += IncreasedMovementSpeed/100f;
+			player.statManaMax2 += IncreasesMaxMana;
+			player.GetCritChance(DamageClass.Generic) += PercentIncreasedCritChance;
         }
 	}
 }

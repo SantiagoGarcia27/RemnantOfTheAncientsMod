@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
@@ -42,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
         int SpeedBonus = 5;
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, RangedDamageSetBonus, SpeedBonus).Value;// "+5 Defense, Increase Melee Damage 6%, Increase Movement Speed";
+            player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, RangedDamageSetBonus, SpeedBonus).Value;
             player.GetDamage(DamageClass.Ranged) += RangedDamageSetBonus / 100f;
             player.statDefense += DefenseBonus;
             player.moveSpeed += SpeedBonus / 100f;

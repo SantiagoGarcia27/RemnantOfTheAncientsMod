@@ -33,8 +33,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 			player.buffImmune[BuffID.Shine] = true;
 			player.buffImmune[BuffID.Burning] = true;
 			player.buffImmune[BuffID.BrokenArmor] = true;
-			player.statManaMax2 += 20;
-			player.statLifeMax2 += 50;
+			player.statManaMax2 += manaBonus;
+			player.statLifeMax2 += lifeBonus;
 		}
 
 		public override void AddRecipes()

@@ -2,9 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria.GameContent.Creative;
-using SangarUtilities.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
@@ -12,8 +10,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 	[AutoloadEquip(EquipType.Body)]
 	public class TrueNightchesplate : ModItem
 	{
-		int manaBonus = 100;
-		int lifeBonus = 100;
+        private readonly int manaBonus = 100;
+        private readonly int lifeBonus = 100;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(manaBonus,lifeBonus);
         public override void SetStaticDefaults()
 		{

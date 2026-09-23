@@ -9,8 +9,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 	[AutoloadEquip(EquipType.Legs)]
 	public class TrueHallowedGreaves : ModItem
 	{
-        int MovmentSpeedBonus = 10;
-		int DamageBonus = 10;
+        private readonly int MovmentSpeedBonus = 10;
+        private readonly int DamageBonus = 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBonus,MovmentSpeedBonus);
         public override void SetStaticDefaults()
 		{
@@ -28,8 +28,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueHallowed
 
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed *= 1.10f;
-			player.GetDamage(DamageClass.Generic) += .10f;
+			player.moveSpeed *= 1 + (MovmentSpeedBonus/100f);
+			player.GetDamage(DamageClass.Generic) += DamageBonus/100f;
 		}
 
         public override void AddRecipes()

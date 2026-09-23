@@ -12,18 +12,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 	public class Tuxonite_Legging : ModItem
 	{
 		public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("Tuxonite Greaves");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Grebas de tusonita");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Grèves Tuxonite");
-            //Tooltip.SetDefault(//Tooltip());
+		{	
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-        //public string //Tooltip()
-        //{
-        //	return LocalizationHelper.IncreasedCritBy//Tooltip(5, DamageClass.Ranged);
-        //      }
-        public int RangerCritBonus = 5;
+        private readonly int RangerCritBonus = 5;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RangerCritBonus);
         public override void SetDefaults()
 		{
@@ -40,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
         public override void AddRecipes()
 		{
 			CreateRecipe()
-			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.GoldGreaves, ItemID.GoldBar))//25  30
+			.AddIngredient(ModContent.ItemType<TuxoniteBar>(), RecipeUtils.SearchAmmountRecipe(ItemID.GoldGreaves, ItemID.GoldBar))
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

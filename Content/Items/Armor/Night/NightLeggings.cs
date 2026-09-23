@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night

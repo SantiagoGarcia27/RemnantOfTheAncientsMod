@@ -14,9 +14,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		{
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-        public int IncreasedMinionDamage = 4;
-        public int IncreasesMaxMana = 5;
-        public int MovmentSpeedBonus = 5;
+        private readonly int IncreasedMinionDamage = 4;
+        private readonly int IncreasesMaxMana = 5;
+        private readonly int MovmentSpeedBonus = 5;
+
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMinionDamage, IncreasesMaxMana, MovmentSpeedBonus);
         public override void SetDefaults()
 		{

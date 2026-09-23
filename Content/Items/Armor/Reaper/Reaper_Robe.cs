@@ -3,7 +3,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
@@ -17,31 +16,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 
         private static readonly Color rarityColorTwo = Utils1.GetReaperColor(2);
 
-        public int IncreasedDamageReduction = 10;
-        public int MaxLifeBonus = 40;
-        public int MaxMinions = 2;
-        public int MaxCentries = 2;
+        private readonly int IncreasedDamageReduction = 10;
+        private readonly int MaxLifeBonus = 40;
+        private readonly int MaxMinions = 2;
+        private readonly int MaxCentries = 2;
+
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedDamageReduction, MaxLifeBonus, MaxMinions, MaxCentries);
         internal static Color GetRarityColor()
         {
             return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
         }
         public override void SetStaticDefaults()
-		{
-			//DisplayName.SetDefault("True Reaper Robe");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vraie robe de faucheuse");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Verdadera túnica de parca");
-            //Tooltip.SetDefault(//Tooltip());
-          
+		{		
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-        //public static string //Tooltip()
-        //{
-        //    return LocalizationHelper.IncreasedDamageReduction//Tooltip(10) +
-        //        "\n" + LocalizationHelper.IncreasedMinion//Tooltip(2) +
-        //        "\n" + LocalizationHelper.IncreasedCentry//Tooltip(2) +
-        //        "\n" + LocalizationHelper.IncreasedLifeMax//Tooltip(40);   
-        //}
+       
         public override void SetDefaults()
 		{
 			Item.width = 18;
@@ -54,11 +43,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Reaper
 		}
         public override void UpdateEquip(Player player)
         {
-			player.endurance += 0.10f;
-            player.maxMinions += 2;
-            player.maxTurrets += 2;
+			player.endurance += IncreasedDamageReduction/100f;
+            player.maxMinions += MaxMinions;
+            player.maxTurrets += MaxCentries;
             player.raven = true;
-            player.statLifeMax2 += 40;        
+            player.statLifeMax2 += MaxLifeBonus;        
         }
 	}
 }

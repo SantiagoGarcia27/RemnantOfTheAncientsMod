@@ -1,7 +1,4 @@
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -13,7 +10,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 	[AutoloadEquip(EquipType.Head)]
 	public class TrueNightHelmetSummoner : ModItem
 	{
-        int SummonDamageBonus = 16;
+        private readonly int SummonDamageBonus = 16;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
         public override void SetStaticDefaults()
 		{
@@ -30,17 +27,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
 		}
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage(DamageClass.Summon) += (SummonDamageBonus / 100);
+			player.GetDamage(DamageClass.Summon) += (SummonDamageBonus / 100f);
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
 			return body.type == ModContent.ItemType<TrueNightchesplate>() && legs.type == ModContent.ItemType<TrueNightLeggings>();
 		}
-        int DefenseBonus = 5;
-        int SummonDamageSetBonus = 6;
-        int SpeedBonus = 5;
-        int MaxMinionBonus = 2;
+        private readonly int DefenseBonus = 5;
+        private readonly int SummonDamageSetBonus = 6;
+        private readonly int SpeedBonus = 5;
+        private readonly int MaxMinionBonus = 2;
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, SummonDamageSetBonus, SpeedBonus, MaxMinionBonus).Value;

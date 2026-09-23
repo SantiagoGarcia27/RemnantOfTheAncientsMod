@@ -13,10 +13,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		public override void SetStaticDefaults()
 		{
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-		}	
-		public int IncreasedMagicDamage = 3;
-        public int IncreasedSummonDamage = 3;
-        public int IncreasesMaxMana = 20;
+		}
+        private readonly int IncreasedMagicDamage = 3;
+        private readonly int IncreasedSummonDamage = 3;
+        private readonly int IncreasesMaxMana = 20;
+
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(IncreasedMagicDamage, IncreasedSummonDamage, IncreasesMaxMana);
         public override void SetDefaults()
 		{
@@ -33,23 +34,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		}
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.MagicSummonHybrid) += 0.03f;
-			player.statManaMax2 += 20;	
+            player.GetDamage(DamageClass.Magic) *= 1f + IncreasedMagicDamage/100f;
+            player.GetDamage(DamageClass.Summon) *= 1f + IncreasedSummonDamage / 100f;
+            player.statManaMax2 += IncreasesMaxMana;	
         }
         public override void UpdateArmorSet(Player player)
 		{
 
 			player.setBonus = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Daylight");
 
-			if (Main.dayTime)
-			{
-				player.lifeRegen = player.lifeRegen > 0 ? player.lifeRegen : 1;
-				player.lifeRegen *= 2;
-			}
-			else
-			{
-				player.statManaMax2 += 20;
-			}
+			if (Main.dayTime) player.lifeRegen = player.lifeRegen > 0 ? player.lifeRegen * 2 : 2;
+			else player.statManaMax2 += 20;
+			
 			RemnantPlayer.DaylightArmorSetBonus = true;			
 		}
 
