@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
 using System.IO;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,9 +15,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		private FakePlayer_Attack attackModule { get; set; }
 		private FakePlayer_Consumables consumableModule { get; set; }
 
-        private FakePlayerEquipmentList inventory { get; set; }
-		private int meleeWeaponIndex = -1;
-        private int rangerWeaponIndex = -1;
+        protected FakePlayerEquipmentList inventory { get; set; }
+        private int selectedItem;
+        private FakePlayer_Attack.VisualState visualState;
         public override void SetStaticDefaults()
 		{
 
@@ -35,6 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		{
 			NPC.CloneDefaults(NPCID.Skeleton);
 			NPC.damage = 0;
+			NPC.lifeMax = 100;
 			AIType = NPCID.Skeleton;
 			AnimationType = NPCID.Skeleton;
         }
@@ -45,49 +45,89 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			if (proxy == null) return;
             proxy.name = "Rogue";
             proxy.hostile = true;
-            inventory = new();
-            attackModule = new FakePlayer_Attack(proxy, NPC, inventory: inventory, ref meleeWeaponIndex, ref rangerWeaponIndex);
-			consumableModule = new FakePlayer_Consumables(ref proxy, NPC, inventory: inventory);
+            inventory ??= new();
 
-            FakePlayerEquipmentList inv = inventory;
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                FakePlayerEquipmentList inv = inventory;
+                ModifyInventory(ref inv);
+                inventory = inv;
+                NPC.netUpdate = true;
+            }
+            else
+            {
+                ApplyInventoryToProxy();
+            }
 
-            ModifyInventory(ref inv);
-            SyncProxyStats(spawn: true);
+            CreateModules();
+            proxy.selectedItem = selectedItem;
+            SyncProxyStats();
+            attackModule?.ApplyVisualState(visualState);
+            initialized = true;
 
-          
         }
         private bool initialized;
 
+        public override bool PreAI()
+		{
+			// AIType runs before ModNPC.AI. Give the vanilla fighter AI a real target
+			// up front so it can chase the player instead of idling around a proxy.
+			if (Main.netMode != NetmodeID.MultiplayerClient)
+				FindClosestRealPlayer();
+			return true;
+		}
+
         public override void AI()
 		{
-            if (!initialized && Main.netMode != NetmodeID.MultiplayerClient)
+            if (!initialized)
             {
-                initialized = true;
                 Initialize();
             }
 
+            proxy ??= NPC.GetPlayerProxy();
+            if (proxy != null && NPC.active && !proxy.active)
+                proxy.active = true;
 
-			if (proxy == null || !proxy.active)
+            if (proxy == null || !proxy.active || proxy.whoAmI < 0 || proxy.whoAmI >= Main.player.Length || !ReferenceEquals(Main.player[proxy.whoAmI], proxy))
 			{
+
+                attackModule = null;
+                consumableModule = null;
 				proxy = NPC.GetPlayerProxy();
 				if (proxy == null) return;
-			}
+                initialized = false;
+                Initialize();
+                if (!initialized) return;
+            }
             SyncProxyStats();
-            NPC.TargetClosest();
 			NPC.UpdatePlayerProxy();
 			NPC.ConfigureProxyPlayer(shouldBeDrawn: true);
 
-			if(inventory == null)
+			// NPC combat, items, and healing are owned by the server. Clients only
+			// advance the visual state received in the NPC snapshot.
+			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
-				Initialize();
-			}
-			if (NPC.target > -1)
+                attackModule?.ClientVisualAI();
+                return;
+            }
+
+            if (attackModule == null || consumableModule == null)
+                return;
+
+			if (consumableModule.IsHealing)
+            {
+                consumableModule.HealingAI();
+                return;
+            }
+
+            Player target = FindClosestRealPlayer();
+			if (target != null)
 			{
-				Player target = Main.player[NPC.target];
                 int lifeLosed = proxy.statLifeMax2 - proxy.statLife;
-				if (lifeLosed >= inventory.healPotion.item.healLife && proxy.inventory[9].stack > 0)
+				if (!proxy.inventory[9].IsAir && inventory.healPotion?.item is Item healingPotion && lifeLosed >= healingPotion.healLife && proxy.inventory[9].stack > 0)
 				{
-					consumableModule.HealingAI();
+                    attackModule.StopAnimation();
+                    consumableModule.HealingAI();
                     return;
 				}
 
@@ -99,17 +139,42 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             base.AI();
 		}
 
-		private void  SyncProxyStats(bool spawn = false)
+		private Player FindClosestRealPlayer()
+		{
+			Player closestPlayer = null;
+			float closestDistanceSquared = float.MaxValue;
+
+			foreach (Player player in Main.ActivePlayers)
+			{
+				if (player.dead || player.ghost || player.IsProxyPlayer() || (proxy != null && player.whoAmI == proxy.whoAmI))
+					continue;
+
+				float distanceSquared = Vector2.DistanceSquared(NPC.Center, player.Center);
+				if (distanceSquared >= closestDistanceSquared)
+					continue;
+
+				closestDistanceSquared = distanceSquared;
+				closestPlayer = player;
+			}
+
+			int newTarget = closestPlayer?.whoAmI ?? Main.maxPlayers;
+			if (NPC.target != newTarget)
+			{
+				NPC.target = newTarget;
+				if (Main.netMode != NetmodeID.MultiplayerClient)
+					NPC.netUpdate = true;
+			}
+
+			return closestPlayer;
+		}
+
+		private void SyncProxyStats()
         {
 			if (proxy == null) return;
-            proxy.statLife = NPC.life;
-			//NPC.life = proxy.statLife;
+            proxy.statLifeMax = NPC.lifeMax;
+            proxy.statLifeMax2 = NPC.lifeMax;
+            proxy.statLife = Utils.Clamp(NPC.life, 0, proxy.statLifeMax2);
             NPC.defense = proxy.statDefense;
-			if (spawn)
-			{
-				NPC.lifeMax = proxy.statLifeMax2;
-				NPC.life = proxy.statLifeMax2;
-            }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
@@ -123,8 +188,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 
 
         public virtual void ModifyInventory(ref FakePlayerEquipmentList inventory)
+		{ 
+            inventory ??= new();
+			this.inventory = inventory;
+			ApplyInventoryToProxy();
+        }
+
+		private void CreateModules()
 		{
-			inventory ??= new();
+			if (proxy == null || inventory == null)
+				return;
+
+			if (attackModule == null)
+                attackModule = new FakePlayer_Attack(proxy, NPC, inventory);
+            else
+                attackModule.SetInventory(inventory);
+
+            consumableModule ??= new FakePlayer_Consumables(ref proxy, NPC, inventory);
+		}
+
+		private void ApplyInventoryToProxy()
+		{
+			if (proxy == null || inventory == null)
+				return;
 
 			//Armor
             proxy.armor[0] = inventory.armor[0]?.item ?? new Item();
@@ -144,8 +230,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			
 
             //Weapons
-            proxy.inventory[0] = inventory.meleeWeapon.item ?? new Item();
-			proxy.inventory[1] = inventory.rangedWeapon.item ?? new Item();
+            proxy.inventory[0] = inventory.meleeWeapon?.item ?? new Item();
+			proxy.inventory[1] = inventory.rangedWeapon?.item ?? new Item();
 
             //Ammo
             proxy.inventory[54] = inventory.ammo[0]?.item ?? new Item();
@@ -156,18 +242,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			//Potions
 			proxy.inventory[9] = inventory.healPotion?.item ?? new Item();
 
-			for (int i = 0; i <= (inventory?.potions?.Length - 1 ?? 0); i++) {
+			for (int i = 0; i < inventory.potions.Length; i++) {
 				proxy.inventory[i + 10] = inventory.potions[i]?.item ?? new Item();
             }
-
-            this.inventory = inventory;
         }
 
         public override void OnKill()
 		{
-			
-			if (meleeWeaponIndex > -1) Main.projectile[meleeWeaponIndex].Kill();
-			if(rangerWeaponIndex > -1) Main.projectile[rangerWeaponIndex].Kill();
+			if (Main.netMode != NetmodeID.MultiplayerClient)
+                attackModule?.Dispose();
+            NPC.DisposePlayerProxy();
             if (Main.netMode != NetmodeID.Server)
 			{
 				Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), 42, NPC.scale);
@@ -177,42 +261,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             base.OnKill();
 		}
 
-        public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
-        {
-			if(proxy == null)
-			{
-				return;
-			}
-
-            PlayerDeathReason deathReason = PlayerDeathReason.ByProjectile(projectile.owner, projectile.whoAmI);
-            if (NPC.life <= 0)
-            {         
-                proxy.KillMe(deathReason,damageDone,hit.HitDirection,proxy.hostile);
-            }
-
-			proxy.Hurt(deathReason, damageDone, hit.HitDirection, proxy.hostile, armorPenetration: projectile.ArmorPenetration, knockback: hit.Knockback);
-			hit.Damage = 0;
-        }
-        public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone)
-        {
-            PlayerDeathReason deathReason = PlayerDeathReason.ByPlayerItem(player.whoAmI, item);
-            if (NPC.life <= 0)
-            {     
-                proxy.KillMe(deathReason, damageDone, hit.HitDirection, proxy.hostile);
-            }
-            proxy.Hurt(deathReason, damageDone, hit.HitDirection, proxy.hostile, armorPenetration: player.GetArmorPenetration(item.DamageType), knockback: hit.Knockback);
-            hit.Damage = 0;
-        }
-        public override void SendExtraAI(BinaryWriter writer)
+		public override void SendExtraAI(BinaryWriter writer)
 		{
-			writer.Write(meleeWeaponIndex);
-            writer.Write(rangerWeaponIndex);
+            writer.Write((byte)(proxy?.selectedItem ?? selectedItem));
+            (inventory ?? new FakePlayerEquipmentList()).Write(writer);
+            FakePlayer_Attack.WriteVisualState(writer, attackModule?.CaptureVisualState() ?? visualState);
             base.SendExtraAI(writer);
 		}
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
-            meleeWeaponIndex = reader.ReadInt32();
-            rangerWeaponIndex = reader.ReadInt32();
+            selectedItem = reader.ReadByte();
+            inventory = FakePlayerEquipmentList.Read(reader);
+            visualState = FakePlayer_Attack.ReadVisualState(reader);
+
+            if (proxy != null)
+            {
+                proxy.selectedItem = selectedItem;
+                ApplyInventoryToProxy();
+                CreateModules();
+                attackModule?.ApplyVisualState(visualState);
+            }
+
             base.ReceiveExtraAI(reader);
 		}
 	}

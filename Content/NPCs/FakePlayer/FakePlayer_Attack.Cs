@@ -3,8 +3,12 @@ using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using System;
+using System.IO;
 using Terraria;
+using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static FakePlayer_Setup;
 
@@ -24,19 +28,22 @@ public class FakePlayer_Attack
     public FakePlayerEquipment rangeWeapon => inventory.rangedWeapon;
     Player target;
 
-    int meleeWeaponIndex { get; set; }
-    int rangerWeaponIndex { get; set; }
-    public FakePlayer_Attack(Player proxy, NPC npc, FakePlayerEquipmentList inventory, ref int meleeWeaponIndex, ref int rangerWeaponIndex)
+    private int meleeWeaponIndex = -1;
+    private int rangerWeaponIndex = -1;
+    private int attackSequence;
+    private bool receivedVisualState;
+
+    public FakePlayer_Attack(Player proxy, NPC npc, FakePlayerEquipmentList inventory)
     {
         this.proxy = proxy;
         this.npc = npc;
         this.inventory = inventory;
-        this.meleeWeaponIndex = meleeWeaponIndex;
-        this.rangerWeaponIndex = rangerWeaponIndex;
     }
 
 
     public void SetTarget(Player target) => this.target = target;
+
+    public void SetInventory(FakePlayerEquipmentList inventory) => this.inventory = inventory;
 
     private int lastSlot = 0;
 
@@ -45,49 +52,50 @@ public class FakePlayer_Attack
         get => proxy.selectedItem;
         set
         {
+            if (proxy.selectedItem == value)
+                return;
+
             proxy.selectedItem = value;
             if (Main.netMode != NetmodeID.MultiplayerClient) npc.netUpdate = true;
         }
     }
     public void AI()
     {
+        if (Main.netMode == NetmodeID.MultiplayerClient || target == null || !target.active || target.dead)
+            return;
 
         float distance = npc.Center.DistanceSQ(target.Center);
         float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
         float distanceMax = 80.ToCoordinatePosition() * 80.ToCoordinatePosition();
 
-        if (target != null && !target.dead)
+        int nextSlot = distance < distanceMin ? 0 : distance < distanceMax ? 1 : -1;
+        if (nextSlot != lastSlot)
         {
+            ClearWeaponAnimation(lastSlot);
+            lastSlot = nextSlot;
+        }
 
-            
-            if (distance < distanceMin)
+        if (nextSlot == 0)
+        {
+            if (meleeWeapon == null) return;
+            SelectedItem = 0;
+            switch (meleeWeapon.category)
             {
-                if (meleeWeapon == null) return;
-                SelectedItem = 0; 
-                switch(meleeWeapon.category)
-                {
-                    case FakePlayerEquipment.itemType.spear:
-                        SpearMeleeAi();
-                        break;
-                    case FakePlayerEquipment.itemType.mace:
-                        MaceAI();
-                        break;
-                    default:
-                        GenericMeleeAi();
-                        break;
-                }
-               
+                case FakePlayerEquipment.itemType.spear:
+                    SpearMeleeAi();
+                    break;
+                case FakePlayerEquipment.itemType.mace:
+                    MaceAI();
+                    break;
+                default:
+                    GenericMeleeAi();
+                    break;
             }
-            else if(distance < distanceMax)
-            {
-                SelectedItem = 1;
-                ShootAi();
-            }
-            if (lastSlot != SelectedItem)
-            {
-                ClearWeaponAnimation();
-            }
-            lastSlot = SelectedItem;
+        }
+        else if (nextSlot == 1)
+        {
+            SelectedItem = 1;
+            ShootAi();
         }
     }
 
@@ -111,6 +119,9 @@ public class FakePlayer_Attack
     }
     public void MaceAI()
     {
+        if (Main.netMode == NetmodeID.MultiplayerClient)
+            return;
+
         Player target = Main.player[npc.target];
 
         float distance = npc.Center.DistanceSQ(target.Center);
@@ -120,8 +131,11 @@ public class FakePlayer_Attack
             dismissWeaponnTimmer = dismissWeaponnTimmerMax;
 
             MeleeWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, Vector2.Zero, meleeWeapon.item.shoot, 25, 0f, proxy.whoAmI);
-            Projectile projectile = Main.projectile[MeleeWeaponIndex];
-            ApplyProxyStats(projectile, rangeWeapon.item);
+            RecordAttack();
+            if (TryGetProjectile(MeleeWeaponIndex, out Projectile projectile))
+                ApplyProxyStats(projectile, meleeWeapon.item);
+            else
+                MeleeWeaponIndex = -1;
         }
         else
         {
@@ -133,7 +147,8 @@ public class FakePlayer_Attack
                 if (proxy.ownedProjectileCounts[meleeWeapon.item.shoot] >= 1)
                 {
                     proxy.channel = false;
-                    Main.projectile[MeleeWeaponIndex].Kill();
+                    if (TryGetProjectile(MeleeWeaponIndex, out Projectile projectile) && projectile.active && projectile.owner == proxy.whoAmI)
+                        projectile.Kill();
                     MeleeWeaponIndex = -1;
                 }
 
@@ -142,13 +157,13 @@ public class FakePlayer_Attack
     }
     public void SpearMeleeAi()
     {
+        if (Main.netMode == NetmodeID.MultiplayerClient)
+            return;
+
         // Primero controlar la lanza existente
         if (MeleeWeaponIndex >= 0)
         {
-         
-            Projectile proj = Main.projectile[MeleeWeaponIndex];
-            
-            if (!proj.active || proj.type != meleeWeapon.item.shoot)
+            if (!TryGetProjectile(MeleeWeaponIndex, out Projectile proj) || !proj.active || proj.owner != proxy.whoAmI || proj.type != meleeWeapon.item.shoot)
             {
                 MeleeWeaponIndex = -1;
             }
@@ -185,9 +200,12 @@ public class FakePlayer_Attack
         proxy.itemAnimationMax = Math.Max(proxy.itemAnimationMax, 1);
 
         MeleeWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, meleeWeapon.item.damage, 0f, proxy.whoAmI);
+        RecordAttack();
 
-        Projectile projectile = Main.projectile[MeleeWeaponIndex];
-        ApplyProxyStats(projectile, rangeWeapon.item);
+        if (TryGetProjectile(MeleeWeaponIndex, out Projectile projectile))
+            ApplyProxyStats(projectile, meleeWeapon.item);
+        else
+            MeleeWeaponIndex = -1;
     }
 
     private int meleeAnimationTimer;
@@ -208,15 +226,21 @@ public class FakePlayer_Attack
 
             attackTimer = meleeWeapon.item.useTime;
 
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
+
             int id = meleeWeapon.item.shoot;
 
             Vector2 velocity = target.Center - npc.Center;
             velocity.Normalize();
 
             MeleeWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, meleeWeapon.item.damage, 0f, proxy.whoAmI);
+            RecordAttack();
 
-            Projectile projectile = Main.projectile[MeleeWeaponIndex];
-            ApplyProxyStats(projectile, rangeWeapon.item);
+            if (TryGetProjectile(MeleeWeaponIndex, out Projectile projectile))
+                ApplyProxyStats(projectile, meleeWeapon.item);
+            else
+                MeleeWeaponIndex = -1;
 
             return;
         }
@@ -245,6 +269,7 @@ public class FakePlayer_Attack
 
             meleeItemTimeTimer = meleeWeapon.item.useTime;
             attackTimer = meleeWeapon.item.useTime;
+            RecordAttack();
         }
 
         // Animación en curso
@@ -255,9 +280,6 @@ public class FakePlayer_Attack
 
             proxy.itemTime = meleeItemTimeTimer;
             proxy.itemTimeMax = meleeWeapon.item.useTime;
-
-            // Dejar que Terraria procese el uso del arma
-            proxy.ItemCheck();
 
             // Progreso de la animación: 0 -> 1
             float progress = 1f - (meleeAnimationTimer / (float)meleeWeapon.item.useAnimation);
@@ -270,15 +292,18 @@ public class FakePlayer_Attack
                 armRotation = MathHelper.Pi - armRotation;
 
             proxy.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, armRotation);
-            if (proxy.ownedProjectileCounts[ModContent.ProjectileType<DamageHitbox>()] <= 0)
+            if (Main.netMode != NetmodeID.MultiplayerClient && proxy.ownedProjectileCounts[ModContent.ProjectileType<DamageHitbox>()] <= 0)
             {
                 int index = Projectile.NewProjectile(Projectile.GetSource_None(), proxy.position - proxy.Size, Vector2.Zero, ModContent.ProjectileType<DamageHitbox>(), meleeWeapon.item.damage, meleeWeapon.item.knockBack, Owner: proxy.whoAmI);
-                Projectile proj = Main.projectile[index];
-                proj.hostile = true;
-                proj.friendly = false;
-                proj.timeLeft = Math.Max(1, 20);
-                proj.Size = meleeWeapon.item.Size * 3 * meleeWeapon.item.scale;
-                proj.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
+                if (TryGetProjectile(index, out Projectile proj))
+                {
+                    proj.hostile = true;
+                    proj.friendly = false;
+                    proj.timeLeft = Math.Max(1, 20);
+                    proj.Size = meleeWeapon.item.Size * 3 * meleeWeapon.item.scale;
+                    proj.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
+                    SyncProxyProjectile(proj);
+                }
             }
             if (meleeItemTimeTimer > 0)
                 meleeItemTimeTimer--;
@@ -311,8 +336,10 @@ public class FakePlayer_Attack
             proxy.itemTime = rangeWeapon.item.useTime;
 
             meleeAnimationTimer = rangeWeapon.item.useAnimation;
+            meleeItemTimeTimer = rangeWeapon.item.useTime;
 
             attackTimer = rangeWeapon.item.useTime;
+            RecordAttack();
 
             // Disparar
             int id = rangeWeapon.item.shoot;
@@ -329,7 +356,6 @@ public class FakePlayer_Attack
                     velocity.RotatedByRandom(diference.ToTilePosition());
                 }
 
-
                 proxy.inventory[3] = new Item(ItemID.MusketBall, 10);
                 if (id == ProjectileID.PurificationPowder)
                 {
@@ -337,11 +363,29 @@ public class FakePlayer_Attack
                     id = armmo?.shoot ?? ProjectileID.WoodenArrowFriendly;
                 }
 
-                if(rangeWeapon.item.UseSound == SoundID.Item38) rangeWeapon.item.UseSound = SoundID.Item1;
-               
-                RangerWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, rangeWeapon.item.damage, 0f, proxy.whoAmI);
-                Projectile projectile = Main.projectile[RangerWeaponIndex];
-                ApplyProxyStats(projectile, rangeWeapon.item);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    RangerWeaponIndex = Projectile.NewProjectile(npc.GetSource_FromAI(), proxy.Center, velocity, id, rangeWeapon.item.damage, 0f, proxy.whoAmI);
+                    if (TryGetProjectile(RangerWeaponIndex, out Projectile projectile))
+                        ApplyProxyStats(projectile, rangeWeapon.item);
+                    else
+                        RangerWeaponIndex = -1;
+
+                    if (projectile.whoAmI >= 0 && projectile.whoAmI < Main.maxProjectiles)
+                    {
+                        Projectile proj = Main.projectile[projectile.whoAmI];
+
+                        ChatHelper.BroadcastChatMessage(
+                            NetworkText.FromLiteral(
+                                $"PROJ={projectile.whoAmI} owner={proj.owner} " +
+                                $"ownerActive={Main.player[proj.owner].active} " +
+                                $"friendly={proj.friendly} hostile={proj.hostile} " +
+                                $"damage={proj.damage} type={proj.type}"
+                            ),
+                            Color.Yellow
+                        );
+                    }
+                }
             }
         }
 
@@ -359,8 +403,6 @@ public class FakePlayer_Attack
             );
 
             proxy.itemTimeMax = rangeWeapon.item.useTime;
-            proxy.ItemCheck();
-
             // Apuntar hacia el objetivo
             Vector2 direction = target.Center - proxy.MountedCenter;
 
@@ -395,11 +437,170 @@ public class FakePlayer_Attack
         projectile.GetGlobalProjectile<RemnantGlobalProjectile>().useVanillaDamageScale = false;
         projectile.DamageType = weapon.DamageType;
         projectile.ArmorPenetration = (int)proxy.GetTotalArmorPenetration(weapon.DamageType);
+        SyncProxyProjectile(projectile);
+    }
+
+    private static void SyncProxyProjectile(Projectile projectile)
+    {
+        projectile.netImportant = true;
+        projectile.netUpdate = true;
+        // The proxy slot is needed by vanilla weapon AI, but is not a connected
+        // client that can send owner-triggered netUpdate packets.
+        if (Main.netMode == NetmodeID.Server)
+        {
+            NetMessage.SendData(MessageID.SyncProjectile, number: projectile.whoAmI);
+            projectile.netUpdate = false;
+        }
+    }
+
+    private void RecordAttack()
+    {
+        attackSequence++;
+        npc.netUpdate = true;
+
+        if (Main.netMode != NetmodeID.Server)
+            SoundEngine.PlaySound(proxy.HeldItem.UseSound, npc.Center);
+    }
+
+    public readonly struct VisualState
+    {
+        public readonly int AnimationTimer;
+        public readonly int ItemTimeTimer;
+        public readonly int ItemAnimation;
+        public readonly int ItemAnimationMax;
+        public readonly int ItemTime;
+        public readonly int ItemTimeMax;
+        public readonly int AttackSequence;
+        public readonly float ItemRotation;
+
+        public VisualState(int animationTimer, int itemTimeTimer, int itemAnimation, int itemAnimationMax, int itemTime, int itemTimeMax, int attackSequence, float itemRotation)
+        {
+            AnimationTimer = animationTimer;
+            ItemTimeTimer = itemTimeTimer;
+            ItemAnimation = itemAnimation;
+            ItemAnimationMax = itemAnimationMax;
+            ItemTime = itemTime;
+            ItemTimeMax = itemTimeMax;
+            AttackSequence = attackSequence;
+            ItemRotation = itemRotation;
+        }
+    }
+
+    public VisualState CaptureVisualState() => new(
+        meleeAnimationTimer, meleeItemTimeTimer, proxy.itemAnimation,
+        proxy.itemAnimationMax, proxy.itemTime, proxy.itemTimeMax,
+        attackSequence, proxy.itemRotation);
+
+    public static void WriteVisualState(BinaryWriter writer, VisualState state)
+    {
+        writer.Write(state.AnimationTimer);
+        writer.Write(state.ItemTimeTimer);
+        writer.Write(state.ItemAnimation);
+        writer.Write(state.ItemAnimationMax);
+        writer.Write(state.ItemTime);
+        writer.Write(state.ItemTimeMax);
+        writer.Write(state.AttackSequence);
+        writer.Write(state.ItemRotation);
+    }
+
+    public static VisualState ReadVisualState(BinaryReader reader) => new(
+        reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(),
+        reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadSingle());
+
+    public void ApplyVisualState(VisualState state)
+    {
+        if (receivedVisualState && state.AttackSequence != attackSequence && Main.netMode == NetmodeID.MultiplayerClient)
+            SoundEngine.PlaySound(proxy.HeldItem.UseSound, npc.Center);
+
+        meleeAnimationTimer = Math.Max(0, state.AnimationTimer);
+        meleeItemTimeTimer = Math.Max(0, state.ItemTimeTimer);
+        proxy.itemAnimation = Math.Max(0, state.ItemAnimation);
+        proxy.itemAnimationMax = Math.Max(0, state.ItemAnimationMax);
+        proxy.itemTime = Math.Max(0, state.ItemTime);
+        proxy.itemTimeMax = Math.Max(0, state.ItemTimeMax);
+        proxy.itemRotation = state.ItemRotation;
+        attackSequence = state.AttackSequence;
+        receivedVisualState = true;
+        if (proxy.selectedItem == 9)
+            proxy.SetCompositeArmFront(false, Player.CompositeArmStretchAmount.None, 0f);
+    }
+
+    public void ClientVisualAI()
+    {
+        if (Main.netMode != NetmodeID.MultiplayerClient)
+            return;
+
+        if (meleeAnimationTimer > 0)
+        {
+            if (proxy.selectedItem == 0 && meleeWeapon?.item?.shoot <= ProjectileID.None)
+            {
+                float progress = 1f - meleeAnimationTimer / (float)Math.Max(1, meleeWeapon.item.useAnimation);
+                float armRotation = MathHelper.Lerp(-2.2f, 0.8f, progress);
+                if (proxy.direction == -1)
+                    armRotation = MathHelper.Pi - armRotation;
+                proxy.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, armRotation);
+            }
+            else if (proxy.selectedItem == 1 && npc.target >= 0 && npc.target < Main.maxPlayers)
+            {
+                Player currentTarget = Main.player[npc.target];
+                if (currentTarget != null && currentTarget.active)
+                {
+                    Vector2 direction = currentTarget.Center - proxy.MountedCenter;
+                    float rotation = direction.ToRotation() - MathHelper.PiOver2;
+                    proxy.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, rotation);
+                    proxy.itemRotation = rotation + 1.6f * proxy.direction;
+                }
+            }
+
+            proxy.itemAnimation = Math.Max(0, meleeAnimationTimer--);
+        }
+        else if (proxy.itemAnimation > 0)
+        {
+            proxy.itemAnimation--;
+        }
+
+        if (meleeItemTimeTimer > 0)
+            meleeItemTimeTimer--;
+        if (proxy.itemTime > 0)
+            proxy.itemTime--;
+
+        if (meleeAnimationTimer == 0 && proxy.itemAnimation == 0)
+            proxy.SetCompositeArmFront(false, Player.CompositeArmStretchAmount.None, 0f);
+    }
+
+    public void StopAnimation()
+    {
+        ClearWeaponAnimation(lastSlot);
+        lastSlot = 9;
+        SelectedItem = 9;
+        npc.netUpdate = true;
+    }
+
+    private static bool TryGetProjectile(int index, out Projectile projectile)
+    {
+        if (index >= 0 && index < Main.maxProjectiles)
+        {
+            projectile = Main.projectile[index];
+            return projectile != null;
+        }
+
+        projectile = null;
+        return false;
+    }
+
+    public void Dispose()
+    {
+        foreach (Projectile projectile in Main.projectile)
+            if (projectile != null && projectile.active && projectile.owner == proxy.whoAmI)
+                projectile.Kill();
+
+        MeleeWeaponIndex = -1;
+        RangerWeaponIndex = -1;
     }
 
   
 
-    private void ClearWeaponAnimation()
+    private void ClearWeaponAnimation(int previousSlot)
     {
         meleeAnimationTimer = 0;
         meleeItemTimeTimer = 0;
@@ -412,21 +613,13 @@ public class FakePlayer_Attack
         proxy.SetCompositeArmFront(false, Player.CompositeArmStretchAmount.None, 0f);
 
 
-        if(SelectedItem != 0)
+        if (previousSlot == 0)
         {
-            if (meleeWeapon != null && proxy.ownedProjectileCounts[meleeWeapon.item.shoot] >= 1)
-            {
-                proxy.channel = false;
-                Main.projectile[MeleeWeaponIndex].Kill();
-                MeleeWeaponIndex = -1;
-            }
+            if (TryGetProjectile(MeleeWeaponIndex, out Projectile projectile) && projectile.active && projectile.owner == proxy.whoAmI)
+                projectile.Kill();
+            MeleeWeaponIndex = -1;
         }
-        else if(SelectedItem != 1)
-        {
-            if (rangeWeapon != null && proxy.ownedProjectileCounts[rangeWeapon.item.shoot] >= 1)
-            {
-                proxy.channel = false;
-            }
-        }
+        if (previousSlot == 1 || previousSlot == 0)
+            proxy.channel = false;
     }
 }

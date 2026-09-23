@@ -1,19 +1,18 @@
-
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
 using Terraria;
 using Terraria.ID;
 using static FakePlayer_Setup;
 
 public class FakePlayer_Consumables
 {
-    Player proxy;
-    NPC npc;
-    FakePlayerEquipmentList inventory;
-    int healTimmer = 0;
-    int healTimmerMax = Utils1.FormatTimeToTick(Second:0.1f);
+    private readonly Player proxy;
+    private readonly NPC npc;
+    private readonly FakePlayerEquipmentList inventory;
+    private int healTimer;
 
-    bool isHealing = false;
-    public FakePlayer_Consumables(ref Player proxy,NPC npc, FakePlayerEquipmentList inventory)
+    public bool IsHealing => healTimer > 0;
+
+    public FakePlayer_Consumables(ref Player proxy, NPC npc, FakePlayerEquipmentList inventory)
     {
         this.proxy = proxy;
         this.npc = npc;
@@ -22,47 +21,37 @@ public class FakePlayer_Consumables
 
     public void HealingAI()
     {
-        if (proxy == null || npc == null || inventory == null) return;
+        if (Main.netMode == NetmodeID.MultiplayerClient || proxy == null || npc == null || inventory?.healPotion?.item is not Item potion)
+            return;
 
-        if(inventory.healPotion.item.type != ItemID.None)
+        if (healTimer == 0)
         {
-            npc.velocity.X = npc.Center.X - Main.player[npc.target].Center.X;
-            npc.velocity.Normalize();
+            if (proxy.inventory[9].IsAir || proxy.inventory[9].stack <= 0)
+                return;
 
-            int lifeLosed = proxy.statLifeMax2 - proxy.statLife;
-            if (lifeLosed > inventory.healPotion.item.healLife)
-            {
-                Item potion = proxy.inventory[9];
-                proxy.selectedItem = 9;
-
-                proxy.itemAnimationMax = inventory.healPotion.item.useAnimation;     
-                proxy.itemTimeMax = inventory.healPotion.item.useTime;
-                //proxy.itemAnimation = inventory.healPotion.item.useAnimation;
-                if (healTimmer++ >= healTimmerMax)
-                {
-                    isHealing = false;
-                    if (proxy.itemTime <= 0)
-                        proxy.itemTime = potion.useTime;
-
-                    if (proxy.itemAnimation <= 0)
-                        proxy.itemAnimation = potion.useAnimation;
-
-                    healTimmer = 0;
-                }
-                
-                proxy.ItemCheck();
-                if (!isHealing && proxy.itemAnimation == 0)
-                {
-                    isHealing = true;
-                    proxy.inventory[9].stack--;
-                    proxy.statLife += potion.healLife;
-                    proxy.HealEffect(potion.healLife, broadcast: true);
-                }
-                npc.life = proxy.statLife;
-
-            }
+            healTimer = Math.Max(1, potion.useAnimation);
+            proxy.selectedItem = 9;
+            proxy.itemAnimationMax = healTimer;
+            proxy.itemTimeMax = Math.Max(1, potion.useTime);
+            npc.netUpdate = true;
         }
-    }
 
-   
+        proxy.itemAnimation = healTimer;
+        proxy.itemTime = Math.Min(healTimer, proxy.itemTimeMax);
+        healTimer--;
+
+        if (healTimer != 0)
+            return;
+
+        int healed = Math.Min(potion.healLife, npc.lifeMax - npc.life);
+        if (healed > 0)
+        {
+            npc.life += healed;
+            proxy.statLife = npc.life;
+            npc.HealEffect(healed);
+        }
+
+        inventory.healPotion.stack = Math.Max(0, inventory.healPotion.stack - 1);
+        npc.netUpdate = true;
+    }
 }

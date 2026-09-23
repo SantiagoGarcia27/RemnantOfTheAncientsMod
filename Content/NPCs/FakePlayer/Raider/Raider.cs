@@ -9,7 +9,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
 {
     public class Raider : FakePlayer
     {
-        private FakePlayerEquipmentList inventory = null; 
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
@@ -52,42 +51,41 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
 
         public override void OnKill()
         {
-            RaidersInvasionSystem.EnemyKilled();
-
-            int choice = Main.rand.Next(0, 101);
-            int chance = 5 * (DificultyUtils.ReaperMode ? 5 : 1);
-            if (choice <= chance)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int rand = Main.rand.Next(0, 3);
-                switch (rand)
-                {
-                    case 0:
-                        DropItem(inventory.meleeWeapon.item.type);
-                        break;
-                    case 1:
-                        DropItem(inventory.rangedWeapon.item.type);
-                        break;
-                    case 2:
-                        int rand_ = Main.rand.Next(inventory.armor.Length - 1);
-                        DropItem(inventory.armor[rand_].item.type);
-                        break;
-                    case 3:
-                        int rand2 = Main.rand.Next(inventory.ammo.Length - 1);
-                        DropItem(inventory.ammo[rand2].item.type);
-                        break;
+                RaidersInvasionSystem.EnemyKilled();
 
+                int choice = Main.rand.Next(0, 101);
+                int chance = 5 * (DificultyUtils.ReaperMode ? 5 : 1);
+                if (choice <= chance && inventory != null)
+                {
+                    int rand = Main.rand.Next(0, 3);
+                    switch (rand)
+                    {
+                        case 0:
+                            DropItem(inventory.meleeWeapon.item.type);
+                            break;
+                        case 1:
+                            DropItem(inventory.rangedWeapon.item.type);
+                            break;
+                        case 2:
+                            int armorIndex = Main.rand.Next(inventory.armor.Length);
+                            DropItem(inventory.armor[armorIndex].item.type);
+                            break;
+                    }
+                }
+                else if (choice <= chance * 2)
+                {
+                    int rand3 = Main.rand.Next(MiscDrop.Count);
+                    DropItem(MiscDrop[rand3]);
                 }
             }
-            else if (choice <= chance * 2)
-            {
-                int rand3 = Main.rand.Next(MiscDrop.Count);
-                DropItem(MiscDrop[rand3]);
-                
-            }
+
             base.OnKill();
         }
         public override void ModifyInventory(ref FakePlayerEquipmentList inventory)
         {
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
             inventory ??= new();
 
             inventory.meleeWeapon = Raider_setup.GetRandomMelee();
@@ -98,6 +96,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
             inventory.armor[1] = armorSet[1];
             inventory.armor[2] = armorSet[2];
 
+
+             
             inventory.accessories[0] = new FakePlayerEquipment(ItemID.SharkToothNecklace);
 
             inventory.healPotion = new FakePlayerEquipment(ItemID.LesserHealingPotion, stack: 2);

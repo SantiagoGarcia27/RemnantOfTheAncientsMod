@@ -53,7 +53,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             if (modPlayer.FrozenMinion)
             { // Make sure you are resetting this bool in ModPlayer.ResetEffects. See ExamplePlayer.ResetEffects
                 Projectile.timeLeft = 2;
-
             }
         }
         public override void SelectFrame()

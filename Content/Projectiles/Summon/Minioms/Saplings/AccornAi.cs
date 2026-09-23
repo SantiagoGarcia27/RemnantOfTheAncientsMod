@@ -1,9 +1,8 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using System;
 using Terraria;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings
 {
     public abstract class AccornAi: Minion
 	{
@@ -89,14 +88,17 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
         }
 		public void Movment(Player player, float spacing)
 		{
-            for (int k = 0; k < 1000; k++)
+            foreach(Projectile otherProj in Main.projectile)
             {
-                Projectile otherProj = Main.projectile[k];
-                if (k != Projectile.whoAmI && otherProj.active && otherProj.owner == Projectile.owner && otherProj.type == Projectile.type && Math.Abs(Projectile.position.X - otherProj.position.X) + Math.Abs(Projectile.position.Y - otherProj.position.Y) < spacing)
+                if (otherProj.whoAmI != Projectile.whoAmI && 
+                    otherProj.active && 
+                    otherProj.owner == Projectile.owner && 
+                    otherProj.type == Projectile.type && 
+                    Math.Abs(Projectile.position.X - otherProj.position.X) + Math.Abs(Projectile.position.Y - otherProj.position.Y) < spacing)
                 {
-                    if (Projectile.position.X < Main.projectile[k].position.X) Projectile.velocity.X -= idleAccel;
+                    if (Projectile.position.X < otherProj.position.X) Projectile.velocity.X -= idleAccel;
                     else Projectile.velocity.X += idleAccel;
-                    if (Projectile.position.Y < Main.projectile[k].position.Y) Projectile.velocity.Y -= idleAccel;
+                    if (Projectile.position.Y < otherProj.position.Y) Projectile.velocity.Y -= idleAccel;
                     else Projectile.velocity.Y += idleAccel;
                 }
             }
@@ -116,9 +118,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
             }
             else
             {
-                for (int k = 0; k < 200; k++)
+                foreach(NPC npc in Main.npc)   
                 {
-                    NPC npc = Main.npc[k];
                     if (npc.CanBeChasedBy(this, false))
                     {
                         float distance = Vector2.Distance(npc.Center, Projectile.Center);
@@ -150,14 +151,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
             }
             else
             {
+                float speed = 6f;
+
                 if (!Collision.CanHitLine(Projectile.Center, 1, 1, player.Center, 1, 1))
                     Projectile.ai[0] = 1f;
-                float speed = 6f;
+
                 if (Projectile.ai[0] == 1f) speed = 15f;
+
                 Vector2 center = Projectile.Center;
                 Vector2 direction = player.Center - center;
+
                 Projectile.ai[1] = 3600f;
                 Projectile.netUpdate = true;
+
                 int num = 1;
                 for (int k = 0; k < Projectile.whoAmI; k++)
                 {

@@ -254,7 +254,7 @@ namespace RemnantOfTheAncientsMod
         {
             try
             {
-                /*var detourManager = MonoMod.RuntimeDetour.DetourManager.GetDetourInfo(typeof(Player).GetMethod("Update"));
+                var detourManager = MonoMod.RuntimeDetour.DetourManager.GetDetourInfo(typeof(Player).GetMethod("Update"));
                 int count = detourManager.Detours.Count();
                 if (count >= 1)
                 {
@@ -300,7 +300,7 @@ namespace RemnantOfTheAncientsMod
                     c.EmitStloc(fallThroughIndex);                                    // Store stack value in fallThrough
                 };
 
-                base.Load();*/
+                base.Load();
             }
             catch (Exception ex)
             {

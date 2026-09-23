@@ -52,6 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		public override void AI()
 		{
 			if (proxy == null || !proxy.active) proxy = NPC.GetPlayerProxy();
+			if (proxy == null) return;
 
 			NPC.TargetClosest();
 			NPC.UpdatePlayerProxy();
@@ -63,7 +64,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 				float distance = NPC.Center.DistanceSQ(target.Center);
 				float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
-				if (proxy.ownedProjectileCounts[ProjectileID.Mace] < 1 && distance < distanceMin)
+				int maceCount = proxy.ownedProjectileCounts[ProjectileID.Mace];
+
+                if (maceCount < 1 && distance < distanceMin)
 				{
 					timmer = timmerMax;
 
@@ -78,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 					if (timmer > 0) timmer--;
 					else
 					{
-						if (proxy.ownedProjectileCounts[ProjectileID.Mace] >= 1)
+						if (maceCount >= 1)
 						{
 							proxy.channel = false;
 							Main.projectile[MaceId].Kill();

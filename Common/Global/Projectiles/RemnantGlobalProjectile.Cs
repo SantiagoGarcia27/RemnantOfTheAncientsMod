@@ -1,5 +1,6 @@
 using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
+using PlayerProxyLib.Common;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs;
@@ -9,10 +10,12 @@ using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Common.Global
 {
@@ -25,6 +28,17 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         public bool useVanillaDamageScale { get; set; } = true;
         public int originalDamage;
+        private int proxySyncTimer;
+
+        public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+        {
+            bitWriter.WriteBit(useVanillaDamageScale);
+        }
+
+        public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+        {
+            useVanillaDamageScale = bitReader.ReadBit();
+        }
 
         bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
         public List<int> MeleeProjFix =
@@ -598,6 +612,19 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public override void PostAI(Projectile projectile)
         {
+            if (Main.netMode == NetmodeID.Server && projectile.owner >= 0
+                && projectile.owner < Main.maxPlayers
+                && Main.player[projectile.owner].IsProxyPlayer())
+            {
+                projectile.netImportant = true;
+                if (projectile.netUpdate || ++proxySyncTimer >= 30)
+                {
+                    NetMessage.SendData(MessageID.SyncProjectile, number: projectile.whoAmI);
+                    projectile.netUpdate = false;
+                    proxySyncTimer = 0;
+                }
+            }
+
             if (projectile.type != ProjectileID.PurificationPowder || Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return;

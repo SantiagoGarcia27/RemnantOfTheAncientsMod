@@ -31,7 +31,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 
         public override bool? UseItem(Player player)
         {
-            RaidersInvasionSystem.StartEvent();
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+                RaidersInvasionSystem.StartEvent();
 
             return true;
         }

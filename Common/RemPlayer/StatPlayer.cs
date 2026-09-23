@@ -78,8 +78,13 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 
         public override void UpdateEquips()
         {
+            // Achievements are client-only. Their condition is null on a dedicated
+            // server, including while Terraria updates PlayerProxyLib players.
+            if (Main.dedServ)
+                return;
+
             MaxStyleAchievement achievement = ModContent.GetInstance<MaxStyleAchievement>();
-            if (!achievement.Condition.IsCompleted)
+            if (achievement?.Condition != null && !achievement.Condition.IsCompleted)
             {
                 if (StyleStat > achievement.Condition.Value)
                     achievement.Condition.Value = StyleStat;

@@ -114,16 +114,16 @@ public static class Raider_setup
         {
             case 0:
                 index = Main.rand.Next(ShortSword.Count);
-                return ShortSword[index];
+                return ShortSword[index].Clone();
             case 1:
                 index = Main.rand.Next(Spear.Count);
-                return Spear[index];
+                return Spear[index].Clone();
             case 2:
                 index = Main.rand.Next(Mace.Count);
-                return Mace[index];
+                return Mace[index].Clone();
             default:
                 index = Main.rand.Next(LongSword.Count);
-                return LongSword[index];
+                return LongSword[index].Clone();
         }
 
     }
@@ -138,17 +138,14 @@ public static class Raider_setup
                 index = Main.rand.Next(Guns.Count);
 
                 if (DificultyUtils.ReaperMode && Guns[index].type == ItemID.Minishark)
-                {
-                    FakePlayerEquipment gun = GetRandomBow();
-                    return gun;
-                }
-                return Guns[index];
+                    return Guns[1].Clone();
+                return Guns[index].Clone();
             case 1:
                 index = Main.rand.Next(Bow.Count);
-                return Bow[index];
+                return Bow[index].Clone();
             default:
                 index = Main.rand.Next(Bow.Count);
-                return Bow[index];
+                return Bow[index].Clone();
         }
     }
 
@@ -156,7 +153,7 @@ public static class Raider_setup
     {
         int index = Main.rand.Next(ArmorSets.Count);
         List<FakePlayerEquipment> armorSet = ArmorSets[index];
-        return ArmorSets[index]; ;
+        return [armorSet[0].Clone(), armorSet[1].Clone(), armorSet[2].Clone()];
     }
 
 }

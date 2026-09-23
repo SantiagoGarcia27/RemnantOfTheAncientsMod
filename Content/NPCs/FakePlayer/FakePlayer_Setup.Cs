@@ -1,3 +1,4 @@
+using System.IO;
 using Terraria;
 using Terraria.ID;
 
@@ -9,13 +10,15 @@ public static class FakePlayer_Setup
 
         public int type { get; set; }
         public float weight { get; set; }
+        private int _stack;
         public int stack
         {
-            get => item?.stack ?? 0;
+            get => _item?.stack ?? _stack;
             set
             {
-                if (item != null)
-                    item.stack = value;
+                _stack = value;
+                if (_item != null)
+                    _item.stack = value;
             }
         }
 
@@ -30,7 +33,7 @@ public static class FakePlayer_Setup
                     return null;
 
                 _item = sample.Clone();
-                _item.stack = stack;
+                _item.stack = _stack;
                 return _item;
             }
         }
@@ -43,6 +46,8 @@ public static class FakePlayer_Setup
             this.category = category;
             this.stack = stack;
         }
+
+        public FakePlayerEquipment Clone() => new(type, weight, stack, category);
 
         public enum itemType
         {
@@ -72,5 +77,65 @@ public static class FakePlayer_Setup
         public FakePlayerEquipment[] potions = new FakePlayerEquipment[2];
         public FakePlayerEquipment healPotion = null;
         public FakePlayerEquipment[] accessories = new FakePlayerEquipment[7];
+
+        public void Write(BinaryWriter writer)
+        {
+            WriteEquipmentArray(writer, armor);
+            WriteEquipment(writer, meleeWeapon);
+            WriteEquipment(writer, rangedWeapon);
+            WriteEquipmentArray(writer, ammo);
+            WriteEquipmentArray(writer, potions);
+            WriteEquipment(writer, healPotion);
+            WriteEquipmentArray(writer, accessories);
+        }
+
+        public static FakePlayerEquipmentList Read(BinaryReader reader)
+        {
+            FakePlayerEquipmentList inventory = new();
+            ReadEquipmentArray(reader, inventory.armor);
+            inventory.meleeWeapon = ReadEquipment(reader);
+            inventory.rangedWeapon = ReadEquipment(reader);
+            ReadEquipmentArray(reader, inventory.ammo);
+            ReadEquipmentArray(reader, inventory.potions);
+            inventory.healPotion = ReadEquipment(reader);
+            ReadEquipmentArray(reader, inventory.accessories);
+            return inventory;
+        }
+
+        private static void WriteEquipmentArray(BinaryWriter writer, FakePlayerEquipment[] equipment)
+        {
+            for (int i = 0; i < equipment.Length; i++)
+                WriteEquipment(writer, equipment[i]);
+        }
+
+        private static void ReadEquipmentArray(BinaryReader reader, FakePlayerEquipment[] equipment)
+        {
+            for (int i = 0; i < equipment.Length; i++)
+                equipment[i] = ReadEquipment(reader);
+        }
+
+        private static void WriteEquipment(BinaryWriter writer, FakePlayerEquipment equipment)
+        {
+            writer.Write(equipment != null);
+            if (equipment == null)
+                return;
+
+            writer.Write(equipment.type);
+            writer.Write(equipment.weight);
+            writer.Write(equipment.stack);
+            writer.Write((byte)equipment.category);
+        }
+
+        private static FakePlayerEquipment ReadEquipment(BinaryReader reader)
+        {
+            if (!reader.ReadBoolean())
+                return null;
+
+            int type = reader.ReadInt32();
+            float weight = reader.ReadSingle();
+            int stack = reader.ReadInt32();
+            FakePlayerEquipment.itemType category = (FakePlayerEquipment.itemType)reader.ReadByte();
+            return new FakePlayerEquipment(type, weight, stack, category);
+        }
     }
 }
