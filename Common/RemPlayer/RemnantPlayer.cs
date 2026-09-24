@@ -1,7 +1,6 @@
 using CalamityMod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PlayerProxyLib.Common;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;

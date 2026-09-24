@@ -32,12 +32,22 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            bitWriter.WriteBit(useVanillaDamageScale);
+            if (projectile.active)
+            {
+                bitWriter.WriteBit(useVanillaDamageScale);
+                bitWriter.WriteBit(projectile.hostile);
+                bitWriter.WriteBit(projectile.friendly);
+            }
         }
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
-            useVanillaDamageScale = bitReader.ReadBit();
+            if (projectile.active)
+            {
+                useVanillaDamageScale = bitReader.ReadBit();
+                projectile.hostile = bitReader.ReadBit();
+                projectile.friendly = bitReader.ReadBit();
+            }
         }
 
         bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;

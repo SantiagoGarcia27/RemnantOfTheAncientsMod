@@ -60,8 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
             recipe.AddTile(TileID.DemonAltar).Register();
 
             Recipe recipe2 = CreateRecipe()
-                .AddIngredient(ModContent.ItemType<NightBar>(), 15)
-                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5);
+                .AddIngredient(ModContent.ItemType<NightBar>(), 15);
             if (PurifiedGelId > 0) recipe2.AddIngredient(PurifiedGelId, 5);
             recipe2.AddTile(TileID.DemonAltar).Register();
         }
