@@ -235,26 +235,26 @@ namespace RemnantOfTheAncientsMod
 			//TryGettingPatreonOrDevArmor(source, this);
 			Dictionary<int, List<int>> Suits = new()
 			{
-				{ 0, new List<int>() { 666, 667, 668, 665 }},
-				{ 1, new List<int>() { 1554, 1555, 1556, 1586}},
-				{ 2, new List<int>()  { 1554, 1587, 1588, 1586 }},
-				{ 3, new List<int>() { 1557, 1558, 1559, 1585 }},
-				{ 4, new List<int>()  { 1560, 1561, 1562, 1584 }},
-				{ 5, new List<int>() { 1563, 1564, 1565, 3582 }},
-				{ 6, new List<int>() { 1566, 1567, 1568}},
-				{ 7, new List<int>() { 1580, 1581, 1582, 1583 }},
-				{ 8, new List<int>()  { 3226, 3227, 3228, 3288 }},
-				{ 9, new List<int>() { 3583, 3581, 3578, 3579 }},
-				{ 10, new List<int>() { 3585, 3586, 3587, 3588 }},
-				{ 11, new List<int>() { 3589, 3590, 3591, 3592 }},
-				{ 12, new List<int>() { 3368, 3921, 3922, 3923 }},
-				{ 13, new List<int>() { 3925, 3926, 3927, 3928 }},
-				{ 14, new List<int>() { 4732, 4733, 4734, 4730 }},
-				{ 15, new List<int>() { 4747, 4748, 4749, 4746 }},
-				{ 16, new List<int>() { 4751, 4752, 4753, 4750 }},
-				{ 17, new List<int>() { 4755, 4756, 4757, 4754 }},
-				{ 18, new List<int>() { ItemType<Sangar_Head>(), ItemType<Sangar_Body>(), ItemType<Sangar_Legs>() }},
-				{ 19, new List<int>() { ItemType<Ttim_Head>(), ItemType<Ttim_Body>(), ItemType<Ttim_Legs>() }}
+				{ 0, [ItemID.RedsHelmet, ItemID.RedsBreastplate, ItemID.RedsLeggings]},
+				{ 1, [ItemID.CenxsTiara, ItemID.CenxsBreastplate, ItemID.CenxsDressPants, ItemID.CenxsDress, ItemID.CenxsWings]},
+				{ 2, [1554, 1587, 1588, 1586] },
+				{ 3, [1557, 1558, 1559, 1585] },
+				{ 4, [1560, 1561, 1562, 1584] },
+				{ 5, [1563, 1564, 1565, 3582] },
+				{ 6, [1566, 1567, 1568] },
+				{ 7, [1580, 1581, 1582, 1583 ] },
+				{ 8, [3226, 3227, 3228, 3288 ] },
+				{ 9, [3583, 3581, 3578, 3579 ] },
+				{ 10, [3585, 3586, 3587, 3588 ] },
+				{ 11, [3589, 3590, 3591, 3592 ] },
+				{ 12, [3368, 3921, 3922, 3923 ] },
+				{ 13, [3925, 3926, 3927, 3928 ] },
+				{ 14, [4732, 4733, 4734, 4730 ] },
+				{ 15, [4747, 4748, 4749, 4746 ] },
+				{ 16, [4751, 4752, 4753, 4750 ] },
+				{ 17, [4755, 4756, 4757, 4754 ] },
+				{ 18, [ItemType<Sangar_Head>(), ItemType<Sangar_Body>(), ItemType<Sangar_Legs>() ] },
+				{ 19, [ItemType<Ttim_Head>(), ItemType<Ttim_Body>(), ItemType<Ttim_Legs>() ] }
 
 			};
 
@@ -319,18 +319,7 @@ namespace RemnantOfTheAncientsMod
         {  
             return true;
         }
-        public override void PreUpdate()
-        {
-			/*if (Player.IsProxyPlayer())
-			{
-                Player.controlUseItem = true;
-                Player.releaseUseItem = false;
-                Player.selectedItem = 0;
-                Player.itemAnimation = 0;
-                Player.itemTime = 0;
-            }*/
-            base.PreUpdate();
-        }
+
 		public override void PostUpdate()
 		{
             Player.opacityForAnimation = 1;
@@ -352,7 +341,6 @@ namespace RemnantOfTheAncientsMod
 			if (heldItem != null && heldItem.type > ItemID.None)
 			{
 				float ChargeMax = heldItem.GetGlobalItem<RemnantGlobalItem>().ChargeMax;
-				//Main.NewText(ChargeMax);
 
 				if (heldItem.maxStack > 0 && ChargeMax > 0)
 				{
@@ -413,29 +401,31 @@ namespace RemnantOfTheAncientsMod
 		{
 			if (Main.mapFullscreen && Main.netMode == NetmodeID.MultiplayerClient && Main.myPlayer == player.whoAmI && player.team > 0 && Main.mouseLeft && Main.mouseLeftRelease)
 			{
-				for (int k = 0; k < 255; k++)
-				{
-					if (Main.player[k].active && !Main.player[k].dead && k != Main.myPlayer && player.team == Main.player[k].team)
-					{
-						Vector2 mouse = new Vector2(PlayerInput.MouseX, PlayerInput.MouseY);
-						float num2 = DistanceUtils.ToTilePosition(Main.player[k].position.X + Main.player[k].width / 2) * Main.mapFullscreenScale;
-						float num7 = DistanceUtils.ToTilePosition(Main.player[k].position.Y + Main.player[k].gfxOffY + Main.player[k].height / 2) * Main.mapFullscreenScale;
-						num2 += -Main.mapFullscreenPos.X * Main.mapFullscreenScale + Main.screenWidth / 2 - 6f;
-						float num8 = num7 + (0f - Main.mapFullscreenPos.Y * Main.mapFullscreenScale + Main.screenHeight / 2 - 4f - Main.mapFullscreenScale / 5f * 2f);
-						float num3 = num2 + 4f - 14f * Main.UIScale;
-						float num4 = num8 + 2f - 14f * Main.UIScale;
-						float num5 = num3 + 28f * Main.UIScale;
-						float num6 = num4 + 28f * Main.UIScale;
 
-						if (mouse.X >= num3 && mouse.X <= num5 && mouse.Y >= num4 && mouse.Y <= num6)
-						{
-							SoundEngine.PlaySound(SoundID.Item12, new Vector2(-1f, 120f));
-							Main.mouseLeftRelease = false;
-							Main.mapFullscreen = false;
-							player.UnityTeleport(Main.player[k].position);
-							break;
-						}
+				foreach (Player ObjPlayer in Main.ActivePlayers)
+				{
+					if (ObjPlayer.dead || ObjPlayer.whoAmI == Main.myPlayer || player.team != ObjPlayer.team) return;
+
+					Vector2 mouse = new(PlayerInput.MouseX, PlayerInput.MouseY);
+
+					float num2 = DistanceUtils.ToTilePosition(ObjPlayer.position.X + ObjPlayer.width / 2) * Main.mapFullscreenScale;
+					float num7 = DistanceUtils.ToTilePosition(ObjPlayer.position.Y + ObjPlayer.gfxOffY + ObjPlayer.height / 2) * Main.mapFullscreenScale;
+					num2 += -Main.mapFullscreenPos.X * Main.mapFullscreenScale + Main.screenWidth / 2 - 6f;
+					float num8 = num7 + (-Main.mapFullscreenPos.Y * Main.mapFullscreenScale + Main.screenHeight / 2 - 4f - Main.mapFullscreenScale / 5f * 2f);
+					float num3 = num2 + 4f - 14f * Main.UIScale;
+					float num4 = num8 + 2f - 14f * Main.UIScale;
+					float num5 = num3 + 28f * Main.UIScale;
+					float num6 = num4 + 28f * Main.UIScale;
+
+					if (mouse.X >= num3 && mouse.X <= num5 && mouse.Y >= num4 && mouse.Y <= num6)
+					{
+						SoundEngine.PlaySound(SoundID.Item12, new Vector2(-1f, 120f));
+						Main.mouseLeftRelease = false;
+						Main.mapFullscreen = false;
+						player.UnityTeleport(ObjPlayer.position);
+						break;
 					}
+
 				}
 			}
 		}
@@ -677,12 +667,13 @@ namespace RemnantOfTheAncientsMod
 			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[proj] < 1 && Player.whoAmI == Main.myPlayer)
 			{
 				Vector2 velocity = Player.velocity * 1.5f;
-				var a = Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, velocity, proj, damage, knockback, Main.myPlayer);
-				Main.projectile[a].originalDamage = damage;
-                Main.projectile[a].minion = true;
-                Main.projectile[a].minionSlots = 0;
-                Main.projectile[a].friendly = true;
-                Main.projectile[a].hostile = false;
+				int index = Projectile.NewProjectile(Player.GetSource_FromAI(), Player.Center, velocity, proj, damage, knockback, Main.myPlayer);
+				Projectile p = Main.projectile[index];
+                p.originalDamage = damage;
+                p.minion = true;
+                p.minionSlots = 0;
+                p.friendly = true;
+                p.hostile = false;
 
             }
 		}
@@ -693,20 +684,14 @@ namespace RemnantOfTheAncientsMod
 
 		public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
 		{
-
-
-			if (DesertHeraldSetBonus)
-			{
+			if (DesertHeraldSetBonus) 
 				Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
-			}
-			if (CursedMark)
-			{
-				hurtInfo.Damage *= 2;
-			}
+			
+			if (CursedMark) hurtInfo.Damage *= 2;
+			
 			if(Player.HasBuff(BuffID.ShadowDodge))
-			{
-                Player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), Utils1.FormatTimeToTick(0, 0, 0, 5));
-            }
+				Player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), Utils1.FormatTimeToTick(0, 0, 0, 5));
+            
 			base.OnHitByNPC(npc, hurtInfo);
 		}
 
@@ -721,23 +706,26 @@ namespace RemnantOfTheAncientsMod
 		public static int lastChest = -1;
 		public static void SpawnMimics(Player player)
 		{
-			if (Main.netMode != NetmodeID.MultiplayerClient)
+			if (Main.netMode == NetmodeID.MultiplayerClient) return;
+			
+			if (player.chest == -1 && lastChest >= 0 && Main.chest[lastChest] != null)
 			{
-				if (player.chest == -1 && lastChest >= 0 && Main.chest[lastChest] != null)
-				{
-					int x = Main.chest[lastChest].x;
-					int y2 = Main.chest[lastChest].y;
-					RemnantGlobalNPC.BigMimicSummonCheck(x, y2, player);
-				}
-				if (lastChest != player.chest && player.chest >= 0 && Main.chest[player.chest] != null)
-				{
-					int x2 = Main.chest[player.chest].x;
-					int y3 = Main.chest[player.chest].y;
-					Projectile.GasTrapCheck(x2, y3, player);
-					ItemSlot.forceClearGlowsOnChest = true;
-				}
-				lastChest = player.chest;
+				int x = Main.chest[lastChest].x;
+				int y = Main.chest[lastChest].y;
+
+				RemnantGlobalNPC.BigMimicSummonCheck(x, y, player);
 			}
+			if (lastChest != player.chest && player.chest >= 0 && Main.chest[player.chest] != null)
+			{
+				int x = Main.chest[player.chest].x;
+				int y = Main.chest[player.chest].y;
+
+				Projectile.GasTrapCheck(x, y, player);
+
+				ItemSlot.forceClearGlowsOnChest = true;
+			}
+			lastChest = player.chest;
+			
 		}
 		static Projectile proj;
 		public void SpawnProjectileOnMouse(int id)
@@ -769,10 +757,7 @@ namespace RemnantOfTheAncientsMod
 				p.velocity = Vector2.Zero;
 				p.timeLeft = 150;
 			}
-			/*if (p != null)
-			{
-				p.Center = MousePosition;
-			}*/
+
 			return p;
 		}
 		public void UpdateMaxTurrets()
@@ -783,8 +768,7 @@ namespace RemnantOfTheAncientsMod
 			List<Projectile> turrets = [];
 			foreach(Projectile projectile in Main.ActiveProjectiles)	
 			{
-				if (projectile.WipableTurret)
-					turrets.Add(projectile);
+				if (projectile.WipableTurret) turrets.Add(projectile);
 			}
 			
 

@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.TrueNight
         {
             player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, SummonDamageSetBonus, SpeedBonus, MaxMinionBonus).Value;
             player.GetModPlayer<RemnantPlayer>().TrueShadowMist = true;
-            player.GetDamage(DamageClass.Ranged) += SummonDamageSetBonus / 100f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageSetBonus / 100f;
             player.statDefense += DefenseBonus;
             player.moveSpeed += SpeedBonus / 100f;
             player.maxMinions += MaxMinionBonus;

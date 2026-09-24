@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 		
         public override void UpdateEquip(Player player)
         {
-			player.GetCritChance(DamageClass.Magic) *= 1f + IncreasedMagicDamage/100f;
+			player.GetDamage(DamageClass.Magic) *= 1f + IncreasedMagicDamage/100f;
 			player.maxMinions += IncreasedMinionBonus;
 			player.statManaMax2 += IncreasesMaxMana;
         }

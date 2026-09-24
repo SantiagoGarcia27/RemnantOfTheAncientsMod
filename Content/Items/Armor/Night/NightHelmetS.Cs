@@ -11,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 	[AutoloadEquip(EquipType.Head)]
 	public class NightHelmetS : ModItem
 	{
-        int SummonDamageBonus = 13;
+        private readonly int SummonDamageBonus = 13;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SummonDamageBonus);
         public override void SetStaticDefaults()
 		{
@@ -35,52 +35,35 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 		{
 			return body.type == ModContent.ItemType<Nightchesplate>() && legs.type == ModContent.ItemType<NightLeggings>();
 		}
-        int DefenseBonus = 5;
-        int SummonDamageSetBonus = 6;
-        int SpeedBonus = 5;
-        int MaxMinionBonus = 2;
+        private readonly int DefenseBonus = 5;
+        private readonly int SummonDamageSetBonus = 6;
+        private readonly int SpeedBonus = 5;
+        private readonly int MaxMinionBonus = 2;
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = this.GetLocalization("SetBonus").WithFormatArgs(DefenseBonus, SummonDamageSetBonus, SpeedBonus, MaxMinionBonus).Value;
-            player.GetDamage(DamageClass.Ranged) += SummonDamageSetBonus / 100f;
+            player.GetDamage(DamageClass.Summon) += SummonDamageSetBonus / 100f;
             player.statDefense += DefenseBonus;
             player.moveSpeed += SpeedBonus / 100f;
             player.maxMinions += MaxMinionBonus;
         }
 		public override void AddRecipes()
 		{
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
-            {
-                CreateRecipe()
-                 .AddRecipeGroup("anyCorruptHelmet")
-                 .AddIngredient(ItemID.JungleHat)
-                 .AddIngredient(ItemID.NecroHelmet)
-                 .AddIngredient(ItemID.MoltenHelmet)
-                 .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
-                 .AddTile(TileID.DemonAltar)
-                 .Register();
+            int PurifiedGelId = CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel");
 
-                CreateRecipe()
-                .AddIngredient(ModContent.ItemType<NightBar>(), 15)
-                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5)
-                .AddTile(TileID.DemonAltar)
-                .Register();
-            }
-            else
-            {
-                CreateRecipe()
+            Recipe recipe = CreateRecipe()
                 .AddRecipeGroup("anyCorruptHelmet")
-                 .AddIngredient(ItemID.JungleHat)
-                 .AddIngredient(ItemID.NecroHelmet)
-                 .AddIngredient(ItemID.MoltenHelmet)
-                .AddTile(TileID.DemonAltar)
-                .Register();
+                .AddIngredient(ItemID.JungleHat)
+                .AddIngredient(ItemID.NecroHelmet)
+                .AddIngredient(ItemID.MoltenHelmet);
+            if (PurifiedGelId > 0) recipe.AddIngredient(PurifiedGelId, 5);
+            recipe.AddTile(TileID.DemonAltar).Register();
 
-                CreateRecipe()
+            Recipe recipe2 = CreateRecipe()
                 .AddIngredient(ModContent.ItemType<NightBar>(), 15)
-                .AddTile(TileID.DemonAltar)
-                .Register();
-            }
+                .AddIngredient(CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "PurifiedGel"), 5);
+            if (PurifiedGelId > 0) recipe2.AddIngredient(PurifiedGelId, 5);
+            recipe2.AddTile(TileID.DemonAltar).Register();
         }
 	}
 }
