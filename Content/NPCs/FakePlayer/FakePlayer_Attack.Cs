@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using PlayerProxyLib.Common;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles;
@@ -313,11 +314,37 @@ public class FakePlayer_Attack
             return;
         }
     }
-
-
-
     public void ShootAi()
     {
+        if (rangeWeapon == null)
+            return;
+
+        if (!Collision.CanHitLine(
+            npc.position,
+            npc.width,
+            npc.height,
+            target.position,
+            target.width,
+            target.height))
+        {
+            proxy.controlUseItem = false;
+            return;
+        }
+        proxy.inventory[54] = new Item(ItemID.WoodenArrow, 100);
+        proxy.inventory[3] = new Item(ItemID.MusketBall, 100);
+        proxy.inventory[1] = rangeWeapon.item;
+        SelectedItem = 1;
+
+        proxy.SetMouseWorld(target.Center);
+
+        proxy.controlUseItem = true;
+        proxy.ItemCheck();
+    }
+
+
+    /*public void ShootAi()
+    {
+
         if (rangeWeapon == null) return;
         if (rangeWeapon.item.shoot == ProjectileID.None) return;
         if (!Collision.CanHitLine(npc.position, npc.width, npc.height, target.position, target.width, target.height)) return;
@@ -427,7 +454,7 @@ public class FakePlayer_Attack
         // =========================
         if (attackTimer > 0)
             attackTimer--;
-    }
+    }*/
 
     private void ApplyProxyStats(Projectile projectile, Item weapon)
     {

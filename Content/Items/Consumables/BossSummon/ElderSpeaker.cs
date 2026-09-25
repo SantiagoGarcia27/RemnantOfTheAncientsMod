@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
             SoundEngine.PlaySound(SoundID.Roar, player.position);
 
             int type = Main.dayTime ? NPCID.DungeonGuardian : NPCID.SkeletronHead;
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 
                 NPC.SpawnOnPlayer(player.whoAmI, type);

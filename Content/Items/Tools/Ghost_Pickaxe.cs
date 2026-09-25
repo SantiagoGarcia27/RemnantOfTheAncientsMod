@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 			Item.useStyle = ItemUseStyleID.Swing; //Dejar en 1 para que el personaje use el arma de forma normal
 			Item.knockBack = 6; //Retroceso al golpear
 			Item.value = 100000; 
-			Item.rare = 0;
+			Item.rare = ItemRarityID.White;
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true; //Autoutilizar.  No autoutilizar -> Cambiar por "false"
 			Item.useTurn = true;

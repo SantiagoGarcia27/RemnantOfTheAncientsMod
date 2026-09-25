@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true;
 			Item.mana = 12;
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
 			Item.width = 30;
 			Item.height = 34;
 			Item.useTime = 19;

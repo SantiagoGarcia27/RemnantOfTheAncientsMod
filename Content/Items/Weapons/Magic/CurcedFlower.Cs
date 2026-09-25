@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 					Item.damage = RemnantOfTheAncientsMod.CalamityMod != null ? 40 : 35;
 					Item.useTime = 6;
 					Item.useAnimation = 6;
-					Item.useStyle = 5;
+					Item.useStyle = ItemUseStyleID.Shoot;
 					Item.shoot = ProjectileID.Flames;
 					//Item.shoot = ModContent.ProjectileType<CustomFlameTrowerProj>();
 					Item.shootSpeed = 2f;

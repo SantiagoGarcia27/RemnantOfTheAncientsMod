@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.UseSound = SoundID.Item39;
             Item.value = Item.sellPrice(gold: 20);
             Item.autoReuse = true;
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
         }

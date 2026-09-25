@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.width = 10;
             Item.height = 14;
             Item.value = Item.buyPrice(0, 8, 0, 0);
-            Item.rare = 10;
+            Item.rare = ItemRarityID.Red;
             Item.accessory = true;
         }
         public override void AddRecipes()

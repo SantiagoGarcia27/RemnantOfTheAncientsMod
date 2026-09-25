@@ -199,7 +199,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     for (int num11 = 0; num11 < 16; num11++)
                     {
-                        Dust obj = Main.dust[Dust.NewDust(npc.position, npc.width, npc.height, 6, 0f, 0f, 100)];
+                        Dust obj = Main.dust[Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, 0f, 0f, 100)];
                         obj.noGravity = true;
                         obj.scale = 1.7f;
                         obj.fadeIn = 0.5f;

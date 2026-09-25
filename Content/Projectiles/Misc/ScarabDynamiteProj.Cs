@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder
             Projectile.penetrate = -1;
             Projectile.timeLeft = 1;
             Projectile.tileCollide = true;
-            Projectile.aiStyle = 16;
+            Projectile.aiStyle = ProjAIStyleID.Explosive;
             Projectile.timeLeft = 300;
         }
 
@@ -65,7 +65,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder
                 }
                 if (Main.rand.NextBool(15))
                 {
-                    Dust dust2 = Dust.NewDustPerfect(Projectile.Center + vector2 * 10f, 88, vector2 * 3f + Main.rand.NextVector2Circular(0.25f, 0.25f), 0, default, 2f);
+                    Dust dust2 = Dust.NewDustPerfect(Projectile.Center + vector2 * 10f, DustID.GemSapphire, vector2 * 3f + Main.rand.NextVector2Circular(0.25f, 0.25f), 0, default, 2f);
                     dust2.noGravity = true;
                     if (Main.rand.NextBool(3))
                     {
@@ -125,7 +125,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder
             }
             for (int num940 = 0; num940 < 30; num940++)
             {
-                Dust dust71 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 59, 0f, 0f, 100);
+                Dust dust71 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueTorch, 0f, 0f, 100);
                 dust71.noGravity = true;
                 if (Math.Abs(Projectile.velocity.X) > 0.25f)
                 {
@@ -136,12 +136,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder
                 Dust dust2 = dust71;
                 dust2.velocity *= 8f;
                 dust71.velocity = dust71.velocity.RotatedBy(num938);
-                dust71 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 59, 0f, 0f, 100, default(Color), 1.5f);
+                dust71 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueTorch, 0f, 0f, 100, default(Color), 1.5f);
                 dust2 = dust71;
                 dust2.velocity *= 2f;
                 dust71.velocity = dust71.velocity.RotatedBy(num938);
                 dust71.velocity.Y -= 1.5f;
-                dust71 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 59, 0f, 0f, 100, default(Color), 1.5f);
+                dust71 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueTorch, 0f, 0f, 100, default(Color), 1.5f);
                 dust71.noGravity = true;
                 dust71.velocity.Y -= 1f;
                 dust71.fadeIn = 2f;
@@ -158,7 +158,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder
                     float f6 = (float)Math.PI * 2f * num943 + num942;
                     Vector2 value13 = f6.ToRotationVector2();
                     value13 *= new Vector2(0.7f, 0.3f);
-                    Dust dust72 = Dust.NewDustPerfect(Projectile.Center, 59, value13);
+                    Dust dust72 = Dust.NewDustPerfect(Projectile.Center, DustID.BlueTorch, value13);
                     dust72.fadeIn = 2f;
                     dust72.noGravity = true;
                     Dust dust2 = dust72;

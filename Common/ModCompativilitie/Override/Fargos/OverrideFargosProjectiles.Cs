@@ -10,6 +10,7 @@ using Terraria.GameContent;
 using Terraria.ModLoader;
 using System.Collections.Generic;
 using SangarUtilities.Common.UtilsTweaks;
+using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Override.Fargos
 {
@@ -119,7 +120,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Override.Fargos
                     {
                         customScaleAlpha = true;
                         maxTime = 645;
-                        if (npc != null && npc.type == 114 && (npc.GetGlobalNPC<WallofFleshEye>().HasTelegraphedNormalLasers || Main.netMode == 1))
+                        if (npc != null && npc.type == NPCID.WallofFleshEye && (npc.GetGlobalNPC<WallofFleshEye>().HasTelegraphedNormalLasers || Main.netMode == NetmodeID.MultiplayerClient))
                         {
                             projectile.rotation = npc.rotation + ((npc.direction > 0) ? 0f : ((float)Math.PI));
                             projectile.velocity = projectile.rotation.ToRotationVector2();

@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			NPC.DeathSound = SoundID.NPCDeath1;
 			NPC.value = 25f;
 			NPC.knockBackResist = 0.2f;
-			NPC.aiStyle = 1;
+			NPC.aiStyle = NPCAIStyleID.Slime;
 			NPC.noTileCollide = true;
 			AIType = -1;
 			NPC.scale = 1.7f;

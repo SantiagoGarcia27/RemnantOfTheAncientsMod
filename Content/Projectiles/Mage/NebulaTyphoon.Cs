@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.Typhoon);
-            Projectile.aiStyle = 71;
+            Projectile.aiStyle = ProjAIStyleID.Typhoon;
             Projectile.timeLeft = 800;
             Projectile.penetrate = Penetrate;
             Projectile.tileCollide = true;

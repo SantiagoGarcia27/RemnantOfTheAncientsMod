@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 			Item.useAnimation = 36;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.value = Item.buyPrice(0, 10, 0, 0);
-			Item.rare = 7;
+			Item.rare = ItemRarityID.Lime;
 			Item.UseSound = SoundID.Item44;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Summon;

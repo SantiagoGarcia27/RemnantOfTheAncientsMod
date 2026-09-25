@@ -19,11 +19,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
         {
             Item.width = 20;
             Item.height = 20;
-            Item.rare = 5;
+            Item.rare = ItemRarityID.Pink;
             Item.useAnimation = 20;
             Item.useTime = 20;
             Item.maxStack = 99;
-            Item.useStyle = 4;
+            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.UseSound = SoundID.Item60;
             Item.consumable = true;
         }
@@ -51,7 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
             Main.raining = false;
             Main.rainTime = 0;
             Main.maxRaining = 0f;
-            NetMessage.SendData(7);
+            NetMessage.SendData(MessageID.WorldData);
         }
 
         private static void RainOn()

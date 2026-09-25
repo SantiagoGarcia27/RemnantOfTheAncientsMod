@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PlayerProxyLib.Common;
+using RemnantOfTheAncientsMod.Common.TmodClassOverride;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider;
 using System.Collections.Generic;
@@ -164,7 +165,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
         private static void ShowProgress()
         {
             if (Main.netMode != NetmodeID.Server)
-                FakeMain.ReportInvasionProgress(Kills, RequiredKills, BarIcon, 1, BarText, new Color(165, 160, 155) * 0.5f);
+                InvasionBarOverride.ReportInvasionProgress(Kills, RequiredKills, BarIcon, 1, BarText, new Color(165, 160, 155) * 0.5f);
         }
 
         private static void Announce(string message)

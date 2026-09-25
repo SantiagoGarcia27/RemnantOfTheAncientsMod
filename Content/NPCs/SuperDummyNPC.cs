@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.friendly = false;
             AIType = -1;
             NPC.netAlways = true;
-            NPC.aiStyle = 0;
+            NPC.aiStyle = NPCAIStyleID.FaceClosestPlayer;
             NPC.knockBackResist = 0;
         }
         public override void UpdateLifeRegen(ref int damage)

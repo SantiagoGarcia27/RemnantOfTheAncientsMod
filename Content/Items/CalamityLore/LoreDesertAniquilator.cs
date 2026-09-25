@@ -17,7 +17,7 @@ public class LoreDesertAniquilator : LoreItem
 	{
 		base.Item.width = 20;
 		base.Item.height = 20;
-		base.Item.rare = 1;
+		base.Item.rare = ItemRarityID.Blue;
 		base.Item.consumable = false;
 	}
 

@@ -18,11 +18,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		{
 			Item.width = 20;
 			Item.height = 20;
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.useAnimation = 20;
 			Item.useTime = 20;
 			Item.maxStack = 99;
-			Item.useStyle = 4;
+			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.UseSound = SoundID.Item60;
 			Item.consumable = true;
 		}
@@ -58,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		private static void SandstormStuff()
 		{
 			Sandstorm.IntendedSeverity = (Sandstorm.Happening ? (0.4f + Main.rand.NextFloat()) : ((Main.rand.Next(3) != 0) ? (Main.rand.NextFloat() * 0.3f) : 0f));
-			NetMessage.SendData(7);
+			NetMessage.SendData(MessageID.WorldData);
 		}
 
 	}

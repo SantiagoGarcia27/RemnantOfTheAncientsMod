@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Arrows
 			Item.consumable = true;
 			Item.knockBack = 3.5f;
 			Item.value = 10;
-			Item.rare = 2;
+			Item.rare = ItemRarityID.Green;
 			Item.shoot = ModContent.ProjectileType<DesertArrowP>();
 			Item.shootSpeed = 26f;
 			Item.ammo = AmmoID.Arrow;

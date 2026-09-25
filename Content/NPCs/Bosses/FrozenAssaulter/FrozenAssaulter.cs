@@ -60,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         public override void SetDefaults()
         {
             NPC.Size = new Vector2(150, 150);
-            NPC.aiStyle = 5;
+            NPC.aiStyle = NPCAIStyleID.Flying;
             NPC.lifeMax = 18500;
             NPC.damage = 90;
             NPC.defense = 15;

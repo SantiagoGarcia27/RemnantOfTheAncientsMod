@@ -238,7 +238,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 double ecuacionhonda = Utils1.GenerateWave(3f * 16, player.position.X, counter);
                 if (counter % 2 == 0)
                 {
-                    var p = Projectile.NewProjectile(source, player.position - new Vector2(0, (float)ecuacionhonda - 2 * 16f), velocity, 174, damage / 4, knockback, Main.myPlayer);
+                    var p = Projectile.NewProjectile(source, player.position - new Vector2(0, (float)ecuacionhonda - 2 * 16f), velocity, ProjectileID.IceSpike, damage / 4, knockback, Main.myPlayer);
                     Main.projectile[p].stepSpeed /= 2;
                 }
                 Projectile.NewProjectile(source, player.position + new Vector2(0, 2 * 16f), velocity, type, damage, knockback, Main.myPlayer);
@@ -302,7 +302,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                    int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, 491, damage, knockback, player.whoAmI, 0, 0);
+                    int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, ProjectileID.FlyingKnife, damage, knockback, player.whoAmI, 0, 0);
                     Main.projectile[p].stepSpeed = 1f;
                     Main.projectile[p].DamageType = DamageClass.Magic;
                 }
@@ -318,7 +318,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     for (int i = 0; i < numberProjectiles; i++)
                     {
                         Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                        int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, 277, damage, knockback, player.whoAmI, 0, 0);
+                        int p = Projectile.NewProjectile(source, position, perturbedSpeed * 6, ProjectileID.ThornBall, damage, knockback, player.whoAmI, 0, 0);
                         Main.projectile[p].stepSpeed = 1f;
                         Main.projectile[p].friendly = true;
                         Main.projectile[p].hostile = false;

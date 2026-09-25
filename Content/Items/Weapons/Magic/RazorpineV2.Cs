@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.width = 28;
 			Item.height = 30;
 			Item.useTime = 10;
-			Item.useStyle = 5;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 14f;
 			Item.useAnimation = 10;
 			Item.shoot = ProjectileID.PineNeedleFriendly;

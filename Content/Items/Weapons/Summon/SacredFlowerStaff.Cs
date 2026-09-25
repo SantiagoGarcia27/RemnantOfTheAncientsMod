@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 			Item.sentry = true;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.value = Item.buyPrice(0, 0, 10, 0);
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.UseSound = SoundID.Item44;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Summon;

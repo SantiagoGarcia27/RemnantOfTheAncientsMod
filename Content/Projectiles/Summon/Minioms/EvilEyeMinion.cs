@@ -100,13 +100,13 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 NPC target = Main.npc[i];
-                if (Projectile.Distance(target.Center) <= RangeMax * 16 && !target.immortal && !target.friendly && target.active && target.type != 549)
+                if (Projectile.Distance(target.Center) <= RangeMax * 16 && !target.immortal && !target.friendly && target.active && target.type != NPCID.DD2LanePortal)
                 {
                     target.AddBuff(BuffType<Hell_Fire>(), Utils1.FormatTimeToTick(0, 0, 0, 2));
                     if (AttackTimmer == 1)
                     {
                         target.SimpleStrikeNPC(Projectile.damage, 0, Main.rand.NextBool(6), 0, DamageClass.Summon);
-                        if (target.type != 679)
+                        if (target.type != NPCID.TownSlimeOld)
                             IsAttack = true;
                         didHit = true;
                     }

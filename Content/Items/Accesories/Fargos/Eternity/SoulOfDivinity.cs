@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             Item.value = 200000000;
 			Item.shieldSlot = 5;
 			Item.defense = 100;
-			Item.useStyle = 4;
+			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.useTime = 180;
 			Item.useAnimation = 180;
 			Item.UseSound = SoundID.Item6;

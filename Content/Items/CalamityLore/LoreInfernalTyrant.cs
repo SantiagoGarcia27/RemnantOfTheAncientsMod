@@ -17,7 +17,7 @@ public class LoreInfernalTyrant : LoreItem
 	{
 		base.Item.width = 20;
 		base.Item.height = 20;
-		base.Item.rare = 3;
+		base.Item.rare = ItemRarityID.Orange;
 		base.Item.consumable = false;
 	}
 

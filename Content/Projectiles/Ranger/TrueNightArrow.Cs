@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 		{
 			Projectile.width = 8;         
 			Projectile.height = 8;
-			Projectile.aiStyle = 1;
+			Projectile.aiStyle = ProjAIStyleID.Arrow;
 			Projectile.friendly = true;
 			Projectile.hostile = false;
 			Projectile.DamageType = DamageClass.Ranged;

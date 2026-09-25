@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 		{
 			Item.width = 20;
 			Item.height = 20;
-			Item.rare = 1;
+			Item.rare = ItemRarityID.Blue;
 			Item.useAnimation = 20;
 			Item.useTime = 20;
 			Item.maxStack = 9999;

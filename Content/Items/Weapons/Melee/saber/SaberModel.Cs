@@ -97,7 +97,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         }
         public bool IsVanilla()
         {
-            return Item.type <= 5455;
+            return Item.type <= ItemID.DontHurtComboBookInactive;
         }
     }
 }

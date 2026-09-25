@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             Projectile.friendly = true;
             Projectile.minionSlots = 1f;
             Projectile.alpha = 75;
-            Projectile.aiStyle = 67;
+            Projectile.aiStyle = ProjAIStyleID.CommonFollow;
             Projectile.timeLeft = 18000;
             Projectile.penetrate = -1;
             Projectile.timeLeft *= 5;

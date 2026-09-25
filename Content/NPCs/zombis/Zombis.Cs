@@ -654,7 +654,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             if (Helmet != null)
                 NPC.defense += Helmet.defense + Chestplate.defense + Greaves.defense;
             NPC.knockBackResist = 0;
-            NPC.aiStyle = 3;
+            NPC.aiStyle = NPCAIStyleID.Fighter;
             AIType = NPCID.Zombie;
             AnimationType = NPCID.Zombie;
             Banner = Item.NPCtoBanner(NPCID.Zombie);

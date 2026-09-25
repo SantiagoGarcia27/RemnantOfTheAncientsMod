@@ -23,7 +23,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             Item.width = 24;
             Item.height = 30;
             Item.buyPrice(0, 0, 10, 72);
-            Item.rare = -12;
+            Item.rare = ItemRarityID.Expert;
             Item.accessory = true;
             Item.useTurn = true;
             Item.autoReuse = true;

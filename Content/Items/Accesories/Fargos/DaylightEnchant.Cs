@@ -64,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 			Item.height = 26;
 			Item.maxStack = 1; 
 			Item.value = Item.buyPrice(0, 1, 10, 72);  
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.accessory = true;
 			Item.defense = 0;
 		}

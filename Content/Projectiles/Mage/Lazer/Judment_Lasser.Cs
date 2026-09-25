@@ -21,7 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
         {
             Projectile.width = 22;
             Projectile.height = 2;
-            Projectile.aiStyle = 1;
+            Projectile.aiStyle = ProjAIStyleID.Arrow;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Magic;

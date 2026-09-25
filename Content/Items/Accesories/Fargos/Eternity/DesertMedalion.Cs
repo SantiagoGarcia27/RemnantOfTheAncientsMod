@@ -4,6 +4,7 @@ using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
+using Terraria.ID;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
@@ -52,7 +53,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             Item.width = 10;
             Item.height = 14;
             Item.value = Item.buyPrice(0, 6, 70, 72);
-            Item.rare = -12;     
+            Item.rare = ItemRarityID.Expert;     
             Item.accessory = true;
             Item.GetGlobalItem<CustomTooltip>().EternityItem = true;
         }

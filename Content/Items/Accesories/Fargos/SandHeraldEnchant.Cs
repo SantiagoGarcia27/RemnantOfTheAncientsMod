@@ -33,7 +33,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 			Item.height = 26;
 			Item.maxStack = 1; 
 			Item.value = Item.buyPrice(0, 0, 2, 72);  
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.accessory = true;
 		}
         public override Color nameColor => new Color(242, 155, 34);

@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 3;
             Item.value = 25700;
-            Item.rare = 5;
+            Item.rare = ItemRarityID.Pink;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.shoot = ProjectileID.EnchantedBeam;

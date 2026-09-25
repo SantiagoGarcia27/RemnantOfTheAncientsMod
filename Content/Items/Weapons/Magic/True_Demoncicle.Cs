@@ -28,12 +28,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true;
 			Item.mana = 9;
-			Item.rare = 5;
+			Item.rare = ItemRarityID.Pink;
 			Item.width = 30;
 			Item.height = 34;
 			Item.useTime = 19;
 			Item.UseSound = SoundID.Item34;
-			Item.useStyle = 5;
+			Item.useStyle = ItemUseStyleID.Shoot;
 			Item.shootSpeed = 2f;
 			Item.useAnimation = 19;
 			Item.shoot = ModContent.ProjectileType<DemonCycle>();

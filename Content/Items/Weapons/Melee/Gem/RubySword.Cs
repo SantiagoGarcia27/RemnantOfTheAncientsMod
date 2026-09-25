@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 1;
             Item.value = 1400;
-            Item.rare = 1;
+            Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = false;
             if (RemnantOfTheAncientsMod.CalamityMod != null)

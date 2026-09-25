@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
@@ -14,7 +15,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 		{
 			Projectile.width = 22;
 			Projectile.height = 22;
-			Projectile.aiStyle = 20;
+			Projectile.aiStyle = ProjAIStyleID.Drill;
 			Projectile.friendly = true;
 			Projectile.penetrate = -1;
 			Projectile.timeLeft = 100;

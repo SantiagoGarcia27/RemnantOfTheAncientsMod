@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 6;
             Item.value = 4;
-            Item.rare = 1;
+            Item.rare = ItemRarityID.Blue;
             Item.reuseDelay = 10;
             Item.UseSound = SoundID.Item18;
             Item.autoReuse = false;

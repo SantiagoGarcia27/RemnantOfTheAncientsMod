@@ -83,7 +83,7 @@ namespace RemnantOfTheAncientsMod
 			{
 				for (int j = 0; j < Main.maxTilesY; j++)
 				{
-					if (Main.tile[i, j] != null && Main.tile[i, j].TileType == 81)
+					if (Main.tile[i, j] != null && Main.tile[i, j].TileType == TileID.Coral)
 					{
 						vector = new Vector2((i + 1) * 16, (j - 16) * 16);
 						break;
@@ -104,7 +104,7 @@ namespace RemnantOfTheAncientsMod
 			{
 				for (int i = 0; i < Main.maxTilesX; i++)
 				{
-					if (Main.tile[num, i] != null && Main.tile[num, i].TileType == 81)
+					if (Main.tile[num, i] != null && Main.tile[num, i].TileType == TileID.Coral)
 					{
 						vector = new Vector2((num - 1) * 16, (i - 16) * 16);
 						break;
@@ -125,7 +125,7 @@ namespace RemnantOfTheAncientsMod
 			{
 				for (int j = 0; j < Main.maxTilesX; j++)
 				{
-					if (Main.tile[i, j] != null && Main.tile[i, j].TileType == 75)
+					if (Main.tile[i, j] != null && Main.tile[i, j].TileType == TileID.ObsidianBrick)
 					{
 						vector = new Vector2((i - 3) * 16, (j + 2) * 16);
 						break;
@@ -146,7 +146,7 @@ namespace RemnantOfTheAncientsMod
 			{
 				for (int i = 0; i < Main.maxTilesX; i++)
 				{
-					if (Main.tile[num, i] != null && Main.tile[num, i].TileType == 75)
+					if (Main.tile[num, i] != null && Main.tile[num, i].TileType == TileID.ObsidianBrick)
 					{
 						vector = new Vector2((num + 3) * 16, (i + 2) * 16);
 						break;
@@ -331,7 +331,7 @@ if (vector != position)
 			player.grapCount = 0;
 			for (int i = 0; i < 1000; i++)
 			{
-				if (((Entity)Main.projectile[i]).active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].aiStyle == 7)
+				if (((Entity)Main.projectile[i]).active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].aiStyle == ProjAIStyleID.Hook)
 				{
 					Main.projectile[i].Kill();
 				}

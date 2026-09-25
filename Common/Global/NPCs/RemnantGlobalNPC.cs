@@ -194,7 +194,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 ushort num5 = Main.tile[Main.chest[num].x, Main.chest[num].y].TileType;
                 int num6 = Main.tile[Main.chest[num].x, Main.chest[num].y].TileFrameX / 36;
-                if (TileID.Sets.BasicChest[num5] && (num5 != 21 || num6 < 5 || num6 > 6) && Main.chest[num].item[i] != null && Main.chest[num].item[i].type > 0)
+                if (TileID.Sets.BasicChest[num5] && (num5 != 21 || num6 < 5 || num6 > 6) && Main.chest[num].item[i] != null && Main.chest[num].item[i].type > ItemID.None)
                 {
                     if (Main.chest[num].item[i].type == ItemID.GoldenKey)
                     {
@@ -246,7 +246,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         }
                     }
                     int number2 = 1;
-                    if (Main.tile[x, y].TileType == 467)
+                    if (Main.tile[x, y].TileType == TileID.Containers2)
                     {
                         number2 = 5;
                     }

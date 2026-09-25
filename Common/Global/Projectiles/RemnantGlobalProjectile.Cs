@@ -165,7 +165,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         }
                     }
                 }
-                if (projectile.type == 85 && projectile.ai[0] == 2)
+                if (projectile.type == ProjectileID.Flames && projectile.ai[0] == 2)
                 {
                     target.AddBuff(BuffID.CursedInferno, 1200);
                 }
@@ -309,7 +309,16 @@ namespace RemnantOfTheAncientsMod.Common.Global
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            if (projectile.owner < 0 || projectile.owner > Main.maxPlayers) return;
+
             originalDamage = projectile.damage;
+            Player owner = Main.player[projectile.owner];
+            if(owner.IsProxyPlayer())
+            {
+                projectile.hostile = owner.hostile;
+                projectile.friendly = !owner.hostile;
+            }
+
             if (projectile.owner == Main.myPlayer)
             {
                 PlayerOwner = Main.player[projectile.owner];
@@ -372,7 +381,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             Player player = Main.player[projectile.owner];
 
-            if (projectile.type == 85 && projectile.ai[0] == 2)
+            if (projectile.type == ProjectileID.Flames && projectile.ai[0] == 2)
             {
                 GetAlpha(projectile, Color.Green);
             }
@@ -519,7 +528,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         }
         public override Color? GetAlpha(Projectile projectile, Color lightColor)
         {
-            if (projectile.type == 85 && projectile.ai[0] == 2)
+            if (projectile.type == ProjectileID.Flames && projectile.ai[0] == 2)
             {
                 return Color.Green;
             }
@@ -610,7 +619,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             for (int i = 0; i < 1000; i++)
             {
                 Projectile projectile = Main.projectile[i];
-                if (projectile.active && (projectile.type != 759 || projectile.frame == Main.projFrames[projectile.type] - 1))
+                if (projectile.active && (projectile.type != ProjectileID.BabyBird || projectile.frame == Main.projFrames[projectile.type] - 1))
                 {
                     if (projectile.whoAmI > i)
                     {

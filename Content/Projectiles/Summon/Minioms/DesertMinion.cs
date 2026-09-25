@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             Projectile.penetrate = -1;
             Projectile.timeLeft *= 5;
             Projectile.minion = true;
-            AIType = 266;
+            AIType = ProjectileID.BabySlime;
             Projectile.tileCollide = false;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
