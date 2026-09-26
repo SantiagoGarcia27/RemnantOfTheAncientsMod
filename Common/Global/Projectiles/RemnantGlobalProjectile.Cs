@@ -317,6 +317,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 projectile.hostile = owner.hostile;
                 projectile.friendly = !owner.hostile;
+                useVanillaDamageScale = !owner.hostile;
             }
 
             if (projectile.owner == Main.myPlayer)

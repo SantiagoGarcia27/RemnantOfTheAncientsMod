@@ -49,6 +49,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
             ItemID.HermesBoots,
         ];
 
+
+
         public override void OnKill()
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)

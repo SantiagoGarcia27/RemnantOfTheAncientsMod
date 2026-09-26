@@ -19,6 +19,7 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Tools.FishingRods;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
 using SangarUtilities.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 
 namespace RemnantOfTheAncientsMod
 {
@@ -536,6 +537,9 @@ namespace RemnantOfTheAncientsMod
             .AddTile(TileID.DemonAltar)
             .Register();
             Recipe.Create(ItemID.ReaperRobe)
+             .AddTile(TileID.DemonAltar)
+             .Register();
+            Recipe.Create(ModContent.ItemType<ReaperPants>())
              .AddTile(TileID.DemonAltar)
              .Register();
         }

@@ -147,11 +147,6 @@ namespace RemnantOfTheAncientsMod.Common.TmodClassOverride
             {
                 return;
             }
-            /*if (whoAmI != Main.myPlayer)
-            {
-                ApplyItemTime(sItem);
-                return;
-            }*/
             KnockBack = player.GetWeaponKnockback(sItem, KnockBack);
             IEntitySource projectileSource_Item_WithPotentialAmmo = GetProjectileSource_Item_WithPotentialAmmo(player, sItem, usedAmmoItemId);
             if (projToShoot == 228)

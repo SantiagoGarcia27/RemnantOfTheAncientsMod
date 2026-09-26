@@ -9,6 +9,7 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
+using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider;
 using System;
 using System.Collections.Generic;
 using Terraria.ID;
@@ -40,10 +41,13 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
         public void AddBoses(Mod BossChecklistMod)
         {
             AddCrusher(BossChecklistMod);
+            AddPlayerRaid(BossChecklistMod);
             AddDesert(BossChecklistMod);
             AddFrozen(BossChecklistMod);
             AddTyrant(BossChecklistMod);
             AddSkeletron(BossChecklistMod);
+            AddWOF(BossChecklistMod);
+            AddPlantera(BossChecklistMod);
         }
 
         List<int> collection;
@@ -66,11 +70,29 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
             ModContent.NPCType<GemstoneCrusher>(),
             new Dictionary<string, object>()
             {
-                //["spawnItems"] = ModContent.ItemType<DesertGlyph>(),
                 ["collectibles"] = collection
             }
         );
         }
+
+        public void AddPlayerRaid(Mod BossChecklistMod)
+        {
+
+            BossChecklistMod.Call(
+                "LogEvent",
+                Mod,
+                "PlayerRaid",
+                0.25f,
+                () => RemnantDownedBossSystem.downedOutlawInvasion,
+                new List<int>() { ModContent.NPCType<Raider>() },
+                new Dictionary<string, object>()
+                {
+                    ["spawnItems"] = ModContent.ItemType<RaidersSummon>(),
+                }
+            );
+        }
+
+
         public void AddDesert(Mod BossChecklistMod)
         {
             collection =
@@ -80,7 +102,14 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 ModContent.ItemType<DesertMusicBox>()
                 ];
 
-                BossChecklistMod.Call(
+            var customPortrait = (SpriteBatch sb, Rectangle rect, Color color) => {
+                Texture2D texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/DesertAnnihilator/DesertAniquilator_BossChecklist").Value;
+                Vector2 centered = new Vector2(rect.X + (rect.Width / 2) - (texture.Width / 2), rect.Y + (rect.Height / 2) - (texture.Height / 2));
+                sb.Draw(texture, centered, color);
+            };
+
+
+            BossChecklistMod.Call(
                 "LogBoss",
                 Mod,
                 "DesertAnnihilator",    
@@ -90,7 +119,8 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 new Dictionary<string, object>()
                 {
                     ["spawnItems"] = ModContent.ItemType<DesertGlyph>(),
-                    ["collectibles"] = collection
+                    ["collectibles"] = collection,
+                    ["customPortrait"] = customPortrait
                 }
             );
         }
@@ -160,6 +190,28 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 new Dictionary<string, object>()
                 {
                     ["Terraria Skeletron"] = ModContent.ItemType<ElderSpeaker>()
+                }
+            );
+        }
+        public void AddWOF(Mod BossChecklistMod)
+        {
+            BossChecklistMod.Call(
+                "SubmitEntrySpawnItems",
+                Mod,
+                new Dictionary<string, object>()
+                {
+                    ["Terraria WallofFlesh"] = ModContent.ItemType<SoulBurner>()
+                }
+            );
+        }
+        public void AddPlantera(Mod BossChecklistMod)
+        {
+            BossChecklistMod.Call(
+                "SubmitEntrySpawnItems",
+                Mod,
+                new Dictionary<string, object>()
+                {
+                    ["Terraria Plantera"] = ModContent.ItemType<BulbOnAPot>()
                 }
             );
         }

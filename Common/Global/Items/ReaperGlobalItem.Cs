@@ -8,6 +8,7 @@ using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -74,16 +75,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{			
 				if (BossSummons.Contains(item.type))
 				{
-
 					bool consumable = !Reaper.ReaperMode;
 					if(consumable == true)
                         consumable = !Utils1.PlayerHaveItem(player, ModContent.ItemType<BossSummonSaver>());
 
                     item.GetGlobalItem<CustomTooltip>().BossSummon = Reaper.ReaperMode;
 					item.consumable = consumable;
-
-
-
                 }
 			}
 			else
@@ -99,13 +96,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             if (Reaper.ReaperMode)
             {
-                if (item.type == ItemID.LihzahrdPowerCell)
+                if (item.type == ItemID.LihzahrdPowerCell || item.type == ItemID.DD2ElderCrystal)
                 {
-                    Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), item.type, 1);
-                }
-                if (item.type == ItemID.DD2ElderCrystal)
-                {
-                    Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), item.type, 1);
+                    Item.NewItem(item.GetSource_ReleaseEntity(), item.Hitbox, item.type, 1);
                 }
             }
             base.OnConsumeItem(item, player);
@@ -138,7 +131,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             SafeAddContentToList(ItemID.MechanicalSkull);
             SafeAddContentToList(ItemID.CelestialSigil);
             SafeAddContentToList(ModContent.ItemType<DesertGlyph>());
+            SafeAddContentToList(ModContent.ItemType<SoulBurner>());
             SafeAddContentToList(ModContent.ItemType<FrozenArtifact>());
+            SafeAddContentToList(ModContent.ItemType<BulbOnAPot>());
             SafeAddContentToList(ModContent.ItemType<InfernalCalis>());
             SafeAddContentToList(ModContent.ItemType<ElderSpeaker>());
         }
@@ -183,25 +178,37 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     if (item.type == ItemID.ReaperHood)
                     {
-                        Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Hood>(), 1);
+                        TransformItem(item,ModContent.ItemType<Reaper_Hood>());
                     }
-                    if (item.type == ItemID.ReaperRobe)
+                    else if (item.type == ItemID.ReaperRobe)
                     {
-                        Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Robe>(), 1);
+                        TransformItem(item,ModContent.ItemType<Reaper_Robe>());
                     }
-                    if (item.type == ItemID.NecroGreaves)
+                    else if (item.type == ModContent.ItemType<ReaperPants>())
                     {
-                        Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ModContent.ItemType<Reaper_Pants>(), 1);
-                        item.rare = ItemRarityID.White;
+                        TransformItem(item,ModContent.ItemType<Reaper_Pants>());
                     }
                 }
-                if (item.type == ItemID.GuideVoodooDoll && item.rare == ItemRarityID.White)
+                if (item.type == ItemID.GuideVoodooDoll)
                 {
-                    int a = Main.player[Main.myPlayer].QuickSpawnItem(item.GetSource_ReleaseEntity(), ItemID.GuideVoodooDoll, 1);
-                    Main.item[a].rare = ItemRarityID.Blue;
+                    TransformItem(item, ModContent.ItemType<SoulBurner>());
+                    return;
                 }
             }
             orig(item, i);
+        }
+        private void TransformItem(Item item, int newType)
+        {
+            int stack = item.stack;
+
+            item.SetDefaults(newType);
+            item.stack = stack;
+            item.lavaWet = true;
+            item.velocity.Y -= 10; 
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item.whoAmI);
+            }
         }
     }
 }

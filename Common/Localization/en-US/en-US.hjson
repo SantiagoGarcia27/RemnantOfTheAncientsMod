@@ -4548,14 +4548,24 @@ Mods: {
 				Tooltip: ""
 			}
 
-			OutlawSummon: {
-				DisplayName: Outlaw Summon (Wip)
-				Tooltip: " invoca una invasion de jugadores, está en desarollo asique no esperque recompenza o algo balanceado"
+			RaidersSummon: {
+				DisplayName: Raid Banner
+				Tooltip: Summons a Player Raid
 			}
 
-			RaidersSummon: {
-				DisplayName: Raiders Summon
+			ReaperPants: {
+				DisplayName: Reaper Pants
 				Tooltip: ""
+			}
+
+			BulbOnAPot: {
+				DisplayName: Bulb On A Pot
+				Tooltip: Summons Plantera
+			}
+
+			SoulBurner: {
+				DisplayName: Soul Burner
+				Tooltip: You are a very terrible person
 			}
 		}
 
@@ -5294,5 +5304,6 @@ Mods: {
 
 		Commands.MaxStyleCommand.Description: Maximizes the player's style stat
 		ConfigServer.Headers.Performance: Lag Reducer Header
+		BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
 	}
 }

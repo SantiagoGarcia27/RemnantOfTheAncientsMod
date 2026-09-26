@@ -51,6 +51,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		}
 		public override void AI()
 		{
+            NPC.UpdatePlayerProxy();
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
 			if (proxy == null || !proxy.active) proxy = NPC.GetPlayerProxy();
 			if (proxy == null) return;
 

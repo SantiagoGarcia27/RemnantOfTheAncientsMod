@@ -20,6 +20,7 @@ using SangarUtilities.Common;
 using System;
 using System.Linq;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
 
 
 public class ReaperPlayer : ModPlayer
@@ -45,6 +46,7 @@ public class ReaperPlayer : ModPlayer
         {
             Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemID.ReaperHood);
             Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemID.ReaperRobe);
+            Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemType<ReaperPants>());
             Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemType<ReaperChalice>());
         }
     }

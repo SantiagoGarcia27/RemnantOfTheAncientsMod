@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
         Player target = null;
         NPC owner = null;
         bool FoundTarget = false;
-        static int timmer = 0;
+        int timmer = 0;
         int timmerMax = 0;
         public override void AI(Projectile projectile)
         {
