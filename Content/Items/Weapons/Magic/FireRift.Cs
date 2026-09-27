@@ -1,12 +1,12 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.Global;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {

@@ -241,9 +241,11 @@ if (Main.rand.NextBool(5))
 		private void UpdatePlayer(Player player)
 		{
 			if (Projectile.owner == Main.myPlayer)
-			{
-				Vector2 position = Projectile.position;
+			{    
+                Vector2 mouse = FakeMain.MouseWorld(player);
+                Vector2 position = Projectile.position;
                 Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+
                 position = player.Center + new Vector2((-Main.rand.Next(0, 0) * player.direction), -600f);
                 position.Y -= 100;
 
@@ -260,11 +262,8 @@ if (Main.rand.NextBool(5))
                 heading *= new Vector2(Projectile.velocity.X, Projectile.velocity.Y).Length();
                 heading.Normalize();
 
-    //            Vector2 diff = Main.MouseWorld - player.Center;
-				//diff.Normalize();
-
 				Projectile.velocity = heading;
-				Projectile.direction = Main.MouseWorld.X > player.position.X ? 1 : -1; // 1: -1
+				Projectile.direction = mouse.X > player.position.X ? 1 : -1; // 1: -1
 				Projectile.netUpdate = true;
 			}
 

@@ -1,11 +1,11 @@
-using RemnantOfTheAncientsMod.Content.Projectiles.Bobbers;
-using Terraria.GameContent.Creative;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.Bobbers;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.FishingRods
 {

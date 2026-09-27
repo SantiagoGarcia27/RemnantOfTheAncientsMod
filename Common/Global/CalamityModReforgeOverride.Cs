@@ -1,11 +1,11 @@
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.Utilities;
-using Terraria.ID;
-using System.Collections.Generic;
 using CalamityMod.Items;
-using Terraria.DataStructures;
 using SangarUtilities.Common.UtilsTweaks;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace RemnantOfTheAncientsMod.Common.Global
 {

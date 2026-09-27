@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep
 {

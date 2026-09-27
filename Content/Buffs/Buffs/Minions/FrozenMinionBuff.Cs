@@ -1,8 +1,8 @@
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions
 {

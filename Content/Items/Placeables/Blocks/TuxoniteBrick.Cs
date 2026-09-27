@@ -1,10 +1,10 @@
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Tiles;
+using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Tiles;
-using Terraria;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Blocks
 {

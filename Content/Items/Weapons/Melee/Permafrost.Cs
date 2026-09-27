@@ -1,15 +1,15 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         {
             var source = Projectile.GetSource_None();
             Vector2 position = player.position;
-            Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+            Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
             int damage = Item.damage;
             float knockback = Item.knockBack;
 

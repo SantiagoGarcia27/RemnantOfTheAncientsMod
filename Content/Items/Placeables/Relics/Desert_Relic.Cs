@@ -1,8 +1,8 @@
+using RemnantOfTheAncientsMod.Content.Tiles.Master_Relic;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Tiles.Master_Relic;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Relics
 {

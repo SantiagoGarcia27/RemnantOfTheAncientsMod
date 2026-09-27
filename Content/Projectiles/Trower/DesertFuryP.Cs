@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.Audio;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
 {

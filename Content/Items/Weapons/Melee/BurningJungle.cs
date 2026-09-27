@@ -1,10 +1,10 @@
-using Terraria.ID;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {

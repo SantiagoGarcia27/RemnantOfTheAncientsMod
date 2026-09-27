@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
 {

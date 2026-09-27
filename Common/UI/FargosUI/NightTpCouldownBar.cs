@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.World;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.GameContent;
-using System.Collections.Generic;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.World;
 
 namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 {

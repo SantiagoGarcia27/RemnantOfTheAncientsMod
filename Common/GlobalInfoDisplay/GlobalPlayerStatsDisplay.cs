@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
-using System;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.GlobalInfoDisplay
 {

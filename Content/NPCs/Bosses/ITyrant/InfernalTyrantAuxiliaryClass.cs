@@ -1,10 +1,10 @@
-﻿using RemnantOfTheAncientsMod.World;
-using System.Collections.Generic;
-using Terraria.ModLoader;
-using Terraria;
-using CalamityMod;
-using Terraria.ID;
+﻿using CalamityMod;
+using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {

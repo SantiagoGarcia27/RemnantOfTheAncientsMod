@@ -1,9 +1,9 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
+using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {

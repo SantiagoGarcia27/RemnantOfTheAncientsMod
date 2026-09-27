@@ -1,12 +1,12 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
-using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles
 {

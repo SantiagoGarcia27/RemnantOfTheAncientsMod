@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.Localization;
-using Terraria.GameContent.Creative;
+﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {

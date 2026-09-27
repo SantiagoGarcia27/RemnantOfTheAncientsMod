@@ -1,10 +1,10 @@
-using Terraria.ID;
-using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Mounts;
-using Terraria.GameContent.Creative;
 using Terraria;
 using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Mounts
 {

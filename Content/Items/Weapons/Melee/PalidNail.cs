@@ -45,7 +45,7 @@
 
 //		public override bool CanUseItem(Player player)
 //		{
-//			//Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+//			//Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
 
 //			//if (RemnantOfTheAncients.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 //			//{
@@ -55,18 +55,18 @@
 //		}
 //		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 //		{
-//			// Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
-//			Vector2 mousePos = Main.MouseWorld;
+//			// Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
+//			Vector2 mousePos = FakeMain.MouseWorld(player);
 //			if (player.whoAmI == Main.myPlayer)
 //			{
-//				mousePos = Main.MouseWorld;
+//				mousePos = FakeMain.MouseWorld(player);
 
 //			}
-//			Vector2 distance = Main.MouseWorld - player.Center;
+//			Vector2 distance = FakeMain.MouseWorld(player) - player.Center;
 //			Vector2 sign = new Vector2(Math.Sign(distance.X), Math.Sign(distance.Y));
 //			Vector2 pos = new Vector2(3 * 16 * sign.X, 0);
 
-//			float angle = player.AngleTo(Main.MouseWorld);
+//			float angle = player.AngleTo(FakeMain.MouseWorld(player));
 
 //            Main.NewText(angle+"°");
 
@@ -109,7 +109,7 @@
 
 //            //         }
 //            //Main.NewText(distance);
-//            Projectile.NewProjectile(Projectile.GetSource_None(), player.position + pos, (Main.MouseWorld - player.position)* 0.00f, ModContent.ProjectileType<NailSlash>(), Item.damage, 2f, Main.myPlayer);
+//            Projectile.NewProjectile(Projectile.GetSource_None(), player.position + pos, (FakeMain.MouseWorld(player) - player.position)* 0.00f, ModContent.ProjectileType<NailSlash>(), Item.damage, 2f, Main.myPlayer);
 
 //			return false;//base.Shoot(player, source, position, velocity, type, damage, knockback);
 //        }

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
@@ -9,7 +10,6 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using ReLogic.Content;
 
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms

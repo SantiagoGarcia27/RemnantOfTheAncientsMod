@@ -1,11 +1,11 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using Terraria.GameContent.Creative;
 using CalamityMod;
 using CalamityMod.CalPlayer;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using SangarUtilities.Common.UtilsTweaks;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Armor.Night
 {

@@ -12,7 +12,6 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider;
 using System;
 using System.Collections.Generic;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie

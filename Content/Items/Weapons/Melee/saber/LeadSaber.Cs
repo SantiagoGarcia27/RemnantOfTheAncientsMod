@@ -1,6 +1,6 @@
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using Terraria;
 using Terraria.ID;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {

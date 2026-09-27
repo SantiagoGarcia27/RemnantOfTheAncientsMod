@@ -1,9 +1,9 @@
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Tiles.Music_Box;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox
 {

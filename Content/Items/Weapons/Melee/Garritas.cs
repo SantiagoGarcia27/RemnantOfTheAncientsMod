@@ -1,8 +1,8 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {

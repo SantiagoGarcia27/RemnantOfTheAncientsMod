@@ -1,8 +1,8 @@
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools
 {

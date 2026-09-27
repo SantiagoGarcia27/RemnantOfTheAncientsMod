@@ -1,9 +1,9 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.Localization;
+﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {

@@ -1,12 +1,12 @@
-using System;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Projectiles;
+using System;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.Localization;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Projectiles;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
 {

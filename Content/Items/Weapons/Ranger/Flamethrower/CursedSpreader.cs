@@ -1,13 +1,13 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System.Collections.Generic;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Flamethrower
 {

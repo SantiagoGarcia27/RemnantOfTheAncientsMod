@@ -1,12 +1,12 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.TmodClassOverride;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using SangarUtilities.Common.UtilsTweaks;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-using RemnantOfTheAncientsMod.Common.TmodClassOverride;
-using SangarUtilities.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {

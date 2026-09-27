@@ -1,7 +1,7 @@
-using System;
 using CalamityMod.Items.Potions.Alcohol;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;

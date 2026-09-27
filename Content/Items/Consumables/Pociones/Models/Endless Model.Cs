@@ -1,10 +1,10 @@
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.Global.Items;
-using System.Collections.Generic;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {

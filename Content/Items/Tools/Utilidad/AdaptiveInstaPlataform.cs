@@ -1,11 +1,11 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Enums;
+using RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.Enums;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
             int[] biomes = PlataformModel.getBiomeBlocks(player);
             if (!player.noBuilding)
             {
-                Vector2 mouse = Main.MouseWorld;
+                Vector2 mouse = FakeMain.MouseWorld(player);
                 Projectile.NewProjectile(player.GetSource_ItemUse(source.Item), mouse, Vector2.Zero, type, 0, 0, player.whoAmI, biomes[0], biomes[1], Range);
             }
             return false;

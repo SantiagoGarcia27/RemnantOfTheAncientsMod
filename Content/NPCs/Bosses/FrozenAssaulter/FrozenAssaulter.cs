@@ -203,7 +203,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             const float dodgeSpeed = 9f;
             if (velocity == Vector2.Zero)
             {
-                NPC.velocity += new Vector2(Main.rand.Next(-1,1), Main.rand.Next(-1, 1)) * dodgeSpeed;
+                NPC.velocity += new Vector2(Main.rand.Next(-1,2), Main.rand.Next(-1, 2)) * dodgeSpeed;
                 DogdeCouldown = DogdeCouldownMax;
                 return;
             }
@@ -288,7 +288,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     if (++delay < diferencia) return;
 
                     delay = 0;
-                    int choice = Main.rand.Next(-1, 1);
+                    int choice = Main.rand.Next(-1, 2);
                     float variance = choice * 0.5f;
                     if (!isReaper)
                     {
@@ -768,7 +768,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             Vector2 drawPos = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
             if (DogdeCouldown > DogdeCouldownMax - Utils1.FormatTimeToTick(Second:1))
             {
-                drawColor = Main.rand.Next(0, 2) switch
+                drawColor = Main.rand.Next(0, 3) switch
                 {
                     0 => Color.Cyan,
                     1 => Color.White,

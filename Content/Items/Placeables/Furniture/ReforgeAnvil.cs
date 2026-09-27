@@ -1,9 +1,9 @@
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using Terraria.Localization;
 using RemnantOfTheAncientsMod.Content.Tiles.Stations;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture
 { 

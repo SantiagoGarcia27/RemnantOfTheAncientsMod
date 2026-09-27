@@ -1,8 +1,8 @@
+using RemnantOfTheAncientsMod.Content.Projectiles.Pets;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Projectiles.Pets;
-using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs.Pets
 {

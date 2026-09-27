@@ -1,17 +1,18 @@
+using Microsoft.Xna.Framework;
+using PlayerProxyLib.Common;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
    
     public class Ultrablade : ModItem
 	{
-        public int attackType = 0; // keeps track of which attack it is
+        public int attackType = 0;
         public int comboExpireTimer = 0;
 		public override void SetDefaults()
 		{
@@ -41,20 +42,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 
 		public override bool CanUseItem(Player player)
 		{
-			Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+			Vector2 mousePos = FakeMain.MouseWorld(player);
+			Vector2 velocity = Vector2.Normalize(mousePos - player.position) * Item.shootSpeed;
 
 			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 			{
-				Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ModContent.ProjectileType<UltraBladeS>(), Item.damage, 2f, Main.myPlayer);
+				Projectile.NewProjectile(player.GetSource_FromThis(), player.position, velocity, ModContent.ProjectileType<UltraBladeS>(), Item.damage, 2f, Main.myPlayer);
 			}
 			return base.CanUseItem(player);
 		}
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-			Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax);
+			Projectile.NewProjectile(source, position, velocity, type, damage, knockback,Owner: player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax);
             // Using the shoot function, we override the swing projectile to set ai[0] (which attack it is)
-            Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<UltrabladeSwingProgectile>(), damage, knockback, Main.myPlayer);
+            Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<UltrabladeSwingProgectile>(), damage, knockback, player.whoAmI);
             
 
             float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.

@@ -1,15 +1,15 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
-using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
 using CalamityMod;
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
 using SangarUtilities.Common.UtilsTweaks;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
 {

@@ -1,11 +1,11 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
-using Terraria.Chat;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
+using Terraria.Chat;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {

@@ -111,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
-			return SpawnCondition.Cavern.Chance * 0.01f; //* ModContent.GetInstance<ConfigClient1>().xdlevel; 
+			return SpawnCondition.Cavern.Chance * 0.01f;
 		}
 		public override void OnSpawn(IEntitySource source)
 		{

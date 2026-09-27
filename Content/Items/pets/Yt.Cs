@@ -1,11 +1,11 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Pets;
+using RemnantOfTheAncientsMod.Content.Projectiles.Pets;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Creative;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Pets;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Pets;
 
 namespace RemnantOfTheAncientsMod.Content.Items.pets
 {

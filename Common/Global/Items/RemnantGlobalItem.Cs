@@ -392,7 +392,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		{
 			if (player == Main.LocalPlayer)
 			{
-				Vector2 mouseWorld = Main.MouseWorld / 16;
+				Vector2 mouseWorld = FakeMain.MouseWorld(player).ToTilePosition();
 				Tile cursorTile = Main.tile[(int)mouseWorld.X, (int)mouseWorld.Y];
 				if ((cursorTile.TileType == TileID.Extractinator || cursorTile.TileType == TileID.ChlorophyteExtractinator) && player.cursorItemIconEnabled)
 				{

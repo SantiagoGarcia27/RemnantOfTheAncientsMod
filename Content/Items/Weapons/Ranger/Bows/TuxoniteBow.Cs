@@ -1,9 +1,9 @@
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
-using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Items;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
 {

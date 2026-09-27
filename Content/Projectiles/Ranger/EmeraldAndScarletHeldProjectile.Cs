@@ -1,9 +1,9 @@
-using System;
-using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -66,9 +66,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 
             if (Main.myPlayer == Projectile.owner)
             {
-                float interpolant = Utils.GetLerpValue(5f, 25f, player.Distance(Main.MouseWorld), true);
+                Vector2 mouse = FakeMain.MouseWorld(player);
+                float interpolant = Utils.GetLerpValue(5f, 25f, player.Distance(mouse), true);
                 Vector2 oldVelocity = Projectile.velocity;
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, player.DirectionTo(Main.MouseWorld), interpolant);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, player.DirectionTo(mouse), interpolant);
                 if (Projectile.velocity != oldVelocity)
                 {
                     Projectile.netSpam = 0;

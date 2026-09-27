@@ -1,17 +1,17 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Creative;
-using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
+using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Spear;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Spear;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {

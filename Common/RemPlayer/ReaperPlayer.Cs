@@ -1,26 +1,26 @@
-using RemnantOfTheAncientsMod.Content.Projectiles;
-using RemnantOfTheAncientsMod;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using System.Collections.Generic;
-using Terraria;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using Terraria.ID;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
-using Terraria.ModLoader.IO;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod;
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
-using RemnantOfTheAncientsMod.Common.Configs;
+using RemnantOfTheAncientsMod.Content.Projectiles;
+using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using static Terraria.ModLoader.ModContent;
 
 
 public class ReaperPlayer : ModPlayer

@@ -5,8 +5,6 @@ using Terraria.ModLoader;
 
 public class FakeMain : ModSystem
 {
-
-
     public static Vector2 MouseWorld(Player player)
     {
         if (player.IsProxyPlayer())

@@ -1,6 +1,6 @@
 using CalamityMod.Items.Placeables.Furniture.Trophies;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.CalamityLore;
 

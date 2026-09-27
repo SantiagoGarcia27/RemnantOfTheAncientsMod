@@ -111,7 +111,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         }
         public void DrawRotation(Player owner)
         {
-            Vector2 direccion = (Main.MouseWorld - owner.MountedCenter).SafeNormalize(Vector2.UnitX);
+            Vector2 mouse = FakeMain.MouseWorld(owner);
+            Vector2 direccion = (mouse - owner.MountedCenter).SafeNormalize(Vector2.UnitX);
 
             float distanciaDeLaMano = 20f;
 
@@ -149,9 +150,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         public void shoot()
         {
             Player owner = Main.player[Projectile.owner];
+            Vector2 mouse = FakeMain.MouseWorld(owner);
             if (owner.HeldItem.type == ModContent.ItemType<StoneBlunderbuss>())
             {
-                Vector2 direccion = (Main.MouseWorld - owner.Center).SafeNormalize(Vector2.UnitX);
+                Vector2 direccion = (mouse - owner.Center).SafeNormalize(Vector2.UnitX);
                 Vector2 velocity = direccion * 20f;
                 SoundEngine.PlaySound(
                     SoundID.Item40 with
@@ -186,7 +188,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
             Vector2 position = (Projectile.position - Main.screenPosition) + new Vector2(Projectile.width * 0.5f, Projectile.height - texture.Height * 0.5f + 2f);
             Player owner = Main.player[Projectile.owner];
-            Vector2 direccion = (Main.MouseWorld - owner.MountedCenter).SafeNormalize(Vector2.UnitX);
+            Vector2 mouse = FakeMain.MouseWorld(owner);
+            Vector2 direccion = (mouse - owner.MountedCenter).SafeNormalize(Vector2.UnitX);
             SpriteEffects effect =  SpriteEffects.None;
             if (direccion.X < 0) {
                 effect = SpriteEffects.FlipHorizontally; 

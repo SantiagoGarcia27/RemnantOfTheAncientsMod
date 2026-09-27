@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Dusts;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Dusts;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools
 {

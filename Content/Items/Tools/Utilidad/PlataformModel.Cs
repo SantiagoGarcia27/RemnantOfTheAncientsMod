@@ -95,7 +95,7 @@ public class PlataformModel
         }
         else
         {
-            Vector2 mouse = Main.MouseWorld;
+            Vector2 mouse = FakeMain.MouseWorld(player);
             int side = Math.Sign(mouse.X - player.Center.X);   
             if (side == -1)
                 mouse.X += side * 16;

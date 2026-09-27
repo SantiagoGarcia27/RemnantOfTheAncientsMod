@@ -1,14 +1,12 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using Terraria.Localization;
-using static Terraria.ModLoader.ModContent;
+using CalamityMod;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.NPCs;
-using Terraria.Chat;
-using CalamityMod;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 using static RemnantOfTheAncientsMod.Netcode;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 {
@@ -38,35 +36,36 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 
 			if (player.altFunctionUse == 2)
 			{
-                Main.player[player.whoAmI].GetModPlayer<RemnantPlayer>().DummyMode = Main.player[player.whoAmI].GetModPlayer<RemnantPlayer>().DummyMode == 3 ? 0 : Main.player[player.whoAmI].GetModPlayer<RemnantPlayer>().DummyMode + 1;
+                RemnantPlayer remnantPlayer = player.GetModPlayer<RemnantPlayer>();
+                remnantPlayer.DummyMode = remnantPlayer.DummyMode == 3 ? 0 : remnantPlayer.DummyMode + 1;
  
 				string Size = "Small";
 				string Defense = "no";
 
-				if(Main.player[player.whoAmI].GetModPlayer<RemnantPlayer>().DummyMode == 1 || Main.player[player.whoAmI].GetModPlayer<RemnantPlayer>().DummyMode == 3)
+                if (remnantPlayer.DummyMode == 1 || remnantPlayer.DummyMode == 3)
 					Defense= "Player";
-				else if(Main.player[player.whoAmI].GetModPlayer<RemnantPlayer>().DummyMode == 2 || Main.player[player.whoAmI].GetModPlayer<RemnantPlayer>().DummyMode == 3)
+				else if(remnantPlayer.DummyMode == 2 || remnantPlayer.DummyMode == 3)
 					Size = "Gigant";
 
 				Main.NewText(Size + " with " + Defense+" defense");
 			}
 			else
 			{
-				CheckDummyAlive();
+				CheckDummyAlive(player);
 			}
 			return true;
 		}
 
-		public void CheckDummyAlive()
+		public void CheckDummyAlive(Player player)
 		{
-			Player player = Main.player[Main.myPlayer];
-
 			if (!NPC.AnyNPCs(NPCType<SuperDummyNPC>()))
 			{
 				if (player.whoAmI == Main.myPlayer)
 				{
-					int x = (int)Main.MouseWorld.X - 9;
-					int y = (int)Main.MouseWorld.Y - 20;
+					Vector2 mouse = FakeMain.MouseWorld(player);
+
+                    int x = (int)mouse.X - 9;
+					int y = (int)mouse.Y - 20;
 					if (Main.netMode == NetmodeID.SinglePlayer)
 					{
 						NPC.NewNPC(Terraria.Entity.GetSource_None(), x, y, NPCType<SuperDummyNPC>(),0, Main.LocalPlayer.GetModPlayer<RemnantPlayer>().DummyMode);
@@ -87,23 +86,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 			}
 			else
 			{
-				if (Main.myPlayer == player.whoAmI)
+				if (Main.myPlayer != player.whoAmI) return;
+				
+				if (Main.netMode == NetmodeID.SinglePlayer)
 				{
-					if (Main.netMode == NetmodeID.SinglePlayer)
-					{
-						DeleteDummie();
-					}
-					else
-					{
-						var netMessage = Mod.GetPacket();
-						netMessage.Write((byte)RemnantOfTheAncientsModMessageType.KillSuperDummy);
-						netMessage.Send();
-					}
+					DeleteDummie();
+				}
+				else
+				{
+					var netMessage = Mod.GetPacket();
+					netMessage.Write((byte)RemnantOfTheAncientsModMessageType.KillSuperDummy);
+					netMessage.Send();
 				}
 			}
 		}
-
-
 
 		public static void DeleteDummie()
 		{

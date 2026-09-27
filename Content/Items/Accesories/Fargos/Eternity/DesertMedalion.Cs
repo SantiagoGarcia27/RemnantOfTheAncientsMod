@@ -1,10 +1,10 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
+using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {

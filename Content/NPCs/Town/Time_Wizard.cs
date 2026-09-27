@@ -1,24 +1,24 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.World;
+using RemnantOfTheAncientsMod.Content.Dusts;
+using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
-using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent;
-using ReLogic.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.Personalities;
 using Terraria.Utilities;
-using Terraria.Audio;
-using RemnantOfTheAncientsMod.Content.Dusts;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.World;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Town
 {

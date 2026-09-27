@@ -1,9 +1,9 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
+using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 {

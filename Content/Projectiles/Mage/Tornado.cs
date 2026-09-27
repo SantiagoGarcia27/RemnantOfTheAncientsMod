@@ -1,6 +1,6 @@
-using System;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

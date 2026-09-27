@@ -1,12 +1,12 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using SangarUtilities.Common.UtilsTweaks;
+using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
-using System.Linq;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using SangarUtilities.Common.UtilsTweaks;
 
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
@@ -57,7 +57,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		{
 			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 			{
-				Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+				Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
 				Vector2 pos = player.position - new Vector2(7 * 16, 1f * 16 * Item.scale);
 				pos.X *= player.direction;
 

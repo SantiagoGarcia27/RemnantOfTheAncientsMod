@@ -1,15 +1,15 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
 {

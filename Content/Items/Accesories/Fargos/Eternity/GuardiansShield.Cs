@@ -1,19 +1,19 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.Global;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common;
-using System.Collections.Generic;
-using Terraria.ID;
 using CalamityMod.Items.Accessories;
-using FargowiltasSouls.Core.Toggler;
-using FargowiltasSouls.Core.AccessoryEffectSystem;
-using FargowiltasSouls.Content.Items.Accessories.Souls;
 using CalamityMod.Items.SummonItems;
+using FargowiltasSouls.Content.Items.Accessories.Souls;
+using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.Toggler;
+using RemnantOfTheAncientsMod.Common;
+using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using SangarUtilities.Common.UtilsTweaks;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {

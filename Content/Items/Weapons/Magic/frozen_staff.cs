@@ -1,11 +1,11 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {

@@ -1,22 +1,22 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
-using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
-using RemnantOfTheAncientsMod.World;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using Terraria.GameContent;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
+using RemnantOfTheAncientsMod.World;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {

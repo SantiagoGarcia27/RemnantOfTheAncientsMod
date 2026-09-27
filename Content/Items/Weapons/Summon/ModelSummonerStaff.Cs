@@ -58,7 +58,7 @@ public abstract class ModelSummonerStaff : ModItem
 	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 	{
 		player.AddBuff(Item.buffType, 2);
-		position = Main.MouseWorld;
+		position = FakeMain.MouseWorld(player);
 	}
 	public override void AddRecipes()
 	{

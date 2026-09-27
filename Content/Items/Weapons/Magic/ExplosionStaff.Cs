@@ -1,9 +1,9 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {

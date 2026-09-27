@@ -1,10 +1,10 @@
-using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs
 {

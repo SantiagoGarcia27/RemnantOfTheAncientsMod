@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
 {

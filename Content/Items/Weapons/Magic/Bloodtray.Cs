@@ -1,14 +1,14 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
 using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
+using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {

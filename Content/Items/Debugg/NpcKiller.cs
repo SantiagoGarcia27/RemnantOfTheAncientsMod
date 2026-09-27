@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 {

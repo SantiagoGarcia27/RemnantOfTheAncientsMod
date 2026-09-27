@@ -1,8 +1,8 @@
 using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;
-using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 {

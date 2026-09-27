@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using FargowiltasSouls.Content.Items.Accessories.Masomode;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
@@ -8,6 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;

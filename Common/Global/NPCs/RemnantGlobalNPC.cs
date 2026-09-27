@@ -1,21 +1,21 @@
-using Terraria;
-using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.ModContent;
-using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Dusts;
-using Terraria.ID;
-using System.Collections.Generic;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using CalamityMod.NPCs;
 using CalamityMod;
+using CalamityMod.NPCs;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
+using RemnantOfTheAncientsMod.Content.Dusts;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.NPCs.zombis;
-using Terraria.ModLoader.Utilities;
 using SangarUtilities.Common.UtilsTweaks;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 {

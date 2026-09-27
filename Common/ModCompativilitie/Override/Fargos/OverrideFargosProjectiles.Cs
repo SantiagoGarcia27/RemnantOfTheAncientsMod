@@ -1,16 +1,16 @@
+using FargowiltasSouls;
 using FargowiltasSouls.Content.Bosses.VanillaEternity;
 using FargowiltasSouls.Content.NPCs.EternityModeNPCs;
-using FargowiltasSouls;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ModLoader;
-using System.Collections.Generic;
-using SangarUtilities.Common.UtilsTweaks;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.Override.Fargos
 {

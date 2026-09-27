@@ -1,15 +1,15 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Localization;
 using Microsoft.Xna.Framework;
-using Terraria.GameContent.Creative;
-using Terraria.Chat;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
+using Terraria;
+using Terraria.Chat;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
 {

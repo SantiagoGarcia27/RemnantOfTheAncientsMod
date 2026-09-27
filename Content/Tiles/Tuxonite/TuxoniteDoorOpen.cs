@@ -1,13 +1,13 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.ObjectInteractions;
 using Terraria.Enums;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 {

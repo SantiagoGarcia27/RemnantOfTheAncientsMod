@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Boots
 {

@@ -1,8 +1,8 @@
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Tiles.Tuxonite;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Furniture
 {

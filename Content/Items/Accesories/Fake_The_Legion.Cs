@@ -1,13 +1,12 @@
-using Terraria;
-using Terraria.ModLoader;
-
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {

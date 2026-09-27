@@ -1,13 +1,13 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.Localization;
 using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.ModContent;
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 {
@@ -50,8 +50,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 		}
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
-			player.AddBuff(Item.buffType, 2);
-			position = Main.MouseWorld;
+            Vector2 mouse = FakeMain.MouseWorld(player);
+            player.AddBuff(Item.buffType, 2);
+			position = mouse;
 		}
         public override void AddRecipes()
         {

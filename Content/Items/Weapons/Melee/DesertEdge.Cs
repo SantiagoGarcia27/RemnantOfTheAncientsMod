@@ -1,16 +1,16 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {
@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             {
                 float numberProjectiles = 2;
                 float rotation = MathHelper.ToRadians(10);
-                Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+                Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
                 Vector2 position = player.position;
 
                 player.position += Vector2.Normalize(velocity) * 1f;

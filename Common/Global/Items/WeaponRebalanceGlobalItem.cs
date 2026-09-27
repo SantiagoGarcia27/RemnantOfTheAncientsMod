@@ -169,9 +169,9 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             else if (item.type == ItemID.BabyBirdStaff)
             {
-                var a = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
+                var a = Projectile.NewProjectile(source, player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
                 Main.projectile[a].minionSlots = 0.5f;
-                var p = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2, Main.myPlayer, 0, 0, 0);
+                var p = Projectile.NewProjectile(source, player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2, Main.myPlayer, 0, 0, 0);
                 Main.projectile[p].minionSlots = 0.5f;
                 Main.projectile[p].alpha = 200;
                 return false;
@@ -218,7 +218,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 if (player.whoAmI == Main.myPlayer)
                 {
-
                     int Shootproj = ModContent.ProjectileType<WandOfSparkingHeldProj>();
                     if (player.altFunctionUse == 2)
                     {
@@ -228,7 +227,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                             
                         player.statMana -= manacost;
 
-                        var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, ai0: velocity.X, ai2: item.type);
+                        var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Owner: Main.myPlayer, ai0: velocity.X, ai2: item.type);
                     }
                 }
                
@@ -389,7 +388,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 if (Main.rand.NextBool(2))
                 {
                     player.AddBuff(BuffID.Pygmies, 10);
-                    Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<PygmyMelee>(), damage, knockback, player.whoAmI);
+                    Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<PygmyMelee>(), damage, knockback, player.whoAmI);
                     return false;
                 }
             }

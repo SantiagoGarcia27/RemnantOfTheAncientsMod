@@ -1,8 +1,8 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 {

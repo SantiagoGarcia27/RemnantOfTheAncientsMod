@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
-using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles.Music_Box
 {

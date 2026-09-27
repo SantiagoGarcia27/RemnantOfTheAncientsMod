@@ -1,19 +1,19 @@
-﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using RemnantOfTheAncientsMod.Projectiles.Melee;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
+using RemnantOfTheAncientsMod.Projectiles.Melee;
+using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
 {
@@ -84,7 +84,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             }
             else if (type == ModContent.ItemType<GrassSaber>())
             {
-                Vector2 Velocity = item.shootSpeed * 0.1f * (player.position - Main.MouseWorld);
+                Vector2 Velocity = item.shootSpeed * 0.1f * (player.position - FakeMain.MouseWorld(player));
                 Vector2 position = player.position + new Vector2(3 * 16, 0) * player.direction;
                 var p = Projectile.NewProjectile(Entity.GetSource_None(), position, Velocity, ModContent.ProjectileType<BladeOfGrassLeaftClone>(), (int)(item.damage * 0.25f), item.knockBack, Main.myPlayer, -1f * player.direction, 0, 0);
                 Main.projectile[p].scale = 2;

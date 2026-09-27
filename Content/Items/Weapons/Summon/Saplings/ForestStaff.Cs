@@ -1,8 +1,8 @@
+using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
 using Terraria;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions.acorns;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Saplings
 {

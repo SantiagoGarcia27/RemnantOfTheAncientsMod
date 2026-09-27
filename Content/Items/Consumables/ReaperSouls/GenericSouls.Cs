@@ -1,11 +1,11 @@
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
-using Terraria.ID;
-using Terraria;
-using Terraria.Localization;
-using Terraria.ModLoader;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {

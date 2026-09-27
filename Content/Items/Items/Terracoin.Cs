@@ -1,11 +1,11 @@
+using RemnantOfTheAncientsMod.Common.Global.Items;
+using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
+using RemnantOfTheAncientsMod.Content.Tiles;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Content.Tiles;
-using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.Common.Global.Items;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Items
 {

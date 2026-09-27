@@ -1,7 +1,7 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 {

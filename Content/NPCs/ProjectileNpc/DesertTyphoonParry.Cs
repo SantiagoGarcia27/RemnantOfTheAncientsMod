@@ -1,12 +1,12 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Dusts;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using System;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.Utilities;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Dusts;
-using System;
-using Microsoft.Xna.Framework;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {

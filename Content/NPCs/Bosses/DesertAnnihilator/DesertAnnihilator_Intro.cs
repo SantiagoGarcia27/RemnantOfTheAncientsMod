@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;

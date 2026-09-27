@@ -1,10 +1,10 @@
-using Terraria.Localization;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 {

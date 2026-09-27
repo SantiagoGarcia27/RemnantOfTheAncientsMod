@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.GameContent;
-using System.Collections.Generic;
-using Terraria.Localization;
-using Terraria.ID;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 
 namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 {

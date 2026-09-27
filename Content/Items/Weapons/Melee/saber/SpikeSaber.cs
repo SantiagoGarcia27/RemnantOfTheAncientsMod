@@ -1,12 +1,12 @@
+using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
-using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 			{
                 if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 				{
-                    Vector2 velocity = Vector2.Normalize(Main.MouseWorld - player.position) * Item.shootSpeed;
+                    Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.Center) * Item.shootSpeed;
                     Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(90));
                     velocity.X = perturbedSpeed.X;
 					velocity.Y = perturbedSpeed.Y;

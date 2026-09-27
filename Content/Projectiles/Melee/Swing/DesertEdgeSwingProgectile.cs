@@ -96,8 +96,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing
 
         public override void OnSpawn(IEntitySource source)
         {
-            Projectile.spriteDirection = Main.MouseWorld.X > Owner.MountedCenter.X ? 1 : -1;
-            float targetAngle = (Main.MouseWorld - Owner.MountedCenter).ToRotation();
+            Player owner = Main.player[Projectile.owner];
+            Vector2 mouse = FakeMain.MouseWorld(owner);
+            Projectile.spriteDirection = mouse.X > Owner.MountedCenter.X ? 1 : -1;
+            float targetAngle = (mouse - Owner.MountedCenter).ToRotation();
 
             if (CurrentAttack == AttackType.Spin)
             {

@@ -1,13 +1,13 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System.Collections.Generic;
-using Terraria.Localization;
-using System;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
 {

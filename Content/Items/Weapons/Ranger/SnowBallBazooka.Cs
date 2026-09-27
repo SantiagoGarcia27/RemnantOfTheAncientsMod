@@ -1,13 +1,13 @@
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {

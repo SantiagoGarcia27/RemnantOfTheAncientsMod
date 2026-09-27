@@ -1,7 +1,7 @@
-using Terraria;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using Terraria.ModLoader;
 using SangarUtilities.Common.UtilsTweaks;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo.Calamity
 {

@@ -1,6 +1,6 @@
-using Terraria.ModLoader;
 using RemnantOfTheAncientsMod.Content.NPCs.Town;
 using Terraria.ID;
+using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod

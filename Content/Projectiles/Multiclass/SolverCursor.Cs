@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Tools;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -58,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Player player = Main.player[Projectile.owner];
             if (Main.myPlayer == Projectile.owner)
             {
-                Projectile.position = Main.MouseWorld;
+                Projectile.position = FakeMain.MouseWorld(player);
                 Projectile.netUpdate = true;
 
                 // Projectile.position = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
@@ -70,15 +70,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     {
                         if (target == null)
                         {
-                            foreach (NPC n in Main.npc)
+                            foreach (NPC n in Main.ActiveNPCs)
                             {
-                                if (n.active && !n.boss && n.lifeMax <= 1000)
+                                if (n.boss || n.lifeMax > 1000) return;
+                                
+                                if (hitbox.Intersects(n.Hitbox))
                                 {
-                                    if (hitbox.Intersects(n.Hitbox))
-                                    {
-                                        target = n;
-                                        break;
-                                    }
+                                    target = n;
+                                    break;
                                 }
                             }
                         }
@@ -90,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                             }
                             if (target != null)
                             {
-                                target.Center = Projectile.Center/* - new Vector2((float)(target.width / 2), (float)(target.height / 2))*/;
+                                target.Center = Projectile.Center;
                                 target.netUpdate = true;
                             }
                         }
@@ -102,20 +101,23 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     {
                         if (Main.mouseLeft)
                         {
-                            int i = (int)(Projectile.Center.X / 16f);
-                            int j = (int)(Projectile.Center.Y / 16f);
-                            // Ensure that all tile coordinates are within the world bounds
+                            Vector2 centerTile = Projectile.Center.ToTilePosition();
+                            int centerTileX = (int)centerTile.X;
+                            int centerTileY = (int)centerTile.Y;
 
-                            if (Utils1.GetBlockPickPower(Main.tile[i, j], j) <= Utils1.GetBestPickPower(player))
+                            if (Utils1.GetBlockPickPower(Main.tile[centerTileX, centerTileY], centerTileY) <= Utils1.GetBestPickPower(player))
                             {
-                                WorldGen.KillTile(i, j);
-                                if (!Main.tile[i, j].HasTile && Main.netMode != NetmodeID.SinglePlayer)
-                                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j);
+                                WorldGen.KillTile(centerTileX, centerTileY);
+                                if (!Main.tile[centerTileX, centerTileY].HasTile && Main.netMode != NetmodeID.SinglePlayer)
+                                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, centerTileX, centerTileY);
                             }
                             else
                             {
-       
-                                player.Hurt(PlayerDeathReason.ByCustomReason($"{player.name} was consumed by Solver"), player.statLifeMax / 4, player.direction, false, false, -1, false, 10000, 1, 2);
+                                NetworkText text = NetworkText.FromLiteral($"{player.name} was consumed by Solver");
+                                PlayerDeathReason deathReason = PlayerDeathReason.ByCustomReason(text);
+
+                                player.Hurt(deathReason, player.statLifeMax / 4, player.direction, false, false, -1, false, 10000, 1, 2);
+
                                 Dust.NewDust(player.position, 10, 10, DustID.Electric, 0, 0, 0, Color.Red, 1.0f);
                             }
                         }
@@ -133,7 +135,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
 
         public override bool? CanHitNPC(NPC target)
         {
-            return /*target.friendly &&*/ Main.myPlayer == Projectile.owner && Main.mouseRight;
+            return Main.myPlayer == Projectile.owner && Main.mouseRight;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -142,8 +144,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
 
         public override void OnKill(int timeLeft)
         {
-            //SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-
             const int NUM_DUSTS = 20;
             for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(NUM_DUSTS); i++)
             {
@@ -160,7 +160,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Vector2 position = Projectile.Center - Main.screenPosition - new Vector2(10, 10);
             Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
             //Main.spriteBatch.Draw((Texture2D)texture, position, null, Color.Purple, Projectile.rotation, origin,Projectile.scale * 0.5f, SpriteEffects.None, 0f);
-            return false;// base.PreDraw(ref lightColor);
+            return false;
         }
     }
     [Autoload(Side = ModSide.Client)]

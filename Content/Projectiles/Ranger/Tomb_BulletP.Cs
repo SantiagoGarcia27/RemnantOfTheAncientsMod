@@ -1,7 +1,7 @@
-using System;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

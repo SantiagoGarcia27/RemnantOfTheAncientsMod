@@ -1,12 +1,12 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader.Utilities;
-using Terraria.Localization;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using Terraria.GameContent.Bestiary;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using Terraria;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {

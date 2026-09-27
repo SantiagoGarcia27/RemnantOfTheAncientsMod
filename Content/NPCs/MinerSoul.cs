@@ -1,17 +1,17 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using RemnantOfTheAncientsMod.Content.Items.Tools;
 using System;
+using System.Linq;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader.Utilities;
-using System.Linq;
 using Terraria.Utilities;
-using RemnantOfTheAncientsMod.Content.Items.Tools;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using Terraria.GameContent.Bestiary;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
+using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs
 {

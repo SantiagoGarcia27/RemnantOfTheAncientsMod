@@ -1,13 +1,13 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Creative;
-using RemnantOfTheAncientsMod.World;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.World;
+using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {

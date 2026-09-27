@@ -1,12 +1,12 @@
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.GameContent.Creative;
-using Terraria.DataStructures;
 using CalamityMod.Particles;
-using System;
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
+using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {

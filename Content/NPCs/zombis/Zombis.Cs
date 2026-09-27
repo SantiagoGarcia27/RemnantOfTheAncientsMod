@@ -1,20 +1,20 @@
+using CalamityMod;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using PlayerProxyLib.Common;
+using RemnantOfTheAncientsMod.Common.Enums;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
+using RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron;
+using RemnantOfTheAncientsMod.Content.Items.Items;
+using System;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using Terraria.ModLoader.Utilities;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron;
-using Terraria.DataStructures;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using CalamityMod;
-using Terraria.GameContent.Bestiary;
-using RemnantOfTheAncientsMod.Common.Enums;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using PlayerProxyLib.Common;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
 {
