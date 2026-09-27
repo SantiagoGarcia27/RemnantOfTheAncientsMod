@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -38,7 +39,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             else Item.shoot = ModContent.ProjectileType<UltraBladeS>();
 			Item.shootSpeed = 13f;
 			Item.noUseGraphic = true;
-		}
+            Item.shootsEveryUse = true;
+        }
 
 		public override bool CanUseItem(Player player)
 		{
@@ -54,14 +56,32 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-			Projectile.NewProjectile(source, position, velocity, type, damage, knockback,Owner: player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax);
-            // Using the shoot function, we override the swing projectile to set ai[0] (which attack it is)
-            Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<UltrabladeSwingProgectile>(), damage, knockback, player.whoAmI);
-            
+            float adjustedItemScale = player.GetAdjustedItemScale(Item);
 
-            float adjustedItemScale = player.GetAdjustedItemScale(Item); // Get the melee scale of the player and item.
-            Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ModContent.ProjectileType<UltrabladeSwingingEnergySwordProjectile>(), damage, knockback, player.whoAmI, player.direction * player.gravDir, player.itemAnimationMax, adjustedItemScale);
-            NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI); 
+            int swingTime = player.itemAnimationMax;
+
+            // Los PlayerProxy pueden llegar aquí con la animación todavía
+            // sin inicializar correctamente.
+            if (swingTime <= 1)
+                swingTime = Item.useAnimation;
+
+            if (adjustedItemScale <= 0f || float.IsNaN(adjustedItemScale) ||  float.IsInfinity(adjustedItemScale))
+            {
+                adjustedItemScale = Item.scale;
+            }
+
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, player.direction * player.gravDir, swingTime);
+
+            Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<UltrabladeSwingProgectile>(), damage, knockback, player.whoAmI);
+
+
+            float ai0 = player.direction * player.gravDir;
+            float ai1 = swingTime;
+            float ai2 = adjustedItemScale;
+            Projectile.NewProjectile(source, player.MountedCenter, new Vector2(player.direction, 0f), ModContent.ProjectileType<UltrabladeSwingingEnergySwordProjectile>(), damage, knockback,Owner: player.whoAmI,ai0:ai0, ai1:ai1,ai2:ai2);
+          
+            NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
+
             return false;
         }
 
