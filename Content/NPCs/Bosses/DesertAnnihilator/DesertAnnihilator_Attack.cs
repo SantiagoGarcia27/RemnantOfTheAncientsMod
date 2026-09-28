@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
+using PlayerProxyLib.Common.ProxyPlayer;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;

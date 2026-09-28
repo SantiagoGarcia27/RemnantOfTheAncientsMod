@@ -2,6 +2,7 @@ using CalamityMod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PlayerProxyLib.Common;
+using PlayerProxyLib.Common.ProxyPlayer;
 using RemnantOfTheAncientsMod.Common.Enums;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -396,7 +397,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             proxyPlayer.name = NPC.FullName;
             proxyPlayer.hasTitaniumStormBuff = true;
             proxyPlayer.AddBuff(BuffID.TitaniumStorm, Utils1.FormatTimeToTick(0, 0, 0, 6));
-            NPC.ConfigureProxyPlayer(targetable: false, shouldBeDrawn:true);
+            NPC.ConfigureProxyPlayer(targetable: false, shouldBeDrawn:false);
             if (proxyPlayer.ownedProjectileCounts[ProjectileID.TitaniumStormShard] < 5)
             {
                 var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2(-1 * 16, -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, proxyPlayer.whoAmI);

@@ -1,6 +1,7 @@
 using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
+using PlayerProxyLib.Common.ProxyPlayer;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs;

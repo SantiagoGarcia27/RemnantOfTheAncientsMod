@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
+using PlayerProxyLib.Common.ProxyPlayer;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -245,6 +246,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			for (int i = 0; i < inventory.potions.Length; i++) {
 				proxy.inventory[i + 10] = inventory.potions[i]?.item ?? new Item();
             }
+
+			proxy.statManaMax2 = 200;
+			proxy.statMana = 200;
         }
 
         public override void OnKill()

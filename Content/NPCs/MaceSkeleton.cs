@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
+using PlayerProxyLib.Common.ProxyPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -16,18 +18,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 	{
 		private Player proxy;
 		private int timmer;
-		readonly int timmerMax = Utils1.FormatTimeToTick(Second: 2);
+		readonly int timmerMax = Utils1.FormatTimeToTick(Second: 4);
 
-		private int _maceId = -1;
-		int MaceId
-		{
-			get => _maceId;
-			set
-			{
-				_maceId = value;
-				if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
-			}
-		}
 
 		public override void SetStaticDefaults()
 		{
@@ -53,8 +45,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		{
             NPC.UpdatePlayerProxy();
             if (Main.netMode == NetmodeID.MultiplayerClient) return;
-			if (proxy == null || !proxy.active) proxy = NPC.GetPlayerProxy();
-			if (proxy == null) return;
+			if (proxy == null || !proxy.active) Inicializar();
+
+            if (proxy == null) return;
 
 			NPC.TargetClosest();
 			NPC.UpdatePlayerProxy();
@@ -66,39 +59,46 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 				float distance = NPC.Center.DistanceSQ(target.Center);
 				float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();
-				int maceCount = proxy.ownedProjectileCounts[ProjectileID.Mace];
 
-                if (maceCount < 1 && distance < distanceMin)
-				{
-					timmer = timmerMax;
+                if (distance < distanceMin)
+                {
+                    proxy.SetMouseWorld(target.Center);
 
-					MaceId = Projectile.NewProjectile(NPC.GetSource_FromAI(), proxy.Center, Vector2.Zero, ProjectileID.Mace, 25, 0f, proxy.whoAmI);
-					Main.projectile[MaceId].hostile = true;
-					Main.projectile[MaceId].friendly = false;
-				}
-				else
-				{
-					if (MaceId == -1) return;
+                    if (timmer <= 0)
+                    {
+                        timmer = timmerMax;
+                        proxy.controlUseItem = true;
+                    }
 
-					if (timmer > 0) timmer--;
-					else
-					{
-						if (maceCount >= 1)
-						{
-							proxy.channel = false;
-							Main.projectile[MaceId].Kill();
-							MaceId = -1;
-						}
+                    timmer--;
 
-					}
-				}
-			}
+                    if (timmer > MathUtils.GetValueFromPorcentage(timmerMax, 90))
+                    {
+                        proxy.controlUseItem = true;
+                    }
+                    else if(timmer > MathUtils.GetValueFromPorcentage(timmerMax, 70))
+                    {
+                        proxy.controlUseItem = false;
+                    }
+                    else if(timmer > 3)
+                    {
+                        proxy.controlUseItem = true;
+                    }
+                    else
+                    {
+                        proxy.controlUseItem = false;
+                    }
+                }
+                else
+                {
+                    proxy.controlUseItem = false;
+                }
+            }
 			base.AI();
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange([
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
 				new FlavorTextBestiaryInfoElement("A brave warrior with a powerfull mace"),
@@ -113,15 +113,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		{
 			return SpawnCondition.Cavern.Chance * 0.01f;
 		}
+
+		private void Inicializar()
+		{
+            
+            proxy = NPC.GetPlayerProxy();
+			proxy.hostile = true;
+
+            proxy.inventory[0].SetDefaults(ItemID.Mace);
+            int damage = NPC.GetAttackDamage_ScaledByStrength(proxy.inventory[0].damage);
+			proxy.inventory[0].damage = damage;
+
+            proxy.selectedItem = 0;
+        }
 		public override void OnSpawn(IEntitySource source)
 		{
-			proxy = NPC.GetPlayerProxy();
-			base.OnSpawn(source);
+			Inicializar();
+            base.OnSpawn(source);
 		}
 		public override void OnKill()
 		{
 			proxy?.DisposePlayerProxy();
-			if (MaceId > -1) Main.projectile[MaceId].Kill();
 
 			if (Main.netMode != NetmodeID.Server)
 			{
@@ -134,12 +146,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		}
 		public override void SendExtraAI(BinaryWriter writer)
 		{
-			writer.Write(MaceId);
 			base.SendExtraAI(writer);
 		}
 		public override void ReceiveExtraAI(BinaryReader reader)
 		{
-			MaceId = reader.ReadInt32();
 			base.ReceiveExtraAI(reader);
 		}
 	}

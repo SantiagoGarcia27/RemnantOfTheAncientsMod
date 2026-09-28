@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using PlayerProxyLib.Common;
+using PlayerProxyLib.Common.ProxyPlayer;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

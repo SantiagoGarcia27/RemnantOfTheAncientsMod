@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common;
+using PlayerProxyLib.Common.ProxyPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using System.IO;
@@ -95,7 +96,6 @@ public class FakePlayer_Attack
             SelectedItem = 1;
             canAttack = true;
         }
-       
 
         if (!canAttack)
         {
