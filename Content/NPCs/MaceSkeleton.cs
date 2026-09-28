@@ -64,7 +64,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 {
                     proxy.SetMouseWorld(target.Center);
 
-                    if (timmer <= 0)
+
+                    if (timmer <= 0 && proxy.ownedProjectileCounts[ProjectileID.Mace] == 0)
                     {
                         timmer = timmerMax;
                         proxy.controlUseItem = true;
@@ -116,13 +117,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
 		private void Inicializar()
 		{
-            
             proxy = NPC.GetPlayerProxy();
-			proxy.hostile = true;
+
+            if (proxy == null) return;
+
+            proxy.hostile = true;
 
             proxy.inventory[0].SetDefaults(ItemID.Mace);
-            int damage = NPC.GetAttackDamage_ScaledByStrength(proxy.inventory[0].damage);
-			proxy.inventory[0].damage = damage;
+			proxy.inventory[0].damage = NPC.GetAttackDamage_ScaledByStrength(proxy.inventory[0].damage);
 
             proxy.selectedItem = 0;
         }

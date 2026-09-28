@@ -1,13 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
+using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Flail;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -686,27 +692,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
             npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, 999999999,
             [
+                ModContent.ItemType<RockAndRoll>(),
                 ModContent.ItemType<WandOfCaverns>(),
                 ModContent.ItemType<StoneBlunderbuss>(),
                 ModContent.ItemType<StoneMortarStaff>(),
-                /*ItemType<DesertEdge>(),
-                ItemType<DesertStaff>(),
-                ItemType<DesertTome>()*/
             ]));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TreasureRock>()));
-            /*
-            npcLoot.Add(ItemDropRule.Common(ItemType<Sand_escense>(), 1, 5, 20));
-            npcLoot.Add(ItemDropRule.Common(ItemID.SandBlock, 1, 1, 50));
-            npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.Amber, 6, 1));
-            npcLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.IsHardModeRule(), ItemID.AncientBattleArmorMaterial, 5, 1, 1, Utils1.ReaperDropScaler(1)));
 
-            npcLoot.Add(ItemDropRule.Common(ItemType<DesertAMask>(), 7));
-            npcLoot.Add(ItemDropRule.Common(ItemType<DesertTrophy>(), 10));
-
-           
-            if (DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ItemType<Desert_Relic>()));
-            else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Desert_Relic>()));*/
-
+           // npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesertAMask>(), 7));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrusherTrophy>(), 1));
+            if (DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));
+            else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));
         }
     }
 }

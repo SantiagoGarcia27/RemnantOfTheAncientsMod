@@ -3515,8 +3515,8 @@ Mods: {
 			}
 
 			Frost_Barrier: {
-				// DisplayName: Frost Barrier
-				// Tooltip: Press {0} to activate a frost shield for {1}s that reflect all hostile projectiles
+				DisplayName: Barrera gélida
+				Tooltip: Presiona {0} para activar la barrera gélida por {1}s que refleja todos los proyectiles hostiles
 			}
 
 			DesertMedalion: {
@@ -4593,6 +4593,26 @@ Mods: {
 				DisplayName: Brasero de alma
 				Tooltip: Eres una muy mala persona
 			}
+
+			CrusherTrophy: {
+				DisplayName: Trofeo del Triturador de Gemas
+				// Tooltip: ""
+			}
+
+			Crusher_Relic: {
+				DisplayName: Reliquia del Triturador de Gemas
+				// Tooltip: ""
+			}
+
+			Crusher_Relic_Infernum: {
+				DisplayName: Reliquia del Triturador de Gemas Infernal
+				// Tooltip: ""
+			}
+
+			RockAndRoll: {
+				DisplayName: Rocanrol
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4888,6 +4908,7 @@ Mods: {
 			// StoneMortarMinion.DisplayName: Stone Mortar Minion
 			// SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 			// StoneImpalerP.DisplayName: Stone Impaler P
+			// RockAndRollProjectile.DisplayName: Rock And Roll Projectile
 		}
 
 		Tiles: {

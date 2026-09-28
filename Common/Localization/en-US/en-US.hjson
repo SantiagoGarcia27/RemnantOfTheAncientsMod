@@ -4567,6 +4567,26 @@ Mods: {
 				DisplayName: Soul Burner
 				Tooltip: You are a very terrible person
 			}
+
+			CrusherTrophy: {
+				DisplayName: Gemstone Crusher Trophy
+				Tooltip: ""
+			}
+
+			Crusher_Relic: {
+				DisplayName: Gemstone Crusher Relic
+				Tooltip: ""
+			}
+
+			Crusher_Relic_Infernum: {
+				DisplayName: Infernal Gemstone Crusher Relic
+				Tooltip: ""
+			}
+
+			RockAndRoll: {
+				DisplayName: Rock And Roll
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -4862,6 +4882,7 @@ Mods: {
 			StoneMortarMinion.DisplayName: Stone Mortar Minion
 			SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 			StoneImpalerP.DisplayName: Stone Impaler P
+			RockAndRollProjectile.DisplayName: Rock And Roll Projectile
 		}
 
 		Tiles: {

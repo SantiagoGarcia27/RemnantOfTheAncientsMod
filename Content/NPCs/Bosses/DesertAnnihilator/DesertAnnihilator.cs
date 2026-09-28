@@ -146,32 +146,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
 
             if (RemnantOfTheAncientsMod.FargosSoulMod != null) attackModule.EternityIA(NPC, CurrentTarget);
         }
-        public override bool CheckDead()
-        {
-            Mod.Logger.Info(
-                $"[DesertAnnihilator] CheckDead | " +
-                $"life={NPC.life}/{NPC.lifeMax} | " +
-                $"active={NPC.active} | " +
-                $"timeLeft={NPC.timeLeft} | " +
-                $"target={NPC.target} | " +
-                $"netMode={Main.netMode}"
-            );
 
-            return base.CheckDead();
-        }
-        public override void OnKill()
-        {
-            Mod.Logger.Info(
-                $"[DesertAnnihilator] OnKill | " +
-                $"life={NPC.life}/{NPC.lifeMax} | " +
-                $"active={NPC.active} | " +
-                $"timeLeft={NPC.timeLeft} | " +
-                $"target={NPC.target} | " +
-                $"netMode={Main.netMode}"
-            );
-
-            base.OnKill();
-        }
         void CheckRage()
         {
             bool rage = BossActive && !CurrentTarget.ZoneDesert && !CurrentTarget.ZoneUndergroundDesert;
