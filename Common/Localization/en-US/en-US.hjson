@@ -2517,6 +2517,41 @@ Mods: {
 				Tooltip: ""
 			}
 
+			EbonwoodSaber: {
+				DisplayName: Ebonwood Saber
+				Tooltip: ""
+			}
+
+			PearlwoodSaber: {
+				DisplayName: Pearl Wood Saber
+				Tooltip: ""
+			}
+
+			PalmWoodSaber: {
+				DisplayName: Palm Wood Saber
+				Tooltip: ""
+			}
+
+			RichMahoganySaber: {
+				DisplayName: Rich Mahogany Saber
+				Tooltip: ""
+			}
+
+			BorealWoodSaber: {
+				DisplayName: Boreal Wood Saber
+				Tooltip: ""
+			}
+
+			AshWoodSaber: {
+				DisplayName: Ash Wood Saber
+				Tooltip: ""
+			}
+
+			ShadewoodSaber: {
+				DisplayName: Shadewood Saber
+				Tooltip: ""
+			}
+
 			Solarang: {
 				DisplayName: Solarang
 				Tooltip: ""

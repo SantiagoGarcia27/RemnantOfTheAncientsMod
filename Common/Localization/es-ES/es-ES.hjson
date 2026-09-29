@@ -2539,6 +2539,41 @@ Mods: {
 				// Tooltip: ""
 			}
 
+			EbonwoodSaber: {
+				DisplayName: Sable de madera de ébano
+				Tooltip: ""
+			}
+
+			PearlwoodSaber: {
+				DisplayName: Sable de madera perlada
+				Tooltip: ""
+			}
+
+			PalmWoodSaber: {
+				DisplayName: Sable de madera de palma
+				Tooltip: ""
+			}
+
+			RichMahoganySaber: {
+				DisplayName: Sable de madera de caoba rica
+				Tooltip: ""
+			}
+
+			BorealWoodSaber: {
+				DisplayName: Sable de madera boreal
+				Tooltip: ""
+			}
+
+			AshWoodSaber: {
+				DisplayName: Sable de madera de fresno
+				Tooltip: ""
+			}
+
+			ShadewoodSaber: {
+				DisplayName: Sable de madera de sombria
+				Tooltip: ""
+			}
+
 			Solarang: {
 				DisplayName: Búmeran solar
 				Tooltip: ""
