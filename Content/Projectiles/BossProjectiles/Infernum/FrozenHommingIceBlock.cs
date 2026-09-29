@@ -1,4 +1,3 @@
-using CalamityMod.Items.Potions.Alcohol;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;

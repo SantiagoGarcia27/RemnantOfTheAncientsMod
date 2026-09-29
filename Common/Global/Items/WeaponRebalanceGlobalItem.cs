@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
@@ -67,6 +68,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.damage = 30;
                     item.shootSpeed = 10;
                     item.useTime = 8;
+                    item.useAnimation = 70;
+                }
+                else if (item.type == ModContent.ItemType<PearlwoodRepeater>())
+                {
+                    item.damage = 28;
+                    item.shootSpeed = 16;
+                    item.useTime = 14;
                     item.useAnimation = 70;
                 }
                 else if (item.type == ItemID.FlinxFurCoat)
@@ -163,11 +171,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         float counter;
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (item.type == ItemID.PearlwoodBow)
-            {
-                return base.Shoot(item, player, source, position, velocity, ProjectileID.JestersArrow, damage, knockback);
-            }
-            else if (item.type == ItemID.BabyBirdStaff)
+            if (item.type == ItemID.BabyBirdStaff)
             {
                 var a = Projectile.NewProjectile(source, player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
                 Main.projectile[a].minionSlots = 0.5f;
@@ -395,5 +399,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
+        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            if (!WeaponConf) base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
+
+            else if (item.type == ItemID.PearlwoodBow || item.type == ModContent.ItemType<PearlwoodRepeater>()) type = ProjectileID.JestersArrow;
+
+            base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
+        }
     }
+
 }

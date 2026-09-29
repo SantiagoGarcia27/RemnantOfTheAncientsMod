@@ -11,6 +11,34 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep
     {
         public override Item Base => new(ItemID.WoodenBow);
     }
+    public class RichMahoganyRepeater : RepeaterModel
+    {
+        public override Item Base => new(ItemID.RichMahoganyBow);
+    }
+    public class PearlwoodRepeater : RepeaterModel
+    {
+        public override Item Base => new(ItemID.PearlwoodBow);
+    }
+    public class PalmWoodRepeater : RepeaterModel
+    {
+        public override Item Base => new(ItemID.PalmWoodBow);
+    }
+    public class EbonwoodRepeater : RepeaterModel
+    {
+        public override Item Base => new(ItemID.EbonwoodBow);
+    }
+    public class BorealWoodRepeater : RepeaterModel
+    {
+        public override Item Base => new(ItemID.BorealWoodBow);
+    }
+    public class AshWoodRepeater : RepeaterModel
+    {
+        public override Item Base => new(ItemID.AshWoodBow);
+    }
+    public class ShadewoodRepeater : RepeaterModel
+    {
+        public override Item Base => new(ItemID.ShadewoodBow);
+    }
     public class CopperRepeater : RepeaterModel
     {
         public override Item Base => new(ItemID.CopperBow);
@@ -52,11 +80,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep
         public abstract Item Base { get; }
         public override void SetDefaults()
         {
-            Item.DefaultToRangedWeapon(ProjectileID.WoodenArrowFriendly, AmmoID.Arrow, Base.useTime + 6, 10f, true);
-            Item.SetWeaponValues(Base.damage - 2, Base.knockBack);
-            Item.SetShopValues((Terraria.Enums.ItemRarityColor)Base.rare, Base.value);
-            Item.Size = new Vector2(12, 38);
+            Item.damage = Base.damage - 2;
+            Item.knockBack = Base.knockBack;
+            Item.useTime = Base.useTime + 6;
+            Item.useAnimation = Base.useAnimation;
+
+            Item.shoot = ProjectileID.WoodenArrowFriendly;
+            Item.shootSpeed = Base.shootSpeed + 4;
+            Item.useStyle = ItemUseStyleID.Shoot;
+
+            Item.value = Base.value;
+            Item.rare = Base.rare;
             Item.DamageType = DamageClass.Ranged;
+            Item.useAmmo = AmmoID.Arrow;
+            Item.autoReuse = true;
+  
+            Item.Size = new Vector2(12, 38);
             Item.UseSound = SoundID.Item5;
             Item.channel = true;
         }

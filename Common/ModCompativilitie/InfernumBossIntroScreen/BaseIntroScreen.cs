@@ -4,7 +4,6 @@ using CalamityMod.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
-using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Globalization;

@@ -1,7 +1,6 @@
-using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
-using PlayerProxyLib.Common;
 using PlayerProxyLib.Common.ProxyPlayer;
+using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs;
@@ -18,7 +17,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Common.Global
+namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
 {
     public class RemnantGlobalProjectile : GlobalProjectile
     {
@@ -88,14 +87,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
           
             }
-            /*if (projectile.bobber)
-            {
-                projectile.penetrate = (Main.LocalPlayer.HeldItem.rare + 2);
-                projectile.DamageType = ModContent.GetInstance<FisherDamageClass>();
-                projectile.damage = Main.LocalPlayer.HeldItem.damage + Main.LocalPlayer.fishingSkill;
-                projectile.friendly = true;
-                projectile.hostile = !projectile.friendly;
-            }*/
 
             if (RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
             {
@@ -160,10 +151,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     if (player.statLife <= player.statLifeMax2)
                     {
                         player.statLife++;
-                        if (target.life >= 0)
-                        {
-                            target.value *= 2;
-                        }
+                        if (target.life >= 0) target.value *= 2;
                     }
                 }
                 if (projectile.type == ProjectileID.Flames && projectile.ai[0] == 2)
@@ -205,12 +193,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
                         }
                     }
                 }
-                if (projectile.type == ProjectileID.Seed)
+                if (projectile.type == ProjectileID.Seed && player.HeldItem.type == ItemID.Blowgun)
                 {
-                    if (player.HeldItem.type == ItemID.Blowgun)
-                    {
-                        target.AddBuff(BuffID.Poisoned, Utils1.FormatTimeToTick(0, 0, 0, 3));
-                    }
+                    target.AddBuff(BuffID.Poisoned, Utils1.FormatTimeToTick(0, 0, 0, 3));       
                 }
                 if(projectile.type == ProjectileID.NanoBullet)
                 {
@@ -235,38 +220,22 @@ namespace RemnantOfTheAncientsMod.Common.Global
                             a.timeLeft = 10;
                         }
                     }
-                    else if(projectile.ai[1] == 3)
-                    {
-                        target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 3));
-                    }
-                    else if (projectile.ai[1] == 6)
-                    {
-                        player.Heal(1);        
-                    }
-                    else if (projectile.ai[1] == 17)
-                    {
-                        target.AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 4));
-                    }
-                    else if (projectile.ai[1] == 18)
-                    {
-                        target.AddBuff(BuffID.Ichor, Utils1.FormatTimeToTick(0, 0, 0, 1));
-                    }
-                    else if (projectile.ai[1] == 19)
-                    {
-                        player.Heal(3);
-                    }
-                    else if (projectile.ai[1] == 20)
-                    {
-                        target.AddBuff(BuffID.OnFire, Utils1.FormatTimeToTick(0, 0, 0, 5));
-                    }
-                    else if (projectile.ai[1] == 21)
-                    {
-                        target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 5));
-                    }
-                    else if (projectile.ai[1] == 22)
-                    {
-                        projectile.damage *= 2; 
-                    }
+                    else if(projectile.ai[1] == 3) target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 3));
+                    
+                    else if (projectile.ai[1] == 6) player.Heal(1);        
+                    
+                    else if (projectile.ai[1] == 17) target.AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 4));
+                    
+                    else if (projectile.ai[1] == 18) target.AddBuff(BuffID.Ichor, Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    
+                    else if (projectile.ai[1] == 19) player.Heal(3);
+                    
+                    else if (projectile.ai[1] == 20) target.AddBuff(BuffID.OnFire, Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    
+                    else if (projectile.ai[1] == 21) target.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 5));
+                    
+                    else if (projectile.ai[1] == 22) projectile.damage *= 2; 
+                    
                     else if (projectile.ai[1] == 23)
                     {
                         for (int i = 0; i < 360; i += 360 / MaxProj)
@@ -289,13 +258,11 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     int critChance = 100 - player.GetModPlayer<RemnantPlayer>().MinionCritChance;
                     if(critChance <= 0) critChance = 1;
-                    if (critChance > 0 && critChance < 100)
+
+                    if (critChance.Between(0,100) && Main.rand.NextBool(critChance))
                     {    
-                        if (Main.rand.NextBool(critChance))
-                        {     
-                            hit.Crit = true;
-                            damageDone *= 2;        
-                        }
+                        hit.Crit = true;
+                        damageDone *= 2;             
                     }
                 }
             }
@@ -337,8 +304,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     projectile.height = (int)newHeight;
                     projectile.scale = 2f;
 
-
-
                     if (Spears.Contains(projectile.type))
                     {
                         projectile.velocity *= 3;
@@ -366,12 +331,9 @@ namespace RemnantOfTheAncientsMod.Common.Global
                     }
 
                 }
-                if (projectile.bobber)
-                {
-                    if (projectile.damage <= 0)
-                    {
-                        projectile.damage = new Item(Main.LocalPlayer.HeldItem.type).damage;
-                    }
+                if (projectile.bobber && projectile.damage <= 0)
+                { 
+                    projectile.damage = new Item(Main.LocalPlayer.HeldItem.type).damage;     
                 }
             }
         }
@@ -392,94 +354,48 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 HommingProjectile(projectile,Range:800f,speed: 5f);
             }
             else if (projectile.type == ProjectileID.ClingerStaff)
-            {
-                
-                if(fireballTimmer++ >= Utils1.FormatTimeToTick(0, 0, 0, 2))
-                {
-                    fireballTimmer = 0;
-                }
+            {               
+                if(fireballTimmer++ >= Utils1.FormatTimeToTick(0, 0, 0, 2)) fireballTimmer = 0;
                 if (fireballTimmer == 0)
                 {
                     Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(-1f, 0.5f), ProjectileID.CursedFlameFriendly, (int)(projectile.damage * 0.7f), 1f, projectile.owner);
                     Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(1f, 0.5f), ProjectileID.CursedFlameFriendly, (int)(projectile.damage * 0.7f), 1f, projectile.owner);
                 }
-            }
-            else if(projectile.type == ProjectileID.TitaniumStormShard)
-            {
-               /* if (projectile.hostile && projectile.owner < 255)
-                {
-                    NPC npc = Main.npc[projectile.owner];
-                    if (!npc.active || npc.life <= 0 || !npc.HasBuff(BuffID.TitaniumStorm))
-                    {
-                        projectile.Kill();
-                        return;
-                    }
-                    if (projectile.frameCounter == 0)
-                    {
-                        projectile.frameCounter = 1;
-                        projectile.frame = Main.rand.Next(12);
-                        projectile.rotation = Main.rand.NextFloat() * ((float)Math.PI * 2f);
-                    }
-                    projectile.rotation += (float)Math.PI / 200f;
-                    AI_GetMyGroupIndexAndFillBlackList(null, out var index, out var totalIndexesInGroup);
-                    float f = (index / totalIndexesInGroup + miscCounterNormalized * 6f) * ((float)Math.PI * 2f);
-                    float num = 24f + totalIndexesInGroup * 6f;
-                    Vector2 vector = npc.position - npc.oldPosition;
-                    projectile.Center += vector;
-                    Vector2 vector2 = f.ToRotationVector2();
-                    projectile.localAI[0] = vector2.Y;
-                    Vector2 value = npc.Center + vector2 * new Vector2(1f, 0.05f) * num;
-                    projectile.Center = Vector2.Lerp(projectile.Center, value, 1f);//0.3
-                }
-                else
-                {
-                    base.AI(projectile);
-                }*/
-
-            }
+            }   
             else if (projectile.type == ProjectileID.FrostHydra)
             {
                 if (projectile.ai[0] > 0)
                 {
                     float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-                    if (AttackCounter >= maxTimer)
+                    if (AttackCounter++ >= maxTimer)
                     {
                         Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(0, -3), ProjectileID.ClusterSnowmanRocketI, projectile.damage, 1, projectile.owner);
                         AttackCounter = 0;
                     }
-                    else
-                    {
-                        AttackCounter++;
-                    }
+                    
                 }
             }
             else if(projectile.type == ProjectileID.FlyingImp)
             {
                 float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
 
-                if (AttackCounter >= maxTimer)
-                {
-
-                    NPC target = projectile.FindTargetWithinRange(200, true);
+                if (AttackCounter++ < maxTimer) return;
+                
+                NPC target = projectile.FindTargetWithinRange(200, true);
                     
-                    if (target != null)
-                    {
-                        Vector2 velocity = target.Center - projectile.Center;
-
-                        for (int i = 0; i < 6; i++)
-                        {
-                            var p = Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, velocity.RotatedBy(MathHelper.ToRadians(-i *10)), ProjectileID.ImpFireball, projectile.damage / 2, 1, projectile.owner);
-                            Main.projectile[p].usesLocalNPCImmunity = true;
-                            Main.projectile[p].localNPCHitCooldown = 10;
-                            Main.projectile[p].scale = 0.5f;
-                        }
-                        AttackCounter = 0;
-                    }
-                }
-                else
+                if (target != null)
                 {
-                    AttackCounter++;
-                }
+                    Vector2 velocity = target.Center - projectile.Center;
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        var p = Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, velocity.RotatedBy(MathHelper.ToRadians(-i *10)), ProjectileID.ImpFireball, projectile.damage / 2, 1, projectile.owner);
+                        Main.projectile[p].usesLocalNPCImmunity = true;
+                        Main.projectile[p].localNPCHitCooldown = 10;
+                        Main.projectile[p].scale = 0.5f;
+                    }
+                    AttackCounter = 0;
+                }  
             }
             else if(projectile.type == ProjectileID.Excalibur)
             {
@@ -490,7 +406,6 @@ namespace RemnantOfTheAncientsMod.Common.Global
             }
             if (isHomming)
             {
-
                 HommingProjectile(projectile, Range: 800f, speed: ItemOwner.shootSpeed, rotationBonus: 90f);
             }
             if (projectile.scale > 1)
@@ -547,8 +462,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
             {
                 for(int i = 0; i < 5; i++) 
                 {
-                    Vector2 velocity = new Vector2(new Random().Next(-2, 2),new Random().Next(-2, 2));
-                    Projectile.NewProjectileDirect(Projectile.GetSource_None(), projectile.Center + (velocity/2)*16, velocity, ProjectileID.CrystalShard, projectile.damage, 0,projectile.owner);
+                    Vector2 velocity = new(new Random().Next(-2, 3),new Random().Next(-2, 3));
+                    Projectile.NewProjectileDirect(projectile.GetSource_Death(), projectile.Center + (velocity/2).ToCoordenatePosition(), velocity, ProjectileID.CrystalShard, projectile.damage, 0,projectile.owner);
                 }
             }
             if(projectile.type == ProjectileID.Spark)
@@ -557,6 +472,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 {
                     float numberProjectiles = 5;
                     float rotation = MathHelper.ToRadians(4);
+
                     projectile.position += Vector2.Normalize(projectile.velocity) * 45f;
                     for (int i = 0; i < numberProjectiles; i++)
                     {
@@ -586,8 +502,8 @@ namespace RemnantOfTheAncientsMod.Common.Global
         public void HommingProjectile(Projectile projectile, float Range = 100, float speed = 1,float rotationBonus = 0)
         {   
             NPC closestNPC = FindClosestNPC(Range,projectile);
-            if (closestNPC == null)
-                return;
+            if (closestNPC == null) return;
+
             projectile.velocity = (closestNPC.Center - projectile.Center).SafeNormalize(Vector2.Zero) * speed;
             projectile.rotation = projectile.velocity.ToRotation() + rotationBonus;
         }
@@ -595,42 +511,23 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {
             NPC closestNPC = null;
             float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
-            for (int k = 0; k < Main.maxNPCs; k++)
+            foreach(NPC target in Main.ActiveNPCs)
             {
-                NPC target = Main.npc[k];
+                if (!target.CanBeChasedBy()) continue;
                 
-                if (target.CanBeChasedBy())
-                {
-                  
-                    float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, projectile.Center);
+                float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, projectile.Center);
 
-                    if (sqrDistanceToTarget < sqrMaxDetectDistance)
-                    {
-                        sqrMaxDetectDistance = sqrDistanceToTarget;
-                        closestNPC = target;
-                    }
+                if (sqrDistanceToTarget < sqrMaxDetectDistance)
+                {
+                    sqrMaxDetectDistance = sqrDistanceToTarget;
+                    closestNPC = target;
                 }
+                
             }
 
             return closestNPC;
         }
-        private void AI_GetMyGroupIndexAndFillBlackList(List<int> blackListedTargets, out int index, out int totalIndexesInGroup)
-        {
-            index = 0;
-            totalIndexesInGroup = 0;
-            for (int i = 0; i < 1000; i++)
-            {
-                Projectile projectile = Main.projectile[i];
-                if (projectile.active && (projectile.type != ProjectileID.BabyBird || projectile.frame == Main.projFrames[projectile.type] - 1))
-                {
-                    if (projectile.whoAmI > i)
-                    {
-                        index++;
-                    }
-                    totalIndexesInGroup++;
-                }
-            }
-        }
+       
         public override void PostAI(Projectile projectile)
         {
             if (Main.netMode == NetmodeID.Server && projectile.owner >= 0
@@ -646,18 +543,14 @@ namespace RemnantOfTheAncientsMod.Common.Global
                 }
             }
 
-            if (projectile.type != ProjectileID.PurificationPowder || Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                return;
-            }
+            if (projectile.type != ProjectileID.PurificationPowder || Main.netMode == NetmodeID.MultiplayerClient) return;
 
-            for (int i = 0; i < Main.maxNPCs; i++)
+            foreach(NPC npc in Main.ActiveNPCs)
             {
-                if (Main.npc[i].active && (Main.npc[i].type == NPCID.Wraith || Main.npc[i].type == NPCID.Ghost) && projectile.Hitbox.Intersects(Main.npc[i].Hitbox))
-                {
-                    Main.npc[i].Transform(ModContent.NPCType<MinerSoul>());
-                }
-            }
+                bool isGhost = npc.type == NPCID.Wraith || npc.type == NPCID.Ghost;
+                if (!isGhost || !projectile.Hitbox.Intersects(npc.Hitbox)) continue;
+                npc.Transform(ModContent.NPCType<MinerSoul>());      
+            } 
         }
         public void OverrideParticles(Projectile porjectile,int DustId) 
         {
@@ -672,7 +565,5 @@ namespace RemnantOfTheAncientsMod.Common.Global
         {    
             base.ModifyHitPlayer(projectile, target, ref modifiers);
         }
-
-
     }
 }

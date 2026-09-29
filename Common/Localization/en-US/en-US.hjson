@@ -4622,6 +4622,41 @@ Mods: {
 				DisplayName: Rock And Roll
 				Tooltip: ""
 			}
+
+			AshWoodRepeater: {
+				DisplayName: Ash Wood Repeater
+				Tooltip: ""
+			}
+
+			BorealWoodRepeater: {
+				DisplayName: Boreal Wood Repeater
+				Tooltip: ""
+			}
+
+			EbonwoodRepeater: {
+				DisplayName: Ebonwood Repeater
+				Tooltip: ""
+			}
+
+			PalmWoodRepeater: {
+				DisplayName: Palm Wood Repeater
+				Tooltip: ""
+			}
+
+			PearlwoodRepeater: {
+				DisplayName: Pearlwood Repeater
+				Tooltip: ""
+			}
+
+			RichMahoganyRepeater: {
+				DisplayName: Rich Mahogany Repeater
+				Tooltip: ""
+			}
+
+			ShadewoodRepeater: {
+				DisplayName: Shadewood Repeater
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {

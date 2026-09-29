@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;

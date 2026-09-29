@@ -1,10 +1,8 @@
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic

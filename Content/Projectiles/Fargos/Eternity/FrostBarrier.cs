@@ -1,12 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 

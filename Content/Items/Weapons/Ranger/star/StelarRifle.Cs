@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;

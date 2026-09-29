@@ -1,6 +1,5 @@
 using RemnantOfTheAncientsMod.World;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Buffs.Buffs

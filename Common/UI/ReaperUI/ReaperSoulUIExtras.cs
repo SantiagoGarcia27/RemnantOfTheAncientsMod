@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;

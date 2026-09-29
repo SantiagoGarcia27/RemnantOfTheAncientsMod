@@ -2,9 +2,7 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 {

@@ -8,7 +8,6 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static FargowiltasSouls.Content.Projectiles.EffectVisual;
 using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms

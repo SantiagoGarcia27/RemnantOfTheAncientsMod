@@ -1,7 +1,3 @@
-using RemnantOfTheAncientsMod.Common;
-using RemnantOfTheAncientsMod.Common.Configs;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ID;

@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

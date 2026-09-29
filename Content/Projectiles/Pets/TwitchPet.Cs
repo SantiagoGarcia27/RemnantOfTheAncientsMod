@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Content.Buffs;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Pets;
 using Terraria;
 using Terraria.ID;

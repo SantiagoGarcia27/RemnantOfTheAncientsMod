@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using Terraria;
 using Terraria.ModLoader;

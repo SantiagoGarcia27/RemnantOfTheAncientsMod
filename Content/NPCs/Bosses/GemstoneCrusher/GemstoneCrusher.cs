@@ -4,7 +4,6 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;

@@ -1,6 +1,5 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

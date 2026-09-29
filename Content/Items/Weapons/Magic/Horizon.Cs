@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using Terraria;
@@ -8,7 +7,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 {

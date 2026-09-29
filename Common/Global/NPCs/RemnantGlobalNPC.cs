@@ -5,16 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
-using RemnantOfTheAncientsMod.Content.NPCs.zombis;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
 using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Common.Global.NPCs

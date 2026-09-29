@@ -1,12 +1,7 @@
-using CalamityMod.Items.Accessories;
-using CalamityMod.Items.SummonItems;
-using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
-using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;

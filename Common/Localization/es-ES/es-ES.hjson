@@ -4648,6 +4648,41 @@ Mods: {
 				DisplayName: Rocanrol
 				// Tooltip: ""
 			}
+
+			AshWoodRepeater: {
+				DisplayName: Repetidor de madera de fresno
+				// Tooltip: ""
+			}
+
+			BorealWoodRepeater: {
+				DisplayName: Repetidor de madera boreal
+				// Tooltip: ""
+			}
+
+			EbonwoodRepeater: {
+				DisplayName: Repetidor de madera de ébano
+				// Tooltip: ""
+			}
+
+			PalmWoodRepeater: {
+				DisplayName: Repetidor de madera de palma
+				// Tooltip: ""
+			}
+
+			PearlwoodRepeater: {
+				DisplayName: Repetidor de madera perlada
+				// Tooltip: ""
+			}
+
+			RichMahoganyRepeater: {
+				DisplayName: Repetidor de mader de caoba rica
+				// Tooltip: ""
+			}
+
+			ShadewoodRepeater: {
+				DisplayName: Repetidor de madera de sombria
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

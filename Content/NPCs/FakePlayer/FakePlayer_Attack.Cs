@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using PlayerProxyLib.Common;
 using PlayerProxyLib.Common.ProxyPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;

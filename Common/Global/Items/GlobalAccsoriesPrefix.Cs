@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Prefixe;
 using RemnantOfTheAncientsMod.World;
 using Terraria;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;

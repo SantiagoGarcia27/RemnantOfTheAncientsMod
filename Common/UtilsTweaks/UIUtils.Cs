@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UI.ReaperUI;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;

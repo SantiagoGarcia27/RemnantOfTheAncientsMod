@@ -1,13 +1,8 @@
-using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
-using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod

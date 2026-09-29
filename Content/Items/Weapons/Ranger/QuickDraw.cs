@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 

@@ -8,7 +8,6 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Prefixe;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;

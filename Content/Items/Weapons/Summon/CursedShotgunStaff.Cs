@@ -1,7 +1,5 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using Terraria;
 using Terraria.DataStructures;

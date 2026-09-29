@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 

@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 

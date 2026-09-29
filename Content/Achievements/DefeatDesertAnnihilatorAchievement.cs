@@ -1,12 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.Achievements;
-using Terraria.GameContent.Achievements;
-using Terraria.ID;
+﻿using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Achievements;

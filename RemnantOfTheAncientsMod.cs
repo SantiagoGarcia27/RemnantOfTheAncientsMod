@@ -8,7 +8,6 @@ using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScreen;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.ExceptionServices;

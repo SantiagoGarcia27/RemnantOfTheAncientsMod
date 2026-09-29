@@ -26,7 +26,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {

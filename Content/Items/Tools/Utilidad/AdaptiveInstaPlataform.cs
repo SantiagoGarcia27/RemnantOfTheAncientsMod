@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.Enums;
 using RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder;
 using Terraria;
 using Terraria.DataStructures;

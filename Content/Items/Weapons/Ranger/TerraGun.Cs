@@ -5,12 +5,10 @@ using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {

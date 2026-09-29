@@ -1,18 +1,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.Global.Projectiles;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using System;
-using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static System.Net.Mime.MediaTypeNames;
-using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
 {

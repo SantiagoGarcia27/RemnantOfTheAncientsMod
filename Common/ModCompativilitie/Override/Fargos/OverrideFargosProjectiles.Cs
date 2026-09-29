@@ -2,7 +2,6 @@ using FargowiltasSouls;
 using FargowiltasSouls.Content.Bosses.VanillaEternity;
 using FargowiltasSouls.Content.NPCs.EternityModeNPCs;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;

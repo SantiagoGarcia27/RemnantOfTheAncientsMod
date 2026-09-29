@@ -1,5 +1,4 @@
 using CalamityMod.Prefixes;
-using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 

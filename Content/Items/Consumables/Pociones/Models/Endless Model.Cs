@@ -1,6 +1,5 @@
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

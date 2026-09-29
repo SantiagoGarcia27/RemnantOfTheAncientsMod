@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic

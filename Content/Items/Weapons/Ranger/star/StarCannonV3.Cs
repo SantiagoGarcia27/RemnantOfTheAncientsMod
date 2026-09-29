@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

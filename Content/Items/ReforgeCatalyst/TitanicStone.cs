@@ -4,7 +4,6 @@ using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst
 {

@@ -1,6 +1,5 @@
 ﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
-using System;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

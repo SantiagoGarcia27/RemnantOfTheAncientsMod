@@ -1,7 +1,5 @@
-using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using Terraria;

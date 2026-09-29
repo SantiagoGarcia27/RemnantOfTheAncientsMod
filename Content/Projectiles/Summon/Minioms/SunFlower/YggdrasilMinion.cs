@@ -1,9 +1,7 @@
-using FargowiltasSouls.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;

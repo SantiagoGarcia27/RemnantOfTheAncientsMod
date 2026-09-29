@@ -5,7 +5,6 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem

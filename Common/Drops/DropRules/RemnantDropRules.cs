@@ -1,8 +1,6 @@
-﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.World;
+﻿using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 

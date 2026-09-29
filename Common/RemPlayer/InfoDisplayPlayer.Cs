@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Common.DataSet;
-using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using System.Linq;
 using Terraria;

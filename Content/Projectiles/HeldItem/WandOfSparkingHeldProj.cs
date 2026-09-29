@@ -4,7 +4,6 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

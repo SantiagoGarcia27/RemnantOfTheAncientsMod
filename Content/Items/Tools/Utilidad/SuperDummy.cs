@@ -1,4 +1,3 @@
-using CalamityMod;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;

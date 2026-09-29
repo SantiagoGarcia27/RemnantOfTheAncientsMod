@@ -1,12 +1,10 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 

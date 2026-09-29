@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;

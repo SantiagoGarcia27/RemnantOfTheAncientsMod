@@ -1,7 +1,6 @@
 using CalamityMod;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PlayerProxyLib.Common;
 using PlayerProxyLib.Common.ProxyPlayer;
 using RemnantOfTheAncientsMod.Common.Enums;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;

@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics;
-using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
 namespace Bangarang.Common.GlobalProjectiles;

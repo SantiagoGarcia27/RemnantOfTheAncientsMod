@@ -1,11 +1,9 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;

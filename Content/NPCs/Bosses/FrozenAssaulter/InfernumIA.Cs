@@ -1,7 +1,4 @@
-using FargowiltasSouls.Content.NPCs.EternityModeNPCs.VanillaEnemies.Snow;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;

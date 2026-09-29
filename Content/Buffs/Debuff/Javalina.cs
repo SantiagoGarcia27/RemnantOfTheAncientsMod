@@ -1,5 +1,4 @@
 ﻿using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 

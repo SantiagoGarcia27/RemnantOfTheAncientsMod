@@ -1,9 +1,6 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
-using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

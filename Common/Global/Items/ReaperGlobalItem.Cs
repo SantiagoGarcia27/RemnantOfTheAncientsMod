@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Reaper;
@@ -7,8 +6,6 @@ using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,8 +1,6 @@
-﻿using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Common.Global.Items;
+﻿using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using SangarUtilities.Common;
+using RemnantOfTheAncientsMod.Common.Global.Projectiles;
 using SangarUtilities.Common.UtilsTweaks;
 using System.IO;
 using Terraria;

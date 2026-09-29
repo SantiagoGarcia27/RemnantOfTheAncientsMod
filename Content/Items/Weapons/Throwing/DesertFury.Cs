@@ -1,6 +1,5 @@
 using CalamityMod;
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Trower;
 using SangarUtilities.Common.UtilsTweaks;
@@ -8,7 +7,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing

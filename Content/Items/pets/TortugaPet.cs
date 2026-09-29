@@ -4,7 +4,6 @@ using RemnantOfTheAncientsMod.Content.Projectiles.Pets;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 

@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
-using PlayerProxyLib.Common;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

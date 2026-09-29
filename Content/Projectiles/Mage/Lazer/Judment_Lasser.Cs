@@ -5,7 +5,6 @@ using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.ID;

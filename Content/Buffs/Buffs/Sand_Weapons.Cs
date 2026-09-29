@@ -1,4 +1,3 @@
-using CalamityMod.Buffs.DamageOverTime;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using Terraria;
 using Terraria.ModLoader;

@@ -1,14 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.RemPlayer;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.Achievements;
-using Terraria.GameContent;
+﻿using RemnantOfTheAncientsMod.Common.RemPlayer;
 using Terraria.GameContent.Achievements;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Achievements;

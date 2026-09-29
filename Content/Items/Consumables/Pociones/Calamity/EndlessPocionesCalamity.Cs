@@ -1,8 +1,6 @@
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones

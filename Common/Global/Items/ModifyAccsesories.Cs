@@ -1,9 +1,6 @@
-using CalamityMod;
 using RemnantOfTheAncientsMod.Common.DataSet;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
@@ -18,7 +15,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using static FargowiltasSouls.FargoSoulsSets;
 
 namespace RemnantOfTheAncientsMod.Common.Global.Items
 {

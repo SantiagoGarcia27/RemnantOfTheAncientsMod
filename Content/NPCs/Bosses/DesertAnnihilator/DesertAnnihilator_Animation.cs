@@ -5,7 +5,6 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
-using static RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator.DesertAnnihilator;
 
 class DesertAnnihilator_Animation
 {

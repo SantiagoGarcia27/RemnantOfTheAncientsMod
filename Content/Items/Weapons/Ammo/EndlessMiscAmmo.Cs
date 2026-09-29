@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.Localization;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ammo
 {

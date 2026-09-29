@@ -1,13 +1,7 @@
-﻿using InfernumMode.Content.Achievements;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Achievements;
-using System;
 using System.Collections.Generic;
-using System.Threading.Channels;
 using Terraria;
-using Terraria.Achievements;
-using Terraria.GameContent.Achievements;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.RemPlayer

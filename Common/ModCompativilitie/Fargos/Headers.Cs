@@ -1,4 +1,3 @@
-using FargowiltasSouls.Content.Items.Accessories.Forces;
 using FargowiltasSouls.Core.Toggler.Content;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;

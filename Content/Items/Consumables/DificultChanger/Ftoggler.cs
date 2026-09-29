@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.World;
-using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.Chat;

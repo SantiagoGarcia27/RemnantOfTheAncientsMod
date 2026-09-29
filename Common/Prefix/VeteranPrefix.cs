@@ -1,6 +1,4 @@
-﻿using RemnantOfTheAncientsMod.Prefixe;
-using Terraria;
-using Terraria.Localization;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Prefixe

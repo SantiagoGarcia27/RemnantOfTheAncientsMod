@@ -1,8 +1,5 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using System.Drawing;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

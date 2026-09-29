@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using SangarUtilities.Common.UtilsTweaks;

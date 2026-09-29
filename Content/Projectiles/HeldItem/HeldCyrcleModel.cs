@@ -4,9 +4,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.GameContent.Animations.IL_Actions.Sprites;
 
 namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
 {

@@ -1,15 +1,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
 using System;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static System.Net.Mime.MediaTypeNames;
 
 class PlayerClone : ModProjectile
 {

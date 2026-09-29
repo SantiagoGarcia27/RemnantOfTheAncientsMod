@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.DataSet;
-using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

@@ -7,7 +7,6 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
-using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 using RemnantOfTheAncientsMod.Projectiles.Melee;
 using System;
 using Terraria;

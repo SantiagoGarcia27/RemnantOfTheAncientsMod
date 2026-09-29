@@ -1,9 +1,5 @@
-using CalamityMod.Particles;
-using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
-using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;

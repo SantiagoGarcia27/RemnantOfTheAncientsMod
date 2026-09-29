@@ -1,5 +1,4 @@
-﻿using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
+﻿using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Achievements;

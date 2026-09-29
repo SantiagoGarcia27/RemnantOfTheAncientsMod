@@ -1,7 +1,5 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using System;
 using Terraria;

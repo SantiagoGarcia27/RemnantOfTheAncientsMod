@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder;
 using Terraria;
 using Terraria.GameContent.Creative;

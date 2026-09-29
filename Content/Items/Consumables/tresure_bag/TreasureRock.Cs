@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Flail;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Spear;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;

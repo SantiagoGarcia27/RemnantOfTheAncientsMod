@@ -4,7 +4,6 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;

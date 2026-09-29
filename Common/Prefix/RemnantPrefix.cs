@@ -1,6 +1,3 @@
-using Terraria;
-using Terraria.ModLoader;
-
 namespace RemnantOfTheAncientsMod.Prefixe
 { 
     public class ChanceRoll

@@ -1,7 +1,4 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms;
 using System;

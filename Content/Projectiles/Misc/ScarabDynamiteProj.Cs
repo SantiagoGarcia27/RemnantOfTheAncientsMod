@@ -1,5 +1,3 @@
-using CalamityMod.NPCs.TownNPCs;
-using FargowiltasSouls.Content.Tiles;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using System;

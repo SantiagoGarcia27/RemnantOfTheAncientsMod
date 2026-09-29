@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Common.ModCompativilitie;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
@@ -9,7 +8,6 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.GameContent;

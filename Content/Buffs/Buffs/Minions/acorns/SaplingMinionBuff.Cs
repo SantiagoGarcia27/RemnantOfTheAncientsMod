@@ -1,6 +1,5 @@
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
 #pragma warning disable CS0105 // The using directive for 'RemnantOfTheAncients.Content.Projectiles.Summon.Minioms.Saplings' appeared previously in this namespace
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.Saplings;
 #pragma warning restore CS0105 // The using directive for 'RemnantOfTheAncients.Content.Projectiles.Summon.Minioms.Saplings' appeared previously in this namespace
 using Terraria;
 using Terraria.ModLoader;

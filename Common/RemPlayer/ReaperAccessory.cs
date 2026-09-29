@@ -1,5 +1,4 @@
-﻿using RemnantOfTheAncientsMod.Common.ModCompativilitie;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
+﻿using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.ModLoader;

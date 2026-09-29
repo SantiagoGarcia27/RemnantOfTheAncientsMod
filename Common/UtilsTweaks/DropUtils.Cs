@@ -1,7 +1,6 @@
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using System;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 
 public class DropUtils
 {

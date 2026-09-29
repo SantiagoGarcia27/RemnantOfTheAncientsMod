@@ -1,6 +1,4 @@
 using RemnantOfTheAncientsMod.Common.Systems;
-using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,5 +1,4 @@
 ﻿using RemnantOfTheAncientsMod.Common.RemPlayer;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

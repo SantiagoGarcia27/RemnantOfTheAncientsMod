@@ -1,6 +1,4 @@
 ﻿using RemnantOfTheAncientsMod.Common.Global.Items;
-using RemnantOfTheAncientsMod.Common.Global.NPCs;
-using System.Linq;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;

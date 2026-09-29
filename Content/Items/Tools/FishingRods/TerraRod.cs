@@ -1,4 +1,3 @@
-using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Bobbers;
 using Terraria;

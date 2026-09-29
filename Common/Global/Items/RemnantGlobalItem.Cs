@@ -1,14 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using PlayerProxyLib.Common;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
@@ -99,14 +97,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 		}
 
-		public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-		{
-			if (!WeaponConf) base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
-
-			else if (item.type == ItemID.PearlwoodBow) type = ProjectileID.JestersArrow;
-			
-            base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
-        }
+		
 
 
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

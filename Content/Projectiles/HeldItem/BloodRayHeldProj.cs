@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;

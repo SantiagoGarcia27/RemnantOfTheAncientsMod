@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common.UtilsTweaks;
 using System;

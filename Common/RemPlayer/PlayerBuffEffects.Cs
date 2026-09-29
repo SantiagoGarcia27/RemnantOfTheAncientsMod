@@ -1,12 +1,9 @@
 using CalamityMod;
-using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Kits;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;

@@ -1,14 +1,11 @@
-﻿using CalamityMod.Items.Potions.Alcohol;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Enums;
 using RemnantOfTheAncientsMod.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Exceptions;

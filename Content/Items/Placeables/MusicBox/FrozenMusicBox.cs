@@ -2,7 +2,6 @@ using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Content.Tiles.Music_Box;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
