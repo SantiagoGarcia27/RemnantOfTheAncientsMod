@@ -37,7 +37,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             /*itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));*/
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<GemstoneCrusher>()));
-            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<WandOfCaverns>(), ItemType<StoneBlunderbuss>(),ItemType<StoneMortarStaff>(), ItemType<RockAndRoll>()));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<WandOfCaverns>(), ItemType<StoneBlunderbuss>(),ItemType<StoneMortar>(), ItemType<RockAndRoll>()));
             //itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalTyrantSoul>()));
         }
 

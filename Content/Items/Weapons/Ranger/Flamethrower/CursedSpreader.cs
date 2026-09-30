@@ -55,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Flamethrower
                     int colorId = Utils1.GetColorID(Color.GreenYellow);
                     var a = Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<CustomFlameTrowerProj>(), damage, knockback, player.whoAmI, 0, 0, colorId);
                     Main.projectile[a].scale = Main.rand.NextFloat(0.5f, 1.5f);
-                    Main.projectile[a].alpha = Main.rand.Next(0, 200);
+                    Main.projectile[a].alpha = Main.rand.Next(0, 201);
                 }
             }
             return false;

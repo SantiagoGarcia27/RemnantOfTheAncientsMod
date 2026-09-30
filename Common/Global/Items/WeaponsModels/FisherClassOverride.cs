@@ -81,54 +81,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
-
-
-        /* public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-         {
-             if (Calamity != null)
-             {
-                 if (item.type == CallUtils.TryGetItemFromMod(Calamity, "TheDevourerofCods"))
-                 {
-                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 10);
-                     return false;
-                 }
-                 else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "RiftReeler"))
-                 {
-                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, new Vector2(3, 6));
-                     return false;
-                 }
-                 else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "FeralDoubleRod"))
-                 {
-                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 2);
-                     return false;
-                 }
-                 else if (item.type == CallUtils.TryGetItemFromMod(Calamity, "EarlyBloomRod"))
-                 {
-                     FixModRodsBobers(source, position, velocity, type, damage, knockback, player.whoAmI, 6);
-                     return false;
-                 }
-             }
-             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
-         }
-         public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, int BoberAmount)
-         {
-             for (int index = 0; index < BoberAmount; index++)
-             {
-                 Vector2 Velocity = velocity.RotatedByRandom((double)MathHelper.ToRadians(18f));
-                 Projectile.NewProjectile(source, position, Velocity, type, damage, knockback, player);
-             }
-         }
-         public static void FixModRodsBobers(IEntitySource source, Vector2 velocity, Vector2 position, int type, int damage, float knockback, int player, Vector2 BoberAmount)
-         {
-             for (int index = 0; index < Main.rand.Next((int)BoberAmount.X, (int)BoberAmount.Y); index++)
-             {
-                 Vector2 Velocity = velocity.RotatedByRandom((double)MathHelper.ToRadians(18f));
-                 Projectile.NewProjectile(source, position,Velocity, type, damage, knockback, player);
-             }
-         }
-         // Aca terminaba el comentario original
-         public override bool InstancePerEntity => true;
-     }*/
     }
     public class BobersOverride : GlobalProjectile
     {

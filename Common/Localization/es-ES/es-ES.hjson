@@ -706,8 +706,8 @@ Mods: {
 			}
 
 			StoneMortarBuff: {
-				// DisplayName: Stone Mortar Buff
-				// Description: Mods.RemnantOfTheAncientsMod.Buffs.StoneMortarBuff.Description
+				DisplayName: Mortero petrificado
+				Description: Un mortero petrificado luchará por ti
 			}
 		}
 
@@ -4594,8 +4594,8 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			StoneMortarStaff: {
-				DisplayName: Báculo de mortero pétreo
+			StoneMortar: {
+				DisplayName: Mortero pétreo
 				// Tooltip: ""
 			}
 
@@ -4975,7 +4975,7 @@ Mods: {
 			// BloodDart.DisplayName: Blood Dart
 			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
-			// StoneMortarMinion.DisplayName: Stone Mortar Minion
+			StoneMortarMinion.DisplayName: Mortero petrificado
 			// SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 			// StoneImpalerP.DisplayName: Stone Impaler P
 			// RockAndRollProjectile.DisplayName: Rock And Roll Projectile

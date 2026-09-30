@@ -14,8 +14,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
     public class StoneMortarMinion : ModProjectile
     {
-
-
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 1;
@@ -39,12 +37,10 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             AIType = -1;
         }
 
-
         public override bool? CanCutTiles()
         {
             return false;
         }
-
         public override bool MinionContactDamage()
         {
             return false;

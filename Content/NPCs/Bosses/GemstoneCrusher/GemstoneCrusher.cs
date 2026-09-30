@@ -694,7 +694,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 ModContent.ItemType<RockAndRoll>(),
                 ModContent.ItemType<WandOfCaverns>(),
                 ModContent.ItemType<StoneBlunderbuss>(),
-                ModContent.ItemType<StoneMortarStaff>(),
+                ModContent.ItemType<StoneMortar>(),
             ]));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TreasureRock>()));
 

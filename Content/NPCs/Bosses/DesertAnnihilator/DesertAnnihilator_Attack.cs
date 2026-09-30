@@ -100,12 +100,12 @@ class DesertAnnihilator_Attack
             projectileType = DificultyUtils.ReaperMode ? ShootData.ProjectileType.NPC : ShootData.ProjectileType.Projectile
         };
 
-        ShootManager(timePercent: 10, () => ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: Main.rand.Next(-20, 20)));
+        ShootManager(timePercent: 10, () => ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: Main.rand.Next(-20, 21)));
 
         ShootManager(timePercent: 50, () =>
         {
             for (int i = -1; i <= 1; i++)
-                ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-20, 20));
+                ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-20, 21));
         });
 
         if (auxiliaryModule.BossIsInRage)
@@ -113,17 +113,17 @@ class DesertAnnihilator_Attack
             ShootManager(timePercent: 80, () =>
             {
                 for (int i = -2; i <= 2; i++)
-                    ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 30));
+                    ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 31));
             });
             ShootManager(timePercent: 85, () =>
             {
                 for (int i = -2; i <= 2; i++)
-                    ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 30));
+                    ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 31));
             });
             ShootManager(timePercent: 90, () =>
             {
                 for (int i = -2; i <= 2; i++)
-                    ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 30));
+                    ShootHelper((int)(20 * RemnantGlobalNPC.DamageBonus), data, target, 12f, rotationGrades: i * 60 + Main.rand.Next(-30, 31));
             });
         }
 
@@ -184,10 +184,10 @@ class DesertAnnihilator_Attack
             for (int i = 0; i < numberOfTornados; i++)
             {
                 float randomX = Main.rand.NextBool()
-                    ? Main.rand.Next(-50, -20).ToCoordinatePosition()
-                    : Main.rand.Next(20, 50).ToCoordinatePosition();
+                    ? Main.rand.Next(-50, -21).ToCoordinatePosition()
+                    : Main.rand.Next(20, 51).ToCoordinatePosition();
 
-                float randomY = npc.Bottom.Y + Main.rand.Next(-3, 3).ToCoordinatePosition();
+                float randomY = npc.Bottom.Y + Main.rand.Next(-3, 4).ToCoordinatePosition();
 
                 Vector2 spawnPosition = new(auxiliaryModule.CurrentTarget.Center.X + randomX, randomY);
 

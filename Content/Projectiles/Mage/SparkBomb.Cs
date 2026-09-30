@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                     wandType ??= new WandType((int)Projectile.ai[2]);
                     foreach(int dustID in dustScale.Keys)
                     {
-                        Vector2 pos = new(Projectile.Center.X + Main.rand.Next(-Projectile.height/2, Projectile.height/2), Projectile.Center.Y + Main.rand.Next(-2, 2).ToCoordinatePosition());
+                        Vector2 pos = new(Projectile.Center.X + Main.rand.Next(-Projectile.height/2, Projectile.height/2), Projectile.Center.Y + Main.rand.Next(-2, 3).ToCoordinatePosition());
                         Vector2 vel = new(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(0f, -2f));
                         float scale = Main.rand.NextFloat(0.5f, dustScale[dustID]);
                         Dust currentDust = Dust.NewDustDirect(pos, 10, Projectile.height, dustID, SpeedX: vel.X, SpeedY: vel.Y, 0, default, scale);
@@ -178,7 +178,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Vector2 drawPos = Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY);
             Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
             Vector2 drawOrigin = frame.Size() / 2f;
-            lightColor = Main.rand.Next(0, 2) switch
+            lightColor = Main.rand.Next(0, 3) switch
             {
                 0 => Color.Gray,
                 1 => Color.White,

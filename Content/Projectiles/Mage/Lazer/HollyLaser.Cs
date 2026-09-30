@@ -233,7 +233,7 @@ if (Main.rand.NextBool(5))
 					Dust dust = Main.dust[Dust.NewDust(pos, 20, 20, DustType<HollyBurn_P>(), Projectile.velocity.X / 2f, Projectile.velocity.Y / 2f)];
 					dust.velocity = Vector2.Normalize(spawnPos - spawn) * 1.5f * (10f - chargeFact * 2f) / 10f;
 					dust.noGravity = true;
-					dust.scale = Main.rand.Next(15, 20) * 0.2f;//0.05f;
+					dust.scale = Main.rand.Next(15, 21) * 0.2f;//0.05f;
 				}
 			}
 		}
@@ -246,7 +246,7 @@ if (Main.rand.NextBool(5))
                 Vector2 position = Projectile.position;
                 Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
 
-                position = player.Center + new Vector2((-Main.rand.Next(0, 0) * player.direction), -600f);
+                position = player.Center + new Vector2(0, -600f);
                 position.Y -= 100;
 
                 Vector2 heading = target - position;

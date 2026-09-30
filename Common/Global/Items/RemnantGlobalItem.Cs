@@ -97,9 +97,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			}
 		}
 
-		
-
-
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
@@ -361,7 +358,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
 		{
 			int NotConsumeAmmoChance = player.GetModPlayer<RemnantPlayer>().NotConsumeAmmoChance;
-			float selection = Main.rand.NextFloat(0, 100);
+			float selection = Main.rand.NextFloat(0, 101);
 
 			if (selection <= NotConsumeAmmoChance) return false;
 			else return base.CanConsumeAmmo(weapon, ammo, player);

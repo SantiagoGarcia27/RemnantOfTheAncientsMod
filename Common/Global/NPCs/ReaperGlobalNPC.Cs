@@ -722,7 +722,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                             attackCounter = 0;
                             if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 3)
                             {
-                                int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
+                                int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 5).ToCoordinatePosition()), ModContent.NPCType<MiniDuke>());
                                 Main.npc[n].lifeMax = 1000;
                                 Main.npc[n].life = 1000;
                             }
@@ -851,7 +851,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     for (int i = 0; i < 5; i++)
                     {
                         NPC.SpawnOnPlayer(npc.FindClosestPlayer(), NPCID.ZombieMushroomHat);
-                        NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X + Main.rand.Next(-100, 100), (int)npc.Center.Y, NPCID.ZombieMushroomHat);
+                        NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X + Main.rand.Next(-100, 101), (int)npc.Center.Y, NPCID.ZombieMushroomHat);
                     }
                     UniqueToggledFlag = true;
                 }
@@ -876,7 +876,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 bool phase5 = lifeRatio < (DificultyUtils.Death ? 0.5f : DificultyUtils.Revengeance ? 0.45f : 0.3f);
                 if (phase5 && !UniqueToggledFlag && npc.boss)
                 {
-                    int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)Main.player[npc.target].Center.X + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), (int)Main.player[npc.target].Center.Y + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"));
+                    int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)Main.player[npc.target].Center.X + Main.rand.Next(2, 11) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), (int)Main.player[npc.target].Center.Y + Main.rand.Next(2, 10) * 10 * (int)Math.Pow(-1, Main.rand.Next(2)), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "Cryogen"));
                     Main.npc[n].lifeMax = 1000;
                     Main.npc[n].boss = false;
                     Main.npc[n].life = 1000;
@@ -1078,7 +1078,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     {
                         SecondUniqueToggledFlag = true;
                         for (int i = 0; i < 10; i++)
-                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 31), (int)npc.position.Y + Main.rand.Next(-100, 101), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
                     }
                 }
                 else
@@ -1086,7 +1086,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (npc.life <= npc.lifeMax / 2)
                     {
                         UniqueToggledFlag = true;
-                        NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 30), (int)npc.position.Y + Main.rand.Next(-100, 100), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                        NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 31), (int)npc.position.Y + Main.rand.Next(-100, 101), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
                     }
                 }
             }
@@ -1101,7 +1101,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     attackCounter = 0;
                     if (NPC.CountNPCS(ModContent.NPCType<MiniDuke>()) < 7)
                     {
-                        int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 4) * 16), ModContent.NPCType<MiniDuke>());
+                        int n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + (Main.rand.Next(-4, 5).ToCoordinatePosition()), ModContent.NPCType<MiniDuke>());
                         Main.npc[n].lifeMax = 5000;
                         Main.npc[n].life = 5000;
                     }
@@ -1159,12 +1159,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 if (npc.alpha < 255)
                 {
                     if (attackCounter++ >= Utils1.FormatTimeToTick(0, 0, 0, 30))
-                    {
-                        // Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + new Vector2(0, 50), new Vector2(10, 0) * npc.direction, ProjectileID.WoodenArrowHostile, 60, 0f, npc.whoAmI);
-                        // Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center + new Vector2(0, -50), new Vector2(10,0) * npc.direction, ProjectileID.Bullet, 60,0f,npc.whoAmI);
+                    {  
                         for (int i = 0; i < 5; i++)
                         {
-                            var n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X + Main.rand.Next(-500, 500), (int)npc.Center.Y + Main.rand.Next(-500, 500), NPCID.Retinazer, npc.whoAmI);
+                            var n = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X + Main.rand.Next(-500, 501), (int)npc.Center.Y + Main.rand.Next(-500, 501), NPCID.Retinazer, npc.whoAmI);
                             Main.npc[n].scale = 0.3f;
                             Main.npc[n].lifeMax /= 6;
                             Main.npc[n].life /= 6;

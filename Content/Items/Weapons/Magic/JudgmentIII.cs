@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer;
 using Terraria;
 using Terraria.DataStructures;
@@ -44,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             float ceilingLimit = target.Y;
             for (int i = 0; i < 1; i++)
             {
-                position = target - new Vector2(Main.rand.Next(-6, 6) * 16, 600f);
+                position = target - new Vector2(Main.rand.Next(-6, 7).ToCoordinatePosition(), 600f);
                 position.Y -= (100 * i);
                 Vector2 heading;
                 heading = new Vector2(0, 20);

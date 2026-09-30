@@ -106,7 +106,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Frozen
             Vector2 drawPos = Projectile.Center - Main.screenPosition + new Vector2(0f, Projectile.gfxOffY);
             Rectangle frame = texture.Frame(1,Main.projFrames[Projectile.type],0,Projectile.frame);
             Vector2 drawOrigin = frame.Size() / 2f;
-            Color choiceColor = Main.rand.Next(0, 2) switch
+            Color choiceColor = Main.rand.Next(0, 3) switch
             {
                 0 => Color.Cyan,
                 1 => Color.White,

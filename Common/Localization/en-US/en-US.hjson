@@ -698,8 +698,8 @@ Mods: {
 			}
 
 			StoneMortarBuff: {
-				DisplayName: Stone Mortar Buff
-				Description: Mods.RemnantOfTheAncientsMod.Buffs.StoneMortarBuff.Description
+				DisplayName: Stone Mortar
+				Description: A stone mortarn will fight for you
 			}
 		}
 
@@ -4564,8 +4564,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			StoneMortarStaff: {
-				DisplayName: Stone Mortar Staff
+			StoneMortar: {
+				DisplayName: Stone Mortar
 				Tooltip: ""
 			}
 
@@ -4949,7 +4949,7 @@ Mods: {
 			BloodDart.DisplayName: Blood Dart
 			WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 			StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
-			StoneMortarMinion.DisplayName: Stone Mortar Minion
+			StoneMortarMinion.DisplayName: Stone Mortar
 			SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 			StoneImpalerP.DisplayName: Stone Impaler P
 			RockAndRollProjectile.DisplayName: Rock And Roll Projectile

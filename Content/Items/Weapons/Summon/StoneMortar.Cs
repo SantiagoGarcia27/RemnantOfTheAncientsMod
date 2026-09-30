@@ -10,7 +10,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
 {
-	public class StoneMortarStaff : ModItem
+	public class StoneMortar : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

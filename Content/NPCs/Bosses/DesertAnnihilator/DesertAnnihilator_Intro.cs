@@ -116,7 +116,7 @@ class DesertAnnihilator_Intro
                 VerticalSpeed = Main.rand.NextFloat(0.3f, 0.8f),
 
                 Lifetime = 0,
-                MaxLifetime = Main.rand.Next(45, 80)
+                MaxLifetime = Main.rand.Next(45, 81)
             });
         }
     }

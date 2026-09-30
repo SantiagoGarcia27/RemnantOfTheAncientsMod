@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             {
                 if(timmer++ >= timmerMax)
                 {
-                    Projectile.rotation = Main.rand.Next(-200, -100);
+                    Projectile.rotation = Main.rand.Next(-200, -99);
                     Projectile.tileCollide = true;
                     Projectile.velocity += new Vector2(0, 0.4f);
                 }

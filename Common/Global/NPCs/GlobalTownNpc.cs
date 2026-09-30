@@ -220,7 +220,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     string text;
                     if (style < 50)
                     {
-                        int choice = Main.rand.Next(1, 5);
+                        int choice = Main.rand.Next(1, 6);
                         text = Language.GetTextValue($"Mods.RemnantOfTheAncientsMod.Dialogue.Clothier.StyleDialogue{choice}", style, ShopUtils.getStyleDiscountPorcentage(style));
                     }
                     else if(style < (int)ShopUtils.maxStyleStat) text = Language.GetTextValue($"Mods.RemnantOfTheAncientsMod.Dialogue.Clothier.HighStyleDialogue1", style, ShopUtils.getStyleDiscountPorcentage(style));
