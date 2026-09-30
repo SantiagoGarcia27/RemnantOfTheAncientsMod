@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
 
     [AutoloadBossHead]
-    public class InfernalTyrantHead : WormHead
+    public class InfernalTyrantHead : TyrantHead
     {
         public override int BodyType => ModContent.NPCType<InfernalTyrantBody>();
 
@@ -97,7 +97,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             head = true;
             CommonWormInit(this);
         }
-        internal static void CommonWormInit(Worm worm)
+        internal static void CommonWormInit(TyrantBaseWorm worm)
         {
             worm.MoveSpeed = 30f;
             worm.Acceleration = 0.245f;
@@ -460,85 +460,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             NPC.velocity = NPC.velocity.RotatedBy(angulo);
         }
 
-
-        //No terminado
-        /*private void UpdateOrbitalAttack(Player target)
-        {
-            if (orbitalPhase == 0 && target.Distance(NPC.Center) > (200 * 16f) ) return;
-
-            const float orbitalRadius = 100f * 16f;
-
-            switch (orbitalPhase)
-            {
-                case 1:
-                {
-                    float angularSpeed = MathHelper.TwoPi / 50f;
-                    orbitalAngle += angularSpeed;
-
-                    Vector2 desiredPos = target.Center + orbitalAngle.ToRotationVector2() * orbitalRadius;
-                    Vector2 toDesired = desiredPos - NPC.Center;
-                    float speed = MathHelper.Clamp(toDesired.Length() * 0.2f, 20f, 50f);
-                    NPC.velocity = toDesired.SafeNormalize(Vector2.UnitX) * speed;
-
-                    for (int d = 0; d < 2; d++)
-                        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f);
-
-                    orbitalTimer--;
-                    if (orbitalTimer <= 0)
-                    {
-                        orbitalPhase = 2;
-                        orbitalTimer = 40;
-                        SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot, NPC.Center);
-                        NPC.netUpdate = true;
-                    }
-                    break;
-                }
-                case 2:
-                {
-                    dashDirection = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
-                    float t = orbitalTimer / 40f;
-                    NPC.velocity = dashDirection * t * 5f;
-
-                    for (int d = 0; d < 3; d++)
-                    {
-                        int dust = Dust.NewDust(NPC.Center - new Vector2(16f), 32, 32, DustID.InfernoFork, 0f, 0f, 100, default, 1.5f);
-                        Main.dust[dust].noGravity = true;
-                        Main.dust[dust].velocity *= 2f;
-                    }
-
-                    orbitalTimer--;
-                    if (orbitalTimer <= 0)
-                    {
-                        orbitalPhase = 3;
-                        orbitalTimer = 25;
-                        dashDirection = (target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
-                        NPC.velocity = dashDirection * 45f;
-                        SoundEngine.PlaySound(SoundID.Roar, NPC.Center);
-                        NPC.netUpdate = true;
-                    }
-                    break;
-                }
-                case 3:
-                {
-                    NPC.velocity = dashDirection * 45f;
-
-                    for (int d = 0; d < 3; d++)
-                    {
-                        int dust = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.InfernoFork, -NPC.velocity.X * 0.3f, -NPC.velocity.Y * 0.3f, 100, default, 2f);
-                        Main.dust[dust].noGravity = true;
-                    }
-
-                    orbitalTimer--;
-                    if (orbitalTimer <= 0)
-                    {
-                        orbitalPhase = 0;
-                        NPC.netUpdate = true;
-                    }
-                    break;
-                }
-            }
-        }
-        */
         public void FindTarget()
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead)
@@ -550,7 +471,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 }
             }
         } 
-        public void DespawnSafeCheck(Player player, Worm worm)
+        public void DespawnSafeCheck(Player player, TyrantBaseWorm worm)
         {
             float positionY = NPC.position.Y / 16;
             float limit = Main.maxTilesY - 50f;
@@ -648,56 +569,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             if (NPC.IsABestiaryIconDummy)
                 return;
-
-            //DrawMandibles(drawColor);
         }
 
-        //No funciona (toca arreglar las posiciones de las mandíbulas)
-        private void DrawMandibles(Color drawColor)
-        {
-            var texRequest = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/ITyrant/InfernalTyrantMandible");
-            if (!texRequest.IsLoaded) return;
-            Texture2D tex = texRequest.Value;
-
-            Vector2 drawPos = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
-
-            Vector2 forward = NPC.rotation.ToRotationVector2();
-
-            // Pivote ajustado (mantén el que te dejó bien ubicado)
-            float pivotOffset = 16f * NPC.scale;   // o el valor que te dejó el punto rojo en la boca
-            Vector2 hingeCenter = drawPos + forward * pivotOffset;
-
-            // Separación RELATIVA al frente del boss
-            // Invertimos el signo del perp para que "superior" quede en el lado que querés (prueba + o -)
-            Vector2 perp = forward.RotatedBy(MathHelper.PiOver2);  // +90° (derecha relativa al forward)
-                                                                   // Si querés invertir (para que una quede "arriba" en vertical), usa:
-                                                                   // Vector2 perp = forward.RotatedBy(-MathHelper.PiOver2);   // -90° (izquierda relativa)
-
-            float halfSep = 3f * NPC.scale;  // ← prueba 2f a 5f hasta que la separación se vea bien (no muy pegadas ni muy lejos)
-            Vector2 upperHinge = hingeCenter - perp * halfSep;   // "superior" = -perp
-            Vector2 lowerHinge = hingeCenter + perp * halfSep;   // "inferior" = +perp
-
-            Vector2 origin = new Vector2(0f, tex.Height * 0.5f);
-
-            SpriteEffects upperEffects = NPC.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            SpriteEffects lowerEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipVertically : SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally;
-
-            float mandibleBaseRot = NPC.rotation + MathHelper.Pi;  // el que te dejó la rotación correcta
-
-            float angleMultiplier = NPC.spriteDirection == 1 ? 1f : -1f;
-
-            // Mandíbula superior
-            Main.EntitySpriteDraw(tex, upperHinge, null, drawColor, mandibleBaseRot - (mandibleAngle * angleMultiplier), origin, NPC.scale, upperEffects, 0);
-            // Mandíbula inferior
-            Main.EntitySpriteDraw(tex, lowerHinge, null, drawColor, mandibleBaseRot + (mandibleAngle * angleMultiplier), origin, NPC.scale, lowerEffects, 0);
-
-            // Debug rojo (para confirmar pivote)
-            var pixelTex = TextureAssets.MagicPixel.Value;
-            if (pixelTex != null)
-            {
-                Main.spriteBatch.Draw(pixelTex, hingeCenter - Main.screenPosition, null, Color.Red * 0.9f, 0f, new Vector2(0.5f), 10f, SpriteEffects.None, 0f);
-            }
-        }
+       
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
@@ -725,7 +599,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
     }
 
-    internal class InfernalTyrantBody : WormBody
+    internal class InfernalTyrantBody : TyrantBody
     {
         [Obsolete]
         public override void SetStaticDefaults()
@@ -828,7 +702,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
     }
 
-    internal class InfernalTyrantTail : WormTail
+    internal class InfernalTyrantTail : TyrantTail
     {
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

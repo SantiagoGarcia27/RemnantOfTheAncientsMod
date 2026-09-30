@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
     /// <summary>
     /// The base class for non-separating Worm enemies.
     /// </summary>
-    public abstract class Worm : ModNPC
+    public abstract class TyrantBaseWorm : ModNPC
     {
         /*  ai[] usage:
 		 *  
@@ -122,7 +122,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public abstract void Init();
     }
 
-    public abstract class WormHead : Worm
+    public abstract class TyrantHead : TyrantBaseWorm
     {
         public sealed override WormSegmentType SegmentType => WormSegmentType.Head;
         public abstract int BodyType { get; }
@@ -585,7 +585,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
     }
 
-    public abstract class WormBody : Worm
+    public abstract class TyrantBody : TyrantBaseWorm
     {
         public sealed override WormSegmentType SegmentType => WormSegmentType.Body;
 
@@ -594,7 +594,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             CommonAI_BodyTail(this);
         }
 
-        internal static void CommonAI_BodyTail(Worm worm)
+        internal static void CommonAI_BodyTail(TyrantBaseWorm worm)
         {
             if (!worm.NPC.HasValidTarget)
             {
@@ -645,13 +645,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
     }
 
     // Since the body and tail segments share the same AI
-    public abstract class WormTail : Worm
+    public abstract class TyrantTail : TyrantBaseWorm
     {
         public sealed override WormSegmentType SegmentType => WormSegmentType.Tail;
 
         internal override void BodyTailAI()
         {
-            WormBody.CommonAI_BodyTail(this);
+            TyrantBody.CommonAI_BodyTail(this);
         }
     }
 }

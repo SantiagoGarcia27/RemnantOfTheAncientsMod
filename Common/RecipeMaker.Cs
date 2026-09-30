@@ -199,14 +199,6 @@ namespace RemnantOfTheAncientsMod
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
 
-            Recipe.Create(ItemID.EnchantedSword)
-             .AddIngredient(ItemID.IronBroadsword)
-             .AddIngredient(ItemID.FallenStar, 10)
-             .AddIngredient(ItemID.SoulofLight, 10)
-             .AddIngredient(ItemID.LightShard, 1)
-             .AddTile(TileID.MythrilAnvil)
-             .Register();
-
             Recipe.Create(ItemID.BallOHurt)
                 .AddIngredient(ItemID.DemoniteBar, 10)
                 .AddIngredient(ItemID.ShadowScale, 5)

@@ -29,8 +29,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 			NPC.damage = 45;
 			NPC.defense = 10;
 			NPC.lifeMax = 200;
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath1;
+			NPC.HitSound = SoundID.NPCHit4;
+			NPC.DeathSound = SoundID.NPCDeath6;
 			NPC.value = 25f;
 			NPC.knockBackResist = 0.2f;
 			NPC.aiStyle = NPCAIStyleID.Slime;
@@ -42,20 +42,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 		}
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            // We can use AddRange instead of calling Add multiple times in order to add multiple items at once
             bestiaryEntry.Info.AddRange([
-				// Sets the spawning conditions of this NPC that is listed in the bestiary.
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-
-				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("A fearless slime with a stolen helmet"),
+				new FlavorTextBestiaryInfoElement("Raised by the sinister powers of corruption, it lurks in the shadows, waiting to strike."),
             ]);
         }
         public override void ModifyNPCLoot(NPCLoot NPCLoot)
 		{
 			NPCLoot.Add(ItemDropRule.Common(ItemID.Shotgun, 10));
 			NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<CursedShotgunStaff>(), 3));
-            //NPCLoot.Add(ItemDropRule.Common(ModContent.ItemType<ReinforcedIronOre>()));
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit)
         {

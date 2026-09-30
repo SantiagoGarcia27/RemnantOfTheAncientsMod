@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             else if (npc.type == ModContent.NPCType<InfernalTyrantBody>() || npc.type == ModContent.NPCType<InfernalTyrantTail>())
                 npc.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
         }
-        public static void LifeSpeed(Worm worm)
+        public static void LifeSpeed(TyrantBaseWorm worm)
         {
             
             float lifePercentage = MathUtils.GetPorcentage(worm.NPC.life, worm.NPC.lifeMax);;

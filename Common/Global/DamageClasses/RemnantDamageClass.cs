@@ -1,7 +1,5 @@
-﻿/*using Terraria;
-using Terraria.ModLoader;
-
-namespace RemnantOfTheAncientsMod.Common.Global.DamageClasses
+﻿// Contenido guardado para la V2.6 (ignorar)
+/*namespace RemnantOfTheAncientsMod.Common.Global.DamageClasses
 {
 	public class FisherDamageClass : DamageClass
 	{
