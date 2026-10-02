@@ -102,17 +102,27 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
         }
 
-        public override void UpdateLifeRegen(NPC NPC, ref int damage)
+        public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (damage < 0) damage = 0;
             int stackedDamage = damage;
 
             if (Burn_Sand) stackedDamage += 4;
             if (hBurn) stackedDamage += 4;   
             if (Hell_Fire) stackedDamage += 6;
-               
-            if(damage > 0 && NPC.lifeRegen > 0) NPC.lifeRegen = 0;
 
-            damage += stackedDamage;
+            if (stackedDamage <= 0)
+                return;
+
+            if (npc.lifeRegen > 0)
+                npc.lifeRegen = 0;
+
+            npc.lifeRegen -= stackedDamage * 2;
+
+            if (damage < stackedDamage)
+                damage = stackedDamage;
+
+            npc.lifeRegenExpectedLossPerSecond = stackedDamage;
         }
         int timer = 0;
         public void SetDebuffs(NPC NPC)
