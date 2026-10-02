@@ -379,7 +379,7 @@ namespace RemnantOfTheAncientsMod
 				RemnantGlobalItem.oldTexture.Add(asset);
 			}
 
-            if (Utils1.IsAprilFoolDay() && ModContent.GetInstance<ConfigClient>().AprilFoolsDay)
+            if (Utils1.IsAprilFoolDay() && GetInstance<ConfigClient>().AprilFoolsDay)
 			{
 				ChatHelper.SendChatMessageFromClient(new ChatMessage("Happy April Fools Day, if you want to disable this, go to settings"));
 			}
@@ -599,7 +599,7 @@ namespace RemnantOfTheAncientsMod
 		{
 			if (TrueShadowMist && Player.ownedProjectileCounts[ProjectileType<TrueShadowMistProj>()] < 1)
 			{
-				Projectile.NewProjectile(Player.GetSource_None(), Player.Center, Vector2.Zero, ProjectileType<TrueShadowMistProj>(), 0, 0, Main.myPlayer);
+				Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Player.Center, Vector2.Zero, ProjectileType<TrueShadowMistProj>(), 0, 0, Main.myPlayer);
             }
 		}
 		public void ExoticA(int lifeRegen, int manaRegen, int manaMax, int armorPenetration, Item item)
@@ -684,12 +684,12 @@ namespace RemnantOfTheAncientsMod
 		public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
 		{
 			if (DesertHeraldSetBonus) 
-				Projectile.NewProjectile(Projectile.GetSource_None(), npc.position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
+				Projectile.NewProjectile(Terraria.Entity.GetSource_None(), npc.position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
 			
 			if (CursedMark) hurtInfo.Damage *= 2;
 			
 			if(Player.HasBuff(BuffID.ShadowDodge))
-				Player.AddBuff(ModContent.BuffType<HolyCouldownDebuff>(), Utils1.FormatTimeToTick(0, 0, 0, 5));
+				Player.AddBuff(BuffType<HolyCouldownDebuff>(), Utils1.FormatTimeToTick(0, 0, 0, 5));
             
 			base.OnHitByNPC(npc, hurtInfo);
 		}
@@ -697,7 +697,7 @@ namespace RemnantOfTheAncientsMod
 		public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
 		{
 			if (DesertHeraldSetBonus)
-				Projectile.NewProjectile(Projectile.GetSource_None(), Main.npc[proj.owner].position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
+				Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Main.npc[proj.owner].position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
 			
 			base.OnHitByProjectile(proj, hurtInfo);
 		}
@@ -734,7 +734,7 @@ namespace RemnantOfTheAncientsMod
 
 			if (CountOfProj <= 0)
 			{
-				proj = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ModContent.ProjectileType<CactusBoulderClone>(), 15, 0, Player.whoAmI);
+				proj = Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), MousePosition, Vector2.Zero, ProjectileType<CactusBoulderClone>(), 15, 0, Player.whoAmI);
 				proj.friendly = true;
 				proj.hostile = false;
 				proj.tileCollide = false;
@@ -749,7 +749,7 @@ namespace RemnantOfTheAncientsMod
 
 			if (CountOfProj <= 0)
 			{
-				p = Projectile.NewProjectileDirect(Projectile.GetSource_None(), MousePosition, Vector2.Zero, ModContent.ProjectileType<CactusBoulderClone>(), damage, 0, Player.whoAmI, ai2:1);
+				p = Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), MousePosition, Vector2.Zero, ProjectileType<CactusBoulderClone>(), damage, 0, Player.whoAmI, ai2:1);
 				p.friendly = true;
 				p.hostile = false;
 				p.tileCollide = false;
@@ -804,9 +804,9 @@ namespace RemnantOfTheAncientsMod
 			}
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
 			{
-				if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ModContent.ProjectileType<FrostBarrier>()] == 0)
+				if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ProjectileType<FrostBarrier>()] == 0)
 				{
-					Projectile.NewProjectile(Projectile.GetSource_None(), Player.position, Vector2.Zero, ModContent.ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);
+					Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Player.position, Vector2.Zero, ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);
 				}
 				if (FargosKeybindSystem.ToggNightTp.JustPressed)
 				{

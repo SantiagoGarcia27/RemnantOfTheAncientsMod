@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         {
             CreateRecipe()
              .AddIngredient(ItemID.TitaniumSword, 1)
-             .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
+             .AddIngredient(ItemType<Ice_escense>(), 5)
              .AddTile(TileID.Anvils)
              .Register();
         }
@@ -58,7 +58,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         
         public override bool CanUseItem(Player player)
         {
-            var source = Projectile.GetSource_None();
+            var source = Terraria.Entity.GetSource_None();
             Vector2 position = player.position;
             Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
             int damage = Item.damage;
@@ -139,7 +139,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 heading.Normalize();
                 heading *= velocity.Length();
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
-                Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, type, damage, knockback, player.whoAmI, 0f, ceilingLimit);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, heading, type, damage, knockback, player.whoAmI, 0f, ceilingLimit);
             }
         }
     }

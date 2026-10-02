@@ -15,10 +15,10 @@ public class LoreDesertAniquilator : LoreItem
 
 	public override void SetDefaults()
 	{
-		base.Item.width = 20;
-		base.Item.height = 20;
-		base.Item.rare = ItemRarityID.Blue;
-		base.Item.consumable = false;
+        Item.width = 20;
+        Item.height = 20;
+        Item.rare = ItemRarityID.Blue;
+        Item.consumable = false;
 	}
 
 	public override void AddRecipes()

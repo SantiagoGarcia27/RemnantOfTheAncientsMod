@@ -59,13 +59,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
         {
 			if(player.altFunctionUse == 0)
 			{
-                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+                if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
 				{
                     Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.Center) * Item.shootSpeed;
                     Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(90));
                     velocity.X = perturbedSpeed.X;
 					velocity.Y = perturbedSpeed.Y;
-					Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ProjectileType<InfernalSpike_f>(), Item.damage, 1, player.whoAmI);
+					Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.position, velocity, ProjectileType<InfernalSpike_f>(), Item.damage, 1, player.whoAmI);
 				}
 			}
 			return true;

@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 				.Register();
 
 				CreateRecipe()
-				 .AddIngredient(ModContent.ItemType<NightBar>(), 10)
+				 .AddIngredient(ItemType<NightBar>(), 10)
 				 .AddTile(TileID.DemonAltar)
 				 .Register();
 			}

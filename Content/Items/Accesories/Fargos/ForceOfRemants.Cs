@@ -47,12 +47,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.AddEffect<DaylightEffect>(base.Item);
-            player.AddEffect<TuxoniteEffect>(base.Item);
-            player.AddEffect<NightEffect>(base.Item);
-            player.AddEffect<ReinforcedIronDREffect>(base.Item);
-            player.AddEffect<ReinforcedIronBallistaEffect>(base.Item);
-            player.AddEffect<SandHeraldEffect>(base.Item);
+            player.AddEffect<DaylightEffect>(Item);
+            player.AddEffect<TuxoniteEffect>(Item);
+            player.AddEffect<NightEffect>(Item);
+            player.AddEffect<ReinforcedIronDREffect>(Item);
+            player.AddEffect<ReinforcedIronBallistaEffect>(Item);
+            player.AddEffect<SandHeraldEffect>(Item);
             player.GetModPlayer<RemnantPlayer>().MinionsBuffInflict.Add(BuffID.Electrified);
             player.GetModPlayer<RemnantPlayer>().AllClassBuffInflict.Add(BuffID.Electrified); 
        

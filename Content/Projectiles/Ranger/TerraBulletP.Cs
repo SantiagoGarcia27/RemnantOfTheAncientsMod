@@ -48,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             {
                 Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
                 Vector2 Velocity = Position.DirectionTo(target.position) * 0.7f;
-                Projectile.NewProjectileDirect(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<TerraBlockP>(), damageDone / 4, Main.myPlayer, Projectile.owner);
+                Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), Position, Velocity, ModContent.ProjectileType<TerraBlockP>(), damageDone / 4, Main.myPlayer, Projectile.owner);
             }
         }
     }

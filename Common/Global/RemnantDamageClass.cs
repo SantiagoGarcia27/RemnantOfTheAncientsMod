@@ -13,7 +13,7 @@ namespace ExampleMod.Content.DamageClasses
 			// Default is, you guessed it, the default damage class. It doesn't scale off of any class-specific stat bonuses or universal stat bonuses.
 			// There are a number of items and projectiles that use this, such as thrown waters and the Bone Glove's bones.
 			// Generic, on the other hand, scales off of all universal stat bonuses and nothing else; it's the base damage class upon which all others that aren't Default are built.
-			if (damageClass == DamageClass.Generic)
+			if (damageClass == Generic)
 				return StatInheritanceData.Full;
 
 			return new StatInheritanceData(
@@ -56,9 +56,9 @@ namespace ExampleMod.Content.DamageClasses
 			// This method allows you to make your damage class benefit from and be able to activate other classes' effects (e.g. Spectre bolts, Magma Stone) based on what returns true.
 			// Note that unlike our stat inheritance methods up above, you do not need to account for universal bonuses in this method.
 			// For this example, we'll make our class able to activate melee- and magic-specifically effects.
-			if (damageClass == DamageClass.Melee)
+			if (damageClass == Melee)
 				return true;
-			if (damageClass == DamageClass.Magic)
+			if (damageClass == Magic)
 				return true;
 
 			return false;

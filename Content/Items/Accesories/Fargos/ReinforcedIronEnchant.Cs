@@ -44,8 +44,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.AddEffect<ReinforcedIronBallistaEffect>(base.Item);
-            player.AddEffect<ReinforcedIronDREffect>(base.Item);
+            player.AddEffect<ReinforcedIronBallistaEffect>(Item);
+            player.AddEffect<ReinforcedIronDREffect>(Item);
         }
 
 		public override void AddRecipes()
@@ -91,7 +91,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
                     float damage = 30;
 
                     damage = player.GetTotalDamage(DamageClass.Summon).ApplyTo(damage);
-                    int index = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, new Vector2(0, 2 * 16) * 10, ModContent.ProjectileType<IronBallistMinion>(), (int)damage, 1, Main.myPlayer);
+                    int index = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.position, new Vector2(0, 2 * 16) * 10, ModContent.ProjectileType<IronBallistMinion>(), (int)damage, 1, Main.myPlayer);
                     IronBallistaProj = Main.projectile[Index];
                     IronBallistaProj.minionSlots = 0;
                     IronBallistaProj.timeLeft = 300;

@@ -39,8 +39,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             //player.GetModPlayer<RemnantFargosSoulsPlayer>().TyrantMarkEffect(player, MovmentSpeedBonusBonus, ProjectileSizeBonus, ProjectileSizeBonus);
             RemnantFargosSoulsPlayer.ProjectileSpeedBonus = ProjectileSpeedBonus;
             RemnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
-            player.AddEffect<TyrantMarkEnemyProjectileSizeEffect>(base.Item);
-            player.AddEffect<TyrantMarkEnemyProjectileSpeedEffect>(base.Item);
+            player.AddEffect<TyrantMarkEnemyProjectileSizeEffect>(Item);
+            player.AddEffect<TyrantMarkEnemyProjectileSpeedEffect>(Item);
 
             AddEffects(player, MovmentSpeedBonusBonus);
         }

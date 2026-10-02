@@ -517,7 +517,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 heading.Normalize();
                 heading *= velocity.Length();
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
-                var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, type, Damage, 1, target.whoAmI, 0f, ceilingLimit);
+                var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, heading, type, Damage, 1, target.whoAmI, 0f, ceilingLimit);
                 Main.projectile[p].stepSpeed = speed;
                 Main.projectile[p].timeLeft = Utils1.FormatTimeToTick(Second:20);
             }
@@ -659,7 +659,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.FrostCore, 5, 3));
             npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
             npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));
-            if (DificultyUtils.InfernumMode != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Frozen_Relic>()));
+            if (DificultyUtils.InfernumMode != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ItemType<Frozen_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Frozen_Relic>()));
 
             if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
@@ -755,7 +755,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
 
             string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
-            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
+            Texture2D Texture = (Texture2D)Request<Texture2D>(fargos);
             Vector2 drawOrigin = NPC.frame.Size() / 2f;
             Vector2 drawPos = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
             if (DogdeCouldown > DogdeCouldownMax - Utils1.FormatTimeToTick(Second:1))

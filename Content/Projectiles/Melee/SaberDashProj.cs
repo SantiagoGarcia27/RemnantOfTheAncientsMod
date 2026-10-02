@@ -75,7 +75,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 
                    
 
-                    Projectile.NewProjectile(Projectile.GetSource_None(), Projectile.Center, velocity, ModContent.ProjectileType<SwordSlash>(), Projectile.damage, Projectile.knockBack, Main.myPlayer, Projectile.ai[0], Projectile.ai[1]);
+                    Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Projectile.Center, velocity, ModContent.ProjectileType<SwordSlash>(), Projectile.damage, Projectile.knockBack, Main.myPlayer, Projectile.ai[0], Projectile.ai[1]);
                     SaberGlobalItem.DashEffect(player, (int)Projectile.ai[2]);
                     Projectile.Kill();
 				}

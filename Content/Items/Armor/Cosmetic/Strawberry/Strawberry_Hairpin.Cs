@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry
             Item.GetGlobalItem<RemnantGlobalItem>().StyleStat = 6;
             if (Main.netMode != NetmodeID.Server)
             {
-                ArmorIDs.Head.Sets.DrawFullHair[base.Item.headSlot] = true;
+                ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
             }
         }
     }

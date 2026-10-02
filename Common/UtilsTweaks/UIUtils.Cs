@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             Asset<Texture2D> TextureBase = ModContent.Request<Texture2D>(Texture);
             UIHoverImageButton button = new(TextureBase, text,npc,true);
             SetButtonActive(button, Condition, npc);
-            UIUtils.SetRectangle(button, left, top, width, height);
+            SetRectangle(button, left, top, width, height);
             button.OnLeftClick += mouseEvent;
             return button;
         }

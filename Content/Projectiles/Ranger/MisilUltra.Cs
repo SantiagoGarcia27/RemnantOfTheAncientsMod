@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             for (int i = 0; i < Projectile.ai[1]; i++)
             {
                 launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
-                Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleShark>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0, 1);
+                Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleShark>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0, 1);
             }
         }
         public override void AI()           //this make that the projectile will face the corect way

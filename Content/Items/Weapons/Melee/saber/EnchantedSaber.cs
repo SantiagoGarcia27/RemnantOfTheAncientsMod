@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 						{
 							case 0:
 							case 10:
-								Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ProjectileID.EnchantedBeam, Item.damage, Item.knockBack);
+								Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.position, velocity, ProjectileID.EnchantedBeam, Item.damage, Item.knockBack);
 								break;
 						}
 						i++;

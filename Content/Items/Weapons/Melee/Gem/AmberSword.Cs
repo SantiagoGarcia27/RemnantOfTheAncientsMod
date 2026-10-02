@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
                 Vector2 Position = Main.rand.NextVector2CircularEdge(target.width + 100, target.height + 100) + target.position;
                 Vector2 Velocity = Position.DirectionTo(target.position) * 1.01f;
                 int colorID = Utils1.GetColorID(Color.SandyBrown);
-                Projectile.NewProjectile(Projectile.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, colorID);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Position, Velocity, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 2, Main.myPlayer, player.whoAmI, 0, colorID);
             }
 		}
 

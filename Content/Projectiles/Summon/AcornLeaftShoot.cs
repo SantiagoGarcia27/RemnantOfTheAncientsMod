@@ -64,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles
                 {
                     float shootToX = target.position.X + (float)target.width * 0.5f - Projectile.Center.X;
                     float shootToY = target.position.Y - Projectile.Center.Y;
-                    float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+                    float distance = (float)Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
 
                     if (distance < 480f && !target.friendly && target.active)
                     {

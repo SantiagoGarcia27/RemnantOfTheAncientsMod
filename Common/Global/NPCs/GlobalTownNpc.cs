@@ -193,7 +193,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if(!modPlayer.PlayerTalkToday.ContainsKey(npc.type)) modPlayer.PlayerTalkToday.TryAdd(npc.type, false);
             
             if (npc.type == NPCID.ArmsDealer) ApplyEffectOnTimePreDay(npc, firstButton, () => { player.AddBuff(BuffID.AmmoBox, Utils1.FormatTimeToTick(Minute: 29)); });
-            if(npc.type == NPCID.Angler) ApplyEffectOnTimePreDay(npc,firstButton, () => { player.QuickSpawnItem(Item.GetSource_TownSpawn(), ItemID.CanOfWorms, 1); });       
+            if(npc.type == NPCID.Angler) ApplyEffectOnTimePreDay(npc,firstButton, () => { player.QuickSpawnItem(Entity.GetSource_TownSpawn(), ItemID.CanOfWorms, 1); });       
             base.OnChatButtonClicked(npc, firstButton);
         }
 

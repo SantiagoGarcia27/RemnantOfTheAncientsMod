@@ -20,7 +20,7 @@ public class DivineAuraEffect : AccessoryEffect
 
         if (player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] <= 0)
         {
-            GodZoneproj = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<GodZone>(), 0, 0, player.whoAmI);
+            GodZoneproj = Projectile.NewProjectile(Entity.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<GodZone>(), 0, 0, player.whoAmI);
             Main.projectile[GodZoneproj].timeLeft = 1000;
         }
        

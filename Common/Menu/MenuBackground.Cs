@@ -11,7 +11,7 @@ internal class MenuBackground : ModSurfaceBackgroundStyle
 	{
 		for (int i = 0; i < fades.Length; i++)
 		{
-			if (i == base.Slot)
+			if (i == Slot)
 			{
 				fades[i] += transitionSpeed;
 				if (fades[i] > 1f)

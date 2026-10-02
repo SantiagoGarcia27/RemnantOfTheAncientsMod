@@ -116,7 +116,7 @@ namespace RemnantOfTheAncientsMod
             player.fishingSkill += 15;
             player.sonarPotion = true;
             player.cratePotion = true;
-            if (ModContent.GetInstance<ConfigClient>().KitsInvis) player.invis = true;
+            if (GetInstance<ConfigClient>().KitsInvis) player.invis = true;
             player.luck += 0.4f;
 
             player.buffImmune[10] = true;
@@ -156,7 +156,7 @@ namespace RemnantOfTheAncientsMod
         {
             player.maxMinions++;
             player.maxTurrets++;
-            if (ModContent.GetInstance<ConfigClient>().KitsInferno)
+            if (GetInstance<ConfigClient>().KitsInferno)
             {
                 player.GetModPlayer<RemnantPlayer>().SummonerArea = true;
             }

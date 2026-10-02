@@ -828,8 +828,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                 HeadButton.Height.Set(28f, 0f);
                 HeadButton.OnLeftClick += (evt, el) =>
                 {
-                    ReaperSoulsUIState.SelectedNpcType = npc.type;
-                    ReaperSoulsUIState.SelectedMod = mod;
+                    SelectedNpcType = npc.type;
+                    SelectedMod = mod;
                     SoundEngine.PlaySound(SoundID.MenuTick);
                     RefreshDetailPanel();
                 };
@@ -847,7 +847,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             public override void Update(GameTime gameTime)
             {
                 base.Update(gameTime);
-                bool isSelected = ReaperSoulsUIState.SelectedNpcType == Npc.type;
+                bool isSelected = SelectedNpcType == Npc.type;
                 bool hasSoul = ReaperSoulUIExtras.SelectList(Mod, Npc.type);
                 bool isActive = hasSoul && ReaperSoulUIExtras.SelectActiveList(Mod, Npc.type) > 0;
 
@@ -1083,7 +1083,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             protected override void DrawSelf(SpriteBatch spriteBatch)
             {
                 CalculatedStyle innerDimensions = GetInnerDimensions();
-                DragableUIPanel bgPanel = ReaperSoulsUIState.BackgroundPanel;
+                DragableUIPanel bgPanel = BackgroundPanel;
 
                 if (bgPanel != null)
                 {

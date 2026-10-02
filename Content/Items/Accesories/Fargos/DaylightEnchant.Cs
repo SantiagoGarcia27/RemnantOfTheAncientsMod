@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
                 {
 
                     if (player.ownedProjectileCounts[ModContent.ProjectileType<FloatingSunFlowerMinion>()] <= 0)
-                        Sunflowerproj = Projectile.NewProjectileDirect(Projectile.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<FloatingSunFlowerMinion>(), 0, 0, player.whoAmI);
+                        Sunflowerproj = Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<FloatingSunFlowerMinion>(), 0, 0, player.whoAmI);
                 }
                 else
                 {
@@ -72,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
 		[JITWhenModsEnabled("FargowiltasSouls")]
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.AddEffect<DaylightEffect>(base.Item);
+            player.AddEffect<DaylightEffect>(Item);
         }
         public override void SafeModifyTooltips(List<TooltipLine> tooltips)
         {

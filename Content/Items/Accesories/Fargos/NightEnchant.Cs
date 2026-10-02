@@ -64,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddEffect<NightEffect>(base.Item);
+            player.AddEffect<NightEffect>(Item);
         }  
         public override void SafeModifyTooltips(List<TooltipLine> tooltips)
         {

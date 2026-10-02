@@ -349,7 +349,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             Vector2 pos = target.position + new Vector2(100 * 16 *NPC.direction, Main.rand.Next(-10, 10) * 16);
-            int p = Projectile.NewProjectile(Projectile.GetSource_None(),pos, (target.position - pos)*0.005f,ProjectileID.FlowerPetal,NPC.damage/4,0,target.whoAmI);
+            int p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(),pos, (target.position - pos)*0.005f,ProjectileID.FlowerPetal,NPC.damage/4,0,target.whoAmI);
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
             Main.projectile[p].timeLeft *= 2;
@@ -399,7 +399,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
             NPC.ConfigureProxyPlayer(targetable: false, shouldBeDrawn:false);
             if (proxyPlayer.ownedProjectileCounts[ProjectileID.TitaniumStormShard] < 5)
             {
-                var p = Projectile.NewProjectile(Projectile.GetSource_None(), NPC.Center + new Vector2(-1 * 16, -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, proxyPlayer.whoAmI);
+                var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), NPC.Center + new Vector2(-1 * 16, -3 * 16), Vector2.Zero, ProjectileID.TitaniumStormShard, 30, 0, proxyPlayer.whoAmI);
                 Main.projectile[p].hostile = true;
                 Main.projectile[p].friendly = false;
                 Main.projectile[p].penetrate = 2;

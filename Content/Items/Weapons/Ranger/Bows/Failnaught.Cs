@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, type, damage, knockback, player.whoAmI);
+            var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, velocity, type, damage, knockback, player.whoAmI);
             Main.projectile[p].GetGlobalProjectile<RemnantGlobalProjectile>().isHomming = true;
             return false;
         }

@@ -80,7 +80,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
             for (int i = 0; i < 1; i++)
             {
-              var p = Projectile.NewProjectile(Projectile.GetSource_None(), Projectile.position, Vector2.Zero,ModContent.ProjectileType<DamageHitbox>(), Projectile.damage/2, Projectile.knockBack, Projectile.owner);
+              var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Projectile.position, Vector2.Zero,ModContent.ProjectileType<DamageHitbox>(), Projectile.damage/2, Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].width = 30;
                 Main.projectile[p].height = 30;
                 Main.projectile[p].timeLeft = 10;

@@ -191,7 +191,7 @@ class DesertAnnihilator_Attack
 
                 Vector2 spawnPosition = new(auxiliaryModule.CurrentTarget.Center.X + randomX, randomY);
 
-                Projectile.NewProjectile(Projectile.GetSource_None(), spawnPosition, Vector2.Zero, ModContent.ProjectileType<SandnadoMarkClone>(), 0, 0, Main.myPlayer, ai0: markDelay);
+                Projectile.NewProjectile(Entity.GetSource_None(), spawnPosition, Vector2.Zero, ModContent.ProjectileType<SandnadoMarkClone>(), 0, 0, Main.myPlayer, ai0: markDelay);
 
                 pendingTornados.Add((spawnPosition, markDelayTicks));
             }
@@ -200,7 +200,7 @@ class DesertAnnihilator_Attack
             {
                 if (!player.active || player.dead || player.ghost || player.IsProxyPlayer()) continue;
                 Vector2 pos = player.position;
-                Projectile.NewProjectile(Projectile.GetSource_None(), pos, Vector2.Zero, ModContent.ProjectileType<SandnadoMarkClone>(), 0, 0, Main.myPlayer, ai0: markDelay);
+                Projectile.NewProjectile(Entity.GetSource_None(), pos, Vector2.Zero, ModContent.ProjectileType<SandnadoMarkClone>(), 0, 0, Main.myPlayer, ai0: markDelay);
 
                 pendingTornados.Add((pos, markDelayTicks));
             }

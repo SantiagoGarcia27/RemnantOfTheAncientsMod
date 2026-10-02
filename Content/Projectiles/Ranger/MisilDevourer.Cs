@@ -39,9 +39,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
             {
 
                 launchVelocity = launchVelocity.RotatedBy(MathHelper.PiOver4);
-                Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleDevourer>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, targetActual?.whoAmI ?? -1, 1);
+                Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5,1)*16, Main.rand.Next(-1, 5) * 16), launchVelocity, ModContent.ProjectileType<LittleDevourer>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, targetActual?.whoAmI ?? -1, 1);
             }
-            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5, 1) * 16, Main.rand.Next(-1, 5) * 16), launchVelocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ApotheosisWorm"), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+            if (Main.rand.NextFloat() <= (float)5 / 100) Projectile.NewProjectile(Terraria.Entity.InheritSource(Projectile), Projectile.Center + new Vector2(Main.rand.Next(-5, 1) * 16, Main.rand.Next(-1, 5) * 16), launchVelocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ApotheosisWorm"), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
             base.OnKill(timeLeft);
         }
         public override void AI() 

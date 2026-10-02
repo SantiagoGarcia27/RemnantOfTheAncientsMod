@@ -829,14 +829,14 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     for (int i = 0; i < maxProj / 2; i++)
                     {
                         Vector2 velocity = (Main.player[npc.target].Center - npc.Center).RotatedBy((360 / maxProj / 2) * i);
-                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
+                        var p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, velocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
                         Main.projectile[p].timeLeft = 60;
                         Main.projectile[p].ignoreWater = true;
                     }
                     for (int i = 0; i < maxProj / 2; i++)
                     {
                         Vector2 velocity = (Main.player[npc.target].Center - npc.Center).RotatedBy((-360 / maxProj / 2) * i);
-                        var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, velocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
+                        var p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, velocity, CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "MushBomb"), 10, 10, Main.myPlayer);
                         Main.projectile[p].timeLeft = 60;
                         Main.projectile[p].ignoreWater = true;
                     }
@@ -860,10 +860,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (attackCounter++ >= 300)
                 {
-                    var p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    var p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, new Vector2(5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
                     Main.projectile[p].hostile = true;
                     Main.projectile[p].friendly = false;
-                    p = Projectile.NewProjectile(Projectile.GetSource_None(), npc.Center, new Vector2(-5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, new Vector2(-5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
                     Main.projectile[p].hostile = true;
                     Main.projectile[p].friendly = false;
                     attackCounter = 0;
@@ -1078,7 +1078,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     {
                         SecondUniqueToggledFlag = true;
                         for (int i = 0; i < 10; i++)
-                            NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 31), (int)npc.position.Y + Main.rand.Next(-100, 101), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                            NPC.NewNPC(Entity.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 31), (int)npc.position.Y + Main.rand.Next(-100, 101), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
                     }
                 }
                 else
@@ -1086,7 +1086,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                     if (npc.life <= npc.lifeMax / 2)
                     {
                         UniqueToggledFlag = true;
-                        NPC.NewNPC(NPC.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 31), (int)npc.position.Y + Main.rand.Next(-100, 101), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
+                        NPC.NewNPC(Entity.GetSource_None(), (int)npc.position.X + Main.rand.Next(-30, 31), (int)npc.position.Y + Main.rand.Next(-100, 101), CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PolterPhantom"));
                     }
                 }
             }

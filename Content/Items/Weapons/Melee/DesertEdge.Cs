@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.rare = ItemRarityID.Green;
             if (RemnantOfTheAncientsMod.TerrariaOverhaul != null)
             {
-                if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<DesertS>();
+                if (GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<DesertS>();
             }
             else Item.shoot = ProjectileType<DesertS>();
             Item.shootSpeed = 10f;
@@ -44,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<DesertEdgeSwordSwingProgectile>(), damage, knockback, Main.myPlayer, 0);
+            Projectile.NewProjectile(source, position, velocity, ProjectileType<DesertEdgeSwordSwingProgectile>(), damage, knockback, Main.myPlayer, 0);
             float numberProjectiles = 2;
             float rotation = MathHelper.ToRadians(10);
           
@@ -63,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         }
         public override bool CanUseItem(Player player)
         {
-            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+            if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
             {
                 float numberProjectiles = 2;
                 float rotation = MathHelper.ToRadians(10);
@@ -75,9 +75,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                    Projectile.NewProjectile(Projectile.GetSource_None(), position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), Item.damage / 2, Item.knockBack, player.whoAmI);
+                    Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, perturbedSpeed * 2, ProjectileType<DesertTyphoonFriendly>(), Item.damage / 2, Item.knockBack, player.whoAmI);
                 }
-                Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileType<DesertS>(), Item.damage, 1, player.whoAmI);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, velocity, ProjectileType<DesertS>(), Item.damage, 1, player.whoAmI);
             }
             return base.CanUseItem(player);
         }
@@ -93,7 +93,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         {
             CreateRecipe()
              .AddIngredient(ItemID.PlatinumBroadsword, 1)
-             .AddIngredient(ModContent.ItemType<Sand_escense>(), 5)
+             .AddIngredient(ItemType<Sand_escense>(), 5)
              .AddTile(TileID.Anvils)
              .Register();
         }

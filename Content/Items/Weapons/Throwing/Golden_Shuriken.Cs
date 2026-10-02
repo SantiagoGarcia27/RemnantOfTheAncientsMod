@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
         {
             if (player.Calamity().StealthStrikeAvailable())
             {
-                var p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, type, damage, knockback);
+                var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, velocity, type, damage, knockback);
                 Main.projectile[p].penetrate *= 2; 
             }
         }

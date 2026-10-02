@@ -131,7 +131,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player owner = Main.player[Projectile.owner];
-            int proj = Projectile.NewProjectile(Projectile.GetSource_None(), target.Center, (new Vector2(target.direction, 0f) * new Vector2(0.5f, 0.5f)).RotatedByRandom(90), ProjectileID.LightsBane, 10, 0, owner.whoAmI, Main.rand.NextFloat(-90.6f, 90.6f), owner.itemAnimationMax, 1f);
+            int proj = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), target.Center, (new Vector2(target.direction, 0f) * new Vector2(0.5f, 0.5f)).RotatedByRandom(90), ProjectileID.LightsBane, 10, 0, owner.whoAmI, Main.rand.NextFloat(-90.6f, 90.6f), owner.itemAnimationMax, 1f);
             Main.projectile[proj].ai[0] = Main.rand.NextFloat(0.5f, 1.6f);
             Main.projectile[proj].rotation = Main.rand.NextFloat(-90.6f, 90.6f);
             base.OnHitNPC(target, hit, damageDone);
@@ -139,7 +139,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             Player owner = Main.player[Projectile.owner];
-            int proj = Projectile.NewProjectile(Projectile.GetSource_None(), target.MountedCenter, (new Vector2(target.direction, 0f) * new Vector2(0.5f, 0.5f)).RotatedByRandom(90), ProjectileID.LightsBane, 10, 0, target.whoAmI, Main.rand.NextFloat(-90.6f, 90.6f), target.itemAnimationMax, 1f);
+            int proj = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), target.MountedCenter, (new Vector2(target.direction, 0f) * new Vector2(0.5f, 0.5f)).RotatedByRandom(90), ProjectileID.LightsBane, 10, 0, target.whoAmI, Main.rand.NextFloat(-90.6f, 90.6f), target.itemAnimationMax, 1f);
             Main.projectile[proj].ai[0] = Main.rand.NextFloat(0.5f, 1.6f);
             Main.projectile[proj].rotation = Main.rand.NextFloat(-90.6f, 90.6f);
             base.OnHitPlayer(target, info);

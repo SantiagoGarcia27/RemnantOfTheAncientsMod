@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddEffect<TuxoniteEffect>(base.Item);
+            player.AddEffect<TuxoniteEffect>(Item);
         }
 
         public override void AddRecipes()

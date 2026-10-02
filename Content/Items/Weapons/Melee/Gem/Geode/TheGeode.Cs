@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int colorID = Utils1.GetColorID(Color.Blue);
-            int proj = Projectile.NewProjectile(Projectile.GetSource_None(), player.position, velocity, ModContent.ProjectileType<SpiritGemSword>(), damage/4, knockBack, Main.myPlayer, 1, colorID);
+            int proj = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.position, velocity, ModContent.ProjectileType<SpiritGemSword>(), damage/4, knockBack, Main.myPlayer, 1, colorID);
             Main.projectile[proj].scale *= Reaper.ReaperMode? 4.75f : 2.25f;
             Main.projectile[proj].DamageType = DamageClass.Melee;
             Main.projectile[proj].tileCollide = true;
@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
             target.AddBuff(BuffID.OnFire, 240);
             if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), target.position - new Vector2(0, 2*16) + new Vector2(1 *16, 0), new Vector2(0f, 0f), ProjectileID.DD2ExplosiveTrapT2Explosion, damage, 0);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), target.position - new Vector2(0, 2*16) + new Vector2(1 *16, 0), new Vector2(0f, 0f), ProjectileID.DD2ExplosiveTrapT2Explosion, damage, 0);
             }
         }
     }
@@ -174,7 +174,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem.Geode
                 Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
                 Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
 
-                int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockBack, Main.myPlayer, 0, -1);
+                int proj = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damage / 3, knockBack, Main.myPlayer, 0, -1);
                 float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
                 Main.projectile[proj].rotation = angle;
             }

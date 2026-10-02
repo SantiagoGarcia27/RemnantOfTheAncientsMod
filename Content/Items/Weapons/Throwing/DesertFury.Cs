@@ -75,9 +75,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Throwing
                 for (int i = 0; i < numberProjectiles; i++)
                 {
                     Vector2 perturbedSpeed = velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                    Projectile.NewProjectile(Projectile.GetSource_None(), position, perturbedSpeed * 2, Item.shoot, damage / 2, knockback, player.whoAmI);
+                    Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, perturbedSpeed * 2, Item.shoot, damage / 2, knockback, player.whoAmI);
                 }
-                Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, type, damage, 1, player.whoAmI);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, velocity, type, damage, 1, player.whoAmI);
             }
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

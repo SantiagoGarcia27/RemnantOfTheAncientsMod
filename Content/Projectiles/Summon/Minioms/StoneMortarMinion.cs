@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
         private void Shoot()
         {
             Vector2 velocity = CalculateMortarVelocity(Projectile.Center, target, 12f);
-            int i = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, velocity, ModContent.ProjectileType<GemstoneCrusherProj_Ruby>(), Projectile.damage, Projectile.knockBack);
+            int i = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.position, velocity, ProjectileType<GemstoneCrusherProj_Ruby>(), Projectile.damage, Projectile.knockBack);
             Main.projectile[i].hostile = false;
             Main.projectile[i].friendly = true;
             Main.projectile[i].penetrate = -1;
@@ -146,7 +146,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             String ruta = type.FullName.Replace('.', '/');
             string Texture = $"{ruta}_Base";
 
-            Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+            Texture2D texture = Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
 
             Vector2 pos = new(
                 Projectile.position.X - Main.screenPosition.X + Projectile.width * 0.5f,

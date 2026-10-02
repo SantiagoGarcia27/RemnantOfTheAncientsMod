@@ -52,8 +52,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
                 Item.useAnimation = 10;//10
                 Item.useTime = Item.useAnimation;
                 //Item.noUseGraphic = true;
-                Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, velocity, ProjectileID.LastPrism, damage, knockback);
-                Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, velocity, ProjectileID.LaserMachinegun, damage, knockback);
+                Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), position, velocity, ProjectileID.LastPrism, damage, knockback);
+                Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), position, velocity, ProjectileID.LaserMachinegun, damage, knockback);
                 return false;
             }
             else
@@ -63,11 +63,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
                 Item.useTime = Item.useAnimation;
                 if (Main.rand.NextBool(10))
                 {
-                    Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<NebulaTyphoon_Strong>(), (int)(damage / 2f), knockback);
+                    Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), position, velocity, ModContent.ProjectileType<NebulaTyphoon_Strong>(), (int)(damage / 2f), knockback);
                 }
                 else
                 {
-                    Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, velocity, type, damage / 4, knockback);
+                    Projectile.NewProjectileDirect(Terraria.Entity.GetSource_None(), position, velocity, type, damage / 4, knockback);
                 }
                 if (player.ownedProjectileCounts[ModContent.ProjectileType<HorizonHeldProj>()] <= 0)
                 {

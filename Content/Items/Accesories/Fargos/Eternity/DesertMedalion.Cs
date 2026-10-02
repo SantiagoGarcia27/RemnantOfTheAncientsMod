@@ -67,7 +67,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.AddEffect<DesertMedalionEffect>(base.Item);
+            player.AddEffect<DesertMedalionEffect>(Item);
            // player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
         }
         //public override void ModifyTooltips(List<TooltipLine> tooltips)

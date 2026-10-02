@@ -201,7 +201,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
                 {
                     if (player.ownedProjectileCounts[ModContent.ProjectileType<NanoDrone>()] <= 2)
                     {
-                        Projectile.NewProjectile(Projectile.GetSource_None(), player.position, new Vector2(0, 2), ModContent.ProjectileType<NanoDrone>(), projectile.damage, 1, projectile.owner);
+                        Projectile.NewProjectile(Entity.GetSource_None(), player.position, new Vector2(0, 2), ModContent.ProjectileType<NanoDrone>(), projectile.damage, 1, projectile.owner);
                         projectile.Kill();
                     }
                 }
@@ -216,7 +216,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
                             double angle = MathHelper.ToRadians(i);
                             Vector2 position = target.Center + new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 50;
                             Vector2 direction = -projectile.velocity.RotatedByRandom(angle);
-                            Projectile a = Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, direction, ProjectileID.CopperCoin, projectile.damage / MaxProj, 1);
+                            Projectile a = Projectile.NewProjectileDirect(Entity.GetSource_None(), position, direction, ProjectileID.CopperCoin, projectile.damage / MaxProj, 1);
                             a.timeLeft = 10;
                         }
                     }
@@ -243,7 +243,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
                             double angle = MathHelper.ToRadians(i);
                             Vector2 position = target.Center + new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * 50;
                             Vector2 direction = -projectile.velocity.RotatedByRandom(angle);
-                            Projectile a = Projectile.NewProjectileDirect(Projectile.GetSource_None(), position, direction, ProjectileID.AmberBolt, projectile.damage / (MaxProj /2), 1);
+                            Projectile a = Projectile.NewProjectileDirect(Entity.GetSource_None(), position, direction, ProjectileID.AmberBolt, projectile.damage / (MaxProj /2), 1);
                             a.timeLeft = 10;
                         }
                     }

@@ -8,8 +8,14 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
-    public class InfernalTyrantAuxiliaryClass
+    public class InfernalTyrant_AuxiliaryModule
     {
+        public Player currentTarget { get; set; }
+        public NPC npc { get; set; }
+        public int attackCounter { get; set; }
+        public bool IsPhase2 => MathUtils.GetPorcentage(npc.life, npc.lifeMax) < 50f;
+
+        public bool IsEnraged => MathUtils.GetPorcentage(npc.life, npc.lifeMax) < 25f;
 
         [JITWhenModsEnabled("CalamityMod")]
         public static void CalamityLifeScale(NPC npc, int life)

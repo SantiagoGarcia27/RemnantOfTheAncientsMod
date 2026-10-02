@@ -74,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Whips
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             Projectile.damage = (int)(damageDone * 0.8f);
             target.AddBuff(ModContent.BuffType<TerraWhipDebuff>(), 240);
-            Projectile.NewProjectile(Projectile.GetSource_None(), target.position + new Vector2(0,-10 * 16), new Vector2(0,10), ModContent.ProjectileType<TerraExplosion>(), damageDone / 4, 0, Main.myPlayer);
+            Projectile.NewProjectile(Terraria.Entity.GetSource_None(), target.position + new Vector2(0,-10 * 16), new Vector2(0,10), ModContent.ProjectileType<TerraExplosion>(), damageDone / 4, 0, Main.myPlayer);
         }
 
         private void DrawLine(List<Vector2> list)

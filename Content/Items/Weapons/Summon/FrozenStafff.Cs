@@ -61,8 +61,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
         public override void AddRecipes()
         {
             CreateRecipe()
-             .AddIngredient(ModContent.ItemType<ForestStaff>(), 1)
-             .AddIngredient(ModContent.ItemType<Ice_escense>(), 5)
+             .AddIngredient(ItemType<ForestStaff>(), 1)
+             .AddIngredient(ItemType<Ice_escense>(), 5)
              .AddTile(TileID.Anvils)
              .Register();
         }

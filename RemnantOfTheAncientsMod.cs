@@ -114,7 +114,7 @@ namespace RemnantOfTheAncientsMod
 
         public override void Unload()
         {
-            RemnantOfTheAncientsMod.BossChecklist = null;
+            BossChecklist = null;
             AppDomain.CurrentDomain.FirstChanceException -= OnFirstChanceException;
             Array.Resize(ref TextureAssets.GlowMask, GlowMaskID.Count);
         }

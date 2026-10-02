@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             target.AddBuff(BuffID.Poisoned, 40);
             if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
             {
-                Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.DaybreakExplosion, damageDone / 10, 0);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.DaybreakExplosion, damageDone / 10, 0);
             }
         }
         public override void MeleeEffects(Player player, Rectangle hitbox)

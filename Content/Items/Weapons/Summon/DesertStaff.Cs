@@ -55,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
         {
             CreateRecipe()
              .AddIngredient(ItemID.SlimeStaff, 1)
-             .AddIngredient(ModContent.ItemType<Sand_escense>(), 5)
+             .AddIngredient(ItemType<Sand_escense>(), 5)
              .AddTile(TileID.Anvils)
              .Register();
         }

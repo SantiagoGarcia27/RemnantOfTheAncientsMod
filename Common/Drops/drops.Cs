@@ -320,11 +320,11 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         break;
                     case NPCID.SkeletronPrime:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.SkeletronPrimeReaperSoulRule(), ItemType<SkeletronPrimeEnergyCell>()));
-                        npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<MechanicalProsthesis>()));
+                        npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ItemType<MechanicalProsthesis>()));
                         break;
                     case NPCID.TheDestroyer:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DestroyerReaperSoulRule(), ItemType<DestroyerEnergyCell>()));
-                        npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<MechanicalPersonalLifeSafeSystem>()));
+                        npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ItemType<MechanicalPersonalLifeSafeSystem>()));
                         break;
                     case NPCID.Plantera:
                         npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.PlanteraReaperSoulRule(), ItemType<PlanteraSoul>()));
@@ -398,7 +398,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 {
                     if (Main.rand.NextBool(50))
                     {
-                        Item.NewItem(Item.GetSource_None(), npc.position, npc.Size, ItemType<Terracoin>(), 1, false, 0, false, false);
+                        Item.NewItem(Entity.GetSource_None(), npc.position, npc.Size, ItemType<Terracoin>(), 1, false, 0, false, false);
                     }   
                 }
                 else
@@ -432,7 +432,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                     }      
                     if (condition)
                     {
-                        Item.NewItem(Item.GetSource_None(), npc.position, npc.Size, ItemType<Terracoin>(), 1, false, 0, false, false);
+                        Item.NewItem(Entity.GetSource_None(), npc.position, npc.Size, ItemType<Terracoin>(), 1, false, 0, false, false);
                     }
                 }
             }

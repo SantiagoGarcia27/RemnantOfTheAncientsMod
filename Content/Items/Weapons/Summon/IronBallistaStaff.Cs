@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ModContent.ItemType<ReinforcedIronBar>(),5)
+            .AddIngredient(ItemType<ReinforcedIronBar>(),5)
             .AddIngredient(ItemID.Minecart)
             .AddTile(TileID.Anvils)
             .Register();

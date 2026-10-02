@@ -40,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-            player.AddEffect<SandHeraldEffect>(base.Item);
+            player.AddEffect<SandHeraldEffect>(Item);
         }
 
 		public override void AddRecipes()
@@ -77,10 +77,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
                 {
                     if (counter++ >= counterMax)
                     {
-                        int proj = Projectile.NewProjectile(Projectile.GetSource_None(), CactusBoulderproj.Center, new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), ProjectileID.RollingCactusSpike, cactusDamage / 4, 0, player.whoAmI);
+                        int proj = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), CactusBoulderproj.Center, new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), ProjectileID.RollingCactusSpike, cactusDamage / 4, 0, player.whoAmI);
                         Main.projectile[proj].hostile = false;
                         Main.projectile[proj].friendly = true;
-                        int proj2 = Projectile.NewProjectile(Projectile.GetSource_None(), CactusBoulderproj.Center, new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), ProjectileID.RollingCactusSpike, cactusDamage / 4, 0, player.whoAmI);
+                        int proj2 = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), CactusBoulderproj.Center, new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5)), ProjectileID.RollingCactusSpike, cactusDamage / 4, 0, player.whoAmI);
                         Main.projectile[proj2].hostile = false;
                         Main.projectile[proj2].friendly = true;
                         counter = 0;

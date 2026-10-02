@@ -54,7 +54,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                     Vector2 projectilePos = target.Center + radius * new Vector2((float)Math.Cos(spacing * i), (float)Math.Sin(spacing * i));
                     Vector2 projectileVel = 10f * (target.Center - projectilePos).SafeNormalize(Vector2.Zero);
 
-                    int proj = Projectile.NewProjectile(Projectile.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 3, hit.Knockback, Main.myPlayer, 2, 2);
+                    int proj = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), projectilePos, projectileVel, ModContent.ProjectileType<SpiritGemSword>(), damageDone / 3, hit.Knockback, Main.myPlayer, 2, 2);
                     float angle = (float)Math.Atan2(projectileVel.Y, projectileVel.X);
                     Main.projectile[proj].rotation = angle;
                 }

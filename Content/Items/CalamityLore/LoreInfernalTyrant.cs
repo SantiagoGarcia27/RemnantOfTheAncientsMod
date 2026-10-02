@@ -15,10 +15,10 @@ public class LoreInfernalTyrant : LoreItem
 
 	public override void SetDefaults()
 	{
-		base.Item.width = 20;
-		base.Item.height = 20;
-		base.Item.rare = ItemRarityID.Orange;
-		base.Item.consumable = false;
+        Item.width = 20;
+        Item.height = 20;
+        Item.rare = ItemRarityID.Orange;
+        Item.consumable = false;
 	}
 
 	public override void AddRecipes()

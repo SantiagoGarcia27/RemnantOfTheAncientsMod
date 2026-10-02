@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage.Lazer
 			}
 			Vector2 velocity = new Vector2(0, 20);
 			velocity.Normalize();
-            Projectile p = Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.position, velocity, ModContent.ProjectileType<Judment_Lasser>(), Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[1]);
+            Projectile p = Projectile.NewProjectileDirect(Projectile.GetSource_FromAI(), Projectile.position, velocity, ProjectileType<Judment_Lasser>(), Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[1]);
 			p.scale = Projectile.scale;
 			Projectile.velocity = Vector2.Zero;
         }

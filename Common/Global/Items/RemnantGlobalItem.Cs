@@ -6,7 +6,6 @@ using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
@@ -105,23 +104,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					if (item.DamageType == DamageClass.Magic)
 					{
-						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity * 2, ProjectileID.SandnadoFriendly, damage / 2, knockback, player.whoAmI);
+						int p = Projectile.NewProjectile(Entity.GetSource_None(), position, velocity * 2, ProjectileID.SandnadoFriendly, damage / 2, knockback, player.whoAmI);
 						Main.projectile[p].timeLeft = 50;
 					}
 					if (item.DamageType == DamageClass.Melee)
 					{
-						Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
+						Projectile.NewProjectile(Entity.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
 					}
 					if (item.DamageType == DamageClass.Ranged)
 					{
-						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ProjectileID.RollingCactusSpike, damage / 2, knockback, player.whoAmI);
+						int p = Projectile.NewProjectile(Entity.GetSource_None(), position, velocity, ProjectileID.RollingCactusSpike, damage / 2, knockback, player.whoAmI);
 						Main.projectile[p].friendly = true;
 						Main.projectile[p].hostile = false;
 						Main.projectile[p].velocity *= 2;
 					}
 					if (item.DamageType == DamageClass.Throwing)
 					{
-						int p = Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
+						int p = Projectile.NewProjectile(Entity.GetSource_None(), position, velocity, ModContent.ProjectileType<DesertTyphoonFriendly>(), damage / 2, knockback, player.whoAmI);
 						Main.projectile[p].friendly = true;
 						Main.projectile[p].hostile = false;
 					}
@@ -137,7 +136,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 					{
 						if (Main.rand.NextBool(100 / proj.Chance))
 						{
-							Projectile.NewProjectile(Projectile.GetSource_None(), position, velocity, proj.ProjectileType, damage, knockback, player.whoAmI);
+							Projectile.NewProjectile(Entity.GetSource_None(), position, velocity, proj.ProjectileType, damage, knockback, player.whoAmI);
 						}
 					}
 				}
@@ -283,7 +282,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				if (player.ownedProjectileCounts[Shootproj] <= 0)
 				{
 					player.AddBuff(BuffID.LeafCrystal, 200, false);
-					Projectile.NewProjectile(Projectile.GetSource_None(), player.position + new Vector2(0, -2 * 16f), Vector2.Zero, Shootproj, 15, 0, Main.myPlayer, 1);
+					Projectile.NewProjectile(Entity.GetSource_None(), player.position + new Vector2(0, -2 * 16f), Vector2.Zero, Shootproj, 15, 0, Main.myPlayer, 1);
 				}
 			}
 

@@ -63,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             target.AddBuff(BuffID.Poisoned, 300);
 
             int x = Main.rand.Next(0, 3);
-            int p = Projectile.NewProjectile(Projectile.GetSource_None(), target.position - new Vector2(x * 16, 50 * 16), new Vector2(0, 5), ProjectileID.BoulderStaffOfEarth, damageDone, 1, player.whoAmI);
+            int p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), target.position - new Vector2(x * 16, 50 * 16), new Vector2(0, 5), ProjectileID.BoulderStaffOfEarth, damageDone, 1, player.whoAmI);
             Main.projectile[p].timeLeft = 300;
 
 
@@ -94,7 +94,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 heading.Normalize();
                 //heading *= velocity.Length();
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
-                Projectile.NewProjectile(Projectile.GetSource_None(), position, heading, ProjectileID.BoulderStaffOfEarth, damageDone * 2,hit.Knockback, player.whoAmI, 0f, ceilingLimit);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), position, heading, ProjectileID.BoulderStaffOfEarth, damageDone * 2,hit.Knockback, player.whoAmI, 0f, ceilingLimit);
             }
         }
         public override void MeleeEffects(Player player, Rectangle hitbox) => Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);

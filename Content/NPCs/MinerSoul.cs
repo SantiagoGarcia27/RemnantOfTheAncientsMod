@@ -166,7 +166,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             var npcShop = new NPCShop(Type, ShopName);
 
             npcShop.Add(new Item(ItemType<ironstonepickaxe>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 1, 0, 0) })
-            .Add(new Item(ModContent.ItemType<SpectralLantern>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 5, 20, 0) }, Condition.DownedEyeOfCthulhu)
+            .Add(new Item(ItemType<SpectralLantern>()) { shopCustomPrice = Utils1.FormatMoney(0, 0, 5, 20, 0) }, Condition.DownedEyeOfCthulhu)
             .Add(new Item(ItemID.Torch) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 30, 0) })
             .Add(new Item(ItemID.Wood) { shopCustomPrice = Utils1.FormatMoney(0, 0, 0, 20, 0) })
             .Add(new Item(ItemID.DirtBlock) { shopCustomPrice = Item.buyPrice(0, 0, 0, 2) })

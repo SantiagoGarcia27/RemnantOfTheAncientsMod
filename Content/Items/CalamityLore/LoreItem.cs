@@ -17,7 +17,7 @@ public abstract class LoreItem : ModItem, ILocalizedModType, IModType
 
 	public override void SetStaticDefaults()
 	{
-		ItemID.Sets.ItemNoGravity[base.Item.type] = true;
+		ItemID.Sets.ItemNoGravity[Item.type] = true;
 	}
 
 	public override bool CanUseItem(Player player)

@@ -26,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Projectiles.Melee
         {
             if (RemnantOfTheAncientsMod.ParticleMeter(4) != 0)
             {
-                var p = Projectile.NewProjectile(Projectile.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, (int)(Projectile.damage * 0.5f), 0);
+                var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), target.position, new Vector2(0f, 0f), ProjectileID.Volcano, (int)(Projectile.damage * 0.5f), 0);
                 Main.projectile[p].usesLocalNPCImmunity = true;
                 Main.projectile[p].localNPCHitCooldown = 5;//23
             }

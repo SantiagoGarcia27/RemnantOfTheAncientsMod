@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Trower
 			// Declaring a constant in-line is fine as it will be optimized by the compiler
 			// It is however recommended to define it outside method scope if used elswhere as well
 			// They are useful to make numbers that don't change more descriptive
-			RemnantOfTheAncientsMod RemnantOfTheAncientsMod = ModContent.GetInstance<RemnantOfTheAncientsMod>();
+			RemnantOfTheAncientsMod RemnantOfTheAncientsMod = GetInstance<RemnantOfTheAncientsMod>();
 			int NUM_DUSTS = RemnantOfTheAncientsMod.ParticleMeter(20);
 			for (int i = 0; i < NUM_DUSTS; i++)
 			{

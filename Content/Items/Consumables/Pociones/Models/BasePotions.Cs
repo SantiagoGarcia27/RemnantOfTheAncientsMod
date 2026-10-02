@@ -18,7 +18,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         public override void SetStaticDefaults() 
         {
             Main.RegisterItemAnimation(Item.type, Main.itemAnimations[ItemBase.type]);
-            ItemID.Sets.AnimatesAsSoul[base.Type] = ItemID.Sets.AnimatesAsSoul[ItemBase.type];
+            ItemID.Sets.AnimatesAsSoul[Type] = ItemID.Sets.AnimatesAsSoul[ItemBase.type];
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;       
         }  
         public override void SetDefaults()

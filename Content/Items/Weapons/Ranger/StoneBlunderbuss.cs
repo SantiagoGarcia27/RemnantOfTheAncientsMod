@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         public override void HoldItem(Player player)
 		{ 
             if (player.ownedProjectileCounts[ModContent.ProjectileType<StoneBlunderbusHeldProjectile>()] < 1)
-                Projectile.NewProjectile(Projectile.GetSource_None(), player.Center + new Vector2(16 * player.direction, 0), Vector2.Zero, ModContent.ProjectileType<StoneBlunderbusHeldProjectile>(), 0, Item.knockBack, player.whoAmI);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center + new Vector2(16 * player.direction, 0), Vector2.Zero, ModContent.ProjectileType<StoneBlunderbusHeldProjectile>(), 0, Item.knockBack, player.whoAmI);
             base.HoldItem(player);
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
