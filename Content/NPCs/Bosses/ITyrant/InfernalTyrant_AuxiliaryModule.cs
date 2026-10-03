@@ -2,6 +2,7 @@
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public Player currentTarget { get; set; }
         public NPC npc { get; set; }
         public int attackCounter { get; set; }
+        public int attackCounterMaxValue { get; set; } = 800;
         public bool IsPhase2 => MathUtils.GetPorcentage(npc.life, npc.lifeMax) < 50f;
 
         public bool IsEnraged => MathUtils.GetPorcentage(npc.life, npc.lifeMax) < 25f;
@@ -82,7 +84,31 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
             return allPlayersDead;
         }
-       
+
+        public static int MaxSegmentCount(int MinSegmentLength = 15)
+        {
+            int scale = 0;
+            if (DificultyUtils.MasochistMode) scale = 30;
+            else if (DificultyUtils.EternityMode) scale = 25;
+            else if (DificultyUtils.InfernumMode) scale = 25;
+            else if (DificultyUtils.Death) scale = 20;
+            else if (DificultyUtils.Revengeance) scale = 10;
+            else if (Main.masterMode) scale = 5;
+            else if (Main.expertMode) scale = 2;
+
+            return MinSegmentLength + scale;
+        }
+
+        public void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(attackCounter);  
+        }
+
+        public void ReceiveExtraAI(BinaryReader reader)
+        {
+            attackCounter = reader.ReadInt32();
+        }
+
     }
     public class GenericVariables
     {

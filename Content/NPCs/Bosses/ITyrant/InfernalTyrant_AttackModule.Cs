@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -15,6 +15,7 @@ class InfernalTyrant_AttackModule
 {
     internal int shootTimeline = -1;
     internal int shootTimelineMax = -1;
+    private bool SpawnClon = false;
 
     internal NPC npc => auxModule.npc;
 
@@ -183,5 +184,70 @@ class InfernalTyrant_AttackModule
         NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, npcType);
     }
 
+    internal void CalamityAttacks(Player target)
+    {
+        if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
+        {
+            //SetDefautsCalamity();
+            GenericVariables.IsSpawned = true;
+        }
+        else
+        {
+            if (!GenericVariables.IsSpawned)
+            {
+                GenericVariables.SpawnCounter++;
+                RemnantGlobalNPC.SetNpcDamageReductionCalamity(npc, 1f, 1f, 1f, 1f, 1f);
+            }
+        }
 
+        if (DificultyUtils.InfernumMode)
+        {
+            if (auxModule.attackCounter % 4 == 0)
+            {
+                for (int i = -3; i <= 3; i++)
+                {
+                    Vector2 FlameVelocity = npc.velocity * 1.25f;//1.25
+                    FlameVelocity = FlameVelocity.RotatedBy(i * 20);
+                    int projectile = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Math.Sign(i));
+                    Main.projectile[projectile].timeLeft = 30;
+                    Main.projectile[projectile].tileCollide = false;
+                    Main.projectile[projectile].friendly = false;
+                    Main.projectile[projectile].hostile = true;
+                    Main.projectile[projectile].usesLocalNPCImmunity = true;
+                }
+            }
+        }
+    }
+
+    internal void FargosAttacks(Player target)
+    {
+        if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode)
+        {
+            if (npc.boss && !SpawnClon)
+            {
+                if (MathUtils.GetPorcentage(npc.life, npc.lifeMax) < (DificultyUtils.MasochistMode ? 70f : 50f))
+                {
+                    var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<InfernalTyrantHead>());
+                    Main.npc[a].boss = false;
+                    Main.npc[a].lifeMax /= 8;
+                    Main.npc[a].life /= 8;
+                    Main.npc[a].scale = 0.5f;
+                    Main.npc[a].damage /= 2;
+
+                    SpawnClon = true;
+                }
+            }
+        }
+    }
+
+
+    internal void SendExtraAI(BinaryWriter writer)
+    {
+        writer.Write(SpawnClon);
+    }
+
+    internal void ReceiveExtraAI(BinaryReader reader)
+    {
+        SpawnClon = reader.ReadBoolean();
+    }
 }

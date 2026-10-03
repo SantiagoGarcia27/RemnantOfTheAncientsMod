@@ -1,0 +1,39 @@
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+
+namespace RemnantOfTheAncientsMod.Content.Tiles.Music_Box
+{
+    public abstract class MusicBoxTileBase : ModTile
+    {
+        public virtual int MusicBoxItemType { get; }
+        public virtual Color Color { get; }
+
+        public override void SetStaticDefaults()
+        {
+            Main.tileFrameImportant[Type] = true;
+            Main.tileObsidianKill[Type] = true;
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+            TileObjectData.newTile.Origin = new Point16(0, 1);
+            TileObjectData.newTile.LavaDeath = false;
+            TileObjectData.newTile.DrawYOffset = 2;
+            TileObjectData.addTile(Type);
+            LocalizedText name = CreateMapEntryName();
+
+            VanillaFallbackOnModDeletion = TileID.MusicBoxes;
+
+            AddMapEntry(Color, name);
+        }
+        public override void MouseOver(int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+            player.noThrow = 2;
+            player.cursorItemIconEnabled = true;
+            player.cursorItemIconID = MusicBoxItemType;
+        }
+    }
+}

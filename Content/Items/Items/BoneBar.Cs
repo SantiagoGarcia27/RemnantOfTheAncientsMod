@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Content.Tiles;
+using RemnantOfTheAncientsMod.Content.Tiles.Bars;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;

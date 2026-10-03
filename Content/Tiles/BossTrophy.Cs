@@ -19,7 +19,9 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 			TileObjectData.newTile.StyleWrapLimit = 36;
 			TileObjectData.addTile(Type);
 			LocalizedText name = CreateMapEntryName();
-			AddMapEntry(new Color(120, 85, 60), name);
-		}
+			AddMapEntry(new Color(121, 85, 60), name);
+
+            VanillaFallbackOnModDeletion = TileID.ItemFrame;
+        }
 	}
 }

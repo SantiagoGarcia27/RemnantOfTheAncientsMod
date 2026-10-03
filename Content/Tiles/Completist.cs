@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -17,15 +18,9 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.addTile(Type);
 			LocalizedText name = CreateMapEntryName();
-			//name.SetDefault("Table");
-			AddMapEntry(new Color(144, 148, 144), name);
-			//dustType = 11;
-			//disableSmartCursor = true;
-		}
 
-		//public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		//{
-		//	Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ItemType<The_Completist>());
-		//}
+			AddMapEntry(Color.Gold, name);
+            VanillaFallbackOnModDeletion = TileID.GolfTrophies;
+        }
 	}
 }

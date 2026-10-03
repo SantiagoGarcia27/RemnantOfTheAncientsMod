@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Tiles;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

@@ -20,14 +20,14 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
             Main.tileSolid[Type] = false;
             Main.tileLavaDeath[Type] = true;
             Main.tileNoSunLight[Type] = true;
-            TileID.Sets.HousingWalls[Type] = true; // needed for non-solid blocks to count as walls
+            TileID.Sets.HousingWalls[Type] = true;
             TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
 
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
             
-            AdjTiles = new int[] { TileID.OpenDoor };
+            AdjTiles = [TileID.OpenDoor];
             TileID.Sets.CloseDoorID[Type] = ModContent.TileType<TuxoniteDoorClosed>();
 
             // Names
@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, 1, 0);
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.LavaDeath = true;
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.StyleHorizontal = true;
@@ -74,6 +74,8 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
             TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceLeft;
             TileObjectData.addAlternate(1);
             TileObjectData.addTile(Type);
+
+            VanillaFallbackOnModDeletion = TileID.OpenDoor;
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
@@ -85,11 +87,6 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
         {
             num = 1;
         }
-
-        //public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        //{
-        //    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<TuxoniteDoor>());
-        //}
 
         public override void MouseOver(int i, int j)
         {

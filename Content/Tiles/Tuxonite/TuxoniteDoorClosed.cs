@@ -11,7 +11,6 @@ using Terraria.ObjectData;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 {
-    //TODO: Smart Cursor Outlines and tModLoader support
     public class TuxoniteDoorClosed : ModTile
     {
         public override void SetStaticDefaults()
@@ -30,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 
             
-            AdjTiles = new int[] { TileID.ClosedDoor };
+            AdjTiles = [TileID.ClosedDoor];
             TileID.Sets.OpenDoorID[Type] = ModContent.TileType<TuxoniteDoorOpen>();
 
             // Names
@@ -45,7 +44,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.LavaDeath = true;
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
+            TileObjectData.newTile.CoordinateHeights = [16, 16, 16];
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
@@ -55,6 +54,8 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
             TileObjectData.newAlternate.Origin = new Point16(0, 2);
             TileObjectData.addAlternate(0);
             TileObjectData.addTile(Type);
+
+            VanillaFallbackOnModDeletion = TileID.ClosedDoor;
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
@@ -66,11 +67,6 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
         {
             num = 1;
         }
-
-        //public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        //{
-        //    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<TuxoniteDoor>());
-        //}
 
         public override void MouseOver(int i, int j)
         {

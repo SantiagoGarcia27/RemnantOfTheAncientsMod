@@ -14,12 +14,10 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.IO;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -35,12 +33,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
     public class InfernalTyrantHead : TyrantHead
     {
         public override int BodyType => ModContent.NPCType<InfernalTyrantBody>();
-
         public override int TailType => ModContent.NPCType<InfernalTyrantTail>();
 
         InfernalTyrant_AnimationModule animationModule;
         InfernalTyrant_AttackModule attackModule;
-
         InfernalTyrant_AuxiliaryModule auxModule;
 
         public override void SetStaticDefaults()
@@ -52,6 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 PortraitPositionXOverride = 0f,
                 PortraitPositionYOverride = 12f
             };
+
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, drawModifier);
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
@@ -59,7 +56,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
    
         public bool head;
-        public bool CanTp = false;
         public override void SetDefaults()
         {
             NPC.CloneDefaults(NPCID.DiggerHead);      
@@ -76,9 +72,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Infernal_Tyrant");
 
-            if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
-
             InitializeModules();
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
         }
         [JITWhenModsEnabled("CalamityMod")]
         public void SetDefautsCalamity()
@@ -102,8 +98,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
         public override void Init()
         {
-            MinSegmentLength = 15;
-            MaxSegmentLength = MaxSegmentCount(MinSegmentLength);
+            MaxSegmentLength = InfernalTyrant_AuxiliaryModule.MaxSegmentCount(MinSegmentLength : 15);
             head = true;
             CommonWormInit(this);
         }
@@ -119,7 +114,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 npc = NPC,
                 currentTarget = Main.player[NPC.target],
-                attackCounter = attackCounter
             };
 
             attackModule = new InfernalTyrant_AttackModule(animationModule, auxModule);
@@ -130,16 +124,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             worm.MoveSpeed = 30f;
             worm.Acceleration = 0.245f;
         }
-
-        private int attackCounter;
-        private int attackCounterMaxValue = 800;
         private int movementTimer;
         private int movementPhase;
         private Vector2 dashDirection;
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(attackCounter);
             writer.Write(movementTimer);
             writer.Write(movementPhase);
          
@@ -147,31 +137,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             writer.Write(dashDirection.Y);
 
             animationModule.SendExtraAI(writer);
+            auxModule.SendExtraAI(writer);
+            attackModule.SendExtraAI(writer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            attackCounter = reader.ReadInt32();
             movementTimer = reader.ReadInt32();
             movementPhase = reader.ReadInt32();
             dashDirection = new Vector2(reader.ReadSingle(), reader.ReadSingle());
 
             animationModule.ReceiveExtraAI(reader);
+            auxModule.ReceiveExtraAI(reader);
+            attackModule.ReceiveExtraAI(reader);
         }
-        private int MaxSegmentCount(int MinSegmentLength) 
-        {
-            int scale = 0;
-            if (DificultyUtils.MasochistMode) scale = 30;
-            else if (DificultyUtils.EternityMode) scale = 25;
-            else if (DificultyUtils.InfernumMode) scale = 25;
-            else if (DificultyUtils.Death) scale = 20;
-            else if (DificultyUtils.Revengeance) scale = 10;
-            else if (Main.masterMode) scale = 5;
-            else if (Main.expertMode) scale = 2;
-            return MinSegmentLength + scale;
-        }
+        
 
-        public bool SpawnClon = false;
+        
         
         public bool IsPhase2 => auxModule.IsPhase2;
         public override void AI()
@@ -203,63 +185,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
             if(IsPhase2) SerpentMovementAi(target);
 
-
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
-            {
-                if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
-                {
-                    SetDefautsCalamity();
-                    GenericVariables.IsSpawned = true;
-                }
-                else
-                {
-                    if (!GenericVariables.IsSpawned)
-                    {
-                        GenericVariables.SpawnCounter++;
-                        RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC, 1f, 1f, 1f, 1f, 1f);
-                    }
-                }
-
-                if (DificultyUtils.InfernumMode)
-                {
-                    if (attackCounter % 4 == 0)
-                    {
-                        for (int i = -3; i <= 3; i++)
-                        {
-                            Vector2 FlameVelocity = NPC.velocity * 1.25f;//1.25
-                            FlameVelocity = FlameVelocity.RotatedBy(i * 20);
-                            int projectile = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, FlameVelocity, ProjectileID.Flames, 30, 0f, Main.myPlayer, Math.Sign(i));
-                            Main.projectile[projectile].timeLeft = 30;
-                            Main.projectile[projectile].tileCollide = false;
-                            Main.projectile[projectile].friendly = false;
-                            Main.projectile[projectile].hostile = true;
-                            Main.projectile[projectile].usesLocalNPCImmunity = true;
-                        }
-                    }
-                }
-
-            }
-            if (RemnantOfTheAncientsMod.FargosSoulMod != null)
-            {
-                if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode)
-                {
-                    if (NPC.boss && !SpawnClon)
-                    {
-                        if (MathUtils.GetPorcentage(NPC.life, NPC.lifeMax) < (DificultyUtils.MasochistMode ? 70f : 50f))
-                        {
-                            var a = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<InfernalTyrantHead>());
-                            Main.npc[a].boss = false;
-                            Main.npc[a].lifeMax /= 8;
-                            Main.npc[a].life /= 8;
-                            Main.npc[a].scale = 0.5f;
-                            Main.npc[a].damage /= 2;
-
-                            SpawnClon = true;
-                        }
-                    }
-                }
-            }
-
+            if (RemnantOfTheAncientsMod.CalamityMod != null) attackModule.CalamityAttacks(target);
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null) attackModule.FargosAttacks(target);    
+            
             InfernalTyrant_AuxiliaryModule.LifeSpeed(this);
             UpdateMovement();
         }
@@ -277,22 +205,19 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
             if (distance < distanceThreshold && Collision.CanHit(NPC.Center, 1, 1, target.Center, 1, 1))
             {
-                if (attackCounter <= 0)
+                if (auxModule.attackCounter <= 0)
                 {
-                    if (auxModule.IsEnraged)
-                        attackCounterMaxValue = !Main.expertMode ? 600 : 700;
-                    else if (IsPhase2)
-                        attackCounterMaxValue = !Main.expertMode ? 650 : 750;
-                    else
-                        attackCounterMaxValue = !Main.expertMode ? 700 : 800;
+                    if (auxModule.IsEnraged) auxModule.attackCounterMaxValue = !Main.expertMode ? 600 : 700;
+                    else if (IsPhase2) auxModule.attackCounterMaxValue = !Main.expertMode ? 650 : 750;
+                    else auxModule.attackCounterMaxValue = !Main.expertMode ? 700 : 800;
 
-                    attackCounter = attackCounterMaxValue;
+                    auxModule.attackCounter = auxModule.attackCounterMaxValue;
                     NPC.netUpdate = true;
                 }       
             }
-            if (attackCounter > 0)
+            if (auxModule.attackCounter > 0)
             {
-                attackCounter--;
+                auxModule.attackCounter--;
             }
         }
 
@@ -431,10 +356,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalMask>(), 10));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTrophy>(), 10));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<infernalBag>()));
-            if(DificultyUtils.InfernumMode) 
-                npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
-            else 
-                npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
+            if(DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
+            else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
 
             if (RemnantOfTheAncientsMod.CalamityMod != null) CalamityDrop(npcLoot);
         }
@@ -494,22 +417,21 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void HitEffect(NPC.HitInfo hit)
         {
-            if (NPC.life <= 0)
+            if (NPC.life > 0) return;
+            
+            if (Main.netMode != NetmodeID.Server)
             {
-                if (Main.netMode != NetmodeID.Server)
+                for(int i = 1; i < 3; i++) 
                 {
-                    for(int i = 1; i < 3; i++) 
-                    {
-                        Vector2 velocity = new(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7));
-                        Gore.NewGore(NPC.GetSource_Death(), NPC.position, velocity, Mod.Find<ModGore>("InfernalTyrantBodyGore"+i).Type, NPC.scale);
-                    }      
-                }
-                for (int j = 0; j < 10; j++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood,hit.HitDirection, -1f);
-                }
-                RemnantDownedBossSystem.downedTyrant = true;
+                    Vector2 velocity = new(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7));
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, velocity, Mod.Find<ModGore>("InfernalTyrantBodyGore"+i).Type, NPC.scale);
+                }      
             }
+            for (int j = 0; j < 10; j++)
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood,hit.HitDirection, -1f);
+            }
+            RemnantDownedBossSystem.downedTyrant = true;           
         }
         public override void AI()
         {
@@ -565,14 +487,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         [Obsolete]
         public override void SetStaticDefaults()
         {
-
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new(0)
-            {
-                Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
-            };
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new(0) { Hide = true };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
-            
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true; 
         }
 
         public override void SetDefaults()

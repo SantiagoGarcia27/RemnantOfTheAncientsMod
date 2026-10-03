@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -10,7 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 	{
 		public override void SetStaticDefaults()
 		{
-			Main.tileShine[Type] = 0;//1100 Default
+			Main.tileShine[Type] = 0;
 			Main.tileSolid[Type] = true;
 			Main.tileSolidTop[Type] = true;
 			Main.tileFrameImportant[Type] = true;
@@ -19,7 +20,8 @@ namespace RemnantOfTheAncientsMod.Content.Tiles
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.addTile(Type);
 
-			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.MetalBar"));
-		}
+			AddMapEntry(Color.DarkOliveGreen, Language.GetText("MapObject.MetalBar"));
+            VanillaFallbackOnModDeletion = TileID.PlatinumCoinPile;
+        }
 	}
 }

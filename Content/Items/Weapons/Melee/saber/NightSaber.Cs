@@ -3,7 +3,6 @@ using RemnantOfTheAncientsMod.Content.Items.Items;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber

@@ -50,7 +50,6 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic.Infernum
         }
         public override void Unload()
         {
-            // Unload the extra texture displayed on the pedestal
             RelicTexture = null;
             RelicGlowTexture = null;
             RelicBaseTexture = null;
@@ -60,55 +59,36 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic.Infernum
         public override void SetStaticDefaults()
         {
             Main.shine(Color.DarkRed, Type);
-            Main.tileFrameImportant[Type] = true; // Any multitile requires this
-            TileID.Sets.InteractibleByNPCs[Type] = true; // Town NPCs will palm their hand at this tile
+            Main.tileFrameImportant[Type] = true;
+            TileID.Sets.InteractibleByNPCs[Type] = true;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4); // Relics are 3x4
-            TileObjectData.newTile.LavaDeath = false; // Does not break when lava touches it
-            TileObjectData.newTile.DrawYOffset = 2; // So the tile sinks into the ground
-            TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft; // Player faces to the left
-            TileObjectData.newTile.StyleHorizontal = false; // Based on how the alternate sprites are positioned on the sprite (by default, true)
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
+            TileObjectData.newTile.LavaDeath = false;
+            TileObjectData.newTile.DrawYOffset = 2;
+            TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
+            TileObjectData.newTile.StyleHorizontal = false; 
 
-            // Optional: If you decide to make your tile utilize different styles through Item.placeStyle, you need these, aswell as the code in SetDrawPositions
-            // TileObjectData.newTile.StyleWrapLimitVisualOverride = 2;
-            // TileObjectData.newTile.StyleMultiplier = 2;
-            // TileObjectData.newTile.StyleWrapLimit = 2;
-            // TileObjectData.newTile.styleLineSkipVisualOverride = 0;
-
-            // Register an alternate tile data with flipped direction
-            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile); // Copy everything from above, saves us some code
-            TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; // Player faces to the right
+            TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
+            TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
             TileObjectData.addAlternate(1);
 
-            // Register the tile data itself
             TileObjectData.addTile(Type);
 
-            // Register map name and MainColor
-            // "MapObject.Relic" refers to the translation key for the vanilla "Relic" text
             AddMapEntry(new Color(41, 32, 48), Language.GetText("MapObject.Relic"));
+
+            VanillaFallbackOnModDeletion = TileID.MasterTrophyBase;
         }
 
         public override bool CreateDust(int i, int j, ref int type) => true;
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            //Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, DropItemID);
-        }
-
         public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
         {
-            // Only required If you decide to make your tile utilize different styles through Item.placeStyle
-
-            // This preserves its original frameX/Y which is required for determining the correct texture floating on the pedestal, but makes it draw properly
-            tileFrameX %= FrameWidth; // Clamps the frameX
-            tileFrameY %= FrameHeight * 2; // Clamps the frameY (two horizontally aligned place styles, hence * 2)
+            tileFrameX %= FrameWidth;
+            tileFrameY %= FrameHeight * 2;
         }
 
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
         {
-            // Since this tile does not have the hovering part on its sheet, we have to animate it ourselves
-            // Therefore we register the top-left of the tile as a "special point"
-            // This allows us to draw things in SpecialDraw
             if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0)
             {
                 Main.instance.TilesRenderer.AddSpecialLegacyPoint(i, j);
@@ -116,12 +96,9 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic.Infernum
         }
         public override void SpecialDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            // This is lighting-mode specific, always include this if you draw tiles manually
             Vector2 offScreen = new(Main.offScreenRange);
-            if (Main.drawToScreen)
-                offScreen = Vector2.Zero;
+            if (Main.drawToScreen) offScreen = Vector2.Zero;
 
-            // Take the tile, check if it actually exists
             Point p = new(i, j);
             Tile tile = Main.tile[p.X, p.Y];
             if (tile == null || !tile.HasTile)

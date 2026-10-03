@@ -58,6 +58,8 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic
 
             TileObjectData.addTile(Type);
 
+            VanillaFallbackOnModDeletion = TileID.MasterTrophyBase;
+
             AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
 
         }
