@@ -41,6 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         public override void AI()
         {
             if (hitAnimation) Animate();
+
             int mode = (int)NPC.ai[0];
             if (mode == 0)
             {
@@ -48,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             else if (mode == 1)
             {
-                NPC.defense = Main.player[Main.myPlayer].statDefense;
+                NPC.defense = Main.player[NPC.releaseOwner].statDefense;
             }
             else if (mode == 2)
             {
@@ -59,7 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             else if (mode == 3)
             {
-                NPC.defense = Main.player[Main.myPlayer].statDefense;
+                NPC.defense = Main.player[NPC.releaseOwner].statDefense;
                 NPC.width = 230;
                 NPC.height = 230;
                 NPC.scale = 5;

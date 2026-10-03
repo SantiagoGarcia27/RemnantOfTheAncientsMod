@@ -302,8 +302,9 @@ namespace RemnantOfTheAncientsMod
 
 		private static int ChanceTomb(float config)
 		{
-			if (config == 0 || config == 1) return (int)config++;
-			return 0;
+			if (config == 0) return 0;
+			if (config == 1) return 2;
+			return 1; 
 		}
 		public override void UpdateBadLifeRegen()
 		{
@@ -390,7 +391,6 @@ namespace RemnantOfTheAncientsMod
 		[JITWhenModsEnabled("CalamityMod")]
 		public static void CalamityMessage()
 		{
-            GetInstance<CalamityServerConfig>().RemoveReforgeRNG = false;
             if (GetInstance<CalamityServerConfig>().RemoveReforgeRNG)
 			{
 				ChatHelper.BroadcastChatMessage(NetworkText.From(Language.GetTextValue("Mods.RemnantOfTheAncientsMod.ChatMessage.CalamityReforgeConfig", Language.GetTextValue("Mods.CalamityMod.Configs.CalamityConfig.CalamityServerConfig.Label"))), Color.Red);
@@ -403,7 +403,7 @@ namespace RemnantOfTheAncientsMod
 
 				foreach (Player ObjPlayer in Main.ActivePlayers)
 				{
-					if (ObjPlayer.dead || ObjPlayer.whoAmI == Main.myPlayer || player.team != ObjPlayer.team) return;
+					if (ObjPlayer.dead || ObjPlayer.whoAmI == Main.myPlayer || player.team != ObjPlayer.team) continue;
 
 					Vector2 mouse = new(PlayerInput.MouseX, PlayerInput.MouseY);
 

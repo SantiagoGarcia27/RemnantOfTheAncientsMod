@@ -25,9 +25,8 @@ namespace RemnantOfTheAncientsMod
 
         public static void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            Main.NewText("a");
             try
-             {
+            {
                 RemnantOfTheAncientsModMessageType msgType = (RemnantOfTheAncientsModMessageType)reader.ReadByte();
                 switch (msgType)
                 {
@@ -35,14 +34,17 @@ namespace RemnantOfTheAncientsMod
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                             SuperDummy.DeleteDummie();
                         break;
+
                     case RemnantOfTheAncientsModMessageType.SpawnSuperDummy:
+
                         int x = reader.ReadInt32();
                         int y = reader.ReadInt32();
                         int mode = reader.ReadInt32();
                         int owner = reader.ReadInt32();
+
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
-                            if (owner == Main.myPlayer)
+                            if (owner != whoAmI)
                                 NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, mode);
                         }
                         break;
@@ -51,6 +53,7 @@ namespace RemnantOfTheAncientsMod
             catch (Exception e)
             {
                 Mod MyMod = ModContent.GetInstance<RemnantOfTheAncientsMod>();
+
                 if (e is EndOfStreamException eose)
                     MyMod.Logger.Warn("Failed to parse Remnant Of the ancients packet: Packet was too short, missing data, or otherwise corrupt.", eose);
                 else if (e is ObjectDisposedException ode)

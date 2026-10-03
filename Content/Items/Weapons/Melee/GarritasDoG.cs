@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 			pos.X += 17f * 16f * player.direction;
 			pos.Y -= 16f * Item.scale;
 
-            var p = Projectile.NewProjectile(source, pos, velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, Main.myPlayer);
+            var p = Projectile.NewProjectile(source, pos, velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, player.whoAmI);
 			Main.projectile[p].direction = player.direction;
 			return false;
 		}
@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 				Vector2 pos = player.position - new Vector2(7 * 16, 1f * 16 * Item.scale);
 				pos.X *= player.direction;
 
-                var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), pos, velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, Main.myPlayer);
+                var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), pos, velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, player.whoAmI);
 				Main.projectile[p].direction = player.direction;
 	
 

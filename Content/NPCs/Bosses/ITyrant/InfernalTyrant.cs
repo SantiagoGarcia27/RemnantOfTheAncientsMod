@@ -152,9 +152,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             attackModule.ReceiveExtraAI(reader);
         }
         
-
-        
-        
         public bool IsPhase2 => auxModule.IsPhase2;
         public override void AI()
         {

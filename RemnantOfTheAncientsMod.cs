@@ -230,7 +230,7 @@ namespace RemnantOfTheAncientsMod
             {     
                 MaxPlayers++; 
             }
-            return MaxPlayers - 1;
+            return MaxPlayers;
         }
         public static int MaxPlayerOnlineAlives()
         {
@@ -239,7 +239,7 @@ namespace RemnantOfTheAncientsMod
             {
                 if(!player.dead) MaxPlayers++;
             }
-            return MaxPlayers - 1;
+            return MaxPlayers;
         }
 
 

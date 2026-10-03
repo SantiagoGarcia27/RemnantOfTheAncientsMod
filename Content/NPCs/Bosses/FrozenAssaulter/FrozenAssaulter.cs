@@ -39,7 +39,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
     public class FrozenAssaulter : ModNPC
     {
         public int currentPhase = 1;
-        public int MaxPlayers => RemnantOfTheAncientsMod.MaxPlayerOnline() / 2;
+        public int MaxPlayers => RemnantOfTheAncientsMod.MaxPlayerOnline();
      
         public override void SetStaticDefaults()
         {        
@@ -107,6 +107,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         float delay = 2;
         public override void AI()
         {
+            if(Main.netMode == NetmodeID.MultiplayerClient) return;
+
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
                 NPC.TargetClosest(true);
@@ -286,7 +288,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     {
                         if (currentPhase > 2) 
                             ShootIa(10, ProjectileType<Frozenp>(), target, -20f + variance, 0.5, 0.5);
-                        for (int i = -1; i < MaxPlayers; i++)
+                        for (int i = -1; i < MaxPlayers /2; i++)
                         {
                             int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
                             ShootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f + variance, 0.5, 0.5);
@@ -416,7 +418,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                         ShootIa(10, ProjectileID.FrostBeam, target, 10, -1.5, -1.5);
                     }
                 }
-                for (int i = -1; i < MaxPlayers; i++)
+                for (int i = -1; i < MaxPlayers / 2; i++)
                 {
                     int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
                     ShootIa(10, ProjectileID.FrostBeam, Main.player[a], 20f, 0.5, 0.5);

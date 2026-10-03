@@ -1416,149 +1416,21 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             -25, -26, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 16, 71, 81, 121, 138, 147, 183, 184, 204, 225, 244, 302, 535, 537
         ];
 
-        public override void HitEffect(NPC npc, NPC.HitInfo hit)
+        public override void OnHitByItem(NPC npc, Player player, Item item, NPC.HitInfo hit, int damageDone)
         {
-            base.HitEffect(npc, hit);
-            if (Reaper.ReaperMode)
+            if(DificultyUtils.ReaperMode)
             {
-                if (npc.type == NPCID.KingSlime)
-                {
-                    int choice = Main.rand.Next(SlimesList.Count);
-                    var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, SlimesList[choice]);
-                    Main.npc[p].GetGlobalNPC<RemnantGlobalNPC>().CanDrop = false;
-
-
-                    if(RemnantOfTheAncientsMod.CalamityMod != null)
-                    {
-                        ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
-                        ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
-                        if (CalamityUtils.IsBossDefeated("HiveMind") || CalamityUtils.IsBossDefeated("PerforatorHive"))
-                        {
-                           ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
-                        }
-                        if (Main.hardMode)
-                        {
-                           ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
-                            if (CalamityUtils.IsBossDefeated("Cryogen") && NPC.downedMechBossAny)
-                            {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
-                            }
-                            if (NPC.downedPlantBoss)
-                            {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
-                            }
-                            if (NPC.downedGolemBoss)
-                            {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
-                            }
-                            if (CalamityUtils.IsBossDefeated("AstrumDeus"))
-                            {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
-                            }
-                            if (NPC.downedMoonlord)
-                            {
-                               ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
-                                if (CalamityUtils.IsBossDefeated("Providence"))
-                                {
-                                   ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
-                                }
-                            }
-                        }
-                    }
-                }
-                if (npc.type == NPCID.EaterofWorldsHead && npc.life <= 0)
-                {
-                    int NumberOfProjectiles = 8;
-                    float angle = 0f;
-                    float angleSpacing = MathHelper.TwoPi / NumberOfProjectiles;
-                    float projectileSpeed = 8f;
-
-                    for (int i = 0; i < NumberOfProjectiles; i++)
-                    {
-                        Vector2 direction = new Vector2(1f, 0f).RotatedBy(angle);
-
-                        Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position, direction * projectileSpeed, ProjectileID.CursedFlameHostile, 50, 0f, Main.myPlayer);
-                        angle += angleSpacing;
-                    }
-                }
                 if (npc.type == NPCID.Creeper)
                 {
-                    if (npc.life <= 0)
-                    {
-                        if (Main.rand.NextBool(4))
-                        {
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
-                            {
-                                Main.player[Main.myPlayer].AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 4));
-                                Main.player[Main.myPlayer].AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 2));
-                            }
-                            else
-                            {
-                                Main.player[npc.target].AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 4));
-                                Main.player[npc.target].AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 2));
-                            }
-                        }
-                    }
-                }
-                if (npc.type == NPCID.Deerclops)
-                {
-                    if (npc.life <= 0)
-                    {
-                        Main.windSpeedCurrent = 0;
-                        Main.StopRain();
-                    }
-                }
-
-            }
-        }
-
-        bool DearclopsDead = false;
-        public override bool CheckDead(NPC npc)
-        {
-            if (Reaper.ReaperMode)
-            {
-                if (npc.type == NPCID.MoonLordCore)
-                {
-                    if (npc.life <= 1)
-                    {
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Weak);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.ChaosState);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.NoBuilding);
-                    }
-                }
-                if (npc.type == NPCID.Deerclops)
-                {
-                    if (npc.life <= 1 || (DificultyUtils.InfernumMode))
-                    {
-                        DearclopsDead = true; 
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.Darkness); 
-                    }
-                }
-                if (npc.type == NPCID.QueenSlimeBoss)
-                {
-                    if (npc.life <= 1)
-                    {
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.WindPushed);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.VortexDebuff);
-                        RemnantPlayer.ClearBuffToAllPlayers(BuffID.QueenSlimeMount);
-                    }
-                }
-                if(RemnantOfTheAncientsMod.CalamityMod != null)
-                {
-                    int idCrimulan = CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin");
-                    if (npc.type == idCrimulan || npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"))
-                    {
-                        var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, NPCID.KingSlime);
-                        Main.npc[p].lifeMax = 500;
-                        Main.npc[p].life = 500;
-                        Main.npc[p].scale = 0.5f; 
+                    if (npc.life <= 0 && Main.rand.NextBool(4))
+                    {   
+                        player.AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 4));
+                        player.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 2));
                     }
                 }
             }
-            return base.CheckDead(npc);
+
+            base.OnHitByItem(npc, player, item, hit, damageDone);
         }
 
         public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone)
@@ -1566,12 +1438,149 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             base.OnHitByProjectile(npc, projectile, hit, damageDone);
             if (Reaper.ReaperMode)
             {
+                Player player = Main.player[projectile.owner];
+
                 if (npc.type == NPCID.Creeper)
                 {
                     projectile.penetrate = 1;
+
+                    if (npc.life <= 0 && Main.rand.NextBool(4))
+                    {
+                        player.AddBuff(BuffID.Confused, Utils1.FormatTimeToTick(0, 0, 0, 4));
+                        player.AddBuff(BuffID.Slow, Utils1.FormatTimeToTick(0, 0, 0, 2));
+                    }
                 }
             }
         }
+
+        public override void HitEffect(NPC npc, NPC.HitInfo hit)
+        {
+            base.HitEffect(npc, hit);
+            if (!Reaper.ReaperMode) return;
+            
+            if (npc.type == NPCID.KingSlime)
+            {
+                int choice = Main.rand.Next(SlimesList.Count);
+                var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, SlimesList[choice]);
+                Main.npc[p].GetGlobalNPC<RemnantGlobalNPC>().CanDrop = false;
+
+
+                if(RemnantOfTheAncientsMod.CalamityMod != null)
+                {
+                    ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
+                    ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
+                    if (CalamityUtils.IsBossDefeated("HiveMind") || CalamityUtils.IsBossDefeated("PerforatorHive"))
+                    {
+                        ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
+                    }
+                    if (Main.hardMode)
+                    {
+                        ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "IrradiatedSlime"));
+                        if (CalamityUtils.IsBossDefeated("Cryogen") && NPC.downedMechBossAny)
+                        {
+                            ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CryoSlime"));
+                        }
+                        if (NPC.downedPlantBoss)
+                        {
+                            ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PerennialSlime"));
+                        }
+                        if (NPC.downedGolemBoss)
+                        {
+                            ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "PestilentSlime"));
+                        }
+                        if (CalamityUtils.IsBossDefeated("AstrumDeus"))
+                        {
+                            ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AstralSlime"));
+                        }
+                        if (NPC.downedMoonlord)
+                        {
+                            ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
+                            if (CalamityUtils.IsBossDefeated("Providence"))
+                            {
+                                ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (npc.type == NPCID.EaterofWorldsHead && npc.life <= 0)
+            {
+                int NumberOfProjectiles = 8;
+                float angle = 0f;
+                float angleSpacing = MathHelper.TwoPi / NumberOfProjectiles;
+                float projectileSpeed = 8f;
+
+                for (int i = 0; i < NumberOfProjectiles; i++)
+                {
+                    Vector2 direction = new Vector2(1f, 0f).RotatedBy(angle);
+
+                    Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position, direction * projectileSpeed, ProjectileID.CursedFlameHostile, 50, 0f, Main.myPlayer);
+                    angle += angleSpacing;
+                }
+            }
+                
+            if (npc.type == NPCID.Deerclops)
+            {
+                if (npc.life <= 0)
+                {
+                    Main.windSpeedCurrent = 0;
+                    Main.StopRain();
+                }
+            }
+
+            
+        }
+
+        bool DearclopsDead = false;
+        public override bool CheckDead(NPC npc)
+        {
+            if (!Reaper.ReaperMode) return base.CheckDead(npc);
+            
+            if (npc.type == NPCID.MoonLordCore)
+            {
+                if (npc.life <= 1)
+                {
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Weak);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.ChaosState);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.NoBuilding);
+                }
+            }
+            if (npc.type == NPCID.Deerclops)
+            {
+                if (npc.life <= 1 || (DificultyUtils.InfernumMode))
+                {
+                    DearclopsDead = true; 
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.Darkness); 
+                }
+            }
+            if (npc.type == NPCID.QueenSlimeBoss)
+            {
+                if (npc.life <= 1)
+                {
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.WindPushed);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.VortexDebuff);
+                    RemnantPlayer.ClearBuffToAllPlayers(BuffID.QueenSlimeMount);
+                }
+            }
+            if(RemnantOfTheAncientsMod.CalamityMod != null)
+            {
+                int idCrimulan = CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitCrimulanPaladin");
+                if (npc.type == idCrimulan || npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "SplitEbonianPaladin"))
+                {
+                    var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, NPCID.KingSlime);
+                    Main.npc[p].lifeMax = 500;
+                    Main.npc[p].life = 500;
+                    Main.npc[p].scale = 0.5f; 
+                }
+            }
+            return base.CheckDead(npc);
+        }
+
+      
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             return base.PreDraw(npc, spriteBatch, screenPos, drawColor);
@@ -1601,7 +1610,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Green;
-                        animateEffects(npc, 1f, texture, color);
+                        AnimateEffects(npc, 1f, texture, color);
                     }
                 }
                 else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AresBody"))
@@ -1612,19 +1621,18 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         Asset<Texture2D> texture = TextureAssets.Projectile[CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "TeslaAura")];
                         Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);//0.5  
                         Color color = Color.Gray;
-                        animateEffects(npc, 1f, texture, color);
+                        AnimateEffects(npc, 1f, texture, color);
                     }
                 }
             }
             
         }
-        void animateEffects(NPC npc, float rotation, Asset<Texture2D> sprite, Color drawColour)
+        void AnimateEffects(NPC npc, float rotation, Asset<Texture2D> sprite, Color drawColour)
         {
             Vector2 frames = new(3, 6); 
             Vector2 size = new(sprite.Width(), sprite.Height());
             Vector2 origin = new(size.X * 0.5f / frames.X, size.Y * 0.5f / frames.Y);
 
-            //if(Main.LocalPlayer.infernoCounter % 2 == 0)
             frameCounter++;
 
             if (frameCounter > 3)

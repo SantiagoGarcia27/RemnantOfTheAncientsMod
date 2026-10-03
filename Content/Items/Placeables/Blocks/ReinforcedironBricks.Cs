@@ -1,4 +1,5 @@
 using RemnantOfTheAncientsMod.Content.Items.Items;
+using RemnantOfTheAncientsMod.Content.Tiles.Bricks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -27,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Blocks
             Item.consumable = true;
 			Item.value = new Item(ItemID.IronBrick).value;
             Item.rare = new Item(ItemID.IronBrick).rare;
-            Item.createTile = TileType<ReinforcedIronBricksT>();
+            Item.createTile = TileType<ReinforcedIronBrickT>();
 		}
 
 		public override void AddRecipes()

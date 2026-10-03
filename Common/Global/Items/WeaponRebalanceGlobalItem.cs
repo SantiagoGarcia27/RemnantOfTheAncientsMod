@@ -173,78 +173,67 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
         {
             if (item.type == ItemID.BabyBirdStaff)
             {
-                var a = Projectile.NewProjectile(source, player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, Main.myPlayer, 0, 0, 0);
+                var a = Projectile.NewProjectile(source, player.position, Vector2.One, ProjectileID.BabyBird, item.damage, item.knockBack, player.whoAmI, 0, 0, 0);
                 Main.projectile[a].minionSlots = 0.5f;
-                var p = Projectile.NewProjectile(source, player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2, Main.myPlayer, 0, 0, 0);
+                var p = Projectile.NewProjectile(source, player.position, Vector2.One, ProjectileID.BabyBird, item.damage / 3, item.knockBack / 2, player.whoAmI, 0, 0, 0);
                 Main.projectile[p].minionSlots = 0.5f;
                 Main.projectile[p].alpha = 200;
                 return false;
             }
             else if (item.type == ItemID.BookofSkulls)
-            {
-                if (player.whoAmI == Main.myPlayer)
+            { 
+                float PlayerManaDiscounMultpier = player.statManaMax2 / 20;
+                int Shootproj = ModContent.ProjectileType<BookOfSkullHeldProj>();
+                if (player.altFunctionUse == 2)
                 {
-                    float PlayerManaDiscounMultpier = player.statManaMax2 / 20;
-                    int Shootproj = ModContent.ProjectileType<BookOfSkullHeldProj>();
-                    if (player.altFunctionUse == 2)
+                    item.mana = player.statManaMax2;
+                    if (player.ownedProjectileCounts[Shootproj] <= 0)
                     {
-                        item.mana = player.statManaMax2;
-                        if (player.ownedProjectileCounts[Shootproj] <= 0)
-                        {
-                            Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y);
-                        }
-                        return false;
+                        Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, player.whoAmI, velocity.X, velocity.Y);
                     }
-                    else
-                    {
-                        item.mana = 15;
-                        return true;
-                    }
+                    return false;
                 }
+                else
+                {
+                    item.mana = 15;
+                    return true;
+                } 
             }
             else if (item.type == ItemID.AquaScepter)
             {
-                if (player.whoAmI == Main.myPlayer)
+                int Shootproj = ModContent.ProjectileType<AquaScepterHeldProj>();
+                if (player.altFunctionUse == 2)
                 {
-
-                    int Shootproj = ModContent.ProjectileType<AquaScepterHeldProj>();
-                    if (player.altFunctionUse == 2)
+                    if (player.ownedProjectileCounts[Shootproj] <= 0)
                     {
-                        if (player.ownedProjectileCounts[Shootproj] <= 0)
-                        {
-                            Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y, item.mana);
-                        }
-                        return false;
+                        Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, player.whoAmI, velocity.X, velocity.Y, item.mana);
                     }
-                }
+                    return false;
+                }  
             }
             else if (item.type == ItemID.WandofFrosting || item.type == ItemID.WandofSparking)
             {
-                if (player.whoAmI == Main.myPlayer)
+                int Shootproj = ModContent.ProjectileType<WandOfSparkingHeldProj>();
+                if (player.altFunctionUse == 2)
                 {
-                    int Shootproj = ModContent.ProjectileType<WandOfSparkingHeldProj>();
-                    if (player.altFunctionUse == 2)
-                    {
-                        if (player.ownedProjectileCounts[Shootproj] > 0) return false;
-                        int manacost = player.statManaMax2 - item.mana;
-                        if (player.statMana < manacost) return false;
+                    if (player.ownedProjectileCounts[Shootproj] > 0) return false;
+                    int manacost = player.statManaMax2 - item.mana;
+                    if (player.statMana < manacost) return false;
                             
-                        player.statMana -= manacost;
+                    player.statMana -= manacost;
 
-                        var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Owner: Main.myPlayer, ai0: velocity.X, ai2: item.type);
-                    }
-                }
-               
+                    var p = Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Owner: player.whoAmI, ai0: velocity.X, ai2: item.type);
+                } 
             }
             else if (item.type == ItemID.FrostStaff)
             {
                 double ecuacionhonda = Utils1.GenerateWave(3f * 16, player.position.X, counter);
                 if (counter % 2 == 0)
                 {
-                    var p = Projectile.NewProjectile(source, player.position - new Vector2(0, (float)ecuacionhonda - 2 * 16f), velocity, ProjectileID.IceSpike, damage / 4, knockback, Main.myPlayer);
+                    var p = Projectile.NewProjectile(source, player.position - new Vector2(0, (float)ecuacionhonda - 2 * 16f), velocity, ProjectileID.IceSpike, damage / 4, knockback, player.whoAmI);
                     Main.projectile[p].stepSpeed /= 2;
                 }
-                Projectile.NewProjectile(source, player.position + new Vector2(0, 2 * 16f), velocity, type, damage, knockback, Main.myPlayer);
+                Projectile.NewProjectile(source, player.position + new Vector2(0, 2 * 16f), velocity, type, damage, knockback, player.whoAmI);
                 counter++;
                 return false;
             }
@@ -285,7 +274,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     item.mana = 90;
                     if (player.ownedProjectileCounts[Shootproj] <= 0)
                     {
-                        Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, Main.myPlayer, velocity.X, velocity.Y);
+                        Projectile.NewProjectile(source, player.position, Vector2.Zero, Shootproj, 0, 0, player.whoAmI, velocity.X, velocity.Y);
                     }
                     return false;
                 }
@@ -351,7 +340,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 if (player.altFunctionUse == 2)
                 {
-                    if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0 && player.whoAmI == Main.myPlayer)
+                    if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0 && player.whoAmI == player.whoAmI)
                     {
                         player.statMana -= item.mana * 3;
                         Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, value);

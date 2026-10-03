@@ -65,10 +65,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 
                     int x = (int)mouse.X - 9;
 					int y = (int)mouse.Y - 20;
-					if (Main.netMode == NetmodeID.SinglePlayer)
+					if (Main.netMode != NetmodeID.MultiplayerClient)
 					{
-						NPC.NewNPC(Terraria.Entity.GetSource_None(), x, y, NPCType<SuperDummyNPC>(),0, Main.LocalPlayer.GetModPlayer<RemnantPlayer>().DummyMode);
-					}
+						int index = NPC.NewNPC(Terraria.Entity.GetSource_None(), x, y, NPCType<SuperDummyNPC>(),0, Main.LocalPlayer.GetModPlayer<RemnantPlayer>().DummyMode);
+						Main.npc[index].releaseOwner = (short)player.whoAmI;
+                    }
 					else
 					{
 
