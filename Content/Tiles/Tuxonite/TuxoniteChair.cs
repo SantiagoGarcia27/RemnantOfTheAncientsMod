@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 			AdjTiles = [TileID.Chairs];
 
 			// Names
-			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.Chair"));
+			AddMapEntry(Color.CornflowerBlue, Language.GetText("MapObject.Chair"));
 
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);

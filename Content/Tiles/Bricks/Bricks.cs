@@ -41,7 +41,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Bricks
 
             AddMapEntry(MapColor, Language.GetText("MapObject.MetalBar"));
 
-            VanillaFallbackOnModDeletion = TileID.GoldBrick;
+            VanillaFallbackOnModDeletion = (ushort)FallbackTileID;
         }
     }
 }

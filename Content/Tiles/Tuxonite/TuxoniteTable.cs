@@ -37,9 +37,9 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 			// Etc
 			LocalizedText name = CreateMapEntryName();
 			
-			AddMapEntry(new Color(200, 200, 200), name);
+			AddMapEntry(Color.CornflowerBlue, name);
 
-            VanillaFallbackOnModDeletion = TileID.Anvils;
+            VanillaFallbackOnModDeletion = TileID.Tables;
         }
 
 		public override void NumDust(int x, int y, bool fail, ref int num)

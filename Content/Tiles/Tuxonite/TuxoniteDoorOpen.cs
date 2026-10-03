@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 
             // Names
             LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(200, 200, 200), name);
+            AddMapEntry(Color.CornflowerBlue, name);
 
             // Placement
             TileObjectData.newTile.Width = 2;

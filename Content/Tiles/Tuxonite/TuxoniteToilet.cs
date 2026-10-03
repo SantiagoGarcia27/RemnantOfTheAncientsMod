@@ -29,7 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Tuxonite
 			AdjTiles = [TileID.Toilets]; 
 
 			// Names
-			AddMapEntry(new Color(200, 200, 200), Language.GetText("MapObject.Toilet"));
+			AddMapEntry(Color.CornflowerBlue, Language.GetText("MapObject.Toilet"));
 
 			// Placement
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
