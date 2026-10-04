@@ -20,11 +20,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
     [ExtendsFromMod("FargowiltasSouls")]
     public class DaylightEnchant : BaseEnchant
     {
-      
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod) != null;
-        }
+
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("FargowiltasSouls", out _);
         public override void SetStaticDefaults()
 		{
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -39,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             Projectile Sunflowerproj = null;
             public override void PostUpdateEquips(Player player)
             {
-                RemnantPlayer.DaylightArmorSetBonus = true;
+                Main.LocalPlayer.GetModPlayer<RemnantPlayer>().DaylightArmorSetBonus = true;
                 player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchantment = true;
                 if (Main.dayTime)
                 {

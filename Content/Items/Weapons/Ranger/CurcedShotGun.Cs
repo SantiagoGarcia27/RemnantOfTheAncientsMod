@@ -61,8 +61,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         {
             TimmerMax = Item.useTime / 4;
 
-            RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax;
-            RemnantPlayer.GenericChargeCouldown = (int)Timmer;     
+            player.GetModPlayer<RemnantPlayer>().GenericChargeCouldownMax = (int)TimmerMax;
+            player.GetModPlayer<RemnantPlayer>().GenericChargeCouldown = (int)Timmer;     
             if (player.channel && player.altFunctionUse == 2)
             {
                 if (Timmer < TimmerMax)

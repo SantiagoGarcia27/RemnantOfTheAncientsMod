@@ -288,10 +288,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                     {
                         if (currentPhase > 2) 
                             ShootIa(10, ProjectileType<Frozenp>(), target, -20f + variance, 0.5, 0.5);
-                        for (int i = -1; i < MaxPlayers /2; i++)
+                        int i = 0;
+                        foreach(Player player in Main.ActivePlayers)
                         {
-                            int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
-                            ShootIa(10, ProjectileType<Frozenp>(), Main.player[a], 20f + variance, 0.5, 0.5);
+                            if (!player.active || player.dead || i++ % 2 == 0) continue;
+                            ShootIa(10, ProjectileType<Frozenp>(), player, 20f + variance, 0.5, 0.5);
                         }
                     }
                     else
@@ -418,10 +419,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                         ShootIa(10, ProjectileID.FrostBeam, target, 10, -1.5, -1.5);
                     }
                 }
-                for (int i = -1; i < MaxPlayers / 2; i++)
+
+                int i = 0;
+                foreach (Player player in Main.ActivePlayers)
                 {
-                    int a = i == -1 ? Main.myPlayer : i > 1 ? i - 1 : i;
-                    ShootIa(10, ProjectileID.FrostBeam, Main.player[a], 20f, 0.5, 0.5);
+                    if (!player.active || player.dead || i++ % 2 == 0) continue;
+                    ShootIa(10, ProjectileID.FrostBeam, player, 20f, 0.5, 0.5);
                     ShootIa(10, ProjectileID.FrostBeam, target, -20f, 0.5, 0.5);
                 }
             }

@@ -75,7 +75,7 @@ namespace RemnantOfTheAncientsMod
 		public bool MoneyCollector;
 		public List<int> ScrollsBuff = [];
 		public int DummyMode = 0;
-		public static int SolverMode = 0;
+		public int SolverMode = 0;
 		/*
 			0 = Move,
 			1 = BlackHole,
@@ -84,8 +84,8 @@ namespace RemnantOfTheAncientsMod
 		public bool Inmortal;
 
 
-		public static bool DaylightArmorSetBonus;
-		public static bool CanWormHole;
+		public bool DaylightArmorSetBonus;
+		public bool CanWormHole;
 		public bool HealingDrone;
 		public bool InterceptionDrone;
 		public bool DesertHeraldSetBonus;
@@ -95,18 +95,18 @@ namespace RemnantOfTheAncientsMod
 		public float EnemyProjectilesSpeedScaleBouns = 1;
 		
         #region tuxonite
-        public static bool tuxoniteStealth;
-		public static int tuxoniteStealthDuration = 0;
-		public static float tuxoniteStealthCounter = 0;
+        public bool tuxoniteStealth;
+		public int tuxoniteStealthDuration = 0;
+		public float tuxoniteStealthCounter = 0;
 
 
         #endregion
 
-        public static float GenericChargeCouldown { get; set; }
-		public static float GenericChargeCouldownMax = Utils1.FormatTimeToTick(0, 0, 1, 0);
+        public float GenericChargeCouldown { get; set; }
+		public float GenericChargeCouldownMax = Utils1.FormatTimeToTick(0, 0, 1, 0);
 
-		public static float GenericAmmoAmmount { get; set; }
-		public static float GenericAmmoAmmountMax = 0;
+		public float GenericAmmoAmmount { get; set; }
+		public float GenericAmmoAmmountMax = 0;
 
 	
 		public bool AutoCharge = false;
@@ -297,7 +297,7 @@ namespace RemnantOfTheAncientsMod
 		}
 		public static void CheckInventory(Player player)
 		{
-			CanWormHole = Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>(), player);
+			player.GetModPlayer<RemnantPlayer>().CanWormHole = Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>(), player);
 		}
 
 		private static int ChanceTomb(float config)

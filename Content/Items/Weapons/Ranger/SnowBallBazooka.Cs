@@ -55,8 +55,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         {
 			TimmerMax = Utils1.FormatTimeToTick(0, 0, 0, (Item.useTime/10));
 			TimmerDustMax = TimmerMax / 3;
-            RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax/10;
-            RemnantPlayer.GenericChargeCouldown = (int)Timmer/10;
+
+            player.GetModPlayer<RemnantPlayer>().GenericChargeCouldownMax = (int)TimmerMax/10;
+            player.GetModPlayer<RemnantPlayer>().GenericChargeCouldown = (int)Timmer/10;
+
             if (Timmer < TimmerMax)
 			{			
 				Timmer += (int)player.GetModPlayer<StatPlayer>().ChargeBonus[DamageClass.Ranged];

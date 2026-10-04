@@ -288,8 +288,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 
 			if (CanCharge)
 			{
-				RemnantPlayer.GenericChargeCouldownMax = (int)TimmerMax;
-				RemnantPlayer.GenericChargeCouldown = (int)Timmer;
+                player.GetModPlayer<RemnantPlayer>().GenericChargeCouldownMax = (int)TimmerMax;
+                player.GetModPlayer<RemnantPlayer>().GenericChargeCouldown = (int)Timmer;
 			}
 			base.HoldItem(item, player);
 		}

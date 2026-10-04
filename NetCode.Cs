@@ -45,7 +45,10 @@ namespace RemnantOfTheAncientsMod
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             if (owner == whoAmI)
-                                NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, mode);
+                            {
+                                int i = NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, mode);
+                                Main.npc[i].releaseOwner = (short)owner;
+                            }
                         }
                         break;
                 }

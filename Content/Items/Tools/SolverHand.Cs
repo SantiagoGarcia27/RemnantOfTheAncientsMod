@@ -20,20 +20,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
 
         public override void SetDefaults()
         {
-            //Item.damage = 60;
             Item.noMelee = true;
-            //Item.DamageType = DamageClass.Magic;
             Item.channel = true;
-            //Item.mana = 6;
             Item.rare = ItemRarityID.Red;
             Item.width = 72;
             Item.height = 74;
             Item.useTime = 5;
             Item.useAnimation = 5;
-            //Item.UseSound = SoundID.Item34;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shootSpeed = 14f;
-            //Item.shoot = ProjectileID.Flames;
             Item.value = Item.sellPrice(gold: 8);
             Item.autoReuse = true;
             Item.scale = 1f;
@@ -42,17 +37,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools
         public override bool CanUseItem(Player player)
         {
             int maxMode = 1;
+            RemnantPlayer remnantPlayer = player.GetModPlayer<RemnantPlayer>();
             if (player.altFunctionUse == 2)
             {
-                if (RemnantPlayer.SolverMode < maxMode /*|| RemnantPlayer.SolverMode == 1*/)
+                if (remnantPlayer.SolverMode++ >= maxMode)
                 {
-                    RemnantPlayer.SolverMode++;
+                    remnantPlayer.SolverMode = 0;
                 }
-                else
-                {
-                    RemnantPlayer.SolverMode = 0;
-                }
-                switch (RemnantPlayer.SolverMode)
+                
+                switch (remnantPlayer.SolverMode)
                 {
                     case 0:
                         CombatText.NewText(player.Hitbox, Color.Purple, this.GetLocalization("Move").Value, dramatic: true);

@@ -39,7 +39,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         }
         public string GetTexture()
         {
-            switch (RemnantPlayer.SolverMode)
+            Player player = Main.player[Projectile.owner];
+            switch (player.GetModPlayer<RemnantPlayer>().SolverMode)
             {
                 case 0:
                     return "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/SolverMove";
@@ -62,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                 Projectile.netUpdate = true;
 
                 // Projectile.position = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-                if (RemnantPlayer.SolverMode == 0)
+                if (player.GetModPlayer<RemnantPlayer>().SolverMode == 0)
                 {
 
                     Rectangle hitbox = Projectile.Hitbox;
@@ -95,7 +96,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                         }
                     }
                 }
-                else if (RemnantPlayer.SolverMode == 1)
+                else if (player.GetModPlayer<RemnantPlayer>().SolverMode == 1)
                 {
                     if (Projectile.owner == Main.myPlayer)
                     {
@@ -183,7 +184,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             var texture = ModContent.Request<Texture2D>("Terraria/Images/UI/Cursor_0");
             Rectangle srcRect = new(0, 0, 32, 32);
             Vector2 center = new(0, 0);
-
+            Player player = Main.LocalPlayer;
             cursorLayer = new LegacyGameInterfaceLayer($"{nameof(Mod)}: My Cursor", () =>
             {
                 foreach (var t in cursorTextures)
@@ -191,9 +192,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     if (!t.IsLoaded)
                         return true;
                 }
-                if (Main.LocalPlayer.HeldItem.type == ModContent.ItemType<SolverHand>())
+                if (player.HeldItem.type == ModContent.ItemType<SolverHand>())
                 {
-                    switch (RemnantPlayer.SolverMode)
+                    switch (player.GetModPlayer<RemnantPlayer>().SolverMode)
                     {
                         case 0:
                             texture = cursorTextures[1];

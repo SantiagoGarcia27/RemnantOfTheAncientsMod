@@ -12,17 +12,8 @@ namespace RemnantOfTheAncientsMod.World
     public class Reaper : ModSystem
     {
         public static bool ReaperMode;
-        public override void OnWorldLoad()
-        {
-            if ((RemnantGlobalNPC.DamageBonus == 1 || RemnantGlobalNPC.LifeBonus == 1) && ReaperMode)
-            {
-                RemnantGlobalNPC.SetStatBonus(2f, 2f);
-            }
-            foreach (int id in RemnantGlobalItem.SpearsList)
-            {
-                ListUtils.AddSecure(ref RemnantGlobalProjectile.Spears, new Item(id).shoot);
-            }
-        }
+       
+        
         public override void OnWorldUnload()
         {
             ReaperMode = false;       
@@ -36,6 +27,20 @@ namespace RemnantOfTheAncientsMod.World
         public override void LoadWorldData(TagCompound tag)
         {
             ReaperMode = tag.GetBool("ReaperMode");
+            LoadDataExtras();
+        }
+
+        internal static void LoadDataExtras()
+        {
+            DificultyUtils.ReaperMode = ReaperMode;
+
+            if ((RemnantGlobalNPC.DamageBonus == 1 || RemnantGlobalNPC.LifeBonus == 1) && ReaperMode)
+                RemnantGlobalNPC.SetStatBonus(2f, 2f);
+
+            foreach (int id in RemnantGlobalItem.SpearsList)
+            {
+                ListUtils.AddSecure(ref RemnantGlobalProjectile.Spears, new Item(id).shoot);
+            }
         }
         public static void UpdateReaper()
         {

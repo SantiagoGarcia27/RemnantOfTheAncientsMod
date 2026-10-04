@@ -13,7 +13,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 	{
 		public override void SetStaticDefaults()
 		{
-			
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         private readonly int RangerDamageBonus = 3;
@@ -40,23 +39,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite
 
 			player.setBonus = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.SetBonus.Tuxonite");
 
-			if (RemnantPlayer.tuxoniteStealthCounter == 0)
+            RemnantPlayer remnantPlayer = player.GetModPlayer<RemnantPlayer>();
+
+			if (remnantPlayer.tuxoniteStealthCounter-- > 0) return;
+			
+			player.shroomiteStealth = true;
+
+			if (remnantPlayer.tuxoniteStealthDuration++ >= Utils1.FormatTimeToTick(0, 0, 0, 10))
 			{
-				player.shroomiteStealth = true;
-				if (RemnantPlayer.tuxoniteStealthDuration < Utils1.FormatTimeToTick(0, 0, 0, 10))
-				{
-					RemnantPlayer.tuxoniteStealthDuration++;
-				}
-				else
-				{
-					RemnantPlayer.tuxoniteStealthCounter = (int)Main.rand.NextFloat(Utils1.FormatTimeToTick(0, 0, 0, 30));
-					RemnantPlayer.tuxoniteStealthDuration = 0;
-				}
-			}
-			else
-			{
-				RemnantPlayer.tuxoniteStealthCounter--;
-			}
+                remnantPlayer.tuxoniteStealthCounter = (int)Main.rand.NextFloat(Utils1.FormatTimeToTick(0, 0, 0, 30));
+                remnantPlayer.tuxoniteStealthDuration = 0;
+            }
 		}
 
 		public override void AddRecipes()

@@ -24,12 +24,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = 500;//900
+			Item.damage = 500;
 			Item.DamageType = DamageClass.Melee;
 			Item.width = 52;
 			Item.height = 48;
 			Item.useTime = 10;
-			Item.useAnimation = 10;//8
+			Item.useAnimation = 10;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 1;
 			Item.value = Item.sellPrice(gold: 100);

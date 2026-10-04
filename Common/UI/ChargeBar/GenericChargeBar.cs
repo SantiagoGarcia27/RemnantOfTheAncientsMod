@@ -10,13 +10,9 @@ using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
-{
-    // This custom UI will show whenever the player is holding the ExampleCustomResourceWeapon item and will display the player's custom resource amounts that are tracked in ExampleResourcePlayer
-
+{ 
     internal class GenericChargeBar : UIState
 	{
-		// For this bar we'll be using a frame texture and then a gradient inside bar, as it's one of the more simpler approaches while still looking decent.
-		// Once this is all set up make sure to go and do the required stuff for most UI's in the ModSystem class.
 		private UIText text;
 		private UIElement area;
 		private UIImage barFrame;
@@ -52,16 +48,16 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-
-			Item item = Main.LocalPlayer.HeldItem;
+			RemnantPlayer remnantPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
+            Item item = Main.LocalPlayer.HeldItem;
 			if (item.IsAir)
 			{
 				return;
 			}
 			int stack = item.stack;
 			bool canCharge = Main.LocalPlayer.HeldItem.GetGlobalItem<RemnantGlobalItem>().CanCharge;
-			float CouldownMax = RemnantPlayer.GenericChargeCouldownMax;
-			float Couldown = RemnantPlayer.GenericChargeCouldown;
+			float CouldownMax = remnantPlayer.GenericChargeCouldownMax;
+			float Couldown = remnantPlayer.GenericChargeCouldown;
 
 			if (stack <= 0 || !canCharge || CouldownMax <= 0 || Couldown == 0)
 				return;
@@ -71,26 +67,20 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 
         // Here we draw our UI
         protected override void DrawSelf(SpriteBatch spriteBatch) {
-           // base.DrawSelf(spriteBatch);
+            RemnantPlayer remnantPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
+            float quotient = (float)remnantPlayer.GenericChargeCouldown / remnantPlayer.GenericChargeCouldownMax; 
+			quotient = Utils.Clamp(quotient, 0f, 1f);
 
-            //var modPlayer = Main.LocalPlayer.GetModPlayer<ExampleResourcePlayer>();
-            // Calculate quotient
-            float quotient = (float)RemnantPlayer.GenericChargeCouldown / RemnantPlayer.GenericChargeCouldownMax; // Creating a quotient that represents the difference of your currentResource vs your maximumResource, resulting in a float of 0-1f.
-			quotient = Utils.Clamp(quotient, 0f, 1f); // Clamping it to 0-1f so it doesn't go over that.
-
-			// Here we get the screen dimensions of the barFrame element, then tweak the resulting rectangle to arrive at a rectangle within the barFrame texture that we will draw the gradient. These values were measured in a drawing program.
 			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
 			hitbox.X += 12;
 			hitbox.Width -= 24;
-			hitbox.Y += 6;//8
-			hitbox.Height -= 11;//16
+			hitbox.Y += 6;
+			hitbox.Height -= 11;
 
-			// Now, using this hitbox, we draw a gradient by drawing vertical lines while slowly interpolating between the 2 colors.
 			int left = hitbox.Left;
 			int right = hitbox.Right;
 			int steps = (int)((right - left) * quotient);
 			for (int i = 0; i < steps; i += 1) {
-				// float percent = (float)i / steps; // Alternate Gradient Approach
 				float percent = (float)i / (right - left);
 				Texture2D texture = TextureAssets.MagicPixel.Value;
 
@@ -99,7 +89,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		}
 
 		public override void Update(GameTime gameTime) {
-			Player player = Main.LocalPlayer;
+			RemnantPlayer remnantPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
+            Player player = Main.LocalPlayer;
 
 			Vector2 screenPos = (player.position - Main.screenPosition) / Main.UIScale;
 			float barX = screenPos.X + (player.width / 2f / Main.UIScale) - (area.Width.Pixels / 2f);
@@ -107,15 +98,14 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 			area.Left.Set(barX, 0f);
 			area.Top.Set(barY, 0f);
 
-			if (RemnantPlayer.GenericChargeCouldownMax > 0 && RemnantPlayer.GenericChargeCouldown > 0)
+			if (remnantPlayer.GenericChargeCouldownMax > 0 && remnantPlayer.GenericChargeCouldown > 0)
 			{
-				text.SetText(GenericChargeUISystem.Text.Format(RemnantPlayer.GenericChargeCouldownMax - RemnantPlayer.GenericChargeCouldown,"s"));
+				text.SetText(GenericChargeUISystem.Text.Format(remnantPlayer.GenericChargeCouldownMax - remnantPlayer.GenericChargeCouldown,"s"));
 			}
 			base.Update(gameTime);
 		}
 	}
 
-    // This class will only be autoloaded/registered if we're not loading on a server
     [Autoload(Side = ModSide.Client)]
 	internal class GenericChargeUISystem : ModSystem
 	{
@@ -142,7 +132,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 			int resourceBarIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));
 			if (resourceBarIndex != -1) {
 				layers.Insert(resourceBarIndex, new LegacyGameInterfaceLayer(
-					"ExampleMod: Example Resource Bar",
+					"RemantOfTheAncients: Charge Bar",
 					delegate {
 						BarUserInterface.Draw(Main.spriteBatch, new GameTime());
 						return true;

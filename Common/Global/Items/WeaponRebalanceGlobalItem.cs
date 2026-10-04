@@ -92,7 +92,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 }
                 else if (item.type == ItemID.InfernoFork)
                 {
-                    item.crit = 76; // da 80 en el juego (valor buscado - 4)
+                    item.crit = 76; // crit + 4 = valor final en el juego (76 + 4 = 80)
                 }
                 else if (item.type == ItemID.ClingerStaff)
                 {
@@ -154,11 +154,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.DamageType = DamageClass.Throwing;
                 }
-                else if (item.type == ItemID.MolotovCocktail)
-                {
-                    item.DamageType = DamageClass.Throwing;
-                }
-                else if (item.type == ItemID.AleThrowingGlove)
+                else if (item.type == ItemID.MolotovCocktail || item.type == ItemID.AleThrowingGlove)
                 {
                     item.DamageType = DamageClass.Throwing;
                 }
@@ -340,7 +336,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             {
                 if (player.altFunctionUse == 2)
                 {
-                    if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0 && player.whoAmI == player.whoAmI)
+                    if (player.ownedProjectileCounts[ModContent.ProjectileType<GemStaffHeldProj>()] <= 0)
                     {
                         player.statMana -= item.mana * 3;
                         Projectile.NewProjectile(source, player.position, velocity, ModContent.ProjectileType<GemStaffHeldProj>(), 0, 0, player.whoAmI, type, value);

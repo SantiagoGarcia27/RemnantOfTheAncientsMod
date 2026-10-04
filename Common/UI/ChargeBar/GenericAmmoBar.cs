@@ -51,7 +51,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		}
 
 		public override void Draw(SpriteBatch spriteBatch) {
-                if (Main.LocalPlayer.HeldItem.stack <= 0 || RemnantPlayer.GenericAmmoAmmountMax <= 0 || RemnantPlayer.GenericAmmoAmmount == RemnantPlayer.GenericAmmoAmmountMax && Main.LocalPlayer.whoAmI != Main.myPlayer)
+			RemnantPlayer remnantPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
+            if (Main.LocalPlayer.HeldItem.stack <= 0 || remnantPlayer.GenericAmmoAmmountMax <= 0 || remnantPlayer.GenericAmmoAmmount == remnantPlayer.GenericAmmoAmmountMax && Main.LocalPlayer.whoAmI != Main.myPlayer)
 					return;
             base.Draw(spriteBatch);
         }
@@ -61,8 +62,8 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		{
 			base.DrawSelf(spriteBatch);
 
-			
-			float quotient = (float)RemnantPlayer.GenericAmmoAmmount / RemnantPlayer.GenericAmmoAmmountMax; 
+            RemnantPlayer remnantPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
+            float quotient = (float)remnantPlayer.GenericAmmoAmmount / remnantPlayer.GenericAmmoAmmountMax; 
 			quotient = Utils.Clamp(quotient, 0f, 1f); 
 
 			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
@@ -86,7 +87,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 		}
 
 		public override void Update(GameTime gameTime) {
-			if (RemnantPlayer.GenericAmmoAmmountMax <= 0)
+            RemnantPlayer remnantPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
+
+            if (remnantPlayer.GenericAmmoAmmountMax <= 0)
 				return;
 			Player player = Main.LocalPlayer;
 
@@ -97,7 +100,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 			area.Top.Set(barY, 0f);
 
 			Item item = Utils1.ChooseAmmo(player, player.HeldItem);
-			textAmmo.SetText(GenericAmmoCouldownUISystem.Text.Format(RemnantPlayer.GenericAmmoAmmount + "/" + RemnantPlayer.GenericAmmoAmmountMax + (item != null? $" [I:{item.type}]": "")));
+			textAmmo.SetText(GenericAmmoCouldownUISystem.Text.Format(remnantPlayer.GenericAmmoAmmount + "/" + remnantPlayer.GenericAmmoAmmountMax + (item != null? $" [I:{item.type}]": "")));
 			base.Update(gameTime);
 		}
 	}
