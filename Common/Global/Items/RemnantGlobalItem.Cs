@@ -279,7 +279,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			{
 				Shootproj = 226;
 
-				if (player.ownedProjectileCounts[Shootproj] <= 0)
+				if (player.ownedProjectileCounts[Shootproj] <= 0 && player.whoAmI == Main.myPlayer)
 				{
 					player.AddBuff(BuffID.LeafCrystal, 200, false);
 					Projectile.NewProjectile(Entity.GetSource_None(), player.position + new Vector2(0, -2 * 16f), Vector2.Zero, Shootproj, 15, 0, player.whoAmI, 1);

@@ -42,8 +42,13 @@ namespace RemnantOfTheAncientsMod
                         int mode = reader.ReadInt32();
                         int owner = reader.ReadInt32();
 
+
+
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
+                            if (owner != whoAmI || mode < 0 || mode > 3)
+                                return;
+
                             if (owner == whoAmI)
                             {
                                 int i = NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, mode);

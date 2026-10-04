@@ -291,7 +291,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                         int i = 0;
                         foreach(Player player in Main.ActivePlayers)
                         {
-                            if (Main.netMode != NetmodeID.SinglePlayer && (!player.active || player.dead || i++ % 2 == 0)) continue;
+                            if (!player.active || player.dead)
+                                continue;
+
+                            if (Main.netMode != NetmodeID.SinglePlayer && i++ % 2 != 0)
+                                continue;
+
                             ShootIa(10, ProjectileType<Frozenp>(), player, 20f + variance, 0.5, 0.5);
                         }
                     }
@@ -324,17 +329,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             if (RemnantOfTheAncientsMod.FargosSoulMod == null) return;
             if (!DificultyUtils.EternityMode && !DificultyUtils.MasochistMode) return;
                 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Chilled, 0, 0, 1);
-                RemnantPlayer.ApplyBuffToAllPlayers(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 0, 0, 1);
-            }
-            else
-            {
-                target.AddBuff(BuffID.Chilled, 1);
-                target.AddBuff(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 1);
-            }
-
+            RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Chilled, 0, 0, 1);
+            RemnantPlayer.ApplyBuffToAllPlayers(CallUtils.TryGetBuffFromMod(RemnantOfTheAncientsMod.FargosSoulMod, "HypothermiaBuff"), 0, 0, 1);
 
             int MainShootRate = ((DificultyUtils.MasochistMode ? 4 : 8) * (!DificultyUtils.InfernumMode ? 1 : 2));
             if (attackCounter % MainShootRate == 0 && currentPhase != 2) EthernityCommonShoot(target);
@@ -423,7 +419,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 int i = 0;
                 foreach (Player player in Main.ActivePlayers)
                 {
-                    if (Main.netMode != NetmodeID.SinglePlayer && (!player.active || player.dead || i++ % 2 == 0)) continue;
+                    if (!player.active || player.dead)
+                        continue;
+
+                    if (Main.netMode != NetmodeID.SinglePlayer && i++ % 2 != 0)
+                        continue;
+
                     ShootIa(10, ProjectileID.FrostBeam, player, 20f, 0.5, 0.5);
                     ShootIa(10, ProjectileID.FrostBeam, target, -20f, 0.5, 0.5);
                 }

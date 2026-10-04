@@ -52,8 +52,14 @@ namespace RemnantOfTheAncientsMod.Common.UI.ChargeBar
 
 		public override void Draw(SpriteBatch spriteBatch) {
 			RemnantPlayer remnantPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
-            if (Main.LocalPlayer.HeldItem.stack <= 0 || remnantPlayer.GenericAmmoAmmountMax <= 0 || remnantPlayer.GenericAmmoAmmount == remnantPlayer.GenericAmmoAmmountMax && Main.LocalPlayer.whoAmI != Main.myPlayer)
-					return;
+
+            if (Main.LocalPlayer.HeldItem.stack <= 0 ||
+				remnantPlayer.GenericAmmoAmmountMax <= 0 ||
+				remnantPlayer.GenericAmmoAmmount >= remnantPlayer.GenericAmmoAmmountMax)
+            {
+                return;
+            }
+
             base.Draw(spriteBatch);
         }
 

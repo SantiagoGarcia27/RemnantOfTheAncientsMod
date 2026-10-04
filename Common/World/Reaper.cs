@@ -16,7 +16,11 @@ namespace RemnantOfTheAncientsMod.World
         
         public override void OnWorldUnload()
         {
-            ReaperMode = false;       
+            ReaperMode = false;
+            DificultyUtils.ReaperMode = false;
+
+            RemnantGlobalNPC.DamageBonus = 1f;
+            RemnantGlobalNPC.LifeBonus = 1f;
         }
 
         public override void SaveWorldData(TagCompound tag)
@@ -29,7 +33,7 @@ namespace RemnantOfTheAncientsMod.World
             ReaperMode = tag.GetBool("ReaperMode");
             LoadDataExtras();
         }
-
+      
         internal static void LoadDataExtras()
         {
             DificultyUtils.ReaperMode = ReaperMode;

@@ -1,3 +1,4 @@
+using CalamityMod.Items.Accessories;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.spriteDirection = NPC.direction;
         }
         bool hitAnimation = false;
-        public static int OldDef = 0;
+        public int oldDef = 0;
         public override void SetDefaults()
         {
             NPC.width = 24;
@@ -99,11 +100,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             hitAnimation = true;
             currentFrame = 0;
             SetDirection(hit.HitDirection);
-            if (NPC.defense < OldDef || NPC.defense > OldDef)
+            if (NPC.defense != oldDef)
             {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Defense: " + NPC.defense.ToString() + " [i:156]"), Color.Blue);
                 base.OnHitByItem(player, item, hit, damageDone);
-                OldDef = NPC.defense;
+                oldDef = NPC.defense;
             }
         }
         public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
@@ -111,17 +112,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             hitAnimation = true;
             currentFrame = 0;
             SetDirection(hit.HitDirection);
-            if (NPC.defense < OldDef || NPC.defense > OldDef)
+            if (NPC.defense != oldDef)
             {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Defense: " + NPC.defense.ToString() + " [i:156]"), Color.Blue);
                 base.OnHitByProjectile(projectile, hit, damageDone);
-                OldDef = NPC.defense;
+                oldDef = NPC.defense;
             }
 
         }
         public override void OnKill()
         {
-           // ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("Small with player defense"), Color.Red);
             base.OnKill();
         }
         void SetDirection(int dir)
