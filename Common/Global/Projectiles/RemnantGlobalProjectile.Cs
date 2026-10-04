@@ -79,6 +79,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
         public Player PlayerOwner;
         public override void SetDefaults(Projectile projectile)
         {  
+            Player player = Main.player[projectile.owner];
             if (WeaponConf)
             {
                 if (projectile.type == ProjectileID.BabySlime)
@@ -93,18 +94,17 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
                 FiilMeleeWeaponEffectsList();
                 if (MeleeWeaponEffectsProjectiles.Contains(projectile.type))
                 {
-                    //projectile.DamageType = DamageClass.Melee;
                     projectile.friendly = true;
                 }
             }
 
-            Item heldItem = Main.LocalPlayer.HeldItem;
+            Item heldItem = player.HeldItem;
             if (heldItem != null && !heldItem.IsAir)
             {
-                float pierceStrikeChance = Main.LocalPlayer.GetModPlayer<StatPlayer>().GetProjectilePenetrationChance(DamageClass.Ranged);
+                float pierceStrikeChance = player.GetModPlayer<StatPlayer>().GetProjectilePenetrationChance(DamageClass.Ranged);
                 if (pierceStrikeChance > 0 && projectile.CountsAsClass(DamageClass.Ranged) && heldItem.useAmmo == AmmoID.Bullet && Main.rand.NextBool((int)(100/ pierceStrikeChance)))
                 {
-                    int bonus = (int)Main.LocalPlayer.GetModPlayer<StatPlayer>().GetProjectilePenetration(DamageClass.Ranged);
+                    int bonus = (int)player.GetModPlayer<StatPlayer>().GetProjectilePenetration(DamageClass.Ranged);
                     projectile.penetrate += bonus;
                 }
             }

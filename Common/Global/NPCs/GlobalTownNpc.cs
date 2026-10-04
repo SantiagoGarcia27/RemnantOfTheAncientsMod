@@ -200,7 +200,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public void ApplyEffectOnTimePreDay(NPC npc, bool firstButton, Action action)
         {
             RemnantPlayer modPlayer = Main.LocalPlayer.GetModPlayer<RemnantPlayer>();
-            Player player = Main.LocalPlayer;
             if (!npc.IsShimmerVariant) return;
             if (modPlayer.PlayerTalkToday[npc.type]) return;
             if (!firstButton) return;

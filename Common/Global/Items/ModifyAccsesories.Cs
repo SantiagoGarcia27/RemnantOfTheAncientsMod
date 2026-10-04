@@ -77,10 +77,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                     styleItem.StyleStat = 3;
                 }
                
-                if (item.type == ItemID.DiamondRing)
-                {
-                    styleItem.StyleStat = 6;
-                }
                 if (item.type == ModContent.ItemType<Sangar_Head>() || item.type == ModContent.ItemType<Sangar_Body>() || item.type == ModContent.ItemType<Sangar_Legs>() 
                 || item.type == ModContent.ItemType<Ttim_Head>() || item.type == ModContent.ItemType<Ttim_Body>() || item.type == ModContent.ItemType<Ttim_Legs>())
                 {

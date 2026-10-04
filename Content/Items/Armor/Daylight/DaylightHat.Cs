@@ -45,7 +45,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Armor.Daylight
 			if (Main.dayTime) player.lifeRegen = player.lifeRegen > 0 ? player.lifeRegen * 2 : 2;
 			else player.statManaMax2 += 20;
 
-            Main.LocalPlayer.GetModPlayer<RemnantPlayer>().DaylightArmorSetBonus = true;			
+            player.GetModPlayer<RemnantPlayer>().DaylightArmorSetBonus = true;			
 		}
 
 		public override void AddRecipes()

@@ -291,7 +291,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                         int i = 0;
                         foreach(Player player in Main.ActivePlayers)
                         {
-                            if (!player.active || player.dead || i++ % 2 == 0) continue;
+                            if (Main.netMode != NetmodeID.SinglePlayer && (!player.active || player.dead || i++ % 2 == 0)) continue;
                             ShootIa(10, ProjectileType<Frozenp>(), player, 20f + variance, 0.5, 0.5);
                         }
                     }
@@ -423,7 +423,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 int i = 0;
                 foreach (Player player in Main.ActivePlayers)
                 {
-                    if (!player.active || player.dead || i++ % 2 == 0) continue;
+                    if (Main.netMode != NetmodeID.SinglePlayer && (!player.active || player.dead || i++ % 2 == 0)) continue;
                     ShootIa(10, ProjectileID.FrostBeam, player, 20f, 0.5, 0.5);
                     ShootIa(10, ProjectileID.FrostBeam, target, -20f, 0.5, 0.5);
                 }

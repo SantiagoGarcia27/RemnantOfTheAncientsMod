@@ -36,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             Projectile Sunflowerproj = null;
             public override void PostUpdateEquips(Player player)
             {
-                Main.LocalPlayer.GetModPlayer<RemnantPlayer>().DaylightArmorSetBonus = true;
+                player.GetModPlayer<RemnantPlayer>().DaylightArmorSetBonus = true;
                 player.GetModPlayer<RemnantFargosSoulsPlayer>().DaylightEnchantment = true;
                 if (Main.dayTime)
                 {

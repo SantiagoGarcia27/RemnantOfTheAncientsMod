@@ -55,19 +55,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 		}
 		public override bool CanShoot(Player player)
 		{
-			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig)
+			if (RemnantOfTheAncientsMod.TerrariaOverhaul != null && !GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig && player.whoAmI == Main.myPlayer)
 			{
-				Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
+                Vector2 velocity = Vector2.Normalize(FakeMain.MouseWorld(player) - player.position) * Item.shootSpeed;
 				Vector2 pos = player.position - new Vector2(7 * 16, 1f * 16 * Item.scale);
 				pos.X *= player.direction;
 
                 var p = Projectile.NewProjectile(Terraria.Entity.GetSource_None(), pos, velocity, ProjectileType<GodClaws>(), Item.damage, Item.knockBack, player.whoAmI);
 				Main.projectile[p].direction = player.direction;
-	
-
             }
 			return !Main.projectile.Any((Projectile n) => n.active && n.owner == player.whoAmI && n.type == ProjectileType<GodClaws>() && (n.ai[0] != 1f || n.ai[1] != 1f));
 		}
+
+
 		[JITWhenModsEnabled("CalamityMod")]
 		public override void AddRecipes()
 		{

@@ -52,9 +52,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         public override bool? UseItem(Player player)
         {  
             if (ItemMod == RemnantOfTheAncientsMod.CalamityMod)
-                Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[BaseNpc.type] = true;
+                player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[BaseNpc.type] = true;
             else
-                Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] = true;
+                player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] = true;
    
             return true;
         }

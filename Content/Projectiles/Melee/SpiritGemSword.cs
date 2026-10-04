@@ -15,20 +15,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
     {
         public override void SetDefaults()
         {
-            Projectile.width = 36;       //projectile width
-            Projectile.height = 36;  //projectile height
-            Projectile.friendly = true;      //make that the projectile will not damage you
-            Projectile.DamageType = DamageClass.Melee;          // 
-            Projectile.tileCollide = false;   //make that the projectile will be destroed if it hits the terrain
-            Projectile.penetrate = 1;      //how many NPC will penetrate
-            Projectile.timeLeft = 300;   //how many time this projectile has before disepire
-            Projectile.light = 1.75f;    // projectile light
+            Projectile.width = 36;
+            Projectile.height = 36;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Melee;      
+            Projectile.tileCollide = false;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = 300;
+            Projectile.light = 1.75f;
             Projectile.extraUpdates = 1;
-            Projectile.DamageType = DamageClass.Magic;
             Projectile.ignoreWater = true;
             Projectile.scale = 0.7f;
             Projectile.timeLeft = 1000;
-            //AIType = ProjectileID.InfluxWaver;
             Projectile.aiStyle = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = -1;
@@ -39,7 +37,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
         {
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45f);
-            //GetAlpha(Color.Wheat);
         }
          public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
