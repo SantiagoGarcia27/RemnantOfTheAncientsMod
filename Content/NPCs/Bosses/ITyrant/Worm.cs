@@ -68,6 +68,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         /// </summary>
         public NPC FollowerNPC => SegmentType == WormSegmentType.Tail ? null : Main.npc[(int)NPC.ai[0]];
 
+        public virtual float SegmentSpacing => NPC.width;
+
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
             return SegmentType == WormSegmentType.Head ? null : false;
@@ -642,8 +644,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 worm.NPC.rotation = (float)Math.Atan2(dirY, dirX) + MathHelper.PiOver2;
                 // We also get the length of the direction vector.
                 float length = (float)Math.Sqrt(dirX * dirX + dirY * dirY);
-                // We calculate a new, correct distance.
-                float dist = (length - worm.NPC.width) / length;
+                float spacing = worm.SegmentSpacing;
+
+                float dist = (length - spacing) / length;
                 float posX = dirX * dist;
                 float posY = dirY * dist;
 
@@ -653,6 +656,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 worm.NPC.position.X += posX;
                 worm.NPC.position.Y += posY;
             }
+
+            
         }
     }
 

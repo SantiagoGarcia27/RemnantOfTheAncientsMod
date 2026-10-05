@@ -61,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             NPC.CloneDefaults(NPCID.DiggerHead);      
             NPC.aiStyle = -1;
-            NPC.Size = new(75, 75);
+            NPC.Size = new(134,136);
             
             NPC.boss = true;
             NPC.lifeMax = BaseStats.LifeMax;
@@ -116,9 +116,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 npc = NPC,
                 currentTarget = Main.player[NPC.target],
             };
-
-            attackModule = new InfernalTyrant_AttackModule(animationModule, auxModule);
             animationModule = new InfernalTyrant_AnimationModule(auxModule);
+            attackModule = new InfernalTyrant_AttackModule(animationModule, auxModule);        
             movementModule = new InfernalTyrant_MovmentModule(auxModule, this);
         }
         internal static void CommonWormInit(TyrantBaseWorm worm)
@@ -149,20 +148,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.defense = TyranStats.TyrantArmor(999, NPC);
-
-            if (!GenericVariables.SizeChanged[0])
-            {
-                try
-                {
-                    if (Main.netMode != NetmodeID.MultiplayerClient) 
-                        NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
-                }
-                catch 
-                {
-                    NPC.Size = new(75, 75);
-                }
-                GenericVariables.SizeChanged[0] = true;
-            }
 
             Player target = Main.player[NPC.target];
 
@@ -276,9 +261,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             if (NPC.IsABestiaryIconDummy)
                 return true;
 
-            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
-            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
-            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
+            string texturePath = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(texturePath);
+            Vector2 drawPosition = NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY);
+
+            Main.EntitySpriteDraw(Texture, drawPosition, NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
+
+            Texture2D mandible = ModContent.Request<Texture2D>(texturePath + "_Mandible").Value;
+
+            Vector2 mandibleOffset = new Vector2(0f, -(mandible.Height - 10) * NPC.scale).RotatedBy(NPC.rotation);
+
+
+            Main.EntitySpriteDraw(
+                mandible,
+                drawPosition + mandibleOffset,
+                mandible.Bounds,
+                drawColor,
+                NPC.rotation,
+                mandible.Size() * 0.5f,
+                NPC.scale,
+                SpriteEffects.None,
+                0
+            );
+
             return false;
         }
 
@@ -316,6 +321,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
     internal class InfernalTyrantBody : TyrantBody
     {
+
+        public override float SegmentSpacing => NPC.localAI[2] == 1 ? 40f : 50f;
+
         [Obsolete]
         public override void SetStaticDefaults()
         { 
@@ -335,7 +343,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity();
             NPC.defense = TyranStats.TyrantArmor(999, NPC);
             NPC.aiStyle = -1;
-            NPC.Size = new(75, 75);
+            NPC.Size = new Vector2(62, 66);
 
             NPC.boss = true;
         }
@@ -353,9 +361,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 return true;
 
             string textureBasePath = NPC.localAI[2] == 1 ? base.Texture+ "_alt" :  base.Texture;
-            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{textureBasePath}_Eternity" : textureBasePath;
-            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
-            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
+            string selectedPath = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{textureBasePath}_Eternity" : textureBasePath;
+
+
+            Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(selectedPath);
+            Rectangle frame = Texture.Bounds;
+            Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -380,29 +391,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             }
             RemnantDownedBossSystem.downedTyrant = true;           
         }
+
+        private Vector2? oldSize;
         public override void AI()
         {
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.defense = TyranStats.TyrantArmor(999, NPC);
             GenericVariables gv = new GenericVariables();
-            if (!GenericVariables.SizeChanged[1])
-            {
-                try
-                {
-                    if (NPC.localAI[2] == 1) NPC.Size = new(70, 66);
-                    else NPC.Size = new(62, 66);
-                  /*  if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
-                    }*/
-                }
-                catch (Exception)
-                {
-                    if (NPC.localAI[2] == 1) NPC.Size = new(70, 66);
-                    else NPC.Size = new(62, 66);
-                }
-                GenericVariables.SizeChanged[1] = true;
-            }
+
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)
@@ -418,11 +414,24 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public override void Init()
         {
             InfernalTyrantHead.CommonWormInit(this);
+
+            Vector2 wantedSize = NPC.localAI[2] == 1 ? new Vector2(35, 66) : new Vector2(62, 66);
+
+            if (oldSize != wantedSize)
+            {
+                Vector2 center = NPC.Center;
+
+                NPC.Size = wantedSize;
+                NPC.Center = center;
+
+                oldSize = wantedSize;
+            }
         }
     }
 
     internal class InfernalTyrantTail : TyrantTail
     {
+        public override float SegmentSpacing => 90f;
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.IsABestiaryIconDummy)
@@ -447,7 +456,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             NPC.CloneDefaults(NPCID.DiggerTail);
             NPC.lifeMax = BaseStats.LifeMax;
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity(); 
-            NPC.Size = new(86, 176);  
+            NPC.Size = new(100, 100);  
             NPC.defense = 25;
             NPC.aiStyle = -1;
             NPC.boss = true;
@@ -464,21 +473,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.defense = TyranStats.TyrantArmor(25, NPC);
-            if (!GenericVariables.SizeChanged[2])
-            {
-                try
-                {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
-                    }
-                }
-                catch (Exception)
-                {
-                    NPC.Size = new(75, 75);
-                }
-                GenericVariables.SizeChanged[2] = true;
-            }
+    
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
                 if (GenericVariables.SpawnCounter >= GenericVariables.TimeInmune)

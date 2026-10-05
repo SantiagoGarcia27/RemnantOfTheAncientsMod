@@ -96,6 +96,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             else if (Main.masterMode) scale = 5;
             else if (Main.expertMode) scale = 2;
 
+            scale += 10; //Debug ingorar
+
             return MinSegmentLength + scale;
         }
 
@@ -115,7 +117,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public static int SpawnCounter = 0;
         public static int TimeInmune = 200;
         public static bool IsSpawned = false;
-        public static List<bool> SizeChanged = [false, false, false];
     }
     public static class BaseStats
     {
