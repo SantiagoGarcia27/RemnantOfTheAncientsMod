@@ -1,5 +1,6 @@
 using CalamityMod.Items.Accessories;
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -20,6 +21,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         bool hitAnimation = false;
         public int oldDef = 0;
+
         public override void SetDefaults()
         {
             NPC.width = 24;
@@ -41,6 +43,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
         }
         public override void AI()
         {
+            int ownerIndex = NPC.releaseOwner;
+
+            if (!ownerIndex.Between(0, Main.maxPlayers - 1, inclusive:true) || !Main.player[ownerIndex].active)
+            {
+                NPC.active = false;
+                return;
+            }
+            Player owner = Main.player[ownerIndex];
+
             if (hitAnimation) Animate();
 
             int mode = (int)NPC.ai[0];
@@ -50,7 +61,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             else if (mode == 1)
             {
-                NPC.defense = Main.player[NPC.releaseOwner].statDefense;
+                NPC.defense = owner.statDefense;
             }
             else if (mode == 2)
             {
@@ -61,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             }
             else if (mode == 3)
             {
-                NPC.defense = Main.player[NPC.releaseOwner].statDefense;
+                NPC.defense = owner.statDefense;
                 NPC.width = 230;
                 NPC.height = 230;
                 NPC.scale = 5;

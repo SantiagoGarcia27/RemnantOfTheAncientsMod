@@ -62,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 			if (ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod))
 			{
 				int buffType = CallUtils.TryGetBuffFromMod(CalamityMod, "GodSlayerInferno", DefaultValue: - 1);
-				if (buffType != -1) buffType = BuffID.Daybreak;
+				if (buffType == -1) buffType = BuffID.Daybreak;
 
 				target.AddBuff(buffType, 400);
 			}

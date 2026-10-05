@@ -152,7 +152,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     shop.Add(new Item(ItemID.Uzi) { shopCustomPrice = Utils1.FormatMoney(0, 0, 50, 0, 0) }, Condition.IsNpcShimmered, Condition.Hardmode, Condition.InJungle);
                 }
-
             }
             if (shop.NpcType == NPCID.SkeletonMerchant)
             {
@@ -193,7 +192,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if(!modPlayer.PlayerTalkToday.ContainsKey(npc.type)) modPlayer.PlayerTalkToday.TryAdd(npc.type, false);
             
             if (npc.type == NPCID.ArmsDealer) ApplyEffectOnTimePreDay(npc, firstButton, () => { player.AddBuff(BuffID.AmmoBox, Utils1.FormatTimeToTick(Minute: 29)); });
-            if(npc.type == NPCID.Angler) ApplyEffectOnTimePreDay(npc,firstButton, () => { player.QuickSpawnItem(Entity.GetSource_TownSpawn(), ItemID.CanOfWorms, 1); });       
+            if (npc.type == NPCID.Nurse) ApplyEffectOnTimePreDay(npc, firstButton, () => { player.AddBuff(BuffID.Lifeforce, Utils1.FormatTimeToTick(Minute: 10)); });
+            if (npc.type == NPCID.Angler) ApplyEffectOnTimePreDay(npc,firstButton, () => { player.QuickSpawnItem(Entity.GetSource_TownSpawn(), ItemID.CanOfWorms, 1); });       
             base.OnChatButtonClicked(npc, firstButton);
         }
 

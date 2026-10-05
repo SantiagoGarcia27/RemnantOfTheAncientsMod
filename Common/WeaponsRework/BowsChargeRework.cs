@@ -31,6 +31,16 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
         private bool BowsReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
         private bool IsRepeater;
         private bool IsBow;
+
+        private int _burstRemaining;
+        private int _burstDelay;
+
+        private Vector2 _burstPosition;
+        private Vector2 _burstVelocity;
+        private int _burstType;
+        private int _burstDamage;
+        private float _burstKnockback;
+
         public override bool InstancePerEntity => true;
         public override void SetDefaults(Item item)
         {
@@ -58,19 +68,18 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
             if (IsBow && BowsReworkConfig)
             {
                 if (_timmer == 0) _timmer = 1;
-                velocity *= _timmer /*/ 2*/;
+                velocity *= _timmer;
                 if (velocity == Vector2.Zero) velocity.X = 5 * player.direction * _timmer;
-                float damageMultiplier = 1 + ((_timmer / (_timmerMax * 2)) * 3);
-                damage *= (int)damageMultiplier;
+                float damageMultiplier = 1 + (_timmer / (_timmerMax * 2) * 3);
+                damage = (int)(damage * damageMultiplier);
                 knockback *= damageMultiplier;
-                // item.GetGlobalItem<RemnantGlobalItem>().Timmer = 0;
             }
 
             base.ModifyShootStats(item, player, ref position, ref velocity, ref type, ref damage, ref knockback);
         }
+        int shootdelay = 0;
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            //Canshoot = true;
             if (!IsRepeater && !BannedBows.Contains(item.type))
             {
                 if (IsBow && BowsReworkConfig)
@@ -79,25 +88,17 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
                     if ((_timmer > 1 || Canshoot) && (Main.mouseLeftRelease || AutoCharge))
                     {
                         Canshoot = false;
-                        float numProjectiles = item.useAnimation / item.useTime;
-                        int i = 0;
-                        int shootdelay = 0;
+                        int numProjectiles = item.useAnimation / item.useTime;
+
                         if (numProjectiles > 1 && _timmer >= _timmerMax)
                         {
-                            while(i < numProjectiles)
-                            {
-                                if (shootdelay <= 0)
-                                {
-                                    Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
-                                    shootdelay = Utils1.FormatTimeToTick(0, 0, 0, 1);
-                                    i++;
-                                }
-                                else
-                                {
-                                    shootdelay--;
-                                }
-                            }
-                           
+                            _burstRemaining = numProjectiles;
+
+                            _burstPosition = position;
+                            _burstVelocity = velocity;
+                            _burstType = type;
+                            _burstDamage = damage;
+                            _burstKnockback = knockback;
                         }
                         item.GetGlobalItem<RemnantGlobalItem>().Timmer = 0;
                         _timmer = 0;
@@ -159,6 +160,21 @@ namespace RemnantOfTheAncientsMod.Common.WeaponsRework
             {
                 _timmer = 0;
                 _timmerMax = 0;
+
+                if (_burstRemaining > 0 && player.whoAmI == Main.myPlayer)
+                {
+                    if (_burstDelay <= 0)
+                    {
+                        Projectile.NewProjectile(player.GetSource_ItemUse(item), _burstPosition, _burstVelocity, _burstType, _burstDamage, _burstKnockback, player.whoAmI);
+
+                        _burstRemaining--;
+                        _burstDelay = 1;
+                    }
+                    else
+                    {
+                        _burstDelay--;
+                    }
+                }
             }
             base.HoldItem(item, player);
         }

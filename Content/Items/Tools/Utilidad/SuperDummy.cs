@@ -42,11 +42,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad
 				string Defense = "no";
 
                 if (remnantPlayer.DummyMode == 1 || remnantPlayer.DummyMode == 3)
-					Defense= "Player";
-				else if(remnantPlayer.DummyMode == 2 || remnantPlayer.DummyMode == 3)
-					Size = "Gigant";
+                    Defense = "Player";
 
-				Main.NewText(Size + " with " + Defense+" defense");
+                if (remnantPlayer.DummyMode == 2 || remnantPlayer.DummyMode == 3)
+                    Size = "Gigant";
+
+                Main.NewText(Size + " with " + Defense+" defense");
 			}
 			else
 			{

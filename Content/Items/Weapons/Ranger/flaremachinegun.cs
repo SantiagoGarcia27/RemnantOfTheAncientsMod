@@ -48,14 +48,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             type = ModContent.ProjectileType<SuperFlare>();
-            //velocity = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(10));
-            //position.Y += (float)Math.Cos(wave) *32;
-
-
-            Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
-            var a = Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
+        
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Owner:player.whoAmI);
+            var a = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Owner: player.whoAmI);
             Main.projectile[a].ai[2] = 1;
-            a = Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
+            a = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Owner: player.whoAmI);
             Main.projectile[a].ai[2] = -1;
             return false;
         }

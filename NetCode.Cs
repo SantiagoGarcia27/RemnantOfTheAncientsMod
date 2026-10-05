@@ -49,11 +49,11 @@ namespace RemnantOfTheAncientsMod
                             if (owner != whoAmI || mode < 0 || mode > 3)
                                 return;
 
-                            if (owner == whoAmI)
-                            {
-                                int i = NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, mode);
-                                Main.npc[i].releaseOwner = (short)owner;
-                            }
+                            if (NPC.AnyNPCs(ModContent.NPCType<SuperDummyNPC>()))
+                                return;
+
+                            int i = NPC.NewNPC(new EntitySource_WorldEvent(), x, y, ModContent.NPCType<SuperDummyNPC>(), 0, mode);
+                            Main.npc[i].releaseOwner = (short)owner;     
                         }
                         break;
                 }

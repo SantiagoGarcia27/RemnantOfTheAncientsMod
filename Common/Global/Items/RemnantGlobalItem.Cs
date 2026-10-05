@@ -134,8 +134,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 				{
 					foreach (ExtraProjectile proj in extraProjectile)
 					{
-						if (Main.rand.NextBool(100 / proj.Chance))
-						{
+                        float chance = Math.Clamp(proj.Chance, 0f, 100f);
+
+                        if (Main.rand.NextFloat(100f) < chance)
+                        {
 							Projectile.NewProjectile(Entity.GetSource_None(), position, velocity, proj.ProjectileType, damage, knockback, player.whoAmI);
 						}
 					}
@@ -357,10 +359,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
 		{
 			int NotConsumeAmmoChance = player.GetModPlayer<RemnantPlayer>().NotConsumeAmmoChance;
-			float selection = Main.rand.NextFloat(0, 101);
 
-			if (selection <= NotConsumeAmmoChance) return false;
-			else return base.CanConsumeAmmo(weapon, ammo, player);
+            float chance = Math.Clamp(NotConsumeAmmoChance, 0f, 100f);
+
+            if (Main.rand.NextFloat(100f) < chance)
+                return false;
+
+            return base.CanConsumeAmmo(weapon, ammo, player);
 		}
         public override void UpdateEquip(Item item, Player player)
         {
@@ -380,7 +385,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 			if (player == Main.LocalPlayer)
 			{
 				Vector2 mouseWorld = FakeMain.MouseWorld(player).ToTilePosition();
-				Tile cursorTile = Main.tile[(int)mouseWorld.X, (int)mouseWorld.Y];
+				if(!WorldGen.InWorld((int)mouseWorld.X, (int)mouseWorld.Y))
+                {
+                    return base.UseSpeedMultiplier(item, player);
+                }
+
+                Tile cursorTile = Main.tile[(int)mouseWorld.X, (int)mouseWorld.Y];
 				if ((cursorTile.TileType == TileID.Extractinator || cursorTile.TileType == TileID.ChlorophyteExtractinator) && player.cursorItemIconEnabled)
 				{
 					float multiplier = ModContent.GetInstance<ConfigServer>().FastExtractinatorConf;

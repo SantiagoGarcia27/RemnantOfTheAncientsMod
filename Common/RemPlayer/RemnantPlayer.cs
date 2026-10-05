@@ -231,7 +231,6 @@ namespace RemnantOfTheAncientsMod
 		}
 		private static void Player_TryGettingDevArmor(On_Player.orig_TryGettingDevArmor orig, Player player, IEntitySource source)
 		{
-			//TryGettingPatreonOrDevArmor(source, this);
 			Dictionary<int, List<int>> Suits = new()
 			{
 				{ 0, [ItemID.RedsHelmet, ItemID.RedsBreastplate, ItemID.RedsLeggings]},
@@ -324,16 +323,12 @@ namespace RemnantOfTheAncientsMod
 		{
             Player.opacityForAnimation = 1;
 
-            if (MoneyCollector)
-			{
-				MoneyColectorBuff.UpdateCoins(Player);
-			}
+            if (MoneyCollector) MoneyColectorBuff.UpdateCoins(Player);
+			
 			CheckInventory(Player);
 
-			if (Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>()))
-			{
-				WormHoleEffect(Player);
-			}
+			if (Utils1.IsItemOnPlayerInventory(ItemType<EndlessWormHole>())) WormHoleEffect(Player);
+			
 			SpawnMimics(Player);
 
 			Item heldItem = Player.HeldItem;
@@ -375,18 +370,16 @@ namespace RemnantOfTheAncientsMod
 			{
                 CalamityMessage();
 			}
-			foreach (Asset<Texture2D> asset in TextureAssets.Item)
-			{
-				RemnantGlobalItem.oldTexture.Add(asset);
-			}
+
+            if (RemnantGlobalItem.oldTexture.Count == 0)
+            {
+                RemnantGlobalItem.oldTexture.AddRange(TextureAssets.Item);
+            }
 
             if (Utils1.IsAprilFoolDay() && GetInstance<ConfigClient>().AprilFoolsDay)
 			{
 				ChatHelper.SendChatMessageFromClient(new ChatMessage("Happy April Fools Day, if you want to disable this, go to settings"));
 			}
-
-
-
         }
 		[JITWhenModsEnabled("CalamityMod")]
 		public static void CalamityMessage()

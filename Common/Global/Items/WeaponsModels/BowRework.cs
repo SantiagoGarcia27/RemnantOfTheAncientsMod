@@ -14,14 +14,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
     {
         public bool IsRepeater;
         public bool IsBow;
-
-
-
-
-
-
-
-
         public bool WeaponConf = ModContent.GetInstance<ConfigServer>().VanillaWeaponsChangesConf;
         public bool BowReworkConfig = ModContent.GetInstance<ConfigServer>().BowReworkConf;
 
@@ -111,7 +103,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels
             if (IsRepeater)
             {
                 var globalPlayer = item.GetGlobalItem<RemnantGlobalItem>();
-                //Main.NewText(1f - UseTimeReduction);
                 return 1f - globalPlayer.UseTimeReduction;
             }
             return base.UseTimeMultiplier(item, player);
