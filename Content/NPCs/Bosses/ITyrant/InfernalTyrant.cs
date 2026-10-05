@@ -38,6 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         InfernalTyrant_AnimationModule animationModule;
         InfernalTyrant_AttackModule attackModule;
         InfernalTyrant_AuxiliaryModule auxModule;
+        InfernalTyrant_MovmentModule movementModule;
 
         public override void SetStaticDefaults()
         {
@@ -118,38 +119,29 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
             attackModule = new InfernalTyrant_AttackModule(animationModule, auxModule);
             animationModule = new InfernalTyrant_AnimationModule(auxModule);
+            movementModule = new InfernalTyrant_MovmentModule(auxModule, this);
         }
         internal static void CommonWormInit(TyrantBaseWorm worm)
         {
             worm.MoveSpeed = 30f;
             worm.Acceleration = 0.245f;
         }
-        private int movementTimer;
-        private int movementPhase;
-        private Vector2 dashDirection;
+   
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(movementTimer);
-            writer.Write(movementPhase);
-         
-            writer.Write(dashDirection.X);
-            writer.Write(dashDirection.Y);
-
             animationModule.SendExtraAI(writer);
             auxModule.SendExtraAI(writer);
             attackModule.SendExtraAI(writer);
+            movementModule.SendExtraAI(writer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-            movementTimer = reader.ReadInt32();
-            movementPhase = reader.ReadInt32();
-            dashDirection = new Vector2(reader.ReadSingle(), reader.ReadSingle());
-
             animationModule.ReceiveExtraAI(reader);
             auxModule.ReceiveExtraAI(reader);
             attackModule.ReceiveExtraAI(reader);
+            movementModule.ReceiveExtraAI(reader);
         }
         
         public bool IsPhase2 => auxModule.IsPhase2;
@@ -162,10 +154,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 try
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
+                    if (Main.netMode != NetmodeID.MultiplayerClient) 
                         NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
-                    }
                 }
                 catch 
                 {
@@ -186,7 +176,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             if (RemnantOfTheAncientsMod.FargosSoulMod != null) attackModule.FargosAttacks(target);    
             
             InfernalTyrant_AuxiliaryModule.LifeSpeed(this);
-            UpdateMovement();
+            movementModule.UpdateMovement();
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -212,55 +202,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                     NPC.netUpdate = true;
                 }       
             }
-            if (auxModule.attackCounter > 0)
-            {
-                auxModule.attackCounter--;
-            }
+            if (auxModule.attackCounter > 0) auxModule.attackCounter--;        
         }
 
-        private void UpdateMovement()
-        {
-            if (!IsPhase2)
-            {
-                Acceleration = 0.245f;
-                return;
-            }
-
-            movementTimer--;
-            if (movementTimer <= 0)
-            {
-                int maxPhases = auxModule.IsEnraged ? 3 : 2;
-                movementPhase = (movementPhase + 1) % maxPhases;
-                movementTimer = movementPhase switch
-                {
-                    0 => 180,
-                    1 => auxModule.IsEnraged ? 120 : 150,
-                    2 => 100,
-                    _ => 180
-                };
-                NPC.netUpdate = true;
-            }
-
-            switch (movementPhase)
-            {
-                case 1:
-                    MoveSpeed = auxModule.IsEnraged ? 42f : 36f;
-                    Acceleration = 0.20f;
-                    break;
-                case 2:
-                    MoveSpeed = 34f;
-                    Acceleration = 0.15f;
-                    break;
-                default:
-                    MoveSpeed = 30f;
-                    Acceleration = auxModule.IsEnraged ? 0.28f : 0.26f;
-                    break;
-            }
-        }
+       
 
 
-        private float amplitud = 3.0f;          // grados máximos de desviación por frame
-        private float frecuencia = 0.02f;       // velocidad de ondulación (ciclo completo cada ~50 ticks)
+        private float amplitud = 3.0f;
+        private float frecuencia = 0.02f;
 
         private void SerpentMovementAi(Player target)
         {
@@ -403,14 +352,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             if (NPC.IsABestiaryIconDummy)
                 return true;
 
-            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string textureBasePath = NPC.localAI[2] == 1 ? base.Texture+ "_alt" :  base.Texture;
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{textureBasePath}_Eternity" : textureBasePath;
             Texture2D Texture = (Texture2D)ModContent.Request<Texture2D>(fargos);
             Main.EntitySpriteDraw(Texture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), NPC.frame, drawColor, NPC.rotation, new Vector2(Texture.Width * 0.5f, Texture.Height * 0.5f), NPC.scale, SpriteEffects.None, 0);
             return false;
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            TyranStats.DrawGlow(NPC, "InfernalTyrantBody");
+            //TyranStats.DrawGlow(NPC, "InfernalTyrantBody");
         }
         public override void HitEffect(NPC.HitInfo hit)
         {
@@ -439,14 +389,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 try
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    if (NPC.localAI[2] == 1) NPC.Size = new(70, 66);
+                    else NPC.Size = new(62, 66);
+                  /*  if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         NPC.Size = new Vector2(TextureAssets.Npc[NPC.type].Value.Width * 0.5f, TextureAssets.Npc[NPC.type].Value.Height * 0.5f);
-                    }
+                    }*/
                 }
                 catch (Exception)
                 {
-                    NPC.Size = new(75, 75);
+                    if (NPC.localAI[2] == 1) NPC.Size = new(70, 66);
+                    else NPC.Size = new(62, 66);
                 }
                 GenericVariables.SizeChanged[1] = true;
             }
@@ -458,7 +411,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
                 }
                 else
                 {
-                    if (RemnantOfTheAncientsMod.CalamityMod != null) RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
+                    RemnantGlobalNPC.SetNpcDamageReductionCalamity(NPC,1f, 1f, 1f, 1f, 1f);
                 }
             }
         }
@@ -494,7 +447,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             NPC.CloneDefaults(NPCID.DiggerTail);
             NPC.lifeMax = BaseStats.LifeMax;
             if (RemnantOfTheAncientsMod.CalamityMod != null) SetDefautsCalamity(); 
-            NPC.Size = new(75, 75);  
+            NPC.Size = new(86, 176);  
             NPC.defense = 25;
             NPC.aiStyle = -1;
             NPC.boss = true;
@@ -567,7 +520,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            TyranStats.DrawGlow(NPC, "InfernalTyrantTail");   
+            //TyranStats.DrawGlow(NPC, "InfernalTyrantTail");   
         }
         public override void Init()
         {

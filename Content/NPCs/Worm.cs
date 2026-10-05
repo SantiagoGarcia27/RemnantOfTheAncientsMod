@@ -146,7 +146,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             return NPC.whoAmI;
         }
 
-
+        int segmentIntervalMax = 2;
+        int intervalCounter = 0;
         protected int SpawnSegment(IEntitySource source, int type, int latestNPC)
         {
             int oldLatest = latestNPC;
@@ -156,13 +157,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
 
             NPC latest = Main.npc[latestNPC];
 
+            if(intervalCounter >= segmentIntervalMax)
+            {
+                latest.localAI[2] = 1;
+                intervalCounter = 0;
+            }
+            else
+            {
+                intervalCounter++;
+            }
+
             latest.realLife = NPC.whoAmI;
+
             if (!Main.npc[oldLatest].boss && (latest.type == BodyType || latest.type == TailType))
             {
-                latest.scale = 0.5f;
+                latest.scale = 1.5f;
                 latest.Size /= 2;
                 latest.boss = false;
             }
+
             return latestNPC;
         }
 
@@ -201,7 +214,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
                 }
                 else
                 {
-
                     while (distance > 0)
                     {
                         latestNPC = SpawnSegment(source, BodyType, latestNPC);
