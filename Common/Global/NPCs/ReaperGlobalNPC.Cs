@@ -813,6 +813,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         [JITWhenModsEnabled("CalamityMod")]
         public void CalamityAi(NPC npc)
         {
+            Player target = Main.player[npc.target];
+
             if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DesertScourgeHead"))
             {
                 if (npc.life <= MathUtils.GetValueFromPorcentage(npc.lifeMax, 70) && !UniqueToggledFlag)
@@ -860,10 +862,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             {
                 if (attackCounter++ >= 300)
                 {
-                    var p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, new Vector2(5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    var p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, new Vector2(5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, target.whoAmI, 0f, target.Center.Y);
                     Main.projectile[p].hostile = true;
                     Main.projectile[p].friendly = false;
-                    p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, new Vector2(-5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, Main.myPlayer, 0f, Main.LocalPlayer.Center.Y);
+                    p = Projectile.NewProjectile(Entity.GetSource_None(), npc.Center, new Vector2(-5, 0).RotatedBy(npc.rotation), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IchorBlob"), npc.damage, 10, target.whoAmI, 0f, target.Center.Y);
                     Main.projectile[p].hostile = true;
                     Main.projectile[p].friendly = false;
                     attackCounter = 0;

@@ -41,12 +41,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            // player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrierEffect(player, hideVisual);       
-            // player.GetModPlayer<RemnantFargosSoulsPlayer>().DesertMedalionEffect(player);
-            // ModContent.GetInstance<DesertMedallion>().UpdateAccessory(player, hideVisual);
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
 
-            RemnantFargosSoulsPlayer.ProjectileSpeedBonus = ProjectileSpeedBonus;
-            RemnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
+            remnantFargosSoulsPlayer.ProjectileSpeedBonus = ProjectileSpeedBonus;
+            remnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
             player.AddEffect<DesertMedalionEffect>(Item);
             player.AddEffect<FrostBarrierEffect>(Item);
             player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier = true;

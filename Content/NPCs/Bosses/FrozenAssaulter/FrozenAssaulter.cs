@@ -40,7 +40,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
     {
         public int currentPhase = 1;
         public int MaxPlayers => RemnantOfTheAncientsMod.MaxPlayerOnline();
-     
+
+        FrozenAssaulterInfernum infernum_Module;
+
         public override void SetStaticDefaults()
         {        
             Main.npcFrameCount[NPC.type] = 8;
@@ -108,6 +110,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
         public override void AI()
         {
             if(Main.netMode == NetmodeID.MultiplayerClient) return;
+            infernum_Module ??= new FrozenAssaulterInfernum();
 
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
@@ -127,7 +130,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
             if (RemnantOfTheAncientsMod.InfernumMod != null && DificultyUtils.InfernumMode)
             {
-                FrozenAssaulterInfernum.InfernumAi(NPC, currentPhase, attackCounter);
+                infernum_Module.InfernumAi(NPC, currentPhase, attackCounter);
                 CheckPhase();
                 CheckDistance(distance, NPC);
                 return;

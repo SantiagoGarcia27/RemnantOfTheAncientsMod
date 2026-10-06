@@ -33,7 +33,14 @@ Mods: {
 				On: Bienvenido al infierno, ahora eres un segador.
 				Off: Tu alma es libre... por ahora.
 			}
+			RaiderInvasions: {
+				DisplayName: Asalto de forajidos
+				StartMessage : ¡Un asalto de forajidos ha llegado!
+				DefeatMessage: ¡El asalto de forajidos ha sido derrotado!
+			}
 		}
+
+
 
 		TownNPCMood: {
 			Time_Wizard: {
@@ -4611,7 +4618,7 @@ Mods: {
 
 			RaidersSummon: {
 				DisplayName: Estandarte de Incursión
-				Tooltip: Invoca la Incurion de Jugadores
+				Tooltip: Invoca el Asalto de forajidos
 			}
 
 			ReaperPants: {
@@ -4791,17 +4798,16 @@ Mods: {
 			DesertAnnihilatorGuard.DisplayName: Escolta desético
 			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
 			HallowedZombie.DisplayName: Zombi blindado
-			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
-			// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
-			// ChlorophyteZombie.DisplayName: Chlorophyte Zombie
-			// TurtleZombie.DisplayName: Turtle Zombie
-			// BeetleZombie.DisplayName: Beetle Zombie
-			// SolarZombie.DisplayName: Solar Zombie
-			// KillerBunny.DisplayName: Killer Bunny
-			// MaceSkeleton.DisplayName: Mace Skeleton
+			DevourerOfGodsArmor.DisplayName: Devourer Of Gods
+			CursedShotgunEnemy.DisplayName: Escopeta maldita
+			ChlorophyteZombie.DisplayName: Zombi blindado
+			TurtleZombie.DisplayName: Zombi blindado
+			BeetleZombie.DisplayName: Zombi blindado
+			SolarZombie.DisplayName: Zombi blindado
+			KillerBunny.DisplayName: Conejo asesino
+			MaceSkeleton.DisplayName: Esqueleto mazudo
 			// FakePlayer.DisplayName: Fake Player
-			// Outlaw.DisplayName: Outlaw
-			// Raider.DisplayName: Raider
+			Raider.DisplayName: Forajido
 		}
 
 		Projectiles: {
@@ -4992,7 +4998,7 @@ Mods: {
 			TuxoniteDoorClosed.MapEntry: Puerta
 			TuxoniteDoorOpen.MapEntry: Puerta
 			TuxoniteTableTile.MapEntry: Mesa
-			// ReforgeAnvilTile.MapEntry: Reforge Anvil Tile
+			ReforgeAnvilTile.MapEntry: Yunque de Reforja
 		}
 
 		Conditions: {

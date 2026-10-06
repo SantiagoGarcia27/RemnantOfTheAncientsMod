@@ -32,10 +32,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             [JITWhenModsEnabled("FargowiltasSouls")]
             public override void PostUpdateEquips(Player player)
             {
-                RemnantFargosSoulsPlayer.NightTpCouldownMax = player.FargoSouls().WizardEnchantActive ? Utils1.FormatTimeToTick(0, 0, 0, 30):Utils1.FormatTimeToTick(0, 0, 1, 0);
+                RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+                remnantFargosSoulsPlayer.NightTpCouldownMax = player.FargoSouls().WizardEnchantActive ? Utils1.FormatTimeToTick(0, 0, 0, 30):Utils1.FormatTimeToTick(0, 0, 1, 0);
                 if (!Main.dayTime)
                 {
-                    player.opacityForAnimation = RemnantFargosSoulsPlayer.NightTpCouldown == 0 ? 0.5f : 1;
+                    player.opacityForAnimation = remnantFargosSoulsPlayer.NightTpCouldown == 0 ? 0.5f : 1;
                     player.aggro -= 500;
                     player.GetModPlayer<RemnantFargosSoulsPlayer>().NightTp = true;
                 }

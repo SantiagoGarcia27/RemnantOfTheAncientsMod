@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
 using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
@@ -13,16 +14,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
     public class FrozenAssaulterInfernum
     {
-        static int intercalate = 0;
-        public static List <bool> phaseChange = new List<bool>()
+        int intercalate = 0;
+        public List <bool> phaseChange = new List<bool>()
         {
             false,false,false,false
         };
-        public static void InfernumAi(NPC npc,int currentPhase, int attackCounter)
+        public void InfernumAi(NPC npc,int currentPhase, int attackCounter)
         {
-
-
-           
             if (currentPhase == 1 || currentPhase == 2 || currentPhase == 4)
             {
                 int BasicShootTimmer = 30;
@@ -84,21 +82,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             }
         }
 
-        public static void Phase1Model(NPC npc, int n1, int n2, int attackCounter,int numberOfPoints)
+        public void Phase1Model(NPC npc, int n1, int n2, int attackCounter,int numberOfPoints)
         {
            
             if (attackCounter % n1 == 0)
             {
                 ShootMainAttackAi(npc, numberOfPoints, intercalate == 0, [1, 0]);
-                float radius = 1 * 16;
+
+                float radius = 1.ToCoordinatePosition();
+
                 for (int i = 0; i < numberOfPoints; i++)
                 {
                     float angle = (float)(2 * Math.PI * i / numberOfPoints);
+
                     float x = (float)(npc.Center.X + radius * Math.Cos(angle));
                     float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
+
                     int proj = CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
 
-                    if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
+                    if ((DificultyUtils.EternityMode || DificultyUtils.MasochistMode) && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
                     {
                         proj = ProjectileID.FrostBeam;
                     }
@@ -113,7 +115,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 ShootIceCubeIa(Reaper.ReaperMode ? 10 : 40, ModContent.ProjectileType<FrozenHommingIceBlock>(), 30f, 0, 90, npc.target,npc);
             }
         }
-        public static void ShootMainAttackAi(NPC npc, int numberOfPoints, bool intercalateConditiion, int[] intercalateValues)
+        public void ShootMainAttackAi(NPC npc, int numberOfPoints, bool intercalateConditiion, int[] intercalateValues)
         {
             float radius = 1 * 16;
             for (int i = 0; i < numberOfPoints; i++)
@@ -122,7 +124,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 float x = (float)(npc.Center.X + radius * Math.Cos(angle));
                 float y = (float)(npc.Center.Y + radius * Math.Sin(angle));
 
-                int proj = CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "IceBlast");
+                int proj;
 
                 if ((DificultyUtils.EternityMode || DificultyUtils.MasochistMode) && Main.rand.NextBool(DificultyUtils.MasochistMode ? 2 : 5))
                 {
@@ -143,7 +145,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             x = x != 0 ? x : npc.position.X;
             y = y != 0 ? y : npc.position.Y;
 
-            Vector2 position = new Vector2((float)(x + (npc.width / 2)), y + (npc.height / 2));
+            Vector2 position = new((float)(x + (npc.width / 2)), y + (npc.height / 2));
             Vector2 direction = Vector2.UnitX * speed;
             direction = direction.RotatedBy(grades);
             int i = Projectile.NewProjectile(npc.GetSource_FromAI(), position, direction, type, damage, 0f, Main.myPlayer);

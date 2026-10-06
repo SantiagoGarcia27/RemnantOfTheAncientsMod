@@ -20,20 +20,20 @@ namespace RemnantOfTheAncientsMod
 
         public bool IronBallistaEnchantment;
         public bool FrostBarrier;
-        public static int FrostBarrierCounter;
+        public int FrostBarrierCounter;
         public bool DesertMedalion;
 
 
         public bool NightTp;
-        public static int NightTpCouldown { get; set; }
-        public static int NightTpCouldownMax { get; set; }
+        public int NightTpCouldown { get; set; }
+        public int NightTpCouldownMax { get; set; }
 
-        public static bool tuxoniteEnchantCrit;
-        public static int tuxoniteEnchantCritDuration = 0;
-        public static float tuxoniteEnchantCritCounter = 0;
+        public bool tuxoniteEnchantCrit;
+        public int tuxoniteEnchantCritDuration = 0;
+        public float tuxoniteEnchantCritCounter = 0;
 
-        public static float ProjectileSpeedBonus = 0;
-        public static float ProjectileSizeBonus = 0;
+        public float ProjectileSpeedBonus = 0;
+        public float ProjectileSizeBonus = 0;
 
         public override void ResetEffects()
         {
@@ -55,22 +55,13 @@ namespace RemnantOfTheAncientsMod
                     NightTpCouldown--;
                 }
             }
-            bool togle = Player.GetToggleValue<DivineAuraEffect>();
-            if (!togle)
+
+            if (!Player.GetToggleValue<DivineAuraEffect>() && Player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] > 0)
             {
-
-                if (Player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] > 0)
-                {
-                    Projectile proj = Utils1.SearchFirstProjectile(ModContent.ProjectileType<GodZone>(),false,false);
-
-                    if (proj != null && proj.owner == Player.whoAmI && proj.type == ModContent.ProjectileType<GodZone>())
-                    {
-                        proj.Kill();
-                    }
-
-
-                }
+                Projectile proj = Utils1.SearchFirstProjectile(ModContent.ProjectileType<GodZone>(),false,false);
+                if (proj != null && proj.owner == Player.whoAmI && proj.type == ModContent.ProjectileType<GodZone>()) proj.Kill();     
             }
+           
         }
 
     }

@@ -64,24 +64,16 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos
             int CritBonus = 30;
             public override void PostUpdateEquips(Player player)
             {
-                if (RemnantFargosSoulsPlayer.tuxoniteEnchantCritCounter == 0)
-                {
-                    Dust.NewDustDirect(player.Center, 3, 10, DustID.MushroomSpray);
-                    player.GetCritChance(DamageClass.Generic) += CritBonus;
-                    if (RemnantFargosSoulsPlayer.tuxoniteEnchantCritDuration < Utils1.FormatTimeToTick(0, 0, 0, 10))
-                    {
-                        RemnantFargosSoulsPlayer.tuxoniteEnchantCritDuration++;
-                    }
-                    else
-                    {
-                        RemnantFargosSoulsPlayer.tuxoniteEnchantCritCounter = (int)Main.rand.NextFloat(player.FargoSouls().WizardEnchantActive? Utils1.FormatTimeToTick(0, 0, 0, 10) : Utils1.FormatTimeToTick(0, 0, 0, 30));
-                        RemnantFargosSoulsPlayer.tuxoniteEnchantCritDuration = 0;
-                    }
-                }
-                else
-                {
-                    RemnantFargosSoulsPlayer.tuxoniteEnchantCritCounter--;
-                }
+                RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+                if (remnantFargosSoulsPlayer.tuxoniteEnchantCritCounter-- != 0) return;
+                
+                Dust.NewDustDirect(player.Center, 3, 10, DustID.MushroomSpray);
+                player.GetCritChance(DamageClass.Generic) += CritBonus;
+
+                if (remnantFargosSoulsPlayer.tuxoniteEnchantCritDuration++ < Utils1.FormatTimeToTick(0, 0, 0, 10)) return;
+                    
+                remnantFargosSoulsPlayer.tuxoniteEnchantCritCounter = (int)Main.rand.NextFloat(player.FargoSouls().WizardEnchantActive ? Utils1.FormatTimeToTick(0, 0, 0, 10) : Utils1.FormatTimeToTick(0, 0, 0, 30));
+                remnantFargosSoulsPlayer.tuxoniteEnchantCritDuration = 0;  
             }
         }
     }

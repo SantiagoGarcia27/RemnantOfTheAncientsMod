@@ -15,7 +15,8 @@ public class TyrantMarkEnemyProjectileSizeEffect : AccessoryEffect
     //int ProjectileSizeBonus = 50;
     public override void PostUpdateEquips(Player player)
     {
-        player.GetModPlayer<RemnantPlayer>().EnemyProjectilesScaleBouns -= RemnantFargosSoulsPlayer.ProjectileSizeBonus / 100;
+        RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+        player.GetModPlayer<RemnantPlayer>().EnemyProjectilesScaleBouns -= remnantFargosSoulsPlayer.ProjectileSizeBonus / 100;
     }
 }
 
@@ -28,7 +29,8 @@ public class TyrantMarkEnemyProjectileSpeedEffect : AccessoryEffect
 
     public override void PostUpdateEquips(Player player)
     {
-        player.GetModPlayer<RemnantPlayer>().EnemyProjectilesSpeedScaleBouns -= RemnantFargosSoulsPlayer.ProjectileSpeedBonus / 100f;
+        RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+        player.GetModPlayer<RemnantPlayer>().EnemyProjectilesSpeedScaleBouns -= remnantFargosSoulsPlayer.ProjectileSpeedBonus / 100f;
     }
 }
 

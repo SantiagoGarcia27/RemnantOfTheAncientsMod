@@ -21,6 +21,8 @@ namespace RemnantOfTheAncientsMod
         {
             SpawnSuperDummy,
             KillSuperDummy,
+
+            SoulsUpgrades,
         }
 
         public static void HandlePacket(BinaryReader reader, int whoAmI)
@@ -56,6 +58,58 @@ namespace RemnantOfTheAncientsMod
                             Main.npc[i].releaseOwner = (short)owner;     
                         }
                         break;
+
+                    case RemnantOfTheAncientsModMessageType.SoulsUpgrades:
+
+                        int playerID = reader.ReadByte();
+
+                        if (playerID < 0 || playerID >= Main.maxPlayers)
+                            break;
+
+                        Player player = Main.player[playerID];
+                        ReaperSoulsPlayer reaperPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
+
+
+                        int loadedCount = reader.ReadInt32();
+                        for (int i = 0; i < loadedCount; i++)
+                        {
+                            bool value = reader.ReadBoolean();
+
+                            if (i < reaperPlayer.SoulsUpgradesLoaded.Length)
+                                reaperPlayer.SoulsUpgradesLoaded[i] = value;
+                        }
+
+                        int activeCount = reader.ReadInt32();
+                        for (int i = 0; i < activeCount; i++)
+                        {
+                            float value = reader.ReadSingle();
+                            if (i < reaperPlayer.SoulsUpgradesLoadedActive.Length)
+                                reaperPlayer.SoulsUpgradesLoadedActive[i] = value;
+                        }
+
+                        int maybeLoadedCount = reader.ReadInt32();
+                        for (int i = 0; i < maybeLoadedCount; i++)
+                        {
+                            int key = reader.ReadInt32();
+                            bool value = reader.ReadBoolean();
+
+                            reaperPlayer.SoulsUpgradesMaybeLoaded[key] = value;
+                        }
+
+                        int maybeActiveCount = reader.ReadInt32();
+                        for (int i = 0; i < maybeActiveCount; i++)
+                        {
+                            int key = reader.ReadInt32();
+                            float value = reader.ReadSingle();
+
+                            reaperPlayer.SoulsUpgradesMaybeLoadedActive[key] = value;
+                        }
+
+                        break;
+                    default:
+
+                        break;
+
                 }
             }
             catch (Exception e)

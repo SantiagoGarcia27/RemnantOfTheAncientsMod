@@ -36,9 +36,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         [JITWhenModsEnabled("FargowiltasSouls")]
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            //player.GetModPlayer<RemnantFargosSoulsPlayer>().TyrantMarkEffect(player, MovmentSpeedBonusBonus, ProjectileSizeBonus, ProjectileSizeBonus);
-            RemnantFargosSoulsPlayer.ProjectileSpeedBonus = ProjectileSpeedBonus;
-            RemnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+
+            remnantFargosSoulsPlayer.ProjectileSpeedBonus = ProjectileSpeedBonus;
+            remnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
+
             player.AddEffect<TyrantMarkEnemyProjectileSizeEffect>(Item);
             player.AddEffect<TyrantMarkEnemyProjectileSpeedEffect>(Item);
 

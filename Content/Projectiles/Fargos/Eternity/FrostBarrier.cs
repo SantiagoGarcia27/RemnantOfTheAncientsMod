@@ -14,11 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
     public class FrostBarrier : ModProjectile
     {
         public override string Texture => RemnantOfTheAncientsMod.PlaceHolderPath;
-        public override void SetStaticDefaults()
-        {
-            //DisplayName.SetDefault("Curecedball"); //projectile name
-
-        }
+        public override void SetStaticDefaults() {}
         public override void SetDefaults()
         {
             Projectile.width = 30;
@@ -31,35 +27,24 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             AIType = -1;
-            //Projectile.CloneDefaults(ProjectileID.BallofFire);
-
         }
-        int debugg = 0;
-        List<Vector2> points = new List<Vector2>();
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
             CheckActive(player);
 
             Projectile.Center = player.Center;
-            Point playerPosition = new Point((int)player.position.X, (int)player.position.Y);
+            Point playerPosition = player.position.ToPoint();
 
             int width = 20;
             int height = 20;
-            Rectangle area = new Rectangle(playerPosition.X - width / 2 * 16, playerPosition.Y - height / 2 * 16, width * 16, height * 16);
+            Rectangle area = new(playerPosition.X - width / 2.ToCoordinatePosition(), playerPosition.Y - height / 2.ToCoordinatePosition(), width.ToCoordinatePosition(), height.ToCoordinatePosition());
 
-            //if (debugg % 2 == 0)
-            //{
-            //    GenerarParticulasEnBordes(area.X, area.Y, area.Width, area.Height);
-            //    debugg++;
-            //}
-
-
-            foreach (Projectile projectile in Main.projectile)
+            foreach (Projectile projectile in Main.ActiveProjectiles)
             {
                 if (projectile.type != this.Type)
                 {
-                    if (area.Contains(new Point((int)projectile.position.X, (int)projectile.position.Y)) && (projectile.hostile || !projectile.friendly))
+                    if (area.Contains(projectile.position.ToPoint()) && (projectile.hostile || !projectile.friendly))
                     {
                         projectile.velocity *= -1;
                         projectile.friendly = true;
@@ -69,44 +54,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
                 }
             }
 
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
 
-            if (RemnantFargosSoulsPlayer.FrostBarrierCounter > 0)
+            if (remnantFargosSoulsPlayer.FrostBarrierCounter > 0)
             {
-                RemnantFargosSoulsPlayer.FrostBarrierCounter--;
+                remnantFargosSoulsPlayer.FrostBarrierCounter--;
             }
 
         }
-
-        private void GenerarParticulasEnBordes(int x, int y, int width, int height)
-        {
-            for (int i = x; i < x + width; i++)
-            {
-                SpawnParticle(i, y);                      // Borde superior
-                SpawnParticle(i, y + height - 1);         // Borde inferior
-            }
-
-            for (int j = y + 1; j < y + height - 1; j++)
-            {
-                SpawnParticle(x, j);                     // Borde izquierdo
-                SpawnParticle(x + width - 1, j);         // Borde derecho
-            }
-        }
-
-        private void SpawnParticle(int x, int y)
-        {
-            // Cambia esto según las propiedades de tus partículas
-            int particleType = 1;  // Tipo de partícula
-            Color color = Color.Red;  // Color de la partícula
-
-            Dust.NewDust(new Vector2(x, y), 1, 1, particleType, 0f, 0f, 0, color, 1f);
-        }
-
-
-
-
         public void CheckActive(Player player)
         {
-            if (player.HasBuff<FrostBarrierCouldown>() || RemnantFargosSoulsPlayer.FrostBarrierCounter == 0)
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+            if (player.HasBuff<FrostBarrierCouldown>() || remnantFargosSoulsPlayer.FrostBarrierCounter == 0)
             {
                 Projectile.Kill();
             }
@@ -121,8 +80,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity
         }
         public override void OnSpawn(IEntitySource source)
         {
-            Main.player[Projectile.owner].opacityForAnimation = 0;
-            RemnantFargosSoulsPlayer.FrostBarrierCounter = Utils1.FormatTimeToTick(0, 0, 0, 10);
+            Player player = Main.player[Projectile.owner];
+
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+
+            player.opacityForAnimation = 0;
+            remnantFargosSoulsPlayer.FrostBarrierCounter = Utils1.FormatTimeToTick(0, 0, 0, 10);
             base.OnSpawn(source);
         }
         public float fade = 2.6f;

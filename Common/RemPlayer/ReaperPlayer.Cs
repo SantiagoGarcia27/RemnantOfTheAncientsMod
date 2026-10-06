@@ -20,6 +20,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using static RemnantOfTheAncientsMod.Netcode;
 using static Terraria.ModLoader.ModContent;
 
 
@@ -327,9 +328,16 @@ public class ReaperEffectsPlayer : ModPlayer
             }
         }
     }
-    public static bool SoulIsEnabled(int type) => SoulsUpgradesLoaded(type) && SoulsUpgradesLoadedActive(type) > 0;
-    public static bool SoulsUpgradesLoaded(int type) => Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(type)];
-    public static float SoulsUpgradesLoadedActive(int type) => Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[ReaperSoulsPlayer.GetIndexFromLoadedBossById(type)];
+
+    public bool SoulIsEnabled(int type)
+    {
+        ReaperSoulsPlayer souls = Player.GetModPlayer<ReaperSoulsPlayer>();
+        return souls.IsSoulLoaded(type) && souls.GetSoulActiveValue(type) > 0f;
+    }
+
+    public bool SoulsUpgradesLoaded(int type) => Player.GetModPlayer<ReaperSoulsPlayer>().IsSoulLoaded(type);
+    public float SoulsUpgradesLoadedActive(int type) => Player.GetModPlayer<ReaperSoulsPlayer>().GetSoulActiveValue(type);
+    
 
     private void SpawnHallucination(Item item)
     {
@@ -372,6 +380,28 @@ public class ReaperSoulsPlayer : ModPlayer
     public Dictionary<int, bool> SoulsUpgradesMaybeLoaded = [];
     public Dictionary<int, float> SoulsUpgradesMaybeLoadedActive = [];
 
+    public bool IsSoulLoaded(int type)
+    {
+        int index = GetIndexFromLoadedBossById(type);
+
+        if (index >= 0)
+            return SoulsUpgradesLoaded[index];
+
+        return SoulsUpgradesMaybeLoaded.TryGetValue(type, out bool value)
+            && value;
+    }
+
+    public float GetSoulActiveValue(int type)
+    {
+        int index = GetIndexFromLoadedBossById(type);
+
+        if (index >= 0)
+            return SoulsUpgradesLoadedActive[index];
+
+        return SoulsUpgradesMaybeLoadedActive.TryGetValue(type, out float value)
+            ? value
+            : 0f;
+    }
 
     public override void SaveData(TagCompound tag)
     {
@@ -394,7 +424,7 @@ public class ReaperSoulsPlayer : ModPlayer
             {
                 string TagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
                 tag[TagName] = SoulsUpgradesMaybeLoaded[npc.type];
-                tag.Add(TagName + "Active", SoulsUpgradesMaybeLoaded[npc.type]);
+                tag.Add(TagName + "Active", SoulsUpgradesMaybeLoadedActive[npc.type]);
             }
         }
     }
@@ -423,7 +453,7 @@ public class ReaperSoulsPlayer : ModPlayer
 
                 if(tag.ContainsKey(TagName+ "Active"))
                 {
-                   float value = tag.GetAsLong(TagName + "Active");
+                   float value = (float)tag.GetFloat(TagName + "Active");
                    SoulsUpgradesMaybeLoadedActive[npc.type] = value;
                 }
             }
@@ -433,16 +463,31 @@ public class ReaperSoulsPlayer : ModPlayer
     {
         ModPacket packet = Mod.GetPacket();
         LoadSoulsToggle();
-        for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
+        LoadSoulsToggleCrossMod();
+
+        packet.Write((byte)RemnantOfTheAncientsModMessageType.SoulsUpgrades);
+        packet.Write((byte)Player.whoAmI);
+
+        packet.Write(SoulsUpgradesLoaded.Length);
+        foreach (bool value in SoulsUpgradesLoaded) packet.Write(value);
+
+        packet.Write(SoulsUpgradesLoadedActive.Length);
+        foreach (float value in SoulsUpgradesLoadedActive) packet.Write(value);
+
+        packet.Write(SoulsUpgradesMaybeLoaded.Count);
+        foreach (var kvp in SoulsUpgradesMaybeLoaded)
         {
-            packet.Write(SoulsUpgradesLoaded[i]);
-            packet.Write((byte)SoulsUpgradesLoadedActive[i]);
+            packet.Write(kvp.Key);
+            packet.Write(kvp.Value);
         }
-        for (int i = 0; i < SoulsUpgradesMaybeLoaded.Count; i++)
+
+        packet.Write(SoulsUpgradesMaybeLoadedActive.Count);
+        foreach (var kvp in SoulsUpgradesMaybeLoadedActive)
         {
-            packet.Write(SoulsUpgradesMaybeLoaded[i]);
-            packet.Write((byte)SoulsUpgradesMaybeLoadedActive[i]);
-        }     
+            packet.Write(kvp.Key);
+            packet.Write(kvp.Value);
+        }
+
         packet.Send(toWho, fromWho);
     }
 
@@ -476,6 +521,21 @@ public class ReaperSoulsPlayer : ModPlayer
             SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(type)] = value;
         }
     }
+
+    public void LoadSoulsToggleCrossMod()
+    {
+        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+        if (CalamityMod != null)
+        {
+            //En desarrollo
+            /*foreach (NPC npc in NpcList.BossList[CalamityMod])
+            {
+                bool value = GetInstance<ConfigReaperSouls>().GetType().GetProperty("Toggle" + npc.ModNPC.GetType().Name + "Soul")?.GetValue(GetInstance<ConfigReaperSouls>()) as bool? ?? false;
+                SoulsUpgradesMaybeLoaded[npc.type] = value;
+            }*/
+        }
+    }
+
     public void FillSoulList()
     {
         ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
@@ -547,12 +607,10 @@ public class ReaperSoulsPlayer : ModPlayer
     {
         ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
-        if(SoulsUpgradesLoaded.Contains(false))
-            return false;
+        if(SoulsUpgradesLoaded.Contains(false)) return false;
         if (CalamityMod != null)
         {
-            if (SoulsUpgradesMaybeLoaded.ContainsValue(false))
-                return false;
+            if (SoulsUpgradesMaybeLoaded.ContainsValue(false)) return false;
         } 
         return true;
     }

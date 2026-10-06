@@ -52,8 +52,10 @@ namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 		}
 
 		public override void Draw(SpriteBatch spriteBatch) {
-			// This prevents drawing unless we are using an ExampleCustomResourceWeapon
-			if (!Main.LocalPlayer.GetModPlayer<RemnantFargosSoulsPlayer>().NightTp || RemnantFargosSoulsPlayer.NightTpCouldown == 0)
+            // This prevents drawing unless we are using an ExampleCustomResourceWeapon
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = Main.LocalPlayer.GetModPlayer<RemnantFargosSoulsPlayer>();
+
+            if (!remnantFargosSoulsPlayer.NightTp || remnantFargosSoulsPlayer.NightTpCouldown == 0)
 				return;
 
 			base.Draw(spriteBatch);
@@ -63,7 +65,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 		protected override void DrawSelf(SpriteBatch spriteBatch) {
 			base.DrawSelf(spriteBatch);
 
-			float quotient = (float)RemnantFargosSoulsPlayer.NightTpCouldown / RemnantFargosSoulsPlayer.NightTpCouldownMax; 
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = Main.LocalPlayer.GetModPlayer<RemnantFargosSoulsPlayer>();
+
+            float quotient = (float)remnantFargosSoulsPlayer.NightTpCouldown / remnantFargosSoulsPlayer.NightTpCouldownMax; 
 			quotient = Utils.Clamp(quotient, 0f, 1f); 
 			
 			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
@@ -82,9 +86,12 @@ namespace RemnantOfTheAncientsMod.Common.UI.FargosUI
 		}
 
 		public override void Update(GameTime gameTime) {
-            if (!Main.LocalPlayer.GetModPlayer<RemnantFargosSoulsPlayer>().NightTp)
+
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = Main.LocalPlayer.GetModPlayer<RemnantFargosSoulsPlayer>();
+
+            if (!remnantFargosSoulsPlayer.NightTp)
                 return;
-			text.SetText(NightCouldownUISystem.Text.Format(RemnantFargosSoulsPlayer.NightTpCouldown/60,"s"));
+			text.SetText(NightCouldownUISystem.Text.Format(remnantFargosSoulsPlayer.NightTpCouldown/60,"s"));
 			base.Update(gameTime);
 		}
 	}

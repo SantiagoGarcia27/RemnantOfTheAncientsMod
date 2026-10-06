@@ -31,6 +31,11 @@ Mods: {
 				On: Welcome to hell, now you're a reaper.
 				Off: Well your soul is free... for now.
 			}
+			RaiderInvasions: {
+				DisplayName: Raider assault
+				StartMessage : A raider assault has arrived!
+				DefeatMessage: A raider assault has been defeated!
+			}
 		}
 
 		TownNPCMood: {
@@ -4774,7 +4779,6 @@ Mods: {
 			KillerBunny.DisplayName: Killer Bunny
 			MaceSkeleton.DisplayName: Mace Skeleton
 			FakePlayer.DisplayName: Fake Player
-			Outlaw.DisplayName: Outlaw
 			Raider.DisplayName: Raider
 		}
 

@@ -13,7 +13,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 		public static bool downedTyrant = false;
 
 
-		public static bool downedOutlawInvasion = false;
+		public static bool downedRaiderInvasion = false;
 
         public override void OnWorldLoad()
 		{
@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 			downedFrozen = false;
 			downedTyrant = false;
 
-			downedOutlawInvasion =false;
+			downedRaiderInvasion =false;
 		}
 
 		public override void OnWorldUnload()
@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 			downedFrozen = false;
 			downedTyrant = false;
 
-            downedOutlawInvasion = false;
+            downedRaiderInvasion = false;
         }
 
 		public override void SaveWorldData(TagCompound tag)
@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 			if (downedFrozen) tag["downedFrozen"] = true;	
 			if (downedTyrant) tag["downedTyrant"] = true;		
 
-			if(downedOutlawInvasion) tag["downedOutlawInvasion"] = true;
+			if(downedRaiderInvasion) tag["downedRaiderInvasion"] = true;
         }
 
 		public override void LoadWorldData(TagCompound tag)
@@ -52,7 +52,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 			downedFrozen = tag.ContainsKey("downedFrozen");
 			downedTyrant = tag.ContainsKey("downedTyrant");
 
-			downedOutlawInvasion = tag.ContainsKey("downedOutlawInvasion");
+			downedRaiderInvasion = tag.ContainsKey("downedRaiderInvasion");
         }
 
 		public override void NetSend(BinaryWriter writer)
@@ -64,7 +64,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 			flags[2] = downedFrozen;
 			flags[3] = downedTyrant;
 
-			flags[4] = downedOutlawInvasion;
+			flags[4] = downedRaiderInvasion;
 
             writer.Write(flags);
 		}
@@ -78,7 +78,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 			downedFrozen = flags[2];
 			downedTyrant = flags[3];
 
-			downedOutlawInvasion = flags[4];
+			downedRaiderInvasion = flags[4];
         }
 	}
 }

@@ -82,7 +82,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 Mod,
                 "PlayerRaid",
                 0.25f,
-                () => RemnantDownedBossSystem.downedOutlawInvasion,
+                () => RemnantDownedBossSystem.downedRaiderInvasion,
                 new List<int>() { ModContent.NPCType<Raider>() },
                 new Dictionary<string, object>()
                 {

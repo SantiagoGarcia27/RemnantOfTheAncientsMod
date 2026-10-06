@@ -12,6 +12,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace RemnantOfTheAncientsMod.Common.Systems
 {
@@ -23,6 +24,12 @@ namespace RemnantOfTheAncientsMod.Common.Systems
         public const int RequiredKills = 50;
         public const int MaxEnemies = 5;
 
+        private static int spawnTimer;
+        private int MinSpawnDelay = Utils1.FormatTimeToTick(Second: 1.5f);   // 1.5 segundos
+        private int MaxSpawnDelay = Utils1.FormatTimeToTick(Second: 4f);  // 4 segundos
+
+        private static int attackDirection;
+
         public static Texture2D BarIcon
         {
             get
@@ -33,7 +40,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
             }
         }
 
-        public static string BarText => "Player Invasion";
+        public static string BarText => Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.RaiderInvasions.DisplayName");
         public override void OnWorldLoad()
         {
             EventActive = false;
@@ -77,7 +84,6 @@ namespace RemnantOfTheAncientsMod.Common.Systems
             if (Main.netMode == NetmodeID.SinglePlayer)
                 ShowProgress();
 
-            // Contar cuántos Outlaws del evento hay actualmente
             int currentEnemies = 0;
 
             for (int i = 0; i < Main.maxNPCs; i++)
@@ -88,36 +94,54 @@ namespace RemnantOfTheAncientsMod.Common.Systems
                     currentEnemies++;
             }
 
-            // Mantener hasta 5 Outlaws vivos
-            while (currentEnemies < MaxEnemies && Kills + currentEnemies < RequiredKills)
+            if (currentEnemies >= MaxEnemies)
+                return;
+
+            if (Kills + currentEnemies >= RequiredKills)
+                return;
+
+            if (spawnTimer > 0)
             {
-                if (!SpawnOutlaw())
-                    break;
-                currentEnemies++;
+                spawnTimer--;
+                return;
+            }
+
+            if (SpawnRaider())
+            {
+                spawnTimer = Main.rand.Next(MinSpawnDelay, MaxSpawnDelay + 1);
             }
         }
 
-        private static bool SpawnOutlaw()
+        private static bool SpawnRaider()
         {
             List<Player> targets = new();
+
             foreach (Player player in Main.ActivePlayers)
             {
-                if (player.active && !player.dead && !player.ghost && !player.IsProxyPlayer())
-                    targets.Add(player);
+                if (player.dead || player.ghost || player.IsProxyPlayer()) continue;
+                targets.Add(player);
             }
 
             if (targets.Count == 0)
                 return false;
 
             Player target = targets[Main.rand.Next(targets.Count)];
-            int spawnX = (int)target.Center.X + (Main.rand.NextBool() ? Main.rand.Next(-1000, -800) : Main.rand.Next(800, 1000));
-            int spawnY = (int)target.Center.Y - 100;
+
+            int distance = Main.rand.Next(800, 1200); //  50 a 75 bloques
+
+            int spawnX = (int)target.Center.X + distance * attackDirection;
+
+            int spawnY = (int)target.Center.Y + Main.rand.Next(-200, 100);
+
             Vector2 spawnPos = DistanceUtils.GetSecurePosition(new Vector2(spawnX, spawnY));
-            int index = NPC.NewNPC(target.GetSource_Misc("OutlawInvasion"), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<Raider>());
+
+            int index = NPC.NewNPC(target.GetSource_Misc("RaiderInvasion"), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<Raider>());
+
             if (index < 0 || index >= Main.maxNPCs)
                 return false;
 
             Main.npc[index].netUpdate = true;
+
             return true;
         }
 
@@ -128,8 +152,14 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
             EventActive = true;
             Kills = 0;
+
+            spawnTimer = 30;
+
             ShowProgress();
-            Announce("¡Los Outlaws han llegado!");
+
+            string startMessage = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.RaiderInvasions.StartMessage");
+            Announce(startMessage);
+
             SyncState();
         }
 
@@ -154,11 +184,13 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
             EventActive = false;
             Kills = 0;
-            if (!RemnantDownedBossSystem.downedOutlawInvasion) RemnantDownedBossSystem.downedOutlawInvasion = true;
+            if (!RemnantDownedBossSystem.downedRaiderInvasion) RemnantDownedBossSystem.downedRaiderInvasion = true;
             if (Main.netMode != NetmodeID.Server)
                 Main.ReportInvasionProgress(0, 0, 0, 0);
 
-            Announce("¡Los Outlaws han sufrido la derrota!");
+            string defeatMessage = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.RaiderInvasions.DefeatMessage");
+            Announce(defeatMessage);
+
             SyncState();
         }
 
@@ -180,6 +212,21 @@ namespace RemnantOfTheAncientsMod.Common.Systems
         {
             if (Main.netMode == NetmodeID.Server)
                 NetMessage.SendData(MessageID.WorldData);
+        }
+
+        public override void SaveWorldData(TagCompound tag)
+        {
+            tag["RaidersInvasionActive"] = EventActive;
+            tag["RaidersInvasionKills"] = Kills;
+            base.SaveWorldData(tag);
+        }
+
+        public override void LoadWorldData(TagCompound tag)
+        {
+            EventActive = tag.GetBool("RaidersInvasionActive");
+            Kills = tag.GetInt("RaidersInvasionKills");
+            base.LoadWorldData(tag);
+
         }
     }
 }

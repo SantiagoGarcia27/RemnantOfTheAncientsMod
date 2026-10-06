@@ -153,25 +153,26 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
 		public static void ReaperWingsNerf(Player player)
 		{
 			int OgWingTime;
-			if (Reaper.ReaperMode)
-			{
-				if (player.wingTimeMax >= 4)
-				{
-					OgWingTime = player.wingTimeMax;	
-					if (!ReaperEffectsPlayer.SoulIsEnabled(NPCID.Retinazer) || !ReaperEffectsPlayer.SoulIsEnabled(NPCID.Retinazer)) 
-						player.wingTimeMax = OgWingTime / 2;
-					else 
-						player.wingTimeMax = OgWingTime;
-				}
-			}
+            if (!Reaper.ReaperMode) return;
+
+            if (player.wingTimeMax < 4) return;
+
+            ReaperEffectsPlayer reaperEffectsPlayer = player.GetModPlayer<ReaperEffectsPlayer>();
+
+            OgWingTime = player.wingTimeMax;
+
+            player.wingTimeMax = !reaperEffectsPlayer.SoulIsEnabled(NPCID.Retinazer) ? OgWingTime / 2 : OgWingTime;
 		}
 
         private void On_Item_CheckLavaDeath(On_Item.orig_CheckLavaDeath orig, Item item, int i)
         {
-
+           
             if (Reaper.ReaperMode)
             {
-                if (Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().AllSoulsAreActive())
+                Player player = item.playerIndexTheItemIsReservedFor >= 0 ? Main.player[item.playerIndexTheItemIsReservedFor] : null;
+                player ??= Main.LocalPlayer;
+
+                if (player.GetModPlayer<ReaperSoulsPlayer>().AllSoulsAreActive())
                 {
                     if (item.type == ItemID.ReaperHood)
                     {

@@ -783,9 +783,12 @@ namespace RemnantOfTheAncientsMod
 	public class RemnantKeybindPlayer : ModPlayer
 	{
 		ReaperSoulsUISystem ReaperUI = null;
+
 		public override void ProcessTriggers(TriggersSet triggersSet)
 		{
-			if (KeybindSystem.TogleReaperInterface.JustPressed)
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = Player.GetModPlayer<RemnantFargosSoulsPlayer>();
+
+            if (KeybindSystem.TogleReaperInterface.JustPressed)
 			{
 				if (ReaperUI == null)
 					ReaperUI = GetInstance<ReaperSoulsUISystem>();
@@ -797,15 +800,15 @@ namespace RemnantOfTheAncientsMod
 			}
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
 			{
-				if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ProjectileType<FrostBarrier>()] == 0)
+				if (remnantFargosSoulsPlayer.FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ProjectileType<FrostBarrier>()] == 0)
 				{
 					Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Player.position, Vector2.Zero, ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);
 				}
 				if (FargosKeybindSystem.ToggNightTp.JustPressed)
 				{
-					if (Player.GetModPlayer<RemnantFargosSoulsPlayer>().NightTp)
+					if (remnantFargosSoulsPlayer.NightTp)
 					{
-						if (RemnantFargosSoulsPlayer.NightTpCouldown == 0)
+						if (remnantFargosSoulsPlayer.NightTpCouldown == 0)
 						{
 							int x = Player.tileTargetX * 16;
 							int y = Player.tileTargetY * 16;
@@ -821,7 +824,7 @@ namespace RemnantOfTheAncientsMod
 							{
 								Dust.NewDustDirect(pos, 10, 10, DustID.Corruption);
 							}
-							RemnantFargosSoulsPlayer.NightTpCouldown = RemnantFargosSoulsPlayer.NightTpCouldownMax;
+                            remnantFargosSoulsPlayer.NightTpCouldown = remnantFargosSoulsPlayer.NightTpCouldownMax;
 						}
 					}
 				}
