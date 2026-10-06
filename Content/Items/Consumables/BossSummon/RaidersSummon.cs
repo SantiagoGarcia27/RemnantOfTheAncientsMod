@@ -34,14 +34,5 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon
 
             return true;
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-            .AddIngredient(ItemID.Wood, 10)
-            .AddTile(TileID.LunarCraftingStation)
-            .Register();
-            base.AddRecipes();
-        }
     }
 }

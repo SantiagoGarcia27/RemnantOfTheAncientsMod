@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -30,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            float bounce = 0.9f; // 90% de la velocidad
+            float bounce = DificultyUtils.MasochistMode ? 0.9f : 3f;
 
             if (Projectile.velocity.X != oldVelocity.X)
                 Projectile.velocity.X = -oldVelocity.X * bounce;
@@ -57,7 +58,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
             Projectile.rotation -= 0.1f * Projectile.direction;
             int ownerIndex = (int)Projectile.ai[0];
             Entity owner = Projectile.friendly ? Main.player[Projectile.owner]:Main.npc[ownerIndex];
-           //NPC npc = Main.npc[(int)Projectile.ai[0]];
             if (!owner.active)
             {
                 Projectile.Kill();
@@ -116,7 +116,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            float bounce = 0.1f;
+            float bounce =  DificultyUtils.InfernumMode ? 0.7f : 0.1f;
             if (Projectile.velocity.X != oldVelocity.X)
                 Projectile.velocity.X = -oldVelocity.X * bounce;
 

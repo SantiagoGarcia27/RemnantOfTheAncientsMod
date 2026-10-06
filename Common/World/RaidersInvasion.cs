@@ -129,6 +129,8 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
             int distance = Main.rand.Next(800, 1200); //  50 a 75 bloques
 
+            attackDirection = Main.rand.NextBool() ? -1 : 1;
+
             int spawnX = (int)target.Center.X + distance * attackDirection;
 
             int spawnY = (int)target.Center.Y + Main.rand.Next(-200, 100);

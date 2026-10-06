@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.Content.Currencies;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Boots;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Strawberry;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.BossSummon;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Items;
@@ -181,7 +182,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 shop[nextSlot] = ItemType<Strawberry_Hairpin>();
                 nextSlot++;
             }
-
+            if (Main.rand.NextBool(4) && nextSlot < shop.Length)
+            {
+                shop[nextSlot] = ItemType<RaidersSummon>();
+                nextSlot++;
+            }
         }
 
         public override void OnChatButtonClicked(NPC npc, bool firstButton)

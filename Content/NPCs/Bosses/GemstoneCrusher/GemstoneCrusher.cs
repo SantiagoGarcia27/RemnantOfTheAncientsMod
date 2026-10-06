@@ -79,8 +79,27 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         private int stompActivationTimerTrigger
         {
             get {
-                if (NPC.life < NPC.lifeMax / 5) return Utils1.FormatTimeToTick(Second: 5);
-                if (NPC.life < NPC.lifeMax / 2) return Utils1.FormatTimeToTick(Second: 10);
+                float percentStomp1;
+                float percentStomp2;
+
+                if (DificultyUtils.Death)
+                {
+                    percentStomp1 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 60);
+                    percentStomp2 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 30);
+                }
+                else if (DificultyUtils.ReaperMode)
+                {
+                    percentStomp1 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 55);
+                    percentStomp2 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 25);
+                }
+                else
+                {
+                    percentStomp1 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 50);
+                    percentStomp2 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 20);
+                }
+
+                if (NPC.life < percentStomp2) return Utils1.FormatTimeToTick(Second: 5);
+                if (NPC.life < percentStomp1) return Utils1.FormatTimeToTick(Second: 10);
                 return Utils1.FormatTimeToTick(Second: 20);
             }
         }
@@ -253,6 +272,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 //Stomp collision Effects
                 if (NPC.collideY && !NPC.noTileCollide && CanUseStompEffect)
                 {
+                    if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode) StompExplosionAi();
                     StompFallEffectAi();
                 }
             }
@@ -285,6 +305,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             }
             
             StompMovementAI();
+        }
+        private void StompExplosionAi()
+        {
+            int numProj = DificultyUtils.EternityMode ? 5 : 10;
+            for(int i = -numProj; i <= numProj; i++)
+            {
+                Vector2 pos = new(NPC.Center.X + (i*2).ToCoordinatePosition(), NPC.Bottom.Y - NPC.height/2);
+                int index = Projectile.NewProjectile(NPC.GetSource_FromAI(),pos,Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion,10,1,NPC.target);
+                Main.projectile[index].hostile = true;
+                Main.projectile[index].friendly = false;
+            }
         }
         private void StompFallEffectAi()
         {
@@ -387,29 +418,40 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             if (shootTimer >= shootTimerTrigger) 
             {
                 if (!esServer) return;
+
+                int numProj = 1;
                 switch (projectileType)
                 {
                     case GemType.Emerald:
                         velocity /= 2f;
+                        if (DificultyUtils.InfernumMode) numProj = 2;
                         break;
                     case GemType.Ruby:
                         velocity = Vector2.Normalize(target.Center - NPC.Center) * Main.rand.Next(5, 7);
                         velocity.Y = -7f;
                         break;
                     case GemType.Diamond:
-                        velocity.X *= 1.5f;
+                        velocity.X *= DificultyUtils.InfernumMode ? 2f : 1.5f;
+                        break;
+                    case GemType.Sapphire:
+                        if(DificultyUtils.InfernumMode) numProj = 5;
                         break;
                 }
-                projectileIndex = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity, gemData[projectileType].Projectile, 10, 0f, Main.myPlayer, NPC.whoAmI);
 
-                if (projectileIndex < 0)
-                    return;
+                for (int i = 0; i < numProj; i++)
+                {
 
-                Projectile proj = Main.projectile[projectileIndex];
+                        projectileIndex = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity, gemData[projectileType].Projectile, 10, 0f, Main.myPlayer, NPC.whoAmI);
 
-                proj.penetrate = -1;
-                proj.hostile = true;
-                proj.friendly = false;
+                    if (projectileIndex < 0)
+                        return;
+
+                    Projectile proj = Main.projectile[projectileIndex];
+
+                    proj.penetrate = -1;
+                    proj.hostile = true;
+                    proj.friendly = false;
+                }
 
                 projectileType = gemData.RandomKey();
                 shootTimer = 0;

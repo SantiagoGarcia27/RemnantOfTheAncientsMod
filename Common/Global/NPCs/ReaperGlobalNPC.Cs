@@ -424,10 +424,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             return base.PreAI(npc);
         }
         public NPC Owner = null;
-        static int genericTimmer = 0;
         public override void AI(NPC npc)
         {
-            genericTimmer++;
             List<int> ReaperAffectedNPCs =
             [
                 NPCID.BrainofCthulhu,
@@ -1030,7 +1028,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
             else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"))
             {
-                if (genericTimmer % 3 == 0)
+                if (Main.GameUpdateCount % 3 == 0)
                 {
                     int projId = CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceFire");
                     float x = Math.Sign(npc.velocity.X) * Math.Min(5, Math.Abs(npc.velocity.X));

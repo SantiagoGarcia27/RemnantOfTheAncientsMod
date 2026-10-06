@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Projectile.penetrate = -1;
             Projectile.timeLeft = 200000;
             Projectile.light = 1.0f;
-            Projectile.extraUpdates = 5;
+            Projectile.extraUpdates = 0;
             Projectile.ignoreWater = true;
             Projectile.scale = 1f;
             AIType = -1;
