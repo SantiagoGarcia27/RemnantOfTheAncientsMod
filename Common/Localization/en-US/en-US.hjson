@@ -31,9 +31,10 @@ Mods: {
 				On: Welcome to hell, now you're a reaper.
 				Off: Well your soul is free... for now.
 			}
+
 			RaiderInvasions: {
 				DisplayName: Raider assault
-				StartMessage : A raider assault has arrived!
+				StartMessage: A raider assault has arrived!
 				DefeatMessage: A raider assault has been defeated!
 			}
 		}

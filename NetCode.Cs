@@ -63,6 +63,9 @@ namespace RemnantOfTheAncientsMod
 
                         int playerID = reader.ReadByte();
 
+                        if (Main.netMode == NetmodeID.Server && playerID != whoAmI)
+                            break;
+
                         if (playerID < 0 || playerID >= Main.maxPlayers)
                             break;
 

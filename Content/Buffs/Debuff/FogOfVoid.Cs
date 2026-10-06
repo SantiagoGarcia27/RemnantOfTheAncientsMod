@@ -17,17 +17,11 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.moveSpeed *= 0.01f; 
-			player.maxRunSpeed *= 0.01f;
-			player.accRunSpeed *= 0.01f;
+			player.moveSpeed *= 0.3f; 
+			player.maxRunSpeed *= 0.3f;
+			player.accRunSpeed *= 0.3f;
 			player.GetModPlayer<DrawEffectPlayer>().FogOfVoidEffect = true;
 
         }
-
-		public override void Update(NPC npc, ref int buffIndex)
-		{
-			npc.velocity *= 0.25f;
-		}
-
 	}
 }

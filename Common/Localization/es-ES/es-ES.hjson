@@ -33,14 +33,13 @@ Mods: {
 				On: Bienvenido al infierno, ahora eres un segador.
 				Off: Tu alma es libre... por ahora.
 			}
+
 			RaiderInvasions: {
 				DisplayName: Asalto de forajidos
-				StartMessage : ¡Un asalto de forajidos ha llegado!
+				StartMessage: ¡Un asalto de forajidos ha llegado!
 				DefeatMessage: ¡El asalto de forajidos ha sido derrotado!
 			}
 		}
-
-
 
 		TownNPCMood: {
 			Time_Wizard: {

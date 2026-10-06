@@ -786,7 +786,7 @@ namespace RemnantOfTheAncientsMod
 
 		public override void ProcessTriggers(TriggersSet triggersSet)
 		{
-            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = Player.GetModPlayer<RemnantFargosSoulsPlayer>();
+           
 
             if (KeybindSystem.TogleReaperInterface.JustPressed)
 			{
@@ -800,7 +800,9 @@ namespace RemnantOfTheAncientsMod
 			}
 			if (RemnantOfTheAncientsMod.FargosSoulMod != null)
 			{
-				if (remnantFargosSoulsPlayer.FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ProjectileType<FrostBarrier>()] == 0)
+                RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = Player.GetModPlayer<RemnantFargosSoulsPlayer>();
+
+                if (remnantFargosSoulsPlayer.FrostBarrier && FargosKeybindSystem.TogleFrostBarrier.JustPressed && !Player.HasBuff<FrostBarrierCouldown>() && Player.ownedProjectileCounts[ProjectileType<FrostBarrier>()] == 0)
 				{
 					Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Player.position, Vector2.Zero, ProjectileType<FrostBarrier>(), 0, 0, Player.whoAmI);
 				}

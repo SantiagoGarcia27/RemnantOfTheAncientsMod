@@ -405,26 +405,37 @@ public class ReaperSoulsPlayer : ModPlayer
 
     public override void SaveData(TagCompound tag)
     {
-        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-        if(CalamityMod != null) FillSoulList();
+        ModLoader.TryGetMod("CalamityMod", out Mod calamityMod);
+
+        if (calamityMod != null)
+            FillSoulList();
 
         for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
         {
             NPC npc = ContentSamples.NpcsByNetId[GetLoadedBossIdByIndex(i)];
+
             if (npc.boss)
             {
-                string TagName = npc.type + "ReaperUpgrade";
-                tag[TagName] = SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)];
-                tag.Add(TagName + "Active", SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(npc.type)]);
-            }         
+                int index = GetIndexFromLoadedBossById(npc.type);
+                string tagName = npc.type + "ReaperUpgrade";
+
+                tag[tagName] = SoulsUpgradesLoaded[index];
+
+                // Fuerza que NBT lo guarde como float.
+                tag[tagName + "Active"] = (float)SoulsUpgradesLoadedActive[index];
+            }
         }
-        if(CalamityMod != null)
+
+        if (calamityMod != null)
         {
-            foreach (NPC npc in NpcList.BossList[CalamityMod])
+            foreach (NPC npc in NpcList.BossList[calamityMod])
             {
-                string TagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
-                tag[TagName] = SoulsUpgradesMaybeLoaded[npc.type];
-                tag.Add(TagName + "Active", SoulsUpgradesMaybeLoadedActive[npc.type]);
+                string tagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
+
+                tag[tagName] = SoulsUpgradesMaybeLoaded[npc.type];
+
+                // Fuerza float.
+                tag[tagName + "Active"] = (float)SoulsUpgradesMaybeLoadedActive[npc.type];
             }
         }
     }
@@ -451,10 +462,14 @@ public class ReaperSoulsPlayer : ModPlayer
                 string TagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
                 SoulsUpgradesMaybeLoaded[npc.type] = tag.GetBool(TagName);
 
-                if(tag.ContainsKey(TagName+ "Active"))
+                string activeTag = TagName + "Active";
+
+                if (tag.ContainsKey(activeTag))
                 {
-                   float value = (float)tag.GetFloat(TagName + "Active");
-                   SoulsUpgradesMaybeLoadedActive[npc.type] = value;
+                    object value = tag[activeTag];
+
+                    if (value is float floatValue) SoulsUpgradesMaybeLoadedActive[npc.type] = floatValue;
+                    else if (value is byte byteValue) SoulsUpgradesMaybeLoadedActive[npc.type] = byteValue; 
                 }
             }
         }

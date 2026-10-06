@@ -424,8 +424,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             return base.PreAI(npc);
         }
         public NPC Owner = null;
+        static int genericTimmer = 0;
         public override void AI(NPC npc)
         {
+            genericTimmer++;
             List<int> ReaperAffectedNPCs =
             [
                 NPCID.BrainofCthulhu,
@@ -803,12 +805,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             }
 
             base.AI(npc);
-
-
-
         }
         bool UniqueToggledFlag = false;
         bool SecondUniqueToggledFlag = false;
+     
 
         [JITWhenModsEnabled("CalamityMod")]
         public void CalamityAi(NPC npc)
@@ -1016,26 +1016,27 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CeaselessVoid"))
             {
 
-                if (Main.netMode == NetmodeID.MultiplayerClient)
+                if (Main.netMode == NetmodeID.MultiplayerClient) return;
+                
+                foreach (Player player in Main.ActivePlayers)
                 {
-                    foreach (Player player in Main.ActivePlayers)
-                    {
-                        if (player.whoAmI == npc.target && player.active && !player.dead && npc.Center.Distance(player.position) < 1000)
-                        {
-                            player.AddBuff(BuffID.Slow, 120);
-                        }
-                    }
-                }
-                else
-                {
-                    Main.LocalPlayer.AddBuff(ModContent.BuffType<FogOfVoid>(), 120);
+                    if (npc.Center.Distance(player.position) > 100.ToCoordinatePosition()) continue;
+                    
+                    if (player.dead) continue;
+
+                    if (player.whoAmI == npc.target) player.AddBuff(ModContent.BuffType<FogOfVoid>(), 120);
+                    else player.AddBuff(BuffID.Slow, 120);                  
                 }
             }
             else if (npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "StormWeaverHead"))
             {
-                if (Main.LocalPlayer.infernoCounter % 20 == 0)
+                if (genericTimmer % 3 == 0)
                 {
-                    var a = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, (npc.velocity * 0.5f).RotatedByRandom(0.12f), CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "ElementalFire"), 50, 0, Main.myPlayer);
+                    int projId = CallUtils.TryGetProjectileFromMod(RemnantOfTheAncientsMod.CalamityMod, "EssenceFire");
+                    float x = Math.Sign(npc.velocity.X) * Math.Min(5, Math.Abs(npc.velocity.X));
+                    float y = Math.Sign(npc.velocity.Y) * Math.Min(5, Math.Abs(npc.velocity.Y));
+                    Vector2 velocity = new(x, y);
+                    var a = Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, velocity.RotatedByRandom(0.4f), projId, 50, 0, target.whoAmI);
                     Main.projectile[a].friendly = false;
                     Main.projectile[a].hostile = true;
                 }

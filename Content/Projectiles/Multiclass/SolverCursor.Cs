@@ -17,11 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
     public class SolverCursor : ModProjectile
     {
         public override string Texture => "RemnantOfTheAncientsMod/Assets/PlaceHolder";
-        public override void SetStaticDefaults()
-        {
-            // //DisplayName.SetDefault("SkyCutterS"); 
-
-        }
+        public override void SetStaticDefaults(){}
         public override void SetDefaults()
         {
             Projectile.width = 15;
@@ -29,10 +25,9 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             Projectile.friendly = true;
             Projectile.tileCollide = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 20000;
-            Projectile.light = 1.75f;
-            Projectile.extraUpdates = 1;
-            // Projectile.DamageType = DamageClass.Magic;
+            Projectile.timeLeft = 200000;
+            Projectile.light = 1.0f;
+            Projectile.extraUpdates = 5;
             Projectile.ignoreWater = true;
             Projectile.scale = 1f;
             AIType = -1;
@@ -69,12 +64,14 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                     Rectangle hitbox = Projectile.Hitbox;
                     if (Main.mouseLeft)
                     {
+                        // Todavía no agarramos nada: buscar NPC bajo el cursor.
                         if (target == null)
                         {
                             foreach (NPC n in Main.ActiveNPCs)
                             {
-                                if (n.boss || n.lifeMax > 1000) return;
-                                
+                                if (n.boss || n.lifeMax > 1000)
+                                    continue;
+
                                 if (hitbox.Intersects(n.Hitbox))
                                 {
                                     target = n;
@@ -82,18 +79,26 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                                 }
                             }
                         }
-                        else
+
+                        // Si tenemos uno agarrado, moverlo.
+                        if (target != null)
                         {
-                            if (target.life <= 0 || !target.active || !hitbox.Intersects(target.Hitbox))
+                            if (!target.active || target.life <= 0)
                             {
                                 target = null;
                             }
-                            if (target != null)
+                            else
                             {
                                 target.Center = Projectile.Center;
+                                target.velocity = Vector2.Zero;
                                 target.netUpdate = true;
                             }
                         }
+                    }
+                    else
+                    {
+                        // Soltamos el click -> soltar NPC.
+                        target = null;
                     }
                 }
                 else if (player.GetModPlayer<RemnantPlayer>().SolverMode == 1)
@@ -143,16 +148,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             base.OnHitNPC(target, hit, damageDone);
         }
 
-        public override void OnKill(int timeLeft)
-        {
-            const int NUM_DUSTS = 20;
-            for (int i = 0; i < RemnantOfTheAncientsMod.ParticleMeter(NUM_DUSTS); i++)
-            {
-                int p1 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, (int)Projectile.localAI[1], 0f, 0f, 100, default, 1f);
-                Main.dust[p1].velocity = Projectile.velocity;
-                Main.dust[p1].noGravity = true;
-            }
-        }
+        public override void OnKill(int timeLeft){}
 
         public override bool PreDraw(ref Color lightColor)
         {
@@ -168,7 +164,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
     public class SolverOverrideCursor : ModSystem
     {
         private static float cursorScale = 1f;
-        private static Vector2 CursorSize = new(32, 32);
         private static Vector2 cursorPosition = Vector2.Zero;
         private static LegacyGameInterfaceLayer cursorLayer;
 
@@ -181,51 +176,24 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         public override void Load()
         {
             IncertListOfAssets();
-            var texture = ModContent.Request<Texture2D>("Terraria/Images/UI/Cursor_0");
-            Rectangle srcRect = new(0, 0, 32, 32);
-            Vector2 center = new(0, 0);
-            Player player = Main.LocalPlayer;
             cursorLayer = new LegacyGameInterfaceLayer($"{nameof(Mod)}: My Cursor", () =>
             {
-                foreach (var t in cursorTextures)
-                {
-                    if (!t.IsLoaded)
-                        return true;
-                }
-                if (player.HeldItem.type == ModContent.ItemType<SolverHand>())
-                {
-                    switch (player.GetModPlayer<RemnantPlayer>().SolverMode)
-                    {
-                        case 0:
-                            texture = cursorTextures[1];
-                            CursorSize = new(54, 58);
-                            center = new(-20, -20);
-                            break;
-                        case 1:
-                            texture = cursorTextures[2];
-                            CursorSize = new(54, 58);
-                            center = new(-20, -20);
-                            break;
-                        default:
-                            texture = cursorTextures[0];
-                            CursorSize = new(32, 32);
-                            center = new(0, 0);
-                            break;
-                    }
-                }
-                else
-                {
-                    texture = cursorTextures[0];
-                }
-                if (!texture.IsLoaded)
-                {
-                    return true;
-                }
-                srcRect = new Rectangle(0, 0, (int)CursorSize.X, (int)CursorSize.Y);
-                var basePosition = Main.MouseScreen + cursorPosition + center;
-                var drawColor = Color.Purple;//new Color(255, 255, 255, 255);
+                Player player = Main.LocalPlayer;
 
-                Main.spriteBatch.Draw((Texture2D)texture, basePosition, srcRect, drawColor, 0f, Vector2.Zero, cursorScale, SpriteEffects.None, 0f);
+                Asset<Texture2D> texture = ModContent.Request<Texture2D>("Terraria/Images/UI/Cursor_0");
+
+                texture = player.GetModPlayer<RemnantPlayer>().SolverMode switch
+                {
+                    0 => cursorTextures[1],
+                    1 => cursorTextures[2],
+                    _ => cursorTextures[0],
+                };
+                if (!texture.IsLoaded)
+                    return true;
+
+                Vector2 hotspot = new Vector2(20f, 20f);
+
+                Main.spriteBatch.Draw(texture.Value, Main.MouseScreen - hotspot, null, Color.Purple, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                 return true;
             }, InterfaceScaleType.UI);
         }
