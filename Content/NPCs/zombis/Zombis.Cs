@@ -196,7 +196,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }    
         public override void OnSpawn(IEntitySource source)
         {
-            int Helmet = ContentSamples.ItemsByType[ModContent.ItemType<ReinforcedIronHelmet>()].defense;
+            int Helmet = 0; // For more context see ArmoredSlime
             int Chestplate = ContentSamples.ItemsByType[ModContent.ItemType<ReinforcedIronChesplate>()].defense;
             int Greaves = ContentSamples.ItemsByType[ModContent.ItemType<ReinforcedIronGreaves>()].defense;
             int Defense = DefenseSetBonus + Helmet + Chestplate + Greaves;

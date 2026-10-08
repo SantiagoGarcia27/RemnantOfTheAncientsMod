@@ -640,12 +640,6 @@ namespace RemnantOfTheAncientsMod
 			Player.buffImmune[BuffID.ShadowFlame] = true;
 		}
 
-		public void SpawnMinionItem(Player player)
-		{
-			if (InterceptionDrone) SpawnHelper(player.Center, Vector2.Zero, ProjectileType<InterceptionDrone>(), 1, 0, Main.myPlayer);
-			if (HealingDrone) SpawnHelper(player.Center, new Vector2(7f, 2f), ProjectileType<InterceptionDrone>(), 1, 0, Main.myPlayer);
-
-		}
 		public void SpawnHelper(Vector2 center, Vector2 velocity, int type, int damage, int knockback, int owner, float Ai0 = 0, float Ai1 = 0)
 		{
 			if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[type] < 1 && Player.whoAmI == Main.myPlayer)
@@ -674,12 +668,22 @@ namespace RemnantOfTheAncientsMod
 
 		public static void KillMinion(int proj) => Main.projectile[proj].Kill();
 
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        {
+			if (CursedMark)
+			{
+				modifiers.FinalDamage *= 2;
+			}
+
+            base.ModifyHurt(ref modifiers);
+        }
+
 		public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
 		{
 			if (DesertHeraldSetBonus) 
 				Projectile.NewProjectile(Terraria.Entity.GetSource_None(), npc.position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
 			
-			if (CursedMark) hurtInfo.Damage *= 2;
+			
 			
 			if(Player.HasBuff(BuffID.ShadowDodge))
 				Player.AddBuff(BuffType<HolyCouldownDebuff>(), Utils1.FormatTimeToTick(0, 0, 0, 5));
@@ -690,7 +694,7 @@ namespace RemnantOfTheAncientsMod
 		public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
 		{
 			if (DesertHeraldSetBonus)
-				Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Main.npc[proj.owner].position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
+				Projectile.NewProjectile(Terraria.Entity.GetSource_None(), Player.position, Vector2.Zero, ProjectileID.SandnadoFriendly, 30, 0, Main.myPlayer);
 			
 			base.OnHitByProjectile(proj, hurtInfo);
 		}

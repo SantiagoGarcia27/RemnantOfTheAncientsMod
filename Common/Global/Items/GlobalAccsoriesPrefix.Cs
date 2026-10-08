@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if(item.prefix == ModContent.PrefixType<Pure>())
             {
-                PrefixUpdate(player,damage:1,crit:1,speed:1,defense:1, meleeSpeed: 1);
+                PrefixUpdate(player,damage:1,crit:1,speed:1,defense:1, meleeSpeed: 0.01f);
             }
             if (item.prefix == ModContent.PrefixType<Harmful>())
             {

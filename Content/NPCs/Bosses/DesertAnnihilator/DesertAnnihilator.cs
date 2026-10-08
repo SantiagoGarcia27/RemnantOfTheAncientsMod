@@ -204,6 +204,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (NPC.life <= 0) Main.LocalPlayer.GetModPlayer<CameraPlayer>().ResetCameraPosition();
+
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 SpawnAddsOnHit();
@@ -214,7 +216,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
                 if (Main.netMode != NetmodeID.Server)
                 {
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), Mod.Find<ModGore>("DesertAniquilatorGore").Type, NPC.scale);
-                    Main.LocalPlayer.GetModPlayer<CameraPlayer>().ResetCameraPosition();
+                    
                 }
                 for (int j = 0; j < RemnantOfTheAncientsMod.ParticleMeter(1000); j++)
                 {

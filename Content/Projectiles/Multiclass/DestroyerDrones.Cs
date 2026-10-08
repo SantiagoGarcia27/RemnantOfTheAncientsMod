@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
             // //DisplayName.SetDefault("HealingDrone");
         }
 
-        public static int AttackCounter = Utils1.FormatTimeToTick(0, 0, 0, 6);
+        public int AttackCounter = Utils1.FormatTimeToTick(0, 0, 0, 6);
         float distanceFromPlayer = 150f;
         float orbitSpeed = 0.02f;
         public override void AI()

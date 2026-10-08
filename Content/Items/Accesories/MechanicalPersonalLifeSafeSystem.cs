@@ -18,15 +18,15 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
             player.GetModPlayer<RemnantPlayer>().HealingDrone = true;
             player.GetModPlayer<RemnantPlayer>().InterceptionDrone = true;
 
-            if(player.ownedProjectileCounts[ModContent.ProjectileType<InterceptionDrone>()] < 2)
+            if(player.ownedProjectileCounts[ModContent.ProjectileType<InterceptionDrone>()] < 1)
             {
-                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(), 1, 0, Main.myPlayer, 1 * 10);
-                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(), 1, 0, Main.myPlayer, 2 * 10);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(), 1, 0, player.whoAmI, 10);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<InterceptionDrone>(), 1, 0, player.whoAmI, 20);
             }
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingDrone>()] < 2)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<HealingDrone>()] < 1)
             {
-                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, Main.myPlayer, 1 * 1 * 10);
-                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, Main.myPlayer, 1 * 2 * 10);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, player.whoAmI, 10);
+                Projectile.NewProjectile(Terraria.Entity.GetSource_None(), player.Center, Vector2.Zero, ModContent.ProjectileType<HealingDrone>(), 1, 0, player.whoAmI, 20);
             }
         }
         public override void SetDefaults()

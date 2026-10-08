@@ -94,34 +94,41 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
                     int ogReforge = result.prefix;
                     bool canPrefix = result.Prefix(reforge);
                    
-                    if (canPrefix && ogReforge != reforge && Main.LocalPlayer.BuyItem(reforgeStoneItem.GetApplyPrice()))
+                    if (canPrefix && ogReforge != reforge)
                     {
-                        SoundEngine.PlaySound(SoundID.Item37);
-                        if (!resultItem.IsAir && resultItem.type != ModContent.ItemType<RedCrossUI>())
-                        {
-                            if (resultItem.type == result.type && resultItem.stack < resultItem.maxStack)
-                                ResultSlot.Item.stack++;
-                        }
-                        else
-                        {
-                            ResultSlot.Item.TurnToAir(true);
-                            ResultSlot.Item = result;
-                        }
-
-
-                        if (!result.IsAir)
-                        {
-                            if ((inputItem.stack - 1) <= 0)
-                                InputSlot.Item.TurnToAir();
+                        
+                            SoundEngine.PlaySound(SoundID.Item37);
+                            if (!resultItem.IsAir && resultItem.type != ModContent.ItemType<RedCrossUI>())
+                            {
+                                if (resultItem.type == result.type && resultItem.stack < resultItem.maxStack)
+                                {
+                                    if(Main.LocalPlayer.BuyItem(reforgeStoneItem.GetApplyPrice())) ResultSlot.Item.stack++;
+                                }
+                            }
                             else
-                                InputSlot.Item.stack--;
+                            {
+                                if (Main.LocalPlayer.BuyItem(reforgeStoneItem.GetApplyPrice()))
+                                {
+                                    ResultSlot.Item.TurnToAir(true);
+                                    ResultSlot.Item = result;
+                                }
+                            }
 
-                            if ((reforgeStoneItem.stack - 1) <= 0)
-                                ReforgeStoneSlot.Item.TurnToAir();
-                            else
-                                ReforgeStoneSlot.Item.stack--;
 
-                            ResultSlot.Locked = false;
+                            if (!result.IsAir)
+                            {
+                                if ((inputItem.stack - 1) <= 0)
+                                    InputSlot.Item.TurnToAir();
+                                else
+                                    InputSlot.Item.stack--;
+
+                                if ((reforgeStoneItem.stack - 1) <= 0)
+                                    ReforgeStoneSlot.Item.TurnToAir();
+                                else
+                                    ReforgeStoneSlot.Item.stack--;
+
+                                ResultSlot.Locked = false;
+                            }
                         }
                     }
                     else
