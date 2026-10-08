@@ -31,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            float bounce = DificultyUtils.MasochistMode ? 0.9f : 3f;
+            float bounce = (DificultyUtils.MasochistMode && Projectile.hostile) ? 1.1f : 0.9f;
 
             if (Projectile.velocity.X != oldVelocity.X)
                 Projectile.velocity.X = -oldVelocity.X * bounce;
@@ -39,6 +39,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
             if (Projectile.velocity.Y != oldVelocity.Y)
                 Projectile.velocity.Y = -oldVelocity.Y * bounce;
 
+            if (Math.Abs(Projectile.velocity.Y) > 12) Projectile.velocity.Y = 6 * Math.Sign(Projectile.velocity.Y);
+            if (Math.Abs(Projectile.velocity.X) > 12) Projectile.velocity.X = 6 * Math.Sign(Projectile.velocity.X);
             return false;
         }
     }
@@ -116,7 +118,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            float bounce =  DificultyUtils.InfernumMode ? 0.7f : 0.1f;
+            float bounce = (Projectile.hostile && DificultyUtils.InfernumMode) ? 0.7f : 0.1f;
             if (Projectile.velocity.X != oldVelocity.X)
                 Projectile.velocity.X = -oldVelocity.X * bounce;
 

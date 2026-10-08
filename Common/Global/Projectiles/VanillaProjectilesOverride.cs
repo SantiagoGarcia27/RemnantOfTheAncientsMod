@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
 
             if(projectile.type == ProjectileID.CrystalLeaf)
             {
-                if(projectile.hostile == true || projectile.ai[2] != 0)
+                if(projectile.hostile == projectile.ai[2] != 0)
                 {
                     projectile.Size = new Vector2(32, 32);
                     owner =  Main.npc[(int)projectile.ai[2] - 1];
@@ -84,19 +84,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
         }
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {  
-            //if (projectile.type == ProjectileID.CrystalLeaf)
-            //{
-
-            //    if (projectile.hostile == true || projectile.ai[2] != 0)
-            //    {
-            //        NPC owner = Main.npc[(int)projectile.ai[2]];
-            //        Texture2D texture = ModContent.Request<Texture2D>("Terraria/Images/Projectile_" + ProjectileID.CrystalLeaf).Value;
-
-            //        //Main.spriteBatch.Draw(texture, (owner.Center - new Vector2(0, 5) * 16) - Main.screenPosition, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            //        Main.EntitySpriteDraw(texture, owner.Center - Main.screenPosition + new Vector2(0f, owner.gfxOffY) - new Vector2(0, 5) * 16, null, Color.White, owner.rotation, new Vector2(texture.Width * 0.5f, texture.Height * 0.5f), owner.scale, SpriteEffects.None, 0);
-            //    }
-            //}
-
             return base.PreDraw(projectile, ref lightColor);
         }
 

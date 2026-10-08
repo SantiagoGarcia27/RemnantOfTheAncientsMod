@@ -4973,10 +4973,10 @@ Mods: {
 			// CactusBoulderClone.DisplayName: Cactus Boulder Clone
 			// CursedBream.DisplayName: Cursed Bream
 			// MoltenLeaftBlade.DisplayName: Molten Leaft Blade
-			// GemstoneCrusherProj_Diamond.DisplayName: Gemstone Crusher Proj_ Diamond
-			// GemstoneCrusherProj_Emerald.DisplayName: Gemstone Crusher Proj_ Emerald
-			// GemstoneCrusherProj_Ruby.DisplayName: Gemstone Crusher Proj_ Ruby
-			// GemstoneCrusherProj_Sapphire.DisplayName: Gemstone Crusher Proj_ Sapphire
+			GemstoneCrusherProj_Diamond.DisplayName: Diamante Telequinetico
+			// GemstoneCrusherProj_Emerald.DisplayName: Esmeralda Telequinetica
+			// GemstoneCrusherProj_Ruby.DisplayName: Ruby Telequinetico
+			// GemstoneCrusherProj_Sapphire.DisplayName: Safiro Telequinetico
 			// BloodDart.DisplayName: Blood Dart
 			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
 			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile

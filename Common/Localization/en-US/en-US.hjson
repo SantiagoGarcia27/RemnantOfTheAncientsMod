@@ -4943,21 +4943,21 @@ Mods: {
 			PlayerClone.DisplayName: Player Clone
 			HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
 			TrueShadowMistProj.DisplayName: True Shadow Mist Proj
-			TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
+			TrueShadowMistCloudProj.DisplayName: True Shadow Mist
 			CactusBoulderClone.DisplayName: Cactus Boulder Clone
 			CursedBream.DisplayName: Cursed Bream
 			MoltenLeaftBlade.DisplayName: Molten Leaft Blade
-			GemstoneCrusherProj_Diamond.DisplayName: Gemstone Crusher Proj_ Diamond
-			GemstoneCrusherProj_Emerald.DisplayName: Gemstone Crusher Proj_ Emerald
-			GemstoneCrusherProj_Ruby.DisplayName: Gemstone Crusher Proj_ Ruby
-			GemstoneCrusherProj_Sapphire.DisplayName: Gemstone Crusher Proj_ Sapphire
+			GemstoneCrusherProj_Diamond.DisplayName: Telekinetic Diamond
+			GemstoneCrusherProj_Emerald.DisplayName: Telekinetic Emerald
+			GemstoneCrusherProj_Ruby.DisplayName: Telekinetic Ruby
+			GemstoneCrusherProj_Sapphire.DisplayName: Telekinetic Sapphire
 			BloodDart.DisplayName: Blood Dart
-			WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
-			StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
+			WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns
+			StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus
 			StoneMortarMinion.DisplayName: Stone Mortar
 			SandnadoMarkClone.DisplayName: Sandnado Mark Clone
-			StoneImpalerP.DisplayName: Stone Impaler P
-			RockAndRollProjectile.DisplayName: Rock And Roll Projectile
+			StoneImpalerP.DisplayName: Stone Impaler
+			RockAndRollProjectile.DisplayName: Rock And Roll
 		}
 
 		Tiles: {

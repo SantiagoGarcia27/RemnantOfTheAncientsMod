@@ -76,30 +76,44 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         }
 
         private int stompTimer = Utils1.FormatTimeToTick(Second: 2);
+
+        internal float StompActivationTimerFirstIncrement
+        {
+            get
+            {
+                float percentLifeToIncrement = 50;
+
+                if (DificultyUtils.Death) percentLifeToIncrement += 10;         
+                if (DificultyUtils.ReaperMode) percentLifeToIncrement += 5;
+   
+                if(percentLifeToIncrement > 100) percentLifeToIncrement = 90;
+
+                float result = MathUtils.GetValueFromPorcentage(NPC.lifeMax, percentLifeToIncrement);
+                return result;
+            }
+        }
+
+        internal float StompActivationTimerSecondIncrement
+        {
+
+            get
+            {
+                float percentLifeToIncrement = 20;
+
+                if (DificultyUtils.Death) percentLifeToIncrement += 10;
+                if (DificultyUtils.ReaperMode) percentLifeToIncrement += 5;
+
+                if (percentLifeToIncrement > 100) percentLifeToIncrement = 90;
+
+                float result = MathUtils.GetValueFromPorcentage(NPC.lifeMax, percentLifeToIncrement);
+                return result;
+            }
+        }
         private int stompActivationTimerTrigger
         {
             get {
-                float percentStomp1;
-                float percentStomp2;
-
-                if (DificultyUtils.Death)
-                {
-                    percentStomp1 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 60);
-                    percentStomp2 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 30);
-                }
-                else if (DificultyUtils.ReaperMode)
-                {
-                    percentStomp1 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 55);
-                    percentStomp2 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 25);
-                }
-                else
-                {
-                    percentStomp1 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 50);
-                    percentStomp2 = MathUtils.GetValueFromPorcentage(NPC.lifeMax, 20);
-                }
-
-                if (NPC.life < percentStomp2) return Utils1.FormatTimeToTick(Second: 5);
-                if (NPC.life < percentStomp1) return Utils1.FormatTimeToTick(Second: 10);
+                if (NPC.life < StompActivationTimerSecondIncrement) return Utils1.FormatTimeToTick(Second: 5);
+                if (NPC.life < StompActivationTimerFirstIncrement) return Utils1.FormatTimeToTick(Second: 10);
                 return Utils1.FormatTimeToTick(Second: 20);
             }
         }
@@ -143,10 +157,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         }
 
 
-        private int breackingDelay => Utils1.FormatTimeToTick(Second: 1);
+        private int breackingDelay => Utils1.FormatTimeToTick(Second: Main.rand.NextFloat(0.5f , 1.1f));
         private int breackingTimer = 0;
 
-
+        private int postStompDelayCounter = 0;
+        private static int postStompDelay => Utils1.FormatTimeToTick(Second: 1);
 
         private bool shootTelegraph = false;
         private bool spawnWorms;
@@ -252,32 +267,46 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             if (CurrentState == BossState.Stomp || CurrentState == BossState.Falling)
             {
                 MovementAI();
+
+                shootTimer = 0;
+                spawnerTimer = 0;
             }
             else
             {
-                shootTimer++;
-                spawnerTimer++;
-
-                if (shootTimer >= shootTimerTrigger - Utils1.FormatTimeToTick(Second: 1))
-                { 
-                    ShootAI();
-                }
-
-                if (spawnerTimer >= spawnTimerTrigger)
-                {
-                    SpawnAI();
-                    spawnerTimer = 0;
-                }
-
                 //Stomp collision Effects
                 if (NPC.collideY && !NPC.noTileCollide && CanUseStompEffect)
                 {
                     if (DificultyUtils.EternityMode || DificultyUtils.MasochistMode) StompExplosionAi();
+                    postStompDelayCounter = postStompDelay;
                     StompFallEffectAi();
+                }
+
+                if (postStompDelayCounter-- <= 0)
+                {
+
+                    shootTimer++;
+                    spawnerTimer++;
+
+                    if (shootTimer >= shootTimerTrigger - Utils1.FormatTimeToTick(Second: 1))
+                    {
+                        ShootAI();
+                    }
+
+                    if (spawnerTimer >= spawnTimerTrigger)
+                    {
+                        SpawnAI();
+                        spawnerTimer = 0;
+                    }
+
                 }
             }
             SecurityCheck();
-            
+
+
+            if (target.dead && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NPC.EncourageDespawn(7);
+            }
             base.AI();
         }
         private void SecurityCheck()
@@ -308,13 +337,24 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         }
         private void StompExplosionAi()
         {
-            int numProj = DificultyUtils.EternityMode ? 5 : 10;
-            for(int i = -numProj; i <= numProj; i++)
+            int numProj = DificultyUtils.MasochistMode ? 10 : 5;
+
+            int offset = 1.ToCoordinatePosition();
+            int projID = ProjectileID.DD2ExplosiveTrapT2Explosion;
+
+            for (int i = -numProj; i <= numProj; i++)
             {
-                Vector2 pos = new(NPC.Center.X + (i*2).ToCoordinatePosition(), NPC.Bottom.Y - NPC.height/2);
-                int index = Projectile.NewProjectile(NPC.GetSource_FromAI(),pos,Vector2.Zero, ProjectileID.DD2ExplosiveTrapT3Explosion,10,1,NPC.target);
-                Main.projectile[index].hostile = true;
-                Main.projectile[index].friendly = false;
+                Vector2 pos = new(NPC.Center.X + (i*2).ToCoordinatePosition(), (NPC.Bottom.Y - NPC.height/2) + offset);
+                int index = Projectile.NewProjectile(NPC.GetSource_FromAI(),pos,Vector2.Zero, projID, 10,1,NPC.target);
+                Projectile proj = Main.projectile[index];
+                proj.hostile = true;
+                proj.friendly = false;
+                if(DificultyUtils.ReaperMode)
+                {
+                    proj.scale /= 2;
+                    proj.Size /= 2;
+                }
+
             }
         }
         private void StompFallEffectAi()
@@ -361,7 +401,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         {          
             const float velocity = 5f;
             const float ceilingOffset = 300f;
-            const float tolerance = 5; //In Tiles
             Vector2 playerHead = new Vector2(target.Center.X, target.Center.Y - ceilingOffset);
 
             NPC.velocity = Vector2.Zero;
@@ -376,14 +415,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             }
             else if (CurrentStompPhase == StompType.moveTo)
             {
-                if(NPC.Center.DistanceSQ(playerHead) <= (tolerance * tolerance).ToTilePosition())
+                float tolerance = 5f.ToCoordinatePosition();
+                const float moveSpeed = velocity * 3f;
+
+                Vector2 difference = playerHead - NPC.Center;
+                float distance = difference.Length();
+
+                if (distance <= tolerance)
                 {
+                    NPC.velocity = Vector2.Zero;
                     CurrentStompPhase = StompType.follow;
                     return;
                 }
-                NPC.velocity = playerHead - NPC.Center;
-                NPC.velocity.Normalize();
-                NPC.velocity *= velocity * 3;
+
+                // No moverse más distancia de la que realmente falta.
+                float speed = Math.Min(moveSpeed, distance);
+
+                NPC.velocity = difference.SafeNormalize(Vector2.Zero) * speed;
             }
             else
             {
@@ -467,15 +515,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         private void SpawnAI()
         {
             if (!esServer) return;
-            int batID = Main.masterMode ? NPCID.GiantBat : NPCID.CaveBat;
-            int npcIndex = NPC.NewNPC(NPC.GetSource_FromAI(),(int)NPC.Center.X,(int)NPC.Center.Y, batID);
-            if (Main.masterMode)
-            {
-                Main.npc[npcIndex].lifeMax /= 5;
-                Main.npc[npcIndex].life /= 5;
-                Main.npc[npcIndex].defense = 2;
-                Main.npc[npcIndex].damage /= 3;
-            }
 
             if (!spawnWorms && Main.expertMode && NPC.life < NPC.lifeMax / 2)
             {
@@ -484,6 +523,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 SpawnWorm((int)NPC.Center.X - 30, (int)NPC.Center.Y + 160);
 
                 spawnWorms = true;
+            }
+
+            if (DificultyUtils.ReaperMode && NPC.life < StompActivationTimerFirstIncrement) return;
+
+            int batID = Main.masterMode ? NPCID.GiantBat : NPCID.CaveBat;
+            int npcIndex = NPC.NewNPC(NPC.GetSource_FromAI(),(int)NPC.Center.X,(int)NPC.Center.Y, batID);
+            if (Main.masterMode)
+            {
+                Main.npc[npcIndex].lifeMax /= 5;
+                Main.npc[npcIndex].life /= 5;
+                Main.npc[npcIndex].defense = 2;
+                Main.npc[npcIndex].damage /= 3;
             }
         }
 
@@ -500,7 +551,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             if (item.pick > 0)
             {
                 modifiers.DefenseEffectiveness *= 0;
-                modifiers.FinalDamage *= 2.1f;
+                modifiers.FinalDamage *= 2.5f;
             }
             base.ModifyHitByItem(player, item, ref modifiers);
         }
@@ -593,6 +644,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             writer.Write((int)projectileType);
             writer.Write((byte)CurrentStompPhase);
             writer.Write(CurrentPhase);
+            writer.Write(postStompDelayCounter);
             base.SendExtraAI(writer);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -603,6 +655,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             projectileType = (GemType)reader.ReadInt32();
             _currentStompPhase = (StompType)reader.ReadByte();
             _currentPhase = reader.ReadInt32();
+            postStompDelayCounter = reader.ReadInt32();
             base.ReceiveExtraAI(reader);
         }
          
