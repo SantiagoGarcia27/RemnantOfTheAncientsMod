@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Prefixe
         }
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item)
         {
-            return LocalizationHelper.GetAccesoryPrefixDescription(Mod, damage: 1, defense: 1, speed: 1, crit: 1);
+            return LocalizationHelper.GetAccesoryPrefixDescription(Mod, damage: 1, defense: 1, speed: 1, crit: 1,meleeSpeed:1);
         }
     }
 

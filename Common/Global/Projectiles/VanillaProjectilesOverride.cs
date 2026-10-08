@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
 
             if(projectile.type == ProjectileID.CrystalLeaf)
             {
-                if(projectile.hostile == projectile.ai[2] != 0)
+                if(projectile.hostile || projectile.ai[2] != 0)
                 {
                     projectile.Size = new Vector2(32, 32);
                     owner =  Main.npc[(int)projectile.ai[2] - 1];
