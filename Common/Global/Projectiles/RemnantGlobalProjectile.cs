@@ -78,16 +78,22 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
         public NPC NpcOwner;
         public Player PlayerOwner;
         public override void SetDefaults(Projectile projectile)
-        {  
+        {
+            bool validOwner = projectile.owner >= 0 && projectile.owner < Main.maxPlayers && Main.player[projectile.owner].active;
+            if (!validOwner) return;
+
+
             Player player = Main.player[projectile.owner];
+
             if (WeaponConf)
             {
                 if (projectile.type == ProjectileID.BabySlime)
                 {
                     projectile.minionSlots = 0.5f;
                 }
-          
+
             }
+        
 
             if (RemnantOfTheAncientsMod.MeleeWeaponEffects != null)
             {
@@ -277,7 +283,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (projectile.owner < 0 || projectile.owner > Main.maxPlayers) return;
+            if (projectile.owner < 0 || projectile.owner >= Main.maxPlayers) return;
 
             originalDamage = projectile.damage;
             Player owner = Main.player[projectile.owner];

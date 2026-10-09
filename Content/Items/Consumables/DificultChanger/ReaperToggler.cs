@@ -76,7 +76,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
             {
                 ReaperPlayer modPlayer = player.GetModPlayer<ReaperPlayer>();
 
-                if (!modPlayer.ChaliceOn)
+                if (!modPlayer.ChaliceOn && !modPlayer.ReaperFirstTime)
                 {
                     modPlayer.DropReaperStarterKit();
                     modPlayer.ReaperFirstTime = true;

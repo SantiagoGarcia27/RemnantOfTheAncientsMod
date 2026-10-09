@@ -409,7 +409,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                         { NPCID.EyeofCthulhu, () => !NPC.downedBoss1 },
                         { NPCID.BrainofCthulhu, () => !NPC.downedBoss2 },
                         { NPCID.QueenBee, () => !NPC.downedQueenBee },
-                        { NPCID.Skeleton, () => !NPC.downedBoss3 },
+                        { NPCID.SkeletronHead, () => !NPC.downedBoss3 },
                         { NPCID.Deerclops, () => !NPC.downedDeerclops },
                         { NPCID.QueenSlimeBoss, () => !NPC.downedQueenSlime },
                         { NPCID.TheDestroyer, () => !NPC.downedMechBoss1 },

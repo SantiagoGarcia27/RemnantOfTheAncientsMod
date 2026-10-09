@@ -124,11 +124,6 @@ public class ReaperEffectsPlayer : ModPlayer
     /// <param name="value"></param>
     public static void SetSoulsToggle(int type, bool value)
     {
-        if(RemnantOfTheAncientsMod.RemnantOfTheAncientsMod.CalamityMod != null)
-        {
-
-        }
-
 
         if (type == NPCType<DesertAnnihilator>())
             GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul = value;
@@ -259,8 +254,7 @@ public class ReaperEffectsPlayer : ModPlayer
             if (SoulIsEnabled(NPCID.QueenBee))
             {
                 Player.honey = true;
-                Player.strongBees = true;         
-                Player.beeDamage(ReaperSoulBoost? 80:20);    
+                Player.strongBees = true;   
             }
             if (SoulIsEnabled(NPCID.SkeletronHead))
             {
@@ -375,6 +369,30 @@ public class ReaperEffectsPlayer : ModPlayer
         {
             Projectile.RandomizeInsanityShadowFor(Main.rand.NextFromCollection(_hallucinationCandidates), isHostile: false, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
             Projectile.NewProjectile(new EntitySource_ItemUse(Player, item), spawnposition, spawnvelocity, ProjectileID.InsanityShadowFriendly, damage, 0f, Player.whoAmI, ai, ai2);
+        }
+    }
+
+    public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
+    {
+        if(SoulIsEnabled(NPCID.QueenBee)) QueenBeeEffect(hurtInfo);
+        base.OnHitByNPC(npc, hurtInfo);
+    }
+
+    public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
+    {
+        if (SoulIsEnabled(NPCID.QueenBee)) QueenBeeEffect(hurtInfo);
+        base.OnHitByProjectile(proj, hurtInfo);
+    }
+
+    internal void QueenBeeEffect(Player.HurtInfo hurtInfo)
+    {
+        if (!Reaper.ReaperMode || !Player.GetModPlayer<ReaperPlayer>().ChaliceOn) return;
+        if (SoulIsEnabled(NPCID.QueenBee))
+        {
+            int damage = Player.beeDamage(ReaperSoulBoost ? 80 : 20);
+            float knockback = Player.beeKB(ReaperSoulBoost ? 1 : 10);
+
+            Projectile.NewProjectile(Player.GetSource_OnHurt(hurtInfo.DamageSource), Player.Center, Vector2.Zero, ProjectileID.Bee, damage, knockback, Player.whoAmI);
         }
     }
 }

@@ -266,6 +266,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         {
             if (Reaper.ReaperMode)
             {
+                if(Main.netMode == NetmodeID.MultiplayerClient) return;
+
                 ModNPC modNpc = npc.ModNPC;
                 if (modNpc != null)
                 {
@@ -279,27 +281,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                         NPC.SpawnOnPlayer(Main.player[npc.target].whoAmI, NPCID.SkeletronHand);
                     }
                 }
-                if (npc.type == NPCID.Deerclops)
-                {
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 1, 30);
-                    }
-                    else
-                    {
-                        Main.player[npc.target].AddBuff(BuffID.Hunger, Utils1.FormatTimeToTick(0, 0, 0, 30));
-                    }
-                    // Main.dontStarveWorld = true;
-                }
+                if (npc.type == NPCID.Deerclops) RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 1, 30);   
+                
                 if (npc.type == NPCID.Golem)
                 {
                     NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.GolemFistLeft);
                     NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.GolemFistRight);
                 }
-                if (npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight)
-                {
-                    npc.life = npc.lifeMax;
-                }
+                if (npc.type == NPCID.GolemFistLeft || npc.type == NPCID.GolemFistRight) npc.life = npc.lifeMax;
+                
                 if (npc.type == NPCID.HallowBoss)
                 {
                     Main.dayTime = true;
@@ -330,7 +320,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 for (int i = 0; i <= ammount; i++)
                 {
                     GetPositionsAround(Main.player[npc.FindClosestPlayer()], 25 * 15f, ammount + 1, out List<Vector2> Postions);
-                    var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X * 10, (int)Postions[i].Y * 10, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
+                    var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
                     NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
                     NPC.NewNPC(npc.GetSource_FromAI(), (int)Postions[i].X, (int)Postions[i].Y, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "DankCreeper"));
                     Main.npc[p].aiStyle = -1;
@@ -1397,8 +1387,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             Vector2 direction;
             direction.X = (float)(Math.Cos(rotation) * Speed * -1);
             direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
-            direction.RotatedBy(angle);
-            Projectile.NewProjectile(npc.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
+            direction = direction.RotatedBy(angle);
+            Projectile.NewProjectile(npc.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, player.whoAmI);
         }
         public static int ShootIa(NPC npc, int dammage, int type, NPC target, float Speed)
         {
@@ -1407,7 +1397,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             Vector2 direction;
             direction.X = (float)(Math.Cos(rotation) * Speed * -1);
             direction.Y = (float)(Math.Sin(rotation) * Speed * -1);
-            var p = Projectile.NewProjectile(npc.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, Main.myPlayer);
+            var p = Projectile.NewProjectile(npc.GetSource_FromAI(), NpcPosition, direction, type, dammage, 0f, npc.target);
             Main.projectile[p].hostile = true;
             Main.projectile[p].friendly = false;
             return p;
@@ -1457,6 +1447,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public override void HitEffect(NPC npc, NPC.HitInfo hit)
         {
             base.HitEffect(npc, hit);
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
             if (!Reaper.ReaperMode) return;
             
             if (npc.type == NPCID.KingSlime)
