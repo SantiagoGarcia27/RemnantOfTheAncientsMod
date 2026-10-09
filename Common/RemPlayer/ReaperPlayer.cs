@@ -508,18 +508,26 @@ public class ReaperSoulsPlayer : ModPlayer
     }
     public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
     {
-        ModPacket packet = Mod.GetPacket();
         LoadSoulsToggle();
         LoadSoulsToggleCrossMod();
+
+        SendSoulState(toWho, fromWho);
+    }
+
+    public void SendSoulState(int toWho = -1, int fromWho = -1)
+    {
+        ModPacket packet = Mod.GetPacket();
 
         packet.Write((byte)RemnantOfTheAncientsModMessageType.SoulsUpgrades);
         packet.Write((byte)Player.whoAmI);
 
         packet.Write(SoulsUpgradesLoaded.Length);
-        foreach (bool value in SoulsUpgradesLoaded) packet.Write(value);
+        foreach (bool value in SoulsUpgradesLoaded)
+            packet.Write(value);
 
         packet.Write(SoulsUpgradesLoadedActive.Length);
-        foreach (float value in SoulsUpgradesLoadedActive) packet.Write(value);
+        foreach (float value in SoulsUpgradesLoadedActive)
+            packet.Write(value);
 
         packet.Write(SoulsUpgradesMaybeLoaded.Count);
         foreach (var kvp in SoulsUpgradesMaybeLoaded)

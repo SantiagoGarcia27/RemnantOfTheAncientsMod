@@ -530,7 +530,6 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
         public static void SetSoulValue(int npcType, float value)
         {
-            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
             ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
             int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
 
@@ -538,13 +537,18 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             {
                 reaperPlayer.SoulsUpgradesLoadedActive[index] = value;
             }
-            else if (CalamityMod != null && reaperPlayer.SoulsUpgradesMaybeLoadedActive.ContainsKey(npcType))
+            else if (RemnantOfTheAncientsMod.CalamityMod != null && reaperPlayer.SoulsUpgradesMaybeLoadedActive.ContainsKey(npcType))
             {
                 reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] = value;
             }
+
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                reaperPlayer.SendSoulState();
+            }
         }
 
-        public static void ToggleSoul(int npcType)
+      /*  public static void ToggleSoul(int npcType)
         {
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
             ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
@@ -562,6 +566,37 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             {
                 reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] = reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] > 0 ? 0f : toggleMax;
                 SoundEngine.PlaySound(SoundID.MenuOpen);
+            }
+        }*/
+
+        public static void ToggleSoul(int npcType)
+        {
+            ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
+
+            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
+
+            InitSoulSliderRanges();
+            float toggleMax = SoulSliderRanges.TryGetValue(npcType, out var range) ? range.max : 1f;
+
+            bool changed = false;
+
+            if (index != -1 && reaperPlayer.SoulsUpgradesLoaded[index])
+            {
+                reaperPlayer.SoulsUpgradesLoadedActive[index] = reaperPlayer.SoulsUpgradesLoadedActive[index] > 0f ? 0f : toggleMax;
+                changed = true;
+            }
+            else if (RemnantOfTheAncientsMod.CalamityMod != null && reaperPlayer.SoulsUpgradesMaybeLoaded.TryGetValue(npcType, out bool hasSoul) && hasSoul)
+            {
+                float current = reaperPlayer.SoulsUpgradesMaybeLoadedActive.GetValueOrDefault(npcType);
+                reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] = current > 0f ? 0f : toggleMax;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                SoundEngine.PlaySound(SoundID.MenuOpen);
+                if (Main.netMode != NetmodeID.MultiplayerClient) return;
+                reaperPlayer.SendSoulState();
             }
         }
 
