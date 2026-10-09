@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using System;
@@ -21,8 +22,8 @@ namespace RemnantOfTheAncientsMod
         {
             SpawnSuperDummy,
             KillSuperDummy,
-
             SoulsUpgrades,
+            RequestToggleReaper
         }
 
         public static void HandlePacket(BinaryReader reader, int whoAmI)
@@ -69,8 +70,8 @@ namespace RemnantOfTheAncientsMod
                         if (playerID < 0 || playerID >= Main.maxPlayers)
                             break;
 
-                        Player player = Main.player[playerID];
-                        ReaperSoulsPlayer reaperPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
+                        Player player_ = Main.player[playerID];
+                        ReaperSoulsPlayer reaperPlayer = player_.GetModPlayer<ReaperSoulsPlayer>();
 
 
                         int loadedCount = reader.ReadInt32();
@@ -109,6 +110,19 @@ namespace RemnantOfTheAncientsMod
                         }
 
                         break;
+                    case RemnantOfTheAncientsModMessageType.RequestToggleReaper:
+                    {
+                        if (Main.netMode != NetmodeID.Server)
+                            break;
+
+                        if (whoAmI < 0 || whoAmI >= Main.maxPlayers)
+                            break;
+
+                        Player player = Main.player[whoAmI];
+
+                        ReaperToggler.TryToggleReaper(player);
+                        break;
+                    }
                     default:
 
                         break;

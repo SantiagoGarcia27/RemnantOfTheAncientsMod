@@ -74,79 +74,42 @@ namespace RemnantOfTheAncientsMod.Common.UI.AdvanceReforgeUI
                 MoneyDisplay.ResetCoins();
             }
         }
-
         private void OnReforgeButtonClick(UIMouseEvent evt, UIElement listeningElement)
         {
-            if (!InputSlot.Item.IsAir && !ReforgeStoneSlot.Item.IsAir)
-            {
-                
+            if (InputSlot.Item.IsAir || ReforgeStoneSlot.Item.IsAir)
+                return;
 
-                Item inputItem = InputSlot.Item;
-                Item reforgeStoneItem = ReforgeStoneSlot.Item;
-                Item resultItem = ResultSlot.Item;
-                int reforge = -1;
-                
-                reforge = reforgeStoneItem.GetCatalystReforge(inputItem);   
-                if (reforge != -1)
-                {
-                   
-                    Item result = InputSlot.Item.Clone();
-                    int ogReforge = result.prefix;
-                    bool canPrefix = result.Prefix(reforge);
-                   
-                    if (canPrefix && ogReforge != reforge)
-                    {
-                        
-                            SoundEngine.PlaySound(SoundID.Item37);
-                            if (!resultItem.IsAir && resultItem.type != ModContent.ItemType<RedCrossUI>())
-                            {
-                                if (resultItem.type == result.type && resultItem.stack < resultItem.maxStack)
-                                {
-                                    if(Main.LocalPlayer.BuyItem(reforgeStoneItem.GetApplyPrice())) ResultSlot.Item.stack++;
-                                }
-                            }
-                            else
-                            {
-                                if (Main.LocalPlayer.BuyItem(reforgeStoneItem.GetApplyPrice()))
-                                {
-                                    ResultSlot.Item.TurnToAir(true);
-                                    ResultSlot.Item = result;
-                                }
-                            }
+            if (!ReforgeStoneSlot.Item.IsCatalyst())
+                return;
 
+            if (!ResultSlot.Item.IsAir && ResultSlot.Item.type != ModContent.ItemType<RedCrossUI>())
+                return;
 
-                            if (!result.IsAir)
-                            {
-                                if ((inputItem.stack - 1) <= 0)
-                                    InputSlot.Item.TurnToAir();
-                                else
-                                    InputSlot.Item.stack--;
+            int prefix = ReforgeStoneSlot.Item.GetCatalystReforge(InputSlot.Item);
 
-                                if ((reforgeStoneItem.stack - 1) <= 0)
-                                    ReforgeStoneSlot.Item.TurnToAir();
-                                else
-                                    ReforgeStoneSlot.Item.stack--;
+            if (prefix <= 0 || prefix == InputSlot.Item.prefix)
+                return;
 
-                                ResultSlot.Locked = false;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        ResultSlot.Locked = true;
-                        Item errorItem = new(ModContent.ItemType<RedCrossUI>());
-                        ResultSlot.Item = errorItem;
-                    }
-                }
-                else
-                {
-                    ResultSlot.Locked = true;
-                    Item errorItem = new(ModContent.ItemType<RedCrossUI>());
-                    ResultSlot.Item = errorItem;
-                }
-              
-            }
+            Item result = InputSlot.Item.Clone();
+            result.stack = 1;
+
+            if (!result.Prefix(prefix))
+                return;
+
+            int price = ReforgeStoneSlot.Item.GetApplyPrice();
+
+            if (price < 0 || !Main.LocalPlayer.BuyItem(price))
+                return;
+
+            ResultSlot.Item = result;
+            ResultSlot.Locked = false;
+
+            InputSlot.ConsumeStack();
+            ReforgeStoneSlot.ConsumeStack();
+
+            SoundEngine.PlaySound(SoundID.Item37);
         }
+       
 
         public override void OnDeactivate()
         {

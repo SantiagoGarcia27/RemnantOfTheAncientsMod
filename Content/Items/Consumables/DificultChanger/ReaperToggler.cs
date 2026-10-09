@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
 {
-    public class Ftoggler : ModItem
+    public class ReaperToggler : ModItem
     {
 
         private static readonly Color rarityColorOne = Utils1.GetReaperColor(1);
@@ -46,32 +46,50 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.DificultChanger
         }
         public override bool? UseItem(Player player)
         {
-           
-            if (!Utils1.IsAnyBossAlive())
+            if (Main.netMode == NetmodeID.Server || player.whoAmI != Main.myPlayer)
+                return true;
+
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                if (!Reaper.ReaperMode && !DificultyUtils.ReaperMode)
+                ModPacket packet = Mod.GetPacket();
+
+                packet.Write((byte)Netcode.RemnantOfTheAncientsModMessageType.RequestToggleReaper);
+                packet.Send();
+            }
+            else TryToggleReaper(player);
+            
+            return true;
+        }
+
+
+        public static void TryToggleReaper(Player player)
+        {
+
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
+            if (!player.active || player.dead) return;
+            if (player.HeldItem.type != ModContent.ItemType<ReaperToggler>()) return;
+            if (Utils1.IsAnyBossAlive()) return;
+
+            bool activating = !Reaper.ReaperMode;
+
+            if (activating)
+            {
+                ReaperPlayer modPlayer = player.GetModPlayer<ReaperPlayer>();
+
+                if (!modPlayer.ChaliceOn)
                 {
-                    Item.buffTime = 1;
-                    Color gray = Color.DarkSlateGray;
-                    string text = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.Reaper.On");
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), gray);
-                    var modPlayer = player.GetModPlayer<ReaperPlayer>();
-                    if (!modPlayer.ChaliceOn)
-                    {
-                        modPlayer.DropReaperStarterKit();
-                        ReaperPlayer.ReaperFirstTime = true;
-                    }
+                    modPlayer.DropReaperStarterKit();
+                    modPlayer.ReaperFirstTime = true;
                 }
-                else
-                {
-                    Color gray = Color.DarkSlateGray;
-                    string text = Language.GetTextValue("Mods.RemnantOfTheAncientsMod.Messages.Reaper.Off");
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), gray);
-                }
-               Reaper.UpdateReaper();
             }
 
-            return true;
+            Reaper.UpdateReaper();
+
+            string mode = activating ? "On" : "Off";
+            string key = $"Mods.RemnantOfTheAncientsMod.Messages.Reaper.{mode}";
+
+            if (Main.netMode == NetmodeID.Server) ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key), Color.DarkSlateGray);
+            else Main.NewText(Language.GetTextValue(key), Color.DarkSlateGray);
         }
 
         public override void AddRecipes()

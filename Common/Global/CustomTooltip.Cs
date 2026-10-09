@@ -175,7 +175,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
         [CloneByReference]
         public List<int> ReaperItems =
         [
-           ModContent.ItemType<Ftoggler>(),
+           ModContent.ItemType<ReaperToggler>(),
            ModContent.ItemType<Reaper_Hood>(),
            ModContent.ItemType<Reaper_Robe>(),
            ModContent.ItemType<Reaper_Pants>()
@@ -187,7 +187,7 @@ namespace RemnantOfTheAncientsMod.Common.Global
             if (!item.expert && rarityColor.HasValue)
                 nameLine.OverrideColor = rarityColor.Value;
             if (ReaperItems.Contains(item.type))
-                nameLine.OverrideColor = Ftoggler.GetRarityColor();
+                nameLine.OverrideColor = ReaperToggler.GetRarityColor();
         }
 
 

@@ -147,6 +147,8 @@ class DesertAnnihilator_Attack
     }
     public void ShootHelper(int dammage, ShootData shoot, Player player, float Speed, float rotationGrades = 0f)
     {
+        if (Main.netMode == NetmodeID.MultiplayerClient) return;
+
         Vector2 direction = player.Center - npc.Center;
         direction.Normalize();
         direction = direction.RotatedBy(MathHelper.ToRadians(rotationGrades));
@@ -173,6 +175,8 @@ class DesertAnnihilator_Attack
 
     public void TornadoAI()
     {
+        if (Main.netMode == NetmodeID.MultiplayerClient) return;
+
         tornadoCounter--;
 
         if (tornadoCounter <= 0)

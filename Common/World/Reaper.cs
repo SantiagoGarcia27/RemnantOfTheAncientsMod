@@ -4,6 +4,7 @@ using RemnantOfTheAncientsMod.Common.Global.Projectiles;
 using SangarUtilities.Common.UtilsTweaks;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -36,10 +37,7 @@ namespace RemnantOfTheAncientsMod.World
       
         internal static void LoadDataExtras()
         {
-            DificultyUtils.ReaperMode = ReaperMode;
-
-            if ((RemnantGlobalNPC.DamageBonus == 1 || RemnantGlobalNPC.LifeBonus == 1) && ReaperMode)
-                RemnantGlobalNPC.SetStatBonus(2f, 2f);
+            ApplyReaperState();
 
             foreach (int id in RemnantGlobalItem.SpearsList)
             {
@@ -48,11 +46,25 @@ namespace RemnantOfTheAncientsMod.World
         }
         public static void UpdateReaper()
         {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
+
             ReaperMode = !ReaperMode;
+
+            ApplyReaperState();
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.WorldData);
+            }
+        }
+
+        private static void ApplyReaperState()
+        {
             DificultyUtils.ReaperMode = ReaperMode;
 
-            if (ReaperMode) RemnantGlobalNPC.SetStatBonus(2f, 2f);
-            else RemnantGlobalNPC.SetStatBonus(1f, 1f,'-');
+            RemnantGlobalNPC.DamageBonus = ReaperMode ? 2f : 1f;
+            RemnantGlobalNPC.LifeBonus = ReaperMode ? 2f : 1f;
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -65,9 +77,9 @@ namespace RemnantOfTheAncientsMod.World
         {
             BitsByte flags = reader.ReadByte();
             ReaperMode = flags[0];
+
+            ApplyReaperState();
         }
-
-
     }
 }
 

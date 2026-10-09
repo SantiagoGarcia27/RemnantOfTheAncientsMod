@@ -27,7 +27,7 @@ using static Terraria.ModLoader.ModContent;
 public class ReaperPlayer : ModPlayer
 {
     public bool ChaliceOn;
-    public static bool ReaperFirstTime;
+    public bool ReaperFirstTime;
     public override void ResetEffects()
     {      
         ChaliceOn = false;
@@ -38,8 +38,8 @@ public class ReaperPlayer : ModPlayer
 
     public override IEnumerable<Item> AddStartingItems(bool mediumCoreDeath)
     {
-        if (mediumCoreDeath) return [new Item(ItemType<Ftoggler>())];
-        return [new Item(ItemType<Ftoggler>())];
+        if (mediumCoreDeath) return [new Item(ItemType<ReaperToggler>())];
+        return [new Item(ItemType<ReaperToggler>())];
     }
     public void DropReaperStarterKit()
     {
@@ -50,6 +50,20 @@ public class ReaperPlayer : ModPlayer
             Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemType<ReaperPants>());
             Item.NewItem(Player.GetSource_DropAsItem(), Player.position, ItemType<ReaperChalice>());
         }
+    }
+
+    public override void SaveData(TagCompound tag)
+    {
+        tag["ChaliceOn"] = ChaliceOn;
+        tag["ReaperFirstTime"] = ReaperFirstTime;
+        base.SaveData(tag);
+    }
+
+    public override void LoadData(TagCompound tag)
+    {
+        ChaliceOn = tag.GetBool("ChaliceOn");
+        ReaperFirstTime = tag.GetBool("ReaperFirstTime");
+        base.LoadData(tag);
     }
 }
 public class ReaperEffectsPlayer : ModPlayer

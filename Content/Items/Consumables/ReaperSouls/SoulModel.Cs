@@ -43,18 +43,21 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
         }
         public override bool CanUseItem(Player player)
         {
-            // Dictionary<int, bool> souls = player.GetModPlayer<ReaperPlayer>().SoulsUpgrades[ItemMod];
-            bool hasSoul = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)];
-            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod)
-                hasSoul = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[BaseNpc.type];
+            ReaperSoulsPlayer reaperSoulsPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
+
+
+            bool hasSoul = ItemMod != RemnantOfTheAncientsMod.CalamityMod ?
+                reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] :
+                reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[BaseNpc.type];
+
             return !hasSoul;
         }
         public override bool? UseItem(Player player)
-        {  
-            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod)
-                player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[BaseNpc.type] = true;
-            else
-                player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] = true;
+        {
+            ReaperSoulsPlayer reaperSoulsPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
+
+            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod) reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[BaseNpc.type] = true;
+            else reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] = true;
    
             return true;
         }
