@@ -548,27 +548,6 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             }
         }
 
-      /*  public static void ToggleSoul(int npcType)
-        {
-            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-            ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
-            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
-
-            InitSoulSliderRanges();
-            float toggleMax = SoulSliderRanges.TryGetValue(npcType, out var range) ? range.max : 1f;
-
-            if (index != -1 && reaperPlayer.SoulsUpgradesLoaded[index])
-            {
-                reaperPlayer.SoulsUpgradesLoadedActive[index] = reaperPlayer.SoulsUpgradesLoadedActive[index] > 0 ? 0f : toggleMax;
-                SoundEngine.PlaySound(SoundID.MenuOpen);
-            }
-            else if (CalamityMod != null && reaperPlayer.SoulsUpgradesMaybeLoaded.TryGetValue(npcType, out bool hasSoul) && hasSoul)
-            {
-                reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] = reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] > 0 ? 0f : toggleMax;
-                SoundEngine.PlaySound(SoundID.MenuOpen);
-            }
-        }*/
-
         public static void ToggleSoul(int npcType)
         {
             ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
