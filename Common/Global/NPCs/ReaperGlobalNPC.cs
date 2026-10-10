@@ -26,21 +26,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
     public class ReaperGlobalNpc : GlobalNPC
     {
         public override bool InstancePerEntity => true;
+
         public override void SetDefaults(NPC npc)
         {
             if (RemnantOfTheAncientsMod.CalamityMod != null)
                 FillList();
-            if (npc.boss)
-            {
-                ModifyBossStats(npc);
-            }
+            
 
             if (Reaper.ReaperMode)
             {
-                if (destroyer.Contains(npc.type))
-                {
-                    npc.scale *= 2f;
-                }
                 if (npc.type == NPCID.EyeofCthulhu)
                 {
                     npc.buffImmune[BuffID.OnFire] = true;
@@ -258,12 +252,13 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public List<int> CalamityAffectedNPCs = [];
         public static void ModifyBossStats(NPC npc)
         {
-            npc.lifeMax *= Reaper.ReaperMode ? 2 : 1;
-            npc.damage *= Reaper.ReaperMode ? 2 : 1;
+            npc.lifeMax = (int)(npc.lifeMax * RemnantGlobalNPC.LifeBonus);
+            npc.damage = (int)(npc.damage * RemnantGlobalNPC.DamageBonus);
         }
         int primePhase = 0;
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
+            oldLifeMax = npc.lifeMax;
             if (Reaper.ReaperMode)
             {
                 if(Main.netMode == NetmodeID.MultiplayerClient) return;
@@ -300,6 +295,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 {
                     int i = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X - 13 * 16, (int)npc.position.Y, NPCID.GolemHeadFree, ai3:-1);
                     Main.npc[i].alpha = 50;
+                }
+                if(destroyer.Contains(npc.type))
+                {
+                    npc.scale *= 2f;
+                    npc.Size *= 2f;
                 }
             }
             base.OnSpawn(npc, source);
@@ -364,22 +364,38 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         int attackCounter = 0;
         List<NPC> NpcList = [];
 
+        bool initilized = false;
+        int oldLifeMax = -1;
         public override bool PreAI(NPC npc)
         {
             if (Reaper.ReaperMode)
             {
-                if (DificultyUtils.InfernumMode)
+                if (RemnantOfTheAncientsMod.CalamityMod != null)
+                    PreAiCalamity(npc);
+
+                if (!initilized)
+                {
+                    if (npc.boss)
+                    {
+                        ModifyBossStats(npc);
+
+                        int newLifeMax = (int)(oldLifeMax * RemnantGlobalNPC.LifeBonus);
+
+                        npc.life = newLifeMax;
+                        if (npc.life >= newLifeMax)
+                            initilized = true;
+                    }
+                }
+                /*if (DificultyUtils.InfernumMode)
                 {
                     if (destroyer.Contains(npc.type))
                     {
-                        npc.scale *= 2f;
+                        //npc.scale *= 2f;
                     }
                     AI(npc);
-                }
-                if (RemnantOfTheAncientsMod.CalamityMod != null /*&& npc.type == CallUtils.TryGetNpcFromMod(RemnantOfTheAncients.CalamityMod, "DankCreeper")*/)
-                    PreAiCalamity(npc);
+                    return false;
+                }*/
             }
-            AI(npc);
             return base.PreAI(npc);
         }
 
@@ -414,6 +430,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
             return base.PreAI(npc);
         }
         public NPC Owner = null;
+        internal bool HealCheckPatch = false;
         public override void AI(NPC npc)
         {
             List<int> ReaperAffectedNPCs =
@@ -450,7 +467,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 NPCID.PrimeVice
             ];
 
-
+            
 
             if (Reaper.ReaperMode)
             {

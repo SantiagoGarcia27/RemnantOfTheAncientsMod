@@ -1130,7 +1130,7 @@ Mods: {
 				Tooltip: Invoca al tirano infernal
 			}
 
-			Ftoggler: {
+			ReaperToggler: {
 				DisplayName: Segador
 				Tooltip:
 					'''

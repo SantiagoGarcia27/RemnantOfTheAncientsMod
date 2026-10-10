@@ -130,8 +130,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
         }
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (projectile.owner != Main.myPlayer) return;
-
             if (!projectile.TryGetOwner(out Player player) || !player.active)
             {
                 base.OnHitNPC(projectile, target, hit, damageDone);
@@ -368,50 +366,55 @@ namespace RemnantOfTheAncientsMod.Common.Global.Projectiles
                 HommingProjectile(projectile,Range:800f,speed: 5f);
             }
             else if (projectile.type == ProjectileID.ClingerStaff)
-            {            
-                if(projectile.owner != Main.myPlayer) return;
-                if (fireballTimmer++ >= Utils1.FormatTimeToTick(0, 0, 0, 2)) fireballTimmer = 0;
-                if (fireballTimmer == 0)
+            {
+                if (projectile.owner == Main.myPlayer)
                 {
-                    Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(-1f, 0.5f), ProjectileID.CursedFlameFriendly, (int)(projectile.damage * 0.7f), 1f, projectile.owner);
-                    Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(1f, 0.5f), ProjectileID.CursedFlameFriendly, (int)(projectile.damage * 0.7f), 1f, projectile.owner);
+                    if (fireballTimmer++ >= Utils1.FormatTimeToTick(0, 0, 0, 2)) fireballTimmer = 0;
+                    if (fireballTimmer == 0)
+                    {
+                        Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(-1f, 0.5f), ProjectileID.CursedFlameFriendly, (int)(projectile.damage * 0.7f), 1f, projectile.owner);
+                        Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(1f, 0.5f), ProjectileID.CursedFlameFriendly, (int)(projectile.damage * 0.7f), 1f, projectile.owner);
+                    }
                 }
             }   
             else if (projectile.type == ProjectileID.FrostHydra)
             {
-                if (projectile.owner != Main.myPlayer) return;
-                if (projectile.ai[0] <= 0) return;
-                
-                float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-                if (AttackCounter++ >= maxTimer)
+                if (projectile.owner == Main.myPlayer)
                 {
-                    Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(0, -3), ProjectileID.ClusterSnowmanRocketI, projectile.damage, 1, projectile.owner);
-                    AttackCounter = 0;
+                    if (projectile.ai[0] <= 0) return;
+
+                    float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+                    if (AttackCounter++ >= maxTimer)
+                    {
+                        Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, new Vector2(0, -3), ProjectileID.ClusterSnowmanRocketI, projectile.damage, 1, projectile.owner);
+                        AttackCounter = 0;
+                    }
                 }
             }
             else if(projectile.type == ProjectileID.FlyingImp)
             {
-                if (projectile.owner != Main.myPlayer) return;
-
-                float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
-
-                if (AttackCounter++ < maxTimer) return;
-                
-                NPC target = projectile.FindTargetWithinRange(200, true);
-                    
-                if (target != null)
+                if (projectile.owner == Main.myPlayer)
                 {
-                    Vector2 velocity = target.Center - projectile.Center;
+                    float maxTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
 
-                    for (int i = 0; i < 6; i++)
+                    if (AttackCounter++ < maxTimer) return;
+
+                    NPC target = projectile.FindTargetWithinRange(200, true);
+
+                    if (target != null)
                     {
-                        var p = Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, velocity.RotatedBy(MathHelper.ToRadians(-i *10)), ProjectileID.ImpFireball, projectile.damage / 2, 1, projectile.owner);
-                        Main.projectile[p].usesLocalNPCImmunity = true;
-                        Main.projectile[p].localNPCHitCooldown = 10;
-                        Main.projectile[p].scale = 0.5f;
+                        Vector2 velocity = target.Center - projectile.Center;
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            var p = Projectile.NewProjectile(projectile.GetSource_FromAI(), projectile.Center, velocity.RotatedBy(MathHelper.ToRadians(-i * 10)), ProjectileID.ImpFireball, projectile.damage / 2, 1, projectile.owner);
+                            Main.projectile[p].usesLocalNPCImmunity = true;
+                            Main.projectile[p].localNPCHitCooldown = 10;
+                            Main.projectile[p].scale = 0.5f;
+                        }
+                        AttackCounter = 0;
                     }
-                    AttackCounter = 0;
-                }  
+                }
             }
             else if(projectile.type == ProjectileID.Excalibur)
             {

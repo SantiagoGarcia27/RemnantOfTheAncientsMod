@@ -3,6 +3,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using Terraria;
 using Terraria.ID;
@@ -34,8 +35,37 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
             try
             {
                 IntroScreens = new List<BaseIntroScreenTitle>();
-                Type introScreenType = typeof(BaseIntroScreenTitle);
-                var a = RemnantOfTheAncientsMod.RemnantOfTheAncients.Code.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(introScreenType));
+                Type introScreenType = typeof(BaseIntroScreenTitle); 
+                
+                IEnumerable<Type> types;
+
+                try
+                {
+                    types = RemnantOfTheAncientsMod.RemnantOfTheAncients.Code.GetTypes();
+                }
+                catch (ReflectionTypeLoadException ex)
+                {
+                    foreach (Exception loaderException in ex.LoaderExceptions)
+                    {
+                        if (loaderException != null)
+                        {
+                            RemnantOfTheAncientsMod.RemnantOfTheAncients.Logger.Warn(
+                                $"Error cargando tipo: {loaderException}"
+                            );
+                        }
+                    }
+
+                    types = ex.Types.OfType<Type>();
+                }
+
+                var a = types.Where(t =>
+                    !t.IsAbstract &&
+                    t.IsSubclassOf(introScreenType)
+                );
+
+                //var a = RemnantOfTheAncientsMod.RemnantOfTheAncients.Code.GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(introScreenType));
+
+
                 foreach (Type introScreen in a)
                     IntroScreens.Add(FormatterServices.GetUninitializedObject(introScreen) as BaseIntroScreenTitle);
             }
