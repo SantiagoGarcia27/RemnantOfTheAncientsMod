@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Linq;

@@ -3,7 +3,7 @@ using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones
+namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Calamity
 {
     public class EndlessCalciumPotion : BasePotions
     {

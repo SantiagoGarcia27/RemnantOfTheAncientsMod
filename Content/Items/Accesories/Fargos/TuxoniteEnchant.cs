@@ -4,6 +4,7 @@ using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Tuxonite;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;

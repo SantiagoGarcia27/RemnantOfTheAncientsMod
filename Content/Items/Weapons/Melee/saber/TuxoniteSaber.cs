@@ -1,5 +1,4 @@
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
 using Terraria.ID;

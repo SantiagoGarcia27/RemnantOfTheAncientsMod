@@ -3,14 +3,16 @@ using CalamityMod.NPCs.BrimstoneElemental;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.NPCs;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.Calamity;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Calamity;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.World;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;
@@ -29,6 +31,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
 
         public override void SetDefaults(NPC npc)
         {
+            if (Reaper.ReaperMode && npc.boss)
+            {
+                ModifyBossStats(npc);
+            }
+
             if (RemnantOfTheAncientsMod.CalamityMod != null)
                 FillList();
             
@@ -258,10 +265,23 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         int primePhase = 0;
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            oldLifeMax = npc.lifeMax;
             if (Reaper.ReaperMode)
             {
                 if(Main.netMode == NetmodeID.MultiplayerClient) return;
+
+                if ((npc.type == NPCID.TheDestroyerBody || npc.type == NPCID.TheDestroyerTail) &&
+                    source is EntitySource_Parent parentSource && parentSource.Entity is NPC head && head.type == NPCID.TheDestroyer)
+                {
+                    npc.lifeMax = head.lifeMax;
+                    npc.life = head.life;
+                    npc.netUpdate = true;
+                }
+
+                if (npc.boss)
+                {
+                    npc.life = npc.lifeMax;
+                    npc.netUpdate = true;
+                }
 
                 ModNPC modNpc = npc.ModNPC;
                 if (modNpc != null)
@@ -364,8 +384,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         int attackCounter = 0;
         List<NPC> NpcList = [];
 
-        bool initilized = false;
-        int oldLifeMax = -1;
+        private bool lifeInitialized;
+        private int lifeInitTimer;
         public override bool PreAI(NPC npc)
         {
             if (Reaper.ReaperMode)
@@ -373,19 +393,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 if (RemnantOfTheAncientsMod.CalamityMod != null)
                     PreAiCalamity(npc);
 
-                if (!initilized)
-                {
-                    if (npc.boss)
-                    {
-                        ModifyBossStats(npc);
-
-                        int newLifeMax = (int)(oldLifeMax * RemnantGlobalNPC.LifeBonus);
-
-                        npc.life = newLifeMax;
-                        if (npc.life >= newLifeMax)
-                            initilized = true;
-                    }
-                }
                 /*if (DificultyUtils.InfernumMode)
                 {
                     if (destroyer.Contains(npc.type))
@@ -397,6 +404,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
                 }*/
             }
             return base.PreAI(npc);
+        }
+        public override void PostAI(NPC npc)
+        {
+            base.PostAI(npc);
         }
 
         float ang = 0;

@@ -1,11 +1,11 @@
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
-using RemnantOfTheAncientsMod.Content.Projectiles.Fargos;
+using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common.RemPlayer
 {
     [ExtendsFromMod("FargowiltasSouls")]
     public class RemnantFargosSoulsPlayer : ModPlayer

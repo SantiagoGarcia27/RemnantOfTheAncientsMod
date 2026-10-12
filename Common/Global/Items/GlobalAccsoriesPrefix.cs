@@ -1,5 +1,5 @@
-using RemnantOfTheAncientsMod.Prefixe;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.Prefix;
+using RemnantOfTheAncientsMod.Common.World;
 using Terraria;
 using Terraria.ModLoader;
 

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace ExampleMod.Content.DamageClasses
+namespace RemnantOfTheAncientsMod.Common.Global
 {
 	public class ExampleDamageClass : DamageClass
 	{

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
 using RemnantOfTheAncientsMod.Content.Dusts;
@@ -13,7 +14,7 @@ using Terraria.ModLoader;
 using static Terraria.IL_Mount;
 using static Terraria.Mount;
 
-namespace RemnantOfTheAncientsMod.Content.Mounts
+namespace RemnantOfTheAncientsMod.Content.NPCs.Mounts
 {
 	public class Sword : ModMount
 	{

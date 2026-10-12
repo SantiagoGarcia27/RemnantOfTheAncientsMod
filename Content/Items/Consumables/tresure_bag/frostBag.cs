@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
@@ -8,7 +9,6 @@ using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
-using RemnantOfTheAncientsMod.World;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;

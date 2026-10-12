@@ -1,9 +1,9 @@
-﻿using RemnantOfTheAncientsMod.Content.Items.Accesories;
-using RemnantOfTheAncientsMod.World;
+﻿using RemnantOfTheAncientsMod.Common.World;
+using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common.RemPlayer
 {
 	internal class ReaperAccessory : ModAccessorySlot
 	{

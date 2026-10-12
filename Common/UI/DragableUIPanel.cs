@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
+namespace RemnantOfTheAncientsMod.Common.UI
 {
 	public class DragableUIPanel : UIPanel
 	{

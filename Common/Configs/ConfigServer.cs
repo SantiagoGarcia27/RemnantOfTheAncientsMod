@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common.Configs
 {
     public class ConfigServer : ModConfig
     {

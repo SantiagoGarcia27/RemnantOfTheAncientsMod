@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon
 {
 
     public class AcornLeaftShoot : ModProjectile

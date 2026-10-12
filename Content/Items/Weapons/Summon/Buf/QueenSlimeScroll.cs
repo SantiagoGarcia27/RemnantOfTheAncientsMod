@@ -1,4 +1,5 @@
-﻿using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+﻿using RemnantOfTheAncientsMod.Common.RemPlayer;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
 using Terraria;
 using Terraria.GameContent.Creative;

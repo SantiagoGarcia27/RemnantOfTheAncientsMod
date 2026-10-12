@@ -1,5 +1,6 @@
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using System;
 using System.Collections.Generic;
 using Terraria;

@@ -1,5 +1,6 @@
 using CalamityMod.Items.Potions;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Calamity;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;

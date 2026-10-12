@@ -1,11 +1,12 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
+namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 {
     public abstract class SoulModel : ModItem
     {

@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Hook
 {
 
     public class BoberHook : ModProjectile

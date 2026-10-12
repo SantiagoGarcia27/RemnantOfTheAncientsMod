@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles
+namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles
 {
 	public class BossMark : ModProjectile
 	{

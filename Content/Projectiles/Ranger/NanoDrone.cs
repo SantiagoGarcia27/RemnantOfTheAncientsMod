@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using System;
 using Terraria;
 using Terraria.ID;

@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
 using Terraria.GameContent.Creative;

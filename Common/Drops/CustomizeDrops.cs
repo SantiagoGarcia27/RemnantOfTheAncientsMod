@@ -1,5 +1,5 @@
-﻿using RemnantOfTheAncientsMod.Content.NPCs;
-using RemnantOfTheAncientsMod.Prefixe;
+﻿using RemnantOfTheAncientsMod.Common.Prefix;
+using RemnantOfTheAncientsMod.Content.NPCs;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

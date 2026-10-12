@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.World;
 using Terraria;
 using Terraria.ModLoader;
 

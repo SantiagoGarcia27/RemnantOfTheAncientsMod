@@ -1,12 +1,12 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 
 [ExtendsFromMod("FargowiltasSouls")]
 public class DesertMedalionEffect : AccessoryEffect

@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using Terraria;
 using Terraria.ModLoader;
 

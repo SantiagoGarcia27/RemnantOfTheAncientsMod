@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 using Terraria;
 using Terraria.GameContent.Creative;

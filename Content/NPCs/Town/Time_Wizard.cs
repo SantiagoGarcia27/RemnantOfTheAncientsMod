@@ -6,7 +6,7 @@ using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Tools.Utilidad;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles;
 using System;
 using System.Collections.Generic;
 using Terraria;

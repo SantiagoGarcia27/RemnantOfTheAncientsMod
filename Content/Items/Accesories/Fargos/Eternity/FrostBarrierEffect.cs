@@ -1,11 +1,11 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 
 [ExtendsFromMod("FargowiltasSouls")]
 public class FrostBarrierEffect : AccessoryEffect

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Terraria;
 using Terraria.GameContent.Creative;

@@ -1,9 +1,9 @@
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.World;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
     public class IceMistF : ModProjectile
     {

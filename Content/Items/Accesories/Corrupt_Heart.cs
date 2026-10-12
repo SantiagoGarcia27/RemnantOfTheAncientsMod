@@ -1,5 +1,6 @@
 using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
+using RemnantOfTheAncientsMod.Common.World;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

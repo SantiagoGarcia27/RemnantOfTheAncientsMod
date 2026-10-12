@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder;
+using RemnantOfTheAncientsMod.Content.Projectiles.Misc;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

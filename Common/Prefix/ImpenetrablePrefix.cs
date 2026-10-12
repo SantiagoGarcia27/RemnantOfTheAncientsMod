@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Prefixe
+namespace RemnantOfTheAncientsMod.Common.Prefix
 {
     public class Impenetrable : ModPrefix
     {

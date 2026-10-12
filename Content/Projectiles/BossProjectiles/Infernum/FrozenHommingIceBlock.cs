@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Ranger
+namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Infernum
 {
     [JITWhenModsEnabled("InfernumMode")]
     public class FrozenHommingIceBlock : ModProjectile

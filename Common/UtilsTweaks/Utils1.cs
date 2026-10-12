@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.Enums;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
+using RemnantOfTheAncientsMod.Common.World;
 using System;
 using System.Collections.Generic;
 using System.Linq;

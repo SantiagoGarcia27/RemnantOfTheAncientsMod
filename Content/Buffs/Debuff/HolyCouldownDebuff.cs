@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

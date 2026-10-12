@@ -70,7 +70,7 @@ public static class FakePlayer_Setup
 
     public class FakePlayerEquipmentList
     {
-        public FakePlayerEquipment[] armor = new FakePlayerEquipment[3];
+        public FakePlayerEquipment[] armor = new FakePlayerEquipment[6];
         public FakePlayerEquipment meleeWeapon = null;
         public FakePlayerEquipment rangedWeapon = null;
         public FakePlayerEquipment[] ammo = new FakePlayerEquipment[4];
@@ -136,6 +136,42 @@ public static class FakePlayer_Setup
             int stack = reader.ReadInt32();
             FakePlayerEquipment.itemType category = (FakePlayerEquipment.itemType)reader.ReadByte();
             return new FakePlayerEquipment(type, weight, stack, category);
+        }
+
+        public FakePlayerEquipmentList Merge(FakePlayerEquipmentList changes)
+        {
+            changes ??= new();
+
+            return new FakePlayerEquipmentList
+            {
+                meleeWeapon = (changes.meleeWeapon ?? meleeWeapon)?.Clone(),
+                rangedWeapon = (changes.rangedWeapon ?? rangedWeapon)?.Clone(),
+                healPotion = (changes.healPotion ?? healPotion)?.Clone(),
+
+                armor = MergeArray(armor, changes.armor),
+                ammo = MergeArray(ammo, changes.ammo),
+                potions = MergeArray(potions, changes.potions),
+                accessories = MergeArray(accessories, changes.accessories)
+            };
+        }
+
+        private static FakePlayerEquipment[] MergeArray(
+            FakePlayerEquipment[] original,
+            FakePlayerEquipment[] changes)
+        {
+            FakePlayerEquipment[] result = new FakePlayerEquipment[original.Length];
+
+            for (int i = 0; i < original.Length; i++)
+            {
+                FakePlayerEquipment replacement =
+                    changes != null && i < changes.Length
+                        ? changes[i]
+                        : null;
+
+                result[i] = (replacement ?? original[i])?.Clone();
+            }
+
+            return result;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles;
+using RemnantOfTheAncientsMod.Content.Projectiles.Hook;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

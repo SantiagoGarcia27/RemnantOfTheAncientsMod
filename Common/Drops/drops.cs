@@ -1,5 +1,5 @@
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
-using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.Items.Accesories;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Alas;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;

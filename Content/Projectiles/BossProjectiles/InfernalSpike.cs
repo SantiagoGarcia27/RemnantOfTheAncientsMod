@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile
+namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles
 {
     public class InfernalSpike : BaseInfernalSpike
     {

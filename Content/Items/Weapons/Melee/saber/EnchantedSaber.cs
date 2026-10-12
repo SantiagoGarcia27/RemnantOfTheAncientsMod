@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
-using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

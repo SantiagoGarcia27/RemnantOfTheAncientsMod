@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.World;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Infernum;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;

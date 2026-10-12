@@ -2996,6 +2996,8 @@ Mods: {
 					'''
 					LLama al Yggdrasil para protegerte, 
 					Los jugadores cercanos ganan el efecto de felicidad, 15 de defensa, 10% daño y 5% redución de daño
+
+					Un fragmento de la mejor obra de [c/0ac423:Gaia] y [c/0490bf:Snowrun]
 					'''
 			}
 
@@ -4807,6 +4809,7 @@ Mods: {
 			MaceSkeleton.DisplayName: Esqueleto mazudo
 			// FakePlayer.DisplayName: Fake Player
 			Raider.DisplayName: Forajido
+			// RaiderBoss.DisplayName: Raider Boss
 		}
 
 		Projectiles: {

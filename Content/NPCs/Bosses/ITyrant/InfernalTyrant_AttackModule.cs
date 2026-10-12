@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.IO;

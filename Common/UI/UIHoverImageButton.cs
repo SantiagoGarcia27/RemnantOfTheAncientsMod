@@ -3,7 +3,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 
-namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
+namespace RemnantOfTheAncientsMod.Common.UI
 {
 	public class UIHoverImageButton : UIImageButton
 	{

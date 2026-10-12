@@ -1,7 +1,8 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Desert;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 using Terraria;

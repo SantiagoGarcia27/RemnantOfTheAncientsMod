@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs
+namespace RemnantOfTheAncientsMod.Content.NPCs.ProjectileNpc
 {
     public class DesertTyphoonParry : ModNPC
     {

@@ -21,7 +21,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common
 {
     internal class RecipeMaker : ModSystem
     {

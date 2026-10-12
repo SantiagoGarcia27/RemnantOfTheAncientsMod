@@ -1,9 +1,8 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using System;
 using Terraria;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Summon.Minioms
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
 {
 	public abstract class HoverShooter : Minion
 	{

@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
+namespace RemnantOfTheAncientsMod.Common.UI.BookUI
 {
     internal class BookUIState : UIState
 	{

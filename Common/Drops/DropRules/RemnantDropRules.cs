@@ -1,4 +1,4 @@
-﻿using RemnantOfTheAncientsMod.World;
+﻿using RemnantOfTheAncientsMod.Common.World;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;

@@ -1,4 +1,4 @@
-namespace RemnantOfTheAncientsMod.Prefixe
+namespace RemnantOfTheAncientsMod.Common.Prefix
 { 
     public class ChanceRoll
     {

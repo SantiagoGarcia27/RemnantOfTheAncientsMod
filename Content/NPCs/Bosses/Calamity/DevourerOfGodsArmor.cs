@@ -5,7 +5,7 @@ using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs
+namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.Calamity
 {
     [JITWhenModsEnabled("CalamityMod")]
     public class DevourerOfGodsArmor : ModNPC

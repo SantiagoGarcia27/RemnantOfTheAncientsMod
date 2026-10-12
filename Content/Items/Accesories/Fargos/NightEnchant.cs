@@ -5,6 +5,7 @@ using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Night;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;

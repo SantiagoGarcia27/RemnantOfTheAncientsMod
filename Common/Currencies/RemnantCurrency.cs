@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.GameContent.UI;
 
-namespace RemnantOfTheAncientsMod.Currencies
+namespace RemnantOfTheAncientsMod.Common.Currencies
 {
 	public class RemnantCurrency : CustomCurrencySingleCoin
 	{

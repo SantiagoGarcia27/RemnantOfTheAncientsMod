@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using Terraria;
 using Terraria.ID;

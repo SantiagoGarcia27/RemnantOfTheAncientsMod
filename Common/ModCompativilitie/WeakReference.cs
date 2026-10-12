@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
 {
     internal class WeakReference : ModSystem
     {

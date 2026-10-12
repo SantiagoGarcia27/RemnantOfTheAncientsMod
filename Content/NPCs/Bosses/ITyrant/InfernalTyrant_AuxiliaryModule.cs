@@ -1,7 +1,6 @@
 ﻿using CalamityMod;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.World;
 using SangarUtilities.Common.UtilsTweaks;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -26,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
 
             if (npc.type == ModContent.NPCType<InfernalTyrantHead>())
-                CalamityUtils.SetLifeBonus(npc, life, 1.5f, 1.7f, 1.8f);
+				Common.CalamityUtils.SetLifeBonus(npc, life, 1.5f, 1.7f, 1.8f);
             else if (npc.type == ModContent.NPCType<InfernalTyrantBody>() || npc.type == ModContent.NPCType<InfernalTyrantTail>())
                 npc.LifeMaxNERB(life, (int)(life * 1.5), (int)(life * 0.8));
         }
@@ -36,12 +35,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             float lifePercentage = MathUtils.GetPorcentage(worm.NPC.life, worm.NPC.lifeMax);;
             bool isReaperMode = Reaper.ReaperMode;
 
-            if (Main.player[Main.myPlayer].HasBuff(BuffID.Stinky))
+            /*Player target = Main.player[worm.NPC.target];
+
+            if (target.HasBuff(BuffID.Stinky))
             {
                 worm.MoveSpeed = 1f;
                 worm.Acceleration = 0.1f;
-            }
-            else if (AllPlayersDead())
+            }*/
+
+            if (AllPlayersDead())
             {
                 worm.MoveSpeed = 10f;
                 worm.Acceleration = 1f;

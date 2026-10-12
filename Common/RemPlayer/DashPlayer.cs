@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common.RemPlayer
 {
 	public class DashPlayer : ModPlayer
 	{

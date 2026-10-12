@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

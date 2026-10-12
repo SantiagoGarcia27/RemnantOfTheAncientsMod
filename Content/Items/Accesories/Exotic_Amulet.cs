@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using RemnantOfTheAncientsMod.Common.RemPlayer;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;

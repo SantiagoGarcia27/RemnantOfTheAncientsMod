@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using Terraria;
 using Terraria.ModLoader;

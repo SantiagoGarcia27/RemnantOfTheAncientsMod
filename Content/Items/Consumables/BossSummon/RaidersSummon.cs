@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.Common.Systems;
+using RemnantOfTheAncientsMod.Common.World;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

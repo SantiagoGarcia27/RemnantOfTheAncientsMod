@@ -1,3 +1,4 @@
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
@@ -9,7 +10,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones.Models
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 {
     public abstract class SaberBase : ModItem
     {

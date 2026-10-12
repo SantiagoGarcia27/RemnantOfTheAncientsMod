@@ -1,12 +1,13 @@
 using Microsoft.Xna.Framework;
 using PlayerProxyLib.Common.ProxyPlayer;
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.NPCs;
-using RemnantOfTheAncientsMod.Content.Projectiles;
 using RemnantOfTheAncientsMod.Content.Projectiles.Ranger;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
 using System.Collections.Generic;

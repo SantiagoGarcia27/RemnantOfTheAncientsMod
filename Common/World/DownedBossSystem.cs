@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Common.Systems
+namespace RemnantOfTheAncientsMod.Common.World
 {
 	public class RemnantDownedBossSystem : ModSystem
 	{

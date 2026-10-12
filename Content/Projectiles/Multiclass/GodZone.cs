@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.Fargos
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
 {
     public class GodZone : ModProjectile
     {

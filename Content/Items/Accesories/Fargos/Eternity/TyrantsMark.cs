@@ -1,5 +1,6 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

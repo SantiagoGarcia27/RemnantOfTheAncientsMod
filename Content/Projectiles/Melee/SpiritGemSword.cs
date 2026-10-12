@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.World;
 using System;
 using Terraria;
 using Terraria.Audio;

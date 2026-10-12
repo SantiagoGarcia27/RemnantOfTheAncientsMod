@@ -2,12 +2,12 @@ using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
-using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
-using RemnantOfTheAncientsMod.Content.Projectiles.Fargos;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos;
+namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 
 [ExtendsFromMod("FargowiltasSouls")]
 public class DivineAuraEffect : AccessoryEffect

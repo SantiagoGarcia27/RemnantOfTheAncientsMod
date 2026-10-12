@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Projectiles.Melee
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
 {
     public class MoltenLeaftBlade : ModProjectile
     {

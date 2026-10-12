@@ -402,7 +402,7 @@ Mods: {
 
 			EvilEyeMinionBuff: {
 				DisplayName: Evil eye
-				Description: The Yggdrasil will protect you
+				Description: The evil eye will protect you
 			}
 
 			ExcaliburMinionBuff: {
@@ -2962,6 +2962,8 @@ Mods: {
 					'''
 					Summons a Yggdrasil to protect you, 
 					nearby players can gain a happiness buff,15 of defense,10% damage,5% damage reduction and heal if they are in its radius
+
+					A fragment of the best creation of [c/0ac423:Gaia] and [c/0490bf:Snowrun]
 					'''
 			}
 
@@ -4781,6 +4783,7 @@ Mods: {
 			MaceSkeleton.DisplayName: Mace Skeleton
 			FakePlayer.DisplayName: Fake Player
 			Raider.DisplayName: Raider
+			RaiderBoss.DisplayName: Raider Boss
 		}
 
 		Projectiles: {

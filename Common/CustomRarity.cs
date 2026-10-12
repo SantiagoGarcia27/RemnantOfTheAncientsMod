@@ -1,4 +1,4 @@
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common
 {
 	public enum CustomRarity
 	{

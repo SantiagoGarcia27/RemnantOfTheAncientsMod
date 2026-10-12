@@ -1,4 +1,4 @@
-using RemnantOfTheAncientsMod.World;
+using RemnantOfTheAncientsMod.Common.World;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ID;

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.Graphics;
 using Terraria.ModLoader;
 
-namespace Bangarang.Common.GlobalProjectiles;
+namespace RemnantOfTheAncientsMod.Common.Global.Projectiles;
 public class SimpleTrailGlobalProjectile : GlobalProjectile
 {
     public static Dictionary<int, SimpleTrailSettings> ProjectileTrailSettings { get; set; } = new();

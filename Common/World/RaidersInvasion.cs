@@ -14,7 +14,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Common.Systems
+namespace RemnantOfTheAncientsMod.Common.World
 {
     public class RaidersInvasionSystem : ModSystem
     {
@@ -106,15 +106,15 @@ namespace RemnantOfTheAncientsMod.Common.Systems
                 return;
             }
 
-            if (SpawnRaider())
+            if (SpawnRaider(type: ModContent.NPCType<Raider>()))
             {
                 spawnTimer = Main.rand.Next(MinSpawnDelay, MaxSpawnDelay + 1);
             }
         }
 
-        private static bool SpawnRaider()
+        private static bool SpawnRaider(int type)
         {
-            List<Player> targets = new();
+            List<Player> targets = [];
 
             foreach (Player player in Main.ActivePlayers)
             {
@@ -137,7 +137,7 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
             Vector2 spawnPos = DistanceUtils.GetSecurePosition(new Vector2(spawnX, spawnY));
 
-            int index = NPC.NewNPC(target.GetSource_Misc("RaiderInvasion"), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<Raider>());
+            int index = NPC.NewNPC(target.GetSource_Misc("RaiderInvasion"), (int)spawnPos.X, (int)spawnPos.Y, type);
 
             if (index < 0 || index >= Main.maxNPCs)
                 return false;
@@ -174,11 +174,15 @@ namespace RemnantOfTheAncientsMod.Common.Systems
 
             ShowProgress();
 
-            if (Kills >= RequiredKills)
-                EndEvent();
-            else
-                SyncState();
+            if (Kills >= RequiredKills) SpawnBoss();
+            else SyncState();
         }
+
+        public static void SpawnBoss()
+        {
+            SpawnRaider(type: ModContent.NPCType<RaiderBoss>());
+        }
+
         public static void EndEvent()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient || !EventActive)

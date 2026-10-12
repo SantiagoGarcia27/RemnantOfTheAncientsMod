@@ -1,5 +1,5 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Projectiles.Melee;
+using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

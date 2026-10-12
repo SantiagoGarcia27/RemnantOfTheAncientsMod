@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace ExampleMod.Common.Commands
+namespace RemnantOfTheAncientsMod.Common.Commands
 {
 	public class MaxStyleCommand : ModCommand
 	{

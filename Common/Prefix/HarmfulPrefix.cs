@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Prefixe
+namespace RemnantOfTheAncientsMod.Common.Prefix
 {
     public class Harmful : ModPrefix
     {

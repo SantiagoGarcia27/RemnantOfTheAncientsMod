@@ -1,5 +1,5 @@
 using RemnantOfTheAncientsMod.Content.Items.Items;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Desert;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;

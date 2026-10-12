@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.StructureBuilder
+namespace RemnantOfTheAncientsMod.Content.Projectiles.Misc
 {
     public class ScarabDynamiteProj : ModProjectile
     {

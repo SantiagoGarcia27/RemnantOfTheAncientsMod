@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common;
+using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.Global.Projectiles;
@@ -16,10 +17,9 @@ using RemnantOfTheAncientsMod.Content.Dusts;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.Sangar;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Cosmetic.TTIM;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.Pociones;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectile.Desert;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Desert;
 using RemnantOfTheAncientsMod.Content.Projectiles.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using RemnantOfTheAncientsMod.World;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -35,7 +35,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod
+namespace RemnantOfTheAncientsMod.Common.RemPlayer
 {
 
     public class RemnantPlayer : ModPlayer

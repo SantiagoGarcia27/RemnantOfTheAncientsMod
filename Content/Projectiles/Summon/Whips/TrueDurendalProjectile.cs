@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Minions;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;

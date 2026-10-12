@@ -217,8 +217,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             proxy.armor[1] = inventory.armor[1]?.item ?? new Item();
             proxy.armor[2] = inventory.armor[2]?.item ?? new Item();
 
+            proxy.armor[10] = inventory.armor[3]?.item ?? new Item();
+            proxy.armor[11] = inventory.armor[4]?.item ?? new Item();
+            proxy.armor[12] = inventory.armor[5]?.item ?? new Item();
+
             //Accessories
-			proxy.armor[3] = inventory.accessories[0]?.item ?? new Item();
+            proxy.armor[3] = inventory.accessories[0]?.item ?? new Item();
 			proxy.armor[4] = inventory.accessories[1]?.item ?? new Item();
 			proxy.armor[5] = inventory.accessories[2]?.item ?? new Item();
 			proxy.armor[6] = inventory.accessories[3]?.item ?? new Item();
