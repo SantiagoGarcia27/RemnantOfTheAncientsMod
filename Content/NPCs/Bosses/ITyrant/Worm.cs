@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.NPCs
+namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
     public enum WormSegmentType
     {
@@ -29,14 +29,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
     /// </summary>
     public abstract class TyrantBaseWorm : ModNPC
     {
-        /*  ai[] usage:
-		 *  
-		 *  ai[0] = "follower" segment, the segment that's following this segment
-		 *  ai[1] = "following" segment, the segment that this segment is following
-		 *  
-		 *  localAI[0] = used when syncing changes to collision detection
-		 *  localAI[1] = checking if Init() was called
-		 */
+   //     /*  ai[] usage:
+		 //*  
+		 //*  ai[0] = "follower" segment, the segment that's following this segment
+		 //*  ai[1] = "following" segment, the segment that this segment is following
+		 //*  
+		 //*  localAI[0] = used when syncing changes to collision detection
+		 //*  localAI[1] = checking if Init() was called
+		 //*/
 
         /// <summary>
         /// Which type of segment this NPC is considered to be

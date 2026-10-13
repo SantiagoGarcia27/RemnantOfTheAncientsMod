@@ -1,7 +1,6 @@
-using RemnantOfTheAncientsMod.Common.RemPlayer;
+﻿using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
-using RemnantOfTheAncientsMod.Content.Items.Items;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -9,44 +8,38 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls
 {
-    public class DesertAniquilatorScroll : ModItem
+    public class QueenSlimeScroll : ModItem
     {
         int MovmentSpeedBonus = 50;
         int MinionDamage = 5;
         int ExtraMinions = 1;
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus,MinionDamage,ExtraMinions);
+        int LifeBonus = 20;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus, MinionDamage, ExtraMinions,LifeBonus);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Desert Scroll");
-            //Tooltip.SetDefault("50% increases movement speed and minion damage by 5% and increase your max number of minions by 1");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin du désert");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de déplacement et augmente votre serviteur maximum de 1 pendant");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino desertico");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de movimiento en un 50%, el daño de los súbditos en un 5% y aumenta tu minion máximo en 1 ");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
             Item.damage = 0;
-            Item.DamageType = DamageClass.Summon;
+            Item.DamageType = DamageClass.Generic;
             Item.noMelee = true;
-            Item.mana = 50;
-            Item.rare = ItemRarityID.Orange;
+            Item.mana = 100;
+            Item.rare = ItemRarityID.Pink;
             Item.width = 46;
             Item.height = 54;
-            Item.useTime = 299;
+            Item.useTime = 99;
             Item.UseSound = SoundID.Item34;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.useAnimation = 199;
+            Item.useAnimation = 99;
             Item.value = Item.sellPrice(gold: 1);
             Item.autoReuse = false;
-            Item.buffType = BuffType<MasterD>();
+            Item.buffType = BuffType<QueenSlimeScrollBuff>();
             Item.buffTime = 9999999;
             Item.expert = true;
-
         }
         public override bool? UseItem(Player player)
         {
@@ -71,8 +64,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
         public override void AddRecipes()
         {
             CreateRecipe()
-            .AddIngredient(ItemType<KingSlimeScroll>(), 1)
-            .AddIngredient(ItemType<Sand_escense>(), 10)
+            .AddIngredient(ItemType<DesertAniquilatorScroll>(), 1)
+            .AddIngredient(ItemID.GelBalloon, 10)
             .AddTile(TileID.TinkerersWorkbench)
             .Register();
         }

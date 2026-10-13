@@ -35,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			NPC.CloneDefaults(NPCID.Skeleton);
 			NPC.damage = 0;
 			NPC.lifeMax = 100;
-			AIType = NPCID.Skeleton;
+			AIType = NPCID.ArmoredSkeleton;
 			AnimationType = NPCID.Skeleton;
         }
 
@@ -43,7 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		{
             proxy = NPC.GetPlayerProxy();
 			if (proxy == null) return;
-            proxy.name = "Rogue";
+            proxy.name = NPC.FullName;
             proxy.hostile = true;
             inventory ??= new();
 
@@ -64,7 +64,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             SyncProxyStats();
             attackModule?.ApplyVisualState(visualState);
             initialized = true;
-
         }
         private bool initialized;
 
@@ -135,7 +134,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
                 attackModule.AI();
                 
             }
-			
+
+            Item petItem = proxy.miscEquips[0];
+            Item lightPetItem = proxy.miscEquips[1];
+
+            if (petItem.buffType > 0) proxy.AddBuff(petItem.buffType, 3600);
+            if (lightPetItem.buffType > 0) proxy.AddBuff(lightPetItem.buffType, 3600);
+
             base.AI();
 		}
 
@@ -217,6 +222,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             proxy.armor[1] = inventory.armor[1]?.item ?? new Item();
             proxy.armor[2] = inventory.armor[2]?.item ?? new Item();
 
+			//Vanity Armor
             proxy.armor[10] = inventory.armor[3]?.item ?? new Item();
             proxy.armor[11] = inventory.armor[4]?.item ?? new Item();
             proxy.armor[12] = inventory.armor[5]?.item ?? new Item();
@@ -231,7 +237,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
             //Extra Accessories
             proxy.armor[8] = inventory.accessories[5]?.item ?? new Item();
 			proxy.armor[9] = inventory.accessories[6]?.item ?? new Item();
-			
+
+            //Vanity Accesories 
+            proxy.armor[13] = inventory.accessories[7]?.item ?? new Item();
+            proxy.armor[14] = inventory.accessories[8]?.item ?? new Item();
+            proxy.armor[15] = inventory.accessories[9]?.item ?? new Item();
+            proxy.armor[16] = inventory.accessories[10]?.item ?? new Item();
+            proxy.armor[17] = inventory.accessories[11]?.item ?? new Item();
+            proxy.armor[18] = inventory.accessories[12]?.item ?? new Item();
+            proxy.armor[19] = inventory.accessories[13]?.item ?? new Item();
 
             //Weapons
             proxy.inventory[0] = inventory.meleeWeapon?.item ?? new Item();
@@ -250,7 +264,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 				proxy.inventory[i + 10] = inventory.potions[i]?.item ?? new Item();
             }
 
-			proxy.statManaMax2 = 200;
+			//Extras
+			proxy.miscEquips[0] = inventory.misc[0]?.item ?? new Item(); // pet
+			proxy.miscEquips[1] = inventory.misc[1]?.item ?? new Item(); // light pet
+			proxy.miscEquips[2] = inventory.misc[2]?.item ?? new Item(); // minecart
+			proxy.miscEquips[3] = inventory.misc[3]?.item ?? new Item(); // mount
+			proxy.miscEquips[4] = inventory.misc[4]?.item ?? new Item(); // hook
+
+            proxy.statManaMax2 = 200;
 			proxy.statMana = 200;
         }
 

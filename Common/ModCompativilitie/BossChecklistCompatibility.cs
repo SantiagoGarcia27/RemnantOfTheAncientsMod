@@ -83,11 +83,24 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 "PlayerRaid",
                 0.25f,
                 () => RemnantDownedBossSystem.downedRaiderInvasion,
-                new List<int>() { ModContent.NPCType<Raider>() },
+                new List<int>() 
+                { 
+                    ModContent.NPCType<Raider>(),
+                    ModContent.NPCType<RaiderBoss>()
+                },
                 new Dictionary<string, object>()
                 {
                     ["spawnItems"] = ModContent.ItemType<RaidersSummon>(),
                 }
+            );
+
+            BossChecklistMod.Call(
+                "LogMiniBoss",
+                Mod,
+                "RaiderLeader",
+                0.25f,
+                () => RemnantDownedBossSystem.downedRaiderLeader,
+                new List<int>() {ModContent.NPCType<RaiderBoss>()}
             );
         }
 

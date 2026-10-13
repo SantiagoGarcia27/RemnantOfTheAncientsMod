@@ -15,7 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
     {       
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Sacred Flowe Minion");
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
@@ -112,7 +111,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms.SunFlower
         
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect_3");
+            var texture = Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Summon/Minioms/AreaEffect");
             Vector2 origin = new(texture.Width() * 0.5f, texture.Height() * 0.5f);
 
             Color color = new Color(38, 85, 0, 50);

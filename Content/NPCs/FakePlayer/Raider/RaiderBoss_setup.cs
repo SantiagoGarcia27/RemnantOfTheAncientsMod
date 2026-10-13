@@ -17,13 +17,14 @@ public static class RaiderBoss_setup
 
         FakePlayerEquipmentList inv = Lodauts[Main.rand.Next(Lodauts.Count)];
 
-        inventory = inventory.Merge(inv);
+        FakePlayerEquipmentList inve = inventory.Merge(inv);
+        inventory = inve;
     }
 
     static List<FakePlayerEquipmentList> Lodauts =
     [
         new FakePlayerEquipmentList()
-        {  
+        {
             meleeWeapon = new FakePlayerEquipment(ModContent.ItemType<ReinforcedIronBroadsword>()),
             armor = [
                 new FakePlayerEquipment(ModContent.ItemType<ReinforcedIronHelmet>()),
@@ -44,6 +45,33 @@ public static class RaiderBoss_setup
             ],
             rangedWeapon =  new FakePlayerEquipment(WorldGen.crimson ? ItemID.TheUndertaker : ItemID.Musket),
             healPotion =  new FakePlayerEquipment(ItemID.GreaterHealingPotion, 2)
+        },
+
+        new FakePlayerEquipmentList()
+        {
+            meleeWeapon = new FakePlayerEquipment(ItemID.EnchantedSword),
+            armor = [
+                new FakePlayerEquipment(ItemID.PlatinumHelmet),
+                new FakePlayerEquipment(ItemID.PlatinumChainmail),
+                new FakePlayerEquipment(ItemID.PlatinumGreaves),
+                new FakePlayerEquipment(ItemID.PlatinumCrown)
+            ],
+            accessories =
+            [
+                new FakePlayerEquipment(ItemID.SharkToothNecklace),
+                new FakePlayerEquipment(ItemID.PrinceCape)
+            ],
+            rangedWeapon = new FakePlayerEquipment(ItemID.EnchantedSword),
+            healPotion =  new FakePlayerEquipment(ItemID.GreaterHealingPotion, 2),
+            misc = 
+            [
+                new FakePlayerEquipment(ItemID.DogWhistle),
+                null,
+                null,
+                new FakePlayerEquipment(ItemID.MajesticHorseSaddle),
+                null,
+            ],
+
         },
     ];
 }

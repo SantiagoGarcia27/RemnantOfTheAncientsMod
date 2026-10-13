@@ -1,4 +1,3 @@
-using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using System.IO;
 
@@ -20,9 +19,10 @@ public class InfernalTyrant_MovmentModule
     {
         if (!IsPhase2)
         {
-            worm.Acceleration = 0.245f;
+            //worm.Acceleration = 0.245f;
             return;
         }
+        InfernalTyrant_AuxiliaryModule.LifeSpeed(worm);
 
         movementTimer--;
         if (movementTimer <= 0)
@@ -39,7 +39,7 @@ public class InfernalTyrant_MovmentModule
             auxModule.npc.netUpdate = true;
         }
 
-        switch (movementPhase)
+        /*switch (movementPhase)
         {
             case 1:
                 worm.MoveSpeed = auxModule.IsEnraged ? 42f : 36f;
@@ -53,7 +53,7 @@ public class InfernalTyrant_MovmentModule
                 worm.MoveSpeed = 30f;
                 worm.Acceleration = auxModule.IsEnraged ? 0.28f : 0.26f;
                 break;
-        }
+        }*/
     }
 
     public void SendExtraAI(BinaryWriter writer)

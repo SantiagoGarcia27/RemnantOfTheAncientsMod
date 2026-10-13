@@ -3,7 +3,7 @@ using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;

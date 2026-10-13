@@ -6,6 +6,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent;
@@ -174,7 +175,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 
             ShowProgress();
 
-            if (Kills >= RequiredKills) SpawnBoss();
+            if (Kills >= RequiredKills && !Main.npc.Any(x => x.type == ModContent.NPCType<RaiderBoss>())) SpawnBoss();
             else SyncState();
         }
 

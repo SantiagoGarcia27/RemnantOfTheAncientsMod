@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.InfernalTyrant;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;

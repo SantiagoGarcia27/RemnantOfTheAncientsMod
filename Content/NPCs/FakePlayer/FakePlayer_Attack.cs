@@ -59,6 +59,13 @@ public class FakePlayer_Attack
             return;
         }
 
+        Item mountItem = proxy.miscEquips[3];
+
+       /* if (!proxy.mount.Active && mountItem != null && mountItem.type != ItemID.None && mountItem.mountType > MountID.Rudolph)
+        {
+            proxy.mount.SetMount(mountItem.mountType, proxy);
+        }*/
+
         float distance = npc.Center.DistanceSQ(target.Center);
 
         float distanceMin = 10.ToCoordinatePosition() * 10.ToCoordinatePosition();

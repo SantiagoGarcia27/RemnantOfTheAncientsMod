@@ -14,6 +14,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 
 
 		public static bool downedRaiderInvasion = false;
+        public static bool downedRaiderLeader = false;
 
         public override void OnWorldLoad()
 		{
@@ -23,7 +24,9 @@ namespace RemnantOfTheAncientsMod.Common.World
 			downedTyrant = false;
 
 			downedRaiderInvasion =false;
-		}
+			downedRaiderLeader = false;
+
+        }
 
 		public override void OnWorldUnload()
 		{
@@ -33,6 +36,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 			downedTyrant = false;
 
             downedRaiderInvasion = false;
+			downedRaiderLeader = false;
         }
 
 		public override void SaveWorldData(TagCompound tag)
@@ -43,6 +47,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 			if (downedTyrant) tag["downedTyrant"] = true;		
 
 			if(downedRaiderInvasion) tag["downedRaiderInvasion"] = true;
+			if(downedRaiderLeader) tag["downedRaiderLeader"] = true;
         }
 
 		public override void LoadWorldData(TagCompound tag)
@@ -53,6 +58,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 			downedTyrant = tag.ContainsKey("downedTyrant");
 
 			downedRaiderInvasion = tag.ContainsKey("downedRaiderInvasion");
+            downedRaiderLeader = tag.ContainsKey("downedRaiderLeader");
         }
 
 		public override void NetSend(BinaryWriter writer)
@@ -65,6 +71,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 			flags[3] = downedTyrant;
 
 			flags[4] = downedRaiderInvasion;
+			flags[5] = downedRaiderLeader;
 
             writer.Write(flags);
 		}
@@ -79,6 +86,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 			downedTyrant = flags[3];
 
 			downedRaiderInvasion = flags[4];
+			downedRaiderLeader = flags[5];
         }
 	}
 }

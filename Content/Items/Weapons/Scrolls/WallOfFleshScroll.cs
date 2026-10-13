@@ -4,38 +4,28 @@ using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls
 {
-	public class SkeletronScroll : ModItem
+	public class WallOfFleshScroll : ModItem
 	{
-		public override void SetStaticDefaults()
+        int ExtraDamage = 10;
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtraDamage);
+
+        public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Undead Scroll");
-			//Tooltip.SetDefault("You have a super sense"
-		   //+ "\nGrants immunity to most debuffs"
-		   //+ "\nIncreases throwing damage by 20% and 50% chance to not consume ammo");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Défilement des morts-vivants");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "tu as un super sens"
-		   //+ "\nAccorde l'immunité à la plupart des affaiblissements"
-		   //+ "\nAugmente les dégâts jetables de 20% et ne gaspille pas de munitions à 50%");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de muertos vivientes");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "tienes una súper sentido"
-			//+ "\nOtorga inmunidad a la mayoría de las desventajas."
-			//+ "\nIncrementa el daño lanzable en 20% y posees un 50% de no gastar municion");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.damage = 0;
-			Item.DamageType = DamageClass.Summon;
+			Item.DamageType = DamageClass.Generic;
 			Item.noMelee = true;
-			Item.mana = 30;
+			Item.mana = 200;
 			Item.rare = ItemRarityID.Green;
 			Item.width = 46;
 			Item.height = 54;
@@ -45,9 +35,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Skeleton>();
-			Item.buffTime = 9999999;
-			Item.expert = true;
+			Item.buffType = BuffType<Infernal>();
+            Item.buffTime = 9999999;
+            Item.expert = true;
+
 		}
         public override bool? UseItem(Player player)
         {

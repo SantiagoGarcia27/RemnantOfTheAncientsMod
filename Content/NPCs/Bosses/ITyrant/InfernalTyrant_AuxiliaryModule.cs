@@ -35,14 +35,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             float lifePercentage = MathUtils.GetPorcentage(worm.NPC.life, worm.NPC.lifeMax);;
             bool isReaperMode = Reaper.ReaperMode;
 
-            /*Player target = Main.player[worm.NPC.target];
-
-            if (target.HasBuff(BuffID.Stinky))
-            {
-                worm.MoveSpeed = 1f;
-                worm.Acceleration = 0.1f;
-            }*/
-
             if (AllPlayersDead())
             {
                 worm.MoveSpeed = 10f;
@@ -52,11 +44,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             {
                 if (lifePercentage < 5f && isReaperMode)
                 {
-                    worm.Acceleration = Main.netMode != NetmodeID.MultiplayerClient ? 1.4f : 1.2f;
+                    worm.Acceleration = 1.4f;
+                    worm.MoveSpeed = 100f;
                 }
                 else if (lifePercentage < 10f)
                 {
                     worm.Acceleration = 1.1f;
+                    worm.MoveSpeed = 80f;
                 }
                 else
                 {
@@ -64,12 +58,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
                     if (lifePercentage < 25f)
                     {
-                        worm.MoveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 70f : 60f;
+                        worm.MoveSpeed = 70f;
                     }
                     else if (lifePercentage < 50f)
                     {
-                        worm.MoveSpeed = Main.netMode != NetmodeID.MultiplayerClient ? 50f : 40f;
+                        worm.MoveSpeed = 60f;
                     }
+                    else worm.MoveSpeed = 50f;
                 }
             }
         } 
@@ -90,15 +85,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public static int MaxSegmentCount(int MinSegmentLength = 15)
         {
             int scale = 0;
-            if (DificultyUtils.MasochistMode) scale = 30;
-            else if (DificultyUtils.EternityMode) scale = 25;
-            else if (DificultyUtils.InfernumMode) scale = 25;
-            else if (DificultyUtils.Death) scale = 20;
-            else if (DificultyUtils.Revengeance) scale = 10;
-            else if (Main.masterMode) scale = 5;
-            else if (Main.expertMode) scale = 2;
-
-            scale += 10; //Debug ingorar
+            if (DificultyUtils.MasochistMode) scale = 35;
+            else if (DificultyUtils.EternityMode) scale = 30;
+            else if (DificultyUtils.InfernumMode) scale = 30;
+            else if (DificultyUtils.Death) scale = 24;
+            else if (DificultyUtils.Revengeance) scale = 14;
+            else if (Main.masterMode) scale = 8;
+            else if (Main.expertMode) scale = 4;
 
             return MinSegmentLength + scale;
         }

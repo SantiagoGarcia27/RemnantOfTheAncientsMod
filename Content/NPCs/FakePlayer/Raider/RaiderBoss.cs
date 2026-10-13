@@ -60,6 +60,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
+                RemnantDownedBossSystem.downedRaiderLeader = true;
                 RaidersInvasionSystem.EndEvent();
 
                 int choice = Main.rand.Next(0, 101);

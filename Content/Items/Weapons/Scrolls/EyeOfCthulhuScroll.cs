@@ -7,25 +7,19 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls
 {
 	public class EyeOfCthulhuScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Optic Scroll");
-			//Tooltip.SetDefault("Increases your jump, cancels fall damage and gain the ability to dash");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Défilement optique");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmentez votre saut, annulez les dégâts de chute et gagnez un tiret");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino óptico");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta tu salto, anula daño por caída y ganas un dash");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.damage = 0;
-			Item.DamageType = DamageClass.Summon;
+			Item.DamageType = DamageClass.Generic;
 			Item.noMelee = true;
 			Item.mana = 200;
 			Item.rare = ItemRarityID.Green;

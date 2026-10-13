@@ -99,7 +99,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
         public override void Init()
         {
-            MaxSegmentLength = InfernalTyrant_AuxiliaryModule.MaxSegmentCount(MinSegmentLength : 15);
+            int segmentScale = 15;
+            int segments = InfernalTyrant_AuxiliaryModule.MaxSegmentCount(segmentScale);
+
+            MinSegmentLength = segments/2;
+            MaxSegmentLength = segments;
+
             head = true;
             CommonWormInit(this);
         }
@@ -160,7 +165,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             if (RemnantOfTheAncientsMod.CalamityMod != null) attackModule.CalamityAttacks(target);
             if (RemnantOfTheAncientsMod.FargosSoulMod != null) attackModule.FargosAttacks(target);    
             
-            InfernalTyrant_AuxiliaryModule.LifeSpeed(this);
+            
             movementModule.UpdateMovement();
         }
 
@@ -372,6 +377,15 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             //TyranStats.DrawGlow(NPC, "InfernalTyrantBody");
+        }
+
+        public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
+        {
+            if (projectile.damage <= 0) projectile.Kill();
+
+            projectile.damage = (int)(projectile.damage * 0.8f); 
+
+            base.OnHitByProjectile(projectile, hit, damageDone);
         }
         public override void HitEffect(NPC.HitInfo hit)
         {

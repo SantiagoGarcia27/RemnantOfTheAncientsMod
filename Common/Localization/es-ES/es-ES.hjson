@@ -2869,7 +2869,11 @@ Mods: {
 
 			IronBallistaStaff: {
 				DisplayName: Báculo de baleesta ferrea
-				Tooltip: Invoca a una ballesta con ruedas para que luche por ti.
+				Tooltip: 
+					'''
+					Invoca a una ballesta con ruedas para que luche por ti.
+					Los artesanos de [c/c21704:Burnyr] nunca lograron hacerla funcionar bien
+					'''
 			}
 
 			SacredFlowerStaff: {
@@ -3662,7 +3666,7 @@ Mods: {
 
 			SoulOfDivinity: {
 				// DisplayName: Soul Of Divinity
-				// Tooltip: After a long journey you have completely reclaimed your divinity
+				// Tooltip: After a long adventure, absolute effort coincided with the purest luck; now, the divine manifests itself before you.
 			}
 
 			Lore: {
@@ -4809,7 +4813,7 @@ Mods: {
 			MaceSkeleton.DisplayName: Esqueleto mazudo
 			// FakePlayer.DisplayName: Fake Player
 			Raider.DisplayName: Forajido
-			// RaiderBoss.DisplayName: Raider Boss
+			RaiderBoss.DisplayName: Lider Forajido
 		}
 
 		Projectiles: {

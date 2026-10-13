@@ -7,33 +7,19 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls
 {
-	public class QueenBeeScroll : ModItem
+	public class SkeletronScroll : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Hive Scroll");
-			//Tooltip.SetDefault("You gain the honey effect, your defense increases by 5"
-			//+ "\nReleases bees when damaged and increases the strength of friendly bees"
-			//+ "\nIncreases armor penetration by 15”");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin de la Ruche");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "vous gagnez l'effet miel, votre défense augmente de 5 "
-					   //+ "\nLibère les abeilles lorsqu'elles sont endommagées et augmente la force des abeilles amicales"
-					   //+ "\naugmente la pénétration de l'armure de 15");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino de la colmena");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "obtienes el efecto miel, tu defensa aumenta en 5 "
-			//+ "\nLibera abejas cuando te dañadan e incrementa la fuerza de las abejas amigas"
-			//+ "\naumenta la penetración de armadura en 15");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.damage = 0;
-			Item.DamageType = DamageClass.Summon;
+			Item.DamageType = DamageClass.Generic;
 			Item.noMelee = true;
 			Item.mana = 30;
 			Item.rare = ItemRarityID.Green;
@@ -45,7 +31,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Bee>();
+			Item.buffType = BuffType<Skeleton>();
 			Item.buffTime = 9999999;
 			Item.expert = true;
 		}

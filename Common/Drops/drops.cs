@@ -14,7 +14,7 @@ using RemnantOfTheAncientsMod.Content.Items.ReforgeCatalyst;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
-using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;

@@ -6,7 +6,7 @@ using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
 using RemnantOfTheAncientsMod.Content.Projectiles;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.InfernalTyrant;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using System;
 using Terraria;

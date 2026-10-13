@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls
 {
 	public class BrainOfCthulhuScroll : ModItem
 	{
@@ -19,7 +19,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 		public override void SetDefaults()
 		{
 			Item.damage = 0;
-			Item.DamageType = DamageClass.Summon;
+			Item.DamageType = DamageClass.Generic;
 			Item.noMelee = true;
 			Item.mana = 200;
 			Item.rare = ItemRarityID.Orange;

@@ -4,36 +4,24 @@ using RemnantOfTheAncientsMod.Content.Buffs.Buffs.Scrolls;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls
 {
-	public class WallOfFleshScroll : ModItem
+	public class QueenBeeScroll : ModItem
 	{
-        int ExtraDamage = 10;
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtraDamage);
-
-        public override void SetStaticDefaults()
+		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Infernal Scroll");
-			//Tooltip.SetDefault("You gain 10% of damage and an infernal power covers you");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin infernal");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Vous gagnez + 10% de dégâts et un pouvoir infernal vous couvre");
-
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino infernal");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Obtienes + 10% de daño y un poder infernal te cubre");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.damage = 0;
-			Item.DamageType = DamageClass.Summon;
+			Item.DamageType = DamageClass.Generic;
 			Item.noMelee = true;
-			Item.mana = 200;
+			Item.mana = 30;
 			Item.rare = ItemRarityID.Green;
 			Item.width = 46;
 			Item.height = 54;
@@ -43,10 +31,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
 			Item.useAnimation = 99;
 			Item.value = Item.sellPrice(gold: 1);
 			Item.autoReuse = false;
-			Item.buffType = BuffType<Infernal>();
-			//Item.buffTime = 0;
+			Item.buffType = BuffType<Bee>();
+			Item.buffTime = 9999999;
 			Item.expert = true;
-
 		}
         public override bool? UseItem(Player player)
         {

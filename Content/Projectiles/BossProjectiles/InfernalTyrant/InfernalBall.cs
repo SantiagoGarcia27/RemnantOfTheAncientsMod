@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles
+namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.InfernalTyrant
 {
 
     public class InfernalBall : BaseInfernalBall

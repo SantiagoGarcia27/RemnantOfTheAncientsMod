@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
+namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls
 {
 	public class KingSlimeScroll : ModItem
 	{
@@ -17,19 +17,13 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Summon.Buf
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MovmentSpeedBonus, MinionDamage);
         public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Royal Scroll");
-			//Tooltip.SetDefault("Increases you movement speed by 50% and increases your minion damage by 5%");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Parchemin royal");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de déplacement de 50% et les dégâts des sbires de 5%");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Pergamino real");
-			//Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta tu velocidad de movimiento en un 50% y aumenta el daño de los súbditos en un 5%");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
 			Item.damage = 0;
-			Item.DamageType = DamageClass.Summon;
+			Item.DamageType = DamageClass.Generic;
 			Item.noMelee = true;
 			Item.mana = 50;
 			Item.rare = ItemRarityID.Green;

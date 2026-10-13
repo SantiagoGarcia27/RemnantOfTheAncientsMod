@@ -76,7 +76,9 @@ public static class FakePlayer_Setup
         public FakePlayerEquipment[] ammo = new FakePlayerEquipment[4];
         public FakePlayerEquipment[] potions = new FakePlayerEquipment[2];
         public FakePlayerEquipment healPotion = null;
-        public FakePlayerEquipment[] accessories = new FakePlayerEquipment[7];
+        public FakePlayerEquipment[] accessories = new FakePlayerEquipment[14];
+
+        public FakePlayerEquipment[] misc = new FakePlayerEquipment[5];
 
         public void Write(BinaryWriter writer)
         {
@@ -87,6 +89,7 @@ public static class FakePlayer_Setup
             WriteEquipmentArray(writer, potions);
             WriteEquipment(writer, healPotion);
             WriteEquipmentArray(writer, accessories);
+            WriteEquipmentArray(writer, misc);
         }
 
         public static FakePlayerEquipmentList Read(BinaryReader reader)
@@ -99,6 +102,7 @@ public static class FakePlayer_Setup
             ReadEquipmentArray(reader, inventory.potions);
             inventory.healPotion = ReadEquipment(reader);
             ReadEquipmentArray(reader, inventory.accessories);
+            ReadEquipmentArray(reader, inventory.misc);
             return inventory;
         }
 
@@ -151,7 +155,8 @@ public static class FakePlayer_Setup
                 armor = MergeArray(armor, changes.armor),
                 ammo = MergeArray(ammo, changes.ammo),
                 potions = MergeArray(potions, changes.potions),
-                accessories = MergeArray(accessories, changes.accessories)
+                accessories = MergeArray(accessories, changes.accessories),
+                misc = MergeArray(misc,changes.misc)
             };
         }
 

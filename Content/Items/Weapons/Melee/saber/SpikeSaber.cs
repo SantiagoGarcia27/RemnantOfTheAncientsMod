@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
-using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.InfernalTyrant;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -38,7 +38,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber
 				if (GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ProjectileType<InfernalSpike_f>();
 			}
 			else Item.shoot = ProjectileType<InfernalSpike_f>();
-            Item.shootSpeed = 1;
+            Item.shootSpeed = 5;
             Item.GetGlobalItem<SaberGlobalItem>().isSaber = true;
             Item.GetGlobalItem<SaberGlobalItem>().DashStrength = new(1f, 0.75f);
 
