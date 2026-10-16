@@ -2869,7 +2869,7 @@ Mods: {
 
 			IronBallistaStaff: {
 				DisplayName: Báculo de baleesta ferrea
-				Tooltip: 
+				Tooltip:
 					'''
 					Invoca a una ballesta con ruedas para que luche por ti.
 					Los artesanos de [c/c21704:Burnyr] nunca lograron hacerla funcionar bien

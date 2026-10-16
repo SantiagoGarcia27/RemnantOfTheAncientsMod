@@ -38,22 +38,6 @@ public class InfernalTyrant_MovmentModule
             };
             auxModule.npc.netUpdate = true;
         }
-
-        /*switch (movementPhase)
-        {
-            case 1:
-                worm.MoveSpeed = auxModule.IsEnraged ? 42f : 36f;
-                worm.Acceleration = 0.20f;
-                break;
-            case 2:
-                worm.MoveSpeed = 34f;
-                worm.Acceleration = 0.15f;
-                break;
-            default:
-                worm.MoveSpeed = 30f;
-                worm.Acceleration = auxModule.IsEnraged ? 0.28f : 0.26f;
-                break;
-        }*/
     }
 
     public void SendExtraAI(BinaryWriter writer)

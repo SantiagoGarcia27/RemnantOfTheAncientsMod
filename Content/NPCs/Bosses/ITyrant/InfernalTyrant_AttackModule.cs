@@ -227,12 +227,14 @@ class InfernalTyrant_AttackModule
             {
                 if (MathUtils.GetPorcentage(npc.life, npc.lifeMax) < (DificultyUtils.MasochistMode ? 70f : 50f))
                 {
-                    var a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<InfernalTyrantHead>());
-                    Main.npc[a].boss = false;
-                    Main.npc[a].lifeMax /= 8;
-                    Main.npc[a].life /= 8;
-                    Main.npc[a].scale = 0.5f;
-                    Main.npc[a].damage /= 2;
+                    int index = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, ModContent.NPCType<InfernalTyrantHead>());
+                    NPC sPawnedNpc = Main.npc[index];
+                    sPawnedNpc.boss = false;
+                    sPawnedNpc.lifeMax /= 8;
+                    sPawnedNpc.life /= 8;
+                    sPawnedNpc.scale = 0.3f;
+                    sPawnedNpc.Size *= 0.3f;
+                    sPawnedNpc.damage /= 2;
 
                     SpawnClon = true;
                 }

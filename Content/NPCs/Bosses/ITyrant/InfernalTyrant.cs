@@ -327,7 +327,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
     internal class InfernalTyrantBody : TyrantBody
     {
 
-        public override float SegmentSpacing => NPC.localAI[2] == 1 ? 40f : 50f;
+        public override float SegmentSpacing => (NPC.localAI[2] == 1 ? 40f : 50f) * NPC.scale;
 
         [Obsolete]
         public override void SetStaticDefaults()
@@ -430,6 +430,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             InfernalTyrantHead.CommonWormInit(this);
 
             Vector2 wantedSize = NPC.localAI[2] == 1 ? new Vector2(35, 66) : new Vector2(62, 66);
+            wantedSize *= NPC.scale;
 
             if (oldSize != wantedSize)
             {
@@ -445,7 +446,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
     internal class InfernalTyrantTail : TyrantTail
     {
-        public override float SegmentSpacing => 90f;
+        public override float SegmentSpacing => 90f * NPC.scale;
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.IsABestiaryIconDummy)

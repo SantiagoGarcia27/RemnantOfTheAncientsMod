@@ -68,7 +68,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         /// </summary>
         public NPC FollowerNPC => SegmentType == WormSegmentType.Tail ? null : Main.npc[(int)NPC.ai[0]];
 
-        public virtual float SegmentSpacing => NPC.width;
+        public virtual float SegmentSpacing => NPC.width * NPC.scale;
 
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position)
         {
@@ -173,8 +173,11 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
             if (!Main.npc[oldLatest].boss && (latest.type == BodyType || latest.type == TailType))
             {
-                latest.scale = 1.5f;
-                latest.Size /= 2;
+                NPC npcDefault = new NPC();
+                npcDefault.SetDefaults(type);
+
+                latest.scale = NPC.scale;
+                latest.Size = npcDefault.Size * NPC.scale;
                 latest.boss = false;
             }
 

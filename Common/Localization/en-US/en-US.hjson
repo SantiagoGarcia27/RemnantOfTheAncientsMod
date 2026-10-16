@@ -2835,11 +2835,11 @@ Mods: {
 
 			IronBallistaStaff: {
 				DisplayName: Iron Ballista Staff
-				Tooltip: 
-				'''
-				Summons a rolling ballista to fight for you.
-				The artisans of [c/c21704:Burnyr] never managed to make it work properly.
-				'''
+				Tooltip:
+					'''
+					Summons a rolling ballista to fight for you.
+					The artisans of [c/c21704:Burnyr] never managed to make it work properly.
+					'''
 			}
 
 			SacredFlowerStaff: {
