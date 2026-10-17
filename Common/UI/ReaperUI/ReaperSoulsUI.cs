@@ -302,12 +302,16 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
         private void AddBossCard(Mod mod, int npcType)
         {
+
+
             if (BannedIds.Contains(npcType))
                 return;
 
             NPC npc = ContentSamples.NpcsByNetId[npcType];
             if (RemnantGlobalNPC.GetMod(npc.type) != mod)
                 return;
+
+            if (!npc.boss) return;
 
             Asset<Texture2D> headTexture = ReaperSoulUIExtras.GetBossHead(npc);
             var card = new UIBossCard(npc, mod, headTexture);

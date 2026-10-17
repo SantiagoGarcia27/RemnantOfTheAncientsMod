@@ -2,6 +2,7 @@
 using ReLogic.Content;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -122,8 +123,9 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
                         return ModContent.Request<Texture2D>(CalamityPath + "DesertScourge/DesertScourgeHead_Head_Boss");
                 }
             }
-            int idex = npc.GetBossHeadTextureIndex();
-            return TextureAssets.NpcHeadBoss[idex];
+            int index = npc.GetBossHeadTextureIndex();
+            if (index == -1) return TextureAssets.NpcHeadBoss[1];
+            return TextureAssets.NpcHeadBoss[index];
         }
         public static bool SelectList(Mod mod, int npcId)
         {

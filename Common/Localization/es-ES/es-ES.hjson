@@ -186,6 +186,19 @@ Mods: {
 					Tirano infernal
 					'''
 			}
+
+			GemstoneCrusherIntroScreen: {
+				/* TextToDisplay:
+					'''
+					Ruined sculptor guardian
+					Gemstone Crusher
+					''' */
+				/* JokeTextToDisplay:
+					'''
+					The fastest runner
+					Gemstone Crusher
+					''' */
+			}
 		}
 
 		Prefix: {
@@ -4695,6 +4708,11 @@ Mods: {
 				DisplayName: Repetidor de madera de sombria
 				// Tooltip: ""
 			}
+
+			CrusherSoul: {
+				// DisplayName: Crusher Soul
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -5438,6 +5456,11 @@ Mods: {
 			AnkhAmuletAchievement: {
 				FriendlyName: Todo en uno
 				Description: Obtén el amuleto de la cruz ansata, la joyeria mas versatil.
+			}
+
+			DefeatGemstoneCrusherAchievement: {
+				FriendlyName: Fallo estructural
+				Description: Derrota al Triturador de gemas, el guardián inmovil.
 			}
 		}
 

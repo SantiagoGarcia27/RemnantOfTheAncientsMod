@@ -100,7 +100,7 @@ public class ReaperEffectsPlayer : ModPlayer
             ReaperGlobalItem.ReaperWingsNerf(Player);
     }       
    
-    /// <summary>
+   /* /// <summary>
     /// Set Reaper mode souls config values
     /// </summary>
     /// <param name="type"></param>
@@ -187,7 +187,7 @@ public class ReaperEffectsPlayer : ModPlayer
 
 
         }
-    }
+    }*/
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
     {
         float respawnMult = RespawnTimeCalculator();
@@ -402,7 +402,7 @@ public class ReaperSoulsPlayer : ModPlayer
     public bool[] SoulsUpgradesLoaded =
     [
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,
-        false, false, false
+        false, false, false, false
     ];
     public float[] SoulsUpgradesLoadedActive =
     [
@@ -475,6 +475,7 @@ public class ReaperSoulsPlayer : ModPlayer
     public override void LoadData(TagCompound tag)
     {
         ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
+
         if (CalamityMod != null) FillSoulList();
 
         for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
@@ -508,8 +509,8 @@ public class ReaperSoulsPlayer : ModPlayer
     }
     public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
     {
-        LoadSoulsToggle();
-        LoadSoulsToggleCrossMod();
+       /* LoadSoulsToggle();
+        LoadSoulsToggleCrossMod();*/
 
         SendSoulState(toWho, fromWho);
     }
@@ -546,7 +547,7 @@ public class ReaperSoulsPlayer : ModPlayer
         packet.Send(toWho, fromWho);
     }
 
-    public void LoadSoulsToggle()
+   /* public void LoadSoulsToggle()
     {
         SubloadSouls(NPCID.KingSlime, GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul);
         SubloadSouls(NPCID.EyeofCthulhu, GetInstance<ConfigReaperSouls>().ToggleEyeOfChutuluSoul.ToInt());
@@ -587,9 +588,9 @@ public class ReaperSoulsPlayer : ModPlayer
             {
                 bool value = GetInstance<ConfigReaperSouls>().GetType().GetProperty("Toggle" + npc.ModNPC.GetType().Name + "Soul")?.GetValue(GetInstance<ConfigReaperSouls>()) as bool? ?? false;
                 SoulsUpgradesMaybeLoaded[npc.type] = value;
-            }*/
+            }
         }
-    }
+    }*/
 
     public void FillSoulList()
     {

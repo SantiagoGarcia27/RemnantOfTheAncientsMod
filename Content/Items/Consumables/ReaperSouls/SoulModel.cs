@@ -41,11 +41,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
             Item.maxStack = 1;
             Item.UseSound = SoundID.Item60;
             Item.consumable = true;
+
         }
         public override bool CanUseItem(Player player)
         {
             ReaperSoulsPlayer reaperSoulsPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
-
 
             bool hasSoul = ItemMod != RemnantOfTheAncientsMod.CalamityMod ?
                 reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] :

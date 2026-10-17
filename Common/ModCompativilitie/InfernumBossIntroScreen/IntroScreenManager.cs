@@ -71,7 +71,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie.InfernumBossIntroScre
             }
             catch 
             {
-
+                IntroScreens.Add(FormatterServices.GetUninitializedObject(typeof(GemstoneCrusherIntroScreen)) as BaseIntroScreenTitle);
                 IntroScreens.Add(FormatterServices.GetUninitializedObject(typeof(DesertAnhilatorIntroScreen)) as BaseIntroScreenTitle);
                 IntroScreens.Add(FormatterServices.GetUninitializedObject(typeof(FrozenAssaulterIntroScreen)) as BaseIntroScreenTitle);
                 IntroScreens.Add(FormatterServices.GetUninitializedObject(typeof(InfernalTyrantIntroScreen)) as BaseIntroScreenTitle);

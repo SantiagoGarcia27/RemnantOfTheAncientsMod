@@ -176,8 +176,21 @@ Mods: {
 					'''
 				JokeTextToDisplay:
 					'''
-					Ruler of the underworld
+					Yes, another worm
 					Infernal Tyrant
+					'''
+			}
+
+			GemstoneCrusherIntroScreen: {
+				TextToDisplay:
+					'''
+					Ruined sculptor guardian
+					Gemstone Crusher
+					'''
+				JokeTextToDisplay:
+					'''
+					The fastest runner
+					Gemstone Crusher
 					'''
 			}
 		}
@@ -4669,6 +4682,11 @@ Mods: {
 				DisplayName: Shadewood Repeater
 				Tooltip: ""
 			}
+
+			CrusherSoul: {
+				DisplayName: Crusher Soul
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -5402,6 +5420,11 @@ Mods: {
 			AnkhAmuletAchievement: {
 				FriendlyName: All in one
 				Description: Get the ankh amulet, the most versatile jewelry.
+			}
+
+			DefeatGemstoneCrusherAchievement: {
+				FriendlyName: Structural failure
+				Description: Defeat the gemstone crusher, the motionless guardian
 			}
 		}
 
