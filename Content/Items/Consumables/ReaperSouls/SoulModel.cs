@@ -17,9 +17,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         private static readonly Color rarityColorTwo = new(191, 187, 187);
         public abstract Mod ItemMod { get; }
         public abstract NPC BaseNpc { get; }
-        public float MaxValue { get; } = 1f;
-        public float Increment { get; } = 1f;
-        public float Progression { get; } = 1f;
+        public virtual float MaxValue => 1f;
+        public virtual float Increment => 1f;
+        public virtual float Progression => 1f;
 
         internal static Mod _mod;
         public override void SetStaticDefaults()

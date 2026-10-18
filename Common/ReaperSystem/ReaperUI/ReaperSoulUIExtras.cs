@@ -14,7 +14,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
     public class ReaperSoulUIExtras : ModSystem
     {
         public static Dictionary<Mod, Dictionary<int, UIHoverImageButton>> Buttons = [];
-        public static List<int> BannedIds =
+        /*public static List<int> BannedIds =
         [
            NPCID.MartianSaucerCore,
             NPCID.DD2EterniaCrystal, NPCID.DD2Betsy,NPCID.DD2DarkMageT1,NPCID.DD2DarkMageT3,NPCID.DD2OgreT2,NPCID.DD2OgreT3,
@@ -24,8 +24,8 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             NPCID.Pumpking,NPCID.MourningWood,
             NPCID.MoonLordHead,NPCID.MoonLordHand,
             NPCID.TorchGod
-        ];
-        public static void OnInitialize()
+        ];*/
+        /*public static void OnInitialize()
         {
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
@@ -91,7 +91,8 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 ListUtils.AddSecure(ref BannedIds, CallUtils.TryGetNpcFromMod(CalamityMod, "FalseBrain"));
             }
 
-        }
+        }*/
+
         public static Asset<Texture2D> GetBossHead(NPC npc)
         {
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);

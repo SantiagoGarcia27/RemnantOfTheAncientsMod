@@ -14,14 +14,15 @@ namespace RemnantOfTheAncientsMod.Common.UI
 		public bool Reaper;
 
 
-		public UIHoverImageButton(Asset<Texture2D> texture, string hoverText) : base(texture) {
-			this.hoverText = hoverText;
-		}
-		public UIHoverImageButton(Asset<Texture2D> texture, string hoverText, NPC npc,bool reaper) : base(texture)
+
+		public UIHoverImageButton(Asset<Texture2D> texture, string hoverText, NPC npc = null) : base(texture)
 		{
 			this.hoverText = hoverText;
-			_Npc = npc;
-			Reaper = reaper;
+			if (npc != null)
+			{
+				_Npc = npc;
+				Reaper = true;
+			}
 		}
 
 		public bool Blocked()
@@ -44,10 +45,7 @@ namespace RemnantOfTheAncientsMod.Common.UI
 		{
 			_Npc = npc;
 		}
-		public NPC Npc()
-		{
-			return _Npc;
-		}   
+  
 		protected override void DrawSelf(SpriteBatch spriteBatch) {
 			if (_Blocked)
 				SetVisibility(0.3f, 0.2f);

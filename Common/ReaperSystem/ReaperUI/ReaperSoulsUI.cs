@@ -32,7 +32,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         public static UIList BossCardList;
         public static UIScrollbar BossScrollbar;
         public static Dictionary<Mod, Dictionary<int, UIHoverImageButton>> Buttons = [];
-        public static List<int> BannedIds = [];
+        //public static List<int> BannedIds = [];
 
         public static int SelectedNpcType = -1;
         public static Mod SelectedMod;
@@ -44,10 +44,9 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         private const int TitleHeight = 100;
 
         public static List<UIBossCard> AllCards = [];
-        private static string _searchText = "";
-        private static int _modFilterIndex;
-        private static int _effectFilterIndex;
-        private static List<string> _availableMods = ["All"];
+      
+
+        //private static List<string> _availableMods = ["All"];
         private static readonly string[] EffectCategories = ["All", "Stats", "Summons", "Immunity", "Mixed"];
         private static readonly Dictionary<int, (float min, float max, float increment)> SoulSliderRanges = [];
 
@@ -56,9 +55,9 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
 
-            ReaperSoulUIExtras.OnInitialize();
+           // ReaperSoulUIExtras.OnInitialize();
 
-            BannedIds = ReaperSoulUIExtras.BannedIds;
+            //BannedIds = ReaperSoulUIExtras.BannedIds;
 
             Buttons = ReaperSoulUIExtras.Buttons;
             Buttons.TryAdd(TerrariaMod, []);
@@ -84,7 +83,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
             if (mod != null)
             {
-                int count = RemnantGlobalNPC.CountBoss(mod, BannedIds);
+                int count = RemnantGlobalNPC.CountBoss(mod);
                 if (Buttons[mod].Count < count)
                 {
                     foreach (NPC npc in NpcList.BossList[mod])
@@ -117,7 +116,9 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 BackgroundPanel.Append(LeftListPanel);
 
                 const float searchPanelHeight = 60f;
-                var searchPanel = new UISearchFilterPanel();
+                UISearchFilterPanel searchPanel = new UISearchFilterPanel()
+                {
+                };
                 searchPanel.Width.Set(0f, 1f);
                 searchPanel.Height.Set(searchPanelHeight, 0f);
                 LeftListPanel.Append(searchPanel);
@@ -127,7 +128,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 BossCardList.Top.Set(searchPanelHeight + 4f, 0f);
                 BossCardList.Height.Set(-(searchPanelHeight + 4f), 1f);
                 BossCardList.ListPadding = 4f;
-                BossCardList.ManualSortMethod = (list) =>
+               /* BossCardList.ManualSortMethod = (list) =>
                 {
                     list.Sort((a, b) =>
                     {
@@ -135,7 +136,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                             return GetProgressionValue(cardA.Npc).CompareTo(GetProgressionValue(cardB.Npc));
                         return 0;
                     });
-                };
+                };*/
                 LeftListPanel.Append(BossCardList);
 
                 BossScrollbar = new UIScrollbar();
@@ -156,8 +157,8 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
                 // Populate boss cards
                 PopulateBossCards(TerrariaMod, CalamityMod, RemnantOfTheAncientsM);
-                BuildModFilterList();
-                FilterBossCards();
+                //BuildModFilterList();
+                //FilterBossCards();
 
                 SetupBackground(ref BackgroundPanel);
             }
@@ -168,9 +169,9 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         private void PopulateBossCards(Mod terrariaMod, Mod calamityMod, Mod remnantMod)
         {
             AllCards.Clear();
-            _searchText = "";
-            _modFilterIndex = 0;
-            _effectFilterIndex = 0;
+            //_searchText = "";
+            //_modFilterIndex = 0;
+            //_effectFilterIndex = 0;
 
             bool[] loadedSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
             Dictionary<int, bool> maybeSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
@@ -179,7 +180,13 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             VerifyButtomsIndex(remnantMod);
 
             // Vanilla bosses
-            for (int j = 0; j < loadedSouls.Length - 3; j++)
+
+            foreach(ReaperUpgradeRegister data in Reaper.soulData)
+            {
+                AddBossCard(data);
+            }
+
+            /*for (int j = 0; j < loadedSouls.Length - 3; j++)
             {
                 int type = ReaperSoulsPlayer.GetLoadedBossIdByIndex(j);
                 AddBossCard(terrariaMod, type);
@@ -200,23 +207,23 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 {
                     AddBossCard(calamityMod, soul.Key);
                 }
-            }
+            }*/
 
             // Sort all cards by game progression order
-            InitProgressionOrder();
-            InitSoulSliderRanges();
+           // InitProgressionOrder();
+            //InitSoulSliderRanges();
 
-            AllCards.Sort((a, b) =>
+            /*AllCards.Sort((a, b) =>
             {
                 float orderA = GetProgressionValue(a.Npc);
                 float orderB = GetProgressionValue(b.Npc);
                 return orderA.CompareTo(orderB);
-            });
+            });*/
         }
 
         private static readonly Dictionary<int, float> ProgressionOrder = [];
 
-        private static void InitProgressionOrder()
+       /* private static void InitProgressionOrder()
         {
             ProgressionOrder.Clear();
 
@@ -275,9 +282,9 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             TryAddCalamityBoss("Yharon", 22f);
             TryAddCalamityBoss("ThanatosHead", 23f);
             TryAddCalamityBoss("SupremeCalamitas", 24f);
-        }
+        }*/
 
-        private static void TryAddCalamityBoss(string npcName, float progression)
+        /*private static void TryAddCalamityBoss(string npcName, float progression)
         {
             if (!ModLoader.TryGetMod("CalamityMod", out Mod calamity))
                 return;
@@ -285,38 +292,41 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             int type = CallUtils.TryGetNpcFromMod(calamity, npcName);
             if (type > 0)
                 ProgressionOrder.TryAdd(type, progression);
-        }
+        }*/
 
-        private static float GetProgressionValue(NPC npc)
+        /*private static float GetProgressionValue(NPC npc)
         {
             if (ProgressionOrder.TryGetValue(npc.type, out float val))
                 return val;
 
             return float.MaxValue;
-        }
+        }*/
 
-        private static void InitSoulSliderRanges()
+       /* private static void InitSoulSliderRanges()
         {
             if (SoulSliderRanges.Count > 0)
                 return;
 
             SoulSliderRanges[NPCID.KingSlime] = (0f, 30f, 1f);
             SoulSliderRanges[NPCID.SkeletronPrime] = (0f, 10f, 1f);
-        }
+        }*/
 
-        private void AddBossCard(Mod mod, int npcType)
+        private void AddBossCard(ReaperUpgradeRegister soulData)
         {
-            if (BannedIds.Contains(npcType))
-                return;
+            /* if (BannedIds.Contains(npcType))
+                 return;*/
 
-            NPC npc = ContentSamples.NpcsByNetId[npcType];
-            if (RemnantGlobalNPC.GetMod(npc.type) != mod)
+            //NPC npc = ContentSamples.NpcsByNetId[npcType];
+            NPC npc = soulData.npc;
+            Mod mod = soulData.mod;
+
+            if (RemnantGlobalNPC.GetMod(npc.type) != soulData.mod)
                 return;
 
             if (!npc.boss) return;
 
             Asset<Texture2D> headTexture = ReaperSoulUIExtras.GetBossHead(npc);
-            var card = new UIBossCard(npc, mod, headTexture);
+            var card = new UIBossCard(soulData, headTexture);
             card.Width.Set(0f, 1f);
             card.Height.Set(60f, 0f);
             card.OnLeftClick += (evt, el) =>
@@ -351,7 +361,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             float activeValue = ReaperSoulUIExtras.SelectActiveList(SelectedMod, SelectedNpcType);
             bool isActive = activeValue > 0;
 
-            InitSoulSliderRanges();
+            //InitSoulSliderRanges();
             SoulSliderRanges.TryGetValue(npc.type, out var sliderRange);
             bool hasSlider = hasSoul && SoulSliderRanges.ContainsKey(npc.type);
 
@@ -560,7 +570,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
             int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
 
-            InitSoulSliderRanges();
+            //InitSoulSliderRanges();
             float toggleMax = SoulSliderRanges.TryGetValue(npcType, out var range) ? range.max : 1f;
 
             bool changed = false;
@@ -585,13 +595,13 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             }
         }
 
-        private static void BuildModFilterList()
+        /*private static void BuildModFilterList()
         {
             var modNames = AllCards.Select(c => c.Mod?.Name ?? "Unknown").Distinct().ToList();
             _availableMods = ["All", .. modNames];
-        }
+        }*/
 
-        public static void FilterBossCards()
+       /* public static void FilterBossCards()
         {
             if (BossCardList == null)
                 return;
@@ -636,9 +646,9 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
             foreach (var card in filtered)
                 BossCardList.Add(card);
-        }
+        }*/
 
-        private static string GetEffectCategory(NPC npc)
+        /*private static string GetEffectCategory(NPC npc)
         {
             string desc = GetSoulDescription(npc).ToLowerInvariant();
 
@@ -657,18 +667,9 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             if (hasImmunity) return "Immunity";
             if (hasStats) return "Stats";
             return "Mixed";
-        }
+        }*/
 
-        private static string GetModDisplayName(string modName)
-        {
-            return modName switch
-            {
-                "SangarUtilities" => "Terraria",
-                "RemnantOfTheAncientsMod" => "Remnant",
-                "CalamityMod" => "Calamity",
-                _ => modName
-            };
-        }
+       
 
         public static void SetupBackground(ref DragableUIPanel panel)
         {
@@ -699,483 +700,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             }
             SoundEngine.PlaySound(SoundID.MenuTick);
             RefreshDetailPanel();
-        }
-
-        /// <summary>
-        /// Search bar and filter buttons at the top of the left list.
-        /// Uses Terraria's native UISearchBar for reliable text input handling.
-        /// </summary>
-        public class UISearchFilterPanel : UIElement
-        {
-            private readonly UISearchBar _searchBar;
-            private readonly UIPanel _searchBarPanel;
-            private readonly UIPanel _modBtn;
-            private readonly UIText _modBtnText;
-            private readonly UIPanel _effectBtn;
-            private readonly UIText _effectBtnText;
-            private bool _didClickSearchBar;
-
-            public UISearchFilterPanel()
-            {
-                _searchBarPanel = new UIPanel();
-                _searchBarPanel.SetPadding(0);
-                _searchBarPanel.Width.Set(0f, 1f);
-                _searchBarPanel.Height.Set(28f, 0f);
-                _searchBarPanel.BackgroundColor = new Color(35, 35, 55, 220);
-                _searchBarPanel.BorderColor = new Color(80, 80, 100, 200);
-                _searchBarPanel.OnLeftClick += (_, _) => _didClickSearchBar = true;
-                Append(_searchBarPanel);
-
-                _searchBar = new UISearchBar(LocalizedText.Empty, 0.8f);
-                _searchBar.Width.Set(0f, 1f);
-                _searchBar.Height.Set(0f, 1f);
-                _searchBar.OnContentsChanged += (contents) =>
-                {
-                    _searchText = contents;
-                    FilterBossCards();
-                };
-                _searchBar.OnStartTakingInput += () =>
-                {
-                    _searchBarPanel.BorderColor = new Color(120, 120, 180, 255);
-                };
-                _searchBar.OnEndTakingInput += () =>
-                {
-                    _searchBarPanel.BorderColor = new Color(80, 80, 100, 200);
-                };
-                _searchBar.OnCanceledTakingInput += () =>
-                {
-                    _searchText = "";
-                    _searchBar.SetContents("", forced: true);
-                    FilterBossCards();
-                    _searchBarPanel.BorderColor = new Color(80, 80, 100, 200);
-                };
-                _searchBarPanel.Append(_searchBar);
-
-                _modBtn = new UIPanel();
-                _modBtn.SetPadding(2);
-                _modBtn.Top.Set(32f, 0f);
-                _modBtn.Width.Set(-2f, 0.5f);
-                _modBtn.Height.Set(24f, 0f);
-                _modBtn.BackgroundColor = new Color(50, 50, 70, 220);
-                _modBtn.BorderColor = new Color(80, 80, 100, 200);
-                _modBtn.OnLeftClick += (_, _) =>
-                {
-                    if (_availableMods.Count > 0)
-                    {
-                        _modFilterIndex = (_modFilterIndex + 1) % _availableMods.Count;
-                        UpdateLabels();
-                        FilterBossCards();
-                        SoundEngine.PlaySound(SoundID.MenuTick);
-                    }
-                };
-                Append(_modBtn);
-
-                _modBtnText = new UIText("All", 0.65f);
-                _modBtnText.HAlign = 0.5f;
-                _modBtnText.VAlign = 0.5f;
-                _modBtn.Append(_modBtnText);
-
-                _effectBtn = new UIPanel();
-                _effectBtn.SetPadding(2);
-                _effectBtn.Top.Set(32f, 0f);
-                _effectBtn.Left.Set(2f, 0.5f);
-                _effectBtn.Width.Set(-2f, 0.5f);
-                _effectBtn.Height.Set(24f, 0f);
-                _effectBtn.BackgroundColor = new Color(50, 50, 70, 220);
-                _effectBtn.BorderColor = new Color(80, 80, 100, 200);
-                _effectBtn.OnLeftClick += (_, _) =>
-                {
-                    _effectFilterIndex = (_effectFilterIndex + 1) % EffectCategories.Length;
-                    UpdateLabels();
-                    FilterBossCards();
-                    SoundEngine.PlaySound(SoundID.MenuTick);
-                };
-                Append(_effectBtn);
-
-                _effectBtnText = new UIText("All", 0.65f);
-                _effectBtnText.HAlign = 0.5f;
-                _effectBtnText.VAlign = 0.5f;
-                _effectBtn.Append(_effectBtnText);
-            }
-
-            private void UpdateLabels()
-            {
-                string modName = _modFilterIndex < _availableMods.Count ? _availableMods[_modFilterIndex] : "All";
-                _modBtnText.SetText(GetModDisplayName(modName));
-
-                string effectName = _effectFilterIndex < EffectCategories.Length ? EffectCategories[_effectFilterIndex] : "All";
-                _effectBtnText.SetText(effectName);
-            }
-
-            public override void Update(GameTime gameTime)
-            {
-                base.Update(gameTime);
-
-                if (_didClickSearchBar)
-                {
-                    _didClickSearchBar = false;
-                    _searchBar.ToggleTakingText();
-                }
-
-                if (_searchBar.IsWritingText && Main.mouseLeft && !_searchBarPanel.IsMouseHovering)
-                {
-                    _searchBar.ToggleTakingText();
-                }
-            }
-        }
-
-        /// <summary>
-        /// A boss card shown in the left-side list. Shows the boss head icon and name.
-        /// </summary>
-        public class UIBossCard : UIPanel
-        {
-            public UIHoverImageButton HeadButton;
-            public NPC Npc;
-            public Mod Mod;
-
-            public UIBossCard(NPC npc, Mod mod, Asset<Texture2D> headTexture)
-            {
-                Npc = npc;
-                Mod = mod;
-                SetPadding(4);
-                BackgroundColor = new Color(60, 60, 80, 180);
-                BorderColor = new Color(100, 100, 120, 200);
-
-                HeadButton = new UIHoverImageButton(headTexture, Lang.GetNPCNameValue(npc.type), npc, true);
-                HeadButton.Left.Set(4f, 0f);
-                HeadButton.VAlign = 0.5f;
-                HeadButton.Width.Set(28f, 0f);
-                HeadButton.Height.Set(28f, 0f);
-                HeadButton.OnLeftClick += (evt, el) =>
-                {
-                    SelectedNpcType = npc.type;
-                    SelectedMod = mod;
-                    SoundEngine.PlaySound(SoundID.MenuTick);
-                    RefreshDetailPanel();
-                };
-                Append(HeadButton);
-
-                string name = Lang.GetNPCNameValue(npc.type);
-                if (name.Length > 18)
-                    name = name[..18] + "..";
-                var nameLabel = new UIText(name, 0.8f);
-                nameLabel.Left.Set(38f, 0f);
-                nameLabel.VAlign = 0.5f;
-                Append(nameLabel);
-            }
-
-            public override void Update(GameTime gameTime)
-            {
-                base.Update(gameTime);
-                bool isSelected = SelectedNpcType == Npc.type;
-                bool hasSoul = ReaperSoulUIExtras.SelectList(Mod, Npc.type);
-                bool isActive = hasSoul && ReaperSoulUIExtras.SelectActiveList(Mod, Npc.type) > 0;
-
-                if (isSelected)
-                {
-                    BackgroundColor = new Color(100, 90, 40, 220);
-                    BorderColor = new Color(200, 180, 60, 255);
-                }
-                else if (isActive)
-                {
-                    BackgroundColor = new Color(60, 60, 80, 180);
-                    BorderColor = new Color(80, 200, 80, 255);
-                }
-                else
-                {
-                    BackgroundColor = new Color(60, 60, 80, 180);
-                    BorderColor = new Color(100, 100, 120, 200);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Draws the NPC bestiary portrait uniformly scaled and centered.
-        /// Uses the bestiary icon system with a reduced iconbox to normalize sizes,
-        /// and falls back to manual sprite drawing if no bestiary entry exists.
-        /// </summary>
-        public class UIBossNpcDisplay : UIElement
-        {
-            private readonly int _npcType;
-            private readonly BestiaryEntry _bestiaryEntry;
-            private const float UniformBoxSize = 100f;
-
-            public UIBossNpcDisplay(NPC npc)
-            {
-                _npcType = npc.type;
-                _bestiaryEntry = Main.BestiaryDB.FindEntryByNPCID(_npcType);
-                OverflowHidden = true;
-            }
-
-            protected override void DrawSelf(SpriteBatch spriteBatch)
-            {
-                CalculatedStyle dims = GetDimensions();
-
-                if (_bestiaryEntry != null)
-                {
-                    // Center a fixed-size box inside the element so every NPC renders at the same scale
-                    int boxX = (int)(dims.X + (dims.Width - UniformBoxSize) / 2f);
-                    int boxY = (int)(dims.Y + (dims.Height - UniformBoxSize) / 2f);
-                    Rectangle iconBox = new(boxX, boxY, (int)UniformBoxSize, (int)UniformBoxSize);
-
-                    BestiaryUICollectionInfo collectionInfo = _bestiaryEntry.UIInfoProvider.GetEntryUICollectionInfo();
-
-                    EntryIconDrawSettings drawSettings = new()
-                    {
-                        iconbox = iconBox,
-                        IsPortrait = true,
-                        IsHovered = false
-                    };
-
-                    _bestiaryEntry.Icon.Update(collectionInfo, iconBox, drawSettings);
-                    _bestiaryEntry.Icon.Draw(collectionInfo, spriteBatch, drawSettings);
-                }
-                else
-                {
-                    // Fallback: draw the NPC texture first frame
-                    Texture2D npcTexture = TextureAssets.Npc[_npcType].Value;
-                    int frameCount = Main.npcFrameCount[_npcType];
-                    int frameHeight = npcTexture.Height / frameCount;
-                    Rectangle sourceRect = new(0, 0, npcTexture.Width, frameHeight);
-
-                    float maxW = dims.Width - 20f;
-                    float maxH = dims.Height - 10f;
-
-                    float fitTarget = UniformBoxSize / System.Math.Max(sourceRect.Width, sourceRect.Height);
-                    float fitArea = System.Math.Min(maxW / sourceRect.Width, maxH / sourceRect.Height);
-                    float scale = System.Math.Min(fitTarget, fitArea);
-
-                    Vector2 center = new(dims.X + dims.Width / 2f, dims.Y + dims.Height / 2f);
-                    Vector2 origin = new(sourceRect.Width / 2f, sourceRect.Height / 2f);
-
-                    spriteBatch.Draw(npcTexture, center, sourceRect, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
-                }
-            }
-        }
-
-        /// <summary>
-        /// A horizontal slider for configuring non-boolean soul values within a range.
-        /// Draws a track, filled portion, handle, and value label.
-        /// </summary>
-        public class UIValueSlider : UIElement
-        {
-            private readonly float _min;
-            private readonly float _max;
-            private readonly float _increment;
-            private float _value;
-            private bool _dragging;
-
-            public float Value => _value;
-            public event System.Action<float> OnValueChanged;
-
-            private const float LabelHeight = 20f;
-            private const float TrackHeight = 6f;
-            private const float HandleHeight = 16f;
-
-            public UIValueSlider(float min, float max, float increment, float currentValue)
-            {
-                _min = min;
-                _max = max;
-                _increment = increment;
-                _value = MathHelper.Clamp(currentValue, min, max);
-            }
-
-            public override void LeftMouseDown(UIMouseEvent evt)
-            {
-                base.LeftMouseDown(evt);
-                _dragging = true;
-                UpdateValueFromMouse(evt.MousePosition.X);
-            }
-
-            public override void LeftMouseUp(UIMouseEvent evt)
-            {
-                base.LeftMouseUp(evt);
-                _dragging = false;
-            }
-
-            public override void Update(GameTime gameTime)
-            {
-                base.Update(gameTime);
-                if (_dragging)
-                {
-                    if (!Main.mouseLeft)
-                    {
-                        _dragging = false;
-                        return;
-                    }
-                    UpdateValueFromMouse(Main.mouseX);
-                }
-            }
-
-            private void UpdateValueFromMouse(float mouseX)
-            {
-                CalculatedStyle dims = GetDimensions();
-                float trackLeft = dims.X + 8f;
-                float trackWidth = dims.Width - 16f;
-                if (trackWidth <= 0f)
-                    return;
-                float ratio = MathHelper.Clamp((mouseX - trackLeft) / trackWidth, 0f, 1f);
-                float rawValue = _min + ratio * (_max - _min);
-                float snapped = (float)System.Math.Round(rawValue / _increment) * _increment;
-                snapped = MathHelper.Clamp(snapped, _min, _max);
-                if (snapped != _value)
-                {
-                    _value = snapped;
-                    OnValueChanged?.Invoke(_value);
-                }
-            }
-
-            protected override void DrawSelf(SpriteBatch spriteBatch)
-            {
-                CalculatedStyle dims = GetDimensions();
-                float ratio = (_max > _min) ? (_value - _min) / (_max - _min) : 0f;
-
-                // Value label
-                string text = $"{(int)_value} / {(int)_max}";
-                Utils.DrawBorderString(spriteBatch, text, new Vector2(dims.X + dims.Width / 2f, dims.Y), Color.White, 0.8f, 0.5f);
-
-                // Track
-                float trackTop = dims.Y + LabelHeight + (dims.Height - LabelHeight) / 2f - TrackHeight / 2f;
-                float trackLeft = dims.X + 8f;
-                float trackWidth = dims.Width - 16f;
-                Rectangle trackRect = new((int)trackLeft, (int)trackTop, (int)trackWidth, (int)TrackHeight);
-                spriteBatch.Draw(TextureAssets.MagicPixel.Value, trackRect, new Color(50, 50, 70, 220));
-
-                // Filled portion
-                int fillWidth = (int)(trackWidth * ratio);
-                if (fillWidth > 0)
-                {
-                    Rectangle fillRect = new((int)trackLeft, (int)trackTop, fillWidth, (int)TrackHeight);
-                    spriteBatch.Draw(TextureAssets.MagicPixel.Value, fillRect, new Color(80, 200, 80, 220));
-                }
-
-                // Handle
-                float handleX = trackLeft + trackWidth * ratio;
-                float handleTop = trackTop - (HandleHeight - TrackHeight) / 2f;
-                Rectangle handleRect = new((int)(handleX - 5f), (int)handleTop, 10, (int)HandleHeight);
-                Color handleColor = _dragging ? new Color(255, 255, 255, 255) : new Color(200, 200, 200, 240);
-                spriteBatch.Draw(TextureAssets.MagicPixel.Value, handleRect, handleColor);
-            }
-        }
-
-        public class UISoulDisplay : UIElement
-        {
-            public UISoulDisplay()
-            {
-            }
-
-            public static void UpdateButtons(int npcId, Mod mod)
-            {
-                if (!Main.gameMenu)
-                {
-                    if (!BannedIds.Contains(npcId))
-                    {
-                        NPC npc = ContentSamples.NpcsByNetId[npcId];
-                        Asset<Texture2D> TextureBase = ReaperSoulUIExtras.GetBossHead(npc);
-
-                        VerifyButtomsIndex(mod);
-
-                        bool playerHaveSoul = ReaperSoulUIExtras.SelectList(mod, npcId);
-                        float playerHaveSoulActive = ReaperSoulUIExtras.SelectActiveList(mod, npcId);
-
-                        if (Buttons.TryGetValue(mod, out var modButtons) && modButtons.TryGetValue(npc.type, out var btn) && btn != null)
-                        {
-                            btn.SetImage(TextureBase);
-                            if (playerHaveSoul)
-                            {
-                                btn.Blocked(false);
-                                btn.Active(playerHaveSoulActive > 0);
-                            }
-                            else
-                            {
-                                btn.Blocked(true);
-                                btn.Active(false);
-                            }
-                        }
-
-                        // Refresh detail panel if the selected boss state changed
-                        if (SelectedNpcType == npcId)
-                            RefreshDetailPanel();
-                    }
-                }
-            }
-
-            protected override void DrawSelf(SpriteBatch spriteBatch)
-            {
-                CalculatedStyle innerDimensions = GetInnerDimensions();
-                DragableUIPanel bgPanel = BackgroundPanel;
-
-                if (bgPanel != null)
-                {
-                    string language = LanguageManager.Instance.ActiveCulture.Name;
-                    string path = "RemnantOfTheAncientsMod/Common/UI/ReaperUI/";
-
-                    float centerX = innerDimensions.X + innerDimensions.Width / 2f;
-                    float centerY = innerDimensions.Y + innerDimensions.Height / 2f;
-
-                    ModContent.RequestIfExists(path + "TileBackground", out Asset<Texture2D> backgroundTexture);
-                    ModContent.RequestIfExists(path + "SoulsText_" + language, out Asset<Texture2D> TitleTexture);
-
-                    if (backgroundTexture != null && backgroundTexture.Value != null)
-                    {
-                        float texW = backgroundTexture.Value.Width;
-                        float texH = backgroundTexture.Value.Height;
-                        float scaleW = (innerDimensions.Width - 10f) / texW;
-                        float scaleH = innerDimensions.Height / texH;
-                        float scale = System.Math.Min(scaleW, scaleH);
-
-                        Vector2 origin = backgroundTexture.Size() / 2f;
-                        spriteBatch.Draw(backgroundTexture.Value, new Vector2(centerX, centerY), null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
-                    }
-
-                    if (TitleTexture != null && TitleTexture.Value != null)
-                    {
-                        float texW = TitleTexture.Value.Width;
-                        float texH = TitleTexture.Value.Height;
-                        float scaleW = (innerDimensions.Width - 20f) / texW;
-                        float scaleH = (innerDimensions.Height - 8f) / texH;
-                        float scale = System.Math.Min(System.Math.Min(scaleW, scaleH), 1f);
-
-                        Vector2 origin = TitleTexture.Size() / 2f;
-                        spriteBatch.Draw(TitleTexture.Value, new Vector2(centerX, centerY), null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
-                    }
-                }
-            }
-        }
-
-        public class CheckSouls : ModPlayer
-        {
-            public override void PostUpdate()
-            {
-                Player player = Main.player[Main.myPlayer];
-                bool[] LoadedSouls = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
-                Dictionary<int, bool> MaybeLoadedSouls = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
-
-                ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
-                ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
-                ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-                Mod mod = TerrariaMod;
-
-                for (int i = 0; i < LoadedSouls.Length; i++)
-                {
-                    int type = ReaperSoulsPlayer.GetLoadedBossIdByIndex(i);
-                    NPC npc = ContentSamples.NpcsByNetId[type];
-
-                    if (i >= LoadedSouls.Length - 3)
-                        mod = RemnantOfTheAncientsM;
-                    UISoulDisplay.UpdateButtons(npc.type, mod);
-                }
-                if (CalamityMod != null)
-                {
-                    foreach (int id in MaybeLoadedSouls.Keys)
-                    {
-                        NPC npc = ContentSamples.NpcsByNetId[id];
-                        UISoulDisplay.UpdateButtons(npc.type, CalamityMod);
-                    }
-                }
-
-                base.PostUpdate();
-            }
         }
     }
 }

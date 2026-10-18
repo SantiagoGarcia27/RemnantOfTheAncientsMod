@@ -81,6 +81,10 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem
 
             ApplyReaperState();
         }
+        public override void Unload()
+        {
+            soulData.Clear();
+        }
     }
 }
 

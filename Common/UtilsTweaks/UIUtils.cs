@@ -34,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         public static UIHoverImageButton CreateButtom(string Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent,bool Condition = true, NPC npc = null,bool Reaper = false)
         {
             Asset<Texture2D> TextureBase = ModContent.Request<Texture2D>(Texture);
-            UIHoverImageButton button = new(TextureBase, text,npc,true);
+            UIHoverImageButton button = new(TextureBase, text,npc);
             SetButtonActive(button, Condition, npc);
             SetRectangle(button, left, top, width, height);
             button.OnLeftClick += mouseEvent;
@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture, float left, float top, float width, float height, string text, MouseEvent mouseEvent, bool Condition = true, NPC npc = null, bool Reaper = false)
         {
-            UIHoverImageButton button = new(Texture, text, npc, true);
+            UIHoverImageButton button = new(Texture, text, npc);
             SetButtonActive(button, Condition, npc);
             SetRectangle(button, left, top, width, height);
             button.OnLeftClick += mouseEvent;
@@ -50,7 +50,7 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
         }
         public static UIHoverImageButton CreateButtom(Asset<Texture2D> Texture, Asset<Texture2D> TextureBlocked, float left, float top, float width, float height, string text, MouseEvent mouseEvent, bool Condition = true, NPC npc = null, bool Reaper = false)
         {
-            UIHoverImageButton button = new(Texture, text, npc, true);
+            UIHoverImageButton button = new(Texture, text, npc);
             SetButtonActive(button, Condition, npc);
             SetRectangle(button, left, top, width, height);
             button.OnLeftClick += mouseEvent;
