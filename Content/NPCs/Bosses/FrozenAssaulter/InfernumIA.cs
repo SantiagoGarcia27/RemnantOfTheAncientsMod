@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Infernum;
 using SangarUtilities.Common.UtilsTweaks;
 using System;

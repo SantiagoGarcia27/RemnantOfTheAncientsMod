@@ -2,18 +2,19 @@
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.Global.Projectiles;
 using SangarUtilities.Common.UtilsTweaks;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace RemnantOfTheAncientsMod.Common.World
+namespace RemnantOfTheAncientsMod.Common.ReaperSystem
 {
     public class Reaper : ModSystem
     {
         public static bool ReaperMode;
-       
+        public static List<ReaperUpgradeRegister> soulData = [];
         
         public override void OnWorldUnload()
         {

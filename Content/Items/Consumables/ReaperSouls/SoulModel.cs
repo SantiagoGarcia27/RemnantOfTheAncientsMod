@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,6 +17,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         private static readonly Color rarityColorTwo = new(191, 187, 187);
         public abstract Mod ItemMod { get; }
         public abstract NPC BaseNpc { get; }
+        public float MaxValue { get; } = 1f;
+        public float Increment { get; } = 1f;
+        public float Progression { get; } = 1f;
 
         internal static Mod _mod;
         public override void SetStaticDefaults()
@@ -66,5 +71,22 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         {
             return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
         }
+
+        public override void Load()
+        {
+
+            ReaperUpgradeRegister register = new()
+            {
+                itemType = this.Type,
+                npcType = BaseNpc.type,
+                MaxValue = MaxValue,
+                Increment = Increment,
+                Progression = Progression
+            };
+
+            ListUtils.AddSecure(ref Reaper.soulData, register);
+            base.Load();
+        }
+        
     }
 }

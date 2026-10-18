@@ -4,13 +4,15 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
 {
     public class DealersPeacemaker : ModItem
     {
-      //  public override bool IsLoadingEnabled(Mod mod) => false;
+        public int NotConsumeAmmoChance = 10;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(NotConsumeAmmoChance);
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -58,11 +60,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         public override void UpdateInventory(Player player)
         {  
             if (shootMode == 0)
-            {
-                
-                Item.autoReuse = false;
+            {      
                 Item.useTime = 20;
                 Item.useAnimation = 20;
+                Item.autoReuse = false;
             }
             else
             {
@@ -84,7 +85,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         }
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            return Main.rand.NextFloat() < .10f;
+            return Main.rand.NextFloat() >= NotConsumeAmmoChance / 100f;
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {

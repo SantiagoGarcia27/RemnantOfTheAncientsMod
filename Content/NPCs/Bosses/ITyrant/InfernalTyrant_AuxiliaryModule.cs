@@ -1,5 +1,5 @@
 ﻿using CalamityMod;
-using RemnantOfTheAncientsMod.Common.World;
+using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using SangarUtilities.Common.UtilsTweaks;
 using System.IO;
 using Terraria;
@@ -89,8 +89,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             else if (DificultyUtils.EternityMode) scale = 30;
             else if (DificultyUtils.InfernumMode) scale = 30;
             else if (DificultyUtils.Death) scale = 24;
-            else if (DificultyUtils.Revengeance) scale = 14;
-            else if (Main.masterMode) scale = 8;
+            else if (DificultyUtils.Revengeance) scale = 16;
+            else if (Main.masterMode) scale = 12;
             else if (Main.expertMode) scale = 4;
 
             return MinSegmentLength + scale;

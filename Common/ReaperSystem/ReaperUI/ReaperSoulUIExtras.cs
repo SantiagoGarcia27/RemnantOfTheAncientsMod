@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.UI;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
+namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 {
     public class ReaperSoulUIExtras : ModSystem
     {

@@ -4561,7 +4561,7 @@ Mods: {
 
 			DealersPeacemaker: {
 				DisplayName: Pacificador del comerciante
-				// Tooltip: ""
+				// Tooltip: "{$CommonItemTooltip.PercentChanceToSaveAmmo}"
 			}
 
 			GatlingShotGun: {

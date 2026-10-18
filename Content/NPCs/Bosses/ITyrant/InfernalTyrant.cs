@@ -102,7 +102,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             int segmentScale = 15;
             int segments = InfernalTyrant_AuxiliaryModule.MaxSegmentCount(segmentScale);
 
-            MinSegmentLength = segments/2;
+            MinSegmentLength = segments - (int)MathUtils.GetValueFromPorcentage(segments,10);
             MaxSegmentLength = segments;
 
             head = true;

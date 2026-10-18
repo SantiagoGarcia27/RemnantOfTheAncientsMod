@@ -12,12 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(40);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Supershark");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "superrequin");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Supertiburón");
-            //Tooltip.SetDefault("40% chance of not spending ammo");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "40% de chances de ne pas dépenser de munitions ");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Probabilidad del 40% de no gastar munición ");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

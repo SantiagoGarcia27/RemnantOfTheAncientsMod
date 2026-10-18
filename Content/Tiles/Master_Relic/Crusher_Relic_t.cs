@@ -73,7 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic
             switch (placeStyle)
             {
                 case 0:
-                    itemType = ModContent.ItemType<Desert_Relic>();
+                    itemType = ModContent.ItemType<Crusher_Relic>();
                     break;
 
             }

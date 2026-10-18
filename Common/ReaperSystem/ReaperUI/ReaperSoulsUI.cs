@@ -2,9 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
+using RemnantOfTheAncientsMod.Common.UI;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
@@ -20,7 +22,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
+namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 {
     public class ReaperSoulsUIState : UIState
     {
@@ -72,6 +74,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
             NPC[] RemnantsNpc =
             [
+                ContentSamples.NpcsByNetId[ModContent.NPCType<GemstoneCrusher>()],
                 ContentSamples.NpcsByNetId[ModContent.NPCType<DesertAnnihilator>()],
                 ContentSamples.NpcsByNetId[ModContent.NPCType<FrozenAssaulter>()],
                 ContentSamples.NpcsByNetId[ModContent.NPCType<InfernalTyrantHead>()]
@@ -202,6 +205,7 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
             // Sort all cards by game progression order
             InitProgressionOrder();
             InitSoulSliderRanges();
+
             AllCards.Sort((a, b) =>
             {
                 float orderA = GetProgressionValue(a.Npc);
@@ -302,8 +306,6 @@ namespace RemnantOfTheAncientsMod.Common.UI.ReaperUI
 
         private void AddBossCard(Mod mod, int npcType)
         {
-
-
             if (BannedIds.Contains(npcType))
                 return;
 
