@@ -1,9 +1,11 @@
 ﻿using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.Global.Projectiles;
+using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -84,6 +86,18 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem
         public override void Unload()
         {
             soulData.Clear();
+        }
+        public override void PostSetupContent()
+        {
+            soulData.Clear();
+
+            foreach (ModItem item in ModContent.GetContent<ModItem>())
+            {
+                if (item is SoulModel soul)
+                {
+                    soul.RegisterSoul();
+                }
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
 
         private static readonly Color rarityColorTwo = new(191, 187, 187);
         public abstract Mod ItemMod { get; }
-        public abstract NPC BaseNpc { get; }
+        public abstract int NpcType { get; }
         public virtual float MaxValue => 1f;
         public virtual float Increment => 1f;
         public virtual float Progression => 1f;
@@ -53,8 +53,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
             ReaperSoulsPlayer reaperSoulsPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
 
             bool hasSoul = ItemMod != RemnantOfTheAncientsMod.CalamityMod ?
-                reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] :
-                reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[BaseNpc.type];
+                reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NpcType)] :
+                reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[NpcType];
 
             return !hasSoul;
         }
@@ -62,8 +62,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         {
             ReaperSoulsPlayer reaperSoulsPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
 
-            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod) reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[BaseNpc.type] = true;
-            else reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(BaseNpc.type)] = true;
+            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod) reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[NpcType] = true;
+            else reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NpcType)] = true;
    
             return true;
         }
@@ -72,21 +72,19 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
             return Utils1.ColorSwap(rarityColorOne, rarityColorTwo, 3f);
         }
 
-        public override void Load()
+        public void RegisterSoul()
         {
-
             ReaperUpgradeRegister register = new()
             {
-                itemType = this.Type,
-                npcType = BaseNpc.type,
+                itemType = Type,
+                npcType = NpcType,
                 MaxValue = MaxValue,
                 Increment = Increment,
                 Progression = Progression
             };
 
             ListUtils.AddSecure(ref Reaper.soulData, register);
-            base.Load();
         }
-        
+
     }
 }

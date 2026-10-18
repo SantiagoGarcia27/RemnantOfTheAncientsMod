@@ -227,66 +227,66 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
         private static readonly Dictionary<int, float> ProgressionOrder = [];
 
-       /* private static void InitProgressionOrder()
-        {
-            ProgressionOrder.Clear();
+        /* private static void InitProgressionOrder()
+         {
+             ProgressionOrder.Clear();
 
-            // ── Pre-Hardmode ──
-            ProgressionOrder.TryAdd(NPCID.KingSlime, 1f);
-            TryAddCalamityBoss("DesertScourgeHead", 1.5f);
-            ProgressionOrder.TryAdd(NPCID.EyeofCthulhu, 2f);
-            TryAddCalamityBoss("Crabulon", 2.5f);
-            ProgressionOrder.TryAdd(NPCID.EaterofWorldsHead, 3f);
-            ProgressionOrder.TryAdd(NPCID.BrainofCthulhu, 3f);
-            TryAddCalamityBoss("HiveMind", 3.5f);
-            ProgressionOrder.TryAdd(NPCID.QueenBee, 4f);
-            ProgressionOrder.TryAdd(NPCID.SkeletronHead, 5f);
-            ProgressionOrder.TryAdd(NPCID.Deerclops, 6f);
-            ProgressionOrder.TryAdd(ModContent.NPCType<DesertAnnihilator>(), 6.7f);
-            TryAddCalamityBoss("SlimeGodCore", 6.8f);
-            ProgressionOrder.TryAdd(NPCID.WallofFlesh, 7f);
+             // ── Pre-Hardmode ──
+             ProgressionOrder.TryAdd(NPCID.KingSlime, 1f);
+             TryAddCalamityBoss("DesertScourgeHead", 1.5f);
+             ProgressionOrder.TryAdd(NPCID.EyeofCthulhu, 2f);
+             TryAddCalamityBoss("Crabulon", 2.5f);
+             ProgressionOrder.TryAdd(NPCID.EaterofWorldsHead, 3f);
+             ProgressionOrder.TryAdd(NPCID.BrainofCthulhu, 3f);
+             TryAddCalamityBoss("HiveMind", 3.5f);
+             ProgressionOrder.TryAdd(NPCID.QueenBee, 4f);
+             ProgressionOrder.TryAdd(NPCID.SkeletronHead, 5f);
+             ProgressionOrder.TryAdd(NPCID.Deerclops, 6f);
+             ProgressionOrder.TryAdd(ModContent.NPCType<DesertAnnihilator>(), 6.7f);
+             TryAddCalamityBoss("SlimeGodCore", 6.8f);
+             ProgressionOrder.TryAdd(NPCID.WallofFlesh, 7f);
 
-            // ── Hardmode ──
-            ProgressionOrder.TryAdd(ModContent.NPCType<FrozenAssaulter>(), 7.2f);
-            ProgressionOrder.TryAdd(NPCID.QueenSlimeBoss, 8f);
-            TryAddCalamityBoss("Cryogen", 8.5f);
-            ProgressionOrder.TryAdd(NPCID.Spazmatism, 9f);
-            ProgressionOrder.TryAdd(NPCID.Retinazer, 9f);
-            TryAddCalamityBoss("AquaticScourgeHead", 9.3f);
-            TryAddCalamityBoss("BrimstoneElemental", 9.6f);
-            ProgressionOrder.TryAdd(NPCID.TheDestroyer, 10f);
-            TryAddCalamityBoss("CalamitasClone", 10.5f);
-            TryAddCalamityBoss("GreatSandShark", 10.7f);
-            ProgressionOrder.TryAdd(NPCID.SkeletronPrime, 11f);
-            TryAddCalamityBoss("Leviathan", 11.5f);
-            ProgressionOrder.TryAdd(NPCID.Plantera, 12f);
-            TryAddCalamityBoss("AstrumAureus", 12.5f);
-            ProgressionOrder.TryAdd(ModContent.NPCType<InfernalTyrantHead>(), 13f);
-            TryAddCalamityBoss("PlaguebringerGoliath", 13.2f);
-            ProgressionOrder.TryAdd(NPCID.Golem, 13.5f);
-            TryAddCalamityBoss("RavagerBody", 13.8f);
-            ProgressionOrder.TryAdd(NPCID.HallowBoss, 14f);
-            TryAddCalamityBoss("AstrumDeusHead", 14.5f);
-            ProgressionOrder.TryAdd(NPCID.DukeFishron, 15f);
-            ProgressionOrder.TryAdd(NPCID.CultistBoss, 16f);
-            ProgressionOrder.TryAdd(NPCID.MoonLordCore, 17f);
+             // ── Hardmode ──
+             ProgressionOrder.TryAdd(ModContent.NPCType<FrozenAssaulter>(), 7.2f);
+             ProgressionOrder.TryAdd(NPCID.QueenSlimeBoss, 8f);
+             TryAddCalamityBoss("Cryogen", 8.5f);
+             ProgressionOrder.TryAdd(NPCID.Spazmatism, 9f);
+             ProgressionOrder.TryAdd(NPCID.Retinazer, 9f);
+             TryAddCalamityBoss("AquaticScourgeHead", 9.3f);
+             TryAddCalamityBoss("BrimstoneElemental", 9.6f);
+             ProgressionOrder.TryAdd(NPCID.TheDestroyer, 10f);
+             TryAddCalamityBoss("CalamitasClone", 10.5f);
+             TryAddCalamityBoss("GreatSandShark", 10.7f);
+             ProgressionOrder.TryAdd(NPCID.SkeletronPrime, 11f);
+             TryAddCalamityBoss("Leviathan", 11.5f);
+             ProgressionOrder.TryAdd(NPCID.Plantera, 12f);
+             TryAddCalamityBoss("AstrumAureus", 12.5f);
+             ProgressionOrder.TryAdd(ModContent.NPCType<InfernalTyrantHead>(), 13f);
+             TryAddCalamityBoss("PlaguebringerGoliath", 13.2f);
+             ProgressionOrder.TryAdd(NPCID.Golem, 13.5f);
+             TryAddCalamityBoss("RavagerBody", 13.8f);
+             ProgressionOrder.TryAdd(NPCID.HallowBoss, 14f);
+             TryAddCalamityBoss("AstrumDeusHead", 14.5f);
+             ProgressionOrder.TryAdd(NPCID.DukeFishron, 15f);
+             ProgressionOrder.TryAdd(NPCID.CultistBoss, 16f);
+             ProgressionOrder.TryAdd(NPCID.MoonLordCore, 17f);
 
-            // ── Post-Moon Lord (Calamity) ──
-            TryAddCalamityBoss("ProfanedGuardianCommander", 17.5f);
-            TryAddCalamityBoss("ProfanedGuardianDefender", 17.501f);
-            TryAddCalamityBoss("ProfanedGuardianHealer", 17.502f);
-            TryAddCalamityBoss("Dragonfolly", 18f);
-            TryAddCalamityBoss("Providence", 18.5f);
-            TryAddCalamityBoss("CeaselessVoid", 19f);
-            TryAddCalamityBoss("StormWeaverHead", 19.1f);
-            TryAddCalamityBoss("Signus", 19.2f);
-            TryAddCalamityBoss("Polterghast", 20f);
-            TryAddCalamityBoss("OldDuke", 20.5f);
-            TryAddCalamityBoss("DevourerofGodsHead", 21f);
-            TryAddCalamityBoss("Yharon", 22f);
-            TryAddCalamityBoss("ThanatosHead", 23f);
-            TryAddCalamityBoss("SupremeCalamitas", 24f);
-        }*/
+             // ── Post-Moon Lord (Calamity) ──
+             TryAddCalamityBoss("ProfanedGuardianCommander", 17.5f);
+             TryAddCalamityBoss("ProfanedGuardianDefender", 17.501f);
+             TryAddCalamityBoss("ProfanedGuardianHealer", 17.502f);
+             TryAddCalamityBoss("Dragonfolly", 18f);
+             TryAddCalamityBoss("Providence", 18.5f);
+             TryAddCalamityBoss("CeaselessVoid", 19f);
+             TryAddCalamityBoss("StormWeaverHead", 19.1f);
+             TryAddCalamityBoss("Signus", 19.2f);
+             TryAddCalamityBoss("Polterghast", 20f);
+             TryAddCalamityBoss("OldDuke", 20.5f);
+             TryAddCalamityBoss("DevourerofGodsHead", 21f);
+             TryAddCalamityBoss("Yharon", 22f);
+             TryAddCalamityBoss("ThanatosHead", 23f);
+             TryAddCalamityBoss("SupremeCalamitas", 24f);
+         }*/
 
         /*private static void TryAddCalamityBoss(string npcName, float progression)
         {
@@ -306,33 +306,29 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             return float.MaxValue;
         }*/
 
-       /* private static void InitSoulSliderRanges()
-        {
-            if (SoulSliderRanges.Count > 0)
-                return;
+        /* private static void InitSoulSliderRanges()
+         {
+             if (SoulSliderRanges.Count > 0)
+                 return;
 
-            SoulSliderRanges[NPCID.KingSlime] = (0f, 30f, 1f);
-            SoulSliderRanges[NPCID.SkeletronPrime] = (0f, 10f, 1f);
-        }*/
+             SoulSliderRanges[NPCID.KingSlime] = (0f, 30f, 1f);
+             SoulSliderRanges[NPCID.SkeletronPrime] = (0f, 10f, 1f);
+         }*/
 
         private void AddBossCard(ReaperUpgradeRegister soulData)
         {
-            /* if (BannedIds.Contains(npcType))
-                 return;*/
-
-            //NPC npc = ContentSamples.NpcsByNetId[npcType];
             NPC npc = soulData.npc;
             Mod mod = soulData.mod;
 
-            if (RemnantGlobalNPC.GetMod(npc.type) != soulData.mod)
+            if (!npc.boss)
                 return;
 
-            if (!npc.boss) return;
-
             Asset<Texture2D> headTexture = ReaperSoulUIExtras.GetBossHead(npc);
+
             var card = new UIBossCard(soulData, headTexture);
             card.Width.Set(0f, 1f);
             card.Height.Set(60f, 0f);
+
             card.OnLeftClick += (evt, el) =>
             {
                 SelectedNpcType = npc.type;
