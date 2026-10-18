@@ -3,7 +3,6 @@ using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
 using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;

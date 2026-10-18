@@ -1,8 +1,5 @@
 using CalamityMod;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;

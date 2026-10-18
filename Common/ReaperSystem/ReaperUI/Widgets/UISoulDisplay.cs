@@ -1,9 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI;
-using RemnantOfTheAncientsMod.Common.UI;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

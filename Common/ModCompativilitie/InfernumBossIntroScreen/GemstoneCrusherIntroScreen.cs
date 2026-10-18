@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
-using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
 using SangarUtilities.Common.UtilsTweaks;
 using System;

@@ -3,7 +3,6 @@ using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.Global.Items.WeaponsModels;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
-using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;

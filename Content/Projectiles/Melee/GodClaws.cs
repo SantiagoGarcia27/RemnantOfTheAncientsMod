@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework.Graphics;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ID;

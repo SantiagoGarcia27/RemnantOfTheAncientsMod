@@ -13,8 +13,6 @@ namespace RemnantOfTheAncientsMod.Common.UI
 		public NPC _Npc;
 		public bool Reaper;
 
-
-
 		public UIHoverImageButton(Asset<Texture2D> texture, string hoverText, NPC npc = null) : base(texture)
 		{
 			this.hoverText = hoverText;

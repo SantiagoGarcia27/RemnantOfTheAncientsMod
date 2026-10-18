@@ -3,7 +3,6 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UI;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;

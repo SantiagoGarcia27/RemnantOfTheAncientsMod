@@ -7,8 +7,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.UI;
 
 /// <summary>
 /// A boss card shown in the left-side list. Shows the boss head icon and name.
@@ -53,16 +51,9 @@ public class UIBossCard : UIPanel
     {
         base.Update(gameTime);
 
-        NPC npc = new NPC();
-        npc.SetDefaults(soulData.npcType);
-
-        if (npc == null) return;
-
-        Mod mod = npc.ModNPC.Mod ?? RemnantOfTheAncientsMod.RemnantOfTheAncientsMod.Terraria;
-
         bool isSelected = ReaperSoulsUIState.SelectedNpcType == soulData.npcType;
-        bool hasSoul = ReaperSoulUIExtras.SelectList(mod, npc.type);
-        bool isActive = hasSoul && ReaperSoulUIExtras.SelectActiveList(mod, npc.type) > 0;
+        bool hasSoul = ReaperSoulUIExtras.SelectList(soulData.mod, soulData.npcType);
+        bool isActive = hasSoul && ReaperSoulUIExtras.SelectActiveList(soulData.mod, soulData.npcType) > 0;
 
         if (isSelected)
         {

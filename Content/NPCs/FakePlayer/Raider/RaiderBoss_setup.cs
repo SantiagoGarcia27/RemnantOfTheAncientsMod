@@ -1,7 +1,6 @@
 using RemnantOfTheAncientsMod.Content.Items.Armor.ReinforcedIron;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

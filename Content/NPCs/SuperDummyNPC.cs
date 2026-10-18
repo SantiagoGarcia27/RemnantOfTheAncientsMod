@@ -1,4 +1,3 @@
-using CalamityMod.Items.Accessories;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using System.Collections.Generic;

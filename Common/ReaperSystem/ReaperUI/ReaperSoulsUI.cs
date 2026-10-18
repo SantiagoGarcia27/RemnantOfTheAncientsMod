@@ -15,7 +15,6 @@ using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -48,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
         //private static List<string> _availableMods = ["All"];
         private static readonly string[] EffectCategories = ["All", "Stats", "Summons", "Immunity", "Mixed"];
-        private static readonly Dictionary<int, (float min, float max, float increment)> SoulSliderRanges = [];
+        //private static readonly Dictionary<int, (float min, float max, float increment)> SoulSliderRanges = [];
 
         public override void OnInitialize()
         {
@@ -181,9 +180,14 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
             // Vanilla bosses
 
-            foreach(ReaperUpgradeRegister data in Reaper.soulData)
+            foreach (ReaperUpgradeRegister data in Reaper.soulData.OrderBy(s => s.Progression))
             {
                 AddBossCard(data);
+            }
+
+            foreach (UIBossCard card in AllCards)
+            {
+                BossCardList.Add(card);
             }
 
             /*for (int j = 0; j < loadedSouls.Length - 3; j++)
@@ -210,7 +214,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             }*/
 
             // Sort all cards by game progression order
-           // InitProgressionOrder();
+            // InitProgressionOrder();
             //InitSoulSliderRanges();
 
             /*AllCards.Sort((a, b) =>
@@ -362,8 +366,19 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             bool isActive = activeValue > 0;
 
             //InitSoulSliderRanges();
-            SoulSliderRanges.TryGetValue(npc.type, out var sliderRange);
-            bool hasSlider = hasSoul && SoulSliderRanges.ContainsKey(npc.type);
+            /*SoulSliderRanges.TryGetValue(npc.type, out var sliderRange);
+            bool hasSlider = hasSoul && SoulSliderRanges.ContainsKey(npc.type);*/
+
+            ReaperUpgradeRegister soul = Reaper.soulData.FirstOrDefault(s => s.npcType == SelectedNpcType);
+
+            bool hasSlider = hasSoul && soul != null && soul.MaxValue > 1f;
+
+            var sliderRange = (
+                min: 0f,
+                max: soul?.MaxValue ?? 1f,
+                increment: soul?.Increment ?? 1f
+            );
+
 
             const float bestiaryHeight = 140f;
             const float nameHeight = 35f;
@@ -571,7 +586,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
 
             //InitSoulSliderRanges();
-            float toggleMax = SoulSliderRanges.TryGetValue(npcType, out var range) ? range.max : 1f;
+            float toggleMax = Reaper.soulData.FirstOrDefault(s => s.npcType == npcType)?.MaxValue ?? 1f;
 
             bool changed = false;
 

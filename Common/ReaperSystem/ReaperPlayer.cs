@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.Global.Items;
 using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using RemnantOfTheAncientsMod.Common.RemPlayer;

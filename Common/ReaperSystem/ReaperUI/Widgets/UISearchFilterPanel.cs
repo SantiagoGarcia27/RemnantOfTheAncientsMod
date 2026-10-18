@@ -73,7 +73,7 @@ public class UISearchFilterPanel : UIElement
         {
            // if (_availableMods.Count > 0)
             {
-                _modFilterIndex = (_modFilterIndex + 1) % _availableMods.Count;
+                //_modFilterIndex = (_modFilterIndex + 1) % _availableMods.Count;
                 //UpdateLabels();
                 //FilterBossCards();
                 SoundEngine.PlaySound(SoundID.MenuTick);

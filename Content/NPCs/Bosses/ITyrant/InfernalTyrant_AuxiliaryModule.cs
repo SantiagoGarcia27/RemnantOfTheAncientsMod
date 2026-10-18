@@ -3,7 +3,6 @@ using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using SangarUtilities.Common.UtilsTweaks;
 using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
