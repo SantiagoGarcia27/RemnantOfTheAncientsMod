@@ -10,6 +10,7 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common;
 using SangarUtilities.Common.UtilsTweaks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -115,9 +116,8 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 BackgroundPanel.Append(LeftListPanel);
 
                 const float searchPanelHeight = 60f;
-                UISearchFilterPanel searchPanel = new UISearchFilterPanel()
-                {
-                };
+                UISearchFilterPanel searchPanel = new UISearchFilterPanel();
+                searchPanel.SearchChanged += FilterBossCards;
                 searchPanel.Width.Set(0f, 1f);
                 searchPanel.Height.Set(searchPanelHeight, 0f);
                 LeftListPanel.Append(searchPanel);
@@ -127,15 +127,20 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 BossCardList.Top.Set(searchPanelHeight + 4f, 0f);
                 BossCardList.Height.Set(-(searchPanelHeight + 4f), 1f);
                 BossCardList.ListPadding = 4f;
-               /* BossCardList.ManualSortMethod = (list) =>
+                BossCardList.ManualSortMethod = (list) =>
                 {
                     list.Sort((a, b) =>
                     {
                         if (a is UIBossCard cardA && b is UIBossCard cardB)
-                            return GetProgressionValue(cardA.Npc).CompareTo(GetProgressionValue(cardB.Npc));
+                        {
+                            return cardA.soulData.Progression.CompareTo(
+                                cardB.soulData.Progression
+                            );
+                        }
+
                         return 0;
                     });
-                };*/
+                };
                 LeftListPanel.Append(BossCardList);
 
                 BossScrollbar = new UIScrollbar();
@@ -184,11 +189,12 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             {
                 AddBossCard(data);
             }
+            FilterBossCards("");
 
-            foreach (UIBossCard card in AllCards)
+            /*foreach (UIBossCard card in AllCards)
             {
                 BossCardList.Add(card);
-            }
+            }*/
 
             /*for (int j = 0; j < loadedSouls.Length - 3; j++)
             {
@@ -611,53 +617,75 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             var modNames = AllCards.Select(c => c.Mod?.Name ?? "Unknown").Distinct().ToList();
             _availableMods = ["All", .. modNames];
         }*/
-
-       /* public static void FilterBossCards()
+        private static void FilterBossCards(string searchText)
         {
             if (BossCardList == null)
                 return;
 
             BossCardList.Clear();
 
-            string modFilter = _modFilterIndex < _availableMods.Count ? _availableMods[_modFilterIndex] : "All";
-            string effectFilter = _effectFilterIndex < EffectCategories.Length ? EffectCategories[_effectFilterIndex] : "All";
-            string search = _searchText?.ToLowerInvariant() ?? "";
+            string search = searchText?.Trim() ?? "";
 
-            var filtered = new List<UIBossCard>();
-
-            foreach (var card in AllCards)
+            foreach (UIBossCard card in AllCards)
             {
-                if (!string.IsNullOrWhiteSpace(search))
-                {
-                    string name = Lang.GetNPCNameValue(card.Npc.type).ToLowerInvariant();
-                    string modName = (card.Mod?.Name ?? "").ToLowerInvariant();
-                    string desc = GetSoulDescription(card.Npc).ToLowerInvariant();
-                    if (!name.Contains(search) && !modName.Contains(search) && !desc.Contains(search))
-                        continue;
-                }
+                string npcName = Lang.GetNPCNameValue(card.soulData.npcType);
 
-                if (modFilter != "All")
+                if (string.IsNullOrEmpty(search) ||
+                    npcName.Contains(search, StringComparison.OrdinalIgnoreCase))
                 {
-                    string cardMod = card.Mod?.Name ?? "";
-                    if (!string.Equals(cardMod, modFilter, System.StringComparison.OrdinalIgnoreCase))
-                        continue;
+                    BossCardList.Add(card);
                 }
-
-                if (effectFilter != "All")
-                {
-                    string category = GetEffectCategory(card.Npc);
-                    if (category != effectFilter)
-                        continue;
-                }
-
-                filtered.Add(card);
             }
 
-            filtered.Sort((a, b) => GetProgressionValue(a.Npc).CompareTo(GetProgressionValue(b.Npc)));
+            BossCardList.Recalculate();
+        }
 
-            foreach (var card in filtered)
-                BossCardList.Add(card);
-        }*/
+        /* public static void FilterBossCards()
+         {
+             if (BossCardList == null)
+                 return;
+
+             BossCardList.Clear();
+
+             string modFilter = _modFilterIndex < _availableMods.Count ? _availableMods[_modFilterIndex] : "All";
+             string effectFilter = _effectFilterIndex < EffectCategories.Length ? EffectCategories[_effectFilterIndex] : "All";
+             string search = _searchText?.ToLowerInvariant() ?? "";
+
+             var filtered = new List<UIBossCard>();
+
+             foreach (var card in AllCards)
+             {
+                 if (!string.IsNullOrWhiteSpace(search))
+                 {
+                     string name = Lang.GetNPCNameValue(card.Npc.type).ToLowerInvariant();
+                     string modName = (card.Mod?.Name ?? "").ToLowerInvariant();
+                     string desc = GetSoulDescription(card.Npc).ToLowerInvariant();
+                     if (!name.Contains(search) && !modName.Contains(search) && !desc.Contains(search))
+                         continue;
+                 }
+
+                 if (modFilter != "All")
+                 {
+                     string cardMod = card.Mod?.Name ?? "";
+                     if (!string.Equals(cardMod, modFilter, System.StringComparison.OrdinalIgnoreCase))
+                         continue;
+                 }
+
+                 if (effectFilter != "All")
+                 {
+                     string category = GetEffectCategory(card.Npc);
+                     if (category != effectFilter)
+                         continue;
+                 }
+
+                 filtered.Add(card);
+             }
+
+             filtered.Sort((a, b) => GetProgressionValue(a.Npc).CompareTo(GetProgressionValue(b.Npc)));
+
+             foreach (var card in filtered)
+                 BossCardList.Add(card);
+         }*/
 
         /*private static string GetEffectCategory(NPC npc)
         {
@@ -680,7 +708,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             return "Mixed";
         }*/
 
-       
+
 
         public static void SetupBackground(ref DragableUIPanel panel)
         {

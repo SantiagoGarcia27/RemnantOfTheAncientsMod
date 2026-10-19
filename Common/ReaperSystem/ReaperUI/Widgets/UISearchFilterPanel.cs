@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -14,6 +15,7 @@ using Terraria.UI;
 /// </summary>
 public class UISearchFilterPanel : UIElement
 {
+    public event Action<string> SearchChanged;
     private readonly UISearchBar _searchBar;
     private readonly UIPanel _searchBarPanel;
     private readonly UIPanel _modBtn;
@@ -53,13 +55,25 @@ public class UISearchFilterPanel : UIElement
         {
             _searchBarPanel.BorderColor = new Color(80, 80, 100, 200);
         };
+
+        _searchBar.OnContentsChanged += contents =>
+        {
+            SearchChanged?.Invoke(contents);
+        };
+
         _searchBar.OnCanceledTakingInput += () =>
+        {
+            _searchBar.SetContents("", forced: true);
+            SearchChanged?.Invoke("");
+            _searchBarPanel.BorderColor = new Color(80, 80, 100, 200);
+        };
+       /* _searchBar.OnCanceledTakingInput += () =>
         {
             _searchText = "";
             _searchBar.SetContents("", forced: true);
             //FilterBossCards();
             _searchBarPanel.BorderColor = new Color(80, 80, 100, 200);
-        };
+        };*/
         _searchBarPanel.Append(_searchBar);
 
         _modBtn = new UIPanel();

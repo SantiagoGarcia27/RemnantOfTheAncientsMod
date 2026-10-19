@@ -260,6 +260,12 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.ChlorophyteBar, 200, ReaperDrop(200), 1, 1, 2, 3));
                 npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.TurtleShell, 2, ReaperDrop(2)));
             }
+            else if (npc.type == NPCType<BeetleZombie>())
+            {
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.ChlorophyteOre, 1, ReaperDrop(1),minimumDropped: 1,maximumDropped: 3, minimumDroppedReaper: 2,maximumDroppedReaper: 6));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.ChlorophyteBar, 200, ReaperDrop(200), 1, 1, 2, 3));
+                npcLoot.Add(RemnantDropRules.ReaperModeVsNormal(ItemID.BeetleShell, 3, ReaperDrop(3)));
+            }
             else if (npc.type == NPCType<HallowedZombie>())
             {
                 int? ore = RemnantOfTheAncientsMod.CalamityMod != null ? CallUtils.TryGetItemFromMod(RemnantOfTheAncientsMod.CalamityMod, "HallowedOre") : null;
