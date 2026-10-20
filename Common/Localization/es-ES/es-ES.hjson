@@ -4713,6 +4713,11 @@ Mods: {
 				// DisplayName: Crusher Soul
 				// Tooltip: ""
 			}
+
+			Terra_core: {
+				// DisplayName: Terra_core
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

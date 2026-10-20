@@ -136,7 +136,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 CheckDistance(distance, NPC);
                 return;
             }
-            if (RemnantOfTheAncientsMod.FargosSoulMod != null) EternityIA(target);
+            if (RemnantOfTheAncientsMod.FargosSoulMod != null && (DificultyUtils.EternityMode || DificultyUtils.MasochistMode)) EternityIA(target);
             else BaseAi(target, distance);
             
         }

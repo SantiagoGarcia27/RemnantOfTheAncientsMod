@@ -12,12 +12,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MiningBoost);
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Spectre Chisel");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Spectre Chisel");
-           // //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Cincel espectral");
-            //Tooltip.SetDefault("Increases mining speed by 45%");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Augmente la vitesse de minage de 45%");
-            //Tooltip.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Aumenta la velocidad de minado en un 45%");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

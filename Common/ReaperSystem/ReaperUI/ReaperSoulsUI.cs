@@ -32,11 +32,8 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         public static UIList BossCardList;
         public static UIScrollbar BossScrollbar;
         public static Dictionary<Mod, Dictionary<int, UIHoverImageButton>> Buttons = [];
-        //public static List<int> BannedIds = [];
-
         public static int SelectedNpcType = -1;
         public static Mod SelectedMod;
-
         private const int PanelWidth = 900;
         private const int PanelHeight = 750;
         private const int LeftPanelWidth = 220;
@@ -44,20 +41,11 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         private const int TitleHeight = 100;
 
         public static List<UIBossCard> AllCards = [];
-      
-
-        //private static List<string> _availableMods = ["All"];
-        private static readonly string[] EffectCategories = ["All", "Stats", "Summons", "Immunity", "Mixed"];
-        //private static readonly Dictionary<int, (float min, float max, float increment)> SoulSliderRanges = [];
 
         public override void OnInitialize()
         {
             ModLoader.TryGetMod("SangarUtilities", out Mod TerrariaMod);
             ModLoader.TryGetMod("RemnantOfTheAncientsMod", out Mod RemnantOfTheAncientsM);
-
-           // ReaperSoulUIExtras.OnInitialize();
-
-            //BannedIds = ReaperSoulUIExtras.BannedIds;
 
             Buttons = ReaperSoulUIExtras.Buttons;
             Buttons.TryAdd(TerrariaMod, []);
@@ -159,10 +147,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 UIUtils.SetPanel(ref RightDetailPanel, rightLeft, TitleHeight, rightWidth, PanelHeight - TitleHeight - Padding, new Color(30, 30, 50, 200));
                 BackgroundPanel.Append(RightDetailPanel);
 
-                // Populate boss cards
                 PopulateBossCards(TerrariaMod, CalamityMod, RemnantOfTheAncientsM);
-                //BuildModFilterList();
-                //FilterBossCards();
 
                 SetupBackground(ref BackgroundPanel);
             }
@@ -173,9 +158,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         private void PopulateBossCards(Mod terrariaMod, Mod calamityMod, Mod remnantMod)
         {
             AllCards.Clear();
-            //_searchText = "";
-            //_modFilterIndex = 0;
-            //_effectFilterIndex = 0;
 
             bool[] loadedSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
             Dictionary<int, bool> maybeSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
@@ -183,143 +165,12 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             VerifyButtomsIndex(terrariaMod);
             VerifyButtomsIndex(remnantMod);
 
-            // Vanilla bosses
-
             foreach (ReaperUpgradeRegister data in Reaper.soulData.OrderBy(s => s.Progression))
             {
                 AddBossCard(data);
             }
             FilterBossCards("");
-
-            /*foreach (UIBossCard card in AllCards)
-            {
-                BossCardList.Add(card);
-            }*/
-
-            /*for (int j = 0; j < loadedSouls.Length - 3; j++)
-            {
-                int type = ReaperSoulsPlayer.GetLoadedBossIdByIndex(j);
-                AddBossCard(terrariaMod, type);
-            }
-
-            // Remnant bosses
-            for (int j = loadedSouls.Length - 3; j < loadedSouls.Length; j++)
-            {
-                int type = ReaperSoulsPlayer.GetLoadedBossIdByIndex(j);
-                AddBossCard(remnantMod, type);
-            }
-
-            // Calamity bosses
-            if (calamityMod != null)
-            {
-                VerifyButtomsIndex(calamityMod);
-                foreach (KeyValuePair<int, bool> soul in maybeSouls)
-                {
-                    AddBossCard(calamityMod, soul.Key);
-                }
-            }*/
-
-            // Sort all cards by game progression order
-            // InitProgressionOrder();
-            //InitSoulSliderRanges();
-
-            /*AllCards.Sort((a, b) =>
-            {
-                float orderA = GetProgressionValue(a.Npc);
-                float orderB = GetProgressionValue(b.Npc);
-                return orderA.CompareTo(orderB);
-            });*/
         }
-
-        private static readonly Dictionary<int, float> ProgressionOrder = [];
-
-        /* private static void InitProgressionOrder()
-         {
-             ProgressionOrder.Clear();
-
-             // ── Pre-Hardmode ──
-             ProgressionOrder.TryAdd(NPCID.KingSlime, 1f);
-             TryAddCalamityBoss("DesertScourgeHead", 1.5f);
-             ProgressionOrder.TryAdd(NPCID.EyeofCthulhu, 2f);
-             TryAddCalamityBoss("Crabulon", 2.5f);
-             ProgressionOrder.TryAdd(NPCID.EaterofWorldsHead, 3f);
-             ProgressionOrder.TryAdd(NPCID.BrainofCthulhu, 3f);
-             TryAddCalamityBoss("HiveMind", 3.5f);
-             ProgressionOrder.TryAdd(NPCID.QueenBee, 4f);
-             ProgressionOrder.TryAdd(NPCID.SkeletronHead, 5f);
-             ProgressionOrder.TryAdd(NPCID.Deerclops, 6f);
-             ProgressionOrder.TryAdd(ModContent.NPCType<DesertAnnihilator>(), 6.7f);
-             TryAddCalamityBoss("SlimeGodCore", 6.8f);
-             ProgressionOrder.TryAdd(NPCID.WallofFlesh, 7f);
-
-             // ── Hardmode ──
-             ProgressionOrder.TryAdd(ModContent.NPCType<FrozenAssaulter>(), 7.2f);
-             ProgressionOrder.TryAdd(NPCID.QueenSlimeBoss, 8f);
-             TryAddCalamityBoss("Cryogen", 8.5f);
-             ProgressionOrder.TryAdd(NPCID.Spazmatism, 9f);
-             ProgressionOrder.TryAdd(NPCID.Retinazer, 9f);
-             TryAddCalamityBoss("AquaticScourgeHead", 9.3f);
-             TryAddCalamityBoss("BrimstoneElemental", 9.6f);
-             ProgressionOrder.TryAdd(NPCID.TheDestroyer, 10f);
-             TryAddCalamityBoss("CalamitasClone", 10.5f);
-             TryAddCalamityBoss("GreatSandShark", 10.7f);
-             ProgressionOrder.TryAdd(NPCID.SkeletronPrime, 11f);
-             TryAddCalamityBoss("Leviathan", 11.5f);
-             ProgressionOrder.TryAdd(NPCID.Plantera, 12f);
-             TryAddCalamityBoss("AstrumAureus", 12.5f);
-             ProgressionOrder.TryAdd(ModContent.NPCType<InfernalTyrantHead>(), 13f);
-             TryAddCalamityBoss("PlaguebringerGoliath", 13.2f);
-             ProgressionOrder.TryAdd(NPCID.Golem, 13.5f);
-             TryAddCalamityBoss("RavagerBody", 13.8f);
-             ProgressionOrder.TryAdd(NPCID.HallowBoss, 14f);
-             TryAddCalamityBoss("AstrumDeusHead", 14.5f);
-             ProgressionOrder.TryAdd(NPCID.DukeFishron, 15f);
-             ProgressionOrder.TryAdd(NPCID.CultistBoss, 16f);
-             ProgressionOrder.TryAdd(NPCID.MoonLordCore, 17f);
-
-             // ── Post-Moon Lord (Calamity) ──
-             TryAddCalamityBoss("ProfanedGuardianCommander", 17.5f);
-             TryAddCalamityBoss("ProfanedGuardianDefender", 17.501f);
-             TryAddCalamityBoss("ProfanedGuardianHealer", 17.502f);
-             TryAddCalamityBoss("Dragonfolly", 18f);
-             TryAddCalamityBoss("Providence", 18.5f);
-             TryAddCalamityBoss("CeaselessVoid", 19f);
-             TryAddCalamityBoss("StormWeaverHead", 19.1f);
-             TryAddCalamityBoss("Signus", 19.2f);
-             TryAddCalamityBoss("Polterghast", 20f);
-             TryAddCalamityBoss("OldDuke", 20.5f);
-             TryAddCalamityBoss("DevourerofGodsHead", 21f);
-             TryAddCalamityBoss("Yharon", 22f);
-             TryAddCalamityBoss("ThanatosHead", 23f);
-             TryAddCalamityBoss("SupremeCalamitas", 24f);
-         }*/
-
-        /*private static void TryAddCalamityBoss(string npcName, float progression)
-        {
-            if (!ModLoader.TryGetMod("CalamityMod", out Mod calamity))
-                return;
-
-            int type = CallUtils.TryGetNpcFromMod(calamity, npcName);
-            if (type > 0)
-                ProgressionOrder.TryAdd(type, progression);
-        }*/
-
-        /*private static float GetProgressionValue(NPC npc)
-        {
-            if (ProgressionOrder.TryGetValue(npc.type, out float val))
-                return val;
-
-            return float.MaxValue;
-        }*/
-
-        /* private static void InitSoulSliderRanges()
-         {
-             if (SoulSliderRanges.Count > 0)
-                 return;
-
-             SoulSliderRanges[NPCID.KingSlime] = (0f, 30f, 1f);
-             SoulSliderRanges[NPCID.SkeletronPrime] = (0f, 10f, 1f);
-         }*/
 
         private void AddBossCard(ReaperUpgradeRegister soulData)
         {
@@ -367,9 +218,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             float activeValue = ReaperSoulUIExtras.SelectActiveList(SelectedMod, SelectedNpcType);
             bool isActive = activeValue > 0;
 
-            //InitSoulSliderRanges();
-            /*SoulSliderRanges.TryGetValue(npc.type, out var sliderRange);
-            bool hasSlider = hasSoul && SoulSliderRanges.ContainsKey(npc.type);*/
 
             ReaperUpgradeRegister soul = Reaper.soulData.FirstOrDefault(s => s.npcType == SelectedNpcType);
 
@@ -380,7 +228,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 max: soul?.MaxValue ?? 1f,
                 increment: soul?.Increment ?? 1f
             );
-
 
             const float bestiaryHeight = 140f;
             const float nameHeight = 35f;
@@ -497,9 +344,11 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
                 };
             }
 
-            var toggleText = new UIText(toggleLabel, 0.9f);
-            toggleText.HAlign = 0.5f;
-            toggleText.VAlign = 0.5f;
+            var toggleText = new UIText(toggleLabel, 0.9f)
+            {
+                HAlign = 0.5f,
+                VAlign = 0.5f
+            };
             togglePanel.Append(toggleText);
             RightDetailPanel.Append(togglePanel);
         }
@@ -587,7 +436,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
             int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
 
-            //InitSoulSliderRanges();
             float toggleMax = Reaper.soulData.FirstOrDefault(s => s.npcType == npcType)?.MaxValue ?? 1f;
 
             bool changed = false;
@@ -612,11 +460,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             }
         }
 
-        /*private static void BuildModFilterList()
-        {
-            var modNames = AllCards.Select(c => c.Mod?.Name ?? "Unknown").Distinct().ToList();
-            _availableMods = ["All", .. modNames];
-        }*/
         private static void FilterBossCards(string searchText)
         {
             if (BossCardList == null)
@@ -639,76 +482,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
 
             BossCardList.Recalculate();
         }
-
-        /* public static void FilterBossCards()
-         {
-             if (BossCardList == null)
-                 return;
-
-             BossCardList.Clear();
-
-             string modFilter = _modFilterIndex < _availableMods.Count ? _availableMods[_modFilterIndex] : "All";
-             string effectFilter = _effectFilterIndex < EffectCategories.Length ? EffectCategories[_effectFilterIndex] : "All";
-             string search = _searchText?.ToLowerInvariant() ?? "";
-
-             var filtered = new List<UIBossCard>();
-
-             foreach (var card in AllCards)
-             {
-                 if (!string.IsNullOrWhiteSpace(search))
-                 {
-                     string name = Lang.GetNPCNameValue(card.Npc.type).ToLowerInvariant();
-                     string modName = (card.Mod?.Name ?? "").ToLowerInvariant();
-                     string desc = GetSoulDescription(card.Npc).ToLowerInvariant();
-                     if (!name.Contains(search) && !modName.Contains(search) && !desc.Contains(search))
-                         continue;
-                 }
-
-                 if (modFilter != "All")
-                 {
-                     string cardMod = card.Mod?.Name ?? "";
-                     if (!string.Equals(cardMod, modFilter, System.StringComparison.OrdinalIgnoreCase))
-                         continue;
-                 }
-
-                 if (effectFilter != "All")
-                 {
-                     string category = GetEffectCategory(card.Npc);
-                     if (category != effectFilter)
-                         continue;
-                 }
-
-                 filtered.Add(card);
-             }
-
-             filtered.Sort((a, b) => GetProgressionValue(a.Npc).CompareTo(GetProgressionValue(b.Npc)));
-
-             foreach (var card in filtered)
-                 BossCardList.Add(card);
-         }*/
-
-        /*private static string GetEffectCategory(NPC npc)
-        {
-            string desc = GetSoulDescription(npc).ToLowerInvariant();
-
-            string[] summonKw = ["invoca", "summon", "tornado", "esporas", "spores", "niebla", "mist", "manos", "hands", "minion", "shark", "tiburón"];
-            string[] statsKw = ["damage", "daño", "defense", "defensa", "speed", "velocidad", "life", "vida", "mining", "minería", "vuelo", "flight", "crit", "máxima", "maximum"];
-            string[] immunityKw = ["inmunidad", "immunity", "inmune", "immune"];
-
-            bool hasSummon = summonKw.Any(k => desc.Contains(k));
-            bool hasStats = statsKw.Any(k => desc.Contains(k));
-            bool hasImmunity = immunityKw.Any(k => desc.Contains(k));
-
-            int count = (hasSummon ? 1 : 0) + (hasStats ? 1 : 0) + (hasImmunity ? 1 : 0);
-
-            if (count >= 2) return "Mixed";
-            if (hasSummon) return "Summons";
-            if (hasImmunity) return "Immunity";
-            if (hasStats) return "Stats";
-            return "Mixed";
-        }*/
-
-
 
         public static void SetupBackground(ref DragableUIPanel panel)
         {
