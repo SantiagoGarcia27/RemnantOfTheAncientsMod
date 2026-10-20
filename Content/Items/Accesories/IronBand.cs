@@ -1,13 +1,17 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 {
 	public class IronBand : ModItem
 	{
-		public override void SetStaticDefaults()
+		int damageReduction = 2;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(damageReduction);
+        public override void SetStaticDefaults()
 		{
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -24,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories
 		}
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.endurance += 0.02f;
+			player.endurance += damageReduction/100f;
 		}
 
 		public override void AddRecipes()

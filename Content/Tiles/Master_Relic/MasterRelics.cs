@@ -1,8 +1,10 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -13,7 +15,26 @@ using Terraria.ObjectData;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic
 {
-    internal class Frozen_Relic_Tile : ModTile
+    public class Crusher_Relic_t : Base_Relic_Tile
+    {
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Crusher_Relic_t";
+    }
+    public class Desert_Relic_t : Base_Relic_Tile
+    {
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Desert_Relic_t";
+    }
+    public class Frozen_Relic_t : Base_Relic_Tile
+    {
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Frozen_Relic_t";
+    }
+    public class Tyrant_Relic_Tile : Base_Relic_Tile
+    {
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Tyrant_Relic_t";
+    }
+
+
+
+    public abstract class Base_Relic_Tile : ModTile
     {
         public const int FrameWidth = 18 * 3;
         public const int FrameHeight = 18 * 4;
@@ -21,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic
         public const int VerticalFrames = 1;
 
         public Asset<Texture2D> RelicTexture;
-        public virtual string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Frozen_Relic_t";
+        public virtual string RelicTextureName { get; set; }
 
         public override string Texture => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/RelicPedestal";
 
@@ -63,28 +84,6 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic
             AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
 
         }
-
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-
-            int placeStyle = frameX / FrameWidth;
-
-            int itemType = 0;
-            switch (placeStyle)
-            {
-                case 0:
-                    itemType = ModContent.ItemType<Frozen_Relic>();
-                    break;
-
-            }
-
-            if (itemType > 0)
-            {
-
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, itemType);
-            }
-        }
-
         public override bool CreateDust(int i, int j, ref int type)
         {
             return false;

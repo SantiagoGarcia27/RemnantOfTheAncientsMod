@@ -814,7 +814,7 @@ Mods: {
 
 			IronBand: {
 				DisplayName: Banda de hierro
-				Tooltip: Reduce un 2% el daño recibido
+				Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent}"
 			}
 
 			magic_stick: {
@@ -4715,8 +4715,13 @@ Mods: {
 			}
 
 			Terra_core: {
-				// DisplayName: Terra_core
-				// Tooltip: ""
+				DisplayName: Núcleo Terra
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMiningSpeed}
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					Emite luz y proporciona un radar de peligros en las cuevas.
+					'''
 			}
 		}
 

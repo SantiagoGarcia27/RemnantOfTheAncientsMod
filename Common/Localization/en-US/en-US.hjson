@@ -801,7 +801,7 @@ Mods: {
 
 			IronBand: {
 				DisplayName: Iron Band
-				Tooltip: 2% Increased damage reduction
+				Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent}"
 			}
 
 			magic_stick: {
@@ -4689,8 +4689,13 @@ Mods: {
 			}
 
 			Terra_core: {
-				DisplayName: Terra_core
-				Tooltip: ""
+				DisplayName: Terra Core
+				Tooltip:
+					'''
+					{$CommonItemTooltip.PercentIncreasedMiningSpeed}
+					{$CommonItemTooltip.ReducesDamageTakenByPercent}
+					Emits light and provide danger radar on caves
+					'''
 			}
 		}
 
