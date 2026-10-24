@@ -1,7 +1,12 @@
 using FargowiltasSouls.Content.Items.Accessories.Masomode;
 using FargowiltasSouls.Content.Items.Accessories.Souls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.Toggler;
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
+using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +22,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
     [AutoloadEquip(EquipType.Wings)]
 	public class SoulOfDivinity : FlightMasteryWings
 	{
-		public override bool IsLoadingEnabled(Mod mod)
-		{
-			return ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
-		}
+		public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
         public override bool Eternity => true;
-
         public override int NumFrames => 10;
-
         public static int WingSlotID { get; private set; }
 
 		public override void SetStaticDefaults()
@@ -37,32 +37,27 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
 		public override void SafeModifyTooltips(List<TooltipLine> tooltips)
 		{
-            if (Item.social)
-            {
-                return;
-            }
+            if (Item.social)  return;
+
             string description = Language.GetTextValue("Mods.FargowiltasSouls.Items.EternitySoul.Extra.Additional");
             description += "                                                                                                                                                       ";
+
             if (Main.GameUpdateCount % 5u == 0 || EternitySoulSystem.TooltipLines == null)
             {
                 EternitySoulSystem.TooltipLines = [];
                 for (int j = 0; j < 7; j++)
                 {
                     string line = Utils.NextFromCollection(Main.rand, EternitySoulSystem.Tooltips.Where((string s) => s.Length < description.Length).ToList());
-                    if (EternitySoulSystem.TooltipLines.Contains(line))
-                    {
-                        j--;
-                    }
-                    else
-                    {
-                        EternitySoulSystem.TooltipLines.Add(line);
-                    }
+                    if (EternitySoulSystem.TooltipLines.Contains(line)) j--; 
+                    else EternitySoulSystem.TooltipLines.Add(line);
+                    
                 }
             }
             for (int i = 0; i < EternitySoulSystem.TooltipLines.Count; i++)
             {
                 description = description + "\n" + EternitySoulSystem.TooltipLines[i];
             }
+
             tooltips.Add(new TooltipLine(Mod, "tooltip", description));
             tooltips.Add(new TooltipLine(Mod, "FlavorText", Language.GetTextValue("Mods.FargowiltasSouls.Items.EternitySoul.Extra.Flavor")));
         }
@@ -90,10 +85,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 			SandsofTime.Use(player);
 		}
 
-		public override bool? UseItem(Player player)
-		{
-			return true;
-		}
+		public override bool? UseItem(Player player) => true;
 
 		public override void UpdateInventory(Player player)
 		{
@@ -124,5 +116,29 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 			.Register();
 		}
 	}
+
+    [ExtendsFromMod("FargowiltasSouls")]
+    public class DivineAuraEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<SoulOfDivinityHeader>();
+        public override int ToggleItemType => ModContent.ItemType<SoulOfDivinity>();
+        int GodZoneproj = 0;
+        public override void PostUpdateEquips(Player player)
+        {
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<GodZone>()] <= 0)
+            {
+                GodZoneproj = Projectile.NewProjectile(Entity.GetSource_None(), player.position, Vector2.Zero, ModContent.ProjectileType<GodZone>(), 0, 0, player.whoAmI);
+                Main.projectile[GodZoneproj].timeLeft = 1000;
+            }
+        }
+    }
+
+    [ExtendsFromMod("FargowiltasSouls")]
+    public class GodModeEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<SoulOfDivinityHeader>();
+        public override int ToggleItemType => ModContent.ItemType<SoulOfDivinity>();
+        public override void PostUpdateEquips(Player player) => player.GetModPlayer<RemnantPlayer>().Inmortal = true;    
+    }
 }
 

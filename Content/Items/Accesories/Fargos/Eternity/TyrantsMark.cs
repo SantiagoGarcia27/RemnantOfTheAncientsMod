@@ -1,5 +1,7 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -50,6 +52,31 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         public static void AddEffects(Player player, float MovmentSpeedBonusBonus)
         {
             player.moveSpeed *= 1f + MovmentSpeedBonusBonus / 100;
+        }
+    }
+
+    [ExtendsFromMod("FargowiltasSouls")]
+    public class TyrantMarkEnemyProjectileSizeEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<GuardiansShieldHeader>();
+        public override int ToggleItemType => ModContent.ItemType<TyrantsMark>();
+        public override void PostUpdateEquips(Player player)
+        {
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+            player.GetModPlayer<RemnantPlayer>().EnemyProjectilesScaleBouns -= remnantFargosSoulsPlayer.ProjectileSizeBonus / 100;
+        }
+    }
+
+    [ExtendsFromMod("FargowiltasSouls")]
+    public class TyrantMarkEnemyProjectileSpeedEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<GuardiansShieldHeader>();
+        public override int ToggleItemType => ModContent.ItemType<TyrantsMark>();
+
+        public override void PostUpdateEquips(Player player)
+        {
+            RemnantFargosSoulsPlayer remnantFargosSoulsPlayer = player.GetModPlayer<RemnantFargosSoulsPlayer>();
+            player.GetModPlayer<RemnantPlayer>().EnemyProjectilesSpeedScaleBouns -= remnantFargosSoulsPlayer.ProjectileSpeedBonus / 100f;
         }
     }
 }

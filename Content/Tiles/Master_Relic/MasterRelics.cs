@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -15,24 +16,22 @@ using Terraria.ObjectData;
 
 namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic
 {
-    public class Crusher_Relic_t : Base_Relic_Tile
+    public class Crusher_Relic_Tile : Base_Relic_Tile
     {
-        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Crusher_Relic_t";
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Crusher_Relic_Tile";
     }
-    public class Desert_Relic_t : Base_Relic_Tile
+    public class Desert_Relic_Tile : Base_Relic_Tile
     {
-        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Desert_Relic_t";
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Desert_Relic_Tile";
     }
-    public class Frozen_Relic_t : Base_Relic_Tile
+    public class Frozen_Relic_Tile : Base_Relic_Tile
     {
-        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Frozen_Relic_t";
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Frozen_Relic_Tile";
     }
     public class Tyrant_Relic_Tile : Base_Relic_Tile
     {
-        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Tyrant_Relic_t";
+        public override string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Tyrant_Relic_Tile";
     }
-
-
 
     public abstract class Base_Relic_Tile : ModTile
     {

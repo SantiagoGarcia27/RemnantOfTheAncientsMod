@@ -1,8 +1,11 @@
 using FargowiltasSouls.Core.Toggler;
+using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
+using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Common.RemPlayer
@@ -17,11 +20,12 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         }
 
         public bool DaylightEnchantment;
-
         public bool IronBallistaEnchantment;
         public bool FrostBarrier;
         public int FrostBarrierCounter;
         public bool DesertMedalion;
+
+        public bool StoneBand;
 
 
         public bool NightTp;
@@ -45,6 +49,13 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
             tuxoniteEnchantCrit = false;
         }
 
+
+        private float highestY;
+        private bool wasOnGround;
+        private bool initialized;
+
+        public float LastFallHeight { get; private set; }
+
         public override void PostUpdate()
         {
             if (NightTp)
@@ -61,8 +72,56 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                 Projectile proj = Utils1.SearchFirstProjectile(ModContent.ProjectileType<GodZone>(),false,false);
                 if (proj != null && proj.owner == Player.whoAmI && proj.type == ModContent.ProjectileType<GodZone>()) proj.Kill();     
             }
-           
-        }
 
+
+
+            bool onGround = Player.velocity.Y == 0f && Collision.SolidCollision(new Vector2(Player.position.X, Player.Bottom.Y), Player.width, 2, true);
+
+            if (!initialized)
+            {
+                initialized = true;
+                wasOnGround = onGround;
+                highestY = Player.Bottom.Y;
+                return;
+            }
+            if (!onGround)
+            {
+                if (wasOnGround) highestY = Player.Bottom.Y;
+                highestY = MathHelper.Min(highestY, Player.Bottom.Y);
+            }
+
+            if (onGround && !wasOnGround)
+            {
+                float fallPixels = Player.Bottom.Y - highestY;
+                LastFallHeight = MathHelper.Max(0f, fallPixels / 16f);
+
+                if (StoneBand && LastFallHeight > 15)
+                {
+                    int numProj = 5;
+
+                    int offset = 3.ToCoordinatePosition();
+                    int projID = ProjectileID.DD2ExplosiveTrapT2Explosion;
+
+                   
+
+                    for (int i = -numProj; i <= numProj; i++)
+                    {
+                        Vector2 pos = new(Player.Center.X + (i * 2).ToCoordinatePosition(), (Player.Bottom.Y) - offset);
+
+                        int posX = (int)pos.X;
+                        int posY = (int)pos.Y;
+
+                        StatModifier genericDamage = Player.GetDamage(DamageClass.Generic);
+                        float bonus = (Player.GetDamage(DamageClass.Generic).Additive - 1f) * 100f;
+
+                        int damage = (int)(20f * bonus); 
+
+                        int index = Projectile.NewProjectile(Player.GetSource_TileInteraction(posX, posY), pos, Vector2.Zero, projID, 10, 1, Player.whoAmI);   
+                    }
+                }
+            }
+
+            wasOnGround = onGround;
+        }
     }
 }

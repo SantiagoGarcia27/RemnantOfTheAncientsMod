@@ -4723,6 +4723,11 @@ Mods: {
 					Emite luz y proporciona un radar de peligros en las cuevas.
 					'''
 			}
+
+			StoneBand: {
+				// DisplayName: Stone Band
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {

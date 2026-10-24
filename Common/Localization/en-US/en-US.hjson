@@ -4697,6 +4697,11 @@ Mods: {
 					Emits light and provide danger radar on caves
 					'''
 			}
+
+			StoneBand: {
+				DisplayName: Stone Band
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {

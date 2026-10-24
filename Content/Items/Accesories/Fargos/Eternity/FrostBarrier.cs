@@ -1,6 +1,8 @@
 using FargowiltasSouls.Core.AccessoryEffectSystem;
+using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
+using RemnantOfTheAncientsMod.Common.ModCompativilitie.Fargos;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System.Collections.Generic;
@@ -13,17 +15,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
     public class FrostBarrier : ModItem
     {
-
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
-        }
-        //string Key = Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier);
-        int DurationSeconds = 10;
-       // public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier), DurationSeconds);
+        public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
+        private readonly int DurationSeconds = 10;
+      
         public override void SetStaticDefaults()
         { 
-        
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
        
@@ -48,6 +44,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
            Utils1.FindAndReplaceTooltip(tooltips,"{0}", Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier));
             Utils1.FindAndReplaceTooltip(tooltips,"{1}", DurationSeconds.ToString());
             base.ModifyTooltips(tooltips);
+        }
+    }
+
+    [ExtendsFromMod("FargowiltasSouls")]
+    public class FrostBarrierEffect : AccessoryEffect
+    {
+        public override Header ToggleHeader => Header.GetHeader<GuardiansShieldHeader>();
+        public override int ToggleItemType => ModContent.ItemType<FrostBarrier>();
+
+        public override void PostUpdateEquips(Player player)
+        {
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier = true;
         }
     }
 }

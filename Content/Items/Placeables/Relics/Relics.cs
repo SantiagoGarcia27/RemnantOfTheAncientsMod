@@ -6,9 +6,27 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Placeables.Relics
 {
-
-    internal class Crusher_Relic : ModItem
+    public class Crusher_Relic : BaseRelic
     {
+        public override int TileType => ModContent.TileType<Crusher_Relic_Tile>();
+    }
+    public class Desert_Relic : BaseRelic
+    {
+        public override int TileType => ModContent.TileType<Desert_Relic_Tile>();
+    }
+    public class Frozen_Relic : BaseRelic
+    {
+        public override int TileType => ModContent.TileType<Frozen_Relic_Tile>();
+    }
+    public class Tyrant_Relic : BaseRelic
+    {
+        public override int TileType => ModContent.TileType<Tyrant_Relic_Tile>();
+    }
+
+    public abstract class BaseRelic : ModItem
+    {
+        public virtual int TileType { get; set; }
+
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<Crusher_Relic_Tile>(), 0);
