@@ -1,3 +1,4 @@
+using FargowiltasSouls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common;
@@ -13,6 +14,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
+    [ExtendsFromMod("FargowiltasSouls")]
     public class FrostBarrier : ModItem
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
@@ -28,7 +30,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             Item.width = 10;
             Item.height = 14;
             Item.value = Item.buyPrice(0, 6, 70, 72);
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ItemRarityID.Blue;
             Item.defense = 5;
             Item.accessory = true;
             Item.GetGlobalItem<CustomTooltip>().EternityItem = true;
@@ -41,7 +43,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-           Utils1.FindAndReplaceTooltip(tooltips,"{0}", Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier));
+            if (tooltips.TryFindTooltipLine("ItemName", out TooltipLine itemNameLine))
+            {
+                itemNameLine.OverrideColor = FargowiltasSouls.FargowiltasSouls.EModeColor();
+            }
+
+            Utils1.FindAndReplaceTooltip(tooltips,"{0}", Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier));
             Utils1.FindAndReplaceTooltip(tooltips,"{1}", DurationSeconds.ToString());
             base.ModifyTooltips(tooltips);
         }

@@ -1,3 +1,4 @@
+using FargowiltasSouls;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
@@ -13,6 +14,7 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
+    [ExtendsFromMod("FargowiltasSouls")]
     public class GuardiansShield : ModItem
     {
         public override bool IsLoadingEnabled(Mod mod)
@@ -34,7 +36,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             Item.width = 10;
             Item.height = 14;
             Item.value = Item.buyPrice(0, 16, 70, 72);
-            Item.rare = ItemRarityID.Expert;     
+            Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
             Item.defense = 5;
             Item.GetGlobalItem<CustomTooltip>().EternityItem = true;
@@ -46,6 +48,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
             remnantFargosSoulsPlayer.ProjectileSpeedBonus = ProjectileSpeedBonus;
             remnantFargosSoulsPlayer.ProjectileSizeBonus = ProjectileSizeBonus;
+            player.AddEffect<StoneBandEffect>(Item);
+            player.AddEffect<StoneBandSappireEffect>(Item);
             player.AddEffect<DesertMedalionEffect>(Item);
             player.AddEffect<FrostBarrierEffect>(Item);
             player.GetModPlayer<RemnantFargosSoulsPlayer>().FrostBarrier = true;
@@ -56,6 +60,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            if (tooltips.TryFindTooltipLine("ItemName", out TooltipLine itemNameLine))
+            {
+                itemNameLine.OverrideColor = FargowiltasSouls.FargowiltasSouls.EModeColor();
+            }
+
             Utils1.FindAndReplaceTooltip(tooltips, "&0", Utils1.TooltipHotkeyString(FargosKeybindSystem.TogleFrostBarrier));
             Utils1.FindAndReplaceTooltip(tooltips, "&1", DurationSeconds.ToString());
             base.ModifyTooltips(tooltips);
@@ -64,6 +73,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         public override void AddRecipes()
         {
             CreateRecipe()
+            .AddIngredient(ModContent.ItemType<StoneRing>(), 1)
             .AddIngredient(ModContent.ItemType<DesertMedalion>(), 1)
             .AddIngredient(ModContent.ItemType<FrostBarrier>(), 1)
             .AddIngredient(ModContent.ItemType<TyrantsMark>(), 1)

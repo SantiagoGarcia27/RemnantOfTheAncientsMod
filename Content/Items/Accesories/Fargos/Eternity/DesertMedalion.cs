@@ -1,3 +1,4 @@
+using FargowiltasSouls.Content.Items;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common.Global;
@@ -11,8 +12,8 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
-    [JITWhenModsEnabled("FargowiltasSouls")]
-    public class DesertMedalion : ModItem
+    [ExtendsFromMod("FargowiltasSouls")]
+    public class DesertMedalion : SoulsItem
     {
         public override bool IsLoadingEnabled(Mod mod) => ModLoader.TryGetMod("FargowiltasSouls", out Mod FargosSoulMod);
         public override void SetStaticDefaults()
@@ -25,7 +26,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             Item.width = 10;
             Item.height = 14;
             Item.value = Item.buyPrice(0, 6, 70, 72);
-            Item.rare = ItemRarityID.Expert;     
+            Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
             Item.GetGlobalItem<CustomTooltip>().EternityItem = true;
         }

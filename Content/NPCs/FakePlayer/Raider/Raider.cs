@@ -11,13 +11,30 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
     {
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new()
+            var value = new NPCID.Sets.NPCBestiaryDrawModifiers
             {
-                Velocity = 1f
+                Direction = 1,
+                SpriteDirection = 1
             };
+
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
-            NPC.spriteDirection = NPC.direction;
+        }
+
+        public override void FindFrame(int frameHeight)
+        {
+            if (frameHeight <= 0)
+                return;
+
+            NPC.frameCounter++;
+
+            if (NPC.frameCounter >= 6)
+            {
+                NPC.frameCounter = 0;
+                NPC.frame.Y += frameHeight;
+
+                if (NPC.frame.Y >= frameHeight * 16)
+                    NPC.frame.Y = 0;
+            }
         }
         public override void SetDefaults()
         {

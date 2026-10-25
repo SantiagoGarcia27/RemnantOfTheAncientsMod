@@ -5,7 +5,6 @@ using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using SangarUtilities.Common.UtilsTweaks;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

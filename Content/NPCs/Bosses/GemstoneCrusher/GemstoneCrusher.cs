@@ -19,6 +19,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -208,6 +209,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
         }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            bestiaryEntry.Info.AddRange(
+            [
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+            ]);
+        }
 
         public override void SetDefaults()
         {
@@ -219,7 +227,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             NPC.value = Item.buyPrice(0, 1, 0, 0);
             NPC.npcSlots = 30f;
             NPC.knockBackResist = 0f;
-            NPC.boss = false;
+            NPC.boss = true;
             NPC.lavaImmune = true;
             NPC.noGravity = false;
             NPC.noTileCollide = false;

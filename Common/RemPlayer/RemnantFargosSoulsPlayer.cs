@@ -2,8 +2,8 @@ using FargowiltasSouls.Core.Toggler;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
-using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,6 +26,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         public bool DesertMedalion;
 
         public bool StoneBand;
+        public int OrbitalSaphireCount;
 
 
         public bool NightTp;
@@ -43,10 +44,12 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         {
             FrostBarrier = false;
             DesertMedalion = false;
+            StoneBand = false;
             IronBallistaEnchantment = false;
             NightTp = false;
             DaylightEnchantment = false;
             tuxoniteEnchantCrit = false;
+            OrbitalSaphireCount = 0;
         }
 
 
@@ -102,7 +105,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                     int offset = 3.ToCoordinatePosition();
                     int projID = ProjectileID.DD2ExplosiveTrapT2Explosion;
 
-                   
+                    int damageBase = 10;
 
                     for (int i = -numProj; i <= numProj; i++)
                     {
@@ -112,13 +115,29 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                         int posY = (int)pos.Y;
 
                         StatModifier genericDamage = Player.GetDamage(DamageClass.Generic);
-                        float bonus = (Player.GetDamage(DamageClass.Generic).Additive - 1f) * 100f;
+                        float bonus = (Player.GetDamage(DamageClass.Generic).Additive - 1f);
 
-                        int damage = (int)(20f * bonus); 
+                        int damage = damageBase + (int)(damageBase * bonus); 
 
-                        int index = Projectile.NewProjectile(Player.GetSource_TileInteraction(posX, posY), pos, Vector2.Zero, projID, 10, 1, Player.whoAmI);   
+                        int index = Projectile.NewProjectile(Player.GetSource_TileInteraction(posX, posY), pos, Vector2.Zero, projID, damage, 1, Player.whoAmI, ai0: Player.whoAmI);   
                     }
                 }
+            }
+
+            if (Player.ownedProjectileCounts[ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>()] < OrbitalSaphireCount)
+            {
+                int damageBase = 20;
+
+                StatModifier genericDamage = Player.GetDamage(DamageClass.Generic);
+                float bonus = (Player.GetDamage(DamageClass.Generic).Additive - 1f);
+
+                int damage = damageBase + (int)(damageBase * bonus);
+
+
+                int index = Projectile.NewProjectile(Player.GetSource_None(), Player.Center + new Vector2(16 * Player.direction, 0), Vector2.Zero, ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(), damage, 2, Player.whoAmI);
+                Main.projectile[index].friendly = true;
+                Main.projectile[index].hostile = false;
+                Main.projectile[index].timeLeft = Utils1.FormatTimeToTick(Second: 3);
             }
 
             wasOnGround = onGround;

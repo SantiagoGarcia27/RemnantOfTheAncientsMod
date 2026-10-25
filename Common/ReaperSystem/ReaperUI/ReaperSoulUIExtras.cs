@@ -2,6 +2,7 @@
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UI;
 using SangarUtilities.Common.UtilsTweaks;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -15,37 +16,18 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         public static Dictionary<Mod, Dictionary<int, UIHoverImageButton>> Buttons = [];  
         public static Asset<Texture2D> GetBossHead(NPC npc)
         {
+
             ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
 
-            if (npc.type == NPCID.Golem)
-                return TextureAssets.NpcHeadBoss[5];
-            else if (npc.type == NPCID.BrainofCthulhu)
-                return TextureAssets.NpcHeadBoss[2];
-            else if (npc.type == NPCID.MoonLordCore)
-                return TextureAssets.NpcHeadBoss[8];
-            else if (npc.type == NPCID.DukeFishron)
-                return TextureAssets.NpcHeadBoss[4];
-
-            ModNPC ModNpc = npc.ModNPC;
-            if (CalamityMod != null && ModNpc != null)
+            int index = -1;
+            try
             {
-                if (ModNpc.Mod == CalamityMod)
-                {
-                    string CalamityPath = "CalamityMod/NPCs/";
-
-                    if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "StormWeaverHead"))
-                        return ModContent.Request<Texture2D>(CalamityPath + "StormWeaver/StormWeaverHead_Head_Boss");
-                    else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "DevourerofGodsHead"))
-                        return ModContent.Request<Texture2D>(CalamityPath + "DevourerofGods/DevourerofGodsHead_Head_Boss");
-                    else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "SupremeCalamitas"))
-                        return ModContent.Request<Texture2D>(CalamityPath + "SupremeCalamitas/HoodedHeadIcon");
-                    else if (npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "Providence"))
-                        return ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Common/UI/ReaperUI/Textures/NPC_Head_Boss_Providence");
-                    else if(npc.type == CallUtils.TryGetNpcFromMod(CalamityMod, "DesertScourgeHead"))
-                        return ModContent.Request<Texture2D>(CalamityPath + "DesertScourge/DesertScourgeHead_Head_Boss");
-                }
+                index = NPCID.Sets.BossHeadTextures[npc.type];
             }
-            int index = npc.GetBossHeadTextureIndex();
+            catch(Exception ex)
+            {
+                index = -1;
+            }
             if (index == -1) return TextureAssets.NpcHeadBoss[1];
             return TextureAssets.NpcHeadBoss[index];
         }

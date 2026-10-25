@@ -301,6 +301,8 @@ Mods: {
 			// SoulOfDivinityHeader: Soul Of Divinity
 			// DivineAuraEffect: DivineAura
 			// GodModeEffect: Immortality
+			// StoneBandEffect: Stomp
+			// StoneBandSappireEffect: Obital saphire
 		}
 
 		Buffs: {
@@ -4724,9 +4726,13 @@ Mods: {
 					'''
 			}
 
-			StoneBand: {
-				// DisplayName: Stone Band
-				// Tooltip: ""
+			StoneRing: {
+				// DisplayName: Stone Ring
+				/* Tooltip:
+					'''
+					When you land after a jump, explosions appear at your feet.
+					Spawns a defensive sapphire that will orbit you
+					''' */
 			}
 		}
 
@@ -4845,8 +4851,24 @@ Mods: {
 			KillerBunny.DisplayName: Conejo asesino
 			MaceSkeleton.DisplayName: Esqueleto mazudo
 			// FakePlayer.DisplayName: Fake Player
-			Raider.DisplayName: Forajido
-			RaiderBoss.DisplayName: Lider Forajido
+
+			Raider: {
+				DisplayName: Forajido
+				Bestiary:
+					'''
+					Un oportnista que se dedica a saquear pueblos desprotegidos,
+					aunque usualmente no se coordinan bien entre ellos.
+					'''
+			}
+
+			RaiderBoss: {
+				DisplayName: Lider Forajido
+				Bestiary:
+					'''
+					Un aventurero ligeramente mas cauteloso y preparado que sus secuases,
+					pero mayormente es poque acapara para si mismo todo lo que ellos consiguen ya que es muy perezoso para conseguirlas él.
+					'''
+			}
 		}
 
 		Projectiles: {

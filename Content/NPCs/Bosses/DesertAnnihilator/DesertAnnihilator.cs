@@ -39,11 +39,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.NPCBestiaryDrawModifiers value = new()
             {
+                CustomTexturePath = "RemnantOfTheAncientsMod/Content/NPCs/Bosses/DesertAnnihilator/DesertAniquilator_BossChecklist",
                 Position = new Vector2(40f, 24f),
                 PortraitPositionXOverride = 0f,
-                PortraitPositionYOverride = 12f,
-                Frame = 0,
-                Velocity = 1f
+                PortraitPositionYOverride = 12f
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
@@ -269,11 +268,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             introModule.ScreenAnimationTimer = reader.ReadSingle();
             introModule.SpawnerAnimationTimer = reader.ReadSingle();
 
-            animationModule?.CurrentTexture = (DesertAnnihilator_Animation.TextureType)reader.ReadByte();
+            DesertAnnihilator_Animation.TextureType textureType = (DesertAnnihilator_Animation.TextureType)reader.ReadByte();
+            if (animationModule != null) animationModule.CurrentTexture = textureType;
+            
 
-            auxiliaryModule?.BossIsInRage = reader.ReadBoolean();
+            bool BossIsInRage = reader.ReadBoolean();
+            if(auxiliaryModule != null) auxiliaryModule.BossIsInRage = BossIsInRage;
 
-            attackModule?.shootTimeline = reader.ReadInt32();
+
+            int shootTimeline = reader.ReadInt32();
+            if (attackModule != null) attackModule.shootTimeline = shootTimeline;
 
             spawnGuardians = reader.ReadBoolean();
             

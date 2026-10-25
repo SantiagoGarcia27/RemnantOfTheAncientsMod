@@ -1,9 +1,11 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using PlayerProxyLib.Common.ProxyPlayer;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static FakePlayer_Setup;
 
@@ -15,13 +17,16 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 		private FakePlayer_Attack attackModule { get; set; }
 		private FakePlayer_Consumables consumableModule { get; set; }
 
+        public override string Texture => "RemnantOfTheAncientsMod/Content/NPCs/FakePlayer/Defaultplayer";
+        public override string BossHeadTexture => "RemnantOfTheAncientsMod/Content/NPCs/FakePlayer/Defaultplayer_Head";
+
         protected FakePlayerEquipmentList inventory { get; set; }
         private int selectedItem;
         private FakePlayer_Attack.VisualState visualState;
         public override void SetStaticDefaults()
 		{
 
-			Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
+			Main.npcFrameCount[Type] = 16;
 			NPCID.Sets.NPCBestiaryDrawModifiers value = new()
 			{
 				Velocity = 1f
@@ -183,10 +188,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
-			bestiaryEntry.Info.AddRange([
+            bestiaryEntry.Info.AddRange([
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
-				new FlavorTextBestiaryInfoElement("A brave warrior with a powerfull mace"),
+				new FlavorTextBestiaryInfoElement(Mod.GetLocalizationKey($"NPCs.{Name}.Bestiary")),
 			]);
 		}
         public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) => false;
@@ -312,5 +316,24 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 
             base.ReceiveExtraAI(reader);
 		}
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                Texture2D texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/FakePlayer/Defaultplayer").Value;
+
+                int frame = (int)((Main.GameUpdateCount / 6u) % 16u);
+
+                Rectangle source = new(0, frame * 54, 44, 54);
+
+                Vector2 position = NPC.Center - screenPos;
+
+                spriteBatch.Draw(texture, position, source, Color.White, 0f, new Vector2(22, 27), 1f, SpriteEffects.None, 0f);
+
+                return false;
+            }
+            return false;
+        }
 	}
 }

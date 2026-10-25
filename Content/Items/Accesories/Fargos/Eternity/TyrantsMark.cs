@@ -1,3 +1,4 @@
+using FargowiltasSouls.Content.Items;
 using FargowiltasSouls.Core.AccessoryEffectSystem;
 using FargowiltasSouls.Core.Toggler;
 using RemnantOfTheAncientsMod.Common.Global;
@@ -11,7 +12,8 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
 {
-    public class TyrantsMark : ModItem
+    [ExtendsFromMod("FargowiltasSouls")]
+    public class TyrantsMark : SoulsItem
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -32,7 +34,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
             Item.width = 10;
             Item.height = 14;
             Item.value = Item.buyPrice(0, 6, 70, 72);
-            Item.rare = ItemRarityID.Expert;
+            Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
             Item.GetGlobalItem<CustomTooltip>().EternityItem = true;
         }

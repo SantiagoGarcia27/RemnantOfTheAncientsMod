@@ -203,8 +203,9 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         public static void InfernumLoot(NPC npc, NPCLoot npcLoot)
         {
             bool Infernum =DificultyUtils.InfernumMode;
-
-            if (npc.type == NPCType<DesertAnnihilator>())
+            if (npc.type == NPCType<GemstoneCrusher>())
+                npcLoot.AddIff(() => DificultyUtils.InfernumMode, ItemType<Crusher_Relic_Infernum>());
+            else if (npc.type == NPCType<DesertAnnihilator>())
                 npcLoot.AddIff(() =>DificultyUtils.InfernumMode, ItemType<Desert_Relic_Infernum>());
             else if (npc.type == NPCType<FrozenAssaulter>())
                 npcLoot.AddIff(() =>DificultyUtils.InfernumMode, ItemType<Frozen_Relic_Infernum>());
@@ -214,6 +215,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void FargosLoot(NPC npc, NPCLoot npcLoot)
         {
+            if(npc.type == NPCType<GemstoneCrusher>())
+            {
+                npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive([new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist()], ItemType<StoneRing>()));
+            }
             if (npc.type == NPCType<DesertAnnihilator>())
             {
                 npcLoot.Add(RemnantDropRules.CommonDropOnAllPlayersWithConditionsNoAllActive([new RemnantConditions.IsEternity(), new RemnantConditions.IsMasochist()], ItemType<DesertMedalion>()));

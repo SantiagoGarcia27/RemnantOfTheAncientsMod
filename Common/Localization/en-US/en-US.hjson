@@ -295,6 +295,8 @@ Mods: {
 			SoulOfDivinityHeader: Soul Of Divinity
 			DivineAuraEffect: DivineAura
 			GodModeEffect: Immortality
+			StoneBandEffect: Stomp
+			StoneBandSappireEffect: Obital saphire
 		}
 
 		Buffs: {
@@ -3579,6 +3581,8 @@ Mods: {
 				Tooltip:
 					'''
 					Grants inmunity to [I:RemnantOfTheAncientsMod/DesertMedalion] burning sand
+					[I:RemnantOfTheAncientsMod/StoneRing] When you land after a jump, explosions appear at your feet.
+					[I:RemnantOfTheAncientsMod/StoneRing] Spawns a defensive sapphire that will orbit you
 					[I:RemnantOfTheAncientsMod/FrostBarrier] Press &0 key to activate a Frost shield that repel all hostile projectiles for &1s.
 					[I:RemnantOfTheAncientsMod/TyrantsMark] Hostile projectiles size decreased By {0}%
 					[I:RemnantOfTheAncientsMod/TyrantsMark] Hostile projectiles speed decreased By {1}%
@@ -4698,9 +4702,13 @@ Mods: {
 					'''
 			}
 
-			StoneBand: {
-				DisplayName: Stone Band
-				Tooltip: ""
+			StoneRing: {
+				DisplayName: Stone Ring
+				Tooltip:
+					'''
+					When you land after a jump, explosions appear at your feet.
+					Spawns a defensive sapphire that will orbit you
+					'''
 			}
 		}
 
@@ -4819,8 +4827,24 @@ Mods: {
 			KillerBunny.DisplayName: Killer Bunny
 			MaceSkeleton.DisplayName: Mace Skeleton
 			FakePlayer.DisplayName: Fake Player
-			Raider.DisplayName: Raider
-			RaiderBoss.DisplayName: Raider Leader
+
+			Raider: {
+				DisplayName: Raider
+				Bestiary:
+					'''
+					An opportunist who likes to raid unprotected bases.
+					They are usually not very well-coordinated.
+					'''
+			}
+
+			RaiderBoss: {
+				DisplayName: Raider Leader
+				Bestiary:
+					'''
+					An adventurer slightly more cautious than his henchmen. 
+					He usually keeps all the good things they get for himself.
+					'''
+			}
 		}
 
 		Projectiles: {
