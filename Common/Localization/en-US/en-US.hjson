@@ -4710,6 +4710,42 @@ Mods: {
 					Spawns a defensive sapphire that will orbit you
 					'''
 			}
+
+			BurnyrHammer: {
+				DisplayName: Burnyr Hammer
+				Tooltip:
+				'''
+				Summons a infernal worm
+				A failed conjuration
+				'''
+			}
+
+			GaiaChisel: {
+				DisplayName: Gaia Chisel
+				Tooltip: 
+				'''
+				Summons a friendly debris
+				It like statues
+				'''
+			}
+
+			SandolerUrn: {
+				DisplayName: Sandoler Urn
+				Tooltip: 
+				'''
+				Summons a friendly sand construct
+				The next generation
+				'''
+			}
+
+			SnowrunBook: {
+				DisplayName: Snowrun Book
+				Tooltip:
+				'''
+				Summons a friendly ice construct
+				It carries the legacy of its creator
+				'''
+			}
 		}
 
 		NPCs: {

@@ -4734,6 +4734,42 @@ Mods: {
 					Spawns a defensive sapphire that will orbit you
 					''' */
 			}
+
+			BurnyrHammer: {
+				DisplayName: Martillo de Burnyr
+				Tooltip:
+				'''
+				Invoca un gusano infernal
+				Una conjuración fallida
+				'''
+			}
+
+			GaiaChisel: {
+				DisplayName: Sincel de Gaia
+				Tooltip:
+				'''
+				Invoca un escombro amistoso
+				Le gustan las estatuas
+				'''
+			}
+
+			SandolerUrn: {
+				DisplayName: Urna de Sandoler
+				Tooltip:
+				'''
+				Invoca un constructo de arena amistoso
+				La siguiente generación
+				'''
+			}
+
+			SnowrunBook: {
+				DisplayName: Libro de Snowrun
+				Tooltip: 			
+				'''
+				Invoca un constructo helado amistoso
+				Carga con el legado de su creador
+				'''
+			}
 		}
 
 		NPCs: {
