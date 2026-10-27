@@ -11,8 +11,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
     {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.BladeOfGrass;
         public override void SetStaticDefaults()
-        {
-            //DisplayName.SetDefault("Sharp Leaf");
+        { 
             Main.projFrames[Projectile.type] = 7;
         }
         public override void SetDefaults()

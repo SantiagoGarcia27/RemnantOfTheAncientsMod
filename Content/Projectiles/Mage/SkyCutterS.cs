@@ -21,7 +21,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Projectile.timeLeft = 20000;
             Projectile.light = 1.75f;
             Projectile.extraUpdates = 1;
-            Projectile.DamageType = DamageClass.Magic;
             Projectile.ignoreWater = true;
             Projectile.scale = 0.7f;
             AIType = ProjectileID.InfluxWaver;

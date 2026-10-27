@@ -722,6 +722,26 @@ Mods: {
 				DisplayName: Stone Mortar
 				Description: A stone mortarn will fight for you
 			}
+
+			CrusherPetBuff: {
+				DisplayName: Crusher Pet Buff
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.CrusherPetBuff.Description
+			}
+
+			DesertPetBuff: {
+				DisplayName: Desert Pet Buff
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.DesertPetBuff.Description
+			}
+
+			FrozenPetBuff: {
+				DisplayName: Frozen Pet Buff
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.FrozenPetBuff.Description
+			}
+
+			TyrantPetBuff: {
+				DisplayName: Tyrant Pet Buff
+				Description: Mods.RemnantOfTheAncientsMod.Buffs.TyrantPetBuff.Description
+			}
 		}
 
 		Items: {
@@ -4714,37 +4734,42 @@ Mods: {
 			BurnyrHammer: {
 				DisplayName: Burnyr Hammer
 				Tooltip:
-				'''
-				Summons a infernal worm
-				A failed conjuration
-				'''
+					'''
+					Summons a infernal worm
+					A failed conjuration
+					'''
 			}
 
 			GaiaChisel: {
 				DisplayName: Gaia Chisel
-				Tooltip: 
-				'''
-				Summons a friendly debris
-				It like statues
-				'''
+				Tooltip:
+					'''
+					Summons a friendly debris
+					It like statues
+					'''
 			}
 
 			SandolerUrn: {
 				DisplayName: Sandoler Urn
-				Tooltip: 
-				'''
-				Summons a friendly sand construct
-				The next generation
-				'''
+				Tooltip:
+					'''
+					Summons a friendly sand construct
+					The next generation
+					'''
 			}
 
 			SnowrunBook: {
 				DisplayName: Snowrun Book
 				Tooltip:
-				'''
-				Summons a friendly ice construct
-				It carries the legacy of its creator
-				'''
+					'''
+					Summons a friendly ice construct
+					It carries the legacy of its creator
+					'''
+			}
+
+			ButterflySword: {
+				DisplayName: Butterfly Sword
+				Tooltip: ""
 			}
 		}
 
@@ -5058,6 +5083,11 @@ Mods: {
 			SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 			StoneImpalerP.DisplayName: Stone Impaler
 			RockAndRollProjectile.DisplayName: Rock And Roll
+			CrusherPetProjectile.DisplayName: Crusher Pet Projectile
+			DesertPetProjectile.DisplayName: Desert Pet Projectile
+			FrozenPetProjectile.DisplayName: Frozen Pet Projectile
+			TyrantPetProjectile.DisplayName: Tyrant Pet Projectile
+			NaturalSpiritButerfly.DisplayName: Natural Spirit Buterfly
 		}
 
 		Tiles: {

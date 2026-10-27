@@ -11,26 +11,26 @@ namespace RemnantOfTheAncientsMod.Content.Items.pets.Master
 {
     public class GaiaChisel : PetItem
     {
-        public override int PetProjectile => ProjectileType<TortugaPetProjectile>();
-        public override int PetBuff => BuffType<TortugaPetBuff>();
+        public override int PetProjectile => ProjectileType<CrusherPetProjectile>();
+        public override int PetBuff => BuffType<CrusherPetBuff>();
         public override bool Master => true;
     }
     public class SandolerUrn : PetItem
     {
-        public override int PetProjectile => ProjectileType<TortugaPetProjectile>();
-        public override int PetBuff => BuffType<TortugaPetBuff>();
+        public override int PetProjectile => ProjectileType<DesertPetProjectile>();
+        public override int PetBuff => BuffType<DesertPetBuff>();
         public override bool Master => true;
     }
     public class SnowrunBook : PetItem
     {
-        public override int PetProjectile => ProjectileType<TortugaPetProjectile>();
-        public override int PetBuff => BuffType<TortugaPetBuff>();
+        public override int PetProjectile => ProjectileType<FrozenPetProjectile>();
+        public override int PetBuff => BuffType<FrozenPetBuff>();
         public override bool Master => true;
     }
     public class BurnyrHammer : PetItem
     {
-        public override int PetProjectile => ProjectileType<TortugaPetProjectile>();
-        public override int PetBuff => BuffType<TortugaPetBuff>();
+        public override int PetProjectile => ProjectileType<TyrantPetProjectile>();
+        public override int PetBuff => BuffType<TyrantPetBuff>();
         public override bool Master => true;
     }
 
@@ -47,8 +47,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.pets.Master
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.ZephyrFish);
-            Item.shoot = ProjectileType<TortugaPetProjectile>();
-            Item.buffType = BuffType<TortugaPetBuff>();
+            Item.shoot = PetProjectile;
+            Item.buffType = PetBuff;
             Item.master = Master;
             Item.sellPrice(gold: 5);
         }

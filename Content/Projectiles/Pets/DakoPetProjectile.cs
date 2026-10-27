@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Pets
 		public override bool PreAI()
 		{
 			Player player = Main.player[Projectile.owner];
-			player.zephyrfish = false; // Relic from AIType
+			player.zephyrfish = false;
 			return true;
 		}
 
