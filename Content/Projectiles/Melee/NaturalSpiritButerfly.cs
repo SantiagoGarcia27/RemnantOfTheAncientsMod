@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -48,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                 return false;
             }
 
-         
+            if (player.HeldItem.type != ModContent.ItemType<ButterflySword>()) Projectile.Kill();
 
             return base.PreAI();
         }
@@ -65,6 +66,28 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Melee
                 Main.dust[p1].velocity = Projectile.velocity;
                 Main.dust[p1].noGravity = true;
             }
+
+            Player player = Main.player[Projectile.owner];
+            if (player.HeldItem.type == ModContent.ItemType<ButterflySword>())
+            {
+                player.GetModPlayer<ButterflySwordPlayer>().BlockAttackTimer = 5;
+                player.itemAnimation = 0;
+                player.itemTime = 0;
+            }
         } 
+    }
+
+    public class ButterflySwordPlayer : ModPlayer
+    {
+        public int BlockAttackTimer;
+
+        public override void SetControls()
+        {
+            if (BlockAttackTimer > 0)
+            {
+                Player.controlUseItem = false;
+                BlockAttackTimer--;
+            }
+        }
     }
 }

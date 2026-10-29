@@ -55,7 +55,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Pets
 				{
 					Tile tile = Main.tile[(int)pos.X, (int)pos.Y];
 
-                    if (WorldGen.InWorld((int)pos.X, (int)pos.X) && tile.HasTile &&  tile.TileType == TileID.Statues)
+                    if (WorldGen.InWorld((int)pos.X, (int)pos.Y) && tile.HasTile &&  tile.TileType == TileID.Statues)
 					{
 						Projectile.velocity = new(0, 1);
                         stopTimmer = stopTimmerMax;
