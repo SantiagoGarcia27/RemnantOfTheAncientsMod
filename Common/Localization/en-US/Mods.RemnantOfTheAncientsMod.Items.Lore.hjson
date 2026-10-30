@@ -1,25 +1,41 @@
-ShortTooltip:
-	'''
-	[c/E3AF40:Whispers from on high dance in your ears...]
-	[c/BEBEBE:Press "Left Shift" to listen closer]
-	'''
-LoreDesertAniquilator.Lore:
-	'''
-	During my explorations in the desert I encountered a strange creature.
-	The sand began to gather together until it formed a kind of sand slime.
-	As I approached I was attacked by the surrounding creatures and with a strong storm it disappeared.
-	I'll have to investigate further...
-	'''
-LoreFrozen.Lore:
-	'''
-	This strange creature seems to come from ancient times.
-	We don't know its origin, but permafrost has found ancient paintings in ice caverns.
-	These illustrated several ancient and powerful beings, we assume that this living mass of ice is what remains of one of them.
-	We will have to continue investigating....
-	'''
+LoreFrozen: {
+	DisplayName: Frozen Assaulter
+	Tooltip: ""
+	Lore:
+		'''
+		This strange creature seems to come from ancient times.
+		We don't know its origin, but permafrost has found ancient paintings in ice caverns.
+		These illustrated several ancient and powerful beings, we assume that this living mass of ice is what remains of one of them.
+		We will have to continue investigating....
+		'''
+}
 
-LoreTyrant: {
-	DisplayName: Infernal Tyrant
+LoreGemstoneCrusher: {
+	DisplayName: Gemstone Crusher
+	Tooltip: ""
+	Lore:
+		'''
+		We spent hours making our way through the caverns, trying to descend. 
+		I think it’s starting to affect us.
+		I thought I saw the rocks moving....
+		'''
+}
+
+LoreDesertAniquilator: {
+	DisplayName: Desert Aniquilator
+	Tooltip: ""
+	Lore:
+		'''
+		During my explorations in the desert I encountered a strange creature.
+		The sand began to gather together until it formed a kind of sand slime.
+		As I approached I was attacked by the surrounding creatures and with a strong storm it disappeared.
+		I'll have to investigate further...
+		'''
+}
+
+LoreInfernalTyrant: {
+	DisplayName: The Infernal Tyrant
+	Tooltip: ""
 	Lore:
 		'''
 		Our investigations led us to locate another of the ancient beings in the depths of the world

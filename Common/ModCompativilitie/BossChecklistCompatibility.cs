@@ -55,16 +55,16 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
         {
             collection =
                 [
-                ModContent.ItemType<DesertTrophy>(),
-                ModContent.ItemType<DesertAMask>(),
-                ModContent.ItemType<DesertMusicBox>()
+                ModContent.ItemType<CrusherTrophy>(),
+                ModContent.ItemType<CrusherMask>(),
+                //ModContent.ItemType<DesertMusicBox>()
                 ];
 
             BossChecklistMod.Call(
             "LogBoss",
             Mod,
             "GemstoneCrusher",
-            0.2f,
+            0.25f,
             () => RemnantDownedBossSystem.downedCrusher,
             ModContent.NPCType<GemstoneCrusher>(),
             new Dictionary<string, object>()
@@ -81,7 +81,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 "LogEvent",
                 Mod,
                 "PlayerRaid",
-                0.25f,
+                0.5f,
                 () => RemnantDownedBossSystem.downedRaiderInvasion,
                 new List<int>() 
                 { 

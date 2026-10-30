@@ -3673,12 +3673,6 @@ Mods: {
 				Tooltip: After a long adventure, absolute effort coincided with the purest luck; now, the divine manifests itself before you.
 			}
 
-			Lore: {
-				LoreDesertAniquilator.DisplayName: Lore Desert Aniquilator
-				LoreFrozen.DisplayName: Lore Frozen
-				LoreInfernalTyrant.DisplayName: Lore Infernal Tyrant
-			}
-
 			Genesis: {
 				DisplayName: Genesis
 				Tooltip: ""
@@ -4769,6 +4763,11 @@ Mods: {
 
 			ButterflySword: {
 				DisplayName: Butterfly Sword
+				Tooltip: ""
+			}
+
+			CrusherMask: {
+				DisplayName: Crusher Mask
 				Tooltip: ""
 			}
 		}

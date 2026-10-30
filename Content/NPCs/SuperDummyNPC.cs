@@ -28,7 +28,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs
             NPC.damage = 0;
             NPC.defense = 0;
             NPC.lifeMax = 9999999;
-            NPC.HitSound = SoundID.NPCHit1;
+            NPC.HitSound = SoundID.NPCHit15;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.friendly = false;
             AIType = -1;

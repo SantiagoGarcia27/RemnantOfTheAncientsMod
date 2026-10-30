@@ -3704,12 +3704,6 @@ Mods: {
 				// Tooltip: After a long adventure, absolute effort coincided with the purest luck; now, the divine manifests itself before you.
 			}
 
-			Lore: {
-				// LoreDesertAniquilator.DisplayName: Lore Desert Aniquilator
-				// LoreFrozen.DisplayName: Lore Frozen
-				// LoreInfernalTyrant.DisplayName: Lore Infernal Tyrant
-			}
-
 			Genesis: {
 				// DisplayName: Genesis
 				// Tooltip: ""
@@ -4637,12 +4631,12 @@ Mods: {
 			}
 
 			StoneBlunderbuss: {
-				DisplayName: Trabuco rocoso
+				DisplayName: Trabuco pétreo
 				// Tooltip: ""
 			}
 
 			StoneMortar: {
-				DisplayName: Mortero pétreo
+				DisplayName: Mortero rocoso
 				// Tooltip: ""
 			}
 
@@ -4652,7 +4646,7 @@ Mods: {
 			}
 
 			StoneImpaler: {
-				DisplayName: Empalador pétreo
+				DisplayName: Empalarocas
 				// Tooltip: ""
 			}
 
@@ -4677,17 +4671,17 @@ Mods: {
 			}
 
 			CrusherTrophy: {
-				DisplayName: Trofeo del Triturador de Gemas
+				DisplayName: Trofeo del Trituragemas
 				// Tooltip: ""
 			}
 
 			Crusher_Relic: {
-				DisplayName: Reliquia del Triturador de Gemas
+				DisplayName: Reliquia del Trituragemas
 				// Tooltip: ""
 			}
 
 			Crusher_Relic_Infernum: {
-				DisplayName: Reliquia del Triturador de Gemas Infernal
+				DisplayName: Reliquia del Trituragemas Infernal
 				// Tooltip: ""
 			}
 
@@ -4792,7 +4786,12 @@ Mods: {
 			}
 
 			ButterflySword: {
-				// DisplayName: Butterfly Sword
+				DisplayName: Espada de mariposa
+				// Tooltip: ""
+			}
+
+			CrusherMask: {
+				DisplayName: Máscara del Trituragemas
 				// Tooltip: ""
 			}
 		}
@@ -4802,10 +4801,10 @@ Mods: {
 			ArmoredSlime.DisplayName: Slime blindada
 
 			GemstoneCrusher: {
-				DisplayName: Triturador de Gemas
+				DisplayName: Trituragemas
 
 				BossChecklistIntegration: {
-					EntryName: Triturador de Gemas
+					EntryName: Trituragemas
 					SpawnInfo: Aparece naturalmente en las cavernas
 					DespawnMessage: "[c/6495ed:La antigua roca se aleja rodando]"
 				}
@@ -5563,7 +5562,7 @@ Mods: {
 
 			DefeatGemstoneCrusherAchievement: {
 				FriendlyName: Fallo estructural
-				Description: Derrota al Triturador de gemas, el guardián inmovil.
+				Description: Derrota al Trituragemas, el guardián inmovil.
 			}
 		}
 

@@ -4,6 +4,7 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -75,7 +76,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 				else
 				{
 					HitCounter = 0;
-
                 }
             }
 		}
@@ -140,7 +140,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
 
             ChangeMode(player, ShortMode);
 
-            TextureAssets.Item[Type] = ShortMode ? textureDagger : texture;
+           // TextureAssets.Item[Type] = ShortMode ? textureDagger : texture;
         }
 
         public override void Unload()
@@ -149,10 +149,75 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             textureDagger = null;
         }
 
+        public override bool ModifyItemDraw(ref PlayerDrawSet drawInfo, ref DrawData drawData, ref DrawData? coloredDrawData, ref DrawData? glowMaskDrawData)
+        {
+            if (!ShortMode)
+                return true;
 
-		public override void AddRecipes()
-		{
-		}
-	}
+            Texture2D dagger = textureDagger.Value;
+
+            // Dimensiones de la textura original
+            float oldWidth = drawData.sourceRect?.Width ?? drawData.texture.Width;
+
+            float oldHeight = drawData.sourceRect?.Height ?? drawData.texture.Height;
+
+            // Adaptar el punto de origen a la nueva textura
+            drawData.origin = new Vector2(
+                drawData.origin.X * dagger.Width / oldWidth,
+                drawData.origin.Y * dagger.Height / oldHeight
+            );
+
+            drawData.texture = dagger;
+            drawData.sourceRect = new Rectangle(0, 0, dagger.Width, dagger.Height);
+
+            // Mantener la capa de color, si existe
+            if (coloredDrawData.HasValue)
+            {
+                DrawData colored = coloredDrawData.Value;
+                colored.texture = dagger;
+                colored.sourceRect = drawData.sourceRect;
+                colored.origin = drawData.origin;
+                coloredDrawData = colored;
+            }
+
+            return true;
+        }
+
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (!ShortMode)
+                return true;
+
+            Texture2D dagger = textureDagger.Value;
+
+            float ratio = MathHelper.Min(
+                (float)frame.Width / dagger.Width,
+                (float)frame.Height / dagger.Height
+            );
+
+            spriteBatch.Draw(dagger, position, null, drawColor, 0f, new Vector2(dagger.Width / 2f, dagger.Height / 2f), scale * ratio, SpriteEffects.None, 0f);
+
+            return false;
+        }
+
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            if (!ShortMode)
+                return true;
+
+            Texture2D dagger = textureDagger.Value;
+
+            Vector2 origin = new(
+                dagger.Width / 2f,
+                dagger.Height / 2f
+            );
+
+            Vector2 position = Item.Bottom - Main.screenPosition - new Vector2(0f, origin.Y * scale);
+
+            spriteBatch.Draw(dagger, position, null, alphaColor, rotation, origin, scale, SpriteEffects.None, 0f);
+
+            return false;
+        }
+    }
 }
 
