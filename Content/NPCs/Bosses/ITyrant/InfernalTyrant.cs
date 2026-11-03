@@ -310,7 +310,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
             ]));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalMask>(), 10));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<InfernalTrophy>(), 10));
-            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<infernalBag>()));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<InfernalBag>()));
             if(DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Tyrant_Relic>()));
 

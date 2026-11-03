@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Common.Extensions;
+using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
@@ -161,6 +163,18 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         private int breackingDelay => Utils1.FormatTimeToTick(Second: Main.rand.NextFloat(0.5f , 1.1f));
         private int breackingTimer = 0;
 
+        private bool _isPhaseChanging = false;
+
+        private bool IsPhaseChanging
+        {
+            get => _isPhaseChanging;
+            set
+            {
+                _isPhaseChanging = value;
+                if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
+            }
+        }
+
         private int postStompDelayCounter = 0;
         private static int postStompDelay => Utils1.FormatTimeToTick(Second: 1);
 
@@ -191,6 +205,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             )
         };
      
+        private bool Boss
+        {
+            get => NPC.boss;
+            set
+            {
+                NPC.boss = value;
+                NPC.GetGlobalNPC<RemnantGlobalNPC>().ShouldDrawBossBar = value;
+                if (Main.netMode != NetmodeID.MultiplayerClient) NPC.netUpdate = true;
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             NPCID.Sets.MPAllowedEnemies[Type] = true;
@@ -249,7 +274,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 if (NPC.justHit)
                 {
                     CurrentState = BossState.Idle;
-                    NPC.boss = true;
+                    Boss = true;
                 }
 
                 return;
@@ -566,23 +591,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
         public override void OnHitByItem(Player player,Item item,NPC.HitInfo hit,int damageDone)
         {
-            if (CurrentState == BossState.Sleep)
-            {
-                CurrentState = BossState.Idle;
-                NPC.boss = true;
-            }
-
+            WakeUp();
             base.OnHitByItem(player, item, hit, damageDone);
         }
 
-        public override void OnHitByProjectile(Projectile projectile,NPC.HitInfo hit,int damageDone){
-            if (CurrentState == BossState.Sleep)
-            {
-                CurrentState = BossState.Idle;
-                NPC.boss = true;
-            }
+        public override void OnHitByProjectile(Projectile projectile,NPC.HitInfo hit,int damageDone)
+        {
+            WakeUp();
             base.OnHitByProjectile(projectile, hit, damageDone);
         }
+
+
 
         public override void OnSpawn(IEntitySource source)
         {
@@ -591,8 +610,17 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             shootTimer = 0; // Shoot
             spawnerTimer = 0; // Spawn
             stompActivationTimer = 0; // Stomp
-
+            Boss = false;
             base.OnSpawn(source);
+        }
+
+        public void WakeUp()
+        {
+            if (CurrentState == BossState.Sleep)
+            {
+                CurrentState = BossState.Idle;
+                Boss = true;
+            }
         }
 
         public void CheckPhase()
@@ -612,6 +640,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             if (CurrentPhase == 1 || CurrentPhase == 3)
             {
                 NPC.dontTakeDamage = true;
+                NPC.noTileCollide = false;
                 if(breackingTimer < breackingDelay)
                 {
                     breackingTimer++;
@@ -652,6 +681,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             writer.Write((int)projectileType);
             writer.Write((byte)CurrentStompPhase);
             writer.Write(CurrentPhase);
+            writer.Write(IsPhaseChanging);
             writer.Write(postStompDelayCounter);
             base.SendExtraAI(writer);
         }
@@ -663,7 +693,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             projectileType = (GemType)reader.ReadInt32();
             _currentStompPhase = (StompType)reader.ReadByte();
             _currentPhase = reader.ReadInt32();
+            _isPhaseChanging = reader.ReadBoolean();
             postStompDelayCounter = reader.ReadInt32();
+
             base.ReceiveExtraAI(reader);
         }
          
@@ -801,7 +833,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             ]));
             npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<TreasureRock>()));
 
-           // npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesertAMask>(), 7));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrusherMask>(), 7));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrusherTrophy>(), 1));
             if (DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));

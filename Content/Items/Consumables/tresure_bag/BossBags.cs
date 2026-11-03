@@ -1,15 +1,21 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Flail;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.saber;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Bows;
+using RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.Rep;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Scrolls;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Summon;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
@@ -20,15 +26,71 @@ using static Terraria.ModLoader.ModContent;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {
-    public class desertBag : ModItem
+    public class TreasureRock : BossBagItem
+    {
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            itemLoot.Add(ItemDropRule.Common(ItemType<Terra_core>()));
+            itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<GemstoneCrusher>()));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<WandOfCaverns>(), ItemType<StoneBlunderbuss>(), ItemType<StoneMortar>(), ItemType<RockAndRoll>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new CrusherReaperSoul(), ItemType<CrusherSoul>()));
+        }
+    }
+
+    public class DesertBag : BossBagItem
+    {
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            itemLoot.Add(ItemDropRule.Common(ItemType<DesertMusicBox>(), 7));
+            itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAnnihilator>()));
+            itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<DesertBow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new DesertReaperSoul(), ItemType<DesertAnnihilatorSoul>()));
+        }
+    }
+    public class FrostBag : BossBagItem
+    {
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<FrozenAssaulter>()));
+            itemLoot.Add(ItemDropRule.Common(ItemType<FrozenMusicBox>(), 7));
+            itemLoot.Add(ItemDropRule.Common(ItemType<Frozenp2MusicBox>(), 7));
+            itemLoot.Add(ItemDropRule.Common(ItemType<Frost_core>(), 1, 1, 1));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<FrozenAssaulter>())); ;
+            // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<FrostShark>(), ItemType<Permafrost>(), ItemType<frozen_staff>(), ItemType<FrozenStafff>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new FrozenReaperSoul(), ItemType<FrozenAssaulterSoul>()));
+        }
+    }
+
+    public class InfernalBag : BossBagItem
+    {
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            itemLoot.Add(ItemDropRule.Common(ItemType<Infernal_core>()));
+            itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));
+            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>()));
+            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<TyrantRepeater>(), ItemType<SpikeSaber>(), ItemType<Tyran_Blast>(), ItemType<EvilEyeStaff>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalTyrantSoul>()));
+        }
+    }
+
+    public class StarChunk : BossBagItem
+    {
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            itemLoot.Add(ItemDropRule.Common(ItemID.FallenStar, 1, 5, 20));
+        }
+    }
+
+    public abstract class BossBagItem : ModItem
     {
         public override void SetStaticDefaults()
         {
-           // //DisplayName.SetDefault("Treasure Bag");
-            //Tooltip.SetDefault("{$CommonItem//Tooltip.RightClickToOpen}");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
-            ItemID.Sets.PreHardmodeLikeBossBag[Type] = true;
             ItemID.Sets.BossBag[Type] = true;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
         public override void SetDefaults()
@@ -41,24 +103,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             Item.expert = true;
         }
 
-        public override bool CanRightClick()
-        {
-            return true;
-        }
-        public override void ModifyItemLoot(ItemLoot itemLoot)
-        {
-            itemLoot.Add(ItemDropRule.Common(ItemType<DesertMusicBox>(), 7));
-            itemLoot.Add(ItemDropRule.Common(ItemType<Desert_Core>(), 1, 1, 1));
-            itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAnnihilator>())); 
-            itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));
-            itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<DesertBow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
-            itemLoot.Add(ItemDropRule.ByCondition(new DesertReaperSoul(), ItemType<DesertAnnihilatorSoul>()));
-        }
-        //public override int BossBagNPC => NPCType<DesertAnnihilator>();
-
+        public override bool CanRightClick() => true;
         public override Color? GetAlpha(Color lightColor)
         {
-            // Makes sure the dropped bag is always visible
             return Color.Lerp(lightColor, Color.White, 0.4f);
         }
 
@@ -73,8 +120,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
                 // This creates a randomly rotated vector of length 1, which gets it's components multiplied by the parameters
                 Vector2 direction = Main.rand.NextVector2CircularEdge(Item.width * 0.6f, Item.height * 0.6f);
-                float distance = 0.3f + Main.rand.NextFloat() * 0.5f;
-                Vector2 velocity = new Vector2(0f, -Main.rand.NextFloat() * 0.3f - 1.5f);
+                float distance = 0.3f + Main.rand.NextFloat() / 2f;
+                Vector2 velocity = new(0f, -Main.rand.NextFloat() * 0.3f - 1.5f);
 
                 Dust dust = Dust.NewDustPerfect(center + direction * distance, DustID.SilverFlame, velocity);
                 dust.scale = 0.5f;
@@ -103,7 +150,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             }
 
             Vector2 frameOrigin = frame.Size() / 2f;
-            Vector2 offset = new Vector2(Item.width / 2 - frameOrigin.X, Item.height - frame.Height);
+            Vector2 offset = new(Item.width / 2 - frameOrigin.X, Item.height - frame.Height);
             Vector2 drawPos = Item.position - Main.screenPosition + frameOrigin + offset;
 
             float time = Main.GlobalTimeWrappedHourly;
@@ -117,7 +164,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
                 time = 2f - time;
             }
 
-            time = time * 0.5f + 0.5f;
+            time = (time / 2f) + 0.5f;
 
             for (float i = 0f; i < 1f; i += 0.25f)
             {
@@ -135,13 +182,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
             return true;
         }
-    }
-
-    public class DesertReaperSoul : IItemDropRuleCondition, IProvideItemConditionDescription
-    {
-        public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NPCType<DesertAnnihilator>())] && Reaper.ReaperMode;
-        public bool CanShowItemDropInUI() => true;
-        public string GetConditionDescription() => null;
     }
 }
 

@@ -667,7 +667,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemType<FrozenMask>(), 7, 999999999));
             npcLoot.Add(ItemDropRule.Common(ItemType<Ice_escense>(), 1, 5, 20));
             npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.FrostCore, 5, 3));
-            npcLoot.Add(ItemDropRule.BossBag(ItemType<frostBag>()));
+            npcLoot.Add(ItemDropRule.BossBag(ItemType<FrostBag>()));
             npcLoot.Add(ItemDropRule.Common(ItemType<FrostTrophy>(), 10));
             if (DificultyUtils.InfernumMode != null) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ItemType<Frozen_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ItemType<Frozen_Relic>()));

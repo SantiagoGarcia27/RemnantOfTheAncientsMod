@@ -59,6 +59,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs
         public static float LifeBonus = 1f;
         public float DamageReduction = 0f;
 
+        public bool ShouldDrawBossBar = true;
+
         public override void ResetEffects(NPC NPC)
         {
             Burn_Sand = false;
