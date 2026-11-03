@@ -260,6 +260,8 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
             }
         }
 
+       
+
         public static int GetRecipeGroupId(string name)
         {
             if (!RecipeGroup.recipeGroupIDs.TryGetValue(name, out int value))
@@ -371,68 +373,6 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 }
             }
         }
-        /*public static Item ChooseAmmo(Item weapon, int ammoID)
-        {
-            var sItem = weapon;
-            Item item = null;
-            bool flag = false;
-            Player player = Main.LocalPlayer;
-            /*
-            usedAmmoItemId = 0;
-            //
-            //bool canShoot = false; // Dummy.
-
-            if (ammoID == AmmoID.Coin)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    int num = 50 + i;
-
-                    /*
-                    if (inventory[num].ammo == sItem.useAmmo && inventory[num].stack > 0) {
-                    //
-                    if (player.inventory[num].stack > 0 && player.inventory[i].ammo == ammoID)
-                    {
-                        item = player.inventory[num];
-                        //canShoot = true;
-                        flag = true;
-                        break;
-                    }
-                }
-            }
-
-            for (int j = 54; j < 58; j++)
-            {
-                /*
-                if (inventory[j].ammo == sItem.useAmmo && inventory[j].stack > 0) {
-                
-                if (player.inventory[j].stack > 0 && player.inventory[j].ammo == ammoID)
-                {
-                    item = player.inventory[j];
-                    //canShoot = true;
-                    flag = true;
-                    break;
-                }
-            }
-
-            if (!flag)
-            {
-                for (int k = 0; k < 54; k++)
-                {
-                    /*
-                    if (inventory[k].ammo == sItem.useAmmo && inventory[k].stack > 0) {
-                    
-                    if (player.inventory[k].stack > 0 && player.inventory[k].ammo == ammoID)
-                    {
-                        item = player.inventory[k];
-                        //canShoot = true;
-                        break;
-                    }
-                }
-            }
-
-            return item;
-        }*/
         public static Item ChooseAmmo(Player player, Item weapon)
         {
             // Si el arma no usa munición, no buscamos nada
@@ -517,17 +457,18 @@ namespace RemnantOfTheAncientsMod.Common.UtilsTweaks
                 return 150;
             return 0;
         }
-        public static int GetBestPickPower(Player player)
+
+        public static int getMaxPickPower(this Player player)
         {
-            int num = 35;
+            if (player == null || !player.active || player.dead) return -1;
+
+            int maxPower = 0;
             foreach (Item item in player.inventory)
             {
-                if (item.pick > 0 && item.pick > num)
-                {
-                    num = item.pick;
-                }
+                if (item == null || item.pick <= 0 || item.IsAir) continue;
+                if (item.pick > maxPower) maxPower = item.pick;
             }
-            return num;
+            return maxPower;
         }
 
         public static float BytetoFloat(byte ro)

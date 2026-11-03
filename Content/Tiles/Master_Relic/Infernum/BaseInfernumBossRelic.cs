@@ -25,7 +25,7 @@ namespace RemnantOfTheAncientsMod.Content.Tiles.Master_Relic.Infernum
         public Asset<Texture2D> RelicBaseTexture;
         public Asset<Texture2D> RelicBaseGlowTexture;
 
-        public abstract string RelicTextureName { get; }
+        public string RelicTextureName => "RemnantOfTheAncientsMod/Content/Tiles/Master_Relic/Infernum/" + this.Name;
 
         public virtual string RelicGlowTextureName => RelicTextureName + "_Glow";
 

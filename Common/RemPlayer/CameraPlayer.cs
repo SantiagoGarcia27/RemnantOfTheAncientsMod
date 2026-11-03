@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -8,11 +9,38 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
     {
         private Vector2 cameraPosition;
         private bool cameraLocked;
+
+        private Vector2 startPosition;
+        private Vector2 targetPosition;
+
+        private int duration;
+        private int timer;
+
+        private bool moving;
+
         public void SetCameraPosition(Vector2 position)
         {
             cameraPosition = position;
             cameraLocked = true;
         }
+
+        public void MoveCameraToPosition(Vector2 position, int timeInTicks)
+        {
+            startPosition = cameraLocked
+                ? cameraPosition
+                : Main.screenPosition + Main.ScreenSize.ToVector2() * 0.5f;
+
+            cameraPosition = startPosition; // Importante
+
+            targetPosition = position;
+
+            duration = Math.Max(1, timeInTicks);
+            timer = 0;
+
+            moving = true;
+            cameraLocked = true;
+        }
+
 
         public void ResetCameraPosition()
         {
@@ -20,11 +48,36 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         }
         public override void ModifyScreenPosition()
         {
-            if (!cameraLocked) return;
+            if (!cameraLocked)
+                return;
 
-            Vector2 target = cameraPosition - new Vector2(Main.screenWidth, Main.screenHeight) * 0.5f;
+            if (moving)
+            {
+                timer++;
 
-            Main.screenPosition = Vector2.Lerp(Main.screenPosition,target,1.0f);     
+                float progress = MathHelper.Clamp(
+                    (float)timer / duration, 0f, 1f
+                );
+
+                progress = progress * progress * (3f - 2f * progress);
+
+                cameraPosition = Vector2.Lerp(
+                    startPosition,
+                    targetPosition,
+                    progress
+                );
+
+                if (timer >= duration)
+                {
+                    cameraPosition = targetPosition;
+                    moving = false;
+
+                    Main.NewText($"Camera finished: {cameraPosition}");
+                }
+            }
+
+            Main.screenPosition = cameraPosition
+                - Main.ScreenSize.ToVector2() * 0.5f;
         }
     }
 }

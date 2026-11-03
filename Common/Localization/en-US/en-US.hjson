@@ -1731,17 +1731,17 @@ Mods: {
 				Tooltip: Grants immunity to all fire debuffs
 			}
 
-			desertBag: {
+			DesertBag: {
 				DisplayName: Treasure Bag
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			frostBag: {
+			FrostBag: {
 				DisplayName: Treasure Bag
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			infernalBag: {
+			InfernalBag: {
 				DisplayName: Treasure Bag
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}

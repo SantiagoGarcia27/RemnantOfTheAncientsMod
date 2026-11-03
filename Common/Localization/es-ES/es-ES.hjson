@@ -1745,17 +1745,17 @@ Mods: {
 				Tooltip: Otorga inmunidad a todos los efectos de quemadura
 			}
 
-			desertBag: {
+			DesertBag: {
 				DisplayName: Bolsa del tesoro
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			frostBag: {
+			FrostBag: {
 				DisplayName: Bolsa del tesoro
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			infernalBag: {
+			InfernalBag: {
 				DisplayName: Bolsa del tesoro
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}

@@ -67,6 +67,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
             Music = MusicLoader.GetMusicSlot(Mod, "Content/Sounds/Music/Desert_Aniquilator");
             NPC.netAlways = true;
             NPC.stepSpeed = 8f;
+            NPC.dontTakeDamage = true;
 
             InitializeModules();
             Initialize();

@@ -1,3 +1,4 @@
+using CalamityMod.NPCs.AcidRain;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
@@ -11,10 +12,22 @@ using Terraria.ID;
 class DesertAnnihilator_Intro
 {
     public NPC npc { get; set; }
-    public bool NoAI = true;
+
+    private bool _noAi = true;
+    public bool NoAI {
+
+        get => _noAi;
+        set
+        {
+            _noAi = value;
+            npc.dontTakeDamage = value;
+            if (Main.netMode != NetmodeID.MultiplayerClient) npc.netUpdate = true;
+        }
+    }
     private readonly List<TornadoParticle> TornadoParticles = new();
     public float ScreenAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
     public float SpawnerAnimationTimer = Utils1.FormatTimeToTick(0, 0, 0, 5);
+    private bool StartedCameraIntro = false;
 
     public DesertAnnihilator_Intro(NPC npc)
     {
@@ -69,9 +82,19 @@ class DesertAnnihilator_Intro
             return;
         }
 
-        Main.LocalPlayer.GetModPlayer<CameraPlayer>().SetCameraPosition(npc.Center);
+        //Main.LocalPlayer.GetModPlayer<CameraPlayer>().SetCameraPosition(npc.Center);
+
+        if (!StartedCameraIntro)
+        {
+            int timeInTicks = Utils1.FormatTimeToTick(Second: 0.5f);
+            Main.LocalPlayer.GetModPlayer<CameraPlayer>().MoveCameraToPosition(npc.Center, timeInTicks);
+            StartedCameraIntro = true;
+        }
+
+
         if (SpawnerAnimationTimer > 0)
             SpawnAnimation(npc.alpha);
+
     }
 
     private void SpawnAnimation(int alpha)

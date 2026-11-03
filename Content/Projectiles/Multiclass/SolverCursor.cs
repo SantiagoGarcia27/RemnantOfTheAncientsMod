@@ -36,15 +36,12 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
         public string GetTexture()
         {
             Player player = Main.player[Projectile.owner];
-            switch (player.GetModPlayer<RemnantPlayer>().SolverMode)
+            return player.GetModPlayer<RemnantPlayer>().SolverMode switch
             {
-                case 0:
-                    return "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/SolverMove";
-                case 1:
-                    return "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/SolverBreak";
-                default:
-                    return "RemnantOfTheAncientsMod/Assets/PlaceHolder";
-            }
+                0 => "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/SolverMove",
+                1 => "RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/SolverBreak",
+                _ => "RemnantOfTheAncientsMod/Assets/PlaceHolder",
+            };
         }
         public static NPC target = null;
         public Tile tile_;
@@ -112,10 +109,20 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
                             int centerTileX = (int)centerTile.X;
                             int centerTileY = (int)centerTile.Y;
 
-                            if (Utils1.GetBlockPickPower(Main.tile[centerTileX, centerTileY], centerTileY) <= Utils1.GetBestPickPower(player))
+                            int pickPowerMax = player.getMaxPickPower();
+
+                            if (pickPowerMax <= -1) return;
+
+                            pickPowerMax = pickPowerMax == 0 ? 35 : pickPowerMax;
+
+                            Tile selectedTile = Main.tile[centerTileX, centerTileY];
+
+                            int blockPickPower = Utils1.GetBlockPickPower(selectedTile, centerTileY);
+
+                            if(blockPickPower <= pickPowerMax)
                             {
                                 WorldGen.KillTile(centerTileX, centerTileY);
-                                if (!Main.tile[centerTileX, centerTileY].HasTile && Main.netMode != NetmodeID.SinglePlayer)
+                                if (!selectedTile.HasTile && Main.netMode != NetmodeID.SinglePlayer)
                                     NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, centerTileX, centerTileY);
                             }
                             else
