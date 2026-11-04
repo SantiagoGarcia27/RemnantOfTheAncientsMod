@@ -29,8 +29,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Ranger.star
             Item.damage = 600;
             Item.DamageType = DamageClass.Ranged;
             Item.crit = 30 - 4;
-            Item.width = 80;
-            Item.height = 40;
+            Item.width = 92;
+            Item.height = 32;
             Item.useTime = 45;
             Item.useAnimation = 45;
             Item.useStyle = ItemUseStyleID.Shoot;
