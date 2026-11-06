@@ -79,12 +79,14 @@ class DesertAnnihilator_Attack
     {
         npc.alpha = 0;
 
-        int tpDirection = Main.rand.NextBool() ? -1 : 1;
+        int tpDirection = Math.Sign(Main.player[npc.target].velocity.X);
 
-        Vector2 tileDistance = new(30f, -5f);
+        if (tpDirection == 0) tpDirection = 1;
+
+        Vector2 tileDistance = new(30f, 0f);
         Vector2 tpDistance = new Vector2(tileDistance.X, tileDistance.Y).ToCoordenatePosition();
 
-        npc.Center = DesertAnnihilator_Aux.GetSecurePosition(Main.player[npc.target].Center + new Vector2(tpDirection * tpDistance.X, tpDistance.Y));
+        npc.Center = DesertAnnihilator_Aux.GetSecurePosition(npc, Main.player[npc.target].Center + new Vector2(tpDirection  * tpDistance.X, tpDistance.Y));
         npc.netUpdate = true;
         GenerateTpParticles(appear: true);
     }

@@ -25,7 +25,7 @@ class DesertAnnihilator_Aux
     {
         this.npc = npc;
     }
-    public static Vector2 GetSecurePosition(Vector2 position)
+    /*public static Vector2 GetSecurePosition(Vector2 position)
     {
         Vector2 newPos;
         int blockIncrement = 0;
@@ -42,12 +42,76 @@ class DesertAnnihilator_Aux
 
         if (newPos.Y < 0) newPos.Y *= -1;
         return newPos;
-    }
-    public static bool CoordHasTile(Vector2 pos) => Collision.SolidCollision(pos, 6 * 16, 6 * 16);
-    public static bool CoordHasLiquid(Vector2 pos)
+    }*/
+
+    public static Vector2 GetSecurePosition(NPC npc, Vector2 position)
     {
-        if (Collision.LavaCollision(pos, 6 * 16, 6 * 16) || Collision.WetCollision(pos, 6 * 16, 6 * 16)) return true;
-        if (Main.tile[(new Point((int)pos.X / 16, (int)(pos.Y - 5 * 16) / 16))].LiquidAmount > 0) return true;
-        return false;
+        const int maxRadius = 40;
+        const int tileSize = 16;
+
+
+        bool IsSafe(Vector2 center)
+        {
+            Vector2 topLeft = center - npc.Size / 2f;
+
+            if (topLeft.X < 0 || topLeft.Y < 0 ||
+                topLeft.X + npc.width > Main.maxTilesX * 16 ||
+                topLeft.Y + npc.height > Main.maxTilesY * 16)
+                return false;
+
+            return !CoordHasTile(npc.Size, topLeft)
+                && !CoordHasLiquid(npc.Size, topLeft);
+        }
+
+        if (IsSafe(position))
+            return position;
+
+        for (int radius = 1; radius <= maxRadius; radius++)
+        {
+            int offset = radius * tileSize;
+
+            // Bordes superior e inferior.
+            for (int x = -radius; x <= radius; x++)
+            {
+                float offsetX = x * tileSize;
+
+                Vector2 top = position + new Vector2(offsetX, -offset);
+                if (IsSafe(top))
+                    return top;
+
+                Vector2 bottom = position + new Vector2(offsetX, offset);
+                if (IsSafe(bottom))
+                    return bottom;
+            }
+
+            // Bordes izquierdo y derecho, sin repetir esquinas.
+            for (int y = -radius + 1; y < radius; y++)
+            {
+                float offsetY = y * tileSize;
+
+                Vector2 left = position + new Vector2(-offset, offsetY);
+                if (IsSafe(left))
+                    return left;
+
+                Vector2 right = position + new Vector2(offset, offsetY);
+                if (IsSafe(right))
+                    return right;
+            }
+        }
+        Main.NewText("No se encontró una posición segura");
+        return Main.player[npc.target]?.Center ?? position ;
+    }
+
+    public static bool CoordHasTile(Vector2 size, Vector2 pos, int offset = 2)
+    {
+        return Collision.SolidCollision(pos - new Vector2(offset), (int)size.X + offset * 2, (int)size.Y + offset * 2);
+    }
+
+    public static bool CoordHasLiquid(Vector2 size, Vector2 pos)
+    {
+        int width = (int)size.X;
+        int height = (int)size.Y;
+
+        return Collision.LavaCollision(pos, width, height) || Collision.WetCollision(pos, width, height);
     }
 }

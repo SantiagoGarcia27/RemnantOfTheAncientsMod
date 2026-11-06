@@ -619,6 +619,36 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             if (CurrentState == BossState.Sleep)
             {
                 CurrentState = BossState.Idle;
+                SoundStyle roar1 = SoundID.Roar with
+                {
+                    Pitch = 0f,
+                    PitchVariance = 0.2f,
+                    Volume = 1.4f,
+                    MaxInstances = 4,
+                    SoundLimitBehavior = SoundLimitBehavior.IgnoreNew
+                };
+
+                SoundStyle roar2 = roar1 with
+                {
+                    Pitch = -0.9f,
+                    Volume = 1.2f
+                };
+
+                SoundStyle roar3 = roar1 with
+                {
+                    Pitch = -1.9f,
+                    Volume = 1.0f
+                };
+                SoundStyle roar4 = roar1 with
+                {
+                    Pitch = -2.1f,
+                    Volume = 0.8f
+                };
+
+                SoundEngine.PlaySound(roar1);
+                SoundEngine.PlaySound(roar2);
+                SoundEngine.PlaySound(roar3);
+                SoundEngine.PlaySound(roar4);
                 Boss = true;
             }
         }
