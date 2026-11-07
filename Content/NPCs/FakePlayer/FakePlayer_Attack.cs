@@ -83,13 +83,6 @@ public class FakePlayer_Attack
             lastSlot = nextSlot;
         }
 
-        if (proxy.inventory[54].IsAir)
-            proxy.inventory[54] = new Item(ItemID.WoodenArrow, 100);
-
-        if (proxy.inventory[55].IsAir)
-            proxy.inventory[55] = new Item(ItemID.MusketBall, 100);
-
-
         bool canAttack = false;
 
         if (nextSlot == 0 && !proxy.inventory[0].IsAir)

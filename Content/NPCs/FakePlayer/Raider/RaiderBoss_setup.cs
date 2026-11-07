@@ -30,19 +30,30 @@ public static class RaiderBoss_setup
                 new FakePlayerEquipment(ModContent.ItemType<ReinforcedIronChesplate>()),
                 new FakePlayerEquipment(ModContent.ItemType<ReinforcedIronGreaves>())
             ],
+            accessories =
+            [
+                  new FakePlayerEquipment(ItemID.SharkToothNecklace),
+                  new FakePlayerEquipment(ItemID.WilsonBeardLong),
+                  new FakePlayerEquipment(ItemID.MysteriousCape),
+            ],
             rangedWeapon =  new FakePlayerEquipment(ModContent.ItemType<ReinforcedIronBow>()),
             healPotion =  new FakePlayerEquipment(ItemID.GreaterHealingPotion, 2)
         },
 
         new FakePlayerEquipmentList()
         {
-            meleeWeapon = new FakePlayerEquipment(WorldGen.crimson ? ItemID.BloodButcherer : ItemID.LightsBane),
+            meleeWeapon = new FakePlayerEquipment(!WorldGen.crimson ? ItemID.BloodButcherer : ItemID.LightsBane),
             armor = [
-                new FakePlayerEquipment(WorldGen.crimson ? ItemID.CrimsonHelmet : ItemID.ShadowHelmet),
-                new FakePlayerEquipment(WorldGen.crimson ? ItemID.CrimsonScalemail : ItemID.ShadowScalemail),
-                new FakePlayerEquipment(WorldGen.crimson ? ItemID.CrimsonGreaves : ItemID.ShadowGreaves)
+                new FakePlayerEquipment(!WorldGen.crimson ? ItemID.CrimsonHelmet : ItemID.ShadowHelmet),
+                new FakePlayerEquipment(!WorldGen.crimson ? ItemID.CrimsonScalemail : ItemID.ShadowScalemail),
+                new FakePlayerEquipment(!WorldGen.crimson ? ItemID.CrimsonGreaves : ItemID.ShadowGreaves)
             ],
-            rangedWeapon =  new FakePlayerEquipment(WorldGen.crimson ? ItemID.TheUndertaker : ItemID.Musket),
+            rangedWeapon =  new FakePlayerEquipment(! WorldGen.crimson ? ItemID.TheUndertaker : ItemID.Musket),
+            accessories =
+            [
+                  new FakePlayerEquipment(ItemID.SharkToothNecklace),
+                  new FakePlayerEquipment(!WorldGen.crimson ? ItemID.CrimsonCloak : ItemID.MysteriousCape),
+            ],
             healPotion =  new FakePlayerEquipment(ItemID.GreaterHealingPotion, 2)
         },
 
@@ -62,7 +73,7 @@ public static class RaiderBoss_setup
             ],
             rangedWeapon = new FakePlayerEquipment(ItemID.EnchantedSword),
             healPotion =  new FakePlayerEquipment(ItemID.GreaterHealingPotion, 2),
-            misc = 
+            misc =
             [
                 new FakePlayerEquipment(ItemID.DogWhistle),
                 null,

@@ -140,6 +140,7 @@ namespace RemnantOfTheAncientsMod.Common.TmodClassOverride
         public static void ReportInvasionProgress(On_Main.orig_ReportInvasionProgress orig, int progress, int progressMax, int icon, int progressWave)
         {
             ReportInvasionProgress(progress, progressMax, vanillaIcon: icon, progressWave);
+            //orig(progress, progressMax, icon, progressWave);
         }
         public static void ReportInvasionProgress(int progress, int progressMax, int vanillaIcon, int progressWave)
         {
@@ -243,7 +244,7 @@ namespace RemnantOfTheAncientsMod.Common.TmodClassOverride
             else
             {
                 string progressText = ((invasionProgressMax != 0) ?
-                    ((int)((float)invasionProgress * 100f / (float)invasionProgressMax) + "% :)") :
+                    ((int)((float)invasionProgress * 100f / (float)invasionProgressMax) + "%") :
                     invasionProgress.ToString());
 
                 progressText = Language.GetTextValue("Game.WaveCleared", progressText);
@@ -274,6 +275,8 @@ namespace RemnantOfTheAncientsMod.Common.TmodClassOverride
             Utils.DrawInvBG(spriteBatch, r3, c);
             spriteBatch.Draw(value, r3.Left() + Vector2.UnitX * scale * 8f, null, Color.White * invasionProgressAlpha, 0f, new Vector2(0f, value.Height / 2), scale * 0.8f, SpriteEffects.None, 0f);
             Utils.DrawBorderString(spriteBatch, text, r3.Right() + Vector2.UnitX * scale * -22f, Color.White * invasionProgressAlpha, scale * 0.9f, 1f, 0.4f);
+
+           // orig();
         }
 
         private void DrawProgressBar(Vector2 progressPosition, Vector2 progressBarSize, float progressRatio)

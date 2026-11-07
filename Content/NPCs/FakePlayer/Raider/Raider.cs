@@ -1,5 +1,6 @@
 using RemnantOfTheAncientsMod.Common.World;
 using SangarUtilities.Common.UtilsTweaks;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -11,13 +12,13 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
     {
         public override void SetStaticDefaults()
         {
-            var value = new NPCID.Sets.NPCBestiaryDrawModifiers
+            Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new()
             {
-                Direction = 1,
-                SpriteDirection = 1
+                Velocity = 1f
             };
-
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+            NPC.spriteDirection = NPC.direction;
         }
 
         public override void FindFrame(int frameHeight)
@@ -88,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer.Raider
                             DropItem(inventory.rangedWeapon.item.type);
                             break;
                         case 2:
-                            int armorIndex = Main.rand.Next(inventory.armor.Length);
+                            int armorIndex = Main.rand.Next(Math.Min(2, inventory.armor.Length));
                             DropItem(inventory.armor[armorIndex].item.type);
                             break;
                     }

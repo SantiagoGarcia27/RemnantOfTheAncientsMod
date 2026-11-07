@@ -256,8 +256,8 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			proxy.inventory[1] = inventory.rangedWeapon?.item ?? new Item();
 
             //Ammo
-            proxy.inventory[54] = inventory.ammo[0]?.item ?? new Item();
-			proxy.inventory[55] = inventory.ammo[1]?.item ?? new Item();
+            proxy.inventory[54] = inventory.ammo[0]?.item ?? new Item(ItemID.MusketBall,50);
+			proxy.inventory[55] = inventory.ammo[1]?.item ?? new Item(ItemID.WoodenArrow, 50);
 			proxy.inventory[56] = inventory.ammo[2]?.item ?? new Item();
 			proxy.inventory[57] = inventory.ammo[3]?.item ?? new Item();
 
