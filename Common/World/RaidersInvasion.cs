@@ -175,7 +175,7 @@ namespace RemnantOfTheAncientsMod.Common.World
 
             ShowProgress();
 
-            if (Kills >= RequiredKills && !Main.npc.Any(x => x.type == ModContent.NPCType<RaiderBoss>())) SpawnBoss();
+            if (Kills >= RequiredKills && !Main.npc.Any(x => x.active && x.type == ModContent.NPCType<RaiderBoss>())) SpawnBoss();
             else SyncState();
         }
 

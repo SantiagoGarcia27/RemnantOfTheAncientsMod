@@ -99,94 +99,6 @@ public class ReaperEffectsPlayer : ModPlayer
             ReaperGlobalItem.ReaperWingsNerf(Player);
     }       
    
-   /* /// <summary>
-    /// Set Reaper mode souls config values
-    /// </summary>
-    /// <param name="type"></param>
-    /// <param name="value"></param>
-    public static void SetSoulsToggle(int type,int value)
-    {
-        switch (type)
-        {
-            case NPCID.KingSlime:
-                GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul = value;
-                break;
-            case NPCID.SkeletronPrime:
-                GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul = value;
-                break;          
-        }
-    }
-    /// <summary>
-    /// Set Reaper mode souls config values
-    /// </summary>
-    /// <param name="type"></param>
-    /// <param name="value"></param>
-    public static void SetSoulsToggle(int type, bool value)
-    {
-
-        if (type == NPCType<DesertAnnihilator>())
-            GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul = value;
-        else if (type == NPCType<FrozenAssaulter>())
-            GetInstance<ConfigReaperSouls>().ToggleFrozenAssaulterSoul = value;
-        else if (type == NPCType<InfernalTyrantHead>())
-            GetInstance<ConfigReaperSouls>().ToggleInfernalTyrantSoul = value;
-        else
-        {
-            switch (type)
-            {
-                case NPCID.EyeofCthulhu:
-                    GetInstance<ConfigReaperSouls>().ToggleEyeOfChutuluSoul = value;
-                    break;
-                case NPCID.BrainofCthulhu:
-                    GetInstance<ConfigReaperSouls>().ToggleCorruptSoul = value;
-                    break;
-                case NPCID.QueenBee:
-                    GetInstance<ConfigReaperSouls>().ToggleQueenBeeSoul = value;
-                    break;
-                case NPCID.SkeletronHead:
-                    GetInstance<ConfigReaperSouls>().ToggleSkeletronSoul = value;
-                    break;
-                case NPCID.Deerclops:
-                    GetInstance<ConfigReaperSouls>().ToggleDearclopsSoul = value;
-                    break;
-                case NPCID.WallofFlesh:
-                    GetInstance<ConfigReaperSouls>().ToggleWallOfFleshSoul = value;
-                    break;
-                case NPCID.QueenSlimeBoss:
-                    GetInstance<ConfigReaperSouls>().ToggleQueenSlimeSoul = value;
-                    break;
-                case NPCID.Spazmatism:
-                    GetInstance<ConfigReaperSouls>().ToggleSpazmatismSoul = value;
-                    break;
-                case NPCID.Retinazer:
-                    GetInstance<ConfigReaperSouls>().ToggleRetinazorSoul = value;
-                    break;
-                case NPCID.TheDestroyer:
-                    GetInstance<ConfigReaperSouls>().ToggleDestroyerSoul = value;
-                    break;
-                case NPCID.Plantera:
-                    GetInstance<ConfigReaperSouls>().TogglePlanteraSoul = value;
-                    break;         
-                case NPCID.Golem:
-                    GetInstance<ConfigReaperSouls>().ToggleGolemSoul = value;
-                    break;
-                case NPCID.HallowBoss:
-                    GetInstance<ConfigReaperSouls>().ToggleEmpressOfLightSoul = value;
-                    break;
-                case NPCID.DukeFishron:
-                    GetInstance<ConfigReaperSouls>().ToggleDukeFishronSoul = value;
-                    break;
-                case NPCID.CultistBoss:
-                    GetInstance<ConfigReaperSouls>().ToggleLunaticCultistSoul = value;
-                    break;
-                case NPCID.MoonLordCore:
-                    GetInstance<ConfigReaperSouls>().ToggleMoonlordSoul = value;
-                    break;
-            }
-
-
-        }
-    }*/
     public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
     {
         float respawnMult = RespawnTimeCalculator();
@@ -398,6 +310,8 @@ public class ReaperEffectsPlayer : ModPlayer
 
 public class ReaperSoulsPlayer : ModPlayer
 {
+    public Dictionary<string, bool> SoulsUpgradesLoaded_ = new(){};
+
     public bool[] SoulsUpgradesLoaded =
     [
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,
@@ -508,9 +422,6 @@ public class ReaperSoulsPlayer : ModPlayer
     }
     public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
     {
-       /* LoadSoulsToggle();
-        LoadSoulsToggleCrossMod();*/
-
         SendSoulState(toWho, fromWho);
     }
 
@@ -545,51 +456,6 @@ public class ReaperSoulsPlayer : ModPlayer
 
         packet.Send(toWho, fromWho);
     }
-
-   /* public void LoadSoulsToggle()
-    {
-        SubloadSouls(NPCID.KingSlime, GetInstance<ConfigReaperSouls>().ToggleKingSlimeSoul);
-        SubloadSouls(NPCID.EyeofCthulhu, GetInstance<ConfigReaperSouls>().ToggleEyeOfChutuluSoul.ToInt());
-        SubloadSouls(NPCID.BrainofCthulhu, GetInstance<ConfigReaperSouls>().ToggleCorruptSoul.ToInt());
-        SubloadSouls(NPCID.QueenBee, GetInstance<ConfigReaperSouls>().ToggleQueenBeeSoul.ToInt());
-        SubloadSouls(NPCID.SkeletronHead, GetInstance<ConfigReaperSouls>().ToggleSkeletronSoul.ToInt());
-        SubloadSouls(NPCID.Deerclops, GetInstance<ConfigReaperSouls>().ToggleDearclopsSoul.ToInt());
-        SubloadSouls(NPCType<DesertAnnihilator>(), GetInstance<ConfigReaperSouls>().ToggleDesertAnhilatorSoul.ToInt());
-        SubloadSouls(NPCID.WallofFlesh, GetInstance<ConfigReaperSouls>().ToggleWallOfFleshSoul.ToInt());
-        SubloadSouls(NPCType<FrozenAssaulter>(), GetInstance<ConfigReaperSouls>().ToggleFrozenAssaulterSoul.ToInt());
-        SubloadSouls(NPCID.QueenSlimeBoss, GetInstance<ConfigReaperSouls>().ToggleQueenSlimeSoul.ToInt());
-        SubloadSouls(NPCID.Spazmatism, GetInstance<ConfigReaperSouls>().ToggleSpazmatismSoul.ToInt());
-        SubloadSouls(NPCID.Retinazer, GetInstance<ConfigReaperSouls>().ToggleRetinazorSoul.ToInt());
-        SubloadSouls(NPCID.SkeletronPrime, GetInstance<ConfigReaperSouls>().ToggleSkeletronPrimeSoul);
-        SubloadSouls(NPCID.TheDestroyer, GetInstance<ConfigReaperSouls>().ToggleDestroyerSoul.ToInt());
-        SubloadSouls(NPCID.Plantera, GetInstance<ConfigReaperSouls>().TogglePlanteraSoul.ToInt());
-        SubloadSouls(NPCType<InfernalTyrantHead>(), GetInstance<ConfigReaperSouls>().ToggleInfernalTyrantSoul.ToInt());
-        SubloadSouls(NPCID.Golem, GetInstance<ConfigReaperSouls>().ToggleGolemSoul.ToInt());
-        SubloadSouls(NPCID.HallowBoss, GetInstance<ConfigReaperSouls>().ToggleEmpressOfLightSoul.ToInt());
-        SubloadSouls(NPCID.DukeFishron, GetInstance<ConfigReaperSouls>().ToggleDukeFishronSoul.ToInt());
-        SubloadSouls(NPCID.CultistBoss, GetInstance<ConfigReaperSouls>().ToggleLunaticCultistSoul.ToInt());
-        SubloadSouls(NPCID.MoonLordCore, GetInstance<ConfigReaperSouls>().ToggleMoonlordSoul.ToInt());
-
-
-        void SubloadSouls(int type, float value)
-        {
-            SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(type)] = value;
-        }
-    }
-
-    public void LoadSoulsToggleCrossMod()
-    {
-        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-        if (CalamityMod != null)
-        {
-            //En desarrollo
-            /*foreach (NPC npc in NpcList.BossList[CalamityMod])
-            {
-                bool value = GetInstance<ConfigReaperSouls>().GetType().GetProperty("Toggle" + npc.ModNPC.GetType().Name + "Soul")?.GetValue(GetInstance<ConfigReaperSouls>()) as bool? ?? false;
-                SoulsUpgradesMaybeLoaded[npc.type] = value;
-            }
-        }
-    }*/
 
     public void FillSoulList()
     {
