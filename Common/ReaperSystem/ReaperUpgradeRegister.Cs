@@ -19,12 +19,13 @@ public class ReaperUpgradeRegister
         }
     }
 
+    internal NPC _npc;
     public NPC npc
     {
         get
         {
-            NPC npc = new();
-            npc.SetDefaults(npcType);
+            _npc ??= new();
+            _npc.SetDefaults(npcType);
             return npc;
         }
     }

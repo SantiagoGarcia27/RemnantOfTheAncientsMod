@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Content.Items.Accesories.Core;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.MusicBox;
@@ -34,7 +35,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<GemstoneCrusher>()));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<WandOfCaverns>(), ItemType<StoneBlunderbuss>(), ItemType<StoneMortar>(), ItemType<RockAndRoll>()));
-            itemLoot.Add(ItemDropRule.ByCondition(new CrusherReaperSoul(), ItemType<CrusherSoul>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.CrusherReaperSoulRule(), ItemType<CrusherSoul>()));
         }
     }
 
@@ -47,7 +48,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<DesertAnnihilator>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<DesertAniquilatorScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<DesertBow>(), ItemType<DesertEdge>(), ItemType<DesertTome>(), ItemType<DesertStaff>()));
-            itemLoot.Add(ItemDropRule.ByCondition(new DesertReaperSoul(), ItemType<DesertAnnihilatorSoul>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.DesertAnhilatorReaperSoulRule(), ItemType<DesertAnnihilatorSoul>()));
         }
     }
     public class FrostBag : BossBagItem
@@ -61,7 +62,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<FrozenAssaulter>())); ;
             // itemLoot.Add(ItemDropRule.Common(ItemType<DScroll>(), 5));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<FrostShark>(), ItemType<Permafrost>(), ItemType<frozen_staff>(), ItemType<FrozenStafff>()));
-            itemLoot.Add(ItemDropRule.ByCondition(new FrozenReaperSoul(), ItemType<FrozenAssaulterSoul>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.FrozenAssaulterReaperSoulRule(), ItemType<FrozenAssaulterSoul>()));
         }
     }
 
@@ -73,7 +74,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
             itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<InfernalTyrantBody>()));
             itemLoot.Add(ItemDropRule.OneFromOptions(1, ItemType<TyrantRepeater>(), ItemType<SpikeSaber>(), ItemType<Tyran_Blast>(), ItemType<EvilEyeStaff>()));
-            itemLoot.Add(ItemDropRule.ByCondition(new InfernalReaperSoul(), ItemType<InfernalTyrantSoul>()));
+            itemLoot.Add(ItemDropRule.ByCondition(new RemnantConditions.InfernalTyrantReaperSoulRule(), ItemType<InfernalTyrantSoul>()));
         }
     }
 

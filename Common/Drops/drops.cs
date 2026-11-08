@@ -364,7 +364,7 @@ namespace RemnantOfTheAncientsMod.Common.Drops
                 }
                 if (npc.type == NPCType<GemstoneCrusher>())
                 {
-                    npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.DesertAnhilatorReaperSoulRule(), ItemType<CrusherSoul>()));
+                    npcLoot.Add(RemnantDropRules.ReaperModeCommonDropOnAllPlayersWithConditions(new RemnantConditions.CrusherReaperSoulRule(), ItemType<CrusherSoul>()));
                     BossTrpoyMask(ItemType<DesertTrophy>(), ItemType<CrusherMask>(), npcLoot);
                 }
                 if (npc.type == NPCType<DesertAnnihilator>())

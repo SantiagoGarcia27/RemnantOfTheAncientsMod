@@ -2,6 +2,7 @@
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
+using RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using SangarUtilities.Common.UtilsTweaks;
 using Terraria;
@@ -13,8 +14,13 @@ namespace RemnantOfTheAncientsMod.Common.Drops.DropRules
 {
 
     public class RemnantConditions
-    { 
-        
+    {
+        public class CrusherReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
+        {
+            public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().IsSoulLoaded(ModContent.NPCType<GemstoneCrusher>()) && Reaper.ReaperMode;
+            public bool CanShowItemDropInUI() => Reaper.ReaperMode;
+            public string GetConditionDescription() => null;
+        }
         public class SlimeReaperSoulRule : IItemDropRuleCondition, IProvideItemConditionDescription
         {
             public bool CanDrop(DropAttemptInfo info) => !Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().IsSoulLoaded(NPCID.KingSlime) && Reaper.ReaperMode;
