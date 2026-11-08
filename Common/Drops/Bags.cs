@@ -21,13 +21,10 @@ namespace RemnantOfTheAncientsMod.Common.Drops
             {
                 case ItemID.EaterOfWorldsBossBag:
                     Utils1.DroppItem(player, item, ItemType<EaterOfWorldsScroll>(), 1, commonScroll);
-                    bool[] souls = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
-                    int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(NPCID.BrainofCthulhu);
-                    bool haveSoul = souls[index];
-                    if (!haveSoul && Reaper.ReaperMode)
-                    {
-                        Utils1.DroppItem(player, item, ItemType<CorruptSoul>(), 1, 1);
-                    }
+                   
+                    bool haveSoul = player.GetModPlayer<ReaperSoulsPlayer>().IsSoulLoaded(NPCID.BrainofCthulhu);
+                    if (!haveSoul && Reaper.ReaperMode) Utils1.DroppItem(player, item, ItemType<CorruptSoul>(), 1, 1);
+                    
                     break;
             }
             base.RightClick(item, player);

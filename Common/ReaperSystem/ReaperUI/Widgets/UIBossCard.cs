@@ -52,8 +52,8 @@ public class UIBossCard : UIPanel
         base.Update(gameTime);
 
         bool isSelected = ReaperSoulsUIState.SelectedNpcType == soulData.npcType;
-        bool hasSoul = ReaperSoulUIExtras.SelectList(soulData.mod, soulData.npcType);
-        bool isActive = hasSoul && ReaperSoulUIExtras.SelectActiveList(soulData.mod, soulData.npcType) > 0;
+        bool hasSoul = ReaperSoulUIExtras.SelectList(soulData.npcType);
+        bool isActive = hasSoul && ReaperSoulUIExtras.SelectActiveList(soulData.npcType) > 0;
 
         if (isSelected)
         {

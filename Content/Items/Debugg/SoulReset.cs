@@ -18,7 +18,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 			ItemID.Sets.AnimatesAsSoul[Item.type] = true;
 			ItemID.Sets.ItemIconPulse[Item.type] = true;
 			ItemID.Sets.ItemNoGravity[Item.type] = true;
-			//DisplayName.SetDefault("SoulReset");
 		}
 
 		public override void SetDefaults()
@@ -38,12 +37,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 			{
 				if (player.GetModPlayer<ReaperSoulsPlayer>().AllSoulsAreActive())
 				{
-					SetSoulValue(player, false);
+                    SetSoulValue(player, false);
 					Main.NewText("Souls desactivadas");
 				}
 				else
 				{
-					SetSoulValue(player, true);
+                    SetSoulValue(player, true);
 					Main.NewText("Souls activadas");
 				}
 				Netcode.SyncWorld();
@@ -51,20 +50,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Debugg
 			return true;
 		}
 
-		public void SetSoulValue(Player player, bool n)
+		public static void SetSoulValue(Player player, bool n)
 		{
-			for(int i = 0; i < player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded.Length; i++)
-			{
-				player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[i] = n;
-            }
-			if (RemnantOfTheAncientsMod.CalamityMod != null)
-			{
-				foreach (KeyValuePair<int, bool> npc in player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded)
-				{
-					player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[npc.Key] = n;
-				}
-			}
+            foreach (string key in player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded.Keys)
+            {
+                player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[key] = n;
+            } 
 		}
-
 	}
 }

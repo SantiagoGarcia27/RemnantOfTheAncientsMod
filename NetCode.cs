@@ -73,43 +73,29 @@ namespace RemnantOfTheAncientsMod
                         Player player_ = Main.player[playerID];
                         ReaperSoulsPlayer reaperPlayer = player_.GetModPlayer<ReaperSoulsPlayer>();
 
+                        int count = reader.ReadInt32();
 
-                        int loadedCount = reader.ReadInt32();
-                        for (int i = 0; i < loadedCount; i++)
+                        if (count < 0 || count > reaperPlayer.SoulsUpgradesLoaded.Count)
+                            break;
+
+                        for (int i = 0; i < count; i++)
                         {
-                            bool value = reader.ReadBoolean();
+                            string key = reader.ReadString();
+                            bool loaded = reader.ReadBoolean();
+                            float active = reader.ReadSingle();
 
-                            if (i < reaperPlayer.SoulsUpgradesLoaded.Length)
-                                reaperPlayer.SoulsUpgradesLoaded[i] = value;
-                        }
+                            if (!reaperPlayer.SoulsUpgradesLoaded.ContainsKey(key))
+                                continue;
 
-                        int activeCount = reader.ReadInt32();
-                        for (int i = 0; i < activeCount; i++)
-                        {
-                            float value = reader.ReadSingle();
-                            if (i < reaperPlayer.SoulsUpgradesLoadedActive.Length)
-                                reaperPlayer.SoulsUpgradesLoadedActive[i] = value;
-                        }
+                            if (!float.IsFinite(active))
+                                continue;
 
-                        int maybeLoadedCount = reader.ReadInt32();
-                        for (int i = 0; i < maybeLoadedCount; i++)
-                        {
-                            int key = reader.ReadInt32();
-                            bool value = reader.ReadBoolean();
-
-                            reaperPlayer.SoulsUpgradesMaybeLoaded[key] = value;
-                        }
-
-                        int maybeActiveCount = reader.ReadInt32();
-                        for (int i = 0; i < maybeActiveCount; i++)
-                        {
-                            int key = reader.ReadInt32();
-                            float value = reader.ReadSingle();
-
-                            reaperPlayer.SoulsUpgradesMaybeLoadedActive[key] = value;
+                            reaperPlayer.SoulsUpgradesLoaded[key] = loaded;
+                            reaperPlayer.SoulsUpgradesLoadedActive[key] = active;
                         }
 
                         break;
+
                     case RemnantOfTheAncientsModMessageType.RequestToggleReaper:
                     {
                         if (Main.netMode != NetmodeID.Server)

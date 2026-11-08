@@ -29,6 +29,8 @@ public class ReaperUpgradeRegister
         }
     }
 
+    public string UpgradeTagName => npc.ModNPC?.FullName ?? $"Terraria/{npc.type}";
+
     public enum SoulCategory
     {
         Stats,

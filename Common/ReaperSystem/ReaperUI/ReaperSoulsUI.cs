@@ -159,9 +159,6 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         {
             AllCards.Clear();
 
-            bool[] loadedSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded;
-            Dictionary<int, bool> maybeSouls = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded;
-
             VerifyButtomsIndex(terrariaMod);
             VerifyButtomsIndex(remnantMod);
 
@@ -214,8 +211,8 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             if (panelInnerHeight <= 0f)
                 panelInnerHeight = PanelHeight - TitleHeight - Padding - 16f;
 
-            bool hasSoul = ReaperSoulUIExtras.SelectList(SelectedMod, SelectedNpcType);
-            float activeValue = ReaperSoulUIExtras.SelectActiveList(SelectedMod, SelectedNpcType);
+            bool hasSoul = ReaperSoulUIExtras.SelectList(SelectedNpcType);
+            float activeValue = ReaperSoulUIExtras.SelectActiveList(SelectedNpcType);
             bool isActive = activeValue > 0;
 
 
@@ -413,16 +410,7 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         public static void SetSoulValue(int npcType, float value)
         {
             ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
-            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
-
-            if (index != -1)
-            {
-                reaperPlayer.SoulsUpgradesLoadedActive[index] = value;
-            }
-            else if (RemnantOfTheAncientsMod.CalamityMod != null && reaperPlayer.SoulsUpgradesMaybeLoadedActive.ContainsKey(npcType))
-            {
-                reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] = value;
-            }
+            reaperPlayer.SetSoulActiveValue(npcType,value);
 
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -434,21 +422,17 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
         {
             ReaperSoulsPlayer reaperPlayer = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>();
 
-            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcType);
-
             float toggleMax = Reaper.soulData.FirstOrDefault(s => s.npcType == npcType)?.MaxValue ?? 1f;
 
             bool changed = false;
 
-            if (index != -1 && reaperPlayer.SoulsUpgradesLoaded[index])
+            string tag = Reaper.soulData.Find(x => x.npcType == npcType)?.UpgradeTagName;
+
+            if(tag == null) return;
+
+            if (reaperPlayer.SoulsUpgradesLoaded[tag])
             {
-                reaperPlayer.SoulsUpgradesLoadedActive[index] = reaperPlayer.SoulsUpgradesLoadedActive[index] > 0f ? 0f : toggleMax;
-                changed = true;
-            }
-            else if (RemnantOfTheAncientsMod.CalamityMod != null && reaperPlayer.SoulsUpgradesMaybeLoaded.TryGetValue(npcType, out bool hasSoul) && hasSoul)
-            {
-                float current = reaperPlayer.SoulsUpgradesMaybeLoadedActive.GetValueOrDefault(npcType);
-                reaperPlayer.SoulsUpgradesMaybeLoadedActive[npcType] = current > 0f ? 0f : toggleMax;
+                reaperPlayer.SoulsUpgradesLoadedActive[tag] = reaperPlayer.SoulsUpgradesLoadedActive[tag] > 0f ? 0f : toggleMax;
                 changed = true;
             }
 

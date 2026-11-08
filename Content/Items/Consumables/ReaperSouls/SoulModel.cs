@@ -51,19 +51,14 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.ReaperSouls
         public override bool CanUseItem(Player player)
         {
             ReaperSoulsPlayer reaperSoulsPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
-
-            bool hasSoul = ItemMod != RemnantOfTheAncientsMod.CalamityMod ?
-                reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NpcType)] :
-                reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[NpcType];
-
-            return !hasSoul;
+            return !reaperSoulsPlayer.IsSoulLoaded(NpcType);
         }
         public override bool? UseItem(Player player)
         {
             ReaperSoulsPlayer reaperSoulsPlayer = player.GetModPlayer<ReaperSoulsPlayer>();
+            string tag = Reaper.soulData.Find(x => x.npcType == NpcType)?.UpgradeTagName ?? $"Terraria/{NpcType}";
 
-            if (ItemMod == RemnantOfTheAncientsMod.CalamityMod) reaperSoulsPlayer.SoulsUpgradesMaybeLoaded[NpcType] = true;
-            else reaperSoulsPlayer.SoulsUpgradesLoaded[ReaperSoulsPlayer.GetIndexFromLoadedBossById(NpcType)] = true;
+            reaperSoulsPlayer.SoulsUpgradesLoaded[tag] = true;
    
             return true;
         }

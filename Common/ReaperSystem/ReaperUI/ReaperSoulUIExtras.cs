@@ -31,37 +31,15 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem.ReaperUI
             if (index == -1) return TextureAssets.NpcHeadBoss[1];
             return TextureAssets.NpcHeadBoss[index];
         }
-        public static bool SelectList(Mod mod, int npcId)
+        public static bool SelectList(int npcId)
         {
-            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-
-            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcId);
-            bool SoulsUpgradesConditon = false;
-            if (index != -1)
-            {
-                bool SoulsUpgradesLoaded = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoaded[index];
-                SoulsUpgradesConditon = SoulsUpgradesLoaded;
-            }
-            if (CalamityMod != null && mod == CalamityMod)
-            {
-                bool SoulsUpgradesMaybeLoaded = Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoaded[npcId];
-                SoulsUpgradesConditon = SoulsUpgradesMaybeLoaded;
-            }
-
-            return SoulsUpgradesConditon;
+            return Main.LocalPlayer.GetModPlayer<ReaperSoulsPlayer>().IsSoulLoaded(npcId);
         }
-        public static float SelectActiveList(Mod mod, int npcId)
+        public static float SelectActiveList(int npcId)
         {
-            ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
             Player player = Main.LocalPlayer;
 
-            int index = ReaperSoulsPlayer.GetIndexFromLoadedBossById(npcId);
-            float SoulsUpgradesConditon = 0f;
-
-            if(index != -1)
-                SoulsUpgradesConditon = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesLoadedActive[index];
-            else if (CalamityMod != null && mod == CalamityMod)
-                SoulsUpgradesConditon = player.GetModPlayer<ReaperSoulsPlayer>().SoulsUpgradesMaybeLoadedActive[npcId];
+            float SoulsUpgradesConditon = player.GetModPlayer<ReaperSoulsPlayer>().GetSoulActiveValue(npcId);
             return SoulsUpgradesConditon;
         }
         public static bool CheckDistanceForBigIcons(NPC npc, Mod CalamityMod, ref float baseLefthPosition, ref float baseLefthPositionIncrement)

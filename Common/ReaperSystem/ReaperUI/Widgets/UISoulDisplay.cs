@@ -25,8 +25,8 @@ public class UISoulDisplay : UIElement
 
                // VerifyButtomsIndex(mod);
 
-                bool playerHaveSoul = ReaperSoulUIExtras.SelectList(mod, npcId);
-                float playerHaveSoulActive = ReaperSoulUIExtras.SelectActiveList(mod, npcId);
+                bool playerHaveSoul = ReaperSoulUIExtras.SelectList(npcId);
+                float playerHaveSoulActive = ReaperSoulUIExtras.SelectActiveList(npcId);
 
                 if (ReaperSoulsUIState.Buttons.TryGetValue(mod, out var modButtons) && modButtons.TryGetValue(npc.type, out var btn) && btn != null)
                 {

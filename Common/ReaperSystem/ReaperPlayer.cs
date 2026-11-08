@@ -310,9 +310,10 @@ public class ReaperEffectsPlayer : ModPlayer
 
 public class ReaperSoulsPlayer : ModPlayer
 {
-    public Dictionary<string, bool> SoulsUpgradesLoaded_ = new(){};
+    public Dictionary<string, bool> SoulsUpgradesLoaded = new(){};
+    public Dictionary<string, float> SoulsUpgradesLoadedActive = new() { };
 
-    public bool[] SoulsUpgradesLoaded =
+   /* public bool[] SoulsUpgradesLoaded =
     [
         false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false,
         false, false, false, false
@@ -323,100 +324,82 @@ public class ReaperSoulsPlayer : ModPlayer
         1f, 1f, 1f
     ];
     public Dictionary<int, bool> SoulsUpgradesMaybeLoaded = [];
-    public Dictionary<int, float> SoulsUpgradesMaybeLoadedActive = [];
+    public Dictionary<int, float> SoulsUpgradesMaybeLoadedActive = [];*/
+
+
+    public override void Initialize()
+    {
+        foreach (var upgrade in Reaper.soulData)
+        {
+            string key = upgrade.UpgradeTagName;
+
+            SoulsUpgradesLoaded.TryAdd(key, false);
+            SoulsUpgradesLoadedActive.TryAdd(key, 1f);
+        }
+    }
 
     public bool IsSoulLoaded(int type)
     {
-        int index = GetIndexFromLoadedBossById(type);
+        string key = GetUpgradeTagName(type);
 
-        if (index >= 0)
-            return SoulsUpgradesLoaded[index];
+        if(key == null) return false;
 
-        return SoulsUpgradesMaybeLoaded.TryGetValue(type, out bool value)
-            && value;
+        if (SoulsUpgradesLoaded.TryGetValue(key, out bool value)) return value;
+        return false;
+    }
+
+    public void SetSoulLoaded(int type, bool value)
+    {
+        string key = GetUpgradeTagName(type);
+        if (key == null) return;
+        SoulsUpgradesLoaded[key] = value;
     }
 
     public float GetSoulActiveValue(int type)
     {
-        int index = GetIndexFromLoadedBossById(type);
+        string key = GetUpgradeTagName(type);
 
-        if (index >= 0)
-            return SoulsUpgradesLoadedActive[index];
+        if (key == null) return 0f;
 
-        return SoulsUpgradesMaybeLoadedActive.TryGetValue(type, out float value)
-            ? value
-            : 0f;
+        if (SoulsUpgradesLoadedActive.TryGetValue(key, out float value)) return value;
+        return 0f;
+    }
+
+    public void SetSoulActiveValue(int type, float value)
+    {
+        string key = GetUpgradeTagName(type);
+        if (key == null) return;
+        SoulsUpgradesLoadedActive[key] = value;
+    }
+
+    private static string GetUpgradeTagName(int type)
+    {
+        return Reaper.soulData.FirstOrDefault(upgrade => upgrade.npcType == type)?.UpgradeTagName;
     }
 
     public override void SaveData(TagCompound tag)
     {
-        ModLoader.TryGetMod("CalamityMod", out Mod calamityMod);
-
-        if (calamityMod != null)
-            FillSoulList();
-
-        for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
+        foreach(string key in SoulsUpgradesLoaded.Keys)
         {
-            NPC npc = ContentSamples.NpcsByNetId[GetLoadedBossIdByIndex(i)];
-
-            if (npc.boss)
-            {
-                int index = GetIndexFromLoadedBossById(npc.type);
-                string tagName = npc.type + "ReaperUpgrade";
-
-                tag[tagName] = SoulsUpgradesLoaded[index];
-
-                // Fuerza que NBT lo guarde como float.
-                tag[tagName + "Active"] = (float)SoulsUpgradesLoadedActive[index];
-            }
-        }
-
-        if (calamityMod != null)
-        {
-            foreach (NPC npc in NpcList.BossList[calamityMod])
-            {
-                string tagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
-
-                tag[tagName] = SoulsUpgradesMaybeLoaded[npc.type];
-
-                // Fuerza float.
-                tag[tagName + "Active"] = (float)SoulsUpgradesMaybeLoadedActive[npc.type];
-            }
+            tag[key] = SoulsUpgradesLoaded[key];
+            tag[key + "Active"] = (float)SoulsUpgradesLoadedActive[key];
         }
     }
 
     public override void LoadData(TagCompound tag)
     {
-        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-
-        if (CalamityMod != null) FillSoulList();
-
-        for (int i = 0; i < SoulsUpgradesLoaded.Length; i++)
+        foreach (string key in SoulsUpgradesLoaded.Keys)
         {
-            NPC npc = ContentSamples.NpcsByNetId[GetLoadedBossIdByIndex(i)];
-            if (npc.boss)
+            if (tag.ContainsKey(key))
             {
-                string TagDamage = npc.type + "ReaperUpgrade";
-                SoulsUpgradesLoaded[GetIndexFromLoadedBossById(npc.type)] = tag.GetBool(TagDamage);
-                SoulsUpgradesLoadedActive[GetIndexFromLoadedBossById(npc.type)] = tag.GetFloat(TagDamage + "Active");
+                SoulsUpgradesLoaded[key] = tag.GetBool(key);
             }
-        }
-        if (CalamityMod != null)
-        {
-            foreach (NPC npc in NpcList.BossList[CalamityMod])
+
+            string activeKey = key + "Active";
+            if (tag.ContainsKey(activeKey))
             {
-                string TagName = npc.ModNPC.GetType().Name + "ReaperUpgrade";
-                SoulsUpgradesMaybeLoaded[npc.type] = tag.GetBool(TagName);
-
-                string activeTag = TagName + "Active";
-
-                if (tag.ContainsKey(activeTag))
-                {
-                    object value = tag[activeTag];
-
-                    if (value is float floatValue) SoulsUpgradesMaybeLoadedActive[npc.type] = floatValue;
-                    else if (value is byte byteValue) SoulsUpgradesMaybeLoadedActive[npc.type] = byteValue; 
-                }
+                object value = tag[activeKey];
+                if (value is float floatValue) SoulsUpgradesLoadedActive[key] = floatValue;
             }
         }
     }
@@ -432,40 +415,21 @@ public class ReaperSoulsPlayer : ModPlayer
         packet.Write((byte)RemnantOfTheAncientsModMessageType.SoulsUpgrades);
         packet.Write((byte)Player.whoAmI);
 
-        packet.Write(SoulsUpgradesLoaded.Length);
-        foreach (bool value in SoulsUpgradesLoaded)
-            packet.Write(value);
+        packet.Write(SoulsUpgradesLoaded.Count);
 
-        packet.Write(SoulsUpgradesLoadedActive.Length);
-        foreach (float value in SoulsUpgradesLoadedActive)
-            packet.Write(value);
-
-        packet.Write(SoulsUpgradesMaybeLoaded.Count);
-        foreach (var kvp in SoulsUpgradesMaybeLoaded)
+        foreach (var kvp in SoulsUpgradesLoaded)
         {
-            packet.Write(kvp.Key);
-            packet.Write(kvp.Value);
-        }
+            string key = kvp.Key;
 
-        packet.Write(SoulsUpgradesMaybeLoadedActive.Count);
-        foreach (var kvp in SoulsUpgradesMaybeLoadedActive)
-        {
-            packet.Write(kvp.Key);
+            packet.Write(key);
             packet.Write(kvp.Value);
+            packet.Write(SoulsUpgradesLoadedActive[key]);
         }
 
         packet.Send(toWho, fromWho);
     }
 
-    public void FillSoulList()
-    {
-        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-        foreach (NPC npc in NpcList.BossList[CalamityMod])
-        {
-            SoulsUpgradesMaybeLoaded.TryAdd(npc.type, false);
-            SoulsUpgradesMaybeLoadedActive.TryAdd(npc.type, 0f); 
-        }
-    }
+
     public static int GetIndexFromLoadedBossById(int id)
     {
         switch (id)
@@ -496,43 +460,10 @@ public class ReaperSoulsPlayer : ModPlayer
                 return -1;
         }
     }
-    public static int GetLoadedBossIdByIndex(int Index)
-    {
-        switch (Index)
-        {
-            case 0: return NPCID.KingSlime;
-            case 1: return NPCID.EyeofCthulhu;
-            case 2: return NPCID.BrainofCthulhu;
-            case 3: return NPCID.QueenBee;
-            case 4: return NPCID.SkeletronHead;
-            case 5: return NPCID.Deerclops;
-            case 6: return NPCID.WallofFlesh;
-            case 7: return NPCID.QueenSlimeBoss;
-            case 8: return NPCID.SkeletronPrime;
-            case 9: return NPCID.Spazmatism;
-            case 10: return NPCID.Retinazer;
-            case 11: return NPCID.TheDestroyer;
-            case 12: return NPCID.Plantera;
-            case 13: return NPCID.Golem;
-            case 14: return NPCID.HallowBoss;
-            case 15: return NPCID.DukeFishron;
-            case 16: return NPCID.CultistBoss;
-            case 17: return NPCID.MoonLordCore; 
-            case 18: return NPCType<DesertAnnihilator>();
-            case 19: return NPCType<FrozenAssaulter>();
-            case 20: return NPCType<InfernalTyrantHead>();
-            default: return -1;
-        }
-    }
+    
     public bool AllSoulsAreActive()
     {
-        ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
-
-        if(SoulsUpgradesLoaded.Contains(false)) return false;
-        if (CalamityMod != null)
-        {
-            if (SoulsUpgradesMaybeLoaded.ContainsValue(false)) return false;
-        } 
+        if(SoulsUpgradesLoaded.ContainsValue(false)) return false;
         return true;
     }
 }
