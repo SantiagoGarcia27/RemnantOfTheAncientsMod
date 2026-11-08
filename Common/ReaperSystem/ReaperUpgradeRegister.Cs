@@ -24,9 +24,12 @@ public class ReaperUpgradeRegister
     {
         get
         {
-            _npc ??= new();
-            _npc.SetDefaults(npcType);
-            return npc;
+            if(_npc == null)
+            {
+                _npc = new();
+                _npc.SetDefaults(npcType);
+            }
+            return _npc;
         }
     }
 
