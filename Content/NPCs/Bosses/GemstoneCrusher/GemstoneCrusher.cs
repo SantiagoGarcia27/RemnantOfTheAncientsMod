@@ -7,6 +7,7 @@ using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Relics;
 using RemnantOfTheAncientsMod.Content.Items.Placeables.Trophy;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
@@ -747,6 +748,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             }
             base.HitEffect(hit);
         }
+        float pulsating => (float)Math.Sin(Main.GameUpdateCount * 0.1f) * 0.005f;
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Type type = GetType();
@@ -758,10 +760,23 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             Color color = !shootTelegraph ? Color.White : gemData[projectileType].color;
             if (TextureGlowPath != null && CurrentState != BossState.Sleep)
             {
-                // item.glowMask = RemnantOfTheAncientsMod.AddGlowMask(Texture);
                 Texture2D texture = ModContent.Request<Texture2D>(TextureGlowPath, AssetRequestMode.ImmediateLoad).Value;
                 Vector2 position = (NPC.position - Main.screenPosition) + new Vector2(NPC.width * 0.5f, NPC.height - texture.Height * 0.5f + 2f);
-                spriteBatch.Draw(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), color, NPC.rotation, texture.Size() * 0.5f, NPC.scale, SpriteEffects.None, 0f);
+
+                float pulse = 0.5f + 0.5f * (float)Math.Sin(Main.GlobalTimeWrappedHourly * 3f);
+
+                Color glowColor = color * (0.25f + pulse * 0.5f);
+
+                float radius = 2f + pulse * 2f;
+                Vector2 origin = texture.Size() * 0.5f;
+                // Contorno pulsante
+                for (int i = 0; i < 2; i++)
+                {
+                    float angle = MathHelper.TwoPi * i / 16f;
+                    Vector2 offset = new Vector2((float)Math.Cos(angle),(float)Math.Sin(angle)) * radius;
+                    spriteBatch.Draw(texture, position + offset, null, glowColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                }
+                spriteBatch.Draw(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), color, NPC.rotation, texture.Size() * 0.5f, NPC.scale + pulsating, SpriteEffects.None, 0f);
             }
             base.PostDraw(spriteBatch, screenPos, drawColor);
         }
@@ -775,7 +790,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
                 return true;
 
 
-            // string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
+            string fargos = DificultyUtils.EternityMode || DificultyUtils.MasochistMode ? $"{base.Texture}_Eternity" : base.Texture;
 
             
 
@@ -865,6 +880,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
 
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrusherMask>(), 7));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrusherTrophy>(), 1));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShinyPebbles>(), 1, 5, 20));
             if (DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));
         }

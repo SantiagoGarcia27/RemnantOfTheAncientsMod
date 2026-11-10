@@ -188,16 +188,16 @@ Mods: {
 			}
 
 			GemstoneCrusherIntroScreen: {
-				/* TextToDisplay:
+				TextToDisplay:
 					'''
-					Ruined sculptor guardian
-					Gemstone Crusher
-					''' */
-				/* JokeTextToDisplay:
+					Guardian esculpido arruinado
+					Trituragemas
 					'''
-					The fastest runner
-					Gemstone Crusher
-					''' */
+				JokeTextToDisplay:
+					'''
+					El corredor mas rapido
+					Trituragemas
+					'''
 			}
 		}
 
@@ -1887,6 +1887,11 @@ Mods: {
 			TuxoniteToilet: {
 				DisplayName: Retrete de Tucsonita
 				Tooltip: Un regalo extraño para un gran fan
+			}
+
+			CrusherMusicBox: {
+				DisplayName: Caja de música (Trituragemas)
+				Tooltip: ""
 			}
 
 			DesertMusicBox: {
@@ -4794,6 +4799,11 @@ Mods: {
 				DisplayName: Máscara del Trituragemas
 				// Tooltip: ""
 			}
+
+			ShinyPebbles: {
+				DisplayName: Gijarros brillantes
+				// Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -5117,6 +5127,7 @@ Mods: {
 			AncientTableTile.MapEntry: Mesa
 			BossTrophy.MapEntry: Trofeo
 			Completist.MapEntry: Completista
+			// cRUSHERMusicBoxT.MapEntry: Music Box
 			DesertMusicBoxT.MapEntry: Caja de música
 			FrozenMusicBoxT.MapEntry: Caja de música
 			Frozenp2MusicBoxT.MapEntry: Caja de música
@@ -5125,6 +5136,7 @@ Mods: {
 			TuxoniteDoorOpen.MapEntry: Puerta
 			TuxoniteTableTile.MapEntry: Mesa
 			ReforgeAnvilTile.MapEntry: Yunque de Reforja
+			CrusherMusicBoxT.MapEntry: Caja de música
 		}
 
 		Conditions: {

@@ -50,15 +50,14 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
         }
 
         List<int> collection;
-        Action customPortrait;
         public void AddCrusher(Mod BossChecklistMod)
         {
             collection =
-                [
+            [
                 ModContent.ItemType<CrusherTrophy>(),
                 ModContent.ItemType<CrusherMask>(),
-                //ModContent.ItemType<DesertMusicBox>()
-                ];
+                ModContent.ItemType<CrusherMusicBox>()
+            ];
 
             BossChecklistMod.Call(
             "LogBoss",
@@ -108,11 +107,11 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
         public void AddDesert(Mod BossChecklistMod)
         {
             collection =
-                [
+            [
                 ModContent.ItemType<DesertTrophy>(),
                 ModContent.ItemType<DesertAMask>(),
                 ModContent.ItemType<DesertMusicBox>()
-                ];
+            ];
 
             var customPortrait = (SpriteBatch sb, Rectangle rect, Color color) => {
                 Texture2D texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/NPCs/Bosses/DesertAnnihilator/DesertAniquilator_BossChecklist").Value;

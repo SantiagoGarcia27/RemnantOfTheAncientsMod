@@ -87,10 +87,6 @@ namespace RemnantOfTheAncientsMod.Common.DataSet
         public static readonly HashSet<int> HightBait = [];
         public static HashSet<int> MusicBox = [];
        
-
-
-
-
         public static HashSet<int> FillMusicBox()
         {
 
@@ -98,6 +94,7 @@ namespace RemnantOfTheAncientsMod.Common.DataSet
             [
                 576,2742,3044,3370,3371,3796,3869,4237,
                 4421,4606,4979,4985,5006,5044,5112,5362,
+                ModContent.ItemType<CrusherMusicBox>(),
                 ModContent.ItemType<DesertMusicBox>(),
                 ModContent.ItemType<FrozenMusicBox>(),
                 ModContent.ItemType<Frozenp2MusicBox>(),

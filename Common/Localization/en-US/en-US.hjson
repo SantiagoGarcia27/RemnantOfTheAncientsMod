@@ -1875,6 +1875,11 @@ Mods: {
 				Tooltip: A rare gift for a big fan
 			}
 
+			CrusherMusicBox: {
+				DisplayName: Music Box (Gemstone Crusher)
+				Tooltip: ""
+			}
+
 			DesertMusicBox: {
 				DisplayName: Music Box (Desert Annihilator)
 				Tooltip: ""
@@ -4770,6 +4775,11 @@ Mods: {
 				DisplayName: Crusher Mask
 				Tooltip: ""
 			}
+
+			ShinyPebbles: {
+				DisplayName: Shiny Pebbles
+				Tooltip: ""
+			}
 		}
 
 		NPCs: {
@@ -5093,6 +5103,7 @@ Mods: {
 			AncientTableTile.MapEntry: Table
 			BossTrophy.MapEntry: Trophy
 			Completist.MapEntry: Table
+			cRUSHERMusicBoxT.MapEntry: Music Box
 			DesertMusicBoxT.MapEntry: Music Box
 			FrozenMusicBoxT.MapEntry: Music Box
 			Frozenp2MusicBoxT.MapEntry: Music Box
@@ -5101,6 +5112,7 @@ Mods: {
 			TuxoniteDoorOpen.MapEntry: Example Door
 			TuxoniteTableTile.MapEntry: Table
 			ReforgeAnvilTile.MapEntry: Reforge Anvil Tile
+			CrusherMusicBoxT.MapEntry: Crusher Music Box T
 		}
 
 		Conditions: {

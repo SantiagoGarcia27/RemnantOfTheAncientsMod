@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Items.Items;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -50,6 +51,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee.Gem
             CreateRecipe()
             .AddIngredient(ItemID.PlatinumBar, 8)
             .AddIngredient(ItemID.Diamond, 10)
+            .AddIngredient<ShinyPebbles>(20)
             .AddTile(TileID.Anvils)
             .Register();
         }

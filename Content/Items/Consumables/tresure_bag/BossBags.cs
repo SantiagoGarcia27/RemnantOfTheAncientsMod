@@ -29,8 +29,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 {
     public class TreasureRock : BossBagItem
     {
+        public override bool IsHardmode => false;
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
+            itemLoot.Add(ItemDropRule.Common(ItemType<CrusherMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.Common(ItemType<Terra_core>()));
             itemLoot.Add(ItemDropRule.Common(ItemType<InfernalMusicBox>(), 7));
             itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(NPCType<GemstoneCrusher>()));
@@ -41,6 +43,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
     public class DesertBag : BossBagItem
     {
+        public override bool IsHardmode => false;
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             itemLoot.Add(ItemDropRule.Common(ItemType<DesertMusicBox>(), 7));
@@ -88,9 +91,11 @@ namespace RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag
 
     public abstract class BossBagItem : ModItem
     {
+        public virtual bool IsHardmode { get; set; } = true;
         public override void SetStaticDefaults()
         {
             ItemID.Sets.BossBag[Type] = true;
+            ItemID.Sets.PreHardmodeLikeBossBag[Type] = !IsHardmode;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 
