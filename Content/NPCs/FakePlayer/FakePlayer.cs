@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PlayerProxyLib.Common.ProxyPlayer;
+using SangarUtilities.Common.UtilsTweaks;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -128,7 +129,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.FakePlayer
 			if (target != null)
 			{
                 int lifeLosed = proxy.statLifeMax2 - proxy.statLife;
-				if (!proxy.inventory[9].IsAir && inventory.healPotion?.item is Item healingPotion && lifeLosed >= healingPotion.healLife && proxy.inventory[9].stack > 0)
+				if (!proxy.inventory[9].IsAir && inventory.healPotion?.item is Item healingPotion && (lifeLosed >= healingPotion.healLife || NPC.life <= MathUtils.GetValueFromPorcentage(NPC.lifeMax, 15)) && proxy.inventory[9].stack > 0)
 				{
                     attackModule.StopAnimation();
                     consumableModule.HealingAI();
