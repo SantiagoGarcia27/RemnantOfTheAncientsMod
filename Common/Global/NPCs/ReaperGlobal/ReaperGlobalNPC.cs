@@ -180,8 +180,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                 NPCID.PrimeVice
             ];
 
-
-
             if (!Reaper.ReaperMode) return;
             
             if (ReaperAffectedNPCs.Contains(npc.type))
@@ -350,22 +348,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                             if (primePhase <= 4) primePhase++;
                             if (primePhase < 5)
                             {
-                                int handId = NPCID.PrimeSaw;
-                                switch (primePhase)
+                                int handId = primePhase switch
                                 {
-                                    case 1:
-                                        handId = NPCID.PrimeLaser;
-                                        break;
-                                    case 2:
-                                        handId = NPCID.PrimeCannon;
-                                        break;
-                                    case 3:
-                                        handId = NPCID.PrimeVice;
-                                        break;
-                                    case 4:
-                                        handId = NPCID.PrimeSaw; 
-                                        break;
-                                }
+                                    1 => NPCID.PrimeLaser,
+                                    2 => NPCID.PrimeCannon,
+                                    3 => NPCID.PrimeVice,
+                                    4 => NPCID.PrimeSaw,
+                                    _ => throw new NotImplementedException()
+                                };
+
                                 for (int i = -(handAmmount / 2); i < handAmmount / 2; i++)
                                 {
                                     int a = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.Center.X, (int)npc.Center.Y, handId, Main.myPlayer);

@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using Terraria;
 using Terraria.GameContent.Creative;
@@ -7,7 +9,6 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
 {
-    [AutoloadEquip(EquipType.Balloon)]
     public class Terra_core : ModItem
     {
         int miningSpeedBonus = 15;
@@ -47,6 +48,20 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
 
                 }       
             }
+
+            DrawCore(player);
+        }
+
+        public void DrawCore(Player player)
+        {
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            SpriteEffects effect = player.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            Vector2 offset = new Vector2(-16,0) * player.direction;
+            Vector2 position = player.Center - Main.screenPosition + new Vector2(0f, player.gfxOffY) + offset;
+            Main.spriteBatch.Begin();
+            Main.spriteBatch.Draw(texture, position, null, Color.White, 0f, new Vector2(5, 7), 1f, effect, 0f);
+            Main.spriteBatch.End();
         }
     }
 }

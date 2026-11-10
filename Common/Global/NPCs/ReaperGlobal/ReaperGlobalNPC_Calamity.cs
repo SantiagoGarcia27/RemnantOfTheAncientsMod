@@ -41,9 +41,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
         private bool UniqueToggledFlag = false;
         private bool SecondUniqueToggledFlag = false;
 
+
+        public override bool InstancePerEntity => true;
         public override void SetDefaults(NPC npc)
         {
-            if (RemnantOfTheAncientsMod.CalamityMod == null) return;
+            if (RemnantOfTheAncientsMod.CalamityMod == null || !Reaper.ReaperMode) return;
 
             FillList();
 
