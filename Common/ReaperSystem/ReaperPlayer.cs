@@ -10,8 +10,6 @@ using RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms;
-using SangarUtilities.Common;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;

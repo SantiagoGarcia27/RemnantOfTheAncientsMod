@@ -30,6 +30,10 @@ namespace RemnantOfTheAncientsMod.Common.ReaperSystem
         {
            tag["ReaperMode"] = ReaperMode;
         }
+        public override void SaveWorldHeader(TagCompound tag)
+        {
+            tag["ReaperMode"] = ReaperMode;
+        }
 
         public override void LoadWorldData(TagCompound tag)
         {

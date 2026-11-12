@@ -802,9 +802,9 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
 					Inflict Hellfire on attack
 					You become immune to fire blocks and On Fire debuffs
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1} while in the underworld
 					'''
 			}
 

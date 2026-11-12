@@ -1,4 +1,3 @@
-using CalamityMod.NPCs.AcidRain;
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;

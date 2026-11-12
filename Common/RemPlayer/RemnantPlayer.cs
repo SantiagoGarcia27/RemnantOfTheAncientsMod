@@ -57,7 +57,6 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 		public bool hBurn;
 		public bool Marble_Erosion;
 		public bool CursedMark;
-        public bool Hell_Fire;
         #endregion
 
         #region pets
@@ -159,7 +158,6 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 		{
 			Burn_Sand = false;
 			hBurn = false;
-			Hell_Fire = false;
 			Marble_Erosion = false;
 			CursedMark = false;
 
@@ -275,7 +273,6 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 		public override void UpdateDead()
 		{
 			Burn_Sand = false;
-			Hell_Fire = false;
 			Player.ClearBuff(BuffType<Burning_Sand>());
 			hBurn = false;
 			MoneyCollector = false;
@@ -305,7 +302,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 		}
 		public override void UpdateBadLifeRegen()
 		{
-			if (Burn_Sand || Hell_Fire || hBurn)
+			if (Burn_Sand || hBurn)
 			{
 				if (Player.lifeRegen > 0) Player.lifeRegen = 0;
 				Player.lifeRegenTime = 0;
@@ -438,18 +435,8 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 		{
 			if (drawInfo.shadow == 0f && Main.rand.NextBool(4))
 			{
-				if (Burn_Sand)
-				{
-					SpawnDust(DustType<QuemaduraA>());
-				}
-				if (Hell_Fire)
-				{
-					SpawnDust(DustType<Hell_Fire_P>());
-				}
-				if (hBurn)
-				{
-					SpawnDust(DustType<HollyBurn_P>());
-				}
+				if (Burn_Sand) SpawnDust(DustType<QuemaduraA>());
+				if (hBurn) SpawnDust(DustType<HollyBurn_P>());		
 			}
 			void SpawnDust(int id)
 			{

@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common;
 using RemnantOfTheAncientsMod.Common.Global;
-using RemnantOfTheAncientsMod.Content.Buffs.Debuff;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Projectiles.Melee.Swing;
 using Terraria;
 using Terraria.DataStructures;
@@ -36,10 +36,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
             Item.value = Item.sellPrice(gold: 35);
             Item.GetGlobalItem<CustomTooltip>().customRarity = CustomRarity.Legendary;
             Item.GetGlobalItem<CustomTooltip>().LegendaryDrop = true;
-            //if (RemnantOfTheAncients.TerrariaOverhaul != null)
-            //{
-            //    if (ModContent.GetInstance<ConfigServer>().OverhaulMeleeManaCostConfig) Item.shoot = ModContent.ProjectileType<LegendaryGreatSwordSwingProgectile>();
-            //}
             Item.shoot = ModContent.ProjectileType<LegendaryGreatSwordSwingProgectile>();
             Item.shootSpeed = 10f;
             Item.noUseGraphic = true;
@@ -51,14 +47,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void PostReforge()
         {
             base.PostReforge();
-            //  if (Item.prefix == PrefixID.Legendary)// //DisplayName.SetDefault("True Legendary Great Sword");
-
         }
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire, 300);
-            target.AddBuff(ModContent.BuffType<Hell_Fire>(), 300);
+            target.AddBuff(BuffID.OnFire3, 300);
             target.AddBuff(BuffID.Ichor, 300);
             target.AddBuff(BuffID.Venom, 300);
             target.AddBuff(BuffID.Poisoned, 300);
@@ -82,16 +76,9 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
                 position.Y -= 100 * i;
                 Vector2 heading = postition - position;
 
-                if (heading.Y < 0f)
-                {
-                    heading.Y *= -1f;
-                }
-
-                if (heading.Y < 20f)
-                {
-                    heading.Y = 20f;
-                }
-
+                if (heading.Y < 0f) heading.Y *= -1f;
+                if (heading.Y < 20f) heading.Y = 20f;
+                
                 heading.Normalize();
                 //heading *= velocity.Length();
                 heading.Y += Main.rand.Next(-40, 41) * 0.02f;
@@ -101,11 +88,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         public override void MeleeEffects(Player player, Rectangle hitbox) => Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.Pixie);
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            // Using the shoot function, we override the swing projectile to set ai[0] (which attack it is)
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, Main.myPlayer, attackType);
-            attackType = 0; // Increment attackType to make sure next swing is different
-            comboExpireTimer = 0; // Every time the weapon is used, we reset this so the combo does not expire
-            return false; // return false to prevent original projectile from being shot
+            attackType = 0;
+            comboExpireTimer = 0;
+            return false;
         }
         public override bool MeleePrefix()
         {
@@ -113,8 +99,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Melee
         }
         public override void UpdateInventory(Player player)
         {
-            if (comboExpireTimer++ >= 120) // after 120 ticks (== 2 seconds) in inventory, reset the attack pattern
-                attackType = 0;
+            if (comboExpireTimer++ >= Utils1.FormatTimeToTick(Second:2)) attackType = 0;
         }
     }
 }

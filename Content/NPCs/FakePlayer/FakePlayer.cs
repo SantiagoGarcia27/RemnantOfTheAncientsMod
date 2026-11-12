@@ -6,7 +6,6 @@ using System.IO;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static FakePlayer_Setup;
 

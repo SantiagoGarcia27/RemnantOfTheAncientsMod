@@ -1,39 +1,28 @@
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Core
 {
-    [AutoloadEquip(EquipType.Balloon)]
-    public class Frost_core : ModItem
+    public class Frost_core : CoreItem
     {
-
-        public override void SetStaticDefaults()
-        {
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
+        private float MagicDamageBonus = 10;
+        private float MoveSpeedBonus = 150;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(25);
-        public override void SetDefaults()
-        {
-            Item.width = 10;
-            Item.height = 14;
-            Item.value = 45000;
-            Item.rare = ItemRarityID.Red;
-            Item.expert = true;
-            Item.accessory = true;
-        }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Magic) += .10f;
+            player.GetDamage(DamageClass.Magic) += MagicDamageBonus/100f;
             if (player.ZoneSnow) 
             {
-                player.moveSpeed += 1.50f;
+                player.moveSpeed += MoveSpeedBonus/100f;
+
                 player.buffImmune[BuffID.Chilled] = true;
                 player.buffImmune[BuffID.Frozen] = true;
             }
+
+            base.UpdateAccessory(player, hideVisual);
         }
     }
 }

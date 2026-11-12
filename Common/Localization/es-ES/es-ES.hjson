@@ -812,10 +812,10 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.PercentIncreasedMeleeDamage}
-					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1}
 					Inflije Fuego infernal al golpear.
 					Obtienes inmunidad a los bloques de fuego.
 					Obtienes inmunidad a el estado de en llamas.
+					{$CommonItemTooltip.PercentIncreasedMovementSpeed@1} cuando estas en el inframundo.
 					'''
 			}
 

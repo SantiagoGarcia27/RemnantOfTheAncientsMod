@@ -4,6 +4,7 @@ using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -14,12 +15,13 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
     public class DrawEffectPlayer : ModPlayer
     {
         public bool FogOfVoidEffect;
-
+        public List<string> activeCores = [];
 
 
         public override void ResetEffects()
         {
             FogOfVoidEffect = false;
+            activeCores.Clear();
         }
 
 
