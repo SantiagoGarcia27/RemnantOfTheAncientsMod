@@ -230,7 +230,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
 
         private void ShootAi(Player target, bool isReaper)
         {
-            int framerate = Math.Min(Main.frameRate, 60);
+            // 40 is a stimated to compensate server lag (i know that no everyone has lag, but is a good average)
+            int rawFramerate = Main.netMode == NetmodeID.SinglePlayer ? Main.frameRate : 40;
+            int framerate = Math.Min(rawFramerate, 60);
             float diferencia = Math.Abs(55 - framerate);
             int beamAmount = isReaper ? 6 : 1;
             float scale = 1;
@@ -240,9 +242,9 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.FrozenAssaulter
                 case 500:
                 case 200:
                     if (currentPhase != 3) return;  
-                    for (int i = 0; i < 3; i++){
-                        ShootSwordIa(target, 50, ProjectileType<FrozenPermafrostRain>(), 4f);
-                    }     
+
+                    for (int i = 0; i < 3; i++)
+                        ShootSwordIa(target, 50, ProjectileType<FrozenPermafrostRain>(), 4f);    
                     
                     break;
 

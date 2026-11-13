@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Common.ReaperSystem;
 using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.NPCs;
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using RemnantOfTheAncientsMod.Content.Projectiles.Multiclass;
@@ -442,10 +443,11 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                 if (npc.type == NPCID.MoonLordCore)
                 {
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Horrified, 0, 0, Utils1.FormatTimeToTick(0, 0, 0, 1));
-                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Weak, 0, 0, Utils1.FormatTimeToTick(0, 0, 0, 1));
+                    RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Weak, 0, 0, Utils1.FormatTimeToTick(Second: 1));
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Blackout, 0, 0, Utils1.FormatTimeToTick(0, 0, 0, 1));
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.ChaosState, 0, 0, Utils1.FormatTimeToTick(0, 0, 0, 1));
                     RemnantPlayer.ApplyBuffToAllPlayers(BuffID.NoBuilding, 0, 0, Utils1.FormatTimeToTick(0, 0, 0, 1));
+
                     if (NPC.AnyNPCs(NPCID.Dryad)) RemnantPlayer.ApplyBuffToAllPlayers(BuffID.DryadsWard, 0, 0, Utils1.FormatTimeToTick(0, 0, 0, 1));
                    
                     if (attackCounter == 110)
@@ -462,15 +464,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                     }
                 }
 
-                if (attackCounter < 800)
-                {
-                    attackCounter++;
-                }
-                else
-                {
-                    attackCounter = 0;
-                }
-                
+                if (attackCounter++ < 800) attackCounter = 0;
             }
 
             base.AI(npc);
@@ -724,6 +718,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
             {
                 if (npc.life <= 1)
                 {
+
+                    if (!RemnantDownedBossSystem.downedMoonlordReaper)
+                    {
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            NetMessage.SendData(MessageID.WorldData);
+                        }
+                        RemnantDownedBossSystem.downedMoonlordReaper = true;
+                    }
+
                     RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);
                     RemnantPlayer.ClearBuffToAllPlayers(BuffID.Weak);
                     RemnantPlayer.ClearBuffToAllPlayers(BuffID.Blackout);

@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using static RemnantOfTheAncientsMod.Common.Drops.DropRules.RemnantConditions;
 
 namespace RemnantOfTheAncientsMod.Common.World
 {
@@ -12,8 +13,10 @@ namespace RemnantOfTheAncientsMod.Common.World
 		public static bool downedFrozen = false;
 		public static bool downedTyrant = false;
 
+		public static bool downedMoonlordReaper = false;
 
-		public static bool downedRaiderInvasion = false;
+
+        public static bool downedRaiderInvasion = false;
         public static bool downedRaiderLeader = false;
 
         public override void OnWorldLoad()
@@ -23,9 +26,10 @@ namespace RemnantOfTheAncientsMod.Common.World
 			downedFrozen = false;
 			downedTyrant = false;
 
-			downedRaiderInvasion =false;
+			downedRaiderInvasion = false;
 			downedRaiderLeader = false;
 
+            downedMoonlordReaper = false;
         }
 
 		public override void OnWorldUnload()
@@ -37,6 +41,8 @@ namespace RemnantOfTheAncientsMod.Common.World
 
             downedRaiderInvasion = false;
 			downedRaiderLeader = false;
+
+            downedMoonlordReaper = false;
         }
 
 		public override void SaveWorldData(TagCompound tag)
@@ -48,9 +54,15 @@ namespace RemnantOfTheAncientsMod.Common.World
 
 			if(downedRaiderInvasion) tag["downedRaiderInvasion"] = true;
 			if(downedRaiderLeader) tag["downedRaiderLeader"] = true;
+
+			if(downedMoonlordReaper) tag["downedMoonlordReaper"] = true;
+        }
+        public override void SaveWorldHeader(TagCompound tag)
+        {
+            tag["downedMoonlordReaper"] = downedMoonlordReaper;
         }
 
-		public override void LoadWorldData(TagCompound tag)
+        public override void LoadWorldData(TagCompound tag)
 		{
             downedCrusher = tag.ContainsKey("downedCrusher");
             downedDesert = tag.ContainsKey("downedDesert");
@@ -59,6 +71,8 @@ namespace RemnantOfTheAncientsMod.Common.World
 
 			downedRaiderInvasion = tag.ContainsKey("downedRaiderInvasion");
             downedRaiderLeader = tag.ContainsKey("downedRaiderLeader");
+
+            downedMoonlordReaper = tag.ContainsKey("downedMoonlordReaper");
         }
 
 		public override void NetSend(BinaryWriter writer)
@@ -72,6 +86,8 @@ namespace RemnantOfTheAncientsMod.Common.World
 
 			flags[4] = downedRaiderInvasion;
 			flags[5] = downedRaiderLeader;
+
+			flags[6] = downedMoonlordReaper;
 
             writer.Write(flags);
 		}
@@ -87,6 +103,8 @@ namespace RemnantOfTheAncientsMod.Common.World
 
 			downedRaiderInvasion = flags[4];
 			downedRaiderLeader = flags[5];
+
+            downedMoonlordReaper = flags[6];
         }
 	}
 }

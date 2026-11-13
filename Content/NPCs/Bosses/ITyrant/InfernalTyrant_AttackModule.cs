@@ -11,38 +11,20 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-class InfernalTyrant_AttackModule
+class InfernalTyrant_AttackModule(InfernalTyrant_AnimationModule animationModule, InfernalTyrant_AuxiliaryModule auxiliaryModule)
 {
     internal int shootTimeline = -1;
     internal int shootTimelineMax = -1;
     private bool SpawnClon = false;
 
-    internal NPC npc => auxModule.npc;
+    internal NPC npc => AuxModule.npc;
 
-    internal InfernalTyrant_AnimationModule animationModule { get; set; }
-    internal InfernalTyrant_AuxiliaryModule auxModule { get; set; }
-    
-    public InfernalTyrant_AttackModule(InfernalTyrant_AnimationModule animationModule, InfernalTyrant_AuxiliaryModule auxiliaryModule)
-    {
-        this.animationModule = animationModule;
-        this.auxModule = auxiliaryModule;
-    }
-
-    private void ShootManager(int timePercent, Action shootMethod)
-    {
-        float timeMark = MathUtils.GetValueFromPorcentage(shootTimelineMax, timePercent);
-        float timeMarkTelegraph = timeMark - Utils1.FormatTimeToTick(Second: 1);
-        if (shootTimeline == timeMarkTelegraph) animationModule.ShootTelegraphing = true;
-        if (shootTimeline == timeMark)
-        {
-            shootMethod();
-            animationModule.ShootTelegraphing = false;
-        }
-    }
+    internal InfernalTyrant_AnimationModule AnimationModule { get; set; } = animationModule;
+    internal InfernalTyrant_AuxiliaryModule AuxModule { get; set; } = auxiliaryModule;
 
     public void DoAttacks(Player target)
     {
-        int attackCounter = auxModule.attackCounter;
+        int attackCounter = AuxModule.attackCounter;
         switch (attackCounter)
         {
             case 200:
@@ -80,7 +62,7 @@ class InfernalTyrant_AttackModule
                 break;
         }
 
-        if (auxModule.IsPhase2)
+        if (AuxModule.IsPhase2)
         {
             switch (attackCounter)
             {
@@ -103,7 +85,7 @@ class InfernalTyrant_AttackModule
             }
         }
 
-        if (auxModule.IsEnraged)
+        if (AuxModule.IsEnraged)
         {
             switch (attackCounter)
             {
@@ -202,7 +184,7 @@ class InfernalTyrant_AttackModule
 
         if (DificultyUtils.InfernumMode)
         {
-            if (auxModule.attackCounter % 4 == 0)
+            if (AuxModule.attackCounter % 4 == 0)
             {
                 for (int i = -3; i <= 3; i++)
                 {

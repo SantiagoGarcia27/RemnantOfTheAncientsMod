@@ -4,7 +4,6 @@ using Terraria;
 
 class InfernalTyrant_AnimationModule
 { 
-
     private InfernalTyrant_AuxiliaryModule auxModule { get; set; }
     private NPC npc  => auxModule.npc;
     private bool _shootTelegraphing { get; set; } = false;

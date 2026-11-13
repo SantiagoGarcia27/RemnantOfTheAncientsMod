@@ -1,27 +1,18 @@
 using RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant;
 using System.IO;
 
-public class InfernalTyrant_MovmentModule
+public class InfernalTyrant_MovmentModule(InfernalTyrant_AuxiliaryModule auxiliaryModule, TyrantBaseWorm worm)
 {
-    public InfernalTyrant_MovmentModule(InfernalTyrant_AuxiliaryModule auxiliaryModule,TyrantBaseWorm worm)
-    {
-        auxModule = auxiliaryModule;
-        this.worm = worm;
-    }
-
-    InfernalTyrant_AuxiliaryModule auxModule;
-    TyrantBaseWorm worm;
+    private readonly InfernalTyrant_AuxiliaryModule auxModule = auxiliaryModule;
+    private readonly TyrantBaseWorm worm = worm;
 
     private int movementPhase;
     private int movementTimer;
     public bool IsPhase2 => auxModule.IsPhase2;
     internal void UpdateMovement()
     {
-        if (!IsPhase2)
-        {
-            //worm.Acceleration = 0.245f;
-            return;
-        }
+        if (!IsPhase2) return;
+        
         InfernalTyrant_AuxiliaryModule.LifeSpeed(worm);
 
         movementTimer--;

@@ -26,8 +26,6 @@ using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 {
-
-
     [AutoloadBossHead]
     public class InfernalTyrantHead : TyrantHead
     {
@@ -410,7 +408,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
         {
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.defense = TyranStats.TyrantArmor(999, NPC);
-            GenericVariables gv = new GenericVariables();
 
             if (RemnantOfTheAncientsMod.CalamityMod != null)
             {
