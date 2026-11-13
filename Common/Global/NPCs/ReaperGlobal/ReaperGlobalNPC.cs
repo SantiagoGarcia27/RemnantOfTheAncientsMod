@@ -68,8 +68,6 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                 }
             }
         }
-
-        
         public List<int> destroyer =
         [
             NPCID.TheDestroyer ,
@@ -464,7 +462,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                     }
                 }
 
-                if (attackCounter++ < 800) attackCounter = 0;
+                if (attackCounter++ >= 800) attackCounter = 0;
             }
 
             base.AI(npc);
@@ -721,11 +719,8 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
 
                     if (!RemnantDownedBossSystem.downedMoonlordReaper)
                     {
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            NetMessage.SendData(MessageID.WorldData);
-                        }
                         RemnantDownedBossSystem.downedMoonlordReaper = true;
+                        if (Main.netMode == NetmodeID.Server) NetMessage.SendData(MessageID.WorldData);
                     }
 
                     RemnantPlayer.ClearBuffToAllPlayers(BuffID.Horrified);

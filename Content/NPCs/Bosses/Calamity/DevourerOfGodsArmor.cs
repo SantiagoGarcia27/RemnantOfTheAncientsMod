@@ -15,9 +15,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.Calamity
             return ModLoader.TryGetMod("CalamityMod", out Mod CalamityMod);
         }
         public override string Texture => GetTexturePath();
-        public override void SetStaticDefaults()
-        {
-        } 
         public override void SetDefaults()
         {
             NPC.width = 104;
@@ -52,8 +49,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.Calamity
             Vector2 drawPosition = NPC.Center - screenPos;
             Vector2 halfSizeTexture = new Vector2(texture.Width() / 2, texture.Height() / 2);
             drawPosition -= new Vector2(texture.Width(), texture.Height()) * NPC.scale / 2f;
-
-
 
             drawPosition += halfSizeTexture * NPC.scale + new Vector2(0f, NPC.gfxOffY);
             spriteBatch.Draw((Texture2D)texture, drawPosition, null, NPC.GetAlpha(drawColor), NPC.rotation, halfSizeTexture, NPC.scale, NPC.spriteDirection == 1? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);

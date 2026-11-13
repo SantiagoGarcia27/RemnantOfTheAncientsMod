@@ -17,17 +17,14 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.ITyrant
 
             float minPercent = 0.05f;
 
-            if (Main.expertMode || Main.masterMode)
-            {
-                minPercent = 0.02f;
-                if (DificultyUtils.ReaperMode) minPercent = 0.00f;
-            }
+            if (Main.expertMode || Main.masterMode) minPercent = 0.02f;
+            if (DificultyUtils.ReaperMode) minPercent = 0.00f;
 
             float finalFactor = MathHelper.Lerp(minPercent, 1f, decayFactor);
 
             int processedDefense = (int)(defense * finalFactor);
 
-            return RemnantOfTheAncientsMod.RemnantOfTheAncientsMod.CalamityMod != null ? processedDefense * 2 : processedDefense;
+            return RemnantOfTheAncientsMod.CalamityMod != null ? processedDefense * 2 : processedDefense;
         }
 
 
