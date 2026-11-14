@@ -42,7 +42,7 @@ namespace RemnantOfTheAncientsMod.Common.Prefix
     {
         public  float Power =>  5f;
         public override PrefixCategory Category => PrefixCategory.Accessory;
-        public override float RollChance(Item item) => new ChanceRoll().CommonReforgeChance;
+        public override float RollChance(Item item) => 0;
         public override bool CanRoll(Item item) => true;
 
         public override void ModifyValue(ref float valueMult)

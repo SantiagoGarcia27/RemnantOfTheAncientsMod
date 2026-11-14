@@ -110,6 +110,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             SafeAddContentToList(ItemID.PirateMap);
             SafeAddContentToList(ItemID.PumpkinMoonMedallion);
             SafeAddContentToList(ItemID.NaughtyPresent);
+            SafeAddContentToList(ModContent.ItemType<RaidersSummon>());
         }
 		public static void AddBossSummon()
 		{

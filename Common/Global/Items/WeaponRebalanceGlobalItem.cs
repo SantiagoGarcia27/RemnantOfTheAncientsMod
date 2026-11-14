@@ -163,6 +163,12 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
                 {
                     item.damage /= 2;
                 }
+                else if(item.type == ItemID.WandofSparking)
+                {
+                    item.damage -= 4;
+                    item.useTime += 4;
+                    item.useAnimation += 4;
+                }
             }
         }
         float counter;
