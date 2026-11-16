@@ -1,8 +1,10 @@
+using CalamityMod.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -26,6 +28,20 @@ namespace RemnantOfTheAncientsMod.Common.Menu
 
         public override int Music => SetMusic();
 
+        private Asset<Texture2D> skyTexture;
+
+        public override void Load()
+        {
+            skyTexture = Mod.Assets.Request<Texture2D>("Common/Background/GalearisSky", AssetRequestMode.ImmediateLoad);
+
+            On_Main.DrawStarsInBackground += DrawRemnantSky;
+        }
+
+        public override void Unload()
+        {
+            On_Main.DrawStarsInBackground -= DrawRemnantSky;
+        }
+
         private static int SetMusic()
         {
             int result;
@@ -34,11 +50,33 @@ namespace RemnantOfTheAncientsMod.Common.Menu
             else result =  MusicID.MenuMusic;
             return result; 
         }
+        private const string SkyKey = "RemnantOfTheAncientsMod:GalearisSky";
         public override void OnSelected()
         {
             SoundEngine.PlaySound(SoundID.Chat); // Plays a thunder sound when this ModMenu is selected
-        }
 
+            if (SkyManager.Instance[SkyKey] == null)
+            {
+                SkyManager.Instance[SkyKey] = new GalearisSky();
+            }
+
+            SkyManager.Instance.Activate(SkyKey);
+
+            Mod.Logger.Info(
+                $"RemnantSky registrado: {SkyManager.Instance[SkyKey] != null}"
+            );
+
+            Mod.Logger.Info(
+                $"RemnantSky activo: {SkyManager.Instance[SkyKey].IsActive()}"
+            );
+        }
+        public override void OnDeselected()
+        {
+            if (SkyManager.Instance[SkyKey] != null)
+            {
+                SkyManager.Instance.Deactivate(SkyKey);
+            }
+        }
         public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor)
         {
             Texture2D texture = ModContent.Request<Texture2D>($"RemnantOfTheAncientsMod/Common/Menu/Background", (AssetRequestMode)2).Value;
@@ -65,6 +103,29 @@ namespace RemnantOfTheAncientsMod.Common.Menu
             spriteBatch.Draw(texture, drawOffset, null, Color.White, 0f, Vector2.Zero, scale, 0, 0f);
             drawColor = Color.White;
             return true;
+        }
+
+        private void DrawRemnantSky(
+       On_Main.orig_DrawStarsInBackground orig,
+       Main self,
+       Main.SceneArea sceneArea,
+       bool artificial)
+        {
+            if (Main.gameMenu && IsSelected && !artificial)
+            {
+                Main.spriteBatch.Draw(
+                    skyTexture.Value,
+                    new Rectangle(
+                        0,
+                        0,
+                        Main.screenWidth,
+                        Main.screenHeight
+                    ),
+                    Color.White
+                );
+            }
+
+            orig(self, sceneArea, artificial);
         }
     }
 }

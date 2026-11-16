@@ -128,6 +128,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             SafeAddContentToList(ItemID.TruffleWorm);
             SafeAddContentToList(ItemID.MechanicalSkull);
             SafeAddContentToList(ItemID.CelestialSigil);
+            SafeAddContentToList(ModContent.ItemType<StrikingGeode>());
             SafeAddContentToList(ModContent.ItemType<DesertGlyph>());
             SafeAddContentToList(ModContent.ItemType<SoulBurner>());
             SafeAddContentToList(ModContent.ItemType<FrozenArtifact>());

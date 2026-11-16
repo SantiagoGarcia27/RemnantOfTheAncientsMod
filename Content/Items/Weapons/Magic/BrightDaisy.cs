@@ -23,31 +23,36 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.height = 24;
             Item.width = 24;
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 15;
+            Item.damage = 10;
             Item.knockBack = 1.2f;
-            Item.crit = 6;
-            Item.mana = 5;
-            Item.useTime = 15;
-            Item.useAnimation = 15;
+            Item.crit = 0;
+            Item.mana = 20;
+            Item.useTime = 7;
+            Item.useAnimation = 40;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<BrightPetal>();
             Item.shootSpeed = 20;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item34;
             Item.rare = ItemRarityID.Green;
-            Item.value = Item.buyPrice(copper: 50);
+            Item.value = Item.buyPrice(silver: 1);
             Item.noMelee = true;
-
+            Item.reuseDelay = 60;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             if (Main.rand.NextFloat() <= (float)1 / 10) Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BrightPetal_Fire>(), damage, 1, player.whoAmI);
             return true;
         }
+        public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
+        {
+            mult = !player.GetModPlayer<RemnantPlayer>().DaylightArmorSetBonus ? mult : 0;
+            base.ModifyManaCost(player, ref reduce, ref mult);
+        }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            Item.mana = !player.GetModPlayer<RemnantPlayer>().DaylightArmorSetBonus ? 5 : 0;
-            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(5));
+            velocity = velocity.RotatedByRandom(MathHelper.ToRadians(20f));
+            velocity *= Main.rand.NextFloat(0.8f, 1.2f);
         }
         public override void AddRecipes()
         {

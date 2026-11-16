@@ -22,7 +22,7 @@ namespace RemnantOfTheAncientsMod.Common.World
         public static bool EventActive;
         public static int Kills;
 
-        public const int RequiredKills = 50;
+        public const int RequiredKills = 25;
         public const int MaxEnemies = 5;
 
         private static int spawnTimer;

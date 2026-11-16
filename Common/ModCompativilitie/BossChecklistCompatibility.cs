@@ -68,6 +68,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
             ModContent.NPCType<GemstoneCrusher>(),
             new Dictionary<string, object>()
             {
+                ["spawnItems"] = ModContent.ItemType<StrikingGeode>(),
                 ["collectibles"] = collection
             }
         );

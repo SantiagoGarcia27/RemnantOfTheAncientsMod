@@ -7,8 +7,6 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 	public class TrueDurendalDebuff : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			// This allows the debuff to be inflicted on NPCs that would otherwise be immune to all debuffs.
-			// Other mods may check it for different purposes.
 			BuffID.Sets.IsATagBuff[Type] = true;
 		}
 
@@ -19,7 +17,6 @@ namespace RemnantOfTheAncientsMod.Content.Buffs.Debuff
 
 	public class TrueDurendalDebuffNPC : GlobalNPC
 	{
-		// This is required to store information on entities that isn't shared between them.
 		public override bool InstancePerEntity => true;
 
 		public bool markedByWhip;

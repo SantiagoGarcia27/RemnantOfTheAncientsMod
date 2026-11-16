@@ -72,7 +72,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                     cameraPosition = targetPosition;
                     moving = false;
 
-                    Main.NewText($"Camera finished: {cameraPosition}");
+                    //Main.NewText($"Camera finished: {cameraPosition}");
                 }
             }
 

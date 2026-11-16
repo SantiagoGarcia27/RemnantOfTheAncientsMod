@@ -4730,11 +4730,6 @@ Mods: {
 				// Tooltip: ""
 			}
 
-			CrusherSoul: {
-				// DisplayName: Crusher Soul
-				// Tooltip: ""
-			}
-
 			Terra_core: {
 				DisplayName: Núcleo Terra
 				Tooltip:
@@ -4745,13 +4740,24 @@ Mods: {
 					'''
 			}
 
-			StoneRing: {
-				// DisplayName: Stone Ring
-				/* Tooltip:
-					'''
-					When you land after a jump, explosions appear at your feet.
-					Spawns a defensive sapphire that will orbit you
-					''' */
+			CrusherMask: {
+				DisplayName: Máscara del Trituragemas
+				// Tooltip: ""
+			}
+
+			StrikingGeode: {
+				DisplayName: Geoda Llamativa
+				Tooltip: Invoca al Trituragemas
+			}
+
+			CrusherSoul: {
+				DisplayName: Alma de Trituragemas
+				// Tooltip: ""
+			}
+
+			ShinyPebbles: {
+				DisplayName: Gijarros brillantes
+				// Tooltip: ""
 			}
 
 			BurnyrHammer: {
@@ -4794,71 +4800,146 @@ Mods: {
 				DisplayName: Espada de mariposa
 				// Tooltip: ""
 			}
+		}
 
-			CrusherMask: {
-				DisplayName: Máscara del Trituragemas
-				// Tooltip: ""
+		StoneRing: {
+			// DisplayName: Stone Ring
+			/* Tooltip:
+				'''
+				When you land after a jump, explosions appear at your feet.
+				Spawns a defensive sapphire that will orbit you
+				''' */
+		}
+
+		BurnyrHammer: {
+			// DisplayName: Burnyr Hammer
+			/* Tooltip:
+				'''
+				Summons a infernal worm
+				A failed conjuration
+				''' */
+		}
+
+		GaiaChisel: {
+			// DisplayName: Gaia Chisel
+			/* Tooltip:
+				'''
+				Summons a friendly debris
+				It like statues
+				''' */
+		}
+
+		SandolerUrn: {
+			// DisplayName: Sandoler Urn
+			/* Tooltip:
+				'''
+				Summons a friendly sand construct
+				The next generation
+				''' */
+		}
+
+		SnowrunBook: {
+			// DisplayName: Snowrun Book
+			/* Tooltip:
+				'''
+				Summons a friendly ice construct
+				It carries the legacy of its creator
+				''' */
+		}
+
+		Keybinds.ReaperModeInterface.DisplayName: Reaper Mode Interface
+
+		Achievements: {
+			AnkhAmuletAchievement: {
+				FriendlyName: Todo en uno
+				Description: Obtén el amuleto de la cruz ansata, la joyeria mas versatil.
 			}
 
-			ShinyPebbles: {
-				DisplayName: Gijarros brillantes
-				// Tooltip: ""
+			DefeatDesertAnnihilatorAchievement: {
+				FriendlyName: Arena escurridiza
+				Description: Derrota al Aniquilador Del Desierto, el guardián de todas las dunas.
+			}
+
+			DefeatFrozenAssaulterAchievement: {
+				FriendlyName: Carámbano persistente
+				Description: Derrota al Asaltante Congelado, el guardián helado de coraza robusta.
+			}
+
+			DefeatGemstoneCrusherAchievement: {
+				FriendlyName: Fallo estructural
+				Description: Derrota al Trituragemas, el guardián inmovil.
+			}
+
+			DefeatInfernalTyrantAchievement: {
+				FriendlyName: Tiranicidio
+				Description: Derrota al Tirano Infernal, el gobernante de lo profundo.
+			}
+
+			LegionAchievement: {
+				FriendlyName: Uno en medio millón
+				Description: Obtén la lgeión, la gema mas refinada.
+			}
+
+			MaxStyleAchievement: {
+				FriendlyName: A la moda
+				Description: Obtén el máximo valor posible de estilo
 			}
 		}
 
+		// Commands.MaxStyleCommand.Description: Mods.RemnantOfTheAncientsMod.Commands.MaxStyleCommand.Description
+		// DamageClasses.ExampleDamageClass.DisplayName: Example Damage Class
+
+		InfoDisplays: {
+			// ArmorPenetrationBonusDisplay.DisplayName: Armor Penetration Bonus Display
+			// CritBonusDisplay.DisplayName: Crit Bonus Display
+			// DamageBonusDisplay.DisplayName: Damage Bonus Display
+			// DamageReductionDisplay.DisplayName: Damage Reduction Display
+			// FlyTimeBonusDisplay.DisplayName: Fly Time Bonus Display
+			// LifeRegenBonusDisplay.DisplayName: Life Regen Bonus Display
+			// LuckBonusDisplay.DisplayName: Luck Bonus Display
+			// ManaRegenBonusDisplay.DisplayName: Mana Regen Bonus Display
+			// MaxMinionsDisplay.DisplayName: Max Minions Display
+			// MaxSentryDisplay.DisplayName: Max Sentry Display
+			// MeleeAttackspeedBonusDisplay.DisplayName: Melee Attackspeed Bonus Display
+			// MiningSpeedBonusDisplay.DisplayName: Mining Speed Bonus Display
+			// MovmentSpeedBonusDisplay.DisplayName: Movment Speed Bonus Display
+			// PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
+			// PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
+			// StyleStatBonusDisplay.DisplayName: Style Stat Bonus Display
+		}
+
+		Tiles: {
+			AncientTableTile.MapEntry: Mesa
+			BossTrophy.MapEntry: Trofeo
+			Completist.MapEntry: Completista
+			CrusherMusicBoxT.MapEntry: Caja de música
+			DesertMusicBoxT.MapEntry: Caja de música
+			FrozenMusicBoxT.MapEntry: Caja de música
+			Frozenp2MusicBoxT.MapEntry: Caja de música
+			InfernalMusicBoxT.MapEntry: Caja de música
+			ReforgeAnvilTile.MapEntry: Yunque de Reforja
+			TuxoniteDoorClosed.MapEntry: Puerta
+			TuxoniteDoorOpen.MapEntry: Puerta
+			TuxoniteTableTile.MapEntry: Mesa
+		}
+
 		NPCs: {
-			AntlionD.DisplayName: Antlion
+			GemstoneCrusher.DisplayName: Trituragemas
+			RaiderBoss.DisplayName: Lider Forajido
+			Raider.DisplayName: Forajido
+			DesertAnnihilator.DisplayName: Aniquilador Del Desierto
+			FrozenAssaulter.DisplayName: Asaltante Congelado
+			InfernalTyrantHead.DisplayName: Tirano Infernal
 			ArmoredSlime.DisplayName: Slime blindada
-
-			GemstoneCrusher: {
-				DisplayName: Trituragemas
-
-				BossChecklistIntegration: {
-					EntryName: Trituragemas
-					SpawnInfo: Aparece naturalmente en las cavernas
-					DespawnMessage: "[c/6495ed:La antigua roca se aleja rodando]"
-				}
-			}
-
-			DesertAnnihilator: {
-				BossChecklistIntegration: {
-					EntryName: Aniquilador Del Desierto
-					SpawnInfo: Usando [i:RemnantOfTheAncientsMod/DesertGlyph] en el desierto
-					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
-				}
-
-				DisplayName: Aniquilador Del Desierto
-			}
-
-			FrozenAssaulter: {
-				DisplayName: Asaltante Congelado
-
-				BossChecklistIntegration: {
-					EntryName: Asaltante Congelado
-					SpawnInfo: Usando [i:RemnantOfTheAncientsMod/FrozenArtifact] en el bioma de nieve durante la noche
-					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
-				}
-			}
-
 			InfernalTyrantBody.DisplayName: Tirano Infernal
-
-			InfernalTyrantHead: {
-				DisplayName: Tirano Infernal
-
-				BossChecklistIntegration: {
-					EntryName: Tirano Infernal
-					SpawnInfo: Usando [i:RemnantOfTheAncientsMod/InfernalCalis] en el inframundo
-					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
-				}
-			}
-
 			InfernalTyrantTail.DisplayName: Tirano Infernal
-			DesertScorpionD.DisplayName: Sand Poacher
-			DSlime.DisplayName: Servant of Desert Annihilator
-			FlyingAntlionD.DisplayName: Antlion Swarmer
-			IGolem.DisplayName: Ice Golem
+			CursedShotgunEnemy.DisplayName: Escopeta maldita
+			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
+			KillerBunny.DisplayName: Conejo asesino
+			MaceSkeleton.DisplayName: Esqueleto mazudo
 			MinerSoul.DisplayName: Alma minera
 			MiniDuke.DisplayName: Espectro Fishron
+			DesertTyphoonParry.DisplayName: ""
 			SuperDummyNPC.DisplayName: Muñeco avanzado
 
 			Time_Wizard: {
@@ -4881,76 +4962,61 @@ Mods: {
 					LikeNPC_Princess: I like {NPCName}.
 					Princess_LovesNPC: I like {NPCName}.
 				}
-
-				// Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
 			}
 
-			VultureD.DisplayName: Vulture
-			WalkingAntlionD.DisplayName: Antlion Charger
+			AdamantiteZombie.DisplayName: Zombi blindado
+			BeetleZombie.DisplayName: Zombi blindado
+			ChlorophyteZombie.DisplayName: Zombi blindado
 			CobaltZombie.DisplayName: Zombi blindado
 			Copperzombie.DisplayName: Zombi blindado
 			Crimsonzombi.DisplayName: Zombi blindado
 			Fastzombie.DisplayName: Zombie debil
 			Goldzombie.DisplayName: Zombi blindado
+			HallowedZombie.DisplayName: Zombi blindado
 			Ironzombie.DisplayName: Zombi blindado
 			Leadzombie.DisplayName: Zombi blindado
 			MoltenZombie.DisplayName: Zombi blindado
+			MythrilZombie.DisplayName: Zombi blindado
 			NightZombie.DisplayName: Zombi blindado
+			OrichalcumZombie.DisplayName: Zombi blindado
 			PaladiumZombie.DisplayName: Zombi blindado
 			Platinumzombie.DisplayName: Zombi blindado
 			ReinforcedIronZombie.DisplayName: Zombi blindado
 			Shadowzombie.DisplayName: Zombi blindado
 			Silverzombie.DisplayName: Zombi blindado
-			Tinzombie.DisplayName: Zombi blindado
-			Tungstenzombie.DisplayName: Zombi blindado
-			Tuxonitezombie.DisplayName: Zombi blindado
-			DesertTyphoonParry.DisplayName: ""
-			AdamantiteZombie.DisplayName: Zombi blindado
-			MythrilZombie.DisplayName: Zombi blindado
-			OrichalcumZombie.DisplayName: Zombi blindado
-			TitaniumZombie.DisplayName: Zombi blindado
-			DesertAnnihilatorGuard.DisplayName: Escolta desético
-			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
-			HallowedZombie.DisplayName: Zombi blindado
-			DevourerOfGodsArmor.DisplayName: Devourer Of Gods
-			CursedShotgunEnemy.DisplayName: Escopeta maldita
-			ChlorophyteZombie.DisplayName: Zombi blindado
-			TurtleZombie.DisplayName: Zombi blindado
-			BeetleZombie.DisplayName: Zombi blindado
 			SolarZombie.DisplayName: Zombi blindado
-			KillerBunny.DisplayName: Conejo asesino
-			MaceSkeleton.DisplayName: Esqueleto mazudo
-			// FakePlayer.DisplayName: Fake Player
-
-			Raider: {
-				DisplayName: Forajido
-				Bestiary:
-					'''
-					Un oportnista que se dedica a saquear pueblos desprotegidos,
-					aunque usualmente no se coordinan bien entre ellos.
-					'''
-			}
-
-			RaiderBoss: {
-				DisplayName: Lider Forajido
-				Bestiary:
-					'''
-					Un aventurero ligeramente mas cauteloso y preparado que sus secuases,
-					pero mayormente es poque acapara para si mismo todo lo que ellos consiguen ya que es muy perezoso para conseguirlas él.
-					'''
-			}
+			Tinzombie.DisplayName: Zombi blindado
+			TitaniumZombie.DisplayName: Zombi blindado
+			Tungstenzombie.DisplayName: Zombi blindado
+			TurtleZombie.DisplayName: Zombi blindado
 		}
 
+		// BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
+
 		Projectiles: {
-			AcornLeaftShoot.DisplayName: Acorn Leaft Shoot
+			// GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
+			// NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
+			// PlayerClone.DisplayName: Player Clone
 			NigthBobber.DisplayName: Nigth Bobber
+			// SacredBobber.DisplayName: Sacred Bobber
+			// TerraBobber.DisplayName: Terra Bobber
+			// TrueNigthBobber.DisplayName: True Nigth Bobber
+			// TrueSacredBobber.DisplayName: True Sacred Bobber
 			TuxoniteBobber.DisplayName: Tuxonite Bobber
 			BossMark.DisplayName: Boss Mark
+			// SignusMimic.DisplayName: Signus Mimic
+			// CactusBoulderClone.DisplayName: Cactus Boulder Clone
 			DesertTyphoon.DisplayName: Desert Typhoon
 			DesertTyphoonFriendly.DisplayName: Desert Typhoon Friendly
+			// SandnadoMarkClone.DisplayName: Sandnado Mark Clone
 			frozen_p_f.DisplayName: frozen_p_f
 			Frozenp.DisplayName: Frozenp
 			Frozenp_M.DisplayName: Frozenp_ M
+			// FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
+			GemstoneCrusherProj_Diamond.DisplayName: Diamante Telequinetico
+			// GemstoneCrusherProj_Emerald.DisplayName: Gemstone Crusher Proj_ Emerald
+			// GemstoneCrusherProj_Ruby.DisplayName: Gemstone Crusher Proj_ Ruby
+			// GemstoneCrusherProj_Sapphire.DisplayName: Gemstone Crusher Proj_ Sapphire
 			InfernalBall.DisplayName: Infernal Ball
 			InfernalBall_f.DisplayName: Infernal Ball_f
 			InfernalBallF.DisplayName: Infernal Ball F
@@ -4963,61 +5029,133 @@ Mods: {
 			CloneStarFury.DisplayName: Clone Star Fury
 			CloneStarWrath.DisplayName: Clone Star Wrath
 			Curecedball.DisplayName: Curecedball
+			DamageHitbox.DisplayName: Damage Hitbox
 			DemonCycle.DisplayName: DemonScytheP
 			EnchantedShield.DisplayName: Curecedball
-			ExcaliburMinion.DisplayName: IceMistF
-			IceMistF.DisplayName: IceMistF
-			LeafFriendlyClone.DisplayName: LeafFriendlyClone
+			FrostBarrier.DisplayName: Barrera Hélida
+			// FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
+			// AquaScepterHeldProj.DisplayName: Aqua Scepter Held Proj
+			BloodRayHeldProj.DisplayName: Blood Ray Held Proj
+			BloodThornHeldProj.DisplayName: Blood Thorn Held Proj
+			BookOfSkullHeldProj.DisplayName: Book Of Skull Held Proj
+			CorruptRayHeldProj.DisplayName: Corrupt Ray Held Proj
+			FlowerHeldProj.DisplayName: Flower Held Proj
+			GemStaffHeldProj.DisplayName: Gem Staff Held Proj
+			// HorizonHeldProj.DisplayName: Horizon Held Proj
+			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus Held Projectile
+			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns Held Projectile
+			// WandOfSparkingHeldProj.DisplayName: Wand Of Sparking Held Proj
+			// BoberHook.DisplayName: Bober Hook
+			// BigGemBolt.DisplayName: Big Gem Bolt
+			// BloodDart.DisplayName: Blood Dart
 			BrightPetal.DisplayName: Bright Petal
 			BrightPetal_Fire.DisplayName: Bright Petal
 			CorruptBolt.DisplayName: Corrupt Bolt
 			CrimsomBolt.DisplayName: Crimsom Bolt
+			// ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
+			// Graveyard_proj.DisplayName: Graveyard_proj
+			// HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
 			HollyLaser.DisplayName: Holly Laser
+			// Judment_Lasser.DisplayName: Judment_ Lasser
+			// Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
+			// NebulaTyphoon.DisplayName: Nebula Typhoon
+			// NebulaTyphoon_Strong.DisplayName: Nebula Typhoon_ Strong
+			// SharknadoBoltClone.DisplayName: Sharknado Bolt Clone
+			SharknadoClone.DisplayName: Sharknado
+			// SharknadoShootClone.DisplayName: Sharknado Shoot Clone
 			SkyCutterS.DisplayName: SkyCutterS
+			// SparkBomb.DisplayName: Spark Bomb
+			// BladeOfGrassLeaftClone.DisplayName: Blade Of Grass Leaft Clone
 			DesertS.DisplayName: DesertS
+			// RockAndRollProjectile.DisplayName: Rock And Roll Projectile
 			GodClaws.DisplayName: God Slayer Slash
-			GrassSwordLeaft.DisplayName: Sharp Leaf
-			LegendaryGreatSwordSwingProgectile.DisplayName: Gran Espada Legendaria
+			// GravediggersSickleProjectile.DisplayName: Gravediggers Sickle Projectile
+			// HoldSaberCharge.DisplayName: Hold Saber Charge
+			// MoltenLeaftBlade.DisplayName: Molten Leaft Blade
+			// NaturalSpiritButerfly.DisplayName: Natural Spirit Buterfly
+			// NightLotusSickleProjectile.DisplayName: Night Lotus Sickle Projectile
 			PermafrostRain.DisplayName: SkyCutterS
+			// SaberDashProj.DisplayName: Saber Dash Proj
 			SlimeV2.DisplayName: Slime V2
 			SolarangP.DisplayName: SolarangP
+			// StoneImpalerP.DisplayName: Stone Impaler P
 			SpiritGemSword.DisplayName: Spirit Gem Sword
+			DesertEdgeSwordSwingProgectile.DisplayName: Desert Edge Sword Swing Progectile
+			LegendaryGreatSwordSwingProgectile.DisplayName: Gran Espada Legendaria
+			// UltrabladeSwingProgectile.DisplayName: Ultrablade Swing Progectile
+			// SwordSlash.DisplayName: Sword Slash
+			// UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
 			UltraBladeS.DisplayName: UltraBladeS
+			// UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
+			// ScarabDynamiteProj.DisplayName: Scarab Dynamite Proj
+			// CursedBream.DisplayName: Cursed Bream
 			FrostBeamF.DisplayName: FrostBeamF
+			// GenericDamageBream.DisplayName: Generic Damage Bream
+			// GodZone.DisplayName: God Zone
 			HealingDrone.DisplayName: HealingDrone
 			HealthBream.DisplayName: Health Bream
 			InterceptionBream.DisplayName: Interception Bream
 			InterceptionDrone.DisplayName: InterceptionDrone
+			// SolverCursor.DisplayName: Solver Cursor
 			TerraExplosion.DisplayName: TerraExplosion
+			// TrueShadowMistCloudProj.DisplayName: True Shadow Mist Cloud Proj
+			// TrueShadowMistProj.DisplayName: True Shadow Mist Proj
+			// CrusherPetProjectile.DisplayName: Crusher Pet Projectile
+			DakoPetProjectile.DisplayName: Dako
+			// DesertPetProjectile.DisplayName: Desert Pet Projectile
+			// FrozenPetProjectile.DisplayName: Frozen Pet Projectile
 			TortugaPetProjectile.DisplayName: Tortuga Pet Projectile
 			TwitchPet.DisplayName: Twitch Pet
+			// TyrantPetProjectile.DisplayName: Tyrant Pet Projectile
 			YtPet.DisplayName: Yt Pet
 			bullettestp.DisplayName: Bala de slime furioso
+			CustomFlameTrowerProj.DisplayName: Custom Flame Trower Proj
 			DesertArrowP.DisplayName: Desert Arrow
+			// EmeraldAndScarletHeldProjectile.DisplayName: Emerald And Scarlet Held Projectile
+			// EnchantedIceBullet.DisplayName: Enchanted Ice Bullet
+			// EnchantedIceFragment.DisplayName: Enchanted Ice Fragment
 			Fibullet.DisplayName: Fire bullet
+			// FrozenNovaExplosion.DisplayName: Frozen Nova Explosion
+			// HeavyIchorBullet.DisplayName: Heavy Ichor Bullet
 			ice_bulletP.DisplayName: ice_bulletP
 			LittleDevourer.DisplayName: Little Devourer
 			LittleShark.DisplayName: LittleShark
 			MisilDevourer.DisplayName: Misil Devourer
+			MisilUltra.DisplayName: Misil Ultra
+			// NanoDrone.DisplayName: Nano Drone
+			// ReinforcedBulletP.DisplayName: Reinforced Bullet P
 			SuperFlare.DisplayName: Super Flare
+			// TerraArrow.DisplayName: Terra Arrow
 			TerraBlockP.DisplayName: Terra Block
 			TerraBulletP.DisplayName: Terra Bullet
 			TerracoinP.DisplayName: Terracoin P
 			Tomb_BulletP.DisplayName: Tomb_BulletP
+			// TrueHallowArrow.DisplayName: True Hallow Arrow
+			// TrueNightArrow.DisplayName: True Night Arrow
+			// InstantPlataformProj.DisplayName: Instant Plataform Proj
+			AcornLeaftShoot.DisplayName: Acorn Leaft Shoot
+			LeafFriendlyClone.DisplayName: LeafFriendlyClone
+			// CursedShotgunMinion.DisplayName: Cursed Shotgun Minion
 			DesertMinion.DisplayName: Baby Desert Aniquilator Minion
 			EvilEyeMinion.DisplayName: Evil Eye Minion
+			ExcaliburMinion.DisplayName: IceMistF
+			// FlinxMinionClone.DisplayName: Flinx Minion Clone
 			FrozenMinion.DisplayName: Baby Frozen Assaulter Minion
+			IceMistF.DisplayName: IceMistF
 			IronBallistMinion.DisplayName: Assault Ballista Minion
+			PygmyMelee.DisplayName: Pygmy Melee
 			SaplingGoldMinion.DisplayName: Animated Golden Sapling Minion
 			SaplingMinion.DisplayName: Animated Sapling Minion
 			SaplingPlatinumMinion.DisplayName: Animated Platinum Sapling Minion
 			SaplingSilverMinion.DisplayName: Animated Silver Sapling Minion
 			SaplingTungstenMinion.DisplayName: Animated Tungsten Sapling Minion
 			StardustMinion.DisplayName: StardustMinion
+			StoneMortarMinion.DisplayName: Mortero petrificado
 			IlluminatedSunFlowerMinion.DisplayName: Illuminated SunFlower Minion
 			SacredFlowerMinion.DisplayName: Sacred Flowe Minion
 			SunFlowerMinion.DisplayName: SunFlower Minion
 			YggdrasilMinion.DisplayName: Yggdrasil Minion
+			TempestClone.DisplayName: IceMistF
 			BloodyWhipProjectile.DisplayName: Bloody Whip Projectile
 			FireStormProjectile.DisplayName: Fire Storm Projectile
 			NightWhipProjectile.DisplayName: Night Whip Projectile
@@ -5025,149 +5163,14 @@ Mods: {
 			TerraWhipProjectile.DisplayName: Terra Whip Projectile
 			TrueDurendalProjectile.DisplayName: True Durendal Projectile
 			TrueTwilightProjectile.DisplayName: True Twilight Projectile
-			TempestClone.DisplayName: IceMistF
 			DesertFuryP.DisplayName: DesertFuryP
 			Golden_ShurikenP.DisplayName: Golden_ShurikenP
-			DamageHitbox.DisplayName: Damage Hitbox
-			MisilUltra.DisplayName: Misil Ultra
-			MoltenGrassSwordLeaft.DisplayName: Molten Grass Sword Leaft
-			DesertEdgeSwordSwingProgectile.DisplayName: Desert Edge Sword Swing Progectile
-			NailSlash.DisplayName: Nail Slash
-			CustomFlameTrowerProj.DisplayName: Custom Flame Trower Proj
-			BloodRayHeldProj.DisplayName: Blood Ray Held Proj
-			CorruptRayHeldProj.DisplayName: Corrupt Ray Held Proj
-			BookOfSkullHeldProj.DisplayName: Book Of Skull Held Proj
-			FlowerHeldProj.DisplayName: Flower Held Proj
-			BloodFlowerHeldProj.DisplayName: Blood Flower Held Proj
-			BloodThornHeldProj.DisplayName: Blood Thorn Held Proj
-			GemStaffHeldProj.DisplayName: Gem Staff Held Proj
-			SharknadoClone.DisplayName: Sharknado
-			// SharknadoShootClone.DisplayName: Sharknado Shoot Clone
-			// SharknadoBoltClone.DisplayName: Sharknado Bolt Clone
-			PygmyMelee.DisplayName: Pygmy Melee
-			// TrueNigthBobber.DisplayName: True Nigth Bobber
-			// SacredBobber.DisplayName: Sacred Bobber
-			// TerraBobber.DisplayName: Terra Bobber
-			// TrueSacredBobber.DisplayName: True Sacred Bobber
-			DakoPetProjectile.DisplayName: Dako
-			FrozenHommingIceBlock.DisplayName: Bloque de Hielo
-			FrostBarrier.DisplayName: Barrera Hélida
-			// FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
-			// GodZone.DisplayName: God Zone
-			// HorizonHeldProj.DisplayName: Horizon Held Proj
-			// NebulaTyphoon.DisplayName: Nebula Typhoon
-			// NebulaTyphoon_Strong.DisplayName: Nebula Typhoon_ Strong
-			// Graveyard_proj.DisplayName: Graveyard_proj
-			// Judment_Lasser.DisplayName: Judment_ Lasser
-			// Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
-			// BigGemBolt.DisplayName: Big Gem Bolt
-			// FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
-			// HeavyIchorBullet.DisplayName: Heavy Ichor Bullet
-			// FrozenNovaExplosion.DisplayName: Frozen Nova Explosion
-			// UltrabladeSwingProgectile.DisplayName: Ultrablade Swing Progectile
-			// UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
-			// UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
-			// NanoDrone.DisplayName: Nano Drone
-			// SolverCursor.DisplayName: Solver Cursor
-			// HoldSaberCharge.DisplayName: Hold Saber Charge
-			// SignusMimic.DisplayName: Signus Mimic
-			// AquaScepterHeldProj.DisplayName: Aqua Scepter Held Proj
-			// WandOfSparkingHeldProj.DisplayName: Wand Of Sparking Held Proj
-			// SparkBomb.DisplayName: Spark Bomb
-			// SaberDashProj.DisplayName: Saber Dash Proj
-			// BladeOfGrassLeaftClone.DisplayName: Blade Of Grass Leaft Clone
-			// SwordSlash.DisplayName: Sword Slash
-			// FlinxMinionClone.DisplayName: Flinx Minion Clone
-			// ReinforcedBullet.DisplayName: Reinforced Bullet
-			// ReinforcedBulletP.DisplayName: Reinforced Bullet P
-			// SaberSwingProgectile.DisplayName: Saber Swing Progectile
-			// GenericDamageBream.DisplayName: Generic Damage Bream
-			// EmeraldAndScarletHeldProjectile.DisplayName: Emerald And Scarlet Held Projectile
-			// InstantPlataformProj.DisplayName: Instant Plataform Proj
-			// ScarabDynamiteProj.DisplayName: Scarab Dynamite Proj
-			// CursedShotgunMinion.DisplayName: Cursed Shotgun Minion
-			// EnchantedIceBullet.DisplayName: Enchanted Ice Bullet
-			// EnchantedIceFragment.DisplayName: Enchanted Ice Fragment
-			// BoberHook.DisplayName: Bober Hook
-			// BoberHookLine.DisplayName: Bober Hook Line
-			// TrueHallowArrow.DisplayName: True Hallow Arrow
-			// TrueNightArrow.DisplayName: True Night Arrow
-			// TerraArrow.DisplayName: Terra Arrow
-			// ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
-			// GravediggersSickleProjectile.DisplayName: Gravediggers Sickle Projectile
-			// GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
-			// NightLotusSickleProjectile.DisplayName: Night Lotus Sickle Projectile
-			// NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
-			// PlayerClone.DisplayName: Player Clone
-			// HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
-			// TrueShadowMistProj.DisplayName: True Shadow Mist Proj
-			// TrueShadowMistCloudProj.DisplayName: True Shadow Mist
-			// CactusBoulderClone.DisplayName: Cactus Boulder Clone
-			// CursedBream.DisplayName: Cursed Bream
-			// MoltenLeaftBlade.DisplayName: Molten Leaft Blade
-			GemstoneCrusherProj_Diamond.DisplayName: Diamante Telequinetico
-			// GemstoneCrusherProj_Emerald.DisplayName: Telekinetic Emerald
-			// GemstoneCrusherProj_Ruby.DisplayName: Telekinetic Ruby
-			// GemstoneCrusherProj_Sapphire.DisplayName: Telekinetic Sapphire
-			// BloodDart.DisplayName: Blood Dart
-			// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns
-			// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus
-			StoneMortarMinion.DisplayName: Mortero petrificado
-			// SandnadoMarkClone.DisplayName: Sandnado Mark Clone
-			// StoneImpalerP.DisplayName: Stone Impaler
-			// RockAndRollProjectile.DisplayName: Rock And Roll
-			// CrusherPetProjectile.DisplayName: Crusher Pet Projectile
-			// DesertPetProjectile.DisplayName: Desert Pet Projectile
-			// FrozenPetProjectile.DisplayName: Frozen Pet Projectile
-			// TyrantPetProjectile.DisplayName: Tyrant Pet Projectile
-			// NaturalSpiritButerfly.DisplayName: Natural Spirit Buterfly
-		}
-
-		Tiles: {
-			AncientTableTile.MapEntry: Mesa
-			BossTrophy.MapEntry: Trofeo
-			Completist.MapEntry: Completista
-			// cRUSHERMusicBoxT.MapEntry: Music Box
-			DesertMusicBoxT.MapEntry: Caja de música
-			FrozenMusicBoxT.MapEntry: Caja de música
-			Frozenp2MusicBoxT.MapEntry: Caja de música
-			InfernalMusicBoxT.MapEntry: Caja de música
-			TuxoniteDoorClosed.MapEntry: Puerta
-			TuxoniteDoorOpen.MapEntry: Puerta
-			TuxoniteTableTile.MapEntry: Mesa
-			ReforgeAnvilTile.MapEntry: Yunque de Reforja
-			CrusherMusicBoxT.MapEntry: Caja de música
-		}
-
-		Conditions: {
-			OpositeOreGeneration: En un mundo con
-			TinkererAlive: Cuando el duende chapuzero está vivo
-			OpositeOreGenerationTin: En un mundo con estaño
-			OpositeOreGenerationCopper: En un mundo con cobre
-			OpositeOreGenerationLead: En un mundo con plomo
-			OpositeOreGenerationIron: En un mundo con hierra
-			OpositeOreGenerationSilver: En un mundo con plata
-			OpositeOreGenerationTungsten: En un mundo con tungsteno
-			OpositeOreGenerationPlatinum: En un mundo con platino
-			OpositeOreGenerationGold: En un mundo con oro
-			OpositeOreGenerationPalladium: En un mundo con paladio
-			OpositeOreGenerationCobalt: En un mundo con cobalto
-			OpositeOreGenerationOrichalcum: En un mundo con orichalco
-			OpositeOreGenerationMythril: En un mundo con mythril
-			DownedCrusher: Cuando el Titurador de Gemas ah sido derrotado
-			DownedDesert: Cuando el Aniquilador del desierto ah sido derrotado
-			DownedFrozen: Cuando el Asaltante congelado ah sido derrotado
-			DownedTyrant: Cuando el Tirano infernal ah sido derrotado
 		}
 
 		Configs: {
 			ConfigClient: {
 				DisplayName: Config Client
-
-				Headers: {
-					PotionEffects: Potion Effects Header
-					ReaperSouls: Almas de segador
-				}
+				Headers.PotionEffects: Potion Effects Header
 
 				KitsFeatherFall: {
 					Label: Efecto de caída de pluma en lis kits
@@ -5200,256 +5203,7 @@ Mods: {
 				}
 			}
 
-			ConfigReaperSouls: {
-				DisplayName: Configuración Segador
-
-				ToggleKingSlimeSoul: {
-					Label: Activar alma del rey slime
-					Tooltip: ""
-				}
-
-				ToggleEyeOfChutuluSoul: {
-					Label: Activar alma del ojo de chutulu
-					Tooltip: ""
-				}
-
-				ToggleCorruptSoul: {
-					Label: Activar alma corrupta
-					Tooltip: ""
-				}
-
-				ToggleQueenBeeSoul: {
-					Label: Activar alma de la reina abeja
-					Tooltip: ""
-				}
-
-				ToggleSkeletronSoul: {
-					Label: Activar alma de esqueletron
-					Tooltip: ""
-				}
-
-				ToggleDearclopsSoul: {
-					Label: Activar alma de cierviclope
-					Tooltip: ""
-				}
-
-				ToggleDesertAnhilatorSoul: {
-					Label: Activar alma de aniquilador del desierto
-					Tooltip: ""
-				}
-
-				ToggleWallOfFleshSoul: {
-					Label: Activar alma de muro de carne
-					Tooltip: ""
-				}
-
-				ToggleFrozenAssaulterSoul: {
-					Label: Activar alma del asaltante congelado
-					Tooltip: ""
-				}
-
-				ToggleQueenSlimeSoul: {
-					Label: Activar alma de la reina slime
-					Tooltip: ""
-				}
-
-				ToggleDestroyerSoul: {
-					Label: Activar alma del destructor
-					Tooltip: ""
-				}
-
-				ToggleSpazmatismSoul: {
-					Label: Activar alma del espasmatizador
-					Tooltip: ""
-				}
-
-				ToggleRetinazerSoul: {
-					// Label: Toggle Retinazer Soul
-					// Tooltip: ""
-				}
-
-				ToggleSkeletronPrimeSoul: {
-					Label: Activar alma de esqueletron mayor
-					Tooltip: ""
-				}
-
-				ToggleEmpressOfLightSoul: {
-					Label: Activar alma de la emperatriz de la luz
-					Tooltip: ""
-				}
-
-				TogglePlanteraSoul: {
-					Label: Activar alma de plantera
-					Tooltip: ""
-				}
-
-				ToggleInfernalTyrantSoul: {
-					Label: Activar alma del tirano infernal
-					Tooltip: ""
-				}
-
-				ToggleGolemSoul: {
-					Label: Activar alma del golem
-					Tooltip: ""
-				}
-
-				ToggleDukeFishronSoul: {
-					Label: Activar alma del duke
-					Tooltip: ""
-				}
-
-				ToggleLunaticCultistSoul: {
-					Label: Activar alma del cultista
-					Tooltip: ""
-				}
-
-				ToggleMoonlordSoul: {
-					Label: Activar alma del señor de la luna
-					Tooltip: ""
-				}
-
-				Headers: {
-					// ReaperSouls: Reaper Souls Header
-					// CalamityReaperSouls: Calamity Reaper Souls Header
-				}
-
-				ToggleDesertScourgeSoul: {
-					// Label: Toggle Desert Scourge Soul
-					// Tooltip: ""
-				}
-
-				ToggleCrabulonSoul: {
-					// Label: Toggle Crabulon Soul
-					// Tooltip: ""
-				}
-
-				ToggleCalamityCorruptBossSoul: {
-					// Label: Toggle Calamity Corrupt Boss Soul
-					// Tooltip: ""
-				}
-
-				ToggleSlimeGodSoul: {
-					// Label: Toggle Slime God Soul
-					// Tooltip: ""
-				}
-
-				ToggleCryogenSoul: {
-					// Label: Toggle Cryogen Soul
-					// Tooltip: ""
-				}
-
-				ToggleAquaticSourgeSoul: {
-					// Label: Toggle Aquatic Sourge Soul
-					// Tooltip: ""
-				}
-
-				ToggleBrimstonElementalSoul: {
-					// Label: Toggle Brimston Elemental Soul
-					// Tooltip: ""
-				}
-
-				ToggleCalamitasCloneSoul: {
-					// Label: Toggle Calamitas Clone Soul
-					// Tooltip: ""
-				}
-
-				ToggleLeviatanSoul: {
-					// Label: Toggle Leviatan Soul
-					// Tooltip: ""
-				}
-
-				ToggleAstrumAureusSoul: {
-					// Label: Toggle Astrum Aureus Soul
-					// Tooltip: ""
-				}
-
-				ToggleAstrumDeusSoul: {
-					// Label: Toggle Astrum Deus Soul
-					// Tooltip: ""
-				}
-
-				TogglePlaguebringerGoliathSoul: {
-					// Label: Toggle Plaguebringer Goliath Soul
-					// Tooltip: ""
-				}
-
-				ToggleRavagerSoul: {
-					// Label: Toggle Ravager Soul
-					// Tooltip: ""
-				}
-
-				ToggleDragonFollySoul: {
-					// Label: Toggle Dragon Folly Soul
-					// Tooltip: ""
-				}
-
-				ToggleProfanedGuardianCommanderSoul: {
-					// Label: Toggle Profaned Guardian Commander Soul
-					// Tooltip: ""
-				}
-
-				ToggleProvidencedSoul: {
-					// Label: Toggle Providenced Soul
-					// Tooltip: ""
-				}
-
-				ToggleSignusSoul: {
-					// Label: Toggle Signus Soul
-					// Tooltip: ""
-				}
-
-				ToggleStormWeaverSoul: {
-					// Label: Toggle Storm Weaver Soul
-					// Tooltip: ""
-				}
-
-				ToggleCeaselessVoidSoul: {
-					// Label: Toggle Ceaseless Void Soul
-					// Tooltip: ""
-				}
-
-				TogglePolterghastSoul: {
-					// Label: Toggle Polterghast Soul
-					// Tooltip: ""
-				}
-
-				ToggleOldDukeSoul: {
-					// Label: Toggle Old Duke Soul
-					// Tooltip: ""
-				}
-
-				ToggleDevourerofGodsSoul: {
-					// Label: Toggle Devourerof Gods Soul
-					// Tooltip: ""
-				}
-
-				ToggleYharonSoul: {
-					// Label: Toggle Yharon Soul
-					// Tooltip: ""
-				}
-
-				ToggleExoMechSoul: {
-					// Label: Toggle Exo Mech Soul
-					// Tooltip: ""
-				}
-
-				ToggleSuprmeCalamitasSoul: {
-					// Label: Toggle Suprme Calamitas Soul
-					// Tooltip: ""
-				}
-
-				ToggleRetinazorSoul: {
-					Label: Activar alma de retinazor
-					Tooltip: ""
-				}
-			}
-
 			ConfigServer: {
-				Headers: {
-					Performance: Rendimiento
-					TerrariaOverhaul: Terraria Overhaul
-				}
-
 				DisplayName: Config Server
 
 				LagReducer: {
@@ -5473,9 +5227,14 @@ Mods: {
 						'''
 				}
 
+				BootFastFallConf: {
+					// Label: Boot Fast Fall Conf
+					// Tooltip: ""
+				}
+
 				BowReworkConf: {
 					Label: Rework de arcos (Experimental)
-					// Tooltip: apply charge mechanic to bows (WIP)
+					// Tooltip: ""
 				}
 
 				DropTombstomOnDeadtConf: {
@@ -5499,87 +5258,553 @@ Mods: {
 					Tooltip: Define que tan rápido se usa el extractor
 				}
 
+				Headers.TerrariaOverhaul: Terraria Overhaul
+
 				OverhaulMeleeManaCostConfig: {
 					Label: Armas cuerpo a cuerpo gastan maná con Terraria Overhaul
 					Tooltip: Desactiva la mecanica de coste de maná en las armas cuerpo a cuerpo con proyectil
 				}
-
-				BootFastFallConf: {
-					// Label: Boot Fast Fall Conf
-					// Tooltip: ""
-				}
 			}
 		}
 
-		Keybinds: {
-			ReaperModeInterface.DisplayName: Reaper Mode Interface
-			FrostBarrier.DisplayName: Barrera Hélida
-			ToggNightTp.DisplayName: Teletransporte nocturno
-		}
-
-		DamageClasses: {
-			FisherDamageClass.DisplayName: Daño de pescador
-			// ExampleDamageClass.DisplayName: Example Damage Class
-		}
-
-		InfoDisplays: {
-			// ArmorPenetrationBonusDisplay.DisplayName: Armor Penetration Bonus Display
-			// CritBonusDisplay.DisplayName: Crit Bonus Display
-			// DamageBonusDisplay.DisplayName: Damage Bonus Display
-			// DamageReductionDisplay.DisplayName: Damage Reduction Display
-			// FlyTimeBonusDisplay.DisplayName: Fly Time Bonus Display
-			// LifeRegenBonusDisplay.DisplayName: Life Regen Bonus Display
-			// LuckBonusDisplay.DisplayName: Luck Bonus Display
-			// ManaRegenBonusDisplay.DisplayName: Mana Regen Bonus Display
-			// MaxMinionsDisplay.DisplayName: Max Minions Display
-			// MaxSentryDisplay.DisplayName: Max Sentry Display
-			// MeleeAttackspeedBonusDisplay.DisplayName: Melee Attackspeed Bonus Display
-			// MiningSpeedBonusDisplay.DisplayName: Mining Speed Bonus Display
-			// MovmentSpeedBonusDisplay.DisplayName: Movment Speed Bonus Display
-			// StyleStatBonusDisplay.DisplayName: Style Stat Bonus Display
-			// PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
-			// PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
-		}
-
-		Achievements: {
-			LegionAchievement: {
-				FriendlyName: Uno en medio millón
-				Description: Obtén la lgeión, la gema mas refinada.
-			}
-
-			MaxStyleAchievement: {
-				FriendlyName: A la moda
-				Description: Obtén el máximo valor posible de estilo
-			}
-
-			DefeatDesertAnnihilatorAchievement: {
-				FriendlyName: Arena escurridiza
-				Description: Derrota al Aniquilador Del Desierto, el guardián de todas las dunas.
-			}
-
-			DefeatFrozenAssaulterAchievement: {
-				FriendlyName: Carámbano persistente
-				Description: Derrota al Asaltante Congelado, el guardián helado de coraza robusta.
-			}
-
-			DefeatInfernalTyrantAchievement: {
-				FriendlyName: Tiranicidio
-				Description: Derrota al Tirano Infernal, el gobernante de lo profundo.
-			}
-
-			AnkhAmuletAchievement: {
-				FriendlyName: Todo en uno
-				Description: Obtén el amuleto de la cruz ansata, la joyeria mas versatil.
-			}
-
-			DefeatGemstoneCrusherAchievement: {
-				FriendlyName: Fallo estructural
-				Description: Derrota al Trituragemas, el guardián inmovil.
-			}
-		}
-
-		// Commands.MaxStyleCommand.Description: Maximizes the player's style stat
 		ConfigServer.Headers.Performance: Lag Reducer Header
-		// BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
+
+		Conditions: {
+			OpositeOreGenerationTin: En un mundo con estaño
+			OpositeOreGenerationCopper: En un mundo con cobre
+			OpositeOreGenerationLead: En un mundo con plomo
+			OpositeOreGenerationIron: En un mundo con hierra
+			OpositeOreGenerationSilver: En un mundo con plata
+			OpositeOreGenerationTungsten: En un mundo con tungsteno
+			OpositeOreGenerationPlatinum: En un mundo con platino
+			OpositeOreGenerationGold: En un mundo con oro
+			OpositeOreGenerationPalladium: En un mundo con paladio
+			OpositeOreGenerationCobalt: En un mundo con cobalto
+			OpositeOreGenerationOrichalcum: En un mundo con orichalco
+			OpositeOreGenerationMythril: En un mundo con mythril
+			TinkererAlive: Cuando el duende chapuzero está vivo
+		}
 	}
+
+	NPCs: {
+		// AntlionD.DisplayName: Antlion
+		// ArmoredSlime.DisplayName: Armored Slime
+
+		GemstoneCrusher: {
+			// DisplayName: Gemstone Crusher
+
+			BossChecklistIntegration: {
+				// EntryName: Gemstone Crusher
+				// SpawnInfo: Spawns naturally on caverns
+				// DespawnMessage: "[c/6495ed:The ancient stone has rolled far away.]"
+			}
+		}
+
+		DesertAnnihilator: {
+			BossChecklistIntegration: {
+				// EntryName: Desert Annihilator
+				// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertGlyph] in the desert
+				// DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+			}
+
+			// DisplayName: Desert Annihilator
+		}
+
+		FrozenAssaulter: {
+			// DisplayName: Frozen Assaulter
+
+			BossChecklistIntegration: {
+				// EntryName: Frozen Assaulter
+				// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
+				// DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+			}
+		}
+
+		// InfernalTyrantBody.DisplayName: Infernal Tyrant
+
+		InfernalTyrantHead: {
+			// DisplayName: Infernal Tyrant
+
+			BossChecklistIntegration: {
+				// EntryName: Infernal Tyrant
+				// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
+				// DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+			}
+		}
+
+		// InfernalTyrantTail.DisplayName: Infernal Tyrant
+		// DesertScorpionD.DisplayName: Sand Poacher
+		// DSlime.DisplayName: Servant of Desert Annihilator
+		// FlyingAntlionD.DisplayName: Antlion Swarmer
+		// IGolem.DisplayName: Ice Golem
+		// MinerSoul.DisplayName: Miner Soul
+		// MiniDuke.DisplayName: Fishron specter
+		// SuperDummyNPC.DisplayName: Super Dummy
+
+		Time_Wizard: {
+			// DisplayName: Time Wizard
+
+			TownNPCMood: {
+				// Content: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.Content}"
+				// NoHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.NoHome}"
+				// FarFromHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.FarFromHome}"
+				// LoveSpace: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveSpace}"
+				// DislikeCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeCrowded}"
+				// HateCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateCrowded}"
+				// LoveBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveBiome}"
+				// LikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeBiome}"
+				// DislikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeBiome}"
+				// LoveNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveNPC}"
+				// LikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeNPC}"
+				// DislikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeNPC}"
+				// HateNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateNPC}"
+				// LikeNPC_Princess: I like {NPCName}.
+				// Princess_LovesNPC: I like {NPCName}.
+			}
+
+			// Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
+		}
+
+		// VultureD.DisplayName: Vulture
+		// WalkingAntlionD.DisplayName: Antlion Charger
+		// CobaltZombie.DisplayName: Armored Zombie
+		// Copperzombie.DisplayName: Armored Zombie
+		// Crimsonzombi.DisplayName: Armored Zombie
+		// Fastzombie.DisplayName: weak zombie
+		// Goldzombie.DisplayName: Armored Zombie
+		// Ironzombie.DisplayName: Armored Zombie
+		// Leadzombie.DisplayName: Armored Zombie
+		// MoltenZombie.DisplayName: Armored Zombie
+		// NightZombie.DisplayName: Armored Zombie
+		// PaladiumZombie.DisplayName: Armored Zombie
+		// Platinumzombie.DisplayName: Armored Zombie
+		// ReinforcedIronZombie.DisplayName: Armored Zombie
+		// Shadowzombie.DisplayName: Armored Zombie
+		// Silverzombie.DisplayName: Armored Zombie
+		// Tinzombie.DisplayName: Armored Zombie
+		// Tungstenzombie.DisplayName: Armored Zombie
+		// Tuxonitezombie.DisplayName: Armored Zombie
+		// DesertTyphoonParry.DisplayName: Desert Typhoon Parry
+		// AdamantiteZombie.DisplayName: Adamantite Zombie
+		// MythrilZombie.DisplayName: Mythril Zombie
+		// OrichalcumZombie.DisplayName: Orichalcum Zombie
+		// TitaniumZombie.DisplayName: Titanium Zombie
+		// DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
+		// DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
+		// HallowedZombie.DisplayName: Armored Zombie
+		// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
+		// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
+		// ChlorophyteZombie.DisplayName: Chlorophyte Zombie
+		// TurtleZombie.DisplayName: Turtle Zombie
+		// BeetleZombie.DisplayName: Beetle Zombie
+		// SolarZombie.DisplayName: Solar Zombie
+		// KillerBunny.DisplayName: Killer Bunny
+		// MaceSkeleton.DisplayName: Mace Skeleton
+		// FakePlayer.DisplayName: Fake Player
+
+		Raider: {
+			// DisplayName: Raider
+			/* Bestiary:
+				'''
+				An opportunist who likes to raid unprotected bases.
+				They are usually not very well-coordinated.
+				''' */
+		}
+
+		RaiderBoss: {
+			// DisplayName: Raider Leader
+			/* Bestiary:
+				'''
+				An adventurer slightly more cautious than his henchmen. 
+				He usually keeps all the good things they get for himself.
+				''' */
+		}
+	}
+
+	Projectiles: {
+		// AcornLeaftShoot.DisplayName: Acorn Leaft Shoot
+		// NigthBobber.DisplayName: Nigth Bobber
+		// TuxoniteBobber.DisplayName: Tuxonite Bobber
+		// BossMark.DisplayName: Boss Mark
+		// DesertTyphoon.DisplayName: Desert Typhoon
+		// DesertTyphoonFriendly.DisplayName: Desert Typhoon Friendly
+		// frozen_p_f.DisplayName: frozen_p_f
+		// Frozenp.DisplayName: Frozenp
+		// Frozenp_M.DisplayName: Frozenp_ M
+		// InfernalBall.DisplayName: Infernal Ball
+		// InfernalBall_f.DisplayName: Infernal Ball_f
+		// InfernalBallF.DisplayName: Infernal Ball F
+		// InfernalBallF_f.DisplayName: Infernal Ball F_f
+		// InfernalSpike.DisplayName: Infernal Spike
+		// InfernalSpike_f.DisplayName: Infernal Spike_f
+		// InfernalSpikeF.DisplayName: Infernal Spike F
+		// InfernalSpikeF_f.DisplayName: Infernal Spike F_f
+		// CloneFallingStar.DisplayName: Clone Falling Star
+		// CloneStarFury.DisplayName: Clone Star Fury
+		// CloneStarWrath.DisplayName: Clone Star Wrath
+		// Curecedball.DisplayName: Curecedball
+		// DemonCycle.DisplayName: DemonScytheP
+		// EnchantedShield.DisplayName: Curecedball
+		// ExcaliburMinion.DisplayName: IceMistF
+		// IceMistF.DisplayName: IceMistF
+		// LeafFriendlyClone.DisplayName: LeafFriendlyClone
+		// BrightPetal.DisplayName: Bright Petal
+		// BrightPetal_Fire.DisplayName: Bright Petal
+		// CorruptBolt.DisplayName: Corrupt Bolt
+		// CrimsomBolt.DisplayName: Crimsom Bolt
+		// HollyLaser.DisplayName: Holly Laser
+		// SkyCutterS.DisplayName: SkyCutterS
+		// DesertS.DisplayName: DesertS
+		// GodClaws.DisplayName: God Slayer Slash
+		// GrassSwordLeaft.DisplayName: Sharp Leaf
+		// LegendaryGreatSwordSwingProgectile.DisplayName: Legendary Great Sword
+		// PermafrostRain.DisplayName: SkyCutterS
+		// SlimeV2.DisplayName: Slime V2
+		// SolarangP.DisplayName: SolarangP
+		// SpiritGemSword.DisplayName: Spirit Gem Sword
+		// UltraBladeS.DisplayName: UltraBladeS
+		// FrostBeamF.DisplayName: FrostBeamF
+		// HealingDrone.DisplayName: HealingDrone
+		// HealthBream.DisplayName: Health Bream
+		// InterceptionBream.DisplayName: Interception Bream
+		// InterceptionDrone.DisplayName: InterceptionDrone
+		// TerraExplosion.DisplayName: TerraExplosion
+		// TortugaPetProjectile.DisplayName: Tortuga Pet Projectile
+		// TwitchPet.DisplayName: Twitch Pet
+		// YtPet.DisplayName: Yt Pet
+		// bullettestp.DisplayName: Bala de slime furioso
+		// DesertArrowP.DisplayName: Desert Arrow
+		// Fibullet.DisplayName: Fire bullet
+		// ice_bulletP.DisplayName: ice_bulletP
+		// LittleDevourer.DisplayName: Little Devourer
+		// LittleShark.DisplayName: LittleShark
+		// MisilDevourer.DisplayName: Misil Devourer
+		// SuperFlare.DisplayName: Super Flare
+		// TerraBlockP.DisplayName: Terra Block
+		// TerraBulletP.DisplayName: Terra Bullet
+		// TerracoinP.DisplayName: Terracoin P
+		// Tomb_BulletP.DisplayName: Tomb_BulletP
+		// DesertMinion.DisplayName: Baby Desert Annihilator Minion
+		// EvilEyeMinion.DisplayName: Evil Eye Minion
+		// FrozenMinion.DisplayName: Baby Frozen Assaulter Minion
+		// IronBallistMinion.DisplayName: Assault Ballista Minion
+		// SaplingGoldMinion.DisplayName: Animated Golden Sapling Minion
+		// SaplingMinion.DisplayName: Animated Sapling Minion
+		// SaplingPlatinumMinion.DisplayName: Animated Platinum Sapling Minion
+		// SaplingSilverMinion.DisplayName: Animated Silver Sapling Minion
+		// SaplingTungstenMinion.DisplayName: Animated Tungsten Sapling Minion
+		// StardustMinion.DisplayName: StardustMinion
+		// IlluminatedSunFlowerMinion.DisplayName: Illuminated SunFlower Minion
+		// SacredFlowerMinion.DisplayName: Sacred Flowe Minion
+		// SunFlowerMinion.DisplayName: SunFlower Minion
+		// YggdrasilMinion.DisplayName: Yggdrasil Minion
+		// BloodyWhipProjectile.DisplayName: Bloody Whip Projectile
+		// FireStormProjectile.DisplayName: Fire Storm Projectile
+		// NightWhipProjectile.DisplayName: Night Whip Projectile
+		// SoulHarvesterProjectile.DisplayName: Soul Harvester Projectile
+		// TerraWhipProjectile.DisplayName: Terra Whip Projectile
+		// TrueDurendalProjectile.DisplayName: True Durendal Projectile
+		// TrueTwilightProjectile.DisplayName: True Twilight Projectile
+		// TempestClone.DisplayName: IceMistF
+		// DesertFuryP.DisplayName: DesertFuryP
+		// Golden_ShurikenP.DisplayName: Golden_ShurikenP
+		// DamageHitbox.DisplayName: Damage Hitbox
+		// MisilUltra.DisplayName: Misil Ultra
+		// MoltenGrassSwordLeaft.DisplayName: Molten Grass Sword Leaft
+		// DesertEdgeSwordSwingProgectile.DisplayName: Desert Edge Sword Swing Progectile
+		// NailSlash.DisplayName: Nail Slash
+		// CustomFlameTrowerProj.DisplayName: Custom Flame Trower Proj
+		// BloodRayHeldProj.DisplayName: Blood Ray Held Proj
+		// CorruptRayHeldProj.DisplayName: Corrupt Ray Held Proj
+		// BookOfSkullHeldProj.DisplayName: Book Of Skull Held Proj
+		// FlowerHeldProj.DisplayName: Flower Held Proj
+		// BloodFlowerHeldProj.DisplayName: Blood Flower Held Proj
+		// BloodThornHeldProj.DisplayName: Blood Thorn Held Proj
+		// GemStaffHeldProj.DisplayName: Gem Staff Held Proj
+		// SharknadoClone.DisplayName: Sharknado Clone
+		// SharknadoShootClone.DisplayName: Sharknado Shoot Clone
+		// SharknadoBoltClone.DisplayName: Sharknado Bolt Clone
+		// PygmyMelee.DisplayName: Pygmy Melee
+		// TrueNigthBobber.DisplayName: True Nigth Bobber
+		// SacredBobber.DisplayName: Sacred Bobber
+		// TerraBobber.DisplayName: Terra Bobber
+		// TrueSacredBobber.DisplayName: True Sacred Bobber
+		// DakoPetProjectile.DisplayName: Dako Pet Projectile
+		// FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
+		// FrostBarrier.DisplayName: Frost Barrier
+		// FloatingSunFlowerMinion.DisplayName: Floating Sun Flower Minion
+		// GodZone.DisplayName: God Zone
+		// HorizonHeldProj.DisplayName: Horizon Held Proj
+		// NebulaTyphoon.DisplayName: Nebula Typhoon
+		// NebulaTyphoon_Strong.DisplayName: Nebula Typhoon_ Strong
+		// Graveyard_proj.DisplayName: Graveyard_proj
+		// Judment_Lasser.DisplayName: Judment_ Lasser
+		// Judment_Lasser_Shooter.DisplayName: Judment_ Lasser_ Shooter
+		// BigGemBolt.DisplayName: Big Gem Bolt
+		// FrozenPermafrostRain.DisplayName: Frozen Permafrost Rain
+		// HeavyIchorBullet.DisplayName: Heavy Ichor Bullet
+		// FrozenNovaExplosion.DisplayName: Frozen Nova Explosion
+		// UltrabladeSwingProgectile.DisplayName: Ultrablade Swing Progectile
+		// UltrabladeSwingingEnergySwordProjectile.DisplayName: Ultrablade Swinging Energy Sword Projectile
+		// UltraBladeProjectileSub.DisplayName: Ultra Blade Projectile Sub
+		// NanoDrone.DisplayName: Nano Drone
+		// SolverCursor.DisplayName: Solver Cursor
+		// HoldSaberCharge.DisplayName: Hold Saber Charge
+		// SignusMimic.DisplayName: Signus Mimic
+		// AquaScepterHeldProj.DisplayName: Aqua Scepter Held Proj
+		// WandOfSparkingHeldProj.DisplayName: Wand Of Sparking Held Proj
+		// SparkBomb.DisplayName: Spark Bomb
+		// SaberDashProj.DisplayName: Saber Dash Proj
+		// BladeOfGrassLeaftClone.DisplayName: Blade Of Grass Leaft Clone
+		// SwordSlash.DisplayName: Sword Slash
+		// FlinxMinionClone.DisplayName: Flinx Minion Clone
+		// ReinforcedBullet.DisplayName: Reinforced Bullet
+		// ReinforcedBulletP.DisplayName: Reinforced Bullet P
+		// SaberSwingProgectile.DisplayName: Saber Swing Progectile
+		// GenericDamageBream.DisplayName: Generic Damage Bream
+		// EmeraldAndScarletHeldProjectile.DisplayName: Emerald And Scarlet Held Projectile
+		// InstantPlataformProj.DisplayName: Instant Plataform Proj
+		// ScarabDynamiteProj.DisplayName: Scarab Dynamite Proj
+		// CursedShotgunMinion.DisplayName: Cursed Shotgun Minion
+		// EnchantedIceBullet.DisplayName: Enchanted Ice Bullet
+		// EnchantedIceFragment.DisplayName: Enchanted Ice Fragment
+		// BoberHook.DisplayName: Bober Hook
+		// BoberHookLine.DisplayName: Bober Hook Line
+		// TrueHallowArrow.DisplayName: True Hallow Arrow
+		// TrueNightArrow.DisplayName: True Night Arrow
+		// TerraArrow.DisplayName: Terra Arrow
+		// ElectricRailGunProjectile.DisplayName: Electric Rail Gun Projectile
+		// GravediggersSickleProjectile.DisplayName: Gravediggers Sickle Projectile
+		// GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
+		// NightLotusSickleProjectile.DisplayName: Night Lotus Sickle Projectile
+		// NightLotusSickleSwingProjectile.DisplayName: Night Lotus Sickle Swing Projectile
+		// PlayerClone.DisplayName: Player Clone
+		// HydraCluster_Proj.DisplayName: Hydra Cluster_ Proj
+		// TrueShadowMistProj.DisplayName: True Shadow Mist Proj
+		// TrueShadowMistCloudProj.DisplayName: True Shadow Mist
+		// CactusBoulderClone.DisplayName: Cactus Boulder Clone
+		// CursedBream.DisplayName: Cursed Bream
+		// MoltenLeaftBlade.DisplayName: Molten Leaft Blade
+		// GemstoneCrusherProj_Diamond.DisplayName: Telekinetic Diamond
+		// GemstoneCrusherProj_Emerald.DisplayName: Telekinetic Emerald
+		// GemstoneCrusherProj_Ruby.DisplayName: Telekinetic Ruby
+		// GemstoneCrusherProj_Sapphire.DisplayName: Telekinetic Sapphire
+		// BloodDart.DisplayName: Blood Dart
+		// WandOfCavernsHeldProjectile.DisplayName: Wand Of Caverns
+		// StoneBlunderbusHeldProjectile.DisplayName: Stone Blunderbus
+		// StoneMortarMinion.DisplayName: Stone Mortar
+		// SandnadoMarkClone.DisplayName: Sandnado Mark Clone
+		// StoneImpalerP.DisplayName: Stone Impaler
+		// RockAndRollProjectile.DisplayName: Rock And Roll
+		// CrusherPetProjectile.DisplayName: Crusher Pet Projectile
+		// DesertPetProjectile.DisplayName: Desert Pet Projectile
+		// FrozenPetProjectile.DisplayName: Frozen Pet Projectile
+		// TyrantPetProjectile.DisplayName: Tyrant Pet Projectile
+		// NaturalSpiritButerfly.DisplayName: Natural Spirit Buterfly
+	}
+
+	Tiles: {
+		// AncientTableTile.MapEntry: Table
+		// BossTrophy.MapEntry: Trophy
+		// Completist.MapEntry: Table
+		// cRUSHERMusicBoxT.MapEntry: Music Box
+		// DesertMusicBoxT.MapEntry: Music Box
+		// FrozenMusicBoxT.MapEntry: Music Box
+		// Frozenp2MusicBoxT.MapEntry: Music Box
+		// InfernalMusicBoxT.MapEntry: Music Box
+		// TuxoniteDoorClosed.MapEntry: Example Door
+		// TuxoniteDoorOpen.MapEntry: Example Door
+		// TuxoniteTableTile.MapEntry: Table
+		// ReforgeAnvilTile.MapEntry: Reforge Anvil Tile
+		// CrusherMusicBoxT.MapEntry: Crusher Music Box T
+	}
+
+	Conditions: {
+		// OpositeOreGeneration: When world have
+		// TinkererAlive: When Goblin Tinkerer is alive
+		// OpositeOreGenerationTin: When world have tin
+		// OpositeOreGenerationCopper: When world have Copper
+		// OpositeOreGenerationLead: When world have Lead
+		// OpositeOreGenerationIron: When world have Iron
+		// OpositeOreGenerationSilver: When world have Silver
+		// OpositeOreGenerationTungsten: When world have Tungsten
+		// OpositeOreGenerationPlatinum: When world have Platinum
+		// OpositeOreGenerationGold: When world have Gold
+		// OpositeOreGenerationPalladium: When world have Palladium
+		// OpositeOreGenerationCobalt: When world have Cobalt
+		// OpositeOreGenerationOrichalcum: When world have Orichalcum
+		// OpositeOreGenerationMythril: When world have Mythril
+		// DownedCrusher: When Gemstone Crusher has been defeated
+		// DownedDesert: When Desert Anhilator has been defeated
+		// DownedFrozen: When Frozen Assaulter has been defeated
+		// DownedTyrant: When Infernal Tyrant has been defeated
+	}
+
+	Configs: {
+		ConfigClient: {
+			// DisplayName: Config Client
+
+			Headers: {
+				// PotionEffects: Potion Effects Header
+				// ReaperSouls: Reaper Souls Header
+			}
+
+			KitsFeatherFall: {
+				// Label: Kits Feather Fall
+				// Tooltip: ""
+			}
+
+			KitsInvis: {
+				// Label: Kits Invis
+				// Tooltip: ""
+			}
+
+			KitsGrav: {
+				// Label: Kits Grav
+				// Tooltip: ""
+			}
+
+			KitsInferno: {
+				// Label: Kits Inferno
+				// Tooltip: ""
+			}
+
+			KitsGills: {
+				// Label: Kits Gills
+				// Tooltip: ""
+			}
+
+			AprilFoolsDay: {
+				// Label: April Fools Day
+				// Tooltip: ""
+			}
+		}
+
+		ConfigServer: {
+			Headers: {
+				// Performance: Lag Reducer Header
+				// TerrariaOverhaul: Terraria Overhaul Header
+			}
+
+			// DisplayName: Config Server
+
+			LagReducer: {
+				// Label: Lag Reducer
+				/* Tooltip:
+					'''
+					Reduce some visual effects to improve performance.
+					0: Off
+					1: Low decrease of visual effects,
+					2: Medium decrease of visual effects,
+					3: High decrease of visual effects.
+					''' */
+			}
+
+			VanillaWeaponsChangesConf: {
+				// Label: Vanilla Weapons Changes Conf
+				// Tooltip: Enable the mod balance change to vanilla items
+			}
+
+			BowReworkConf: {
+				// Label: Bow Rework Conf
+				// Tooltip: apply charge mechanic to bows (WIP)
+			}
+
+			DropTombstomOnDeadtConf: {
+				// Label: Drop Tombstom On Deadt Conf
+				// Tooltip: ""
+			}
+
+			MaxItemStackConf: {
+				// Label: Max Item Stack Conf
+				// Tooltip: ""
+			}
+
+			FastExtractinatorConf: {
+				// Label: Fast Extractinator Conf
+				// Tooltip: ""
+			}
+
+			OverhaulMeleeManaCostConfig: {
+				// Label: Overhaul Melee Mana Cost Config
+				// Tooltip: ""
+			}
+
+			BootFastFallConf: {
+				// Label: Boot Fast Fall Conf
+				// Tooltip: ""
+			}
+		}
+	}
+
+	Keybinds: {
+		// ReaperModeInterface.DisplayName: Reaper Mode Interface
+		// FrostBarrier.DisplayName: Frost Barrier
+		// ToggNightTp.DisplayName: Togg Night Tp
+	}
+
+	DamageClasses: {
+		// FisherDamageClass.DisplayName: Fisher Damage
+		// ExampleDamageClass.DisplayName: Example Damage Class
+	}
+
+	InfoDisplays: {
+		// ArmorPenetrationBonusDisplay.DisplayName: Armor Penetration Bonus Display
+		// CritBonusDisplay.DisplayName: Crit Bonus Display
+		// DamageBonusDisplay.DisplayName: Damage Bonus Display
+		// DamageReductionDisplay.DisplayName: Damage Reduction Display
+		// FlyTimeBonusDisplay.DisplayName: Fly Time Bonus Display
+		// LifeRegenBonusDisplay.DisplayName: Life Regen Bonus Display
+		// LuckBonusDisplay.DisplayName: Luck Bonus Display
+		// ManaRegenBonusDisplay.DisplayName: Mana Regen Bonus Display
+		// MaxMinionsDisplay.DisplayName: Max Minions Display
+		// MaxSentryDisplay.DisplayName: Max Sentry Display
+		// MeleeAttackspeedBonusDisplay.DisplayName: Melee Attackspeed Bonus Display
+		// MiningSpeedBonusDisplay.DisplayName: Mining Speed Bonus Display
+		// MovmentSpeedBonusDisplay.DisplayName: Movment Speed Bonus Display
+		// StyleStatBonusDisplay.DisplayName: Style Stat Bonus Display
+		// PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
+		// PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
+	}
+
+	Achievements: {
+		LegionAchievement: {
+			// FriendlyName: One in half million
+			// Description: Obtain the Legion, the most refined gem.
+		}
+
+		MaxStyleAchievement: {
+			// FriendlyName: Fashionable
+			// Description: Obtain the maximum amount possible of Style.
+		}
+
+		DefeatDesertAnnihilatorAchievement: {
+			// FriendlyName: Slippery sand
+			// Description: Defeat the Desert Annihilator, the guardian of the all dunes.
+		}
+
+		DefeatFrozenAssaulterAchievement: {
+			// FriendlyName: Persistent icicle
+			// Description: Defeat the Frozen Assaulter, the icy guardian with a sturdy shell
+		}
+
+		DefeatInfernalTyrantAchievement: {
+			// FriendlyName: Tyrannicide
+			// Description: Defeat the Infernal Tyrant, the ruler of the deep
+		}
+
+		AnkhAmuletAchievement: {
+			// FriendlyName: All in one
+			// Description: Get the ankh amulet, the most versatile jewelry.
+		}
+
+		DefeatGemstoneCrusherAchievement: {
+			// FriendlyName: Structural failure
+			// Description: Defeat the gemstone crusher, the motionless guardian
+		}
+	}
+
+	// Commands.MaxStyleCommand.Description: Maximizes the player's style stat
+	// ConfigServer.Headers.Performance: Lag Reducer Header
+	// BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
 }

@@ -14,6 +14,7 @@ using System.Linq;
 using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -75,9 +76,9 @@ namespace RemnantOfTheAncientsMod
             BackgroundTextureLoader.AddBackgroundTexture(this, PlaceHolderPath);
             AppDomain.CurrentDomain.FirstChanceException += OnFirstChanceException;
 
-
-
+            SkyManager.Instance["RemnantOfTheAncientsMod:GalearisSky"] = new GalearisSky();
         }
+
         [JITWhenModsEnabled("FargowiltasSouls")]
         public static void LoadTogglesFromType(Type type)
         {

@@ -223,6 +223,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.TrailCacheLength[Type] = 10;
             NPCID.Sets.TrailingMode[Type] = 0;
+            NPCID.Sets.MPAllowedEnemies[Type] = true;
 
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
             {
@@ -733,7 +734,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             if(NPC.AnyNPCs(Type)) return 0f;
-            float chance = SpawnCondition.Cavern.Chance * 0.006f; 
+            float chance = SpawnCondition.Cavern.Chance * 0.01f; 
             return chance;
         }
 

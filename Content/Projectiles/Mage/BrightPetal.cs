@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -60,19 +62,58 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
             Projectile.friendly = true;
             Projectile.tileCollide = true;
             Projectile.light = light;
-            Projectile.timeLeft = 120;
+            Projectile.timeLeft = Utils1.FormatTimeToTick(Second:3);
         }
+
+
+
+        int timer = 0;
+        int timmerMax = Utils1.FormatTimeToTick(Second:1);
+
+
+        bool Stopped
+        {
+            get => Projectile.ai[0] == 1; 
+            set =>  Projectile.ai[0] = value.ToInt();       
+        }
+
         public override void AI()           
-        {                                                      
+        {              
+            if(Main.netMode == NetmodeID.MultiplayerClient) return;
+
+
             Projectile.rotation = (float)Math.Atan2(Projectile.velocity.Y, Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
+
+            if(Stopped)
+            {
+                if(timer < timmerMax) timer++;
+                else Projectile.Kill();
+                
+                return;
+            }
+            Vector2 absVelocity = new(Math.Abs(Projectile.velocity.X), Math.Abs(Projectile.velocity.Y));
+
+            if (absVelocity.X <= 0.2f && absVelocity.Y <= 0.2f) Projectile.velocity = Vector2.Zero;
+            if (absVelocity.X <= 0 && absVelocity.Y <= 0) Stopped = true;
+            else Projectile.velocity *= 0.95f;
         }
-         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (buffId != 0)
             {
                 if (Main.rand.NextBool()) target.AddBuff(buffId, 300);
             }
+        }
+        public override void OnKill(int timeLeft)
+        {
+            int damage = (int)(Projectile.damage * (buffId != 0 ? 1 : 0.5f));
+            for (int i = 0; i < 5; i++)
+            {
+                int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2Circular(3f, 3f), ProjectileID.SeedlerThorn, damage, Projectile.knockBack, Projectile.owner);
+                Main.projectile[p].DamageType = DamageClass.Magic;
+            }
+            base.OnKill(timeLeft);
         }
         public override Color? GetAlpha(Color lightColor) => color;
     }

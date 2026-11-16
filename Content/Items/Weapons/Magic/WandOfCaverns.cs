@@ -17,7 +17,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         }
         public override void SetDefaults()
 		{
-			Item.damage = 20;
+			Item.damage = 30;
 			Item.DamageType = DamageClass.Magic;
             Item.width = 64;
 			Item.height = 64;

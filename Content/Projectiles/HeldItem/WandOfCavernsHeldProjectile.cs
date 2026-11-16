@@ -92,7 +92,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                 int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center + new Vector2(16 * owner.direction, 0), Vector2.Zero, ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(), 10, 0, owner.whoAmI);
                 Main.projectile[p].friendly = true;
                 Main.projectile[p].hostile = false;
-                Main.projectile[p].timeLeft = Utils1.FormatTimeToTick(Second: 65);
+                Main.projectile[p].timeLeft = Utils1.FormatTimeToTick(Minute: 5);
             }
         }
 

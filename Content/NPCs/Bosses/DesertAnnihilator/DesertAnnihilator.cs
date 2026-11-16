@@ -138,7 +138,6 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
 
             if (CurrentTarget.dead && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                NPC.EncourageDespawn(7);
                 DespawnBoss();
             }
 
@@ -288,11 +287,25 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         int despawnCounterMax = Utils1.FormatTimeToTick(0, 0, 0, 2);
         public void DespawnBoss()
         {
-            NPC.velocity = new Vector2(0,3);
-            NPC.EncourageDespawn(7);
-            if (despawnCounter > Utils1.FormatTimeToTick(0, 0, 0, 0.3f)) attackModule.GenerateTpParticles();
-            if (despawnCounter++ >= despawnCounterMax) NpcCenter = new(0, 0);
-            return;
+            NPC.velocity = new Vector2(0f, 3f);
+            NPC.dontTakeDamage = true;
+
+            if (despawnCounter > Utils1.FormatTimeToTick(0, 0, 0, 0.3f))
+            {
+                attackModule.GenerateTpParticles();
+            }
+
+            despawnCounter++;
+
+            if (despawnCounter >= despawnCounterMax)
+            {
+                NPC.active = false;
+
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, NPC.whoAmI);
+                }
+            }
         }
 
         public override bool? CanFallThroughPlatforms() => false;

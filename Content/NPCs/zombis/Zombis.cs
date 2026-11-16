@@ -88,7 +88,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.1f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -103,7 +103,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.1f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.08f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -118,7 +118,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.1f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.08f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -133,7 +133,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.05f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.02f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -148,7 +148,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.05f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.02f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -163,7 +163,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.1f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.08f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -178,7 +178,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.1f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.08f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -204,7 +204,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.1f, GlobalEnum.GameStage.PreBoss);
+            float chance = AdjustProgresionChance(0.08f, GlobalEnum.GameStage.PreBoss);
             return base.SpawnChanceScale(!NPC.downedBoss3, chance);
         }
     }
@@ -218,7 +218,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.PostCorruptBoss);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.PostCorruptBoss);
             return base.SpawnChanceScale(NPC.downedBoss1, chance);
         }
     }
@@ -240,7 +240,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.PostCorruptBoss);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.PostCorruptBoss);
             return base.SpawnChanceScale(NPC.downedBoss1, chance);
         }
 
@@ -256,7 +256,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.PostCorruptBoss);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.PostCorruptBoss);
             return base.SpawnChanceScale(NPC.downedBoss2, chance);
         }
     }
@@ -280,7 +280,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         { 
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.PostSkeletron);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.PostSkeletron);
             return base.SpawnChanceScale(NPC.downedBoss3, chance);
         }
     }
@@ -296,7 +296,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             bool condition = Main.hardMode && WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt;
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 1;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
         }
     }
@@ -317,7 +317,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             bool condition = Main.hardMode && WorldGen.SavedOreTiers.Cobalt == TileID.Palladium;
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 1;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
         }
     }
@@ -334,7 +334,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {  
             bool condition = Main.hardMode && WorldGen.SavedOreTiers.Mythril == TileID.Mythril;
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 2;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
         }    
     }
@@ -361,7 +361,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             bool condition = Main.hardMode && WorldGen.SavedOreTiers.Mythril == TileID.Orichalcum;
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 2;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
         }
     }
@@ -377,7 +377,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             bool condition = Main.hardMode && NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Adamantite;
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 3;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
         }
     }
@@ -417,7 +417,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             bool condition = Main.hardMode && NPC.downedMechBossAny && WorldGen.SavedOreTiers.Adamantite == TileID.Titanium;
             if (RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 3;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.Hardmode);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.Hardmode);
             return base.SpawnChanceScale(condition, chance);
         }   
     }
@@ -443,7 +443,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         {
             bool condition = Main.hardMode && NPC.downedMechBossAny;
             if(RemnantOfTheAncientsMod.CalamityMod != null) condition &= CalamityConfigEnabled() && Utils1.MechBossDefeatedTierReworkForClamity() >= 4;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.PostMech);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.PostMech);
             return base.SpawnChanceScale(condition, chance);
         }
     }
@@ -471,7 +471,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             bool condition = Main.hardMode && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;
-            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.PostMech);
+            float chance = AdjustProgresionChance(0.2f, GlobalEnum.GameStage.PostMech);
             return base.SpawnChanceScale(condition, chance);
         }
     }
@@ -496,7 +496,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.zombis
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             bool condition = Main.hardMode && NPC.downedPlantBoss;
-            float chance = AdjustProgresionChance(0.4f, GlobalEnum.GameStage.PostPlantera, 0.05f);
+            float chance = AdjustProgresionChance(0.3f, GlobalEnum.GameStage.PostPlantera, 0.05f);
             return base.SpawnChanceScale(condition,chance);
         }
     }

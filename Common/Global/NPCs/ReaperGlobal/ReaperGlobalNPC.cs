@@ -637,15 +637,10 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
             
             if (npc.type == NPCID.KingSlime)
             {
-                int choice = Main.rand.Next(SlimesList.Count);
-                var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, SlimesList[choice]);
-                Main.npc[p].GetGlobalNPC<RemnantGlobalNPC>().CanDrop = false;
-
-
                 if(RemnantOfTheAncientsMod.CalamityMod != null)
                 {
-                    ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
-                    ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));
+                    /*ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "EbonianBlightSlime"));
+                    ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "CrimulanBlightSlime"));*/
                     if (CalamityUtils.IsBossDefeated("HiveMind") || CalamityUtils.IsBossDefeated("PerforatorHive"))
                     {
                         ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "AeroSlime"));
@@ -672,13 +667,15 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                         if (NPC.downedMoonlord)
                         {
                             ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "GammaSlime"));  
-                            if (CalamityUtils.IsBossDefeated("Providence"))
-                            {
-                                ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
-                            }
+                            if (CalamityUtils.IsBossDefeated("Providence")) ListUtils.AddSecure(ref SlimesList, CallUtils.TryGetNpcFromMod(RemnantOfTheAncientsMod.CalamityMod, "BloomSlime"));
                         }
                     }
                 }
+
+                int choice = Main.rand.Next(SlimesList.Count);
+                int choiceType = SlimesList[choice];
+                var p = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, choiceType);
+                Main.npc[p].GetGlobalNPC<RemnantGlobalNPC>().CanDrop = false;
             }
 
             if (npc.type == NPCID.EaterofWorldsHead && npc.life <= 0)
