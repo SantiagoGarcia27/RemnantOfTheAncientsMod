@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Boots
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.maxFallSpeed *= 2f;   
+            if(player.controlDown) player.maxFallSpeed *= 2f;   
         }
         public override void AddRecipes() 
         {

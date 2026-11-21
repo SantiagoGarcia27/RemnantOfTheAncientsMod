@@ -5,6 +5,7 @@ using RemnantOfTheAncientsMod.Common.Drops.DropRules;
 using RemnantOfTheAncientsMod.Common.Extensions;
 using RemnantOfTheAncientsMod.Common.Global.NPCs;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Common.World;
 using RemnantOfTheAncientsMod.Content.Items.Armor.Masks;
 using RemnantOfTheAncientsMod.Content.Items.Consumables.tresure_bag;
 using RemnantOfTheAncientsMod.Content.Items.Items;
@@ -758,7 +759,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             string TextureGlowPath = $"{ruta}_Glow";
             if (CurrentPhase >= 2) TextureGlowPath = TextureGlowPath +"_2";
 
-            Color color = !shootTelegraph ? Color.White : gemData[projectileType].color;
+            Color color = !shootTelegraph ? new Color(140,238,255) : gemData[projectileType].color;
             if (TextureGlowPath != null && CurrentState != BossState.Sleep)
             {
                 Texture2D texture = ModContent.Request<Texture2D>(TextureGlowPath, AssetRequestMode.ImmediateLoad).Value;
@@ -884,6 +885,12 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.GemstoneCrusher
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShinyPebbles>(), 1, 5, 20));
             if (DificultyUtils.InfernumMode) npcLoot.Add(RemnantDropRules.InfernumModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));
             else npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<Crusher_Relic>()));
+        }
+
+        public override void BossLoot(ref int potionType)
+        {
+            RemnantDownedBossSystem.downedCrusher = true;
+            base.BossLoot(ref potionType);
         }
     }
 }

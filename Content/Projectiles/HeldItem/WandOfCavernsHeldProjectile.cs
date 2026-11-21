@@ -89,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             if (owner.ownedProjectileCounts[ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>()] < 5 && owner.HeldItem.type == ModContent.ItemType<WandOfCaverns>())
             {
 
-                int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center + new Vector2(16 * owner.direction, 0), Vector2.Zero, ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(), 10, 0, owner.whoAmI);
+                int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center + new Vector2(16 * owner.direction, 0), Vector2.Zero, ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(), 10, Projectile.knockBack, owner.whoAmI);
                 Main.projectile[p].friendly = true;
                 Main.projectile[p].hostile = false;
                 Main.projectile[p].timeLeft = Utils1.FormatTimeToTick(Minute: 5);

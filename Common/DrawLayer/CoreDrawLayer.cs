@@ -24,7 +24,7 @@ namespace RemnantOfTheAncientsMod.Common.DrawLayer
             List<string> cores = player.GetModPlayer<DrawEffectPlayer>().activeCores;
 
             int count = cores.Count;
-            if (count == 0) return;
+            if (count == 0 || !player.active || player.dead) return;
 
             Vector2 center = player.Center
                 - Main.screenPosition

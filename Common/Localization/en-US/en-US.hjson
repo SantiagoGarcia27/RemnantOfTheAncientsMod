@@ -275,7 +275,7 @@ Mods: {
 			FishMultipleLine: Fires {0} lines at once.
 			IncreasedLuck: Increase luck by {0}
 			IncreasedBootSpeedInBlock: ", and even faster on {0}"
-			IncreasedFallSpeed: Increases fall acceleration
+			IncreasedFallSpeed: Increases fall acceleration when press down key
 			NanoBulletDrone: Spawn nano drones when hit enemies.
 		}
 
@@ -4723,7 +4723,7 @@ Mods: {
 
 			StrikingGeode: {
 				DisplayName: Striking Geode
-				Tooltip: "Summons the Gemstone Crusher"
+				Tooltip: Summons the Gemstone Crusher
 			}
 
 			CrusherSoul: {
@@ -4758,6 +4758,11 @@ Mods: {
 
 			ButterflySword: {
 				DisplayName: Butterfly Sword
+				Tooltip: ""
+			}
+
+			StoneRing: {
+				DisplayName: Stone Ring
 				Tooltip: ""
 			}
 		}
@@ -4822,42 +4827,46 @@ Mods: {
 			Tooltip: ""
 		}
 
-		Keybinds.ReaperModeInterface.DisplayName: Reaper Mode Interface
+		Keybinds: {
+			ReaperModeInterface.DisplayName: Reaper Mode Interface
+			FrostBarrier.DisplayName: Frost Barrier
+			ToggNightTp.DisplayName: Togg Night Tp
+		}
 
 		Achievements: {
-			AnkhAmuletAchievement: {
-				FriendlyName: Ankh Amulet Achievement
-				Description: Mods.RemnantOfTheAncientsMod.Achievements.AnkhAmuletAchievement.Description
-			}
-
-			DefeatDesertAnnihilatorAchievement: {
-				FriendlyName: Defeat Desert Annihilator Achievement
-				Description: Mods.RemnantOfTheAncientsMod.Achievements.DefeatDesertAnnihilatorAchievement.Description
-			}
-
-			DefeatFrozenAssaulterAchievement: {
-				FriendlyName: Defeat Frozen Assaulter Achievement
-				Description: Mods.RemnantOfTheAncientsMod.Achievements.DefeatFrozenAssaulterAchievement.Description
-			}
-
-			DefeatGemstoneCrusherAchievement: {
-				FriendlyName: Defeat Gemstone Crusher Achievement
-				Description: Mods.RemnantOfTheAncientsMod.Achievements.DefeatGemstoneCrusherAchievement.Description
-			}
-
-			DefeatInfernalTyrantAchievement: {
-				FriendlyName: Defeat Infernal Tyrant Achievement
-				Description: Mods.RemnantOfTheAncientsMod.Achievements.DefeatInfernalTyrantAchievement.Description
-			}
-
 			LegionAchievement: {
-				FriendlyName: Legion Achievement
-				Description: Mods.RemnantOfTheAncientsMod.Achievements.LegionAchievement.Description
+				FriendlyName: One in half million
+				Description: Obtain the Legion, the most refined gem.
 			}
 
 			MaxStyleAchievement: {
-				FriendlyName: Max Style Achievement
-				Description: Mods.RemnantOfTheAncientsMod.Achievements.MaxStyleAchievement.Description
+				FriendlyName: Fashionable
+				Description: Obtain the maximum amount possible of Style.
+			}
+
+			DefeatDesertAnnihilatorAchievement: {
+				FriendlyName: Slippery sand
+				Description: Defeat the Desert Annihilator, the guardian of the all dunes.
+			}
+
+			DefeatFrozenAssaulterAchievement: {
+				FriendlyName: Persistent icicle
+				Description: Defeat the Frozen Assaulter, the icy guardian with a sturdy shell
+			}
+
+			DefeatInfernalTyrantAchievement: {
+				FriendlyName: Tyrannicide
+				Description: Defeat the Infernal Tyrant, the ruler of the deep
+			}
+
+			AnkhAmuletAchievement: {
+				FriendlyName: All in one
+				Description: Get the ankh amulet, the most versatile jewelry.
+			}
+
+			DefeatGemstoneCrusherAchievement: {
+				FriendlyName: Structural failure
+				Description: Defeat the gemstone crusher, the motionless guardian
 			}
 		}
 
@@ -4899,26 +4908,62 @@ Mods: {
 		}
 
 		NPCs: {
-			GemstoneCrusher.DisplayName: Gemstone Crusher
-			RaiderBoss.DisplayName: Raider Boss
-			Raider.DisplayName: Raider
-			DesertAnnihilator.DisplayName: Desert Annihilator
-			FrozenAssaulter.DisplayName: Frozen Assaulter
-			InfernalTyrantHead.DisplayName: Infernal Tyrant Head
+			AntlionD.DisplayName: Antlion
 			ArmoredSlime.DisplayName: Armored Slime
-			InfernalTyrantBody.DisplayName: Infernal Tyrant Body
-			InfernalTyrantTail.DisplayName: Infernal Tyrant Tail
-			CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
-			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
-			KillerBunny.DisplayName: Killer Bunny
-			MaceSkeleton.DisplayName: Mace Skeleton
+
+			GemstoneCrusher: {
+				DisplayName: Gemstone Crusher
+
+				BossChecklistIntegration: {
+					EntryName: Gemstone Crusher
+					SpawnInfo: Spawns naturally or using [i:RemnantOfTheAncientsMod/StrikingGeode] on caverns
+					DespawnMessage: "[c/6495ed:The ancient stone has rolled far away.]"
+				}
+			}
+
+			DesertAnnihilator: {
+				BossChecklistIntegration: {
+					EntryName: Desert Annihilator
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertGlyph] in the desert
+					DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+				}
+
+				DisplayName: Desert Annihilator
+			}
+
+			FrozenAssaulter: {
+				DisplayName: Frozen Assaulter
+
+				BossChecklistIntegration: {
+					EntryName: Frozen Assaulter
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
+					DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+				}
+			}
+
+			InfernalTyrantBody.DisplayName: Infernal Tyrant
+
+			InfernalTyrantHead: {
+				DisplayName: Infernal Tyrant
+
+				BossChecklistIntegration: {
+					EntryName: Infernal Tyrant
+					SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
+					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+				}
+			}
+
+			InfernalTyrantTail.DisplayName: Infernal Tyrant
+			DesertScorpionD.DisplayName: Sand Poacher
+			DSlime.DisplayName: Servant of Desert Annihilator
+			FlyingAntlionD.DisplayName: Antlion Swarmer
+			IGolem.DisplayName: Ice Golem
 			MinerSoul.DisplayName: Miner Soul
-			MiniDuke.DisplayName: Mini Duke
-			DesertTyphoonParry.DisplayName: Desert Typhoon Parry
-			SuperDummyNPC.DisplayName: Super Dummy N P C
+			MiniDuke.DisplayName: Fishron specter
+			SuperDummyNPC.DisplayName: Super Dummy
 
 			Time_Wizard: {
-				DisplayName: Time_ Wizard
+				DisplayName: Time Wizard
 
 				TownNPCMood: {
 					Content: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.Content}"
@@ -4937,33 +4982,64 @@ Mods: {
 					LikeNPC_Princess: I like {NPCName}.
 					Princess_LovesNPC: I like {NPCName}.
 				}
+
+				Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
 			}
 
+			VultureD.DisplayName: Vulture
+			WalkingAntlionD.DisplayName: Antlion Charger
+			CobaltZombie.DisplayName: Armored Zombie
+			Copperzombie.DisplayName: Armored Zombie
+			Crimsonzombi.DisplayName: Armored Zombie
+			Fastzombie.DisplayName: weak zombie
+			Goldzombie.DisplayName: Armored Zombie
+			Ironzombie.DisplayName: Armored Zombie
+			Leadzombie.DisplayName: Armored Zombie
+			MoltenZombie.DisplayName: Armored Zombie
+			NightZombie.DisplayName: Armored Zombie
+			PaladiumZombie.DisplayName: Armored Zombie
+			Platinumzombie.DisplayName: Armored Zombie
+			ReinforcedIronZombie.DisplayName: Armored Zombie
+			Shadowzombie.DisplayName: Armored Zombie
+			Silverzombie.DisplayName: Armored Zombie
+			Tinzombie.DisplayName: Armored Zombie
+			Tungstenzombie.DisplayName: Armored Zombie
+			Tuxonitezombie.DisplayName: Armored Zombie
+			DesertTyphoonParry.DisplayName: Desert Typhoon Parry
 			AdamantiteZombie.DisplayName: Adamantite Zombie
-			BeetleZombie.DisplayName: Beetle Zombie
-			ChlorophyteZombie.DisplayName: Chlorophyte Zombie
-			CobaltZombie.DisplayName: Cobalt Zombie
-			Copperzombie.DisplayName: Copperzombie
-			Crimsonzombi.DisplayName: Crimsonzombi
-			Fastzombie.DisplayName: Fastzombie
-			Goldzombie.DisplayName: Goldzombie
-			HallowedZombie.DisplayName: Hallowed Zombie
-			Ironzombie.DisplayName: Ironzombie
-			Leadzombie.DisplayName: Leadzombie
-			MoltenZombie.DisplayName: Molten Zombie
 			MythrilZombie.DisplayName: Mythril Zombie
-			NightZombie.DisplayName: Night Zombie
 			OrichalcumZombie.DisplayName: Orichalcum Zombie
-			PaladiumZombie.DisplayName: Paladium Zombie
-			Platinumzombie.DisplayName: Platinumzombie
-			ReinforcedIronZombie.DisplayName: Reinforced Iron Zombie
-			Shadowzombie.DisplayName: Shadowzombie
-			Silverzombie.DisplayName: Silverzombie
-			SolarZombie.DisplayName: Solar Zombie
-			Tinzombie.DisplayName: Tinzombie
 			TitaniumZombie.DisplayName: Titanium Zombie
-			Tungstenzombie.DisplayName: Tungstenzombie
+			DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
+			DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
+			HallowedZombie.DisplayName: Armored Zombie
+			DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
+			CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
+			ChlorophyteZombie.DisplayName: Chlorophyte Zombie
 			TurtleZombie.DisplayName: Turtle Zombie
+			BeetleZombie.DisplayName: Beetle Zombie
+			SolarZombie.DisplayName: Solar Zombie
+			KillerBunny.DisplayName: Killer Bunny
+			MaceSkeleton.DisplayName: Mace Skeleton
+			FakePlayer.DisplayName: Fake Player
+
+			Raider: {
+				DisplayName: Raider
+				Bestiary:
+					'''
+					An opportunist who likes to raid unprotected bases.
+					They are usually not very well-coordinated.
+					'''
+			}
+
+			RaiderBoss: {
+				DisplayName: Raider Leader
+				Bestiary:
+					'''
+					An adventurer slightly more cautious than his henchmen. 
+					He usually keeps all the good things they get for himself.
+					'''
+			}
 		}
 
 		BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
@@ -5140,6 +5216,7 @@ Mods: {
 			TrueTwilightProjectile.DisplayName: True Twilight Projectile
 			DesertFuryP.DisplayName: Desert Fury P
 			Golden_ShurikenP.DisplayName: Golden_ Shuriken P
+			FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
 		}
 
 		Configs: {
@@ -5241,141 +5318,6 @@ Mods: {
 			OpositeOreGenerationOrichalcum: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGenerationOrichalcum
 			OpositeOreGenerationMythril: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGenerationMythril
 			TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
-		}
-	}
-
-	NPCs: {
-		AntlionD.DisplayName: Antlion
-		ArmoredSlime.DisplayName: Armored Slime
-
-		GemstoneCrusher: {
-			DisplayName: Gemstone Crusher
-
-			BossChecklistIntegration: {
-				EntryName: Gemstone Crusher
-				SpawnInfo: Spawns naturally on caverns
-				DespawnMessage: "[c/6495ed:The ancient stone has rolled far away.]"
-			}
-		}
-
-		DesertAnnihilator: {
-			BossChecklistIntegration: {
-				EntryName: Desert Annihilator
-				SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertGlyph] in the desert
-				DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
-			}
-
-			DisplayName: Desert Annihilator
-		}
-
-		FrozenAssaulter: {
-			DisplayName: Frozen Assaulter
-
-			BossChecklistIntegration: {
-				EntryName: Frozen Assaulter
-				SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
-				DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
-			}
-		}
-
-		InfernalTyrantBody.DisplayName: Infernal Tyrant
-
-		InfernalTyrantHead: {
-			DisplayName: Infernal Tyrant
-
-			BossChecklistIntegration: {
-				EntryName: Infernal Tyrant
-				SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
-				DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
-			}
-		}
-
-		InfernalTyrantTail.DisplayName: Infernal Tyrant
-		DesertScorpionD.DisplayName: Sand Poacher
-		DSlime.DisplayName: Servant of Desert Annihilator
-		FlyingAntlionD.DisplayName: Antlion Swarmer
-		IGolem.DisplayName: Ice Golem
-		MinerSoul.DisplayName: Miner Soul
-		MiniDuke.DisplayName: Fishron specter
-		SuperDummyNPC.DisplayName: Super Dummy
-
-		Time_Wizard: {
-			DisplayName: Time Wizard
-
-			TownNPCMood: {
-				Content: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.Content}"
-				NoHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.NoHome}"
-				FarFromHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.FarFromHome}"
-				LoveSpace: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveSpace}"
-				DislikeCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeCrowded}"
-				HateCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateCrowded}"
-				LoveBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveBiome}"
-				LikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeBiome}"
-				DislikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeBiome}"
-				LoveNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveNPC}"
-				LikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeNPC}"
-				DislikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeNPC}"
-				HateNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateNPC}"
-				LikeNPC_Princess: I like {NPCName}.
-				Princess_LovesNPC: I like {NPCName}.
-			}
-
-			Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
-		}
-
-		VultureD.DisplayName: Vulture
-		WalkingAntlionD.DisplayName: Antlion Charger
-		CobaltZombie.DisplayName: Armored Zombie
-		Copperzombie.DisplayName: Armored Zombie
-		Crimsonzombi.DisplayName: Armored Zombie
-		Fastzombie.DisplayName: weak zombie
-		Goldzombie.DisplayName: Armored Zombie
-		Ironzombie.DisplayName: Armored Zombie
-		Leadzombie.DisplayName: Armored Zombie
-		MoltenZombie.DisplayName: Armored Zombie
-		NightZombie.DisplayName: Armored Zombie
-		PaladiumZombie.DisplayName: Armored Zombie
-		Platinumzombie.DisplayName: Armored Zombie
-		ReinforcedIronZombie.DisplayName: Armored Zombie
-		Shadowzombie.DisplayName: Armored Zombie
-		Silverzombie.DisplayName: Armored Zombie
-		Tinzombie.DisplayName: Armored Zombie
-		Tungstenzombie.DisplayName: Armored Zombie
-		Tuxonitezombie.DisplayName: Armored Zombie
-		DesertTyphoonParry.DisplayName: Desert Typhoon Parry
-		AdamantiteZombie.DisplayName: Adamantite Zombie
-		MythrilZombie.DisplayName: Mythril Zombie
-		OrichalcumZombie.DisplayName: Orichalcum Zombie
-		TitaniumZombie.DisplayName: Titanium Zombie
-		DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
-		DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
-		HallowedZombie.DisplayName: Armored Zombie
-		DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
-		CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
-		ChlorophyteZombie.DisplayName: Chlorophyte Zombie
-		TurtleZombie.DisplayName: Turtle Zombie
-		BeetleZombie.DisplayName: Beetle Zombie
-		SolarZombie.DisplayName: Solar Zombie
-		KillerBunny.DisplayName: Killer Bunny
-		MaceSkeleton.DisplayName: Mace Skeleton
-		FakePlayer.DisplayName: Fake Player
-
-		Raider: {
-			DisplayName: Raider
-			Bestiary:
-				'''
-				An opportunist who likes to raid unprotected bases.
-				They are usually not very well-coordinated.
-				'''
-		}
-
-		RaiderBoss: {
-			DisplayName: Raider Leader
-			Bestiary:
-				'''
-				An adventurer slightly more cautious than his henchmen. 
-				He usually keeps all the good things they get for himself.
-				'''
 		}
 	}
 
@@ -5723,43 +5665,6 @@ Mods: {
 		StyleStatBonusDisplay.DisplayName: Style Stat Bonus Display
 		PierceChanceBonusDisplay.DisplayName: Pierce Chance Bonus Display
 		PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
-	}
-
-	Achievements: {
-		LegionAchievement: {
-			FriendlyName: One in half million
-			Description: Obtain the Legion, the most refined gem.
-		}
-
-		MaxStyleAchievement: {
-			FriendlyName: Fashionable
-			Description: Obtain the maximum amount possible of Style.
-		}
-
-		DefeatDesertAnnihilatorAchievement: {
-			FriendlyName: Slippery sand
-			Description: Defeat the Desert Annihilator, the guardian of the all dunes.
-		}
-
-		DefeatFrozenAssaulterAchievement: {
-			FriendlyName: Persistent icicle
-			Description: Defeat the Frozen Assaulter, the icy guardian with a sturdy shell
-		}
-
-		DefeatInfernalTyrantAchievement: {
-			FriendlyName: Tyrannicide
-			Description: Defeat the Infernal Tyrant, the ruler of the deep
-		}
-
-		AnkhAmuletAchievement: {
-			FriendlyName: All in one
-			Description: Get the ankh amulet, the most versatile jewelry.
-		}
-
-		DefeatGemstoneCrusherAchievement: {
-			FriendlyName: Structural failure
-			Description: Defeat the gemstone crusher, the motionless guardian
-		}
 	}
 
 	Commands.MaxStyleCommand.Description: Maximizes the player's style stat

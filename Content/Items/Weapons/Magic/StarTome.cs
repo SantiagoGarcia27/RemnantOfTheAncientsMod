@@ -15,12 +15,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Item.damage = 20;
-            Item.mana = 5;
+            Item.mana = 6;
             Item.width = 28;
             Item.height = 32;
             Item.useTime = 19;
             Item.useAnimation = 19;
-            Item.shoot = ProjectileID.FallingStar;
+            Item.shoot = ProjectileID.StarCannonStar;
             Item.shootSpeed = 14f;
             Item.DamageType = DamageClass.Magic;
             Item.rare = ItemRarityID.Green;
@@ -29,10 +29,8 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.autoReuse = true;
             Item.noMelee = true;
             Item.channel = true;
-            if (RemnantOfTheAncientsMod.CalamityMod != null)
-            {
-                Item.damage = 26;
-            }
+
+            if (RemnantOfTheAncientsMod.CalamityMod != null) Item.damage = 26;   
         }
 
         public override void AddRecipes()

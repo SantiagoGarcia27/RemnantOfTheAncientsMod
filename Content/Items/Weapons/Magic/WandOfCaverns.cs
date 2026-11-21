@@ -27,7 +27,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.noUseGraphic = true;
 			Item.shoot = ProjectileID.PurificationPowder;
 			Item.shootSpeed = 0;
-			Item.knockBack = 8;
+			Item.knockBack = 4;
 			Item.mana = 10;
 			Item.value = Item.sellPrice(silver: 27);
 			Item.rare = ItemRarityID.Green;

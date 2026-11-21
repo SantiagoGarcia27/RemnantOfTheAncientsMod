@@ -281,7 +281,7 @@ Mods: {
 			FishMultipleLine: Dispara {0} lineas a la vez.
 			IncreasedLuck: Aumenta la suerte en {0}
 			IncreasedBootSpeedInBlock: ", y mas rápido caminando en {0}"
-			IncreasedFallSpeed: Aumenta la velocidad de caída
+			IncreasedFallSpeed: Aumenta la velocidad de caída al presionar abajo
 			NanoBulletDrone: Genera nano drones cuando golpeas a los enemigos.
 		}
 
@@ -4800,6 +4800,11 @@ Mods: {
 				DisplayName: Espada de mariposa
 				// Tooltip: ""
 			}
+
+			StoneRing: {
+				// DisplayName: Stone Ring
+				// Tooltip: ""
+			}
 		}
 
 		StoneRing: {
@@ -4847,7 +4852,26 @@ Mods: {
 				''' */
 		}
 
-		Keybinds.ReaperModeInterface.DisplayName: Reaper Mode Interface
+		ButterflySword: {
+			// DisplayName: Butterfly Sword
+			// Tooltip: ""
+		}
+
+		CrusherMask: {
+			// DisplayName: Crusher Mask
+			// Tooltip: ""
+		}
+
+		ShinyPebbles: {
+			// DisplayName: Shiny Pebbles
+			// Tooltip: ""
+		}
+
+		Keybinds: {
+			ReaperModeInterface.DisplayName: Reaper Mode Interface
+			// FrostBarrier.DisplayName: Frost Barrier
+			// ToggNightTp.DisplayName: Togg Night Tp
+		}
 
 		Achievements: {
 			AnkhAmuletAchievement: {
@@ -4962,6 +4986,8 @@ Mods: {
 					LikeNPC_Princess: I like {NPCName}.
 					Princess_LovesNPC: I like {NPCName}.
 				}
+
+				// Census.SpawnCondition: Have either an [i:17] or an [i:709] in your inventory after defeating the corrupt boss
 			}
 
 			AdamantiteZombie.DisplayName: Zombi blindado
@@ -4989,6 +5015,8 @@ Mods: {
 			TitaniumZombie.DisplayName: Zombi blindado
 			Tungstenzombie.DisplayName: Zombi blindado
 			TurtleZombie.DisplayName: Zombi blindado
+			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
+			// DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
 		}
 
 		// BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
@@ -5165,6 +5193,7 @@ Mods: {
 			TrueTwilightProjectile.DisplayName: True Twilight Projectile
 			DesertFuryP.DisplayName: DesertFuryP
 			Golden_ShurikenP.DisplayName: Golden_ShurikenP
+			// FrozenHommingIceBlock.DisplayName: Frozen Homming Ice Block
 		}
 
 		Configs: {

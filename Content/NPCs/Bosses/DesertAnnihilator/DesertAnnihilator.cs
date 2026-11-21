@@ -334,7 +334,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.Bosses.DesertAnnihilator
         {
             base.OnSpawn(source);
         }
-        public override void BossLoot(ref string name, ref int potionType)
+        public override void BossLoot(ref int potionType)
         {
             RemnantDownedBossSystem.downedDesert = true;
             potionType = ItemID.HealingPotion;

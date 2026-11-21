@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework.Input;
 using RemnantOfTheAncientsMod.Common.Configs;
 using RemnantOfTheAncientsMod.Common.DataSet;
 using RemnantOfTheAncientsMod.Common.ReaperSystem;
@@ -175,7 +176,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.Items
             }
             if (ModContent.GetInstance<ConfigServer>().BootFastFallConf && FastFall.Contains(item.type))
             {
-                player.maxFallSpeed *= 2f;
+                if (player.controlDown) player.maxFallSpeed *= 2f;
             }
             if (RemnantOfTheAncientsMod.FargosSoulMod != null)
             {
