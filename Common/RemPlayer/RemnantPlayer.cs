@@ -153,6 +153,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 		];
 		public bool SummonerArea;
 
+		public int MaxCrusherSaphire = 5;
 
         public override void ResetEffects()
 		{
@@ -205,7 +206,8 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
 			if (RangerBuffInflict.Count > 0) RangerBuffInflict.Clear();
 			if (TrowerBuffInflict.Count > 0) TrowerBuffInflict.Clear();
 			if (AllClassBuffInflict.Count > 0) AllClassBuffInflict.Clear();
-		}
+			MaxCrusherSaphire = 5;
+        }
 
 		public override void Load()
 		{

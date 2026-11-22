@@ -51,6 +51,10 @@ namespace RemnantOfTheAncientsMod.Content.Items.Accesories.Fargos.Eternity
         public override Header ToggleHeader => Header.GetHeader<GuardiansShieldHeader>();
         public override int ToggleItemType => ModContent.ItemType<StoneRing>();
 
-        public override void PostUpdateEquips(Player player) => player.GetModPlayer<RemnantFargosSoulsPlayer>().OrbitalSaphireCount += 1;
+        public override void PostUpdateEquips(Player player)
+        {
+            player.GetModPlayer<RemnantPlayer>().MaxCrusherSaphire += 1;
+            player.GetModPlayer<RemnantFargosSoulsPlayer>().HasStonerRing = true;
+        }
     }
 }

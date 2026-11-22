@@ -6,26 +6,6 @@ Mods: {
 			To fix it please disable the "{0}" option in calamity settings.
 			'''
 
-		SetBonus: {
-			Tuxonite:
-				'''
-				Randomly puts you in stealth, 
-				increasing ranged ability and reducing chance for enemies to target you
-				'''
-			Daylight:
-				'''
-				During the day, doubles the health regeneration.
-				At night increases max mana by 20.
-				Bright Daisy no cost mana.
-				'''
-			Flinx:
-				'''
-				{$CommonItemTooltip.IncreasesMaxLifeBy}
-				Summon a flinx minion to protect you.
-				'''
-			TrueHallowed: Become immune and summon 2 clones after striking an enemy.
-		}
-
 		Messages: {
 			Reaper: {
 				On: Welcome to hell, now you're a reaper.
@@ -4116,6 +4096,7 @@ Mods: {
 					{$CommonItemTooltip.IncreasesMaxManaBy}
 					{$CommonItemTooltip.PercentIncreasedMagicDamageCritChance@1}
 					'''
+				SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedHelmet: {
@@ -4125,6 +4106,7 @@ Mods: {
 					{$CommonItemTooltip.PercentIncreasedRangedDamage}
 					{$CommonItemTooltip.PercentIncreasedRangedCritChance@1}
 					'''
+				SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedHood: {
@@ -4134,6 +4116,7 @@ Mods: {
 					{$CommonItemTooltip.IncreasesMaxMinionsBy}
 					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
 					'''
+				SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedMask: {
@@ -4143,6 +4126,7 @@ Mods: {
 					{$CommonItemTooltip.PercentIncreasedMeleeDamageCritChance}
 					{$CommonItemTooltip.PercentIncreasedMeleeSpeed@1}
 					'''
+				SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedPlateMail: {
@@ -4763,17 +4747,12 @@ Mods: {
 
 			StoneRing: {
 				DisplayName: Stone Ring
-				Tooltip: ""
+				Tooltip:
+					'''
+					When you land after a jump, explosions appear at your feet.
+					Spawns a defensive sapphire that will orbit you
+					'''
 			}
-		}
-
-		StoneRing: {
-			DisplayName: Stone Ring
-			Tooltip:
-				'''
-				When you land after a jump, explosions appear at your feet.
-				Spawns a defensive sapphire that will orbit you
-				'''
 		}
 
 		BurnyrHammer: {
@@ -4953,6 +4932,21 @@ Mods: {
 				}
 			}
 
+			RaiderBoss: {
+				DisplayName: Raider Leader
+				Bestiary:
+					'''
+					An adventurer slightly more cautious than his henchmen. 
+					He usually keeps all the good things they get for himself.
+					'''
+
+				BossChecklistIntegration: {
+					EntryName: Raider Leader
+					SpawnInfo: Appear after defeat 25 raiders on Raider Assault
+					DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+				}
+			}
+
 			InfernalTyrantTail.DisplayName: Infernal Tyrant
 			DesertScorpionD.DisplayName: Sand Poacher
 			DSlime.DisplayName: Servant of Desert Annihilator
@@ -5031,18 +5025,7 @@ Mods: {
 					They are usually not very well-coordinated.
 					'''
 			}
-
-			RaiderBoss: {
-				DisplayName: Raider Leader
-				Bestiary:
-					'''
-					An adventurer slightly more cautious than his henchmen. 
-					He usually keeps all the good things they get for himself.
-					'''
-			}
 		}
-
-		BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
 
 		Projectiles: {
 			GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
@@ -5318,6 +5301,13 @@ Mods: {
 			OpositeOreGenerationOrichalcum: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGenerationOrichalcum
 			OpositeOreGenerationMythril: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGenerationMythril
 			TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
+		}
+
+		BossChecklistIntegration: {
+			PlayerRaid: {
+				EntryName: Raider assault
+				SpawnInfo: Use [i:RemnantOfTheAncientsMod/RaidersSummon]
+			}
 		}
 	}
 
@@ -5669,5 +5659,4 @@ Mods: {
 
 	Commands.MaxStyleCommand.Description: Maximizes the player's style stat
 	ConfigServer.Headers.Performance: Lag Reducer Header
-	BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
 }

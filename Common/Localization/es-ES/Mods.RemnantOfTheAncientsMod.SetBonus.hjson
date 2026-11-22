@@ -1,0 +1,17 @@
+Tuxonite:
+	'''
+	Randomly puts you in stealth, 
+	increasing ranged ability and reducing chance for enemies to target you
+	'''
+Daylight:
+	'''
+	During the day, doubles the health regeneration.
+	At night increases max mana by 20.
+	Bright Daisy no cost mana.
+	'''
+Flinx:
+	'''
+	{$CommonItemTooltip.IncreasesMaxLifeBy}
+	Summon a flinx minion to protect you.
+	'''
+TrueHallowed: Become immune and summon 2 clones after striking an enemy.

@@ -143,7 +143,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
 
         public override void AI()
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient) return;
+            if (Main.netMode == NetmodeID.MultiplayerClient) return;
 
             Player player = Main.player[Projectile.owner];
             checkActive(player);

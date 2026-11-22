@@ -7,27 +7,6 @@ Mods: {
 			Para solucionarlo por favor desactive la opción "{0}" en la configuración del calamity
 			'''
 
-		SetBonus: {
-			Tuxonite:
-				'''
-				Puedes entrar en sigilo de manera aleatoria
-				Aumenta las habilidades a distancia 
-				Reduce la posibilidad de que los enemigos te detecten
-				'''
-			Daylight:
-				'''
-				Durante el día, duplica la regeneración de vida.
-				Por la noche, incrementementa le maná máximo en 20.
-				La margarita brillante no consume maná.
-				'''
-			Flinx:
-				'''
-				{$CommonItemTooltip.IncreasesMaxLifeBy}
-				Invoca un súbdito de copito para que luche por ti.
-				'''
-			TrueHallowed: Te vuelves inmune e invocas clones tras golpear a un enemigo.
-		}
-
 		Messages: {
 			Reaper: {
 				On: Bienvenido al infierno, ahora eres un segador.
@@ -4148,6 +4127,7 @@ Mods: {
 					{$CommonItemTooltip.IncreasesMaxManaBy}
 					{$CommonItemTooltip.PercentIncreasedMagicDamageCritChance@1}
 					''' */
+				// SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedHelmet: {
@@ -4157,6 +4137,7 @@ Mods: {
 					{$CommonItemTooltip.PercentIncreasedRangedDamage}
 					{$CommonItemTooltip.PercentIncreasedRangedCritChance@1}
 					''' */
+				// SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedHood: {
@@ -4166,6 +4147,7 @@ Mods: {
 					{$CommonItemTooltip.IncreasesMaxMinionsBy}
 					{$CommonItemTooltip.PercentIncreasedSummonDamage@1}
 					''' */
+				// SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedMask: {
@@ -4175,6 +4157,7 @@ Mods: {
 					{$CommonItemTooltip.PercentIncreasedMeleeDamageCritChance}
 					{$CommonItemTooltip.PercentIncreasedMeleeSpeed@1}
 					''' */
+				// SetBonus: Become immune and summon 2 clones after striking an enemy.
 			}
 
 			TrueHallowedPlateMail: {
@@ -4803,17 +4786,12 @@ Mods: {
 
 			StoneRing: {
 				// DisplayName: Stone Ring
-				// Tooltip: ""
+				/* Tooltip:
+					'''
+					When you land after a jump, explosions appear at your feet.
+					Spawns a defensive sapphire that will orbit you
+					''' */
 			}
-		}
-
-		StoneRing: {
-			// DisplayName: Stone Ring
-			/* Tooltip:
-				'''
-				When you land after a jump, explosions appear at your feet.
-				Spawns a defensive sapphire that will orbit you
-				''' */
 		}
 
 		BurnyrHammer: {
@@ -4874,9 +4852,14 @@ Mods: {
 		}
 
 		Achievements: {
-			AnkhAmuletAchievement: {
-				FriendlyName: Todo en uno
-				Description: Obtén el amuleto de la cruz ansata, la joyeria mas versatil.
+			LegionAchievement: {
+				FriendlyName: Uno en medio millón
+				Description: Obtén la lgeión, la gema mas refinada.
+			}
+
+			MaxStyleAchievement: {
+				FriendlyName: A la moda
+				Description: Obtén el máximo valor posible de estilo
 			}
 
 			DefeatDesertAnnihilatorAchievement: {
@@ -4889,24 +4872,19 @@ Mods: {
 				Description: Derrota al Asaltante Congelado, el guardián helado de coraza robusta.
 			}
 
-			DefeatGemstoneCrusherAchievement: {
-				FriendlyName: Fallo estructural
-				Description: Derrota al Trituragemas, el guardián inmovil.
-			}
-
 			DefeatInfernalTyrantAchievement: {
 				FriendlyName: Tiranicidio
 				Description: Derrota al Tirano Infernal, el gobernante de lo profundo.
 			}
 
-			LegionAchievement: {
-				FriendlyName: Uno en medio millón
-				Description: Obtén la lgeión, la gema mas refinada.
+			AnkhAmuletAchievement: {
+				FriendlyName: Todo en uno
+				Description: Obtén el amuleto de la cruz ansata, la joyeria mas versatil.
 			}
 
-			MaxStyleAchievement: {
-				FriendlyName: A la moda
-				Description: Obtén el máximo valor posible de estilo
+			DefeatGemstoneCrusherAchievement: {
+				FriendlyName: Fallo estructural
+				Description: Derrota al Trituragemas, el guardián inmovil.
 			}
 		}
 
@@ -4948,22 +4926,73 @@ Mods: {
 		}
 
 		NPCs: {
-			GemstoneCrusher.DisplayName: Trituragemas
-			RaiderBoss.DisplayName: Lider Forajido
-			Raider.DisplayName: Forajido
-			DesertAnnihilator.DisplayName: Aniquilador Del Desierto
-			FrozenAssaulter.DisplayName: Asaltante Congelado
-			InfernalTyrantHead.DisplayName: Tirano Infernal
+			// AntlionD.DisplayName: Antlion
 			ArmoredSlime.DisplayName: Slime blindada
+
+			GemstoneCrusher: {
+				DisplayName: Trituragemas
+
+				BossChecklistIntegration: {
+					// EntryName: Gemstone Crusher
+					// SpawnInfo: Spawns naturally or using [i:RemnantOfTheAncientsMod/StrikingGeode] on caverns
+					// DespawnMessage: "[c/6495ed:The ancient stone has rolled far away.]"
+				}
+			}
+
+			DesertAnnihilator: {
+				BossChecklistIntegration: {
+					// EntryName: Desert Annihilator
+					// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertGlyph] in the desert
+					// DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
+				}
+
+				DisplayName: Aniquilador Del Desierto
+			}
+
+			FrozenAssaulter: {
+				DisplayName: Asaltante Congelado
+
+				BossChecklistIntegration: {
+					// EntryName: Frozen Assaulter
+					// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
+					// DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
+				}
+			}
+
 			InfernalTyrantBody.DisplayName: Tirano Infernal
+
+			InfernalTyrantHead: {
+				DisplayName: Tirano Infernal
+
+				BossChecklistIntegration: {
+					// EntryName: Infernal Tyrant
+					// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
+					// DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+				}
+			}
+
+			RaiderBoss: {
+				DisplayName: Lider Forajido
+				/* Bestiary:
+					'''
+					An adventurer slightly more cautious than his henchmen. 
+					He usually keeps all the good things they get for himself.
+					''' */
+
+				BossChecklistIntegration: {
+					// EntryName: Raider Leader
+					// SpawnInfo: Appear after defeat 25 raiders on Raider Assault
+					// DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
+				}
+			}
+
 			InfernalTyrantTail.DisplayName: Tirano Infernal
-			CursedShotgunEnemy.DisplayName: Escopeta maldita
-			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
-			KillerBunny.DisplayName: Conejo asesino
-			MaceSkeleton.DisplayName: Esqueleto mazudo
+			// DesertScorpionD.DisplayName: Sand Poacher
+			// DSlime.DisplayName: Servant of Desert Annihilator
+			// FlyingAntlionD.DisplayName: Antlion Swarmer
+			// IGolem.DisplayName: Ice Golem
 			MinerSoul.DisplayName: Alma minera
 			MiniDuke.DisplayName: Espectro Fishron
-			DesertTyphoonParry.DisplayName: ""
 			SuperDummyNPC.DisplayName: Muñeco avanzado
 
 			Time_Wizard: {
@@ -4987,39 +5016,55 @@ Mods: {
 					Princess_LovesNPC: I like {NPCName}.
 				}
 
-				// Census.SpawnCondition: Have either an [i:17] or an [i:709] in your inventory after defeating the corrupt boss
+				// Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
 			}
 
-			AdamantiteZombie.DisplayName: Zombi blindado
-			BeetleZombie.DisplayName: Zombi blindado
-			ChlorophyteZombie.DisplayName: Zombi blindado
+			// VultureD.DisplayName: Vulture
+			// WalkingAntlionD.DisplayName: Antlion Charger
 			CobaltZombie.DisplayName: Zombi blindado
 			Copperzombie.DisplayName: Zombi blindado
 			Crimsonzombi.DisplayName: Zombi blindado
 			Fastzombie.DisplayName: Zombie debil
 			Goldzombie.DisplayName: Zombi blindado
-			HallowedZombie.DisplayName: Zombi blindado
 			Ironzombie.DisplayName: Zombi blindado
 			Leadzombie.DisplayName: Zombi blindado
 			MoltenZombie.DisplayName: Zombi blindado
-			MythrilZombie.DisplayName: Zombi blindado
 			NightZombie.DisplayName: Zombi blindado
-			OrichalcumZombie.DisplayName: Zombi blindado
 			PaladiumZombie.DisplayName: Zombi blindado
 			Platinumzombie.DisplayName: Zombi blindado
 			ReinforcedIronZombie.DisplayName: Zombi blindado
 			Shadowzombie.DisplayName: Zombi blindado
 			Silverzombie.DisplayName: Zombi blindado
-			SolarZombie.DisplayName: Zombi blindado
 			Tinzombie.DisplayName: Zombi blindado
-			TitaniumZombie.DisplayName: Zombi blindado
 			Tungstenzombie.DisplayName: Zombi blindado
-			TurtleZombie.DisplayName: Zombi blindado
-			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
+			// Tuxonitezombie.DisplayName: Armored Zombie
+			DesertTyphoonParry.DisplayName: ""
+			AdamantiteZombie.DisplayName: Zombi blindado
+			MythrilZombie.DisplayName: Zombi blindado
+			OrichalcumZombie.DisplayName: Zombi blindado
+			TitaniumZombie.DisplayName: Zombi blindado
 			// DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
-		}
+			DesertAnnihilatorServant.DisplayName: Sirviente arenoso
+			HallowedZombie.DisplayName: Zombi blindado
+			// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
+			CursedShotgunEnemy.DisplayName: Escopeta maldita
+			ChlorophyteZombie.DisplayName: Zombi blindado
+			TurtleZombie.DisplayName: Zombi blindado
+			BeetleZombie.DisplayName: Zombi blindado
+			SolarZombie.DisplayName: Zombi blindado
+			KillerBunny.DisplayName: Conejo asesino
+			MaceSkeleton.DisplayName: Esqueleto mazudo
+			// FakePlayer.DisplayName: Fake Player
 
-		// BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
+			Raider: {
+				DisplayName: Forajido
+				/* Bestiary:
+					'''
+					An opportunist who likes to raid unprotected bases.
+					They are usually not very well-coordinated.
+					''' */
+			}
+		}
 
 		Projectiles: {
 			// GravediggersSickleSwingProjectile.DisplayName: Gravediggers Sickle Swing Projectile
@@ -5313,140 +5358,12 @@ Mods: {
 			OpositeOreGenerationMythril: En un mundo con mythril
 			TinkererAlive: Cuando el duende chapuzero está vivo
 		}
-	}
 
-	NPCs: {
-		// AntlionD.DisplayName: Antlion
-		// ArmoredSlime.DisplayName: Armored Slime
-
-		GemstoneCrusher: {
-			// DisplayName: Gemstone Crusher
-
-			BossChecklistIntegration: {
-				// EntryName: Gemstone Crusher
-				// SpawnInfo: Spawns naturally on caverns
-				// DespawnMessage: "[c/6495ed:The ancient stone has rolled far away.]"
+		BossChecklistIntegration: {
+			PlayerRaid: {
+				// EntryName: Raider assault
+				// SpawnInfo: Use [i:RemnantOfTheAncientsMod/RaidersSummon]
 			}
-		}
-
-		DesertAnnihilator: {
-			BossChecklistIntegration: {
-				// EntryName: Desert Annihilator
-				// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/DesertGlyph] in the desert
-				// DespawnMessage: "[c/6495ed:The desert guardian has teleport.]"
-			}
-
-			// DisplayName: Desert Annihilator
-		}
-
-		FrozenAssaulter: {
-			// DisplayName: Frozen Assaulter
-
-			BossChecklistIntegration: {
-				// EntryName: Frozen Assaulter
-				// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/FrozenArtifact] in the snow at the night
-				// DespawnMessage: "[c/eee8aa:The frozen threat disappears on the horizon]"
-			}
-		}
-
-		// InfernalTyrantBody.DisplayName: Infernal Tyrant
-
-		InfernalTyrantHead: {
-			// DisplayName: Infernal Tyrant
-
-			BossChecklistIntegration: {
-				// EntryName: Infernal Tyrant
-				// SpawnInfo: Use a [i:RemnantOfTheAncientsMod/InfernalCalis] in the Underworld
-				// DespawnMessage: "[c/eee8aa:The tyrant retreats into the depths of the lava]"
-			}
-		}
-
-		// InfernalTyrantTail.DisplayName: Infernal Tyrant
-		// DesertScorpionD.DisplayName: Sand Poacher
-		// DSlime.DisplayName: Servant of Desert Annihilator
-		// FlyingAntlionD.DisplayName: Antlion Swarmer
-		// IGolem.DisplayName: Ice Golem
-		// MinerSoul.DisplayName: Miner Soul
-		// MiniDuke.DisplayName: Fishron specter
-		// SuperDummyNPC.DisplayName: Super Dummy
-
-		Time_Wizard: {
-			// DisplayName: Time Wizard
-
-			TownNPCMood: {
-				// Content: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.Content}"
-				// NoHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.NoHome}"
-				// FarFromHome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.FarFromHome}"
-				// LoveSpace: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveSpace}"
-				// DislikeCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeCrowded}"
-				// HateCrowded: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateCrowded}"
-				// LoveBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveBiome}"
-				// LikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeBiome}"
-				// DislikeBiome: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeBiome}"
-				// LoveNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LoveNPC}"
-				// LikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.LikeNPC}"
-				// DislikeNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.DislikeNPC}"
-				// HateNPC: "{$Mods.RemnantOfTheAncientsMod.TownNPCMood.Time_Wizard.HateNPC}"
-				// LikeNPC_Princess: I like {NPCName}.
-				// Princess_LovesNPC: I like {NPCName}.
-			}
-
-			// Census.SpawnCondition: Have either an [i:17]/[i:709] or upgrades in your inventory after defeating the corrupt boss
-		}
-
-		// VultureD.DisplayName: Vulture
-		// WalkingAntlionD.DisplayName: Antlion Charger
-		// CobaltZombie.DisplayName: Armored Zombie
-		// Copperzombie.DisplayName: Armored Zombie
-		// Crimsonzombi.DisplayName: Armored Zombie
-		// Fastzombie.DisplayName: weak zombie
-		// Goldzombie.DisplayName: Armored Zombie
-		// Ironzombie.DisplayName: Armored Zombie
-		// Leadzombie.DisplayName: Armored Zombie
-		// MoltenZombie.DisplayName: Armored Zombie
-		// NightZombie.DisplayName: Armored Zombie
-		// PaladiumZombie.DisplayName: Armored Zombie
-		// Platinumzombie.DisplayName: Armored Zombie
-		// ReinforcedIronZombie.DisplayName: Armored Zombie
-		// Shadowzombie.DisplayName: Armored Zombie
-		// Silverzombie.DisplayName: Armored Zombie
-		// Tinzombie.DisplayName: Armored Zombie
-		// Tungstenzombie.DisplayName: Armored Zombie
-		// Tuxonitezombie.DisplayName: Armored Zombie
-		// DesertTyphoonParry.DisplayName: Desert Typhoon Parry
-		// AdamantiteZombie.DisplayName: Adamantite Zombie
-		// MythrilZombie.DisplayName: Mythril Zombie
-		// OrichalcumZombie.DisplayName: Orichalcum Zombie
-		// TitaniumZombie.DisplayName: Titanium Zombie
-		// DesertAnnihilatorGuard.DisplayName: Desert Annihilator Guard
-		// DesertAnnihilatorServant.DisplayName: Desert Annihilator Servant
-		// HallowedZombie.DisplayName: Armored Zombie
-		// DevourerOfGodsArmor.DisplayName: Devourer Of Gods Armor
-		// CursedShotgunEnemy.DisplayName: Cursed Shotgun Enemy
-		// ChlorophyteZombie.DisplayName: Chlorophyte Zombie
-		// TurtleZombie.DisplayName: Turtle Zombie
-		// BeetleZombie.DisplayName: Beetle Zombie
-		// SolarZombie.DisplayName: Solar Zombie
-		// KillerBunny.DisplayName: Killer Bunny
-		// MaceSkeleton.DisplayName: Mace Skeleton
-		// FakePlayer.DisplayName: Fake Player
-
-		Raider: {
-			// DisplayName: Raider
-			/* Bestiary:
-				'''
-				An opportunist who likes to raid unprotected bases.
-				They are usually not very well-coordinated.
-				''' */
-		}
-
-		RaiderBoss: {
-			// DisplayName: Raider Leader
-			/* Bestiary:
-				'''
-				An adventurer slightly more cautious than his henchmen. 
-				He usually keeps all the good things they get for himself.
-				''' */
 		}
 	}
 
@@ -5796,44 +5713,6 @@ Mods: {
 		// PiercePowerBonusDisplay.DisplayName: Pierce Power Bonus Display
 	}
 
-	Achievements: {
-		LegionAchievement: {
-			// FriendlyName: One in half million
-			// Description: Obtain the Legion, the most refined gem.
-		}
-
-		MaxStyleAchievement: {
-			// FriendlyName: Fashionable
-			// Description: Obtain the maximum amount possible of Style.
-		}
-
-		DefeatDesertAnnihilatorAchievement: {
-			// FriendlyName: Slippery sand
-			// Description: Defeat the Desert Annihilator, the guardian of the all dunes.
-		}
-
-		DefeatFrozenAssaulterAchievement: {
-			// FriendlyName: Persistent icicle
-			// Description: Defeat the Frozen Assaulter, the icy guardian with a sturdy shell
-		}
-
-		DefeatInfernalTyrantAchievement: {
-			// FriendlyName: Tyrannicide
-			// Description: Defeat the Infernal Tyrant, the ruler of the deep
-		}
-
-		AnkhAmuletAchievement: {
-			// FriendlyName: All in one
-			// Description: Get the ankh amulet, the most versatile jewelry.
-		}
-
-		DefeatGemstoneCrusherAchievement: {
-			// FriendlyName: Structural failure
-			// Description: Defeat the gemstone crusher, the motionless guardian
-		}
-	}
-
 	// Commands.MaxStyleCommand.Description: Maximizes the player's style stat
 	// ConfigServer.Headers.Performance: Lag Reducer Header
-	// BossChecklistIntegration.PlayerRaid.EntryName: Player Raid
 }

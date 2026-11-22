@@ -98,7 +98,7 @@ namespace RemnantOfTheAncientsMod.Common.ModCompativilitie
                 "LogMiniBoss",
                 Mod,
                 "RaiderLeader",
-                0.25f,
+                0.51f,
                 () => RemnantDownedBossSystem.downedRaiderLeader,
                 new List<int>() {ModContent.NPCType<RaiderBoss>()}
             );

@@ -26,8 +26,6 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         public bool DesertMedalion;
 
         public bool StoneBand;
-        public int OrbitalSaphireCount;
-
 
         public bool NightTp;
         public int NightTpCouldown { get; set; }
@@ -40,6 +38,8 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
         public float ProjectileSpeedBonus = 0;
         public float ProjectileSizeBonus = 0;
 
+        public bool HasStonerRing;
+
         public override void ResetEffects()
         {
             FrostBarrier = false;
@@ -49,7 +49,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
             NightTp = false;
             DaylightEnchantment = false;
             tuxoniteEnchantCrit = false;
-            OrbitalSaphireCount = 0;
+            HasStonerRing = false;
         }
 
 
@@ -124,7 +124,7 @@ namespace RemnantOfTheAncientsMod.Common.RemPlayer
                 }
             }
 
-            if (Player.ownedProjectileCounts[ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>()] < OrbitalSaphireCount)
+            if (HasStonerRing && Player.ownedProjectileCounts[ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>()] < Player.GetModPlayer<RemnantPlayer>().MaxCrusherSaphire)
             {
                 int damageBase = 20;
 

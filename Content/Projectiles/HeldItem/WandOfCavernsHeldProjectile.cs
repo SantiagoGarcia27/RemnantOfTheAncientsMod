@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using RemnantOfTheAncientsMod.Common.RemPlayer;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
 using RemnantOfTheAncientsMod.Content.Items.Weapons.Magic;
 using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone;
@@ -86,7 +87,8 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         public void shoot()
         {
             Player owner = Main.player[Projectile.owner];
-            if (owner.ownedProjectileCounts[ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>()] < 5 && owner.HeldItem.type == ModContent.ItemType<WandOfCaverns>())
+            int maxCount = owner.GetModPlayer<RemnantPlayer>().MaxCrusherSaphire;
+            if (owner.ownedProjectileCounts[ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>()] < maxCount && owner.HeldItem.type == ModContent.ItemType<WandOfCaverns>())
             {
 
                 int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), owner.Center + new Vector2(16 * owner.direction, 0), Vector2.Zero, ModContent.ProjectileType<GemstoneCrusherProj_Sapphire>(), 10, Projectile.knockBack, owner.whoAmI);
