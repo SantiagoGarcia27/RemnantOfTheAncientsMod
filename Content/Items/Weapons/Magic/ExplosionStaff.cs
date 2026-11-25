@@ -11,22 +11,17 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Pine Fury");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Polish), "Star Tome");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Pine Fury");
-			//DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Furia de pino");
 			Item.staff[Item.type] = true;
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			//Item.CloneDefaults(ItemID.Razorpine);
 			Item.damage = 55;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true;
-			Item.mana = 2;
+			Item.mana = 10;
 			Item.rare = ItemRarityID.Orange;
 			Item.width = 28;
 			Item.height = 30;
@@ -34,6 +29,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot; 
 			Item.shootSpeed = 14f;
+			Item.knockBack = 4;
 			
 			Item.shoot = ProjectileID.Volcano;
 			Item.value = Item.sellPrice(0,1,0,0);
@@ -42,9 +38,12 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			position = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-            Projectile.NewProjectile(source, position, Vector2.Zero, type, Item.damage, knockback, player.whoAmI);
-			return false;
+			
+			Vector2 pos = Main.MouseWorld;
+            int p = Projectile.NewProjectile(source, pos, Vector2.Zero, type, Item.damage, knockback, player.whoAmI);
+			Main.projectile[p].Size = new Vector2(48, 48);
+            Main.projectile[p].Center = pos;
+            return false;
 		}
 
 

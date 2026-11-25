@@ -47,7 +47,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 perturbedSpeed = SubVelocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f;
-                int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.position, perturbedSpeed * 3, ModContent.ProjectileType<BloodDart>(), (int)(player.HeldItem.damage * 1.5f), player.HeldItem.knockBack, player.whoAmI);
+                int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.position, perturbedSpeed * 3, ModContent.ProjectileType<BloodDart>(), (int)(Projectile.damage * 3f), player.HeldItem.knockBack, player.whoAmI);
                 Main.projectile[p].stepSpeed = 10f;
                 Main.projectile[p].GetAlpha(Color.Red);
             }

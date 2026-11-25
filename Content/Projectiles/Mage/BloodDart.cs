@@ -93,7 +93,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Mage
                     if (stopTimer <= 0)
                     {
                         currentState = State.Launch;
-                        Projectile.velocity = Projectile.DirectionTo(target.Center) * 20f;
+                        Projectile.velocity = Projectile.DirectionTo(target.Center) * 40f;
                     }
                     else stopTimer--;
                 }

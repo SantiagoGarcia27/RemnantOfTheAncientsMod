@@ -105,10 +105,16 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                 
                 if (npc.type == NPCID.SkeletronHead)
                 {
-                    for (int i = 0; i < 2; i++)
+                    int hand = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + 15.ToCoordinatePosition(), NPCID.SkeletronHand,ai0: 1, ai1:npc.whoAmI, ai3: 290f);
+                    Main.npc[hand].netUpdate = true;
+                    int hand2 = NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y + 15.ToCoordinatePosition(), NPCID.SkeletronHand, ai0: -1, ai1: npc.whoAmI, ai3: 290f);
+                    Main.npc[hand2].netUpdate = true;
+
+                    /*for (int i = 0; i < 2; i++)
                     {
+                         NPC.NewNPC(npc.GetSource_FromAI(), (int)npc.position.X, (int)npc.position.Y, NPCID.SkeletronHand);
                         NPC.SpawnOnPlayer(Main.player[npc.target].whoAmI, NPCID.SkeletronHand);
-                    }
+                    }*/
                 }
                 if (npc.type == NPCID.Deerclops) RemnantPlayer.ApplyBuffToAllPlayers(BuffID.Hunger, 0, 1, 30);   
                 
@@ -221,11 +227,7 @@ namespace RemnantOfTheAncientsMod.Common.Global.NPCs.ReaperGlobal
                 }
                 if (npc.type == NPCID.SkeletronHead)
                 {
-                    foreach(NPC npcAux in Main.ActiveNPCs)
-                    {
-                        if (npcAux.type != NPCID.SkeletronHand) continue; 
-                        if (!npcAux.dontTakeDamage) npc.dontTakeDamage = NPC.AnyNPCs(NPCID.SkeletronHand);
-                    }
+                    npc.dontTakeDamage = NPC.AnyNPCs(NPCID.SkeletronHand);
                 }
                 if (npc.type == NPCID.Deerclops)
                 {

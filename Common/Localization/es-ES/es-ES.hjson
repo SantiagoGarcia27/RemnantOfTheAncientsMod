@@ -5357,6 +5357,10 @@ Mods: {
 			OpositeOreGenerationOrichalcum: En un mundo con orichalco
 			OpositeOreGenerationMythril: En un mundo con mythril
 			TinkererAlive: Cuando el duende chapuzero está vivo
+			// DownedCrusher: Mods.RemnantOfTheAncientsMod.Conditions.DownedCrusher
+			// DownedDesert: Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert
+			// DownedFrozen: Mods.RemnantOfTheAncientsMod.Conditions.DownedFrozen
+			// DownedTyrant: Mods.RemnantOfTheAncientsMod.Conditions.DownedTyrant
 		}
 
 		BossChecklistIntegration: {

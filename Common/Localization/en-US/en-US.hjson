@@ -5301,6 +5301,10 @@ Mods: {
 			OpositeOreGenerationOrichalcum: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGenerationOrichalcum
 			OpositeOreGenerationMythril: Mods.RemnantOfTheAncientsMod.Conditions.OpositeOreGenerationMythril
 			TinkererAlive: Mods.RemnantOfTheAncientsMod.Conditions.TinkererAlive
+			DownedCrusher: Mods.RemnantOfTheAncientsMod.Conditions.DownedCrusher
+			DownedDesert: Mods.RemnantOfTheAncientsMod.Conditions.DownedDesert
+			DownedFrozen: Mods.RemnantOfTheAncientsMod.Conditions.DownedFrozen
+			DownedTyrant: Mods.RemnantOfTheAncientsMod.Conditions.DownedTyrant
 		}
 
 		BossChecklistIntegration: {

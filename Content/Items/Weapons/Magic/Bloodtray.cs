@@ -69,7 +69,7 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 
                     if (player.ownedProjectileCounts[ModContent.ProjectileType<BloodRayHeldProj>()] <= 0)
                     {
-                        Projectile.NewProjectile(source, player.position, Vector2.Zero, ModContent.ProjectileType<BloodRayHeldProj>(), 0, 0, Main.myPlayer, velocity.X, velocity.Y, attackSpeedBonus);
+                        Projectile.NewProjectile(source, player.position, Vector2.Zero, ModContent.ProjectileType<BloodRayHeldProj>(), Item.damage, 0, Main.myPlayer, velocity.X, velocity.Y, attackSpeedBonus);
                     }
                 }
                 return false;
