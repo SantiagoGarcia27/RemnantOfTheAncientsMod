@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
 using RemnantOfTheAncientsMod.Content.Dusts;
+using RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Desert;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 
 namespace RemnantOfTheAncientsMod.Content.NPCs.ProjectileNpc
@@ -11,11 +13,7 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.ProjectileNpc
         public override string Texture => "RemnantOfTheAncientsMod/Content/Projectiles/Textures/DesertTyphoon";
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Armored Slime");
-            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.Spanish), "Slime blindado");
-            //DisplayName.AddTranslation(GameCulture.FromCultureName(GameCulture.CultureName.French), "Slime blindé");
             Main.npcFrameCount[Type] = 4;
-            NPC.spriteDirection = NPC.direction;
         }
 
         public override void SetDefaults()
@@ -25,16 +23,10 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.ProjectileNpc
             NPC.width = 36;
             NPC.height = 36;
             NPC.friendly = false;
-          //  NPC.hostile = true;
-           // NPC.DamageType = DamageClass.Magic;
             NPC.noTileCollide = false;
-           // NPC.penetrate = PenetrateKill;
             NPC.timeLeft = 200;
             NPC.aiStyle = -1;
             NPC.noGravity = true;
-            //NPC.light = 0.75f;
-            //NPC.extraUpdates = 1;
-            //NPC.ignoreWater = true;
         }
         public override void AI()
         {
@@ -96,14 +88,32 @@ namespace RemnantOfTheAncientsMod.Content.NPCs.ProjectileNpc
             base.OnHitByProjectile(projectile, hit, damageDone);
         }
         int frameCounter = 0;
+        /* public void AnimateTexture()
+         {
+             frameCounter++;
+             if (frameCounter >= Main.projFrames[NPC.type])
+             {
+                 frameCounter = 0;
+             }
+             NPC.frame.Y = frameCounter;
+         }*/
+
         public void AnimateTexture()
         {
-            frameCounter++;
-            if (frameCounter >= Main.projFrames[NPC.type])
+            int type = ModContent.ProjectileType<DesertTyphoon>();
+            int frames = Main.projFrames[type];
+
+            int frameHeight = TextureAssets.Projectile[type]
+                .Value.Height / frames;
+
+            if (++NPC.frameCounter >= 5)
             {
-                frameCounter = 0;
+                NPC.frameCounter = 0;
+                NPC.frame.Y += frameHeight;
+
+                if (NPC.frame.Y >= frameHeight * frames)
+                    NPC.frame.Y = 0;
             }
-            NPC.frame.Y =frameCounter;
         }
     }
 }

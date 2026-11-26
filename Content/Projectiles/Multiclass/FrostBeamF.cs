@@ -11,26 +11,22 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Multiclass
 
     public class FrostBeamF : ModProjectile
     {
-        public override void SetStaticDefaults()
-        {
-           // //DisplayName.SetDefault("FrostBeamF"); //projectile name
-        }
         public override void SetDefaults()
         {
-            Projectile.width = 136;       //projectile width
-            Projectile.height = 10;  //projectile height
-            Projectile.friendly = true;      //make that the projectile will not damage you
-            Projectile.DamageType = DamageClass.Generic;          // 
-            Projectile.tileCollide = true;   //make that the projectile will be destroed if it hits the terrain
-            Projectile.penetrate = 5;      //how many NPC will penetrate
-            Projectile.timeLeft = 20000;   //how many time this projectile has before disepire
-            Projectile.light = 1.75f;    // projectile light
+            Projectile.width = 136;
+            Projectile.height = 10;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Generic;
+            Projectile.tileCollide = true;
+            Projectile.penetrate = 5;
+            Projectile.timeLeft = 20000;
+            Projectile.light = 1.75f;
             Projectile.extraUpdates = 1;
             Projectile.ignoreWater = true;
             AIType = ProjectileID.FrostBeam;
         }
-        public override void AI()           //this make that the projectile will face the corect way
-        {                                                           // |
+        public override void AI()
+        {
             Projectile.rotation = (float)Math.Atan2((double)Projectile.velocity.Y, (double)Projectile.velocity.X) + 1.00f;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(0f);
         }

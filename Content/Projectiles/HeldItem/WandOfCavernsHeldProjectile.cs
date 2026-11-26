@@ -42,8 +42,18 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
         public override void AI()
         {
             Player owner = Main.player[Projectile.owner];
-            
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(-45f);
+
+            Projectile.rotation = MathHelper.ToRadians(-45f);//Projectile.velocity.ToRotation() + MathHelper.ToRadians(-45f);
+
+            Projectile.tileCollide = false;
+
+            if (owner.active && owner.dead)
+            {
+                Projectile.tileCollide = true;
+                Projectile.velocity.Y = 5;
+                Projectile.rotation += MathHelper.Pi;
+                //return;
+            }
 
             if (owner.HeldItem.type != ModContent.ItemType<WandOfCaverns>())
             {
@@ -79,7 +89,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
                 }
             }
 
-            Projectile.Center = owner.Center + new Vector2(offset * owner.direction,posY);
+            if(owner.active && !owner.dead) Projectile.Center = owner.Center + new Vector2(offset * owner.direction,posY);
 
             base.AI();
         }
@@ -105,5 +115,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.HeldItem
             Main.spriteBatch.Draw(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), lightColor, Projectile.rotation, texture.Size() * 0.5f, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
-	}
+
+        public override bool OnTileCollide(Vector2 oldVelocity) => false;
+    }
 }

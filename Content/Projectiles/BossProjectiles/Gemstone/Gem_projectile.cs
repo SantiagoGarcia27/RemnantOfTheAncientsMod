@@ -2,8 +2,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using RemnantOfTheAncientsMod.Common.UtilsTweaks;
+using RemnantOfTheAncientsMod.Content.Projectiles.HeldItem;
 using SangarUtilities.Common.UtilsTweaks;
 using System;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -83,12 +85,59 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
             if (count <= 0) return;
 
             float rotationSpeed = 0.03f;
+            Vector2 center = owner.Center;
+
+            if (owner is Player)
+            {
+                Player ownerPlayer = owner as Player;
+                if (ownerPlayer == null || !ownerPlayer.active && Projectile.timeLeft > 4) Projectile.timeLeft = 4;
+
+                if (ownerPlayer.dead && ownerPlayer.ownedProjectileCounts[ModContent.ProjectileType<WandOfCavernsHeldProjectile>()] > 0)
+                {
+                    rotationSpeed = 0.09f;
+                    center = wand?.Center ?? owner.Center;
+                }
+
+            }
+
             float angle = Main.GameUpdateCount * rotationSpeed + MathHelper.TwoPi * index / count;
 
             float radius = Math.Max(owner.width, owner.height) * 2f;
+
             Projectile.Center = owner.Center + angle.ToRotationVector2() * radius;
 
             base.AI();
+        }
+
+        Projectile wand;
+        public override void PostDraw(Color lightColor)
+        {
+            base.PostDraw(lightColor);
+            if (Projectile.friendly)
+            {
+                Player ownerPlayer = Main.player[Projectile.owner];
+                int wandType = ModContent.ProjectileType<WandOfCavernsHeldProjectile>();
+
+                if (ownerPlayer == null || !ownerPlayer.active) return;
+                if (!ownerPlayer.dead) return;
+
+                if (ownerPlayer.dead && ownerPlayer.ownedProjectileCounts[wandType] > 0 || (wand != null && wand.type != wandType))
+                {
+                    wand = Main.projectile.FirstOrDefault(x=> x.owner >= 0 && x.owner == Projectile.owner && x.type == wandType);
+                }
+
+                if(wand != null && wand.active)
+                {
+                    Vector2 start = wand.Center;
+                    Vector2 end = Projectile.Center;
+                    Vector2 direction = end - start;
+                    float length = direction.Length();
+                    direction.Normalize();
+                    float rotation = direction.ToRotation(); //- MathHelper.PiOver2;
+                    Texture2D texture = ModContent.Request<Texture2D>("RemnantOfTheAncientsMod/Content/Projectiles/Multiclass/FrostBeamF", AssetRequestMode.ImmediateLoad).Value;
+                    Main.spriteBatch.Draw(texture, start - Main.screenPosition, null, Color.White, rotation, new Vector2(0f, texture.Height * 0.5f), new Vector2(length / texture.Width, 1f), SpriteEffects.None, 0f);
+                }
+            }
         }
     }
     public class GemstoneCrusherProj_Ruby : GemstoneCrusherProj
@@ -163,6 +212,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
     {
         public abstract int GemId { get; }
         public override string Texture => getTexture(GemId);
+
         public override void SetDefaults()
         {
             Projectile.width = 18;
@@ -185,22 +235,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
         }
         public override void PostDraw(Color lightColor)
         {
-            /* Type type = GetType();
-             String ruta = type.FullName.Replace('.', '/');
-             string Texture = $"{ruta}_Glow";
-
-
-             if (Texture != null)
-             {
-
-
-                 Texture2D texture = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
-                 Vector2 pos = Projectile.Center - Main.screenPosition;
-                 Rectangle source = new(0, 0, texture.Width, texture.Height);
-                 Main.spriteBatch.Draw(texture,pos, source, Color.White, Projectile.rotation, texture.Size() * 0.5f, Projectile.scale,SpriteEffects.None,0f);
-             }
-             base.PostDraw(lightColor);*/
-
             Type type = GetType();
             string ruta = type.FullName.Replace('.', '/');
             string Texture = $"{ruta}_Glow";
@@ -217,17 +251,19 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Gemstone
                 texture.Height * 0.5f
             );
 
-            Main.spriteBatch.Draw(
-                texture,
-                pos,
-                null,
-                Color.White,
-                Projectile.rotation,
-                origin,
-                Projectile.scale,
-                SpriteEffects.None,
-                0f
-            );
+
+         
+            Color color = Color.White;
+            if (Projectile.friendly)
+            {
+                Player player = Main.player[Projectile.owner];
+                if(player != null && player.active && player.dead)
+                {
+                    color = Color.Red;
+                }     
+            }
+
+            Main.spriteBatch.Draw(texture, pos, null, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 
             base.PostDraw(lightColor);
         }

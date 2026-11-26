@@ -55,23 +55,6 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.Summon.Minioms
             return true;
         }
 
-        /*	public override void AI()
-            {
-                Player player = Main.player[Projectile.owner];
-
-                #region Active check
-                // This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
-                if (player.dead || !player.active)
-                {
-                    player.ClearBuff(BuffType<DesertMinionBuff>());
-                }
-                if (player.HasBuff(BuffType<DesertMinionBuff>()))
-                {
-                    Projectile.timeLeft = 2;
-                }
-                #endregion
-            }*/
-
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             fallThrough = false;

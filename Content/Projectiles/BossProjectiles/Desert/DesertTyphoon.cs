@@ -63,7 +63,7 @@ namespace RemnantOfTheAncientsMod.Content.Projectiles.BossProjectiles.Desert
 
         public void AnimateTexture()
         {
-            if (++Projectile.frameCounter >= 4)
+            if (++Projectile.frameCounter >= Main.projFrames[Projectile.type])
             {
                 Projectile.frameCounter = 0;
                 if (++Projectile.frame >= Main.projFrames[Projectile.type])

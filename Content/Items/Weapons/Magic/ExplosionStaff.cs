@@ -28,7 +28,6 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 			Item.useTime = 20;
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Shoot; 
-			Item.shootSpeed = 14f;
 			Item.knockBack = 4;
 			
 			Item.shoot = ProjectileID.Volcano;
@@ -38,14 +37,18 @@ namespace RemnantOfTheAncientsMod.Content.Items.Weapons.Magic
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			
-			Vector2 pos = Main.MouseWorld;
-            int p = Projectile.NewProjectile(source, pos, Vector2.Zero, type, Item.damage, knockback, player.whoAmI);
+            Vector2 pos = Main.MouseWorld;
+            int p = Projectile.NewProjectile(source, pos, Vector2.Zero, type, damage, knockback, player.whoAmI);
 			Main.projectile[p].Size = new Vector2(48, 48);
             Main.projectile[p].Center = pos;
             return false;
 		}
-
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            position = Main.MouseWorld;
+			velocity = Vector2.Zero;
+            base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
+        }
 
 		public override void AddRecipes()
 		{

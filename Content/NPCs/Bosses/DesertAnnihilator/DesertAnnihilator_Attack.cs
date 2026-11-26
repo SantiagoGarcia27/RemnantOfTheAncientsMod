@@ -274,7 +274,7 @@ class DesertAnnihilator_Attack
 
             List<Vector2> points = GeneratePoints(start, end, numberOfProjectiles);
 
-            int damage = 100;
+            int damage = 25;
             int proj = RemnantOfTheAncientsMod.RemnantOfTheAncientsMod.ParticleMeterChoice() ? ProjectileID.RollingCactus : ModContent.ProjectileType<CactusBoulderClone>();
 
             foreach (var point in points)
